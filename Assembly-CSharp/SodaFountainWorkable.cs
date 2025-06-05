@@ -1,0 +1,112 @@
+﻿using System;
+using System.Collections.Generic;
+using Klei;
+using Klei.AI;
+using TUNING;
+using UnityEngine;
+
+// Token: 0x020018EA RID: 6378
+[AddComponentMenu("KMonoBehaviour/Workable/SodaFountainWorkable")]
+public class SodaFountainWorkable : Workable, IWorkerPrioritizable
+{
+	// Token: 0x060083E3 RID: 33763 RVA: 0x000FB3B1 File Offset: 0x000F95B1
+	private SodaFountainWorkable()
+	{
+		base.SetReportType(ReportManager.ReportType.PersonalTime);
+	}
+
+	// Token: 0x060083E4 RID: 33764 RVA: 0x0035032C File Offset: 0x0034E52C
+	protected override void OnPrefabInit()
+	{
+		base.OnPrefabInit();
+		this.overrideAnims = new KAnimFile[]
+		{
+			Assets.GetAnim("anim_interacts_sodamaker_kanim")
+		};
+		this.showProgressBar = true;
+		this.resetProgressOnStop = true;
+		this.synchronizeAnims = false;
+		base.SetWorkTime(30f);
+		this.sodaFountain = base.GetComponent<SodaFountain>();
+	}
+
+	// Token: 0x060083E5 RID: 33765 RVA: 0x0035038C File Offset: 0x0034E58C
+	public override Workable.AnimInfo GetAnim(WorkerBase worker)
+	{
+		KAnimFile[] overrideAnims = null;
+		if (this.workerTypeOverrideAnims.TryGetValue(worker.PrefabID(), out overrideAnims))
+		{
+			this.overrideAnims = overrideAnims;
+		}
+		return base.GetAnim(worker);
+	}
+
+	// Token: 0x060083E6 RID: 33766 RVA: 0x000FB3CC File Offset: 0x000F95CC
+	protected override void OnStartWork(WorkerBase worker)
+	{
+		this.operational.SetActive(true, false);
+	}
+
+	// Token: 0x060083E7 RID: 33767 RVA: 0x003503C0 File Offset: 0x0034E5C0
+	protected override void OnCompleteWork(WorkerBase worker)
+	{
+		Storage component = base.GetComponent<Storage>();
+		float num;
+		SimUtil.DiseaseInfo diseaseInfo;
+		float num2;
+		component.ConsumeAndGetDisease(GameTags.Water, this.sodaFountain.waterMassPerUse, out num, out diseaseInfo, out num2);
+		SimUtil.DiseaseInfo diseaseInfo2;
+		component.ConsumeAndGetDisease(this.sodaFountain.ingredientTag, this.sodaFountain.ingredientMassPerUse, out num, out diseaseInfo2, out num2);
+		GermExposureMonitor.Instance smi = worker.GetSMI<GermExposureMonitor.Instance>();
+		if (smi != null)
+		{
+			smi.TryInjectDisease(diseaseInfo.idx, diseaseInfo.count, GameTags.Water, Sickness.InfectionVector.Digestion);
+			smi.TryInjectDisease(diseaseInfo2.idx, diseaseInfo2.count, this.sodaFountain.ingredientTag, Sickness.InfectionVector.Digestion);
+		}
+		Effects component2 = worker.GetComponent<Effects>();
+		if (!string.IsNullOrEmpty(this.sodaFountain.specificEffect))
+		{
+			component2.Add(this.sodaFountain.specificEffect, true);
+		}
+		if (!string.IsNullOrEmpty(this.sodaFountain.trackingEffect))
+		{
+			component2.Add(this.sodaFountain.trackingEffect, true);
+		}
+	}
+
+	// Token: 0x060083E8 RID: 33768 RVA: 0x000FB3DB File Offset: 0x000F95DB
+	protected override void OnStopWork(WorkerBase worker)
+	{
+		this.operational.SetActive(false, false);
+	}
+
+	// Token: 0x060083E9 RID: 33769 RVA: 0x003504A8 File Offset: 0x0034E6A8
+	public bool GetWorkerPriority(WorkerBase worker, out int priority)
+	{
+		priority = this.basePriority;
+		Effects component = worker.GetComponent<Effects>();
+		if (!string.IsNullOrEmpty(this.sodaFountain.trackingEffect) && component.HasEffect(this.sodaFountain.trackingEffect))
+		{
+			priority = 0;
+			return false;
+		}
+		if (!string.IsNullOrEmpty(this.sodaFountain.specificEffect) && component.HasEffect(this.sodaFountain.specificEffect))
+		{
+			priority = RELAXATION.PRIORITY.RECENTLY_USED;
+		}
+		return true;
+	}
+
+	// Token: 0x0400646F RID: 25711
+	public Dictionary<Tag, KAnimFile[]> workerTypeOverrideAnims = new Dictionary<Tag, KAnimFile[]>();
+
+	// Token: 0x04006470 RID: 25712
+	[MyCmpReq]
+	private Operational operational;
+
+	// Token: 0x04006471 RID: 25713
+	public int basePriority;
+
+	// Token: 0x04006472 RID: 25714
+	private SodaFountain sodaFountain;
+}

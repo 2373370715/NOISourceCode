@@ -1,0 +1,39 @@
+﻿using System;
+using UnityEngine;
+
+// Token: 0x020004A4 RID: 1188
+public class TelescopeTargetConfig : IEntityConfig, IHasDlcRestrictions
+{
+	// Token: 0x06001456 RID: 5206 RVA: 0x000AA117 File Offset: 0x000A8317
+	public string[] GetRequiredDlcIds()
+	{
+		return DlcManager.EXPANSION1;
+	}
+
+	// Token: 0x06001457 RID: 5207 RVA: 0x000AA765 File Offset: 0x000A8965
+	public string[] GetForbiddenDlcIds()
+	{
+		return null;
+	}
+
+	// Token: 0x06001458 RID: 5208 RVA: 0x000B3422 File Offset: 0x000B1622
+	public GameObject CreatePrefab()
+	{
+		GameObject gameObject = EntityTemplates.CreateEntity("TelescopeTarget", "TelescopeTarget", true);
+		gameObject.AddOrGet<TelescopeTarget>();
+		return gameObject;
+	}
+
+	// Token: 0x06001459 RID: 5209 RVA: 0x000AA038 File Offset: 0x000A8238
+	public void OnPrefabInit(GameObject inst)
+	{
+	}
+
+	// Token: 0x0600145A RID: 5210 RVA: 0x000AA038 File Offset: 0x000A8238
+	public void OnSpawn(GameObject inst)
+	{
+	}
+
+	// Token: 0x04000DDF RID: 3551
+	public const string ID = "TelescopeTarget";
+}

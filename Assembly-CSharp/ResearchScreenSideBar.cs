@@ -1,0 +1,873 @@
+﻿using System;
+using System.Collections.Generic;
+using Database;
+using STRINGS;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+// Token: 0x02001F29 RID: 7977
+public class ResearchScreenSideBar : KScreen
+{
+	// Token: 0x0600A7ED RID: 42989 RVA: 0x00408158 File Offset: 0x00406358
+	protected override void OnSpawn()
+	{
+		base.OnSpawn();
+		this.PopulateProjects();
+		this.PopulateFilterButtons();
+		this.RefreshCategoriesContentExpanded();
+		this.RefreshWidgets();
+		this.searchBox.OnValueChangesPaused = delegate()
+		{
+			this.SetTextFilter(this.searchBox.text, false);
+		};
+		KInputTextField kinputTextField = this.searchBox;
+		kinputTextField.onFocus = (System.Action)Delegate.Combine(kinputTextField.onFocus, new System.Action(delegate()
+		{
+			base.isEditing = true;
+		}));
+		this.searchBox.onEndEdit.AddListener(delegate(string value)
+		{
+			base.isEditing = false;
+		});
+		this.clearSearchButton.onClick += delegate()
+		{
+			this.ResetFilter();
+		};
+		this.ConfigCompletionFilters();
+		base.ConsumeMouseScroll = true;
+		Game.Instance.Subscribe(-107300940, new Action<object>(this.UpdateProjectFilter));
+	}
+
+	// Token: 0x0600A7EE RID: 42990 RVA: 0x00408220 File Offset: 0x00406420
+	private void Update()
+	{
+		for (int i = 0; i < Math.Min(this.QueuedActivations.Count, this.activationPerFrame); i++)
+		{
+			this.QueuedActivations[i].SetActive(true);
+		}
+		this.QueuedActivations.RemoveRange(0, Math.Min(this.QueuedActivations.Count, this.activationPerFrame));
+		for (int j = 0; j < Math.Min(this.QueuedDeactivations.Count, this.activationPerFrame); j++)
+		{
+			this.QueuedDeactivations[j].SetActive(false);
+		}
+		this.QueuedDeactivations.RemoveRange(0, Math.Min(this.QueuedDeactivations.Count, this.activationPerFrame));
+	}
+
+	// Token: 0x0600A7EF RID: 42991 RVA: 0x004082D8 File Offset: 0x004064D8
+	private void ConfigCompletionFilters()
+	{
+		MultiToggle multiToggle = this.allFilter;
+		multiToggle.onClick = (System.Action)Delegate.Combine(multiToggle.onClick, new System.Action(delegate()
+		{
+			this.SetCompletionFilter(ResearchScreenSideBar.CompletionState.All, false);
+		}));
+		MultiToggle multiToggle2 = this.completedFilter;
+		multiToggle2.onClick = (System.Action)Delegate.Combine(multiToggle2.onClick, new System.Action(delegate()
+		{
+			this.SetCompletionFilter(ResearchScreenSideBar.CompletionState.Completed, false);
+		}));
+		MultiToggle multiToggle3 = this.availableFilter;
+		multiToggle3.onClick = (System.Action)Delegate.Combine(multiToggle3.onClick, new System.Action(delegate()
+		{
+			this.SetCompletionFilter(ResearchScreenSideBar.CompletionState.Available, false);
+		}));
+		this.SetCompletionFilter(ResearchScreenSideBar.CompletionState.All, false);
+	}
+
+	// Token: 0x0600A7F0 RID: 42992 RVA: 0x00408364 File Offset: 0x00406564
+	private void SetCompletionFilter(ResearchScreenSideBar.CompletionState state, bool suppressUpdate)
+	{
+		this.completionFilter = state;
+		this.allFilter.GetComponent<MultiToggle>().ChangeState((this.completionFilter == ResearchScreenSideBar.CompletionState.All) ? 1 : 0);
+		this.completedFilter.GetComponent<MultiToggle>().ChangeState((this.completionFilter == ResearchScreenSideBar.CompletionState.Completed) ? 1 : 0);
+		this.availableFilter.GetComponent<MultiToggle>().ChangeState((this.completionFilter == ResearchScreenSideBar.CompletionState.Available) ? 1 : 0);
+		if (!suppressUpdate)
+		{
+			this.UpdateProjectFilter(null);
+		}
+	}
+
+	// Token: 0x0600A7F1 RID: 42993 RVA: 0x001116F2 File Offset: 0x0010F8F2
+	public override float GetSortKey()
+	{
+		if (base.isEditing)
+		{
+			return 50f;
+		}
+		return 21f;
+	}
+
+	// Token: 0x0600A7F2 RID: 42994 RVA: 0x004083D8 File Offset: 0x004065D8
+	public override void OnKeyDown(KButtonEvent e)
+	{
+		if (this.researchScreen != null && this.researchScreen.canvas && !this.researchScreen.canvas.enabled)
+		{
+			return;
+		}
+		if (base.isEditing)
+		{
+			e.Consumed = true;
+			return;
+		}
+		if (!e.Consumed)
+		{
+			Vector2 vector = base.transform.rectTransform().InverseTransformPoint(KInputManager.GetMousePos());
+			if (vector.x >= 0f && vector.x <= base.transform.rectTransform().rect.width)
+			{
+				if (e.TryConsume(global::Action.MouseRight))
+				{
+					return;
+				}
+				if (e.TryConsume(global::Action.MouseLeft))
+				{
+					return;
+				}
+				if (!KInputManager.currentControllerIsGamepad)
+				{
+					if (e.TryConsume(global::Action.ZoomIn))
+					{
+						return;
+					}
+					e.TryConsume(global::Action.ZoomOut);
+					return;
+				}
+			}
+		}
+	}
+
+	// Token: 0x0600A7F3 RID: 42995 RVA: 0x00111707 File Offset: 0x0010F907
+	protected override void OnShow(bool show)
+	{
+		base.OnShow(show);
+		this.RefreshWidgets();
+	}
+
+	// Token: 0x0600A7F4 RID: 42996 RVA: 0x004084A8 File Offset: 0x004066A8
+	private void SetTextFilter(string newValue, bool suppressUpdate)
+	{
+		if (base.isEditing)
+		{
+			foreach (KeyValuePair<string, GameObject> keyValuePair in this.filterButtons)
+			{
+				this.filterStates[keyValuePair.Key] = false;
+				keyValuePair.Value.GetComponent<MultiToggle>().ChangeState(0);
+			}
+		}
+		bool flag = this.IsTextFilterActive();
+		this.currentSearchString = newValue;
+		this.currentSearchStringUpper = this.currentSearchString.ToUpper().Trim();
+		if (this.IsTextFilterActive())
+		{
+			Transform reference = this.projectCategories["SearchResults"].GetComponent<HierarchyReferences>().GetReference<Transform>("Content");
+			using (Dictionary<string, GameObject>.Enumerator enumerator = this.projectTechs.GetEnumerator())
+			{
+				while (enumerator.MoveNext())
+				{
+					KeyValuePair<string, GameObject> keyValuePair2 = enumerator.Current;
+					this.projectTechs[keyValuePair2.Key].transform.SetParent(reference);
+				}
+				goto IL_183;
+			}
+		}
+		if (flag)
+		{
+			foreach (KeyValuePair<string, GameObject> keyValuePair3 in this.projectTechs)
+			{
+				Transform reference2 = this.projectCategories[Db.Get().Techs.Get(keyValuePair3.Key).category].GetComponent<HierarchyReferences>().GetReference<Transform>("Content");
+				this.projectTechs[keyValuePair3.Key].transform.SetParent(reference2);
+			}
+		}
+		IL_183:
+		if (!suppressUpdate)
+		{
+			this.UpdateProjectFilter(null);
+		}
+	}
+
+	// Token: 0x0600A7F5 RID: 42997 RVA: 0x0040866C File Offset: 0x0040686C
+	private void UpdateProjectFilter(object data = null)
+	{
+		Dictionary<string, bool> dictionary = new Dictionary<string, bool>();
+		foreach (KeyValuePair<string, GameObject> keyValuePair in this.projectCategories)
+		{
+			dictionary.Add(keyValuePair.Key, false);
+		}
+		bool flag = this.IsTextFilterActive();
+		if (flag)
+		{
+			dictionary["SearchResults"] = true;
+			this.categoryExpanded["SearchResults"] = true;
+		}
+		this.RefreshProjectsActive();
+		foreach (KeyValuePair<string, GameObject> keyValuePair2 in this.projectTechs)
+		{
+			if ((keyValuePair2.Value.activeSelf || this.QueuedActivations.Contains(keyValuePair2.Value)) && !this.QueuedDeactivations.Contains(keyValuePair2.Value))
+			{
+				dictionary[Db.Get().Techs.Get(keyValuePair2.Key).category] = !flag;
+				this.categoryExpanded[Db.Get().Techs.Get(keyValuePair2.Key).category] = true;
+			}
+		}
+		foreach (KeyValuePair<string, bool> keyValuePair3 in dictionary)
+		{
+			this.ChangeGameObjectActive(this.projectCategories[keyValuePair3.Key], keyValuePair3.Value);
+		}
+		this.RefreshCategoriesContentExpanded();
+		foreach (GameObject gameObject in this.orderedTechs)
+		{
+			gameObject.transform.SetAsLastSibling();
+		}
+	}
+
+	// Token: 0x0600A7F6 RID: 42998 RVA: 0x00408860 File Offset: 0x00406A60
+	private int CompareTechScores(global::Tuple<GameObject, string> a, global::Tuple<GameObject, string> b)
+	{
+		int techMatchScore = this.GetTechMatchScore(a.second);
+		int techMatchScore2 = this.GetTechMatchScore(b.second);
+		int num = -techMatchScore.CompareTo(techMatchScore2);
+		if (num != 0)
+		{
+			return num;
+		}
+		if (!this.IsTextFilterActive())
+		{
+			return num;
+		}
+		return this.techCaches[a.second].CompareTo(this.techCaches[b.second]);
+	}
+
+	// Token: 0x17000AC0 RID: 2752
+	// (get) Token: 0x0600A7F7 RID: 42999 RVA: 0x00111716 File Offset: 0x0010F916
+	private Comparer<global::Tuple<GameObject, string>> TechWidgetComparer
+	{
+		get
+		{
+			if (this.techWidgetComparer == null)
+			{
+				this.techWidgetComparer = Comparer<global::Tuple<GameObject, string>>.Create(new Comparison<global::Tuple<GameObject, string>>(this.CompareTechScores));
+			}
+			return this.techWidgetComparer;
+		}
+	}
+
+	// Token: 0x0600A7F8 RID: 43000 RVA: 0x004088C8 File Offset: 0x00406AC8
+	private void RefreshProjectsActive()
+	{
+		if (this.projectTechItems.Count == 0)
+		{
+			return;
+		}
+		Techs techs = Db.Get().Techs;
+		if (this.techCaches == null)
+		{
+			this.techCaches = SearchUtil.CacheTechs();
+		}
+		if (this.IsTextFilterActive())
+		{
+			using (Dictionary<string, SearchUtil.TechCache>.Enumerator enumerator = this.techCaches.GetEnumerator())
+			{
+				while (enumerator.MoveNext())
+				{
+					KeyValuePair<string, SearchUtil.TechCache> keyValuePair = enumerator.Current;
+					try
+					{
+						keyValuePair.Value.Bind(this.currentSearchStringUpper);
+					}
+					catch (Exception ex)
+					{
+						KCrashReporter.ReportDevNotification("Fuzzy score bind failed", Environment.StackTrace, ex.Message, false, null);
+						keyValuePair.Value.Reset();
+					}
+				}
+				goto IL_DC;
+			}
+		}
+		foreach (KeyValuePair<string, SearchUtil.TechCache> keyValuePair2 in this.techCaches)
+		{
+			keyValuePair2.Value.Reset();
+		}
+		IL_DC:
+		for (int num = 0; num != techs.Count; num++)
+		{
+			Tech tech = (Tech)techs.GetResource(num);
+			SearchUtil.TechCache techCache = this.techCaches[tech.Id];
+			foreach (KeyValuePair<string, GameObject> keyValuePair3 in this.projectTechItems[tech.Id])
+			{
+				bool flag = SearchUtil.IsPassingScore(this.GetTechItemMatchScore(techCache, keyValuePair3.Key));
+				HierarchyReferences component = keyValuePair3.Value.GetComponent<HierarchyReferences>();
+				component.GetReference<LocText>("Label").color = (flag ? Color.white : Color.grey);
+				component.GetReference<Image>("Icon").color = (flag ? Color.white : new Color(1f, 1f, 1f, 0.5f));
+			}
+		}
+		ListPool<global::Tuple<int, int>, ResearchScreen>.PooledList pooledList = ListPool<global::Tuple<int, int>, ResearchScreen>.Allocate();
+		for (int num2 = 0; num2 != techs.Count; num2++)
+		{
+			Tech tech2 = (Tech)techs.GetResource(num2);
+			pooledList.Add(new global::Tuple<int, int>(num2, tech2.tier));
+		}
+		pooledList.Sort((global::Tuple<int, int> a, global::Tuple<int, int> b) => a.second.CompareTo(b.second));
+		ListPool<global::Tuple<GameObject, string>, ResearchScreenSideBar>.PooledList pooledList2 = ListPool<global::Tuple<GameObject, string>, ResearchScreenSideBar>.Allocate();
+		foreach (global::Tuple<int, int> tuple in pooledList)
+		{
+			Tech tech3 = (Tech)techs.GetResource(tuple.first);
+			GameObject gameObject = this.projectTechs[tech3.Id];
+			bool flag2 = SearchUtil.IsPassingScore(this.GetTechMatchScore(tech3.Id));
+			this.ChangeGameObjectActive(gameObject, flag2);
+			this.researchScreen.GetEntry(tech3).UpdateFilterState(flag2);
+			if (flag2)
+			{
+				global::Tuple<GameObject, string> tuple2 = new global::Tuple<GameObject, string>(gameObject, tech3.Id);
+				int num3 = pooledList2.BinarySearch(tuple2, this.TechWidgetComparer);
+				if (num3 < 0)
+				{
+					num3 = ~num3;
+				}
+				while (num3 < pooledList2.Count && this.CompareTechScores(tuple2, pooledList2[num3]) == 0)
+				{
+					num3++;
+				}
+				pooledList2.Insert(num3, tuple2);
+			}
+		}
+		pooledList.Recycle();
+		this.orderedTechs.Clear();
+		foreach (global::Tuple<GameObject, string> tuple3 in pooledList2)
+		{
+			this.orderedTechs.Add(tuple3.first);
+		}
+		pooledList2.Recycle();
+	}
+
+	// Token: 0x0600A7F9 RID: 43001 RVA: 0x00408C98 File Offset: 0x00406E98
+	private void RefreshCategoriesContentExpanded()
+	{
+		foreach (KeyValuePair<string, GameObject> keyValuePair in this.projectCategories)
+		{
+			keyValuePair.Value.GetComponent<HierarchyReferences>().GetReference<RectTransform>("Content").gameObject.SetActive(this.categoryExpanded[keyValuePair.Key]);
+			keyValuePair.Value.GetComponent<HierarchyReferences>().GetReference<MultiToggle>("Toggle").ChangeState(this.categoryExpanded[keyValuePair.Key] ? 1 : 0);
+		}
+	}
+
+	// Token: 0x0600A7FA RID: 43002 RVA: 0x00408D4C File Offset: 0x00406F4C
+	private void CreateCategory(string categoryID, string title = null)
+	{
+		GameObject gameObject = Util.KInstantiateUI(this.techCategoryPrefabAlt, this.projectsContainer, true);
+		gameObject.name = categoryID;
+		if (title == null)
+		{
+			title = Strings.Get("STRINGS.RESEARCH.TREES.TITLE" + categoryID.ToUpper());
+		}
+		gameObject.GetComponent<HierarchyReferences>().GetReference<LocText>("Label").SetText(title);
+		this.categoryExpanded.Add(categoryID, false);
+		this.projectCategories.Add(categoryID, gameObject);
+		gameObject.GetComponent<HierarchyReferences>().GetReference<MultiToggle>("Toggle").onClick = delegate()
+		{
+			this.categoryExpanded[categoryID] = !this.categoryExpanded[categoryID];
+			this.RefreshCategoriesContentExpanded();
+		};
+	}
+
+	// Token: 0x0600A7FB RID: 43003 RVA: 0x00408E0C File Offset: 0x0040700C
+	private void PopulateProjects()
+	{
+		ListPool<global::Tuple<global::Tuple<string, GameObject>, int>, ResearchScreen>.PooledList pooledList = ListPool<global::Tuple<global::Tuple<string, GameObject>, int>, ResearchScreen>.Allocate();
+		for (int i = 0; i < Db.Get().Techs.Count; i++)
+		{
+			Tech tech = (Tech)Db.Get().Techs.GetResource(i);
+			if (!this.projectCategories.ContainsKey(tech.category))
+			{
+				this.CreateCategory(tech.category, null);
+			}
+			GameObject gameObject = this.SpawnTechWidget(tech.Id, this.projectCategories[tech.category]);
+			pooledList.Add(new global::Tuple<global::Tuple<string, GameObject>, int>(new global::Tuple<string, GameObject>(tech.Id, gameObject), tech.tier));
+			this.projectTechs.Add(tech.Id, gameObject);
+			gameObject.GetComponent<ToolTip>().SetSimpleTooltip(tech.desc);
+			MultiToggle component = gameObject.GetComponent<MultiToggle>();
+			component.onEnter = (System.Action)Delegate.Combine(component.onEnter, new System.Action(delegate()
+			{
+				this.researchScreen.TurnEverythingOff();
+				this.researchScreen.GetEntry(tech).OnHover(true, tech);
+				this.soundPlayer.Play(1);
+			}));
+			MultiToggle component2 = gameObject.GetComponent<MultiToggle>();
+			component2.onExit = (System.Action)Delegate.Combine(component2.onExit, new System.Action(delegate()
+			{
+				this.researchScreen.TurnEverythingOff();
+			}));
+		}
+		this.CreateCategory("SearchResults", UI.RESEARCHSCREEN.SEARCH_RESULTS_CATEGORY);
+		foreach (KeyValuePair<string, GameObject> keyValuePair in this.projectTechs)
+		{
+			Transform reference = this.projectCategories[Db.Get().Techs.Get(keyValuePair.Key).category].GetComponent<HierarchyReferences>().GetReference<Transform>("Content");
+			this.projectTechs[keyValuePair.Key].transform.SetParent(reference);
+		}
+		pooledList.Sort((global::Tuple<global::Tuple<string, GameObject>, int> a, global::Tuple<global::Tuple<string, GameObject>, int> b) => a.second.CompareTo(b.second));
+		foreach (global::Tuple<global::Tuple<string, GameObject>, int> tuple in pooledList)
+		{
+			tuple.first.second.transform.SetAsLastSibling();
+		}
+		pooledList.Recycle();
+	}
+
+	// Token: 0x0600A7FC RID: 43004 RVA: 0x0040907C File Offset: 0x0040727C
+	private void PopulateFilterButtons()
+	{
+		using (Dictionary<string, List<Tag>>.Enumerator enumerator = this.filterPresets.GetEnumerator())
+		{
+			while (enumerator.MoveNext())
+			{
+				KeyValuePair<string, List<Tag>> kvp = enumerator.Current;
+				GameObject gameObject = Util.KInstantiateUI(this.filterButtonPrefab, this.searchFiltersContainer, true);
+				this.filterButtons.Add(kvp.Key, gameObject);
+				this.filterStates.Add(kvp.Key, false);
+				MultiToggle toggle = gameObject.GetComponent<MultiToggle>();
+				TMP_Text componentInChildren = gameObject.GetComponentInChildren<LocText>();
+				StringEntry text = Strings.Get("STRINGS.UI.RESEARCHSCREEN.FILTER_BUTTONS." + kvp.Key.ToUpper());
+				componentInChildren.SetText(text);
+				MultiToggle toggle2 = toggle;
+				toggle2.onClick = (System.Action)Delegate.Combine(toggle2.onClick, new System.Action(delegate()
+				{
+					foreach (KeyValuePair<string, GameObject> keyValuePair in this.filterButtons)
+					{
+						if (keyValuePair.Key != kvp.Key)
+						{
+							this.filterStates[keyValuePair.Key] = false;
+							this.filterButtons[keyValuePair.Key].GetComponent<MultiToggle>().ChangeState(this.filterStates[keyValuePair.Key] ? 1 : 0);
+						}
+					}
+					this.filterStates[kvp.Key] = !this.filterStates[kvp.Key];
+					toggle.ChangeState(this.filterStates[kvp.Key] ? 1 : 0);
+					this.searchBox.text = (this.filterStates[kvp.Key] ? text.String : "");
+				}));
+			}
+		}
+	}
+
+	// Token: 0x0600A7FD RID: 43005 RVA: 0x000AA038 File Offset: 0x000A8238
+	public void RefreshQueue()
+	{
+	}
+
+	// Token: 0x0600A7FE RID: 43006 RVA: 0x00409190 File Offset: 0x00407390
+	private void RefreshWidgets()
+	{
+		List<TechInstance> researchQueue = Research.Instance.GetResearchQueue();
+		using (Dictionary<string, GameObject>.Enumerator enumerator = this.projectTechs.GetEnumerator())
+		{
+			while (enumerator.MoveNext())
+			{
+				KeyValuePair<string, GameObject> kvp = enumerator.Current;
+				if (Db.Get().Techs.Get(kvp.Key).IsComplete())
+				{
+					kvp.Value.GetComponent<MultiToggle>().ChangeState(2);
+				}
+				else if (researchQueue.Find((TechInstance match) => match.tech.Id == kvp.Key) != null)
+				{
+					kvp.Value.GetComponent<MultiToggle>().ChangeState(1);
+				}
+				else
+				{
+					kvp.Value.GetComponent<MultiToggle>().ChangeState(0);
+				}
+			}
+		}
+	}
+
+	// Token: 0x0600A7FF RID: 43007 RVA: 0x00409274 File Offset: 0x00407474
+	private void RefreshWidgetProgressBars(string techID, GameObject widget)
+	{
+		HierarchyReferences component = widget.GetComponent<HierarchyReferences>();
+		ResearchPointInventory progressInventory = Research.Instance.GetTechInstance(techID).progressInventory;
+		int num = 0;
+		for (int i = 0; i < Research.Instance.researchTypes.Types.Count; i++)
+		{
+			if (Research.Instance.GetTechInstance(techID).tech.costsByResearchTypeID.ContainsKey(Research.Instance.researchTypes.Types[i].id) && Research.Instance.GetTechInstance(techID).tech.costsByResearchTypeID[Research.Instance.researchTypes.Types[i].id] > 0f)
+			{
+				HierarchyReferences component2 = component.GetReference<RectTransform>("BarRows").GetChild(1 + num).GetComponent<HierarchyReferences>();
+				float num2 = progressInventory.PointsByTypeID[Research.Instance.researchTypes.Types[i].id] / Research.Instance.GetTechInstance(techID).tech.costsByResearchTypeID[Research.Instance.researchTypes.Types[i].id];
+				RectTransform rectTransform = component2.GetReference<Image>("Bar").rectTransform;
+				rectTransform.sizeDelta = new Vector2(rectTransform.parent.rectTransform().rect.width * num2, rectTransform.sizeDelta.y);
+				component2.GetReference<LocText>("Label").SetText(progressInventory.PointsByTypeID[Research.Instance.researchTypes.Types[i].id].ToString() + "/" + Research.Instance.GetTechInstance(techID).tech.costsByResearchTypeID[Research.Instance.researchTypes.Types[i].id].ToString());
+				num++;
+			}
+		}
+	}
+
+	// Token: 0x0600A800 RID: 43008 RVA: 0x0040947C File Offset: 0x0040767C
+	private GameObject SpawnTechWidget(string techID, GameObject parentContainer)
+	{
+		GameObject gameObject = Util.KInstantiateUI(this.techWidgetRootAltPrefab, parentContainer, true);
+		HierarchyReferences component = gameObject.GetComponent<HierarchyReferences>();
+		gameObject.name = Db.Get().Techs.Get(techID).Name;
+		component.GetReference<LocText>("Label").SetText(Db.Get().Techs.Get(techID).Name);
+		if (!this.projectTechItems.ContainsKey(techID))
+		{
+			this.projectTechItems.Add(techID, new Dictionary<string, GameObject>());
+		}
+		RectTransform reference = component.GetReference<RectTransform>("UnlockContainer");
+		System.Action <>9__0;
+		foreach (TechItem techItem in Db.Get().Techs.Get(techID).unlockedItems)
+		{
+			if (Game.IsCorrectDlcActiveForCurrentSave(techItem))
+			{
+				GameObject gameObject2 = Util.KInstantiateUI(this.techItemPrefab, reference.gameObject, true);
+				gameObject2.GetComponentsInChildren<Image>()[1].sprite = techItem.UISprite();
+				gameObject2.GetComponentsInChildren<LocText>()[0].SetText(techItem.Name);
+				MultiToggle component2 = gameObject2.GetComponent<MultiToggle>();
+				Delegate onClick = component2.onClick;
+				System.Action b;
+				if ((b = <>9__0) == null)
+				{
+					b = (<>9__0 = delegate()
+					{
+						this.researchScreen.ZoomToTech(techID, false);
+					});
+				}
+				component2.onClick = (System.Action)Delegate.Combine(onClick, b);
+				gameObject2.GetComponentsInChildren<Image>()[0].color = (this.evenRow ? this.evenRowColor : this.oddRowColor);
+				this.evenRow = !this.evenRow;
+				if (!this.projectTechItems[techID].ContainsKey(techItem.Id))
+				{
+					this.projectTechItems[techID].Add(techItem.Id, gameObject2);
+				}
+			}
+		}
+		MultiToggle component3 = gameObject.GetComponent<MultiToggle>();
+		component3.onClick = (System.Action)Delegate.Combine(component3.onClick, new System.Action(delegate()
+		{
+			this.researchScreen.ZoomToTech(techID, false);
+		}));
+		return gameObject;
+	}
+
+	// Token: 0x0600A801 RID: 43009 RVA: 0x004096B8 File Offset: 0x004078B8
+	private void ChangeGameObjectActive(GameObject target, bool targetActiveState)
+	{
+		if (target.activeSelf != targetActiveState)
+		{
+			if (targetActiveState)
+			{
+				this.QueuedActivations.Add(target);
+				if (this.QueuedDeactivations.Contains(target))
+				{
+					this.QueuedDeactivations.Remove(target);
+					return;
+				}
+			}
+			else
+			{
+				this.QueuedDeactivations.Add(target);
+				if (this.QueuedActivations.Contains(target))
+				{
+					this.QueuedActivations.Remove(target);
+				}
+			}
+		}
+	}
+
+	// Token: 0x0600A802 RID: 43010 RVA: 0x0011173D File Offset: 0x0010F93D
+	private bool IsTextFilterActive()
+	{
+		return !string.IsNullOrEmpty(this.currentSearchString);
+	}
+
+	// Token: 0x0600A803 RID: 43011 RVA: 0x0011174D File Offset: 0x0010F94D
+	private bool AnyFilterActive()
+	{
+		return this.completionFilter != ResearchScreenSideBar.CompletionState.All || this.IsTextFilterActive();
+	}
+
+	// Token: 0x0600A804 RID: 43012 RVA: 0x00409720 File Offset: 0x00407920
+	private int GetTechItemMatchScore(SearchUtil.TechCache techCache, string techItemID)
+	{
+		TechItem techItem = Db.Get().TechItems.Get(techItemID);
+		if (!Game.IsCorrectDlcActiveForCurrentSave(techItem))
+		{
+			return 0;
+		}
+		switch (this.completionFilter)
+		{
+		case ResearchScreenSideBar.CompletionState.Available:
+			if (techItem.IsComplete())
+			{
+				return 0;
+			}
+			if (!techItem.ParentTech.ArePrerequisitesComplete())
+			{
+				return 0;
+			}
+			break;
+		case ResearchScreenSideBar.CompletionState.Completed:
+			if (!techItem.IsComplete())
+			{
+				return 0;
+			}
+			break;
+		}
+		if (!this.IsTextFilterActive())
+		{
+			return 100;
+		}
+		return techCache.techItems[techItemID].Score;
+	}
+
+	// Token: 0x0600A805 RID: 43013 RVA: 0x004097A4 File Offset: 0x004079A4
+	private int GetTechMatchScore(string techID)
+	{
+		Tech tech = Db.Get().Techs.Get(techID);
+		switch (this.completionFilter)
+		{
+		case ResearchScreenSideBar.CompletionState.Available:
+			if (tech.IsComplete())
+			{
+				return 0;
+			}
+			if (!tech.ArePrerequisitesComplete())
+			{
+				return 0;
+			}
+			break;
+		case ResearchScreenSideBar.CompletionState.Completed:
+			if (!tech.IsComplete())
+			{
+				return 0;
+			}
+			break;
+		}
+		if (!this.IsTextFilterActive())
+		{
+			return 100;
+		}
+		return this.techCaches[techID].Score;
+	}
+
+	// Token: 0x0600A806 RID: 43014 RVA: 0x00409818 File Offset: 0x00407A18
+	public void ResetFilter()
+	{
+		this.SetTextFilter("", true);
+		this.searchBox.text = "";
+		foreach (KeyValuePair<string, GameObject> keyValuePair in this.filterButtons)
+		{
+			this.filterStates[keyValuePair.Key] = false;
+			this.filterButtons[keyValuePair.Key].GetComponent<MultiToggle>().ChangeState(this.filterStates[keyValuePair.Key] ? 1 : 0);
+		}
+		this.SetCompletionFilter(ResearchScreenSideBar.CompletionState.All, true);
+		this.UpdateProjectFilter(null);
+	}
+
+	// Token: 0x0600A807 RID: 43015 RVA: 0x0011175F File Offset: 0x0010F95F
+	public void SetSearch(string newSearch)
+	{
+		newSearch = UI.StripLinkFormatting(newSearch);
+		this.searchBox.text = newSearch;
+		this.SetTextFilter(newSearch, false);
+	}
+
+	// Token: 0x040083FD RID: 33789
+	[Header("Containers")]
+	[SerializeField]
+	private GameObject queueContainer;
+
+	// Token: 0x040083FE RID: 33790
+	[SerializeField]
+	private GameObject projectsContainer;
+
+	// Token: 0x040083FF RID: 33791
+	[SerializeField]
+	private GameObject searchFiltersContainer;
+
+	// Token: 0x04008400 RID: 33792
+	[Header("Prefabs")]
+	[SerializeField]
+	private GameObject headerTechTypePrefab;
+
+	// Token: 0x04008401 RID: 33793
+	[SerializeField]
+	private GameObject filterButtonPrefab;
+
+	// Token: 0x04008402 RID: 33794
+	[SerializeField]
+	private GameObject techWidgetRootPrefab;
+
+	// Token: 0x04008403 RID: 33795
+	[SerializeField]
+	private GameObject techWidgetRootAltPrefab;
+
+	// Token: 0x04008404 RID: 33796
+	[SerializeField]
+	private GameObject techItemPrefab;
+
+	// Token: 0x04008405 RID: 33797
+	[SerializeField]
+	private GameObject techWidgetUnlockedItemPrefab;
+
+	// Token: 0x04008406 RID: 33798
+	[SerializeField]
+	private GameObject techWidgetRowPrefab;
+
+	// Token: 0x04008407 RID: 33799
+	[SerializeField]
+	private GameObject techCategoryPrefab;
+
+	// Token: 0x04008408 RID: 33800
+	[SerializeField]
+	private GameObject techCategoryPrefabAlt;
+
+	// Token: 0x04008409 RID: 33801
+	[Header("Other references")]
+	[SerializeField]
+	private KInputTextField searchBox;
+
+	// Token: 0x0400840A RID: 33802
+	[SerializeField]
+	private MultiToggle allFilter;
+
+	// Token: 0x0400840B RID: 33803
+	[SerializeField]
+	private MultiToggle availableFilter;
+
+	// Token: 0x0400840C RID: 33804
+	[SerializeField]
+	private MultiToggle completedFilter;
+
+	// Token: 0x0400840D RID: 33805
+	[SerializeField]
+	private ResearchScreen researchScreen;
+
+	// Token: 0x0400840E RID: 33806
+	[SerializeField]
+	private KButton clearSearchButton;
+
+	// Token: 0x0400840F RID: 33807
+	[SerializeField]
+	private Color evenRowColor;
+
+	// Token: 0x04008410 RID: 33808
+	[SerializeField]
+	private Color oddRowColor;
+
+	// Token: 0x04008411 RID: 33809
+	private ResearchScreenSideBar.CompletionState completionFilter;
+
+	// Token: 0x04008412 RID: 33810
+	private Dictionary<string, bool> filterStates = new Dictionary<string, bool>();
+
+	// Token: 0x04008413 RID: 33811
+	private Dictionary<string, bool> categoryExpanded = new Dictionary<string, bool>();
+
+	// Token: 0x04008414 RID: 33812
+	private string currentSearchString = "";
+
+	// Token: 0x04008415 RID: 33813
+	private string currentSearchStringUpper = "";
+
+	// Token: 0x04008416 RID: 33814
+	private const string SEARCH_RESULTS_CATEGORY_ID = "SearchResults";
+
+	// Token: 0x04008417 RID: 33815
+	private Dictionary<string, SearchUtil.TechCache> techCaches;
+
+	// Token: 0x04008418 RID: 33816
+	private readonly Dictionary<string, SearchUtil.TechItemCache> techItemCaches = new Dictionary<string, SearchUtil.TechItemCache>();
+
+	// Token: 0x04008419 RID: 33817
+	private readonly List<GameObject> orderedTechs = new List<GameObject>();
+
+	// Token: 0x0400841A RID: 33818
+	private Dictionary<string, GameObject> queueTechs = new Dictionary<string, GameObject>();
+
+	// Token: 0x0400841B RID: 33819
+	private Dictionary<string, GameObject> projectTechs = new Dictionary<string, GameObject>();
+
+	// Token: 0x0400841C RID: 33820
+	private Dictionary<string, GameObject> projectCategories = new Dictionary<string, GameObject>();
+
+	// Token: 0x0400841D RID: 33821
+	private Dictionary<string, GameObject> filterButtons = new Dictionary<string, GameObject>();
+
+	// Token: 0x0400841E RID: 33822
+	private Dictionary<string, Dictionary<string, GameObject>> projectTechItems = new Dictionary<string, Dictionary<string, GameObject>>();
+
+	// Token: 0x0400841F RID: 33823
+	private Dictionary<string, List<Tag>> filterPresets = new Dictionary<string, List<Tag>>
+	{
+		{
+			"Oxygen",
+			new List<Tag>()
+		},
+		{
+			"Food",
+			new List<Tag>()
+		},
+		{
+			"Water",
+			new List<Tag>()
+		},
+		{
+			"Power",
+			new List<Tag>()
+		},
+		{
+			"Morale",
+			new List<Tag>()
+		},
+		{
+			"Ranching",
+			new List<Tag>()
+		},
+		{
+			"Filter",
+			new List<Tag>()
+		},
+		{
+			"Tile",
+			new List<Tag>()
+		},
+		{
+			"Transport",
+			new List<Tag>()
+		},
+		{
+			"Automation",
+			new List<Tag>()
+		},
+		{
+			"Medicine",
+			new List<Tag>()
+		},
+		{
+			"Rocket",
+			new List<Tag>()
+		}
+	};
+
+	// Token: 0x04008420 RID: 33824
+	private List<GameObject> QueuedActivations = new List<GameObject>();
+
+	// Token: 0x04008421 RID: 33825
+	private List<GameObject> QueuedDeactivations = new List<GameObject>();
+
+	// Token: 0x04008422 RID: 33826
+	public ButtonSoundPlayer soundPlayer;
+
+	// Token: 0x04008423 RID: 33827
+	[SerializeField]
+	private int activationPerFrame = 5;
+
+	// Token: 0x04008424 RID: 33828
+	private Comparer<global::Tuple<GameObject, string>> techWidgetComparer;
+
+	// Token: 0x04008425 RID: 33829
+	private bool evenRow;
+
+	// Token: 0x02001F2A RID: 7978
+	private enum CompletionState
+	{
+		// Token: 0x04008427 RID: 33831
+		All,
+		// Token: 0x04008428 RID: 33832
+		Available,
+		// Token: 0x04008429 RID: 33833
+		Completed
+	}
+}

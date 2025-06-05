@@ -1,0 +1,118 @@
+﻿using System;
+using System.Collections.Generic;
+using Klei;
+using Klei.AI;
+using TUNING;
+using UnityEngine;
+
+// Token: 0x020014B9 RID: 5305
+[AddComponentMenu("KMonoBehaviour/Workable/JuicerWorkable")]
+public class JuicerWorkable : Workable, IWorkerPrioritizable
+{
+	// Token: 0x06006DC6 RID: 28102 RVA: 0x000EC8AA File Offset: 0x000EAAAA
+	private JuicerWorkable()
+	{
+		base.SetReportType(ReportManager.ReportType.PersonalTime);
+	}
+
+	// Token: 0x06006DC7 RID: 28103 RVA: 0x002FAA58 File Offset: 0x002F8C58
+	public override Workable.AnimInfo GetAnim(WorkerBase worker)
+	{
+		KAnimFile[] overrideAnims = null;
+		if (this.workerTypeOverrideAnims.TryGetValue(worker.PrefabID(), out overrideAnims))
+		{
+			this.overrideAnims = overrideAnims;
+		}
+		return base.GetAnim(worker);
+	}
+
+	// Token: 0x06006DC8 RID: 28104 RVA: 0x002FAA8C File Offset: 0x002F8C8C
+	protected override void OnPrefabInit()
+	{
+		base.OnPrefabInit();
+		this.overrideAnims = new KAnimFile[]
+		{
+			Assets.GetAnim("anim_interacts_juicer_kanim")
+		};
+		this.showProgressBar = true;
+		this.resetProgressOnStop = true;
+		this.synchronizeAnims = false;
+		base.SetWorkTime(30f);
+		this.juicer = base.GetComponent<Juicer>();
+	}
+
+	// Token: 0x06006DC9 RID: 28105 RVA: 0x000EC8C5 File Offset: 0x000EAAC5
+	protected override void OnStartWork(WorkerBase worker)
+	{
+		this.operational.SetActive(true, false);
+	}
+
+	// Token: 0x06006DCA RID: 28106 RVA: 0x002FAAEC File Offset: 0x002F8CEC
+	protected override void OnCompleteWork(WorkerBase worker)
+	{
+		Storage component = base.GetComponent<Storage>();
+		float num;
+		SimUtil.DiseaseInfo diseaseInfo;
+		float num2;
+		component.ConsumeAndGetDisease(GameTags.Water, this.juicer.waterMassPerUse, out num, out diseaseInfo, out num2);
+		GermExposureMonitor.Instance smi = worker.GetSMI<GermExposureMonitor.Instance>();
+		for (int i = 0; i < this.juicer.ingredientTags.Length; i++)
+		{
+			SimUtil.DiseaseInfo diseaseInfo2;
+			component.ConsumeAndGetDisease(this.juicer.ingredientTags[i], this.juicer.ingredientMassesPerUse[i], out num, out diseaseInfo2, out num2);
+			if (smi != null)
+			{
+				smi.TryInjectDisease(diseaseInfo2.idx, diseaseInfo2.count, this.juicer.ingredientTags[i], Sickness.InfectionVector.Digestion);
+			}
+		}
+		if (smi != null)
+		{
+			smi.TryInjectDisease(diseaseInfo.idx, diseaseInfo.count, GameTags.Water, Sickness.InfectionVector.Digestion);
+		}
+		Effects component2 = worker.GetComponent<Effects>();
+		if (!string.IsNullOrEmpty(this.juicer.specificEffect))
+		{
+			component2.Add(this.juicer.specificEffect, true);
+		}
+		if (!string.IsNullOrEmpty(this.juicer.trackingEffect))
+		{
+			component2.Add(this.juicer.trackingEffect, true);
+		}
+	}
+
+	// Token: 0x06006DCB RID: 28107 RVA: 0x000EC8D4 File Offset: 0x000EAAD4
+	protected override void OnStopWork(WorkerBase worker)
+	{
+		this.operational.SetActive(false, false);
+	}
+
+	// Token: 0x06006DCC RID: 28108 RVA: 0x002FAC0C File Offset: 0x002F8E0C
+	public bool GetWorkerPriority(WorkerBase worker, out int priority)
+	{
+		priority = this.basePriority;
+		Effects component = worker.GetComponent<Effects>();
+		if (!string.IsNullOrEmpty(this.juicer.trackingEffect) && component.HasEffect(this.juicer.trackingEffect))
+		{
+			priority = 0;
+			return false;
+		}
+		if (!string.IsNullOrEmpty(this.juicer.specificEffect) && component.HasEffect(this.juicer.specificEffect))
+		{
+			priority = RELAXATION.PRIORITY.RECENTLY_USED;
+		}
+		return true;
+	}
+
+	// Token: 0x040052B1 RID: 21169
+	public Dictionary<Tag, KAnimFile[]> workerTypeOverrideAnims = new Dictionary<Tag, KAnimFile[]>();
+
+	// Token: 0x040052B2 RID: 21170
+	[MyCmpReq]
+	private Operational operational;
+
+	// Token: 0x040052B3 RID: 21171
+	public int basePriority;
+
+	// Token: 0x040052B4 RID: 21172
+	private Juicer juicer;
+}

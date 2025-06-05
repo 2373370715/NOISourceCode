@@ -1,0 +1,115 @@
+﻿using System;
+using TUNING;
+using UnityEngine;
+
+// Token: 0x0200037D RID: 893
+public class HEPBridgeTileConfig : IBuildingConfig
+{
+	// Token: 0x06000E46 RID: 3654 RVA: 0x000AA117 File Offset: 0x000A8317
+	public override string[] GetRequiredDlcIds()
+	{
+		return DlcManager.EXPANSION1;
+	}
+
+	// Token: 0x06000E47 RID: 3655 RVA: 0x001825A0 File Offset: 0x001807A0
+	public override BuildingDef CreateBuildingDef()
+	{
+		string id = "HEPBridgeTile";
+		int width = 2;
+		int height = 1;
+		string anim = "radbolt_joint_plate_kanim";
+		int hitpoints = 100;
+		float construction_time = 3f;
+		float[] tier = BUILDINGS.CONSTRUCTION_MASS_KG.TIER3;
+		string[] plastics = MATERIALS.PLASTICS;
+		float melting_point = 1600f;
+		BuildLocationRule build_location_rule = BuildLocationRule.Tile;
+		EffectorValues none = NOISE_POLLUTION.NONE;
+		BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(id, width, height, anim, hitpoints, construction_time, tier, plastics, melting_point, build_location_rule, BUILDINGS.DECOR.PENALTY.TIER5, none, 0.2f);
+		buildingDef.Overheatable = false;
+		buildingDef.UseStructureTemperature = false;
+		buildingDef.Floodable = false;
+		buildingDef.Entombable = false;
+		buildingDef.AudioCategory = "Plastic";
+		buildingDef.AudioSize = "small";
+		buildingDef.BaseTimeUntilRepair = -1f;
+		buildingDef.InitialOrientation = Orientation.R180;
+		buildingDef.ForegroundLayer = Grid.SceneLayer.TileMain;
+		buildingDef.PermittedRotations = PermittedRotations.R360;
+		buildingDef.ViewMode = OverlayModes.Radiation.ID;
+		buildingDef.UseHighEnergyParticleInputPort = true;
+		buildingDef.HighEnergyParticleInputOffset = new CellOffset(1, 0);
+		buildingDef.UseHighEnergyParticleOutputPort = true;
+		buildingDef.HighEnergyParticleOutputOffset = new CellOffset(0, 0);
+		GeneratedBuildings.RegisterWithOverlay(OverlayScreen.RadiationIDs, "HEPBridgeTile");
+		return buildingDef;
+	}
+
+	// Token: 0x06000E48 RID: 3656 RVA: 0x0018267C File Offset: 0x0018087C
+	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
+	{
+		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
+		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
+		go.AddOrGet<BuildingHP>().destroyOnDamaged = true;
+		go.AddOrGet<TileTemperature>();
+		HighEnergyParticleStorage highEnergyParticleStorage = go.AddOrGet<HighEnergyParticleStorage>();
+		highEnergyParticleStorage.autoStore = true;
+		highEnergyParticleStorage.showInUI = false;
+		highEnergyParticleStorage.capacity = 501f;
+		HighEnergyParticleRedirector highEnergyParticleRedirector = go.AddOrGet<HighEnergyParticleRedirector>();
+		highEnergyParticleRedirector.directorDelay = 0.5f;
+		highEnergyParticleRedirector.directionControllable = false;
+		highEnergyParticleRedirector.Direction = EightDirection.Right;
+	}
+
+	// Token: 0x06000E49 RID: 3657 RVA: 0x000B0A31 File Offset: 0x000AEC31
+	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
+	{
+		base.DoPostConfigurePreview(def, go);
+		go.AddOrGet<HEPBridgeTileVisualizer>();
+		go.AddOrGet<BuildingCellVisualizer>();
+	}
+
+	// Token: 0x06000E4A RID: 3658 RVA: 0x000B0A49 File Offset: 0x000AEC49
+	public override void DoPostConfigureUnderConstruction(GameObject go)
+	{
+		base.DoPostConfigureUnderConstruction(go);
+		go.AddOrGet<BuildingCellVisualizer>();
+	}
+
+	// Token: 0x06000E4B RID: 3659 RVA: 0x001826F4 File Offset: 0x001808F4
+	public override void DoPostConfigureComplete(GameObject go)
+	{
+		go.GetComponent<KPrefabID>().AddTag(GameTags.HEPPassThrough, false);
+		go.AddOrGet<BuildingCellVisualizer>();
+		go.AddOrGetDef<MakeBaseSolid.Def>().solidOffsets = new CellOffset[]
+		{
+			new CellOffset(0, 0)
+		};
+		go.GetComponent<KPrefabID>().prefabSpawnFn += delegate(GameObject inst)
+		{
+			Rotatable component = inst.GetComponent<Rotatable>();
+			HighEnergyParticleRedirector component2 = inst.GetComponent<HighEnergyParticleRedirector>();
+			switch (component.Orientation)
+			{
+			case Orientation.Neutral:
+				component2.Direction = EightDirection.Left;
+				return;
+			case Orientation.R90:
+				component2.Direction = EightDirection.Up;
+				return;
+			case Orientation.R180:
+				component2.Direction = EightDirection.Right;
+				return;
+			case Orientation.R270:
+				component2.Direction = EightDirection.Down;
+				return;
+			default:
+				return;
+			}
+		};
+	}
+
+	// Token: 0x04000A8B RID: 2699
+	public const string ID = "HEPBridgeTile";
+}

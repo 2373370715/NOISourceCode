@@ -1,0 +1,703 @@
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
+
+// Token: 0x02000209 RID: 521
+public class SegmentedCreature : GameStateMachine<SegmentedCreature, SegmentedCreature.Instance, IStateMachineTarget, SegmentedCreature.Def>
+{
+	// Token: 0x0600070B RID: 1803 RVA: 0x00166740 File Offset: 0x00164940
+	public override void InitializeStates(out StateMachine.BaseState default_state)
+	{
+		default_state = this.freeMovement.idle;
+		this.root.Enter(new StateMachine<SegmentedCreature, SegmentedCreature.Instance, IStateMachineTarget, SegmentedCreature.Def>.State.Callback(this.SetRetractedPath));
+		this.retracted.DefaultState(this.retracted.pre).Enter(delegate(SegmentedCreature.Instance smi)
+		{
+			this.PlayBodySegmentsAnim(smi, "idle_loop", KAnim.PlayMode.Loop, false, 0);
+		}).Exit(new StateMachine<SegmentedCreature, SegmentedCreature.Instance, IStateMachineTarget, SegmentedCreature.Def>.State.Callback(this.SetRetractedPath));
+		this.retracted.pre.Update(new Action<SegmentedCreature.Instance, float>(this.UpdateRetractedPre), UpdateRate.SIM_EVERY_TICK, false);
+		this.retracted.loop.ParamTransition<bool>(this.isRetracted, this.freeMovement, (SegmentedCreature.Instance smi, bool p) => !this.isRetracted.Get(smi)).Update(new Action<SegmentedCreature.Instance, float>(this.UpdateRetractedLoop), UpdateRate.SIM_EVERY_TICK, false);
+		this.freeMovement.DefaultState(this.freeMovement.idle).ParamTransition<bool>(this.isRetracted, this.retracted, (SegmentedCreature.Instance smi, bool p) => this.isRetracted.Get(smi)).Update(new Action<SegmentedCreature.Instance, float>(this.UpdateFreeMovement), UpdateRate.SIM_EVERY_TICK, false);
+		this.freeMovement.idle.Transition(this.freeMovement.moving, (SegmentedCreature.Instance smi) => smi.GetComponent<Navigator>().IsMoving(), UpdateRate.SIM_200ms).Enter(delegate(SegmentedCreature.Instance smi)
+		{
+			this.PlayBodySegmentsAnim(smi, "idle_loop", KAnim.PlayMode.Loop, true, 0);
+		});
+		this.freeMovement.moving.Transition(this.freeMovement.idle, (SegmentedCreature.Instance smi) => !smi.GetComponent<Navigator>().IsMoving(), UpdateRate.SIM_200ms).Enter(delegate(SegmentedCreature.Instance smi)
+		{
+			this.PlayBodySegmentsAnim(smi, "walking_pre", KAnim.PlayMode.Once, false, 0);
+			this.PlayBodySegmentsAnim(smi, "walking_loop", KAnim.PlayMode.Loop, false, smi.def.animFrameOffset);
+		}).Exit(delegate(SegmentedCreature.Instance smi)
+		{
+			this.PlayBodySegmentsAnim(smi, "walking_pst", KAnim.PlayMode.Once, true, 0);
+		});
+	}
+
+	// Token: 0x0600070C RID: 1804 RVA: 0x001668F8 File Offset: 0x00164AF8
+	private void PlayBodySegmentsAnim(SegmentedCreature.Instance smi, string animName, KAnim.PlayMode playMode, bool queue = false, int frameOffset = 0)
+	{
+		LinkedListNode<SegmentedCreature.CreatureSegment> linkedListNode = smi.GetFirstBodySegmentNode();
+		int num = 0;
+		while (linkedListNode != null)
+		{
+			if (queue)
+			{
+				linkedListNode.Value.animController.Queue(animName, playMode, 1f, 0f);
+			}
+			else
+			{
+				linkedListNode.Value.animController.Play(animName, playMode, 1f, 0f);
+			}
+			if (frameOffset > 0)
+			{
+				float num2 = (float)linkedListNode.Value.animController.GetCurrentNumFrames();
+				float elapsedTime = (float)num * ((float)frameOffset / num2);
+				linkedListNode.Value.animController.SetElapsedTime(elapsedTime);
+			}
+			num++;
+			linkedListNode = linkedListNode.Next;
+		}
+	}
+
+	// Token: 0x0600070D RID: 1805 RVA: 0x001669A0 File Offset: 0x00164BA0
+	private void UpdateRetractedPre(SegmentedCreature.Instance smi, float dt)
+	{
+		if (this.UpdateHeadPosition(smi) == 0f)
+		{
+			return;
+		}
+		bool flag = true;
+		for (LinkedListNode<SegmentedCreature.CreatureSegment> linkedListNode = smi.GetFirstBodySegmentNode(); linkedListNode != null; linkedListNode = linkedListNode.Next)
+		{
+			linkedListNode.Value.distanceToPreviousSegment = Mathf.Max(smi.def.minSegmentSpacing, linkedListNode.Value.distanceToPreviousSegment - dt * smi.def.retractionSegmentSpeed);
+			if (linkedListNode.Value.distanceToPreviousSegment > smi.def.minSegmentSpacing)
+			{
+				flag = false;
+			}
+		}
+		SegmentedCreature.CreatureSegment value = smi.GetHeadSegmentNode().Value;
+		LinkedListNode<SegmentedCreature.PathNode> linkedListNode2 = smi.path.First;
+		Vector3 forward = value.Forward;
+		Quaternion rotation = value.Rotation;
+		int num = 0;
+		while (linkedListNode2 != null)
+		{
+			Vector3 b = value.Position - smi.def.pathSpacing * (float)num * forward;
+			linkedListNode2.Value.position = Vector3.Lerp(linkedListNode2.Value.position, b, dt * smi.def.retractionPathSpeed);
+			linkedListNode2.Value.rotation = Quaternion.Slerp(linkedListNode2.Value.rotation, rotation, dt * smi.def.retractionPathSpeed);
+			num++;
+			linkedListNode2 = linkedListNode2.Next;
+		}
+		this.UpdateBodyPosition(smi);
+		if (flag)
+		{
+			smi.GoTo(this.retracted.loop);
+		}
+	}
+
+	// Token: 0x0600070E RID: 1806 RVA: 0x000AD78D File Offset: 0x000AB98D
+	private void UpdateRetractedLoop(SegmentedCreature.Instance smi, float dt)
+	{
+		if (this.UpdateHeadPosition(smi) != 0f)
+		{
+			this.SetRetractedPath(smi);
+			this.UpdateBodyPosition(smi);
+		}
+	}
+
+	// Token: 0x0600070F RID: 1807 RVA: 0x00166AF4 File Offset: 0x00164CF4
+	private void SetRetractedPath(SegmentedCreature.Instance smi)
+	{
+		SegmentedCreature.CreatureSegment value = smi.GetHeadSegmentNode().Value;
+		LinkedListNode<SegmentedCreature.PathNode> linkedListNode = smi.path.First;
+		Vector3 position = value.Position;
+		Quaternion rotation = value.Rotation;
+		Vector3 forward = value.Forward;
+		int num = 0;
+		while (linkedListNode != null)
+		{
+			linkedListNode.Value.position = position - smi.def.pathSpacing * (float)num * forward;
+			linkedListNode.Value.rotation = rotation;
+			num++;
+			linkedListNode = linkedListNode.Next;
+		}
+	}
+
+	// Token: 0x06000710 RID: 1808 RVA: 0x00166B74 File Offset: 0x00164D74
+	private void UpdateFreeMovement(SegmentedCreature.Instance smi, float dt)
+	{
+		float num = this.UpdateHeadPosition(smi);
+		if (num != 0f)
+		{
+			this.AdjustBodySegmentsSpacing(smi, num);
+			this.UpdateBodyPosition(smi);
+		}
+	}
+
+	// Token: 0x06000711 RID: 1809 RVA: 0x00166BA0 File Offset: 0x00164DA0
+	private float UpdateHeadPosition(SegmentedCreature.Instance smi)
+	{
+		SegmentedCreature.CreatureSegment value = smi.GetHeadSegmentNode().Value;
+		if (value.Position == smi.previousHeadPosition)
+		{
+			return 0f;
+		}
+		SegmentedCreature.PathNode value2 = smi.path.First.Value;
+		SegmentedCreature.PathNode value3 = smi.path.First.Next.Value;
+		float magnitude = (value2.position - value3.position).magnitude;
+		float magnitude2 = (value.Position - value3.position).magnitude;
+		float result = magnitude2 - magnitude;
+		value2.position = value.Position;
+		value2.rotation = value.Rotation;
+		smi.previousHeadPosition = value2.position;
+		Vector3 normalized = (value2.position - value3.position).normalized;
+		int num = Mathf.FloorToInt(magnitude2 / smi.def.pathSpacing);
+		for (int i = 0; i < num; i++)
+		{
+			Vector3 position = value3.position + normalized * smi.def.pathSpacing;
+			LinkedListNode<SegmentedCreature.PathNode> last = smi.path.Last;
+			last.Value.position = position;
+			last.Value.rotation = value2.rotation;
+			float num2 = magnitude2 - (float)i * smi.def.pathSpacing;
+			float t = num2 - smi.def.pathSpacing / num2;
+			last.Value.rotation = Quaternion.Lerp(value2.rotation, value3.rotation, t);
+			smi.path.RemoveLast();
+			smi.path.AddAfter(smi.path.First, last);
+			value3 = last.Value;
+		}
+		return result;
+	}
+
+	// Token: 0x06000712 RID: 1810 RVA: 0x00166D64 File Offset: 0x00164F64
+	private void AdjustBodySegmentsSpacing(SegmentedCreature.Instance smi, float spacing)
+	{
+		for (LinkedListNode<SegmentedCreature.CreatureSegment> linkedListNode = smi.GetFirstBodySegmentNode(); linkedListNode != null; linkedListNode = linkedListNode.Next)
+		{
+			linkedListNode.Value.distanceToPreviousSegment += spacing;
+			if (linkedListNode.Value.distanceToPreviousSegment < smi.def.minSegmentSpacing)
+			{
+				spacing = linkedListNode.Value.distanceToPreviousSegment - smi.def.minSegmentSpacing;
+				linkedListNode.Value.distanceToPreviousSegment = smi.def.minSegmentSpacing;
+			}
+			else
+			{
+				if (linkedListNode.Value.distanceToPreviousSegment <= smi.def.maxSegmentSpacing)
+				{
+					break;
+				}
+				spacing = linkedListNode.Value.distanceToPreviousSegment - smi.def.maxSegmentSpacing;
+				linkedListNode.Value.distanceToPreviousSegment = smi.def.maxSegmentSpacing;
+			}
+		}
+	}
+
+	// Token: 0x06000713 RID: 1811 RVA: 0x00166E30 File Offset: 0x00165030
+	private void UpdateBodyPosition(SegmentedCreature.Instance smi)
+	{
+		LinkedListNode<SegmentedCreature.CreatureSegment> linkedListNode = smi.GetFirstBodySegmentNode();
+		LinkedListNode<SegmentedCreature.PathNode> linkedListNode2 = smi.path.First;
+		float num = 0f;
+		float num2 = smi.LengthPercentage();
+		int num3 = 0;
+		while (linkedListNode != null)
+		{
+			float num4 = linkedListNode.Value.distanceToPreviousSegment;
+			float num5 = 0f;
+			while (linkedListNode2.Next != null)
+			{
+				num5 = (linkedListNode2.Value.position - linkedListNode2.Next.Value.position).magnitude - num;
+				if (num4 < num5)
+				{
+					break;
+				}
+				num4 -= num5;
+				num = 0f;
+				linkedListNode2 = linkedListNode2.Next;
+			}
+			if (linkedListNode2.Next == null)
+			{
+				linkedListNode.Value.SetPosition(linkedListNode2.Value.position);
+				linkedListNode.Value.SetRotation(smi.path.Last.Value.rotation);
+			}
+			else
+			{
+				SegmentedCreature.PathNode value = linkedListNode2.Value;
+				SegmentedCreature.PathNode value2 = linkedListNode2.Next.Value;
+				linkedListNode.Value.SetPosition(linkedListNode2.Value.position + (linkedListNode2.Next.Value.position - linkedListNode2.Value.position).normalized * num4);
+				linkedListNode.Value.SetRotation(Quaternion.Slerp(value.rotation, value2.rotation, num4 / num5));
+				num = num4;
+			}
+			linkedListNode.Value.animController.FlipX = (linkedListNode.Previous.Value.Position.x < linkedListNode.Value.Position.x);
+			linkedListNode.Value.animController.animScale = smi.baseAnimScale + smi.baseAnimScale * smi.def.compressedMaxScale * ((float)(smi.def.numBodySegments - num3) / (float)smi.def.numBodySegments) * (1f - num2);
+			linkedListNode = linkedListNode.Next;
+			num3++;
+		}
+	}
+
+	// Token: 0x06000714 RID: 1812 RVA: 0x0016702C File Offset: 0x0016522C
+	private void DrawDebug(SegmentedCreature.Instance smi, float dt)
+	{
+		SegmentedCreature.CreatureSegment value = smi.GetHeadSegmentNode().Value;
+		DrawUtil.Arrow(value.Position, value.Position + value.Up, 0.05f, Color.red, 0f);
+		DrawUtil.Arrow(value.Position, value.Position + value.Forward * 0.06f, 0.05f, Color.cyan, 0f);
+		int num = 0;
+		foreach (SegmentedCreature.PathNode pathNode in smi.path)
+		{
+			Color color = Color.HSVToRGB((float)num / (float)smi.def.numPathNodes, 1f, 1f);
+			DrawUtil.Gnomon(pathNode.position, 0.05f, Color.cyan, 0f);
+			DrawUtil.Arrow(pathNode.position, pathNode.position + pathNode.rotation * Vector3.up * 0.5f, 0.025f, color, 0f);
+			num++;
+		}
+		for (LinkedListNode<SegmentedCreature.CreatureSegment> linkedListNode = smi.segments.First; linkedListNode != null; linkedListNode = linkedListNode.Next)
+		{
+			DrawUtil.Circle(linkedListNode.Value.Position, 0.05f, Color.white, new Vector3?(Vector3.forward), 0f);
+			DrawUtil.Gnomon(linkedListNode.Value.Position, 0.05f, Color.white, 0f);
+		}
+	}
+
+	// Token: 0x04000530 RID: 1328
+	public SegmentedCreature.RectractStates retracted;
+
+	// Token: 0x04000531 RID: 1329
+	public SegmentedCreature.FreeMovementStates freeMovement;
+
+	// Token: 0x04000532 RID: 1330
+	private StateMachine<SegmentedCreature, SegmentedCreature.Instance, IStateMachineTarget, SegmentedCreature.Def>.BoolParameter isRetracted;
+
+	// Token: 0x0200020A RID: 522
+	public class Def : StateMachine.BaseDef
+	{
+		// Token: 0x04000533 RID: 1331
+		public HashedString segmentTrackerSymbol;
+
+		// Token: 0x04000534 RID: 1332
+		public Vector3 headOffset = Vector3.zero;
+
+		// Token: 0x04000535 RID: 1333
+		public Vector3 bodyPivot = Vector3.zero;
+
+		// Token: 0x04000536 RID: 1334
+		public Vector3 tailPivot = Vector3.zero;
+
+		// Token: 0x04000537 RID: 1335
+		public int numBodySegments;
+
+		// Token: 0x04000538 RID: 1336
+		public float minSegmentSpacing;
+
+		// Token: 0x04000539 RID: 1337
+		public float maxSegmentSpacing;
+
+		// Token: 0x0400053A RID: 1338
+		public int numPathNodes;
+
+		// Token: 0x0400053B RID: 1339
+		public float pathSpacing;
+
+		// Token: 0x0400053C RID: 1340
+		public KAnimFile midAnim;
+
+		// Token: 0x0400053D RID: 1341
+		public KAnimFile tailAnim;
+
+		// Token: 0x0400053E RID: 1342
+		public string movingAnimName;
+
+		// Token: 0x0400053F RID: 1343
+		public string idleAnimName;
+
+		// Token: 0x04000540 RID: 1344
+		public float retractionSegmentSpeed = 1f;
+
+		// Token: 0x04000541 RID: 1345
+		public float retractionPathSpeed = 1f;
+
+		// Token: 0x04000542 RID: 1346
+		public float compressedMaxScale = 1.2f;
+
+		// Token: 0x04000543 RID: 1347
+		public int animFrameOffset;
+
+		// Token: 0x04000544 RID: 1348
+		public HashSet<HashedString> hideBoddyWhenStartingAnimNames = new HashSet<HashedString>
+		{
+			"rocket_biological"
+		};
+
+		// Token: 0x04000545 RID: 1349
+		public HashSet<HashedString> retractWhenStartingAnimNames = new HashSet<HashedString>
+		{
+			"trapped",
+			"trussed",
+			"escape",
+			"drown_pre",
+			"drown_loop",
+			"drown_pst",
+			"rocket_biological"
+		};
+
+		// Token: 0x04000546 RID: 1350
+		public HashSet<HashedString> retractWhenEndingAnimNames = new HashSet<HashedString>
+		{
+			"floor_floor_2_0",
+			"grooming_pst",
+			"fall"
+		};
+	}
+
+	// Token: 0x0200020B RID: 523
+	public class RectractStates : GameStateMachine<SegmentedCreature, SegmentedCreature.Instance, IStateMachineTarget, SegmentedCreature.Def>.State
+	{
+		// Token: 0x04000547 RID: 1351
+		public GameStateMachine<SegmentedCreature, SegmentedCreature.Instance, IStateMachineTarget, SegmentedCreature.Def>.State pre;
+
+		// Token: 0x04000548 RID: 1352
+		public GameStateMachine<SegmentedCreature, SegmentedCreature.Instance, IStateMachineTarget, SegmentedCreature.Def>.State loop;
+	}
+
+	// Token: 0x0200020C RID: 524
+	public class FreeMovementStates : GameStateMachine<SegmentedCreature, SegmentedCreature.Instance, IStateMachineTarget, SegmentedCreature.Def>.State
+	{
+		// Token: 0x04000549 RID: 1353
+		public GameStateMachine<SegmentedCreature, SegmentedCreature.Instance, IStateMachineTarget, SegmentedCreature.Def>.State idle;
+
+		// Token: 0x0400054A RID: 1354
+		public GameStateMachine<SegmentedCreature, SegmentedCreature.Instance, IStateMachineTarget, SegmentedCreature.Def>.State moving;
+
+		// Token: 0x0400054B RID: 1355
+		public GameStateMachine<SegmentedCreature, SegmentedCreature.Instance, IStateMachineTarget, SegmentedCreature.Def>.State layEgg;
+
+		// Token: 0x0400054C RID: 1356
+		public GameStateMachine<SegmentedCreature, SegmentedCreature.Instance, IStateMachineTarget, SegmentedCreature.Def>.State poop;
+
+		// Token: 0x0400054D RID: 1357
+		public GameStateMachine<SegmentedCreature, SegmentedCreature.Instance, IStateMachineTarget, SegmentedCreature.Def>.State dead;
+	}
+
+	// Token: 0x0200020D RID: 525
+	public new class Instance : GameStateMachine<SegmentedCreature, SegmentedCreature.Instance, IStateMachineTarget, SegmentedCreature.Def>.GameInstance
+	{
+		// Token: 0x0600071F RID: 1823 RVA: 0x00167300 File Offset: 0x00165500
+		public Instance(IStateMachineTarget master, SegmentedCreature.Def def) : base(master, def)
+		{
+			global::Debug.Assert((float)def.numBodySegments * def.maxSegmentSpacing < (float)def.numPathNodes * def.pathSpacing);
+			this.CreateSegments();
+		}
+
+		// Token: 0x06000720 RID: 1824 RVA: 0x00167354 File Offset: 0x00165554
+		private void CreateSegments()
+		{
+			float num = (float)SegmentedCreature.Instance.creatureBatchSlot * 0.01f;
+			SegmentedCreature.Instance.creatureBatchSlot = (SegmentedCreature.Instance.creatureBatchSlot + 1) % 10;
+			SegmentedCreature.CreatureSegment value = this.segments.AddFirst(new SegmentedCreature.CreatureSegment(base.GetComponent<KBatchedAnimController>(), base.gameObject, num, base.smi.def.headOffset, Vector3.zero)).Value;
+			base.gameObject.SetActive(false);
+			value.animController = base.GetComponent<KBatchedAnimController>();
+			value.animController.SetSymbolVisiblity(base.smi.def.segmentTrackerSymbol, false);
+			value.symbol = base.smi.def.segmentTrackerSymbol;
+			value.SetPosition(base.transform.position);
+			base.gameObject.SetActive(true);
+			this.baseAnimScale = value.animController.animScale;
+			value.animController.onAnimEnter += this.AnimEntered;
+			value.animController.onAnimComplete += this.AnimComplete;
+			for (int i = 0; i < base.def.numBodySegments; i++)
+			{
+				GameObject gameObject = new GameObject(base.gameObject.GetProperName() + string.Format(" Segment {0}", i));
+				gameObject.SetActive(false);
+				gameObject.transform.parent = base.transform;
+				gameObject.transform.position = value.Position;
+				KAnimFile kanimFile = base.def.midAnim;
+				Vector3 pivot = base.def.bodyPivot;
+				if (i == base.def.numBodySegments - 1)
+				{
+					kanimFile = base.def.tailAnim;
+					pivot = base.def.tailPivot;
+				}
+				KBatchedAnimController kbatchedAnimController = gameObject.AddOrGet<KBatchedAnimController>();
+				kbatchedAnimController.AnimFiles = new KAnimFile[]
+				{
+					kanimFile
+				};
+				kbatchedAnimController.isMovable = true;
+				kbatchedAnimController.SetSymbolVisiblity(base.smi.def.segmentTrackerSymbol, false);
+				kbatchedAnimController.sceneLayer = value.animController.sceneLayer;
+				SegmentedCreature.CreatureSegment creatureSegment = new SegmentedCreature.CreatureSegment(value.animController, gameObject, num + (float)(i + 1) * 0.0001f, Vector3.zero, pivot);
+				creatureSegment.animController = kbatchedAnimController;
+				creatureSegment.symbol = base.smi.def.segmentTrackerSymbol;
+				creatureSegment.distanceToPreviousSegment = base.smi.def.minSegmentSpacing;
+				creatureSegment.animLink = new KAnimLink(value.animController, kbatchedAnimController);
+				this.segments.AddLast(creatureSegment);
+				gameObject.SetActive(true);
+			}
+			for (int j = 0; j < base.def.numPathNodes; j++)
+			{
+				this.path.AddLast(new SegmentedCreature.PathNode(value.Position));
+			}
+		}
+
+		// Token: 0x06000721 RID: 1825 RVA: 0x00167614 File Offset: 0x00165814
+		public void AnimEntered(HashedString name)
+		{
+			if (base.smi.def.retractWhenStartingAnimNames.Contains(name))
+			{
+				base.smi.sm.isRetracted.Set(true, base.smi, false);
+			}
+			else
+			{
+				base.smi.sm.isRetracted.Set(false, base.smi, false);
+			}
+			if (base.smi.def.hideBoddyWhenStartingAnimNames.Contains(name))
+			{
+				this.SetBodySegmentsVisibility(false);
+				return;
+			}
+			this.SetBodySegmentsVisibility(true);
+		}
+
+		// Token: 0x06000722 RID: 1826 RVA: 0x001676A0 File Offset: 0x001658A0
+		public void SetBodySegmentsVisibility(bool visible)
+		{
+			for (LinkedListNode<SegmentedCreature.CreatureSegment> linkedListNode = base.smi.GetFirstBodySegmentNode(); linkedListNode != null; linkedListNode = linkedListNode.Next)
+			{
+				linkedListNode.Value.animController.SetVisiblity(visible);
+			}
+		}
+
+		// Token: 0x06000723 RID: 1827 RVA: 0x000AD837 File Offset: 0x000ABA37
+		public void AnimComplete(HashedString name)
+		{
+			if (base.smi.def.retractWhenEndingAnimNames.Contains(name))
+			{
+				base.smi.sm.isRetracted.Set(true, base.smi, false);
+			}
+		}
+
+		// Token: 0x06000724 RID: 1828 RVA: 0x000AD86F File Offset: 0x000ABA6F
+		public LinkedListNode<SegmentedCreature.CreatureSegment> GetHeadSegmentNode()
+		{
+			return base.smi.segments.First;
+		}
+
+		// Token: 0x06000725 RID: 1829 RVA: 0x000AD881 File Offset: 0x000ABA81
+		public LinkedListNode<SegmentedCreature.CreatureSegment> GetFirstBodySegmentNode()
+		{
+			return base.smi.segments.First.Next;
+		}
+
+		// Token: 0x06000726 RID: 1830 RVA: 0x001676D8 File Offset: 0x001658D8
+		public float LengthPercentage()
+		{
+			float num = 0f;
+			for (LinkedListNode<SegmentedCreature.CreatureSegment> linkedListNode = this.GetFirstBodySegmentNode(); linkedListNode != null; linkedListNode = linkedListNode.Next)
+			{
+				num += linkedListNode.Value.distanceToPreviousSegment;
+			}
+			float num2 = this.MinLength();
+			float num3 = this.MaxLength();
+			return Mathf.Clamp(num - num2, 0f, num3) / (num3 - num2);
+		}
+
+		// Token: 0x06000727 RID: 1831 RVA: 0x000AD898 File Offset: 0x000ABA98
+		public float MinLength()
+		{
+			return base.smi.def.minSegmentSpacing * (float)base.smi.def.numBodySegments;
+		}
+
+		// Token: 0x06000728 RID: 1832 RVA: 0x000AD8BC File Offset: 0x000ABABC
+		public float MaxLength()
+		{
+			return base.smi.def.maxSegmentSpacing * (float)base.smi.def.numBodySegments;
+		}
+
+		// Token: 0x06000729 RID: 1833 RVA: 0x0016772C File Offset: 0x0016592C
+		protected override void OnCleanUp()
+		{
+			this.GetHeadSegmentNode().Value.animController.onAnimEnter -= this.AnimEntered;
+			this.GetHeadSegmentNode().Value.animController.onAnimComplete -= this.AnimComplete;
+			for (LinkedListNode<SegmentedCreature.CreatureSegment> linkedListNode = this.GetFirstBodySegmentNode(); linkedListNode != null; linkedListNode = linkedListNode.Next)
+			{
+				linkedListNode.Value.CleanUp();
+			}
+		}
+
+		// Token: 0x0400054E RID: 1358
+		private const int NUM_CREATURE_SLOTS = 10;
+
+		// Token: 0x0400054F RID: 1359
+		private static int creatureBatchSlot;
+
+		// Token: 0x04000550 RID: 1360
+		public float baseAnimScale;
+
+		// Token: 0x04000551 RID: 1361
+		public Vector3 previousHeadPosition;
+
+		// Token: 0x04000552 RID: 1362
+		public float previousDist;
+
+		// Token: 0x04000553 RID: 1363
+		public LinkedList<SegmentedCreature.PathNode> path = new LinkedList<SegmentedCreature.PathNode>();
+
+		// Token: 0x04000554 RID: 1364
+		public LinkedList<SegmentedCreature.CreatureSegment> segments = new LinkedList<SegmentedCreature.CreatureSegment>();
+	}
+
+	// Token: 0x0200020E RID: 526
+	public class PathNode
+	{
+		// Token: 0x0600072A RID: 1834 RVA: 0x000AD8E0 File Offset: 0x000ABAE0
+		public PathNode(Vector3 position)
+		{
+			this.position = position;
+			this.rotation = Quaternion.identity;
+		}
+
+		// Token: 0x04000555 RID: 1365
+		public Vector3 position;
+
+		// Token: 0x04000556 RID: 1366
+		public Quaternion rotation;
+	}
+
+	// Token: 0x0200020F RID: 527
+	public class CreatureSegment
+	{
+		// Token: 0x17000016 RID: 22
+		// (get) Token: 0x0600072B RID: 1835 RVA: 0x000AD8FA File Offset: 0x000ABAFA
+		public float ZOffset
+		{
+			get
+			{
+				return Grid.GetLayerZ(this.head.sceneLayer) + this.zRelativeOffset;
+			}
+		}
+
+		// Token: 0x0600072C RID: 1836 RVA: 0x0016779C File Offset: 0x0016599C
+		public CreatureSegment(KBatchedAnimController head, GameObject go, float zRelativeOffset, Vector3 offset, Vector3 pivot)
+		{
+			this.head = head;
+			this.m_transform = go.transform;
+			this.zRelativeOffset = zRelativeOffset;
+			this.offset = offset;
+			this.pivot = pivot;
+			this.SetPosition(go.transform.position);
+		}
+
+		// Token: 0x17000017 RID: 23
+		// (get) Token: 0x0600072D RID: 1837 RVA: 0x001677EC File Offset: 0x001659EC
+		public Vector3 Position
+		{
+			get
+			{
+				Vector3 vector = this.offset;
+				vector.x *= (float)(this.animController.FlipX ? -1 : 1);
+				if (vector != Vector3.zero)
+				{
+					vector = this.Rotation * vector;
+				}
+				if (this.symbol.IsValid)
+				{
+					bool flag;
+					Vector3 a = this.animController.GetSymbolTransform(this.symbol, out flag).GetColumn(3);
+					a.z = this.ZOffset;
+					return a + vector;
+				}
+				return this.m_transform.position + vector;
+			}
+		}
+
+		// Token: 0x0600072E RID: 1838 RVA: 0x00167890 File Offset: 0x00165A90
+		public void SetPosition(Vector3 value)
+		{
+			bool flag = false;
+			if (this.animController != null && this.animController.sceneLayer != this.head.sceneLayer)
+			{
+				this.animController.SetSceneLayer(this.head.sceneLayer);
+				flag = true;
+			}
+			value.z = this.ZOffset;
+			this.m_transform.position = value;
+			if (flag)
+			{
+				this.animController.enabled = false;
+				this.animController.enabled = true;
+			}
+		}
+
+		// Token: 0x0600072F RID: 1839 RVA: 0x000AD913 File Offset: 0x000ABB13
+		public void SetRotation(Quaternion rotation)
+		{
+			this.m_transform.rotation = rotation;
+		}
+
+		// Token: 0x17000018 RID: 24
+		// (get) Token: 0x06000730 RID: 1840 RVA: 0x00167914 File Offset: 0x00165B14
+		public Quaternion Rotation
+		{
+			get
+			{
+				if (this.symbol.IsValid)
+				{
+					bool flag;
+					Vector3 toDirection = this.animController.GetSymbolLocalTransform(this.symbol, out flag).MultiplyVector(Vector3.right);
+					if (!this.animController.FlipX)
+					{
+						toDirection.y *= -1f;
+					}
+					return Quaternion.FromToRotation(Vector3.right, toDirection);
+				}
+				return this.m_transform.rotation;
+			}
+		}
+
+		// Token: 0x17000019 RID: 25
+		// (get) Token: 0x06000731 RID: 1841 RVA: 0x000AD921 File Offset: 0x000ABB21
+		public Vector3 Forward
+		{
+			get
+			{
+				return this.Rotation * (this.animController.FlipX ? Vector3.left : Vector3.right);
+			}
+		}
+
+		// Token: 0x1700001A RID: 26
+		// (get) Token: 0x06000732 RID: 1842 RVA: 0x000AD947 File Offset: 0x000ABB47
+		public Vector3 Up
+		{
+			get
+			{
+				return this.Rotation * Vector3.up;
+			}
+		}
+
+		// Token: 0x06000733 RID: 1843 RVA: 0x000AD959 File Offset: 0x000ABB59
+		public void CleanUp()
+		{
+			UnityEngine.Object.Destroy(this.m_transform.gameObject);
+		}
+
+		// Token: 0x04000557 RID: 1367
+		public KBatchedAnimController animController;
+
+		// Token: 0x04000558 RID: 1368
+		public KAnimLink animLink;
+
+		// Token: 0x04000559 RID: 1369
+		public float distanceToPreviousSegment;
+
+		// Token: 0x0400055A RID: 1370
+		public HashedString symbol;
+
+		// Token: 0x0400055B RID: 1371
+		public Vector3 offset;
+
+		// Token: 0x0400055C RID: 1372
+		public Vector3 pivot;
+
+		// Token: 0x0400055D RID: 1373
+		public KBatchedAnimController head;
+
+		// Token: 0x0400055E RID: 1374
+		private float zRelativeOffset;
+
+		// Token: 0x0400055F RID: 1375
+		private Transform m_transform;
+	}
+}
