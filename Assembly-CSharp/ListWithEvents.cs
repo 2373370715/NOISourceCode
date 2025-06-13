@@ -20,12 +20,8 @@ public class ListWithEvents<T> : IList<T>, ICollection<T>, IEnumerable<T>, IEnum
 		}
 	}
 
-add) Token: 0x06001BAC RID: 7084 RVA: 0x001B7D84 File Offset: 0x001B5F84
-remove) Token: 0x06001BAD RID: 7085 RVA: 0x001B7DBC File Offset: 0x001B5FBC
 	public event Action<T> onAdd;
 
-add) Token: 0x06001BAE RID: 7086 RVA: 0x001B7DF4 File Offset: 0x001B5FF4
-remove) Token: 0x06001BAF RID: 7087 RVA: 0x001B7E2C File Offset: 0x001B602C
 	public event Action<T> onRemove;
 
 	public T this[int index]

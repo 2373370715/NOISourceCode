@@ -48,9 +48,11 @@ public class FishDeliveryPointConfig : IBuildingConfig
 		BaggableCritterCapacityTracker baggableCritterCapacityTracker = go.AddOrGet<BaggableCritterCapacityTracker>();
 		baggableCritterCapacityTracker.maximumCreatures = 20;
 		baggableCritterCapacityTracker.cavityOffset = CellOffset.down;
+		baggableCritterCapacityTracker.requireLiquidOffset = true;
 		go.AddOrGet<TreeFilterable>();
 	}
 
+	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGetDef<MakeBaseSolid.Def>().solidOffsets = new CellOffset[]
 		{
@@ -58,4 +60,5 @@ public class FishDeliveryPointConfig : IBuildingConfig
 		};
 	}
 
+	public const string ID = "FishDeliveryPoint";
 }

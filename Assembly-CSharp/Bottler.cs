@@ -152,12 +152,10 @@ public class Bottler : Workable, IUserControlledCapacity
 		if (this.workerMeter != null)
 		{
 			this.CleanupBottleProxyObject();
-			KCrashReporter.ReportDevNotification("CreateBottleProxyObject called before cleanup", Environment.StackTrace, "", false, null);
 		}
 		PrimaryElement firstPrimaryElement = this.smi.master.GetFirstPrimaryElement();
 		if (firstPrimaryElement == null)
 		{
-			KCrashReporter.ReportDevNotification("CreateBottleProxyObject on a null element", Environment.StackTrace, "", false, null);
 			return;
 		}
 		this.workerMeter = new MeterController(worker.GetComponent<KBatchedAnimController>(), "snapto_chest", "meter", Meter.Offset.Infront, Grid.SceneLayer.NoLayer, new string[]
@@ -172,6 +170,7 @@ public class Bottler : Workable, IUserControlledCapacity
 		this.workerMeter.SetSymbolTint(new KAnimHashedString("water1"), colour);
 		this.workerMeter.SetSymbolTint(new KAnimHashedString("substance_tinter"), colour);
 		this.workerMeter.SetSymbolTint(new KAnimHashedString("substance_tinter_cap"), colour);
+	}
 
 	private void CleanupBottleProxyObject()
 	{
@@ -188,16 +187,19 @@ public class Bottler : Workable, IUserControlledCapacity
 			KCrashReporter.ReportDevNotification("Bottle emptier could not clean up proxy object", Environment.StackTrace, "", false, null);
 		}
 		this.workerMeter = null;
+	}
 
 	protected override void OnStopWork(WorkerBase worker)
 	{
 		base.OnStopWork(worker);
 		this.CleanupBottleProxyObject();
+	}
 
 	protected override void OnAbortWork(WorkerBase worker)
 	{
 		base.OnAbortWork(worker);
 		this.GetAnimController().Play("ready", KAnim.PlayMode.Once, 1f, 0f);
+	}
 
 	protected override void OnCompleteWork(WorkerBase worker)
 	{
@@ -225,6 +227,7 @@ public class Bottler : Workable, IUserControlledCapacity
 			pickupableStartWorkInfo.setResultCb(null);
 		}
 		base.OnCompleteWork(worker);
+	}
 
 	private void OnReservationsChanged(Pickupable _ignore, bool _ignore2, Pickupable.Reservation _ignore3)
 	{
@@ -248,6 +251,7 @@ public class Bottler : Workable, IUserControlledCapacity
 				instance.SetForceUnfetchable(forceUnfetchable);
 			}
 		}
+	}
 
 	private void SetConsumerCapacity(float value)
 	{
@@ -260,6 +264,7 @@ public class Bottler : Workable, IUserControlledCapacity
 				this.storage.DropSome(this.storage.FindFirstWithMass(this.smi.master.ElementTag, 0f).ElementID.CreateTag(), num, false, false, new Vector3(0.8f, 0f, 0f), true, false);
 			}
 		}
+	}
 
 	protected override void OnCleanUp()
 	{
@@ -268,6 +273,7 @@ public class Bottler : Workable, IUserControlledCapacity
 			this.smi.StopSM("OnCleanUp");
 		}
 		base.OnCleanUp();
+	}
 
 	private PrimaryElement GetFirstPrimaryElement()
 	{
@@ -284,10 +290,11 @@ public class Bottler : Workable, IUserControlledCapacity
 			}
 		}
 		return null;
+	}
 
 	private void UpdateStoredItemState()
 	{
-		this.storage.allowItemRemoval = (this.smi != null && this.smi.GetCurrentState() == this.smi.sm.ready);
+		this.storage.allowItemRemoval = (this.smi != null && this.smi.GetCurrentState() == this.smi.sm.operational.ready);
 		foreach (GameObject gameObject in this.storage.items)
 		{
 			if (gameObject != null)
@@ -295,36 +302,60 @@ public class Bottler : Workable, IUserControlledCapacity
 				gameObject.Trigger(-778359855, this.storage);
 			}
 		}
+	}
 
 	private void OnCopySettings(object data)
 	{
 		Bottler component = ((GameObject)data).GetComponent<Bottler>();
 		this.UserMaxCapacity = component.UserMaxCapacity;
+	}
 
 	[MyCmpAdd]
+	private CopyBuildingSettings copyBuildingSettings;
 
+	public Storage storage;
 
+	public ConduitConsumer consumer;
 
+	public CellOffset workCellOffset = new CellOffset(0, 0);
 
 	[Serialize]
+	public float userMaxCapacity = float.PositiveInfinity;
 
+	private Bottler.Controller.Instance smi;
 
+	private int storageHandle;
 
+	private MeterController workerMeter;
 
 	private static readonly EventSystem.IntraObjectHandler<Bottler> OnCopySettingsDelegate = new EventSystem.IntraObjectHandler<Bottler>(delegate(Bottler component, object data)
 	{
 		component.OnCopySettings(data);
+	});
 
+	private class Controller : GameStateMachine<Bottler.Controller, Bottler.Controller.Instance, Bottler>
 	{
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
-			default_state = this.empty;
-			this.empty.PlayAnim("off").EventHandlerTransition(GameHashes.OnStorageChange, this.filling, (Bottler.Controller.Instance smi, object o) => Bottler.Controller.IsFull(smi)).EnterTransition(this.ready, new StateMachine<Bottler.Controller, Bottler.Controller.Instance, Bottler, object>.Transition.ConditionCallback(Bottler.Controller.IsFull));
-			this.filling.PlayAnim("working").Enter(delegate(Bottler.Controller.Instance smi)
+			default_state = this.nonoperational;
+			this.root.Enter(delegate(Bottler.Controller.Instance smi)
+			{
+				smi.master.storage.allowItemRemoval = false;
+			});
+			this.nonoperational.PlayAnim("off").TagTransition(GameTags.Operational, this.operational, false);
+			this.operational.EnterTransition(this.operational.ready, new StateMachine<Bottler.Controller, Bottler.Controller.Instance, Bottler, object>.Transition.ConditionCallback(Bottler.Controller.IsFull)).DefaultState(this.operational.empty).TagTransition(GameTags.Operational, this.nonoperational, true);
+			this.operational.empty.PlayAnim("off").EventHandlerTransition(GameHashes.OnStorageChange, this.operational.filling, (Bottler.Controller.Instance smi, object o) => Bottler.Controller.IsFull(smi));
+			this.operational.filling.PlayAnim("working").Enter(delegate(Bottler.Controller.Instance smi)
 			{
 				smi.UpdateMeter();
-			}).OnAnimQueueComplete(this.ready);
-			this.ready.EventTransition(GameHashes.OnStorageChange, this.empty, GameStateMachine<Bottler.Controller, Bottler.Controller.Instance, Bottler, object>.Not(new StateMachine<Bottler.Controller, Bottler.Controller.Instance, Bottler, object>.Transition.ConditionCallback(Bottler.Controller.IsFull))).PlayAnim("ready").Enter(delegate(Bottler.Controller.Instance smi)
+			}).OnAnimQueueComplete(this.operational.ready);
+			this.operational.ready.EventTransition(GameHashes.OnStorageChange, this.operational.empty, GameStateMachine<Bottler.Controller, Bottler.Controller.Instance, Bottler, object>.Not(new StateMachine<Bottler.Controller, Bottler.Controller.Instance, Bottler, object>.Transition.ConditionCallback(Bottler.Controller.IsFull))).PlayAnim("ready").Enter(delegate(Bottler.Controller.Instance smi)
+			{
+				smi.master.storage.allowItemRemoval = true;
+			}).Exit(delegate(Bottler.Controller.Instance smi)
+			{
+				smi.master.storage.allowItemRemoval = false;
+			}).Enter(delegate(Bottler.Controller.Instance smi)
 			{
 				smi.master.storage.allowItemRemoval = true;
 				smi.UpdateMeter();
@@ -363,29 +394,45 @@ public class Bottler : Workable, IUserControlledCapacity
 
 		public static bool IsFull(Bottler.Controller.Instance smi)
 		{
-			return smi.master.storage.MassStored() >= smi.master.userMaxCapacity;
+			return smi.master.storage.MassStored() >= smi.master.userMaxCapacity && smi.master.userMaxCapacity > 0f;
 		}
 
-		public GameStateMachine<Bottler.Controller, Bottler.Controller.Instance, Bottler, object>.State empty;
+		public GameStateMachine<Bottler.Controller, Bottler.Controller.Instance, Bottler, object>.State nonoperational;
 
+		public Bottler.Controller.OperationalStates operational;
 
-		public GameStateMachine<Bottler.Controller, Bottler.Controller.Instance, Bottler, object>.State ready;
+		public class OperationalStates : GameStateMachine<Bottler.Controller, Bottler.Controller.Instance, Bottler, object>.State
+		{
+			public GameStateMachine<Bottler.Controller, Bottler.Controller.Instance, Bottler, object>.State empty;
 
+			public GameStateMachine<Bottler.Controller, Bottler.Controller.Instance, Bottler, object>.State filling;
+
+			public GameStateMachine<Bottler.Controller, Bottler.Controller.Instance, Bottler, object>.State ready;
+		}
+
+		public new class Instance : GameStateMachine<Bottler.Controller, Bottler.Controller.Instance, Bottler, object>.GameInstance
 		{
 			public MeterController meter { get; private set; }
+
 			public Instance(Bottler master) : base(master)
+			{
 				this.meter = new MeterController(base.GetComponent<KBatchedAnimController>(), "bottle", "off", Meter.Offset.UserSpecified, Grid.SceneLayer.BuildingFront, new string[]
 				{
+					"bottle",
 					"substance_tinter",
 					"substance_tinter_cap"
+				});
 			}
 
+			public void UpdateMeter()
 			{
 				PrimaryElement firstPrimaryElement = base.smi.master.GetFirstPrimaryElement();
+				if (firstPrimaryElement == null)
 				{
 					return;
 				}
 				this.meter.meterController.SwapAnims(firstPrimaryElement.Element.substance.anims);
+				this.meter.meterController.Play(OreSizeVisualizerComponents.GetAnimForMass(firstPrimaryElement.Mass), KAnim.PlayMode.Paused, 1f, 0f);
 				Color32 colour = firstPrimaryElement.Element.substance.colour;
 				colour.a = byte.MaxValue;
 				this.meter.SetSymbolTint(new KAnimHashedString("meter_fill"), colour);

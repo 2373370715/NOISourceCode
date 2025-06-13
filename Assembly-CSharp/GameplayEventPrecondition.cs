@@ -10,6 +10,5 @@ public class GameplayEventPrecondition
 
 	public int priorityModifier;
 
-Invoke) Token: 0x06002337 RID: 9015
 	public delegate bool PreconditionFn();
 }

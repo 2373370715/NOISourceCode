@@ -595,6 +595,15 @@ public class ChorePreconditions
 		precondition.canExecuteOnAnyThread = true;
 		this.HasTag = precondition;
 		precondition = default(Chore.Precondition);
+		precondition.id = "DoesntHaveTag";
+		precondition.fn = delegate(ref Chore.Precondition.Context context, object data)
+		{
+			Tag tag = (Tag)data;
+			return !context.consumerState.prefabid.HasTag(tag);
+		};
+		precondition.canExecuteOnAnyThread = true;
+		this.DoesntHaveTag = precondition;
+		precondition = default(Chore.Precondition);
 		precondition.id = "CheckBehaviourPrecondition";
 		precondition.fn = delegate(ref Chore.Precondition.Context context, object data)
 		{
@@ -812,6 +821,8 @@ public class ChorePreconditions
 	public Chore.Precondition IsAllowedByAutomation;
 
 	public Chore.Precondition HasTag;
+
+	public Chore.Precondition DoesntHaveTag;
 
 	public Chore.Precondition CheckBehaviourPrecondition;
 

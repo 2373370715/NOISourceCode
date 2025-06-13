@@ -629,7 +629,6 @@ public class StateMachine<StateMachineType, StateMachineInstanceType, MasterType
 	{
 		protected StateMachineType sm;
 
-Invoke) Token: 0x06002867 RID: 10343
 		public delegate void Callback(StateMachineInstanceType smi);
 	}
 
@@ -658,7 +657,6 @@ Invoke) Token: 0x06002867 RID: 10343
 
 		public StateMachine<StateMachineType, StateMachineInstanceType, MasterType, DefType>.Transition.ConditionCallback condition;
 
-Invoke) Token: 0x0600286E RID: 10350
 		public delegate bool ConditionCallback(StateMachineInstanceType smi);
 	}
 
@@ -693,7 +691,6 @@ Invoke) Token: 0x0600286E RID: 10350
 
 		public bool isSignal;
 
-Invoke) Token: 0x06002877 RID: 10359
 		public delegate bool Callback(StateMachineInstanceType smi, ParameterType p);
 
 		public class Transition : StateMachine<StateMachineType, StateMachineInstanceType, MasterType, DefType>.ParameterTransition
@@ -1193,6 +1190,50 @@ Invoke) Token: 0x06002877 RID: 10359
 			public override void Deserialize(IReader reader, StateMachine.Instance smi)
 			{
 				this.value = new Tag(reader.ReadInt32());
+			}
+
+			public override void ShowEditor(StateMachine.Instance base_smi)
+			{
+			}
+
+			public override void ShowDevTool(StateMachine.Instance base_smi)
+			{
+				ImGui.LabelText(this.parameter.name, this.value.ToString());
+			}
+		}
+	}
+
+	public class AxialIParameter : StateMachine<StateMachineType, StateMachineInstanceType, MasterType, DefType>.Parameter<AxialI>
+	{
+		public AxialIParameter()
+		{
+		}
+
+		public AxialIParameter(AxialI default_value) : base(default_value)
+		{
+		}
+
+		public override StateMachine.Parameter.Context CreateContext()
+		{
+			return new StateMachine<StateMachineType, StateMachineInstanceType, MasterType, DefType>.AxialIParameter.Context(this, this.defaultValue);
+		}
+
+		public new class Context : StateMachine<StateMachineType, StateMachineInstanceType, MasterType, DefType>.Parameter<AxialI>.Context
+		{
+			public Context(StateMachine.Parameter parameter, AxialI default_value) : base(parameter, default_value)
+			{
+			}
+
+			public override void Serialize(BinaryWriter writer)
+			{
+				writer.Write(this.value.r);
+				writer.Write(this.value.q);
+			}
+
+			public override void Deserialize(IReader reader, StateMachine.Instance smi)
+			{
+				this.value.r = reader.ReadInt32();
+				this.value.q = reader.ReadInt32();
 			}
 
 			public override void ShowEditor(StateMachine.Instance base_smi)

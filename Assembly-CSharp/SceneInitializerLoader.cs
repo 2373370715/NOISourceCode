@@ -41,6 +41,5 @@ public class SceneInitializerLoader : MonoBehaviour
 		public string stack_trace;
 	}
 
-Invoke) Token: 0x060081AE RID: 33198
 	public delegate void DeferredErrorDelegate(SceneInitializerLoader.DeferredError deferred_error);
 }

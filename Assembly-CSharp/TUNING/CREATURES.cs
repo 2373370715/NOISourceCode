@@ -28,6 +28,10 @@ namespace TUNING
 
 		public const float STATERPILLAR_POWER_CHARGE_LOSS_RATE = -0.055555556f;
 
+		public const float HUNT_FAILED_DURATION = 45f;
+
+		public const float EVADED_HUNT_DURATION = 10f;
+
 		public class HITPOINTS
 		{
 			public const float TIER0 = 5f;
@@ -44,7 +48,9 @@ namespace TUNING
 
 			public const float TIER6 = 400f;
 		}
+
 		public class MASS_KG
+		{
 			public const float TIER0 = 5f;
 
 			public const float TIER1 = 25f;
@@ -57,7 +63,9 @@ namespace TUNING
 
 			public const float TIER5 = 400f;
 		}
+
 		public class TEMPERATURE
+		{
 			public const float SKIN_THICKNESS = 0.025f;
 
 			public const float SURFACE_AREA = 17.5f;
@@ -90,7 +98,9 @@ namespace TUNING
 
 			public static float HOT_7 = 373f;
 		}
+
 		public class LIFESPAN
+		{
 			public const float TIER0 = 5f;
 
 			public const float TIER1 = 25f;
@@ -105,7 +115,9 @@ namespace TUNING
 
 			public const float TIER6 = 400f;
 		}
+
 		public class CONVERSION_EFFICIENCY
+		{
 			public static float BAD_2 = 0.1f;
 
 			public static float BAD_1 = 0.25f;
@@ -118,7 +130,9 @@ namespace TUNING
 
 			public static float GOOD_3 = 1f;
 		}
+
 		public class SPACE_REQUIREMENTS
+		{
 			public static int TIER1 = 4;
 
 			public static int TIER2 = 8;
@@ -127,11 +141,15 @@ namespace TUNING
 
 			public static int TIER4 = 16;
 		}
+
 		public class EGG_CHANCE_MODIFIERS
+		{
 			private static System.Action CreateDietaryModifier(string id, Tag eggTag, HashSet<Tag> foodTags, float modifierPerCal)
 			{
+				Func<string, string> <>9__1;
 				FertilityModifier.FertilityModFn <>9__2;
 				return delegate()
+				{
 					string text = CREATURES.FERTILITY_MODIFIERS.DIET.NAME;
 					string text2 = CREATURES.FERTILITY_MODIFIERS.DIET.DESC;
 					ModifierSet modifierSet = Db.Get();
@@ -174,6 +192,7 @@ namespace TUNING
 				return CREATURES.EGG_CHANCE_MODIFIERS.CreateDietaryModifier(id, eggTag, new HashSet<Tag>
 				{
 					foodTag
+				}, modifierPerCal);
 			}
 
 			private static System.Action CreateNearbyCreatureModifier(string id, Tag eggTag, Tag nearbyCreatureBaby, Tag nearbyCreatureAdult, float modifierPerSecond, bool alsoInvert)
@@ -181,6 +200,7 @@ namespace TUNING
 				Func<string, string> <>9__1;
 				FertilityModifier.FertilityModFn <>9__2;
 				return delegate()
+				{
 					string text = (modifierPerSecond < 0f) ? CREATURES.FERTILITY_MODIFIERS.NEARBY_CREATURE_NEG.NAME : CREATURES.FERTILITY_MODIFIERS.NEARBY_CREATURE.NAME;
 					string text2 = (modifierPerSecond < 0f) ? CREATURES.FERTILITY_MODIFIERS.NEARBY_CREATURE_NEG.DESC : CREATURES.FERTILITY_MODIFIERS.NEARBY_CREATURE.DESC;
 					ModifierSet modifierSet = Db.Get();
@@ -236,6 +256,7 @@ namespace TUNING
 				Func<string, string> <>9__1;
 				FertilityModifier.FertilityModFn <>9__2;
 				return delegate()
+				{
 					string text = CREATURES.FERTILITY_MODIFIERS.LIVING_IN_ELEMENT.NAME;
 					string text2 = CREATURES.FERTILITY_MODIFIERS.LIVING_IN_ELEMENT.DESC;
 					ModifierSet modifierSet = Db.Get();
@@ -294,6 +315,7 @@ namespace TUNING
 				Func<string, string> <>9__1;
 				FertilityModifier.FertilityModFn <>9__2;
 				return delegate()
+				{
 					string text = CREATURES.FERTILITY_MODIFIERS.CROPTENDING.NAME;
 					string text2 = CREATURES.FERTILITY_MODIFIERS.CROPTENDING.DESC;
 					ModifierSet modifierSet = Db.Get();
@@ -336,6 +358,7 @@ namespace TUNING
 				Func<string, string> <>9__1;
 				FertilityModifier.FertilityModFn <>9__2;
 				return delegate()
+				{
 					string text = CREATURES.FERTILITY_MODIFIERS.TEMPERATURE.NAME;
 					ModifierSet modifierSet = Db.Get();
 					string id2 = id;
@@ -389,6 +412,7 @@ namespace TUNING
 				CREATURES.EGG_CHANCE_MODIFIERS.CreateDietaryModifier("HatchHard", "HatchHardEgg".ToTag(), SimHashes.SedimentaryRock.CreateTag(), 0.05f / HatchTuning.STANDARD_CALORIES_PER_CYCLE),
 				CREATURES.EGG_CHANCE_MODIFIERS.CreateDietaryModifier("HatchVeggie", "HatchVeggieEgg".ToTag(), SimHashes.Dirt.CreateTag(), 0.05f / HatchTuning.STANDARD_CALORIES_PER_CYCLE),
 				CREATURES.EGG_CHANCE_MODIFIERS.CreateDietaryModifier("HatchMetal", "HatchMetalEgg".ToTag(), HatchMetalConfig.METAL_ORE_TAGS, 0.05f / HatchTuning.STANDARD_CALORIES_PER_CYCLE),
+				CREATURES.EGG_CHANCE_MODIFIERS.CreateNearbyCreatureModifier("PuftAlphaBalance", "PuftAlphaEgg".ToTag(), "PuftAlphaBaby".ToTag(), "PuftAlpha".ToTag(), -0.00025f, true),
 				CREATURES.EGG_CHANCE_MODIFIERS.CreateNearbyCreatureModifier("PuftAlphaNearbyOxylite", "PuftOxyliteEgg".ToTag(), "PuftAlphaBaby".ToTag(), "PuftAlpha".ToTag(), 8.333333E-05f, false),
 				CREATURES.EGG_CHANCE_MODIFIERS.CreateNearbyCreatureModifier("PuftAlphaNearbyBleachstone", "PuftBleachstoneEgg".ToTag(), "PuftAlphaBaby".ToTag(), "PuftAlpha".ToTag(), 8.333333E-05f, false),
 				CREATURES.EGG_CHANCE_MODIFIERS.CreateTemperatureModifier("OilFloaterHighTemp", "OilfloaterHighTempEgg".ToTag(), 373.15f, 523.15f, 8.333333E-05f, false),
@@ -421,8 +445,10 @@ namespace TUNING
 		{
 			public static Dictionary<string, int> CRITTER_ORDER = new Dictionary<string, int>
 			{
+				{
 					"Hatch",
 					10
+				},
 				{
 					"Puft",
 					20
@@ -477,15 +503,35 @@ namespace TUNING
 				},
 				{
 					"WoodDeer",
-					140
-				},
-				{
-					"Seal",
 					150
 				},
 				{
-					"IceBelly",
+					"Seal",
 					160
+				},
+				{
+					"IceBelly",
+					170
+				},
+				{
+					"Stego",
+					180
+				},
+				{
+					"Butterfly",
+					190
+				},
+				{
+					"Mosquito",
+					200
+				},
+				{
+					"Chameleon",
+					210
+				},
+				{
+					"PrehistoricPacu",
+					220
 				}
 			};
 		}

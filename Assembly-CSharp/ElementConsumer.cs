@@ -8,8 +8,6 @@ using UnityEngine;
 [SerializationConfig(MemberSerialization.OptIn)]
 public class ElementConsumer : SimComponent, ISaveLoadable, IGameObjectEffectDescriptor
 {
-add) Token: 0x06006216 RID: 25110 RVA: 0x002C35EC File Offset: 0x002C17EC
-remove) Token: 0x06006217 RID: 25111 RVA: 0x002C3624 File Offset: 0x002C1824
 	public event Action<Sim.ConsumedMassInfo> OnElementConsumed;
 
 	public float AverageConsumeRate

@@ -50,6 +50,5 @@ public class StringSearchableList<T>
 
 	public readonly StringSearchableList<T>.ShouldFilterOutFn shouldFilterOutFn;
 
-Invoke) Token: 0x06001C45 RID: 7237
 	public delegate bool ShouldFilterOutFn(T candidateValue, in string filter);
 }

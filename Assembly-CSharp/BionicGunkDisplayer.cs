@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using Klei.AI;
 using STRINGS;
 using UnityEngine;
@@ -11,10 +12,11 @@ public class BionicGunkDisplayer : AsPercentAmountDisplayer
 
 	public override string GetTooltip(Amount master, AmountInstance instance)
 	{
+		StringBuilder stringBuilder = GlobalStringBuilderPool.Alloc();
 		BionicOilMonitor.Instance smi = instance.gameObject.GetSMI<BionicOilMonitor.Instance>();
 		AmountInstance amountInstance = (smi == null) ? null : smi.oilAmount;
-		string text = string.Format(master.description, this.formatter.GetFormattedValue(instance.value, GameUtil.TimeSlice.None));
-		text += "\n\n";
+		stringBuilder.AppendFormat(master.description, this.formatter.GetFormattedValue(instance.value, GameUtil.TimeSlice.None));
+		stringBuilder.Append("\n\n");
 		float num = instance.deltaAttribute.GetTotalDisplayValue();
 		if (smi != null)
 		{
@@ -26,11 +28,11 @@ public class BionicGunkDisplayer : AsPercentAmountDisplayer
 		}
 		if (this.formatter.DeltaTimeSlice == GameUtil.TimeSlice.PerCycle)
 		{
-			text += string.Format(UI.CHANGEPERCYCLE, this.formatter.GetFormattedValue(base.ToPercent(num, instance), GameUtil.TimeSlice.PerCycle));
+			stringBuilder.AppendFormat(UI.CHANGEPERCYCLE, this.formatter.GetFormattedValue(base.ToPercent(num, instance), GameUtil.TimeSlice.PerCycle));
 		}
 		else
 		{
-			text += string.Format(UI.CHANGEPERSECOND, this.formatter.GetFormattedValue(base.ToPercent(num, instance), GameUtil.TimeSlice.PerSecond));
+			stringBuilder.AppendFormat(UI.CHANGEPERSECOND, this.formatter.GetFormattedValue(base.ToPercent(num, instance), GameUtil.TimeSlice.PerSecond));
 		}
 		if (smi != null)
 		{
@@ -41,7 +43,8 @@ public class BionicGunkDisplayer : AsPercentAmountDisplayer
 				if (modifierContribution < 0f)
 				{
 					float value = Mathf.Abs(modifierContribution);
-					text = text + "\n" + string.Format(UI.MODIFIER_ITEM_TEMPLATE, attributeModifier.GetDescription(), this.formatter.GetFormattedValue(base.ToPercent(value, instance), this.formatter.DeltaTimeSlice));
+					stringBuilder.Append("\n");
+					stringBuilder.AppendFormat(UI.MODIFIER_ITEM_TEMPLATE, attributeModifier.GetDescription(), this.formatter.GetFormattedValue(base.ToPercent(value, instance), this.formatter.DeltaTimeSlice));
 				}
 			}
 		}
@@ -49,8 +52,9 @@ public class BionicGunkDisplayer : AsPercentAmountDisplayer
 		{
 			AttributeModifier attributeModifier2 = instance.deltaAttribute.Modifiers[num3];
 			float modifierContribution2 = instance.deltaAttribute.GetModifierContribution(attributeModifier2);
-			text = text + "\n" + string.Format(UI.MODIFIER_ITEM_TEMPLATE, attributeModifier2.GetDescription(), this.formatter.GetFormattedValue(base.ToPercent(modifierContribution2, instance), this.formatter.DeltaTimeSlice));
+			stringBuilder.Append("\n");
+			stringBuilder.AppendFormat(UI.MODIFIER_ITEM_TEMPLATE, attributeModifier2.GetDescription(), this.formatter.GetFormattedValue(base.ToPercent(modifierContribution2, instance), this.formatter.DeltaTimeSlice));
 		}
-		return text;
+		return GlobalStringBuilderPool.ReturnAndFree(stringBuilder);
 	}
 }

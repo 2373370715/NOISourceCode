@@ -107,7 +107,10 @@ namespace TUNING
 			public const float TIER4 = 12000f;
 
 			public const float TIER5 = 30000f;
+
+			public const float TIER6 = 60000f;
 		}
+
 		public class BOMBARDMENT_ON
 		{
 			public static MathUtil.MinMax NONE = new MathUtil.MinMax(1f, 1f);
@@ -116,10 +119,12 @@ namespace TUNING
 
 			public static MathUtil.MinMax CYCLE = new MathUtil.MinMax(600f, 600f);
 		}
+
 		public class BOMBARDMENT_OFF
 		{
 			public static MathUtil.MinMax NONE = new MathUtil.MinMax(1f, 1f);
 		}
+
 		public class TRAVELDURATION
 		{
 			public static float TIER0 = 0f;
@@ -132,4 +137,5 @@ namespace TUNING
 
 			public static float TIER4 = 30f;
 		}
+	}
 }

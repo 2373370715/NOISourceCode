@@ -542,9 +542,7 @@ public class PrimaryElement : KMonoBehaviour, ISaveLoadable
 		component.OnAbsorb(data);
 	});
 
-Invoke) Token: 0x06007B2B RID: 31531
 	public delegate float GetTemperatureCallback(PrimaryElement primary_element);
 
-Invoke) Token: 0x06007B2F RID: 31535
 	public delegate void SetTemperatureCallback(PrimaryElement primary_element, float temperature);
 }

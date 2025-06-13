@@ -129,11 +129,17 @@ public class WorldGenSpawner : KMonoBehaviour
 		return list;
 	}
 
+	public WorldGenSpawner.Spawnable GetSpawnableInCell(int cell)
+	{
+		return this.spawnables.Find((WorldGenSpawner.Spawnable s) => s.cell == cell);
+	}
+
 	public List<Tag> GetSpawnersWithTag(Tag tag, int worldID, bool includeSpawned = false)
 	{
 		List<Tag> list = new List<Tag>();
 		List<WorldGenSpawner.Spawnable> list2 = this.spawnables;
 		Predicate<WorldGenSpawner.Spawnable> <>9__0;
+		Predicate<WorldGenSpawner.Spawnable> match2;
 		if ((match2 = <>9__0) == null)
 		{
 			match2 = (<>9__0 = ((WorldGenSpawner.Spawnable match) => (includeSpawned || !match.isSpawned) && (int)Grid.WorldIdx[match.cell] == worldID && match.spawnInfo.id == tag));
@@ -150,6 +156,7 @@ public class WorldGenSpawner : KMonoBehaviour
 		List<WorldGenSpawner.Spawnable> list = new List<WorldGenSpawner.Spawnable>();
 		List<WorldGenSpawner.Spawnable> list2 = this.spawnables;
 		Predicate<WorldGenSpawner.Spawnable> <>9__0;
+		Predicate<WorldGenSpawner.Spawnable> match2;
 		if ((match2 = <>9__0) == null)
 		{
 			match2 = (<>9__0 = ((WorldGenSpawner.Spawnable match) => (includeSpawned || !match.isSpawned) && (int)Grid.WorldIdx[match.cell] == worldID && match.spawnInfo.id == tag));
@@ -166,6 +173,7 @@ public class WorldGenSpawner : KMonoBehaviour
 		List<WorldGenSpawner.Spawnable> list = new List<WorldGenSpawner.Spawnable>();
 		List<WorldGenSpawner.Spawnable> list2 = this.spawnables;
 		Predicate<WorldGenSpawner.Spawnable> <>9__0;
+		Predicate<WorldGenSpawner.Spawnable> match2;
 		if ((match2 = <>9__0) == null)
 		{
 			match2 = (<>9__0 = ((WorldGenSpawner.Spawnable match) => includeSpawned || !match.isSpawned));
@@ -189,6 +197,7 @@ public class WorldGenSpawner : KMonoBehaviour
 		this.spawnables = new List<WorldGenSpawner.Spawnable>();
 		foreach (WorldGen worldGen in clusterLayout.worlds)
 		{
+			foreach (Prefab prefab in worldGen.SpawnData.buildings)
 			{
 				prefab.location_x += worldGen.data.world.offset.x;
 				prefab.location_y += worldGen.data.world.offset.y;
@@ -233,6 +242,7 @@ public class WorldGenSpawner : KMonoBehaviour
 		foreach (WorldGen worldGen in clusterLayout.worlds)
 		{
 			Game.Instance.Reset(worldGen.SpawnData, worldGen.WorldOffset);
+		}
 		for (int i = 0; i < Grid.CellCount; i++)
 		{
 			Grid.Revealed[i] = false;
@@ -249,19 +259,24 @@ public class WorldGenSpawner : KMonoBehaviour
 	private Prefab[] spawnInfos;
 
 	[Serialize]
+	private bool hasPlacedTemplates;
 
 	private List<WorldGenSpawner.Spawnable> spawnables = new List<WorldGenSpawner.Spawnable>();
+
 	public class Spawnable
 	{
+		public Prefab spawnInfo { get; private set; }
 
 		public bool isSpawned { get; private set; }
 
 		public int cell { get; private set; }
 
+		public Spawnable(Prefab spawn_info)
 		{
 			this.spawnInfo = spawn_info;
 			int num = Grid.XYToCell(this.spawnInfo.location_x, this.spawnInfo.location_y);
 			GameObject prefab = Assets.GetPrefab(spawn_info.id);
+			if (prefab != null)
 			{
 				WorldSpawnableMonitor.Def def = prefab.GetDef<WorldSpawnableMonitor.Def>();
 				if (def != null && def.adjustSpawnLocationCb != null)
@@ -284,6 +299,7 @@ public class WorldGenSpawner : KMonoBehaviour
 			if (Grid.Spawnable[this.cell] > 0)
 			{
 				this.TrySpawn();
+			}
 		}
 
 		private void OnSolidChanged(object data)
@@ -291,6 +307,7 @@ public class WorldGenSpawner : KMonoBehaviour
 			if (!Grid.Solid[this.cell])
 			{
 				GameScenePartitioner.Instance.Free(ref this.solidChangedPartitionerEntry);
+				Game.Instance.GetComponent<EntombedItemVisualizer>().RemoveItem(this.cell);
 				this.Spawn();
 			}
 		}
@@ -300,6 +317,7 @@ public class WorldGenSpawner : KMonoBehaviour
 			if (this.solidChangedPartitionerEntry.IsValid())
 			{
 				GameScenePartitioner.Instance.Free(ref this.solidChangedPartitionerEntry);
+				if (Game.Instance != null)
 				{
 					Game.Instance.GetComponent<EntombedItemVisualizer>().RemoveItem(this.cell);
 				}
@@ -313,6 +331,7 @@ public class WorldGenSpawner : KMonoBehaviour
 			if (this.isSpawned)
 			{
 				return;
+			}
 			if (this.solidChangedPartitionerEntry.IsValid())
 			{
 				return;
@@ -357,6 +376,7 @@ public class WorldGenSpawner : KMonoBehaviour
 			Mob mob = SettingsCache.mobs.GetMob(this.spawnInfo.id);
 			if (mob != null && mob.prefabName != null)
 			{
+				return new Tag(mob.prefabName);
 			}
 			return new Tag(this.spawnInfo.id);
 		}
@@ -366,6 +386,7 @@ public class WorldGenSpawner : KMonoBehaviour
 			this.isSpawned = true;
 			GameObject gameObject = WorldGenSpawner.Spawnable.GetSpawnableCallback(this.spawnInfo.type)(this.spawnInfo, 0);
 			if (gameObject != null && gameObject)
+			{
 				gameObject.SetActive(true);
 				gameObject.Trigger(1119167081, this.spawnInfo);
 			}
@@ -377,6 +398,7 @@ public class WorldGenSpawner : KMonoBehaviour
 			switch (type)
 			{
 			case Prefab.Type.Building:
+				return new WorldGenSpawner.Spawnable.PlaceEntityFn(TemplateLoader.PlaceBuilding);
 			case Prefab.Type.Ore:
 				return new WorldGenSpawner.Spawnable.PlaceEntityFn(TemplateLoader.PlaceElementalOres);
 			case Prefab.Type.Pickupable:
@@ -392,6 +414,6 @@ public class WorldGenSpawner : KMonoBehaviour
 
 		private HandleVector<int>.Handle solidChangedPartitionerEntry;
 
-Invoke) Token: 0x06008ECA RID: 36554
 		public delegate GameObject PlaceEntityFn(Prefab prefab, int root_cell);
+	}
 }

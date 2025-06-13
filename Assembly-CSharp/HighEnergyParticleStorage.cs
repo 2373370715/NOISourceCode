@@ -38,8 +38,8 @@ public class HighEnergyParticleStorage : KMonoBehaviour, IStorage
 	{
 		if (this._logicPorts != null)
 		{
-			bool value = this.IsFull();
-			this._logicPorts.SendSignal(this.PORT_ID, Convert.ToInt32(value));
+			bool flag = this.IsFull();
+			this._logicPorts.SendSignal(this.PORT_ID, flag ? 1 : 0);
 		}
 	}
 
@@ -200,6 +200,7 @@ public class HighEnergyParticleStorage : KMonoBehaviour, IStorage
 	[SerializeField]
 	private float particles;
 
+	[Serialize]
 	public float capacity = float.MaxValue;
 
 	public bool showInUI = true;

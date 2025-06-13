@@ -8,7 +8,7 @@ namespace Klei.AI
 {
 	public class BonusEvent : GameplayEvent<BonusEvent.StatesInstance>
 	{
-		public BonusEvent(string id, string overrideEffect = null, int numTimesAllowed = 1, bool preSelectMinion = false, int priority = 0) : base(id, priority, 0)
+		public BonusEvent(string id, string overrideEffect = null, int numTimesAllowed = 1, bool preSelectMinion = false, int priority = 0) : base(id, priority, 0, null, null)
 		{
 			this.title = Strings.Get("STRINGS.GAMEPLAY_EVENTS.BONUS." + id.ToUpper() + ".NAME");
 			this.description = Strings.Get("STRINGS.GAMEPLAY_EVENTS.BONUS." + id.ToUpper() + ".DESCRIPTION");
@@ -118,7 +118,6 @@ namespace Klei.AI
 			AchievementUnlocked
 		}
 
-Invoke) Token: 0x0600EE1B RID: 60955
 		public delegate bool ConditionFn(BonusEvent.GameplayEventData data);
 
 		public class GameplayEventData

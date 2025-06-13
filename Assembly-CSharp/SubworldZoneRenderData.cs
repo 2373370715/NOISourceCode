@@ -216,6 +216,9 @@ public class SubworldZoneRenderData : KMonoBehaviour
 		13,
 		0,
 		0,
-		0
+		0,
+		14,
+		15,
+		16
 	};
 }

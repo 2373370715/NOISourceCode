@@ -6,8 +6,6 @@ using UnityEngine.UI;
 [AddComponentMenu("KMonoBehaviour/scripts/DestinationAsteroid2")]
 public class DestinationAsteroid2 : KMonoBehaviour
 {
-add) Token: 0x06009AAD RID: 39597 RVA: 0x003C8B28 File Offset: 0x003C6D28
-remove) Token: 0x06009AAE RID: 39598 RVA: 0x003C8B60 File Offset: 0x003C6D60
 	public event Action<ColonyDestinationAsteroidBeltData> OnClicked;
 
 	protected override void OnPrefabInit()

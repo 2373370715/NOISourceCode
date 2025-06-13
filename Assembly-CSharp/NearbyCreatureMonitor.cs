@@ -14,8 +14,6 @@ public class NearbyCreatureMonitor : GameStateMachine<NearbyCreatureMonitor, Nea
 
 	public new class Instance : GameStateMachine<NearbyCreatureMonitor, NearbyCreatureMonitor.Instance, IStateMachineTarget, object>.GameInstance
 	{
-add) Token: 0x06005D55 RID: 23893 RVA: 0x002AC37C File Offset: 0x002AA57C
-remove) Token: 0x06005D56 RID: 23894 RVA: 0x002AC3B4 File Offset: 0x002AA5B4
 		public event Action<float, List<KPrefabID>, List<KPrefabID>> OnUpdateNearbyCreatures;
 
 		public Instance(IStateMachineTarget master) : base(master)

@@ -466,13 +466,16 @@ public class SaveLoader : KMonoBehaviour
 			{
 				try
 				{
-					System.DateTime lastWriteTimeUtc = File.GetLastWriteTimeUtc(text);
-					SaveLoader.SaveFileEntry item = new SaveLoader.SaveFileEntry
+					if (!text.StartsWith("._"))
 					{
-						path = text,
-						timeStamp = lastWriteTimeUtc
-					};
-					list.Add(item);
+						System.DateTime lastWriteTimeUtc = File.GetLastWriteTimeUtc(text);
+						SaveLoader.SaveFileEntry item = new SaveLoader.SaveFileEntry
+						{
+							path = text,
+							timeStamp = lastWriteTimeUtc
+						};
+						list.Add(item);
+					}
 				}
 				catch (Exception ex)
 				{

@@ -39,7 +39,6 @@ public class SafetyChecker
 			this.mask = condition_mask;
 		}
 
-Invoke) Token: 0x060024D6 RID: 9430
 		public delegate bool Callback(int cell, int cost, SafetyChecker.Context context);
 	}
 

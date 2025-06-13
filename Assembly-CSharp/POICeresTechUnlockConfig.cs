@@ -38,7 +38,12 @@ public class POICeresTechUnlockConfig : IEntityConfig, IHasDlcRestrictions
 			ObjectLayer.Building
 		};
 		gameObject.AddOrGet<Demolishable>();
-		gameObject.AddOrGet<POITechItemUnlockWorkable>().workTime = 5f;
+		POITechItemUnlockWorkable poitechItemUnlockWorkable = gameObject.AddOrGet<POITechItemUnlockWorkable>();
+		poitechItemUnlockWorkable.overrideAnims = new KAnimFile[]
+		{
+			Assets.GetAnim("anim_interacts_research_unlock_kanim")
+		};
+		poitechItemUnlockWorkable.workTime = 5f;
 		POITechItemUnlocks.Def def = gameObject.AddOrGetDef<POITechItemUnlocks.Def>();
 		def.POITechUnlockIDs = new List<string>
 		{

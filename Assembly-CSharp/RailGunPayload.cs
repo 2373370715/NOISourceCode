@@ -21,6 +21,7 @@ public class RailGunPayload : GameStateMachine<RailGunPayload, RailGunPayload.St
 		this.grounded.crater.Enter(delegate(RailGunPayload.StatesInstance smi)
 		{
 			smi.animController.randomiseLoopedOffset = true;
+			Prioritizable.AddRef(smi.gameObject);
 		}).Exit(delegate(RailGunPayload.StatesInstance smi)
 		{
 			smi.animController.randomiseLoopedOffset = false;
@@ -242,7 +243,7 @@ public class RailGunPayload : GameStateMachine<RailGunPayload, RailGunPayload.St
 			{
 				component.deleteOffGrid = false;
 			}
-			base.gameObject.transform.SetPosition(new Vector3(-1f, -1f, 0f));
+			base.gameObject.transform.SetPosition(Grid.OffWorldPosition);
 		}
 
 		public void MoveToWorld()

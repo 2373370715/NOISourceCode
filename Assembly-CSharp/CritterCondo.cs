@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CritterCondo : GameStateMachine<CritterCondo, CritterCondo.Instance, IStateMachineTarget, CritterCondo.Def>
@@ -29,6 +30,8 @@ public class CritterCondo : GameStateMachine<CritterCondo, CritterCondo.Instance
 
 		public Func<CritterCondo.Instance, bool> IsCritterCondoOperationalCb;
 
+		public Action<KBatchedAnimController, bool> UpdateForegroundVisibilitySymbols;
+
 		public StatusItem moveToStatusItem;
 
 		public StatusItem interactStatusItem;
@@ -42,6 +45,9 @@ public class CritterCondo : GameStateMachine<CritterCondo, CritterCondo.Instance
 	{
 		public Instance(IStateMachineTarget master, CritterCondo.Def def) : base(master, def)
 		{
+			this.animController = base.GetComponent<KBatchedAnimController>();
+			KBatchedAnimController[] componentsInChildren = this.animController.GetComponentsInChildren<KBatchedAnimController>();
+			this.foregroundController = componentsInChildren.First((KBatchedAnimController kbac) => kbac != this.animController);
 		}
 
 		public override void StartSM()
@@ -84,5 +90,21 @@ public class CritterCondo : GameStateMachine<CritterCondo, CritterCondo.Instance
 		{
 			return !this.IsReserved() && CritterCondo.IsOperational(this);
 		}
+
+		public void UpdateCritterAnims(string anim_name, bool enters, bool is_large_critter)
+		{
+			if (enters)
+			{
+				this.animController.Play(anim_name, KAnim.PlayMode.Once, 1f, 0f);
+			}
+			if (base.def.UpdateForegroundVisibilitySymbols != null)
+			{
+				base.def.UpdateForegroundVisibilitySymbols(this.foregroundController, is_large_critter);
+			}
+		}
+
+		private KBatchedAnimController foregroundController;
+
+		private KBatchedAnimController animController;
 	}
 }

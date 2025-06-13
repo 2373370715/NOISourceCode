@@ -24,7 +24,7 @@ public static class BaseBeeConfig
 			navType = NavType.Floor;
 			num = 1;
 		}
-		EntityTemplates.ExtendEntityToBasicCreature(gameObject, FactionManager.FactionID.Hostile, traitId, navGridName, navType, 32, (float)num, "Meat", 0, true, true, 223.15f, 273.15f, 173.15f, 283.15f);
+		EntityTemplates.ExtendEntityToBasicCreature(gameObject, FactionManager.FactionID.Hostile, traitId, navGridName, navType, 32, (float)num, "Meat", 0f, true, true, 223.15f, 273.15f, 173.15f, 283.15f);
 		if (symbolOverridePrefix != null)
 		{
 			gameObject.AddOrGet<SymbolOverrideController>().ApplySymbolOverridesByAffix(Assets.GetAnim(anim_file), symbolOverridePrefix, null, 0);

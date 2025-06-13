@@ -5,8 +5,6 @@ public class ManagementMenuNotificationDisplayer : NotificationDisplayer
 {
 	public List<ManagementMenuNotification> displayedManagementMenuNotifications { get; private set; }
 
-add) Token: 0x0600A4DB RID: 42203 RVA: 0x003F7BE8 File Offset: 0x003F5DE8
-remove) Token: 0x0600A4DC RID: 42204 RVA: 0x003F7C20 File Offset: 0x003F5E20
 	public event System.Action onNotificationsChanged;
 
 	protected override void OnSpawn()

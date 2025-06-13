@@ -207,7 +207,7 @@ public class FindAndConsumeOxygenSourceChore : Chore<FindAndConsumeOxygenSourceC
 		}
 	}
 
-	public class Instance : GameStateMachine<FindAndConsumeOxygenSourceChore.States, FindAndConsumeOxygenSourceChore.Instance, FindAndConsumeOxygenSourceChore, object>.GameInstance
+	public class Instance : GameStateMachine<FindAndConsumeOxygenSourceChore.States, FindAndConsumeOxygenSourceChore.Instance, FindAndConsumeOxygenSourceChore, object>.GameInstance, BionicOxygenTankMonitor.IChore
 	{
 		public BionicOxygenTankMonitor.Instance oxygenTankMonitor
 		{
@@ -221,11 +221,17 @@ public class FindAndConsumeOxygenSourceChore : Chore<FindAndConsumeOxygenSourceC
 		{
 		}
 
+		public bool IsConsumingOxygen()
+		{
+			return !base.IsInsideState(base.sm.fetch);
+		}
+
 		public void ShowBottleSymbolOverrideObject(Element elementOfCanister)
 		{
 			if (this.canisterBodySymbolOverrideObject == null)
 			{
 				KAnimFile[] anims = elementOfCanister.substance.anims;
+				GameObject gameObject = Util.NewGameObject(base.gameObject, "canister_symbol");
 				gameObject.transform.SetParent(base.gameObject.transform, false);
 				gameObject.SetActive(false);
 				this.canisterBodySymbolOverrideObject = gameObject.AddComponent<KBatchedAnimController>();
@@ -282,6 +288,7 @@ public class FindAndConsumeOxygenSourceChore : Chore<FindAndConsumeOxygenSourceC
 			if (this.canisterBodySymbolOverrideObject != null)
 			{
 				this.canisterBodySymbolOverrideObject.gameObject.DeleteObject();
+				this.canisterBodySymbolOverrideObject = null;
 			}
 			if (this.canisterCapSymbolOverrideObject != null)
 			{
@@ -295,7 +302,9 @@ public class FindAndConsumeOxygenSourceChore : Chore<FindAndConsumeOxygenSourceC
 			this.RemoveSymbolOverrideObject();
 			base.OnCleanUp();
 		}
+
 		public KBatchedAnimController canisterBodySymbolOverrideObject;
 
 		public KBatchedAnimController canisterCapSymbolOverrideObject;
 	}
+}

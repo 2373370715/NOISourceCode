@@ -10,8 +10,6 @@ using UnityEngine;
 [AddComponentMenu("KMonoBehaviour/scripts/ScheduleManager")]
 public class ScheduleManager : KMonoBehaviour, ISim33ms
 {
-add) Token: 0x06008234 RID: 33332 RVA: 0x00349868 File Offset: 0x00347A68
-remove) Token: 0x06008235 RID: 33333 RVA: 0x003498A0 File Offset: 0x00347AA0
 	public event Action<List<Schedule>> onSchedulesChanged;
 
 	public static void DestroyInstance()

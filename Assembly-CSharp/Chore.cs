@@ -112,7 +112,6 @@ public abstract class Chore
 
 	public static PrioritySetting DefaultPrioritySetting = new PrioritySetting(PriorityScreen.PriorityClass.basic, 5);
 
-Invoke) Token: 0x060021C5 RID: 8645
 	public delegate bool PreconditionFn(ref Chore.Precondition.Context context, object data);
 
 	public struct PreconditionInstance

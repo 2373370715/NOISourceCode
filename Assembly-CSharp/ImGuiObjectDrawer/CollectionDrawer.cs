@@ -53,7 +53,6 @@ namespace ImGuiObjectDrawer
 
 		protected abstract void VisitElements(CollectionDrawer.ElementVisitor visit, in MemberDrawContext context, in MemberDetails member);
 
-Invoke) Token: 0x0600B64A RID: 46666
 		protected delegate void ElementVisitor(in MemberDrawContext context, CollectionDrawer.Element element);
 
 		protected struct Element

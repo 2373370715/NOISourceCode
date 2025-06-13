@@ -50,17 +50,24 @@ public class KilnConfig : IBuildingConfig
 	{
 		Tag tag = SimHashes.Ceramic.CreateTag();
 		Tag material = SimHashes.Clay.CreateTag();
-		Tag material2 = SimHashes.Carbon.CreateTag();
-		float num = 100f;
-		float num2 = 25f;
+		Tag tag2 = SimHashes.Carbon.CreateTag();
+		Tag tag3 = SimHashes.WoodLog.CreateTag();
+		Tag tag4 = SimHashes.Peat.CreateTag();
+		float amount = 100f;
+		float amount2 = 25f;
 		ComplexRecipe.RecipeElement[] array = new ComplexRecipe.RecipeElement[]
 		{
-			new ComplexRecipe.RecipeElement(material, num),
-			new ComplexRecipe.RecipeElement(material2, num2)
+			new ComplexRecipe.RecipeElement(material, amount),
+			new ComplexRecipe.RecipeElement(new Tag[]
+			{
+				SimHashes.Carbon.CreateTag(),
+				SimHashes.WoodLog.CreateTag(),
+				SimHashes.Peat.CreateTag()
+			}, amount2)
 		};
 		ComplexRecipe.RecipeElement[] array2 = new ComplexRecipe.RecipeElement[]
 		{
-			new ComplexRecipe.RecipeElement(tag, num, ComplexRecipe.RecipeElement.TemperatureOperation.Heated, false)
+			new ComplexRecipe.RecipeElement(tag, amount, ComplexRecipe.RecipeElement.TemperatureOperation.Heated, false)
 		};
 		string obsolete_id = ComplexRecipeManager.MakeObsoleteRecipeID("Kiln", tag);
 		string text = ComplexRecipeManager.MakeRecipeID("Kiln", array, array2);
@@ -74,16 +81,26 @@ public class KilnConfig : IBuildingConfig
 		complexRecipe.nameDisplay = ComplexRecipe.RecipeNameDisplay.Result;
 		complexRecipe.sortOrder = 100;
 		ComplexRecipeManager.Get().AddObsoleteIDMapping(obsolete_id, text);
-		Tag tag2 = SimHashes.RefinedCarbon.CreateTag();
+		Tag tag5 = SimHashes.RefinedCarbon.CreateTag();
 		ComplexRecipe.RecipeElement[] array3 = new ComplexRecipe.RecipeElement[]
 		{
-			new ComplexRecipe.RecipeElement(material2, num + num2)
+			new ComplexRecipe.RecipeElement(new Tag[]
+			{
+				tag2,
+				tag3,
+				tag4
+			}, new float[]
+			{
+				125f,
+				200f,
+				300f
+			})
 		};
 		ComplexRecipe.RecipeElement[] array4 = new ComplexRecipe.RecipeElement[]
 		{
-			new ComplexRecipe.RecipeElement(tag2, num, ComplexRecipe.RecipeElement.TemperatureOperation.Heated, false)
+			new ComplexRecipe.RecipeElement(tag5, 100f, ComplexRecipe.RecipeElement.TemperatureOperation.Heated, false)
 		};
-		string obsolete_id2 = ComplexRecipeManager.MakeObsoleteRecipeID("Kiln", tag2);
+		string obsolete_id2 = ComplexRecipeManager.MakeObsoleteRecipeID("Kiln", tag5);
 		string text2 = ComplexRecipeManager.MakeRecipeID("Kiln", array3, array4);
 		ComplexRecipe complexRecipe2 = new ComplexRecipe(text2, array3, array4);
 		complexRecipe2.time = 40f;
@@ -92,30 +109,9 @@ public class KilnConfig : IBuildingConfig
 		{
 			TagManager.Create("Kiln")
 		};
-		complexRecipe2.nameDisplay = ComplexRecipe.RecipeNameDisplay.IngredientToResult;
+		complexRecipe2.nameDisplay = ComplexRecipe.RecipeNameDisplay.Result;
 		complexRecipe2.sortOrder = 200;
 		ComplexRecipeManager.Get().AddObsoleteIDMapping(obsolete_id2, text2);
-		Tag tag3 = SimHashes.RefinedCarbon.CreateTag();
-		ComplexRecipe.RecipeElement[] array5 = new ComplexRecipe.RecipeElement[]
-		{
-			new ComplexRecipe.RecipeElement(SimHashes.WoodLog.CreateTag(), 100f)
-		};
-		ComplexRecipe.RecipeElement[] array6 = new ComplexRecipe.RecipeElement[]
-		{
-			new ComplexRecipe.RecipeElement(tag3, 50f, ComplexRecipe.RecipeElement.TemperatureOperation.Heated, false)
-		};
-		string obsolete_id3 = ComplexRecipeManager.MakeObsoleteRecipeID("Kiln", tag3);
-		string text3 = ComplexRecipeManager.MakeRecipeID("Kiln", array5, array6);
-		ComplexRecipe complexRecipe3 = new ComplexRecipe(text3, array5, array6);
-		complexRecipe3.time = 40f;
-		complexRecipe3.description = string.Format(STRINGS.BUILDINGS.PREFABS.EGGCRACKER.RECIPE_DESCRIPTION, ElementLoader.FindElementByHash(SimHashes.WoodLog).name, ElementLoader.FindElementByHash(SimHashes.RefinedCarbon).name);
-		complexRecipe3.fabricators = new List<Tag>
-		{
-			TagManager.Create("Kiln")
-		};
-		complexRecipe3.nameDisplay = ComplexRecipe.RecipeNameDisplay.IngredientToResult;
-		complexRecipe3.sortOrder = 300;
-		ComplexRecipeManager.Get().AddObsoleteIDMapping(obsolete_id3, text3);
 	}
 
 	public override void DoPostConfigureComplete(GameObject go)

@@ -26,8 +26,6 @@ public abstract class Assignable : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-add) Token: 0x06003C03 RID: 15363 RVA: 0x0023A930 File Offset: 0x00238B30
-remove) Token: 0x06003C04 RID: 15364 RVA: 0x0023A968 File Offset: 0x00238B68
 	public event Action<IAssignableIdentity> OnAssign;
 
 	[OnDeserialized]

@@ -12,8 +12,6 @@ public class DiscoveredResources : KMonoBehaviour, ISaveLoadable, ISim4000ms
 		DiscoveredResources.Instance = null;
 	}
 
-add) Token: 0x06006080 RID: 24704 RVA: 0x002BC098 File Offset: 0x002BA298
-remove) Token: 0x06006081 RID: 24705 RVA: 0x002BC0D0 File Offset: 0x002BA2D0
 	public event Action<Tag, Tag> OnDiscover;
 
 	public void Discover(Tag tag, Tag categoryTag)

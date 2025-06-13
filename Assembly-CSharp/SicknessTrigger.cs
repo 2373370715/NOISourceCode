@@ -101,7 +101,6 @@ public class SicknessTrigger : KMonoBehaviour, IGameObjectEffectDescriptor
 
 	public List<SicknessTrigger.TriggerInfo> triggers = new List<SicknessTrigger.TriggerInfo>();
 
-Invoke) Token: 0x060082C0 RID: 33472
 	public delegate string SourceCallback(GameObject source, GameObject target);
 
 	[Serializable]

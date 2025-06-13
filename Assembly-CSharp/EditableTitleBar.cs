@@ -6,12 +6,8 @@ using UnityEngine.Events;
 
 public class EditableTitleBar : TitleBar
 {
-add) Token: 0x06009B70 RID: 39792 RVA: 0x003CCBEC File Offset: 0x003CADEC
-remove) Token: 0x06009B71 RID: 39793 RVA: 0x003CCC24 File Offset: 0x003CAE24
 	public event Action<string> OnNameChanged;
 
-add) Token: 0x06009B72 RID: 39794 RVA: 0x003CCC5C File Offset: 0x003CAE5C
-remove) Token: 0x06009B73 RID: 39795 RVA: 0x003CCC94 File Offset: 0x003CAE94
 	public event System.Action OnStartedEditing;
 
 	protected override void OnSpawn()

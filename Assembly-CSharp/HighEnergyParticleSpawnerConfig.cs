@@ -1,4 +1,5 @@
 ﻿using System;
+using STRINGS;
 using TUNING;
 using UnityEngine;
 
@@ -17,12 +18,12 @@ public class HighEnergyParticleSpawnerConfig : IBuildingConfig
 		string anim = "radiation_collector_kanim";
 		int hitpoints = 30;
 		float construction_time = 10f;
-		float[] tier = BUILDINGS.CONSTRUCTION_MASS_KG.TIER4;
+		float[] tier = TUNING.BUILDINGS.CONSTRUCTION_MASS_KG.TIER4;
 		string[] raw_MINERALS = MATERIALS.RAW_MINERALS;
 		float melting_point = 1600f;
 		BuildLocationRule build_location_rule = BuildLocationRule.NotInTiles;
 		EffectorValues none = NOISE_POLLUTION.NONE;
-		BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(id, width, height, anim, hitpoints, construction_time, tier, raw_MINERALS, melting_point, build_location_rule, BUILDINGS.DECOR.PENALTY.TIER1, none, 0.2f);
+		BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(id, width, height, anim, hitpoints, construction_time, tier, raw_MINERALS, melting_point, build_location_rule, TUNING.BUILDINGS.DECOR.PENALTY.TIER1, none, 0.2f);
 		buildingDef.Floodable = false;
 		buildingDef.AudioCategory = "Metal";
 		buildingDef.Overheatable = false;
@@ -39,6 +40,8 @@ public class HighEnergyParticleSpawnerConfig : IBuildingConfig
 		buildingDef.UtilityOutputOffset = CellOffset.none;
 		GeneratedBuildings.RegisterWithOverlay(OverlayScreen.RadiationIDs, "HighEnergyParticleSpawner");
 		buildingDef.Deprecated = !Sim.IsRadiationEnabled();
+		buildingDef.AddSearchTerms(SEARCH_TERMS.POWER);
+		buildingDef.AddSearchTerms(SEARCH_TERMS.GENERATOR);
 		return buildingDef;
 	}
 

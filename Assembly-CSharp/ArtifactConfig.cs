@@ -114,7 +114,7 @@ public class ArtifactConfig : IMultiEntityConfig
 		{
 			return null;
 		}
-		GameObject gameObject = EntityTemplates.CreateLooseEntity("artifact_" + id.ToLower(), name, desc, 25f, true, Assets.GetAnim(animFile), initial_anim, Grid.SceneLayer.Ore, EntityTemplates.CollisionShape.RECTANGLE, 1f, 1f, true, SORTORDER.ARTIFACTS, element, new List<Tag>
+		GameObject gameObject = EntityTemplates.CreateLooseEntity("artifact_" + id.ToLower(), name, desc, ArtifactConfig.ARTIFACT_MASS, true, Assets.GetAnim(animFile), initial_anim, Grid.SceneLayer.Ore, EntityTemplates.CollisionShape.RECTANGLE, 1f, 1f, true, SORTORDER.ARTIFACTS, element, new List<Tag>
 		{
 			GameTags.MiscPickupable
 		});
@@ -154,8 +154,9 @@ public class ArtifactConfig : IMultiEntityConfig
 	{
 	}
 
+	public static float ARTIFACT_MASS = 25f;
+
 	public static Dictionary<ArtifactType, List<string>> artifactItems = new Dictionary<ArtifactType, List<string>>();
 
-Invoke) Token: 0x060011F5 RID: 4597
 	public delegate void PostInitFn(GameObject gameObject);
 }

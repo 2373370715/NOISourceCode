@@ -135,7 +135,7 @@ public class ClusterGrid
 			{
 				if (this.IsValidCell(axialI) && this.GetFOWManager().IsLocationRevealed(axialI))
 				{
-					foreach (ClusterGridEntity cmp in this.GetEntitiesOfLayerAtCell(axialI, EntityLayer.Craft))
+					foreach (ClusterGridEntity cmp in this.GetEntitiesOfLayerAtCell(axialI, EntityLayer.Meteor))
 					{
 						ClusterMapMeteorShower.Instance smi = cmp.GetSMI<ClusterMapMeteorShower.Instance>();
 						if (smi != null && !smi.HasBeenIdentified)
@@ -358,6 +358,11 @@ public class ClusterGrid
 		if (visibleEntityOfLayerAtCell == null && CS$<>8__locals1.destination_selector.requireAsteroidDestination)
 		{
 			fail_reason = UI.CLUSTERMAP.TOOLTIP_INVALID_DESTINATION_REQUIRE_ASTEROID;
+			return null;
+		}
+		if (CS$<>8__locals1.destination_selector.requiredEntityLayer != EntityLayer.None && this.GetVisibleEntityOfLayerAtCell(CS$<>8__locals1.end, CS$<>8__locals1.destination_selector.requiredEntityLayer) == null)
+		{
+			fail_reason = UI.CLUSTERMAP.TOOLTIP_INVALID_METEOR_TARGET;
 			return null;
 		}
 		CS$<>8__locals1.frontier = new HashSet<AxialI>();

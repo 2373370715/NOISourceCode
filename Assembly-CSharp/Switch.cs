@@ -15,8 +15,6 @@ public class Switch : KMonoBehaviour, ISaveLoadable, IToggleHandler
 		}
 	}
 
-add) Token: 0x06005351 RID: 21329 RVA: 0x00286238 File Offset: 0x00284438
-remove) Token: 0x06005352 RID: 21330 RVA: 0x00286270 File Offset: 0x00284470
 	public event Action<bool> OnToggle;
 
 	protected override void OnPrefabInit()

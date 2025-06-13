@@ -248,7 +248,7 @@ public class DrinkMilkStates : GameStateMachine<DrinkMilkStates, DrinkMilkStates
 			return rotatedCellOffset;
 		}
 
-		public static CellOffset DrinkCellOffsetGet_BammothAdult(MilkFeeder.Instance milkFeederInstance, DrinkMilkMonitor.Instance critterInstance, bool isCramped)
+		public static CellOffset DrinkCellOffsetGet_TwoByTwo(MilkFeeder.Instance milkFeederInstance, DrinkMilkMonitor.Instance critterInstance, bool isCramped)
 		{
 			Rotatable component = milkFeederInstance.GetComponent<Rotatable>();
 			CellOffset rotatedCellOffset = component.GetRotatedCellOffset(MilkFeederConfig.DRINK_FROM_OFFSET);
@@ -291,7 +291,6 @@ public class DrinkMilkStates : GameStateMachine<DrinkMilkStates, DrinkMilkStates
 
 		public DrinkMilkStates.Def.DrinkCellOffsetGetFn drinkCellOffsetGetFn = new DrinkMilkStates.Def.DrinkCellOffsetGetFn(DrinkMilkStates.Def.DrinkCellOffsetGet_CritterOneByOne);
 
-Invoke) Token: 0x06000561 RID: 1377
 		public delegate CellOffset DrinkCellOffsetGetFn(MilkFeeder.Instance milkFeederInstance, DrinkMilkMonitor.Instance critterInstance, bool isCramped);
 	}
 

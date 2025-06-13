@@ -6,8 +6,6 @@ using KSerialization;
 [DebuggerDisplay("{name} {WattsUsed}W")]
 public class EnergyConsumerSelfSustaining : EnergyConsumer
 {
-add) Token: 0x060062C4 RID: 25284 RVA: 0x002C5E08 File Offset: 0x002C4008
-remove) Token: 0x060062C5 RID: 25285 RVA: 0x002C5E40 File Offset: 0x002C4040
 	public event System.Action OnConnectionChanged;
 
 	public override bool IsPowered

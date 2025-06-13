@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class MultipleRenderTarget : MonoBehaviour
 {
-add) Token: 0x06007D80 RID: 32128 RVA: 0x003327D0 File Offset: 0x003309D0
-remove) Token: 0x06007D81 RID: 32129 RVA: 0x00332808 File Offset: 0x00330A08
 	public event Action<Camera> onSetupComplete;
 
 	private void Start()

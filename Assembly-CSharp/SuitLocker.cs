@@ -41,6 +41,20 @@ public class SuitLocker : StateMachineComponent<SuitLocker.StatesInstance>
 			"meter_arrow",
 			"meter_scale"
 		});
+		DebugUtil.DevAssert(this.OutfitTags.Length == 1, "Suit Locker " + base.name + " requesting more than one suit type, this will break the fetch chore", null);
+		if (this.OutfitTags.Length == 1)
+		{
+			GameObject prefab = Assets.GetPrefab(this.OutfitTags[0]);
+			if (prefab != null)
+			{
+				PrimaryElement component = prefab.GetComponent<PrimaryElement>();
+				this.OutfitMass = component.MassPerUnit;
+			}
+		}
+		else
+		{
+			this.OutfitMass = (float)TUNING.EQUIPMENT.SUITS.ATMOSUIT_MASS;
+		}
 		SuitLocker.UpdateSuitMarkerStates(Grid.PosToCell(base.transform.position), base.gameObject);
 		base.smi.StartSM();
 		Tutorial.Instance.TutorialMessage(Tutorial.TutorialMessages.TM_Suits, true);
@@ -59,6 +73,7 @@ public class SuitLocker : StateMachineComponent<SuitLocker.StatesInstance>
 				}
 			}
 		}
+		return null;
 	}
 
 	public float GetSuitScore()
@@ -74,6 +89,7 @@ public class SuitLocker : StateMachineComponent<SuitLocker.StatesInstance>
 				num = component.PercentFull();
 			}
 		}
+		return num;
 	}
 
 	public KPrefabID GetPartiallyChargedOutfit()
@@ -89,6 +105,7 @@ public class SuitLocker : StateMachineComponent<SuitLocker.StatesInstance>
 		}
 		JetSuitTank component = storedOutfit.GetComponent<JetSuitTank>();
 		if (component && component.PercentFull() < TUNING.EQUIPMENT.SUITS.MINIMUM_USABLE_SUIT_CHARGE)
+		{
 			return null;
 		}
 		return storedOutfit;
@@ -107,6 +124,7 @@ public class SuitLocker : StateMachineComponent<SuitLocker.StatesInstance>
 		}
 		JetSuitTank component = storedOutfit.GetComponent<JetSuitTank>();
 		if (component && !component.IsFull())
+		{
 			return null;
 		}
 		return storedOutfit;
@@ -114,7 +132,7 @@ public class SuitLocker : StateMachineComponent<SuitLocker.StatesInstance>
 
 	private void CreateFetchChore()
 	{
-		this.fetchChore = new FetchChore(Db.Get().ChoreTypes.EquipmentFetch, base.GetComponent<Storage>(), 1f, new HashSet<Tag>(this.OutfitTags), FetchChore.MatchCriteria.MatchID, Tag.Invalid, new Tag[]
+		this.fetchChore = new FetchChore(Db.Get().ChoreTypes.EquipmentFetch, base.GetComponent<Storage>(), this.OutfitMass, new HashSet<Tag>(this.OutfitTags), FetchChore.MatchCriteria.MatchID, Tag.Invalid, new Tag[]
 		{
 			GameTags.Assigned
 		}, null, true, null, null, null, Operational.State.None, 0);
@@ -124,6 +142,7 @@ public class SuitLocker : StateMachineComponent<SuitLocker.StatesInstance>
 	private void CancelFetchChore()
 	{
 		if (this.fetchChore != null)
+		{
 			this.fetchChore.Cancel("SuitLocker.CancelFetchChore");
 			this.fetchChore = null;
 		}
@@ -132,6 +151,7 @@ public class SuitLocker : StateMachineComponent<SuitLocker.StatesInstance>
 	public bool HasOxygen()
 	{
 		GameObject oxygen = this.GetOxygen();
+		return oxygen != null && oxygen.GetComponent<PrimaryElement>().Mass > 0f;
 	}
 
 	private void RefreshMeter()
@@ -140,11 +160,13 @@ public class SuitLocker : StateMachineComponent<SuitLocker.StatesInstance>
 		float num = 0f;
 		if (oxygen != null)
 		{
+			num = oxygen.GetComponent<PrimaryElement>().Mass / base.GetComponent<ConduitConsumer>().capacityKG;
 			num = Math.Min(num, 1f);
 		}
 		this.meter.SetPositionPercent(num);
 	}
 
+	public bool IsSuitFullyCharged()
 	{
 		KPrefabID storedOutfit = this.GetStoredOutfit();
 		if (!(storedOutfit != null))
@@ -157,6 +179,7 @@ public class SuitLocker : StateMachineComponent<SuitLocker.StatesInstance>
 			return false;
 		}
 		JetSuitTank component2 = storedOutfit.GetComponent<JetSuitTank>();
+		if (component2 != null && component2.PercentFull() < 1f)
 		{
 			return false;
 		}
@@ -176,6 +199,7 @@ public class SuitLocker : StateMachineComponent<SuitLocker.StatesInstance>
 	}
 
 	private void OnRequestOutfit()
+	{
 		base.smi.sm.isWaitingForSuit.Set(true, base.smi, false);
 	}
 
@@ -185,15 +209,18 @@ public class SuitLocker : StateMachineComponent<SuitLocker.StatesInstance>
 	}
 
 	public void DropSuit()
+	{
 		KPrefabID storedOutfit = this.GetStoredOutfit();
 		if (storedOutfit == null)
 		{
 			return;
 		}
+		base.GetComponent<Storage>().Drop(storedOutfit.gameObject, true);
 	}
 
 	public void EquipTo(Equipment equipment)
 	{
+		KPrefabID storedOutfit = this.GetStoredOutfit();
 		if (storedOutfit == null)
 		{
 			return;
@@ -204,6 +231,7 @@ public class SuitLocker : StateMachineComponent<SuitLocker.StatesInstance>
 		PrioritySetting masterPriority2 = new PrioritySetting(PriorityScreen.PriorityClass.basic, 5);
 		if (component != null && component.GetMasterPriority().priority_class == PriorityScreen.PriorityClass.topPriority)
 		{
+			component.SetMasterPriority(masterPriority2);
 		}
 		storedOutfit.GetComponent<Equippable>().Assign(equipment.GetComponent<IAssignableIdentity>());
 		storedOutfit.GetComponent<EquippableWorkable>().CancelChore("Manual equip");
@@ -245,21 +273,25 @@ public class SuitLocker : StateMachineComponent<SuitLocker.StatesInstance>
 		return base.smi.sm.isConfigured.Get(base.smi) && !base.smi.sm.isWaitingForSuit.Get(base.smi) && this.GetStoredOutfit() == null;
 	}
 
+	private GameObject GetOxygen()
 	{
 		return base.GetComponent<Storage>().FindFirst(GameTags.Oxygen);
 	}
 
 	private void ChargeSuit(float dt)
+	{
 		KPrefabID storedOutfit = this.GetStoredOutfit();
 		if (storedOutfit == null)
 		{
 			return;
 		}
+		GameObject oxygen = this.GetOxygen();
 		if (oxygen == null)
 		{
 			return;
 		}
 		SuitTank component = storedOutfit.GetComponent<SuitTank>();
+		float num = component.capacity * 15f * dt / 600f;
 		num = Mathf.Min(num, component.capacity - component.GetTankAmount());
 		num = Mathf.Min(oxygen.GetComponent<PrimaryElement>().Mass, num);
 		if (num > 0f)
@@ -281,6 +313,7 @@ public class SuitLocker : StateMachineComponent<SuitLocker.StatesInstance>
 		}
 		else if (suit_marker.transform.GetPosition().x < base.transform.GetPosition().x && !suit_marker.GetComponent<Rotatable>().IsRotated)
 		{
+			suitMarkerState = SuitLocker.SuitMarkerState.WrongSide;
 		}
 		else if (!suit_marker.GetComponent<Operational>().IsOperational)
 		{
@@ -315,12 +348,14 @@ public class SuitLocker : StateMachineComponent<SuitLocker.StatesInstance>
 		for (;;)
 		{
 			int cell2 = Grid.OffsetCell(cell, num, 0);
+			if (Grid.IsValidCell(cell2) && !SuitLocker.GatherSuitBuildingsOnCell(cell2, suit_lockers, suit_markers))
 			{
 				break;
 			}
 			num += dir;
 		}
 	}
+
 	private static bool GatherSuitBuildingsOnCell(int cell, List<SuitLocker.SuitLockerEntry> suit_lockers, List<SuitLocker.SuitMarkerEntry> suit_markers)
 	{
 		GameObject gameObject = Grid.Objects[cell, 1];
@@ -334,6 +369,7 @@ public class SuitLocker : StateMachineComponent<SuitLocker.StatesInstance>
 			suit_markers.Add(new SuitLocker.SuitMarkerEntry
 			{
 				suitMarker = component,
+				cell = cell
 			});
 			return true;
 		}
@@ -363,6 +399,7 @@ public class SuitLocker : StateMachineComponent<SuitLocker.StatesInstance>
 				return suitMarkerEntry.suitMarker;
 			}
 		}
+		return null;
 	}
 
 	public static void UpdateSuitMarkerStates(int cell, GameObject self)
@@ -378,6 +415,7 @@ public class SuitLocker : StateMachineComponent<SuitLocker.StatesInstance>
 				{
 					suitLocker = component,
 					cell = cell
+				});
 			}
 			SuitMarker component2 = self.GetComponent<SuitMarker>();
 			if (component2 != null)
@@ -431,6 +469,8 @@ public class SuitLocker : StateMachineComponent<SuitLocker.StatesInstance>
 
 	public Tag[] OutfitTags;
 
+	private float OutfitMass;
+
 	private FetchChore fetchChore;
 
 	[MyCmpAdd]
@@ -438,20 +478,27 @@ public class SuitLocker : StateMachineComponent<SuitLocker.StatesInstance>
 
 	private MeterController meter;
 
+	private SuitLocker.SuitMarkerState suitMarkerState;
 
+	[AddComponentMenu("KMonoBehaviour/Workable/ReturnSuitWorkable")]
 	public class ReturnSuitWorkable : Workable
 	{
 		protected override void OnPrefabInit()
 		{
+			base.OnPrefabInit();
 			this.resetProgressOnStop = true;
 			this.workTime = 0.25f;
 			this.synchronizeAnims = false;
+		}
 
+		public void CreateChore()
 		{
 			if (this.urgentChore == null)
+			{
 				SuitLocker component = base.GetComponent<SuitLocker>();
 				this.urgentChore = new WorkChore<SuitLocker.ReturnSuitWorkable>(Db.Get().ChoreTypes.ReturnSuitUrgent, this, null, true, null, null, null, true, null, false, false, null, false, true, false, PriorityScreen.PriorityClass.personalNeeds, 5, false, false);
 				this.urgentChore.AddPrecondition(SuitLocker.ReturnSuitWorkable.DoesSuitNeedRechargingUrgent, null);
+				this.urgentChore.AddPrecondition(this.HasSuitMarker, component);
 				this.urgentChore.AddPrecondition(this.SuitTypeMatchesLocker, component);
 				this.idleChore = new WorkChore<SuitLocker.ReturnSuitWorkable>(Db.Get().ChoreTypes.ReturnSuitIdle, this, null, true, null, null, null, true, null, false, false, null, false, true, false, PriorityScreen.PriorityClass.idle, 5, false, false);
 				this.idleChore.AddPrecondition(SuitLocker.ReturnSuitWorkable.DoesSuitNeedRechargingIdle, null);
@@ -475,6 +522,7 @@ public class SuitLocker : StateMachineComponent<SuitLocker.StatesInstance>
 		}
 
 		protected override void OnStartWork(WorkerBase worker)
+		{
 			base.ShowProgressBar(false);
 		}
 
@@ -487,16 +535,19 @@ public class SuitLocker : StateMachineComponent<SuitLocker.StatesInstance>
 		{
 			Equipment equipment = worker.GetComponent<MinionIdentity>().GetEquipment();
 			if (equipment.IsSlotOccupied(Db.Get().AssignableSlots.Suit))
+			{
 				if (base.GetComponent<SuitLocker>().CanDropOffSuit())
 				{
 					base.GetComponent<SuitLocker>().UnequipFrom(equipment);
 				}
 				else
+				{
 					equipment.GetAssignable(Db.Get().AssignableSlots.Suit).Unassign();
 				}
 			}
 			if (this.urgentChore != null)
 			{
+				this.CancelChore();
 				this.CreateChore();
 			}
 		}
@@ -516,6 +567,7 @@ public class SuitLocker : StateMachineComponent<SuitLocker.StatesInstance>
 			precondition.description = DUPLICANTS.CHORES.PRECONDITIONS.HAS_SUIT_MARKER;
 			precondition.fn = delegate(ref Chore.Precondition.Context context, object data)
 			{
+				return ((SuitLocker)data).suitMarkerState == SuitLocker.SuitMarkerState.HasMarker;
 			};
 			this.HasSuitMarker = precondition;
 			precondition = default(Chore.Precondition);
@@ -524,6 +576,7 @@ public class SuitLocker : StateMachineComponent<SuitLocker.StatesInstance>
 			precondition.fn = delegate(ref Chore.Precondition.Context context, object data)
 			{
 				SuitLocker suitLocker = (SuitLocker)data;
+				Equipment equipment = context.consumerState.equipment;
 				if (equipment == null)
 				{
 					return false;
@@ -551,6 +604,7 @@ public class SuitLocker : StateMachineComponent<SuitLocker.StatesInstance>
 				{
 					return false;
 				}
+				Equippable component = slot.assignable.GetComponent<Equippable>();
 				if (component == null || !component.isEquipped)
 				{
 					return false;
@@ -586,6 +640,7 @@ public class SuitLocker : StateMachineComponent<SuitLocker.StatesInstance>
 				{
 					return false;
 				}
+				Equippable component = slot.assignable.GetComponent<Equippable>();
 				return !(component == null) && component.isEquipped && (slot.assignable.GetComponent<SuitTank>() != null || slot.assignable.GetComponent<JetSuitTank>() != null || slot.assignable.GetComponent<LeadSuitTank>() != null);
 			}
 		};
@@ -601,22 +656,30 @@ public class SuitLocker : StateMachineComponent<SuitLocker.StatesInstance>
 
 	public class StatesInstance : GameStateMachine<SuitLocker.States, SuitLocker.StatesInstance, SuitLocker, object>.GameInstance
 	{
+		public StatesInstance(SuitLocker suit_locker) : base(suit_locker)
 		{
 		}
+	}
 
+	public class States : GameStateMachine<SuitLocker.States, SuitLocker.StatesInstance, SuitLocker>
 	{
+		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.empty;
 			base.serializable = StateMachine.SerializeType.Both_DEPRECATED;
+			this.root.Update("RefreshMeter", delegate(SuitLocker.StatesInstance smi, float dt)
 			{
 				smi.master.RefreshMeter();
+			}, UpdateRate.RENDER_200ms, false);
 			this.empty.DefaultState(this.empty.notconfigured).EventTransition(GameHashes.OnStorageChange, this.charging, (SuitLocker.StatesInstance smi) => smi.master.GetStoredOutfit() != null).ParamTransition<bool>(this.isWaitingForSuit, this.waitingforsuit, GameStateMachine<SuitLocker.States, SuitLocker.StatesInstance, SuitLocker, object>.IsTrue).Enter("CreateReturnSuitChore", delegate(SuitLocker.StatesInstance smi)
 			{
 				smi.master.returnSuitWorkable.CreateChore();
 			}).RefreshUserMenuOnEnter().Exit("CancelReturnSuitChore", delegate(SuitLocker.StatesInstance smi)
 			{
+				smi.master.returnSuitWorkable.CancelChore();
 			}).PlayAnim("no_suit_pre").QueueAnim("no_suit", false, null);
 			GameStateMachine<SuitLocker.States, SuitLocker.StatesInstance, SuitLocker, object>.State state = this.empty.notconfigured.ParamTransition<bool>(this.isConfigured, this.empty.configured, GameStateMachine<SuitLocker.States, SuitLocker.StatesInstance, SuitLocker, object>.IsTrue);
+			string name = BUILDING.STATUSITEMS.SUIT_LOCKER_NEEDS_CONFIGURATION.NAME;
 			string tooltip = BUILDING.STATUSITEMS.SUIT_LOCKER_NEEDS_CONFIGURATION.TOOLTIP;
 			string icon = "status_item_no_filter_set";
 			StatusItem.IconType icon_type = StatusItem.IconType.Custom;
@@ -730,32 +793,53 @@ public class SuitLocker : StateMachineComponent<SuitLocker.StatesInstance>
 		public StateMachine<SuitLocker.States, SuitLocker.StatesInstance, SuitLocker, object>.BoolParameter isWaitingForSuit;
 
 		public StateMachine<SuitLocker.States, SuitLocker.StatesInstance, SuitLocker, object>.BoolParameter isConfigured;
+
 		public StateMachine<SuitLocker.States, SuitLocker.StatesInstance, SuitLocker, object>.BoolParameter hasSuitMarker;
+
 		public class ChargingStates : GameStateMachine<SuitLocker.States, SuitLocker.StatesInstance, SuitLocker, object>.State
-			public GameStateMachine<SuitLocker.States, SuitLocker.StatesInstance, SuitLocker, object>.State pre;
-			public GameStateMachine<SuitLocker.States, SuitLocker.StatesInstance, SuitLocker, object>.State pst;
-			public GameStateMachine<SuitLocker.States, SuitLocker.StatesInstance, SuitLocker, object>.State operational;
-			public GameStateMachine<SuitLocker.States, SuitLocker.StatesInstance, SuitLocker, object>.State nooxygen;
-			public GameStateMachine<SuitLocker.States, SuitLocker.StatesInstance, SuitLocker, object>.State notoperational;
-
 		{
+			public GameStateMachine<SuitLocker.States, SuitLocker.StatesInstance, SuitLocker, object>.State pre;
 
+			public GameStateMachine<SuitLocker.States, SuitLocker.StatesInstance, SuitLocker, object>.State pst;
+
+			public GameStateMachine<SuitLocker.States, SuitLocker.StatesInstance, SuitLocker, object>.State operational;
+
+			public GameStateMachine<SuitLocker.States, SuitLocker.StatesInstance, SuitLocker, object>.State nooxygen;
+
+			public GameStateMachine<SuitLocker.States, SuitLocker.StatesInstance, SuitLocker, object>.State notoperational;
+		}
+
+		public class EmptyStates : GameStateMachine<SuitLocker.States, SuitLocker.StatesInstance, SuitLocker, object>.State
+		{
+			public GameStateMachine<SuitLocker.States, SuitLocker.StatesInstance, SuitLocker, object>.State configured;
+
+			public GameStateMachine<SuitLocker.States, SuitLocker.StatesInstance, SuitLocker, object>.State notconfigured;
 		}
 	}
+
 	private enum SuitMarkerState
+	{
 		HasMarker,
+		NoMarker,
 		WrongSide,
 		NotOperational
 	}
+
 	private struct SuitLockerEntry
 	{
+		public SuitLocker suitLocker;
 
+		public int cell;
 
 		public static SuitLocker.SuitLockerEntry.Comparer comparer = new SuitLocker.SuitLockerEntry.Comparer();
+
+		public class Comparer : IComparer<SuitLocker.SuitLockerEntry>
 		{
 			public int Compare(SuitLocker.SuitLockerEntry a, SuitLocker.SuitLockerEntry b)
+			{
 				return a.cell - b.cell;
 			}
+		}
 	}
 
 	private struct SuitMarkerEntry
@@ -764,3 +848,4 @@ public class SuitLocker : StateMachineComponent<SuitLocker.StatesInstance>
 
 		public int cell;
 	}
+}

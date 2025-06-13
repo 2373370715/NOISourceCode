@@ -6,7 +6,7 @@ using UnityEngine;
 
 public static class BaseCrabConfig
 {
-	public static GameObject BaseCrab(string id, string name, string desc, string anim_file, string traitId, bool is_baby, string symbolOverridePrefix = null, string onDeathDropID = "CrabShell", int onDeathDropCount = 1)
+	public static GameObject BaseCrab(string id, string name, string desc, string anim_file, string traitId, bool is_baby, string symbolOverridePrefix = null, string onDeathDropID = "CrabShell", float onDeathDropCount = 1f)
 	{
 		float mass = 100f;
 		int height = is_baby ? 1 : 2;

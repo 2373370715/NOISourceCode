@@ -1120,6 +1120,8 @@ namespace STRINGS
 
 				public static LocString CERES = "Wintr\nPolar\nSubzer\nImpass\nGlac\nBlust\nGelid\nCryo\nIcicl\nSlush\nSleet\nHail\nShivrr\n";
 
+				public static LocString PREHISTORIC = "Primor\nPaleo\nDino\nCret\nFoss\nFern\nClaw\nSaur\nBront\nCamb\n";
+
 				public static LocString MAGMA = "Fier\nMagm\nToast\nScorch\nBurn\nObsid\nLav\nMelt\nHot\nSweltr\nBlist\nFlam\nTherm\nCombust\nCauter\nTorch\nStok\nChar\n";
 
 				public static LocString SWAMP = "Goop\nMud\nMuck\nGross\nStink\nSmell\nYuck\nReek\nBlag\nSogg\nDripp\nUgh\nPustul\nIck\nCurd\nSlop\nPhlegm\nGurg\nSmear\nOoz\n";
@@ -1132,13 +1134,16 @@ namespace STRINGS
 
 				public static LocString REGOLITH = "Filt\nRegol\nSiev\nSift\nMeteor\nSand\nRock\nDust\nSedim\nSilt\n";
 			}
+
 			public class SUFFIXES
 			{
 				public static LocString GENERICLIST = "oni\nini\nani\nona\nina\nino\nano\nalin\nelin\nolin\nial\niol\niel\nela\nila\nola\nera\nora\nato\nito\nilios\nista\nazon\nibo\n";
 			}
+		}
 
 		public class GEYSER_IDS
 		{
 			public static LocString IDs = "\nHW\nGQ\nNA\nTH\nZL\nEV\nSK\nFP\nNJ\nRA\nUO\nXE";
 		}
+	}
 }

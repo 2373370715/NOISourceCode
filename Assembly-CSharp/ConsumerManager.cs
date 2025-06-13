@@ -12,8 +12,6 @@ public class ConsumerManager : KMonoBehaviour, ISaveLoadable
 		ConsumerManager.instance = null;
 	}
 
-add) Token: 0x06005A46 RID: 23110 RVA: 0x002A1DB8 File Offset: 0x0029FFB8
-remove) Token: 0x06005A47 RID: 23111 RVA: 0x002A1DF0 File Offset: 0x0029FFF0
 	public event Action<Tag> OnDiscover;
 
 	public List<Tag> DefaultForbiddenTagsList

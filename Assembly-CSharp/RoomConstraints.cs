@@ -373,7 +373,7 @@ public static class RoomConstraints
 		int num = 0;
 		foreach (KPrefabID kprefabID in room.cavity.plants)
 		{
-			if (kprefabID != null)
+			if (kprefabID != null && !kprefabID.HasTag(GameTags.PlantBranch))
 			{
 				BasicForagePlantPlanted component = kprefabID.GetComponent<BasicForagePlantPlanted>();
 				ReceptacleMonitor component2 = kprefabID.GetComponent<ReceptacleMonitor>();
@@ -395,7 +395,7 @@ public static class RoomConstraints
 		int num = 0;
 		foreach (KPrefabID kprefabID in room.cavity.plants)
 		{
-			if (kprefabID != null)
+			if (kprefabID != null && !kprefabID.HasTag(GameTags.PlantBranch))
 			{
 				BasicForagePlantPlanted component = kprefabID.GetComponent<BasicForagePlantPlanted>();
 				ReceptacleMonitor component2 = kprefabID.GetComponent<ReceptacleMonitor>();

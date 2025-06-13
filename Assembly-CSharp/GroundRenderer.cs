@@ -230,7 +230,6 @@ public class GroundRenderer : KMonoBehaviour
 	{
 		this.FreeMaterials();
 		this.elementMaterials.Clear();
-		this.elementMaterials = null;
 		if (this.worldChunks != null)
 		{
 			GroundRenderer.WorldChunk[,] array = this.worldChunks;

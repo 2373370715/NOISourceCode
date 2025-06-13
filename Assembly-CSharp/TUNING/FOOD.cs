@@ -78,6 +78,8 @@ namespace TUNING
 
 			public static readonly EdiblesManager.FoodInfo BASICPLANTFOOD = new EdiblesManager.FoodInfo("BasicPlantFood", 600000f, -1, 255.15f, 277.15f, 4800f, true, null, null);
 
+			public static readonly EdiblesManager.FoodInfo VINEFRUIT = new EdiblesManager.FoodInfo(VineFruitConfig.ID, 325000f, 0, 255.15f, 277.15f, 4800f, true, DlcManager.DLC4, null);
+
 			public static readonly EdiblesManager.FoodInfo BASICFORAGEPLANT = new EdiblesManager.FoodInfo("BasicForagePlant", 800000f, -1, 255.15f, 277.15f, 4800f, false, null, null);
 
 			public static readonly EdiblesManager.FoodInfo FORESTFORAGEPLANT = new EdiblesManager.FoodInfo("ForestForagePlant", 6400000f, -1, 255.15f, 277.15f, 4800f, false, null, null);
@@ -90,6 +92,7 @@ namespace TUNING
 
 			public static readonly EdiblesManager.FoodInfo LETTUCE = new EdiblesManager.FoodInfo("Lettuce", 400000f, 0, 255.15f, 277.15f, 2400f, true, null, null).AddEffects(new List<string>
 			{
+				"SeafoodRadiationResistance"
 			}, DlcManager.EXPANSION1, null);
 
 			public static readonly EdiblesManager.FoodInfo RAWEGG = new EdiblesManager.FoodInfo("RawEgg", 1600000f, -1, 255.15f, 277.15f, 4800f, true, null, null);
@@ -104,11 +107,15 @@ namespace TUNING
 
 			public static readonly EdiblesManager.FoodInfo FISH_MEAT = new EdiblesManager.FoodInfo("FishMeat", 1000000f, 2, 255.15f, 277.15f, 2400f, true, null, null).AddEffects(new List<string>
 			{
+				"SeafoodRadiationResistance"
 			}, DlcManager.EXPANSION1, null);
 
 			public static readonly EdiblesManager.FoodInfo SHELLFISH_MEAT = new EdiblesManager.FoodInfo("ShellfishMeat", 1000000f, 2, 255.15f, 277.15f, 2400f, true, null, null).AddEffects(new List<string>
 			{
+				"SeafoodRadiationResistance"
 			}, DlcManager.EXPANSION1, null);
+
+			public static readonly EdiblesManager.FoodInfo JAWBOFILLET = new EdiblesManager.FoodInfo("PrehistoricPacuFillet", 1000000f, 3, 255.15f, 277.15f, 2400f, true, DlcManager.DLC4, null);
 
 			public static readonly EdiblesManager.FoodInfo WORMBASICFRUIT = new EdiblesManager.FoodInfo("WormBasicFruit", 800000f, 0, 255.15f, 277.15f, 4800f, true, DlcManager.EXPANSION1, null);
 
@@ -122,17 +129,25 @@ namespace TUNING
 
 			public static readonly EdiblesManager.FoodInfo FRIES_CARROT = new EdiblesManager.FoodInfo("FriesCarrot", 5400000f, 3, 255.15f, 277.15f, 2400f, true, DlcManager.DLC2, null);
 
+			public static readonly EdiblesManager.FoodInfo BUTTERFLYFOOD = new EdiblesManager.FoodInfo("ButterflyFood", 1500000f, 1, 255.15f, 277.15f, 4800f, true, DlcManager.DLC4, null);
+
 			public static readonly EdiblesManager.FoodInfo DEEP_FRIED_MEAT = new EdiblesManager.FoodInfo("DeepFriedMeat", 4000000f, 3, 255.15f, 277.15f, 2400f, true, DlcManager.DLC2, null);
 
 			public static readonly EdiblesManager.FoodInfo DEEP_FRIED_NOSH = new EdiblesManager.FoodInfo("DeepFriedNosh", 5000000f, 3, 255.15f, 277.15f, 4800f, true, DlcManager.DLC2, null);
 
 			public static readonly EdiblesManager.FoodInfo DEEP_FRIED_FISH = new EdiblesManager.FoodInfo("DeepFriedFish", 4200000f, 4, 255.15f, 277.15f, 2400f, true, DlcManager.DLC2, null).AddEffects(new List<string>
 			{
+				"SeafoodRadiationResistance"
 			}, DlcManager.EXPANSION1, null);
 
 			public static readonly EdiblesManager.FoodInfo DEEP_FRIED_SHELLFISH = new EdiblesManager.FoodInfo("DeepFriedShellfish", 4200000f, 4, 255.15f, 277.15f, 2400f, true, DlcManager.DLC2, null).AddEffects(new List<string>
 			{
+				"SeafoodRadiationResistance"
 			}, DlcManager.EXPANSION1, null);
+
+			public static readonly EdiblesManager.FoodInfo GARDENFOODPLANT = new EdiblesManager.FoodInfo("GardenFoodPlantFood", 800000f, -1, 255.15f, 277.15f, 9600f, true, DlcManager.DLC4, null);
+
+			public static readonly EdiblesManager.FoodInfo GARDENFORAGEPLANT = new EdiblesManager.FoodInfo("GardenForagePlant", 800000f, -1, 255.15f, 277.15f, 4800f, false, DlcManager.DLC4, null);
 
 			public static readonly EdiblesManager.FoodInfo PICKLEDMEAL = new EdiblesManager.FoodInfo("PickledMeal", 1800000f, -1, 255.15f, 277.15f, 19200f, true, null, null);
 
@@ -156,11 +171,21 @@ namespace TUNING
 
 			public static readonly EdiblesManager.FoodInfo COOKED_FISH = new EdiblesManager.FoodInfo("CookedFish", 1600000f, 3, 255.15f, 277.15f, 2400f, true, null, null).AddEffects(new List<string>
 			{
+				"SeafoodRadiationResistance"
+			}, DlcManager.EXPANSION1, null);
+
+			public static readonly EdiblesManager.FoodInfo SMOKED_VEGETABLES = new EdiblesManager.FoodInfo("SmokedVegetables", 2862500f, 2, 255.15f, 277.15f, 9600f, true, DlcManager.DLC4, null);
+
+			public static readonly EdiblesManager.FoodInfo PANCAKES = new EdiblesManager.FoodInfo("Pancakes", 3600000f, 3, 255.15f, 277.15f, 4800f, true, null, null);
+
+			public static readonly EdiblesManager.FoodInfo SMOKED_FISH = new EdiblesManager.FoodInfo("SmokedFish", 2800000f, 3, 255.15f, 277.15f, 19200f, true, DlcManager.DLC4, null).AddEffects(new List<string>
+			{
+				"SeafoodRadiationResistance"
 			}, DlcManager.EXPANSION1, null);
 
 			public static readonly EdiblesManager.FoodInfo COOKED_MEAT = new EdiblesManager.FoodInfo("CookedMeat", 4000000f, 3, 255.15f, 277.15f, 2400f, true, null, null);
 
-			public static readonly EdiblesManager.FoodInfo PANCAKES = new EdiblesManager.FoodInfo("Pancakes", 3600000f, 3, 255.15f, 277.15f, 4800f, true, null, null);
+			public static readonly EdiblesManager.FoodInfo SMOKED_DINOSAURMEAT = new EdiblesManager.FoodInfo("SmokedDinosaurMeat", 5000000f, 3, 255.15f, 277.15f, 4800f, true, DlcManager.DLC4, null);
 
 			public static readonly EdiblesManager.FoodInfo WORMBASICFOOD = new EdiblesManager.FoodInfo("WormBasicFood", 1200000f, 1, 255.15f, 277.15f, 4800f, true, DlcManager.EXPANSION1, null);
 
@@ -172,29 +197,38 @@ namespace TUNING
 
 			public static readonly EdiblesManager.FoodInfo SURF_AND_TURF = new EdiblesManager.FoodInfo("SurfAndTurf", 6000000f, 4, 255.15f, 277.15f, 2400f, true, null, null).AddEffects(new List<string>
 			{
+				"SeafoodRadiationResistance"
 			}, DlcManager.EXPANSION1, null);
 
 			public static readonly EdiblesManager.FoodInfo MUSHROOM_WRAP = new EdiblesManager.FoodInfo("MushroomWrap", 4800000f, 4, 255.15f, 277.15f, 2400f, true, null, null).AddEffects(new List<string>
 			{
+				"SeafoodRadiationResistance"
 			}, DlcManager.EXPANSION1, null);
 
 			public static readonly EdiblesManager.FoodInfo TOFU = new EdiblesManager.FoodInfo("Tofu", 3600000f, 2, 255.15f, 277.15f, 2400f, true, null, null);
 
 			public static readonly EdiblesManager.FoodInfo CURRY = new EdiblesManager.FoodInfo("Curry", 5000000f, 4, 255.15f, 277.15f, 9600f, true, null, null).AddEffects(new List<string>
 			{
+				"HotStuff",
 				"WarmTouchFood"
 			}, null, null);
+
 			public static readonly EdiblesManager.FoodInfo SPICEBREAD = new EdiblesManager.FoodInfo("SpiceBread", 4000000f, 5, 255.15f, 277.15f, 4800f, true, null, null);
+
 			public static readonly EdiblesManager.FoodInfo SPICY_TOFU = new EdiblesManager.FoodInfo("SpicyTofu", 4000000f, 5, 255.15f, 277.15f, 2400f, true, null, null).AddEffects(new List<string>
+			{
 				"WarmTouchFood"
 			}, null, null);
 
 			public static readonly EdiblesManager.FoodInfo QUICHE = new EdiblesManager.FoodInfo("Quiche", 6400000f, 5, 255.15f, 277.15f, 2400f, true, null, null).AddEffects(new List<string>
+			{
 				"SeafoodRadiationResistance"
 			}, DlcManager.EXPANSION1, null);
 
 			public static readonly EdiblesManager.FoodInfo BERRY_PIE = new EdiblesManager.FoodInfo("BerryPie", 4200000f, 5, 255.15f, 277.15f, 2400f, true, DlcManager.EXPANSION1, null);
+
 			public static readonly EdiblesManager.FoodInfo BURGER = new EdiblesManager.FoodInfo("Burger", 6000000f, 6, 255.15f, 277.15f, 2400f, true, null, null).AddEffects(new List<string>
+			{
 				"GoodEats"
 			}, null, null).AddEffects(new List<string>
 			{
@@ -206,10 +240,19 @@ namespace TUNING
 			public static readonly EdiblesManager.FoodInfo SPICENUT = new EdiblesManager.FoodInfo(SpiceNutConfig.ID, 0f, 0, 255.15f, 277.15f, 2400f, true, null, null);
 
 			public static readonly EdiblesManager.FoodInfo COLD_WHEAT_SEED = new EdiblesManager.FoodInfo("ColdWheatSeed", 0f, 0, 283.15f, 308.15f, 9600f, true, null, null);
+
+			public static readonly EdiblesManager.FoodInfo FERNFOOD = new EdiblesManager.FoodInfo(FernFoodConfig.ID, 0f, 2, 255.15f, 277.15f, 9600f, true, DlcManager.DLC4, null);
+
+			public static readonly EdiblesManager.FoodInfo BUTTERFLY_SEED = new EdiblesManager.FoodInfo("ButterflyPlantSeed", 0f, 2, 255.15f, 277.15f, 4800f, true, DlcManager.DLC4, null);
+
+			public static readonly EdiblesManager.FoodInfo DINOSAURMEAT = new EdiblesManager.FoodInfo("DinosaurMeat", 0f, -1, 255.15f, 277.15f, 2400f, true, DlcManager.DLC4, null);
 		}
+
 		public class RECIPES
 		{
 			public static float SMALL_COOK_TIME = 30f;
+
 			public static float STANDARD_COOK_TIME = 50f;
+		}
 	}
 }

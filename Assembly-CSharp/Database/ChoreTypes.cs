@@ -406,6 +406,11 @@ namespace Database
 				"Build",
 				"Dig"
 			}, "", new string[0], DUPLICANTS.CHORES.BUILDDIG.NAME, DUPLICANTS.CHORES.BUILDDIG.STATUS, DUPLICANTS.CHORES.BUILDDIG.TOOLTIP, true, 5000, null);
+			this.BuildUproot = this.Add("BuildUproot", new string[]
+			{
+				"Build",
+				"Farming"
+			}, "", new string[0], DUPLICANTS.CHORES.BUILDUPROOT.NAME, DUPLICANTS.CHORES.BUILDUPROOT.STATUS, DUPLICANTS.CHORES.BUILDUPROOT.TOOLTIP, true, 5000, null);
 			this.BuildFetch = this.Add("BuildFetch", new string[]
 			{
 				"Build",
@@ -645,6 +650,7 @@ namespace Database
 					this.Build,
 					this.Dig,
 					this.BuildDig,
+					this.BuildUproot,
 					this.FlipCompost,
 					this.Depressurize,
 					this.StressEmote,
@@ -935,6 +941,8 @@ namespace Database
 		public ChoreType Build;
 
 		public ChoreType BuildDig;
+
+		public ChoreType BuildUproot;
 
 		public ChoreType Dig;
 

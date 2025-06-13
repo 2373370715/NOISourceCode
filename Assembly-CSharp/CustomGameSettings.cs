@@ -31,16 +31,10 @@ public class CustomGameSettings : KMonoBehaviour
 		}
 	}
 
-add) Token: 0x06005EBB RID: 24251 RVA: 0x002B0AC8 File Offset: 0x002AECC8
-remove) Token: 0x06005EBC RID: 24252 RVA: 0x002B0B00 File Offset: 0x002AED00
 	public event Action<SettingConfig, SettingLevel> OnQualitySettingChanged;
 
-add) Token: 0x06005EBD RID: 24253 RVA: 0x002B0B38 File Offset: 0x002AED38
-remove) Token: 0x06005EBE RID: 24254 RVA: 0x002B0B70 File Offset: 0x002AED70
 	public event Action<SettingConfig, SettingLevel> OnStorySettingChanged;
 
-add) Token: 0x06005EBF RID: 24255 RVA: 0x002B0BA8 File Offset: 0x002AEDA8
-remove) Token: 0x06005EC0 RID: 24256 RVA: 0x002B0BE0 File Offset: 0x002AEDE0
 	public event Action<SettingConfig, SettingLevel> OnMixingSettingChanged;
 
 	[OnDeserialized]
@@ -173,12 +167,18 @@ remove) Token: 0x06005EC0 RID: 24256 RVA: 0x002B0BE0 File Offset: 0x002AEDE0
 		action(CustomGameSettingConfigs.SaveToCloud);
 		action(CustomGameSettingConfigs.Teleporters);
 		action(CustomGameSettingConfigs.BionicWattage);
+		action(CustomGameSettingConfigs.DemoliorDifficulty);
 		action3(CustomMixingSettingsConfigs.DLC2Mixing);
 		action3(CustomMixingSettingsConfigs.IceCavesMixing);
 		action3(CustomMixingSettingsConfigs.CarrotQuarryMixing);
 		action3(CustomMixingSettingsConfigs.SugarWoodsMixing);
 		action3(CustomMixingSettingsConfigs.CeresAsteroidMixing);
 		action3(CustomMixingSettingsConfigs.DLC3Mixing);
+		action3(CustomMixingSettingsConfigs.DLC4Mixing);
+		action3(CustomMixingSettingsConfigs.GardenMixing);
+		action3(CustomMixingSettingsConfigs.RaptorMixing);
+		action3(CustomMixingSettingsConfigs.WetlandsMixing);
+		action3(CustomMixingSettingsConfigs.PrehistoricAsteroidMixing);
 		foreach (Story story in Db.Get().Stories.GetStoriesSortedByCoordinateOrder())
 		{
 			int num = (story.kleiUseOnlyCoordinateOrder == -1) ? -1 : 3;

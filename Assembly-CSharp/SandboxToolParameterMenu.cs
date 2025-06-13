@@ -309,7 +309,12 @@ public class SandboxToolParameterMenu : KScreen
 			CreatureBrain brain = gameObject.GetComponent<CreatureBrain>();
 			if (!list2.Contains(brain.species) && Game.IsCorrectDlcActiveForCurrentSave(brain.GetComponent<KPrefabID>()))
 			{
-				global::Tuple<Sprite, Color> icon = new global::Tuple<Sprite, Color>(CodexCache.entries[brain.species.ToString().ToUpper()].icon, CodexCache.entries[brain.species.ToString().ToUpper()].iconColor);
+				global::Tuple<Sprite, Color> icon = null;
+				CodexEntry codexEntry;
+				if (CodexCache.entries.TryGetValue(brain.species.ToString().ToUpper(), out codexEntry))
+				{
+					icon = new global::Tuple<Sprite, Color>(codexEntry.icon, codexEntry.iconColor);
+				}
 				list2.Add(brain.species);
 				SandboxToolParameterMenu.SelectorValue.SearchFilter item5 = new SandboxToolParameterMenu.SelectorValue.SearchFilter(Strings.Get("STRINGS.CREATURES.FAMILY_PLURAL." + brain.species.ToString().ToUpper()), delegate(object entity)
 				{

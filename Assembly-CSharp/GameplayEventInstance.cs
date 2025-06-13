@@ -52,10 +52,10 @@ public class GameplayEventInstance : ISaveLoadable
 
 	public void StartEvent()
 	{
-		GameplayEventManager.Instance.Trigger(1491341646, this);
 		StateMachine.Instance smi = this.smi;
 		smi.OnStop = (Action<string, StateMachine.Status>)Delegate.Combine(smi.OnStop, new Action<string, StateMachine.Status>(this.OnStop));
 		this.smi.StartSM();
+		GameplayEventManager.Instance.Trigger(1491341646, this);
 	}
 
 	public void RegisterMonitorCallback(GameObject go)
@@ -146,6 +146,5 @@ public class GameplayEventInstance : ISaveLoadable
 
 	private GameplayEvent _gameplayEvent;
 
-Invoke) Token: 0x06002315 RID: 8981
 	public delegate EventInfoData GameplayEventPopupDataCallback();
 }

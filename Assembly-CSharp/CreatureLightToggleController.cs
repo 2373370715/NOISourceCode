@@ -143,7 +143,6 @@ public class CreatureLightToggleController : GameStateMachine<CreatureLightToggl
 			private LightGridManager.LightGridEmitter emitter;
 		}
 
-Invoke) Token: 0x06005B43 RID: 23363
 		public delegate void ModifyLuxDelegate(CreatureLightToggleController.Instance instance, float time_delta);
 	}
 }

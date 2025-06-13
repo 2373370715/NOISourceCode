@@ -68,13 +68,17 @@ public class TableScreen : ShowOptimizedKScreen
 			{
 				foreach (TableRow tableRow in this.rows)
 				{
-					tableRow.GetScroller(scrollerID).transform.parent.GetComponent<ScrollRect>().horizontalNormalizedPosition = 0f;
+					ScrollRect component = tableRow.GetScroller(scrollerID).transform.parent.GetComponent<ScrollRect>();
+					if (component.horizontalNormalizedPosition > 0.001f)
+					{
+						component.horizontalNormalizedPosition = 0f;
+					}
 				}
 			}
 			foreach (KeyValuePair<int, GameObject> keyValuePair in this.worldDividers)
 			{
 				ScrollRect componentInChildren = keyValuePair.Value.GetComponentInChildren<ScrollRect>();
-				if (componentInChildren != null)
+				if (componentInChildren != null && componentInChildren.horizontalNormalizedPosition > 0.001f)
 				{
 					componentInChildren.horizontalNormalizedPosition = 0f;
 				}
@@ -85,16 +89,19 @@ public class TableScreen : ShowOptimizedKScreen
 	public bool CheckScrollersDirty()
 	{
 		return this.scrollersDirty;
+	}
 
 	public void SetScrollersDirty(float position)
 	{
 		this.targetScrollerPosition = position;
+		this.scrollersDirty = true;
 		this.PositionScrollers();
 	}
 
 	public void PositionScrollers()
 	{
 		foreach (TableRow tableRow in this.rows)
+		{
 			ScrollRect componentInChildren = tableRow.GetComponentInChildren<ScrollRect>();
 			if (componentInChildren != null)
 			{
@@ -118,6 +125,7 @@ public class TableScreen : ShowOptimizedKScreen
 	public override void ScreenUpdate(bool topLevel)
 	{
 		if (this.isHiddenButActive)
+		{
 			return;
 		}
 		base.ScreenUpdate(topLevel);
@@ -151,10 +159,12 @@ public class TableScreen : ShowOptimizedKScreen
 	protected void MarkRowsDirty()
 	{
 		this.rows_dirty = true;
+	}
 
 	protected virtual void RefreshRows()
 	{
 		this.ObsoleteRows();
+		this.AddRow(null);
 		if (this.has_default_duplicant_row)
 		{
 			this.AddDefaultRow();
@@ -247,6 +257,7 @@ public class TableScreen : ShowOptimizedKScreen
 	public virtual void SetSortComparison(Comparison<IAssignableIdentity> comparison, TableColumn sort_column)
 	{
 		if (comparison == null)
+		{
 			return;
 		}
 		if (this.active_sort_column != sort_column)
@@ -269,6 +280,7 @@ public class TableScreen : ShowOptimizedKScreen
 	public void SortRows()
 	{
 		foreach (TableColumn tableColumn in this.columns.Values)
+		{
 			if (!(tableColumn.column_sort_toggle == null))
 			{
 				if (tableColumn == this.active_sort_column)
@@ -353,6 +365,7 @@ public class TableScreen : ShowOptimizedKScreen
 	protected int compare_rows_alphabetical(IAssignableIdentity a, IAssignableIdentity b)
 	{
 		if (a == null && b == null)
+		{
 			return 0;
 		}
 		if (a == null)
@@ -369,10 +382,12 @@ public class TableScreen : ShowOptimizedKScreen
 	protected int default_sort(TableRow a, TableRow b)
 	{
 		return 0;
+	}
 
 	protected void ObsoleteRows()
 	{
 		for (int i = this.rows.Count - 1; i >= 0; i--)
+		{
 			IAssignableIdentity identity = this.rows[i].GetIdentity();
 			if (identity != null)
 			{
@@ -388,6 +403,7 @@ public class TableScreen : ShowOptimizedKScreen
 	protected void AddRow(IAssignableIdentity minion)
 	{
 		bool flag = minion == null;
+		if (!flag && this.obsoleteMinionRowStatus.ContainsKey(minion))
 		{
 			this.obsoleteMinionRowStatus[minion] = false;
 			this.rows.Find((TableRow match) => match.GetIdentity() == minion).RefreshColumns(this.columns);
@@ -414,6 +430,7 @@ public class TableScreen : ShowOptimizedKScreen
 	protected void AddDefaultRow()
 	{
 		if (this.default_row != null)
+		{
 			this.default_row.GetComponent<TableRow>().RefreshColumns(this.columns);
 			return;
 		}
@@ -429,6 +446,7 @@ public class TableScreen : ShowOptimizedKScreen
 	protected void AddWorldDivider(int worldId)
 	{
 		if (this.obsoleteWorldDividerStatus.ContainsKey(worldId) && this.obsoleteWorldDividerStatus[worldId])
+		{
 			this.obsoleteWorldDividerStatus[worldId] = false;
 			return;
 		}
@@ -458,6 +476,7 @@ public class TableScreen : ShowOptimizedKScreen
 	protected void RemoveWorldDivider(object worldId)
 	{
 		if (this.worldDividers.ContainsKey((int)worldId))
+		{
 			this.rows.Remove(this.worldDividers[(int)worldId].GetComponent<TableRow>());
 			Util.KDestroyGameObject(this.worldDividers[(int)worldId]);
 			this.worldDividers.Remove((int)worldId);
@@ -467,6 +486,7 @@ public class TableScreen : ShowOptimizedKScreen
 	protected TableRow GetWidgetRow(GameObject widget_go)
 	{
 		if (widget_go == null)
+		{
 			global::Debug.LogWarning("Widget is null");
 			return null;
 		}
@@ -489,6 +509,7 @@ public class TableScreen : ShowOptimizedKScreen
 	protected void StartScrollableContent(string scrollablePanelID)
 	{
 		if (!this.column_scrollers.Contains(scrollablePanelID))
+		{
 			DividerColumn new_column = new DividerColumn(() => true, "");
 			this.RegisterColumn("scroller_spacer_" + scrollablePanelID, new_column);
 			this.column_scrollers.Add(scrollablePanelID);
@@ -498,6 +519,7 @@ public class TableScreen : ShowOptimizedKScreen
 	protected PortraitTableColumn AddPortraitColumn(string id, Action<IAssignableIdentity, GameObject> on_load_action, Comparison<IAssignableIdentity> sort_comparison, bool double_click_to_target = true)
 	{
 		PortraitTableColumn portraitTableColumn = new PortraitTableColumn(on_load_action, sort_comparison, double_click_to_target);
+		if (this.RegisterColumn(id, portraitTableColumn))
 		{
 			return portraitTableColumn;
 		}
@@ -507,6 +529,7 @@ public class TableScreen : ShowOptimizedKScreen
 	protected ButtonLabelColumn AddButtonLabelColumn(string id, Action<IAssignableIdentity, GameObject> on_load_action, Func<IAssignableIdentity, GameObject, string> get_value_action, Action<GameObject> on_click_action, Action<GameObject> on_double_click_action, Comparison<IAssignableIdentity> sort_comparison, Action<IAssignableIdentity, GameObject, ToolTip> on_tooltip, Action<IAssignableIdentity, GameObject, ToolTip> on_sort_tooltip, bool whiteText = false)
 	{
 		ButtonLabelColumn buttonLabelColumn = new ButtonLabelColumn(on_load_action, get_value_action, on_click_action, on_double_click_action, sort_comparison, on_tooltip, on_sort_tooltip, whiteText);
+		if (this.RegisterColumn(id, buttonLabelColumn))
 		{
 			return buttonLabelColumn;
 		}
@@ -516,6 +539,7 @@ public class TableScreen : ShowOptimizedKScreen
 	protected LabelTableColumn AddLabelColumn(string id, Action<IAssignableIdentity, GameObject> on_load_action, Func<IAssignableIdentity, GameObject, string> get_value_action, Comparison<IAssignableIdentity> sort_comparison, Action<IAssignableIdentity, GameObject, ToolTip> on_tooltip, Action<IAssignableIdentity, GameObject, ToolTip> on_sort_tooltip, int widget_width = 128, bool should_refresh_columns = false)
 	{
 		LabelTableColumn labelTableColumn = new LabelTableColumn(on_load_action, get_value_action, sort_comparison, on_tooltip, on_sort_tooltip, widget_width, should_refresh_columns);
+		if (this.RegisterColumn(id, labelTableColumn))
 		{
 			return labelTableColumn;
 		}
@@ -525,6 +549,7 @@ public class TableScreen : ShowOptimizedKScreen
 	protected CheckboxTableColumn AddCheckboxColumn(string id, Action<IAssignableIdentity, GameObject> on_load_action, Func<IAssignableIdentity, GameObject, TableScreen.ResultValues> get_value_action, Action<GameObject> on_press_action, Action<GameObject, TableScreen.ResultValues> set_value_function, Comparison<IAssignableIdentity> sort_comparison, Action<IAssignableIdentity, GameObject, ToolTip> on_tooltip, Action<IAssignableIdentity, GameObject, ToolTip> on_sort_tooltip)
 	{
 		CheckboxTableColumn checkboxTableColumn = new CheckboxTableColumn(on_load_action, get_value_action, on_press_action, set_value_function, sort_comparison, on_tooltip, on_sort_tooltip, null);
+		if (this.RegisterColumn(id, checkboxTableColumn))
 		{
 			return checkboxTableColumn;
 		}
@@ -534,6 +559,7 @@ public class TableScreen : ShowOptimizedKScreen
 	protected SuperCheckboxTableColumn AddSuperCheckboxColumn(string id, CheckboxTableColumn[] columns_affected, Action<IAssignableIdentity, GameObject> on_load_action, Func<IAssignableIdentity, GameObject, TableScreen.ResultValues> get_value_action, Action<GameObject> on_press_action, Action<GameObject, TableScreen.ResultValues> set_value_action, Comparison<IAssignableIdentity> sort_comparison, Action<IAssignableIdentity, GameObject, ToolTip> on_tooltip)
 	{
 		SuperCheckboxTableColumn superCheckboxTableColumn = new SuperCheckboxTableColumn(columns_affected, on_load_action, get_value_action, on_press_action, set_value_action, sort_comparison, on_tooltip);
+		if (this.RegisterColumn(id, superCheckboxTableColumn))
 		{
 			foreach (CheckboxTableColumn checkboxTableColumn in columns_affected)
 			{
@@ -549,6 +575,7 @@ public class TableScreen : ShowOptimizedKScreen
 	protected NumericDropDownTableColumn AddNumericDropDownColumn(string id, object user_data, List<TMP_Dropdown.OptionData> options, Action<IAssignableIdentity, GameObject> on_load_action, Action<GameObject, int> set_value_action, Comparison<IAssignableIdentity> sort_comparison, NumericDropDownTableColumn.ToolTipCallbacks tooltip_callbacks)
 	{
 		NumericDropDownTableColumn numericDropDownTableColumn = new NumericDropDownTableColumn(user_data, options, on_load_action, set_value_action, sort_comparison, tooltip_callbacks, null);
+		if (this.RegisterColumn(id, numericDropDownTableColumn))
 		{
 			return numericDropDownTableColumn;
 		}
@@ -558,6 +585,7 @@ public class TableScreen : ShowOptimizedKScreen
 	protected bool RegisterColumn(string id, TableColumn new_column)
 	{
 		if (this.columns.ContainsKey(id))
+		{
 			global::Debug.LogWarning(string.Format("Column with id {0} already in dictionary", id));
 			return false;
 		}
@@ -570,6 +598,7 @@ public class TableScreen : ShowOptimizedKScreen
 	protected TableColumn GetWidgetColumn(GameObject widget_go)
 	{
 		if (this.known_widget_columns.ContainsKey(widget_go))
+		{
 			return this.known_widget_columns[widget_go];
 		}
 		foreach (KeyValuePair<string, TableColumn> keyValuePair in this.columns)
@@ -587,6 +616,7 @@ public class TableScreen : ShowOptimizedKScreen
 	protected void on_load_portrait(IAssignableIdentity minion, GameObject widget_go)
 	{
 		TableRow widgetRow = this.GetWidgetRow(widget_go);
+		CrewPortrait component = widget_go.GetComponent<CrewPortrait>();
 		if (minion != null)
 		{
 			component.SetIdentityObject(minion, false);
@@ -599,6 +629,7 @@ public class TableScreen : ShowOptimizedKScreen
 	protected void on_load_name_label(IAssignableIdentity minion, GameObject widget_go)
 	{
 		TableRow widgetRow = this.GetWidgetRow(widget_go);
+		LocText locText = null;
 		HierarchyReferences component = widget_go.GetComponent<HierarchyReferences>();
 		LocText locText2 = component.GetReference("Label") as LocText;
 		if (component.HasReference("SubLabel"))
@@ -647,10 +678,12 @@ public class TableScreen : ShowOptimizedKScreen
 	protected string get_value_name_label(IAssignableIdentity minion, GameObject widget_go)
 	{
 		return minion.GetProperName();
+	}
 
 	protected void on_load_value_checkbox_column_super(IAssignableIdentity minion, GameObject widget_go)
 	{
 		MultiToggle component = widget_go.GetComponent<MultiToggle>();
+		TableRow.RowType rowType = this.GetWidgetRow(widget_go).rowType;
 		if (rowType <= TableRow.RowType.Minion)
 		{
 			component.ChangeState((int)this.get_value_checkbox_column_super(minion, widget_go));
@@ -660,6 +693,7 @@ public class TableScreen : ShowOptimizedKScreen
 	public virtual TableScreen.ResultValues get_value_checkbox_column_super(IAssignableIdentity minion, GameObject widget_go)
 	{
 		SuperCheckboxTableColumn superCheckboxTableColumn = this.GetWidgetColumn(widget_go) as SuperCheckboxTableColumn;
+		TableRow widgetRow = this.GetWidgetRow(widget_go);
 		bool flag = true;
 		bool flag2 = true;
 		bool flag3 = false;
@@ -717,6 +751,7 @@ public class TableScreen : ShowOptimizedKScreen
 	protected void set_value_checkbox_column_super(GameObject widget_go, TableScreen.ResultValues new_value)
 	{
 		SuperCheckboxTableColumn superCheckboxTableColumn = this.GetWidgetColumn(widget_go) as SuperCheckboxTableColumn;
+		TableRow widgetRow = this.GetWidgetRow(widget_go);
 		switch (widgetRow.rowType)
 		{
 		case TableRow.RowType.Header:
@@ -737,6 +772,7 @@ public class TableScreen : ShowOptimizedKScreen
 	protected IEnumerator CascadeSetRowCheckBoxes(CheckboxTableColumn[] checkBoxToggleColumns, TableRow row, TableScreen.ResultValues state, GameObject ignore_widget = null)
 	{
 		if (this.active_cascade_coroutine_count == 0)
+		{
 			this.current_looping_sound = LoopingSoundManager.StartSound(this.cascade_sound_path, Vector3.zero, false, false);
 		}
 		this.active_cascade_coroutine_count++;
@@ -782,6 +818,7 @@ public class TableScreen : ShowOptimizedKScreen
 	protected IEnumerator CascadeSetColumnCheckBoxes(List<TableRow> rows, CheckboxTableColumn checkBoxToggleColumn, TableScreen.ResultValues state, GameObject header_widget_go = null)
 	{
 		if (this.active_cascade_coroutine_count == 0)
+		{
 			this.current_looping_sound = LoopingSoundManager.StartSound(this.cascade_sound_path, Vector3.zero, false, true);
 		}
 		this.active_cascade_coroutine_count++;
@@ -828,6 +865,7 @@ public class TableScreen : ShowOptimizedKScreen
 	private void StopLoopingCascadeSound()
 	{
 		if (this.current_looping_sound.IsValid())
+		{
 			LoopingSoundManager.StopSound(this.current_looping_sound);
 			this.current_looping_sound.Clear();
 		}
@@ -836,6 +874,7 @@ public class TableScreen : ShowOptimizedKScreen
 	protected void on_press_checkbox_column_super(GameObject widget_go)
 	{
 		SuperCheckboxTableColumn superCheckboxTableColumn = this.GetWidgetColumn(widget_go) as SuperCheckboxTableColumn;
+		TableRow widgetRow = this.GetWidgetRow(widget_go);
 		switch (this.get_value_checkbox_column_super(widgetRow.GetIdentity(), widget_go))
 		{
 		case TableScreen.ResultValues.False:
@@ -855,6 +894,7 @@ public class TableScreen : ShowOptimizedKScreen
 	protected void on_tooltip_sort_alphabetically(IAssignableIdentity minion, GameObject widget_go, ToolTip tooltip)
 	{
 		tooltip.ClearMultiStringTooltip();
+		switch (this.GetWidgetRow(widget_go).rowType)
 		{
 		case TableRow.RowType.Header:
 			tooltip.AddMultiStringTooltip(UI.TABLESCREENS.COLUMN_SORT_BY_NAME, null);
@@ -869,45 +909,81 @@ public class TableScreen : ShowOptimizedKScreen
 
 	protected string title;
 
+	protected bool has_default_duplicant_row = true;
 
+	protected bool useWorldDividers = true;
 
+	private bool rows_dirty;
 
+	protected Comparison<IAssignableIdentity> active_sort_method;
 
+	protected TableColumn active_sort_column;
 
+	protected bool sort_is_reversed;
 
+	private int active_cascade_coroutine_count;
 
+	private HandleVector<int>.Handle current_looping_sound = HandleVector<int>.InvalidHandle;
 
+	private bool incubating;
 
+	private int removeWorldHandle = -1;
 
+	protected Dictionary<string, TableColumn> columns = new Dictionary<string, TableColumn>();
 
+	public List<TableRow> rows = new List<TableRow>();
 
+	public List<TableRow> all_sortable_rows = new List<TableRow>();
 
+	public List<string> column_scrollers = new List<string>();
 
+	private Dictionary<GameObject, TableRow> known_widget_rows = new Dictionary<GameObject, TableRow>();
 
+	private Dictionary<GameObject, TableColumn> known_widget_columns = new Dictionary<GameObject, TableColumn>();
 
+	public GameObject prefab_row_empty;
 
+	public GameObject prefab_row_header;
 
+	public GameObject prefab_world_divider;
 
+	public GameObject prefab_scroller_border;
 
+	private string cascade_sound_path = GlobalAssets.GetSound("Placers_Unfurl_LP", false);
 
+	public KButton CloseButton;
 
+	[MyCmpGet]
 	private VerticalLayoutGroup VLG;
 
 	protected GameObject header_row;
 
+	protected GameObject default_row;
 
+	public LocText title_bar;
 
+	public Transform header_content_transform;
 
+	public Transform scroll_content_transform;
 
+	public Transform scroller_borders_transform;
 
+	public Dictionary<int, GameObject> worldDividers = new Dictionary<int, GameObject>();
 
+	private bool scrollersDirty;
 
+	private float targetScrollerPosition;
 
+	private Dictionary<IAssignableIdentity, bool> obsoleteMinionRowStatus = new Dictionary<IAssignableIdentity, bool>();
 
+	private Dictionary<int, bool> obsoleteWorldDividerStatus = new Dictionary<int, bool>();
 
+	public enum ResultValues
 	{
+		False,
 		Partial,
 		True,
 		ConditionalGroup,
 		NotApplicable
+	}
 }

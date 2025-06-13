@@ -107,7 +107,15 @@ public class TreeClimbStates : GameStateMachine<TreeClimbStates, TreeClimbStates
 
 		public void Toss(Pickupable pu)
 		{
-			Pickupable pickupable = pu.Take(Mathf.Min(1f, pu.UnreservedAmount));
+			Pickupable pickupable = null;
+			if (pu.PrimaryElement.MassPerUnit > 1f)
+			{
+				pickupable = pu.TakeUnit(1f);
+			}
+			else
+			{
+				pu.Take(Mathf.Min(1f, pu.UnreservedFetchAmount));
+			}
 			if (pickupable != null)
 			{
 				this.storage.Store(pickupable.gameObject, true, false, true, false);
@@ -123,6 +131,7 @@ public class TreeClimbStates : GameStateMachine<TreeClimbStates, TreeClimbStates
 			int num = Grid.PosToCell(position);
 			int num2 = Grid.CellAbove(num);
 			Vector2 zero;
+			if ((Grid.IsValidCell(num) && Grid.Solid[num]) || (Grid.IsValidCell(num2) && Grid.Solid[num2]))
 			{
 				zero = Vector2.zero;
 			}
@@ -144,9 +153,14 @@ public class TreeClimbStates : GameStateMachine<TreeClimbStates, TreeClimbStates
 		private static readonly Vector2 VEL_MIN = new Vector2(-1f, 2f);
 
 		private static readonly Vector2 VEL_MAX = new Vector2(1f, 4f);
+	}
 
+	public class ClimbState : GameStateMachine<TreeClimbStates, TreeClimbStates.Instance, IStateMachineTarget, TreeClimbStates.Def>.State
 	{
+		public GameStateMachine<TreeClimbStates, TreeClimbStates.Instance, IStateMachineTarget, TreeClimbStates.Def>.State pre;
 
 		public GameStateMachine<TreeClimbStates, TreeClimbStates.Instance, IStateMachineTarget, TreeClimbStates.Def>.State loop;
+
 		public GameStateMachine<TreeClimbStates, TreeClimbStates.Instance, IStateMachineTarget, TreeClimbStates.Def>.State pst;
+	}
 }

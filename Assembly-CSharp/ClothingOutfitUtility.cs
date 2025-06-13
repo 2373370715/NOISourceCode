@@ -101,7 +101,11 @@ public static class ClothingOutfitUtility
 			Personality personalityFromNameStringKey = Db.Get().Personalities.GetPersonalityFromNameStringKey(text3);
 			if (personalityFromNameStringKey.IsNullOrDestroyed())
 			{
-				DebugUtil.DevAssert(false, "<Loadings Outfit Error> Couldn't find personality \"" + text3 + "\" to apply outfit preferences", null);
+				DebugUtil.LogWarningArgs(new object[]
+				{
+					false,
+					"<Loadings Outfit Error> Couldn't find personality \"" + text3 + "\" to apply outfit preferences"
+				});
 			}
 			else if (text3 != personalityFromNameStringKey.Id)
 			{

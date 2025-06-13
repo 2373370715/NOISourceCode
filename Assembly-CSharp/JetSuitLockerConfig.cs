@@ -1,4 +1,5 @@
 ﻿using System;
+using STRINGS;
 using TUNING;
 using UnityEngine;
 
@@ -15,19 +16,20 @@ public class JetSuitLockerConfig : IBuildingConfig
 		string[] refined_METALS = MATERIALS.REFINED_METALS;
 		float[] construction_mass = new float[]
 		{
-			BUILDINGS.CONSTRUCTION_MASS_KG.TIER3[0]
+			TUNING.BUILDINGS.CONSTRUCTION_MASS_KG.TIER3[0]
 		};
 		string[] construction_materials = refined_METALS;
 		float melting_point = 1600f;
 		BuildLocationRule build_location_rule = BuildLocationRule.OnFloor;
 		EffectorValues none = NOISE_POLLUTION.NONE;
-		BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(id, width, height, anim, hitpoints, construction_time, construction_mass, construction_materials, melting_point, build_location_rule, BUILDINGS.DECOR.BONUS.TIER1, none, 0.2f);
+		BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(id, width, height, anim, hitpoints, construction_time, construction_mass, construction_materials, melting_point, build_location_rule, TUNING.BUILDINGS.DECOR.BONUS.TIER1, none, 0.2f);
 		buildingDef.RequiresPowerInput = true;
 		buildingDef.EnergyConsumptionWhenActive = 120f;
 		buildingDef.PreventIdleTraversalPastBuilding = true;
 		buildingDef.InputConduitType = ConduitType.Gas;
 		buildingDef.UtilityInputOffset = new CellOffset(0, 0);
 		GeneratedBuildings.RegisterWithOverlay(OverlayScreen.SuitIDs, "JetSuitLocker");
+		buildingDef.AddSearchTerms(SEARCH_TERMS.ATMOSUIT);
 		return buildingDef;
 	}
 

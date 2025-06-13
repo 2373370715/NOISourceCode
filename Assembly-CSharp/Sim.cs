@@ -31,6 +31,9 @@ public static class Sim
 	public unsafe static extern IntPtr SIM_HandleMessage(int sim_msg_id, int msg_length, byte* msg);
 
 	[DllImport("SimDLL")]
+	public unsafe static extern IntPtr SIM_HandleMessages(int sim_msg_id, int msg_length, int msg_count, byte* msg);
+
+	[DllImport("SimDLL")]
 	private unsafe static extern byte* SIM_BeginSave(int* size, int x, int y);
 
 	[DllImport("SimDLL")]
@@ -93,7 +96,7 @@ public static class Sim
 
 	public static void AllocateCells(int width, int height, bool headless = false)
 	{
-		using (MemoryStream memoryStream = new MemoryStream(8))
+		using (MemoryStream memoryStream = new MemoryStream(16))
 		{
 			using (BinaryWriter binaryWriter = new BinaryWriter(memoryStream))
 			{
@@ -243,7 +246,6 @@ public static class Sim
 
 	public const int PACKING_ALIGNMENT = 4;
 
-Invoke) Token: 0x06009527 RID: 38183
 	public delegate int GAME_MessageHandler(int message_id, IntPtr data);
 
 	[StructLayout(LayoutKind.Sequential, Pack = 4)]
@@ -562,7 +564,6 @@ Invoke) Token: 0x06009527 RID: 38183
 		};
 	}
 
-Invoke) Token: 0x06009539 RID: 38201
 	public delegate void GAME_Callback();
 
 	[StructLayout(LayoutKind.Sequential, Pack = 4)]

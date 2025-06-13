@@ -512,6 +512,5 @@ public class MaterialSelector : KScreen
 
 	private List<Tag> elementsToSort = new List<Tag>();
 
-Invoke) Token: 0x0600A229 RID: 41513
 	public delegate void SelectMaterialActions();
 }

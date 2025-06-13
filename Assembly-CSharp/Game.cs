@@ -183,7 +183,7 @@ public class Game : KMonoBehaviour
 		Singleton<CellChangeMonitor>.Instance.SetGridSize(Grid.WidthInCells, Grid.HeightInCells);
 		this.unlocks = base.GetComponent<Unlocks>();
 		this.changelistsPlayedOn = new List<uint>();
-		this.changelistsPlayedOn.Add(663500U);
+		this.changelistsPlayedOn.Add(674504U);
 		this.dateGenerated = System.DateTime.UtcNow.ToString("U", CultureInfo.InvariantCulture);
 	}
 
@@ -197,9 +197,38 @@ public class Game : KMonoBehaviour
 		return this.gameStarted;
 	}
 
+	private IEnumerator SanityCheckBoundsNextFrame()
+	{
+		yield return null;
+		using (List<WorldContainer>.Enumerator enumerator = ClusterManager.Instance.WorldContainers.GetEnumerator())
+		{
+			while (enumerator.MoveNext())
+			{
+				WorldContainer worldContainer = enumerator.Current;
+				if (worldContainer.IsDiscovered && !worldContainer.IsModuleInterior)
+				{
+					for (int i = worldContainer.WorldOffset.X; i < worldContainer.WorldOffset.X + worldContainer.WorldSize.X; i++)
+					{
+						for (int j = 0; j < Grid.TopBorderHeight; j++)
+						{
+							int num = Grid.XYToCell(i, worldContainer.WorldOffset.Y + worldContainer.WorldSize.Y - j);
+							if (Grid.IsSolidCell(num) && Grid.Element[num].id != SimHashes.Unobtanium)
+							{
+								SimMessages.Dig(num, -1, true);
+							}
+						}
+					}
+				}
+			}
+			yield break;
+		}
+		yield break;
+	}
+
 	private void UnsafePrefabInit()
 	{
 		this.StepTheSim(0f);
+		base.StartCoroutine(this.SanityCheckBoundsNextFrame());
 	}
 
 	protected override void OnLoadLevel()
@@ -434,8 +463,23 @@ public class Game : KMonoBehaviour
 					if (!this.solidChangedFilter.Contains(solidInfo.cellIdx))
 					{
 						this.solidInfo.Add(new SolidInfo(solidInfo.cellIdx, solidInfo.isSolid != 0));
-						bool solid = solidInfo.isSolid != 0;
-						Grid.SetSolid(solidInfo.cellIdx, solid, CellEventLogger.Instance.SimMessagesSolid);
+						bool flag = solidInfo.isSolid != 0;
+						Grid.SetSolid(solidInfo.cellIdx, flag, CellEventLogger.Instance.SimMessagesSolid);
+						if (flag && Grid.IsWorldValidCell(solidInfo.cellIdx))
+						{
+							int num = (int)Grid.WorldIdx[solidInfo.cellIdx];
+							if (num >= 0 && num < ClusterManager.Instance.WorldContainers.Count)
+							{
+								WorldContainer worldContainer = ClusterManager.Instance.WorldContainers[num];
+								int num2;
+								int num3;
+								Grid.CellToXY(solidInfo.cellIdx, out num2, out num3);
+								if (!worldContainer.IsModuleInterior && num3 > worldContainer.WorldOffset.Y + worldContainer.WorldSize.Y - Grid.TopBorderHeight)
+								{
+									SimMessages.Dig(solidInfo.cellIdx, -1, true);
+								}
+							}
+						}
 					}
 				}
 				for (int k = 0; k < ptr->numCallbackInfo; k++)
@@ -480,36 +524,36 @@ public class Game : KMonoBehaviour
 					element2.substance.SpawnResource(position, spawnOreInfo2.mass, spawnOreInfo2.temperature, spawnOreInfo2.diseaseIdx, spawnOreInfo2.diseaseCount, false, false, false);
 				}
 				int numSpawnFXInfo = ptr->numSpawnFXInfo;
-				for (int num = 0; num < numSpawnFXInfo; num++)
+				for (int num4 = 0; num4 < numSpawnFXInfo; num4++)
 				{
-					Sim.SpawnFXInfo spawnFXInfo = ptr->spawnFXInfo[num];
+					Sim.SpawnFXInfo spawnFXInfo = ptr->spawnFXInfo[num4];
 					this.SpawnFX((SpawnFXHashes)spawnFXInfo.fxHash, spawnFXInfo.cellIdx, spawnFXInfo.rotation);
 				}
 				UnstableGroundManager component2 = this.world.GetComponent<UnstableGroundManager>();
 				int numUnstableCellInfo = ptr->numUnstableCellInfo;
-				for (int num2 = 0; num2 < numUnstableCellInfo; num2++)
+				for (int num5 = 0; num5 < numUnstableCellInfo; num5++)
 				{
-					Sim.UnstableCellInfo unstableCellInfo = ptr->unstableCellInfo[num2];
+					Sim.UnstableCellInfo unstableCellInfo = ptr->unstableCellInfo[num5];
 					if (unstableCellInfo.fallingInfo == 0)
 					{
 						component2.Spawn(unstableCellInfo.cellIdx, ElementLoader.elements[(int)unstableCellInfo.elemIdx], unstableCellInfo.mass, unstableCellInfo.temperature, unstableCellInfo.diseaseIdx, unstableCellInfo.diseaseCount);
 					}
 				}
 				int numWorldDamageInfo = ptr->numWorldDamageInfo;
-				for (int num3 = 0; num3 < numWorldDamageInfo; num3++)
+				for (int num6 = 0; num6 < numWorldDamageInfo; num6++)
 				{
-					Sim.WorldDamageInfo damage_info = ptr->worldDamageInfo[num3];
+					Sim.WorldDamageInfo damage_info = ptr->worldDamageInfo[num6];
 					WorldDamage.Instance.ApplyDamage(damage_info);
 				}
-				for (int num4 = 0; num4 < ptr->numRemovedMassEntries; num4++)
+				for (int num7 = 0; num7 < ptr->numRemovedMassEntries; num7++)
 				{
-					ElementConsumer.AddMass(ptr->removedMassEntries[num4]);
+					ElementConsumer.AddMass(ptr->removedMassEntries[num7]);
 				}
 				int numMassConsumedCallbacks = ptr->numMassConsumedCallbacks;
 				HandleVector<Game.ComplexCallbackInfo<Sim.MassConsumedCallback>>.Handle handle2 = default(HandleVector<Game.ComplexCallbackInfo<Sim.MassConsumedCallback>>.Handle);
-				for (int num5 = 0; num5 < numMassConsumedCallbacks; num5++)
+				for (int num8 = 0; num8 < numMassConsumedCallbacks; num8++)
 				{
-					Sim.MassConsumedCallback massConsumedCallback = ptr->massConsumedCallbacks[num5];
+					Sim.MassConsumedCallback massConsumedCallback = ptr->massConsumedCallbacks[num8];
 					handle2.index = massConsumedCallback.callbackIdx;
 					Game.ComplexCallbackInfo<Sim.MassConsumedCallback> complexCallbackInfo = this.massConsumedCallbackManager.Release(handle2, "massConsumedCB");
 					if (complexCallbackInfo.cb != null)
@@ -519,9 +563,9 @@ public class Game : KMonoBehaviour
 				}
 				int numMassEmittedCallbacks = ptr->numMassEmittedCallbacks;
 				HandleVector<Game.ComplexCallbackInfo<Sim.MassEmittedCallback>>.Handle handle3 = default(HandleVector<Game.ComplexCallbackInfo<Sim.MassEmittedCallback>>.Handle);
-				for (int num6 = 0; num6 < numMassEmittedCallbacks; num6++)
+				for (int num9 = 0; num9 < numMassEmittedCallbacks; num9++)
 				{
-					Sim.MassEmittedCallback massEmittedCallback = ptr->massEmittedCallbacks[num6];
+					Sim.MassEmittedCallback massEmittedCallback = ptr->massEmittedCallbacks[num9];
 					handle3.index = massEmittedCallback.callbackIdx;
 					if (this.massEmitCallbackManager.IsVersionValid(handle3))
 					{
@@ -534,9 +578,9 @@ public class Game : KMonoBehaviour
 				}
 				int numDiseaseConsumptionCallbacks = ptr->numDiseaseConsumptionCallbacks;
 				HandleVector<Game.ComplexCallbackInfo<Sim.DiseaseConsumptionCallback>>.Handle handle4 = default(HandleVector<Game.ComplexCallbackInfo<Sim.DiseaseConsumptionCallback>>.Handle);
-				for (int num7 = 0; num7 < numDiseaseConsumptionCallbacks; num7++)
+				for (int num10 = 0; num10 < numDiseaseConsumptionCallbacks; num10++)
 				{
-					Sim.DiseaseConsumptionCallback diseaseConsumptionCallback = ptr->diseaseConsumptionCallbacks[num7];
+					Sim.DiseaseConsumptionCallback diseaseConsumptionCallback = ptr->diseaseConsumptionCallbacks[num10];
 					handle4.index = diseaseConsumptionCallback.callbackIdx;
 					if (this.diseaseConsumptionCallbackManager.IsVersionValid(handle4))
 					{
@@ -549,9 +593,9 @@ public class Game : KMonoBehaviour
 				}
 				int numComponentStateChangedMessages = ptr->numComponentStateChangedMessages;
 				HandleVector<Game.ComplexCallbackInfo<int>>.Handle handle5 = default(HandleVector<Game.ComplexCallbackInfo<int>>.Handle);
-				for (int num8 = 0; num8 < numComponentStateChangedMessages; num8++)
+				for (int num11 = 0; num11 < numComponentStateChangedMessages; num11++)
 				{
-					Sim.ComponentStateChangedMessage componentStateChangedMessage = ptr->componentStateChangedMessages[num8];
+					Sim.ComponentStateChangedMessage componentStateChangedMessage = ptr->componentStateChangedMessages[num11];
 					handle5.index = componentStateChangedMessage.callbackIdx;
 					if (this.simComponentCallbackManager.IsVersionValid(handle5))
 					{
@@ -564,9 +608,9 @@ public class Game : KMonoBehaviour
 				}
 				int numRadiationConsumedCallbacks = ptr->numRadiationConsumedCallbacks;
 				HandleVector<Game.ComplexCallbackInfo<Sim.ConsumedRadiationCallback>>.Handle handle6 = default(HandleVector<Game.ComplexCallbackInfo<Sim.ConsumedRadiationCallback>>.Handle);
-				for (int num9 = 0; num9 < numRadiationConsumedCallbacks; num9++)
+				for (int num12 = 0; num12 < numRadiationConsumedCallbacks; num12++)
 				{
-					Sim.ConsumedRadiationCallback consumedRadiationCallback = ptr->radiationConsumedCallbacks[num9];
+					Sim.ConsumedRadiationCallback consumedRadiationCallback = ptr->radiationConsumedCallbacks[num12];
 					handle6.index = consumedRadiationCallback.callbackIdx;
 					Game.ComplexCallbackInfo<Sim.ConsumedRadiationCallback> complexCallbackInfo3 = this.radiationConsumedCallbackManager.Release(handle6, "radiationConsumedCB");
 					if (complexCallbackInfo3.cb != null)
@@ -575,29 +619,29 @@ public class Game : KMonoBehaviour
 					}
 				}
 				int numElementChunkMeltedInfos = ptr->numElementChunkMeltedInfos;
-				for (int num10 = 0; num10 < numElementChunkMeltedInfos; num10++)
+				for (int num13 = 0; num13 < numElementChunkMeltedInfos; num13++)
 				{
-					SimTemperatureTransfer.DoOreMeltTransition(ptr->elementChunkMeltedInfos[num10].handle);
+					SimTemperatureTransfer.DoOreMeltTransition(ptr->elementChunkMeltedInfos[num13].handle);
 				}
 				int numBuildingOverheatInfos = ptr->numBuildingOverheatInfos;
-				for (int num11 = 0; num11 < numBuildingOverheatInfos; num11++)
+				for (int num14 = 0; num14 < numBuildingOverheatInfos; num14++)
 				{
-					StructureTemperatureComponents.DoOverheat(ptr->buildingOverheatInfos[num11].handle);
+					StructureTemperatureComponents.DoOverheat(ptr->buildingOverheatInfos[num14].handle);
 				}
 				int numBuildingNoLongerOverheatedInfos = ptr->numBuildingNoLongerOverheatedInfos;
-				for (int num12 = 0; num12 < numBuildingNoLongerOverheatedInfos; num12++)
+				for (int num15 = 0; num15 < numBuildingNoLongerOverheatedInfos; num15++)
 				{
-					StructureTemperatureComponents.DoNoLongerOverheated(ptr->buildingNoLongerOverheatedInfos[num12].handle);
+					StructureTemperatureComponents.DoNoLongerOverheated(ptr->buildingNoLongerOverheatedInfos[num15].handle);
 				}
 				int numBuildingMeltedInfos = ptr->numBuildingMeltedInfos;
-				for (int num13 = 0; num13 < numBuildingMeltedInfos; num13++)
+				for (int num16 = 0; num16 < numBuildingMeltedInfos; num16++)
 				{
-					StructureTemperatureComponents.DoStateTransition(ptr->buildingMeltedInfos[num13].handle);
+					StructureTemperatureComponents.DoStateTransition(ptr->buildingMeltedInfos[num16].handle);
 				}
 				int numCellMeltedInfos = ptr->numCellMeltedInfos;
-				for (int num14 = 0; num14 < numCellMeltedInfos; num14++)
+				for (int num17 = 0; num17 < numCellMeltedInfos; num17++)
 				{
-					int gameCell = ptr->cellMeltedInfos[num14].gameCell;
+					int gameCell = ptr->cellMeltedInfos[num17].gameCell;
 					GameObject gameObject = Grid.Objects[gameCell, 9];
 					if (gameObject != null)
 					{
@@ -696,6 +740,7 @@ public class Game : KMonoBehaviour
 		{
 			return;
 		}
+		SuperluminalPerf.BeginEvent("Game.Update", null);
 		float deltaTime = Time.deltaTime;
 		if (global::Debug.developerConsoleVisible)
 		{
@@ -714,6 +759,7 @@ public class Game : KMonoBehaviour
 		Pathfinding.Instance.RenderEveryTick();
 		Singleton<CellChangeMonitor>.Instance.RenderEveryTick();
 		this.SimEveryTick(deltaTime);
+		SuperluminalPerf.EndEvent();
 	}
 
 	private void SimEveryTick(float dt)
@@ -837,6 +883,7 @@ public class Game : KMonoBehaviour
 
 	private void LateUpdate()
 	{
+		SuperluminalPerf.BeginEvent("Game.LateUpdate", null);
 		if (this.OnSpawnComplete != null)
 		{
 			this.OnSpawnComplete();
@@ -906,7 +953,7 @@ public class Game : KMonoBehaviour
 		WorldContainer activeWorld = ClusterManager.Instance.activeWorld;
 		Vector2I worldOffset = activeWorld.WorldOffset;
 		Vector2I worldSize = activeWorld.WorldSize;
-		Vector4 value = new Vector4((vector.x - (float)worldOffset.x) / (float)worldSize.x, (vector.y - (float)worldOffset.y) / (float)worldSize.y, (vector2.x - vector.x) / (float)worldSize.x, (vector2.y - vector.y) / (float)worldSize.y);
+		Vector4 value = new Vector4((vector.x - (float)worldOffset.x) / (float)worldSize.x, (vector.y - (float)worldOffset.y) / (float)(worldSize.y - activeWorld.HiddenYOffset), (vector2.x - vector.x) / (float)worldSize.x, (vector2.y - vector.y) / (float)(worldSize.y - activeWorld.HiddenYOffset));
 		Shader.SetGlobalVector("_WsToCcs", value);
 		if (this.drawStatusItems)
 		{
@@ -925,6 +972,7 @@ public class Game : KMonoBehaviour
 			}
 		}
 		KFMOD.RenderEveryTick(Time.deltaTime);
+		SuperluminalPerf.EndEvent();
 		if (GenericGameSettings.instance.performanceCapture.waitTime != 0f)
 		{
 			this.UpdatePerformanceCapture();
@@ -941,7 +989,7 @@ public class Game : KMonoBehaviour
 		{
 			return;
 		}
-		uint num = 663500U;
+		uint num = 674504U;
 		string text = System.DateTime.Now.ToShortDateString();
 		string text2 = System.DateTime.Now.ToShortTimeString();
 		string fileName = Path.GetFileName(GenericGameSettings.instance.performanceCapture.saveGame);
@@ -1177,9 +1225,9 @@ public class Game : KMonoBehaviour
 		gameSaveData.savedInfo = this.savedInfo;
 		global::Debug.Assert(gameSaveData.worldDetail != null, "World detail null");
 		gameSaveData.dateGenerated = this.dateGenerated;
-		if (!this.changelistsPlayedOn.Contains(663500U))
+		if (!this.changelistsPlayedOn.Contains(674504U))
 		{
-			this.changelistsPlayedOn.Add(663500U);
+			this.changelistsPlayedOn.Add(674504U);
 		}
 		gameSaveData.changelistsPlayedOn = this.changelistsPlayedOn;
 		if (this.OnSave != null)
@@ -2270,16 +2318,12 @@ public class Game : KMonoBehaviour
 		public List<uint> changelistsPlayedOn;
 	}
 
-Invoke) Token: 0x0600655E RID: 25950
 	public delegate void CansaveCB();
 
-Invoke) Token: 0x06006562 RID: 25954
 	public delegate void SavingPreCB(Game.CansaveCB cb);
 
-Invoke) Token: 0x06006566 RID: 25958
 	public delegate void SavingActiveCB();
 
-Invoke) Token: 0x0600656A RID: 25962
 	public delegate void SavingPostCB();
 
 	[Serializable]

@@ -15,10 +15,33 @@ public class Uprootable : Workable, IDigActionEntity
 		}
 	}
 
+	public bool CanUproot()
+	{
+		return this.canBeUprooted && !this.uprootComplete;
+	}
+
+	public static bool CanUproot(GameObject plant, out Uprootable uprootable)
+	{
+		if (plant == null)
+		{
+			uprootable = null;
+			return false;
+		}
+		uprootable = plant.GetComponent<Uprootable>();
+		return uprootable != null && uprootable.CanUproot();
+	}
+
+	public static bool CanUproot(GameObject plant)
+	{
+		Uprootable uprootable;
+		return Uprootable.CanUproot(plant, out uprootable);
+	}
+
 	public Storage GetPlanterStorage
 	{
 		get
 		{
+			return this.planterStorage;
 		}
 	}
 
@@ -29,11 +52,13 @@ public class Uprootable : Workable, IDigActionEntity
 		this.buttonTooltip = UI.USERMENUACTIONS.UPROOT.TOOLTIP;
 		this.cancelButtonLabel = UI.USERMENUACTIONS.CANCELUPROOT.NAME;
 		this.cancelButtonTooltip = UI.USERMENUACTIONS.CANCELUPROOT.TOOLTIP;
+		this.pendingStatusItem = Db.Get().MiscStatusItems.PendingUproot;
 		this.workerStatusItem = Db.Get().DuplicantStatusItems.Uprooting;
 	}
 
 	protected override void OnPrefabInit()
 	{
+		base.OnPrefabInit();
 		this.pendingStatusItem = Db.Get().MiscStatusItems.PendingUproot;
 		this.workerStatusItem = Db.Get().DuplicantStatusItems.Uprooting;
 		this.attributeConverter = Db.Get().AttributeConverters.HarvestSpeed;
@@ -43,6 +68,7 @@ public class Uprootable : Workable, IDigActionEntity
 		this.multitoolContext = "harvest";
 		this.multitoolHitEffectTag = "fx_harvest_splash";
 		base.Subscribe<Uprootable>(1309017699, Uprootable.OnPlanterStorageDelegate);
+	}
 
 	protected override void OnSpawn()
 	{
@@ -53,10 +79,12 @@ public class Uprootable : Workable, IDigActionEntity
 		base.Subscribe<Uprootable>(493375141, Uprootable.OnRefreshUserMenuDelegate);
 		this.faceTargetWhenWorking = true;
 		Components.Uprootables.Add(this);
+		this.area = base.GetComponent<OccupyArea>();
 		Prioritizable.AddRef(base.gameObject);
 		base.gameObject.AddTag(GameTags.Plant);
 		Extents extents = new Extents(Grid.PosToCell(base.gameObject), base.gameObject.GetComponent<OccupyArea>().OccupiedCellsOffsets);
 		this.partitionerEntry = GameScenePartitioner.Instance.Add(base.gameObject.name, base.gameObject.GetComponent<KPrefabID>(), extents, GameScenePartitioner.Instance.plants, null);
+		GameScenePartitioner.Instance.TriggerEvent(extents, GameScenePartitioner.Instance.plantsChangedLayer, this);
 		if (this.isMarkedForUproot)
 		{
 			this.MarkForUproot(true);
@@ -66,6 +94,7 @@ public class Uprootable : Workable, IDigActionEntity
 	private void OnPlanterStorage(object data)
 	{
 		this.planterStorage = (Storage)data;
+		Prioritizable component = base.GetComponent<Prioritizable>();
 		if (component != null)
 		{
 			component.showIcon = (this.planterStorage == null);
@@ -85,6 +114,7 @@ public class Uprootable : Workable, IDigActionEntity
 		base.Trigger(-216549700, this);
 		base.GetComponent<KSelectable>().RemoveStatusItem(Db.Get().MiscStatusItems.PendingUproot, false);
 		base.GetComponent<KSelectable>().RemoveStatusItem(Db.Get().MiscStatusItems.Operating, false);
+		Game.Instance.userMenu.Refresh(base.gameObject);
 	}
 
 	public void SetCanBeUprooted(bool state)
@@ -94,10 +124,12 @@ public class Uprootable : Workable, IDigActionEntity
 		{
 			this.SetUprootedComplete(false);
 		}
+		Game.Instance.userMenu.Refresh(base.gameObject);
 	}
 
 	public void SetUprootedComplete(bool state)
 	{
+		this.uprootComplete = state;
 	}
 
 	public void MarkForUproot(bool instantOnDebug = true)
@@ -108,19 +140,23 @@ public class Uprootable : Workable, IDigActionEntity
 		}
 		if (DebugHandler.InstantBuildMode && instantOnDebug)
 		{
+			this.Uproot();
 		}
 		else if (this.chore == null)
 		{
-			this.chore = new WorkChore<Uprootable>(Db.Get().ChoreTypes.Uproot, this, null, true, null, null, null, true, null, false, true, null, false, true, true, PriorityScreen.PriorityClass.basic, 5, false, true);
+			ChoreType chore_type = this.choreTypeIdHash.IsValid ? Db.Get().ChoreTypes.GetByHash(this.choreTypeIdHash) : Db.Get().ChoreTypes.Uproot;
+			this.chore = new WorkChore<Uprootable>(chore_type, this, null, true, null, null, null, true, null, false, true, null, false, true, true, PriorityScreen.PriorityClass.basic, 5, false, true);
 			base.GetComponent<KSelectable>().AddStatusItem(this.pendingStatusItem, this);
 		}
 		this.isMarkedForUproot = true;
 	}
 
+	protected override void OnCompleteWork(WorkerBase worker)
 	{
 		this.Uproot();
 	}
 
+	private void OnCancel(object data)
 	{
 		if (this.chore != null)
 		{
@@ -129,7 +165,9 @@ public class Uprootable : Workable, IDigActionEntity
 			base.GetComponent<KSelectable>().RemoveStatusItem(Db.Get().MiscStatusItems.PendingUproot, false);
 		}
 		this.isMarkedForUproot = false;
+		this.choreTypeIdHash = HashedString.Invalid;
 		Game.Instance.userMenu.Refresh(base.gameObject);
+		base.Trigger(1198393204, null);
 	}
 
 	public bool HasChore()
@@ -138,10 +176,12 @@ public class Uprootable : Workable, IDigActionEntity
 	}
 
 	private void OnClickUproot()
+	{
 		this.MarkForUproot(true);
 	}
 
 	protected void OnClickCancelUproot()
+	{
 		this.OnCancel(null);
 	}
 
@@ -154,27 +194,34 @@ public class Uprootable : Workable, IDigActionEntity
 	{
 		if (!this.showUserMenuButtons)
 		{
+			return;
 		}
 		if (this.uprootComplete)
 		{
 			if (this.deselectOnUproot)
 			{
+				KSelectable component = base.GetComponent<KSelectable>();
 				if (component != null && SelectTool.Instance.selected == component)
 				{
 					SelectTool.Instance.Select(null, false);
 				}
 			}
+			return;
 		}
 		if (!this.canBeUprooted)
 		{
 			return;
 		}
+		KIconButtonMenu.ButtonInfo button = (this.chore != null) ? new KIconButtonMenu.ButtonInfo("action_uproot", this.cancelButtonLabel, new System.Action(this.OnClickCancelUproot), global::Action.NumActions, null, null, null, this.cancelButtonTooltip, true) : new KIconButtonMenu.ButtonInfo("action_uproot", this.buttonLabel, new System.Action(this.OnClickUproot), global::Action.NumActions, null, null, null, this.buttonTooltip, true);
 		Game.Instance.userMenu.AddButton(base.gameObject, button, 1f);
 	}
 
 	protected override void OnCleanUp()
+	{
 		base.OnCleanUp();
+		Extents extents = new Extents(Grid.PosToCell(base.gameObject), base.gameObject.GetComponent<OccupyArea>().OccupiedCellsOffsets);
 		GameScenePartitioner.Instance.Free(ref this.partitionerEntry);
+		GameScenePartitioner.Instance.TriggerEvent(extents, GameScenePartitioner.Instance.plantsChangedLayer, this);
 		Components.Uprootables.Remove(this);
 	}
 
@@ -195,39 +242,58 @@ public class Uprootable : Workable, IDigActionEntity
 	}
 
 	[Serialize]
+	protected bool isMarkedForUproot;
 
 	protected bool uprootComplete;
 
 	[MyCmpReq]
 	private Prioritizable prioritizable;
 
+	[SerializeField]
+	public HashedString choreTypeIdHash;
+
+	[Serialize]
 	protected bool canBeUprooted = true;
 
 	public bool deselectOnUproot = true;
 
+	protected Chore chore;
 
 	private string buttonLabel;
 
+	private string buttonTooltip;
 
 	private string cancelButtonLabel;
 
+	private string cancelButtonTooltip;
 
 	private StatusItem pendingStatusItem;
+
 	public OccupyArea area;
+
 	private Storage planterStorage;
 
 	public bool showUserMenuButtons = true;
 
+	public HandleVector<int>.Handle partitionerEntry;
 
 	private static readonly EventSystem.IntraObjectHandler<Uprootable> OnPlanterStorageDelegate = new EventSystem.IntraObjectHandler<Uprootable>(delegate(Uprootable component, object data)
+	{
 		component.OnPlanterStorage(data);
 	});
+
 	private static readonly EventSystem.IntraObjectHandler<Uprootable> ForceCancelUprootDelegate = new EventSystem.IntraObjectHandler<Uprootable>(delegate(Uprootable component, object data)
+	{
 		component.ForceCancelUproot(data);
 	});
+
 	private static readonly EventSystem.IntraObjectHandler<Uprootable> OnCancelDelegate = new EventSystem.IntraObjectHandler<Uprootable>(delegate(Uprootable component, object data)
+	{
 		component.OnCancel(data);
 	});
+
 	private static readonly EventSystem.IntraObjectHandler<Uprootable> OnRefreshUserMenuDelegate = new EventSystem.IntraObjectHandler<Uprootable>(delegate(Uprootable component, object data)
+	{
 		component.OnRefreshUserMenu(data);
 	});
+}

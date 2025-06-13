@@ -362,13 +362,10 @@ public class MaterialSelectionPanel : KScreen, IRender200ms
 
 	private List<int> gameSubscriptionHandles = new List<int>();
 
-Invoke) Token: 0x0600A200 RID: 41472
 	public delegate bool GetBuildableStateDelegate(BuildingDef def);
 
-Invoke) Token: 0x0600A204 RID: 41476
 	public delegate string GetBuildableTooltipDelegate(BuildingDef def);
 
-Invoke) Token: 0x0600A208 RID: 41480
 	public delegate void SelectElement(Element element, float kgAvailable, float recipe_amount);
 
 	public struct SelectedElemInfo

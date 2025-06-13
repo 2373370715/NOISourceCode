@@ -271,10 +271,8 @@ public class KButtonMenu : KScreen
 
 		public object userData;
 
-Invoke) Token: 0x06009D75 RID: 40309
 		public delegate void HoverCallback(GameObject hoverTarget);
 
-Invoke) Token: 0x06009D79 RID: 40313
 		public delegate void Callback();
 	}
 }

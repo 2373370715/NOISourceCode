@@ -155,6 +155,10 @@ namespace Klei.AI
 						SimAndRenderScheduler.instance.Add(this, this.simRenderLoadBalance);
 					}
 				}
+				if (newEffect.tag != null)
+				{
+					base.GetComponent<KPrefabID>().AddTag(newEffect.tag.Value, false);
+				}
 				base.Trigger(-1901442097, newEffect);
 			}
 			effectInstance.timeRemaining = newEffect.duration;
@@ -200,6 +204,10 @@ namespace Klei.AI
 					int index2 = this.effects.Count - 1;
 					this.effects[j] = this.effects[index2];
 					this.effects.RemoveAt(index2);
+					if (effect.tag != null)
+					{
+						base.GetComponent<KPrefabID>().RemoveTag(effect.tag.Value);
+					}
 					base.Trigger(-1157678353, effect);
 					return;
 				}

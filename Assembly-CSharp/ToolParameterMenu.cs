@@ -5,8 +5,6 @@ using UnityEngine;
 [AddComponentMenu("KMonoBehaviour/scripts/ToolParameterMenu")]
 public class ToolParameterMenu : KMonoBehaviour
 {
-add) Token: 0x0600B201 RID: 45569 RVA: 0x0043B618 File Offset: 0x00439818
-remove) Token: 0x0600B202 RID: 45570 RVA: 0x0043B650 File Offset: 0x00439850
 	public event System.Action onParametersChanged;
 
 	protected override void OnPrefabInit()

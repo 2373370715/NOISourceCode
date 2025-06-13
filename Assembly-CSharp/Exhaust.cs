@@ -193,6 +193,5 @@ public class Exhaust : KMonoBehaviour, ISim200ms
 		FallingWater.instance.AddParticle(cell, primary_element.Element.idx, primary_element.Mass, primary_element.Temperature, primary_element.DiseaseIdx, primary_element.DiseaseCount, true, false, true, false);
 	};
 
-Invoke) Token: 0x06006402 RID: 25602
 	private delegate void EmitDelegate(int cell, PrimaryElement primary_element);
 }

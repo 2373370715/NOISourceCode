@@ -421,7 +421,6 @@ public class MinionBrowserScreen : KMonoBehaviour
 		[NonSerialized]
 		private MinionBrowserScreen.CyclerUI.OnSelectedFn[] cycleOptions;
 
-Invoke) Token: 0x0600A371 RID: 41841
 		public delegate void OnSelectedFn();
 	}
 

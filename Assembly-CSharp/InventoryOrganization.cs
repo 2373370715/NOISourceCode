@@ -187,7 +187,11 @@ public static class InventoryOrganization
 			"Bed_ada_science_lab",
 			"Bed_stringlights",
 			"permit_bed_jorge",
-			"permit_bed_cottage"
+			"permit_bed_cottage",
+			"permit_bed_rock",
+			"permit_bed_mimica",
+			"permit_bed_paculacanth",
+			"permit_bed_raptor"
 		});
 		InventoryOrganization.AddSubcategory("BUILDINGS_BED_LUXURY", Def.GetUISprite("LuxuryBed", "ui", false).first, 300, new string[]
 		{
@@ -339,7 +343,22 @@ public static class InventoryOrganization
 			"permit_walls_circuit_lightcobalt",
 			"permit_walls_circuit_bogey",
 			"permit_walls_circuit_punk",
-			"permit_walls_arcade"
+			"permit_walls_arcade",
+			"permit_walls_chameleo",
+			"permit_walls_paculacanth",
+			"permit_walls_raptor",
+			"permit_walls_stego",
+			"permit_walls_fossil_chameleo",
+			"permit_walls_fossil_paculacanth",
+			"permit_walls_fossil_raptor",
+			"permit_walls_fossil_stego",
+			"permit_walls_closeup_chameleo",
+			"permit_walls_closeup_paculacanth",
+			"permit_walls_closeup_raptor",
+			"permit_walls_closeup_stego",
+			"permit_walls_closeup_mimika",
+			"permit_walls_silhouette_prehistoriccritters",
+			"permit_walls_prehistoriccritters"
 		});
 		InventoryOrganization.AddSubcategory("BUILDINGS_RECREATION", Def.GetUISprite("WaterCooler", "ui", false).first, 700, new string[]
 		{
@@ -350,6 +369,7 @@ public static class InventoryOrganization
 			"permit_pedestal_battery",
 			"MassageTable_shiatsu",
 			"MassageTable_balloon",
+			"permit_masseur_prehistoric",
 			"WaterCooler_round_body",
 			"WaterCooler_balloon",
 			"WaterCooler_yellow_tartar",
@@ -363,7 +383,8 @@ public static class InventoryOrganization
 		InventoryOrganization.AddSubcategory("BUILDINGS_PRINTING_POD", Def.GetUISprite("Headquarters", "ui", false).first, 750, new string[]
 		{
 			"permit_headquarters_ceres",
-			"permit_hqbase_cyberpunk"
+			"permit_hqbase_cyberpunk",
+			"permit_hqbase_dino"
 		});
 		InventoryOrganization.AddSubcategory("BUILDINGS_STORAGE", Def.GetUISprite("StorageLocker", "ui", false).first, 800, new string[]
 		{
@@ -391,7 +412,9 @@ public static class InventoryOrganization
 			"GasReservoir_green_mush",
 			"GasReservoir_red_rose",
 			"GasReservoir_purple_brainfat",
-			"permit_smartstoragelocker_gravitas"
+			"permit_smartstoragelocker_gravitas",
+			"permit_gasstorage_dartle",
+			"permit_gasstorage_lumb"
 		});
 		InventoryOrganization.AddSubcategory("BUILDINGS_INDUSTRIAL", Def.GetUISprite("RockCrusher", "ui", false).first, 800, new string[]
 		{
@@ -402,7 +425,8 @@ public static class InventoryOrganization
 			"RockCrusher_chomp",
 			"RockCrusher_gears",
 			"RockCrusher_balloon",
-			"permit_craftingstation_cyberpunk"
+			"permit_craftingstation_cyberpunk",
+			"permit_milkpress_stego"
 		});
 		InventoryOrganization.AddSubcategory("BUILDINGS_FOOD", Def.GetUISprite("EggCracker", "ui", false).first, 800, new string[]
 		{
@@ -419,7 +443,8 @@ public static class InventoryOrganization
 		});
 		InventoryOrganization.AddSubcategory("BUILDINGS_RANCHING", Def.GetUISprite("RanchStation", "ui", false).first, 800, new string[]
 		{
-			"permit_rancherstation_cottage"
+			"permit_rancherstation_cottage",
+			"permit_rancherstation_dino"
 		});
 		InventoryOrganization.AddSubcategory("BUILDINGS_AUTOMATION", Def.GetUISprite("LogicWire", "ui", false).first, 800, new string[]
 		{
@@ -473,7 +498,8 @@ public static class InventoryOrganization
 			"permit_utilities_electric_conduct_scale_lime",
 			"permit_utilityelectricbridgeconductive_scale_lime",
 			"permit_utilityelectricbridgeconductive_net_pink",
-			"permit_utilityelectricbridgeconductive_diamond_orchid"
+			"permit_utilityelectricbridgeconductive_diamond_orchid",
+			"permit_generatormanual_rock"
 		});
 		InventoryOrganization.AddSubcategory("BUILDINGS_RESEARCH", Def.GetUISprite("ResearchCenter", "ui", false).first, 800, new string[]
 		{
@@ -517,7 +543,9 @@ public static class InventoryOrganization
 			"BalloonCandyOrange",
 			"BalloonCandyStrawberry",
 			"BalloonCandyWatermelon",
-			"BalloonHandGold"
+			"BalloonHandGold",
+			"permit_balloon_babystego_egg",
+			"permit_balloon_babyrhex_egg"
 		});
 		InventoryOrganization.AddSubcategory("JOY_STICKER", Db.Get().Permits.StickerBombs[0].GetPermitPresentationInfo().sprite, 200, new string[]
 		{
@@ -577,7 +605,8 @@ public static class InventoryOrganization
 			"Canvas_Good14",
 			"Canvas_Good15",
 			"Canvas_Good16",
-			"permit_painting_art_ceres_a"
+			"permit_painting_art_ceres_a",
+			"permit_painting_art_stego"
 		});
 		InventoryOrganization.AddSubcategory("BUILDING_CANVAS_PORTRAIT", Def.GetUISprite("CanvasTall", "ui", false).first, 200, new string[]
 		{
@@ -613,7 +642,8 @@ public static class InventoryOrganization
 			"CanvasWide_Good10",
 			"CanvasWide_Good11",
 			"CanvasWide_Good13",
-			"permit_painting_wide_art_ceres_a"
+			"permit_painting_wide_art_ceres_a",
+			"permit_painting_wide_art_rhex"
 		});
 		InventoryOrganization.AddSubcategory("BUILDING_SCULPTURE", Def.GetUISprite("Sculpture", "ui", false).first, 400, new string[]
 		{
@@ -663,9 +693,13 @@ public static class InventoryOrganization
 			"permit_sculpture_wood_amazing_action_wood_deer",
 			"permit_icesculpture_amazing_idle_seal",
 			"permit_icesculpture_amazing_idle_bammoth",
-			"permit_icesculpture_amazing_idle_wood_deer"
+			"permit_icesculpture_amazing_idle_wood_deer",
+			"permit_fossilsculpture_idle_stego",
+			"permit_fossilsculpture_idle_rhex",
+			"permit_fossilsculpture_idle_jawbo",
+			"permit_fossilsculpture_idle_shellonoidis"
 		});
-		InventoryOrganization.AddSubcategory("MONUMENT_BOTTOM", Def.GetUISprite("MonumentBottom", "ui", false).first, 300, new string[]
+		InventoryOrganization.AddSubcategory("MONUMENT_BOTTOM", Def.GetUISprite("MonumentBottom", "ui", false).first, 700, new string[]
 		{
 			"bottom_option_a",
 			"bottom_option_b",
@@ -694,7 +728,7 @@ public static class InventoryOrganization
 			"permit_monument_base_b_bionic",
 			"permit_monument_base_c_bionic"
 		});
-		InventoryOrganization.AddSubcategory("MONUMENT_MIDDLE", Def.GetUISprite("MonumentMiddle", "ui", false).first, 300, new string[]
+		InventoryOrganization.AddSubcategory("MONUMENT_MIDDLE", Def.GetUISprite("MonumentMiddle", "ui", false).first, 600, new string[]
 		{
 			"mid_option_a",
 			"mid_option_b",
@@ -718,7 +752,7 @@ public static class InventoryOrganization
 			"permit_monument_mid_b_bionic",
 			"permit_monument_mid_c_bionic"
 		});
-		InventoryOrganization.AddSubcategory("MONUMENT_TOP", Def.GetUISprite("MonumentTop", "ui", false).first, 300, new string[]
+		InventoryOrganization.AddSubcategory("MONUMENT_TOP", Def.GetUISprite("MonumentTop", "ui", false).first, 500, new string[]
 		{
 			"top_option_a",
 			"top_option_b",
@@ -751,7 +785,8 @@ public static class InventoryOrganization
 			"permit_monument_upper_c_frosty",
 			"permit_monument_upper_a_bionic",
 			"permit_monument_upper_b_bionic",
-			"permit_monument_upper_c_bionic"
+			"permit_monument_upper_c_bionic",
+			"permit_monument_upper_a_prehistoric"
 		});
 		InventoryOrganization.AddSubcategory("CLOTHING_TOPS_BASIC", Assets.GetSprite("icon_inventory_basic_shirts"), 100, new string[]
 		{
@@ -829,7 +864,10 @@ public static class InventoryOrganization
 			"permit_top_jersey_12",
 			"permit_top_vest_puffer_orange",
 			"permit_top_spacetop_white",
-			"permit_top_metal_grey"
+			"permit_top_metal_grey",
+			"permit_top_scout_white",
+			"permit_top_sweater_ribbed_rust",
+			"permit_top_sweater_wader_ltblue"
 		});
 		InventoryOrganization.AddSubcategory("CLOTHING_TOPS_JACKET", Assets.GetSprite("icon_inventory_jackets"), 500, new string[]
 		{
@@ -863,7 +901,12 @@ public static class InventoryOrganization
 			"PjCloversGlitchKelly",
 			"PjHeartsChilliStrawberry",
 			"permit_jumpsuit_vsuit_stellar",
-			"permit_pj_biocircuit_wildberry"
+			"permit_pj_biocircuit_wildberry",
+			"permit_jumpsuit_romper_tan_frass",
+			"permit_pj_biocircuit_wildberry",
+			"permit_pj_dino",
+			"permit_pj_dino2",
+			"permit_pj_dino3"
 		});
 		InventoryOrganization.AddSubcategory("CLOTHING_BOTTOMS_BASIC", Assets.GetSprite("icon_inventory_basic_pants"), 100, new string[]
 		{
@@ -895,7 +938,9 @@ public static class InventoryOrganization
 			"PantsGiBeltWhiteBlack",
 			"PantsBeltKhakiTan",
 			"permit_pants_extendedwaist_blue_wheezewort",
-			"permit_pants_snapjacket_brine"
+			"permit_pants_snapjacket_brine",
+			"permit_pants_suspenders_frass",
+			"permit_pants_wader_algae"
 		});
 		InventoryOrganization.AddSubcategory("CLOTHING_BOTTOMS_SHORTS", Assets.GetSprite("icon_inventory_shorts"), 300, new string[]
 		{
@@ -905,7 +950,8 @@ public static class InventoryOrganization
 			"ShortsBasicKellyGreen",
 			"ShortsBasicBlueCobalt",
 			"ShortsBasicPinkFlamingo",
-			"ShortsBasicCharcoal"
+			"ShortsBasicCharcoal",
+			"permit_shorts_scout_brown"
 		});
 		InventoryOrganization.AddSubcategory("CLOTHING_BOTTOMS_SKIRTS", Assets.GetSprite("icon_inventory_skirts"), 300, new string[]
 		{
@@ -962,8 +1008,9 @@ public static class InventoryOrganization
 			"GlovesBasicPinksalmon",
 			"GlovesBasicTan",
 			"permit_gloves_basic_blue_wheezewort",
-			"permit_gloves_puffer_orange",
-			"permit_gloves_metal_grey"
+			"permit_gloves_basic_brown",
+			"permit_gloves_basic_moss",
+			"permit_gloves_basic_grime"
 		});
 		InventoryOrganization.AddSubcategory("CLOTHING_GLOVES_FORMAL", Assets.GetSprite("icon_inventory_fancy_gloves"), 200, new string[]
 		{
@@ -1010,7 +1057,8 @@ public static class InventoryOrganization
 			"GlovesCufflessSatsuma",
 			"GlovesCufflessStrawberry",
 			"GlovesCufflessWatermelon",
-			"GlovesCufflessBlack"
+			"GlovesCufflessBlack",
+			"permit_gloves_cuffless_shiny_algae"
 		});
 		InventoryOrganization.AddSubcategory("CLOTHING_GLOVES_PRINTS", Assets.GetSprite("icon_inventory_specialty_gloves"), 400, new string[]
 		{
@@ -1029,7 +1077,9 @@ public static class InventoryOrganization
 			"GlovesKnitMagenta",
 			"permit_gloves_futurespace_blue",
 			"permit_gloves_vsuit_stellar",
-			"permit_gloves_snapjacket_brine"
+			"permit_gloves_snapjacket_brine",
+			"permit_gloves_puffer_orange",
+			"permit_gloves_metal_grey"
 		});
 		InventoryOrganization.AddSubcategory("CLOTHING_SHOES_BASIC", Assets.GetSprite("icon_inventory_basic_shoes"), 100, new string[]
 		{
@@ -1046,7 +1096,8 @@ public static class InventoryOrganization
 			"ShoesBasicTan",
 			"ShoesBasicGray",
 			"ShoesDenimBlue",
-			"permit_shoes_basic_blue_wheezy"
+			"permit_shoes_basic_blue_wheezy",
+			"permit_shoes_basic_frass"
 		});
 		InventoryOrganization.AddSubcategory("CLOTHING_SHOES_FANCY", Assets.GetSprite("icon_inventory_fancy_shoes"), 200, new string[]
 		{
@@ -1058,7 +1109,9 @@ public static class InventoryOrganization
 			"ShoesVelourBlack",
 			"ShoesFlashy",
 			"permit_shoes_futurespace_blue",
-			"permit_shoes_vsuit_stellar"
+			"permit_shoes_vsuit_stellar",
+			"permit_shoes_romper_frass_tan",
+			"permit_shoes_scout_brown"
 		});
 		InventoryOrganization.AddSubcategory("CLOTHING_SHOE_SOCKS", Assets.GetSprite("icon_inventory_socks"), 500, new string[]
 		{
@@ -1103,7 +1156,11 @@ public static class InventoryOrganization
 			"AtmoSuitMultiBlueGreyBlack",
 			"AtmoSuitMultiBlueYellowRed",
 			"permit_atmosuit_80s",
-			"permit_atmosuit_basic_purple_wildberry"
+			"permit_atmosuit_basic_purple_wildberry",
+			"permit_atmosuit_raptor",
+			"permit_atmosuit_stego",
+			"permit_atmosuit_chameleo",
+			"permit_atmosuit_paculacanth"
 		});
 		InventoryOrganization.AddSubcategory("ATMOSUIT_HELMETS_BASIC", Assets.GetSprite("icon_inventory_atmosuit_helmet"), 300, new string[]
 		{
@@ -1122,7 +1179,11 @@ public static class InventoryOrganization
 			"AtmoHelmetOverallsRed",
 			"permit_atmo_helmet_80s",
 			"permit_atmo_helmet_gaudysweater_purple",
-			"permit_atmo_helmet_biocircuit"
+			"permit_atmo_helmet_biocircuit",
+			"permit_atmo_helmet_raptor",
+			"permit_atmo_helmet_stego",
+			"permit_atmo_helmet_chameleo",
+			"permit_atmo_helmet_paculacanth"
 		});
 		InventoryOrganization.AddSubcategory("ATMOSUIT_GLOVES_BASIC", Assets.GetSprite("icon_inventory_atmosuit_gloves"), 500, new string[]
 		{
@@ -1140,7 +1201,11 @@ public static class InventoryOrganization
 			"AtmoGlovesBrown",
 			"permit_atmo_gloves_80s",
 			"permit_atmo_gloves_plum",
-			"permit_atmo_gloves_biocircuit"
+			"permit_atmo_gloves_biocircuit",
+			"permit_atmo_gloves_raptor",
+			"permit_atmo_gloves_stego",
+			"permit_atmo_gloves_chameleo",
+			"permit_atmo_gloves_paculacanth"
 		});
 		InventoryOrganization.AddSubcategory("ATMOSUIT_BELTS_BASIC", Assets.GetSprite("icon_inventory_atmosuit_belt"), 700, new string[]
 		{
@@ -1158,7 +1223,11 @@ public static class InventoryOrganization
 			"AtmoBeltTwoToneBrown",
 			"permit_atmo_belt_80s",
 			"permit_atmo_belt_3tone_purple",
-			"permit_atmo_belt_circuit"
+			"permit_atmo_belt_circuit",
+			"permit_atmo_belt_raptor",
+			"permit_atmo_belt_stego",
+			"permit_atmo_belt_chameleo",
+			"permit_atmo_belt_paculacanth"
 		});
 		InventoryOrganization.AddSubcategory("ATMOSUIT_SHOES_BASIC", Assets.GetSprite("icon_inventory_atmosuit_boots"), 900, new string[]
 		{
@@ -1170,7 +1239,11 @@ public static class InventoryOrganization
 			"AtmoShoesBasicLavender",
 			"AtmoBootsRocketmelon",
 			"permit_atmo_shoes_80s",
-			"permit_atmo_shoes_biocircuit"
+			"permit_atmo_shoes_biocircuit",
+			"permit_atmo_shoes_raptor",
+			"permit_atmo_shoes_stego",
+			"permit_atmo_shoes_chameleo",
+			"permit_atmo_shoes_paculacanth"
 		});
 	}
 

@@ -121,6 +121,27 @@ public class ModifierSet : ScriptableObject
 	{
 	}
 
+	private void CreateMosquitoEffects()
+	{
+		Effect effect = new Effect("MosquitoFed", STRINGS.CREATURES.MODIFIERS.MOSQUITO_FED.NAME, STRINGS.CREATURES.MODIFIERS.MOSQUITO_FED.TOOLTIP, 600f, true, false, false, null, -1f, 0f, null, "");
+		float num = 0.4f;
+		float value = 0.9f / num - 1f;
+		effect.Add(new AttributeModifier(Db.Get().Amounts.Fertility.deltaAttribute.Id, value, effect.Name, true, false, true));
+		this.effects.Add(effect);
+		Effect effect2 = new Effect("DupeMosquitoBite", STRINGS.CREATURES.MODIFIERS.DUPE_MOSQUITO_BITE.NAME, STRINGS.CREATURES.MODIFIERS.DUPE_MOSQUITO_BITE.TOOLTIP, 600f, true, true, true, null, -1f, 0f, null, "");
+		effect2.Add(new AttributeModifier(Db.Get().Amounts.Stress.deltaAttribute.Id, 0.016666668f, STRINGS.CREATURES.MODIFIERS.DUPE_MOSQUITO_BITE.NAME, false, false, true));
+		effect2.Add(new AttributeModifier(Db.Get().Attributes.Sneezyness.Id, 5f, STRINGS.CREATURES.MODIFIERS.DUPE_MOSQUITO_BITE.NAME, false, false, true));
+		effect2.Add(new AttributeModifier(Db.Get().Attributes.Athletics.Id, -1f, STRINGS.CREATURES.MODIFIERS.DUPE_MOSQUITO_BITE.NAME, false, false, true));
+		this.effects.Add(effect2);
+		Effect resource = new Effect("DupeMosquitoBiteSuppressed", STRINGS.CREATURES.MODIFIERS.DUPE_MOSQUITO_BITE_SUPPRESSED.NAME, STRINGS.CREATURES.MODIFIERS.DUPE_MOSQUITO_BITE_SUPPRESSED.TOOLTIP, 600f, false, false, false, null, -1f, 0f, null, "");
+		this.effects.Add(resource);
+		Effect effect3 = new Effect("CritterMosquitoBite", STRINGS.CREATURES.MODIFIERS.CRITTER_MOSQUITO_BITE.NAME, STRINGS.CREATURES.MODIFIERS.CRITTER_MOSQUITO_BITE.TOOLTIP, 300f, true, true, true, null, -1f, 0f, null, "");
+		effect3.Add(new AttributeModifier(Db.Get().CritterAttributes.Happiness.Id, -1f, STRINGS.CREATURES.MODIFIERS.CRITTER_MOSQUITO_BITE.NAME, false, false, true));
+		this.effects.Add(effect3);
+		Effect resource2 = new Effect("CritterMosquitoBiteSuppressed", STRINGS.CREATURES.MODIFIERS.CRITTER_MOSQUITO_BITE_SUPPRESSED.NAME, STRINGS.CREATURES.MODIFIERS.CRITTER_MOSQUITO_BITE_SUPPRESSED.TOOLTIP, 300f, false, false, false, null, -1f, 0f, null, "");
+		this.effects.Add(resource2);
+	}
+
 	public void CreateCritteEffects()
 	{
 		Effect effect = new Effect("Ranched", STRINGS.CREATURES.MODIFIERS.RANCHED.NAME, STRINGS.CREATURES.MODIFIERS.RANCHED.TOOLTIP, 600f, true, true, false, null, -1f, 0f, null, "");
@@ -140,9 +161,11 @@ public class ModifierSet : ScriptableObject
 		this.effects.Add(resource);
 		Effect effect5 = new Effect("DivergentCropTended", STRINGS.CREATURES.MODIFIERS.DIVERGENTPLANTTENDED.NAME, STRINGS.CREATURES.MODIFIERS.DIVERGENTPLANTTENDED.TOOLTIP, 600f, true, true, false, null, -1f, 0f, null, "");
 		effect5.Add(new AttributeModifier(Db.Get().Amounts.Maturity.deltaAttribute.Id, 0.05f, STRINGS.CREATURES.MODIFIERS.DIVERGENTPLANTTENDED.NAME, true, false, true));
+		effect5.Add(new AttributeModifier(Db.Get().Amounts.Maturity2.deltaAttribute.Id, 0.05f, STRINGS.CREATURES.MODIFIERS.DIVERGENTPLANTTENDED.NAME, true, false, true));
 		this.effects.Add(effect5);
 		Effect effect6 = new Effect("DivergentCropTendedWorm", STRINGS.CREATURES.MODIFIERS.DIVERGENTPLANTTENDEDWORM.NAME, STRINGS.CREATURES.MODIFIERS.DIVERGENTPLANTTENDEDWORM.TOOLTIP, 600f, true, true, false, null, -1f, 0f, null, "");
 		effect6.Add(new AttributeModifier(Db.Get().Amounts.Maturity.deltaAttribute.Id, 0.5f, STRINGS.CREATURES.MODIFIERS.DIVERGENTPLANTTENDEDWORM.NAME, true, false, true));
+		effect6.Add(new AttributeModifier(Db.Get().Amounts.Maturity2.deltaAttribute.Id, 0.5f, STRINGS.CREATURES.MODIFIERS.DIVERGENTPLANTTENDEDWORM.NAME, true, false, true));
 		this.effects.Add(effect6);
 		Effect effect7 = new Effect("MooWellFed", STRINGS.CREATURES.MODIFIERS.MOOWELLFED.NAME, STRINGS.CREATURES.MODIFIERS.MOOWELLFED.TOOLTIP, 1f, true, true, false, null, -1f, 0f, null, "");
 		effect7.Add(new AttributeModifier(Db.Get().Amounts.Beckoning.deltaAttribute.Id, MooTuning.WELLFED_EFFECT, STRINGS.CREATURES.MODIFIERS.MOOWELLFED.NAME, false, false, true));
@@ -155,8 +178,23 @@ public class ModifierSet : ScriptableObject
 		effect9.Add(new AttributeModifier(Db.Get().Amounts.ScaleGrowth.deltaAttribute.Id, 100f / (IceBellyConfig.SCALE_GROWTH_TIME_IN_CYCLES * 600f), STRINGS.CREATURES.MODIFIERS.ICEBELLYWELLFED.NAME, false, false, true));
 		this.effects.Add(effect9);
 		Effect effect10 = new Effect("GoldBellyWellFed", STRINGS.CREATURES.MODIFIERS.GOLDBELLYWELLFED.NAME, STRINGS.CREATURES.MODIFIERS.GOLDBELLYWELLFED.TOOLTIP, 1f, true, true, false, null, -1f, 0f, null, "");
-		effect10.Add(new AttributeModifier(Db.Get().Amounts.ScaleGrowth.deltaAttribute.Id, 100f / (GoldBellyConfig.SCALE_GROWTH_TIME_IN_CYCLES * 600f), STRINGS.CREATURES.MODIFIERS.GOLDBELLYWELLFED.NAME, false, false, true));
+		effect10.Add(new AttributeModifier(Db.Get().Amounts.ScaleGrowth.deltaAttribute.Id, 0.016666668f, STRINGS.CREATURES.MODIFIERS.GOLDBELLYWELLFED.NAME, false, false, true));
 		this.effects.Add(effect10);
+		Effect effect11 = new Effect("ButterflyPollinated", STRINGS.CREATURES.MODIFIERS.BUTTERFLYPOLLINATED.NAME, STRINGS.CREATURES.MODIFIERS.BUTTERFLYPOLLINATED.TOOLTIP, 600f, true, true, false, null, -1f, 0f, null, "");
+		effect11.Add(new AttributeModifier(Db.Get().Amounts.Maturity.deltaAttribute.Id, 0.25f, STRINGS.CREATURES.MODIFIERS.BUTTERFLYPOLLINATED.NAME, true, false, true));
+		effect11.Add(new AttributeModifier(Db.Get().Amounts.Maturity2.deltaAttribute.Id, 0.25f, STRINGS.CREATURES.MODIFIERS.BUTTERFLYPOLLINATED.NAME, true, false, true));
+		this.effects.Add(effect11);
+		Effect resource2 = new Effect(PollinationMonitor.INITIALLY_POLLINATED_EFFECT, STRINGS.CREATURES.MODIFIERS.INITIALLYPOLLINATED.NAME, STRINGS.CREATURES.MODIFIERS.INITIALLYPOLLINATED.TOOLTIP, 600f, false, false, false, null, -1f, 0f, null, "");
+		this.effects.Add(resource2);
+		Effect effect12 = new Effect("RaptorWellFed", STRINGS.CREATURES.MODIFIERS.RAPTORWELLFED.NAME, STRINGS.CREATURES.MODIFIERS.RAPTORWELLFED.TOOLTIP, 1f, true, true, false, null, -1f, 0f, null, "");
+		effect12.Add(new AttributeModifier(Db.Get().Amounts.ScaleGrowth.deltaAttribute.Id, 100f / (RaptorConfig.SCALE_GROWTH_TIME_IN_CYCLES * 600f), STRINGS.CREATURES.MODIFIERS.RAPTORWELLFED.NAME, false, false, true));
+		this.effects.Add(effect12);
+		Effect effect13 = new Effect("PredatorFailedHunt", STRINGS.CREATURES.MODIFIERS.HUNT_FAILED.NAME, STRINGS.CREATURES.MODIFIERS.HUNT_FAILED.TOOLTIP, 45f, true, false, true, null, -1f, 0f, null, "");
+		effect13.tag = new Tag?(GameTags.Creatures.SuppressedDiet);
+		this.effects.Add(effect13);
+		Effect resource3 = new Effect("PreyEvadedHunt", STRINGS.CREATURES.MODIFIERS.EVADED_HUNT.NAME, STRINGS.CREATURES.MODIFIERS.EVADED_HUNT.TOOLTIP, 10f, true, false, false, null, -1f, 0f, null, "");
+		this.effects.Add(resource3);
+		this.CreateMosquitoEffects();
 	}
 
 	public Trait CreateTrait(string id, string name, string description, string group_name, bool should_save, ChoreGroup[] disabled_chore_groups, bool positive_trait, bool is_valid_starter_trait)

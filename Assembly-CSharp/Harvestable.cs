@@ -28,10 +28,11 @@ public class Harvestable : Workable
 		this.workerStatusItem = Db.Get().DuplicantStatusItems.Harvesting;
 		this.multitoolContext = "harvest";
 		this.multitoolHitEffectTag = "fx_harvest_splash";
+		this.harvestDesignatable = base.GetComponent<HarvestDesignatable>();
 	}
 
+	protected override void OnSpawn()
 	{
-		this.harvestDesignatable = base.GetComponent<HarvestDesignatable>();
 		base.Subscribe<Harvestable>(2127324410, Harvestable.ForceCancelHarvestDelegate);
 		base.SetWorkTime(10f);
 		base.Subscribe<Harvestable>(2127324410, Harvestable.OnCancelDelegate);
@@ -53,7 +54,10 @@ public class Harvestable : Workable
 
 	public void Harvest()
 	{
-		this.harvestDesignatable.MarkedForHarvest = false;
+		if (this.harvestDesignatable != null)
+		{
+			this.harvestDesignatable.MarkedForHarvest = false;
+		}
 		this.chore = null;
 		base.Trigger(1272413801, this);
 		KSelectable component = base.GetComponent<KSelectable>();
@@ -64,27 +68,35 @@ public class Harvestable : Workable
 
 	public void OnMarkedForHarvest()
 	{
+		KSelectable component = base.GetComponent<KSelectable>();
 		if (this.chore == null)
 		{
 			this.chore = new WorkChore<Harvestable>(Db.Get().ChoreTypes.Harvest, this, null, true, null, null, null, true, null, false, true, null, true, true, true, PriorityScreen.PriorityClass.basic, 5, false, true);
 			component.AddStatusItem(Db.Get().MiscStatusItems.PendingHarvest, this);
 		}
-		component.RemoveStatusItem(Db.Get().MiscStatusItems.NotMarkedForHarvest, false);
 	}
 
 	public void SetCanBeHarvested(bool state)
+	{
 		this.canBeHarvested = state;
 		KSelectable component = base.GetComponent<KSelectable>();
 		if (this.canBeHarvested)
 		{
 			component.AddStatusItem(this.readyForHarvestStatusItem, null);
-			if (this.harvestDesignatable.HarvestWhenReady)
+			if (this.harvestDesignatable != null)
 			{
-				this.harvestDesignatable.MarkForHarvest();
+				if (this.harvestDesignatable.HarvestWhenReady)
+				{
+					this.harvestDesignatable.MarkForHarvest();
+				}
+				else if (this.harvestDesignatable.InPlanterBox)
+				{
+					component.AddStatusItem(Db.Get().MiscStatusItems.NotMarkedForHarvest, this);
+				}
 			}
-			else if (this.harvestDesignatable.InPlanterBox)
+			else
 			{
-				component.AddStatusItem(Db.Get().MiscStatusItems.NotMarkedForHarvest, this);
+				this.OnMarkedForHarvest();
 			}
 		}
 		else
@@ -102,17 +114,19 @@ public class Harvestable : Workable
 	}
 
 	protected virtual void OnCancel(object data)
+	{
 		bool flag = data == null || (data is bool && !(bool)data);
 		if (this.chore != null)
 		{
 			this.chore.Cancel("Cancel harvest");
 			this.chore = null;
 			base.GetComponent<KSelectable>().RemoveStatusItem(Db.Get().MiscStatusItems.PendingHarvest, false);
+			if (flag && this.harvestDesignatable != null)
 			{
 				this.harvestDesignatable.SetHarvestWhenReady(false);
 			}
 		}
-		if (flag)
+		if (flag && this.harvestDesignatable != null)
 		{
 			this.harvestDesignatable.MarkedForHarvest = false;
 		}
@@ -125,31 +139,39 @@ public class Harvestable : Workable
 
 	public virtual void ForceCancelHarvest(object data = null)
 	{
+		this.OnCancel(data);
 		base.GetComponent<KSelectable>().RemoveStatusItem(Db.Get().MiscStatusItems.PendingHarvest, false);
 		Game.Instance.userMenu.Refresh(base.gameObject);
 	}
 
+	protected override void OnCleanUp()
 	{
 		base.OnCleanUp();
 		Components.Harvestables.Remove(this);
 	}
 
 	protected override void OnStartWork(WorkerBase worker)
+	{
 		base.OnStartWork(worker);
 		base.GetComponent<KSelectable>().RemoveStatusItem(Db.Get().MiscStatusItems.PendingHarvest, false);
 	}
 
 	public StatusItem readyForHarvestStatusItem = Db.Get().CreatureStatusItems.ReadyForHarvest;
+
 	public HarvestDesignatable harvestDesignatable;
 
 	[Serialize]
 	protected bool canBeHarvested;
+
 	protected Chore chore;
+
 	private static readonly EventSystem.IntraObjectHandler<Harvestable> ForceCancelHarvestDelegate = new EventSystem.IntraObjectHandler<Harvestable>(delegate(Harvestable component, object data)
+	{
 		component.ForceCancelHarvest(data);
 	});
 
 	private static readonly EventSystem.IntraObjectHandler<Harvestable> OnCancelDelegate = new EventSystem.IntraObjectHandler<Harvestable>(delegate(Harvestable component, object data)
 	{
+		component.OnCancel(data);
 	});
 }

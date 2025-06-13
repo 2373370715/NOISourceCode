@@ -5,12 +5,8 @@ public class NotificationManager : KMonoBehaviour
 {
 	public static NotificationManager Instance { get; private set; }
 
-add) Token: 0x0600A505 RID: 42245 RVA: 0x003F80A0 File Offset: 0x003F62A0
-remove) Token: 0x0600A506 RID: 42246 RVA: 0x003F80D8 File Offset: 0x003F62D8
 	public event Action<Notification> notificationAdded;
 
-add) Token: 0x0600A507 RID: 42247 RVA: 0x003F8110 File Offset: 0x003F6310
-remove) Token: 0x0600A508 RID: 42248 RVA: 0x003F8148 File Offset: 0x003F6348
 	public event Action<Notification> notificationRemoved;
 
 	protected override void OnPrefabInit()

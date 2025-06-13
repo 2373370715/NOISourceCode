@@ -237,23 +237,30 @@ public class Unlocks : KMonoBehaviour
 					orderRule = LoreCollectionOverride.OrderRule.Invalid;
 					return null;
 				}
-				string[] array = this.lockCollections[loreCollectionOverride.collection];
-				if (randomize)
+				if (!this.lockCollections.ContainsKey(loreCollectionOverride.collection))
 				{
-					array.Shuffle<string>();
+					DebugUtil.DevLogError("Lore collection '" + loreCollectionOverride.collection + "' is missing but defined in the cluster file.");
 				}
-				foreach (string text in array)
+				else
 				{
-					if (!this.IsUnlocked(text))
+					string[] array = this.lockCollections[loreCollectionOverride.collection];
+					if (randomize)
+					{
+						array.Shuffle<string>();
+					}
+					foreach (string text in array)
+					{
+						if (!this.IsUnlocked(text))
+						{
+							orderRule = loreCollectionOverride.orderRule;
+							return text;
+						}
+					}
+					if (loreCollectionOverride.orderRule == LoreCollectionOverride.OrderRule.Replace)
 					{
 						orderRule = loreCollectionOverride.orderRule;
-						return text;
+						return null;
 					}
-				}
-				if (loreCollectionOverride.orderRule == LoreCollectionOverride.OrderRule.Replace)
-				{
-					orderRule = loreCollectionOverride.orderRule;
-					return null;
 				}
 			}
 		}
@@ -267,6 +274,7 @@ public class Unlocks : KMonoBehaviour
 		{
 			DlcMixingSettings cachedDlcMixingSettings = SettingsCache.GetCachedDlcMixingSettings(name);
 			if (cachedDlcMixingSettings != null)
+			{
 				foreach (LoreCollectionOverride loreCollectionOverride in cachedDlcMixingSettings.globalLoreUnlocks)
 				{
 					if (!(loreCollectionOverride.id != collectionID))
@@ -309,6 +317,7 @@ public class Unlocks : KMonoBehaviour
 		{
 			LoreCollectionOverride.OrderRule orderRule;
 			string text = this.GetNextClusterUnlock(collectionID, out orderRule, randomize);
+			if (text != null && (orderRule == LoreCollectionOverride.OrderRule.Prepend || orderRule == LoreCollectionOverride.OrderRule.Replace))
 			{
 				this.Unlock(text, true);
 				return text;
@@ -371,6 +380,7 @@ public class Unlocks : KMonoBehaviour
 		if (string.IsNullOrEmpty(entryForLock))
 		{
 			return null;
+		}
 		string text = null;
 		if (CodexCache.FindSubEntry(lockID) != null)
 		{
@@ -410,6 +420,7 @@ public class Unlocks : KMonoBehaviour
 		{
 			if (GameClock.Instance.GetCycle() + 1 >= keyValuePair.Key)
 			{
+				this.Unlock(keyValuePair.Value, true);
 			}
 		}
 	}
@@ -419,6 +430,7 @@ public class Unlocks : KMonoBehaviour
 		this.UnlockCycleCodexes();
 	}
 
+	private void OnLaunchRocket(object data)
 	{
 		this.Unlock("surfacebreach", true);
 		this.Unlock("firstrocketlaunch", true);
@@ -430,6 +442,7 @@ public class Unlocks : KMonoBehaviour
 		if (Components.LiveMinionIdentities.Count == 1)
 		{
 			this.Unlock("onedupeleft", true);
+		}
 	}
 
 	private void OnNewDupe(MinionIdentity minion_identity)
@@ -438,71 +451,11 @@ public class Unlocks : KMonoBehaviour
 		{
 			this.Unlock("fulldupecolony", true);
 		}
+	}
 
 	private void OnDiscoveredSpace(object data)
 	{
 		this.Unlock("surfacebreach", true);
-	}
-
-	{
-		int x = int.MinValue;
-		int num = int.MinValue;
-		int x2 = int.MaxValue;
-		int num2 = int.MaxValue;
-		{
-			if (!(minionIdentity == null))
-			{
-				int cell = Grid.PosToCell(minionIdentity);
-				if (Grid.IsValidCell(cell))
-				{
-					int num3;
-					int num4;
-					Grid.CellToXY(cell, out num3, out num4);
-					if (num4 > num)
-					{
-						num = num4;
-						x = num3;
-					}
-					if (num4 < num2)
-					{
-						x2 = num3;
-						num2 = num4;
-					}
-				}
-			}
-		}
-		{
-			int num5 = num;
-			{
-				num5++;
-				if (!Grid.IsValidCell(cell2))
-				{
-					break;
-				}
-				if (global::World.Instance.zoneRenderData.GetSubWorldZoneType(cell2) == SubWorld.ZoneType.Space)
-					this.Unlock("nearingsurface", true);
-					break;
-				}
-			}
-		}
-		if (num2 != 2147483647)
-		{
-			int num6 = num2;
-			for (int j = 0; j < 30; j++)
-			{
-				num6--;
-				int num7 = Grid.XYToCell(x2, num6);
-				if (!Grid.IsValidCell(num7))
-				{
-					break;
-				}
-				if (global::World.Instance.zoneRenderData.GetSubWorldZoneType(num7) == SubWorld.ZoneType.ToxicJungle && Grid.Element[num7].id == SimHashes.Magma)
-				{
-					this.Unlock("nearingmagma", true);
-					return;
-				}
-			}
-		}
 	}
 
 	[CompilerGenerated]
@@ -588,6 +541,14 @@ public class Unlocks : KMonoBehaviour
 			}
 		},
 		{
+			"dlc4emails",
+			new string[]
+			{
+				"notices_foreword",
+				"notes_HigbySong"
+			}
+		},
+		{
 			"journals",
 			new string[]
 			{
@@ -638,6 +599,17 @@ public class Unlocks : KMonoBehaviour
 			}
 		},
 		{
+			"dlc4journals",
+			new string[]
+			{
+				"journal_expedition1",
+				"journal_expedition2",
+				"journal_expedition3",
+				"journal_B824",
+				"journal_incoming"
+			}
+		},
+		{
 			"researchnotes",
 			new string[]
 			{
@@ -681,6 +653,13 @@ public class Unlocks : KMonoBehaviour
 			{
 				"notes_talkshow",
 				"notes_remoteworkstation"
+			}
+		},
+		{
+			"dlc4researchnotes",
+			new string[]
+			{
+				"notes_seepage"
 			}
 		},
 		{
@@ -733,12 +712,20 @@ public class Unlocks : KMonoBehaviour
 			}
 		},
 		{
+			"dlc4surfacepoi",
+			new string[]
+			{
+				"notice_surfacepoi"
+			}
+		},
+		{
 			"space",
 			new string[]
 			{
 				"display_spaceprop1",
 				"notice_pilot",
 				"journal_inspace",
+				"notes_firstcolony"
 			}
 		},
 		{
@@ -786,32 +773,40 @@ public class Unlocks : KMonoBehaviour
 		},
 		{
 			1500,
+			"log4b"
 		},
 		{
 			2000,
 			"log5"
 		},
+		{
 			2500,
 			"log5b"
 		},
 		{
 			3000,
+			"log6"
 		},
 		{
 			3500,
 			"log6b"
 		},
+		{
 			4000,
 			"log7"
+		},
 		{
 			4001,
 			"log8"
 		}
 	};
 
+	private static readonly EventSystem.IntraObjectHandler<Unlocks> OnLaunchRocketDelegate = new EventSystem.IntraObjectHandler<Unlocks>(delegate(Unlocks component, object data)
 	{
 		component.OnLaunchRocket(data);
+	});
 
+	private static readonly EventSystem.IntraObjectHandler<Unlocks> OnDuplicantDiedDelegate = new EventSystem.IntraObjectHandler<Unlocks>(delegate(Unlocks component, object data)
 	{
 		component.OnDuplicantDied(data);
 	});

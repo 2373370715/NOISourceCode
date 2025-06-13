@@ -44,92 +44,121 @@ namespace TUNING
 
 		public const string INSULATOR = "Insulator";
 
+		public const string FOSSILS_TAG = "Fossils";
+
 		public static readonly string[] ALL_METALS = new string[]
 		{
+			"Metal"
 		};
 
 		public static readonly string[] RAW_METALS = new string[]
 		{
+			"Metal"
 		};
 
 		public static readonly string[] REFINED_METALS = new string[]
 		{
+			"RefinedMetal"
 		};
 
 		public static readonly string[] ALLOYS = new string[]
 		{
+			"Alloy"
 		};
 
 		public static readonly string[] ALL_MINERALS = new string[]
 		{
+			"BuildableRaw"
 		};
 
 		public static readonly string[] RAW_MINERALS = new string[]
 		{
+			"BuildableRaw"
 		};
 
 		public static readonly string[] RAW_MINERALS_OR_METALS = new string[]
 		{
+			"BuildableRaw&Metal"
 		};
 
 		public static readonly string[] RAW_MINERALS_OR_WOOD = new string[]
 		{
+			"BuildableRaw&" + GameTags.BuildingWood.ToString()
 		};
 
 		public static readonly string[] WOODS = new string[]
 		{
+			"BuildingWood"
+		};
+
+		public static readonly string[] FOSSILS = new string[]
+		{
+			"Fossils"
 		};
 
 		public static readonly string[] REFINED_MINERALS = new string[]
 		{
+			"BuildableProcessed"
 		};
 
 		public static readonly string[] PRECIOUS_ROCKS = new string[]
 		{
+			"PreciousRock"
 		};
 
 		public static readonly string[] FARMABLE = new string[]
 		{
+			"Farmable"
 		};
 
 		public static readonly string[] EXTRUDABLE = new string[]
 		{
+			"Extrudable"
 		};
 
 		public static readonly string[] PLUMBABLE = new string[]
 		{
+			"Plumbable"
 		};
 
 		public static readonly string[] PLUMBABLE_OR_METALS = new string[]
 		{
+			"Plumbable&Metal"
 		};
 
 		public static readonly string[] PLASTICS = new string[]
 		{
+			"Plastic"
 		};
 
 		public static readonly string[] GLASSES = new string[]
 		{
+			"Glass"
 		};
 
 		public static readonly string[] TRANSPARENTS = new string[]
 		{
+			"Transparent"
 		};
 
 		public static readonly string[] BUILDING_FIBER = new string[]
 		{
+			"BuildingFiber"
 		};
 
 		public static readonly string[] ANY_BUILDABLE = new string[]
 		{
+			"BuildableAny"
 		};
 
 		public static readonly string[] FLYING_CRITTER_FOOD = new string[]
 		{
+			"FlyingCritterEdible"
 		};
 
 		public static readonly string[] RADIATION_CONTAINMENT = new string[]
 		{
+			"Metal",
 			"Lead"
 		};
 	}

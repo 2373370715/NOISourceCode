@@ -32,7 +32,7 @@ public class ReanimateBionicWorkable : Workable
 		this.skillExperienceMultiplier = SKILLS.PART_DAY_EXPERIENCE;
 		this.lightEfficiencyBonus = true;
 		this.synchronizeAnims = true;
-		this.resetProgressOnStop = true;
+		this.resetProgressOnStop = false;
 	}
 
 	protected override void OnStartWork(WorkerBase worker)

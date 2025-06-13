@@ -14,25 +14,51 @@ public class UprootedMonitor : KMonoBehaviour
 		}
 	}
 
+	protected override void OnPrefabInit()
+	{
+		base.Subscribe<UprootedMonitor>(-216549700, UprootedMonitor.OnUprootedDelegate);
+		this.position = Grid.PosToCell(base.gameObject);
+		base.OnPrefabInit();
+	}
+
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
-		base.Subscribe<UprootedMonitor>(-216549700, UprootedMonitor.OnUprootedDelegate);
-		this.position = Grid.PosToCell(base.gameObject);
-		foreach (CellOffset offset in this.monitorCells)
-		{
-			if (Grid.IsValidCell(this.position) && Grid.IsValidCell(cell))
-			{
-				this.partitionerEntries.Add(GameScenePartitioner.Instance.Add("UprootedMonitor.OnSpawn", base.gameObject, cell, GameScenePartitioner.Instance.solidChangedLayer, new Action<object>(this.OnGroundChanged)));
-			}
-			this.OnGroundChanged(null);
-		}
+		this.RegisterMonitoredCellsPartitionerEntries();
+	}
 
-	protected override void OnCleanUp()
+	public void SetNewMonitorCells(CellOffset[] cellsOffsets)
+	{
+		this.UnregisterMonitoredCellsPartitionerEntries();
+		this.monitorCells = cellsOffsets;
+		this.RegisterMonitoredCellsPartitionerEntries();
+	}
+
+	private void UnregisterMonitoredCellsPartitionerEntries()
 	{
 		foreach (HandleVector<int>.Handle handle in this.partitionerEntries)
 		{
 			GameScenePartitioner.Instance.Free(ref handle);
+		}
+		this.partitionerEntries.Clear();
+	}
+
+	private void RegisterMonitoredCellsPartitionerEntries()
+	{
+		foreach (CellOffset offset in this.monitorCells)
+		{
+			int cell = Grid.OffsetCell(this.position, offset);
+			if (Grid.IsValidCell(this.position) && Grid.IsValidCell(cell))
+			{
+				this.partitionerEntries.Add(GameScenePartitioner.Instance.Add("UprootedMonitor.OnSpawn", base.gameObject, cell, GameScenePartitioner.Instance.solidChangedLayer, new Action<object>(this.OnGroundChanged)));
+			}
+		}
+		this.OnGroundChanged(null);
+	}
+
+	protected override void OnCleanUp()
+	{
+		this.UnregisterMonitoredCellsPartitionerEntries();
 		base.OnCleanUp();
 	}
 
@@ -50,20 +76,30 @@ public class UprootedMonitor : KMonoBehaviour
 			{
 				return false;
 			}
-			int i2 = Grid.OffsetCell(cell, offset);
-			flag = Grid.Solid[i2];
+			int num = Grid.OffsetCell(cell, offset);
+			if (this.customFoundationCheckFn != null)
+			{
+				flag = this.customFoundationCheckFn(num);
+			}
+			else
+			{
+				flag = Grid.Solid[num];
+			}
 			if (!flag)
 			{
+				break;
 			}
 		}
 		return flag;
 	}
 
+	public void OnGroundChanged(object callbackData)
 	{
 		if (!this.CheckTileGrowable())
 		{
 			this.uprooted = true;
 		}
+		if (this.uprooted)
 		{
 			base.GetComponent<KPrefabID>().AddTag(GameTags.Uprooted, false);
 			base.Trigger(-216549700, null);
@@ -82,6 +118,8 @@ public class UprootedMonitor : KMonoBehaviour
 	{
 		new CellOffset(0, -1)
 	};
+
+	public Func<int, bool> customFoundationCheckFn;
 
 	private List<HandleVector<int>.Handle> partitionerEntries = new List<HandleVector<int>.Handle>();
 

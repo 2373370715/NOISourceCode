@@ -44,7 +44,6 @@ public class IdleStandStillStates : GameStateMachine<IdleStandStillStates, IdleS
 	{
 		public IdleStandStillStates.Def.IdleAnimCallback customIdleAnim;
 
-Invoke) Token: 0x06000637 RID: 1591
 		public delegate HashedString IdleAnimCallback(IdleStandStillStates.Instance smi, ref HashedString pre_anim);
 	}
 

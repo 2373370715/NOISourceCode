@@ -37,6 +37,7 @@ public class RocketControlStationConfig : IBuildingConfig
 		{
 			LogicPorts.Port.InputPort(RocketControlStation.PORT_ID, new CellOffset(0, 0), STRINGS.BUILDINGS.PREFABS.ROCKETCONTROLSTATION.LOGIC_PORT, STRINGS.BUILDINGS.PREFABS.ROCKETCONTROLSTATION.LOGIC_PORT_ACTIVE, STRINGS.BUILDINGS.PREFABS.ROCKETCONTROLSTATION.LOGIC_PORT_INACTIVE, false, false)
 		};
+		buildingDef.AddSearchTerms(SEARCH_TERMS.ROCKET);
 		return buildingDef;
 	}
 

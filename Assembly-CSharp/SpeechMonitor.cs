@@ -214,15 +214,22 @@ public class SpeechMonitor : GameStateMachine<SpeechMonitor, SpeechMonitor.Insta
 
 		public void SetMouthId()
 		{
-			if (base.smi.Get<Accessorizer>().GetAccessory(Db.Get().AccessorySlots.Mouth).Id.Contains("006"))
+			MinionIdentity component = base.GetComponent<MinionIdentity>();
+			Personality personality = Db.Get().Personalities.Get(component.personalityResourceId);
+			if (personality.speech_mouth > 0)
 			{
-				base.smi.mouthId = "_006";
+				base.smi.mouthId = string.Format("_{0:000}", personality.mouth);
 			}
 		}
 
 		public KBatchedAnimController mouth;
+
 		public string speechPrefix = "happy";
+
 		public string voiceEvent;
+
 		public EventInstance ev;
+
 		public string mouthId;
+	}
 }

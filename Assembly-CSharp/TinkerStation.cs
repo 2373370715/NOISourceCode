@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Klei;
 using Klei.AI;
 using STRINGS;
 using TUNING;
 using UnityEngine;
 
+[AddComponentMenu("KMonoBehaviour/Workable/TinkerStation")]
 public class TinkerStation : Workable, IGameObjectEffectDescriptor, ISim1000ms
 {
 	public AttributeConverter AttributeConverter
@@ -39,6 +41,7 @@ public class TinkerStation : Workable, IGameObjectEffectDescriptor, ISim1000ms
 		}
 	}
 
+	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 		this.attributeConverter = Db.Get().AttributeConverters.MachinerySpeed;
@@ -53,6 +56,7 @@ public class TinkerStation : Workable, IGameObjectEffectDescriptor, ISim1000ms
 		base.Subscribe<TinkerStation>(-592767678, TinkerStation.OnOperationalChangedDelegate);
 	}
 
+	protected override void OnSpawn()
 	{
 		base.OnSpawn();
 		if (this.useFilteredStorage && this.filteredStorage != null)
@@ -61,6 +65,7 @@ public class TinkerStation : Workable, IGameObjectEffectDescriptor, ISim1000ms
 		}
 	}
 
+	protected override void OnCleanUp()
 	{
 		if (this.filteredStorage != null)
 		{
@@ -69,11 +74,13 @@ public class TinkerStation : Workable, IGameObjectEffectDescriptor, ISim1000ms
 		base.OnCleanUp();
 	}
 
+	private bool CorrectRolePrecondition(MinionIdentity worker)
 	{
 		MinionResume component = worker.GetComponent<MinionResume>();
 		return component != null && component.HasPerk(this.requiredSkillPerk);
 	}
 
+	private void OnOperationalChanged(object data)
 	{
 		RoomTracker component = base.GetComponent<RoomTracker>();
 		if (component != null && component.room != null)
@@ -82,6 +89,7 @@ public class TinkerStation : Workable, IGameObjectEffectDescriptor, ISim1000ms
 		}
 	}
 
+	protected override void OnStartWork(WorkerBase worker)
 	{
 		base.OnStartWork(worker);
 		if (!this.operational.IsOperational)
@@ -92,6 +100,7 @@ public class TinkerStation : Workable, IGameObjectEffectDescriptor, ISim1000ms
 		this.operational.SetActive(true, false);
 	}
 
+	protected override void OnStopWork(WorkerBase worker)
 	{
 		base.OnStopWork(worker);
 		base.ShowProgressBar(false);
@@ -99,17 +108,21 @@ public class TinkerStation : Workable, IGameObjectEffectDescriptor, ISim1000ms
 		this.operational.SetActive(false, false);
 	}
 
+	protected override void OnCompleteWork(WorkerBase worker)
 	{
 		base.OnCompleteWork(worker);
 		PrimaryElement primaryElement = this.storage.FindFirstWithMass(this.inputMaterial, this.massPerTinker);
 		if (primaryElement != null)
 		{
 			SimHashes elementID = primaryElement.ElementID;
-			this.storage.ConsumeIgnoringDisease(elementID.CreateTag(), this.massPerTinker);
+			float temperature = 1f;
+			float num;
+			SimUtil.DiseaseInfo diseaseInfo;
+			this.storage.ConsumeAndGetDisease(elementID.CreateTag(), this.massPerTinker, out num, out diseaseInfo, out temperature);
 			GameObject gameObject = GameUtil.KInstantiate(Assets.GetPrefab(this.outputPrefab), base.transform.GetPosition() + Vector3.up, Grid.SceneLayer.Ore, null, 0);
 			PrimaryElement component = gameObject.GetComponent<PrimaryElement>();
 			component.SetElement(elementID, true);
-			component.Temperature = this.outputTemperature;
+			component.Temperature = temperature;
 			gameObject.SetActive(true);
 		}
 		this.chore = null;
@@ -118,10 +131,12 @@ public class TinkerStation : Workable, IGameObjectEffectDescriptor, ISim1000ms
 	public void Sim1000ms(float dt)
 	{
 		this.UpdateChore();
+	}
 
 	private void UpdateChore()
 	{
 		if (this.operational.IsOperational && (this.ToolsRequested() || this.alwaysTinker) && this.HasMaterial())
+		{
 			if (this.chore == null)
 			{
 				this.chore = new WorkChore<TinkerStation>(Db.Get().ChoreTypes.GetByHash(this.choreType), this, null, true, null, null, null, true, null, false, true, null, false, true, true, PriorityScreen.PriorityClass.basic, 5, false, true);
@@ -139,15 +154,18 @@ public class TinkerStation : Workable, IGameObjectEffectDescriptor, ISim1000ms
 
 	private bool HasMaterial()
 	{
-		return this.storage.MassStored() > 0f;
+		return this.storage.FindFirstWithMass(this.inputMaterial, this.massPerTinker) != null;
+	}
 
 	private bool ToolsRequested()
 	{
 		return MaterialNeeds.GetAmount(this.outputPrefab, base.gameObject.GetMyWorldId(), false) > 0f && this.GetMyWorld().worldInventory.GetAmount(this.outputPrefab, true) <= 0f;
+	}
 
 	public override List<Descriptor> GetDescriptors(GameObject go)
 	{
 		string arg = this.inputMaterial.ProperName();
+		List<Descriptor> descriptors = base.GetDescriptors(go);
 		descriptors.Add(new Descriptor(string.Format(UI.BUILDINGEFFECTS.ELEMENTCONSUMEDPERUSE, arg, GameUtil.GetFormattedMass(this.massPerTinker, GameUtil.TimeSlice.None, GameUtil.MetricMassFormat.UseThreshold, true, "{0:0.#}")), string.Format(UI.BUILDINGEFFECTS.TOOLTIPS.ELEMENTCONSUMEDPERUSE, arg, GameUtil.GetFormattedMass(this.massPerTinker, GameUtil.TimeSlice.None, GameUtil.MetricMassFormat.UseThreshold, true, "{0:0.#}")), Descriptor.DescriptorType.Requirement, false));
 		descriptors.AddRange(GameUtil.GetAllDescriptors(Assets.GetPrefab(this.outputPrefab), false));
 		List<Tinkerable> list = new List<Tinkerable>();
@@ -177,13 +195,17 @@ public class TinkerStation : Workable, IGameObjectEffectDescriptor, ISim1000ms
 	public static TinkerStation AddTinkerStation(GameObject go, string required_room_type)
 	{
 		TinkerStation result = go.AddOrGet<TinkerStation>();
+		go.AddOrGet<RoomTracker>().requiredRoomType = required_room_type;
 		return result;
 	}
 
 	public HashedString choreType;
 
+	public HashedString fetchChoreType;
 
+	private Chore chore;
 
+	[MyCmpAdd]
 	private Operational operational;
 
 	[MyCmpAdd]
@@ -191,17 +213,30 @@ public class TinkerStation : Workable, IGameObjectEffectDescriptor, ISim1000ms
 
 	public bool useFilteredStorage;
 
+	protected FilteredStorage filteredStorage;
 
+	public float toolProductionTime = 160f;
 
+	public bool alwaysTinker;
 
+	public float massPerTinker;
 
+	public Tag inputMaterial;
 
+	public Tag outputPrefab;
 
+	public float outputTemperature;
 
+	public string EffectTitle = UI.BUILDINGEFFECTS.IMPROVED_BUILDINGS;
 
+	public string EffectTooltip = UI.BUILDINGEFFECTS.TOOLTIPS.IMPROVED_BUILDINGS;
 
+	public string EffectItemString = UI.BUILDINGEFFECTS.IMPROVED_BUILDINGS_ITEM;
 
+	public string EffectItemTooltip = UI.BUILDINGEFFECTS.TOOLTIPS.IMPROVED_BUILDINGS_ITEM;
 
+	private static readonly EventSystem.IntraObjectHandler<TinkerStation> OnOperationalChangedDelegate = new EventSystem.IntraObjectHandler<TinkerStation>(delegate(TinkerStation component, object data)
 	{
 		component.OnOperationalChanged(data);
+	});
 }

@@ -1057,7 +1057,6 @@ namespace ProcGenGame
 
 		private static readonly TagSet relaxedNoPOISpawnAllowNearStartTagSet = new TagSet(TerrainCell.relaxedNoPOISpawnTagsAllowNearStart);
 
-Invoke) Token: 0x0600B445 RID: 46149
 		public delegate void SetValuesFunction(int index, object elem, Sim.PhysicsData pd, Sim.DiseaseCell dc);
 
 		public struct ElementOverride

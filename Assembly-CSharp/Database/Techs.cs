@@ -164,7 +164,8 @@ namespace Database
 			{
 				"Juicer",
 				"SpiceGrinder",
-				"MilkPress"
+				"MilkPress",
+				"Smoker"
 			}, this, null).AddSearchTerms(SEARCH_TERMS.FOOD);
 			new Tech("FinerDining", new List<string>
 			{
@@ -348,17 +349,24 @@ namespace Database
 				"SludgePress",
 				"OilChanger"
 			}, this, null).AddSearchTerms(SEARCH_TERMS.FILTER);
-			new Tech("Distillation", new List<string>
+			Tech tech6 = new Tech("Distillation", new List<string>
 			{
 				"AlgaeDistillery",
 				"EthanolDistillery",
 				"WaterPurifier"
-			}, this, null).AddSearchTerms(SEARCH_TERMS.WATER);
+			}, this, null);
+			tech6.AddSearchTerms(SEARCH_TERMS.WATER);
+			new Tech("AdvancedDistillation", new List<string>
+			{
+				"ChemicalRefinery"
+			}, this, null);
+			tech6.AddSearchTerms(SEARCH_TERMS.POWER);
 			new Tech("Catalytics", new List<string>
 			{
 				"OxyliteRefinery",
 				"Chlorinator",
 				"SupermaterialRefinery",
+				"SUPER_LIQUIDS",
 				"SodaFountain",
 				"GasCargoBayCluster"
 			}, this, null).AddSearchTerms(SEARCH_TERMS.ROCKET);
@@ -366,17 +374,17 @@ namespace Database
 			{
 				"NoseconeHarvest"
 			}, this, null).AddSearchTerms(SEARCH_TERMS.ROCKET);
-			Tech tech6 = new Tech("PowerRegulation", new List<string>
+			Tech tech7 = new Tech("PowerRegulation", new List<string>
 			{
 				"BatteryMedium",
 				SwitchConfig.ID,
 				"WireBridge",
 				"SmallElectrobankDischarger"
 			}, this, null);
-			tech6.AddSearchTerms(SEARCH_TERMS.POWER);
-			tech6.AddSearchTerms(SEARCH_TERMS.BATTERY);
-			tech6.AddSearchTerms(SEARCH_TERMS.WIRE);
-			Tech tech7 = new Tech("AdvancedPowerRegulation", new List<string>
+			tech7.AddSearchTerms(SEARCH_TERMS.POWER);
+			tech7.AddSearchTerms(SEARCH_TERMS.BATTERY);
+			tech7.AddSearchTerms(SEARCH_TERMS.WIRE);
+			Tech tech8 = new Tech("AdvancedPowerRegulation", new List<string>
 			{
 				"HighWattageWire",
 				"WireBridgeHighWattage",
@@ -385,9 +393,10 @@ namespace Database
 				"PowerTransformerSmall",
 				LogicWattageSensorConfig.ID
 			}, this, null);
-			tech7.AddSearchTerms(SEARCH_TERMS.POWER);
-			tech7.AddSearchTerms(SEARCH_TERMS.WIRE);
-			Tech tech8 = new Tech("PrettyGoodConductors", new List<string>
+			tech8.AddSearchTerms(SEARCH_TERMS.POWER);
+			tech8.AddSearchTerms(SEARCH_TERMS.WIRE);
+			tech8.AddSearchTerms(SEARCH_TERMS.GENERATOR);
+			Tech tech9 = new Tech("PrettyGoodConductors", new List<string>
 			{
 				"WireRefined",
 				"WireRefinedBridge",
@@ -396,37 +405,42 @@ namespace Database
 				"PowerTransformer",
 				"LargeElectrobankDischarger"
 			}, this, null);
-			tech8.AddSearchTerms(SEARCH_TERMS.WIRE);
-			tech8.AddSearchTerms(SEARCH_TERMS.POWER);
-			Tech tech9 = new Tech("RenewableEnergy", new List<string>
+			tech9.AddSearchTerms(SEARCH_TERMS.WIRE);
+			tech9.AddSearchTerms(SEARCH_TERMS.POWER);
+			Tech tech10 = new Tech("RenewableEnergy", new List<string>
 			{
 				"SteamTurbine2",
 				"SolarPanel",
 				"Sauna",
 				"SteamEngineCluster"
 			}, this, null);
-			tech9.AddSearchTerms(SEARCH_TERMS.POWER);
-			tech9.AddSearchTerms(SEARCH_TERMS.STEAM);
-			new Tech("Combustion", new List<string>
+			tech10.AddSearchTerms(SEARCH_TERMS.POWER);
+			tech10.AddSearchTerms(SEARCH_TERMS.STEAM);
+			Tech tech11 = new Tech("Combustion", new List<string>
 			{
 				"Generator",
-				"WoodGasGenerator"
-			}, this, null).AddSearchTerms(SEARCH_TERMS.POWER);
-			new Tech("ImprovedCombustion", new List<string>
+				"WoodGasGenerator",
+				"PeatGenerator"
+			}, this, null);
+			tech11.AddSearchTerms(SEARCH_TERMS.POWER);
+			tech11.AddSearchTerms(SEARCH_TERMS.GENERATOR);
+			Tech tech12 = new Tech("ImprovedCombustion", new List<string>
 			{
 				"MethaneGenerator",
 				"OilRefinery",
 				"PetroleumGenerator"
-			}, this, null).AddSearchTerms(SEARCH_TERMS.POWER);
-			Tech tech10 = new Tech("InteriorDecor", new List<string>
+			}, this, null);
+			tech12.AddSearchTerms(SEARCH_TERMS.POWER);
+			tech12.AddSearchTerms(SEARCH_TERMS.GENERATOR);
+			Tech tech13 = new Tech("InteriorDecor", new List<string>
 			{
 				"FlowerVase",
 				"FloorLamp",
 				"CeilingLight"
 			}, this, null);
-			tech10.AddSearchTerms(SEARCH_TERMS.MORALE);
-			tech10.AddSearchTerms(SEARCH_TERMS.ARTWORK);
-			Tech tech11 = new Tech("Artistry", new List<string>
+			tech13.AddSearchTerms(SEARCH_TERMS.MORALE);
+			tech13.AddSearchTerms(SEARCH_TERMS.ARTWORK);
+			Tech tech14 = new Tech("Artistry", new List<string>
 			{
 				"FlowerVaseWall",
 				"FlowerVaseHanging",
@@ -436,15 +450,15 @@ namespace Database
 				"SmallSculpture",
 				"IceSculpture"
 			}, this, null);
-			tech11.AddSearchTerms(SEARCH_TERMS.MORALE);
-			tech11.AddSearchTerms(SEARCH_TERMS.ARTWORK);
+			tech14.AddSearchTerms(SEARCH_TERMS.MORALE);
+			tech14.AddSearchTerms(SEARCH_TERMS.ARTWORK);
 			new Tech("Clothing", new List<string>
 			{
 				"ClothingFabricator",
 				"CarpetTile",
 				"ExteriorWall"
 			}, this, null).AddSearchTerms(SEARCH_TERMS.TILE);
-			Tech tech12 = new Tech("Acoustics", new List<string>
+			Tech tech15 = new Tech("Acoustics", new List<string>
 			{
 				"BatterySmart",
 				"Phonobox",
@@ -452,38 +466,44 @@ namespace Database
 				"ElectrobankCharger",
 				"Electrobank"
 			}, this, null);
-			tech12.AddSearchTerms(SEARCH_TERMS.POWER);
-			tech12.AddSearchTerms(SEARCH_TERMS.BATTERY);
-			Tech tech13 = new Tech("SpacePower", new List<string>
+			tech15.AddSearchTerms(SEARCH_TERMS.POWER);
+			tech15.AddSearchTerms(SEARCH_TERMS.BATTERY);
+			Tech tech16 = new Tech("SpacePower", new List<string>
 			{
 				"BatteryModule",
 				"SolarPanelModule",
 				"RocketInteriorPowerPlug"
 			}, this, null);
-			tech13.AddSearchTerms(SEARCH_TERMS.POWER);
-			tech13.AddSearchTerms(SEARCH_TERMS.BATTERY);
-			tech13.AddSearchTerms(SEARCH_TERMS.ROCKET);
-			Tech tech14 = new Tech("NuclearRefinement", new List<string>
+			tech16.AddSearchTerms(SEARCH_TERMS.POWER);
+			tech16.AddSearchTerms(SEARCH_TERMS.BATTERY);
+			tech16.AddSearchTerms(SEARCH_TERMS.ROCKET);
+			Tech tech17 = new Tech("NuclearRefinement", new List<string>
 			{
 				"NuclearReactor",
 				"UraniumCentrifuge",
 				"HEPBridgeTile",
 				"SelfChargingElectrobank"
 			}, this, null);
-			tech14.AddSearchTerms(SEARCH_TERMS.POWER);
-			tech14.AddSearchTerms(SEARCH_TERMS.BATTERY);
-			Tech tech15 = new Tech("FineArt", new List<string>
+			tech17.AddSearchTerms(SEARCH_TERMS.POWER);
+			tech17.AddSearchTerms(SEARCH_TERMS.BATTERY);
+			Tech tech18 = new Tech("FineArt", new List<string>
 			{
 				"Canvas",
 				"Sculpture"
 			}, this, null);
-			tech15.AddSearchTerms(SEARCH_TERMS.MORALE);
-			tech15.AddSearchTerms(SEARCH_TERMS.ARTWORK);
-			new Tech("EnvironmentalAppreciation", new List<string>
+			tech18.AddSearchTerms(SEARCH_TERMS.MORALE);
+			tech18.AddSearchTerms(SEARCH_TERMS.ARTWORK);
+			Tech tech19 = new Tech("EnvironmentalAppreciation", new List<string>
 			{
 				"BeachChair"
-			}, this, null).AddSearchTerms(SEARCH_TERMS.MORALE);
-			Tech tech16 = new Tech("Luxury", new List<string>
+			}, this, null);
+			tech19.AddSearchTerms(SEARCH_TERMS.MORALE);
+			if (DlcManager.IsContentSubscribed("DLC4_ID"))
+			{
+				tech19.AddSearchTerms(SEARCH_TERMS.ARTWORK);
+				tech19.AddSearchTerms(SEARCH_TERMS.DINOSAUR);
+			}
+			Tech tech20 = new Tech("Luxury", new List<string>
 			{
 				"LuxuryBed",
 				"LadderFast",
@@ -491,16 +511,16 @@ namespace Database
 				"ClothingAlterationStation",
 				"WoodTile"
 			}, this, null);
-			tech16.AddSearchTerms(SEARCH_TERMS.TILE);
-			tech16.AddSearchTerms(SEARCH_TERMS.MORALE);
-			Tech tech17 = new Tech("RefractiveDecor", new List<string>
+			tech20.AddSearchTerms(SEARCH_TERMS.TILE);
+			tech20.AddSearchTerms(SEARCH_TERMS.MORALE);
+			Tech tech21 = new Tech("RefractiveDecor", new List<string>
 			{
 				"CanvasWide",
 				"MetalSculpture",
 				"WoodSculpture"
 			}, this, null);
-			tech17.AddSearchTerms(SEARCH_TERMS.MORALE);
-			tech17.AddSearchTerms(SEARCH_TERMS.ARTWORK);
+			tech21.AddSearchTerms(SEARCH_TERMS.MORALE);
+			tech21.AddSearchTerms(SEARCH_TERMS.ARTWORK);
 			new Tech("GlassFurnishings", new List<string>
 			{
 				"GlassTile",
@@ -511,13 +531,15 @@ namespace Database
 			{
 				PixelPackConfig.ID
 			}, this, null);
-			Tech tech18 = new Tech("RenaissanceArt", new List<string>
+			Tech tech22 = new Tech("RenaissanceArt", new List<string>
 			{
 				"CanvasTall",
-				"MarbleSculpture"
+				"MarbleSculpture",
+				"FossilSculpture",
+				"CeilingFossilSculpture"
 			}, this, null);
-			tech18.AddSearchTerms(SEARCH_TERMS.MORALE);
-			tech18.AddSearchTerms(SEARCH_TERMS.ARTWORK);
+			tech22.AddSearchTerms(SEARCH_TERMS.MORALE);
+			tech22.AddSearchTerms(SEARCH_TERMS.ARTWORK);
 			new Tech("Plastics", new List<string>
 			{
 				"Polymerizer",
@@ -717,7 +739,7 @@ namespace Database
 				LogicRibbonWriterConfig.ID,
 				LogicRibbonReaderConfig.ID
 			}, this, null).AddSearchTerms(SEARCH_TERMS.AUTOMATION);
-			Tech tech19 = new Tech("DupeTrafficControl", new List<string>
+			Tech tech23 = new Tech("DupeTrafficControl", new List<string>
 			{
 				LogicCounterConfig.ID,
 				LogicMemoryConfig.ID,
@@ -726,9 +748,9 @@ namespace Database
 				"Checkpoint",
 				"CosmicResearchCenter"
 			}, this, null);
-			tech19.AddSearchTerms(SEARCH_TERMS.AUTOMATION);
-			tech19.AddSearchTerms(SEARCH_TERMS.RESEARCH);
-			tech19.AddSearchTerms(SEARCH_TERMS.MORALE);
+			tech23.AddSearchTerms(SEARCH_TERMS.AUTOMATION);
+			tech23.AddSearchTerms(SEARCH_TERMS.RESEARCH);
+			tech23.AddSearchTerms(SEARCH_TERMS.MORALE);
 			new Tech("Multiplexing", new List<string>
 			{
 				"LogicGateMultiplexer",
@@ -755,7 +777,7 @@ namespace Database
 				"StorageLockerSmart",
 				"ObjectDispenser"
 			}, this, null).AddSearchTerms(SEARCH_TERMS.STORAGE);
-			Tech tech20 = new Tech("SolidManagement", new List<string>
+			Tech tech24 = new Tech("SolidManagement", new List<string>
 			{
 				"SolidFilter",
 				SolidConduitTemperatureSensorConfig.ID,
@@ -764,24 +786,24 @@ namespace Database
 				"StorageTile",
 				"CargoBayCluster"
 			}, this, null);
-			tech20.AddSearchTerms(SEARCH_TERMS.AUTOMATION);
-			tech20.AddSearchTerms(SEARCH_TERMS.TRANSPORT);
-			tech20.AddSearchTerms(SEARCH_TERMS.STORAGE);
+			tech24.AddSearchTerms(SEARCH_TERMS.AUTOMATION);
+			tech24.AddSearchTerms(SEARCH_TERMS.TRANSPORT);
+			tech24.AddSearchTerms(SEARCH_TERMS.STORAGE);
 			new Tech("HighVelocityTransport", new List<string>
 			{
 				"RailGun",
 				"LandingBeacon"
 			}, this, null).AddSearchTerms(SEARCH_TERMS.TRANSPORT);
-			Tech tech21 = new Tech("BasicRocketry", new List<string>
+			Tech tech25 = new Tech("BasicRocketry", new List<string>
 			{
 				"CommandModule",
 				"SteamEngine",
 				"ResearchModule",
 				"Gantry"
 			}, this, null);
-			tech21.AddSearchTerms(SEARCH_TERMS.ROCKET);
-			tech21.AddSearchTerms(SEARCH_TERMS.RESEARCH);
-			tech21.AddSearchTerms(SEARCH_TERMS.STEAM);
+			tech25.AddSearchTerms(SEARCH_TERMS.ROCKET);
+			tech25.AddSearchTerms(SEARCH_TERMS.RESEARCH);
+			tech25.AddSearchTerms(SEARCH_TERMS.STEAM);
 			new Tech("CargoI", new List<string>
 			{
 				"CargoBay"
@@ -813,7 +835,7 @@ namespace Database
 				"OxidizerTankCluster",
 				"HydrogenEngine"
 			}, this, null).AddSearchTerms(SEARCH_TERMS.ROCKET);
-			Tech tech22 = new Tech("Jetpacks", new List<string>
+			Tech tech26 = new Tech("Jetpacks", new List<string>
 			{
 				"JetSuit",
 				"JetSuitMarker",
@@ -822,8 +844,8 @@ namespace Database
 				"MissileFabricator",
 				"MissileLauncher"
 			}, this, null);
-			tech22.AddSearchTerms(SEARCH_TERMS.ROCKET);
-			tech22.AddSearchTerms(SEARCH_TERMS.MISSILE);
+			tech26.AddSearchTerms(SEARCH_TERMS.ROCKET);
+			tech26.AddSearchTerms(SEARCH_TERMS.MISSILE);
 			new Tech("SolidTransport", new List<string>
 			{
 				"SolidConduitInbox",
@@ -831,15 +853,15 @@ namespace Database
 				"SolidConduitBridge",
 				"SolidVent"
 			}, this, null).AddSearchTerms(SEARCH_TERMS.TRANSPORT);
-			Tech tech23 = new Tech("Monuments", new List<string>
+			Tech tech27 = new Tech("Monuments", new List<string>
 			{
 				"MonumentBottom",
 				"MonumentMiddle",
 				"MonumentTop"
 			}, this, null);
-			tech23.AddSearchTerms(SEARCH_TERMS.ARTWORK);
-			tech23.AddSearchTerms(SEARCH_TERMS.MORALE);
-			Tech tech24 = new Tech("SolidSpace", new List<string>
+			tech27.AddSearchTerms(SEARCH_TERMS.ARTWORK);
+			tech27.AddSearchTerms(SEARCH_TERMS.MORALE);
+			Tech tech28 = new Tech("SolidSpace", new List<string>
 			{
 				"SolidLogicValve",
 				"SolidConduitOutbox",
@@ -850,9 +872,9 @@ namespace Database
 				"ModularLaunchpadPortSolid",
 				"ModularLaunchpadPortSolidUnloader"
 			}, this, null);
-			tech24.AddSearchTerms(SEARCH_TERMS.AUTOMATION);
-			tech24.AddSearchTerms(SEARCH_TERMS.ROCKET);
-			tech24.AddSearchTerms(SEARCH_TERMS.TRANSPORT);
+			tech28.AddSearchTerms(SEARCH_TERMS.AUTOMATION);
+			tech28.AddSearchTerms(SEARCH_TERMS.ROCKET);
+			tech28.AddSearchTerms(SEARCH_TERMS.TRANSPORT);
 			new Tech("RoboticTools", new List<string>
 			{
 				"AutoMiner",

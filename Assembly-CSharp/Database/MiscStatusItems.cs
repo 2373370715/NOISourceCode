@@ -315,6 +315,49 @@ namespace Database
 			this.ArtifactEntombed = this.CreateStatusItem("ArtifactEntombed", "MISC", "", StatusItem.IconType.Info, NotificationType.Neutral, false, OverlayModes.None.ID, true, 129022);
 			this.TearOpen = this.CreateStatusItem("TearOpen", "MISC", "", StatusItem.IconType.Info, NotificationType.Neutral, false, OverlayModes.None.ID, true, 129022);
 			this.TearClosed = this.CreateStatusItem("TearClosed", "MISC", "", StatusItem.IconType.Info, NotificationType.Neutral, false, OverlayModes.None.ID, true, 129022);
+			this.ImpactorStatus = this.CreateStatusItem("LargeImpactorStatus", "MISC", "", StatusItem.IconType.Exclamation, NotificationType.Bad, false, OverlayModes.None.ID, true, 129022);
+			this.ImpactorStatus.resolveStringCallback = delegate(string str, object data)
+			{
+				ClusterTraveler clusterTraveler = (ClusterTraveler)data;
+				float seconds = 0f;
+				if (data != null)
+				{
+					seconds = clusterTraveler.TravelETA(clusterTraveler.Destination);
+				}
+				return string.Format(str, GameUtil.GetFormattedCycles(seconds, "F1", false));
+			};
+			this.ImpactorStatus.resolveTooltipCallback = this.ImpactorStatus.resolveStringCallback;
+			this.ImpactorHealth = this.CreateStatusItem("LargeImpactorHealth", "MISC", "", StatusItem.IconType.Exclamation, NotificationType.Bad, false, OverlayModes.None.ID, true, 129022);
+			this.ImpactorHealth.resolveStringCallback = delegate(string str, object data)
+			{
+				LargeImpactorStatus.Instance instance = (LargeImpactorStatus.Instance)data;
+				int num = 0;
+				int num2 = 0;
+				if (data != null)
+				{
+					num = instance.Health;
+					num2 = instance.def.MAX_HEALTH;
+				}
+				return string.Format(str, num, num2);
+			};
+			this.LongRangeMissileTTI = this.CreateStatusItem("LongRangeMissileTTI", "MISC", "", StatusItem.IconType.Info, NotificationType.Neutral, false, OverlayModes.None.ID, true, 129022);
+			this.LongRangeMissileTTI.resolveStringCallback = delegate(string str, object data)
+			{
+				ClusterMapLongRangeMissile.StatesInstance statesInstance = (ClusterMapLongRangeMissile.StatesInstance)data;
+				string arg = "";
+				float seconds = 0f;
+				if (statesInstance != null)
+				{
+					GameObject gameObject = statesInstance.sm.targetObject.Get(statesInstance);
+					if (gameObject != null)
+					{
+						arg = gameObject.GetProperName();
+					}
+					seconds = statesInstance.InterceptETA();
+				}
+				return string.Format(str, arg, GameUtil.GetFormattedCycles(seconds, "F1", false));
+			};
+			this.LongRangeMissileTTI.resolveTooltipCallback = this.LongRangeMissileTTI.resolveStringCallback;
 			this.MarkedForMove = this.CreateStatusItem("MarkedForMove", "MISC", "status_item_manually_controlled", StatusItem.IconType.Custom, NotificationType.Neutral, false, OverlayModes.None.ID, true, 129022);
 			this.MoveStorageUnreachable = this.CreateStatusItem("MoveStorageUnreachable", "MISC", "status_item_manually_controlled", StatusItem.IconType.Custom, NotificationType.BadMinor, false, OverlayModes.None.ID, true, 129022);
 		}
@@ -418,6 +461,12 @@ namespace Database
 		public StatusItem TearOpen;
 
 		public StatusItem TearClosed;
+
+		public StatusItem ImpactorStatus;
+
+		public StatusItem ImpactorHealth;
+
+		public StatusItem LongRangeMissileTTI;
 
 		public StatusItem ClusterMeteorRemainingTravelTime;
 

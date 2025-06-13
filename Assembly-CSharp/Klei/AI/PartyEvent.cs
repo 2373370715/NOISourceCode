@@ -8,7 +8,7 @@ namespace Klei.AI
 {
 	public class PartyEvent : GameplayEvent<PartyEvent.StatesInstance>
 	{
-		public PartyEvent() : base("Party", 0, 0)
+		public PartyEvent() : base("Party", 0, 0, null, null)
 		{
 			this.animFileName = "event_pop_up_assets_kanim";
 			this.title = GAMEPLAY_EVENTS.EVENT_TYPES.PARTY.NAME;

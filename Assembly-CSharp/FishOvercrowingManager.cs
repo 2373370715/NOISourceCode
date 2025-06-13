@@ -74,6 +74,7 @@ public class FishOvercrowingManager : KMonoBehaviour, ISim1000ms
 						if (!this.cavityIdToCavityInfo.TryGetValue(num6, out value))
 						{
 							value = default(FishOvercrowingManager.CavityInfo);
+							value.fishPrefabs = new List<KPrefabID>();
 						}
 						value.fishCount += num8;
 						value.cellCount++;
@@ -92,14 +93,36 @@ public class FishOvercrowingManager : KMonoBehaviour, ISim1000ms
 		{
 			FishOvercrowingManager.Cell cell2 = this.cells[fishInfo2.cell];
 			FishOvercrowingManager.CavityInfo cavityInfo = default(FishOvercrowingManager.CavityInfo);
-			this.cavityIdToCavityInfo.TryGetValue(cell2.cavityId, out cavityInfo);
+			if (this.cavityIdToCavityInfo.TryGetValue(cell2.cavityId, out cavityInfo))
+			{
+				cavityInfo.fishPrefabs.Add(fishInfo2.fish.GetComponent<KPrefabID>());
+			}
 			fishInfo2.fish.SetOvercrowdingInfo(cavityInfo.cellCount, cavityInfo.fishCount);
 		}
 		pooledList.Recycle();
 	}
 
+	public int GetFishCavityCount(int cell, HashSet<Tag> accepted_tags)
+	{
+		int num = 0;
+		FishOvercrowingManager.Cell cell2 = this.cells[cell];
+		FishOvercrowingManager.CavityInfo cavityInfo = default(FishOvercrowingManager.CavityInfo);
+		if (this.cavityIdToCavityInfo.TryGetValue(cell2.cavityId, out cavityInfo))
+		{
+			foreach (KPrefabID kprefabID in cavityInfo.fishPrefabs)
+			{
+				if (!kprefabID.HasTag(GameTags.Creatures.Bagged) && !kprefabID.HasTag(GameTags.Trapped) && accepted_tags.Contains(kprefabID.PrefabTag))
+				{
+					num++;
+				}
+			}
+		}
+		return num;
+	}
+
 	public static FishOvercrowingManager Instance;
 
+	private List<FishOvercrowdingMonitor.Instance> fishes = new List<FishOvercrowdingMonitor.Instance>();
 
 	private Dictionary<int, FishOvercrowingManager.CavityInfo> cavityIdToCavityInfo = new Dictionary<int, FishOvercrowingManager.CavityInfo>();
 
@@ -112,15 +135,23 @@ public class FishOvercrowingManager : KMonoBehaviour, ISim1000ms
 	private struct Cell
 	{
 		public int version;
+
 		public int cavityId;
+	}
 
+	private struct FishInfo
 	{
+		public int cell;
 
+		public FishOvercrowdingMonitor.Instance fish;
 	}
 
 	private struct CavityInfo
 	{
+		public List<KPrefabID> fishPrefabs;
+
 		public int fishCount;
 
 		public int cellCount;
 	}
+}

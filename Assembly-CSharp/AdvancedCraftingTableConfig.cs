@@ -86,18 +86,16 @@ public class AdvancedCraftingTableConfig : IBuildingConfig
 		{
 			new ComplexRecipe.RecipeElement("FetchDrone".ToTag(), 1f, ComplexRecipe.RecipeElement.TemperatureOperation.AverageTemperature, false)
 		};
-		ElectrobankConfig.recipe = new ComplexRecipe(ComplexRecipeManager.MakeRecipeID("AdvancedCraftingTable", array3, array4), array3, array4)
+		ComplexRecipe complexRecipe = new ComplexRecipe(ComplexRecipeManager.MakeRecipeID("AdvancedCraftingTable", array3, array4), array3, array4);
+		complexRecipe.time = INDUSTRIAL.RECIPES.STANDARD_FABRICATION_TIME * 4f;
+		complexRecipe.description = string.Format(STRINGS.BUILDINGS.PREFABS.ADVANCEDCRAFTINGTABLE.GENERIC_RECIPE_DESCRIPTION, ElementLoader.FindElementByHash(SimHashes.Polypropylene).name, STRINGS.ROBOTS.MODELS.FLYDO.NAME);
+		complexRecipe.nameDisplay = ComplexRecipe.RecipeNameDisplay.ResultWithIngredient;
+		complexRecipe.fabricators = new List<Tag>
 		{
-			time = INDUSTRIAL.RECIPES.STANDARD_FABRICATION_TIME * 4f,
-			description = string.Format(STRINGS.BUILDINGS.PREFABS.ADVANCEDCRAFTINGTABLE.GENERIC_RECIPE_DESCRIPTION, ElementLoader.FindElementByHash(SimHashes.Polypropylene).name, STRINGS.ROBOTS.MODELS.FLYDO.NAME),
-			nameDisplay = ComplexRecipe.RecipeNameDisplay.ResultWithIngredient,
-			fabricators = new List<Tag>
-			{
-				"AdvancedCraftingTable"
-			},
-			requiredTech = Db.Get().TechItems.fetchDrone.parentTechId,
-			sortOrder = 1
+			"AdvancedCraftingTable"
 		};
+		complexRecipe.requiredTech = Db.Get().TechItems.fetchDrone.parentTechId;
+		complexRecipe.sortOrder = 1;
 		ComplexRecipe.RecipeElement[] array5 = new ComplexRecipe.RecipeElement[]
 		{
 			new ComplexRecipe.RecipeElement(SimHashes.HardPolypropylene.CreateTag(), 200f, true)
@@ -106,18 +104,16 @@ public class AdvancedCraftingTableConfig : IBuildingConfig
 		{
 			new ComplexRecipe.RecipeElement("FetchDrone".ToTag(), 1f, ComplexRecipe.RecipeElement.TemperatureOperation.AverageTemperature, false)
 		};
-		ElectrobankConfig.recipe = new ComplexRecipe(ComplexRecipeManager.MakeRecipeID("AdvancedCraftingTable", array5, array6), array5, array6)
+		ComplexRecipe complexRecipe2 = new ComplexRecipe(ComplexRecipeManager.MakeRecipeID("AdvancedCraftingTable", array5, array6), array5, array6);
+		complexRecipe2.time = INDUSTRIAL.RECIPES.STANDARD_FABRICATION_TIME * 4f;
+		complexRecipe2.description = string.Format(STRINGS.BUILDINGS.PREFABS.ADVANCEDCRAFTINGTABLE.GENERIC_RECIPE_DESCRIPTION, ElementLoader.FindElementByHash(SimHashes.HardPolypropylene).name, STRINGS.ROBOTS.MODELS.FLYDO.NAME);
+		complexRecipe2.nameDisplay = ComplexRecipe.RecipeNameDisplay.ResultWithIngredient;
+		complexRecipe2.fabricators = new List<Tag>
 		{
-			time = INDUSTRIAL.RECIPES.STANDARD_FABRICATION_TIME * 4f,
-			description = string.Format(STRINGS.BUILDINGS.PREFABS.ADVANCEDCRAFTINGTABLE.GENERIC_RECIPE_DESCRIPTION, ElementLoader.FindElementByHash(SimHashes.HardPolypropylene).name, STRINGS.ROBOTS.MODELS.FLYDO.NAME),
-			nameDisplay = ComplexRecipe.RecipeNameDisplay.ResultWithIngredient,
-			fabricators = new List<Tag>
-			{
-				"AdvancedCraftingTable"
-			},
-			requiredTech = Db.Get().TechItems.fetchDrone.parentTechId,
-			sortOrder = 2
+			"AdvancedCraftingTable"
 		};
+		complexRecipe2.requiredTech = Db.Get().TechItems.fetchDrone.parentTechId;
+		complexRecipe2.sortOrder = 2;
 	}
 
 	public override void DoPostConfigureComplete(GameObject go)

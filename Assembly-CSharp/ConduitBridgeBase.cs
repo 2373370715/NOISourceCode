@@ -14,9 +14,7 @@ public class ConduitBridgeBase : KMonoBehaviour
 
 	public ConduitBridgeBase.ConduitBridgeEvent OnMassTransfer;
 
-Invoke) Token: 0x06004184 RID: 16772
 	public delegate float DesiredMassTransfer(float dt, SimHashes element, float mass, float temperature, byte disease_idx, int disease_count, Pickupable pickupable);
 
-Invoke) Token: 0x06004188 RID: 16776
 	public delegate void ConduitBridgeEvent(SimHashes element, float mass, float temperature, byte disease_idx, int disease_count, Pickupable pickupable);
 }

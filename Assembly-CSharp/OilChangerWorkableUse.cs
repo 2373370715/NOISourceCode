@@ -60,35 +60,23 @@ public class OilChangerWorkableUse : Workable, IGameObjectEffectDescriptor
 			float num2 = num;
 			float num3 = 0f;
 			Storage component2 = base.GetComponent<Storage>();
-			SimHashes simHashes = SimHashes.CrudeOil;
-			foreach (SimHashes simHashes2 in BionicOilMonitor.LUBRICANT_TYPE_EFFECT.Keys)
+			SimHashes lubricant = SimHashes.CrudeOil;
+			foreach (SimHashes simHashes in BionicOilMonitor.LUBRICANT_TYPE_EFFECT.Keys)
 			{
 				float num4;
 				SimUtil.DiseaseInfo diseaseInfo;
 				float num5;
-				component2.ConsumeAndGetDisease(simHashes2.CreateTag(), num2, out num4, out diseaseInfo, out num5);
+				component2.ConsumeAndGetDisease(simHashes.CreateTag(), num2, out num4, out diseaseInfo, out num5);
 				if (num4 > num3)
 				{
-					simHashes = simHashes2;
+					lubricant = simHashes;
 					num3 = num4;
 				}
 				num2 -= num4;
 			}
 			base.GetComponent<Storage>().ConsumeIgnoringDisease(GameTags.LubricatingOil, num2);
 			smi.RefillOil(num);
-			Effects component3 = worker.GetComponent<Effects>();
-			foreach (SimHashes simHashes3 in BionicOilMonitor.LUBRICANT_TYPE_EFFECT.Keys)
-			{
-				Effect effect = BionicOilMonitor.LUBRICANT_TYPE_EFFECT[simHashes3];
-				if (simHashes == simHashes3)
-				{
-					component3.Add(effect, true);
-				}
-				else
-				{
-					component3.Remove(effect);
-				}
-			}
+			BionicOilMonitor.ApplyLubricationEffects(worker.GetComponent<Effects>(), lubricant);
 		}
 		base.OnCompleteWork(worker);
 	}

@@ -33,6 +33,7 @@ public class SpaceTreeBranchConfig : IEntityConfig, IHasDlcRestrictions
 		List<Tag> additionalTags = new List<Tag>
 		{
 			GameTags.HideFromSpawnTool,
+			GameTags.HideFromCodex,
 			GameTags.PlantBranch
 		};
 		GameObject gameObject = EntityTemplates.CreatePlacedEntity(id, name, desc, mass, anim, initialAnim, sceneLayer, width, height, decor, default(EffectorValues), SimHashes.Creature, additionalTags, 255f);
@@ -68,6 +69,7 @@ public class SpaceTreeBranchConfig : IEntityConfig, IHasDlcRestrictions
 		gameObject.AddOrGet<Harvestable>();
 		gameObject.AddOrGet<HarvestDesignatable>();
 		gameObject.UpdateComponentRequirement(false);
+		gameObject.AddOrGet<CodexEntryRedirector>().CodexID = "SpaceTree";
 		gameObject.AddOrGetDef<PlantBranch.Def>().animationSetupCallback = new Action<PlantBranchGrower.Instance, PlantBranch.Instance>(this.AdjustAnimation);
 		gameObject.AddOrGetDef<SpaceTreeBranch.Def>().OPTIMAL_LUX_LEVELS = 10000;
 		gameObject.AddOrGetDef<UnstableEntombDefense.Def>().Cooldown = 5f;

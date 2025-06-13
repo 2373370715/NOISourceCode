@@ -34,7 +34,7 @@ public class ColonyRationMonitor : GameStateMachine<ColonyRationMonitor, ColonyR
 			{
 				while (enumerator.MoveNext())
 				{
-					if (enumerator.Current.GetComponent<Pickupable>().UnreservedAmount > 0f)
+					if (enumerator.Current.GetComponent<Pickupable>().UnreservedFetchAmount > 0f)
 					{
 						value = false;
 						break;

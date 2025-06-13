@@ -5,8 +5,6 @@ using UnityEngine;
 [AddComponentMenu("KMonoBehaviour/scripts/AssignableRegionCharacterSelection")]
 public class AssignableRegionCharacterSelection : KMonoBehaviour
 {
-add) Token: 0x0600969D RID: 38557 RVA: 0x003AD14C File Offset: 0x003AB34C
-remove) Token: 0x0600969E RID: 38558 RVA: 0x003AD184 File Offset: 0x003AB384
 	public event Action<MinionIdentity> OnDuplicantSelected;
 
 	protected override void OnSpawn()

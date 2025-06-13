@@ -1124,7 +1124,6 @@ namespace KMod
 
 		private int current_version = 1;
 
-Invoke) Token: 0x0600BAF2 RID: 47858
 		public delegate void OnUpdate(object change_source);
 
 		private class PersistentData

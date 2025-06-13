@@ -413,6 +413,10 @@ public class StructureTemperatureComponents : KGameObjectSplitComponentManager<S
 		{
 			return;
 		}
+		if (primaryElement.Element == null)
+		{
+			primaryElement.ElementID = ElementLoader.GetElementID(GameTags.IronOre);
+		}
 		if (primaryElement.Element.IsTemperatureInsulated)
 		{
 			return;
@@ -437,6 +441,7 @@ public class StructureTemperatureComponents : KGameObjectSplitComponentManager<S
 	private static void OnSimRegistered(HandleVector<int>.Handle handle, int sim_handle, string dbg_name)
 	{
 		if (!GameComps.StructureTemperatures.IsValid(handle))
+		{
 			return;
 		}
 		if (!GameComps.StructureTemperatures.IsVersionValid(handle))
@@ -463,6 +468,7 @@ public class StructureTemperatureComponents : KGameObjectSplitComponentManager<S
 	protected unsafe void SimUnregister(HandleVector<int>.Handle handle)
 	{
 		if (!GameComps.StructureTemperatures.IsVersionValid(handle))
+		{
 			KCrashReporter.Assert(false, "Handle version mismatch in StructureTemperature.SimUnregister", null);
 			return;
 		}
@@ -492,5 +498,7 @@ public class StructureTemperatureComponents : KGameObjectSplitComponentManager<S
 
 	private const float MAX_PRESSURE = 1.5f;
 
+	private static Dictionary<int, HandleVector<int>.Handle> handleInstanceMap = new Dictionary<int, HandleVector<int>.Handle>();
 
+	private StatusItem operatingEnergyStatusItem;
 }

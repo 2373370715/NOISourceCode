@@ -201,6 +201,5 @@ public class Easing
 		return (1f - Easing.BounceOut(1f - 2f * x)) / 2f;
 	};
 
-Invoke) Token: 0x06001B76 RID: 7030
 	public delegate float EasingFn(float f);
 }

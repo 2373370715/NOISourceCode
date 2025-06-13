@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using Klei.AI;
 using STRINGS;
 
@@ -11,20 +12,22 @@ public class DecorDisplayer : StandardAmountDisplayer
 
 	public override string GetTooltip(Amount master, AmountInstance instance)
 	{
-		string text = string.Format(LocText.ParseText(master.description), this.formatter.GetFormattedValue(instance.value, GameUtil.TimeSlice.None));
+		string format = LocText.ParseText(master.description);
+		StringBuilder stringBuilder = GlobalStringBuilderPool.Alloc();
+		stringBuilder.AppendFormat(format, this.formatter.GetFormattedValue(instance.value, GameUtil.TimeSlice.None));
 		int cell = Grid.PosToCell(instance.gameObject);
 		if (Grid.IsValidCell(cell))
 		{
-			text += string.Format(DUPLICANTS.STATS.DECOR.TOOLTIP_CURRENT, GameUtil.GetDecorAtCell(cell));
+			stringBuilder.Append(string.Format(DUPLICANTS.STATS.DECOR.TOOLTIP_CURRENT, GameUtil.GetDecorAtCell(cell)));
 		}
-		text += "\n";
+		stringBuilder.Append("\n");
 		DecorMonitor.Instance smi = instance.gameObject.GetSMI<DecorMonitor.Instance>();
 		if (smi != null)
 		{
-			text += string.Format(DUPLICANTS.STATS.DECOR.TOOLTIP_AVERAGE_TODAY, this.formatter.GetFormattedValue(smi.GetTodaysAverageDecor(), GameUtil.TimeSlice.None));
-			text += string.Format(DUPLICANTS.STATS.DECOR.TOOLTIP_AVERAGE_YESTERDAY, this.formatter.GetFormattedValue(smi.GetYesterdaysAverageDecor(), GameUtil.TimeSlice.None));
+			stringBuilder.AppendFormat(DUPLICANTS.STATS.DECOR.TOOLTIP_AVERAGE_TODAY, this.formatter.GetFormattedValue(smi.GetTodaysAverageDecor(), GameUtil.TimeSlice.None));
+			stringBuilder.AppendFormat(DUPLICANTS.STATS.DECOR.TOOLTIP_AVERAGE_YESTERDAY, this.formatter.GetFormattedValue(smi.GetYesterdaysAverageDecor(), GameUtil.TimeSlice.None));
 		}
-		return text;
+		return GlobalStringBuilderPool.ReturnAndFree(stringBuilder);
 	}
 
 	public class DecorAttributeFormatter : StandardAttributeFormatter

@@ -604,7 +604,12 @@ public class Grid
 
 	public static bool IsCellOpenToSpace(int cell)
 	{
-		return !Grid.IsSolidCell(cell) && !(Grid.Objects[cell, 2] != null) && global::World.Instance.zoneRenderData.GetSubWorldZoneType(cell) == SubWorld.ZoneType.Space;
+		return !Grid.IsSolidCell(cell) && !(Grid.Objects[cell, 2] != null) && Grid.IsCellBiomeSpaceBiome(cell);
+	}
+
+	public static bool IsCellBiomeSpaceBiome(int cell)
+	{
+		return global::World.Instance.zoneRenderData.GetSubWorldZoneType(cell) == SubWorld.ZoneType.Space;
 	}
 
 	public static int PosToCell(Vector2 pos)
@@ -1006,6 +1011,25 @@ public class Grid
 		return cellsClear > 0;
 	}
 
+	public static int FindMidSkyCellAlignedWithCellInWorld(int cellToAlignWith, int worldID)
+	{
+		WorldContainer world = ClusterManager.Instance.GetWorld(worldID);
+		int cell = Grid.XYToCell(Grid.CellToXY(cellToAlignWith).x, world.WorldOffset.y + world.Height);
+		int num = cellToAlignWith;
+		int invalidCell = Grid.InvalidCell;
+		int num2 = Grid.InvalidCell;
+		while (num2 == Grid.InvalidCell && Grid.CellToXY(num).y < world.WorldOffset.y + world.Height)
+		{
+			if (Grid.IsCellBiomeSpaceBiome(num))
+			{
+				num2 = num;
+				break;
+			}
+			num = Grid.CellAbove(num);
+		}
+		return Grid.XYToCell(Grid.CellToXY(cellToAlignWith).x, (int)((float)(Grid.CellToXY(cell).y + Grid.CellToXY(num2).y) * 0.5f));
+	}
+
 	public static bool FastTestLineOfSightSolid(int x, int y, int x2, int y2)
 	{
 		int value = x2 - x;
@@ -1277,6 +1301,8 @@ public class Grid
 	public static Dictionary<int, GameObject>[] ObjectLayers;
 
 	public static Action<int> OnReveal;
+
+	public static Vector3 OffWorldPosition = new Vector3(-1f, -1f, 0f);
 
 	public static Grid.BuildFlags[] BuildMasks;
 

@@ -51,8 +51,12 @@ public class Carvable : Workable, IDigActionEntity
 		base.Subscribe<Carvable>(493375141, Carvable.OnRefreshUserMenuDelegate);
 		this.faceTargetWhenWorking = true;
 		Prioritizable.AddRef(base.gameObject);
-		Extents extents = new Extents(Grid.PosToCell(base.gameObject), base.gameObject.GetComponent<OccupyArea>().OccupiedCellsOffsets);
-		this.partitionerEntry = GameScenePartitioner.Instance.Add(base.gameObject.name, base.gameObject.GetComponent<KPrefabID>(), extents, GameScenePartitioner.Instance.plants, null);
+		OccupyArea component = base.gameObject.GetComponent<OccupyArea>();
+		int cell = Grid.PosToCell(this);
+		foreach (CellOffset offset in component.OccupiedCellsOffsets)
+		{
+			Grid.ObjectLayers[5][Grid.OffsetCell(cell, offset)] = base.gameObject;
+		}
 		if (this.isMarkedForCarve)
 		{
 			this.MarkForCarve(true);
@@ -62,6 +66,7 @@ public class Carvable : Workable, IDigActionEntity
 	public void Carve()
 	{
 		this.isMarkedForCarve = false;
+		this.chore = null;
 		base.GetComponent<KSelectable>().RemoveStatusItem(this.pendingStatusItem, false);
 		base.GetComponent<KSelectable>().RemoveStatusItem(this.workerStatusItem, false);
 		Game.Instance.userMenu.Refresh(base.gameObject);
@@ -72,6 +77,7 @@ public class Carvable : Workable, IDigActionEntity
 	public void MarkForCarve(bool instantOnDebug = true)
 	{
 		if (DebugHandler.InstantBuildMode && instantOnDebug)
+		{
 			this.Carve();
 			return;
 		}
@@ -87,10 +93,12 @@ public class Carvable : Workable, IDigActionEntity
 	protected override void OnCompleteWork(WorkerBase worker)
 	{
 		this.Carve();
+	}
 
 	private void OnCancel(object data)
 	{
 		if (this.chore != null)
+		{
 			this.chore.Cancel("Cancel uproot");
 			this.chore = null;
 			base.GetComponent<KSelectable>().RemoveStatusItem(this.pendingStatusItem, false);
@@ -102,14 +110,17 @@ public class Carvable : Workable, IDigActionEntity
 	private void OnClickCarve()
 	{
 		this.MarkForCarve(true);
+	}
 
 	protected void OnClickCancelCarve()
 	{
 		this.OnCancel(null);
+	}
 
 	private void OnRefreshUserMenu(object data)
 	{
 		if (!this.showUserMenuButtons)
+		{
 			return;
 		}
 		KIconButtonMenu.ButtonInfo button = (this.chore != null) ? new KIconButtonMenu.ButtonInfo("action_carve", this.cancelButtonLabel, new System.Action(this.OnClickCancelCarve), global::Action.NumActions, null, null, null, this.cancelButtonTooltip, true) : new KIconButtonMenu.ButtonInfo("action_carve", this.buttonLabel, new System.Action(this.OnClickCarve), global::Action.NumActions, null, null, null, this.buttonTooltip, true);
@@ -118,6 +129,15 @@ public class Carvable : Workable, IDigActionEntity
 
 	protected override void OnCleanUp()
 	{
+		OccupyArea component = base.gameObject.GetComponent<OccupyArea>();
+		int cell = Grid.PosToCell(this);
+		foreach (CellOffset offset in component.OccupiedCellsOffsets)
+		{
+			if (Grid.ObjectLayers[5][Grid.OffsetCell(cell, offset)] == base.gameObject)
+			{
+				Grid.ObjectLayers[5][Grid.OffsetCell(cell, offset)] = null;
+			}
+		}
 		base.OnCleanUp();
 	}
 
@@ -131,12 +151,14 @@ public class Carvable : Workable, IDigActionEntity
 	{
 		if (pickupablePrefabId != null)
 		{
+			Vector3 position = base.gameObject.transform.GetPosition() + new Vector3(0f, 0.5f, 0f);
 			GameObject gameObject = GameUtil.KInstantiate(Assets.GetPrefab(new Tag(pickupablePrefabId)), position, Grid.SceneLayer.Ore, null, 0);
 			PrimaryElement component = base.gameObject.GetComponent<PrimaryElement>();
 			gameObject.GetComponent<PrimaryElement>().Temperature = component.Temperature;
 			gameObject.SetActive(true);
 			string properName = gameObject.GetProperName();
 			PopFXManager.Instance.SpawnFX(PopFXManager.Instance.sprite_Plus, properName, gameObject.transform, 1.5f, false);
+			return gameObject;
 		}
 		return null;
 	}
@@ -155,9 +177,11 @@ public class Carvable : Workable, IDigActionEntity
 	protected bool isMarkedForCarve;
 
 	protected Chore chore;
+
 	private string buttonLabel;
 
 	private string buttonTooltip;
+
 	private string cancelButtonLabel;
 
 	private string cancelButtonTooltip;
@@ -172,9 +196,11 @@ public class Carvable : Workable, IDigActionEntity
 
 	private static readonly EventSystem.IntraObjectHandler<Carvable> OnCancelDelegate = new EventSystem.IntraObjectHandler<Carvable>(delegate(Carvable component, object data)
 	{
+		component.OnCancel(data);
 	});
 
 	private static readonly EventSystem.IntraObjectHandler<Carvable> OnRefreshUserMenuDelegate = new EventSystem.IntraObjectHandler<Carvable>(delegate(Carvable component, object data)
 	{
+		component.OnRefreshUserMenu(data);
 	});
 }

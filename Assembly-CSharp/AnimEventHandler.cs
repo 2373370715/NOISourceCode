@@ -4,8 +4,6 @@ using UnityEngine;
 [AddComponentMenu("KMonoBehaviour/scripts/AnimEventHandler")]
 public class AnimEventHandler : KMonoBehaviour
 {
-add) Token: 0x06002C76 RID: 11382 RVA: 0x001F9C70 File Offset: 0x001F7E70
-remove) Token: 0x06002C77 RID: 11383 RVA: 0x001F9CA8 File Offset: 0x001F7EA8
 	private event AnimEventHandler.SetPos onWorkTargetSet;
 
 	public int GetCachedCell()
@@ -104,6 +102,5 @@ remove) Token: 0x06002C77 RID: 11383 RVA: 0x001F9CA8 File Offset: 0x001F7EA8
 
 	private HashedString context;
 
-Invoke) Token: 0x06002C85 RID: 11397
 	private delegate void SetPos(Vector3 pos);
 }

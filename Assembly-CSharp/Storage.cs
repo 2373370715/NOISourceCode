@@ -104,8 +104,6 @@ public class Storage : Workable, ISaveLoadableDetails, IGameObjectEffectDescript
 		return vector;
 	}
 
-add) Token: 0x06003621 RID: 13857 RVA: 0x0021EC38 File Offset: 0x0021CE38
-remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 	public event System.Action OnStorageIncreased;
 
 	protected override void OnPrefabInit()
@@ -518,6 +516,40 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 		return false;
 	}
 
+	public void TransferUnitMass(Storage dest_storage, Tag tag, float unitAmount, bool flatten = false, bool block_events = false, bool hide_popups = false)
+	{
+		float num = 0f;
+		GameObject gameObject = this.FindFirst(tag);
+		while (num < unitAmount && gameObject != null)
+		{
+			PrimaryElement component = gameObject.GetComponent<PrimaryElement>();
+			if (unitAmount < component.Units)
+			{
+				Pickupable component2 = gameObject.GetComponent<Pickupable>();
+				Pickupable pickupable = component2.TakeUnit(unitAmount);
+				dest_storage.Store(pickupable.gameObject, hide_popups, block_events, true, false);
+				if (block_events)
+				{
+					break;
+				}
+				base.Trigger(-1697596308, component2.gameObject);
+				Action<GameObject> onStorageChange = this.OnStorageChange;
+				if (onStorageChange == null)
+				{
+					return;
+				}
+				onStorageChange(component2.gameObject);
+				return;
+			}
+			else
+			{
+				this.Transfer(gameObject, dest_storage, block_events, hide_popups);
+				num += component.Units;
+				gameObject = this.FindFirst(tag);
+			}
+		}
+	}
+
 	public bool DropSome(Tag tag, float amount, bool ventGas = false, bool dumpLiquid = false, Vector3 offset = default(Vector3), bool doDiseaseTransfer = true, bool showInWorldNotification = false)
 	{
 		bool result = false;
@@ -552,6 +584,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 								result = true;
 								if (showInWorldNotification)
 								{
+									PopFXManager.Instance.SpawnFX(PopFXManager.Instance.sprite_Resource, pickupable.GetComponent<PrimaryElement>().Element.name + " " + GameUtil.GetFormattedMass(pickupable.TotalAmount, GameUtil.TimeSlice.None, GameUtil.MetricMassFormat.UseThreshold, true, "{0:0.#}"), pickupable.transform, this.storageFXOffset, 1.5f, false, false);
 								}
 							}
 							if (dumpLiquid && pickupable.GetComponent<PrimaryElement>().Element.IsLiquid)
@@ -641,6 +674,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 				{
 					gameObject.transform.SetPosition(position + offset);
 					KBatchedAnimController component2 = gameObject.GetComponent<KBatchedAnimController>();
+					if (component2)
 					{
 						component2.SetSceneLayer(Grid.SceneLayer.Ore);
 					}
@@ -685,11 +719,13 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 		{
 			if (!(this.items[i] == null))
 			{
+				KPrefabID component = this.items[i].GetComponent<KPrefabID>();
 				if (!(((chore.criteria == FetchChore.MatchCriteria.MatchID && chore.tags.Contains(component.PrefabTag)) || (chore.criteria == FetchChore.MatchCriteria.MatchTags && component.HasTag(chore.tagsFirst))) & (!chore.requiredTag.IsValid || component.HasTag(chore.requiredTag)) & !component.HasAnyTags(chore.forbiddenTags)))
 				{
 					GameObject gameObject = this.items[i];
 					this.items.RemoveAt(i);
 					i--;
+					this.TransferDiseaseWithObject(gameObject);
 					this.MakeWorldActive(gameObject);
 				}
 			}
@@ -698,6 +734,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 
 	public GameObject[] DropUnlessHasTag(Tag tag)
 	{
+		List<GameObject> list = new List<GameObject>();
 		for (int i = 0; i < this.items.Count; i++)
 		{
 			if (!(this.items[i] == null) && !this.items[i].GetComponent<KPrefabID>().HasTag(tag))
@@ -709,6 +746,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 				this.MakeWorldActive(gameObject);
 				Dumpable component = gameObject.GetComponent<Dumpable>();
 				if (component != null)
+				{
 					component.Dump(base.transform.GetPosition());
 				}
 				list.Add(gameObject);
@@ -727,6 +765,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 				GameObject gameObject = this.items[i];
 				this.items.RemoveAt(i);
 				i--;
+				this.TransferDiseaseWithObject(gameObject);
 				this.MakeWorldActive(gameObject);
 				Dumpable component = gameObject.GetComponent<Dumpable>();
 				if (component != null)
@@ -749,6 +788,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 		for (int i = 0; i < count; i++)
 		{
 			if (!(go != this.items[i]))
+			{
 				this.items[i] = this.items[count - 1];
 				this.items.RemoveAt(count - 1);
 				if (do_disease_transfer)
@@ -795,6 +835,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 			this.primaryElement.AddDisease(invalid.idx, invalid.count, "Storage.TransferDiseaseWithObject");
 		}
 		if (invalid2.count > 0)
+		{
 			component.AddDisease(invalid2.idx, invalid2.count, "Storage.TransferDiseaseWithObject");
 		}
 	}
@@ -803,6 +844,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 	{
 		go.transform.parent = null;
 		if (this.dropOffset != Vector2.zero)
+		{
 			go.transform.Translate(this.dropOffset);
 		}
 		go.Trigger(856640610, null);
@@ -831,6 +873,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 	{
 		for (int i = 0; i < this.items.Count; i++)
 		{
+			GameObject gameObject = this.items[i];
 			if (!(gameObject == null) && gameObject.HasTag(tag))
 			{
 				result.Add(gameObject);
@@ -858,6 +901,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 	{
 		PrimaryElement result = null;
 		for (int i = 0; i < this.items.Count; i++)
+		{
 			GameObject gameObject = this.items[i];
 			if (!(gameObject == null) && gameObject.HasTag(tag))
 			{
@@ -871,6 +915,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 		}
 		return result;
 	}
+
 	private void Flatten(Tag tag_to_combine)
 	{
 		GameObject gameObject = this.FindFirst(tag_to_combine);
@@ -885,6 +930,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 			if (gameObject2.HasTag(tag_to_combine) && gameObject2 != gameObject)
 			{
 				PrimaryElement component2 = gameObject2.GetComponent<PrimaryElement>();
+				component.Mass += component2.Mass;
 				this.ConsumeIgnoringDisease(gameObject2);
 			}
 		}
@@ -902,6 +948,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 	}
 
 	public GameObject Find(int ID)
+	{
 		for (int i = 0; i < this.items.Count; i++)
 		{
 			GameObject gameObject = this.items[i];
@@ -920,6 +967,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 
 	public void ConsumeAllIgnoringDisease(Tag tag)
 	{
+		for (int i = this.items.Count - 1; i >= 0; i--)
 		{
 			if (!(tag != Tag.Invalid) || this.items[i].HasTag(tag))
 			{
@@ -930,6 +978,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 
 	public void ConsumeAndGetDisease(Tag tag, float amount, out float amount_consumed, out SimUtil.DiseaseInfo disease_info, out float aggregate_temperature)
 	{
+		SimHashes simHashes;
 		this.ConsumeAndGetDisease(tag, amount, out amount_consumed, out disease_info, out aggregate_temperature, out simHashes);
 	}
 
@@ -942,11 +991,13 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 		aggregate_temperature = 0f;
 		bool flag = false;
 		float num = 0f;
+		int num2 = 0;
 		while (num2 < this.items.Count && amount > 0f)
 		{
 			GameObject gameObject = this.items[num2];
 			if (!(gameObject == null) && gameObject.HasTag(tag))
 			{
+				PrimaryElement component = gameObject.GetComponent<PrimaryElement>();
 				if (component.Units > 0f)
 				{
 					flag = true;
@@ -958,12 +1009,14 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 					component.Units -= num3;
 					component.ModifyDiseaseCount(-percentOfDisease.count, "Storage.ConsumeAndGetDisease");
 					amount -= num3;
+					amount_consumed += num3;
 					if (num3 > num)
 					{
 						num = num3;
 						mostRelevantItemElement = component.ElementID;
 					}
 				}
+				if (component.Units <= 0f && !component.KeepZeroMassObject)
 				{
 					if (this.deleted_objects == null)
 					{
@@ -1027,12 +1080,14 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 				onStorageChange(item_go);
 				return;
 			}
+			else
 			{
 				this.items.Remove(item_go);
 				base.Trigger(-1697596308, item_go);
 				Action<GameObject> onStorageChange2 = this.OnStorageChange;
 				if (onStorageChange2 != null)
 				{
+					onStorageChange2(item_go);
 				}
 				item_go.DeleteObject();
 			}
@@ -1040,6 +1095,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 	}
 
 	public GameObject Drop(int ID)
+	{
 		return this.Drop(this.Find(ID), true);
 	}
 
@@ -1068,10 +1124,12 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 
 	public float Capacity()
 	{
+		return this.capacityKg;
 	}
 
 	public bool IsEndOfLife()
 	{
+		return this.endOfLife;
 	}
 
 	public float ExactMassStored()
@@ -1084,24 +1142,29 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 				PrimaryElement component = this.items[i].GetComponent<PrimaryElement>();
 				if (component != null)
 				{
+					num += component.Units * component.MassPerUnit;
 				}
 			}
 		}
 		return num;
 	}
+
 	public float MassStored()
 	{
 		return (float)Mathf.RoundToInt(this.ExactMassStored() * 1000f) / 1000f;
 	}
+
 	public float UnitsStored()
 	{
 		float num = 0f;
 		for (int i = 0; i < this.items.Count; i++)
+		{
 			if (!(this.items[i] == null))
 			{
 				PrimaryElement component = this.items[i].GetComponent<PrimaryElement>();
 				if (component != null)
 				{
+					num += component.Units;
 				}
 			}
 		}
@@ -1118,11 +1181,13 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 				PrimaryElement component = gameObject.GetComponent<PrimaryElement>();
 				if (component.HasTag(tag) && component.Mass > 0f)
 				{
+					result = true;
 					break;
 				}
 			}
 		}
 		return result;
+	}
 
 	public PrimaryElement AddToPrimaryElement(SimHashes element, float additional_mass, float temperature)
 	{
@@ -1138,6 +1203,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 
 	public PrimaryElement FindPrimaryElement(SimHashes element)
 	{
+		PrimaryElement result = null;
 		foreach (GameObject gameObject in this.items)
 		{
 			if (!(gameObject == null))
@@ -1155,6 +1221,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 
 	public float RemainingCapacity()
 	{
+		return this.capacityKg - this.MassStored();
 	}
 
 	public bool GetOnlyFetchMarkedItems()
@@ -1165,6 +1232,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 	public void SetOnlyFetchMarkedItems(bool is_set)
 	{
 		if (is_set != this.onlyFetchMarkedItems)
+		{
 			this.onlyFetchMarkedItems = is_set;
 			this.UpdateFetchCategory();
 			base.Trigger(644822890, null);
@@ -1181,15 +1249,18 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 		this.fetchCategory = (this.onlyFetchMarkedItems ? Storage.FetchCategory.StorageSweepOnly : Storage.FetchCategory.GeneralStorage);
 	}
 
+	protected override void OnCleanUp()
 	{
 		if (this.items.Count != 0)
 		{
 			global::Debug.LogWarning("Storage for [" + base.gameObject.name + "] is being destroyed but it still contains items!", base.gameObject);
 		}
+		base.OnCleanUp();
 	}
 
 	private void OnQueueDestroyObject(object data)
 	{
+		this.endOfLife = true;
 		List<GameObject> list = new List<GameObject>();
 		bool vent_gas = true;
 		bool dump_liquid = false;
@@ -1201,6 +1272,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 		}
 		this.OnCleanUp();
 	}
+
 	public void Remove(GameObject go, bool do_disease_transfer = true)
 	{
 		this.items.Remove(go);
@@ -1209,6 +1281,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 			this.TransferDiseaseWithObject(go);
 		}
 		base.Trigger(-1697596308, go);
+		Action<GameObject> onStorageChange = this.OnStorageChange;
 		if (onStorageChange != null)
 		{
 			onStorageChange(go);
@@ -1217,6 +1290,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 	}
 
 	public bool ForceStore(Tag tag, float amount)
+	{
 		global::Debug.Assert(amount < PICKUPABLETUNING.MINIMUM_PICKABLE_AMOUNT);
 		for (int i = 0; i < this.items.Count; i++)
 		{
@@ -1231,6 +1305,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 	}
 
 	public float GetAmountAvailable(Tag tag)
+	{
 		float num = 0f;
 		for (int i = 0; i < this.items.Count; i++)
 		{
@@ -1246,6 +1321,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 	public float GetAmountAvailable(Tag tag, Tag[] forbiddenTags = null)
 	{
 		if (forbiddenTags == null)
+		{
 			return this.GetAmountAvailable(tag);
 		}
 		float num = 0f;
@@ -1260,6 +1336,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 		return num;
 	}
 
+	public float GetUnitsAvailable(Tag tag)
 	{
 		float num = 0f;
 		for (int i = 0; i < this.items.Count; i++)
@@ -1273,6 +1350,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 		return num;
 	}
 
+	public float GetMassAvailable(Tag tag)
 	{
 		float num = 0f;
 		for (int i = 0; i < this.items.Count; i++)
@@ -1290,6 +1368,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 	{
 		float num = 0f;
 		for (int i = 0; i < this.items.Count; i++)
+		{
 			GameObject gameObject = this.items[i];
 			if (gameObject != null)
 			{
@@ -1303,6 +1382,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 		return num;
 	}
 
+	public override List<Descriptor> GetDescriptors(GameObject go)
 	{
 		List<Descriptor> descriptors = base.GetDescriptors(go);
 		if (this.showDescriptor)
@@ -1316,6 +1396,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 	{
 		SimTemperatureTransfer component = go.GetComponent<SimTemperatureTransfer>();
 		if (component == null)
+		{
 			return;
 		}
 		component.enabled = !is_stored;
@@ -1333,6 +1414,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 		{
 			component.enabled = flag;
 		}
+		KSelectable component2 = go.GetComponent<KSelectable>();
 		if (component2 != null && component2.enabled != flag)
 		{
 			component2.enabled = flag;
@@ -1342,6 +1424,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 	public static void MakeItemSealed(GameObject go, bool is_stored, bool is_initializing)
 	{
 		if (go != null)
+		{
 			if (is_stored)
 			{
 				go.GetComponent<KPrefabID>().AddTag(GameTags.Sealed, false);
@@ -1351,6 +1434,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 		}
 	}
 
+	public static void MakeItemPreserved(GameObject go, bool is_stored, bool is_initializing)
 	{
 		if (go != null)
 		{
@@ -1369,6 +1453,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 		for (int i = 0; i < list.Count; i++)
 		{
 			Storage.StoredItemModifier storedItemModifier = list[i];
+			for (int j = 0; j < Storage.StoredItemModifierHandlers.Count; j++)
 			{
 				Storage.StoredItemModifierInfo storedItemModifierInfo = Storage.StoredItemModifierHandlers[j];
 				if (storedItemModifierInfo.modifier == storedItemModifier)
@@ -1381,6 +1466,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 	}
 
 	protected virtual void OnCopySettings(object data)
+	{
 		Storage component = ((GameObject)data).GetComponent<Storage>();
 		if (component != null)
 		{
@@ -1393,6 +1479,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 		foreach (GameObject go in this.items)
 		{
 			go.Trigger(-1626373771, this);
+		}
 	}
 
 	private void OnReachableChanged(object data)
@@ -1409,6 +1496,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 
 	public void SetContentsDeleteOffGrid(bool delete_off_grid)
 	{
+		for (int i = 0; i < this.items.Count; i++)
 		{
 			Pickupable component = this.items[i].GetComponent<Pickupable>();
 			if (component != null)
@@ -1418,6 +1506,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 			Storage component2 = this.items[i].GetComponent<Storage>();
 			if (component2 != null)
 			{
+				component2.SetContentsDeleteOffGrid(delete_off_grid);
 			}
 		}
 	}
@@ -1425,6 +1514,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 	private bool ShouldSaveItem(GameObject go)
 	{
 		if (!this.shouldSaveItems)
+		{
 			return false;
 		}
 		bool result = false;
@@ -1436,6 +1526,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 	}
 
 	public void Serialize(BinaryWriter writer)
+	{
 		int num = 0;
 		int count = this.items.Count;
 		for (int i = 0; i < count; i++)
@@ -1453,6 +1544,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 		if (this.items != null && this.items.Count > 0)
 		{
 			for (int j = 0; j < this.items.Count; j++)
+			{
 				GameObject gameObject = this.items[j];
 				if (this.ShouldSaveItem(gameObject))
 				{
@@ -1467,6 +1559,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 					{
 						global::Debug.Log("Tried to save obj in storage but obj has no SaveLoadRoot", gameObject);
 					}
+				}
 			}
 		}
 	}
@@ -1505,6 +1598,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 						float realtimeSinceStartup4 = Time.realtimeSinceStartup;
 						component2.OnStore(this);
 						num3 += Time.realtimeSinceStartup - realtimeSinceStartup4;
+					}
 					Storable component3 = gameObject.GetComponent<Storable>();
 					if (component3 != null)
 					{
@@ -1560,6 +1654,7 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 
 	public List<Tag> storageFilters;
 
+	public bool useGunForDelivery = true;
 
 	public bool sendOnStoreOnSpawn;
 
@@ -1568,40 +1663,68 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 	public bool storeDropsFromButcherables;
 
 	public bool allowClearable;
+
 	public bool showCapacityStatusItem;
+
 	public bool showCapacityAsMainStatus;
+
 	public bool showUnreachableStatus;
+
 	public bool showSideScreenTitleBar;
+
 	public bool useWideOffsets;
+
 	public Action<List<GameObject>> onDestroyItemsDropped;
+
 	public Action<GameObject> OnStorageChange;
+
 	public Vector2 dropOffset = Vector2.zero;
+
 	[MyCmpGet]
+	private Rotatable rotatable;
 
+	public Vector2 gunTargetOffset;
 
+	public Storage.FetchCategory fetchCategory;
 
+	public int storageNetworkID = -1;
 
+	public Tag storageID = GameTags.StoragesIds.DefaultStorage;
 
+	public float storageFullMargin;
 
+	public Vector3 storageFXOffset = Vector3.zero;
 
+	private static readonly EventSystem.IntraObjectHandler<Storage> OnReachableChangedDelegate = new EventSystem.IntraObjectHandler<Storage>(delegate(Storage component, object data)
 	{
 		component.OnReachableChanged(data);
+	});
 
+	public Storage.FXPrefix fxPrefix;
 
+	public List<GameObject> items = new List<GameObject>();
 
+	[MyCmpGet]
 	public Prioritizable prioritizable;
 
+	[MyCmpGet]
 	public Automatable automatable;
 
 	[MyCmpGet]
 	protected PrimaryElement primaryElement;
+
 	public bool dropOnLoad;
+
 	protected float maxKGPerItem = float.MaxValue;
+
 	private bool endOfLife;
+
 	public bool allowSettingOnlyFetchMarkedItems = true;
+
 	[Serialize]
 	private bool onlyFetchMarkedItems;
 
+	[Serialize]
 	private bool shouldSaveItems = true;
 
 	public float storageWorkTime = 1.5f;
@@ -1609,40 +1732,53 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 	private static readonly List<Storage.StoredItemModifierInfo> StoredItemModifierHandlers = new List<Storage.StoredItemModifierInfo>
 	{
 		new Storage.StoredItemModifierInfo(Storage.StoredItemModifier.Hide, new Action<GameObject, bool, bool>(Storage.MakeItemInvisible)),
+		new Storage.StoredItemModifierInfo(Storage.StoredItemModifier.Insulate, new Action<GameObject, bool, bool>(Storage.MakeItemTemperatureInsulated)),
 		new Storage.StoredItemModifierInfo(Storage.StoredItemModifier.Seal, new Action<GameObject, bool, bool>(Storage.MakeItemSealed)),
 		new Storage.StoredItemModifierInfo(Storage.StoredItemModifier.Preserve, new Action<GameObject, bool, bool>(Storage.MakeItemPreserved))
 	};
+
 	[SerializeField]
 	private List<Storage.StoredItemModifier> defaultStoredItemModifers = new List<Storage.StoredItemModifier>
+	{
 		Storage.StoredItemModifier.Hide
 	};
+
 	public static readonly List<Storage.StoredItemModifier> StandardSealedStorage = new List<Storage.StoredItemModifier>
+	{
 		Storage.StoredItemModifier.Hide,
 		Storage.StoredItemModifier.Seal
+	};
 
+	public static readonly List<Storage.StoredItemModifier> StandardFabricatorStorage = new List<Storage.StoredItemModifier>
 	{
 		Storage.StoredItemModifier.Hide,
 		Storage.StoredItemModifier.Preserve
+	};
 
 	public static readonly List<Storage.StoredItemModifier> StandardInsulatedStorage = new List<Storage.StoredItemModifier>
+	{
 		Storage.StoredItemModifier.Hide,
 		Storage.StoredItemModifier.Seal,
+		Storage.StoredItemModifier.Insulate
 	};
 
 	private static StatusItem capacityStatusItem;
 
 	private static readonly EventSystem.IntraObjectHandler<Storage> OnDeadTagAddedDelegate = GameUtil.CreateHasTagHandler<Storage>(GameTags.Dead, delegate(Storage component, object data)
 	{
+		component.OnDeath(data);
 	});
 
 	private static readonly EventSystem.IntraObjectHandler<Storage> OnQueueDestroyObjectDelegate = new EventSystem.IntraObjectHandler<Storage>(delegate(Storage component, object data)
 	{
 		component.OnQueueDestroyObject(data);
+	});
 
 	private static readonly EventSystem.IntraObjectHandler<Storage> OnCopySettingsDelegate = new EventSystem.IntraObjectHandler<Storage>(delegate(Storage component, object data)
 	{
 		component.OnCopySettings(data);
 	});
+
 	private List<GameObject> deleted_objects;
 
 	public enum StoredItemModifier
@@ -1651,7 +1787,9 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 		Hide,
 		Seal,
 		Preserve
+	}
 
+	public enum FetchCategory
 	{
 		Building,
 		GeneralStorage,
@@ -1659,13 +1797,21 @@ remove) Token: 0x06003622 RID: 13858 RVA: 0x0021EC70 File Offset: 0x0021CE70
 	}
 
 	public enum FXPrefix
+	{
 		Delivered,
 		PickedUp
 	}
+
 	private struct StoredItemModifierInfo
+	{
 		public StoredItemModifierInfo(Storage.StoredItemModifier modifier, Action<GameObject, bool, bool> toggle_state)
+		{
 			this.modifier = modifier;
+			this.toggleState = toggle_state;
 		}
 
+		public Storage.StoredItemModifier modifier;
+
 		public Action<GameObject, bool, bool> toggleState;
+	}
 }

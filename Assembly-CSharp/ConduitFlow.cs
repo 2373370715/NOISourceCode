@@ -11,8 +11,6 @@ using UnityEngine;
 [DebuggerDisplay("{conduitType}")]
 public class ConduitFlow : IConduitFlow
 {
-add) Token: 0x06005988 RID: 22920 RVA: 0x0029DD04 File Offset: 0x0029BF04
-remove) Token: 0x06005989 RID: 22921 RVA: 0x0029DD3C File Offset: 0x0029BF3C
 	public event System.Action onConduitsRebuilt;
 
 	public void AddConduitUpdater(Action<float> callback, ConduitFlowPriority priority = ConduitFlowPriority.Default)

@@ -19,12 +19,8 @@ using UnityEngine.UI;
 
 public class KCrashReporter : MonoBehaviour
 {
-add) Token: 0x06006DCF RID: 28111 RVA: 0x002FAC80 File Offset: 0x002F8E80
-remove) Token: 0x06006DD0 RID: 28112 RVA: 0x002FACB4 File Offset: 0x002F8EB4
 	public static event Action<bool> onCrashReported;
 
-add) Token: 0x06006DD1 RID: 28113 RVA: 0x002FACE8 File Offset: 0x002F8EE8
-remove) Token: 0x06006DD2 RID: 28114 RVA: 0x002FAD1C File Offset: 0x002F8F1C
 	public static event Action<float> onCrashUploadProgress;
 
 	public static bool hasReportedError { get; private set; }
@@ -162,12 +158,12 @@ remove) Token: 0x06006DD2 RID: 28114 RVA: 0x002FAD1C File Offset: 0x002F8F1C
 			}
 			else
 			{
-				this.ShowDialog(text2, text3);
+				this.ShowDialog(text2, text3, true, null, null);
 			}
 		}
 	}
 
-	public bool ShowDialog(string error, string stack_trace)
+	public bool ShowDialog(string error, string stack_trace, bool includeSaveFile = true, string[] extraCategories = null, string[] extraFiles = null)
 	{
 		if (this.errorScreen != null)
 		{
@@ -201,7 +197,7 @@ remove) Token: 0x06006DD2 RID: 28114 RVA: 0x002FAD1C File Offset: 0x002F8F1C
 		{
 			errorDialog.PopupSubmitErrorDialog(stackTrace, delegate
 			{
-				KCrashReporter.ReportError(error, stack_trace, this.confirmDialogPrefab, this.errorScreen, errorDialog.UserMessage(), true, null, null);
+				KCrashReporter.ReportError(error, stack_trace, this.confirmDialogPrefab, this.errorScreen, errorDialog.UserMessage(), includeSaveFile, extraCategories, extraFiles);
 			}, new System.Action(this.OnQuitToDesktop), KCrashReporter.terminateOnError ? null : new System.Action(this.OnCloseErrorDialog));
 		}
 		return true;
@@ -508,13 +504,7 @@ remove) Token: 0x06006DD2 RID: 28114 RVA: 0x002FAD1C File Offset: 0x002F8F1C
 		{
 			return;
 		}
-		KCrashReporter.ReportError(msg, stack_trace, null, null, "", true, new string[]
-		{
-			KCrashReporter.CRASH_CATEGORY.SIM
-		}, new string[]
-		{
-			dmp_filename
-		});
+		KCrashReporter.pendingReport = new KCrashReporter.PendingReport(msg, stack_trace, dmp_filename);
 	}
 
 	private static byte[] CreateArchiveZip(string log, List<string> files)
@@ -566,6 +556,36 @@ remove) Token: 0x06006DD2 RID: 28114 RVA: 0x002FAD1C File Offset: 0x002F8F1C
 
 	private void Update()
 	{
+		if (KCrashReporter.pendingReport != null)
+		{
+			KCrashReporter.PendingReport pendingReport = KCrashReporter.pendingReport;
+			KCrashReporter.pendingReport = null;
+			if (KCrashReporter.hasReportedError)
+			{
+				return;
+			}
+			KCrashReporter component = Global.Instance.GetComponent<KCrashReporter>();
+			if (component != null)
+			{
+				component.ShowDialog(pendingReport.message, pendingReport.stack_trace, true, new string[]
+				{
+					KCrashReporter.CRASH_CATEGORY.SIM
+				}, new string[]
+				{
+					pendingReport.additional_filename
+				});
+			}
+			else
+			{
+				KCrashReporter.ReportError(pendingReport.message, pendingReport.stack_trace, null, null, "", true, new string[]
+				{
+					KCrashReporter.CRASH_CATEGORY.SIM
+				}, new string[]
+				{
+					pendingReport.additional_filename
+				});
+			}
+		}
 		if (KCrashReporter.pendingCrash != null)
 		{
 			KCrashReporter.PendingCrash pendingCrash = KCrashReporter.pendingCrash;
@@ -622,6 +642,8 @@ remove) Token: 0x06006DD2 RID: 28114 RVA: 0x002FAD1C File Offset: 0x002F8F1C
 	};
 
 	private static HashSet<int> previouslyReportedDevNotifications;
+
+	private static KCrashReporter.PendingReport pendingReport;
 
 	private static KCrashReporter.PendingCrash pendingCrash;
 
@@ -772,7 +794,7 @@ remove) Token: 0x06006DD2 RID: 28114 RVA: 0x002FAD1C File Offset: 0x002F8F1C
 
 		public string sku = "";
 
-		public int build = 663500;
+		public int build = 674504;
 
 		public string callstack = "";
 
@@ -814,5 +836,21 @@ remove) Token: 0x06006DD2 RID: 28114 RVA: 0x002FAD1C File Offset: 0x002F8F1C
 		public System.Action successCallback;
 
 		public Action<long> failureCallback;
+	}
+
+	public class PendingReport
+	{
+		public PendingReport(string msg, string stack_trace, string filename)
+		{
+			this.message = msg;
+			this.stack_trace = stack_trace;
+			this.additional_filename = filename;
+		}
+
+		public string message;
+
+		public string stack_trace;
+
+		public string additional_filename;
 	}
 }

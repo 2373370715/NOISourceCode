@@ -200,6 +200,5 @@ public abstract class Reactable
 
 	private ObjectLayer reactionLayer;
 
-Invoke) Token: 0x0600250C RID: 9484
 	public delegate bool ReactablePrecondition(GameObject go, Navigator.ActiveTransition transition);
 }

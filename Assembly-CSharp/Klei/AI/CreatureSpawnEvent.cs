@@ -8,7 +8,7 @@ namespace Klei.AI
 {
 	public class CreatureSpawnEvent : GameplayEvent<CreatureSpawnEvent.StatesInstance>
 	{
-		public CreatureSpawnEvent() : base("HatchSpawnEvent", 0, 0)
+		public CreatureSpawnEvent() : base("HatchSpawnEvent", 0, 0, null, null)
 		{
 			this.title = GAMEPLAY_EVENTS.EVENT_TYPES.CREATURE_SPAWN.NAME;
 			this.description = GAMEPLAY_EVENTS.EVENT_TYPES.CREATURE_SPAWN.DESCRIPTION;

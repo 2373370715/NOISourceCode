@@ -20,7 +20,7 @@ public class ShockwormConfig : IEntityConfig
 		int max_probing_radius = 32;
 		float moveSpeed = 2f;
 		string onDeathDropID = "Meat";
-		int onDeathDropCount = 3;
+		float onDeathDropCount = 3f;
 		bool drownVulnerable = true;
 		bool entombVulnerable = true;
 		float freezing_ = TUNING.CREATURES.TEMPERATURE.FREEZING_2;

@@ -96,9 +96,7 @@ public class HighEnergyParticlePort : KMonoBehaviour, IGameObjectEffectDescripto
 
 	public CellOffset particleOutputOffset;
 
-Invoke) Token: 0x060069DB RID: 27099
 	public delegate void OnParticleCapture(HighEnergyParticle particle);
 
-Invoke) Token: 0x060069DF RID: 27103
 	public delegate bool OnParticleCaptureAllowed(HighEnergyParticle particle);
 }

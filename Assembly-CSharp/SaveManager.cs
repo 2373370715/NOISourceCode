@@ -8,12 +8,8 @@ using UnityEngine;
 [AddComponentMenu("KMonoBehaviour/scripts/SaveManager")]
 public class SaveManager : KMonoBehaviour
 {
-add) Token: 0x06003538 RID: 13624 RVA: 0x0021AB08 File Offset: 0x00218D08
-remove) Token: 0x06003539 RID: 13625 RVA: 0x0021AB40 File Offset: 0x00218D40
 	public event Action<SaveLoadRoot> onRegister;
 
-add) Token: 0x0600353A RID: 13626 RVA: 0x0021AB78 File Offset: 0x00218D78
-remove) Token: 0x0600353B RID: 13627 RVA: 0x0021ABB0 File Offset: 0x00218DB0
 	public event Action<SaveLoadRoot> onUnregister;
 
 	protected override void OnPrefabInit()

@@ -42,6 +42,7 @@ public class CreatureFeederConfig : IBuildingConfig
 		go.AddOrGet<UserNameable>();
 		go.AddOrGet<TreeFilterable>();
 		go.AddOrGet<CreatureFeeder>();
+		go.GetComponent<KPrefabID>().prefabInitFn += this.OnPrefabInit;
 	}
 
 	public override void DoPostConfigureComplete(GameObject go)
@@ -62,13 +63,39 @@ public class CreatureFeederConfig : IBuildingConfig
 			GameTags.Creatures.Species.DivergentSpecies,
 			GameTags.Creatures.Species.DeerSpecies,
 			GameTags.Creatures.Species.BellySpecies,
-			GameTags.Creatures.Species.SealSpecies
+			GameTags.Creatures.Species.SealSpecies,
+			GameTags.Creatures.Species.StegoSpecies,
+			GameTags.Creatures.Species.RaptorSpecies,
+			GameTags.Creatures.Species.ChameleonSpecies
 		}))
 		{
+			Diet value = keyValuePair.Value;
+			if (value.CanEatPreyCritter)
+			{
+				Diet.Info[] preyInfos = value.preyInfos;
+				for (int i = 0; i < preyInfos.Length; i++)
+				{
+					foreach (Tag item in preyInfos[i].consumedTags)
+					{
+						CreatureFeederConfig.forbiddenTags.Add(item);
+					}
+				}
+			}
 			list.Add(keyValuePair.Key);
 		}
 		def.BuildingComplete.GetComponent<Storage>().storageFilters = list;
 	}
 
+	private void OnPrefabInit(GameObject instance)
+	{
+		TreeFilterable component = instance.GetComponent<TreeFilterable>();
+		foreach (Tag item in CreatureFeederConfig.forbiddenTags)
+		{
+			component.ForbiddenTags.Add(item);
+		}
+	}
+
 	public const string ID = "CreatureFeeder";
+
+	private static HashSet<Tag> forbiddenTags = new HashSet<Tag>();
 }

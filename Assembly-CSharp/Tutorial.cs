@@ -712,10 +712,8 @@ public class Tutorial : KMonoBehaviour, IRender1000ms
 		TM_COUNT
 	}
 
-Invoke) Token: 0x060037C5 RID: 14277
 	private delegate bool HideConditionDelegate();
 
-Invoke) Token: 0x060037C9 RID: 14281
 	private delegate bool RequirementSatisfiedDelegate();
 
 	private class Item

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LightBuffer : MonoBehaviour
@@ -62,48 +61,50 @@ public class LightBuffer : MonoBehaviour
 		this.Material.SetTexture("_PropertyWorldLight", this.WorldLight);
 		this.CircleMaterial.SetTexture("_PropertyWorldLight", this.WorldLight);
 		this.ConeMaterial.SetTexture("_PropertyWorldLight", this.WorldLight);
-		List<Light2D> list = Components.Light2Ds.Items;
-		if (ClusterManager.Instance != null)
+		GridArea visibleAreaExtended = GridVisibleArea.GetVisibleAreaExtended((int)this.largestLightRange + 4);
+		DictionaryPool<int, int, LightBuffer>.PooledDictionary pooledDictionary = DictionaryPool<int, int, LightBuffer>.Allocate();
+		foreach (Light2D light2D in Components.Light2Ds.Items)
 		{
-			list = Components.Light2Ds.GetWorldItems(ClusterManager.Instance.activeWorldId, false);
-		}
-		if (list == null)
-		{
-			return;
-		}
-		foreach (Light2D light2D in list)
-		{
-			if (!(light2D == null) && light2D.enabled)
+			if (!(light2D == null) && visibleAreaExtended.Contains(light2D.cachedCell))
 			{
-				MaterialPropertyBlock materialPropertyBlock = light2D.materialPropertyBlock;
-				materialPropertyBlock.SetVector(this.ColorRangeTag, new Vector4(light2D.Color.r * light2D.IntensityAnimation, light2D.Color.g * light2D.IntensityAnimation, light2D.Color.b * light2D.IntensityAnimation, light2D.Range));
 				Vector3 position = light2D.transform.GetPosition();
-				position.x += light2D.Offset.x;
-				position.y += light2D.Offset.y;
-				materialPropertyBlock.SetVector(this.LightPosTag, new Vector4(position.x, position.y, 0f, 0f));
-				Vector2 normalized = light2D.Direction.normalized;
-				materialPropertyBlock.SetVector(this.LightDirectionAngleTag, new Vector4(normalized.x, normalized.y, 0f, light2D.Angle));
-				Graphics.DrawMesh(this.Mesh, Vector3.zero, Quaternion.identity, this.Material, this.Layer, this.Camera, 0, materialPropertyBlock, false, false);
-				if (light2D.drawOverlay)
+				int key = Grid.PosToCell(position);
+				int num;
+				pooledDictionary.TryGetValue(key, out num);
+				if (num < this.maxLights)
 				{
-					materialPropertyBlock.SetColor(this.TintColorTag, light2D.overlayColour);
-					global::LightShape shape = light2D.shape;
-					if (shape != global::LightShape.Circle)
+					pooledDictionary[key] = num + 1;
+					MaterialPropertyBlock materialPropertyBlock = light2D.materialPropertyBlock;
+					materialPropertyBlock.SetVector(this.ColorRangeTag, new Vector4(light2D.Color.r * light2D.IntensityAnimation, light2D.Color.g * light2D.IntensityAnimation, light2D.Color.b * light2D.IntensityAnimation, light2D.Range));
+					position.x += light2D.Offset.x;
+					position.y += light2D.Offset.y;
+					materialPropertyBlock.SetVector(this.LightPosTag, new Vector4(position.x, position.y, 0f, 0f));
+					Vector2 normalized = light2D.Direction.normalized;
+					materialPropertyBlock.SetVector(this.LightDirectionAngleTag, new Vector4(normalized.x, normalized.y, 0f, light2D.Angle));
+					Graphics.DrawMesh(this.Mesh, Vector3.zero, Quaternion.identity, this.Material, this.Layer, this.Camera, 0, materialPropertyBlock, false, false);
+					if (light2D.drawOverlay)
 					{
-						if (shape == global::LightShape.Cone)
+						materialPropertyBlock.SetColor(this.TintColorTag, light2D.overlayColour);
+						global::LightShape shape = light2D.shape;
+						if (shape != global::LightShape.Circle)
 						{
-							matrix.SetTRS(position - Vector3.up * (light2D.Range * 0.5f), Quaternion.identity, new Vector3(1f, 0.5f, 1f) * light2D.Range);
-							Graphics.DrawMesh(this.Mesh, matrix, this.ConeMaterial, this.Layer, this.Camera, 0, materialPropertyBlock);
+							if (shape == global::LightShape.Cone)
+							{
+								matrix.SetTRS(position - Vector3.up * (light2D.Range * 0.5f), Quaternion.identity, new Vector3(1f, 0.5f, 1f) * light2D.Range);
+								Graphics.DrawMesh(this.Mesh, matrix, this.ConeMaterial, this.Layer, this.Camera, 0, materialPropertyBlock);
+							}
+						}
+						else
+						{
+							matrix.SetTRS(position, Quaternion.identity, Vector3.one * light2D.Range);
+							Graphics.DrawMesh(this.Mesh, matrix, this.CircleMaterial, this.Layer, this.Camera, 0, materialPropertyBlock);
 						}
 					}
-					else
-					{
-						matrix.SetTRS(position, Quaternion.identity, Vector3.one * light2D.Range);
-						Graphics.DrawMesh(this.Mesh, matrix, this.CircleMaterial, this.Layer, this.Camera, 0, materialPropertyBlock);
-					}
+					this.largestLightRange = Mathf.Max(this.largestLightRange, light2D.Range);
 				}
 			}
 		}
+		pooledDictionary.Recycle();
 	}
 
 	private void OnDestroy()
@@ -111,9 +112,13 @@ public class LightBuffer : MonoBehaviour
 		LightBuffer.Instance = null;
 	}
 
+	public int maxLights = 30;
+
 	private Mesh Mesh;
 
 	private Camera Camera;
+
+	public float largestLightRange = 16f;
 
 	[NonSerialized]
 	public Material Material;

@@ -97,7 +97,7 @@ namespace TUNING
 
 		public const float TRAVEL_TIME_WARNING_THRESHOLD = 0.4f;
 
-		public static readonly string[] ALL_ATTRIBUTES = new string[]
+		public static string[] ALL_ATTRIBUTES = new string[]
 		{
 			"Strength",
 			"Caring",
@@ -113,7 +113,7 @@ namespace TUNING
 			"SpaceNavigation"
 		};
 
-		public static readonly string[] DISTRIBUTED_ATTRIBUTES = new string[]
+		public static string[] DISTRIBUTED_ATTRIBUTES = new string[]
 		{
 			"Strength",
 			"Caring",
@@ -127,12 +127,12 @@ namespace TUNING
 			"Ranching"
 		};
 
-		public static readonly string[] ROLLED_ATTRIBUTES = new string[]
+		public static string[] ROLLED_ATTRIBUTES = new string[]
 		{
 			"Athletics"
 		};
 
-		public static readonly int[] APTITUDE_ATTRIBUTE_BONUSES = new int[]
+		public static int[] APTITUDE_ATTRIBUTE_BONUSES = new int[]
 		{
 			7,
 			3,
@@ -460,7 +460,7 @@ namespace TUNING
 
 		public static List<global::Tuple<int, int>> podTraitConfigurationsActive = new List<global::Tuple<int, int>>(DUPLICANTSTATS.POD_TRAIT_CONFIGURATIONS_DECK);
 
-		public static readonly List<string> CONTRACTEDTRAITS_HEALING = new List<string>
+		public static List<string> CONTRACTEDTRAITS_HEALING = new List<string>
 		{
 			"IrritableBowel",
 			"Aggressive",
@@ -470,7 +470,7 @@ namespace TUNING
 			"CantDig"
 		};
 
-		public static readonly List<DUPLICANTSTATS.TraitVal> CONGENITALTRAITS = new List<DUPLICANTSTATS.TraitVal>
+		public static List<DUPLICANTSTATS.TraitVal> CONGENITALTRAITS = new List<DUPLICANTSTATS.TraitVal>
 		{
 			new DUPLICANTSTATS.TraitVal
 			{
@@ -521,7 +521,7 @@ namespace TUNING
 			id = "INVALID"
 		};
 
-		public static readonly List<DUPLICANTSTATS.TraitVal> BADTRAITS = new List<DUPLICANTSTATS.TraitVal>
+		public static List<DUPLICANTSTATS.TraitVal> BADTRAITS = new List<DUPLICANTSTATS.TraitVal>
 		{
 			new DUPLICANTSTATS.TraitVal
 			{
@@ -749,7 +749,7 @@ namespace TUNING
 			}
 		};
 
-		public static readonly List<DUPLICANTSTATS.TraitVal> STRESSTRAITS = new List<DUPLICANTSTATS.TraitVal>
+		public static List<DUPLICANTSTATS.TraitVal> STRESSTRAITS = new List<DUPLICANTSTATS.TraitVal>
 		{
 			new DUPLICANTSTATS.TraitVal
 			{
@@ -773,7 +773,7 @@ namespace TUNING
 			}
 		};
 
-		public static readonly List<DUPLICANTSTATS.TraitVal> JOYTRAITS = new List<DUPLICANTSTATS.TraitVal>
+		public static List<DUPLICANTSTATS.TraitVal> JOYTRAITS = new List<DUPLICANTSTATS.TraitVal>
 		{
 			new DUPLICANTSTATS.TraitVal
 			{
@@ -807,7 +807,7 @@ namespace TUNING
 			}
 		};
 
-		public static readonly List<DUPLICANTSTATS.TraitVal> GENESHUFFLERTRAITS = new List<DUPLICANTSTATS.TraitVal>
+		public static List<DUPLICANTSTATS.TraitVal> GENESHUFFLERTRAITS = new List<DUPLICANTSTATS.TraitVal>
 		{
 			new DUPLICANTSTATS.TraitVal
 			{
@@ -827,7 +827,7 @@ namespace TUNING
 			}
 		};
 
-		public static readonly List<DUPLICANTSTATS.TraitVal> BIONICBUGTRAITS = new List<DUPLICANTSTATS.TraitVal>
+		public static List<DUPLICANTSTATS.TraitVal> BIONICBUGTRAITS = new List<DUPLICANTSTATS.TraitVal>
 		{
 			new DUPLICANTSTATS.TraitVal
 			{
@@ -868,7 +868,7 @@ namespace TUNING
 
 		public static readonly List<DUPLICANTSTATS.TraitVal> BIONICUPGRADETRAITS = new List<DUPLICANTSTATS.TraitVal>();
 
-		public static readonly List<DUPLICANTSTATS.TraitVal> SPECIALTRAITS = new List<DUPLICANTSTATS.TraitVal>
+		public static List<DUPLICANTSTATS.TraitVal> SPECIALTRAITS = new List<DUPLICANTSTATS.TraitVal>
 		{
 			new DUPLICANTSTATS.TraitVal
 			{
@@ -905,7 +905,7 @@ namespace TUNING
 			}
 		};
 
-		public static readonly List<DUPLICANTSTATS.TraitVal> GOODTRAITS = new List<DUPLICANTSTATS.TraitVal>
+		public static List<DUPLICANTSTATS.TraitVal> GOODTRAITS = new List<DUPLICANTSTATS.TraitVal>
 		{
 			new DUPLICANTSTATS.TraitVal
 			{
@@ -1251,7 +1251,7 @@ namespace TUNING
 			}
 		};
 
-		public static readonly List<DUPLICANTSTATS.TraitVal> NEEDTRAITS = new List<DUPLICANTSTATS.TraitVal>
+		public static List<DUPLICANTSTATS.TraitVal> NEEDTRAITS = new List<DUPLICANTSTATS.TraitVal>
 		{
 			new DUPLICANTSTATS.TraitVal
 			{
@@ -1315,7 +1315,7 @@ namespace TUNING
 			}
 		};
 
-		private static readonly Dictionary<Tag, DUPLICANTSTATS> DUPLICANT_TYPES = new Dictionary<Tag, DUPLICANTSTATS>
+		private static Dictionary<Tag, DUPLICANTSTATS> DUPLICANT_TYPES = new Dictionary<Tag, DUPLICANTSTATS>
 		{
 			{
 				GameTags.Minions.Models.Standard,

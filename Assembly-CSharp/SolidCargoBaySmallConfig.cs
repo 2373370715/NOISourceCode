@@ -1,4 +1,5 @@
 ﻿using System;
+using STRINGS;
 using TUNING;
 using UnityEngine;
 
@@ -17,12 +18,12 @@ public class SolidCargoBaySmallConfig : IBuildingConfig
 		string anim = "rocket_storage_solid_small_kanim";
 		int hitpoints = 1000;
 		float construction_time = 30f;
-		float[] hollow_TIER = BUILDINGS.ROCKETRY_MASS_KG.HOLLOW_TIER1;
+		float[] hollow_TIER = TUNING.BUILDINGS.ROCKETRY_MASS_KG.HOLLOW_TIER1;
 		string[] refined_METALS = MATERIALS.REFINED_METALS;
 		float melting_point = 9999f;
 		BuildLocationRule build_location_rule = BuildLocationRule.Anywhere;
 		EffectorValues tier = NOISE_POLLUTION.NOISY.TIER2;
-		BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(id, width, height, anim, hitpoints, construction_time, hollow_TIER, refined_METALS, melting_point, build_location_rule, BUILDINGS.DECOR.NONE, tier, 0.2f);
+		BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(id, width, height, anim, hitpoints, construction_time, hollow_TIER, refined_METALS, melting_point, build_location_rule, TUNING.BUILDINGS.DECOR.NONE, tier, 0.2f);
 		BuildingTemplates.CreateRocketBuildingDef(buildingDef);
 		buildingDef.SceneLayer = Grid.SceneLayer.Building;
 		buildingDef.Invincible = true;
@@ -34,6 +35,7 @@ public class SolidCargoBaySmallConfig : IBuildingConfig
 		buildingDef.attachablePosition = new CellOffset(0, 0);
 		buildingDef.CanMove = true;
 		buildingDef.Cancellable = false;
+		buildingDef.AddSearchTerms(SEARCH_TERMS.TRANSPORT);
 		return buildingDef;
 	}
 

@@ -17,12 +17,11 @@ public class Brain : KMonoBehaviour
 		Components.Brains.Add(this);
 	}
 
-add) Token: 0x06001C9F RID: 7327 RVA: 0x001B8C58 File Offset: 0x001B6E58
-remove) Token: 0x06001CA0 RID: 7328 RVA: 0x001B8C90 File Offset: 0x001B6E90
 	public event System.Action onPreUpdate;
 
 	public virtual void UpdateBrain()
 	{
+		SuperluminalPerf.BeginEvent("UpdateBrain", base.name);
 		if (this.onPreUpdate != null)
 		{
 			this.onPreUpdate();
@@ -31,6 +30,7 @@ remove) Token: 0x06001CA0 RID: 7328 RVA: 0x001B8C90 File Offset: 0x001B6E90
 		{
 			this.UpdateChores();
 		}
+		SuperluminalPerf.EndEvent();
 	}
 
 	private bool FindBetterChore(ref Chore.Precondition.Context context)

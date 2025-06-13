@@ -21,6 +21,14 @@ public class WorldInventory : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
+	private MinionGroupProber Prober
+	{
+		get
+		{
+			return MinionGroupProber.Get();
+		}
+	}
+
 	public bool HasValidCount
 	{
 		get
@@ -37,6 +45,7 @@ public class WorldInventory : KMonoBehaviour, ISaveLoadable
 			if (!(worldContainer != null))
 			{
 				return -1;
+			}
 			return worldContainer.id;
 		}
 	}
@@ -49,6 +58,7 @@ public class WorldInventory : KMonoBehaviour, ISaveLoadable
 		this.m_worldContainer = base.GetComponent<WorldContainer>();
 	}
 
+	protected override void OnCleanUp()
 	{
 		base.Unsubscribe(Game.Instance.gameObject, -1588644844, new Action<object>(this.OnAddedFetchable));
 		base.Unsubscribe(Game.Instance.gameObject, -1491270284, new Action<object>(this.OnRemovedFetchable));
@@ -56,6 +66,7 @@ public class WorldInventory : KMonoBehaviour, ISaveLoadable
 	}
 
 	private void GenerateInventoryReport(object data)
+	{
 		int num = 0;
 		int num2 = 0;
 		foreach (Brain brain in Components.Brains.GetWorldItems(this.worldId, false))
@@ -63,6 +74,7 @@ public class WorldInventory : KMonoBehaviour, ISaveLoadable
 			CreatureBrain creatureBrain = brain as CreatureBrain;
 			if (creatureBrain != null)
 			{
+				if (creatureBrain.HasTag(GameTags.Creatures.Wild))
 				{
 					num++;
 					ReportManager.Instance.ReportValue(ReportManager.ReportType.WildCritters, 1f, creatureBrain.GetProperName(), creatureBrain.GetProperName());
@@ -101,17 +113,18 @@ public class WorldInventory : KMonoBehaviour, ISaveLoadable
 
 	protected override void OnSpawn()
 	{
-		this.Prober = MinionGroupProber.Get();
 		base.StartCoroutine(this.InitialRefresh());
 	}
 
 	private IEnumerator InitialRefresh()
 	{
+		int num;
 		for (int i = 0; i < 1; i = num)
 		{
 			yield return null;
 			num = i + 1;
 		}
+		for (int j = 0; j < Components.Pickupables.Count; j++)
 		{
 			Pickupable pickupable = Components.Pickupables[j];
 			if (pickupable != null)
@@ -133,10 +146,12 @@ public class WorldInventory : KMonoBehaviour, ISaveLoadable
 
 	public float GetTotalAmount(Tag tag, bool includeRelatedWorlds)
 	{
+		float result = 0f;
 		this.accessibleAmounts.TryGetValue(tag, out result);
 		return result;
 	}
 
+	public ICollection<Pickupable> GetPickupables(Tag tag, bool includeRelatedWorlds = false)
 	{
 		if (!includeRelatedWorlds)
 		{
@@ -144,6 +159,7 @@ public class WorldInventory : KMonoBehaviour, ISaveLoadable
 			this.Inventory.TryGetValue(tag, out result);
 			return result;
 		}
+		return ClusterUtil.GetPickupablesFromRelatedWorlds(this, tag);
 	}
 
 	public List<Pickupable> CreatePickupablesList(Tag tag)
@@ -154,6 +170,7 @@ public class WorldInventory : KMonoBehaviour, ISaveLoadable
 		{
 			return null;
 		}
+		return hashSet.ToList<Pickupable>();
 	}
 
 	public float GetAmount(Tag tag, bool includeRelatedWorlds)
@@ -164,6 +181,7 @@ public class WorldInventory : KMonoBehaviour, ISaveLoadable
 			num = this.GetTotalAmount(tag, includeRelatedWorlds);
 			num -= MaterialNeeds.GetAmount(tag, this.worldId, includeRelatedWorlds);
 		}
+		else
 		{
 			num = ClusterUtil.GetAmountFromRelatedWorlds(this, tag);
 		}
@@ -178,6 +196,7 @@ public class WorldInventory : KMonoBehaviour, ISaveLoadable
 			collection = this.GetPickupables(tag, false);
 		}
 		else
+		{
 			ICollection<Pickupable> pickupablesFromRelatedWorlds = ClusterUtil.GetPickupablesFromRelatedWorlds(this, tag);
 			collection = pickupablesFromRelatedWorlds;
 		}
@@ -212,6 +231,7 @@ public class WorldInventory : KMonoBehaviour, ISaveLoadable
 		}
 		float num = 0f;
 		ICollection<Pickupable> collection;
+		if (!includeRelatedWorlds)
 		{
 			collection = this.GetPickupables(tag, false);
 		}
@@ -242,6 +262,7 @@ public class WorldInventory : KMonoBehaviour, ISaveLoadable
 		while (enumerator.MoveNext())
 		{
 			KeyValuePair<Tag, HashSet<Pickupable>> keyValuePair = enumerator.Current;
+			if (num == this.accessibleUpdateIndex || this.firstUpdate)
 			{
 				Tag key = keyValuePair.Key;
 				IEnumerable<Pickupable> value = keyValuePair.Value;
@@ -279,11 +300,13 @@ public class WorldInventory : KMonoBehaviour, ISaveLoadable
 
 	private void OnAddedFetchable(object data)
 	{
+		GameObject gameObject = (GameObject)data;
 		KPrefabID component = gameObject.GetComponent<KPrefabID>();
 		if (component.HasAnyTags(WorldInventory.NonCritterEntitiesTags))
 		{
 			return;
 		}
+		Pickupable component2 = gameObject.GetComponent<Pickupable>();
 		if (component2.GetMyWorldId() != this.worldId)
 		{
 			return;
@@ -325,6 +348,7 @@ public class WorldInventory : KMonoBehaviour, ISaveLoadable
 		if (this.Inventory.TryGetValue(kprefabID.PrefabTag, out hashSet))
 		{
 			hashSet.Remove(component);
+		}
 		foreach (Tag key in kprefabID.Tags)
 		{
 			if (this.Inventory.TryGetValue(key, out hashSet))
@@ -345,15 +369,17 @@ public class WorldInventory : KMonoBehaviour, ISaveLoadable
 	public List<Tag> pinnedResources = new List<Tag>();
 
 	[Serialize]
+	public List<Tag> notifyResources = new List<Tag>();
 
+	private Dictionary<Tag, HashSet<Pickupable>> Inventory = new Dictionary<Tag, HashSet<Pickupable>>();
 
-	private MinionGroupProber Prober;
 	private Dictionary<Tag, float> accessibleAmounts = new Dictionary<Tag, float>();
 
 	private bool hasValidCount;
 
 	private static readonly EventSystem.IntraObjectHandler<WorldInventory> OnNewDayDelegate = new EventSystem.IntraObjectHandler<WorldInventory>(delegate(WorldInventory component, object data)
 	{
+		component.GenerateInventoryReport(data);
 	});
 
 	private int accessibleUpdateIndex;
@@ -362,5 +388,7 @@ public class WorldInventory : KMonoBehaviour, ISaveLoadable
 
 	private static Tag[] NonCritterEntitiesTags = new Tag[]
 	{
+		GameTags.DupeBrain,
 		GameTags.Robot
 	};
+}

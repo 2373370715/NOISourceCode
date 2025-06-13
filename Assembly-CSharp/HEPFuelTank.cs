@@ -1,4 +1,5 @@
 ﻿using System;
+using KSerialization;
 using STRINGS;
 using UnityEngine;
 
@@ -117,6 +118,9 @@ public class HEPFuelTank : KMonoBehaviour, IFuelTank, IUserControlledCapacity
 
 	[MyCmpReq]
 	public HighEnergyParticleStorage hepStorage;
+
+	[Serialize]
+	public float userMaxCapacity;
 
 	public float physicalFuelCapacity;
 

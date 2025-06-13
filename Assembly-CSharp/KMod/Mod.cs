@@ -294,7 +294,7 @@ namespace KMod
 					where v.info.APIVersion == 2 || v.info.APIVersion == 0
 					select v).ToList<Mod.ArchivedVersion>();
 					Mod.ArchivedVersion archivedVersion2 = (from v in list2
-					where (long)v.info.minimumSupportedBuild <= 663500L
+					where (long)v.info.minimumSupportedBuild <= 674504L
 					orderby v.info.minimumSupportedBuild descending
 					select v).FirstOrDefault<Mod.ArchivedVersion>();
 					if (archivedVersion2 != null)

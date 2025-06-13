@@ -92,6 +92,16 @@ namespace Database
 			this.Incubating = new StatusItem("Incubating", "CREATURES", "", StatusItem.IconType.Info, NotificationType.Neutral, false, OverlayModes.None.ID, true, 129022, null);
 			this.Drowning = new StatusItem("Drowning", "CREATURES", "status_item_flooded", StatusItem.IconType.Custom, NotificationType.BadMinor, false, OverlayModes.None.ID, true, 129022, null);
 			this.Drowning.resolveStringCallback = ((string str, object data) => str);
+			this.AquaticCreatureSuffocating = new StatusItem("AquaticCreatureSuffocating", "CREATURES", "", StatusItem.IconType.Info, NotificationType.Bad, false, OverlayModes.None.ID, true, 129022, null);
+			this.AquaticCreatureSuffocating.resolveTooltipCallback = delegate(string str, object data)
+			{
+				AquaticCreatureSuffocationMonitor.Instance instance = (AquaticCreatureSuffocationMonitor.Instance)data;
+				str = GameUtil.SafeStringFormat(str, new object[]
+				{
+					GameUtil.GetFormattedCycles(instance.TimeUntilDeath, "F1", false)
+				});
+				return str;
+			};
 			this.ProducingSugarWater = new StatusItem("ProducingSugarWater", "CREATURES", "", StatusItem.IconType.Info, NotificationType.Good, false, OverlayModes.None.ID, true, 129022, null);
 			this.ProducingSugarWater.resolveStringCallback = delegate(string str, object data)
 			{
@@ -210,7 +220,7 @@ namespace Database
 			this.Growing.resolveStringCallback = delegate(string str, object data)
 			{
 				IManageGrowingStates manageGrowingStates = (IManageGrowingStates)data;
-				if (manageGrowingStates.GetGropComponent() != null)
+				if (manageGrowingStates.GetCropComponent() != null)
 				{
 					float seconds = manageGrowingStates.TimeUntilNextHarvest();
 					str = str.Replace("{TimeUntilNextHarvest}", GameUtil.GetFormattedCycles(seconds, "F1", false));
@@ -219,18 +229,33 @@ namespace Database
 				str = str.Replace("{PercentGrow}", Math.Floor((double)Math.Max(val, 0f)).ToString("F0"));
 				return str;
 			};
-			this.CropSleeping = new StatusItem("Crop_Sleeping", "CREATURES", "", StatusItem.IconType.Info, NotificationType.Neutral, false, OverlayModes.None.ID, true, 1026, null);
-			this.CropSleeping.resolveStringCallback = delegate(string str, object data)
+			this.GrowingFruit = new StatusItem("GrowingFruit", "CREATURES", "", StatusItem.IconType.Info, NotificationType.Neutral, false, OverlayModes.None.ID, true, 1026, null);
+			this.GrowingFruit.resolveStringCallback = delegate(string str, object data)
 			{
-				CropSleepingMonitor.Instance instance = (CropSleepingMonitor.Instance)data;
-				return str.Replace("{REASON}", instance.def.prefersDarkness ? CREATURES.STATUSITEMS.CROP_SLEEPING.REASON_TOO_BRIGHT : CREATURES.STATUSITEMS.CROP_SLEEPING.REASON_TOO_DARK);
+				IManageGrowingStates manageGrowingStates = (IManageGrowingStates)data;
+				if (manageGrowingStates.GetCropComponent() != null)
+				{
+					float seconds = manageGrowingStates.TimeUntilNextHarvest();
+					str = str.Replace("{TimeUntilNextHarvest}", GameUtil.GetFormattedCycles(seconds, "F1", false));
+				}
+				float val = 100f * manageGrowingStates.PercentGrown();
+				str = str.Replace("{PercentGrow}", Math.Floor((double)Math.Max(val, 0f)).ToString("F0"));
+				return str;
 			};
-			this.CropSleeping.resolveTooltipCallback = delegate(string str, object data)
+			this.CarnivorousPlantAwaitingVictim = new StatusItem("CarnivorousPlantAwaitingVictim", "CREATURES", "", StatusItem.IconType.Info, NotificationType.Neutral, false, OverlayModes.None.ID, true, 1026, null);
+			this.CarnivorousPlantAwaitingVictim.resolveTooltipCallback = delegate(string str, object data)
 			{
-				CropSleepingMonitor.Instance instance = (CropSleepingMonitor.Instance)data;
-				AttributeInstance attributeInstance = Db.Get().PlantAttributes.MinLightLux.Lookup(instance.gameObject);
-				string newValue = string.Format(CREATURES.STATUSITEMS.CROP_SLEEPING.REQUIREMENT_LUMINANCE, attributeInstance.GetTotalValue());
-				return str.Replace("{REQUIREMENTS}", newValue);
+				string[] formattedPossiblePreyList = ((IPlantConsumeEntities)data).GetFormattedPossiblePreyList();
+				string text = "";
+				for (int i = 0; i < formattedPossiblePreyList.Length; i++)
+				{
+					text = text + "\n" + GameUtil.SafeStringFormat(CREATURES.STATUSITEMS.CARNIVOROUSPLANTAWAITINGVICTIM.TOOLTIP_ITEM, new object[]
+					{
+						formattedPossiblePreyList[i]
+					});
+				}
+				str += text;
+				return str;
 			};
 			this.EnvironmentTooWarm = new StatusItem("EnvironmentTooWarm", "CREATURES", "", StatusItem.IconType.Info, NotificationType.BadMinor, false, OverlayModes.None.ID, true, 129022, null);
 			this.EnvironmentTooWarm.resolveStringCallback = delegate(string str, object data)
@@ -604,6 +629,9 @@ namespace Database
 			};
 			this.TemperatureColdUncomfortable.resolveStringCallback = this.TemperatureHotUncomfortable.resolveStringCallback;
 			this.TemperatureColdDeadly.resolveStringCallback = this.TemperatureHotDeadly.resolveStringCallback;
+			this.TravelingToPollinate = new StatusItem("POLLINATING.MOVINGTO", "CREATURES", "", StatusItem.IconType.Info, NotificationType.Neutral, false, OverlayModes.None.ID, true, 129022, null);
+			this.Pollinating = new StatusItem("POLLINATING.INTERACTING", "CREATURES", "", StatusItem.IconType.Info, NotificationType.Neutral, false, OverlayModes.None.ID, true, 129022, null);
+			this.NotPollinated = new StatusItem("NOT_POLLINATED", "CREATURES", "", StatusItem.IconType.Info, NotificationType.Neutral, false, OverlayModes.None.ID, true, 129022, null);
 		}
 
 		public StatusItem Dead;
@@ -634,6 +662,8 @@ namespace Database
 
 		public StatusItem Suffocating;
 
+		public StatusItem AquaticCreatureSuffocating;
+
 		public StatusItem Hatching;
 
 		public StatusItem Incubating;
@@ -646,7 +676,9 @@ namespace Database
 
 		public StatusItem Growing;
 
-		public StatusItem CropSleeping;
+		public StatusItem GrowingFruit;
+
+		public StatusItem CarnivorousPlantAwaitingVictim;
 
 		public StatusItem ReadyForHarvest;
 
@@ -773,5 +805,11 @@ namespace Database
 		public StatusItem TemperatureColdUncomfortable;
 
 		public StatusItem TemperatureColdDeadly;
+
+		public StatusItem TravelingToPollinate;
+
+		public StatusItem Pollinating;
+
+		public StatusItem NotPollinated;
 	}
 }

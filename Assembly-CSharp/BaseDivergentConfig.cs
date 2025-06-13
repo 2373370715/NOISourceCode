@@ -16,7 +16,7 @@ public static class BaseDivergentConfig
 		{
 			navGridName = "WalkerBabyNavGrid";
 		}
-		EntityTemplates.ExtendEntityToBasicCreature(gameObject, FactionManager.FactionID.Pest, traitId, navGridName, NavType.Floor, 32, 2f, "Meat", meatAmount, true, false, 283.15f, 313.15f, 243.15f, 373.15f);
+		EntityTemplates.ExtendEntityToBasicCreature(gameObject, FactionManager.FactionID.Pest, traitId, navGridName, NavType.Floor, 32, 2f, "Meat", (float)meatAmount, true, false, 283.15f, 313.15f, 243.15f, 373.15f);
 		if (symbolOverridePrefix != null)
 		{
 			gameObject.AddOrGet<SymbolOverrideController>().ApplySymbolOverridesByAffix(Assets.GetAnim(anim_file), symbolOverridePrefix, null, 0);
@@ -51,7 +51,7 @@ public static class BaseDivergentConfig
 				"flower_wilted"
 			}
 		});
-		def.ignoreEffectGroup = BaseDivergentConfig.ignoreEffectGroup;
+		def.ignoreEffectGroup = PollinationMonitor.PollinationEffects;
 		ChoreTable.Builder chore_table = new ChoreTable.Builder().Add(new DeathStates.Def(), true, -1).Add(new AnimInterruptStates.Def(), true, -1).Add(new GrowUpStates.Def(), is_baby, -1).Add(new TrappedStates.Def(), true, -1).Add(new IncubatingStates.Def(), is_baby, -1).Add(new BaggedStates.Def(), true, -1).Add(new FallStates.Def(), true, -1).Add(new StunnedStates.Def(), true, -1).Add(new DrowningStates.Def(), true, -1).Add(new DebugGoToStates.Def(), true, -1).Add(new FleeStates.Def(), true, -1).Add(new AttackStates.Def("eat_pre", "eat_pst", null), !is_baby && !is_pacifist, -1).PushInterruptGroup().Add(new CreatureSleepStates.Def(), true, -1).Add(new FixedCaptureStates.Def(), true, -1).Add(new RanchedStates.Def(), !is_baby, -1).Add(new LayEggStates.Def(), !is_baby, -1).Add(new EatStates.Def(), true, -1).Add(new DrinkMilkStates.Def(), true, -1).Add(new PlayAnimsStates.Def(GameTags.Creatures.Poop, false, "poop", STRINGS.CREATURES.STATUSITEMS.EXPELLING_SOLID.NAME, STRINGS.CREATURES.STATUSITEMS.EXPELLING_SOLID.TOOLTIP), true, -1).Add(new CallAdultStates.Def(), is_baby, -1).Add(def, !is_baby, -1).Add(new CritterCondoStates.Def(), !is_baby, -1).PopInterruptGroup().Add(new IdleStates.Def(), true, -1);
 		EntityTemplates.AddCreatureBrain(gameObject, chore_table, GameTags.Creatures.Species.DivergentSpecies, symbolOverridePrefix);
 		return gameObject;
@@ -80,6 +80,8 @@ public static class BaseDivergentConfig
 	public const float CROP_TENDED_MULTIPLIER_DURATION = 600f;
 
 	public const float CROP_TENDED_MULTIPLIER_EFFECT = 0.05f;
+
+	public const string DEFAULT_CROP_TENDING_EFFECT = "DivergentCropTended";
 
 	public static string[] ignoreEffectGroup = new string[]
 	{

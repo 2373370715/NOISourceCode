@@ -20,8 +20,6 @@ public abstract class KAnimControllerBase : MonoBehaviour, ISerializationCallbac
 
 	public KAnim.Build curBuild { get; protected set; }
 
-add) Token: 0x0600298C RID: 10636 RVA: 0x001E3694 File Offset: 0x001E1894
-remove) Token: 0x0600298D RID: 10637 RVA: 0x001E36CC File Offset: 0x001E18CC
 	public event Action<Color32> OnOverlayColourChanged;
 
 	public new bool enabled
@@ -118,16 +116,10 @@ remove) Token: 0x0600298D RID: 10637 RVA: 0x001E36CC File Offset: 0x001E18CC
 		}
 	}
 
-add) Token: 0x0600299B RID: 10651 RVA: 0x001E3754 File Offset: 0x001E1954
-remove) Token: 0x0600299C RID: 10652 RVA: 0x001E378C File Offset: 0x001E198C
 	public event KAnimControllerBase.KAnimEvent onAnimEnter;
 
-add) Token: 0x0600299D RID: 10653 RVA: 0x001E37C4 File Offset: 0x001E19C4
-remove) Token: 0x0600299E RID: 10654 RVA: 0x001E37FC File Offset: 0x001E19FC
 	public event KAnimControllerBase.KAnimEvent onAnimComplete;
 
-add) Token: 0x0600299F RID: 10655 RVA: 0x001E3834 File Offset: 0x001E1A34
-remove) Token: 0x060029A0 RID: 10656 RVA: 0x001E386C File Offset: 0x001E1A6C
 	public event Action<int> onLayerChanged;
 
 	public int previousFrame { get; protected set; }
@@ -1185,6 +1177,5 @@ remove) Token: 0x060029A0 RID: 10656 RVA: 0x001E386C File Offset: 0x001E1A6C
 		Always
 	}
 
-Invoke) Token: 0x06002A00 RID: 10752
 	public delegate void KAnimEvent(HashedString name);
 }

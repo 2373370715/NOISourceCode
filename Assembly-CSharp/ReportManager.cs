@@ -183,10 +183,8 @@ public class ReportManager : KMonoBehaviour
 	[Serialize]
 	private byte[] noteStorageBytes;
 
-Invoke) Token: 0x06003493 RID: 13459
 	public delegate string FormattingFn(float v);
 
-Invoke) Token: 0x06003497 RID: 13463
 	public delegate string GroupFormattingFn(float v, float numEntries);
 
 	public enum ReportType

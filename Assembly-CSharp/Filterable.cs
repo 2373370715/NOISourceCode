@@ -6,8 +6,6 @@ using UnityEngine;
 [AddComponentMenu("KMonoBehaviour/scripts/Filterable")]
 public class Filterable : KMonoBehaviour
 {
-add) Token: 0x060043D5 RID: 17365 RVA: 0x002544DC File Offset: 0x002526DC
-remove) Token: 0x060043D6 RID: 17366 RVA: 0x00254514 File Offset: 0x00252714
 	public event Action<Tag> onFilterChanged;
 
 	public Tag SelectedTag

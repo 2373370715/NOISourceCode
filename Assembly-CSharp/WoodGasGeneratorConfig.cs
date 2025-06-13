@@ -31,9 +31,11 @@ public class WoodGasGeneratorConfig : IBuildingConfig
 		buildingDef.PowerOutputOffset = new CellOffset(0, 0);
 		buildingDef.AddSearchTerms(SEARCH_TERMS.LUMBER);
 		buildingDef.AddSearchTerms(SEARCH_TERMS.POWER);
+		buildingDef.AddSearchTerms(SEARCH_TERMS.GENERATOR);
 		return buildingDef;
 	}
 
+	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
@@ -60,12 +62,21 @@ public class WoodGasGeneratorConfig : IBuildingConfig
 		go.AddOrGetDef<PoweredActiveController.Def>();
 	}
 
+	public const string ID = "WoodGasGenerator";
 
+	private const float BRANCHES_PER_GENERATOR = 8f;
 
+	public const float CONSUMPTION_RATE = 1.2f;
 
+	private const float WOOD_PER_REFILL = 360f;
 
+	private const SimHashes EXHAUST_ELEMENT_GAS = SimHashes.CarbonDioxide;
 
+	private const SimHashes EXHAUST_ELEMENT_GAS2 = SimHashes.Syngas;
 
+	public const float CO2_EXHAUST_RATE = 0.17f;
 
+	private const int WIDTH = 2;
 
+	private const int HEIGHT = 2;
 }

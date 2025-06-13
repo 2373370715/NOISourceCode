@@ -83,16 +83,15 @@ public class TemporaryActionRow : KMonoBehaviour, IRender200ms
 	protected override void OnCmpDisable()
 	{
 		base.OnCmpDisable();
-		if (this.IsVisible)
-		{
-			this.HideImmediatly();
-			this._OnRowHidden();
+		this.HideImmediatly();
+		this._OnRowHidden();
 	}
 
 	public void SetLifetime(float lifetime)
 	{
 		this.Lifetime = lifetime;
 		this.lastSpecifiedLifetime = lifetime;
+		this.UpdateTimeout();
 	}
 
 	private void UpdateTimeout()
@@ -105,6 +104,7 @@ public class TemporaryActionRow : KMonoBehaviour, IRender200ms
 		if (shouldProgressBarBeEnabled)
 		{
 			this.TimeoutImage.fillAmount = Mathf.Clamp(this.Lifetime / this.lastSpecifiedLifetime, 0f, 1f);
+		}
 	}
 
 	public void Render200ms(float dt)
@@ -117,6 +117,7 @@ public class TemporaryActionRow : KMonoBehaviour, IRender200ms
 				this.Hide();
 			}
 			this.UpdateTimeout();
+		}
 	}
 
 	public void Setup(string text, string tooltip, Sprite icon = null)
@@ -124,6 +125,7 @@ public class TemporaryActionRow : KMonoBehaviour, IRender200ms
 		this.Label.SetText(text);
 		this.Tooltip.SetSimpleTooltip(tooltip);
 		this.Image.sprite = icon;
+		this.IconSection.gameObject.SetActive(icon != null);
 	}
 
 	public void Show()
@@ -139,6 +141,7 @@ public class TemporaryActionRow : KMonoBehaviour, IRender200ms
 			{
 				this.layoutCoroutine = this.RunEnterSlideAnimation(null);
 			});
+		}
 	}
 
 	public void HideImmediatly()
@@ -147,6 +150,7 @@ public class TemporaryActionRow : KMonoBehaviour, IRender200ms
 		this.IsVisible = false;
 		this.Content.localPosition = new Vector3(-(base.transform as RectTransform).sizeDelta.x, this.Content.localPosition.y, this.Content.localPosition.z);
 		this.layoutElement.minHeight = 0f;
+		this.button.interactable = false;
 	}
 
 	public void Hide()
@@ -160,6 +164,7 @@ public class TemporaryActionRow : KMonoBehaviour, IRender200ms
 			{
 				this.layoutCoroutine = this.RunExitHeightAnimation(new System.Action(this._OnRowHidden));
 			});
+		}
 	}
 
 	private void AbortCoroutine()
@@ -168,6 +173,7 @@ public class TemporaryActionRow : KMonoBehaviour, IRender200ms
 		{
 			base.StopCoroutine(this.layoutCoroutine);
 			this.layoutCoroutine = null;
+		}
 	}
 
 	private void RefreshContentWidth()
@@ -176,6 +182,7 @@ public class TemporaryActionRow : KMonoBehaviour, IRender200ms
 		if (rectTransform.sizeDelta.x != this.Content.sizeDelta.x)
 		{
 			this.Content.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, rectTransform.sizeDelta.x);
+		}
 	}
 
 	private void SetContentToHiddenPosition()
@@ -183,22 +190,27 @@ public class TemporaryActionRow : KMonoBehaviour, IRender200ms
 		this.RefreshContentWidth();
 		Vector3 v = this.Content.anchoredPosition;
 		v.x = -(base.transform as RectTransform).sizeDelta.x;
+		this.Content.anchoredPosition = v;
 	}
 
 	private Coroutine RunEnterSlideAnimation(System.Action onAnimationEnds = null)
 	{
+		return base.StartCoroutine(this.SlideTransitionAnimation(0.4f, true, (float n) => Mathf.Sqrt(n), onAnimationEnds));
 	}
 
 	private Coroutine RunExitSlideAnimation(System.Action onAnimationEnds = null)
 	{
+		return base.StartCoroutine(this.SlideTransitionAnimation(0.4f, false, (float n) => Mathf.Pow(n, 2f), onAnimationEnds));
 	}
 
 	private Coroutine RunEnterHeightAnimation(System.Action onAnimationEnds = null)
 	{
+		return base.StartCoroutine(this.HeightTransitionAnimation(0.5f, true, (float n) => Mathf.Sqrt(n), onAnimationEnds));
 	}
 
 	private Coroutine RunExitHeightAnimation(System.Action onAnimationEnds = null)
 	{
+		return base.StartCoroutine(this.HeightTransitionAnimation(0.3f, false, (float n) => Mathf.Pow(n, 2f), onAnimationEnds));
 	}
 
 	private IEnumerator SlideTransitionAnimation(float duration, bool show, Func<float, float> curveModifier = null, System.Action onAnimationEnds = null)
@@ -232,6 +244,7 @@ public class TemporaryActionRow : KMonoBehaviour, IRender200ms
 		{
 			onAnimationEnds();
 		}
+		yield break;
 	}
 
 	private IEnumerator HeightTransitionAnimation(float duration, bool show, Func<float, float> curveModifier = null, System.Action onAnimationEnds = null)
@@ -262,6 +275,7 @@ public class TemporaryActionRow : KMonoBehaviour, IRender200ms
 		{
 			onAnimationEnds();
 		}
+		yield break;
 	}
 
 	public const float ROW_HEIGHT_ANIM_ENTRY_DURATION = 0.5f;

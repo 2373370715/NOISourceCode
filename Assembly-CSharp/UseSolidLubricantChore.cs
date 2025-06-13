@@ -1,14 +1,18 @@
 ﻿using System;
+using Klei.AI;
 using STRINGS;
 using UnityEngine;
 
+public class UseSolidLubricantChore : Chore<UseSolidLubricantChore.Instance>
 {
+	public UseSolidLubricantChore(IStateMachineTarget target) : base(Db.Get().ChoreTypes.SolidOilChange, target, target.GetComponent<ChoreProvider>(), false, null, null, null, PriorityScreen.PriorityClass.personalNeeds, 5, false, true, 0, false, ReportManager.ReportType.WorkTime)
 	{
 		base.smi = new UseSolidLubricantChore.Instance(this, target.gameObject);
 		this.AddPrecondition(ChorePreconditions.instance.IsNotRedAlert, null);
 		this.AddPrecondition(UseSolidLubricantChore.SolidLubricantIsNotNull, null);
 	}
 
+	public override void Begin(Chore.Precondition.Context context)
 	{
 		if (context.consumerState.consumer == null)
 		{
@@ -32,6 +36,7 @@ using UnityEngine;
 		base.Begin(context);
 	}
 
+	public static void ConsumeLubricant(UseSolidLubricantChore.Instance smi)
 	{
 		PrimaryElement component = smi.sm.pickedUpSolidLubricant.Get(smi).GetComponent<PrimaryElement>();
 		float num = Mathf.Min(component.Mass, 200f - smi.oilMonitor.oilAmount.value);
@@ -40,14 +45,18 @@ using UnityEngine;
 		{
 			Util.KDestroyGameObject(component.gameObject);
 			smi.sm.pickedUpSolidLubricant.Set(null, smi);
-			return;
 		}
-		component.Mass -= num;
+		else
+		{
+			component.Mass -= num;
+		}
+		BionicOilMonitor.ApplyLubricationEffects(smi.master.GetComponent<Effects>(), component.GetComponent<PrimaryElement>().ElementID);
 	}
 
 	public static void SetOverrideAnimSymbol(UseSolidLubricantChore.Instance smi, bool overriding)
 	{
 		string text = "lubricant";
+		KBatchedAnimController component = smi.GetComponent<KBatchedAnimController>();
 		SymbolOverrideController component2 = smi.gameObject.GetComponent<SymbolOverrideController>();
 		GameObject gameObject = smi.sm.pickedUpSolidLubricant.Get(smi);
 		if (gameObject != null)
@@ -72,8 +81,10 @@ using UnityEngine;
 
 	public const float LOOP_LENGTH = 6.666f;
 
+	public static readonly Chore.Precondition SolidLubricantIsNotNull = new Chore.Precondition
 	{
 		id = "SolidLubricantIsNotNull ",
+		description = DUPLICANTS.CHORES.PRECONDITIONS.EDIBLE_IS_NOT_NULL,
 		fn = delegate(ref Chore.Precondition.Context context, object data)
 		{
 			return null != context.consumerState.consumer.GetSMI<BionicOilMonitor.Instance>().GetClosestSolidLubricant();
@@ -82,8 +93,10 @@ using UnityEngine;
 
 	public class States : GameStateMachine<UseSolidLubricantChore.States, UseSolidLubricantChore.Instance, UseSolidLubricantChore>
 	{
+		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.fetch;
+			base.Target(this.dupe);
 			this.fetch.InitializeStates(this.dupe, this.solidLubricantSource, this.pickedUpSolidLubricant, this.amountRequested, this.actualunits, this.consume, null).OnTargetLost(this.solidLubricantSource, this.lubricantLost);
 			this.consume.DefaultState(this.consume.pre).ToggleAnims("anim_bionic_kanim", 0f).Enter("Add Symbol Override", delegate(UseSolidLubricantChore.Instance smi)
 			{
@@ -101,24 +114,39 @@ using UnityEngine;
 
 		public GameStateMachine<UseSolidLubricantChore.States, UseSolidLubricantChore.Instance, UseSolidLubricantChore, object>.FetchSubState fetch;
 
+		public UseSolidLubricantChore.States.InstallState consume;
 
+		public GameStateMachine<UseSolidLubricantChore.States, UseSolidLubricantChore.Instance, UseSolidLubricantChore, object>.State complete;
 
+		public GameStateMachine<UseSolidLubricantChore.States, UseSolidLubricantChore.Instance, UseSolidLubricantChore, object>.State lubricantLost;
 
+		public StateMachine<UseSolidLubricantChore.States, UseSolidLubricantChore.Instance, UseSolidLubricantChore, object>.TargetParameter dupe;
 
+		public StateMachine<UseSolidLubricantChore.States, UseSolidLubricantChore.Instance, UseSolidLubricantChore, object>.TargetParameter solidLubricantSource;
 
+		public StateMachine<UseSolidLubricantChore.States, UseSolidLubricantChore.Instance, UseSolidLubricantChore, object>.TargetParameter pickedUpSolidLubricant;
 
+		public StateMachine<UseSolidLubricantChore.States, UseSolidLubricantChore.Instance, UseSolidLubricantChore, object>.TargetParameter messstation;
 
+		public StateMachine<UseSolidLubricantChore.States, UseSolidLubricantChore.Instance, UseSolidLubricantChore, object>.FloatParameter actualunits;
 
+		public StateMachine<UseSolidLubricantChore.States, UseSolidLubricantChore.Instance, UseSolidLubricantChore, object>.FloatParameter amountRequested = new StateMachine<UseSolidLubricantChore.States, UseSolidLubricantChore.Instance, UseSolidLubricantChore, object>.FloatParameter(LubricationStickConfig.MASS_PER_RECIPE);
 
+		public class InstallState : GameStateMachine<UseSolidLubricantChore.States, UseSolidLubricantChore.Instance, UseSolidLubricantChore, object>.State
 		{
+			public GameStateMachine<UseSolidLubricantChore.States, UseSolidLubricantChore.Instance, UseSolidLubricantChore, object>.State pre;
 
+			public GameStateMachine<UseSolidLubricantChore.States, UseSolidLubricantChore.Instance, UseSolidLubricantChore, object>.State loop;
 
+			public GameStateMachine<UseSolidLubricantChore.States, UseSolidLubricantChore.Instance, UseSolidLubricantChore, object>.State pst;
 		}
 	}
+
 	public class Instance : GameStateMachine<UseSolidLubricantChore.States, UseSolidLubricantChore.Instance, UseSolidLubricantChore, object>.GameInstance
 	{
 		public BionicOilMonitor.Instance oilMonitor
 		{
+			get
 			{
 				return base.sm.dupe.Get(this).GetSMI<BionicOilMonitor.Instance>();
 			}
@@ -127,4 +155,5 @@ using UnityEngine;
 		public Instance(UseSolidLubricantChore master, GameObject duplicant) : base(master)
 		{
 		}
+	}
 }

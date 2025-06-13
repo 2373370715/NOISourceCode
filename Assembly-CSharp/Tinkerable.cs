@@ -17,6 +17,7 @@ public class Tinkerable : Workable
 		Tinkerable tinkerable = prefab.AddOrGet<Tinkerable>();
 		tinkerable.tinkerMaterialTag = PowerControlStationConfig.TINKER_TOOLS;
 		tinkerable.tinkerMaterialAmount = 1f;
+		tinkerable.tinkerMass = 5f;
 		tinkerable.requiredSkillPerk = PowerControlStationConfig.ROLE_PERK;
 		tinkerable.onCompleteSFX = "Generator_Microchip_installed";
 		tinkerable.boostSymbolNames = new string[]
@@ -45,6 +46,7 @@ public class Tinkerable : Workable
 		return tinkerable;
 	}
 
+	public static Tinkerable MakeFarmTinkerable(GameObject prefab)
 	{
 		RoomTracker roomTracker = prefab.AddOrGet<RoomTracker>();
 		roomTracker.requiredRoomType = Db.Get().RoomTypes.Farm.Id;
@@ -52,6 +54,7 @@ public class Tinkerable : Workable
 		Tinkerable tinkerable = prefab.AddOrGet<Tinkerable>();
 		tinkerable.tinkerMaterialTag = FarmStationConfig.TINKER_TOOLS;
 		tinkerable.tinkerMaterialAmount = 1f;
+		tinkerable.tinkerMass = 5f;
 		tinkerable.requiredSkillPerk = Db.Get().SkillPerks.CanFarmTinker.Id;
 		tinkerable.workerStatusItem = Db.Get().DuplicantStatusItems.Tinkering;
 		tinkerable.addedEffect = "FarmTinker";
@@ -75,6 +78,7 @@ public class Tinkerable : Workable
 	}
 
 	protected override void OnPrefabInit()
+	{
 		base.OnPrefabInit();
 		this.overrideAnims = new KAnimFile[]
 		{
@@ -91,6 +95,7 @@ public class Tinkerable : Workable
 	}
 
 	protected override void OnSpawn()
+	{
 		base.OnSpawn();
 		Prioritizable.AddRef(base.gameObject);
 		this.prioritizableAdded = true;
@@ -99,6 +104,7 @@ public class Tinkerable : Workable
 	}
 
 	protected override void OnCleanUp()
+	{
 		this.UpdateMaterialReservation(false);
 		if (this.updateHandle.IsValid)
 		{
@@ -112,18 +118,22 @@ public class Tinkerable : Workable
 	}
 
 	private void OnOperationalChanged(object data)
+	{
 		this.QueueUpdateChore();
 	}
 
 	private void OnEffectRemoved(object data)
+	{
 		this.QueueUpdateChore();
 	}
 
 	private void OnUpdateRoom(object data)
+	{
 		this.QueueUpdateChore();
 	}
 
 	private void OnStorageChange(object data)
+	{
 		if (((GameObject)data).IsPrefabID(this.tinkerMaterialTag))
 		{
 			this.QueueUpdateChore();
@@ -131,6 +141,7 @@ public class Tinkerable : Workable
 	}
 
 	private void QueueUpdateChore()
+	{
 		if (this.updateHandle.IsValid)
 		{
 			this.updateHandle.ClearScheduler();
@@ -139,10 +150,12 @@ public class Tinkerable : Workable
 	}
 
 	private void UpdateChoreCallback(object obj)
+	{
 		this.UpdateChore();
 	}
 
 	private void UpdateChore()
+	{
 		Operational component = base.GetComponent<Operational>();
 		bool flag = component == null || component.IsFunctional;
 		bool flag2 = this.HasEffect();
@@ -162,7 +175,7 @@ public class Tinkerable : Workable
 			}
 			else
 			{
-				this.chore = new FetchChore(Db.Get().ChoreTypes.GetByHash(this.choreTypeFetch), this.storage, this.tinkerMaterialAmount, new HashSet<Tag>
+				this.chore = new FetchChore(Db.Get().ChoreTypes.GetByHash(this.choreTypeFetch), this.storage, this.tinkerMaterialAmount * this.tinkerMass, new HashSet<Tag>
 				{
 					this.tinkerMaterialTag
 				}, FetchChore.MatchCriteria.MatchID, Tag.Invalid, null, null, true, new Action<Chore>(this.OnFetchComplete), null, null, Operational.State.Functional, 0);
@@ -183,10 +196,12 @@ public class Tinkerable : Workable
 	}
 
 	private bool HasCorrectRoom()
+	{
 		return this.roomTracker.IsInCorrectRoom();
 	}
 
 	private bool RoomHasTinkerstation()
+	{
 		if (!this.roomTracker.IsInCorrectRoom())
 		{
 			return false;
@@ -210,6 +225,7 @@ public class Tinkerable : Workable
 	}
 
 	private void UpdateMaterialReservation(bool shouldReserve)
+	{
 		if (shouldReserve && !this.hasReservedMaterial)
 		{
 			MaterialNeeds.UpdateNeed(this.tinkerMaterialTag, this.tinkerMaterialAmount, base.gameObject.GetMyWorldId());
@@ -224,12 +240,14 @@ public class Tinkerable : Workable
 	}
 
 	private void OnFetchComplete(Chore data)
+	{
 		this.UpdateMaterialReservation(false);
 		this.chore = null;
 		this.UpdateChore();
 	}
 
 	protected override void OnCompleteWork(WorkerBase worker)
+	{
 		base.OnCompleteWork(worker);
 		this.storage.ConsumeIgnoringDisease(this.tinkerMaterialTag, this.tinkerMaterialAmount);
 		float totalValue = worker.GetAttributes().Get(Db.Get().Attributes.Get(this.effectAttributeId)).GetTotalValue();
@@ -246,6 +264,7 @@ public class Tinkerable : Workable
 	}
 
 	private void UpdateVisual()
+	{
 		if (this.boostSymbolNames == null)
 		{
 			return;
@@ -259,14 +278,17 @@ public class Tinkerable : Workable
 	}
 
 	private bool HasMaterial()
+	{
 		return this.storage.GetAmountAvailable(this.tinkerMaterialTag) >= this.tinkerMaterialAmount;
 	}
 
 	private bool HasEffect()
+	{
 		return this.effects.HasEffect(this.addedEffect);
 	}
 
 	private void OnRefreshUserMenu(object data)
+	{
 		if (this.roomTracker.IsInCorrectRoom())
 		{
 			string name = Db.Get().effects.Get(this.addedEffect).Name;
@@ -277,48 +299,73 @@ public class Tinkerable : Workable
 	}
 
 	private void OnClickToggleTinker()
+	{
 		this.userMenuAllowed = !this.userMenuAllowed;
 		this.UpdateChore();
 	}
 
 	private Chore chore;
-	[MyCmpGet]
 
 	[MyCmpGet]
+	private Storage storage;
 
 	[MyCmpGet]
+	private Effects effects;
+
+	[MyCmpGet]
+	private RoomTracker roomTracker;
 
 	public Tag tinkerMaterialTag;
-	public float tinkerMaterialAmount;
-	public string addedEffect;
-	public string effectAttributeId;
-	public float effectMultiplier;
-	public string[] boostSymbolNames;
-	public string onCompleteSFX;
-	public HashedString choreTypeTinker = Db.Get().ChoreTypes.PowerTinker.IdHash;
-	public HashedString choreTypeFetch = Db.Get().ChoreTypes.PowerFetch.IdHash;
-	[Serialize]
 
+	public float tinkerMaterialAmount;
+
+	public float tinkerMass;
+
+	public string addedEffect;
+
+	public string effectAttributeId;
+
+	public float effectMultiplier;
+
+	public string[] boostSymbolNames;
+
+	public string onCompleteSFX;
+
+	public HashedString choreTypeTinker = Db.Get().ChoreTypes.PowerTinker.IdHash;
+
+	public HashedString choreTypeFetch = Db.Get().ChoreTypes.PowerFetch.IdHash;
+
+	[Serialize]
+	private bool userMenuAllowed = true;
+
+	private static readonly EventSystem.IntraObjectHandler<Tinkerable> OnEffectRemovedDelegate = new EventSystem.IntraObjectHandler<Tinkerable>(delegate(Tinkerable component, object data)
 	{
 		component.OnEffectRemoved(data);
 	});
+
 	private static readonly EventSystem.IntraObjectHandler<Tinkerable> OnStorageChangeDelegate = new EventSystem.IntraObjectHandler<Tinkerable>(delegate(Tinkerable component, object data)
 	{
 		component.OnStorageChange(data);
 	});
+
 	private static readonly EventSystem.IntraObjectHandler<Tinkerable> OnUpdateRoomDelegate = new EventSystem.IntraObjectHandler<Tinkerable>(delegate(Tinkerable component, object data)
 	{
 		component.OnUpdateRoom(data);
 	});
+
 	private static readonly EventSystem.IntraObjectHandler<Tinkerable> OnOperationalChangedDelegate = new EventSystem.IntraObjectHandler<Tinkerable>(delegate(Tinkerable component, object data)
 	{
 		component.OnOperationalChanged(data);
 	});
+
 	private static readonly EventSystem.IntraObjectHandler<Tinkerable> OnRefreshUserMenuDelegate = new EventSystem.IntraObjectHandler<Tinkerable>(delegate(Tinkerable component, object data)
 	{
 		component.OnRefreshUserMenu(data);
 	});
+
 	private bool prioritizableAdded;
 
 	private SchedulerHandle updateHandle;
+
 	private bool hasReservedMaterial;
+}

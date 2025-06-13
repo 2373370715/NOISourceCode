@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using STRINGS;
 using TUNING;
 using UnityEngine;
 
+public class TravelTubeEntranceConfig : IBuildingConfig
 {
+	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "TravelTubeEntrance";
 		int width = 3;
@@ -11,12 +14,12 @@ using UnityEngine;
 		string anim = "tube_launcher_kanim";
 		int hitpoints = 100;
 		float construction_time = 120f;
-		float[] tier = BUILDINGS.CONSTRUCTION_MASS_KG.TIER5;
+		float[] tier = TUNING.BUILDINGS.CONSTRUCTION_MASS_KG.TIER5;
 		string[] refined_METALS = MATERIALS.REFINED_METALS;
 		float melting_point = 1600f;
 		BuildLocationRule build_location_rule = BuildLocationRule.OnFloor;
 		EffectorValues none = NOISE_POLLUTION.NONE;
-		BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(id, width, height, anim, hitpoints, construction_time, tier, refined_METALS, melting_point, build_location_rule, BUILDINGS.DECOR.PENALTY.TIER1, none, 0.2f);
+		BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(id, width, height, anim, hitpoints, construction_time, tier, refined_METALS, melting_point, build_location_rule, TUNING.BUILDINGS.DECOR.PENALTY.TIER1, none, 0.2f);
 		buildingDef.Overheatable = false;
 		buildingDef.RequiresPowerInput = true;
 		buildingDef.EnergyConsumptionWhenActive = 960f;
@@ -24,10 +27,12 @@ using UnityEngine;
 		buildingDef.AudioCategory = "Metal";
 		buildingDef.PowerInputOffset = new CellOffset(1, 0);
 		buildingDef.LogicInputPorts = LogicOperationalController.CreateSingleInputPortList(new CellOffset(1, 1));
+		buildingDef.AddSearchTerms(SEARCH_TERMS.TRANSPORT);
 		return buildingDef;
 	}
 
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
+	{
 		TravelTubeEntrance travelTubeEntrance = go.AddOrGet<TravelTubeEntrance>();
 		travelTubeEntrance.waxPerLaunch = 0.05f;
 		travelTubeEntrance.joulesPerLaunch = 10000f;
@@ -54,11 +59,17 @@ using UnityEngine;
 	}
 
 	public override void DoPostConfigureComplete(GameObject go)
+	{
 		go.GetComponent<RequireInputs>().visualizeRequirements = RequireInputs.Requirements.NoWire;
 	}
 
 	public const string ID = "TravelTubeEntrance";
+
 	public const float WAX_PER_LAUNCH = 0.05f;
+
 	public const int STORAGE_WAX_LAUNCHECOUNT_CAPACITY = 200;
+
 	private const float JOULES_PER_LAUNCH = 10000f;
+
 	private const float LAUNCHES_FROM_FULL_CHARGE = 4f;
+}

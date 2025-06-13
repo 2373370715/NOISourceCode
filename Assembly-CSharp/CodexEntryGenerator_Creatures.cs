@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using Klei.AI;
 using STRINGS;
@@ -14,25 +15,11 @@ public class CodexEntryGenerator_Creatures
 		CS$<>8__locals1.brains = Assets.GetPrefabsWithComponent<CreatureBrain>();
 		CS$<>8__locals1.critterEntries = new List<ValueTuple<string, CodexEntry>>();
 		CodexEntryGenerator_Creatures.<GenerateEntries>g__AddEntry|6_0("CREATURES::GUIDE", CodexEntryGenerator_Creatures.GenerateFieldGuideEntry(), "CREATURES", ref CS$<>8__locals1);
-		CodexEntryGenerator_Creatures.<GenerateEntries>g__PushCritterEntry|6_1(GameTags.Creatures.Species.PuftSpecies, CREATURES.FAMILY_PLURAL.PUFTSPECIES, ref CS$<>8__locals1);
-		CodexEntryGenerator_Creatures.<GenerateEntries>g__PushCritterEntry|6_1(GameTags.Creatures.Species.PacuSpecies, CREATURES.FAMILY_PLURAL.PACUSPECIES, ref CS$<>8__locals1);
-		CodexEntryGenerator_Creatures.<GenerateEntries>g__PushCritterEntry|6_1(GameTags.Creatures.Species.OilFloaterSpecies, CREATURES.FAMILY_PLURAL.OILFLOATERSPECIES, ref CS$<>8__locals1);
-		CodexEntryGenerator_Creatures.<GenerateEntries>g__PushCritterEntry|6_1(GameTags.Creatures.Species.LightBugSpecies, CREATURES.FAMILY_PLURAL.LIGHTBUGSPECIES, ref CS$<>8__locals1);
-		CodexEntryGenerator_Creatures.<GenerateEntries>g__PushCritterEntry|6_1(GameTags.Creatures.Species.HatchSpecies, CREATURES.FAMILY_PLURAL.HATCHSPECIES, ref CS$<>8__locals1);
-		CodexEntryGenerator_Creatures.<GenerateEntries>g__PushCritterEntry|6_1(GameTags.Creatures.Species.GlomSpecies, CREATURES.FAMILY_PLURAL.GLOMSPECIES, ref CS$<>8__locals1);
-		CodexEntryGenerator_Creatures.<GenerateEntries>g__PushCritterEntry|6_1(GameTags.Creatures.Species.DreckoSpecies, CREATURES.FAMILY_PLURAL.DRECKOSPECIES, ref CS$<>8__locals1);
-		CodexEntryGenerator_Creatures.<GenerateEntries>g__PushCritterEntry|6_1(GameTags.Creatures.Species.MooSpecies, CREATURES.FAMILY_PLURAL.MOOSPECIES, ref CS$<>8__locals1);
-		CodexEntryGenerator_Creatures.<GenerateEntries>g__PushCritterEntry|6_1(GameTags.Creatures.Species.MoleSpecies, CREATURES.FAMILY_PLURAL.MOLESPECIES, ref CS$<>8__locals1);
-		CodexEntryGenerator_Creatures.<GenerateEntries>g__PushCritterEntry|6_1(GameTags.Creatures.Species.SquirrelSpecies, CREATURES.FAMILY_PLURAL.SQUIRRELSPECIES, ref CS$<>8__locals1);
-		CodexEntryGenerator_Creatures.<GenerateEntries>g__PushCritterEntry|6_1(GameTags.Creatures.Species.CrabSpecies, CREATURES.FAMILY_PLURAL.CRABSPECIES, ref CS$<>8__locals1);
-		CodexEntryGenerator_Creatures.<GenerateEntries>g__PushCritterEntry|6_1(GameTags.Robots.Models.ScoutRover, CREATURES.FAMILY_PLURAL.SCOUTROVER, ref CS$<>8__locals1);
-		CodexEntryGenerator_Creatures.<GenerateEntries>g__PushCritterEntry|6_1(GameTags.Creatures.Species.StaterpillarSpecies, CREATURES.FAMILY_PLURAL.STATERPILLARSPECIES, ref CS$<>8__locals1);
-		CodexEntryGenerator_Creatures.<GenerateEntries>g__PushCritterEntry|6_1(GameTags.Creatures.Species.BeetaSpecies, CREATURES.FAMILY_PLURAL.BEETASPECIES, ref CS$<>8__locals1);
-		CodexEntryGenerator_Creatures.<GenerateEntries>g__PushCritterEntry|6_1(GameTags.Creatures.Species.DivergentSpecies, CREATURES.FAMILY_PLURAL.DIVERGENTSPECIES, ref CS$<>8__locals1);
-		CodexEntryGenerator_Creatures.<GenerateEntries>g__PushCritterEntry|6_1(GameTags.Robots.Models.SweepBot, CREATURES.FAMILY_PLURAL.SWEEPBOT, ref CS$<>8__locals1);
-		CodexEntryGenerator_Creatures.<GenerateEntries>g__PushCritterEntry|6_1(GameTags.Creatures.Species.DeerSpecies, CREATURES.FAMILY_PLURAL.DEERSPECIES, ref CS$<>8__locals1);
-		CodexEntryGenerator_Creatures.<GenerateEntries>g__PushCritterEntry|6_1(GameTags.Creatures.Species.SealSpecies, CREATURES.FAMILY_PLURAL.SEALSPECIES, ref CS$<>8__locals1);
-		CodexEntryGenerator_Creatures.<GenerateEntries>g__PushCritterEntry|6_1(GameTags.Creatures.Species.BellySpecies, CREATURES.FAMILY_PLURAL.BELLYSPECIES, ref CS$<>8__locals1);
+		Tag[] array = GameTags.Creatures.Species.AllSpecies_REFLECTION();
+		for (int i = 0; i < array.Length; i++)
+		{
+			CodexEntryGenerator_Creatures.<GenerateEntries>g__PushCritterEntry|6_1(array[i], ref CS$<>8__locals1);
+		}
 		CodexEntryGenerator_Creatures.<GenerateEntries>g__PopAndAddAllCritterEntries|6_2(ref CS$<>8__locals1);
 		return CS$<>8__locals1.results;
 	}
@@ -257,39 +244,36 @@ public class CodexEntryGenerator_Creatures
 				new CodexText("    • " + string.Format(CODEX.CREATURE_DESCRIPTORS.CONFINED, def3.spaceRequiredPerCreature), CodexTextStyle.Body, null)
 			}, ContentContainer.ContentLayout.Vertical));
 		}
-		int num = 0;
-		string item = null;
+		string text2 = null;
+		float amount = 0f;
 		Tag tag = default(Tag);
 		Butcherable component2 = creature.GetComponent<Butcherable>();
-		if (component2 != null && component2.drops != null)
+		if (component2 != null && component2.drops != null && component2.drops.Count > 0)
 		{
-			num = component2.drops.Length;
-			if (num > 0)
-			{
-				item = (tag.Name = component2.drops[0]);
-			}
+			text2 = (tag.Name = component2.drops.Keys.ToList<string>()[0]);
+			amount = component2.drops[text2];
 		}
-		string text2 = null;
 		string text3 = null;
+		string text4 = null;
 		if (tag.IsValid)
 		{
-			text2 = TagManager.GetProperName(tag, false);
-			text3 = "\t" + GameUtil.GetFormattedByTag(tag, (float)num, GameUtil.TimeSlice.None);
+			text3 = TagManager.GetProperName(tag, false);
+			text4 = "\t" + GameUtil.GetFormattedByTag(tag, amount, GameUtil.TimeSlice.None);
 		}
-		if (!string.IsNullOrEmpty(text2) && !string.IsNullOrEmpty(text3))
+		if (!string.IsNullOrEmpty(text3) && !string.IsNullOrEmpty(text4))
 		{
-			ContentContainer item2 = new ContentContainer(new List<ICodexWidget>
+			ContentContainer item = new ContentContainer(new List<ICodexWidget>
 			{
 				new CodexSpacer(),
 				new CodexText(CODEX.HEADERS.CRITTERDROPS, CodexTextStyle.Subtitle, null)
 			}, ContentContainer.ContentLayout.Vertical);
-			ContentContainer item3 = new ContentContainer(new List<ICodexWidget>
+			ContentContainer item2 = new ContentContainer(new List<ICodexWidget>
 			{
-				new CodexIndentedLabelWithIcon(text2, CodexTextStyle.Body, Def.GetUISprite(item, "ui", false)),
-				new CodexText(text3, CodexTextStyle.Body, null)
+				new CodexIndentedLabelWithIcon(text3, CodexTextStyle.Body, Def.GetUISprite(text2, "ui", false)),
+				new CodexText(text4, CodexTextStyle.Body, null)
 			}, ContentContainer.ContentLayout.Vertical);
+			containers.Add(item);
 			containers.Add(item2);
-			containers.Add(item3);
 		}
 		new List<Tag>();
 		Diet prefabDiet = DietManager.Instance.GetPrefabDiet(creature);
@@ -298,14 +282,15 @@ public class CodexEntryGenerator_Creatures
 			Diet.Info[] infos = prefabDiet.infos;
 			if (infos != null && infos.Length != 0)
 			{
-				float num2 = 0f;
+				float num = 0f;
 				foreach (AttributeModifier attributeModifier in Db.Get().traits.Get(creature.GetComponent<Modifiers>().initialTraits[0]).SelfModifiers)
 				{
 					if (attributeModifier.AttributeId == Db.Get().Amounts.Calories.deltaAttribute.Id)
 					{
-						num2 = attributeModifier.Value;
+						num = attributeModifier.Value;
 					}
 				}
+				CaloriesConsumedElementProducer component3 = creature.GetComponent<CaloriesConsumedElementProducer>();
 				List<ICodexWidget> list = new List<ICodexWidget>();
 				foreach (Diet.Info info in infos)
 				{
@@ -317,22 +302,33 @@ public class CodexEntryGenerator_Creatures
 							if ((element.id != SimHashes.Vacuum && element.id != SimHashes.Void) || !(Assets.GetPrefab(tag2) == null))
 							{
 								bool flag = prefabDiet.IsConsumedTagAbleToBeEatenDirectly(tag2);
-								float num3 = -num2 / info.caloriesPerKg;
-								float outputAmount = num3 * info.producedConversionRate;
+								float num2 = -num / info.caloriesPerKg;
+								float outputAmount = num2 * info.producedConversionRate;
 								if (flag)
 								{
 									if (info.foodType == Diet.Info.FoodType.EatPlantDirectly)
 									{
-										list.Add(new CodexConversionPanel(tag2.ProperName(), tag2, num3, true, new Func<Tag, float, bool, string>(GameUtil.GetFormattedDirectPlantConsumptionValuePerCycle), info.producedElement, outputAmount, true, null, creature));
+										list.Add(new CodexConversionPanel(tag2.ProperName(), tag2, num2, true, new Func<Tag, float, bool, string>(GameUtil.GetFormattedDirectPlantConsumptionValuePerCycle), info.producedElement, outputAmount, true, null, creature));
 									}
 									else if (info.foodType == Diet.Info.FoodType.EatPlantStorage)
 									{
-										list.Add(new CodexConversionPanel(tag2.ProperName(), tag2, num3, true, new Func<Tag, float, bool, string>(GameUtil.GetFormattedPlantStorageConsumptionValuePerCycle), info.producedElement, outputAmount, true, null, creature));
+										list.Add(new CodexConversionPanel(tag2.ProperName(), tag2, num2, true, new Func<Tag, float, bool, string>(GameUtil.GetFormattedPlantStorageConsumptionValuePerCycle), info.producedElement, outputAmount, true, null, creature));
+									}
+									else if (info.foodType == Diet.Info.FoodType.EatPrey || info.foodType == Diet.Info.FoodType.EatButcheredPrey)
+									{
+										float num3 = prefabDiet.AvailableCaloriesInPrey(tag2);
+										num2 = -num / num3;
+										outputAmount = num2 * info.producedConversionRate * num3 / info.caloriesPerKg;
+										list.Add(new CodexConversionPanel(tag2.ProperName(), tag2, num2, true, new Func<Tag, float, bool, string>(GameUtil.GetFormattedPreyConsumptionValuePerCycle), info.producedElement, outputAmount, true, null, creature));
 									}
 								}
 								else
 								{
-									list.Add(new CodexConversionPanel(tag2.ProperName(), tag2, num3, true, info.producedElement, outputAmount, true, creature));
+									list.Add(new CodexConversionPanel(tag2.ProperName(), tag2, num2, true, info.producedElement, outputAmount, true, creature));
+								}
+								if (component3 != null)
+								{
+									list.Add(new CodexConversionPanel(CODEX.HEADERS.CRITTER_EXTRA_DIET_PRODUCTION, tag2, num2, true, component3.producedElement.CreateTag(), num2 * 1000f * component3.kgProducedPerKcalConsumed * 2f, true, creature));
 								}
 							}
 						}
@@ -368,12 +364,12 @@ public class CodexEntryGenerator_Creatures
 	}
 
 	[CompilerGenerated]
-	internal static void <GenerateEntries>g__PushCritterEntry|6_1(Tag speciesTag, string name, ref CodexEntryGenerator_Creatures.<>c__DisplayClass6_0 A_2)
+	internal static void <GenerateEntries>g__PushCritterEntry|6_1(Tag speciesTag, ref CodexEntryGenerator_Creatures.<>c__DisplayClass6_0 A_1)
 	{
-		CodexEntry codexEntry = CodexEntryGenerator_Creatures.GenerateCritterEntry(speciesTag, name, A_2.brains);
+		CodexEntry codexEntry = CodexEntryGenerator_Creatures.GenerateCritterEntry(speciesTag, speciesTag.ProperName(), A_1.brains);
 		if (codexEntry != null)
 		{
-			A_2.critterEntries.Add(new ValueTuple<string, CodexEntry>(speciesTag.ToString(), codexEntry));
+			A_1.critterEntries.Add(new ValueTuple<string, CodexEntry>(speciesTag.ToString(), codexEntry));
 		}
 	}
 

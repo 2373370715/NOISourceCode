@@ -226,6 +226,10 @@ namespace TUNING
 				"generators"
 			},
 			{
+				"PeatGenerator",
+				"generators"
+			},
+			{
 				"HydrogenGenerator",
 				"generators"
 			},
@@ -359,6 +363,10 @@ namespace TUNING
 			},
 			{
 				"FoodRehydrator",
+				"cooking"
+			},
+			{
+				"Smoker",
 				"cooking"
 			},
 			{
@@ -718,6 +726,10 @@ namespace TUNING
 				"advanced"
 			},
 			{
+				"ChemicalRefinery",
+				"advanced"
+			},
+			{
 				"SupermaterialRefinery",
 				"advanced"
 			},
@@ -903,6 +915,14 @@ namespace TUNING
 			},
 			{
 				"WoodSculpture",
+				"decor"
+			},
+			{
+				"FossilSculpture",
+				"decor"
+			},
+			{
+				"CeilingFossilSculpture",
 				"decor"
 			},
 			{
@@ -1546,6 +1566,7 @@ namespace TUNING
 				"StorageTile",
 				"BunkerTile",
 				"CarpetTile",
+				"ExteriorWall",
 				"ExobaseHeadquarters",
 				"Door",
 				"ManualPressureDoor",
@@ -1577,6 +1598,7 @@ namespace TUNING
 				"ManualGenerator",
 				"Generator",
 				"WoodGasGenerator",
+				"PeatGenerator",
 				"HydrogenGenerator",
 				"MethaneGenerator",
 				"PetroleumGenerator",
@@ -1614,6 +1636,7 @@ namespace TUNING
 				"SpiceGrinder",
 				"FoodDehydrator",
 				"FoodRehydrator",
+				"Smoker",
 				"PlanterBox",
 				"FarmTile",
 				"HydroponicFarm",
@@ -1710,6 +1733,7 @@ namespace TUNING
 				"Polymerizer",
 				"OxyliteRefinery",
 				"Chlorinator",
+				"ChemicalRefinery",
 				"SupermaterialRefinery",
 				"DiamondPress",
 				"MilkFatSeparator",
@@ -1764,6 +1788,8 @@ namespace TUNING
 				"WoodSculpture",
 				"MarbleSculpture",
 				"MetalSculpture",
+				"FossilSculpture",
+				"CeilingFossilSculpture",
 				"CrownMoulding",
 				"CornerMoulding",
 				"Canvas",
@@ -1967,6 +1993,7 @@ namespace TUNING
 			typeof(Battery),
 			typeof(AirFilter),
 			typeof(FlushToilet),
+			typeof(Toilet),
 			typeof(EnergyGenerator),
 			typeof(MassageTable),
 			typeof(Shower),
@@ -2029,7 +2056,6 @@ namespace TUNING
 			typeof(Overheatable),
 			typeof(CreatureCalorieMonitor.Def),
 			typeof(LureableMonitor.Def),
-			typeof(CropSleepingMonitor.Def),
 			typeof(FertilizationMonitor.Def),
 			typeof(IrrigationMonitor.Def),
 			typeof(ScaleGrowthMonitor.Def),
@@ -2066,11 +2092,16 @@ namespace TUNING
 		{
 			public class REACTOR_MASSES
 			{
+				public const float MIN = 1f;
 
+				public const float MAX = 10f;
 			}
 		}
+
 		public class OVERPRESSURE
+		{
 			public const float TIER0 = 1.8f;
+		}
 
 		public class OVERHEAT_TEMPERATURES
 		{
@@ -2083,43 +2114,68 @@ namespace TUNING
 			public const float NORMAL = 348.15f;
 
 			public const float HIGH_1 = 363.15f;
+
 			public const float HIGH_2 = 398.15f;
+
 			public const float HIGH_3 = 1273.15f;
 
 			public const float HIGH_4 = 2273.15f;
 		}
+
 		public class OVERHEAT_MATERIAL_MOD
+		{
 			public const float LOW_3 = -200f;
+
 			public const float LOW_2 = -20f;
+
 			public const float LOW_1 = -10f;
+
 			public const float NORMAL = 0f;
+
 			public const float HIGH_1 = 15f;
+
 			public const float HIGH_2 = 50f;
+
 			public const float HIGH_3 = 200f;
 
 			public const float HIGH_4 = 500f;
 
 			public const float HIGH_5 = 900f;
 		}
-		public class DECOR_MATERIAL_MOD
-			public const float NORMAL = 0f;
-			public const float HIGH_1 = 0.1f;
-			public const float HIGH_2 = 0.2f;
-			public const float HIGH_3 = 0.5f;
-			public const float HIGH_4 = 1f;
 
+		public class DECOR_MATERIAL_MOD
+		{
+			public const float NORMAL = 0f;
+
+			public const float HIGH_1 = 0.1f;
+
+			public const float HIGH_2 = 0.2f;
+
+			public const float HIGH_3 = 0.5f;
+
+			public const float HIGH_4 = 1f;
+		}
+
+		public class CONSTRUCTION_MASS_KG
 		{
 			public static readonly float[] TIER_TINY = new float[]
+			{
 				5f
 			};
+
 			public static readonly float[] TIER0 = new float[]
+			{
 				25f
 			};
+
 			public static readonly float[] TIER1 = new float[]
+			{
 				50f
 			};
+
 			public static readonly float[] TIER2 = new float[]
 			{
+				100f
 			};
 
 			public static readonly float[] TIER3 = new float[]
@@ -2147,22 +2203,27 @@ namespace TUNING
 				2000f
 			};
 		}
+
 		public class ROCKETRY_MASS_KG
 		{
 			public static float[] COMMAND_MODULE_MASS = new float[]
+			{
 				200f
 			};
 
 			public static float[] CARGO_MASS = new float[]
+			{
 				1000f
 			};
 
 			public static float[] CARGO_MASS_SMALL = new float[]
+			{
 				400f
 			};
 
 			public static float[] FUEL_TANK_DRY_MASS = new float[]
 			{
+				100f
 			};
 
 			public static float[] FUEL_TANK_WET_MASS = new float[]
@@ -2205,23 +2266,28 @@ namespace TUNING
 				200f,
 				100f
 			};
+
 			public static float[] NOSE_CONE_TIER2 = new float[]
 			{
 				400f,
 				200f
+			};
 
 			public static float[] HOLLOW_TIER1 = new float[]
 			{
 				200f
+			};
 
 			public static float[] HOLLOW_TIER2 = new float[]
 			{
 				400f
+			};
 
 			public static float[] HOLLOW_TIER3 = new float[]
 			{
 				800f
 			};
+
 			public static float[] DENSE_TIER0 = new float[]
 			{
 				200f
@@ -2242,15 +2308,19 @@ namespace TUNING
 				2000f
 			};
 		}
+
 		public class ENERGY_CONSUMPTION_WHEN_ACTIVE
 		{
 			public const float TIER0 = 0f;
+
 			public const float TIER1 = 5f;
 
 			public const float TIER2 = 60f;
+
 			public const float TIER3 = 120f;
 
 			public const float TIER4 = 240f;
+
 			public const float TIER5 = 480f;
 
 			public const float TIER6 = 960f;
@@ -2259,31 +2329,51 @@ namespace TUNING
 
 			public const float TIER8 = 1600f;
 		}
+
 		public class EXHAUST_ENERGY_ACTIVE
+		{
 			public const float TIER0 = 0f;
+
 			public const float TIER1 = 0.125f;
+
 			public const float TIER2 = 0.25f;
+
 			public const float TIER3 = 0.5f;
+
 			public const float TIER4 = 1f;
+
 			public const float TIER5 = 2f;
+
 			public const float TIER6 = 4f;
 
 			public const float TIER7 = 8f;
 
 			public const float TIER8 = 16f;
 		}
+
 		public class JOULES_LEAK_PER_CYCLE
-			public const float TIER0 = 400f;
-			public const float TIER1 = 1000f;
-			public const float TIER2 = 2000f;
-
 		{
+			public const float TIER0 = 400f;
 
+			public const float TIER1 = 1000f;
+
+			public const float TIER2 = 2000f;
+		}
+
+		public class SELF_HEAT_KILOWATTS
+		{
+			public const float TIER0 = 0f;
+
+			public const float TIER1 = 0.5f;
 
 			public const float TIER2 = 1f;
+
 			public const float TIER3 = 2f;
+
 			public const float TIER4 = 4f;
+
 			public const float TIER5 = 8f;
+
 			public const float TIER6 = 16f;
 
 			public const float TIER7 = 32f;
@@ -2292,69 +2382,120 @@ namespace TUNING
 
 			public const float TIER_NUCLEAR = 16384f;
 		}
-		public class MELTING_POINT_KELVIN
-			public const float TIER0 = 800f;
-			public const float TIER1 = 1600f;
-			public const float TIER2 = 2400f;
-			public const float TIER3 = 3200f;
-			public const float TIER4 = 9999f;
 
+		public class MELTING_POINT_KELVIN
+		{
+			public const float TIER0 = 800f;
+
+			public const float TIER1 = 1600f;
+
+			public const float TIER2 = 2400f;
+
+			public const float TIER3 = 3200f;
+
+			public const float TIER4 = 9999f;
+		}
+
+		public class CONSTRUCTION_TIME_SECONDS
 		{
 			public const float TIER0 = 3f;
+
 			public const float TIER1 = 10f;
+
 			public const float TIER2 = 30f;
+
 			public const float TIER3 = 60f;
+
 			public const float TIER4 = 120f;
+
 			public const float TIER5 = 240f;
+
 			public const float TIER6 = 480f;
 		}
-		public class HITPOINTS
-			public const int TIER0 = 10;
-			public const int TIER1 = 30;
-			public const int TIER2 = 100;
-			public const int TIER3 = 250;
-			public const int TIER4 = 1000;
 
+		public class HITPOINTS
+		{
+			public const int TIER0 = 10;
+
+			public const int TIER1 = 30;
+
+			public const int TIER2 = 100;
+
+			public const int TIER3 = 250;
+
+			public const int TIER4 = 1000;
+		}
+
+		public class DAMAGE_SOURCES
 		{
 			public const int CONDUIT_CONTENTS_BOILED = 1;
+
 			public const int CONDUIT_CONTENTS_FROZE = 1;
+
 			public const int BAD_INPUT_ELEMENT = 1;
+
 			public const int BUILDING_OVERHEATED = 1;
+
 			public const int HIGH_LIQUID_PRESSURE = 10;
+
 			public const int MICROMETEORITE = 1;
+
 			public const int CORROSIVE_ELEMENT = 1;
 		}
+
 		public class RELOCATION_TIME_SECONDS
-			public const float DECONSTRUCT = 4f;
-			public const float CONSTRUCT = 4f;
-
 		{
+			public const float DECONSTRUCT = 4f;
 
+			public const float CONSTRUCT = 4f;
+		}
 
+		public class WORK_TIME_SECONDS
+		{
+			public const float VERYSHORT_WORK_TIME = 5f;
+
+			public const float SHORT_WORK_TIME = 15f;
+
+			public const float MEDIUM_WORK_TIME = 30f;
 
 			public const float LONG_WORK_TIME = 90f;
+
 			public const float VERY_LONG_WORK_TIME = 150f;
+
 			public const float EXTENSIVE_WORK_TIME = 180f;
+		}
 
 		public class FABRICATION_TIME_SECONDS
-			public const float VERY_SHORT = 20f;
-			public const float SHORT = 40f;
-			public const float MODERATE = 80f;
-			public const float LONG = 250f;
-
 		{
+			public const float VERY_SHORT = 20f;
+
+			public const float SHORT = 40f;
+
+			public const float MODERATE = 80f;
+
+			public const float LONG = 250f;
+		}
+
+		public class DECOR
+		{
+			public static readonly EffectorValues NONE = new EffectorValues
 			{
 				amount = 0,
 				radius = 1
+			};
 
+			public class BONUS
 			{
+				public static readonly EffectorValues TIER0 = new EffectorValues
 				{
 					amount = 5,
+					radius = 1
 				};
 
 				public static readonly EffectorValues TIER1 = new EffectorValues
 				{
 					amount = 10,
+					radius = 2
 				};
 
 				public static readonly EffectorValues TIER2 = new EffectorValues
@@ -2365,16 +2506,19 @@ namespace TUNING
 
 				public static readonly EffectorValues TIER3 = new EffectorValues
 				{
+					amount = 20,
 					radius = 4
 				};
 
 				public static readonly EffectorValues TIER4 = new EffectorValues
 				{
+					amount = 25,
 					radius = 5
 				};
 
 				public static readonly EffectorValues TIER5 = new EffectorValues
 				{
+					amount = 30,
 					radius = 6
 				};
 
@@ -2392,17 +2536,21 @@ namespace TUNING
 						radius = 5
 					};
 				}
+			}
 
 			public class PENALTY
 			{
 				public static readonly EffectorValues TIER0 = new EffectorValues
+				{
 					amount = -5,
 					radius = 1
+				};
 
 				public static readonly EffectorValues TIER1 = new EffectorValues
 				{
 					amount = -10,
 					radius = 2
+				};
 
 				public static readonly EffectorValues TIER2 = new EffectorValues
 				{
@@ -2412,25 +2560,30 @@ namespace TUNING
 
 				public static readonly EffectorValues TIER3 = new EffectorValues
 				{
+					amount = -20,
 					radius = 4
 				};
 
 				public static readonly EffectorValues TIER4 = new EffectorValues
 				{
+					amount = -20,
 					radius = 5
 				};
 
 				public static readonly EffectorValues TIER5 = new EffectorValues
 				{
+					amount = -25,
 					radius = 6
 				};
 			}
 		}
 
+		public class MASS_KG
 		{
 			public const float TIER0 = 25f;
 
 			public const float TIER1 = 50f;
+
 			public const float TIER2 = 100f;
 
 			public const float TIER3 = 200f;
@@ -2443,26 +2596,45 @@ namespace TUNING
 
 			public const float TIER7 = 2000f;
 		}
-		public class UPGRADES
-			public const float BUILDTIME_TIER0 = 120f;
-			public class MATERIALTAGS
-				public const string METAL = "Metal";
-				public const string REFINEDMETAL = "RefinedMetal";
-				public const string CARBON = "Carbon";
 
+		public class UPGRADES
+		{
+			public const float BUILDTIME_TIER0 = 120f;
+
+			public class MATERIALTAGS
+			{
+				public const string METAL = "Metal";
+
+				public const string REFINEDMETAL = "RefinedMetal";
+
+				public const string CARBON = "Carbon";
+			}
+
+			public class MATERIALMASS
 			{
 				public const int TIER0 = 100;
-				public const int TIER1 = 200;
-				public const int TIER2 = 400;
-				public const int TIER3 = 500;
 
+				public const int TIER1 = 200;
+
+				public const int TIER2 = 400;
+
+				public const int TIER3 = 500;
+			}
+
+			public class MODIFIERAMOUNTS
 			{
+				public const float MANUALGENERATOR_ENERGYGENERATION = 1.2f;
 
 				public const float MANUALGENERATOR_CAPACITY = 2f;
+
 				public const float PROPANEGENERATOR_ENERGYGENERATION = 1.6f;
+
 				public const float PROPANEGENERATOR_HEATGENERATION = 1.6f;
+
 				public const float GENERATOR_HEATGENERATION = 0.8f;
+
 				public const float GENERATOR_ENERGYGENERATION = 1.3f;
+
 				public const float TURBINE_ENERGYGENERATION = 1.2f;
 
 				public const float TURBINE_CAPACITY = 1.2f;
@@ -2477,5 +2649,6 @@ namespace TUNING
 
 				public const float SMELTER_HEATGENERATION = 0.7f;
 			}
+		}
 	}
 }

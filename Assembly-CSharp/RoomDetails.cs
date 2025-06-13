@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using STRINGS;
 
 public class RoomDetails
@@ -75,7 +76,21 @@ public class RoomDetails
 
 	public static readonly RoomDetails.Detail CREATURE_COUNT = new RoomDetails.Detail((Room room) => string.Format(ROOMS.DETAILS.CREATURE_COUNT.NAME, room.cavity.creatures.Count + room.cavity.eggs.Count));
 
-	public static readonly RoomDetails.Detail PLANT_COUNT = new RoomDetails.Detail((Room room) => string.Format(ROOMS.DETAILS.PLANT_COUNT.NAME, room.cavity.plants.Count));
+	public static readonly RoomDetails.Detail PLANT_COUNT = new RoomDetails.Detail(delegate(Room room)
+	{
+		int num = 0;
+		using (List<KPrefabID>.Enumerator enumerator = room.cavity.plants.GetEnumerator())
+		{
+			while (enumerator.MoveNext())
+			{
+				if (!enumerator.Current.HasTag(GameTags.PlantBranch))
+				{
+					num++;
+				}
+			}
+		}
+		return string.Format(ROOMS.DETAILS.PLANT_COUNT.NAME, num);
+	});
 
 	public static readonly RoomDetails.Detail EFFECT = new RoomDetails.Detail((Room room) => room.roomType.effect);
 

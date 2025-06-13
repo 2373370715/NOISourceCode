@@ -1,4 +1,5 @@
 ﻿using System;
+using STRINGS;
 using TUNING;
 using UnityEngine;
 
@@ -17,7 +18,7 @@ public class GasCargoBayConfig : IBuildingConfig
 		string anim = "rocket_storage_gas_kanim";
 		int hitpoints = 1000;
 		float construction_time = 60f;
-		float[] cargo_MASS = BUILDINGS.ROCKETRY_MASS_KG.CARGO_MASS;
+		float[] cargo_MASS = TUNING.BUILDINGS.ROCKETRY_MASS_KG.CARGO_MASS;
 		string[] construction_materials = new string[]
 		{
 			SimHashes.Steel.ToString()
@@ -25,7 +26,7 @@ public class GasCargoBayConfig : IBuildingConfig
 		float melting_point = 9999f;
 		BuildLocationRule build_location_rule = BuildLocationRule.BuildingAttachPoint;
 		EffectorValues tier = NOISE_POLLUTION.NOISY.TIER2;
-		BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(id, width, height, anim, hitpoints, construction_time, cargo_MASS, construction_materials, melting_point, build_location_rule, BUILDINGS.DECOR.NONE, tier, 0.2f);
+		BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(id, width, height, anim, hitpoints, construction_time, cargo_MASS, construction_materials, melting_point, build_location_rule, TUNING.BUILDINGS.DECOR.NONE, tier, 0.2f);
 		BuildingTemplates.CreateRocketBuildingDef(buildingDef);
 		buildingDef.SceneLayer = Grid.SceneLayer.BuildingFront;
 		buildingDef.OverheatTemperature = 2273.15f;
@@ -37,6 +38,7 @@ public class GasCargoBayConfig : IBuildingConfig
 		buildingDef.RequiresPowerInput = false;
 		buildingDef.attachablePosition = new CellOffset(0, 0);
 		buildingDef.CanMove = true;
+		buildingDef.AddSearchTerms(SEARCH_TERMS.TRANSPORT);
 		return buildingDef;
 	}
 

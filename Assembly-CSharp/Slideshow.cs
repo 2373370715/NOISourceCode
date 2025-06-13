@@ -315,6 +315,5 @@ public class Slideshow : KMonoBehaviour
 
 	public Slideshow.onBeforeAndEndPlayDelegate onEndingPlay;
 
-Invoke) Token: 0x0600B0CB RID: 45259
 	public delegate void onBeforeAndEndPlayDelegate();
 }

@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class PajamaDispenser : Workable, IDispenser
 {
-add) Token: 0x06000E06 RID: 3590 RVA: 0x00181574 File Offset: 0x0017F774
-remove) Token: 0x06000E07 RID: 3591 RVA: 0x001815AC File Offset: 0x0017F7AC
 	public event System.Action OnStopWorkEvent;
 
 	private WorkChore<PajamaDispenser> Chore

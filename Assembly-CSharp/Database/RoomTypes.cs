@@ -452,8 +452,6 @@ namespace Database
 
 		public RoomType Laboratory;
 
-		public RoomType BionicUpkeep;
-
 		public struct RoomTypeQueryResult
 		{
 			public RoomType Type;

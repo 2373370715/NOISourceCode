@@ -43,7 +43,6 @@ public class DisposableElectrobankConfig : IMultiEntityConfig
 		{
 			Assets.AddCountableTag(GameTags.ChargedPortableBattery);
 		}
-		gameObject.GetComponent<KCollider2D>();
 		gameObject.AddComponent<Electrobank>();
 		gameObject.AddOrGet<OccupyArea>().SetCellOffsets(EntityTemplates.GenerateOffsets(1, 1));
 		gameObject.AddOrGet<DecorProvider>().SetValues(DECOR.PENALTY.TIER0);
@@ -52,15 +51,22 @@ public class DisposableElectrobankConfig : IMultiEntityConfig
 		component.forbiddenDlcIds = forbiddenDlcIds;
 		return gameObject;
 	}
+
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
+
 	public void OnSpawn(GameObject inst)
 	{
 	}
+
 	public const string ID = "DisposableElectrobank_";
+
 	public const float MASS = 20f;
+
 	public static Dictionary<Tag, ComplexRecipe> recipes = new Dictionary<Tag, ComplexRecipe>();
+
 	public const string ID_METAL_ORE = "DisposableElectrobank_RawMetal";
+
 	public const string ID_URANIUM_ORE = "DisposableElectrobank_UraniumOre";
 }

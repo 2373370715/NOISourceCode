@@ -130,9 +130,11 @@ public class Notification
 
 	public object customClickData;
 
+	public string customNotificationID;
+
 	private int notificationIncrement;
 
 	private string notifierName;
 
-Invoke) Token: 0x0600335F RID: 13151
 	public delegate void ClickCallback(object data);
+}

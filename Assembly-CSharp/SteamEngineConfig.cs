@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using STRINGS;
 using TUNING;
 using UnityEngine;
 
@@ -18,7 +19,7 @@ public class SteamEngineConfig : IBuildingConfig
 		string anim = "rocket_steam_engine_kanim";
 		int hitpoints = 1000;
 		float construction_time = 480f;
-		float[] tier = BUILDINGS.CONSTRUCTION_MASS_KG.TIER7;
+		float[] tier = TUNING.BUILDINGS.CONSTRUCTION_MASS_KG.TIER7;
 		string[] construction_materials = new string[]
 		{
 			SimHashes.Steel.ToString()
@@ -26,7 +27,7 @@ public class SteamEngineConfig : IBuildingConfig
 		float melting_point = 9999f;
 		BuildLocationRule build_location_rule = BuildLocationRule.OnFloor;
 		EffectorValues tier2 = NOISE_POLLUTION.NOISY.TIER2;
-		BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(id, width, height, anim, hitpoints, construction_time, tier, construction_materials, melting_point, build_location_rule, BUILDINGS.DECOR.NONE, tier2, 0.2f);
+		BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(id, width, height, anim, hitpoints, construction_time, tier, construction_materials, melting_point, build_location_rule, TUNING.BUILDINGS.DECOR.NONE, tier2, 0.2f);
 		BuildingTemplates.CreateRocketBuildingDef(buildingDef);
 		buildingDef.SceneLayer = Grid.SceneLayer.BuildingFront;
 		buildingDef.OverheatTemperature = 2273.15f;
@@ -38,6 +39,7 @@ public class SteamEngineConfig : IBuildingConfig
 		buildingDef.InputConduitType = ConduitType.Gas;
 		buildingDef.RequiresPowerInput = false;
 		buildingDef.CanMove = true;
+		buildingDef.AddSearchTerms(SEARCH_TERMS.STEAM);
 		return buildingDef;
 	}
 
@@ -70,7 +72,7 @@ public class SteamEngineConfig : IBuildingConfig
 		rocketEngine.exhaustElement = SimHashes.Steam;
 		rocketEngine.exhaustTemperature = ElementLoader.FindElementByHash(SimHashes.Steam).lowTemp + 50f;
 		Storage storage = go.AddOrGet<Storage>();
-		storage.capacityKg = BUILDINGS.ROCKETRY_MASS_KG.FUEL_TANK_WET_MASS[0];
+		storage.capacityKg = TUNING.BUILDINGS.ROCKETRY_MASS_KG.FUEL_TANK_WET_MASS[0];
 		storage.SetDefaultStoredItemModifiers(new List<Storage.StoredItemModifier>
 		{
 			Storage.StoredItemModifier.Hide,

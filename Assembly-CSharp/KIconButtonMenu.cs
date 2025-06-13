@@ -370,7 +370,6 @@ public class KIconButtonMenu : KScreen
 
 		public Texture texture;
 
-Invoke) Token: 0x06009D9F RID: 40351
 		public delegate void Callback();
 	}
 }

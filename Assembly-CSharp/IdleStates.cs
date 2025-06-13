@@ -94,7 +94,6 @@ public class IdleStates : GameStateMachine<IdleStates, IdleStates.Instance, ISta
 
 		public PriorityScreen.PriorityClass priorityClass;
 
-Invoke) Token: 0x06000642 RID: 1602
 		public delegate HashedString IdleAnimCallback(IdleStates.Instance smi, ref HashedString pre_anim);
 	}
 

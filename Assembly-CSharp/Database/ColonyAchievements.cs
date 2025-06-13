@@ -118,7 +118,10 @@ namespace Database
 					FOOD.FOOD_TYPES.DEEP_FRIED_SHELLFISH.Id,
 					FOOD.FOOD_TYPES.COOKED_MEAT.Id,
 					FOOD.FOOD_TYPES.SURF_AND_TURF.Id,
-					FOOD.FOOD_TYPES.BURGER.Id
+					FOOD.FOOD_TYPES.BURGER.Id,
+					FOOD.FOOD_TYPES.JAWBOFILLET.Id,
+					FOOD.FOOD_TYPES.SMOKED_FISH.Id,
+					FOOD.FOOD_TYPES.SMOKED_DINOSAURMEAT.Id
 				})
 			}, "", "", "", "", null, default(EventReference), "Carnivore", null, null, null, null));
 			this.NoFarmTilesAndKCal = base.Add(new ColonyAchievement("NoFarmTilesAndKCal", "NO_PLANTERBOX", COLONY_ACHIEVEMENTS.MISC_REQUIREMENTS.NO_PLANTERBOX, COLONY_ACHIEVEMENTS.MISC_REQUIREMENTS.NO_PLANTERBOX_DESCRIPTION, false, new List<ColonyAchievementRequirement>
@@ -133,7 +136,8 @@ namespace Database
 					"MethaneGenerator",
 					"PetroleumGenerator",
 					"WoodGasGenerator",
-					"Generator"
+					"Generator",
+					"PeatGenerator"
 				})
 			}, "", "", "", "", null, default(EventReference), "sustainably_sustaining", null, null, null, null));
 			this.BuildOutsideStartBiome = base.Add(new ColonyAchievement("BuildOutsideStartBiome", "BUILD_OUTSIDE_BIOME", COLONY_ACHIEVEMENTS.MISC_REQUIREMENTS.BUILD_OUTSIDE_BIOME, COLONY_ACHIEVEMENTS.MISC_REQUIREMENTS.BUILD_OUTSIDE_BIOME_DESCRIPTION, false, new List<ColonyAchievementRequirement>
@@ -168,7 +172,9 @@ namespace Database
 				new EatXKCalProducedByY(1, new List<Tag>
 				{
 					"GourmetCookingStation",
-					"CookingStation"
+					"CookingStation",
+					"Deepfryer",
+					"Smoker"
 				})
 			}, "", "", "", "", null, default(EventReference), "its_not_raw", null, null, null, null));
 			this.BasicPumping = base.Add(new ColonyAchievement("BasicPumping", "BASIC_PUMPING", COLONY_ACHIEVEMENTS.MISC_REQUIREMENTS.BASIC_PUMPING, COLONY_ACHIEVEMENTS.MISC_REQUIREMENTS.BASIC_PUMPING_DESCRIPTION, false, new List<ColonyAchievementRequirement>
@@ -432,6 +438,35 @@ namespace Database
 				requiredDlcIds = DlcManager.DLC3;
 				this.AllTheCircuits = base.Add(new ColonyAchievement(id11, platformAchievementId11, name11, description11, isVictoryCondition11, list11, messageTitle11, messageBody11, videoDataName11, victoryLoopVideo11, victorySequence11, default(EventReference), "all_the_circuits", requiredDlcIds, null, "DLC3_ID", null));
 			}
+			if (DlcManager.IsContentSubscribed("DLC4_ID"))
+			{
+				string id12 = "AsteroidDestroyed";
+				string platformAchievementId12 = "ASTEROID_DESTROYED";
+				string name12 = COLONY_ACHIEVEMENTS.ASTEROID_DESTROYED.NAME;
+				string description12 = COLONY_ACHIEVEMENTS.ASTEROID_DESTROYED.DESCRIPTION;
+				bool isVictoryCondition12 = true;
+				List<ColonyAchievementRequirement> list12 = new List<ColonyAchievementRequirement>();
+				list12.Add(new DefeatPrehistoricAsteroid());
+				this.AsteroidDestroyed = base.Add(new ColonyAchievement(id12, platformAchievementId12, name12, description12, isVictoryCondition12, list12, COLONY_ACHIEVEMENTS.ASTEROID_DESTROYED.MESSAGE_TITLE, COLONY_ACHIEVEMENTS.ASTEROID_DESTROYED.MESSAGE_BODY, "DLC4/LargeImpactorDefeatedVideo", "DLC4/LargeImpactorSpacePOIVideo", delegate(KMonoBehaviour a)
+				{
+					LargeImpactorDestroyedSequence.Start();
+				}, AudioMixerSnapshots.Get().VictoryNISGenericSnapshot, "blast_line_of_defense", DlcManager.DLC4, null, "DLC4_ID", "DemoliorImperative"));
+				string id13 = "AsteroidSurvived";
+				string platformAchievementId13 = "ASTEROID_SURVIVED";
+				string name13 = COLONY_ACHIEVEMENTS.ASTEROID_SURVIVED.NAME;
+				string description13 = COLONY_ACHIEVEMENTS.ASTEROID_SURVIVED.DESCRIPTION;
+				bool isVictoryCondition13 = false;
+				List<ColonyAchievementRequirement> list13 = new List<ColonyAchievementRequirement>();
+				list13.Add(new SurvivedPrehistoricAsteroidImpact(100));
+				list13.Add(new NoDuplicantsCanDie());
+				string messageTitle12 = "";
+				string messageBody12 = "";
+				string videoDataName12 = "";
+				string victoryLoopVideo12 = "";
+				Action<KMonoBehaviour> victorySequence12 = null;
+				string[] requiredDlcIds = DlcManager.DLC4;
+				this.AsteroidSurvived = base.Add(new ColonyAchievement(id13, platformAchievementId13, name13, description13, isVictoryCondition13, list13, messageTitle12, messageBody12, videoDataName12, victoryLoopVideo12, victorySequence12, default(EventReference), "life_found_a_way", requiredDlcIds, null, "DLC4_ID", "DemoliorSurivedAchievement"));
+			}
 		}
 
 		public ColonyAchievement Thriving;
@@ -529,5 +564,9 @@ namespace Database
 		public ColonyAchievement EfficientData;
 
 		public ColonyAchievement AllTheCircuits;
+
+		public ColonyAchievement AsteroidDestroyed;
+
+		public ColonyAchievement AsteroidSurvived;
 	}
 }

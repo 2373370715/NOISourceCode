@@ -80,10 +80,6 @@ public class Def : ScriptableObject
 						}
 					}
 				}
-				if (component.HasTag(GameTags.MoltShell))
-				{
-					animName = gameObject.GetComponent<SimpleMassStatusItem>().symbolPrefix + animName;
-				}
 				if (component.HasTag(GameTags.BionicUpgrade))
 				{
 					animName = BionicUpgradeComponentConfig.UpgradesData[component.PrefabID()].uiAnimName;
@@ -123,12 +119,21 @@ public class Def : ScriptableObject
 						{
 							return new global::Tuple<Sprite, Color>(Assets.GetSprite(((Tag)item).Name), Color.white);
 						}
+						Tag[] array = GameTags.Creatures.Species.AllSpecies_REFLECTION();
+						for (int i = 0; i < array.Length; i++)
+						{
+							if (array[i] == (Tag)item)
+							{
+								foreach (CreatureBrain creatureBrain in Assets.GetPrefabsWithComponentAsListOfComponents<CreatureBrain>())
+								{
+									if (creatureBrain.species == (Tag)item && creatureBrain.HasTag(GameTags.OriginalCreature))
+									{
+										return Def.GetUISprite(creatureBrain.gameObject, "ui", false);
+									}
+								}
+							}
+						}
 					}
-					DebugUtil.DevAssertArgs(false, new object[]
-					{
-						"Can't get sprite for type ",
-						item.ToString()
-					});
 					return new global::Tuple<Sprite, Color>(Assets.GetSprite("unknown"), Color.grey);
 				}
 				if (Db.Get().Amounts.Exists(item as string))
@@ -277,11 +282,6 @@ public class Def : ScriptableObject
 					}
 				}
 			}
-		}
-		if (prefab.HasTag(GameTags.MoltShell))
-		{
-			SimpleMassStatusItem component3 = prefab.GetComponent<SimpleMassStatusItem>();
-			animName = component3.symbolPrefix + animName;
 		}
 		return prefab.GetComponent<KBatchedAnimController>().AnimFiles[0];
 	}

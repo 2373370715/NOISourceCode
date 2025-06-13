@@ -151,7 +151,7 @@ public class DebugBaseTemplateButton : KScreen
 		List<Prefab> list2 = new List<Prefab>();
 		List<Prefab> list3 = new List<Prefab>();
 		List<Prefab> list4 = new List<Prefab>();
-		List<Prefab> otherEntities = new List<Prefab>();
+		List<Prefab> list5 = new List<Prefab>();
 		HashSet<GameObject> hashSet = new HashSet<GameObject>();
 		float num = 0f;
 		float num2 = 0f;
@@ -160,12 +160,12 @@ public class DebugBaseTemplateButton : KScreen
 			num += (float)Grid.CellToXY(cell).x;
 			num2 += (float)Grid.CellToXY(cell).y;
 		}
-		float x = num / (float)this.SelectedCells.Count;
+		float x2 = num / (float)this.SelectedCells.Count;
 		float y;
 		num2 = (y = num2 / (float)this.SelectedCells.Count);
 		int rootX;
 		int rootY;
-		Grid.CellToXY(Grid.PosToCell(new Vector3(x, y, 0f)), out rootX, out rootY);
+		Grid.CellToXY(Grid.PosToCell(new Vector3(x2, y, 0f)), out rootX, out rootY);
 		for (int i = 0; i < this.SelectedCells.Count; i++)
 		{
 			int i2 = this.SelectedCells[i];
@@ -225,29 +225,29 @@ public class DebugBaseTemplateButton : KScreen
 						text = ((component2.DiseaseIdx != byte.MaxValue) ? Db.Get().Diseases[(int)component2.DiseaseIdx].Id : null);
 						disease_count = component2.DiseaseCount;
 					}
-					List<Prefab.template_amount_value> list5 = new List<Prefab.template_amount_value>();
 					List<Prefab.template_amount_value> list6 = new List<Prefab.template_amount_value>();
+					List<Prefab.template_amount_value> list7 = new List<Prefab.template_amount_value>();
 					foreach (AmountInstance amountInstance in buildingComplete.gameObject.GetAmounts())
 					{
-						list5.Add(new Prefab.template_amount_value(amountInstance.amount.Id, amountInstance.value));
+						list6.Add(new Prefab.template_amount_value(amountInstance.amount.Id, amountInstance.value));
 					}
 					Battery component3 = buildingComplete.GetComponent<Battery>();
 					if (component3 != null)
 					{
 						float joulesAvailable = component3.JoulesAvailable;
-						list6.Add(new Prefab.template_amount_value("joulesAvailable", joulesAvailable));
+						list7.Add(new Prefab.template_amount_value("joulesAvailable", joulesAvailable));
 					}
 					Unsealable component4 = buildingComplete.GetComponent<Unsealable>();
 					if (component4 != null)
 					{
 						float value = (float)(component4.facingRight ? 1 : 0);
-						list6.Add(new Prefab.template_amount_value("sealedDoorDirection", value));
+						list7.Add(new Prefab.template_amount_value("sealedDoorDirection", value));
 					}
 					LogicSwitch component5 = buildingComplete.GetComponent<LogicSwitch>();
 					if (component5 != null)
 					{
 						float value2 = (float)(component5.IsSwitchedOn ? 1 : 0);
-						list6.Add(new Prefab.template_amount_value("switchSetting", value2));
+						list7.Add(new Prefab.template_amount_value("switchSetting", value2));
 					}
 					int connections = 0;
 					IHaveUtilityNetworkMgr component6 = buildingComplete.GetComponent<IHaveUtilityNetworkMgr>();
@@ -264,7 +264,7 @@ public class DebugBaseTemplateButton : KScreen
 					num7 -= rootX;
 					num8 -= rootY;
 					num10 = Mathf.Clamp(num10, 1f, 99999f);
-					Prefab prefab = new Prefab(buildingComplete.PrefabID().Name, Prefab.Type.Building, num7, num8, element2, num10, 0f, text, disease_count, rotation, list5.ToArray(), list6.ToArray(), connections, facadeIdId);
+					Prefab prefab = new Prefab(buildingComplete.PrefabID().Name, Prefab.Type.Building, num7, num8, element2, num10, 0f, text, disease_count, rotation, list6.ToArray(), list7.ToArray(), connections, facadeIdId);
 					Storage component8 = buildingComplete.gameObject.GetComponent<Storage>();
 					if (component8 != null)
 					{
@@ -360,15 +360,16 @@ public class DebugBaseTemplateButton : KScreen
 				}
 			}
 		}
-		this.GetEntities<Crop>(Components.Crops.Items, rootX, rootY, ref list4, ref otherEntities, ref hashSet);
-		this.GetEntities<Health>(Components.Health.Items, rootX, rootY, ref list4, ref otherEntities, ref hashSet);
-		this.GetEntities<Harvestable>(Components.Harvestables.Items, rootX, rootY, ref list4, ref otherEntities, ref hashSet);
-		this.GetEntities<Edible>(Components.Edibles.Items, rootX, rootY, ref list4, ref otherEntities, ref hashSet);
-		this.GetEntities<Geyser>(rootX, rootY, ref list4, ref otherEntities, ref hashSet);
-		this.GetEntities<OccupyArea>(rootX, rootY, ref list4, ref otherEntities, ref hashSet);
-		this.GetEntities<FogOfWarMask>(rootX, rootY, ref list4, ref otherEntities, ref hashSet);
+		this.GetEntities<Crop>(Components.Crops.Items, rootX, rootY, ref list4, ref list5, ref hashSet);
+		this.GetEntities<Health>(Components.Health.Items, rootX, rootY, ref list4, ref list5, ref hashSet);
+		this.GetEntities<Harvestable>(Components.Harvestables.Items, rootX, rootY, ref list4, ref list5, ref hashSet);
+		this.GetEntities<Edible>(Components.Edibles.Items, rootX, rootY, ref list4, ref list5, ref hashSet);
+		this.GetEntities<Geyser>(rootX, rootY, ref list4, ref list5, ref hashSet);
+		this.GetEntities<OccupyArea>(rootX, rootY, ref list4, ref list5, ref hashSet);
+		this.GetEntities<FogOfWarMask>(rootX, rootY, ref list4, ref list5, ref hashSet);
+		list5.RemoveAll((Prefab x) => Assets.GetPrefab(x.id).HasTag(GameTags.ExcludeFromTemplate));
 		TemplateContainer templateContainer = new TemplateContainer();
-		templateContainer.Init(list, list2, list3, list4, otherEntities);
+		templateContainer.Init(list, list2, list3, list4, list5);
 		return templateContainer;
 	}
 

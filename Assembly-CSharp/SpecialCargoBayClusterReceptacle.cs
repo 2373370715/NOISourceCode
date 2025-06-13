@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using KSerialization;
 using UnityEngine;
 
+public class SpecialCargoBayClusterReceptacle : SingleEntityReceptacle, IBaggedStateAnimationInstructions
 {
 	public bool IsRocketOnGround
 	{
@@ -27,11 +29,13 @@ using UnityEngine;
 		}
 	}
 
+	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 		this.choreType = Db.Get().ChoreTypes.CreatureFetch;
 	}
 
+	protected override void OnSpawn()
 	{
 		this.capsule = base.gameObject.GetSMI<SpecialCargoBayCluster.Instance>();
 		this.SetupLootSymbolObject();
@@ -43,6 +47,7 @@ using UnityEngine;
 		base.Subscribe(-905833192, new Action<object>(this.OnCopySettings));
 	}
 
+	private void OnCopySettings(object data)
 	{
 		GameObject gameObject = (GameObject)data;
 		if (gameObject != null)
@@ -67,6 +72,7 @@ using UnityEngine;
 		}
 	}
 
+	public override void CreateOrder(Tag entityTag, Tag additionalFilterTag)
 	{
 		base.CreateOrder(entityTag, additionalFilterTag);
 		if (this.fetchChore != null)
@@ -75,6 +81,7 @@ using UnityEngine;
 		}
 	}
 
+	public void SetupLootSymbolObject()
 	{
 		Vector3 storePositionForDrops = this.capsule.GetStorePositionForDrops();
 		storePositionForDrops.z = Grid.GetLayerZ(Grid.SceneLayer.BuildingUse);
@@ -96,6 +103,7 @@ using UnityEngine;
 		this.buildingAnimCtr.SetSymbolVisiblity("loot", false);
 	}
 
+	protected override void ClearOccupant()
 	{
 		this.LastCritterDead = null;
 		if (base.occupyingObject != null)
@@ -121,6 +129,7 @@ using UnityEngine;
 		base.Trigger(-731304873, base.occupyingObject);
 	}
 
+	private void OnCritterStorageChanged(object obj)
 	{
 		if (obj != null && this.storage.MassStored() == 0f && base.Occupant != null && base.Occupant == (GameObject)obj)
 		{
@@ -128,6 +137,7 @@ using UnityEngine;
 		}
 	}
 
+	protected override void SubscribeToOccupant()
 	{
 		base.SubscribeToOccupant();
 		base.Subscribe(base.Occupant, -1582839653, new Action<object>(this.OnTrappedCritterTagsChanged));
@@ -142,6 +152,7 @@ using UnityEngine;
 		base.Occupant.GetComponent<Health>().UpdateHealthBar();
 	}
 
+	protected override void UnsubscribeFromOccupant()
 	{
 		base.UnsubscribeFromOccupant();
 		base.Unsubscribe(base.Occupant, -1582839653, new Action<object>(this.OnTrappedCritterTagsChanged));
@@ -159,6 +170,7 @@ using UnityEngine;
 		}
 	}
 
+	public void SetLootSymbolImage(Tag productTag)
 	{
 		bool flag = productTag != Tag.Invalid;
 		this.lootKBAC.gameObject.SetActive(flag);
@@ -170,6 +182,7 @@ using UnityEngine;
 		}
 	}
 
+	private void SetupCritterTracker()
 	{
 		if (base.Occupant != null)
 		{
@@ -180,6 +193,7 @@ using UnityEngine;
 		}
 	}
 
+	private void RemoveCritterTracker()
 	{
 		if (base.Occupant != null)
 		{
@@ -191,12 +205,14 @@ using UnityEngine;
 		}
 	}
 
+	protected override void ConfigureOccupyingObject(GameObject source)
 	{
 		this.originWorldID = source.GetMyWorldId();
 		source.GetComponent<Baggable>().SetWrangled();
 		this.SetTrappedCritterAnimations(source);
 	}
 
+	private void OnBabyInStorageGrows(object obj)
 	{
 		int num = this.originWorldID;
 		this.UnsubscribeFromOccupant();
@@ -210,6 +226,7 @@ using UnityEngine;
 		this.UpdateStatusItem();
 	}
 
+	private void OnTrappedCritterTagsChanged(object obj)
 	{
 		if (base.Occupant != null && base.Occupant.HasTag(GameTags.Creatures.Die) && this.LastCritterDead != base.Occupant)
 		{
@@ -218,9 +235,9 @@ using UnityEngine;
 			this.RemoveCritterTracker();
 			base.Occupant.GetComponent<KBatchedAnimController>().SetVisiblity(false);
 			Butcherable component = base.Occupant.GetComponent<Butcherable>();
-			if (component != null && component.drops != null && component.drops.Length != 0)
+			if (component != null && component.drops != null && component.drops.Count > 0)
 			{
-				this.SetLootSymbolImage(component.drops[0]);
+				this.SetLootSymbolImage(component.drops.Keys.ToList<string>()[0].ToTag());
 			}
 			else
 			{
@@ -234,6 +251,7 @@ using UnityEngine;
 		}
 	}
 
+	private void OnCreatureInStorageDied(object drops_obj)
 	{
 		GameObject[] array = drops_obj as GameObject[];
 		if (array != null)
@@ -245,6 +263,7 @@ using UnityEngine;
 		}
 	}
 
+	private void SetTrappedCritterAnimations(GameObject critter)
 	{
 		if (critter != null)
 		{
@@ -256,6 +275,7 @@ using UnityEngine;
 		}
 	}
 
+	protected override void PositionOccupyingObject()
 	{
 		if (base.Occupant != null)
 		{
@@ -264,6 +284,7 @@ using UnityEngine;
 		}
 	}
 
+	protected override void UpdateStatusItem()
 	{
 		KSelectable component = base.GetComponent<KSelectable>();
 		bool flag = base.Occupant != null;
@@ -281,6 +302,7 @@ using UnityEngine;
 		base.UpdateStatusItem();
 	}
 
+	private void OnCargoBayRelocated(object data)
 	{
 		if (base.Occupant != null)
 		{
@@ -290,6 +312,7 @@ using UnityEngine;
 		}
 	}
 
+	private void OnRocketLanded(object data)
 	{
 		if (base.Occupant != null)
 		{
@@ -306,21 +329,31 @@ using UnityEngine;
 		}
 	}
 
+	public string GetBaggedAnimationName()
 	{
 		return "rocket_biological";
 	}
 
+	public const string TRAPPED_CRITTER_ANIM_NAME = "rocket_biological";
 
+	[MyCmpReq]
 	private SymbolOverrideController symbolOverrideComponent;
 
+	[MyCmpGet]
 	private KBatchedAnimController buildingAnimCtr;
 
+	private KBatchedAnimController lootKBAC;
 
+	public Storage sideProductStorage;
 
+	private SpecialCargoBayCluster.Instance capsule;
 
+	private GameObject LastCritterDead;
 
+	[Serialize]
 	private int originWorldID;
 
+	private static Tag[] tagsForCritter = new Tag[]
 	{
 		GameTags.Creatures.TrappedInCargoBay,
 		GameTags.Creatures.PausedHunger,
@@ -330,10 +363,12 @@ using UnityEngine;
 		GameTags.PreventDeadAnimation
 	};
 
+	private static readonly EventSystem.IntraObjectHandler<SpecialCargoBayClusterReceptacle> OnRocketLandedDelegate = new EventSystem.IntraObjectHandler<SpecialCargoBayClusterReceptacle>(delegate(SpecialCargoBayClusterReceptacle component, object data)
 	{
 		component.OnRocketLanded(data);
 	});
 
+	private static readonly EventSystem.IntraObjectHandler<SpecialCargoBayClusterReceptacle> OnCargoBayRelocatedDelegate = new EventSystem.IntraObjectHandler<SpecialCargoBayClusterReceptacle>(delegate(SpecialCargoBayClusterReceptacle component, object data)
 	{
 		component.OnCargoBayRelocated(data);
 	});

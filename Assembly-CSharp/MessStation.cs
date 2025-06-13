@@ -16,15 +16,20 @@ public class MessStation : Workable, IGameObjectEffectDescriptor
 		};
 	}
 
+	public static bool CanBeAssignedTo(IAssignableIdentity assignee)
+	{
+		MinionAssignablesProxy minionAssignablesProxy = assignee as MinionAssignablesProxy;
+		if (minionAssignablesProxy == null)
+		{
+			return false;
+		}
+		MinionIdentity minionIdentity = minionAssignablesProxy.target as MinionIdentity;
+		return !(minionIdentity == null) && (Db.Get().Amounts.Calories.Lookup(minionIdentity) != null || (Game.IsDlcActiveForCurrentSave("DLC3_ID") && minionIdentity.model == BionicMinionConfig.MODEL));
+	}
+
 	private bool HasCaloriesOwnablePrecondition(MinionAssignablesProxy worker)
 	{
-		bool result = false;
-		MinionIdentity minionIdentity = worker.target as MinionIdentity;
-		if (minionIdentity != null)
-		{
-			result = (Db.Get().Amounts.Calories.Lookup(minionIdentity) != null);
-		}
-		return result;
+		return MessStation.CanBeAssignedTo(worker);
 	}
 
 	protected override void OnCompleteWork(WorkerBase worker)
@@ -116,7 +121,20 @@ public class MessStation : Workable, IGameObjectEffectDescriptor
 					return false;
 				}
 				ChoreDriver component = targetGameObject.GetComponent<ChoreDriver>();
-				return component != null && component.HasChore() && component.GetCurrentChore().choreType.urge == Db.Get().Urges.Eat;
+				if (component == null)
+				{
+					return false;
+				}
+				if (!component.HasChore())
+				{
+					return false;
+				}
+				ReloadElectrobankChore reloadElectrobankChore = component.GetCurrentChore() as ReloadElectrobankChore;
+				if (reloadElectrobankChore != null)
+				{
+					return reloadElectrobankChore.IsInstallingAtMessStation();
+				}
+				return component.GetCurrentChore().choreType.urge == Db.Get().Urges.Eat;
 			}
 
 			private Storage saltStorage;

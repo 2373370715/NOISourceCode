@@ -20,8 +20,6 @@ public class DestinationSelectPanel : KMonoBehaviour
 		}
 	}
 
-add) Token: 0x06009AB5 RID: 39605 RVA: 0x003C8D68 File Offset: 0x003C6F68
-remove) Token: 0x06009AB6 RID: 39606 RVA: 0x003C8DA0 File Offset: 0x003C6FA0
 	public event Action<ColonyDestinationAsteroidBeltData> OnAsteroidClicked;
 
 	private float min

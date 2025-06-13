@@ -85,6 +85,10 @@ public class TrapTrigger : KMonoBehaviour
 		{
 			return;
 		}
+		if (this.customConditionsToTrap != null && !this.customConditionsToTrap(trappable.gameObject))
+		{
+			return;
+		}
 		this.storage.Store(trappable.gameObject, true, false, true, false);
 		this.SetStoredPosition(trappable.gameObject);
 		base.Trigger(-358342870, trappable.gameObject);
@@ -93,12 +97,19 @@ public class TrapTrigger : KMonoBehaviour
 	protected override void OnCleanUp()
 	{
 		base.OnCleanUp();
+		GameScenePartitioner.Instance.Free(ref this.partitionerEntry);
 	}
 
 	private HandleVector<int>.Handle partitionerEntry;
 
+	public Func<GameObject, bool> customConditionsToTrap;
 
+	public Tag[] trappableCreatures;
 
+	public Vector2 trappedOffset = Vector2.zero;
 
+	public bool addTrappedAnimationOffset = true;
+
+	[MyCmpReq]
 	private Storage storage;
 }

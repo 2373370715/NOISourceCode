@@ -12,8 +12,6 @@ public class SolidConduitFlow : IConduitFlow
 		return this.soaInfo;
 	}
 
-add) Token: 0x06008407 RID: 33799 RVA: 0x00350AD4 File Offset: 0x0034ECD4
-remove) Token: 0x06008408 RID: 33800 RVA: 0x00350B0C File Offset: 0x0034ED0C
 	public event System.Action onConduitsRebuilt;
 
 	public void AddConduitUpdater(Action<float> callback, ConduitFlowPriority priority = ConduitFlowPriority.Default)

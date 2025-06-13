@@ -480,8 +480,6 @@ public class OutfitBrowserScreen : KMonoBehaviour
 
 	public class State
 	{
-add) Token: 0x0600A558 RID: 42328 RVA: 0x003F94B4 File Offset: 0x003F76B4
-remove) Token: 0x0600A559 RID: 42329 RVA: 0x003F94EC File Offset: 0x003F76EC
 		public event System.Action OnSelectedOutfitOptChanged;
 
 		public Option<ClothingOutfitTarget> SelectedOutfitOpt
@@ -500,8 +498,6 @@ remove) Token: 0x0600A559 RID: 42329 RVA: 0x003F94EC File Offset: 0x003F76EC
 			}
 		}
 
-add) Token: 0x0600A55C RID: 42332 RVA: 0x003F9524 File Offset: 0x003F7724
-remove) Token: 0x0600A55D RID: 42333 RVA: 0x003F955C File Offset: 0x003F775C
 		public event System.Action OnCurrentOutfitTypeChanged;
 
 		public ClothingOutfitUtility.OutfitType CurrentOutfitType
@@ -520,8 +516,6 @@ remove) Token: 0x0600A55D RID: 42333 RVA: 0x003F955C File Offset: 0x003F775C
 			}
 		}
 
-add) Token: 0x0600A560 RID: 42336 RVA: 0x003F9594 File Offset: 0x003F7794
-remove) Token: 0x0600A561 RID: 42337 RVA: 0x003F95CC File Offset: 0x003F77CC
 		public event System.Action OnFilterChanged;
 
 		public string Filter

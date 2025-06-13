@@ -156,6 +156,14 @@ namespace ProcGenGame
 			}
 		}
 
+		public int HiddenYOffset
+		{
+			get
+			{
+				return this.data.world.hiddenY;
+			}
+		}
+
 		public WorldLayout WorldLayout
 		{
 			get
@@ -344,22 +352,37 @@ namespace ProcGenGame
 							}
 						}
 					}
+					foreach (KeyValuePair<string, DlcManager.DlcInfo> keyValuePair in DlcManager.DLC_PACKS)
+					{
+						if (DlcManager.IsContentSubscribed(keyValuePair.Value.id))
+						{
+							string text = keyValuePair.Value.directory + "::poi/asteroid_impacts";
+							string path = TemplateCache.RewriteTemplatePath(text);
+							if (Directory.Exists(path))
+							{
+								foreach (string path2 in Directory.GetFiles(path, "*.yaml"))
+								{
+									TemplateCache.GetTemplate(System.IO.Path.Combine(text ?? "", System.IO.Path.GetFileNameWithoutExtension(path2)));
+								}
+							}
+						}
+					}
 				}
 				if (CustomGameSettings.Instance != null)
 				{
-					foreach (KeyValuePair<string, WorldMixingSettings> keyValuePair in SettingsCache.worldMixingSettings)
+					foreach (KeyValuePair<string, WorldMixingSettings> keyValuePair2 in SettingsCache.worldMixingSettings)
 					{
-						string key = keyValuePair.Key;
-						if (keyValuePair.Value.isModded && CustomGameSettings.Instance.GetWorldMixingSettingForWorldgenFile(key) == null)
+						string key = keyValuePair2.Key;
+						if (keyValuePair2.Value.isModded && CustomGameSettings.Instance.GetWorldMixingSettingForWorldgenFile(key) == null)
 						{
 							WorldMixingSettingConfig config = new WorldMixingSettingConfig(key, key, null, null, true, -1L);
 							CustomGameSettings.Instance.AddMixingSettingsConfig(config);
 						}
 					}
-					foreach (KeyValuePair<string, SubworldMixingSettings> keyValuePair2 in SettingsCache.subworldMixingSettings)
+					foreach (KeyValuePair<string, SubworldMixingSettings> keyValuePair3 in SettingsCache.subworldMixingSettings)
 					{
-						string key2 = keyValuePair2.Key;
-						if (keyValuePair2.Value.isModded && CustomGameSettings.Instance.GetSubworldMixingSettingForWorldgenFile(key2) == null)
+						string key2 = keyValuePair3.Key;
+						if (keyValuePair3.Value.isModded && CustomGameSettings.Instance.GetSubworldMixingSettingForWorldgenFile(key2) == null)
 						{
 							SubworldMixingSettingConfig config2 = new SubworldMixingSettingConfig(key2, key2, null, null, true, -1L);
 							CustomGameSettings.Instance.AddMixingSettingsConfig(config2);
@@ -442,7 +465,7 @@ namespace ProcGenGame
 			this.data.gameSpawnData.AddTemplate(template, position, ref claimedCells);
 		}
 
-		public bool RenderOffline(bool doSettle, BinaryWriter writer, ref Sim.Cell[] cells, ref Sim.DiseaseCell[] dc, int baseId, ref List<WorldTrait> placedStoryTraits, bool isStartingWorld = false)
+		public bool RenderOffline(bool doSettle, uint simSeed, BinaryWriter writer, ref Sim.Cell[] cells, ref Sim.DiseaseCell[] dc, int baseId, ref List<WorldTrait> placedStoryTraits, bool isStartingWorld = false)
 		{
 			float[] bgTemp = null;
 			dc = null;
@@ -503,7 +526,7 @@ namespace ProcGenGame
 			}
 			if (doSettle)
 			{
-				this.running = WorldGenSimUtil.DoSettleSim(this.Settings, writer, ref cells, ref bgTemp, ref dc, this.successCallbackFn, this.data, this.POISpawners, this.errorCallback, baseId);
+				this.running = WorldGenSimUtil.DoSettleSim(this.Settings, writer, simSeed, ref cells, ref bgTemp, ref dc, this.successCallbackFn, this.data, this.POISpawners, this.errorCallback, baseId);
 			}
 			if (!this.skipPlacingTemplates)
 			{
@@ -527,15 +550,16 @@ namespace ProcGenGame
 			SeededRandom rnd = new SeededRandom(this.data.globalTerrainSeed);
 			for (int i = 0; i < this.TerrainCells.Count; i++)
 			{
+				HashSet<int> hashSet = new HashSet<int>();
 				float completePercent = (float)i / (float)this.TerrainCells.Count;
 				this.successCallbackFn(UI.WORLDGEN.PLACINGCREATURES.key, completePercent, WorldGenProgressStages.Stages.PlacingCreatures);
 				TerrainCell tc = this.TerrainCells[i];
-				Dictionary<int, string> dictionary = MobSpawning.PlaceFeatureAmbientMobs(this.Settings, tc, rnd, cells, bgTemp, dc, claimedCells, this.isRunningDebugGen);
+				Dictionary<int, string> dictionary = MobSpawning.PlaceFeatureAmbientMobs(this.Settings, tc, rnd, cells, bgTemp, dc, claimedCells, this.isRunningDebugGen, ref hashSet);
 				if (dictionary != null)
 				{
 					this.data.gameSpawnData.AddRange(dictionary);
 				}
-				dictionary = MobSpawning.PlaceBiomeAmbientMobs(this.Settings, tc, rnd, cells, bgTemp, dc, claimedCells, this.isRunningDebugGen);
+				dictionary = MobSpawning.PlaceBiomeAmbientMobs(this.Settings, tc, rnd, cells, bgTemp, dc, claimedCells, this.isRunningDebugGen, ref hashSet);
 				if (dictionary != null)
 				{
 					this.data.gameSpawnData.AddRange(dictionary);
@@ -574,6 +598,11 @@ namespace ProcGenGame
 		public void SetWorldSize(int width, int height)
 		{
 			this.data.world = new Chunk(0, 0, width, height);
+		}
+
+		public void SetHiddenYOffset(int offset)
+		{
+			this.data.world.hiddenY = offset;
 		}
 
 		public Vector2I GetSize()
@@ -1294,7 +1323,7 @@ namespace ProcGenGame
 
 		private void DrawWorldBorder(Sim.Cell[] cells, Chunk world, SeededRandom rnd, ref HashSet<int> borderCells, ref List<RectInt> poiBounds, WorldGen.OfflineCallbackFunction updateProgressFn)
 		{
-			WorldGen.<>c__DisplayClass136_0 CS$<>8__locals1 = new WorldGen.<>c__DisplayClass136_0();
+			WorldGen.<>c__DisplayClass139_0 CS$<>8__locals1 = new WorldGen.<>c__DisplayClass139_0();
 			CS$<>8__locals1.world = world;
 			bool boolSetting = this.Settings.GetBoolSetting("DrawWorldBorderForce");
 			int intSetting = this.Settings.GetIntSetting("WorldBorderThickness");
@@ -1823,7 +1852,6 @@ namespace ProcGenGame
 
 		private static Task loadSettingsTask;
 
-Invoke) Token: 0x0600B4AB RID: 46251
 		public delegate bool OfflineCallbackFunction(StringKey stringKeyRoot, float completePercent, WorldGenProgressStages.Stages stage);
 
 		public enum GenerateSection

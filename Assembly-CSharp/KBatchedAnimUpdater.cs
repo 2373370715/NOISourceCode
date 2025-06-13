@@ -38,8 +38,6 @@ public class KBatchedAnimUpdater : Singleton<KBatchedAnimUpdater>
 		return new Vector2I((int)((float)Grid.WidthInCells * KBatchedAnimUpdater.VISIBLE_RANGE_SCALE.x), (int)((float)Grid.HeightInCells * KBatchedAnimUpdater.VISIBLE_RANGE_SCALE.y));
 	}
 
-add) Token: 0x06002A99 RID: 10905 RVA: 0x001E7628 File Offset: 0x001E5828
-remove) Token: 0x06002A9A RID: 10906 RVA: 0x001E7660 File Offset: 0x001E5860
 	public event System.Action OnClear;
 
 	public void Clear()

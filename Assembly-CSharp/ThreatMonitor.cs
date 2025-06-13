@@ -249,15 +249,18 @@ public class ThreatMonitor : GameStateMachine<ThreatMonitor, ThreatMonitor.Insta
 			this.mainThreat = threat;
 			if (this.mainThreat != null)
 			{
+				this.mainThreatFaction = this.mainThreat.GetComponent<FactionAlignment>().Alignment;
 				this.mainThreat.Subscribe(1623392196, this.refreshThreatDelegate);
 				this.mainThreat.Subscribe(1969584890, this.refreshThreatDelegate);
 			}
 		}
 
+		public bool HasThreat()
 		{
 			return this.MainThreat != null;
 		}
 
+		public void OnSafe(object data)
 		{
 			if (this.revengeThreat.target != null)
 			{
@@ -269,9 +272,11 @@ public class ThreatMonitor : GameStateMachine<ThreatMonitor, ThreatMonitor.Insta
 			}
 		}
 
+		public void OnAttacked(object data)
 		{
 			FactionAlignment factionAlignment = (FactionAlignment)data;
 			this.revengeThreat.Reset(factionAlignment);
+			Game.BrainScheduler.PrioritizeBrain(base.GetComponent<Brain>());
 			if (this.mainThreat == null)
 			{
 				this.SetMainThreat(factionAlignment.gameObject);
@@ -292,6 +297,7 @@ public class ThreatMonitor : GameStateMachine<ThreatMonitor, ThreatMonitor.Insta
 		}
 
 		public bool WillFight()
+		{
 			if (this.choreConsumer != null)
 			{
 				if (!this.choreConsumer.IsPermittedByUser(Db.Get().ChoreGroups.Combat))
@@ -303,10 +309,11 @@ public class ThreatMonitor : GameStateMachine<ThreatMonitor, ThreatMonitor.Insta
 					return false;
 				}
 			}
-			return this.health.State < base.smi.def.fleethresholdState;
+			return (this.IAmADuplicant || base.smi.mainThreatFaction != FactionManager.FactionID.Predator) && this.health.State < base.smi.def.fleethresholdState;
 		}
 
 		private void GotoThreatResponse()
+		{
 			Chore currentChore = base.smi.master.GetComponent<ChoreDriver>().GetCurrentChore();
 			if (this.WillFight() && this.mainThreat.GetComponent<FactionAlignment>().IsPlayerTargeted())
 			{
@@ -321,6 +328,7 @@ public class ThreatMonitor : GameStateMachine<ThreatMonitor, ThreatMonitor.Insta
 		}
 
 		public void GoToThreatened()
+		{
 			if (this.IAmADuplicant)
 			{
 				this.GotoThreatResponse();
@@ -330,6 +338,7 @@ public class ThreatMonitor : GameStateMachine<ThreatMonitor, ThreatMonitor.Insta
 		}
 
 		public void Cleanup(object data)
+		{
 			if (this.mainThreat)
 			{
 				this.mainThreat.Unsubscribe(1623392196, this.refreshThreatDelegate);
@@ -338,6 +347,7 @@ public class ThreatMonitor : GameStateMachine<ThreatMonitor, ThreatMonitor.Insta
 		}
 
 		public void RefreshThreat(object data)
+		{
 			if (!base.IsRunning())
 			{
 				return;
@@ -355,6 +365,7 @@ public class ThreatMonitor : GameStateMachine<ThreatMonitor, ThreatMonitor.Insta
 		}
 
 		public bool CheckForThreats()
+		{
 			if (base.isMasterNull)
 			{
 				return false;
@@ -377,6 +388,7 @@ public class ThreatMonitor : GameStateMachine<ThreatMonitor, ThreatMonitor.Insta
 		}
 
 		private GameObject FindThreatDuplicant()
+		{
 			this.threats.Clear();
 			if (this.WillFight())
 			{
@@ -393,12 +405,14 @@ public class ThreatMonitor : GameStateMachine<ThreatMonitor, ThreatMonitor.Insta
 		}
 
 		private GameObject FindThreatOther()
+		{
 			this.threats.Clear();
 			this.GatherThreats();
 			return this.PickBestTarget(this.threats);
 		}
 
 		private void GatherThreats()
+		{
 			ListPool<ScenePartitionerEntry, ThreatMonitor>.PooledList pooledList = ListPool<ScenePartitionerEntry, ThreatMonitor>.Allocate();
 			Extents extents = new Extents(Grid.PosToCell(base.gameObject), base.def.maxSearchDistance);
 			GameScenePartitioner.Instance.GatherEntries(extents, GameScenePartitioner.Instance.attackableEntitiesLayer, pooledList);
@@ -422,6 +436,7 @@ public class ThreatMonitor : GameStateMachine<ThreatMonitor, ThreatMonitor.Insta
 		}
 
 		public GameObject PickBestTarget(List<FactionAlignment> threats)
+		{
 			float num = 1f;
 			Vector2 a = base.gameObject.transform.GetPosition();
 			GameObject result = null;
@@ -440,13 +455,25 @@ public class ThreatMonitor : GameStateMachine<ThreatMonitor, ThreatMonitor.Insta
 		}
 
 		public FactionAlignment alignment;
+
 		public Navigator navigator;
+
 		public ChoreDriver choreDriver;
+
 		private Health health;
+
 		private ChoreConsumer choreConsumer;
+
 		public ThreatMonitor.Grudge revengeThreat;
+
 		public int currentUpdateIndex;
+
 		private GameObject mainThreat;
+
+		private FactionManager.FactionID mainThreatFaction;
+
 		private List<FactionAlignment> threats = new List<FactionAlignment>();
+
 		private Action<object> refreshThreatDelegate;
+	}
 }

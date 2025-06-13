@@ -29,7 +29,6 @@ namespace Klei.AI
 
 		public FertilityModifier.FertilityModFn ApplyFunction;
 
-Invoke) Token: 0x0600EF0C RID: 61196
 		public delegate void FertilityModFn(FertilityMonitor.Instance inst, Tag eggTag);
 	}
 }

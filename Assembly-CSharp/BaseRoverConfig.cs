@@ -7,7 +7,6 @@ public static class BaseRoverConfig
 {
 	public static GameObject BaseRover(string id, string name, Tag model, string desc, string anim_file, float mass, float width, float height, float carryingAmount, float digging, float construction, float athletics, float hitPoints, float batteryCapacity, float batteryDepletionRate, Amount batteryType, bool deleteOnDeath)
 	{
-		carryingAmount = 2000f;
 		GameObject gameObject = EntityTemplates.CreateBasicEntity(id, name, desc, mass, true, Assets.GetAnim(anim_file), "idle_loop", Grid.SceneLayer.Creatures, SimHashes.Creature, new List<Tag>
 		{
 			GameTags.Experimental

@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class KIconToggleMenu : KScreen
 {
-add) Token: 0x06009DA7 RID: 40359 RVA: 0x003D87CC File Offset: 0x003D69CC
-remove) Token: 0x06009DA8 RID: 40360 RVA: 0x003D8804 File Offset: 0x003D6A04
 	public event KIconToggleMenu.OnSelect onSelect;
 
 	public void Setup(IList<KIconToggleMenu.ToggleInfo> toggleInfo)
@@ -203,7 +201,6 @@ remove) Token: 0x06009DA8 RID: 40360 RVA: 0x003D8804 File Offset: 0x003D6A04
 
 	protected int selected = -1;
 
-Invoke) Token: 0x06009DB3 RID: 40371
 	public delegate void OnSelect(KIconToggleMenu.ToggleInfo toggleInfo);
 
 	public class ToggleInfo

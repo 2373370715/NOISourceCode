@@ -815,15 +815,23 @@ public class PlanScreen : KIconToggleMenu
 					KeyValuePair<string, SearchUtil.SubcategoryCache> keyValuePair = enumerator.Current;
 					keyValuePair.Value.Reset();
 				}
-				goto IL_98;
+				goto IL_C5;
 			}
 		}
 		string searchStringUpper = BuildingGroupScreen.Instance.inputField.text.ToUpper().Trim();
 		foreach (KeyValuePair<string, SearchUtil.SubcategoryCache> keyValuePair2 in this.subcategorySearchCaches)
 		{
-			keyValuePair2.Value.Bind(searchStringUpper);
+			try
+			{
+				keyValuePair2.Value.Bind(searchStringUpper);
+			}
+			catch (Exception ex)
+			{
+				KCrashReporter.ReportDevNotification("Fuzzy score bind failed", Environment.StackTrace, ex.Message, false, null);
+				keyValuePair2.Value.Reset();
+			}
 		}
-		IL_98:
+		IL_C5:
 		this.SortButtons();
 		this.SortSubcategories();
 		this.ForceRefreshAllBuildingToggles();
@@ -864,6 +872,7 @@ public class PlanScreen : KIconToggleMenu
 				}
 			}
 		}
+		bool flag = false;
 		if (toggle != null && this.allBuildingToggles.Count != 0)
 		{
 			bool checkScore = !BuildingGroupScreen.SearchIsEmpty;
@@ -874,6 +883,7 @@ public class PlanScreen : KIconToggleMenu
 				{
 					this.UpdateBuildingButton(num, checkScore);
 				}
+				flag = this.categoryPanelSizeNeedsRefresh;
 			}
 			else
 			{
@@ -901,14 +911,14 @@ public class PlanScreen : KIconToggleMenu
 						num2++;
 					}
 				}
-				bool flag = num2 > 0;
-				if (keyValuePair.Value.activeSelf != flag)
+				bool flag2 = num2 > 0;
+				if (keyValuePair.Value.activeSelf != flag2)
 				{
-					keyValuePair.Value.SetActive(flag);
+					keyValuePair.Value.SetActive(flag2);
 				}
 			}
 		}
-		if (this.categoryPanelSizeNeedsRefresh && this.building_button_refresh_idx >= this.activeCategoryBuildingToggles.Count)
+		if (flag || (this.categoryPanelSizeNeedsRefresh && this.building_button_refresh_idx >= this.activeCategoryBuildingToggles.Count))
 		{
 			this.categoryPanelSizeNeedsRefresh = false;
 			this.ConfigurePanelSize(null);

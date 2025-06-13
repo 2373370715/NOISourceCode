@@ -81,7 +81,6 @@ public class BuzzStates : GameStateMachine<BuzzStates, BuzzStates.Instance, ISta
 	{
 		public BuzzStates.Def.IdleAnimCallback customIdleAnim;
 
-Invoke) Token: 0x06000499 RID: 1177
 		public delegate HashedString IdleAnimCallback(BuzzStates.Instance smi, ref HashedString pre_anim);
 	}
 
