@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000428 RID: 1064
 public class MineralDeoxidizerConfig : IBuildingConfig
 {
-	// Token: 0x060011B4 RID: 4532 RVA: 0x0019075C File Offset: 0x0018E95C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "MineralDeoxidizer";
@@ -33,7 +31,6 @@ public class MineralDeoxidizerConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060011B5 RID: 4533 RVA: 0x0019080C File Offset: 0x0018EA0C
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		CellOffset cellOffset = new CellOffset(0, 1);
@@ -62,25 +59,19 @@ public class MineralDeoxidizerConfig : IBuildingConfig
 		manualDeliveryKG.choreTypeIDHash = Db.Get().ChoreTypes.FetchCritical.IdHash;
 	}
 
-	// Token: 0x060011B6 RID: 4534 RVA: 0x000AA1AD File Offset: 0x000A83AD
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
 		go.AddOrGetDef<PoweredActiveController.Def>();
 	}
 
-	// Token: 0x04000C5B RID: 3163
 	public const string ID = "MineralDeoxidizer";
 
-	// Token: 0x04000C5C RID: 3164
 	private const float ALGAE_BURN_RATE = 0.55f;
 
-	// Token: 0x04000C5D RID: 3165
 	private const float ALGAE_STORAGE = 330f;
 
-	// Token: 0x04000C5E RID: 3166
 	private const float OXYGEN_GENERATION_RATE = 0.5f;
 
-	// Token: 0x04000C5F RID: 3167
 	private const float OXYGEN_TEMPERATURE = 303.15f;
 }

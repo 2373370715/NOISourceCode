@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000989 RID: 2441
 public abstract class AudioSheets : ScriptableObject
 {
-	// Token: 0x06002B83 RID: 11139 RVA: 0x001EBF58 File Offset: 0x001EA158
 	public virtual void Initialize()
 	{
 		foreach (AudioSheet audioSheet in this.sheets)
@@ -36,7 +34,6 @@ public abstract class AudioSheets : ScriptableObject
 		}
 	}
 
-	// Token: 0x06002B84 RID: 11140 RVA: 0x001EC264 File Offset: 0x001EA464
 	private void CreateSound(string file_name, string anim_name, string type, float min_interval, string sound_name, int frame, string dlcId)
 	{
 		if (string.IsNullOrEmpty(sound_name))
@@ -59,10 +56,8 @@ public abstract class AudioSheets : ScriptableObject
 		list.Add(animEvent);
 	}
 
-	// Token: 0x06002B85 RID: 11141
 	protected abstract AnimEvent CreateSoundOfType(string type, string file_name, string sound_name, int frame, float min_interval, string dlcId);
 
-	// Token: 0x06002B86 RID: 11142 RVA: 0x001EC2E0 File Offset: 0x001EA4E0
 	public List<AnimEvent> GetEvents(HashedString anim_id)
 	{
 		List<AnimEvent> result = null;
@@ -70,9 +65,7 @@ public abstract class AudioSheets : ScriptableObject
 		return result;
 	}
 
-	// Token: 0x04001DCC RID: 7628
 	public List<AudioSheet> sheets = new List<AudioSheet>();
 
-	// Token: 0x04001DCD RID: 7629
 	public Dictionary<HashedString, List<AnimEvent>> events = new Dictionary<HashedString, List<AnimEvent>>();
 }

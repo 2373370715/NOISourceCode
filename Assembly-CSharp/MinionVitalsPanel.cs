@@ -6,11 +6,9 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001E86 RID: 7814
 [AddComponentMenu("KMonoBehaviour/scripts/MinionVitalsPanel")]
 public class MinionVitalsPanel : CollapsibleDetailContentPanel
 {
-	// Token: 0x0600A3B3 RID: 41907 RVA: 0x003F1300 File Offset: 0x003EF500
 	public void Init()
 	{
 		this.AddAmountLine(Db.Get().Amounts.HitPoints, null);
@@ -104,28 +102,24 @@ public class MinionVitalsPanel : CollapsibleDetailContentPanel
 		}, (GameObject go) => this.check_radiation(go), (GameObject go) => this.GetRadiationTooltip(go));
 	}
 
-	// Token: 0x0600A3B4 RID: 41908 RVA: 0x0010EC5A File Offset: 0x0010CE5A
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 		this.Init();
 	}
 
-	// Token: 0x0600A3B5 RID: 41909 RVA: 0x0010EC68 File Offset: 0x0010CE68
 	protected override void OnCmpEnable()
 	{
 		base.OnCmpEnable();
 		SimAndRenderScheduler.instance.Add(this, false);
 	}
 
-	// Token: 0x0600A3B6 RID: 41910 RVA: 0x0010EC7C File Offset: 0x0010CE7C
 	protected override void OnCmpDisable()
 	{
 		base.OnCmpDisable();
 		SimAndRenderScheduler.instance.Remove(this);
 	}
 
-	// Token: 0x0600A3B7 RID: 41911 RVA: 0x003F1834 File Offset: 0x003EFA34
 	private void AddAmountLine(Amount amount, Func<AmountInstance, string> tooltip_func = null)
 	{
 		GameObject gameObject = Util.KInstantiateUI(this.LineItemPrefab, this.Content.gameObject, false);
@@ -142,7 +136,6 @@ public class MinionVitalsPanel : CollapsibleDetailContentPanel
 		this.amountsLines.Add(item);
 	}
 
-	// Token: 0x0600A3B8 RID: 41912 RVA: 0x003F18EC File Offset: 0x003EFAEC
 	private void AddAttributeLine(Klei.AI.Attribute attribute, Func<AttributeInstance, string> tooltip_func = null)
 	{
 		GameObject gameObject = Util.KInstantiateUI(this.LineItemPrefab, this.Content.gameObject, false);
@@ -159,7 +152,6 @@ public class MinionVitalsPanel : CollapsibleDetailContentPanel
 		this.attributesLines.Add(item);
 	}
 
-	// Token: 0x0600A3B9 RID: 41913 RVA: 0x003F19A8 File Offset: 0x003EFBA8
 	private void AddCheckboxLine(Amount amount, Transform parentContainer, Func<GameObject, string> label_text_func, Func<GameObject, MinionVitalsPanel.CheckboxLineDisplayType> display_condition, Func<GameObject, bool> checkbox_value_func, Func<GameObject, string> tooltip_func = null)
 	{
 		GameObject gameObject = Util.KInstantiateUI(this.CheckboxLinePrefab, this.Content.gameObject, false);
@@ -200,12 +192,10 @@ public class MinionVitalsPanel : CollapsibleDetailContentPanel
 		this.checkboxLines.Add(checkboxLine);
 	}
 
-	// Token: 0x0600A3BA RID: 41914 RVA: 0x000AA038 File Offset: 0x000A8238
 	private void ShouldShowVitalsPanel(GameObject selectedEntity)
 	{
 	}
 
-	// Token: 0x0600A3BB RID: 41915 RVA: 0x003F1AF0 File Offset: 0x003EFCF0
 	public void Refresh(GameObject selectedEntity)
 	{
 		if (selectedEntity == null)
@@ -378,7 +368,6 @@ public class MinionVitalsPanel : CollapsibleDetailContentPanel
 		}
 	}
 
-	// Token: 0x0600A3BC RID: 41916 RVA: 0x003F2234 File Offset: 0x003F0434
 	private string GetAirPressureTooltip(GameObject go)
 	{
 		PressureVulnerable component = go.GetComponent<PressureVulnerable>();
@@ -389,7 +378,6 @@ public class MinionVitalsPanel : CollapsibleDetailContentPanel
 		return UI.TOOLTIPS.VITALS_CHECKBOX_PRESSURE.text.Replace("{pressure}", GameUtil.GetFormattedMass(component.GetExternalPressure(), GameUtil.TimeSlice.None, GameUtil.MetricMassFormat.UseThreshold, true, "{0:0.#}"));
 	}
 
-	// Token: 0x0600A3BD RID: 41917 RVA: 0x003F2280 File Offset: 0x003F0480
 	private string GetInternalTemperatureTooltip(GameObject go)
 	{
 		TemperatureVulnerable component = go.GetComponent<TemperatureVulnerable>();
@@ -400,7 +388,6 @@ public class MinionVitalsPanel : CollapsibleDetailContentPanel
 		return UI.TOOLTIPS.VITALS_CHECKBOX_TEMPERATURE.text.Replace("{temperature}", GameUtil.GetFormattedTemperature(component.InternalTemperature, GameUtil.TimeSlice.None, GameUtil.TemperatureInterpretation.Absolute, true, false));
 	}
 
-	// Token: 0x0600A3BE RID: 41918 RVA: 0x003F22C8 File Offset: 0x003F04C8
 	private string GetFertilizationTooltip(GameObject go)
 	{
 		FertilizationMonitor.Instance smi = go.GetSMI<FertilizationMonitor.Instance>();
@@ -411,7 +398,6 @@ public class MinionVitalsPanel : CollapsibleDetailContentPanel
 		return UI.TOOLTIPS.VITALS_CHECKBOX_FERTILIZER.text.Replace("{mass}", GameUtil.GetFormattedMass(smi.total_fertilizer_available, GameUtil.TimeSlice.None, GameUtil.MetricMassFormat.UseThreshold, true, "{0:0.#}"));
 	}
 
-	// Token: 0x0600A3BF RID: 41919 RVA: 0x003F230C File Offset: 0x003F050C
 	private string GetIrrigationTooltip(GameObject go)
 	{
 		IrrigationMonitor.Instance smi = go.GetSMI<IrrigationMonitor.Instance>();
@@ -422,7 +408,6 @@ public class MinionVitalsPanel : CollapsibleDetailContentPanel
 		return UI.TOOLTIPS.VITALS_CHECKBOX_IRRIGATION.text.Replace("{mass}", GameUtil.GetFormattedMass(smi.total_fertilizer_available, GameUtil.TimeSlice.None, GameUtil.MetricMassFormat.UseThreshold, true, "{0:0.#}"));
 	}
 
-	// Token: 0x0600A3C0 RID: 41920 RVA: 0x003F2350 File Offset: 0x003F0550
 	private string GetIlluminationTooltip(GameObject go)
 	{
 		IIlluminationTracker illuminationTracker = go.GetComponent<IIlluminationTracker>();
@@ -437,7 +422,6 @@ public class MinionVitalsPanel : CollapsibleDetailContentPanel
 		return illuminationTracker.GetIlluminationUITooltip();
 	}
 
-	// Token: 0x0600A3C1 RID: 41921 RVA: 0x003F2380 File Offset: 0x003F0580
 	private string GetRadiationTooltip(GameObject go)
 	{
 		int num = Grid.PosToCell(go);
@@ -462,7 +446,6 @@ public class MinionVitalsPanel : CollapsibleDetailContentPanel
 		return text;
 	}
 
-	// Token: 0x0600A3C2 RID: 41922 RVA: 0x003F2488 File Offset: 0x003F0688
 	private string GetReceptacleTooltip(GameObject go)
 	{
 		ReceptacleMonitor component = go.GetComponent<ReceptacleMonitor>();
@@ -477,7 +460,6 @@ public class MinionVitalsPanel : CollapsibleDetailContentPanel
 		return UI.TOOLTIPS.VITALS_CHECKBOX_RECEPTACLE_INOPERATIONAL;
 	}
 
-	// Token: 0x0600A3C3 RID: 41923 RVA: 0x003F24C8 File Offset: 0x003F06C8
 	private string GetAtmosphereTooltip(GameObject go)
 	{
 		PressureVulnerable component = go.GetComponent<PressureVulnerable>();
@@ -488,7 +470,6 @@ public class MinionVitalsPanel : CollapsibleDetailContentPanel
 		return UI.TOOLTIPS.VITALS_CHECKBOX_ATMOSPHERE;
 	}
 
-	// Token: 0x0600A3C4 RID: 41924 RVA: 0x003F2518 File Offset: 0x003F0718
 	private string GetAirPressureLabel(GameObject go)
 	{
 		PressureVulnerable component = go.GetComponent<PressureVulnerable>();
@@ -502,7 +483,6 @@ public class MinionVitalsPanel : CollapsibleDetailContentPanel
 		});
 	}
 
-	// Token: 0x0600A3C5 RID: 41925 RVA: 0x003F258C File Offset: 0x003F078C
 	private string GetInternalTemperatureLabel(GameObject go)
 	{
 		TemperatureVulnerable component = go.GetComponent<TemperatureVulnerable>();
@@ -516,7 +496,6 @@ public class MinionVitalsPanel : CollapsibleDetailContentPanel
 		});
 	}
 
-	// Token: 0x0600A3C6 RID: 41926 RVA: 0x003F25F8 File Offset: 0x003F07F8
 	private string GetFertilizationLabel(GameObject go)
 	{
 		StateMachine<FertilizationMonitor, FertilizationMonitor.Instance, IStateMachineTarget, FertilizationMonitor.Def>.GenericInstance smi = go.GetSMI<FertilizationMonitor.Instance>();
@@ -536,7 +515,6 @@ public class MinionVitalsPanel : CollapsibleDetailContentPanel
 		return text;
 	}
 
-	// Token: 0x0600A3C7 RID: 41927 RVA: 0x003F26B0 File Offset: 0x003F08B0
 	private string GetIrrigationLabel(GameObject go)
 	{
 		StateMachine<IrrigationMonitor, IrrigationMonitor.Instance, IStateMachineTarget, IrrigationMonitor.Def>.GenericInstance smi = go.GetSMI<IrrigationMonitor.Instance>();
@@ -556,7 +534,6 @@ public class MinionVitalsPanel : CollapsibleDetailContentPanel
 		return text;
 	}
 
-	// Token: 0x0600A3C8 RID: 41928 RVA: 0x003F2768 File Offset: 0x003F0968
 	private string GetIlluminationLabel(GameObject go)
 	{
 		IIlluminationTracker illuminationTracker = go.GetComponent<IIlluminationTracker>();
@@ -567,7 +544,6 @@ public class MinionVitalsPanel : CollapsibleDetailContentPanel
 		return illuminationTracker.GetIlluminationUILabel();
 	}
 
-	// Token: 0x0600A3C9 RID: 41929 RVA: 0x003F278C File Offset: 0x003F098C
 	private string GetAtmosphereLabel(GameObject go)
 	{
 		PressureVulnerable component = go.GetComponent<PressureVulnerable>();
@@ -579,7 +555,6 @@ public class MinionVitalsPanel : CollapsibleDetailContentPanel
 		return text;
 	}
 
-	// Token: 0x0600A3CA RID: 41930 RVA: 0x003F27FC File Offset: 0x003F09FC
 	private string GetRadiationLabel(GameObject go)
 	{
 		AttributeInstance attributeInstance = go.GetAttributes().Get(Db.Get().PlantAttributes.MinRadiationThreshold);
@@ -591,28 +566,24 @@ public class MinionVitalsPanel : CollapsibleDetailContentPanel
 		return UI.GAMEOBJECTEFFECTS.AMBIENT_RADIATION + "\n    • " + UI.GAMEOBJECTEFFECTS.AMBIENT_RADIATION_FMT.Replace("{minRads}", attributeInstance.GetFormattedValue()).Replace("{maxRads}", attributeInstance2.GetFormattedValue());
 	}
 
-	// Token: 0x0600A3CB RID: 41931 RVA: 0x003F28B0 File Offset: 0x003F0AB0
 	private bool check_pressure(GameObject go)
 	{
 		PressureVulnerable component = go.GetComponent<PressureVulnerable>();
 		return !(component != null) || component.ExternalPressureState == PressureVulnerable.PressureState.Normal;
 	}
 
-	// Token: 0x0600A3CC RID: 41932 RVA: 0x003F28D8 File Offset: 0x003F0AD8
 	private bool check_temperature(GameObject go)
 	{
 		TemperatureVulnerable component = go.GetComponent<TemperatureVulnerable>();
 		return !(component != null) || component.GetInternalTemperatureState == TemperatureVulnerable.TemperatureState.Normal;
 	}
 
-	// Token: 0x0600A3CD RID: 41933 RVA: 0x003F2900 File Offset: 0x003F0B00
 	private bool check_irrigation(GameObject go)
 	{
 		IrrigationMonitor.Instance smi = go.GetSMI<IrrigationMonitor.Instance>();
 		return smi == null || (!smi.IsInsideState(smi.sm.replanted.starved) && !smi.IsInsideState(smi.sm.wild));
 	}
 
-	// Token: 0x0600A3CE RID: 41934 RVA: 0x003F2948 File Offset: 0x003F0B48
 	private bool check_illumination(GameObject go)
 	{
 		IIlluminationTracker illuminationTracker = go.GetComponent<IIlluminationTracker>();
@@ -623,7 +594,6 @@ public class MinionVitalsPanel : CollapsibleDetailContentPanel
 		return illuminationTracker == null || illuminationTracker.ShouldIlluminationUICheckboxBeChecked();
 	}
 
-	// Token: 0x0600A3CF RID: 41935 RVA: 0x003F2974 File Offset: 0x003F0B74
 	private bool check_radiation(GameObject go)
 	{
 		AttributeInstance attributeInstance = go.GetAttributes().Get(Db.Get().PlantAttributes.MinRadiationThreshold);
@@ -635,56 +605,43 @@ public class MinionVitalsPanel : CollapsibleDetailContentPanel
 		return true;
 	}
 
-	// Token: 0x0600A3D0 RID: 41936 RVA: 0x003F29DC File Offset: 0x003F0BDC
 	private bool check_receptacle(GameObject go)
 	{
 		ReceptacleMonitor component = go.GetComponent<ReceptacleMonitor>();
 		return !(component == null) && component.HasOperationalReceptacle();
 	}
 
-	// Token: 0x0600A3D1 RID: 41937 RVA: 0x003F2A04 File Offset: 0x003F0C04
 	private bool check_fertilizer(GameObject go)
 	{
 		FertilizationMonitor.Instance smi = go.GetSMI<FertilizationMonitor.Instance>();
 		return smi == null || smi.sm.hasCorrectFertilizer.Get(smi);
 	}
 
-	// Token: 0x0600A3D2 RID: 41938 RVA: 0x003F2A30 File Offset: 0x003F0C30
 	private bool check_atmosphere(GameObject go)
 	{
 		PressureVulnerable component = go.GetComponent<PressureVulnerable>();
 		return !(component != null) || component.testAreaElementSafe;
 	}
 
-	// Token: 0x04007FF1 RID: 32753
 	public GameObject LineItemPrefab;
 
-	// Token: 0x04007FF2 RID: 32754
 	public GameObject CheckboxLinePrefab;
 
-	// Token: 0x04007FF3 RID: 32755
 	private GameObject lastSelectedEntity;
 
-	// Token: 0x04007FF4 RID: 32756
 	public List<MinionVitalsPanel.AmountLine> amountsLines = new List<MinionVitalsPanel.AmountLine>();
 
-	// Token: 0x04007FF5 RID: 32757
 	public List<MinionVitalsPanel.AttributeLine> attributesLines = new List<MinionVitalsPanel.AttributeLine>();
 
-	// Token: 0x04007FF6 RID: 32758
 	public List<MinionVitalsPanel.CheckboxLine> checkboxLines = new List<MinionVitalsPanel.CheckboxLine>();
 
-	// Token: 0x04007FF7 RID: 32759
 	public Transform conditionsContainerNormal;
 
-	// Token: 0x04007FF8 RID: 32760
 	public Transform conditionsContainerAdditional;
 
-	// Token: 0x02001E87 RID: 7815
 	[DebuggerDisplay("{amount.Name}")]
 	public struct AmountLine
 	{
-		// Token: 0x0600A3E9 RID: 41961 RVA: 0x003F2A58 File Offset: 0x003F0C58
 		public bool TryUpdate(Amounts amounts)
 		{
 			foreach (AmountInstance amountInstance in amounts)
@@ -700,30 +657,22 @@ public class MinionVitalsPanel : CollapsibleDetailContentPanel
 			return false;
 		}
 
-		// Token: 0x04007FF9 RID: 32761
 		public Amount amount;
 
-		// Token: 0x04007FFA RID: 32762
 		public GameObject go;
 
-		// Token: 0x04007FFB RID: 32763
 		public ValueTrendImageToggle imageToggle;
 
-		// Token: 0x04007FFC RID: 32764
 		public LocText locText;
 
-		// Token: 0x04007FFD RID: 32765
 		public ToolTip toolTip;
 
-		// Token: 0x04007FFE RID: 32766
 		public Func<AmountInstance, string> toolTipFunc;
 	}
 
-	// Token: 0x02001E88 RID: 7816
 	[DebuggerDisplay("{attribute.Name}")]
 	public struct AttributeLine
 	{
-		// Token: 0x0600A3EA RID: 41962 RVA: 0x003F2AF0 File Offset: 0x003F0CF0
 		public bool TryUpdate(Attributes attributes)
 		{
 			foreach (AttributeInstance attributeInstance in attributes)
@@ -738,58 +687,40 @@ public class MinionVitalsPanel : CollapsibleDetailContentPanel
 			return false;
 		}
 
-		// Token: 0x04007FFF RID: 32767
 		public Klei.AI.Attribute attribute;
 
-		// Token: 0x04008000 RID: 32768
 		public GameObject go;
 
-		// Token: 0x04008001 RID: 32769
 		public LocText locText;
 
-		// Token: 0x04008002 RID: 32770
 		public ToolTip toolTip;
 
-		// Token: 0x04008003 RID: 32771
 		public Func<AttributeInstance, string> toolTipFunc;
 	}
 
-	// Token: 0x02001E89 RID: 7817
 	public struct CheckboxLine
 	{
-		// Token: 0x04008004 RID: 32772
 		public Amount amount;
 
-		// Token: 0x04008005 RID: 32773
 		public GameObject go;
 
-		// Token: 0x04008006 RID: 32774
 		public LocText locText;
 
-		// Token: 0x04008007 RID: 32775
 		public Func<GameObject, string> tooltip;
 
-		// Token: 0x04008008 RID: 32776
 		public Func<GameObject, bool> get_value;
 
-		// Token: 0x04008009 RID: 32777
 		public Func<GameObject, MinionVitalsPanel.CheckboxLineDisplayType> display_condition;
 
-		// Token: 0x0400800A RID: 32778
 		public Func<GameObject, string> label_text_func;
 
-		// Token: 0x0400800B RID: 32779
 		public Transform parentContainer;
 	}
 
-	// Token: 0x02001E8A RID: 7818
 	public enum CheckboxLineDisplayType
 	{
-		// Token: 0x0400800D RID: 32781
 		Normal,
-		// Token: 0x0400800E RID: 32782
 		Diminished,
-		// Token: 0x0400800F RID: 32783
 		Hidden
 	}
 }

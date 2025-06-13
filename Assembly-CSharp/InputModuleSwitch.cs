@@ -2,10 +2,8 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-// Token: 0x02001ABB RID: 6843
 public class InputModuleSwitch : MonoBehaviour
 {
-	// Token: 0x06008F26 RID: 36646 RVA: 0x00380CB0 File Offset: 0x0037EEB0
 	private void Update()
 	{
 		if (this.lastMousePosition != Input.mousePosition && KInputManager.currentControllerIsGamepad)
@@ -35,7 +33,6 @@ public class InputModuleSwitch : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06008F27 RID: 36647 RVA: 0x00380D54 File Offset: 0x0037EF54
 	private void ChangeInputHandler()
 	{
 		GameInputManager inputManager = Global.GetInputManager();
@@ -59,12 +56,9 @@ public class InputModuleSwitch : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04006BDB RID: 27611
 	public VirtualInputModule virtualInput;
 
-	// Token: 0x04006BDC RID: 27612
 	public StandaloneInputModule standaloneInput;
 
-	// Token: 0x04006BDD RID: 27613
 	private Vector3 lastMousePosition;
 }

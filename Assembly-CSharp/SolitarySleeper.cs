@@ -1,16 +1,13 @@
 ﻿using System;
 
-// Token: 0x020016A8 RID: 5800
 [SkipSaveFileSerialization]
 public class SolitarySleeper : StateMachineComponent<SolitarySleeper.StatesInstance>
 {
-	// Token: 0x060077A6 RID: 30630 RVA: 0x000F3343 File Offset: 0x000F1543
 	protected override void OnSpawn()
 	{
 		base.smi.StartSM();
 	}
 
-	// Token: 0x060077A7 RID: 30631 RVA: 0x0031BF68 File Offset: 0x0031A168
 	protected bool IsUncomfortable()
 	{
 		if (!base.gameObject.GetSMI<StaminaMonitor.Instance>().IsSleeping())
@@ -48,19 +45,15 @@ public class SolitarySleeper : StateMachineComponent<SolitarySleeper.StatesInsta
 		return false;
 	}
 
-	// Token: 0x020016A9 RID: 5801
 	public class StatesInstance : GameStateMachine<SolitarySleeper.States, SolitarySleeper.StatesInstance, SolitarySleeper, object>.GameInstance
 	{
-		// Token: 0x060077A9 RID: 30633 RVA: 0x000F3358 File Offset: 0x000F1558
 		public StatesInstance(SolitarySleeper master) : base(master)
 		{
 		}
 	}
 
-	// Token: 0x020016AA RID: 5802
 	public class States : GameStateMachine<SolitarySleeper.States, SolitarySleeper.StatesInstance, SolitarySleeper>
 	{
-		// Token: 0x060077AA RID: 30634 RVA: 0x0031C064 File Offset: 0x0031A264
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.satisfied;
@@ -86,10 +79,8 @@ public class SolitarySleeper : StateMachineComponent<SolitarySleeper.StatesInsta
 			this.satisfied.DoNothing();
 		}
 
-		// Token: 0x04005A0E RID: 23054
 		public GameStateMachine<SolitarySleeper.States, SolitarySleeper.StatesInstance, SolitarySleeper, object>.State satisfied;
 
-		// Token: 0x04005A0F RID: 23055
 		public GameStateMachine<SolitarySleeper.States, SolitarySleeper.StatesInstance, SolitarySleeper, object>.State suffering;
 	}
 }

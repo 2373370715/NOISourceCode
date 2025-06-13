@@ -4,16 +4,13 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005BA RID: 1466
 public class SpecialCargoBayClusterConfig : IBuildingConfig
 {
-	// Token: 0x06001965 RID: 6501 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06001966 RID: 6502 RVA: 0x001AE984 File Offset: 0x001ACB84
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "SpecialCargoBayCluster";
@@ -43,7 +40,6 @@ public class SpecialCargoBayClusterConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001967 RID: 6503 RVA: 0x00148CE0 File Offset: 0x00146EE0
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -55,7 +51,6 @@ public class SpecialCargoBayClusterConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x06001968 RID: 6504 RVA: 0x001AEA3C File Offset: 0x001ACC3C
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		Storage storage = go.AddOrGet<Storage>();
@@ -86,16 +81,13 @@ public class SpecialCargoBayClusterConfig : IBuildingConfig
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x04001082 RID: 4226
 	public const string ID = "SpecialCargoBayCluster";
 
-	// Token: 0x04001083 RID: 4227
 	private static readonly List<Storage.StoredItemModifier> StoredCrittersModifiers = new List<Storage.StoredItemModifier>
 	{
 		Storage.StoredItemModifier.Insulate
 	};
 
-	// Token: 0x04001084 RID: 4228
 	private static readonly List<Storage.StoredItemModifier> StoredLootModifiers = new List<Storage.StoredItemModifier>
 	{
 		Storage.StoredItemModifier.Hide,

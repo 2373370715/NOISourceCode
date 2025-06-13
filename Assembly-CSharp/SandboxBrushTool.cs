@@ -6,17 +6,13 @@ using FMODUnity;
 using Klei.AI;
 using UnityEngine;
 
-// Token: 0x02001477 RID: 5239
 public class SandboxBrushTool : BrushTool
 {
-	// Token: 0x06006C60 RID: 27744 RVA: 0x000EBA3F File Offset: 0x000E9C3F
 	public static void DestroyInstance()
 	{
 		SandboxBrushTool.instance = null;
 	}
 
-	// Token: 0x170006D2 RID: 1746
-	// (get) Token: 0x06006C61 RID: 27745 RVA: 0x000EBA47 File Offset: 0x000E9C47
 	private SandboxSettings settings
 	{
 		get
@@ -25,20 +21,17 @@ public class SandboxBrushTool : BrushTool
 		}
 	}
 
-	// Token: 0x06006C62 RID: 27746 RVA: 0x000EBA53 File Offset: 0x000E9C53
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 		SandboxBrushTool.instance = this;
 	}
 
-	// Token: 0x06006C63 RID: 27747 RVA: 0x000EAFAB File Offset: 0x000E91AB
 	public void Activate()
 	{
 		PlayerController.Instance.ActivateTool(this);
 	}
 
-	// Token: 0x06006C64 RID: 27748 RVA: 0x002F452C File Offset: 0x002F272C
 	protected override void OnActivateTool()
 	{
 		base.OnActivateTool();
@@ -54,7 +47,6 @@ public class SandboxBrushTool : BrushTool
 		elementSelector.onValueChanged = (Action<object>)Delegate.Combine(elementSelector.onValueChanged, new Action<object>(this.OnElementChanged));
 	}
 
-	// Token: 0x06006C65 RID: 27749 RVA: 0x000EBA61 File Offset: 0x000E9C61
 	protected override void OnDeactivateTool(InterfaceTool new_tool)
 	{
 		base.OnDeactivateTool(new_tool);
@@ -62,7 +54,6 @@ public class SandboxBrushTool : BrushTool
 		this.audioEvent.release();
 	}
 
-	// Token: 0x06006C66 RID: 27750 RVA: 0x002F4604 File Offset: 0x002F2804
 	public override void GetOverlayColorData(out HashSet<ToolMenu.CellColorData> colors)
 	{
 		colors = new HashSet<ToolMenu.CellColorData>();
@@ -77,7 +68,6 @@ public class SandboxBrushTool : BrushTool
 		}
 	}
 
-	// Token: 0x06006C67 RID: 27751 RVA: 0x002F471C File Offset: 0x002F291C
 	public override void SetBrushSize(int radius)
 	{
 		this.brushRadius = radius;
@@ -94,7 +84,6 @@ public class SandboxBrushTool : BrushTool
 		}
 	}
 
-	// Token: 0x06006C68 RID: 27752 RVA: 0x002F47B4 File Offset: 0x002F29B4
 	protected override void OnPaintCell(int cell, int distFromOrigin)
 	{
 		base.OnPaintCell(cell, distFromOrigin);
@@ -129,7 +118,6 @@ public class SandboxBrushTool : BrushTool
 		SimMessages.ReplaceElement(cell2, id, sandBoxTool, floatSetting, floatSetting2, index2, this.settings.GetIntSetting("SandboxTools.DiseaseCount"), callbackIdx);
 	}
 
-	// Token: 0x06006C69 RID: 27753 RVA: 0x002F4950 File Offset: 0x002F2B50
 	public override void OnKeyDown(KButtonEvent e)
 	{
 		if (e.TryConsume(global::Action.SandboxCopyElement))
@@ -146,34 +134,29 @@ public class SandboxBrushTool : BrushTool
 		}
 	}
 
-	// Token: 0x06006C6A RID: 27754 RVA: 0x000EBA86 File Offset: 0x000E9C86
 	public override void OnLeftClickDown(Vector3 cursor_pos)
 	{
 		base.OnLeftClickDown(cursor_pos);
 		KFMOD.PlayUISound(GlobalAssets.GetSound("SandboxTool_Click", false));
 	}
 
-	// Token: 0x06006C6B RID: 27755 RVA: 0x000EBA9F File Offset: 0x000E9C9F
 	public override void OnLeftClickUp(Vector3 cursor_pos)
 	{
 		base.OnLeftClickUp(cursor_pos);
 		this.StopSound();
 	}
 
-	// Token: 0x06006C6C RID: 27756 RVA: 0x000EBAAE File Offset: 0x000E9CAE
 	private void OnElementChanged(object new_element)
 	{
 		this.clearVisitedCells();
 	}
 
-	// Token: 0x06006C6D RID: 27757 RVA: 0x002F4998 File Offset: 0x002F2B98
 	protected override string GetDragSound()
 	{
 		string str = (ElementLoader.elements[this.settings.GetIntSetting("SandboxTools.SelectedElement")].state & Element.State.Solid).ToString();
 		return "SandboxTool_Brush_" + str + "_Add";
 	}
 
-	// Token: 0x06006C6E RID: 27758 RVA: 0x002F49E8 File Offset: 0x002F2BE8
 	protected override void PlaySound()
 	{
 		base.PlaySound();
@@ -207,22 +190,17 @@ public class SandboxBrushTool : BrushTool
 		this.audioEvent.start();
 	}
 
-	// Token: 0x06006C6F RID: 27759 RVA: 0x000EBAB6 File Offset: 0x000E9CB6
 	private void StopSound()
 	{
 		this.audioEvent.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 		this.audioEvent.release();
 	}
 
-	// Token: 0x040051FB RID: 20987
 	public static SandboxBrushTool instance;
 
-	// Token: 0x040051FC RID: 20988
 	protected HashSet<int> recentlyAffectedCells = new HashSet<int>();
 
-	// Token: 0x040051FD RID: 20989
 	private Dictionary<int, Color> recentAffectedCellColor = new Dictionary<int, Color>();
 
-	// Token: 0x040051FE RID: 20990
 	private EventInstance audioEvent;
 }

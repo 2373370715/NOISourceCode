@@ -2,10 +2,8 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001C61 RID: 7265
 public class BuildToolRotateButtonUI : MonoBehaviour
 {
-	// Token: 0x0600970B RID: 38667 RVA: 0x003B16D8 File Offset: 0x003AF8D8
 	private void Awake()
 	{
 		this.tooltip.refreshWhileHovering = true;
@@ -17,7 +15,6 @@ public class BuildToolRotateButtonUI : MonoBehaviour
 		this.UpdateTooltip(false);
 	}
 
-	// Token: 0x0600970C RID: 38668 RVA: 0x003B1730 File Offset: 0x003AF930
 	private void Update()
 	{
 		bool flag = BuildTool.Instance.CanRotate();
@@ -28,7 +25,6 @@ public class BuildToolRotateButtonUI : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600970D RID: 38669 RVA: 0x003B176C File Offset: 0x003AF96C
 	private void UpdateTooltip(bool can_rotate)
 	{
 		PermittedRotations? permittedRotations = BuildTool.Instance.GetPermittedRotations();
@@ -50,7 +46,6 @@ public class BuildToolRotateButtonUI : MonoBehaviour
 		this.tooltip.SetSimpleTooltip(UI.BUILDTOOL_CANT_ROTATE);
 	}
 
-	// Token: 0x0600970E RID: 38670 RVA: 0x003B17F4 File Offset: 0x003AF9F4
 	private string GetFeedbackString(PermittedRotations permitted_rotations, Orientation current_rotation)
 	{
 		switch (permitted_rotations)
@@ -103,11 +98,9 @@ public class BuildToolRotateButtonUI : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x04007592 RID: 30098
 	[SerializeField]
 	protected KButton button;
 
-	// Token: 0x04007593 RID: 30099
 	[SerializeField]
 	protected ToolTip tooltip;
 }

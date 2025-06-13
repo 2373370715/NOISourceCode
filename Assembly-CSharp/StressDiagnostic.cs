@@ -5,10 +5,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02001274 RID: 4724
 public class StressDiagnostic : ColonyDiagnostic
 {
-	// Token: 0x06006064 RID: 24676 RVA: 0x002BB3D0 File Offset: 0x002B95D0
 	public StressDiagnostic(int worldID) : base(worldID, UI.COLONY_DIAGNOSTICS.STRESSDIAGNOSTIC.ALL_NAME)
 	{
 		this.tracker = TrackerTool.Instance.GetWorldTracker<StressTracker>(worldID);
@@ -16,7 +14,6 @@ public class StressDiagnostic : ColonyDiagnostic
 		base.AddCriterion("CheckStressed", new DiagnosticCriterion(UI.COLONY_DIAGNOSTICS.STRESSDIAGNOSTIC.CRITERIA.CHECKSTRESSED, new Func<ColonyDiagnostic.DiagnosticResult>(this.CheckStressed)));
 	}
 
-	// Token: 0x06006065 RID: 24677 RVA: 0x002BB430 File Offset: 0x002B9630
 	private ColonyDiagnostic.DiagnosticResult CheckStressed()
 	{
 		List<MinionIdentity> worldItems = Components.LiveMinionIdentities.GetWorldItems(base.worldID, false);

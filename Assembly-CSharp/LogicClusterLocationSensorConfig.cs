@@ -4,16 +4,13 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003D7 RID: 983
 public class LogicClusterLocationSensorConfig : IBuildingConfig
 {
-	// Token: 0x06000FFA RID: 4090 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06000FFB RID: 4091 RVA: 0x001897B4 File Offset: 0x001879B4
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = LogicClusterLocationSensorConfig.ID;
@@ -46,20 +43,17 @@ public class LogicClusterLocationSensorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000FFC RID: 4092 RVA: 0x000B14A0 File Offset: 0x000AF6A0
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		base.ConfigureBuildingTemplate(go, prefab_tag);
 		go.GetComponent<KPrefabID>().AddTag(GameTags.RocketInteriorBuilding, false);
 	}
 
-	// Token: 0x06000FFD RID: 4093 RVA: 0x000B14BB File Offset: 0x000AF6BB
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicClusterLocationSensor>();
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayInFrontOfConduits, false);
 	}
 
-	// Token: 0x04000B7E RID: 2942
 	public static string ID = "LogicClusterLocationSensor";
 }

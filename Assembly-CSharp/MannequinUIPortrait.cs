@@ -2,10 +2,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200048F RID: 1167
 public class MannequinUIPortrait : IEntityConfig
 {
-	// Token: 0x060013E1 RID: 5089 RVA: 0x0019A434 File Offset: 0x00198634
 	public GameObject CreatePrefab()
 	{
 		GameObject gameObject = EntityTemplates.CreateEntity(MannequinUIPortrait.ID, MannequinUIPortrait.ID, true);
@@ -35,16 +33,13 @@ public class MannequinUIPortrait : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x060013E2 RID: 5090 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject go)
 	{
 	}
 
-	// Token: 0x060013E3 RID: 5091 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject go)
 	{
 	}
 
-	// Token: 0x04000DB4 RID: 3508
 	public static string ID = "MannequinUIPortrait";
 }

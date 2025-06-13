@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005F3 RID: 1523
 public class VerticalWindTunnelConfig : IBuildingConfig
 {
-	// Token: 0x06001AD4 RID: 6868 RVA: 0x001B4EC4 File Offset: 0x001B30C4
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "VerticalWindTunnel";
@@ -33,7 +31,6 @@ public class VerticalWindTunnelConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001AD5 RID: 6869 RVA: 0x001B4F68 File Offset: 0x001B3168
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.RecBuilding, false);
@@ -64,14 +61,11 @@ public class VerticalWindTunnelConfig : IBuildingConfig
 		go.AddOrGetDef<RocketUsageRestriction.Def>();
 	}
 
-	// Token: 0x06001AD6 RID: 6870 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04001145 RID: 4421
 	public const string ID = "VerticalWindTunnel";
 
-	// Token: 0x04001146 RID: 4422
 	private const float DISPLACEMENT_AMOUNT = 3f;
 }

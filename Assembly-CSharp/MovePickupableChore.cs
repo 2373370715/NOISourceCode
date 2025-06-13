@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x020006F7 RID: 1783
 public class MovePickupableChore : Chore<MovePickupableChore.StatesInstance>
 {
-	// Token: 0x06001F9D RID: 8093 RVA: 0x001C5524 File Offset: 0x001C3724
 	public MovePickupableChore(IStateMachineTarget target, GameObject pickupable, Action<Chore> onEnd) : base((!Movable.IsCritterPickupable(pickupable)) ? Db.Get().ChoreTypes.Fetch : Db.Get().ChoreTypes.Ranch, target, target.GetComponent<ChoreProvider>(), false, null, null, onEnd, PriorityScreen.PriorityClass.basic, 5, false, true, 0, false, ReportManager.ReportType.WorkTime)
 	{
 		base.smi = new MovePickupableChore.StatesInstance(this);
@@ -41,14 +39,12 @@ public class MovePickupableChore : Chore<MovePickupableChore.StatesInstance>
 		base.SetPrioritizable(target.GetComponent<Prioritizable>());
 	}
 
-	// Token: 0x06001F9E RID: 8094 RVA: 0x001C572C File Offset: 0x001C392C
 	private void OnReachableChanged(object data)
 	{
 		Color color = ((bool)data) ? Color.white : new Color(0.91f, 0.21f, 0.2f);
 		this.SetColor(this.movePlacer, color);
 	}
 
-	// Token: 0x06001F9F RID: 8095 RVA: 0x000B93EA File Offset: 0x000B75EA
 	private void SetColor(GameObject visualizer, Color color)
 	{
 		if (visualizer != null)
@@ -57,7 +53,6 @@ public class MovePickupableChore : Chore<MovePickupableChore.StatesInstance>
 		}
 	}
 
-	// Token: 0x06001FA0 RID: 8096 RVA: 0x001C576C File Offset: 0x001C396C
 	public override void Begin(Chore.Precondition.Context context)
 	{
 		if (context.consumerState.consumer == null)
@@ -84,10 +79,8 @@ public class MovePickupableChore : Chore<MovePickupableChore.StatesInstance>
 		base.Begin(context);
 	}
 
-	// Token: 0x040014E1 RID: 5345
 	public GameObject movePlacer;
 
-	// Token: 0x040014E2 RID: 5346
 	public static Chore.Precondition CanReachCritter = new Chore.Precondition
 	{
 		id = "CanReachCritter",
@@ -99,19 +92,15 @@ public class MovePickupableChore : Chore<MovePickupableChore.StatesInstance>
 		}
 	};
 
-	// Token: 0x020006F8 RID: 1784
 	public class StatesInstance : GameStateMachine<MovePickupableChore.States, MovePickupableChore.StatesInstance, MovePickupableChore, object>.GameInstance
 	{
-		// Token: 0x06001FA2 RID: 8098 RVA: 0x000B9406 File Offset: 0x000B7606
 		public StatesInstance(MovePickupableChore master) : base(master)
 		{
 		}
 	}
 
-	// Token: 0x020006F9 RID: 1785
 	public class States : GameStateMachine<MovePickupableChore.States, MovePickupableChore.StatesInstance, MovePickupableChore>
 	{
-		// Token: 0x06001FA3 RID: 8099 RVA: 0x001C5860 File Offset: 0x001C3A60
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.fetch;
@@ -183,7 +172,6 @@ public class MovePickupableChore : Chore<MovePickupableChore.StatesInstance>
 			}).ReturnSuccess();
 		}
 
-		// Token: 0x06001FA4 RID: 8100 RVA: 0x001C5AB0 File Offset: 0x001C3CB0
 		private NavTactic GetNavTactic(MovePickupableChore.StatesInstance smi)
 		{
 			WorkerBase component = this.deliverer.Get(smi).GetComponent<WorkerBase>();
@@ -194,7 +182,6 @@ public class MovePickupableChore : Chore<MovePickupableChore.StatesInstance>
 			return NavigationTactics.ReduceTravelDistance;
 		}
 
-		// Token: 0x06001FA5 RID: 8101 RVA: 0x001C5AEC File Offset: 0x001C3CEC
 		private void DropPickupable(Storage storage, GameObject delivered)
 		{
 			if (delivered.GetComponent<Capturable>() != null)
@@ -221,102 +208,76 @@ public class MovePickupableChore : Chore<MovePickupableChore.StatesInstance>
 			}
 		}
 
-		// Token: 0x06001FA6 RID: 8102 RVA: 0x001C5B90 File Offset: 0x001C3D90
 		private bool IsDeliveryComplete(MovePickupableChore.StatesInstance smi)
 		{
 			GameObject gameObject = smi.sm.deliverypoint.Get(smi);
 			return !(gameObject != null) || gameObject.GetComponent<CancellableMove>().IsDeliveryComplete();
 		}
 
-		// Token: 0x06001FA7 RID: 8103 RVA: 0x001C5BC8 File Offset: 0x001C3DC8
 		private bool IsCritter(MovePickupableChore.StatesInstance smi)
 		{
 			GameObject gameObject = this.pickupablesource.Get(smi);
 			return gameObject != null && gameObject.GetComponent<Capturable>() != null;
 		}
 
-		// Token: 0x040014E3 RID: 5347
 		public static CellOffset[] critterCellOffsets = new CellOffset[]
 		{
 			new CellOffset(0, 0)
 		};
 
-		// Token: 0x040014E4 RID: 5348
 		public static HashedString[] critterReleaseWorkAnims = new HashedString[]
 		{
 			"place",
 			"release"
 		};
 
-		// Token: 0x040014E5 RID: 5349
 		public static KAnimFile[] critterReleaseAnim = new KAnimFile[]
 		{
 			Assets.GetAnim("anim_restrain_creature_kanim")
 		};
 
-		// Token: 0x040014E6 RID: 5350
 		public StateMachine<MovePickupableChore.States, MovePickupableChore.StatesInstance, MovePickupableChore, object>.TargetParameter deliverer;
 
-		// Token: 0x040014E7 RID: 5351
 		public StateMachine<MovePickupableChore.States, MovePickupableChore.StatesInstance, MovePickupableChore, object>.TargetParameter pickupablesource;
 
-		// Token: 0x040014E8 RID: 5352
 		public StateMachine<MovePickupableChore.States, MovePickupableChore.StatesInstance, MovePickupableChore, object>.TargetParameter pickup;
 
-		// Token: 0x040014E9 RID: 5353
 		public StateMachine<MovePickupableChore.States, MovePickupableChore.StatesInstance, MovePickupableChore, object>.TargetParameter deliverypoint;
 
-		// Token: 0x040014EA RID: 5354
 		public StateMachine<MovePickupableChore.States, MovePickupableChore.StatesInstance, MovePickupableChore, object>.FloatParameter requestedamount;
 
-		// Token: 0x040014EB RID: 5355
 		public StateMachine<MovePickupableChore.States, MovePickupableChore.StatesInstance, MovePickupableChore, object>.FloatParameter actualamount;
 
-		// Token: 0x040014EC RID: 5356
 		public MovePickupableChore.States.FetchState fetch;
 
-		// Token: 0x040014ED RID: 5357
 		public MovePickupableChore.States.ApproachStorage approachstorage;
 
-		// Token: 0x040014EE RID: 5358
 		public GameStateMachine<MovePickupableChore.States, MovePickupableChore.StatesInstance, MovePickupableChore, object>.State success;
 
-		// Token: 0x040014EF RID: 5359
 		public MovePickupableChore.States.DeliveryState delivering;
 
-		// Token: 0x020006FA RID: 1786
 		public class ApproachStorage : GameStateMachine<MovePickupableChore.States, MovePickupableChore.StatesInstance, MovePickupableChore, object>.State
 		{
-			// Token: 0x040014F0 RID: 5360
 			public GameStateMachine<MovePickupableChore.States, MovePickupableChore.StatesInstance, MovePickupableChore, object>.ApproachSubState<Storage> deliveryStorage;
 
-			// Token: 0x040014F1 RID: 5361
 			public GameStateMachine<MovePickupableChore.States, MovePickupableChore.StatesInstance, MovePickupableChore, object>.ApproachSubState<Storage> unbagCritter;
 		}
 
-		// Token: 0x020006FB RID: 1787
 		public class DeliveryState : GameStateMachine<MovePickupableChore.States, MovePickupableChore.StatesInstance, MovePickupableChore, object>.State
 		{
-			// Token: 0x040014F2 RID: 5362
 			public GameStateMachine<MovePickupableChore.States, MovePickupableChore.StatesInstance, MovePickupableChore, object>.State storing;
 
-			// Token: 0x040014F3 RID: 5363
 			public GameStateMachine<MovePickupableChore.States, MovePickupableChore.StatesInstance, MovePickupableChore, object>.State deliverfail;
 		}
 
-		// Token: 0x020006FC RID: 1788
 		public class FetchState : GameStateMachine<MovePickupableChore.States, MovePickupableChore.StatesInstance, MovePickupableChore, object>.State
 		{
-			// Token: 0x040014F4 RID: 5364
 			public GameStateMachine<MovePickupableChore.States, MovePickupableChore.StatesInstance, MovePickupableChore, object>.ApproachSubState<Pickupable> approach;
 
-			// Token: 0x040014F5 RID: 5365
 			public GameStateMachine<MovePickupableChore.States, MovePickupableChore.StatesInstance, MovePickupableChore, object>.State pickup;
 
-			// Token: 0x040014F6 RID: 5366
 			public GameStateMachine<MovePickupableChore.States, MovePickupableChore.StatesInstance, MovePickupableChore, object>.State approachCritter;
 
-			// Token: 0x040014F7 RID: 5367
 			public GameStateMachine<MovePickupableChore.States, MovePickupableChore.StatesInstance, MovePickupableChore, object>.State wrangle;
 		}
 	}

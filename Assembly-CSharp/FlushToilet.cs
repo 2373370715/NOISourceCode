@@ -4,10 +4,8 @@ using Klei.AI;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000DB4 RID: 3508
 public class FlushToilet : StateMachineComponent<FlushToilet.SMInstance>, IUsable, IGameObjectEffectDescriptor, IBasicBuilding
 {
-	// Token: 0x06004425 RID: 17445 RVA: 0x002555D0 File Offset: 0x002537D0
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -27,7 +25,6 @@ public class FlushToilet : StateMachineComponent<FlushToilet.SMInstance>, IUsabl
 		base.smi.ShowFillMeter();
 	}
 
-	// Token: 0x06004426 RID: 17446 RVA: 0x000D07D0 File Offset: 0x000CE9D0
 	protected override void OnCleanUp()
 	{
 		Game.Instance.liquidConduitFlow.onConduitsRebuilt -= this.OnConduitsRebuilt;
@@ -36,19 +33,16 @@ public class FlushToilet : StateMachineComponent<FlushToilet.SMInstance>, IUsabl
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06004427 RID: 17447 RVA: 0x000D0809 File Offset: 0x000CEA09
 	private void OnConduitsRebuilt()
 	{
 		base.Trigger(-2094018600, null);
 	}
 
-	// Token: 0x06004428 RID: 17448 RVA: 0x000D0817 File Offset: 0x000CEA17
 	public bool IsUsable()
 	{
 		return base.smi.HasTag(GameTags.Usable);
 	}
 
-	// Token: 0x06004429 RID: 17449 RVA: 0x00255708 File Offset: 0x00253908
 	private void AddDisseaseToWorker(WorkerBase worker)
 	{
 		if (worker != null)
@@ -65,7 +59,6 @@ public class FlushToilet : StateMachineComponent<FlushToilet.SMInstance>, IUsabl
 		});
 	}
 
-	// Token: 0x0600442A RID: 17450 RVA: 0x002557D4 File Offset: 0x002539D4
 	private void Flush(WorkerBase worker)
 	{
 		ToiletWorkableUse component = base.GetComponent<ToiletWorkableUse>();
@@ -90,7 +83,6 @@ public class FlushToilet : StateMachineComponent<FlushToilet.SMInstance>, IUsabl
 		this.storage.AddLiquid(component.lastElementRemovedFromDupe, num4, temperature, index, this.diseasePerFlush, false, true);
 	}
 
-	// Token: 0x0600442B RID: 17451 RVA: 0x002558E8 File Offset: 0x00253AE8
 	public List<Descriptor> RequirementDescriptors()
 	{
 		List<Descriptor> list = new List<Descriptor>();
@@ -99,7 +91,6 @@ public class FlushToilet : StateMachineComponent<FlushToilet.SMInstance>, IUsabl
 		return list;
 	}
 
-	// Token: 0x0600442C RID: 17452 RVA: 0x00255964 File Offset: 0x00253B64
 	public List<Descriptor> EffectDescriptors()
 	{
 		List<Descriptor> list = new List<Descriptor>();
@@ -111,7 +102,6 @@ public class FlushToilet : StateMachineComponent<FlushToilet.SMInstance>, IUsabl
 		return list;
 	}
 
-	// Token: 0x0600442D RID: 17453 RVA: 0x000D0829 File Offset: 0x000CEA29
 	public List<Descriptor> GetDescriptors(GameObject go)
 	{
 		List<Descriptor> list = new List<Descriptor>();
@@ -120,7 +110,6 @@ public class FlushToilet : StateMachineComponent<FlushToilet.SMInstance>, IUsabl
 		return list;
 	}
 
-	// Token: 0x0600442E RID: 17454 RVA: 0x00255A68 File Offset: 0x00253C68
 	private void OnConduitUpdate(float dt)
 	{
 		if (this.GetSMI() == null)
@@ -132,78 +121,57 @@ public class FlushToilet : StateMachineComponent<FlushToilet.SMInstance>, IUsabl
 		base.smi.sm.outputBlocked.Set(value, base.smi, false);
 	}
 
-	// Token: 0x04002F36 RID: 12086
 	private static readonly HashedString[] CLOGGED_ANIMS = new HashedString[]
 	{
 		"full_gunk_pre",
 		"full_gunk"
 	};
 
-	// Token: 0x04002F37 RID: 12087
 	private const string UNCLOG_ANIM = "full_gunk_pst";
 
-	// Token: 0x04002F38 RID: 12088
 	private MeterController fillMeter;
 
-	// Token: 0x04002F39 RID: 12089
 	private MeterController contaminationMeter;
 
-	// Token: 0x04002F3A RID: 12090
 	private MeterController gunkMeter;
 
-	// Token: 0x04002F3B RID: 12091
 	public Meter.Offset meterOffset = Meter.Offset.Behind;
 
-	// Token: 0x04002F3C RID: 12092
 	[SerializeField]
 	public float massConsumedPerUse = 5f;
 
-	// Token: 0x04002F3D RID: 12093
 	[SerializeField]
 	public float massEmittedPerUse = 5f;
 
-	// Token: 0x04002F3E RID: 12094
 	[SerializeField]
 	public float newPeeTemperature;
 
-	// Token: 0x04002F3F RID: 12095
 	[SerializeField]
 	public string diseaseId;
 
-	// Token: 0x04002F40 RID: 12096
 	[SerializeField]
 	public int diseasePerFlush;
 
-	// Token: 0x04002F41 RID: 12097
 	[SerializeField]
 	public int diseaseOnDupePerFlush;
 
-	// Token: 0x04002F42 RID: 12098
 	[SerializeField]
 	public bool requireOutput = true;
 
-	// Token: 0x04002F43 RID: 12099
 	[MyCmpGet]
 	private ConduitConsumer conduitConsumer;
 
-	// Token: 0x04002F44 RID: 12100
 	[MyCmpGet]
 	private Storage storage;
 
-	// Token: 0x04002F45 RID: 12101
 	public static readonly Tag WaterTag = GameTagExtensions.Create(SimHashes.Water);
 
-	// Token: 0x04002F46 RID: 12102
 	private int inputCell;
 
-	// Token: 0x04002F47 RID: 12103
 	private int outputCell;
 
-	// Token: 0x02000DB5 RID: 3509
 	public class SMInstance : GameStateMachine<FlushToilet.States, FlushToilet.SMInstance, FlushToilet, object>.GameInstance
 	{
-		// Token: 0x17000359 RID: 857
-		// (get) Token: 0x06004431 RID: 17457 RVA: 0x000D08B2 File Offset: 0x000CEAB2
 		public bool IsClogged
 		{
 			get
@@ -212,7 +180,6 @@ public class FlushToilet : StateMachineComponent<FlushToilet.SMInstance>, IUsabl
 			}
 		}
 
-		// Token: 0x06004432 RID: 17458 RVA: 0x000D08C5 File Offset: 0x000CEAC5
 		public SMInstance(FlushToilet master) : base(master)
 		{
 			this.activeUseChores = new List<Chore>();
@@ -220,7 +187,6 @@ public class FlushToilet : StateMachineComponent<FlushToilet.SMInstance>, IUsabl
 			this.UpdateDirtyState();
 		}
 
-		// Token: 0x06004433 RID: 17459 RVA: 0x00255AE4 File Offset: 0x00253CE4
 		public void CreateCleanChore()
 		{
 			if (this.cleanChore != null)
@@ -232,7 +198,6 @@ public class FlushToilet : StateMachineComponent<FlushToilet.SMInstance>, IUsabl
 			this.cleanChore = new WorkChore<ToiletWorkableClean>(Db.Get().ChoreTypes.CleanToilet, component, null, true, new Action<Chore>(this.OnCleanComplete), null, null, true, null, false, true, null, false, true, true, PriorityScreen.PriorityClass.basic, 5, true, true);
 		}
 
-		// Token: 0x06004434 RID: 17460 RVA: 0x000D08E6 File Offset: 0x000CEAE6
 		public void CancelCleanChore()
 		{
 			if (this.cleanChore != null)
@@ -242,19 +207,16 @@ public class FlushToilet : StateMachineComponent<FlushToilet.SMInstance>, IUsabl
 			}
 		}
 
-		// Token: 0x06004435 RID: 17461 RVA: 0x000D0907 File Offset: 0x000CEB07
 		private void OnCleanComplete(object o)
 		{
 			base.sm.isClogged.Set(false, this, false);
 		}
 
-		// Token: 0x06004436 RID: 17462 RVA: 0x00255B54 File Offset: 0x00253D54
 		public bool HasValidConnections()
 		{
 			return Game.Instance.liquidConduitFlow.HasConduit(base.master.inputCell) && (!base.master.requireOutput || Game.Instance.liquidConduitFlow.HasConduit(base.master.outputCell));
 		}
 
-		// Token: 0x06004437 RID: 17463 RVA: 0x00255BA8 File Offset: 0x00253DA8
 		public bool UpdateFullnessState()
 		{
 			float num = 0f;
@@ -273,21 +235,18 @@ public class FlushToilet : StateMachineComponent<FlushToilet.SMInstance>, IUsabl
 			return flag;
 		}
 
-		// Token: 0x06004438 RID: 17464 RVA: 0x00255C74 File Offset: 0x00253E74
 		public void SetDirtyStatesForClogged()
 		{
 			bool flag = base.GetComponent<ToiletWorkableUse>().last_user_id == BionicMinionConfig.ID;
 			this.SetDirtyStateMeterPercentage((float)(flag ? 0 : 1), (float)(flag ? 1 : 0));
 		}
 
-		// Token: 0x06004439 RID: 17465 RVA: 0x000D091D File Offset: 0x000CEB1D
 		public void SetDirtyStateMeterPercentage(float contaminationPercentage, float gunkPercentage)
 		{
 			base.master.contaminationMeter.SetPositionPercent(contaminationPercentage);
 			base.master.gunkMeter.SetPositionPercent(gunkPercentage);
 		}
 
-		// Token: 0x0600443A RID: 17466 RVA: 0x00255CB4 File Offset: 0x00253EB4
 		public void UpdateDirtyState()
 		{
 			ToiletWorkableUse component = base.GetComponent<ToiletWorkableUse>();
@@ -296,14 +255,12 @@ public class FlushToilet : StateMachineComponent<FlushToilet.SMInstance>, IUsabl
 			this.SetDirtyStateMeterPercentage(flag ? 0f : percentComplete, flag ? percentComplete : 0f);
 		}
 
-		// Token: 0x0600443B RID: 17467 RVA: 0x00255D00 File Offset: 0x00253F00
 		public void AddDisseaseToWorker()
 		{
 			WorkerBase worker = base.master.GetComponent<ToiletWorkableUse>().worker;
 			base.master.AddDisseaseToWorker(worker);
 		}
 
-		// Token: 0x0600443C RID: 17468 RVA: 0x00255D2C File Offset: 0x00253F2C
 		public void Flush()
 		{
 			bool flag = base.GetComponent<ToiletWorkableUse>().last_user_id == BionicMinionConfig.ID;
@@ -315,7 +272,6 @@ public class FlushToilet : StateMachineComponent<FlushToilet.SMInstance>, IUsabl
 			base.master.Flush(worker);
 		}
 
-		// Token: 0x0600443D RID: 17469 RVA: 0x00255DD0 File Offset: 0x00253FD0
 		public void ShowFillMeter()
 		{
 			base.master.fillMeter.gameObject.SetActive(true);
@@ -323,7 +279,6 @@ public class FlushToilet : StateMachineComponent<FlushToilet.SMInstance>, IUsabl
 			base.master.gunkMeter.gameObject.SetActive(false);
 		}
 
-		// Token: 0x0600443E RID: 17470 RVA: 0x00255E20 File Offset: 0x00254020
 		public bool HasContaminatedMass()
 		{
 			foreach (GameObject gameObject in base.GetComponent<Storage>().items)
@@ -337,7 +292,6 @@ public class FlushToilet : StateMachineComponent<FlushToilet.SMInstance>, IUsabl
 			return false;
 		}
 
-		// Token: 0x0600443F RID: 17471 RVA: 0x00255EB0 File Offset: 0x002540B0
 		public void ShowContaminatedMeter()
 		{
 			bool flag = base.GetComponent<ToiletWorkableUse>().last_user_id == BionicMinionConfig.ID;
@@ -346,17 +300,13 @@ public class FlushToilet : StateMachineComponent<FlushToilet.SMInstance>, IUsabl
 			base.master.gunkMeter.gameObject.SetActive(flag);
 		}
 
-		// Token: 0x04002F48 RID: 12104
 		public List<Chore> activeUseChores;
 
-		// Token: 0x04002F49 RID: 12105
 		private Chore cleanChore;
 	}
 
-	// Token: 0x02000DB6 RID: 3510
 	public class States : GameStateMachine<FlushToilet.States, FlushToilet.SMInstance, FlushToilet>
 	{
-		// Token: 0x06004440 RID: 17472 RVA: 0x00255F20 File Offset: 0x00254120
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.disconnected;
@@ -410,31 +360,26 @@ public class FlushToilet : StateMachineComponent<FlushToilet.SMInstance>, IUsabl
 			this.flushed.EventTransition(GameHashes.OnStorageChange, this.fillingInactive, (FlushToilet.SMInstance smi) => !smi.HasContaminatedMass()).ParamTransition<bool>(this.outputBlocked, this.backedup, GameStateMachine<FlushToilet.States, FlushToilet.SMInstance, FlushToilet, object>.IsTrue).PlayAnim("on");
 		}
 
-		// Token: 0x06004441 RID: 17473 RVA: 0x000D0941 File Offset: 0x000CEB41
 		public void OnFlushedGunk(FlushToilet.SMInstance smi, object o)
 		{
 			smi.sm.isClogged.Set(true, smi, false);
 		}
 
-		// Token: 0x06004442 RID: 17474 RVA: 0x000D0957 File Offset: 0x000CEB57
 		public void SetDirtyStatesForClogged(FlushToilet.SMInstance smi)
 		{
 			smi.SetDirtyStatesForClogged();
 		}
 
-		// Token: 0x06004443 RID: 17475 RVA: 0x000D095F File Offset: 0x000CEB5F
 		public void CreateCleanChore(FlushToilet.SMInstance smi)
 		{
 			smi.CreateCleanChore();
 		}
 
-		// Token: 0x06004444 RID: 17476 RVA: 0x000D0967 File Offset: 0x000CEB67
 		public void CancelCleanChore(FlushToilet.SMInstance smi)
 		{
 			smi.CancelCleanChore();
 		}
 
-		// Token: 0x06004445 RID: 17477 RVA: 0x000D096F File Offset: 0x000CEB6F
 		private Chore CreateUrgentUseChore(FlushToilet.SMInstance smi)
 		{
 			Chore chore = this.CreateUseChore(smi, Db.Get().ChoreTypes.Pee);
@@ -443,7 +388,6 @@ public class FlushToilet : StateMachineComponent<FlushToilet.SMInstance>, IUsabl
 			return chore;
 		}
 
-		// Token: 0x06004446 RID: 17478 RVA: 0x000D09A9 File Offset: 0x000CEBA9
 		private Chore CreateBreakUseChore(FlushToilet.SMInstance smi)
 		{
 			Chore chore = this.CreateUseChore(smi, Db.Get().ChoreTypes.BreakPee);
@@ -451,7 +395,6 @@ public class FlushToilet : StateMachineComponent<FlushToilet.SMInstance>, IUsabl
 			return chore;
 		}
 
-		// Token: 0x06004447 RID: 17479 RVA: 0x00256550 File Offset: 0x00254750
 		private Chore CreateUseChore(FlushToilet.SMInstance smi, ChoreType choreType)
 		{
 			WorkChore<ToiletWorkableUse> workChore = new WorkChore<ToiletWorkableUse>(choreType, smi.master, null, true, null, null, null, false, null, true, true, null, false, true, false, PriorityScreen.PriorityClass.personalNeeds, 5, false, false);
@@ -466,49 +409,34 @@ public class FlushToilet : StateMachineComponent<FlushToilet.SMInstance>, IUsabl
 			return workChore;
 		}
 
-		// Token: 0x04002F4A RID: 12106
 		public GameStateMachine<FlushToilet.States, FlushToilet.SMInstance, FlushToilet, object>.State disconnected;
 
-		// Token: 0x04002F4B RID: 12107
 		public GameStateMachine<FlushToilet.States, FlushToilet.SMInstance, FlushToilet, object>.State backedup;
 
-		// Token: 0x04002F4C RID: 12108
 		public FlushToilet.States.ReadyStates ready;
 
-		// Token: 0x04002F4D RID: 12109
 		public GameStateMachine<FlushToilet.States, FlushToilet.SMInstance, FlushToilet, object>.State fillingInactive;
 
-		// Token: 0x04002F4E RID: 12110
 		public GameStateMachine<FlushToilet.States, FlushToilet.SMInstance, FlushToilet, object>.State filling;
 
-		// Token: 0x04002F4F RID: 12111
 		public GameStateMachine<FlushToilet.States, FlushToilet.SMInstance, FlushToilet, object>.State clogged;
 
-		// Token: 0x04002F50 RID: 12112
 		public GameStateMachine<FlushToilet.States, FlushToilet.SMInstance, FlushToilet, object>.State unclogged;
 
-		// Token: 0x04002F51 RID: 12113
 		public GameStateMachine<FlushToilet.States, FlushToilet.SMInstance, FlushToilet, object>.State flushing;
 
-		// Token: 0x04002F52 RID: 12114
 		public GameStateMachine<FlushToilet.States, FlushToilet.SMInstance, FlushToilet, object>.State flushed;
 
-		// Token: 0x04002F53 RID: 12115
 		public StateMachine<FlushToilet.States, FlushToilet.SMInstance, FlushToilet, object>.BoolParameter outputBlocked;
 
-		// Token: 0x04002F54 RID: 12116
 		public StateMachine<FlushToilet.States, FlushToilet.SMInstance, FlushToilet, object>.BoolParameter isClogged;
 
-		// Token: 0x02000DB7 RID: 3511
 		public class ReadyStates : GameStateMachine<FlushToilet.States, FlushToilet.SMInstance, FlushToilet, object>.State
 		{
-			// Token: 0x04002F55 RID: 12117
 			public GameStateMachine<FlushToilet.States, FlushToilet.SMInstance, FlushToilet, object>.State idle;
 
-			// Token: 0x04002F56 RID: 12118
 			public GameStateMachine<FlushToilet.States, FlushToilet.SMInstance, FlushToilet, object>.State inuse;
 
-			// Token: 0x04002F57 RID: 12119
 			public GameStateMachine<FlushToilet.States, FlushToilet.SMInstance, FlushToilet, object>.State completed;
 		}
 	}

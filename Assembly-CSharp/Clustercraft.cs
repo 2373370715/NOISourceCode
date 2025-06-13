@@ -8,11 +8,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02001927 RID: 6439
 public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim1000ms
 {
-	// Token: 0x17000898 RID: 2200
-	// (get) Token: 0x0600857D RID: 34173 RVA: 0x000FC341 File Offset: 0x000FA541
 	public override string Name
 	{
 		get
@@ -21,13 +18,8 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		}
 	}
 
-	// Token: 0x17000899 RID: 2201
-	// (get) Token: 0x0600857E RID: 34174 RVA: 0x000FC349 File Offset: 0x000FA549
-	// (set) Token: 0x0600857F RID: 34175 RVA: 0x000FC351 File Offset: 0x000FA551
 	public bool Exploding { get; protected set; }
 
-	// Token: 0x1700089A RID: 2202
-	// (get) Token: 0x06008580 RID: 34176 RVA: 0x000AA7E7 File Offset: 0x000A89E7
 	public override EntityLayer Layer
 	{
 		get
@@ -36,8 +28,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		}
 	}
 
-	// Token: 0x1700089B RID: 2203
-	// (get) Token: 0x06008581 RID: 34177 RVA: 0x003559D4 File Offset: 0x00353BD4
 	public override List<ClusterGridEntity.AnimConfig> AnimConfigs
 	{
 		get
@@ -53,7 +43,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		}
 	}
 
-	// Token: 0x06008582 RID: 34178 RVA: 0x00355A18 File Offset: 0x00353C18
 	public override Sprite GetUISprite()
 	{
 		PassengerRocketModule passengerModule = this.m_moduleInterface.GetPassengerModule();
@@ -64,8 +53,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		return Assets.GetSprite("ic_rocket");
 	}
 
-	// Token: 0x1700089C RID: 2204
-	// (get) Token: 0x06008583 RID: 34179 RVA: 0x000FC35A File Offset: 0x000FA55A
 	public override bool IsVisible
 	{
 		get
@@ -74,8 +61,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		}
 	}
 
-	// Token: 0x1700089D RID: 2205
-	// (get) Token: 0x06008584 RID: 34180 RVA: 0x000AA7FE File Offset: 0x000A89FE
 	public override ClusterRevealLevel IsVisibleInFOW
 	{
 		get
@@ -84,14 +69,11 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		}
 	}
 
-	// Token: 0x06008585 RID: 34181 RVA: 0x000AA7E7 File Offset: 0x000A89E7
 	public override bool SpaceOutInSameHex()
 	{
 		return true;
 	}
 
-	// Token: 0x1700089E RID: 2206
-	// (get) Token: 0x06008586 RID: 34182 RVA: 0x000FC365 File Offset: 0x000FA565
 	public CraftModuleInterface ModuleInterface
 	{
 		get
@@ -100,8 +82,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		}
 	}
 
-	// Token: 0x1700089F RID: 2207
-	// (get) Token: 0x06008587 RID: 34183 RVA: 0x000FC36D File Offset: 0x000FA56D
 	public AxialI Destination
 	{
 		get
@@ -110,8 +90,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		}
 	}
 
-	// Token: 0x170008A0 RID: 2208
-	// (get) Token: 0x06008588 RID: 34184 RVA: 0x00355A60 File Offset: 0x00353C60
 	public float Speed
 	{
 		get
@@ -142,8 +120,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		}
 	}
 
-	// Token: 0x170008A1 RID: 2209
-	// (get) Token: 0x06008589 RID: 34185 RVA: 0x00355B18 File Offset: 0x00353D18
 	public float EnginePower
 	{
 		get
@@ -157,8 +133,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		}
 	}
 
-	// Token: 0x170008A2 RID: 2210
-	// (get) Token: 0x0600858A RID: 34186 RVA: 0x00355B80 File Offset: 0x00353D80
 	public float FuelPerDistance
 	{
 		get
@@ -172,8 +146,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		}
 	}
 
-	// Token: 0x170008A3 RID: 2211
-	// (get) Token: 0x0600858B RID: 34187 RVA: 0x00355BE8 File Offset: 0x00353DE8
 	public float TotalBurden
 	{
 		get
@@ -188,9 +160,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		}
 	}
 
-	// Token: 0x170008A4 RID: 2212
-	// (get) Token: 0x0600858C RID: 34188 RVA: 0x000FC37F File Offset: 0x000FA57F
-	// (set) Token: 0x0600858D RID: 34189 RVA: 0x000FC387 File Offset: 0x000FA587
 	public bool LaunchRequested
 	{
 		get
@@ -204,8 +173,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		}
 	}
 
-	// Token: 0x170008A5 RID: 2213
-	// (get) Token: 0x0600858E RID: 34190 RVA: 0x000FC3A1 File Offset: 0x000FA5A1
 	public Clustercraft.CraftStatus Status
 	{
 		get
@@ -214,7 +181,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		}
 	}
 
-	// Token: 0x0600858F RID: 34191 RVA: 0x000FC3A9 File Offset: 0x000FA5A9
 	public void SetCraftStatus(Clustercraft.CraftStatus craft_status)
 	{
 		this.status = craft_status;
@@ -222,20 +188,17 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		this.m_moduleInterface.TriggerEventOnCraftAndRocket(GameHashes.ClustercraftStateChanged, craft_status);
 	}
 
-	// Token: 0x06008590 RID: 34192 RVA: 0x000FC3CE File Offset: 0x000FA5CE
 	public void SetExploding()
 	{
 		this.Exploding = true;
 	}
 
-	// Token: 0x06008591 RID: 34193 RVA: 0x000FC3D7 File Offset: 0x000FA5D7
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 		Components.Clustercrafts.Add(this);
 	}
 
-	// Token: 0x06008592 RID: 34194 RVA: 0x00355C5C File Offset: 0x00353E5C
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -256,7 +219,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		this.UpdateStatusItem();
 	}
 
-	// Token: 0x06008593 RID: 34195 RVA: 0x00355D40 File Offset: 0x00353F40
 	public void Sim1000ms(float dt)
 	{
 		this.controlStationBuffTimeRemaining = Mathf.Max(this.controlStationBuffTimeRemaining - dt, 0f);
@@ -269,7 +231,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		this.missionControlStatusHandle = Guid.Empty;
 	}
 
-	// Token: 0x06008594 RID: 34196 RVA: 0x00355DBC File Offset: 0x00353FBC
 	public void Sim4000ms(float dt)
 	{
 		RocketClusterDestinationSelector clusterDestinationSelector = this.m_moduleInterface.GetClusterDestinationSelector();
@@ -279,7 +240,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		}
 	}
 
-	// Token: 0x06008595 RID: 34197 RVA: 0x000FC3EA File Offset: 0x000FA5EA
 	public void Init(AxialI location, LaunchPad pad)
 	{
 		this.m_location = location;
@@ -292,32 +252,27 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		this.UpdateStatusItem();
 	}
 
-	// Token: 0x06008596 RID: 34198 RVA: 0x000FC426 File Offset: 0x000FA626
 	protected override void OnCleanUp()
 	{
 		Components.Clustercrafts.Remove(this);
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06008597 RID: 34199 RVA: 0x000FC439 File Offset: 0x000FA639
 	private bool CanTravel(bool tryingToLand)
 	{
 		return this.HasTag(GameTags.RocketInSpace) && (tryingToLand || this.HasResourcesToMove(1, Clustercraft.CombustionResource.All));
 	}
 
-	// Token: 0x06008598 RID: 34200 RVA: 0x000FC457 File Offset: 0x000FA657
 	private bool CanTravelToCell(AxialI location)
 	{
 		return !(ClusterGrid.Instance.GetVisibleEntityOfLayerAtCell(location, EntityLayer.Asteroid) != null) || this.CanLandAtAsteroid(location, true);
 	}
 
-	// Token: 0x06008599 RID: 34201 RVA: 0x000FC477 File Offset: 0x000FA677
 	private float GetSpeed()
 	{
 		return this.Speed;
 	}
 
-	// Token: 0x0600859A RID: 34202 RVA: 0x00355DF8 File Offset: 0x00353FF8
 	private void RocketModuleChanged(object data)
 	{
 		RocketModuleCluster rocketModuleCluster = (RocketModuleCluster)data;
@@ -327,13 +282,11 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		}
 	}
 
-	// Token: 0x0600859B RID: 34203 RVA: 0x000FC47F File Offset: 0x000FA67F
 	private void OnClusterDestinationChanged(object data)
 	{
 		this.UpdateStatusItem();
 	}
 
-	// Token: 0x0600859C RID: 34204 RVA: 0x00355E24 File Offset: 0x00354024
 	private void OnClusterDestinationReached(object data)
 	{
 		RocketClusterDestinationSelector clusterDestinationSelector = this.m_moduleInterface.GetClusterDestinationSelector();
@@ -346,13 +299,11 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		this.UpdateStatusItem();
 	}
 
-	// Token: 0x0600859D RID: 34205 RVA: 0x000FC487 File Offset: 0x000FA687
 	public void SetRocketName(object newName)
 	{
 		this.SetRocketName((string)newName);
 	}
 
-	// Token: 0x0600859E RID: 34206 RVA: 0x00355E78 File Offset: 0x00354078
 	public void SetRocketName(string newName)
 	{
 		this.m_name = newName;
@@ -369,25 +320,21 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		ClusterManager.Instance.Trigger(1943181844, newName);
 	}
 
-	// Token: 0x0600859F RID: 34207 RVA: 0x000FC495 File Offset: 0x000FA695
 	public bool CheckPreppedForLaunch()
 	{
 		return this.m_moduleInterface.CheckPreppedForLaunch();
 	}
 
-	// Token: 0x060085A0 RID: 34208 RVA: 0x000FC4A2 File Offset: 0x000FA6A2
 	public bool CheckReadyToLaunch()
 	{
 		return this.m_moduleInterface.CheckReadyToLaunch();
 	}
 
-	// Token: 0x060085A1 RID: 34209 RVA: 0x000FC4AF File Offset: 0x000FA6AF
 	public bool IsFlightInProgress()
 	{
 		return this.Status == Clustercraft.CraftStatus.InFlight && this.m_clusterTraveler.IsTraveling();
 	}
 
-	// Token: 0x060085A2 RID: 34210 RVA: 0x000FC4C7 File Offset: 0x000FA6C7
 	public ClusterGridEntity GetPOIAtCurrentLocation()
 	{
 		if (this.status != Clustercraft.CraftStatus.InFlight || this.IsFlightInProgress())
@@ -397,7 +344,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		return ClusterGrid.Instance.GetVisibleEntityOfLayerAtCell(this.m_location, EntityLayer.POI);
 	}
 
-	// Token: 0x060085A3 RID: 34211 RVA: 0x000FC4ED File Offset: 0x000FA6ED
 	public ClusterGridEntity GetStableOrbitAsteroid()
 	{
 		if (this.status != Clustercraft.CraftStatus.InFlight || this.IsFlightInProgress())
@@ -407,7 +353,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		return ClusterGrid.Instance.GetVisibleEntityOfLayerAtAdjacentCell(this.m_location, EntityLayer.Asteroid);
 	}
 
-	// Token: 0x060085A4 RID: 34212 RVA: 0x000FC513 File Offset: 0x000FA713
 	public ClusterGridEntity GetOrbitAsteroid()
 	{
 		if (this.status != Clustercraft.CraftStatus.InFlight)
@@ -417,19 +362,16 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		return ClusterGrid.Instance.GetVisibleEntityOfLayerAtAdjacentCell(this.m_location, EntityLayer.Asteroid);
 	}
 
-	// Token: 0x060085A5 RID: 34213 RVA: 0x000FC531 File Offset: 0x000FA731
 	public ClusterGridEntity GetAdjacentAsteroid()
 	{
 		return ClusterGrid.Instance.GetVisibleEntityOfLayerAtAdjacentCell(this.m_location, EntityLayer.Asteroid);
 	}
 
-	// Token: 0x060085A6 RID: 34214 RVA: 0x000FC544 File Offset: 0x000FA744
 	private bool CheckDesinationInRange()
 	{
 		return this.m_clusterTraveler.CurrentPath != null && this.Speed * this.m_clusterTraveler.TravelETA() <= this.ModuleInterface.Range;
 	}
 
-	// Token: 0x060085A7 RID: 34215 RVA: 0x00355F10 File Offset: 0x00354110
 	public bool HasResourcesToMove(int hexes = 1, Clustercraft.CombustionResource combustionResource = Clustercraft.CombustionResource.All)
 	{
 		switch (combustionResource)
@@ -449,7 +391,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		}
 	}
 
-	// Token: 0x060085A8 RID: 34216 RVA: 0x00355FC4 File Offset: 0x003541C4
 	private void BurnFuelForTravel()
 	{
 		float num = 600f;
@@ -490,7 +431,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		this.UpdateStatusItem();
 	}
 
-	// Token: 0x060085A9 RID: 34217 RVA: 0x003560F4 File Offset: 0x003542F4
 	private float BurnFromTank(float attemptTravelAmount, RocketEngineCluster engine, Tag fuelTag, IStorage storage, ref float totalOxidizerRemaining)
 	{
 		float num = attemptTravelAmount * engine.GetComponent<RocketModuleCluster>().performanceStats.FuelKilogramPerDistance;
@@ -508,7 +448,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		return num / engine.GetComponent<RocketModuleCluster>().performanceStats.FuelKilogramPerDistance;
 	}
 
-	// Token: 0x060085AA RID: 34218 RVA: 0x00356168 File Offset: 0x00354368
 	private void BurnOxidizer(float fuelEquivalentKGs)
 	{
 		foreach (Ref<RocketModuleCluster> @ref in this.m_moduleInterface.ClusterModules)
@@ -534,7 +473,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		}
 	}
 
-	// Token: 0x060085AB RID: 34219 RVA: 0x0035625C File Offset: 0x0035445C
 	public List<ResourceHarvestModule.StatesInstance> GetAllResourceHarvestModules()
 	{
 		List<ResourceHarvestModule.StatesInstance> list = new List<ResourceHarvestModule.StatesInstance>();
@@ -549,7 +487,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		return list;
 	}
 
-	// Token: 0x060085AC RID: 34220 RVA: 0x003562C4 File Offset: 0x003544C4
 	public List<ArtifactHarvestModule.StatesInstance> GetAllArtifactHarvestModules()
 	{
 		List<ArtifactHarvestModule.StatesInstance> list = new List<ArtifactHarvestModule.StatesInstance>();
@@ -564,7 +501,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		return list;
 	}
 
-	// Token: 0x060085AD RID: 34221 RVA: 0x0035632C File Offset: 0x0035452C
 	public List<CargoBayCluster> GetAllCargoBays()
 	{
 		List<CargoBayCluster> list = new List<CargoBayCluster>();
@@ -579,7 +515,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		return list;
 	}
 
-	// Token: 0x060085AE RID: 34222 RVA: 0x00356398 File Offset: 0x00354598
 	public List<CargoBayCluster> GetCargoBaysOfType(CargoBay.CargoType cargoType)
 	{
 		List<CargoBayCluster> list = new List<CargoBayCluster>();
@@ -594,7 +529,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		return list;
 	}
 
-	// Token: 0x060085AF RID: 34223 RVA: 0x00356410 File Offset: 0x00354610
 	public void DestroyCraftAndModules()
 	{
 		WorldContainer interiorWorld = this.m_moduleInterface.GetInteriorWorld();
@@ -626,7 +560,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		Util.KDestroyGameObject(base.gameObject);
 	}
 
-	// Token: 0x060085B0 RID: 34224 RVA: 0x000FC577 File Offset: 0x000FA777
 	public void CancelLaunch()
 	{
 		if (this.LaunchRequested)
@@ -636,7 +569,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		}
 	}
 
-	// Token: 0x060085B1 RID: 34225 RVA: 0x0035650C File Offset: 0x0035470C
 	public void RequestLaunch(bool automated = false)
 	{
 		if (this.HasTag(GameTags.RocketNotOnGround) || this.m_moduleInterface.GetClusterDestinationSelector().IsAtDestination())
@@ -663,7 +595,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		this.LaunchRequested = true;
 	}
 
-	// Token: 0x060085B2 RID: 34226 RVA: 0x00356588 File Offset: 0x00354788
 	public void Launch(bool automated = false)
 	{
 		if (this.HasTag(GameTags.RocketNotOnGround) || this.m_moduleInterface.GetClusterDestinationSelector().IsAtDestination())
@@ -688,13 +619,11 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		this.UpdateStatusItem();
 	}
 
-	// Token: 0x060085B3 RID: 34227 RVA: 0x000FC592 File Offset: 0x000FA792
 	public void LandAtPad(LaunchPad pad)
 	{
 		this.m_moduleInterface.GetClusterDestinationSelector().SetDestinationPad(pad);
 	}
 
-	// Token: 0x060085B4 RID: 34228 RVA: 0x00356618 File Offset: 0x00354818
 	public Clustercraft.PadLandingStatus CanLandAtPad(LaunchPad pad, out string failReason)
 	{
 		if (pad == null)
@@ -750,7 +679,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		return Clustercraft.PadLandingStatus.CanLandImmediately;
 	}
 
-	// Token: 0x060085B5 RID: 34229 RVA: 0x003567E8 File Offset: 0x003549E8
 	private LaunchPad FindValidLandingPad(AxialI location, bool mustLandImmediately)
 	{
 		LaunchPad result = null;
@@ -781,7 +709,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		return result;
 	}
 
-	// Token: 0x060085B6 RID: 34230 RVA: 0x003568A4 File Offset: 0x00354AA4
 	public bool CanLandAtAsteroid(AxialI location, bool mustLandImmediately)
 	{
 		LaunchPad destinationPad = this.m_moduleInterface.GetClusterDestinationSelector().GetDestinationPad();
@@ -795,7 +722,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		return this.FindValidLandingPad(location, mustLandImmediately) != null;
 	}
 
-	// Token: 0x060085B7 RID: 34231 RVA: 0x00356914 File Offset: 0x00354B14
 	private void Land(LaunchPad pad, bool forceGrounded)
 	{
 		string text;
@@ -810,7 +736,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		this.UpdateStatusItem();
 	}
 
-	// Token: 0x060085B8 RID: 34232 RVA: 0x00356960 File Offset: 0x00354B60
 	private void Land(AxialI destination, LaunchPad chosenPad)
 	{
 		if (chosenPad == null)
@@ -821,7 +746,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		this.Land(chosenPad, false);
 	}
 
-	// Token: 0x060085B9 RID: 34233 RVA: 0x003569B0 File Offset: 0x00354BB0
 	public void UpdateStatusItem()
 	{
 		if (ClusterGrid.Instance == null)
@@ -916,7 +840,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		this.UpdatePilotedStatusItems();
 	}
 
-	// Token: 0x060085BA RID: 34234 RVA: 0x00356DFC File Offset: 0x00354FFC
 	private void UpdateGroundTags()
 	{
 		foreach (Ref<RocketModuleCluster> @ref in this.ModuleInterface.ClusterModules)
@@ -929,7 +852,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		this.UpdateGroundTags(base.gameObject);
 	}
 
-	// Token: 0x060085BB RID: 34235 RVA: 0x00356E78 File Offset: 0x00355078
 	private void UpdateGroundTags(GameObject go)
 	{
 		this.SetTagOnGameObject(go, GameTags.RocketOnGround, this.status == Clustercraft.CraftStatus.Grounded);
@@ -938,7 +860,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		this.SetTagOnGameObject(go, GameTags.EntityInSpace, this.status == Clustercraft.CraftStatus.InFlight);
 	}
 
-	// Token: 0x060085BC RID: 34236 RVA: 0x00356EDC File Offset: 0x003550DC
 	private void UpdatePilotedStatusItems()
 	{
 		if (this.Status == Clustercraft.CraftStatus.Grounded)
@@ -981,7 +902,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		this.selectable.RemoveStatusItem(Db.Get().BuildingStatusItems.InFlightSuperPilot, false);
 	}
 
-	// Token: 0x060085BD RID: 34237 RVA: 0x00357138 File Offset: 0x00355338
 	public void GetPilotedStatus(out bool dupe_piloted, out bool robo_piloted)
 	{
 		dupe_piloted = false;
@@ -998,7 +918,6 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		}
 	}
 
-	// Token: 0x060085BE RID: 34238 RVA: 0x000FC5A5 File Offset: 0x000FA7A5
 	private void SetTagOnGameObject(GameObject go, Tag tag, bool set)
 	{
 		if (set)
@@ -1009,37 +928,31 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		go.RemoveTag(tag);
 	}
 
-	// Token: 0x060085BF RID: 34239 RVA: 0x000FC5B9 File Offset: 0x000FA7B9
 	public override bool ShowName()
 	{
 		return this.status > Clustercraft.CraftStatus.Grounded;
 	}
 
-	// Token: 0x060085C0 RID: 34240 RVA: 0x000FC5B9 File Offset: 0x000FA7B9
 	public override bool ShowPath()
 	{
 		return this.status > Clustercraft.CraftStatus.Grounded;
 	}
 
-	// Token: 0x060085C1 RID: 34241 RVA: 0x000FC5C4 File Offset: 0x000FA7C4
 	public bool IsTravellingAndFueled()
 	{
 		return this.HasResourcesToMove(1, Clustercraft.CombustionResource.All) && this.m_clusterTraveler.IsTraveling();
 	}
 
-	// Token: 0x060085C2 RID: 34242 RVA: 0x000FC5DD File Offset: 0x000FA7DD
 	public override bool ShowProgressBar()
 	{
 		return this.IsTravellingAndFueled();
 	}
 
-	// Token: 0x060085C3 RID: 34243 RVA: 0x000FC5E5 File Offset: 0x000FA7E5
 	public override float GetProgress()
 	{
 		return this.m_clusterTraveler.GetMoveProgress();
 	}
 
-	// Token: 0x060085C4 RID: 34244 RVA: 0x00357194 File Offset: 0x00355394
 	[OnDeserialized]
 	private void OnDeserialized()
 	{
@@ -1076,40 +989,31 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		}
 	}
 
-	// Token: 0x060085C5 RID: 34245 RVA: 0x000FC5F2 File Offset: 0x000FA7F2
 	public float GetRange()
 	{
 		return this.ModuleInterface.Range;
 	}
 
-	// Token: 0x060085C6 RID: 34246 RVA: 0x000FC5FF File Offset: 0x000FA7FF
 	public int GetRangeInTiles()
 	{
 		return this.ModuleInterface.RangeInTiles;
 	}
 
-	// Token: 0x0400658D RID: 25997
 	[Serialize]
 	private string m_name;
 
-	// Token: 0x0400658F RID: 25999
 	[MyCmpReq]
 	private ClusterTraveler m_clusterTraveler;
 
-	// Token: 0x04006590 RID: 26000
 	[MyCmpReq]
 	private CraftModuleInterface m_moduleInterface;
 
-	// Token: 0x04006591 RID: 26001
 	private Guid mainStatusHandle;
 
-	// Token: 0x04006592 RID: 26002
 	private Guid cargoStatusHandle;
 
-	// Token: 0x04006593 RID: 26003
 	private Guid missionControlStatusHandle = Guid.Empty;
 
-	// Token: 0x04006594 RID: 26004
 	public static Dictionary<Tag, float> dlc1OxidizerEfficiencies = new Dictionary<Tag, float>
 	{
 		{
@@ -1126,88 +1030,65 @@ public class Clustercraft : ClusterGridEntity, IClusterRange, ISim4000ms, ISim10
 		}
 	};
 
-	// Token: 0x04006595 RID: 26005
 	[Serialize]
 	[Range(0f, 1f)]
 	public float AutoPilotMultiplier = 1f;
 
-	// Token: 0x04006596 RID: 26006
 	[Serialize]
 	[Range(0f, 2f)]
 	public float PilotSkillMultiplier = 1f;
 
-	// Token: 0x04006597 RID: 26007
 	[Serialize]
 	public float controlStationBuffTimeRemaining;
 
-	// Token: 0x04006598 RID: 26008
 	[Serialize]
 	private bool m_launchRequested;
 
-	// Token: 0x04006599 RID: 26009
 	[Serialize]
 	private Clustercraft.CraftStatus status;
 
-	// Token: 0x0400659A RID: 26010
 	[MyCmpGet]
 	private KSelectable selectable;
 
-	// Token: 0x0400659B RID: 26011
 	private static EventSystem.IntraObjectHandler<Clustercraft> RocketModuleChangedHandler = new EventSystem.IntraObjectHandler<Clustercraft>(delegate(Clustercraft cmp, object data)
 	{
 		cmp.RocketModuleChanged(data);
 	});
 
-	// Token: 0x0400659C RID: 26012
 	private static EventSystem.IntraObjectHandler<Clustercraft> ClusterDestinationChangedHandler = new EventSystem.IntraObjectHandler<Clustercraft>(delegate(Clustercraft cmp, object data)
 	{
 		cmp.OnClusterDestinationChanged(data);
 	});
 
-	// Token: 0x0400659D RID: 26013
 	private static EventSystem.IntraObjectHandler<Clustercraft> ClusterDestinationReachedHandler = new EventSystem.IntraObjectHandler<Clustercraft>(delegate(Clustercraft cmp, object data)
 	{
 		cmp.OnClusterDestinationReached(data);
 	});
 
-	// Token: 0x0400659E RID: 26014
 	private static EventSystem.IntraObjectHandler<Clustercraft> NameChangedHandler = new EventSystem.IntraObjectHandler<Clustercraft>(delegate(Clustercraft cmp, object data)
 	{
 		cmp.SetRocketName(data);
 	});
 
-	// Token: 0x02001928 RID: 6440
 	public enum CraftStatus
 	{
-		// Token: 0x040065A0 RID: 26016
 		Grounded,
-		// Token: 0x040065A1 RID: 26017
 		Launching,
-		// Token: 0x040065A2 RID: 26018
 		InFlight,
-		// Token: 0x040065A3 RID: 26019
 		Landing
 	}
 
-	// Token: 0x02001929 RID: 6441
 	public enum CombustionResource
 	{
-		// Token: 0x040065A5 RID: 26021
 		Fuel,
-		// Token: 0x040065A6 RID: 26022
 		Oxidizer,
-		// Token: 0x040065A7 RID: 26023
 		All
 	}
 
-	// Token: 0x0200192A RID: 6442
 	public enum PadLandingStatus
 	{
-		// Token: 0x040065A9 RID: 26025
 		CanLandImmediately,
-		// Token: 0x040065AA RID: 26026
 		CanLandEventually,
-		// Token: 0x040065AB RID: 26027
 		CanNeverLand
 	}
 }

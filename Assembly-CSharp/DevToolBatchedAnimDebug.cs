@@ -4,16 +4,13 @@ using System.Linq;
 using ImGuiNET;
 using UnityEngine;
 
-// Token: 0x02000BCF RID: 3023
 public class DevToolBatchedAnimDebug : DevTool
 {
-	// Token: 0x06003955 RID: 14677 RVA: 0x000C9902 File Offset: 0x000C7B02
 	public DevToolBatchedAnimDebug()
 	{
 		this.drawFlags = ImGuiWindowFlags.MenuBar;
 	}
 
-	// Token: 0x06003956 RID: 14678 RVA: 0x0022AD28 File Offset: 0x00228F28
 	protected override void RenderTo(DevPanel panel)
 	{
 		if (ImGui.BeginMenuBar())
@@ -168,21 +165,16 @@ public class DevToolBatchedAnimDebug : DevTool
 		}
 	}
 
-	// Token: 0x06003957 RID: 14679 RVA: 0x000C9920 File Offset: 0x000C7B20
 	private bool StringContains(string target, string query)
 	{
 		return this.Filter == "" || target.IndexOf(query, 0, StringComparison.CurrentCultureIgnoreCase) != -1;
 	}
 
-	// Token: 0x040027A1 RID: 10145
 	private GameObject Selection;
 
-	// Token: 0x040027A2 RID: 10146
 	private bool LockSelection;
 
-	// Token: 0x040027A3 RID: 10147
 	private string Filter = "";
 
-	// Token: 0x040027A4 RID: 10148
 	private int FrameIndex;
 }

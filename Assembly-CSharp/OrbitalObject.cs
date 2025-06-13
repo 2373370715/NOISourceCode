@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x020016D5 RID: 5845
 [AddComponentMenu("KMonoBehaviour/scripts/OrbitalObject")]
 [SerializationConfig(MemberSerialization.OptIn)]
 public class OrbitalObject : KMonoBehaviour, IRenderEveryTick
 {
-	// Token: 0x06007899 RID: 30873 RVA: 0x00320184 File Offset: 0x0031E384
 	public void Init(string orbit_data_name, WorldContainer orbiting_world, List<Ref<OrbitalObject>> orbiting_obj)
 	{
 		OrbitalData orbitalData = Db.Get().OrbitalTypeCategories.Get(orbit_data_name);
@@ -29,7 +27,6 @@ public class OrbitalObject : KMonoBehaviour, IRenderEveryTick
 		this.orbitalDBId = orbitalData.Id;
 	}
 
-	// Token: 0x0600789A RID: 30874 RVA: 0x0032023C File Offset: 0x0031E43C
 	protected override void OnSpawn()
 	{
 		this.world = ClusterManager.Instance.GetWorld(this.orbitingWorldId);
@@ -47,7 +44,6 @@ public class OrbitalObject : KMonoBehaviour, IRenderEveryTick
 		this.animController = kbatchedAnimController;
 	}
 
-	// Token: 0x0600789B RID: 30875 RVA: 0x003202DC File Offset: 0x0031E4DC
 	public void RenderEveryTick(float dt)
 	{
 		float time = GameClock.Instance.GetTime();
@@ -83,7 +79,6 @@ public class OrbitalObject : KMonoBehaviour, IRenderEveryTick
 		}
 	}
 
-	// Token: 0x0600789C RID: 30876 RVA: 0x0032049C File Offset: 0x0031E69C
 	private Vector3 CalculateWorldPos(float time, out bool behind)
 	{
 		Vector3 result;
@@ -107,7 +102,6 @@ public class OrbitalObject : KMonoBehaviour, IRenderEveryTick
 		return result;
 	}
 
-	// Token: 0x0600789D RID: 30877 RVA: 0x003205EC File Offset: 0x0031E7EC
 	private string GetInitialAnim(OrbitalData data)
 	{
 		if (data.initialAnim.IsNullOrWhiteSpace())
@@ -119,7 +113,6 @@ public class OrbitalObject : KMonoBehaviour, IRenderEveryTick
 		return data.initialAnim;
 	}
 
-	// Token: 0x0600789E RID: 30878 RVA: 0x00320644 File Offset: 0x0031E844
 	private Vector3 GetWorldOrigin(WorldContainer wc, OrbitalData data)
 	{
 		if (wc != null)
@@ -131,13 +124,11 @@ public class OrbitalObject : KMonoBehaviour, IRenderEveryTick
 		return new Vector3((float)Grid.WidthInCells * data.xGridPercent, (float)Grid.HeightInCells * data.yGridPercent, 0f);
 	}
 
-	// Token: 0x0600789F RID: 30879 RVA: 0x000F3CCF File Offset: 0x000F1ECF
 	private float GetAngle(OrbitalData data)
 	{
 		return UnityEngine.Random.Range(data.minAngle, data.maxAngle);
 	}
 
-	// Token: 0x060078A0 RID: 30880 RVA: 0x003206CC File Offset: 0x0031E8CC
 	private int GetTimeOffset(List<Ref<OrbitalObject>> orbiting_obj)
 	{
 		List<int> list = new List<int>();
@@ -156,40 +147,30 @@ public class OrbitalObject : KMonoBehaviour, IRenderEveryTick
 		return num;
 	}
 
-	// Token: 0x04005A94 RID: 23188
 	private WorldContainer world;
 
-	// Token: 0x04005A95 RID: 23189
 	private OrbitalData orbitData;
 
-	// Token: 0x04005A96 RID: 23190
 	private KBatchedAnimController animController;
 
-	// Token: 0x04005A97 RID: 23191
 	[Serialize]
 	private string animFilename;
 
-	// Token: 0x04005A98 RID: 23192
 	[Serialize]
 	private string initialAnim;
 
-	// Token: 0x04005A99 RID: 23193
 	[Serialize]
 	private Vector3 worldOrbitingOrigin;
 
-	// Token: 0x04005A9A RID: 23194
 	[Serialize]
 	private int orbitingWorldId;
 
-	// Token: 0x04005A9B RID: 23195
 	[Serialize]
 	private float angle;
 
-	// Token: 0x04005A9C RID: 23196
 	[Serialize]
 	public int timeoffset;
 
-	// Token: 0x04005A9D RID: 23197
 	[Serialize]
 	public string orbitalDBId;
 }

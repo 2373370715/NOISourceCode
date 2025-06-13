@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000585 RID: 1413
 public class SaunaConfig : IBuildingConfig
 {
-	// Token: 0x0600185D RID: 6237 RVA: 0x001AAD78 File Offset: 0x001A8F78
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "Sauna";
@@ -46,7 +44,6 @@ public class SaunaConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600185E RID: 6238 RVA: 0x001AAE78 File Offset: 0x001A9078
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.RecBuilding, false);
@@ -75,24 +72,18 @@ public class SaunaConfig : IBuildingConfig
 		go.AddOrGetDef<RocketUsageRestriction.Def>();
 	}
 
-	// Token: 0x0600185F RID: 6239 RVA: 0x000B0AEB File Offset: 0x000AECEB
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.GetComponent<RequireInputs>().requireConduitHasMass = false;
 	}
 
-	// Token: 0x04001019 RID: 4121
 	public const string ID = "Sauna";
 
-	// Token: 0x0400101A RID: 4122
 	public const string COLD_IMMUNITY_EFFECT_NAME = "WarmTouch";
 
-	// Token: 0x0400101B RID: 4123
 	public const float COLD_IMMUNITY_DURATION = 1800f;
 
-	// Token: 0x0400101C RID: 4124
 	private const float STEAM_PER_USE_KG = 25f;
 
-	// Token: 0x0400101D RID: 4125
 	private const float WATER_OUTPUT_TEMP = 353.15f;
 }

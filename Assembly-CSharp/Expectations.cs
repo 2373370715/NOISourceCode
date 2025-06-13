@@ -3,22 +3,18 @@ using System.Collections.Generic;
 using Klei.AI;
 using STRINGS;
 
-// Token: 0x02001316 RID: 4886
 public static class Expectations
 {
-	// Token: 0x06006419 RID: 25625 RVA: 0x000E5CDB File Offset: 0x000E3EDB
 	private static AttributeModifier QOLModifier(int level)
 	{
 		return new AttributeModifier(Db.Get().Attributes.QualityOfLifeExpectation.Id, (float)level, DUPLICANTS.NEEDS.QUALITYOFLIFE.EXPECTATION_MOD_NAME, false, false, true);
 	}
 
-	// Token: 0x0600641A RID: 25626 RVA: 0x000E5D05 File Offset: 0x000E3F05
 	private static AttributeModifierExpectation QOLExpectation(int level, string name, string description)
 	{
 		return new AttributeModifierExpectation("QOL_" + level.ToString(), name, description, Expectations.QOLModifier(level), Assets.GetSprite("icon_category_morale"));
 	}
 
-	// Token: 0x040047EA RID: 18410
 	public static List<Expectation[]> ExpectationsByTier = new List<Expectation[]>
 	{
 		new Expectation[]

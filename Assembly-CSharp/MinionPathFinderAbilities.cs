@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
 
-// Token: 0x02000658 RID: 1624
 public class MinionPathFinderAbilities : PathFinderAbilities
 {
-	// Token: 0x06001CEF RID: 7407 RVA: 0x001B9560 File Offset: 0x001B7760
 	public MinionPathFinderAbilities(Navigator navigator) : base(navigator)
 	{
 		this.transitionVoidOffsets = new CellOffset[navigator.NavGrid.transitions.Length][];
@@ -14,26 +12,22 @@ public class MinionPathFinderAbilities : PathFinderAbilities
 		}
 	}
 
-	// Token: 0x06001CF0 RID: 7408 RVA: 0x000B7811 File Offset: 0x000B5A11
 	protected override void Refresh(Navigator navigator)
 	{
 		this.proxyID = navigator.GetComponent<MinionIdentity>().assignableProxy.Get().GetComponent<KPrefabID>().InstanceID;
 		this.out_of_fuel = navigator.HasTag(GameTags.JetSuitOutOfFuel);
 	}
 
-	// Token: 0x06001CF1 RID: 7409 RVA: 0x000B7844 File Offset: 0x000B5A44
 	public void SetIdleNavMaskEnabled(bool enabled)
 	{
 		this.idleNavMaskEnabled = enabled;
 	}
 
-	// Token: 0x06001CF2 RID: 7410 RVA: 0x000B784D File Offset: 0x000B5A4D
 	private static bool IsAccessPermitted(int proxyID, int cell, int from_cell, NavType from_nav_type)
 	{
 		return Grid.HasPermission(cell, proxyID, from_cell, from_nav_type);
 	}
 
-	// Token: 0x06001CF3 RID: 7411 RVA: 0x000B7858 File Offset: 0x000B5A58
 	public override int GetSubmergedPathCostPenalty(PathFinder.PotentialPath path, NavGrid.Link link)
 	{
 		if (!path.HasAnyFlag(PathFinder.PotentialPath.Flags.HasAtmoSuit | PathFinder.PotentialPath.Flags.HasJetPack | PathFinder.PotentialPath.Flags.HasLeadSuit))
@@ -43,7 +37,6 @@ public class MinionPathFinderAbilities : PathFinderAbilities
 		return 0;
 	}
 
-	// Token: 0x06001CF4 RID: 7412 RVA: 0x001B95C0 File Offset: 0x001B77C0
 	public override bool TraversePath(ref PathFinder.PotentialPath path, int from_cell, NavType from_nav_type, int cost, int transition_id, bool submerged)
 	{
 		if (!MinionPathFinderAbilities.IsAccessPermitted(this.proxyID, path.cell, from_cell, from_nav_type))
@@ -107,27 +100,21 @@ public class MinionPathFinderAbilities : PathFinderAbilities
 		return true;
 	}
 
-	// Token: 0x06001CF5 RID: 7413 RVA: 0x000AA038 File Offset: 0x000A8238
 	[Conditional("ENABLE_NAVIGATION_MASK_PROFILING")]
 	private void BeginSample(string region_name)
 	{
 	}
 
-	// Token: 0x06001CF6 RID: 7414 RVA: 0x000AA038 File Offset: 0x000A8238
 	[Conditional("ENABLE_NAVIGATION_MASK_PROFILING")]
 	private void EndSample(string region_name)
 	{
 	}
 
-	// Token: 0x04001250 RID: 4688
 	private CellOffset[][] transitionVoidOffsets;
 
-	// Token: 0x04001251 RID: 4689
 	private int proxyID;
 
-	// Token: 0x04001252 RID: 4690
 	private bool out_of_fuel;
 
-	// Token: 0x04001253 RID: 4691
 	private bool idleNavMaskEnabled;
 }

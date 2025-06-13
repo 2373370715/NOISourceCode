@@ -2,74 +2,60 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001717 RID: 5911
 public class EvilFlower : StateMachineComponent<EvilFlower.StatesInstance>
 {
-	// Token: 0x060079B8 RID: 31160 RVA: 0x000F4827 File Offset: 0x000F2A27
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 		base.Subscribe<EvilFlower>(1309017699, EvilFlower.SetReplantedTrueDelegate);
 	}
 
-	// Token: 0x060079B9 RID: 31161 RVA: 0x000F4840 File Offset: 0x000F2A40
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
 		base.smi.StartSM();
 	}
 
-	// Token: 0x060079BA RID: 31162 RVA: 0x000F42AD File Offset: 0x000F24AD
 	protected void DestroySelf(object callbackParam)
 	{
 		CreatureHelpers.DeselectCreature(base.gameObject);
 		Util.KDestroyGameObject(base.gameObject);
 	}
 
-	// Token: 0x04005B86 RID: 23430
 	[MyCmpReq]
 	private WiltCondition wiltCondition;
 
-	// Token: 0x04005B87 RID: 23431
 	[MyCmpReq]
 	private EntombVulnerable entombVulnerable;
 
-	// Token: 0x04005B88 RID: 23432
 	public bool replanted;
 
-	// Token: 0x04005B89 RID: 23433
 	public EffectorValues positive_decor_effect = new EffectorValues
 	{
 		amount = 1,
 		radius = 5
 	};
 
-	// Token: 0x04005B8A RID: 23434
 	public EffectorValues negative_decor_effect = new EffectorValues
 	{
 		amount = -1,
 		radius = 5
 	};
 
-	// Token: 0x04005B8B RID: 23435
 	private static readonly EventSystem.IntraObjectHandler<EvilFlower> SetReplantedTrueDelegate = new EventSystem.IntraObjectHandler<EvilFlower>(delegate(EvilFlower component, object data)
 	{
 		component.replanted = true;
 	});
 
-	// Token: 0x02001718 RID: 5912
 	public class StatesInstance : GameStateMachine<EvilFlower.States, EvilFlower.StatesInstance, EvilFlower, object>.GameInstance
 	{
-		// Token: 0x060079BD RID: 31165 RVA: 0x000F486F File Offset: 0x000F2A6F
 		public StatesInstance(EvilFlower smi) : base(smi)
 		{
 		}
 	}
 
-	// Token: 0x02001719 RID: 5913
 	public class States : GameStateMachine<EvilFlower.States, EvilFlower.StatesInstance, EvilFlower>
 	{
-		// Token: 0x060079BE RID: 31166 RVA: 0x00324020 File Offset: 0x00322220
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.grow;
@@ -121,38 +107,27 @@ public class EvilFlower : StateMachineComponent<EvilFlower.StatesInstance>
 			});
 		}
 
-		// Token: 0x04005B8C RID: 23436
 		public GameStateMachine<EvilFlower.States, EvilFlower.StatesInstance, EvilFlower, object>.State grow;
 
-		// Token: 0x04005B8D RID: 23437
 		public GameStateMachine<EvilFlower.States, EvilFlower.StatesInstance, EvilFlower, object>.State blocked_from_growing;
 
-		// Token: 0x04005B8E RID: 23438
 		public EvilFlower.States.AliveStates alive;
 
-		// Token: 0x04005B8F RID: 23439
 		public GameStateMachine<EvilFlower.States, EvilFlower.StatesInstance, EvilFlower, object>.State dead;
 
-		// Token: 0x0200171A RID: 5914
 		public class AliveStates : GameStateMachine<EvilFlower.States, EvilFlower.StatesInstance, EvilFlower, object>.PlantAliveSubState
 		{
-			// Token: 0x04005B90 RID: 23440
 			public GameStateMachine<EvilFlower.States, EvilFlower.StatesInstance, EvilFlower, object>.State idle;
 
-			// Token: 0x04005B91 RID: 23441
 			public EvilFlower.States.WiltingState wilting;
 		}
 
-		// Token: 0x0200171B RID: 5915
 		public class WiltingState : GameStateMachine<EvilFlower.States, EvilFlower.StatesInstance, EvilFlower, object>.State
 		{
-			// Token: 0x04005B92 RID: 23442
 			public GameStateMachine<EvilFlower.States, EvilFlower.StatesInstance, EvilFlower, object>.State wilting_pre;
 
-			// Token: 0x04005B93 RID: 23443
 			public GameStateMachine<EvilFlower.States, EvilFlower.StatesInstance, EvilFlower, object>.State wilting;
 
-			// Token: 0x04005B94 RID: 23444
 			public GameStateMachine<EvilFlower.States, EvilFlower.StatesInstance, EvilFlower, object>.State wilting_pst;
 		}
 	}

@@ -3,21 +3,15 @@ using System.Collections.Generic;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001F1B RID: 7963
 public class ReportScreen : KScreen
 {
-	// Token: 0x17000ABD RID: 2749
-	// (get) Token: 0x0600A778 RID: 42872 RVA: 0x0011122B File Offset: 0x0010F42B
-	// (set) Token: 0x0600A779 RID: 42873 RVA: 0x00111232 File Offset: 0x0010F432
 	public static ReportScreen Instance { get; private set; }
 
-	// Token: 0x0600A77A RID: 42874 RVA: 0x0011123A File Offset: 0x0010F43A
 	public static void DestroyInstance()
 	{
 		ReportScreen.Instance = null;
 	}
 
-	// Token: 0x0600A77B RID: 42875 RVA: 0x00404E7C File Offset: 0x0040307C
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -42,13 +36,11 @@ public class ReportScreen : KScreen
 		base.ConsumeMouseScroll = true;
 	}
 
-	// Token: 0x0600A77C RID: 42876 RVA: 0x00107377 File Offset: 0x00105577
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
 	}
 
-	// Token: 0x0600A77D RID: 42877 RVA: 0x00111242 File Offset: 0x0010F442
 	protected override void OnShow(bool bShow)
 	{
 		base.OnShow(bShow);
@@ -58,20 +50,17 @@ public class ReportScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600A77E RID: 42878 RVA: 0x00111268 File Offset: 0x0010F468
 	public void SetTitle(string title)
 	{
 		this.title.text = title;
 	}
 
-	// Token: 0x0600A77F RID: 42879 RVA: 0x00111276 File Offset: 0x0010F476
 	public override void ScreenUpdate(bool b)
 	{
 		base.ScreenUpdate(b);
 		this.Refresh();
 	}
 
-	// Token: 0x0600A780 RID: 42880 RVA: 0x00404F20 File Offset: 0x00403120
 	private void Refresh()
 	{
 		global::Debug.Assert(this.currentReport != null);
@@ -131,7 +120,6 @@ public class ReportScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600A781 RID: 42881 RVA: 0x00111285 File Offset: 0x0010F485
 	public void ShowReport(int day)
 	{
 		this.currentReport = ReportManager.Instance.FindReport(day);
@@ -139,7 +127,6 @@ public class ReportScreen : KScreen
 		this.Refresh();
 	}
 
-	// Token: 0x0600A782 RID: 42882 RVA: 0x004051BC File Offset: 0x004033BC
 	private GameObject AddSpacer(int group)
 	{
 		GameObject gameObject;
@@ -157,7 +144,6 @@ public class ReportScreen : KScreen
 		return gameObject;
 	}
 
-	// Token: 0x0600A783 RID: 42883 RVA: 0x0040523C File Offset: 0x0040343C
 	private GameObject CreateHeader(ReportManager.ReportGroup reportGroup)
 	{
 		GameObject gameObject = null;
@@ -173,7 +159,6 @@ public class ReportScreen : KScreen
 		return gameObject;
 	}
 
-	// Token: 0x0600A784 RID: 42884 RVA: 0x004052C4 File Offset: 0x004034C4
 	private GameObject CreateOrUpdateLine(ReportManager.ReportEntry entry, ReportManager.ReportGroup reportGroup, bool is_line_active)
 	{
 		GameObject gameObject = null;
@@ -199,52 +184,40 @@ public class ReportScreen : KScreen
 		return gameObject;
 	}
 
-	// Token: 0x0600A785 RID: 42885 RVA: 0x001112BD File Offset: 0x0010F4BD
 	private void OnClickClose()
 	{
 		base.PlaySound3D(GlobalAssets.GetSound("HUD_Click_Close", false));
 		this.Show(false);
 	}
 
-	// Token: 0x0400836E RID: 33646
 	[SerializeField]
 	private LocText title;
 
-	// Token: 0x0400836F RID: 33647
 	[SerializeField]
 	private KButton closeButton;
 
-	// Token: 0x04008370 RID: 33648
 	[SerializeField]
 	private KButton prevButton;
 
-	// Token: 0x04008371 RID: 33649
 	[SerializeField]
 	private KButton nextButton;
 
-	// Token: 0x04008372 RID: 33650
 	[SerializeField]
 	private KButton summaryButton;
 
-	// Token: 0x04008373 RID: 33651
 	[SerializeField]
 	private GameObject lineItem;
 
-	// Token: 0x04008374 RID: 33652
 	[SerializeField]
 	private GameObject lineItemSpacer;
 
-	// Token: 0x04008375 RID: 33653
 	[SerializeField]
 	private GameObject lineItemHeader;
 
-	// Token: 0x04008376 RID: 33654
 	[SerializeField]
 	private GameObject contentFolder;
 
-	// Token: 0x04008377 RID: 33655
 	private Dictionary<string, GameObject> lineItems = new Dictionary<string, GameObject>();
 
-	// Token: 0x04008378 RID: 33656
 	private ReportManager.DailyReport currentReport;
 }

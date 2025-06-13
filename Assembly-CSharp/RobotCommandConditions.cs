@@ -1,9 +1,7 @@
 ﻿using System;
 
-// Token: 0x0200197B RID: 6523
 public class RobotCommandConditions : CommandConditions
 {
-	// Token: 0x060087E2 RID: 34786 RVA: 0x0036069C File Offset: 0x0035E89C
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -31,6 +29,5 @@ public class RobotCommandConditions : CommandConditions
 		this.robotPilotReady = (ConditionRobotPilotReady)component.AddModuleCondition((base.GetComponent<ILaunchableRocket>().registerType == LaunchableRocketRegisterType.Spacecraft) ? ProcessCondition.ProcessConditionType.RocketPrep : ProcessCondition.ProcessConditionType.RocketFlight, new ConditionRobotPilotReady(base.GetComponent<RoboPilotModule>()));
 	}
 
-	// Token: 0x040066E5 RID: 26341
 	public ConditionRobotPilotReady robotPilotReady;
 }

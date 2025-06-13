@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02001366 RID: 4966
 public class GameNavGrids
 {
-	// Token: 0x060065B7 RID: 26039 RVA: 0x002D3100 File Offset: 0x002D1300
 	public GameNavGrids(Pathfinding pathfinding)
 	{
 		this.CreateDuplicantNavigation(pathfinding);
@@ -51,7 +49,6 @@ public class GameNavGrids
 		this.CreateSquirrelNavigation(pathfinding);
 	}
 
-	// Token: 0x060065B8 RID: 26040 RVA: 0x002D32A4 File Offset: 0x002D14A4
 	private void CreateDuplicantNavigation(Pathfinding pathfinding)
 	{
 		NavOffset[] invalid_nav_offsets = new NavOffset[]
@@ -589,7 +586,6 @@ public class GameNavGrids
 		pathfinding.AddNavGrid(this.RobotGrid);
 	}
 
-	// Token: 0x060065B9 RID: 26041 RVA: 0x002D589C File Offset: 0x002D3A9C
 	private NavGrid CreateWalkerNavigation(Pathfinding pathfinding, string id, CellOffset[] bounding_offsets)
 	{
 		NavGrid.Transition[] transitions = new NavGrid.Transition[]
@@ -636,7 +632,6 @@ public class GameNavGrids
 		return navGrid;
 	}
 
-	// Token: 0x060065BA RID: 26042 RVA: 0x002D5AD8 File Offset: 0x002D3CD8
 	private NavGrid CreateWalkerBabyNavigation(Pathfinding pathfinding, string id, CellOffset[] bounding_offsets)
 	{
 		NavGrid.Transition[] transitions = new NavGrid.Transition[]
@@ -660,7 +655,6 @@ public class GameNavGrids
 		return navGrid;
 	}
 
-	// Token: 0x060065BB RID: 26043 RVA: 0x002D5B84 File Offset: 0x002D3D84
 	private NavGrid CreateWalkerLargeNavigation(Pathfinding pathfinding, string id, CellOffset[] bounding_offsets)
 	{
 		NavGrid.Transition[] transitions = new NavGrid.Transition[]
@@ -705,7 +699,6 @@ public class GameNavGrids
 		return navGrid;
 	}
 
-	// Token: 0x060065BC RID: 26044 RVA: 0x002D5D40 File Offset: 0x002D3F40
 	private void CreateDreckoNavigation(Pathfinding pathfinding)
 	{
 		CellOffset[] bounding_offsets = new CellOffset[]
@@ -883,7 +876,6 @@ public class GameNavGrids
 		pathfinding.AddNavGrid(this.DreckoGrid);
 	}
 
-	// Token: 0x060065BD RID: 26045 RVA: 0x002D66A8 File Offset: 0x002D48A8
 	private void CreateDreckoBabyNavigation(Pathfinding pathfinding)
 	{
 		CellOffset[] bounding_offsets = new CellOffset[]
@@ -956,7 +948,6 @@ public class GameNavGrids
 		pathfinding.AddNavGrid(this.DreckoBabyGrid);
 	}
 
-	// Token: 0x060065BE RID: 26046 RVA: 0x002D6B38 File Offset: 0x002D4D38
 	private void CreateFloaterNavigation(Pathfinding pathfinding)
 	{
 		CellOffset[] bounding_offsets = new CellOffset[]
@@ -1072,7 +1063,6 @@ public class GameNavGrids
 		pathfinding.AddNavGrid(this.FloaterGrid);
 	}
 
-	// Token: 0x060065BF RID: 26047 RVA: 0x002D7178 File Offset: 0x002D5378
 	private NavGrid CreateFlyerNavigation(Pathfinding pathfinding, string id, CellOffset[] bounding_offsets)
 	{
 		NavGrid.Transition[] transitions = new NavGrid.Transition[]
@@ -1127,7 +1117,6 @@ public class GameNavGrids
 		return navGrid;
 	}
 
-	// Token: 0x060065C0 RID: 26048 RVA: 0x002D7524 File Offset: 0x002D5724
 	private void CreateSwimmerNavigation(Pathfinding pathfinding)
 	{
 		CellOffset[] bounding_offsets = new CellOffset[]
@@ -1166,7 +1155,6 @@ public class GameNavGrids
 		pathfinding.AddNavGrid(this.SwimmerGrid);
 	}
 
-	// Token: 0x060065C1 RID: 26049 RVA: 0x002D7710 File Offset: 0x002D5910
 	private void CreateDiggerNavigation(Pathfinding pathfinding)
 	{
 		CellOffset[] bounding_offsets = new CellOffset[]
@@ -1260,7 +1248,6 @@ public class GameNavGrids
 		pathfinding.AddNavGrid(this.DiggerGrid);
 	}
 
-	// Token: 0x060065C2 RID: 26050 RVA: 0x002D7EA8 File Offset: 0x002D60A8
 	private void CreateSquirrelNavigation(Pathfinding pathfinding)
 	{
 		CellOffset[] bounding_offsets = new CellOffset[]
@@ -1356,7 +1343,6 @@ public class GameNavGrids
 		pathfinding.AddNavGrid(this.SquirrelGrid);
 	}
 
-	// Token: 0x060065C3 RID: 26051 RVA: 0x002D84CC File Offset: 0x002D66CC
 	private CellOffset[] MirrorOffsets(CellOffset[] offsets)
 	{
 		List<CellOffset> list = new List<CellOffset>();
@@ -1368,7 +1354,6 @@ public class GameNavGrids
 		return list.ToArray();
 	}
 
-	// Token: 0x060065C4 RID: 26052 RVA: 0x002D8514 File Offset: 0x002D6714
 	private NavOffset[] MirrorNavOffsets(NavOffset[] offsets)
 	{
 		List<NavOffset> list = new List<NavOffset>();
@@ -1381,7 +1366,6 @@ public class GameNavGrids
 		return list.ToArray();
 	}
 
-	// Token: 0x060065C5 RID: 26053 RVA: 0x002D8578 File Offset: 0x002D6778
 	private NavGrid.Transition[] MirrorTransitions(NavGrid.Transition[] transitions)
 	{
 		List<NavGrid.Transition> list = new List<NavGrid.Transition>();
@@ -1405,7 +1389,6 @@ public class GameNavGrids
 		return list.ToArray();
 	}
 
-	// Token: 0x060065C6 RID: 26054 RVA: 0x002D8698 File Offset: 0x002D6898
 	private NavGrid.Transition[] CombineTransitions(NavGrid.Transition[] setA, NavGrid.Transition[] setB)
 	{
 		NavGrid.Transition[] array = new NavGrid.Transition[setA.Length + setB.Length];
@@ -1415,55 +1398,38 @@ public class GameNavGrids
 		return array;
 	}
 
-	// Token: 0x04004B7C RID: 19324
 	public NavGrid DuplicantGrid;
 
-	// Token: 0x04004B7D RID: 19325
 	public NavGrid WalkerGrid1x1;
 
-	// Token: 0x04004B7E RID: 19326
 	public NavGrid WalkerBabyGrid1x1;
 
-	// Token: 0x04004B7F RID: 19327
 	public NavGrid WalkerGrid1x2;
 
-	// Token: 0x04004B80 RID: 19328
 	public NavGrid WalkerGrid2x2;
 
-	// Token: 0x04004B81 RID: 19329
 	public NavGrid DreckoGrid;
 
-	// Token: 0x04004B82 RID: 19330
 	public NavGrid DreckoBabyGrid;
 
-	// Token: 0x04004B83 RID: 19331
 	public NavGrid FloaterGrid;
 
-	// Token: 0x04004B84 RID: 19332
 	public NavGrid FlyerGrid1x2;
 
-	// Token: 0x04004B85 RID: 19333
 	public NavGrid FlyerGrid1x1;
 
-	// Token: 0x04004B86 RID: 19334
 	public NavGrid FlyerGrid2x2;
 
-	// Token: 0x04004B87 RID: 19335
 	public NavGrid SwimmerGrid;
 
-	// Token: 0x04004B88 RID: 19336
 	public NavGrid DiggerGrid;
 
-	// Token: 0x04004B89 RID: 19337
 	public NavGrid SquirrelGrid;
 
-	// Token: 0x04004B8A RID: 19338
 	public NavGrid RobotGrid;
 
-	// Token: 0x02001367 RID: 4967
 	public class SwimValidator : NavTableValidator
 	{
-		// Token: 0x060065C7 RID: 26055 RVA: 0x002D86F0 File Offset: 0x002D68F0
 		public SwimValidator()
 		{
 			World instance = World.Instance;
@@ -1471,7 +1437,6 @@ public class GameNavGrids
 			GameScenePartitioner.Instance.AddGlobalLayerListener(GameScenePartitioner.Instance.objectLayers[9], new Action<int, object>(this.OnFoundationTileChanged));
 		}
 
-		// Token: 0x060065C8 RID: 26056 RVA: 0x000E6D50 File Offset: 0x000E4F50
 		private void OnFoundationTileChanged(int cell, object unused)
 		{
 			if (this.onDirty != null)
@@ -1480,7 +1445,6 @@ public class GameNavGrids
 			}
 		}
 
-		// Token: 0x060065C9 RID: 26057 RVA: 0x002D874C File Offset: 0x002D694C
 		public override void UpdateCell(int cell, NavTable nav_table, CellOffset[] bounding_offsets)
 		{
 			bool flag = Grid.IsSubstantialLiquid(cell, 0.35f);
@@ -1492,7 +1456,6 @@ public class GameNavGrids
 			nav_table.SetValid(cell, NavType.Swim, is_valid);
 		}
 
-		// Token: 0x060065CA RID: 26058 RVA: 0x000E6D50 File Offset: 0x000E4F50
 		private void OnLiquidChanged(int cell)
 		{
 			if (this.onDirty != null)
@@ -1502,10 +1465,8 @@ public class GameNavGrids
 		}
 	}
 
-	// Token: 0x02001368 RID: 4968
 	public class FloorValidator : NavTableValidator
 	{
-		// Token: 0x060065CB RID: 26059 RVA: 0x002D879C File Offset: 0x002D699C
 		public FloorValidator(bool is_dupe)
 		{
 			World instance = World.Instance;
@@ -1514,14 +1475,12 @@ public class GameNavGrids
 			this.isDupe = is_dupe;
 		}
 
-		// Token: 0x060065CC RID: 26060 RVA: 0x002D8800 File Offset: 0x002D6A00
 		public override void UpdateCell(int cell, NavTable nav_table, CellOffset[] bounding_offsets)
 		{
 			bool flag = GameNavGrids.FloorValidator.IsWalkableCell(cell, Grid.CellBelow(cell), this.isDupe);
 			nav_table.SetValid(cell, NavType.Floor, flag && base.IsClear(cell, bounding_offsets, this.isDupe));
 		}
 
-		// Token: 0x060065CD RID: 26061 RVA: 0x002D883C File Offset: 0x002D6A3C
 		public static bool IsWalkableCell(int cell, int anchor_cell, bool is_dupe)
 		{
 			if (!Grid.IsWorldValidCell(cell))
@@ -1547,7 +1506,6 @@ public class GameNavGrids
 			return is_dupe && (Grid.NavValidatorMasks[cell] & (Grid.NavValidatorFlags.Ladder | Grid.NavValidatorFlags.Pole)) == (Grid.NavValidatorFlags)0 && (Grid.NavValidatorMasks[anchor_cell] & (Grid.NavValidatorFlags.Ladder | Grid.NavValidatorFlags.Pole)) > (Grid.NavValidatorFlags)0;
 		}
 
-		// Token: 0x060065CE RID: 26062 RVA: 0x002D88B4 File Offset: 0x002D6AB4
 		private void OnAddLadder(Ladder ladder)
 		{
 			int obj = Grid.PosToCell(ladder);
@@ -1557,7 +1515,6 @@ public class GameNavGrids
 			}
 		}
 
-		// Token: 0x060065CF RID: 26063 RVA: 0x002D88B4 File Offset: 0x002D6AB4
 		private void OnRemoveLadder(Ladder ladder)
 		{
 			int obj = Grid.PosToCell(ladder);
@@ -1567,7 +1524,6 @@ public class GameNavGrids
 			}
 		}
 
-		// Token: 0x060065D0 RID: 26064 RVA: 0x000E6D50 File Offset: 0x000E4F50
 		private void OnSolidChanged(int cell)
 		{
 			if (this.onDirty != null)
@@ -1576,7 +1532,6 @@ public class GameNavGrids
 			}
 		}
 
-		// Token: 0x060065D1 RID: 26065 RVA: 0x002D88DC File Offset: 0x002D6ADC
 		public override void Clear()
 		{
 			World instance = World.Instance;
@@ -1584,21 +1539,17 @@ public class GameNavGrids
 			Components.Ladders.Unregister(new Action<Ladder>(this.OnAddLadder), new Action<Ladder>(this.OnRemoveLadder));
 		}
 
-		// Token: 0x04004B8B RID: 19339
 		private bool isDupe;
 	}
 
-	// Token: 0x02001369 RID: 4969
 	public class WallValidator : NavTableValidator
 	{
-		// Token: 0x060065D2 RID: 26066 RVA: 0x000E6D66 File Offset: 0x000E4F66
 		public WallValidator()
 		{
 			World instance = World.Instance;
 			instance.OnSolidChanged = (Action<int>)Delegate.Combine(instance.OnSolidChanged, new Action<int>(this.OnSolidChanged));
 		}
 
-		// Token: 0x060065D3 RID: 26067 RVA: 0x002D8934 File Offset: 0x002D6B34
 		public override void UpdateCell(int cell, NavTable nav_table, CellOffset[] bounding_offsets)
 		{
 			bool flag = GameNavGrids.WallValidator.IsWalkableCell(cell, Grid.CellRight(cell));
@@ -1607,7 +1558,6 @@ public class GameNavGrids
 			nav_table.SetValid(cell, NavType.LeftWall, flag2 && base.IsClear(cell, bounding_offsets, false));
 		}
 
-		// Token: 0x060065D4 RID: 26068 RVA: 0x000E6D94 File Offset: 0x000E4F94
 		private static bool IsWalkableCell(int cell, int anchor_cell)
 		{
 			if (Grid.IsWorldValidCell(cell) && Grid.IsWorldValidCell(anchor_cell))
@@ -1628,7 +1578,6 @@ public class GameNavGrids
 			return false;
 		}
 
-		// Token: 0x060065D5 RID: 26069 RVA: 0x000E6D50 File Offset: 0x000E4F50
 		private void OnSolidChanged(int cell)
 		{
 			if (this.onDirty != null)
@@ -1637,7 +1586,6 @@ public class GameNavGrids
 			}
 		}
 
-		// Token: 0x060065D6 RID: 26070 RVA: 0x000E6DD0 File Offset: 0x000E4FD0
 		public override void Clear()
 		{
 			World instance = World.Instance;
@@ -1645,24 +1593,20 @@ public class GameNavGrids
 		}
 	}
 
-	// Token: 0x0200136A RID: 4970
 	public class CeilingValidator : NavTableValidator
 	{
-		// Token: 0x060065D7 RID: 26071 RVA: 0x000E6DF8 File Offset: 0x000E4FF8
 		public CeilingValidator()
 		{
 			World instance = World.Instance;
 			instance.OnSolidChanged = (Action<int>)Delegate.Combine(instance.OnSolidChanged, new Action<int>(this.OnSolidChanged));
 		}
 
-		// Token: 0x060065D8 RID: 26072 RVA: 0x002D898C File Offset: 0x002D6B8C
 		public override void UpdateCell(int cell, NavTable nav_table, CellOffset[] bounding_offsets)
 		{
 			bool flag = GameNavGrids.CeilingValidator.IsWalkableCell(cell, Grid.CellAbove(cell));
 			nav_table.SetValid(cell, NavType.Ceiling, flag && base.IsClear(cell, bounding_offsets, false));
 		}
 
-		// Token: 0x060065D9 RID: 26073 RVA: 0x002D89C0 File Offset: 0x002D6BC0
 		private static bool IsWalkableCell(int cell, int anchor_cell)
 		{
 			if (Grid.IsWorldValidCell(cell) && Grid.IsWorldValidCell(anchor_cell))
@@ -1691,7 +1635,6 @@ public class GameNavGrids
 			return false;
 		}
 
-		// Token: 0x060065DA RID: 26074 RVA: 0x000E6D50 File Offset: 0x000E4F50
 		private void OnSolidChanged(int cell)
 		{
 			if (this.onDirty != null)
@@ -1700,7 +1643,6 @@ public class GameNavGrids
 			}
 		}
 
-		// Token: 0x060065DB RID: 26075 RVA: 0x000E6E26 File Offset: 0x000E5026
 		public override void Clear()
 		{
 			World instance = World.Instance;
@@ -1708,16 +1650,13 @@ public class GameNavGrids
 		}
 	}
 
-	// Token: 0x0200136B RID: 4971
 	public class LadderValidator : NavTableValidator
 	{
-		// Token: 0x060065DC RID: 26076 RVA: 0x000E6E4E File Offset: 0x000E504E
 		public LadderValidator()
 		{
 			Components.Ladders.Register(new Action<Ladder>(this.OnAddLadder), new Action<Ladder>(this.OnRemoveLadder));
 		}
 
-		// Token: 0x060065DD RID: 26077 RVA: 0x002D88B4 File Offset: 0x002D6AB4
 		private void OnAddLadder(Ladder ladder)
 		{
 			int obj = Grid.PosToCell(ladder);
@@ -1727,7 +1666,6 @@ public class GameNavGrids
 			}
 		}
 
-		// Token: 0x060065DE RID: 26078 RVA: 0x002D88B4 File Offset: 0x002D6AB4
 		private void OnRemoveLadder(Ladder ladder)
 		{
 			int obj = Grid.PosToCell(ladder);
@@ -1737,39 +1675,32 @@ public class GameNavGrids
 			}
 		}
 
-		// Token: 0x060065DF RID: 26079 RVA: 0x000E6E78 File Offset: 0x000E5078
 		public override void UpdateCell(int cell, NavTable nav_table, CellOffset[] bounding_offsets)
 		{
 			nav_table.SetValid(cell, NavType.Ladder, base.IsClear(cell, bounding_offsets, true) && Grid.HasLadder[cell]);
 		}
 
-		// Token: 0x060065E0 RID: 26080 RVA: 0x000E6E9B File Offset: 0x000E509B
 		public override void Clear()
 		{
 			Components.Ladders.Unregister(new Action<Ladder>(this.OnAddLadder), new Action<Ladder>(this.OnRemoveLadder));
 		}
 	}
 
-	// Token: 0x0200136C RID: 4972
 	public class PoleValidator : GameNavGrids.LadderValidator
 	{
-		// Token: 0x060065E1 RID: 26081 RVA: 0x000E6EBF File Offset: 0x000E50BF
 		public override void UpdateCell(int cell, NavTable nav_table, CellOffset[] bounding_offsets)
 		{
 			nav_table.SetValid(cell, NavType.Pole, base.IsClear(cell, bounding_offsets, true) && Grid.HasPole[cell]);
 		}
 	}
 
-	// Token: 0x0200136D RID: 4973
 	public class TubeValidator : NavTableValidator
 	{
-		// Token: 0x060065E3 RID: 26083 RVA: 0x000E6EEA File Offset: 0x000E50EA
 		public TubeValidator()
 		{
 			Components.ITravelTubePieces.Register(new Action<ITravelTubePiece>(this.OnAddLadder), new Action<ITravelTubePiece>(this.OnRemoveLadder));
 		}
 
-		// Token: 0x060065E4 RID: 26084 RVA: 0x002D8A34 File Offset: 0x002D6C34
 		private void OnAddLadder(ITravelTubePiece tube)
 		{
 			int obj = Grid.PosToCell(tube.Position);
@@ -1779,7 +1710,6 @@ public class GameNavGrids
 			}
 		}
 
-		// Token: 0x060065E5 RID: 26085 RVA: 0x002D8A34 File Offset: 0x002D6C34
 		private void OnRemoveLadder(ITravelTubePiece tube)
 		{
 			int obj = Grid.PosToCell(tube.Position);
@@ -1789,29 +1719,24 @@ public class GameNavGrids
 			}
 		}
 
-		// Token: 0x060065E6 RID: 26086 RVA: 0x000E6F14 File Offset: 0x000E5114
 		public override void UpdateCell(int cell, NavTable nav_table, CellOffset[] bounding_offsets)
 		{
 			nav_table.SetValid(cell, NavType.Tube, Grid.HasTube[cell]);
 		}
 
-		// Token: 0x060065E7 RID: 26087 RVA: 0x000E6F29 File Offset: 0x000E5129
 		public override void Clear()
 		{
 			Components.ITravelTubePieces.Unregister(new Action<ITravelTubePiece>(this.OnAddLadder), new Action<ITravelTubePiece>(this.OnRemoveLadder));
 		}
 	}
 
-	// Token: 0x0200136E RID: 4974
 	public class TeleporterValidator : NavTableValidator
 	{
-		// Token: 0x060065E8 RID: 26088 RVA: 0x000E6F4D File Offset: 0x000E514D
 		public TeleporterValidator()
 		{
 			Components.NavTeleporters.Register(new Action<NavTeleporter>(this.OnAddTeleporter), new Action<NavTeleporter>(this.OnRemoveTeleporter));
 		}
 
-		// Token: 0x060065E9 RID: 26089 RVA: 0x002D88B4 File Offset: 0x002D6AB4
 		private void OnAddTeleporter(NavTeleporter teleporter)
 		{
 			int obj = Grid.PosToCell(teleporter);
@@ -1821,7 +1746,6 @@ public class GameNavGrids
 			}
 		}
 
-		// Token: 0x060065EA RID: 26090 RVA: 0x002D88B4 File Offset: 0x002D6AB4
 		private void OnRemoveTeleporter(NavTeleporter teleporter)
 		{
 			int obj = Grid.PosToCell(teleporter);
@@ -1831,24 +1755,20 @@ public class GameNavGrids
 			}
 		}
 
-		// Token: 0x060065EB RID: 26091 RVA: 0x002D8A64 File Offset: 0x002D6C64
 		public override void UpdateCell(int cell, NavTable nav_table, CellOffset[] bounding_offsets)
 		{
 			bool is_valid = Grid.IsWorldValidCell(cell) && Grid.HasNavTeleporter[cell];
 			nav_table.SetValid(cell, NavType.Teleport, is_valid);
 		}
 
-		// Token: 0x060065EC RID: 26092 RVA: 0x000E6F77 File Offset: 0x000E5177
 		public override void Clear()
 		{
 			Components.NavTeleporters.Unregister(new Action<NavTeleporter>(this.OnAddTeleporter), new Action<NavTeleporter>(this.OnRemoveTeleporter));
 		}
 	}
 
-	// Token: 0x0200136F RID: 4975
 	public class FlyingValidator : NavTableValidator
 	{
-		// Token: 0x060065ED RID: 26093 RVA: 0x002D8A94 File Offset: 0x002D6C94
 		public FlyingValidator(bool exclude_floor = false, bool exclude_jet_suit_blockers = false, bool allow_door_traversal = false)
 		{
 			this.exclude_floor = exclude_floor;
@@ -1861,7 +1781,6 @@ public class GameNavGrids
 			GameScenePartitioner.Instance.AddGlobalLayerListener(GameScenePartitioner.Instance.objectLayers[1], new Action<int, object>(this.OnBuildingChange));
 		}
 
-		// Token: 0x060065EE RID: 26094 RVA: 0x002D8B2C File Offset: 0x002D6D2C
 		public override void UpdateCell(int cell, NavTable nav_table, CellOffset[] bounding_offsets)
 		{
 			bool flag = false;
@@ -1885,13 +1804,11 @@ public class GameNavGrids
 			nav_table.SetValid(cell, NavType.Hover, flag);
 		}
 
-		// Token: 0x060065EF RID: 26095 RVA: 0x000E6F9B File Offset: 0x000E519B
 		private void OnBuildingChange(int cell, object data)
 		{
 			this.MarkCellDirty(cell);
 		}
 
-		// Token: 0x060065F0 RID: 26096 RVA: 0x000E6D50 File Offset: 0x000E4F50
 		private void MarkCellDirty(int cell)
 		{
 			if (this.onDirty != null)
@@ -1900,7 +1817,6 @@ public class GameNavGrids
 			}
 		}
 
-		// Token: 0x060065F1 RID: 26097 RVA: 0x002D8BCC File Offset: 0x002D6DCC
 		public override void Clear()
 		{
 			World instance = World.Instance;
@@ -1910,23 +1826,17 @@ public class GameNavGrids
 			GameScenePartitioner.Instance.RemoveGlobalLayerListener(GameScenePartitioner.Instance.objectLayers[1], new Action<int, object>(this.OnBuildingChange));
 		}
 
-		// Token: 0x04004B8C RID: 19340
 		private bool exclude_floor;
 
-		// Token: 0x04004B8D RID: 19341
 		private bool exclude_jet_suit_blockers;
 
-		// Token: 0x04004B8E RID: 19342
 		private bool allow_door_traversal;
 
-		// Token: 0x04004B8F RID: 19343
 		private HandleVector<int>.Handle buildingParititonerEntry;
 	}
 
-	// Token: 0x02001370 RID: 4976
 	public class HoverValidator : NavTableValidator
 	{
-		// Token: 0x060065F2 RID: 26098 RVA: 0x002D8C48 File Offset: 0x002D6E48
 		public HoverValidator()
 		{
 			World instance = World.Instance;
@@ -1935,7 +1845,6 @@ public class GameNavGrids
 			instance2.OnLiquidChanged = (Action<int>)Delegate.Combine(instance2.OnLiquidChanged, new Action<int>(this.MarkCellDirty));
 		}
 
-		// Token: 0x060065F3 RID: 26099 RVA: 0x002D8CA8 File Offset: 0x002D6EA8
 		public override void UpdateCell(int cell, NavTable nav_table, CellOffset[] bounding_offsets)
 		{
 			int num = Grid.CellBelow(cell);
@@ -1946,7 +1855,6 @@ public class GameNavGrids
 			}
 		}
 
-		// Token: 0x060065F4 RID: 26100 RVA: 0x000E6D50 File Offset: 0x000E4F50
 		private void MarkCellDirty(int cell)
 		{
 			if (this.onDirty != null)
@@ -1955,7 +1863,6 @@ public class GameNavGrids
 			}
 		}
 
-		// Token: 0x060065F5 RID: 26101 RVA: 0x002D8D14 File Offset: 0x002D6F14
 		public override void Clear()
 		{
 			World instance = World.Instance;
@@ -1965,24 +1872,20 @@ public class GameNavGrids
 		}
 	}
 
-	// Token: 0x02001371 RID: 4977
 	public class SolidValidator : NavTableValidator
 	{
-		// Token: 0x060065F6 RID: 26102 RVA: 0x000E6FA4 File Offset: 0x000E51A4
 		public SolidValidator()
 		{
 			World instance = World.Instance;
 			instance.OnSolidChanged = (Action<int>)Delegate.Combine(instance.OnSolidChanged, new Action<int>(this.OnSolidChanged));
 		}
 
-		// Token: 0x060065F7 RID: 26103 RVA: 0x002D8D70 File Offset: 0x002D6F70
 		public override void UpdateCell(int cell, NavTable nav_table, CellOffset[] bounding_offsets)
 		{
 			bool is_valid = GameNavGrids.SolidValidator.IsDiggable(cell, Grid.CellBelow(cell));
 			nav_table.SetValid(cell, NavType.Solid, is_valid);
 		}
 
-		// Token: 0x060065F8 RID: 26104 RVA: 0x002D8D94 File Offset: 0x002D6F94
 		public static bool IsDiggable(int cell, int anchor_cell)
 		{
 			if (Grid.IsWorldValidCell(cell) && Grid.Solid[cell])
@@ -2003,7 +1906,6 @@ public class GameNavGrids
 			return false;
 		}
 
-		// Token: 0x060065F9 RID: 26105 RVA: 0x000E6D50 File Offset: 0x000E4F50
 		private void OnSolidChanged(int cell)
 		{
 			if (this.onDirty != null)
@@ -2012,7 +1914,6 @@ public class GameNavGrids
 			}
 		}
 
-		// Token: 0x060065FA RID: 26106 RVA: 0x000E6FD2 File Offset: 0x000E51D2
 		public override void Clear()
 		{
 			World instance = World.Instance;

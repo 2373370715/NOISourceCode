@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003D9 RID: 985
 public class LogicCritterCountSensorConfig : IBuildingConfig
 {
-	// Token: 0x06001004 RID: 4100 RVA: 0x00189A64 File Offset: 0x00187C64
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = LogicCritterCountSensorConfig.ID;
@@ -41,13 +39,11 @@ public class LogicCritterCountSensorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001005 RID: 4101 RVA: 0x000B1518 File Offset: 0x000AF718
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicCritterCountSensor>().manuallyControlled = false;
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayInFrontOfConduits, false);
 	}
 
-	// Token: 0x04000B80 RID: 2944
 	public static string ID = "LogicCritterCountSensor";
 }

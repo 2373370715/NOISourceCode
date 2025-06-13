@@ -2,10 +2,8 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000468 RID: 1128
 public class GassyMooCometConfig : IEntityConfig
 {
-	// Token: 0x0600130B RID: 4875 RVA: 0x00197924 File Offset: 0x00195B24
 	public GameObject CreatePrefab()
 	{
 		GameObject gameObject = EntityTemplates.CreateEntity(GassyMooCometConfig.ID, UI.SPACEDESTINATIONS.COMETS.GASSYMOOCOMET.NAME, true);
@@ -52,16 +50,13 @@ public class GassyMooCometConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x0600130C RID: 4876 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject go)
 	{
 	}
 
-	// Token: 0x0600130D RID: 4877 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject go)
 	{
 	}
 
-	// Token: 0x04000D42 RID: 3394
 	public static string ID = "GassyMoo";
 }

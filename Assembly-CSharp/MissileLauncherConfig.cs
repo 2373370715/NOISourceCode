@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000498 RID: 1176
 public class MissileLauncherConfig : IBuildingConfig
 {
-	// Token: 0x06001416 RID: 5142 RVA: 0x0019AE18 File Offset: 0x00199018
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "MissileLauncher";
@@ -40,19 +38,16 @@ public class MissileLauncherConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001417 RID: 5143 RVA: 0x000B32B0 File Offset: 0x000B14B0
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 		this.AddVisualizer(go);
 	}
 
-	// Token: 0x06001418 RID: 5144 RVA: 0x000B32B9 File Offset: 0x000B14B9
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		this.AddVisualizer(go);
 	}
 
-	// Token: 0x06001419 RID: 5145 RVA: 0x0019AEFC File Offset: 0x001990FC
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGetDef<MissileLauncher.Def>();
@@ -82,7 +77,6 @@ public class MissileLauncherConfig : IBuildingConfig
 		this.AddVisualizer(go);
 	}
 
-	// Token: 0x0600141A RID: 5146 RVA: 0x0019B000 File Offset: 0x00199200
 	private void AddVisualizer(GameObject go)
 	{
 		RangeVisualizer rangeVisualizer = go2.AddOrGet<RangeVisualizer>();
@@ -98,7 +92,6 @@ public class MissileLauncherConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x0600141B RID: 5147 RVA: 0x000B32C2 File Offset: 0x000B14C2
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		SymbolOverrideControllerUtil.AddToPrefab(go);
@@ -108,7 +101,6 @@ public class MissileLauncherConfig : IBuildingConfig
 		flatTagFilterable.headerText = STRINGS.BUILDINGS.PREFABS.MISSILELAUNCHER.TARGET_SELECTION_HEADER;
 	}
 
-	// Token: 0x0600141C RID: 5148 RVA: 0x0019B0A4 File Offset: 0x001992A4
 	public static bool IsCellSkyBlocked(int cell)
 	{
 		if (PlayerController.Instance != null)
@@ -132,6 +124,5 @@ public class MissileLauncherConfig : IBuildingConfig
 		return false;
 	}
 
-	// Token: 0x04000DCD RID: 3533
 	public const string ID = "MissileLauncher";
 }

@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200075C RID: 1884
 public class StressShockChore : Chore<StressShockChore.StatesInstance>
 {
-	// Token: 0x06002108 RID: 8456 RVA: 0x001CAA80 File Offset: 0x001C8C80
 	private static bool CheckBlocked(int sourceCell, int destinationCell)
 	{
 		HashSet<int> hashSet = new HashSet<int>();
@@ -24,19 +22,16 @@ public class StressShockChore : Chore<StressShockChore.StatesInstance>
 		return result;
 	}
 
-	// Token: 0x06002109 RID: 8457 RVA: 0x000BA181 File Offset: 0x000B8381
 	public static void AddBatteryDrainModifier(StressShockChore.StatesInstance smi)
 	{
 		smi.SetDrainModifierActiveState(true);
 	}
 
-	// Token: 0x0600210A RID: 8458 RVA: 0x000BA18A File Offset: 0x000B838A
 	public static void RemoveBatteryDrainModifier(StressShockChore.StatesInstance smi)
 	{
 		smi.SetDrainModifierActiveState(false);
 	}
 
-	// Token: 0x0600210B RID: 8459 RVA: 0x001CAAEC File Offset: 0x001C8CEC
 	public static void ForceStressMonitorToTimeOut(StressShockChore.StatesInstance smi)
 	{
 		StressBehaviourMonitor.Instance smi2 = smi.GetSMI<StressBehaviourMonitor.Instance>();
@@ -46,26 +41,21 @@ public class StressShockChore : Chore<StressShockChore.StatesInstance>
 		}
 	}
 
-	// Token: 0x0600210C RID: 8460 RVA: 0x001CAB10 File Offset: 0x001C8D10
 	public StressShockChore(ChoreType chore_type, IStateMachineTarget target, Notification notification, Action<Chore> on_complete = null) : base(Db.Get().ChoreTypes.StressShock, target, target.GetComponent<ChoreProvider>(), false, on_complete, null, null, PriorityScreen.PriorityClass.compulsory, 5, false, true, 0, false, ReportManager.ReportType.WorkTime)
 	{
 		base.smi = new StressShockChore.StatesInstance(this, target.gameObject, notification);
 	}
 
-	// Token: 0x04001614 RID: 5652
 	public const float FaceBeamZOffset = 0.01f;
 
-	// Token: 0x0200075D RID: 1885
 	public class StatesInstance : GameStateMachine<StressShockChore.States, StressShockChore.StatesInstance, StressShockChore, object>.GameInstance
 	{
-		// Token: 0x0600210D RID: 8461 RVA: 0x001CAB5C File Offset: 0x001C8D5C
 		public StatesInstance(StressShockChore master, GameObject shocker, Notification notification) : base(master)
 		{
 			base.sm.shocker.Set(shocker, base.smi, false);
 			this.notification = notification;
 		}
 
-		// Token: 0x0600210E RID: 8462 RVA: 0x000BA193 File Offset: 0x000B8393
 		public void SetDrainModifierActiveState(bool draining)
 		{
 			if (draining)
@@ -76,7 +66,6 @@ public class StressShockChore : Chore<StressShockChore.StatesInstance>
 			this.batteryMonitor.RemoveModifier(this.powerDrainModifier.id, true);
 		}
 
-		// Token: 0x0600210F RID: 8463 RVA: 0x001CABD4 File Offset: 0x001C8DD4
 		public void FindDestination()
 		{
 			int num = this.FindIdleCell();
@@ -97,7 +86,6 @@ public class StressShockChore : Chore<StressShockChore.StatesInstance>
 			this.GoTo(base.sm.shocking.standStillShockingStuff);
 		}
 
-		// Token: 0x06002110 RID: 8464 RVA: 0x001CACAC File Offset: 0x001C8EAC
 		private int FindMinionTarget()
 		{
 			Navigator component = base.smi.gameObject.GetComponent<Navigator>();
@@ -127,7 +115,6 @@ public class StressShockChore : Chore<StressShockChore.StatesInstance>
 			return result;
 		}
 
-		// Token: 0x06002111 RID: 8465 RVA: 0x001CAD70 File Offset: 0x001C8F70
 		private int FindIdleCell()
 		{
 			Navigator component = base.smi.master.GetComponent<Navigator>();
@@ -144,7 +131,6 @@ public class StressShockChore : Chore<StressShockChore.StatesInstance>
 			return idleCellQuery.GetResultCell();
 		}
 
-		// Token: 0x06002112 RID: 8466 RVA: 0x001CAE08 File Offset: 0x001C9008
 		public void ShockUpdateRender(StressShockChore.StatesInstance smi, float dt)
 		{
 			if (smi.sm.faceLightningFX.Get(smi) != null)
@@ -165,7 +151,6 @@ public class StressShockChore : Chore<StressShockChore.StatesInstance>
 			}
 		}
 
-		// Token: 0x06002113 RID: 8467 RVA: 0x001CAEF0 File Offset: 0x001C90F0
 		public void ShockUpdate200(StressShockChore.StatesInstance smi, float dt)
 		{
 			float num = dt * STRESS.SHOCKER.POWER_CONSUMPTION_RATE;
@@ -196,7 +181,6 @@ public class StressShockChore : Chore<StressShockChore.StatesInstance>
 			}
 		}
 
-		// Token: 0x06002114 RID: 8468 RVA: 0x001CAFEC File Offset: 0x001C91EC
 		public void PickShockTarget(StressShockChore.StatesInstance smi)
 		{
 			int num = Grid.PosToCell(smi.master.gameObject);
@@ -260,7 +244,6 @@ public class StressShockChore : Chore<StressShockChore.StatesInstance>
 			base.sm.beamTarget.Set(gameObject, smi, false);
 		}
 
-		// Token: 0x06002115 RID: 8469 RVA: 0x001CB2B8 File Offset: 0x001C94B8
 		public void MakeBeam()
 		{
 			GameObject gameObject = new GameObject("shockFX");
@@ -306,7 +289,6 @@ public class StressShockChore : Chore<StressShockChore.StatesInstance>
 			kbatchedAnimController3.Play("stress_beam_impact_fx", KAnim.PlayMode.Loop, 1f, 0f);
 		}
 
-		// Token: 0x06002116 RID: 8470 RVA: 0x001CB500 File Offset: 0x001C9700
 		public Vector3 FaceOriginLocation()
 		{
 			bool flag;
@@ -316,7 +298,6 @@ public class StressShockChore : Chore<StressShockChore.StatesInstance>
 			return vector;
 		}
 
-		// Token: 0x06002117 RID: 8471 RVA: 0x001CB558 File Offset: 0x001C9758
 		public void ClearBeam(bool clearFaceFX = true)
 		{
 			base.sm.previousTarget.Set(base.sm.beamTarget.Get(base.smi), base.smi, false);
@@ -338,7 +319,6 @@ public class StressShockChore : Chore<StressShockChore.StatesInstance>
 			}
 		}
 
-		// Token: 0x06002118 RID: 8472 RVA: 0x001CB6B4 File Offset: 0x001C98B4
 		public void AimBeam(Vector3 targetPosition, int beamIdx)
 		{
 			Vector3 position = this.FaceOriginLocation();
@@ -379,7 +359,6 @@ public class StressShockChore : Chore<StressShockChore.StatesInstance>
 			base.smi.sm.beamFX.Get(base.smi).animWidth = num;
 		}
 
-		// Token: 0x06002119 RID: 8473 RVA: 0x001CBA5C File Offset: 0x001C9C5C
 		public void ShowBeam(bool show)
 		{
 			if (base.smi.sm.impactFX.Get(base.smi) != null)
@@ -392,21 +371,16 @@ public class StressShockChore : Chore<StressShockChore.StatesInstance>
 			}
 		}
 
-		// Token: 0x04001615 RID: 5653
 		public Notification notification;
 
-		// Token: 0x04001616 RID: 5654
 		[MySmiReq]
 		public BionicBatteryMonitor.Instance batteryMonitor;
 
-		// Token: 0x04001617 RID: 5655
 		public BionicBatteryMonitor.WattageModifier powerDrainModifier = new BionicBatteryMonitor.WattageModifier("StressShockChore", string.Format(DUPLICANTS.MODIFIERS.BIONIC_WATTS.TOOLTIP.STANDARD_ACTIVE_TEMPLATE, DUPLICANTS.TRAITS.STRESSSHOCKER.DRAIN_ATTRIBUTE, "<b>+</b>" + GameUtil.GetFormattedWattage(STRESS.SHOCKER.POWER_CONSUMPTION_RATE, GameUtil.WattageFormatterUnit.Automatic, true)), STRESS.SHOCKER.POWER_CONSUMPTION_RATE, STRESS.SHOCKER.POWER_CONSUMPTION_RATE);
 	}
 
-	// Token: 0x0200075E RID: 1886
 	public class States : GameStateMachine<StressShockChore.States, StressShockChore.StatesInstance, StressShockChore>
 	{
-		// Token: 0x0600211A RID: 8474 RVA: 0x001CBAF4 File Offset: 0x001C9CF4
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.shocking.findDestination;
@@ -459,55 +433,38 @@ public class StressShockChore : Chore<StressShockChore.StatesInstance>
 			this.offline.Enter(new StateMachine<StressShockChore.States, StressShockChore.StatesInstance, StressShockChore, object>.State.Callback(StressShockChore.ForceStressMonitorToTimeOut)).ReturnSuccess();
 		}
 
-		// Token: 0x04001618 RID: 5656
 		public StateMachine<StressShockChore.States, StressShockChore.StatesInstance, StressShockChore, object>.TargetParameter shocker;
 
-		// Token: 0x04001619 RID: 5657
 		public StateMachine<StressShockChore.States, StressShockChore.StatesInstance, StressShockChore, object>.ObjectParameter<KBatchedAnimController[]> cosmeticBeamFXs;
 
-		// Token: 0x0400161A RID: 5658
 		public StateMachine<StressShockChore.States, StressShockChore.StatesInstance, StressShockChore, object>.ObjectParameter<KBatchedAnimController> beamFX;
 
-		// Token: 0x0400161B RID: 5659
 		public StateMachine<StressShockChore.States, StressShockChore.StatesInstance, StressShockChore, object>.ObjectParameter<KBatchedAnimController> impactFX;
 
-		// Token: 0x0400161C RID: 5660
 		public StateMachine<StressShockChore.States, StressShockChore.StatesInstance, StressShockChore, object>.ObjectParameter<KBatchedAnimController> faceLightningFX;
 
-		// Token: 0x0400161D RID: 5661
 		public StateMachine<StressShockChore.States, StressShockChore.StatesInstance, StressShockChore, object>.ObjectParameter<GameObject> beamTarget;
 
-		// Token: 0x0400161E RID: 5662
 		public StateMachine<StressShockChore.States, StressShockChore.StatesInstance, StressShockChore, object>.ObjectParameter<GameObject> previousTarget;
 
-		// Token: 0x0400161F RID: 5663
 		public StateMachine<StressShockChore.States, StressShockChore.StatesInstance, StressShockChore, object>.IntParameter targetMoveLocation;
 
-		// Token: 0x04001620 RID: 5664
 		public StateMachine<StressShockChore.States, StressShockChore.StatesInstance, StressShockChore, object>.FloatParameter powerConsumed;
 
-		// Token: 0x04001621 RID: 5665
 		public StressShockChore.States.ShockStates shocking;
 
-		// Token: 0x04001622 RID: 5666
 		public GameStateMachine<StressShockChore.States, StressShockChore.StatesInstance, StressShockChore, object>.State delay;
 
-		// Token: 0x04001623 RID: 5667
 		public GameStateMachine<StressShockChore.States, StressShockChore.StatesInstance, StressShockChore, object>.State complete;
 
-		// Token: 0x04001624 RID: 5668
 		public GameStateMachine<StressShockChore.States, StressShockChore.StatesInstance, StressShockChore, object>.State offline;
 
-		// Token: 0x0200075F RID: 1887
 		public class ShockStates : GameStateMachine<StressShockChore.States, StressShockChore.StatesInstance, StressShockChore, object>.State
 		{
-			// Token: 0x04001625 RID: 5669
 			public GameStateMachine<StressShockChore.States, StressShockChore.StatesInstance, StressShockChore, object>.State findDestination;
 
-			// Token: 0x04001626 RID: 5670
 			public GameStateMachine<StressShockChore.States, StressShockChore.StatesInstance, StressShockChore, object>.State runAroundShockingStuff;
 
-			// Token: 0x04001627 RID: 5671
 			public GameStateMachine<StressShockChore.States, StressShockChore.StatesInstance, StressShockChore, object>.State standStillShockingStuff;
 		}
 	}

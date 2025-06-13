@@ -3,15 +3,12 @@ using Klei.AI;
 using STRINGS;
 using TUNING;
 
-// Token: 0x02001C3D RID: 7229
 public class DuplicantTemperatureDeltaAsEnergyAmountDisplayer : StandardAmountDisplayer
 {
-	// Token: 0x0600964B RID: 38475 RVA: 0x00106542 File Offset: 0x00104742
 	public DuplicantTemperatureDeltaAsEnergyAmountDisplayer(GameUtil.UnitClass unitClass, GameUtil.TimeSlice timeSlice) : base(unitClass, timeSlice, null, GameUtil.IdentityDescriptorTense.Normal)
 	{
 	}
 
-	// Token: 0x0600964C RID: 38476 RVA: 0x003ABECC File Offset: 0x003AA0CC
 	public override string GetTooltip(Amount master, AmountInstance instance)
 	{
 		string text = string.Format(master.description, this.formatter.GetFormattedValue(instance.value, GameUtil.TimeSlice.None), this.formatter.GetFormattedValue(DUPLICANTSTATS.STANDARD.Temperature.Internal.IDEAL, GameUtil.TimeSlice.None));

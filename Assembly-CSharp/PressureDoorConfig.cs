@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200050F RID: 1295
 public class PressureDoorConfig : IBuildingConfig
 {
-	// Token: 0x06001634 RID: 5684 RVA: 0x001A2538 File Offset: 0x001A0738
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "PressureDoor";
@@ -38,7 +36,6 @@ public class PressureDoorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001635 RID: 5685 RVA: 0x001A2628 File Offset: 0x001A0828
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		Door door = go.AddOrGet<Door>();
@@ -58,6 +55,5 @@ public class PressureDoorConfig : IBuildingConfig
 		go.GetComponent<KBatchedAnimController>().initialAnim = "closed";
 	}
 
-	// Token: 0x04000F3F RID: 3903
 	public const string ID = "PressureDoor";
 }

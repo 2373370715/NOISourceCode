@@ -3,17 +3,14 @@ using System.Collections.Generic;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001264 RID: 4708
 public class EntombedDiagnostic : ColonyDiagnostic
 {
-	// Token: 0x0600602A RID: 24618 RVA: 0x002B9A9C File Offset: 0x002B7C9C
 	public EntombedDiagnostic(int worldID) : base(worldID, UI.COLONY_DIAGNOSTICS.ENTOMBEDDIAGNOSTIC.ALL_NAME)
 	{
 		this.icon = "icon_action_dig";
 		base.AddCriterion("CheckEntombed", new DiagnosticCriterion(UI.COLONY_DIAGNOSTICS.ENTOMBEDDIAGNOSTIC.CRITERIA.CHECKENTOMBED, new Func<ColonyDiagnostic.DiagnosticResult>(this.CheckEntombed)));
 	}
 
-	// Token: 0x0600602B RID: 24619 RVA: 0x002B9AEC File Offset: 0x002B7CEC
 	private ColonyDiagnostic.DiagnosticResult CheckEntombed()
 	{
 		List<BuildingComplete> worldItems = Components.EntombedBuildings.GetWorldItems(base.worldID, false);
@@ -34,12 +31,10 @@ public class EntombedDiagnostic : ColonyDiagnostic
 		return result;
 	}
 
-	// Token: 0x0600602C RID: 24620 RVA: 0x000E32BF File Offset: 0x000E14BF
 	public override string GetAverageValueString()
 	{
 		return this.m_entombedCount.ToString();
 	}
 
-	// Token: 0x040044E9 RID: 17641
 	private int m_entombedCount;
 }

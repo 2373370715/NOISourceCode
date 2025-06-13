@@ -4,21 +4,13 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x020009C7 RID: 2503
 public class BaggableCritterCapacityTracker : KMonoBehaviour, ISim1000ms, IUserControlledCapacity
 {
-	// Token: 0x1700019E RID: 414
-	// (get) Token: 0x06002CE9 RID: 11497 RVA: 0x000C1860 File Offset: 0x000BFA60
-	// (set) Token: 0x06002CEA RID: 11498 RVA: 0x000C1868 File Offset: 0x000BFA68
 	[Serialize]
 	public int creatureLimit { get; set; } = 20;
 
-	// Token: 0x1700019F RID: 415
-	// (get) Token: 0x06002CEB RID: 11499 RVA: 0x000C1871 File Offset: 0x000BFA71
-	// (set) Token: 0x06002CEC RID: 11500 RVA: 0x000C1879 File Offset: 0x000BFA79
 	public int storedCreatureCount { get; private set; }
 
-	// Token: 0x06002CED RID: 11501 RVA: 0x001FAF2C File Offset: 0x001F912C
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -31,7 +23,6 @@ public class BaggableCritterCapacityTracker : KMonoBehaviour, ISim1000ms, IUserC
 		base.Subscribe(144050788, new Action<object>(this.RefreshCreatureCount));
 	}
 
-	// Token: 0x06002CEE RID: 11502 RVA: 0x001FAFBC File Offset: 0x001F91BC
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -50,7 +41,6 @@ public class BaggableCritterCapacityTracker : KMonoBehaviour, ISim1000ms, IUserC
 		base.GetComponent<KSelectable>().SetStatusItem(Db.Get().StatusItemCategories.Main, BaggableCritterCapacityTracker.capacityStatusItem, this);
 	}
 
-	// Token: 0x06002CEF RID: 11503 RVA: 0x000C1882 File Offset: 0x000BFA82
 	protected override void OnCleanUp()
 	{
 		TreeFilterable treeFilterable = this.filter;
@@ -59,7 +49,6 @@ public class BaggableCritterCapacityTracker : KMonoBehaviour, ISim1000ms, IUserC
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06002CF0 RID: 11504 RVA: 0x001FB048 File Offset: 0x001F9248
 	private void OnCopySettings(object data)
 	{
 		GameObject gameObject = (GameObject)data;
@@ -75,7 +64,6 @@ public class BaggableCritterCapacityTracker : KMonoBehaviour, ISim1000ms, IUserC
 		this.creatureLimit = component.creatureLimit;
 	}
 
-	// Token: 0x06002CF1 RID: 11505 RVA: 0x001FB084 File Offset: 0x001F9284
 	public void RefreshCreatureCount(object data = null)
 	{
 		CavityInfo cavityForCell = Game.Instance.roomProber.GetCavityForCell(this.cavityCell);
@@ -98,15 +86,11 @@ public class BaggableCritterCapacityTracker : KMonoBehaviour, ISim1000ms, IUserC
 		}
 	}
 
-	// Token: 0x06002CF2 RID: 11506 RVA: 0x000C18BC File Offset: 0x000BFABC
 	public void Sim1000ms(float dt)
 	{
 		this.RefreshCreatureCount(null);
 	}
 
-	// Token: 0x170001A0 RID: 416
-	// (get) Token: 0x06002CF3 RID: 11507 RVA: 0x000C18C5 File Offset: 0x000BFAC5
-	// (set) Token: 0x06002CF4 RID: 11508 RVA: 0x000C18CE File Offset: 0x000BFACE
 	float IUserControlledCapacity.UserMaxCapacity
 	{
 		get
@@ -123,8 +107,6 @@ public class BaggableCritterCapacityTracker : KMonoBehaviour, ISim1000ms, IUserC
 		}
 	}
 
-	// Token: 0x170001A1 RID: 417
-	// (get) Token: 0x06002CF5 RID: 11509 RVA: 0x000C18EF File Offset: 0x000BFAEF
 	float IUserControlledCapacity.AmountStored
 	{
 		get
@@ -133,8 +115,6 @@ public class BaggableCritterCapacityTracker : KMonoBehaviour, ISim1000ms, IUserC
 		}
 	}
 
-	// Token: 0x170001A2 RID: 418
-	// (get) Token: 0x06002CF6 RID: 11510 RVA: 0x000C18F8 File Offset: 0x000BFAF8
 	float IUserControlledCapacity.MinCapacity
 	{
 		get
@@ -143,8 +123,6 @@ public class BaggableCritterCapacityTracker : KMonoBehaviour, ISim1000ms, IUserC
 		}
 	}
 
-	// Token: 0x170001A3 RID: 419
-	// (get) Token: 0x06002CF7 RID: 11511 RVA: 0x000C18FF File Offset: 0x000BFAFF
 	float IUserControlledCapacity.MaxCapacity
 	{
 		get
@@ -153,8 +131,6 @@ public class BaggableCritterCapacityTracker : KMonoBehaviour, ISim1000ms, IUserC
 		}
 	}
 
-	// Token: 0x170001A4 RID: 420
-	// (get) Token: 0x06002CF8 RID: 11512 RVA: 0x000AA7E7 File Offset: 0x000A89E7
 	bool IUserControlledCapacity.WholeValues
 	{
 		get
@@ -163,8 +139,6 @@ public class BaggableCritterCapacityTracker : KMonoBehaviour, ISim1000ms, IUserC
 		}
 	}
 
-	// Token: 0x170001A5 RID: 421
-	// (get) Token: 0x06002CF9 RID: 11513 RVA: 0x000C1908 File Offset: 0x000BFB08
 	LocString IUserControlledCapacity.CapacityUnits
 	{
 		get
@@ -173,25 +147,18 @@ public class BaggableCritterCapacityTracker : KMonoBehaviour, ISim1000ms, IUserC
 		}
 	}
 
-	// Token: 0x04001EC9 RID: 7881
 	public int maximumCreatures = 40;
 
-	// Token: 0x04001ECA RID: 7882
 	public CellOffset cavityOffset;
 
-	// Token: 0x04001ECB RID: 7883
 	public bool filteredCount;
 
-	// Token: 0x04001ECC RID: 7884
 	public System.Action onCountChanged;
 
-	// Token: 0x04001ECD RID: 7885
 	private int cavityCell;
 
-	// Token: 0x04001ECE RID: 7886
 	[MyCmpReq]
 	private TreeFilterable filter;
 
-	// Token: 0x04001ECF RID: 7887
 	private static StatusItem capacityStatusItem;
 }

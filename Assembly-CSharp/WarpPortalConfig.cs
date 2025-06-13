@@ -3,22 +3,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005F7 RID: 1527
 public class WarpPortalConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x06001AEE RID: 6894 RVA: 0x000AA117 File Offset: 0x000A8317
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06001AEF RID: 6895 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x06001AF0 RID: 6896 RVA: 0x001B5898 File Offset: 0x001B3A98
 	public GameObject CreatePrefab()
 	{
 		string id = "WarpPortal";
@@ -47,7 +43,6 @@ public class WarpPortalConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x06001AF1 RID: 6897 RVA: 0x001B5994 File Offset: 0x001B3B94
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.GetComponent<WarpPortal>().workLayer = Grid.SceneLayer.Building;
@@ -59,11 +54,9 @@ public class WarpPortalConfig : IEntityConfig, IHasDlcRestrictions
 		inst.GetComponent<Deconstructable>();
 	}
 
-	// Token: 0x06001AF2 RID: 6898 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x04001151 RID: 4433
 	public const string ID = "WarpPortal";
 }

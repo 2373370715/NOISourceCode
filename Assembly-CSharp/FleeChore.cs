@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020006D9 RID: 1753
 public class FleeChore : Chore<FleeChore.StatesInstance>
 {
-	// Token: 0x06001F32 RID: 7986 RVA: 0x001C3B88 File Offset: 0x001C1D88
 	public FleeChore(IStateMachineTarget target, GameObject enemy) : base(Db.Get().ChoreTypes.Flee, target, target.GetComponent<ChoreProvider>(), false, null, null, null, PriorityScreen.PriorityClass.compulsory, 5, false, true, 0, false, ReportManager.ReportType.WorkTime)
 	{
 		base.smi = new FleeChore.StatesInstance(this);
@@ -14,7 +12,6 @@ public class FleeChore : Chore<FleeChore.StatesInstance>
 		base.smi.sm.fleeFromTarget.Set(enemy, base.smi, false);
 	}
 
-	// Token: 0x06001F33 RID: 7987 RVA: 0x001C3C1C File Offset: 0x001C1E1C
 	private bool isInFavoredDirection(int cell, int fleeFromCell)
 	{
 		bool flag = Grid.CellToPos(fleeFromCell).x < this.gameObject.transform.GetPosition().x;
@@ -22,19 +19,16 @@ public class FleeChore : Chore<FleeChore.StatesInstance>
 		return flag == flag2;
 	}
 
-	// Token: 0x06001F34 RID: 7988 RVA: 0x001C3C70 File Offset: 0x001C1E70
 	private bool CanFleeTo(int cell)
 	{
 		return this.nav.CanReach(cell) || this.nav.CanReach(Grid.OffsetCell(cell, -1, -1)) || this.nav.CanReach(Grid.OffsetCell(cell, 1, -1)) || this.nav.CanReach(Grid.OffsetCell(cell, -1, 1)) || this.nav.CanReach(Grid.OffsetCell(cell, 1, 1));
 	}
 
-	// Token: 0x06001F35 RID: 7989 RVA: 0x000B905C File Offset: 0x000B725C
 	public GameObject CreateLocator(Vector3 pos)
 	{
 		return ChoreHelpers.CreateLocator("GoToLocator", pos);
 	}
 
-	// Token: 0x06001F36 RID: 7990 RVA: 0x001C3CE0 File Offset: 0x001C1EE0
 	protected override void OnStateMachineStop(string reason, StateMachine.Status status)
 	{
 		if (base.smi.sm.fleeToTarget.Get(base.smi) != null)
@@ -44,22 +38,17 @@ public class FleeChore : Chore<FleeChore.StatesInstance>
 		base.OnStateMachineStop(reason, status);
 	}
 
-	// Token: 0x0400147F RID: 5247
 	private Navigator nav;
 
-	// Token: 0x020006DA RID: 1754
 	public class StatesInstance : GameStateMachine<FleeChore.States, FleeChore.StatesInstance, FleeChore, object>.GameInstance
 	{
-		// Token: 0x06001F37 RID: 7991 RVA: 0x000B9069 File Offset: 0x000B7269
 		public StatesInstance(FleeChore master) : base(master)
 		{
 		}
 	}
 
-	// Token: 0x020006DB RID: 1755
 	public class States : GameStateMachine<FleeChore.States, FleeChore.StatesInstance, FleeChore>
 	{
-		// Token: 0x06001F38 RID: 7992 RVA: 0x001C3D38 File Offset: 0x001C1F38
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.planFleeRoute;
@@ -110,25 +99,18 @@ public class FleeChore : Chore<FleeChore.StatesInstance>
 			});
 		}
 
-		// Token: 0x04001480 RID: 5248
 		public StateMachine<FleeChore.States, FleeChore.StatesInstance, FleeChore, object>.TargetParameter fleeFromTarget;
 
-		// Token: 0x04001481 RID: 5249
 		public StateMachine<FleeChore.States, FleeChore.StatesInstance, FleeChore, object>.TargetParameter fleeToTarget;
 
-		// Token: 0x04001482 RID: 5250
 		public StateMachine<FleeChore.States, FleeChore.StatesInstance, FleeChore, object>.TargetParameter self;
 
-		// Token: 0x04001483 RID: 5251
 		public GameStateMachine<FleeChore.States, FleeChore.StatesInstance, FleeChore, object>.State planFleeRoute;
 
-		// Token: 0x04001484 RID: 5252
 		public GameStateMachine<FleeChore.States, FleeChore.StatesInstance, FleeChore, object>.ApproachSubState<IApproachable> flee;
 
-		// Token: 0x04001485 RID: 5253
 		public GameStateMachine<FleeChore.States, FleeChore.StatesInstance, FleeChore, object>.State cower;
 
-		// Token: 0x04001486 RID: 5254
 		public GameStateMachine<FleeChore.States, FleeChore.StatesInstance, FleeChore, object>.State end;
 	}
 }

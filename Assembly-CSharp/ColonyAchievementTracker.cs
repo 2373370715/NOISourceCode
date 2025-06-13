@@ -7,13 +7,9 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x020010E3 RID: 4323
 [AddComponentMenu("KMonoBehaviour/scripts/ColonyAchievementTracker")]
 public class ColonyAchievementTracker : KMonoBehaviour, ISaveLoadableDetails, IRenderEveryTick
 {
-	// Token: 0x17000529 RID: 1321
-	// (get) Token: 0x0600584F RID: 22607 RVA: 0x000DE07C File Offset: 0x000DC27C
-	// (set) Token: 0x06005850 RID: 22608 RVA: 0x000DE089 File Offset: 0x000DC289
 	public bool GeothermalFacilityDiscovered
 	{
 		get
@@ -32,9 +28,6 @@ public class ColonyAchievementTracker : KMonoBehaviour, ISaveLoadableDetails, IR
 		}
 	}
 
-	// Token: 0x1700052A RID: 1322
-	// (get) Token: 0x06005851 RID: 22609 RVA: 0x000DE0B8 File Offset: 0x000DC2B8
-	// (set) Token: 0x06005852 RID: 22610 RVA: 0x000DE0C5 File Offset: 0x000DC2C5
 	public bool GeothermalControllerRepaired
 	{
 		get
@@ -53,9 +46,6 @@ public class ColonyAchievementTracker : KMonoBehaviour, ISaveLoadableDetails, IR
 		}
 	}
 
-	// Token: 0x1700052B RID: 1323
-	// (get) Token: 0x06005853 RID: 22611 RVA: 0x000DE0F4 File Offset: 0x000DC2F4
-	// (set) Token: 0x06005854 RID: 22612 RVA: 0x000DE101 File Offset: 0x000DC301
 	public bool GeothermalControllerHasVented
 	{
 		get
@@ -74,9 +64,6 @@ public class ColonyAchievementTracker : KMonoBehaviour, ISaveLoadableDetails, IR
 		}
 	}
 
-	// Token: 0x1700052C RID: 1324
-	// (get) Token: 0x06005855 RID: 22613 RVA: 0x000DE130 File Offset: 0x000DC330
-	// (set) Token: 0x06005856 RID: 22614 RVA: 0x000DE13D File Offset: 0x000DC33D
 	public bool GeothermalClearedEntombedVent
 	{
 		get
@@ -95,9 +82,6 @@ public class ColonyAchievementTracker : KMonoBehaviour, ISaveLoadableDetails, IR
 		}
 	}
 
-	// Token: 0x1700052D RID: 1325
-	// (get) Token: 0x06005857 RID: 22615 RVA: 0x000DE16C File Offset: 0x000DC36C
-	// (set) Token: 0x06005858 RID: 22616 RVA: 0x000DE17B File Offset: 0x000DC37B
 	public bool GeothermalVictoryPopupDismissed
 	{
 		get
@@ -116,8 +100,6 @@ public class ColonyAchievementTracker : KMonoBehaviour, ISaveLoadableDetails, IR
 		}
 	}
 
-	// Token: 0x1700052E RID: 1326
-	// (get) Token: 0x06005859 RID: 22617 RVA: 0x000DE1AB File Offset: 0x000DC3AB
 	public List<string> achievementsToDisplay
 	{
 		get
@@ -126,13 +108,11 @@ public class ColonyAchievementTracker : KMonoBehaviour, ISaveLoadableDetails, IR
 		}
 	}
 
-	// Token: 0x0600585A RID: 22618 RVA: 0x000DE1B3 File Offset: 0x000DC3B3
 	public void ClearDisplayAchievements()
 	{
 		this.achievementsToDisplay.Clear();
 	}
 
-	// Token: 0x0600585B RID: 22619 RVA: 0x00297538 File Offset: 0x00295738
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -149,7 +129,6 @@ public class ColonyAchievementTracker : KMonoBehaviour, ISaveLoadableDetails, IR
 		this.UpgradeTamedCritterAchievements();
 	}
 
-	// Token: 0x0600585C RID: 22620 RVA: 0x002975FC File Offset: 0x002957FC
 	private void UpgradeTamedCritterAchievements()
 	{
 		foreach (ColonyAchievementRequirement colonyAchievementRequirement in Db.Get().ColonyAchievements.TameAllBasicCritters.requirementChecklist)
@@ -170,7 +149,6 @@ public class ColonyAchievementTracker : KMonoBehaviour, ISaveLoadableDetails, IR
 		}
 	}
 
-	// Token: 0x0600585D RID: 22621 RVA: 0x002976BC File Offset: 0x002958BC
 	public void RenderEveryTick(float dt)
 	{
 		if (this.updatingAchievement >= this.achievements.Count)
@@ -192,7 +170,6 @@ public class ColonyAchievementTracker : KMonoBehaviour, ISaveLoadableDetails, IR
 		}
 	}
 
-	// Token: 0x0600585E RID: 22622 RVA: 0x0029777C File Offset: 0x0029597C
 	private void CheckAchievements(object data = null)
 	{
 		foreach (KeyValuePair<string, ColonyAchievementStatus> keyValuePair in this.achievements)
@@ -211,7 +188,6 @@ public class ColonyAchievementTracker : KMonoBehaviour, ISaveLoadableDetails, IR
 		RetireColonyUtility.SaveColonySummaryData();
 	}
 
-	// Token: 0x0600585F RID: 22623 RVA: 0x00297844 File Offset: 0x00295A44
 	private static void UnlockPlatformAchievement(string achievement_id)
 	{
 		if (DebugHandler.InstantBuildMode)
@@ -253,14 +229,12 @@ public class ColonyAchievementTracker : KMonoBehaviour, ISaveLoadableDetails, IR
 		}
 	}
 
-	// Token: 0x06005860 RID: 22624 RVA: 0x000DE1C0 File Offset: 0x000DC3C0
 	public void DebugTriggerAchievement(string id)
 	{
 		this.achievements[id].failed = false;
 		this.achievements[id].success = true;
 	}
 
-	// Token: 0x06005861 RID: 22625 RVA: 0x00297908 File Offset: 0x00295B08
 	private void BeginVictorySequence(string achievementID)
 	{
 		RootMenu.Instance.canTogglePauseScreen = false;
@@ -290,7 +264,6 @@ public class ColonyAchievementTracker : KMonoBehaviour, ISaveLoadableDetails, IR
 		}));
 	}
 
-	// Token: 0x06005862 RID: 22626 RVA: 0x00297A4C File Offset: 0x00295C4C
 	public bool IsAchievementUnlocked(ColonyAchievement achievement)
 	{
 		foreach (KeyValuePair<string, ColonyAchievementStatus> keyValuePair in this.achievements)
@@ -308,7 +281,6 @@ public class ColonyAchievementTracker : KMonoBehaviour, ISaveLoadableDetails, IR
 		return false;
 	}
 
-	// Token: 0x06005863 RID: 22627 RVA: 0x000DE1E6 File Offset: 0x000DC3E6
 	protected override void OnCleanUp()
 	{
 		this.victorySchedulerHandle.ClearScheduler();
@@ -317,7 +289,6 @@ public class ColonyAchievementTracker : KMonoBehaviour, ISaveLoadableDetails, IR
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06005864 RID: 22628 RVA: 0x00297ADC File Offset: 0x00295CDC
 	private void TriggerNewAchievementCompleted(string achievement, GameObject cameraTarget = null)
 	{
 		this.unlockedAchievementMetric[ColonyAchievementTracker.UnlockedAchievementKey] = achievement;
@@ -335,7 +306,6 @@ public class ColonyAchievementTracker : KMonoBehaviour, ISaveLoadableDetails, IR
 		}
 	}
 
-	// Token: 0x06005865 RID: 22629 RVA: 0x00297B48 File Offset: 0x00295D48
 	private void ToggleVictoryUI(bool victoryUIActive)
 	{
 		List<KScreen> list = new List<KScreen>();
@@ -370,7 +340,6 @@ public class ColonyAchievementTracker : KMonoBehaviour, ISaveLoadableDetails, IR
 		}
 	}
 
-	// Token: 0x06005866 RID: 22630 RVA: 0x00297C78 File Offset: 0x00295E78
 	public void Serialize(BinaryWriter writer)
 	{
 		writer.Write(this.achievements.Count);
@@ -381,7 +350,6 @@ public class ColonyAchievementTracker : KMonoBehaviour, ISaveLoadableDetails, IR
 		}
 	}
 
-	// Token: 0x06005867 RID: 22631 RVA: 0x00297CF0 File Offset: 0x00295EF0
 	public void Deserialize(IReader reader)
 	{
 		if (SaveLoader.Instance.GameInfo.IsVersionOlderThan(7, 10))
@@ -400,7 +368,6 @@ public class ColonyAchievementTracker : KMonoBehaviour, ISaveLoadableDetails, IR
 		}
 	}
 
-	// Token: 0x06005868 RID: 22632 RVA: 0x00297D58 File Offset: 0x00295F58
 	public void LogFetchChore(GameObject fetcher, ChoreType choreType)
 	{
 		if (choreType == Db.Get().ChoreTypes.StorageFetch || choreType == Db.Get().ChoreTypes.BuildFetch || choreType == Db.Get().ChoreTypes.RepairFetch || choreType == Db.Get().ChoreTypes.FoodFetch || choreType == Db.Get().ChoreTypes.Transport)
@@ -430,13 +397,11 @@ public class ColonyAchievementTracker : KMonoBehaviour, ISaveLoadableDetails, IR
 		}
 	}
 
-	// Token: 0x06005869 RID: 22633 RVA: 0x000DE214 File Offset: 0x000DC414
 	public void LogCritterTamed(Tag prefabId)
 	{
 		this.tamedCritterTypes.Add(prefabId);
 	}
 
-	// Token: 0x0600586A RID: 22634 RVA: 0x00297E24 File Offset: 0x00296024
 	public void LogSuitChore(ChoreDriver driver)
 	{
 		if (driver == null || driver.GetComponent<MinionIdentity>() == null)
@@ -472,13 +437,11 @@ public class ColonyAchievementTracker : KMonoBehaviour, ISaveLoadableDetails, IR
 		}
 	}
 
-	// Token: 0x0600586B RID: 22635 RVA: 0x000DE223 File Offset: 0x000DC423
 	public void LogAnalyzedSeed(Tag seed)
 	{
 		this.analyzedSeeds.Add(seed);
 	}
 
-	// Token: 0x0600586C RID: 22636 RVA: 0x00297F2C File Offset: 0x0029612C
 	public void OnNewDay(object data)
 	{
 		foreach (MinionStorage minionStorage in Components.MinionStorages.Items)
@@ -543,97 +506,71 @@ public class ColonyAchievementTracker : KMonoBehaviour, ISaveLoadableDetails, IR
 		}
 	}
 
-	// Token: 0x04003E32 RID: 15922
 	public Dictionary<string, ColonyAchievementStatus> achievements = new Dictionary<string, ColonyAchievementStatus>();
 
-	// Token: 0x04003E33 RID: 15923
 	[Serialize]
 	public Dictionary<int, int> fetchAutomatedChoreDeliveries = new Dictionary<int, int>();
 
-	// Token: 0x04003E34 RID: 15924
 	[Serialize]
 	public Dictionary<int, int> fetchDupeChoreDeliveries = new Dictionary<int, int>();
 
-	// Token: 0x04003E35 RID: 15925
 	[Serialize]
 	public Dictionary<int, List<int>> dupesCompleteChoresInSuits = new Dictionary<int, List<int>>();
 
-	// Token: 0x04003E36 RID: 15926
 	[Serialize]
 	public HashSet<Tag> tamedCritterTypes = new HashSet<Tag>();
 
-	// Token: 0x04003E37 RID: 15927
 	[Serialize]
 	public bool defrostedDuplicant;
 
-	// Token: 0x04003E38 RID: 15928
 	[Serialize]
 	public HashSet<Tag> analyzedSeeds = new HashSet<Tag>();
 
-	// Token: 0x04003E39 RID: 15929
 	[Serialize]
 	public float totalMaterialsHarvestFromPOI;
 
-	// Token: 0x04003E3A RID: 15930
 	[Serialize]
 	public float radBoltTravelDistance;
 
-	// Token: 0x04003E3B RID: 15931
 	[Serialize]
 	public bool harvestAHiveWithoutGettingStung;
 
-	// Token: 0x04003E3C RID: 15932
 	[Serialize]
 	public Dictionary<int, int> cyclesRocketDupeMoraleAboveRequirement = new Dictionary<int, int>();
 
-	// Token: 0x04003E3D RID: 15933
 	[Serialize]
 	public bool efficientlyGatheredData;
 
-	// Token: 0x04003E3E RID: 15934
 	[Serialize]
 	public bool fullyBoostedBionic;
 
-	// Token: 0x04003E3F RID: 15935
 	[Serialize]
 	private int geothermalProgress;
 
-	// Token: 0x04003E40 RID: 15936
 	private const int GEO_DISCOVERED_BIT = 1;
 
-	// Token: 0x04003E41 RID: 15937
 	private const int GEO_CONTROLLER_REPAIRED_BIT = 2;
 
-	// Token: 0x04003E42 RID: 15938
 	private const int GEO_CONTROLLER_VENTED_BIT = 4;
 
-	// Token: 0x04003E43 RID: 15939
 	private const int GEO_CLEARED_ENTOMBED_BIT = 8;
 
-	// Token: 0x04003E44 RID: 15940
 	private const int GEO_VICTORY_ACK_BIT = 16;
 
-	// Token: 0x04003E45 RID: 15941
 	private SchedulerHandle checkAchievementsHandle;
 
-	// Token: 0x04003E46 RID: 15942
 	private int forceCheckAchievementHandle = -1;
 
-	// Token: 0x04003E47 RID: 15943
 	[Serialize]
 	private int updatingAchievement;
 
-	// Token: 0x04003E48 RID: 15944
 	[Serialize]
 	private List<string> completedAchievementsToDisplay = new List<string>();
 
-	// Token: 0x04003E49 RID: 15945
 	private SchedulerHandle victorySchedulerHandle;
 
-	// Token: 0x04003E4A RID: 15946
 	public static readonly string UnlockedAchievementKey = "UnlockedAchievement";
 
-	// Token: 0x04003E4B RID: 15947
 	private Dictionary<string, object> unlockedAchievementMetric = new Dictionary<string, object>
 	{
 		{
@@ -642,7 +579,6 @@ public class ColonyAchievementTracker : KMonoBehaviour, ISaveLoadableDetails, IR
 		}
 	};
 
-	// Token: 0x04003E4C RID: 15948
 	private static readonly Tag[] SuitTags = new Tag[]
 	{
 		GameTags.AtmoSuit,
@@ -650,7 +586,6 @@ public class ColonyAchievementTracker : KMonoBehaviour, ISaveLoadableDetails, IR
 		GameTags.LeadSuit
 	};
 
-	// Token: 0x04003E4D RID: 15949
 	private static readonly EventSystem.IntraObjectHandler<ColonyAchievementTracker> OnNewDayDelegate = new EventSystem.IntraObjectHandler<ColonyAchievementTracker>(delegate(ColonyAchievementTracker component, object data)
 	{
 		component.OnNewDay(data);

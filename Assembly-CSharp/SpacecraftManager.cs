@@ -8,18 +8,15 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200199A RID: 6554
 [SerializationConfig(MemberSerialization.OptIn)]
 [AddComponentMenu("KMonoBehaviour/scripts/SpacecraftManager")]
 public class SpacecraftManager : KMonoBehaviour, ISim1000ms
 {
-	// Token: 0x06008894 RID: 34964 RVA: 0x000FDE41 File Offset: 0x000FC041
 	public static void DestroyInstance()
 	{
 		SpacecraftManager.instance = null;
 	}
 
-	// Token: 0x06008895 RID: 34965 RVA: 0x000FDE49 File Offset: 0x000FC049
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -30,7 +27,6 @@ public class SpacecraftManager : KMonoBehaviour, ISim1000ms
 		}
 	}
 
-	// Token: 0x06008896 RID: 34966 RVA: 0x00363848 File Offset: 0x00361A48
 	private void GenerateFixedDestinations()
 	{
 		SpaceDestinationTypes spaceDestinationTypes = Db.Get().SpaceDestinationTypes;
@@ -49,7 +45,6 @@ public class SpacecraftManager : KMonoBehaviour, ISim1000ms
 		};
 	}
 
-	// Token: 0x06008897 RID: 34967 RVA: 0x00363904 File Offset: 0x00361B04
 	private void GenerateRandomDestinations()
 	{
 		KRandom krandom = new KRandom(SaveLoader.Instance.clusterDetailSave.globalWorldSeed);
@@ -244,7 +239,6 @@ public class SpacecraftManager : KMonoBehaviour, ISim1000ms
 		this.destinations.AddRange(list5);
 	}
 
-	// Token: 0x06008898 RID: 34968 RVA: 0x00364104 File Offset: 0x00362304
 	private void RestoreDestinations()
 	{
 		if (this.destinationsGenerated)
@@ -275,14 +269,12 @@ public class SpacecraftManager : KMonoBehaviour, ISim1000ms
 		this.destinationsGenerated = true;
 	}
 
-	// Token: 0x06008899 RID: 34969 RVA: 0x003641EC File Offset: 0x003623EC
 	public SpaceDestination GetSpacecraftDestination(LaunchConditionManager lcm)
 	{
 		Spacecraft spacecraftFromLaunchConditionManager = this.GetSpacecraftFromLaunchConditionManager(lcm);
 		return this.GetSpacecraftDestination(spacecraftFromLaunchConditionManager.id);
 	}
 
-	// Token: 0x0600889A RID: 34970 RVA: 0x000FDE6A File Offset: 0x000FC06A
 	public SpaceDestination GetSpacecraftDestination(int spacecraftID)
 	{
 		this.CleanSavedSpacecraftDestinations();
@@ -293,7 +285,6 @@ public class SpacecraftManager : KMonoBehaviour, ISim1000ms
 		return null;
 	}
 
-	// Token: 0x0600889B RID: 34971 RVA: 0x00364210 File Offset: 0x00362410
 	public List<int> GetSpacecraftsForDestination(SpaceDestination destination)
 	{
 		this.CleanSavedSpacecraftDestinations();
@@ -308,7 +299,6 @@ public class SpacecraftManager : KMonoBehaviour, ISim1000ms
 		return list;
 	}
 
-	// Token: 0x0600889C RID: 34972 RVA: 0x00364288 File Offset: 0x00362488
 	private void CleanSavedSpacecraftDestinations()
 	{
 		List<int> list = new List<int>();
@@ -349,7 +339,6 @@ public class SpacecraftManager : KMonoBehaviour, ISim1000ms
 		}
 	}
 
-	// Token: 0x0600889D RID: 34973 RVA: 0x000FDE94 File Offset: 0x000FC094
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -362,7 +351,6 @@ public class SpacecraftManager : KMonoBehaviour, ISim1000ms
 		this.RestoreDestinations();
 	}
 
-	// Token: 0x0600889E RID: 34974 RVA: 0x003643DC File Offset: 0x003625DC
 	public void SetSpacecraftDestination(LaunchConditionManager lcm, SpaceDestination destination)
 	{
 		Spacecraft spacecraftFromLaunchConditionManager = this.GetSpacecraftFromLaunchConditionManager(lcm);
@@ -370,7 +358,6 @@ public class SpacecraftManager : KMonoBehaviour, ISim1000ms
 		lcm.Trigger(929158128, destination);
 	}
 
-	// Token: 0x0600889F RID: 34975 RVA: 0x00364414 File Offset: 0x00362614
 	public int GetSpacecraftID(ILaunchableRocket rocket)
 	{
 		foreach (Spacecraft spacecraft in this.spacecraft)
@@ -383,7 +370,6 @@ public class SpacecraftManager : KMonoBehaviour, ISim1000ms
 		return -1;
 	}
 
-	// Token: 0x060088A0 RID: 34976 RVA: 0x00364484 File Offset: 0x00362684
 	public SpaceDestination GetDestination(int destinationID)
 	{
 		foreach (SpaceDestination spaceDestination in this.destinations)
@@ -400,7 +386,6 @@ public class SpacecraftManager : KMonoBehaviour, ISim1000ms
 		return null;
 	}
 
-	// Token: 0x060088A1 RID: 34977 RVA: 0x000FDED3 File Offset: 0x000FC0D3
 	public void RegisterSpacecraft(Spacecraft craft)
 	{
 		if (this.spacecraft.Contains(craft))
@@ -415,7 +400,6 @@ public class SpacecraftManager : KMonoBehaviour, ISim1000ms
 		this.spacecraft.Add(craft);
 	}
 
-	// Token: 0x060088A2 RID: 34978 RVA: 0x003644FC File Offset: 0x003626FC
 	public void UnregisterSpacecraft(LaunchConditionManager conditionManager)
 	{
 		Spacecraft spacecraftFromLaunchConditionManager = this.GetSpacecraftFromLaunchConditionManager(conditionManager);
@@ -423,13 +407,11 @@ public class SpacecraftManager : KMonoBehaviour, ISim1000ms
 		this.spacecraft.Remove(spacecraftFromLaunchConditionManager);
 	}
 
-	// Token: 0x060088A3 RID: 34979 RVA: 0x000FDF12 File Offset: 0x000FC112
 	public List<Spacecraft> GetSpacecraft()
 	{
 		return this.spacecraft;
 	}
 
-	// Token: 0x060088A4 RID: 34980 RVA: 0x00364528 File Offset: 0x00362728
 	public Spacecraft GetSpacecraftFromLaunchConditionManager(LaunchConditionManager lcm)
 	{
 		foreach (Spacecraft spacecraft in this.spacecraft)
@@ -442,7 +424,6 @@ public class SpacecraftManager : KMonoBehaviour, ISim1000ms
 		return null;
 	}
 
-	// Token: 0x060088A5 RID: 34981 RVA: 0x0036458C File Offset: 0x0036278C
 	public void Sim1000ms(float dt)
 	{
 		if (DlcManager.FeatureClusterSpaceEnabled())
@@ -459,7 +440,6 @@ public class SpacecraftManager : KMonoBehaviour, ISim1000ms
 		}
 	}
 
-	// Token: 0x060088A6 RID: 34982 RVA: 0x00364628 File Offset: 0x00362828
 	public void PushReadyToLandNotification(Spacecraft spacecraft)
 	{
 		Notification notification = new Notification(BUILDING.STATUSITEMS.SPACECRAFTREADYTOLAND.NOTIFICATION, NotificationType.Good, delegate(List<Notification> notificationList, object data)
@@ -474,7 +454,6 @@ public class SpacecraftManager : KMonoBehaviour, ISim1000ms
 		spacecraft.launchConditions.gameObject.AddOrGet<Notifier>().Add(notification, "");
 	}
 
-	// Token: 0x060088A7 RID: 34983 RVA: 0x0036469C File Offset: 0x0036289C
 	private void SpawnMissionResults(Dictionary<SimHashes, float> results)
 	{
 		foreach (KeyValuePair<SimHashes, float> keyValuePair in results)
@@ -483,13 +462,11 @@ public class SpacecraftManager : KMonoBehaviour, ISim1000ms
 		}
 	}
 
-	// Token: 0x060088A8 RID: 34984 RVA: 0x000FDF1A File Offset: 0x000FC11A
 	public float GetDestinationAnalysisScore(SpaceDestination destination)
 	{
 		return this.GetDestinationAnalysisScore(destination.id);
 	}
 
-	// Token: 0x060088A9 RID: 34985 RVA: 0x000FDF28 File Offset: 0x000FC128
 	public float GetDestinationAnalysisScore(int destinationID)
 	{
 		if (this.destinationAnalysisScores.ContainsKey(destinationID))
@@ -499,7 +476,6 @@ public class SpacecraftManager : KMonoBehaviour, ISim1000ms
 		return 0f;
 	}
 
-	// Token: 0x060088AA RID: 34986 RVA: 0x00364718 File Offset: 0x00362918
 	public void EarnDestinationAnalysisPoints(int destinationID, float points)
 	{
 		if (!this.destinationAnalysisScores.ContainsKey(destinationID))
@@ -533,7 +509,6 @@ public class SpacecraftManager : KMonoBehaviour, ISim1000ms
 		}
 	}
 
-	// Token: 0x060088AB RID: 34987 RVA: 0x00364830 File Offset: 0x00362A30
 	public SpacecraftManager.DestinationAnalysisState GetDestinationAnalysisState(SpaceDestination destination)
 	{
 		if (destination.startAnalyzed)
@@ -552,7 +527,6 @@ public class SpacecraftManager : KMonoBehaviour, ISim1000ms
 		return SpacecraftManager.DestinationAnalysisState.Hidden;
 	}
 
-	// Token: 0x060088AC RID: 34988 RVA: 0x00364868 File Offset: 0x00362A68
 	public bool AreAllDestinationsAnalyzed()
 	{
 		foreach (SpaceDestination destination in this.destinations)
@@ -565,7 +539,6 @@ public class SpacecraftManager : KMonoBehaviour, ISim1000ms
 		return true;
 	}
 
-	// Token: 0x060088AD RID: 34989 RVA: 0x003648C8 File Offset: 0x00362AC8
 	public void DEBUG_RevealStarmap()
 	{
 		foreach (SpaceDestination spaceDestination in this.destinations)
@@ -574,26 +547,22 @@ public class SpacecraftManager : KMonoBehaviour, ISim1000ms
 		}
 	}
 
-	// Token: 0x060088AE RID: 34990 RVA: 0x000FDF4A File Offset: 0x000FC14A
 	public void SetStarmapAnalysisDestinationID(int id)
 	{
 		this.analyzeDestinationID = id;
 		base.Trigger(532901469, id);
 	}
 
-	// Token: 0x060088AF RID: 34991 RVA: 0x000FDF64 File Offset: 0x000FC164
 	public int GetStarmapAnalysisDestinationID()
 	{
 		return this.analyzeDestinationID;
 	}
 
-	// Token: 0x060088B0 RID: 34992 RVA: 0x000FDF6C File Offset: 0x000FC16C
 	public bool HasAnalysisTarget()
 	{
 		return this.analyzeDestinationID != -1;
 	}
 
-	// Token: 0x060088B2 RID: 34994 RVA: 0x00364928 File Offset: 0x00362B28
 	[CompilerGenerated]
 	internal static int <GenerateRandomDestinations>g__GetNextID|12_0(ref SpacecraftManager.<>c__DisplayClass12_0 A_0)
 	{
@@ -602,52 +571,38 @@ public class SpacecraftManager : KMonoBehaviour, ISim1000ms
 		return nextId;
 	}
 
-	// Token: 0x04006776 RID: 26486
 	public static SpacecraftManager instance;
 
-	// Token: 0x04006777 RID: 26487
 	[Serialize]
 	private List<Spacecraft> spacecraft = new List<Spacecraft>();
 
-	// Token: 0x04006778 RID: 26488
 	[Serialize]
 	private int nextSpacecraftID;
 
-	// Token: 0x04006779 RID: 26489
 	public const int INVALID_DESTINATION_ID = -1;
 
-	// Token: 0x0400677A RID: 26490
 	[Serialize]
 	private int analyzeDestinationID = -1;
 
-	// Token: 0x0400677B RID: 26491
 	[Serialize]
 	public bool hasVisitedWormHole;
 
-	// Token: 0x0400677C RID: 26492
 	[Serialize]
 	public List<SpaceDestination> destinations;
 
-	// Token: 0x0400677D RID: 26493
 	[Serialize]
 	public Dictionary<int, int> savedSpacecraftDestinations;
 
-	// Token: 0x0400677E RID: 26494
 	[Serialize]
 	public bool destinationsGenerated;
 
-	// Token: 0x0400677F RID: 26495
 	[Serialize]
 	public Dictionary<int, float> destinationAnalysisScores = new Dictionary<int, float>();
 
-	// Token: 0x0200199B RID: 6555
 	public enum DestinationAnalysisState
 	{
-		// Token: 0x04006781 RID: 26497
 		Hidden,
-		// Token: 0x04006782 RID: 26498
 		Discovered,
-		// Token: 0x04006783 RID: 26499
 		Complete
 	}
 }

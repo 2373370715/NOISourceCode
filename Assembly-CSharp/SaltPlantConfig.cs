@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020002B8 RID: 696
 public class SaltPlantConfig : IEntityConfig
 {
-	// Token: 0x06000A33 RID: 2611 RVA: 0x00173D10 File Offset: 0x00171F10
 	public GameObject CreatePrefab()
 	{
 		string id = "SaltPlant";
@@ -81,26 +79,20 @@ public class SaltPlantConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06000A34 RID: 2612 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject prefab)
 	{
 	}
 
-	// Token: 0x06000A35 RID: 2613 RVA: 0x000AED0B File Offset: 0x000ACF0B
 	public void OnSpawn(GameObject inst)
 	{
 		inst.GetComponent<ElementConsumer>().EnableConsumption(true);
 	}
 
-	// Token: 0x04000807 RID: 2055
 	public const string ID = "SaltPlant";
 
-	// Token: 0x04000808 RID: 2056
 	public const string SEED_ID = "SaltPlantSeed";
 
-	// Token: 0x04000809 RID: 2057
 	public const float FERTILIZATION_RATE = 0.011666667f;
 
-	// Token: 0x0400080A RID: 2058
 	public const float CHLORINE_CONSUMPTION_RATE = 0.006f;
 }

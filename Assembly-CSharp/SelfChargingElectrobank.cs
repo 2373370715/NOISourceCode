@@ -2,11 +2,8 @@
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x020018AE RID: 6318
 public class SelfChargingElectrobank : Electrobank
 {
-	// Token: 0x1700084F RID: 2127
-	// (get) Token: 0x06008283 RID: 33411 RVA: 0x000FA513 File Offset: 0x000F8713
 	public float LifetimeRemaining
 	{
 		get
@@ -15,7 +12,6 @@ public class SelfChargingElectrobank : Electrobank
 		}
 	}
 
-	// Token: 0x06008284 RID: 33412 RVA: 0x0034A9EC File Offset: 0x00348BEC
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -29,7 +25,6 @@ public class SelfChargingElectrobank : Electrobank
 		}
 	}
 
-	// Token: 0x06008285 RID: 33413 RVA: 0x000FA51B File Offset: 0x000F871B
 	public override void Sim200ms(float dt)
 	{
 		base.Sim200ms(dt);
@@ -42,7 +37,6 @@ public class SelfChargingElectrobank : Electrobank
 		this.Explode();
 	}
 
-	// Token: 0x06008286 RID: 33414 RVA: 0x0034AA7C File Offset: 0x00348C7C
 	public override void Explode()
 	{
 		Game.Instance.SpawnFX(SpawnFXHashes.MeteorImpactMetal, base.gameObject.transform.position, 0f);
@@ -64,7 +58,6 @@ public class SelfChargingElectrobank : Electrobank
 		this.Delete();
 	}
 
-	// Token: 0x06008287 RID: 33415 RVA: 0x000FA554 File Offset: 0x000F8754
 	private void Delete()
 	{
 		if (!this.IsNullOrDestroyed() && !base.gameObject.IsNullOrDestroyed())
@@ -73,20 +66,16 @@ public class SelfChargingElectrobank : Electrobank
 		}
 	}
 
-	// Token: 0x06008288 RID: 33416 RVA: 0x000FA576 File Offset: 0x000F8776
 	protected override void OnCleanUp()
 	{
 		base.OnCleanUp();
 		Components.SelfChargingElectrobanks.Remove(base.gameObject.GetMyWorldId(), this);
 	}
 
-	// Token: 0x04006355 RID: 25429
 	[Serialize]
 	private float lifetimeRemaining = 90000f;
 
-	// Token: 0x04006356 RID: 25430
 	private KSelectable selectable;
 
-	// Token: 0x04006357 RID: 25431
 	private Guid lifetimeStatus = Guid.Empty;
 }

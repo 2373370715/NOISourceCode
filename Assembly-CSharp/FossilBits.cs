@@ -2,22 +2,18 @@
 using KSerialization;
 using STRINGS;
 
-// Token: 0x02000337 RID: 823
 public class FossilBits : FossilExcavationWorkable, ISidescreenButtonControl
 {
-	// Token: 0x06000CE4 RID: 3300 RVA: 0x000AFDF1 File Offset: 0x000ADFF1
 	protected override bool IsMarkedForExcavation()
 	{
 		return this.MarkedForDig;
 	}
 
-	// Token: 0x06000CE5 RID: 3301 RVA: 0x000AFDF9 File Offset: 0x000ADFF9
 	public void SetEntombStatusItemVisibility(bool visible)
 	{
 		this.entombComponent.SetShowStatusItemOnEntombed(visible);
 	}
 
-	// Token: 0x06000CE6 RID: 3302 RVA: 0x0017B8F4 File Offset: 0x00179AF4
 	public void CreateWorkableChore()
 	{
 		if (this.chore == null && this.operational.IsOperational)
@@ -26,7 +22,6 @@ public class FossilBits : FossilExcavationWorkable, ISidescreenButtonControl
 		}
 	}
 
-	// Token: 0x06000CE7 RID: 3303 RVA: 0x000AFE07 File Offset: 0x000AE007
 	public void CancelWorkChore()
 	{
 		if (this.chore != null)
@@ -36,7 +31,6 @@ public class FossilBits : FossilExcavationWorkable, ISidescreenButtonControl
 		}
 	}
 
-	// Token: 0x06000CE8 RID: 3304 RVA: 0x0017B944 File Offset: 0x00179B44
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -48,7 +42,6 @@ public class FossilBits : FossilExcavationWorkable, ISidescreenButtonControl
 		base.SetWorkTime(30f);
 	}
 
-	// Token: 0x06000CE9 RID: 3305 RVA: 0x000AFE28 File Offset: 0x000AE028
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -56,7 +49,6 @@ public class FossilBits : FossilExcavationWorkable, ISidescreenButtonControl
 		base.SetShouldShowSkillPerkStatusItem(this.IsMarkedForExcavation());
 	}
 
-	// Token: 0x06000CEA RID: 3306 RVA: 0x000AFE48 File Offset: 0x000AE048
 	private void OnOperationalChanged(object state)
 	{
 		if ((bool)state)
@@ -73,7 +65,6 @@ public class FossilBits : FossilExcavationWorkable, ISidescreenButtonControl
 		}
 	}
 
-	// Token: 0x06000CEB RID: 3307 RVA: 0x0017B998 File Offset: 0x00179B98
 	private void DropLoot()
 	{
 		PrimaryElement component = base.gameObject.GetComponent<PrimaryElement>();
@@ -98,7 +89,6 @@ public class FossilBits : FossilExcavationWorkable, ISidescreenButtonControl
 		}
 	}
 
-	// Token: 0x06000CEC RID: 3308 RVA: 0x000AFE6F File Offset: 0x000AE06F
 	protected override void OnCompleteWork(WorkerBase worker)
 	{
 		base.OnCompleteWork(worker);
@@ -106,14 +96,11 @@ public class FossilBits : FossilExcavationWorkable, ISidescreenButtonControl
 		Util.KDestroyGameObject(base.gameObject);
 	}
 
-	// Token: 0x06000CED RID: 3309 RVA: 0x000AFE89 File Offset: 0x000AE089
 	public int HorizontalGroupID()
 	{
 		return -1;
 	}
 
-	// Token: 0x17000035 RID: 53
-	// (get) Token: 0x06000CEE RID: 3310 RVA: 0x000AFE8C File Offset: 0x000AE08C
 	public string SidescreenButtonText
 	{
 		get
@@ -126,8 +113,6 @@ public class FossilBits : FossilExcavationWorkable, ISidescreenButtonControl
 		}
 	}
 
-	// Token: 0x17000036 RID: 54
-	// (get) Token: 0x06000CEF RID: 3311 RVA: 0x000AFEAB File Offset: 0x000AE0AB
 	public string SidescreenButtonTooltip
 	{
 		get
@@ -140,25 +125,21 @@ public class FossilBits : FossilExcavationWorkable, ISidescreenButtonControl
 		}
 	}
 
-	// Token: 0x06000CF0 RID: 3312 RVA: 0x000AFECA File Offset: 0x000AE0CA
 	public void SetButtonTextOverride(ButtonMenuTextOverride textOverride)
 	{
 		throw new NotImplementedException();
 	}
 
-	// Token: 0x06000CF1 RID: 3313 RVA: 0x000AA7E7 File Offset: 0x000A89E7
 	public bool SidescreenEnabled()
 	{
 		return true;
 	}
 
-	// Token: 0x06000CF2 RID: 3314 RVA: 0x000AA7E7 File Offset: 0x000A89E7
 	public bool SidescreenButtonInteractable()
 	{
 		return true;
 	}
 
-	// Token: 0x06000CF3 RID: 3315 RVA: 0x0017BA50 File Offset: 0x00179C50
 	public void OnSidescreenButtonPressed()
 	{
 		this.MarkedForDig = !this.MarkedForDig;
@@ -175,24 +156,19 @@ public class FossilBits : FossilExcavationWorkable, ISidescreenButtonControl
 		this.UpdateStatusItem(null);
 	}
 
-	// Token: 0x06000CF4 RID: 3316 RVA: 0x000AFED1 File Offset: 0x000AE0D1
 	public int ButtonSideScreenSortOrder()
 	{
 		return 20;
 	}
 
-	// Token: 0x040009AE RID: 2478
 	[Serialize]
 	public bool MarkedForDig;
 
-	// Token: 0x040009AF RID: 2479
 	private Chore chore;
 
-	// Token: 0x040009B0 RID: 2480
 	[MyCmpGet]
 	private EntombVulnerable entombComponent;
 
-	// Token: 0x040009B1 RID: 2481
 	[MyCmpGet]
 	private Operational operational;
 }

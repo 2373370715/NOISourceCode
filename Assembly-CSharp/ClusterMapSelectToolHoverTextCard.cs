@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02001B0B RID: 6923
 public class ClusterMapSelectToolHoverTextCard : HoverTextConfiguration
 {
-	// Token: 0x06009118 RID: 37144 RVA: 0x0038B518 File Offset: 0x00389718
 	public override void ConfigureHoverScreen()
 	{
 		base.ConfigureHoverScreen();
@@ -15,7 +13,6 @@ public class ClusterMapSelectToolHoverTextCard : HoverTextConfiguration
 		this.m_iconHighlighted = instance.GetSprite("dash_arrow");
 	}
 
-	// Token: 0x06009119 RID: 37145 RVA: 0x0038B564 File Offset: 0x00389764
 	public override void UpdateHoverElements(List<KSelectable> hoverObjects)
 	{
 		if (this.m_iconWarning == null)
@@ -57,18 +54,14 @@ public class ClusterMapSelectToolHoverTextCard : HoverTextConfiguration
 		hoverTextDrawer.EndDrawing();
 	}
 
-	// Token: 0x0600911A RID: 37146 RVA: 0x001033B1 File Offset: 0x001015B1
 	private bool IsStatusItemWarning(StatusItemGroup.Entry item)
 	{
 		return item.item.notificationType == NotificationType.Bad || item.item.notificationType == NotificationType.BadMinor || item.item.notificationType == NotificationType.DuplicantThreatening;
 	}
 
-	// Token: 0x04006DB3 RID: 28083
 	private Sprite m_iconWarning;
 
-	// Token: 0x04006DB4 RID: 28084
 	private Sprite m_iconDash;
 
-	// Token: 0x04006DB5 RID: 28085
 	private Sprite m_iconHighlighted;
 }

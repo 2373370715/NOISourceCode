@@ -5,10 +5,8 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001C69 RID: 7273
 public class ClusterCategorySelectionScreen : NewGameFlowScreen
 {
-	// Token: 0x06009735 RID: 38709 RVA: 0x003B25BC File Offset: 0x003B07BC
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -64,7 +62,6 @@ public class ClusterCategorySelectionScreen : NewGameFlowScreen
 		this.eventStyle.kanim.Play("lab_asteroid_standard", KAnim.PlayMode.Once, 1f, 0f);
 	}
 
-	// Token: 0x06009736 RID: 38710 RVA: 0x00106F34 File Offset: 0x00105134
 	private void OnClickOption(ClusterLayout.ClusterCategory clusterCategory)
 	{
 		this.Deactivate();
@@ -72,35 +69,26 @@ public class ClusterCategorySelectionScreen : NewGameFlowScreen
 		base.NavigateForward();
 	}
 
-	// Token: 0x040075B1 RID: 30129
 	public ClusterCategorySelectionScreen.ButtonConfig vanillaStyle;
 
-	// Token: 0x040075B2 RID: 30130
 	public ClusterCategorySelectionScreen.ButtonConfig classicStyle;
 
-	// Token: 0x040075B3 RID: 30131
 	public ClusterCategorySelectionScreen.ButtonConfig spacedOutStyle;
 
-	// Token: 0x040075B4 RID: 30132
 	public ClusterCategorySelectionScreen.ButtonConfig eventStyle;
 
-	// Token: 0x040075B5 RID: 30133
 	[SerializeField]
 	private LocText descriptionArea;
 
-	// Token: 0x040075B6 RID: 30134
 	[SerializeField]
 	private KButton closeButton;
 
-	// Token: 0x040075B7 RID: 30135
 	[SerializeField]
 	private RectTransform panel;
 
-	// Token: 0x02001C6A RID: 7274
 	[Serializable]
 	public class ButtonConfig
 	{
-		// Token: 0x0600973C RID: 38716 RVA: 0x003B2878 File Offset: 0x003B0A78
 		public void Init(LocText descriptionArea, string hoverDescriptionText, string headerText)
 		{
 			this.descriptionArea = descriptionArea;
@@ -115,7 +103,6 @@ public class ClusterCategorySelectionScreen : NewGameFlowScreen
 			this.selectionFrame = component.GetReference<RectTransform>("SelectionFrame").GetComponent<Image>();
 		}
 
-		// Token: 0x0600973D RID: 38717 RVA: 0x003B2928 File Offset: 0x003B0B28
 		private void OnHoverEnter()
 		{
 			KMonoBehaviour.PlaySound(GlobalAssets.GetSound("HUD_Mouseover", false));
@@ -124,7 +111,6 @@ public class ClusterCategorySelectionScreen : NewGameFlowScreen
 			this.descriptionArea.text = this.hoverDescriptionText;
 		}
 
-		// Token: 0x0600973E RID: 38718 RVA: 0x003B298C File Offset: 0x003B0B8C
 		private void OnHoverExit()
 		{
 			KMonoBehaviour.PlaySound(GlobalAssets.GetSound("HUD_Mouseover", false));
@@ -133,25 +119,18 @@ public class ClusterCategorySelectionScreen : NewGameFlowScreen
 			this.descriptionArea.text = UI.FRONTEND.CLUSTERCATEGORYSELECTSCREEN.BLANK_DESC;
 		}
 
-		// Token: 0x040075B8 RID: 30136
 		public MultiToggle button;
 
-		// Token: 0x040075B9 RID: 30137
 		public Image headerImage;
 
-		// Token: 0x040075BA RID: 30138
 		public LocText headerLabel;
 
-		// Token: 0x040075BB RID: 30139
 		public Image selectionFrame;
 
-		// Token: 0x040075BC RID: 30140
 		public KAnimControllerBase kanim;
 
-		// Token: 0x040075BD RID: 30141
 		private string hoverDescriptionText;
 
-		// Token: 0x040075BE RID: 30142
 		private LocText descriptionArea;
 	}
 }

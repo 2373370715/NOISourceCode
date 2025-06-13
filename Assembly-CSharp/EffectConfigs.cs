@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020000A8 RID: 168
 public class EffectConfigs : IMultiEntityConfig
 {
-	// Token: 0x060002B3 RID: 691 RVA: 0x00152108 File Offset: 0x00150308
 	public List<GameObject> CreatePrefabs()
 	{
 		List<GameObject> list = new List<GameObject>();
@@ -112,34 +110,25 @@ public class EffectConfigs : IMultiEntityConfig
 		return list;
 	}
 
-	// Token: 0x060002B4 RID: 692 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject go)
 	{
 	}
 
-	// Token: 0x060002B5 RID: 693 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject go)
 	{
 	}
 
-	// Token: 0x040001BB RID: 443
 	public static string EffectTemplateId = "EffectTemplateFx";
 
-	// Token: 0x040001BC RID: 444
 	public static string EffectTemplateOverrideId = "EffectTemplateOverrideFx";
 
-	// Token: 0x040001BD RID: 445
 	public static string AttackSplashId = "AttackSplashFx";
 
-	// Token: 0x040001BE RID: 446
 	public static string OreAbsorbId = "OreAbsorbFx";
 
-	// Token: 0x040001BF RID: 447
 	public static string PlantDeathId = "PlantDeathFx";
 
-	// Token: 0x040001C0 RID: 448
 	public static string BuildSplashId = "BuildSplashFx";
 
-	// Token: 0x040001C1 RID: 449
 	public static string DemolishSplashId = "DemolishSplashFx";
 }

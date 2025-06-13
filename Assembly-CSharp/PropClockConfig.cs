@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000515 RID: 1301
 public class PropClockConfig : IEntityConfig
 {
-	// Token: 0x06001653 RID: 5715 RVA: 0x001A2ADC File Offset: 0x001A0CDC
 	public GameObject CreatePrefab()
 	{
 		string id = "PropClock";
@@ -31,12 +29,10 @@ public class PropClockConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06001654 RID: 5716 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x06001655 RID: 5717 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}

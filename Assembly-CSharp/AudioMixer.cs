@@ -4,11 +4,8 @@ using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
 
-// Token: 0x0200097A RID: 2426
 public class AudioMixer
 {
-	// Token: 0x1700016A RID: 362
-	// (get) Token: 0x06002B58 RID: 11096 RVA: 0x000C0B16 File Offset: 0x000BED16
 	public static AudioMixer instance
 	{
 		get
@@ -17,7 +14,6 @@ public class AudioMixer
 		}
 	}
 
-	// Token: 0x06002B59 RID: 11097 RVA: 0x001EB4A8 File Offset: 0x001E96A8
 	public static AudioMixer Create()
 	{
 		AudioMixer._instance = new AudioMixer();
@@ -29,14 +25,12 @@ public class AudioMixer
 		return AudioMixer._instance;
 	}
 
-	// Token: 0x06002B5A RID: 11098 RVA: 0x000C0B1D File Offset: 0x000BED1D
 	public static void Destroy()
 	{
 		AudioMixer._instance.StopAll(FMOD.Studio.STOP_MODE.IMMEDIATE);
 		AudioMixer._instance = null;
 	}
 
-	// Token: 0x06002B5B RID: 11099 RVA: 0x001EB4DC File Offset: 0x001E96DC
 	public EventInstance Start(EventReference event_ref)
 	{
 		string snapshot;
@@ -44,7 +38,6 @@ public class AudioMixer
 		return this.Start(snapshot);
 	}
 
-	// Token: 0x06002B5C RID: 11100 RVA: 0x001EB508 File Offset: 0x001E9708
 	public EventInstance Start(string snapshot)
 	{
 		EventInstance eventInstance;
@@ -66,7 +59,6 @@ public class AudioMixer
 		return eventInstance;
 	}
 
-	// Token: 0x06002B5D RID: 11101 RVA: 0x001EB588 File Offset: 0x001E9788
 	public bool Stop(EventReference event_ref, FMOD.Studio.STOP_MODE stop_mode = FMOD.Studio.STOP_MODE.ALLOWFADEOUT)
 	{
 		string s;
@@ -74,7 +66,6 @@ public class AudioMixer
 		return this.Stop(s, stop_mode);
 	}
 
-	// Token: 0x06002B5E RID: 11102 RVA: 0x001EB5B8 File Offset: 0x001E97B8
 	public bool Stop(HashedString snapshot, FMOD.Studio.STOP_MODE stop_mode = FMOD.Studio.STOP_MODE.ALLOWFADEOUT)
 	{
 		bool result = false;
@@ -107,13 +98,11 @@ public class AudioMixer
 		return result;
 	}
 
-	// Token: 0x06002B5F RID: 11103 RVA: 0x000C0B30 File Offset: 0x000BED30
 	public void Reset()
 	{
 		this.StopAll(FMOD.Studio.STOP_MODE.IMMEDIATE);
 	}
 
-	// Token: 0x06002B60 RID: 11104 RVA: 0x001EB688 File Offset: 0x001E9888
 	public void StopAll(FMOD.Studio.STOP_MODE stop_mode = FMOD.Studio.STOP_MODE.IMMEDIATE)
 	{
 		List<HashedString> list = new List<HashedString>();
@@ -130,7 +119,6 @@ public class AudioMixer
 		}
 	}
 
-	// Token: 0x06002B61 RID: 11105 RVA: 0x001EB71C File Offset: 0x001E991C
 	public bool SnapshotIsActive(EventReference event_ref)
 	{
 		string s;
@@ -138,13 +126,11 @@ public class AudioMixer
 		return this.SnapshotIsActive(s);
 	}
 
-	// Token: 0x06002B62 RID: 11106 RVA: 0x000C0B39 File Offset: 0x000BED39
 	public bool SnapshotIsActive(HashedString snapshot_name)
 	{
 		return this.activeSnapshots.ContainsKey(snapshot_name);
 	}
 
-	// Token: 0x06002B63 RID: 11107 RVA: 0x001EB74C File Offset: 0x001E994C
 	public void SetSnapshotParameter(EventReference event_ref, string parameter_name, float parameter_value, bool shouldLog = true)
 	{
 		string snapshot_name;
@@ -152,7 +138,6 @@ public class AudioMixer
 		this.SetSnapshotParameter(snapshot_name, parameter_name, parameter_value, shouldLog);
 	}
 
-	// Token: 0x06002B64 RID: 11108 RVA: 0x001EB77C File Offset: 0x001E997C
 	public void SetSnapshotParameter(string snapshot_name, string parameter_name, float parameter_value, bool shouldLog = true)
 	{
 		if (shouldLog)
@@ -177,7 +162,6 @@ public class AudioMixer
 		}));
 	}
 
-	// Token: 0x06002B65 RID: 11109 RVA: 0x001EB80C File Offset: 0x001E9A0C
 	public void StartPersistentSnapshots()
 	{
 		this.persistentSnapshotsActive = true;
@@ -189,7 +173,6 @@ public class AudioMixer
 		this.Start(AudioMixerSnapshots.Get().PulseSnapshot);
 	}
 
-	// Token: 0x06002B66 RID: 11110 RVA: 0x001EB890 File Offset: 0x001E9A90
 	public void StopPersistentSnapshots()
 	{
 		this.persistentSnapshotsActive = false;
@@ -201,7 +184,6 @@ public class AudioMixer
 		this.Stop(AudioMixerSnapshots.Get().PulseSnapshot, FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 	}
 
-	// Token: 0x06002B67 RID: 11111 RVA: 0x001EB910 File Offset: 0x001E9B10
 	private string GetSnapshotName(EventReference event_ref)
 	{
 		string result;
@@ -209,7 +191,6 @@ public class AudioMixer
 		return result;
 	}
 
-	// Token: 0x06002B68 RID: 11112 RVA: 0x001EB934 File Offset: 0x001E9B34
 	public void UpdatePersistentSnapshotParameters()
 	{
 		this.SetVisibleDuplicants();
@@ -246,26 +227,22 @@ public class AudioMixer
 		}
 	}
 
-	// Token: 0x06002B69 RID: 11113 RVA: 0x000C0B4C File Offset: 0x000BED4C
 	public void UpdateSpaceVisibleSnapshot(float percent)
 	{
 		this.spaceVisibleInst.setParameterByName("spaceVisible", percent, false);
 	}
 
-	// Token: 0x06002B6A RID: 11114 RVA: 0x000C0B61 File Offset: 0x000BED61
 	public void PauseSpaceVisibleSnapshot(bool pause)
 	{
 		this.spaceVisibleInst.setParameterByName("spaceVisible", 0f, true);
 		this.spaceVisibleInst.setPaused(pause);
 	}
 
-	// Token: 0x06002B6B RID: 11115 RVA: 0x000C0B87 File Offset: 0x000BED87
 	public void UpdateFacilityVisibleSnapshot(float percent)
 	{
 		this.facilityVisibleInst.setParameterByName("facilityVisible", percent, false);
 	}
 
-	// Token: 0x06002B6C RID: 11116 RVA: 0x001EBAE4 File Offset: 0x001E9CE4
 	private void SetVisibleDuplicants()
 	{
 		int num = 0;
@@ -297,7 +274,6 @@ public class AudioMixer
 		this.visibleDupes["sleeping"] = num3;
 	}
 
-	// Token: 0x06002B6D RID: 11117 RVA: 0x001EBBC4 File Offset: 0x001E9DC4
 	public void StartUserVolumesSnapshot()
 	{
 		this.Start(AudioMixerSnapshots.Get().UserVolumeSettingsSnapshot);
@@ -329,7 +305,6 @@ public class AudioMixer
 		}
 	}
 
-	// Token: 0x06002B6E RID: 11118 RVA: 0x001EBCD8 File Offset: 0x001E9ED8
 	public void SetUserVolume(string bus, float value)
 	{
 		if (!this.userVolumeSettings.ContainsKey(bus))
@@ -370,87 +345,60 @@ public class AudioMixer
 		}
 	}
 
-	// Token: 0x06002B6F RID: 11119 RVA: 0x000AA038 File Offset: 0x000A8238
 	private void Log(string s)
 	{
 	}
 
-	// Token: 0x04001D8E RID: 7566
 	private static AudioMixer _instance = null;
 
-	// Token: 0x04001D8F RID: 7567
 	private const string DUPLICANT_COUNT_ID = "duplicantCount";
 
-	// Token: 0x04001D90 RID: 7568
 	private const string PULSE_ID = "Pulse";
 
-	// Token: 0x04001D91 RID: 7569
 	private const string SNAPSHOT_ACTIVE_ID = "snapshotActive";
 
-	// Token: 0x04001D92 RID: 7570
 	private const string SPACE_VISIBLE_ID = "spaceVisible";
 
-	// Token: 0x04001D93 RID: 7571
 	private const string FACILITY_VISIBLE_ID = "facilityVisible";
 
-	// Token: 0x04001D94 RID: 7572
 	private const string FOCUS_BUS_PATH = "bus:/SFX/Focus";
 
-	// Token: 0x04001D95 RID: 7573
 	public Dictionary<HashedString, EventInstance> activeSnapshots = new Dictionary<HashedString, EventInstance>();
 
-	// Token: 0x04001D96 RID: 7574
 	public List<HashedString> SnapshotDebugLog = new List<HashedString>();
 
-	// Token: 0x04001D97 RID: 7575
 	public bool activeNIS;
 
-	// Token: 0x04001D98 RID: 7576
 	public static float LOW_PRIORITY_CUTOFF_DISTANCE = 10f;
 
-	// Token: 0x04001D99 RID: 7577
 	public static float PULSE_SNAPSHOT_BPM = 120f;
 
-	// Token: 0x04001D9A RID: 7578
 	public static int VISIBLE_DUPLICANTS_BEFORE_ATTENUATION = 2;
 
-	// Token: 0x04001D9B RID: 7579
 	private EventInstance duplicantCountInst;
 
-	// Token: 0x04001D9C RID: 7580
 	private EventInstance pulseInst;
 
-	// Token: 0x04001D9D RID: 7581
 	private EventInstance duplicantCountMovingInst;
 
-	// Token: 0x04001D9E RID: 7582
 	private EventInstance duplicantCountSleepingInst;
 
-	// Token: 0x04001D9F RID: 7583
 	private EventInstance spaceVisibleInst;
 
-	// Token: 0x04001DA0 RID: 7584
 	private EventInstance facilityVisibleInst;
 
-	// Token: 0x04001DA1 RID: 7585
 	private static readonly HashedString UserVolumeSettingsHash = new HashedString("event:/Snapshots/Mixing/Snapshot_UserVolumeSettings");
 
-	// Token: 0x04001DA2 RID: 7586
 	public bool persistentSnapshotsActive;
 
-	// Token: 0x04001DA3 RID: 7587
 	private Dictionary<string, int> visibleDupes = new Dictionary<string, int>();
 
-	// Token: 0x04001DA4 RID: 7588
 	public Dictionary<string, AudioMixer.UserVolumeBus> userVolumeSettings = new Dictionary<string, AudioMixer.UserVolumeBus>();
 
-	// Token: 0x0200097B RID: 2427
 	public class UserVolumeBus
 	{
-		// Token: 0x04001DA5 RID: 7589
 		public string labelString;
 
-		// Token: 0x04001DA6 RID: 7590
 		public float busLevel;
 	}
 }

@@ -3,23 +3,19 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 
-// Token: 0x020012DC RID: 4828
 [AddComponentMenu("KMonoBehaviour/scripts/EntityConfigManager")]
 public class EntityConfigManager : KMonoBehaviour
 {
-	// Token: 0x06006315 RID: 25365 RVA: 0x000E515B File Offset: 0x000E335B
 	public static void DestroyInstance()
 	{
 		EntityConfigManager.Instance = null;
 	}
 
-	// Token: 0x06006316 RID: 25366 RVA: 0x000E5163 File Offset: 0x000E3363
 	protected override void OnPrefabInit()
 	{
 		EntityConfigManager.Instance = this;
 	}
 
-	// Token: 0x06006317 RID: 25367 RVA: 0x002C6F34 File Offset: 0x002C5134
 	private static int GetSortOrder(Type type)
 	{
 		foreach (Attribute attribute in type.GetCustomAttributes(true))
@@ -32,7 +28,6 @@ public class EntityConfigManager : KMonoBehaviour
 		return 0;
 	}
 
-	// Token: 0x06006318 RID: 25368 RVA: 0x002C6F84 File Offset: 0x002C5184
 	public void LoadGeneratedEntities(List<Type> types)
 	{
 		Type typeFromHandle = typeof(IEntityConfig);
@@ -88,7 +83,6 @@ public class EntityConfigManager : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06006319 RID: 25369 RVA: 0x002C715C File Offset: 0x002C535C
 	[Conditional("UNITY_EDITOR")]
 	private void ValidateEntityConfig(IEntityConfig entityConfig)
 	{
@@ -110,7 +104,6 @@ public class EntityConfigManager : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600631A RID: 25370 RVA: 0x002C71E4 File Offset: 0x002C53E4
 	[Conditional("UNITY_EDITOR")]
 	private void ValidateMultiEntityConfig(IMultiEntityConfig entityConfig)
 	{
@@ -130,7 +123,6 @@ public class EntityConfigManager : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600631B RID: 25371 RVA: 0x002C7258 File Offset: 0x002C5458
 	public void RegisterEntity(IEntityConfig config, string[] requiredDlcIds = null, string[] forbiddenDlcIds = null)
 	{
 		GameObject gameObject = config.CreatePrefab();
@@ -146,7 +138,6 @@ public class EntityConfigManager : KMonoBehaviour
 		Assets.AddPrefab(component);
 	}
 
-	// Token: 0x0600631C RID: 25372 RVA: 0x002C72B8 File Offset: 0x002C54B8
 	public void RegisterEntities(IMultiEntityConfig config)
 	{
 		foreach (GameObject gameObject in config.CreatePrefabs())
@@ -158,16 +149,12 @@ public class EntityConfigManager : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x04004708 RID: 18184
 	public static EntityConfigManager Instance;
 
-	// Token: 0x020012DD RID: 4829
 	private struct ConfigEntry
 	{
-		// Token: 0x04004709 RID: 18185
 		public Type type;
 
-		// Token: 0x0400470A RID: 18186
 		public int sortOrder;
 	}
 }

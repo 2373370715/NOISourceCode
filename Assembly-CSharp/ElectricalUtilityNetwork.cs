@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02001A63 RID: 6755
 public class ElectricalUtilityNetwork : UtilityNetwork
 {
-	// Token: 0x06008CB9 RID: 36025 RVA: 0x00373848 File Offset: 0x00371A48
 	public override void AddItem(object item)
 	{
 		if (item.GetType() == typeof(Wire))
@@ -26,7 +24,6 @@ public class ElectricalUtilityNetwork : UtilityNetwork
 		}
 	}
 
-	// Token: 0x06008CBA RID: 36026 RVA: 0x003738C0 File Offset: 0x00371AC0
 	public override void Reset(UtilityNetworkGridNode[] grid)
 	{
 		for (int i = 0; i < 5; i++)
@@ -53,7 +50,6 @@ public class ElectricalUtilityNetwork : UtilityNetwork
 		this.RemoveOverloadedNotification();
 	}
 
-	// Token: 0x06008CBB RID: 36027 RVA: 0x00373958 File Offset: 0x00371B58
 	public void UpdateOverloadTime(float dt, float watts_used, List<WireUtilityNetworkLink>[] bridgeGroups)
 	{
 		bool flag = false;
@@ -136,7 +132,6 @@ public class ElectricalUtilityNetwork : UtilityNetwork
 		}
 	}
 
-	// Token: 0x06008CBC RID: 36028 RVA: 0x00100823 File Offset: 0x000FEA23
 	private void RemoveOverloadedNotification()
 	{
 		if (this.overloadedNotification != null)
@@ -146,7 +141,6 @@ public class ElectricalUtilityNetwork : UtilityNetwork
 		}
 	}
 
-	// Token: 0x06008CBD RID: 36029 RVA: 0x00373C0C File Offset: 0x00371E0C
 	public float GetMaxSafeWattage()
 	{
 		for (int i = 0; i < this.wireGroups.Length; i++)
@@ -160,7 +154,6 @@ public class ElectricalUtilityNetwork : UtilityNetwork
 		return 0f;
 	}
 
-	// Token: 0x06008CBE RID: 36030 RVA: 0x00373C54 File Offset: 0x00371E54
 	public override void RemoveItem(object item)
 	{
 		if (item.GetType() == typeof(Wire))
@@ -171,27 +164,19 @@ public class ElectricalUtilityNetwork : UtilityNetwork
 		}
 	}
 
-	// Token: 0x04006A3D RID: 27197
 	private Notification overloadedNotification;
 
-	// Token: 0x04006A3E RID: 27198
 	private List<Wire>[] wireGroups = new List<Wire>[5];
 
-	// Token: 0x04006A3F RID: 27199
 	public List<Wire> allWires = new List<Wire>();
 
-	// Token: 0x04006A40 RID: 27200
 	private const float MIN_OVERLOAD_TIME_FOR_DAMAGE = 6f;
 
-	// Token: 0x04006A41 RID: 27201
 	private const float MIN_OVERLOAD_NOTIFICATION_DISPLAY_TIME = 5f;
 
-	// Token: 0x04006A42 RID: 27202
 	private GameObject targetOverloadedWire;
 
-	// Token: 0x04006A43 RID: 27203
 	private float timeOverloaded;
 
-	// Token: 0x04006A44 RID: 27204
 	private float timeOverloadNotificationDisplayed;
 }

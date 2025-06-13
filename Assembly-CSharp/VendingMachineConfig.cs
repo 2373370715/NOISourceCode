@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000594 RID: 1428
 public class VendingMachineConfig : IEntityConfig
 {
-	// Token: 0x060018AB RID: 6315 RVA: 0x001ABDE0 File Offset: 0x001A9FE0
 	public GameObject CreatePrefab()
 	{
 		string id = "VendingMachine";
@@ -40,7 +38,6 @@ public class VendingMachineConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x060018AC RID: 6316 RVA: 0x001ABED4 File Offset: 0x001AA0D4
 	public void OnPrefabInit(GameObject inst)
 	{
 		SetLocker component = inst.GetComponent<SetLocker>();
@@ -54,7 +51,6 @@ public class VendingMachineConfig : IEntityConfig
 		component.ChooseContents();
 	}
 
-	// Token: 0x060018AD RID: 6317 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}

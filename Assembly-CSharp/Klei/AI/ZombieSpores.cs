@@ -3,15 +3,12 @@ using Klei.AI.DiseaseGrowthRules;
 
 namespace Klei.AI
 {
-	// Token: 0x02003C89 RID: 15497
 	public class ZombieSpores : Disease
 	{
-		// Token: 0x0600EDC2 RID: 60866 RVA: 0x004E38A0 File Offset: 0x004E1AA0
 		public ZombieSpores(bool statsOnly) : base("ZombieSpores", 50f, new Disease.RangeInfo(168.15f, 258.15f, 513.15f, 563.15f), new Disease.RangeInfo(10f, 1200f, 1200f, 10f), new Disease.RangeInfo(0f, 0f, 1000f, 1000f), Disease.RangeInfo.Idempotent(), 1f, statsOnly)
 		{
 		}
 
-		// Token: 0x0600EDC3 RID: 60867 RVA: 0x004E3914 File Offset: 0x004E1B14
 		protected override void PopulateElemGrowthInfo()
 		{
 			base.InitializeElemGrowthArray(ref this.elemGrowthInfo, Disease.DEFAULT_GROWTH_INFO);
@@ -132,7 +129,6 @@ namespace Klei.AI
 			});
 		}
 
-		// Token: 0x0400E9C2 RID: 59842
 		public const string ID = "ZombieSpores";
 	}
 }

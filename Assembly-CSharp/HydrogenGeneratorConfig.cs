@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200038C RID: 908
 public class HydrogenGeneratorConfig : IBuildingConfig
 {
-	// Token: 0x06000E96 RID: 3734 RVA: 0x00183F50 File Offset: 0x00182150
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "HydrogenGenerator";
@@ -36,7 +34,6 @@ public class HydrogenGeneratorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000E97 RID: 3735 RVA: 0x00184024 File Offset: 0x00182224
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
@@ -62,6 +59,5 @@ public class HydrogenGeneratorConfig : IBuildingConfig
 		go.AddOrGetDef<PoweredActiveController.Def>();
 	}
 
-	// Token: 0x04000ABE RID: 2750
 	public const string ID = "HydrogenGenerator";
 }

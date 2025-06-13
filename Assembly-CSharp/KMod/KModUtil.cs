@@ -5,10 +5,8 @@ using STRINGS;
 
 namespace KMod
 {
-	// Token: 0x02002240 RID: 8768
 	public class KModUtil
 	{
-		// Token: 0x0600BA3A RID: 47674 RVA: 0x0047E39C File Offset: 0x0047C59C
 		public static KModHeader GetHeader(IFileSource file_source, string defaultStaticID, string defaultTitle, string defaultDescription, bool devMod)
 		{
 			string text = "mod.yaml";

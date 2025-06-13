@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200050E RID: 1294
 public class PowerTransformerSmallConfig : IBuildingConfig
 {
-	// Token: 0x06001630 RID: 5680 RVA: 0x001A2454 File Offset: 0x001A0654
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "PowerTransformerSmall";
@@ -38,7 +36,6 @@ public class PowerTransformerSmallConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001631 RID: 5681 RVA: 0x001A23DC File Offset: 0x001A05DC
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
@@ -52,13 +49,11 @@ public class PowerTransformerSmallConfig : IBuildingConfig
 		go.AddComponent<PowerTransformer>().powerDistributionOrder = 9;
 	}
 
-	// Token: 0x06001632 RID: 5682 RVA: 0x000B4278 File Offset: 0x000B2478
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		UnityEngine.Object.DestroyImmediate(go.GetComponent<EnergyConsumer>());
 		go.AddOrGetDef<PoweredActiveController.Def>();
 	}
 
-	// Token: 0x04000F3E RID: 3902
 	public const string ID = "PowerTransformerSmall";
 }

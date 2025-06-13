@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using Klei.AI;
 using UnityEngine;
 
-// Token: 0x0200037B RID: 891
 public class GunkEmptierWorkable : Workable
 {
-	// Token: 0x06000E38 RID: 3640 RVA: 0x000B09A4 File Offset: 0x000AEBA4
 	private GunkEmptierWorkable()
 	{
 		base.SetReportType(ReportManager.ReportType.PersonalTime);
 	}
 
-	// Token: 0x06000E39 RID: 3641 RVA: 0x001821E4 File Offset: 0x001803E4
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -27,7 +24,6 @@ public class GunkEmptierWorkable : Workable
 		base.SetWorkTime(8.5f);
 	}
 
-	// Token: 0x06000E3A RID: 3642 RVA: 0x00182250 File Offset: 0x00180450
 	protected override bool OnWorkTick(WorkerBase worker, float dt)
 	{
 		float mass = Mathf.Min(new float[]
@@ -40,7 +36,6 @@ public class GunkEmptierWorkable : Workable
 		return base.OnWorkTick(worker, dt);
 	}
 
-	// Token: 0x06000E3B RID: 3643 RVA: 0x001822B0 File Offset: 0x001804B0
 	protected override void OnStartWork(WorkerBase worker)
 	{
 		base.OnStartWork(worker);
@@ -52,7 +47,6 @@ public class GunkEmptierWorkable : Workable
 		this.TriggerRoomEffects();
 	}
 
-	// Token: 0x06000E3C RID: 3644 RVA: 0x00182324 File Offset: 0x00180524
 	private void TriggerRoomEffects()
 	{
 		Room roomOfGameObject = Game.Instance.roomProber.GetRoomOfGameObject(base.gameObject);
@@ -71,7 +65,6 @@ public class GunkEmptierWorkable : Workable
 		}
 	}
 
-	// Token: 0x06000E3D RID: 3645 RVA: 0x000B09B4 File Offset: 0x000AEBB4
 	protected override void OnCompleteWork(WorkerBase worker)
 	{
 		if (this.gunkMonitor != null)
@@ -82,14 +75,12 @@ public class GunkEmptierWorkable : Workable
 		base.OnCompleteWork(worker);
 	}
 
-	// Token: 0x06000E3E RID: 3646 RVA: 0x000B09DD File Offset: 0x000AEBDD
 	protected override void OnStopWork(WorkerBase worker)
 	{
 		this.RemoveExpellingRadStatusItem();
 		base.OnStopWork(worker);
 	}
 
-	// Token: 0x06000E3F RID: 3647 RVA: 0x000B09EC File Offset: 0x000AEBEC
 	protected override void OnAbortWork(WorkerBase worker)
 	{
 		this.RemoveExpellingRadStatusItem();
@@ -97,7 +88,6 @@ public class GunkEmptierWorkable : Workable
 		this.gunkMonitor = null;
 	}
 
-	// Token: 0x06000E40 RID: 3648 RVA: 0x000B0A02 File Offset: 0x000AEC02
 	private void RemoveExpellingRadStatusItem()
 	{
 		if (Sim.IsRadiationEnabled())
@@ -106,12 +96,9 @@ public class GunkEmptierWorkable : Workable
 		}
 	}
 
-	// Token: 0x04000A80 RID: 2688
 	private const float BATHROOM_EFFECTS_DURATION_OVERRIDE = 1800f;
 
-	// Token: 0x04000A81 RID: 2689
 	private Storage storage;
 
-	// Token: 0x04000A82 RID: 2690
 	private GunkMonitor.Instance gunkMonitor;
 }

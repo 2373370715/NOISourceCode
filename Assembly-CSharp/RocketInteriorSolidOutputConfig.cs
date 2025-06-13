@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000581 RID: 1409
 public class RocketInteriorSolidOutputConfig : IBuildingConfig
 {
-	// Token: 0x06001849 RID: 6217 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x0600184A RID: 6218 RVA: 0x001AA714 File Offset: 0x001A8914
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "RocketInteriorSolidOutput";
@@ -46,7 +43,6 @@ public class RocketInteriorSolidOutputConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600184B RID: 6219 RVA: 0x000B4A1E File Offset: 0x000B2C1E
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		base.ConfigureBuildingTemplate(go, prefab_tag);
@@ -54,7 +50,6 @@ public class RocketInteriorSolidOutputConfig : IBuildingConfig
 		go.AddComponent<RequireInputs>();
 	}
 
-	// Token: 0x0600184C RID: 6220 RVA: 0x001AA800 File Offset: 0x001A8A00
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGetDef<PoweredActiveController.Def>();
@@ -70,12 +65,9 @@ public class RocketInteriorSolidOutputConfig : IBuildingConfig
 		solidConduitDispenser.elementFilter = null;
 	}
 
-	// Token: 0x04001009 RID: 4105
 	private const ConduitType CONDUIT_TYPE = ConduitType.Solid;
 
-	// Token: 0x0400100A RID: 4106
 	private const CargoBay.CargoType CARGO_TYPE = CargoBay.CargoType.Solids;
 
-	// Token: 0x0400100B RID: 4107
 	public const string ID = "RocketInteriorSolidOutput";
 }

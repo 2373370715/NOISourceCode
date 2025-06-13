@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003EB RID: 1003
 public class LogicLightSensorConfig : IBuildingConfig
 {
-	// Token: 0x06001079 RID: 4217 RVA: 0x0018A88C File Offset: 0x00188A8C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = LogicLightSensorConfig.ID;
@@ -47,7 +45,6 @@ public class LogicLightSensorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600107A RID: 4218 RVA: 0x000B19D7 File Offset: 0x000AFBD7
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		LogicLightSensor logicLightSensor = go.AddOrGet<LogicLightSensor>();
@@ -57,6 +54,5 @@ public class LogicLightSensorConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayInFrontOfConduits, false);
 	}
 
-	// Token: 0x04000B95 RID: 2965
 	public static string ID = "LogicLightSensor";
 }

@@ -3,13 +3,9 @@ using System.Collections.Generic;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x02001899 RID: 6297
 [SerializationConfig(MemberSerialization.OptIn)]
 public class Schedule : ISaveLoadable, IListableOption
 {
-	// Token: 0x1700084B RID: 2123
-	// (get) Token: 0x06008214 RID: 33300 RVA: 0x000FA185 File Offset: 0x000F8385
-	// (set) Token: 0x06008215 RID: 33301 RVA: 0x000FA18D File Offset: 0x000F838D
 	public int ProgressTimetableIdx
 	{
 		get
@@ -22,25 +18,21 @@ public class Schedule : ISaveLoadable, IListableOption
 		}
 	}
 
-	// Token: 0x06008216 RID: 33302 RVA: 0x000FA196 File Offset: 0x000F8396
 	public ScheduleBlock GetCurrentScheduleBlock()
 	{
 		return this.GetBlock(this.GetCurrentBlockIdx());
 	}
 
-	// Token: 0x06008217 RID: 33303 RVA: 0x000FA1A4 File Offset: 0x000F83A4
 	public int GetCurrentBlockIdx()
 	{
 		return Math.Min((int)(GameClock.Instance.GetCurrentCycleAsPercentage() * 24f), 23) + this.progressTimetableIdx * 24;
 	}
 
-	// Token: 0x06008218 RID: 33304 RVA: 0x000FA1C8 File Offset: 0x000F83C8
 	public ScheduleBlock GetPreviousScheduleBlock()
 	{
 		return this.GetBlock(this.GetPreviousBlockIdx());
 	}
 
-	// Token: 0x06008219 RID: 33305 RVA: 0x003490B0 File Offset: 0x003472B0
 	public int GetPreviousBlockIdx()
 	{
 		int num = this.GetCurrentBlockIdx() - 1;
@@ -51,13 +43,11 @@ public class Schedule : ISaveLoadable, IListableOption
 		return num;
 	}
 
-	// Token: 0x0600821A RID: 33306 RVA: 0x000FA1D6 File Offset: 0x000F83D6
 	public void ClearNullReferences()
 	{
 		this.assigned.RemoveAll((Ref<Schedulable> x) => x.Get() == null);
 	}
 
-	// Token: 0x0600821B RID: 33307 RVA: 0x003490DC File Offset: 0x003472DC
 	public Schedule(string name, List<ScheduleGroup> defaultGroups, bool alarmActivated)
 	{
 		this.name = name;
@@ -68,7 +58,6 @@ public class Schedule : ISaveLoadable, IListableOption
 		this.SetBlocksToGroupDefaults(defaultGroups);
 	}
 
-	// Token: 0x0600821C RID: 33308 RVA: 0x00349134 File Offset: 0x00347334
 	public Schedule(string name, List<ScheduleBlock> sourceBlocks, bool alarmActivated)
 	{
 		this.name = name;
@@ -83,7 +72,6 @@ public class Schedule : ISaveLoadable, IListableOption
 		this.Changed();
 	}
 
-	// Token: 0x0600821D RID: 33309 RVA: 0x000FA203 File Offset: 0x000F8403
 	public void SetBlocksToGroupDefaults(List<ScheduleGroup> defaultGroups)
 	{
 		this.blocks = Schedule.GetScheduleBlocksFromGroupDefaults(defaultGroups);
@@ -91,7 +79,6 @@ public class Schedule : ISaveLoadable, IListableOption
 		this.Changed();
 	}
 
-	// Token: 0x0600821E RID: 33310 RVA: 0x003491C0 File Offset: 0x003473C0
 	public static List<ScheduleBlock> GetScheduleBlocksFromGroupDefaults(List<ScheduleGroup> defaultGroups)
 	{
 		List<ScheduleBlock> list = new List<ScheduleBlock>();
@@ -106,7 +93,6 @@ public class Schedule : ISaveLoadable, IListableOption
 		return list;
 	}
 
-	// Token: 0x0600821F RID: 33311 RVA: 0x00349218 File Offset: 0x00347418
 	public void Tick()
 	{
 		ScheduleBlock currentScheduleBlock = this.GetCurrentScheduleBlock();
@@ -143,13 +129,11 @@ public class Schedule : ISaveLoadable, IListableOption
 		}
 	}
 
-	// Token: 0x06008220 RID: 33312 RVA: 0x000FA22B File Offset: 0x000F842B
 	string IListableOption.GetProperName()
 	{
 		return this.name;
 	}
 
-	// Token: 0x06008221 RID: 33313 RVA: 0x0034938C File Offset: 0x0034758C
 	public int[] GenerateTones()
 	{
 		int minToneIndex = TuningData<ScheduleManager.Tuning>.Get().minToneIndex;
@@ -163,7 +147,6 @@ public class Schedule : ISaveLoadable, IListableOption
 		return array;
 	}
 
-	// Token: 0x06008222 RID: 33314 RVA: 0x000FA233 File Offset: 0x000F8433
 	public List<Ref<Schedulable>> GetAssigned()
 	{
 		if (this.assigned == null)
@@ -173,7 +156,6 @@ public class Schedule : ISaveLoadable, IListableOption
 		return this.assigned;
 	}
 
-	// Token: 0x06008223 RID: 33315 RVA: 0x000FA24E File Offset: 0x000F844E
 	public int[] GetTones()
 	{
 		if (this.tones == null)
@@ -183,7 +165,6 @@ public class Schedule : ISaveLoadable, IListableOption
 		return this.tones;
 	}
 
-	// Token: 0x06008224 RID: 33316 RVA: 0x000FA26A File Offset: 0x000F846A
 	public void SetBlockGroup(int idx, ScheduleGroup group)
 	{
 		if (0 <= idx && idx < this.blocks.Count)
@@ -193,7 +174,6 @@ public class Schedule : ISaveLoadable, IListableOption
 		}
 	}
 
-	// Token: 0x06008225 RID: 33317 RVA: 0x003493F8 File Offset: 0x003475F8
 	private void Changed()
 	{
 		foreach (Ref<Schedulable> @ref in this.GetAssigned())
@@ -206,19 +186,16 @@ public class Schedule : ISaveLoadable, IListableOption
 		}
 	}
 
-	// Token: 0x06008226 RID: 33318 RVA: 0x000FA2A1 File Offset: 0x000F84A1
 	public List<ScheduleBlock> GetBlocks()
 	{
 		return this.blocks;
 	}
 
-	// Token: 0x06008227 RID: 33319 RVA: 0x000FA2A9 File Offset: 0x000F84A9
 	public ScheduleBlock GetBlock(int idx)
 	{
 		return this.blocks[idx];
 	}
 
-	// Token: 0x06008228 RID: 33320 RVA: 0x000FA2B7 File Offset: 0x000F84B7
 	public void InsertTimetable(int timetableIdx, List<ScheduleBlock> newBlocks)
 	{
 		this.blocks.InsertRange(timetableIdx * 24, newBlocks);
@@ -228,13 +205,11 @@ public class Schedule : ISaveLoadable, IListableOption
 		}
 	}
 
-	// Token: 0x06008229 RID: 33321 RVA: 0x000FA2E0 File Offset: 0x000F84E0
 	public void AddTimetable(List<ScheduleBlock> newBlocks)
 	{
 		this.blocks.AddRange(newBlocks);
 	}
 
-	// Token: 0x0600822A RID: 33322 RVA: 0x00349464 File Offset: 0x00347664
 	public void RemoveTimetable(int TimetableToRemoveIdx)
 	{
 		int index = TimetableToRemoveIdx * 24;
@@ -249,7 +224,6 @@ public class Schedule : ISaveLoadable, IListableOption
 		ScheduleScreen.Instance.OnChangeCurrentTimetable();
 	}
 
-	// Token: 0x0600822B RID: 33323 RVA: 0x000FA2EE File Offset: 0x000F84EE
 	public void Assign(Schedulable schedulable)
 	{
 		if (!this.IsAssigned(schedulable))
@@ -259,7 +233,6 @@ public class Schedule : ISaveLoadable, IListableOption
 		this.Changed();
 	}
 
-	// Token: 0x0600822C RID: 33324 RVA: 0x003494D0 File Offset: 0x003476D0
 	public void Unassign(Schedulable schedulable)
 	{
 		for (int i = 0; i < this.GetAssigned().Count; i++)
@@ -273,7 +246,6 @@ public class Schedule : ISaveLoadable, IListableOption
 		this.Changed();
 	}
 
-	// Token: 0x0600822D RID: 33325 RVA: 0x00349520 File Offset: 0x00347720
 	public bool IsAssigned(Schedulable schedulable)
 	{
 		using (List<Ref<Schedulable>>.Enumerator enumerator = this.GetAssigned().GetEnumerator())
@@ -289,7 +261,6 @@ public class Schedule : ISaveLoadable, IListableOption
 		return false;
 	}
 
-	// Token: 0x0600822E RID: 33326 RVA: 0x00349580 File Offset: 0x00347780
 	public static bool AreScheduleTypesIdentical(List<ScheduleBlockType> a, List<ScheduleBlockType> b)
 	{
 		if (a.Count != b.Count)
@@ -315,7 +286,6 @@ public class Schedule : ISaveLoadable, IListableOption
 		return true;
 	}
 
-	// Token: 0x0600822F RID: 33327 RVA: 0x00349634 File Offset: 0x00347834
 	public bool ShiftTimetable(bool up, int timetableToShiftIdx = 0)
 	{
 		if (timetableToShiftIdx == 0 && up)
@@ -349,7 +319,6 @@ public class Schedule : ISaveLoadable, IListableOption
 		return true;
 	}
 
-	// Token: 0x06008230 RID: 33328 RVA: 0x0034971C File Offset: 0x0034791C
 	public void RotateBlocks(bool directionLeft, int timetableToRotateIdx = 0)
 	{
 		List<ScheduleBlock> list = new List<ScheduleBlock>();
@@ -380,34 +349,26 @@ public class Schedule : ISaveLoadable, IListableOption
 		this.Changed();
 	}
 
-	// Token: 0x040062FA RID: 25338
 	[Serialize]
 	private List<ScheduleBlock> blocks;
 
-	// Token: 0x040062FB RID: 25339
 	[Serialize]
 	private List<Ref<Schedulable>> assigned;
 
-	// Token: 0x040062FC RID: 25340
 	[Serialize]
 	public string name;
 
-	// Token: 0x040062FD RID: 25341
 	[Serialize]
 	public bool alarmActivated = true;
 
-	// Token: 0x040062FE RID: 25342
 	[Serialize]
 	private int[] tones;
 
-	// Token: 0x040062FF RID: 25343
 	[Serialize]
 	public bool isDefaultForBionics;
 
-	// Token: 0x04006300 RID: 25344
 	[Serialize]
 	private int progressTimetableIdx;
 
-	// Token: 0x04006301 RID: 25345
 	public Action<Schedule> onChanged;
 }

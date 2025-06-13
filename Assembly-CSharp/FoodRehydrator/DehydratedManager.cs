@@ -7,19 +7,14 @@ using UnityEngine;
 
 namespace FoodRehydrator
 {
-	// Token: 0x02002158 RID: 8536
 	public class DehydratedManager : KMonoBehaviour, FewOptionSideScreen.IFewOptionSideScreen
 	{
-		// Token: 0x0600B60A RID: 46602 RVA: 0x0011AA95 File Offset: 0x00118C95
 		protected override void OnPrefabInit()
 		{
 			base.OnPrefabInit();
 			base.Subscribe<DehydratedManager>(-905833192, DehydratedManager.OnCopySettingsDelegate);
 		}
 
-		// Token: 0x17000BDB RID: 3035
-		// (get) Token: 0x0600B60B RID: 46603 RVA: 0x0011AAAE File Offset: 0x00118CAE
-		// (set) Token: 0x0600B60C RID: 46604 RVA: 0x00455808 File Offset: 0x00453A08
 		public Tag ChosenContent
 		{
 			get
@@ -45,7 +40,6 @@ namespace FoodRehydrator
 			}
 		}
 
-		// Token: 0x0600B60D RID: 46605 RVA: 0x00455870 File Offset: 0x00453A70
 		public void SetFabricatedFoodSymbol(Tag material)
 		{
 			this.foodKBAC.gameObject.SetActive(true);
@@ -54,7 +48,6 @@ namespace FoodRehydrator
 			this.foodKBAC.Play("object", KAnim.PlayMode.Loop, 1f, 0f);
 		}
 
-		// Token: 0x0600B60E RID: 46606 RVA: 0x004558CC File Offset: 0x00453ACC
 		protected override void OnSpawn()
 		{
 			base.OnSpawn();
@@ -71,7 +64,6 @@ namespace FoodRehydrator
 			this.packagesMeter.SetPositionPercent((float)this.packages.items.Count / 5f);
 		}
 
-		// Token: 0x0600B60F RID: 46607 RVA: 0x00455974 File Offset: 0x00453B74
 		public void ConsumeResourcesForRehydration(GameObject package, GameObject food)
 		{
 			global::Debug.Assert(this.packages.items.Contains(package));
@@ -88,7 +80,6 @@ namespace FoodRehydrator
 			}
 		}
 
-		// Token: 0x0600B610 RID: 46608 RVA: 0x0011AAB6 File Offset: 0x00118CB6
 		private void StorageChangeHandler(object obj)
 		{
 			if (((GameObject)obj).GetComponent<DehydratedFoodPackage>() != null)
@@ -97,7 +88,6 @@ namespace FoodRehydrator
 			}
 		}
 
-		// Token: 0x0600B611 RID: 46609 RVA: 0x00455A08 File Offset: 0x00453C08
 		private void SetupFoodSymbol()
 		{
 			GameObject gameObject = Util.NewGameObject(base.gameObject, "food_symbol");
@@ -120,7 +110,6 @@ namespace FoodRehydrator
 			kbatchedAnimTracker.offset = Vector3.zero;
 		}
 
-		// Token: 0x0600B612 RID: 46610 RVA: 0x00455AF0 File Offset: 0x00453CF0
 		public FewOptionSideScreen.IFewOptionSideScreen.Option[] GetOptions()
 		{
 			HashSet<Tag> discoveredResourcesFromTag = DiscoveredResources.Instance.GetDiscoveredResourcesFromTag(GameTags.Dehydrated);
@@ -135,19 +124,16 @@ namespace FoodRehydrator
 			return array;
 		}
 
-		// Token: 0x0600B613 RID: 46611 RVA: 0x0011AAED File Offset: 0x00118CED
 		public void OnOptionSelected(FewOptionSideScreen.IFewOptionSideScreen.Option option)
 		{
 			this.ChosenContent = option.tag;
 		}
 
-		// Token: 0x0600B614 RID: 46612 RVA: 0x0011AAAE File Offset: 0x00118CAE
 		public Tag GetSelectedOption()
 		{
 			return this.chosenContent;
 		}
 
-		// Token: 0x0600B615 RID: 46613 RVA: 0x00455BBC File Offset: 0x00453DBC
 		protected void OnCopySettings(object data)
 		{
 			GameObject gameObject = data as GameObject;
@@ -161,32 +147,24 @@ namespace FoodRehydrator
 			}
 		}
 
-		// Token: 0x0400900F RID: 36879
 		[MyCmpAdd]
 		private CopyBuildingSettings copyBuildingSettings;
 
-		// Token: 0x04009010 RID: 36880
 		private Storage packages;
 
-		// Token: 0x04009011 RID: 36881
 		private Storage water;
 
-		// Token: 0x04009012 RID: 36882
 		private MeterController packagesMeter;
 
-		// Token: 0x04009013 RID: 36883
 		private static string HASH_FOOD = "food";
 
-		// Token: 0x04009014 RID: 36884
 		private KBatchedAnimController foodKBAC;
 
-		// Token: 0x04009015 RID: 36885
 		private static readonly EventSystem.IntraObjectHandler<DehydratedManager> OnCopySettingsDelegate = new EventSystem.IntraObjectHandler<DehydratedManager>(delegate(DehydratedManager component, object data)
 		{
 			component.OnCopySettings(data);
 		});
 
-		// Token: 0x04009016 RID: 36886
 		[Serialize]
 		private Tag chosenContent = GameTags.Dehydrated;
 	}

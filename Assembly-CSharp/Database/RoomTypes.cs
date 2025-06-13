@@ -4,10 +4,8 @@ using STRINGS;
 
 namespace Database
 {
-	// Token: 0x020021CC RID: 8652
 	public class RoomTypes : ResourceSet<RoomType>
 	{
-		// Token: 0x0600B888 RID: 47240 RVA: 0x0046F91C File Offset: 0x0046DB1C
 		public RoomTypes(ResourceSet parent) : base("RoomTypes", parent)
 		{
 			base.Initialize();
@@ -265,7 +263,6 @@ namespace Database
 			}, 18));
 		}
 
-		// Token: 0x0600B889 RID: 47241 RVA: 0x00470508 File Offset: 0x0046E708
 		public Assignables[] GetAssignees(Room room)
 		{
 			if (room == null)
@@ -298,7 +295,6 @@ namespace Database
 			return list.ToArray();
 		}
 
-		// Token: 0x0600B88A RID: 47242 RVA: 0x00470608 File Offset: 0x0046E808
 		public RoomType GetRoomTypeForID(string id)
 		{
 			foreach (RoomType roomType in this.resources)
@@ -311,7 +307,6 @@ namespace Database
 			return null;
 		}
 
-		// Token: 0x0600B88B RID: 47243 RVA: 0x0047066C File Offset: 0x0046E86C
 		public RoomType GetRoomType(Room room)
 		{
 			foreach (RoomType roomType in this.resources)
@@ -336,7 +331,6 @@ namespace Database
 			return this.Neutral;
 		}
 
-		// Token: 0x0600B88C RID: 47244 RVA: 0x00470738 File Offset: 0x0046E938
 		public bool HasAmbiguousRoomType(Room room, RoomType suspected_type, RoomType potential_type)
 		{
 			RoomType.RoomIdentificationResult roomIdentificationResult = potential_type.isSatisfactory(room);
@@ -387,7 +381,6 @@ namespace Database
 			return false;
 		}
 
-		// Token: 0x0600B88D RID: 47245 RVA: 0x00470860 File Offset: 0x0046EA60
 		public RoomTypes.RoomTypeQueryResult[] GetPossibleRoomTypes(Room room)
 		{
 			RoomTypes.RoomTypeQueryResult[] array = new RoomTypes.RoomTypeQueryResult[this.Count];
@@ -421,73 +414,50 @@ namespace Database
 			return array;
 		}
 
-		// Token: 0x04009675 RID: 38517
 		public RoomType Neutral;
 
-		// Token: 0x04009676 RID: 38518
 		public RoomType Latrine;
 
-		// Token: 0x04009677 RID: 38519
 		public RoomType PlumbedBathroom;
 
-		// Token: 0x04009678 RID: 38520
 		public RoomType Barracks;
 
-		// Token: 0x04009679 RID: 38521
 		public RoomType Bedroom;
 
-		// Token: 0x0400967A RID: 38522
 		public RoomType PrivateBedroom;
 
-		// Token: 0x0400967B RID: 38523
 		public RoomType MessHall;
 
-		// Token: 0x0400967C RID: 38524
 		public RoomType Kitchen;
 
-		// Token: 0x0400967D RID: 38525
 		public RoomType GreatHall;
 
-		// Token: 0x0400967E RID: 38526
 		public RoomType Hospital;
 
-		// Token: 0x0400967F RID: 38527
 		public RoomType MassageClinic;
 
-		// Token: 0x04009680 RID: 38528
 		public RoomType PowerPlant;
 
-		// Token: 0x04009681 RID: 38529
 		public RoomType Farm;
 
-		// Token: 0x04009682 RID: 38530
 		public RoomType CreaturePen;
 
-		// Token: 0x04009683 RID: 38531
 		public RoomType MachineShop;
 
-		// Token: 0x04009684 RID: 38532
 		public RoomType RecRoom;
 
-		// Token: 0x04009685 RID: 38533
 		public RoomType Park;
 
-		// Token: 0x04009686 RID: 38534
 		public RoomType NatureReserve;
 
-		// Token: 0x04009687 RID: 38535
 		public RoomType Laboratory;
 
-		// Token: 0x04009688 RID: 38536
 		public RoomType BionicUpkeep;
 
-		// Token: 0x020021CD RID: 8653
 		public struct RoomTypeQueryResult
 		{
-			// Token: 0x04009689 RID: 38537
 			public RoomType Type;
 
-			// Token: 0x0400968A RID: 38538
 			public RoomType.RoomIdentificationResult SatisfactionRating;
 		}
 	}

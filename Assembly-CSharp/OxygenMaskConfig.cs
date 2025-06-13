@@ -5,10 +5,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000C1 RID: 193
 public class OxygenMaskConfig : IEquipmentConfig
 {
-	// Token: 0x06000333 RID: 819 RVA: 0x00155BE0 File Offset: 0x00153DE0
 	public EquipmentDef CreateEquipmentDef()
 	{
 		List<AttributeModifier> list = new List<AttributeModifier>();
@@ -68,7 +66,6 @@ public class OxygenMaskConfig : IEquipmentConfig
 		return equipmentDef;
 	}
 
-	// Token: 0x06000334 RID: 820 RVA: 0x00155CF8 File Offset: 0x00153EF8
 	public void DoPostConfigure(GameObject go)
 	{
 		Storage storage = go.AddComponent<Storage>();
@@ -88,15 +85,11 @@ public class OxygenMaskConfig : IEquipmentConfig
 		go.AddComponent<SuitDiseaseHandler>();
 	}
 
-	// Token: 0x040001F6 RID: 502
 	public const string ID = "Oxygen_Mask";
 
-	// Token: 0x040001F7 RID: 503
 	public const string WORN_ID = "Worn_Oxygen_Mask";
 
-	// Token: 0x040001F8 RID: 504
 	private const PathFinder.PotentialPath.Flags suit_flags = PathFinder.PotentialPath.Flags.HasOxygenMask;
 
-	// Token: 0x040001F9 RID: 505
 	private AttributeModifier expertAthleticsModifier;
 }

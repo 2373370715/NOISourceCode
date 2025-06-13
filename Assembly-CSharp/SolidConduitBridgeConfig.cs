@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005A8 RID: 1448
 public class SolidConduitBridgeConfig : IBuildingConfig
 {
-	// Token: 0x0600190E RID: 6414 RVA: 0x001AD73C File Offset: 0x001AB93C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "SolidConduitBridge";
@@ -38,29 +36,24 @@ public class SolidConduitBridgeConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600190F RID: 6415 RVA: 0x000B1845 File Offset: 0x000AFA45
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
 	}
 
-	// Token: 0x06001910 RID: 6416 RVA: 0x000B4DF7 File Offset: 0x000B2FF7
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		base.DoPostConfigureUnderConstruction(go);
 		go.GetComponent<Constructable>().requiredSkillPerk = Db.Get().SkillPerks.ConveyorBuild.Id;
 	}
 
-	// Token: 0x06001911 RID: 6417 RVA: 0x000B4E1F File Offset: 0x000B301F
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<SolidConduitBridge>();
 	}
 
-	// Token: 0x04001050 RID: 4176
 	public const string ID = "SolidConduitBridge";
 
-	// Token: 0x04001051 RID: 4177
 	private const ConduitType CONDUIT_TYPE = ConduitType.Solid;
 }

@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200001E RID: 30
 public class AirborneCreatureLureConfig : IBuildingConfig
 {
-	// Token: 0x06000076 RID: 118 RVA: 0x00148120 File Offset: 0x00146320
 	public override BuildingDef CreateBuildingDef()
 	{
 		BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef("AirborneCreatureLure", 1, 4, "airbornecreaturetrap_kanim", 10, 10f, BUILDINGS.CONSTRUCTION_MASS_KG.TIER3, MATERIALS.PLASTICS, 1600f, BuildLocationRule.OnFloor, BUILDINGS.DECOR.PENALTY.TIER2, NOISE_POLLUTION.NOISY.TIER0, 0.2f);
@@ -17,7 +15,6 @@ public class AirborneCreatureLureConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000077 RID: 119 RVA: 0x00148190 File Offset: 0x00146390
 	public override void ConfigureBuildingTemplate(GameObject prefab, Tag prefab_tag)
 	{
 		CreatureLure creatureLure = prefab.AddOrGet<CreatureLure>();
@@ -33,7 +30,6 @@ public class AirborneCreatureLureConfig : IBuildingConfig
 		prefab.AddOrGet<Operational>();
 	}
 
-	// Token: 0x06000078 RID: 120 RVA: 0x00148208 File Offset: 0x00146408
 	public override void DoPostConfigureComplete(GameObject prefab)
 	{
 		BuildingTemplates.DoPostConfigure(prefab);
@@ -60,6 +56,5 @@ public class AirborneCreatureLureConfig : IBuildingConfig
 		Prioritizable.AddRef(prefab);
 	}
 
-	// Token: 0x04000058 RID: 88
 	public const string ID = "AirborneCreatureLure";
 }

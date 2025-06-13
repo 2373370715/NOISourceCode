@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005BF RID: 1471
 public class SpiceGrinderConfig : IBuildingConfig
 {
-	// Token: 0x06001992 RID: 6546 RVA: 0x001AF390 File Offset: 0x001AD590
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "SpiceGrinder";
@@ -30,14 +28,12 @@ public class SpiceGrinderConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001993 RID: 6547 RVA: 0x000B543F File Offset: 0x000B363F
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<LoopingSounds>();
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.SpiceStation, false);
 	}
 
-	// Token: 0x06001994 RID: 6548 RVA: 0x001AF42C File Offset: 0x001AD62C
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		SpiceGrinder.InitializeSpices();
@@ -79,39 +75,27 @@ public class SpiceGrinderConfig : IBuildingConfig
 		roomTracker.requirement = RoomTracker.Requirement.Required;
 	}
 
-	// Token: 0x04001094 RID: 4244
 	public const string ID = "SpiceGrinder";
 
-	// Token: 0x04001095 RID: 4245
 	public static Tag MATERIAL_FOR_TINKER = GameTags.CropSeed;
 
-	// Token: 0x04001096 RID: 4246
 	public static Tag TINKER_TOOLS = FarmStationToolsConfig.tag;
 
-	// Token: 0x04001097 RID: 4247
 	public const float MASS_PER_TINKER = 5f;
 
-	// Token: 0x04001098 RID: 4248
 	public const float OUTPUT_TEMPERATURE = 313.15f;
 
-	// Token: 0x04001099 RID: 4249
 	public const float WORK_TIME_PER_1000KCAL = 5f;
 
-	// Token: 0x0400109A RID: 4250
 	public const short SPICE_CAPACITY_PER_INGREDIENT = 10;
 
-	// Token: 0x0400109B RID: 4251
 	public const string PrimaryColorSymbol = "stripe_anim2";
 
-	// Token: 0x0400109C RID: 4252
 	public const string SecondaryColorSymbol = "stripe_anim1";
 
-	// Token: 0x0400109D RID: 4253
 	public const string GrinderColorSymbol = "grinder";
 
-	// Token: 0x0400109E RID: 4254
 	public static StatusItem SpicedStatus = Db.Get().MiscStatusItems.SpicedFood;
 
-	// Token: 0x0400109F RID: 4255
 	private static int STORAGE_PRIORITY = Chore.DefaultPrioritySetting.priority_value - 1;
 }

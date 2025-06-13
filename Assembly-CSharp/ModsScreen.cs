@@ -5,10 +5,8 @@ using KMod;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001B45 RID: 6981
 public class ModsScreen : KModalScreen
 {
-	// Token: 0x06009278 RID: 37496 RVA: 0x00392DE4 File Offset: 0x00390FE4
 	protected override void OnActivate()
 	{
 		base.OnActivate();
@@ -39,7 +37,6 @@ public class ModsScreen : KModalScreen
 		modManager.on_update = (Manager.OnUpdate)Delegate.Combine(modManager.on_update, new Manager.OnUpdate(this.RebuildDisplay));
 	}
 
-	// Token: 0x06009279 RID: 37497 RVA: 0x001044BB File Offset: 0x001026BB
 	protected override void OnDeactivate()
 	{
 		Manager modManager = Global.Instance.modManager;
@@ -47,7 +44,6 @@ public class ModsScreen : KModalScreen
 		base.OnDeactivate();
 	}
 
-	// Token: 0x0600927A RID: 37498 RVA: 0x00392F3C File Offset: 0x0039113C
 	private void Exit()
 	{
 		Global.Instance.modManager.Save();
@@ -62,7 +58,6 @@ public class ModsScreen : KModalScreen
 		Global.Instance.modManager.events.Clear();
 	}
 
-	// Token: 0x0600927B RID: 37499 RVA: 0x001044EE File Offset: 0x001026EE
 	private void RebuildDisplay(object change_source)
 	{
 		if (change_source != this)
@@ -71,13 +66,11 @@ public class ModsScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600927C RID: 37500 RVA: 0x001044FA File Offset: 0x001026FA
 	private bool ShouldDisplayMod(Mod mod)
 	{
 		return mod.status != Mod.Status.NotInstalled && mod.status != Mod.Status.UninstallPending && !mod.HasOnlyTranslationContent();
 	}
 
-	// Token: 0x0600927D RID: 37501 RVA: 0x00392FC8 File Offset: 0x003911C8
 	private void BuildDisplay()
 	{
 		foreach (ModsScreen.DisplayedMod displayedMod in this.displayedMods)
@@ -252,7 +245,6 @@ public class ModsScreen : KModalScreen
 		int count = this.displayedMods.Count;
 	}
 
-	// Token: 0x0600927E RID: 37502 RVA: 0x00393698 File Offset: 0x00391898
 	private void OnToggleClicked(MultiToggle toggle, Label mod)
 	{
 		Manager modManager = Global.Instance.modManager;
@@ -263,19 +255,16 @@ public class ModsScreen : KModalScreen
 		this.UpdateToggleAllButton();
 	}
 
-	// Token: 0x0600927F RID: 37503 RVA: 0x00104518 File Offset: 0x00102718
 	private bool AreAnyModsDisabled()
 	{
 		return Global.Instance.modManager.mods.Any((Mod mod) => !mod.IsEmpty() && !mod.IsEnabledForActiveDlc() && this.ShouldDisplayMod(mod));
 	}
 
-	// Token: 0x06009280 RID: 37504 RVA: 0x0010453A File Offset: 0x0010273A
 	private void UpdateToggleAllButton()
 	{
 		this.toggleAllButton.GetComponentInChildren<LocText>().text = (this.AreAnyModsDisabled() ? UI.FRONTEND.MODS.ENABLE_ALL : UI.FRONTEND.MODS.DISABLE_ALL);
 	}
 
-	// Token: 0x06009281 RID: 37505 RVA: 0x003936D8 File Offset: 0x003918D8
 	private void OnToggleAllClicked()
 	{
 		bool enabled = this.AreAnyModsDisabled();
@@ -291,63 +280,48 @@ public class ModsScreen : KModalScreen
 		this.UpdateToggleAllButton();
 	}
 
-	// Token: 0x04006EFE RID: 28414
 	[SerializeField]
 	private KButton closeButtonTitle;
 
-	// Token: 0x04006EFF RID: 28415
 	[SerializeField]
 	private KButton closeButton;
 
-	// Token: 0x04006F00 RID: 28416
 	[SerializeField]
 	private KButton toggleAllButton;
 
-	// Token: 0x04006F01 RID: 28417
 	[SerializeField]
 	private KButton workshopButton;
 
-	// Token: 0x04006F02 RID: 28418
 	[SerializeField]
 	private GameObject entryPrefab;
 
-	// Token: 0x04006F03 RID: 28419
 	[SerializeField]
 	private Transform entryParent;
 
-	// Token: 0x04006F04 RID: 28420
 	private List<ModsScreen.DisplayedMod> displayedMods = new List<ModsScreen.DisplayedMod>();
 
-	// Token: 0x04006F05 RID: 28421
 	private List<Label> mod_footprint = new List<Label>();
 
-	// Token: 0x02001B46 RID: 6982
 	private struct DisplayedMod
 	{
-		// Token: 0x04006F06 RID: 28422
 		public RectTransform rect_transform;
 
-		// Token: 0x04006F07 RID: 28423
 		public int mod_index;
 	}
 
-	// Token: 0x02001B47 RID: 6983
 	private class ModOrderingDragListener : DragMe.IDragListener
 	{
-		// Token: 0x06009284 RID: 37508 RVA: 0x0010459E File Offset: 0x0010279E
 		public ModOrderingDragListener(ModsScreen screen, List<ModsScreen.DisplayedMod> mods)
 		{
 			this.screen = screen;
 			this.mods = mods;
 		}
 
-		// Token: 0x06009285 RID: 37509 RVA: 0x001045BB File Offset: 0x001027BB
 		public void OnBeginDrag(Vector2 pos)
 		{
 			this.startDragIdx = this.GetDragIdx(pos, false);
 		}
 
-		// Token: 0x06009286 RID: 37510 RVA: 0x0039375C File Offset: 0x0039195C
 		public void OnEndDrag(Vector2 pos)
 		{
 			if (this.startDragIdx < 0)
@@ -364,7 +338,6 @@ public class ModsScreen : KModalScreen
 			}
 		}
 
-		// Token: 0x06009287 RID: 37511 RVA: 0x003937F4 File Offset: 0x003919F4
 		private int GetDragIdx(Vector2 pos, bool halfPosition)
 		{
 			int result = -1;
@@ -385,13 +358,10 @@ public class ModsScreen : KModalScreen
 			return result;
 		}
 
-		// Token: 0x04006F08 RID: 28424
 		private List<ModsScreen.DisplayedMod> mods;
 
-		// Token: 0x04006F09 RID: 28425
 		private ModsScreen screen;
 
-		// Token: 0x04006F0A RID: 28426
 		private int startDragIdx = -1;
 	}
 }

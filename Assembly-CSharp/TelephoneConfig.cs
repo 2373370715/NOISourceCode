@@ -3,16 +3,13 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005E0 RID: 1504
 public class TelephoneConfig : IBuildingConfig
 {
-	// Token: 0x06001A50 RID: 6736 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06001A51 RID: 6737 RVA: 0x001B3574 File Offset: 0x001B1774
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "Telephone";
@@ -39,7 +36,6 @@ public class TelephoneConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001A52 RID: 6738 RVA: 0x001B3618 File Offset: 0x001B1818
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.RecBuilding, false);
@@ -55,17 +51,13 @@ public class TelephoneConfig : IBuildingConfig
 		go.AddOrGetDef<RocketUsageRestriction.Def>();
 	}
 
-	// Token: 0x06001A53 RID: 6739 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04001103 RID: 4355
 	public const string ID = "Telephone";
 
-	// Token: 0x04001104 RID: 4356
 	public const float ringTime = 15f;
 
-	// Token: 0x04001105 RID: 4357
 	public const float callTime = 25f;
 }

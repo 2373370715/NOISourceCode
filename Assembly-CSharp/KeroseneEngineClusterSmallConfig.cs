@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003A9 RID: 937
 public class KeroseneEngineClusterSmallConfig : IBuildingConfig
 {
-	// Token: 0x06000F27 RID: 3879 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06000F28 RID: 3880 RVA: 0x00185DA8 File Offset: 0x00183FA8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "KeroseneEngineClusterSmall";
@@ -46,7 +43,6 @@ public class KeroseneEngineClusterSmallConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000F29 RID: 3881 RVA: 0x00185E80 File Offset: 0x00184080
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -58,7 +54,6 @@ public class KeroseneEngineClusterSmallConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x06000F2A RID: 3882 RVA: 0x00185EE4 File Offset: 0x001840E4
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		RocketEngineCluster rocketEngineCluster = go.AddOrGet<RocketEngineCluster>();
@@ -91,12 +86,9 @@ public class KeroseneEngineClusterSmallConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x04000B20 RID: 2848
 	public const string ID = "KeroseneEngineClusterSmall";
 
-	// Token: 0x04000B21 RID: 2849
 	public const SimHashes FUEL = SimHashes.Petroleum;
 
-	// Token: 0x04000B22 RID: 2850
 	public const float FUEL_CAPACITY = 450f;
 }

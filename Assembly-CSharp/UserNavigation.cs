@@ -4,11 +4,9 @@ using FMOD.Studio;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x02001A5E RID: 6750
 [AddComponentMenu("KMonoBehaviour/scripts/UserNavigation")]
 public class UserNavigation : KMonoBehaviour
 {
-	// Token: 0x06008CA4 RID: 36004 RVA: 0x003733D4 File Offset: 0x003715D4
 	public UserNavigation()
 	{
 		for (global::Action action = global::Action.SetUserNav1; action <= global::Action.SetUserNav10; action++)
@@ -17,7 +15,6 @@ public class UserNavigation : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008CA5 RID: 36005 RVA: 0x001007ED File Offset: 0x000FE9ED
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -54,7 +51,6 @@ public class UserNavigation : KMonoBehaviour
 		});
 	}
 
-	// Token: 0x06008CA6 RID: 36006 RVA: 0x0037341C File Offset: 0x0037161C
 	public void SetWorldCameraStartPosition(int world_id, Vector3 start_pos)
 	{
 		if (!this.worldCameraPositions.ContainsKey(world_id))
@@ -73,7 +69,6 @@ public class UserNavigation : KMonoBehaviour
 		};
 	}
 
-	// Token: 0x06008CA7 RID: 36007 RVA: 0x003734B4 File Offset: 0x003716B4
 	private static int GetIndex(global::Action action)
 	{
 		int result = -1;
@@ -88,7 +83,6 @@ public class UserNavigation : KMonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06008CA8 RID: 36008 RVA: 0x003734E4 File Offset: 0x003716E4
 	private void SetHotkeyNavPoint(global::Action action, Vector3 pos, float ortho_size)
 	{
 		int index = UserNavigation.GetIndex(action);
@@ -106,7 +100,6 @@ public class UserNavigation : KMonoBehaviour
 		KFMOD.EndOneShot(instance);
 	}
 
-	// Token: 0x06008CA9 RID: 36009 RVA: 0x00373554 File Offset: 0x00371754
 	private void GoToHotkeyNavPoint(global::Action action)
 	{
 		int index = UserNavigation.GetIndex(action);
@@ -124,7 +117,6 @@ public class UserNavigation : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008CAA RID: 36010 RVA: 0x003735CC File Offset: 0x003717CC
 	public bool Handle(KButtonEvent e)
 	{
 		bool flag = false;
@@ -154,31 +146,24 @@ public class UserNavigation : KMonoBehaviour
 		return flag;
 	}
 
-	// Token: 0x04006A32 RID: 27186
 	[Serialize]
 	private List<UserNavigation.NavPoint> hotkeyNavPoints = new List<UserNavigation.NavPoint>();
 
-	// Token: 0x04006A33 RID: 27187
 	[Serialize]
 	private Dictionary<int, UserNavigation.NavPoint> worldCameraPositions = new Dictionary<int, UserNavigation.NavPoint>();
 
-	// Token: 0x02001A5F RID: 6751
 	[Serializable]
 	private struct NavPoint
 	{
-		// Token: 0x06008CAC RID: 36012 RVA: 0x00100811 File Offset: 0x000FEA11
 		public bool IsValid()
 		{
 			return this.orthoSize != 0f;
 		}
 
-		// Token: 0x04006A34 RID: 27188
 		public Vector3 pos;
 
-		// Token: 0x04006A35 RID: 27189
 		public float orthoSize;
 
-		// Token: 0x04006A36 RID: 27190
 		public static readonly UserNavigation.NavPoint Invalid = new UserNavigation.NavPoint
 		{
 			pos = Vector3.zero,

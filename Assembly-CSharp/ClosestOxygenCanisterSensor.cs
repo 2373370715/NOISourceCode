@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x0200084A RID: 2122
 public class ClosestOxygenCanisterSensor : ClosestPickupableSensor<Pickupable>
 {
-	// Token: 0x06002571 RID: 9585 RVA: 0x001D95F8 File Offset: 0x001D77F8
 	public ClosestOxygenCanisterSensor(Sensors sensors, bool shouldStartActive) : base(sensors, GameTags.Gas, shouldStartActive)
 	{
 		this.requiredTags = new Tag[]
@@ -14,7 +12,6 @@ public class ClosestOxygenCanisterSensor : ClosestPickupableSensor<Pickupable>
 		this.BreathableGasses = ElementLoader.FindElements((Element element) => element.HasTag(GameTags.Breathable) && element.HasTag(GameTags.Gas));
 	}
 
-	// Token: 0x06002572 RID: 9586 RVA: 0x001D9654 File Offset: 0x001D7854
 	public override HashSet<Tag> GetForbbidenTags()
 	{
 		if (this.consumableConsumer == null)
@@ -57,9 +54,7 @@ public class ClosestOxygenCanisterSensor : ClosestPickupableSensor<Pickupable>
 		return hashSet;
 	}
 
-	// Token: 0x040019CA RID: 6602
 	public static readonly Tag GenericBreathableGassesTankTag = new Tag("BreathableGasTank");
 
-	// Token: 0x040019CB RID: 6603
 	private List<Element> BreathableGasses;
 }

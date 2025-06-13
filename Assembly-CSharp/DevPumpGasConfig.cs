@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200009E RID: 158
 public class DevPumpGasConfig : IBuildingConfig
 {
-	// Token: 0x0600028C RID: 652 RVA: 0x001514E8 File Offset: 0x0014F6E8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "DevPumpGas";
@@ -34,14 +32,12 @@ public class DevPumpGasConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600028D RID: 653 RVA: 0x000AAE3E File Offset: 0x000A903E
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		base.ConfigureBuildingTemplate(go, prefab_tag);
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
 	}
 
-	// Token: 0x0600028E RID: 654 RVA: 0x00151598 File Offset: 0x0014F798
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddTag(GameTags.DevBuilding);
@@ -58,12 +54,9 @@ public class DevPumpGasConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayBehindConduits, false);
 	}
 
-	// Token: 0x040001A5 RID: 421
 	public const string ID = "DevPumpGas";
 
-	// Token: 0x040001A6 RID: 422
 	private const ConduitType CONDUIT_TYPE = ConduitType.Gas;
 
-	// Token: 0x040001A7 RID: 423
 	private ConduitPortInfo primaryPort = new ConduitPortInfo(ConduitType.Gas, new CellOffset(1, 1));
 }

@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x02001890 RID: 6288
 public class ScenePartitioner : ISim1000ms
 {
-	// Token: 0x060081DD RID: 33245 RVA: 0x00347BA8 File Offset: 0x00345DA8
 	public ScenePartitioner(int node_size, int layer_count, int scene_width, int scene_height)
 	{
 		this.nodeSize = node_size;
@@ -25,7 +23,6 @@ public class ScenePartitioner : ISim1000ms
 		SimAndRenderScheduler.instance.Add(this, false);
 	}
 
-	// Token: 0x060081DE RID: 33246 RVA: 0x00347C84 File Offset: 0x00345E84
 	public void FreeResources()
 	{
 		for (int i = 0; i < this.nodes.GetLength(0); i++)
@@ -58,7 +55,6 @@ public class ScenePartitioner : ISim1000ms
 		this.nodes = null;
 	}
 
-	// Token: 0x060081DF RID: 33247 RVA: 0x00347DE0 File Offset: 0x00345FE0
 	[Obsolete]
 	public ScenePartitionerLayer CreateMask(HashedString name)
 	{
@@ -75,7 +71,6 @@ public class ScenePartitioner : ISim1000ms
 		return scenePartitionerLayer2;
 	}
 
-	// Token: 0x060081E0 RID: 33248 RVA: 0x00347E80 File Offset: 0x00346080
 	public ScenePartitionerLayer CreateMask(string name)
 	{
 		foreach (ScenePartitionerLayer scenePartitionerLayer in this.layers)
@@ -92,19 +87,16 @@ public class ScenePartitioner : ISim1000ms
 		return scenePartitionerLayer2;
 	}
 
-	// Token: 0x060081E1 RID: 33249 RVA: 0x000F9F41 File Offset: 0x000F8141
 	private int ClampNodeX(int x)
 	{
 		return Math.Min(Math.Max(x, 0), this.nodes.GetLength(2) - 1);
 	}
 
-	// Token: 0x060081E2 RID: 33250 RVA: 0x000F9F5D File Offset: 0x000F815D
 	private int ClampNodeY(int y)
 	{
 		return Math.Min(Math.Max(y, 0), this.nodes.GetLength(1) - 1);
 	}
 
-	// Token: 0x060081E3 RID: 33251 RVA: 0x00347F38 File Offset: 0x00346138
 	private Extents GetNodeExtents(int x, int y, int width, int height)
 	{
 		Extents extents = default(Extents);
@@ -115,13 +107,11 @@ public class ScenePartitioner : ISim1000ms
 		return extents;
 	}
 
-	// Token: 0x060081E4 RID: 33252 RVA: 0x000F9F79 File Offset: 0x000F8179
 	private Extents GetNodeExtents(ScenePartitionerEntry entry)
 	{
 		return this.GetNodeExtents(entry.x, entry.y, entry.width, entry.height);
 	}
 
-	// Token: 0x060081E5 RID: 33253 RVA: 0x00347FBC File Offset: 0x003461BC
 	private void Insert(ScenePartitionerEntry entry)
 	{
 		if (entry.obj == null)
@@ -179,7 +169,6 @@ public class ScenePartitioner : ISim1000ms
 		}
 	}
 
-	// Token: 0x060081E6 RID: 33254 RVA: 0x003481D0 File Offset: 0x003463D0
 	private void Widthdraw(ScenePartitionerEntry entry)
 	{
 		Extents nodeExtents = this.GetNodeExtents(entry);
@@ -230,14 +219,12 @@ public class ScenePartitioner : ISim1000ms
 		}
 	}
 
-	// Token: 0x060081E7 RID: 33255 RVA: 0x000F9F99 File Offset: 0x000F8199
 	public ScenePartitionerEntry Add(ScenePartitionerEntry entry)
 	{
 		this.Insert(entry);
 		return entry;
 	}
 
-	// Token: 0x060081E8 RID: 33256 RVA: 0x000F9FA3 File Offset: 0x000F81A3
 	public void UpdatePosition(int x, int y, ScenePartitionerEntry entry)
 	{
 		this.Widthdraw(entry);
@@ -246,7 +233,6 @@ public class ScenePartitioner : ISim1000ms
 		this.Insert(entry);
 	}
 
-	// Token: 0x060081E9 RID: 33257 RVA: 0x000F9FC1 File Offset: 0x000F81C1
 	public void UpdatePosition(Extents e, ScenePartitionerEntry entry)
 	{
 		this.Widthdraw(entry);
@@ -257,7 +243,6 @@ public class ScenePartitioner : ISim1000ms
 		this.Insert(entry);
 	}
 
-	// Token: 0x060081EA RID: 33258 RVA: 0x003483B8 File Offset: 0x003465B8
 	public void Remove(ScenePartitionerEntry entry)
 	{
 		Extents nodeExtents = this.GetNodeExtents(entry);
@@ -305,7 +290,6 @@ public class ScenePartitioner : ISim1000ms
 		entry.obj = null;
 	}
 
-	// Token: 0x060081EB RID: 33259 RVA: 0x00348568 File Offset: 0x00346768
 	public void Sim1000ms(float dt)
 	{
 		foreach (ScenePartitioner.DirtyNode dirtyNode in this.dirtyNodes)
@@ -324,7 +308,6 @@ public class ScenePartitioner : ISim1000ms
 		this.dirtyNodes.Clear();
 	}
 
-	// Token: 0x060081EC RID: 33260 RVA: 0x00348668 File Offset: 0x00346868
 	public void TriggerEvent(IEnumerable<int> cells, ScenePartitionerLayer layer, object event_data)
 	{
 		ListPool<ScenePartitionerEntry, ScenePartitioner>.PooledList pooledList = ListPool<ScenePartitionerEntry, ScenePartitioner>.Allocate();
@@ -341,7 +324,6 @@ public class ScenePartitioner : ISim1000ms
 		pooledList.Recycle();
 	}
 
-	// Token: 0x060081ED RID: 33261 RVA: 0x003486F4 File Offset: 0x003468F4
 	public void TriggerEvent(int x, int y, int width, int height, ScenePartitionerLayer layer, object event_data)
 	{
 		ListPool<ScenePartitionerEntry, ScenePartitioner>.PooledList pooledList = ListPool<ScenePartitionerEntry, ScenePartitioner>.Allocate();
@@ -351,7 +333,6 @@ public class ScenePartitioner : ISim1000ms
 		pooledList.Recycle();
 	}
 
-	// Token: 0x060081EE RID: 33262 RVA: 0x00348738 File Offset: 0x00346938
 	private void RunLayerGlobalEvent(IEnumerable<int> cells, ScenePartitionerLayer layer, object event_data)
 	{
 		if (layer.OnEvent != null)
@@ -363,7 +344,6 @@ public class ScenePartitioner : ISim1000ms
 		}
 	}
 
-	// Token: 0x060081EF RID: 33263 RVA: 0x00348790 File Offset: 0x00346990
 	private void RunLayerGlobalEvent(int x, int y, int width, int height, ScenePartitionerLayer layer, object event_data)
 	{
 		if (layer.OnEvent != null)
@@ -382,7 +362,6 @@ public class ScenePartitioner : ISim1000ms
 		}
 	}
 
-	// Token: 0x060081F0 RID: 33264 RVA: 0x003487E4 File Offset: 0x003469E4
 	private void RunEntries(List<ScenePartitionerEntry> gathered_entries, object event_data)
 	{
 		for (int i = 0; i < gathered_entries.Count; i++)
@@ -395,7 +374,6 @@ public class ScenePartitioner : ISim1000ms
 		}
 	}
 
-	// Token: 0x060081F1 RID: 33265 RVA: 0x00348828 File Offset: 0x00346A28
 	public void GatherEntries(int x, int y, int width, int height, ScenePartitionerLayer layer, object event_data, List<ScenePartitionerEntry> gathered_entries)
 	{
 		int query_id = this.queryId + 1;
@@ -403,7 +381,6 @@ public class ScenePartitioner : ISim1000ms
 		this.GatherEntries(x, y, width, height, layer, event_data, gathered_entries, query_id);
 	}
 
-	// Token: 0x060081F2 RID: 33266 RVA: 0x00348858 File Offset: 0x00346A58
 	public void GatherEntries(int x, int y, int width, int height, ScenePartitionerLayer layer, object event_data, List<ScenePartitionerEntry> gathered_entries, int query_id)
 	{
 		Extents nodeExtents = this.GetNodeExtents(x, y, width, height);
@@ -443,7 +420,6 @@ public class ScenePartitioner : ISim1000ms
 		}
 	}
 
-	// Token: 0x060081F3 RID: 33267 RVA: 0x000FA001 File Offset: 0x000F8201
 	public IEnumerable<object> AsyncSafeEnumerate(int x, int y, int width, int height, ScenePartitionerLayer layer)
 	{
 		Extents nodeExtents = this.GetNodeExtents(x, y, width, height);
@@ -473,7 +449,6 @@ public class ScenePartitioner : ISim1000ms
 		yield break;
 	}
 
-	// Token: 0x060081F4 RID: 33268 RVA: 0x00348A5C File Offset: 0x00346C5C
 	public void AsyncSafeVisit<ContextType>(int x, int y, int width, int height, ScenePartitionerLayer layer, Func<object, ContextType, bool> visitor, ContextType context)
 	{
 		Extents nodeExtents = this.GetNodeExtents(x, y, width, height);
@@ -497,13 +472,11 @@ public class ScenePartitioner : ISim1000ms
 		}
 	}
 
-	// Token: 0x060081F5 RID: 33269 RVA: 0x000C550D File Offset: 0x000C370D
 	public void Cleanup()
 	{
 		SimAndRenderScheduler.instance.Remove(this);
 	}
 
-	// Token: 0x060081F6 RID: 33270 RVA: 0x00348BB8 File Offset: 0x00346DB8
 	public bool DoDebugLayersContainItemsOnCell(int cell)
 	{
 		int x_bottomLeft = 0;
@@ -522,50 +495,35 @@ public class ScenePartitioner : ISim1000ms
 		return false;
 	}
 
-	// Token: 0x040062C9 RID: 25289
 	public List<ScenePartitionerLayer> layers = new List<ScenePartitionerLayer>();
 
-	// Token: 0x040062CA RID: 25290
 	private int nodeSize;
 
-	// Token: 0x040062CB RID: 25291
 	private List<ScenePartitioner.DirtyNode> dirtyNodes = new List<ScenePartitioner.DirtyNode>();
 
-	// Token: 0x040062CC RID: 25292
 	private ScenePartitioner.ScenePartitionerNode[,,] nodes;
 
-	// Token: 0x040062CD RID: 25293
 	private int queryId;
 
-	// Token: 0x040062CE RID: 25294
 	private static readonly Predicate<ScenePartitionerEntry> removeCallback = (ScenePartitionerEntry entry) => entry == null || entry.obj == null;
 
-	// Token: 0x040062CF RID: 25295
 	public HashSet<ScenePartitionerLayer> toggledLayers = new HashSet<ScenePartitionerLayer>();
 
-	// Token: 0x02001891 RID: 6289
 	private struct ScenePartitionerNode
 	{
-		// Token: 0x040062D0 RID: 25296
 		public List<ScenePartitionerEntry> entries;
 
-		// Token: 0x040062D1 RID: 25297
 		public HashSet<ScenePartitionerEntry> entries_set;
 
-		// Token: 0x040062D2 RID: 25298
 		public bool dirty;
 	}
 
-	// Token: 0x02001892 RID: 6290
 	private struct DirtyNode
 	{
-		// Token: 0x040062D3 RID: 25299
 		public int layer;
 
-		// Token: 0x040062D4 RID: 25300
 		public int x;
 
-		// Token: 0x040062D5 RID: 25301
 		public int y;
 	}
 }

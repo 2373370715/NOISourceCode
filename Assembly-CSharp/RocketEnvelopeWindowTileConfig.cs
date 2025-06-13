@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000576 RID: 1398
 public class RocketEnvelopeWindowTileConfig : IBuildingConfig
 {
-	// Token: 0x06001805 RID: 6149 RVA: 0x001A99A0 File Offset: 0x001A7BA0
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "RocketEnvelopeWindowTile";
@@ -44,7 +42,6 @@ public class RocketEnvelopeWindowTileConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001806 RID: 6150 RVA: 0x001A9ABC File Offset: 0x001A7CBC
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
@@ -58,7 +55,6 @@ public class RocketEnvelopeWindowTileConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(GameTags.Window, false);
 	}
 
-	// Token: 0x06001807 RID: 6151 RVA: 0x000B49D0 File Offset: 0x000B2BD0
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		GeneratedBuildings.RemoveLoopingSounds(go);
@@ -69,16 +65,13 @@ public class RocketEnvelopeWindowTileConfig : IBuildingConfig
 		go.GetComponent<Deconstructable>().allowDeconstruction = false;
 	}
 
-	// Token: 0x06001808 RID: 6152 RVA: 0x000AA509 File Offset: 0x000A8709
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		base.DoPostConfigureUnderConstruction(go);
 		go.AddOrGet<KAnimGridTileVisualizer>();
 	}
 
-	// Token: 0x04000FEF RID: 4079
 	public const string ID = "RocketEnvelopeWindowTile";
 
-	// Token: 0x04000FF0 RID: 4080
 	public static readonly int BlockTileConnectorID = Hash.SDBMLower("tiles_glass_tops");
 }

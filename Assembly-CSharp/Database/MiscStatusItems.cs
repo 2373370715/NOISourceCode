@@ -6,28 +6,23 @@ using UnityEngine;
 
 namespace Database
 {
-	// Token: 0x020021AD RID: 8621
 	public class MiscStatusItems : StatusItems
 	{
-		// Token: 0x0600B810 RID: 47120 RVA: 0x0011B519 File Offset: 0x00119719
 		public MiscStatusItems(ResourceSet parent) : base("MiscStatusItems", parent)
 		{
 			this.CreateStatusItems();
 		}
 
-		// Token: 0x0600B811 RID: 47121 RVA: 0x00459104 File Offset: 0x00457304
 		private StatusItem CreateStatusItem(string id, string prefix, string icon, StatusItem.IconType icon_type, NotificationType notification_type, bool allow_multiples, HashedString render_overlay, bool showWorldIcon = true, int status_overlays = 129022)
 		{
 			return base.Add(new StatusItem(id, prefix, icon, icon_type, notification_type, allow_multiples, render_overlay, showWorldIcon, status_overlays, null));
 		}
 
-		// Token: 0x0600B812 RID: 47122 RVA: 0x0045912C File Offset: 0x0045732C
 		private StatusItem CreateStatusItem(string id, string name, string tooltip, string icon, StatusItem.IconType icon_type, NotificationType notification_type, bool allow_multiples, HashedString render_overlay, int status_overlays = 129022)
 		{
 			return base.Add(new StatusItem(id, name, tooltip, icon, icon_type, notification_type, allow_multiples, render_overlay, status_overlays, true, null));
 		}
 
-		// Token: 0x0600B813 RID: 47123 RVA: 0x0046C33C File Offset: 0x0046A53C
 		private void CreateStatusItems()
 		{
 			this.AttentionRequired = this.CreateStatusItem("AttentionRequired", "MISC", "status_item_doubleexclamation", StatusItem.IconType.Custom, NotificationType.Neutral, false, OverlayModes.None.ID, true, 129022);
@@ -324,181 +319,122 @@ namespace Database
 			this.MoveStorageUnreachable = this.CreateStatusItem("MoveStorageUnreachable", "MISC", "status_item_manually_controlled", StatusItem.IconType.Custom, NotificationType.BadMinor, false, OverlayModes.None.ID, true, 129022);
 		}
 
-		// Token: 0x0400956E RID: 38254
 		public StatusItem AttentionRequired;
 
-		// Token: 0x0400956F RID: 38255
 		public StatusItem MarkedForDisinfection;
 
-		// Token: 0x04009570 RID: 38256
 		public StatusItem MarkedForCompost;
 
-		// Token: 0x04009571 RID: 38257
 		public StatusItem MarkedForCompostInStorage;
 
-		// Token: 0x04009572 RID: 38258
 		public StatusItem PendingClear;
 
-		// Token: 0x04009573 RID: 38259
 		public StatusItem PendingClearNoStorage;
 
-		// Token: 0x04009574 RID: 38260
 		public StatusItem Edible;
 
-		// Token: 0x04009575 RID: 38261
 		public StatusItem WaitingForDig;
 
-		// Token: 0x04009576 RID: 38262
 		public StatusItem WaitingForMop;
 
-		// Token: 0x04009577 RID: 38263
 		public StatusItem OreMass;
 
-		// Token: 0x04009578 RID: 38264
 		public StatusItem OreTemp;
 
-		// Token: 0x04009579 RID: 38265
 		public StatusItem ElementalCategory;
 
-		// Token: 0x0400957A RID: 38266
 		public StatusItem ElementalState;
 
-		// Token: 0x0400957B RID: 38267
 		public StatusItem ElementalTemperature;
 
-		// Token: 0x0400957C RID: 38268
 		public StatusItem ElementalMass;
 
-		// Token: 0x0400957D RID: 38269
 		public StatusItem ElementalDisease;
 
-		// Token: 0x0400957E RID: 38270
 		public StatusItem TreeFilterableTags;
 
-		// Token: 0x0400957F RID: 38271
 		public StatusItem SublimationOverpressure;
 
-		// Token: 0x04009580 RID: 38272
 		public StatusItem SublimationEmitting;
 
-		// Token: 0x04009581 RID: 38273
 		public StatusItem SublimationBlocked;
 
-		// Token: 0x04009582 RID: 38274
 		public StatusItem BuriedItem;
 
-		// Token: 0x04009583 RID: 38275
 		public StatusItem SpoutOverPressure;
 
-		// Token: 0x04009584 RID: 38276
 		public StatusItem SpoutEmitting;
 
-		// Token: 0x04009585 RID: 38277
 		public StatusItem SpoutPressureBuilding;
 
-		// Token: 0x04009586 RID: 38278
 		public StatusItem SpoutIdle;
 
-		// Token: 0x04009587 RID: 38279
 		public StatusItem SpoutDormant;
 
-		// Token: 0x04009588 RID: 38280
 		public StatusItem SpicedFood;
 
-		// Token: 0x04009589 RID: 38281
 		public StatusItem RehydratedFood;
 
-		// Token: 0x0400958A RID: 38282
 		public StatusItem OrderAttack;
 
-		// Token: 0x0400958B RID: 38283
 		public StatusItem OrderCapture;
 
-		// Token: 0x0400958C RID: 38284
 		public StatusItem PendingHarvest;
 
-		// Token: 0x0400958D RID: 38285
 		public StatusItem NotMarkedForHarvest;
 
-		// Token: 0x0400958E RID: 38286
 		public StatusItem PendingUproot;
 
-		// Token: 0x0400958F RID: 38287
 		public StatusItem PickupableUnreachable;
 
-		// Token: 0x04009590 RID: 38288
 		public StatusItem Prioritized;
 
-		// Token: 0x04009591 RID: 38289
 		public StatusItem Using;
 
-		// Token: 0x04009592 RID: 38290
 		public StatusItem Operating;
 
-		// Token: 0x04009593 RID: 38291
 		public StatusItem Cleaning;
 
-		// Token: 0x04009594 RID: 38292
 		public StatusItem RegionIsBlocked;
 
-		// Token: 0x04009595 RID: 38293
 		public StatusItem NoClearLocationsAvailable;
 
-		// Token: 0x04009596 RID: 38294
 		public StatusItem AwaitingStudy;
 
-		// Token: 0x04009597 RID: 38295
 		public StatusItem Studied;
 
-		// Token: 0x04009598 RID: 38296
 		public StatusItem StudiedGeyserTimeRemaining;
 
-		// Token: 0x04009599 RID: 38297
 		public StatusItem Space;
 
-		// Token: 0x0400959A RID: 38298
 		public StatusItem HighEnergyParticleCount;
 
-		// Token: 0x0400959B RID: 38299
 		public StatusItem Durability;
 
-		// Token: 0x0400959C RID: 38300
 		public StatusItem StoredItemDurability;
 
-		// Token: 0x0400959D RID: 38301
 		public StatusItem ArtifactEntombed;
 
-		// Token: 0x0400959E RID: 38302
 		public StatusItem TearOpen;
 
-		// Token: 0x0400959F RID: 38303
 		public StatusItem TearClosed;
 
-		// Token: 0x040095A0 RID: 38304
 		public StatusItem ClusterMeteorRemainingTravelTime;
 
-		// Token: 0x040095A1 RID: 38305
 		public StatusItem MarkedForMove;
 
-		// Token: 0x040095A2 RID: 38306
 		public StatusItem MoveStorageUnreachable;
 
-		// Token: 0x040095A3 RID: 38307
 		public StatusItem GrowingBranches;
 
-		// Token: 0x040095A4 RID: 38308
 		public StatusItem BionicExplorerBooster;
 
-		// Token: 0x040095A5 RID: 38309
 		public StatusItem BionicExplorerBoosterReady;
 
-		// Token: 0x040095A6 RID: 38310
 		public StatusItem UnassignedBionicBooster;
 
-		// Token: 0x040095A7 RID: 38311
 		public StatusItem ElectrobankLifetimeRemaining;
 
-		// Token: 0x040095A8 RID: 38312
 		public StatusItem ElectrobankSelfCharging;
 	}
 }

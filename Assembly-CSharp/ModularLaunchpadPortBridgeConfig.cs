@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020004B0 RID: 1200
 public class ModularLaunchpadPortBridgeConfig : IBuildingConfig
 {
-	// Token: 0x06001488 RID: 5256 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06001489 RID: 5257 RVA: 0x0019C180 File Offset: 0x0019A380
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "ModularLaunchpadPortBridge";
@@ -36,7 +33,6 @@ public class ModularLaunchpadPortBridgeConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600148A RID: 5258 RVA: 0x0019C20C File Offset: 0x0019A40C
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		KPrefabID component = go.GetComponent<KPrefabID>();
@@ -53,11 +49,9 @@ public class ModularLaunchpadPortBridgeConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x0600148B RID: 5259 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000E0A RID: 3594
 	public const string ID = "ModularLaunchpadPortBridge";
 }

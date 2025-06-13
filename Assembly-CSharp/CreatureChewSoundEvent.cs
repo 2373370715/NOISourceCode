@@ -2,15 +2,12 @@
 using FMOD.Studio;
 using UnityEngine;
 
-// Token: 0x0200093A RID: 2362
 public class CreatureChewSoundEvent : SoundEvent
 {
-	// Token: 0x06002979 RID: 10617 RVA: 0x000BF6F0 File Offset: 0x000BD8F0
 	public CreatureChewSoundEvent(string file_name, string sound_name, int frame, float min_interval) : base(file_name, sound_name, frame, false, false, min_interval, true)
 	{
 	}
 
-	// Token: 0x0600297A RID: 10618 RVA: 0x001E2EC8 File Offset: 0x001E10C8
 	public override void OnPlay(AnimEventManager.EventPlayerData behaviour)
 	{
 		string sound = GlobalAssets.GetSound(StringFormatter.Combine(base.name, "_", CreatureChewSoundEvent.GetChewSound(behaviour)), false);
@@ -33,7 +30,6 @@ public class CreatureChewSoundEvent : SoundEvent
 		}
 	}
 
-	// Token: 0x0600297B RID: 10619 RVA: 0x001E2F90 File Offset: 0x001E1190
 	private static string GetChewSound(AnimEventManager.EventPlayerData behaviour)
 	{
 		string result = CreatureChewSoundEvent.DEFAULT_CHEW_SOUND;
@@ -53,9 +49,7 @@ public class CreatureChewSoundEvent : SoundEvent
 		return result;
 	}
 
-	// Token: 0x04001C3C RID: 7228
 	private static string DEFAULT_CHEW_SOUND = "Rock";
 
-	// Token: 0x04001C3D RID: 7229
 	private const string FMOD_PARAM_IS_BABY_ID = "isBaby";
 }

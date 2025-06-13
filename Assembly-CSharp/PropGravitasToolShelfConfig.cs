@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200053C RID: 1340
 public class PropGravitasToolShelfConfig : IEntityConfig
 {
-	// Token: 0x06001709 RID: 5897 RVA: 0x001A45B4 File Offset: 0x001A27B4
 	public GameObject CreatePrefab()
 	{
 		string id = "PropGravitasToolShelf";
@@ -27,7 +25,6 @@ public class PropGravitasToolShelfConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x0600170A RID: 5898 RVA: 0x000AA768 File Offset: 0x000A8968
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.GetComponent<OccupyArea>().objectLayers = new ObjectLayer[]
@@ -36,7 +33,6 @@ public class PropGravitasToolShelfConfig : IEntityConfig
 		};
 	}
 
-	// Token: 0x0600170B RID: 5899 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}

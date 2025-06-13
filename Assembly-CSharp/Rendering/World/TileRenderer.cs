@@ -3,10 +3,8 @@ using System.Collections.Generic;
 
 namespace Rendering.World
 {
-	// Token: 0x02002142 RID: 8514
 	public abstract class TileRenderer : KMonoBehaviour
 	{
-		// Token: 0x0600B55D RID: 46429 RVA: 0x00453680 File Offset: 0x00451880
 		protected override void OnSpawn()
 		{
 			this.Masks = this.GetMasks();
@@ -28,7 +26,6 @@ namespace Rendering.World
 			this.VisibleAreaUpdater = new VisibleAreaUpdater(new Action<int>(this.UpdateOutsideView), new Action<int>(this.UpdateInsideView), "TileRenderer");
 		}
 
-		// Token: 0x0600B55E RID: 46430 RVA: 0x00453770 File Offset: 0x00451970
 		protected virtual Mask[] GetMasks()
 		{
 			return new Mask[]
@@ -52,7 +49,6 @@ namespace Rendering.World
 			};
 		}
 
-		// Token: 0x0600B55F RID: 46431 RVA: 0x004538FC File Offset: 0x00451AFC
 		private void UpdateInsideView(int cell)
 		{
 			foreach (int item in this.GetCellTiles(cell))
@@ -62,7 +58,6 @@ namespace Rendering.World
 			}
 		}
 
-		// Token: 0x0600B560 RID: 46432 RVA: 0x00453940 File Offset: 0x00451B40
 		private void UpdateOutsideView(int cell)
 		{
 			foreach (int item in this.GetCellTiles(cell))
@@ -71,7 +66,6 @@ namespace Rendering.World
 			}
 		}
 
-		// Token: 0x0600B561 RID: 46433 RVA: 0x00453974 File Offset: 0x00451B74
 		private int[] GetCellTiles(int cell)
 		{
 			int num = 0;
@@ -84,16 +78,13 @@ namespace Rendering.World
 			return this.CellTiles;
 		}
 
-		// Token: 0x0600B562 RID: 46434
 		public abstract void LoadBrushes();
 
-		// Token: 0x0600B563 RID: 46435 RVA: 0x0011A503 File Offset: 0x00118703
 		public void MarkDirty(int cell)
 		{
 			this.VisibleAreaUpdater.UpdateCell(cell);
 		}
 
-		// Token: 0x0600B564 RID: 46436 RVA: 0x004539E8 File Offset: 0x00451BE8
 		private void LateUpdate()
 		{
 			foreach (int num in this.ClearTiles)
@@ -118,10 +109,8 @@ namespace Rendering.World
 			}
 		}
 
-		// Token: 0x0600B565 RID: 46437
 		public abstract void MarkDirty(ref Tile tile, Brush[] brush_array, int[] brush_grid);
 
-		// Token: 0x0600B566 RID: 46438 RVA: 0x00453B58 File Offset: 0x00451D58
 		public void Clear(ref Tile tile, Brush[] brush_array, int[] brush_grid)
 		{
 			for (int i = 0; i < 4; i++)
@@ -134,43 +123,30 @@ namespace Rendering.World
 			}
 		}
 
-		// Token: 0x04008FA0 RID: 36768
 		private Tile[] TileGrid;
 
-		// Token: 0x04008FA1 RID: 36769
 		private int[] BrushGrid;
 
-		// Token: 0x04008FA2 RID: 36770
 		protected int TileGridWidth;
 
-		// Token: 0x04008FA3 RID: 36771
 		protected int TileGridHeight;
 
-		// Token: 0x04008FA4 RID: 36772
 		private int[] CellTiles = new int[4];
 
-		// Token: 0x04008FA5 RID: 36773
 		protected Brush[] Brushes;
 
-		// Token: 0x04008FA6 RID: 36774
 		protected Mask[] Masks;
 
-		// Token: 0x04008FA7 RID: 36775
 		protected List<Brush> DirtyBrushes = new List<Brush>();
 
-		// Token: 0x04008FA8 RID: 36776
 		protected List<Brush> ActiveBrushes = new List<Brush>();
 
-		// Token: 0x04008FA9 RID: 36777
 		private VisibleAreaUpdater VisibleAreaUpdater;
 
-		// Token: 0x04008FAA RID: 36778
 		private HashSet<int> ClearTiles = new HashSet<int>();
 
-		// Token: 0x04008FAB RID: 36779
 		private HashSet<int> DirtyTiles = new HashSet<int>();
 
-		// Token: 0x04008FAC RID: 36780
 		public TextureAtlas Atlas;
 	}
 }

@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 
-// Token: 0x02000C0C RID: 3084
 public class StatusItemStackTraceWatcher : IDisposable
 {
-	// Token: 0x06003A7B RID: 14971 RVA: 0x000CA376 File Offset: 0x000C8576
 	public bool GetShouldWatch()
 	{
 		return this.shouldWatch;
 	}
 
-	// Token: 0x06003A7C RID: 14972 RVA: 0x000CA37E File Offset: 0x000C857E
 	public void SetShouldWatch(bool shouldWatch)
 	{
 		if (this.shouldWatch == shouldWatch)
@@ -23,13 +20,11 @@ public class StatusItemStackTraceWatcher : IDisposable
 		this.Refresh();
 	}
 
-	// Token: 0x06003A7D RID: 14973 RVA: 0x000CA397 File Offset: 0x000C8597
 	public Option<StatusItemGroup> GetTarget()
 	{
 		return this.currentTarget;
 	}
 
-	// Token: 0x06003A7E RID: 14974 RVA: 0x002353A4 File Offset: 0x002335A4
 	public void SetTarget(Option<StatusItemGroup> nextTarget)
 	{
 		if (this.currentTarget.IsNone() && nextTarget.IsNone())
@@ -44,7 +39,6 @@ public class StatusItemStackTraceWatcher : IDisposable
 		this.Refresh();
 	}
 
-	// Token: 0x06003A7F RID: 14975 RVA: 0x00235400 File Offset: 0x00233600
 	private void Refresh()
 	{
 		if (this.onCleanup != null)
@@ -91,13 +85,11 @@ public class StatusItemStackTraceWatcher : IDisposable
 		}
 	}
 
-	// Token: 0x06003A80 RID: 14976 RVA: 0x000CA39F File Offset: 0x000C859F
 	public bool GetStackTraceForEntry(StatusItemGroup.Entry entry, out StackTrace stackTrace)
 	{
 		return this.entryIdToStackTraceMap.TryGetValue(entry.id, out stackTrace);
 	}
 
-	// Token: 0x06003A81 RID: 14977 RVA: 0x000CA3B3 File Offset: 0x000C85B3
 	public void Dispose()
 	{
 		if (this.onCleanup != null)
@@ -111,22 +103,16 @@ public class StatusItemStackTraceWatcher : IDisposable
 		}
 	}
 
-	// Token: 0x04002882 RID: 10370
 	private Dictionary<Guid, StackTrace> entryIdToStackTraceMap = new Dictionary<Guid, StackTrace>();
 
-	// Token: 0x04002883 RID: 10371
 	private Option<StatusItemGroup> currentTarget;
 
-	// Token: 0x04002884 RID: 10372
 	private bool shouldWatch;
 
-	// Token: 0x04002885 RID: 10373
 	private System.Action onCleanup;
 
-	// Token: 0x02000C0D RID: 3085
 	public class StatusItemStackTraceWatcher_OnDestroyListenerMB : MonoBehaviour
 	{
-		// Token: 0x06003A85 RID: 14981 RVA: 0x00235520 File Offset: 0x00233720
 		private void OnDestroy()
 		{
 			bool flag = this.owner != null;
@@ -137,7 +123,6 @@ public class StatusItemStackTraceWatcher : IDisposable
 			}
 		}
 
-		// Token: 0x04002886 RID: 10374
 		public StatusItemStackTraceWatcher owner;
 	}
 }

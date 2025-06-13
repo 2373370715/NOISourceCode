@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003B1 RID: 945
 public class LadderPOIConfig : IEntityConfig
 {
-	// Token: 0x06000F4A RID: 3914 RVA: 0x0018679C File Offset: 0x0018499C
 	public GameObject CreatePrefab()
 	{
 		int num = 1;
@@ -42,12 +40,10 @@ public class LadderPOIConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06000F4B RID: 3915 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x06000F4C RID: 3916 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}

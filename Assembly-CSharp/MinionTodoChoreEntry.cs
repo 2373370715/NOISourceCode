@@ -4,11 +4,9 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001E84 RID: 7812
 [AddComponentMenu("KMonoBehaviour/scripts/MinionTodoChoreEntry")]
 public class MinionTodoChoreEntry : KMonoBehaviour
 {
-	// Token: 0x0600A3AC RID: 41900 RVA: 0x0010EC23 File Offset: 0x0010CE23
 	public void SetMoreAmount(int amount)
 	{
 		if (amount == 0)
@@ -19,7 +17,6 @@ public class MinionTodoChoreEntry : KMonoBehaviour
 		this.moreLabel.text = string.Format(UI.UISIDESCREENS.MINIONTODOSIDESCREEN.TRUNCATED_CHORES, amount);
 	}
 
-	// Token: 0x0600A3AD RID: 41901 RVA: 0x003F0BEC File Offset: 0x003EEDEC
 	public void Apply(Chore.Precondition.Context context)
 	{
 		ChoreConsumer consumer = context.consumerState.consumer;
@@ -78,7 +75,6 @@ public class MinionTodoChoreEntry : KMonoBehaviour
 		};
 	}
 
-	// Token: 0x0600A3AE RID: 41902 RVA: 0x003F0F20 File Offset: 0x003EF120
 	private static ChoreGroup BestPriorityGroup(Chore.Precondition.Context context, ChoreConsumer choreConsumer)
 	{
 		ChoreGroup choreGroup = null;
@@ -96,7 +92,6 @@ public class MinionTodoChoreEntry : KMonoBehaviour
 		return choreGroup;
 	}
 
-	// Token: 0x0600A3AF RID: 41903 RVA: 0x003F0FA8 File Offset: 0x003EF1A8
 	private static string TooltipForChore(Chore.Precondition.Context context, ChoreConsumer choreConsumer)
 	{
 		bool flag = context.chore.masterPriority.priority_class == PriorityScreen.PriorityClass.basic || context.chore.masterPriority.priority_class == PriorityScreen.PriorityClass.high;
@@ -144,41 +139,29 @@ public class MinionTodoChoreEntry : KMonoBehaviour
 		return text.Replace("{TotalPriority}", num.ToString());
 	}
 
-	// Token: 0x04007FE4 RID: 32740
 	public Image icon;
 
-	// Token: 0x04007FE5 RID: 32741
 	public Image priorityIcon;
 
-	// Token: 0x04007FE6 RID: 32742
 	public LocText priorityLabel;
 
-	// Token: 0x04007FE7 RID: 32743
 	public LocText label;
 
-	// Token: 0x04007FE8 RID: 32744
 	public LocText subLabel;
 
-	// Token: 0x04007FE9 RID: 32745
 	public LocText moreLabel;
 
-	// Token: 0x04007FEA RID: 32746
 	public List<Sprite> prioritySprites;
 
-	// Token: 0x04007FEB RID: 32747
 	[SerializeField]
 	private ColorStyleSetting buttonColorSettingCurrent;
 
-	// Token: 0x04007FEC RID: 32748
 	[SerializeField]
 	private ColorStyleSetting buttonColorSettingStandard;
 
-	// Token: 0x04007FED RID: 32749
 	private Chore targetChore;
 
-	// Token: 0x04007FEE RID: 32750
 	private IStateMachineTarget lastChoreTarget;
 
-	// Token: 0x04007FEF RID: 32751
 	private PrioritySetting lastPrioritySetting;
 }

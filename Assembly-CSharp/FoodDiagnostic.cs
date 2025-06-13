@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02001268 RID: 4712
 public class FoodDiagnostic : ColonyDiagnostic
 {
-	// Token: 0x0600603B RID: 24635 RVA: 0x002BA158 File Offset: 0x002B8358
 	public FoodDiagnostic(int worldID) : base(worldID, UI.COLONY_DIAGNOSTICS.FOODDIAGNOSTIC.ALL_NAME)
 	{
 		this.tracker = TrackerTool.Instance.GetWorldTracker<KCalTracker>(worldID);
@@ -20,7 +18,6 @@ public class FoodDiagnostic : ColonyDiagnostic
 		this.recommendedKCalPerDuplicant = 3000f * this.multiplier;
 	}
 
-	// Token: 0x0600603C RID: 24636 RVA: 0x002BA218 File Offset: 0x002B8418
 	private ColonyDiagnostic.DiagnosticResult CheckAnyFood()
 	{
 		ColonyDiagnostic.DiagnosticResult result = new ColonyDiagnostic.DiagnosticResult(ColonyDiagnostic.DiagnosticResult.Opinion.Normal, UI.COLONY_DIAGNOSTICS.FOODDIAGNOSTIC.CRITERIA_HAS_FOOD.PASS, null);
@@ -40,7 +37,6 @@ public class FoodDiagnostic : ColonyDiagnostic
 		return result;
 	}
 
-	// Token: 0x0600603D RID: 24637 RVA: 0x002BA2B0 File Offset: 0x002B84B0
 	private ColonyDiagnostic.DiagnosticResult CheckEnoughFood()
 	{
 		ColonyDiagnostic.DiagnosticResult result = new ColonyDiagnostic.DiagnosticResult(ColonyDiagnostic.DiagnosticResult.Opinion.Normal, UI.COLONY_DIAGNOSTICS.GENERIC_CRITERIA_PASS, null);
@@ -65,7 +61,6 @@ public class FoodDiagnostic : ColonyDiagnostic
 		return result;
 	}
 
-	// Token: 0x0600603E RID: 24638 RVA: 0x002BA3DC File Offset: 0x002B85DC
 	private ColonyDiagnostic.DiagnosticResult CheckStarvation()
 	{
 		ColonyDiagnostic.DiagnosticResult result = new ColonyDiagnostic.DiagnosticResult(ColonyDiagnostic.DiagnosticResult.Opinion.Normal, UI.COLONY_DIAGNOSTICS.GENERIC_CRITERIA_PASS, null);
@@ -85,13 +80,11 @@ public class FoodDiagnostic : ColonyDiagnostic
 		return result;
 	}
 
-	// Token: 0x0600603F RID: 24639 RVA: 0x000E333F File Offset: 0x000E153F
 	public override string GetCurrentValueString()
 	{
 		return GameUtil.GetFormattedCalories(this.tracker.GetCurrentValue(), GameUtil.TimeSlice.None, true);
 	}
 
-	// Token: 0x06006040 RID: 24640 RVA: 0x002BA4B4 File Offset: 0x002B86B4
 	public override ColonyDiagnostic.DiagnosticResult Evaluate()
 	{
 		ColonyDiagnostic.DiagnosticResult diagnosticResult;
@@ -107,15 +100,11 @@ public class FoodDiagnostic : ColonyDiagnostic
 		return diagnosticResult;
 	}
 
-	// Token: 0x040044ED RID: 17645
 	private const int CYCLES_OF_FOOD = 3;
 
-	// Token: 0x040044EE RID: 17646
 	private const float BASE_KCAL_PER_CYCLE = 1000f;
 
-	// Token: 0x040044EF RID: 17647
 	private float multiplier = 1f;
 
-	// Token: 0x040044F0 RID: 17648
 	private float recommendedKCalPerDuplicant;
 }

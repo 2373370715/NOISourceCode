@@ -3,10 +3,8 @@ using Klei.AI;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000B8A RID: 2954
 public class BipedTransitionLayer : TransitionDriver.OverrideLayer
 {
-	// Token: 0x06003768 RID: 14184 RVA: 0x00224130 File Offset: 0x00222330
 	public BipedTransitionLayer(Navigator navigator, float floor_speed, float ladder_speed) : base(navigator)
 	{
 		navigator.Subscribe(1773898642, delegate(object data)
@@ -24,7 +22,6 @@ public class BipedTransitionLayer : TransitionDriver.OverrideLayer
 		this.attributeLevels = navigator.GetComponent<AttributeLevels>();
 	}
 
-	// Token: 0x06003769 RID: 14185 RVA: 0x002241B8 File Offset: 0x002223B8
 	public override void BeginTransition(Navigator navigator, Navigator.ActiveTransition transition)
 	{
 		base.BeginTransition(navigator, transition);
@@ -110,7 +107,6 @@ public class BipedTransitionLayer : TransitionDriver.OverrideLayer
 		this.startTime = Time.time;
 	}
 
-	// Token: 0x0600376A RID: 14186 RVA: 0x00224438 File Offset: 0x00222638
 	public override void EndTransition(Navigator navigator, Navigator.ActiveTransition transition)
 	{
 		base.EndTransition(navigator, transition);
@@ -122,7 +118,6 @@ public class BipedTransitionLayer : TransitionDriver.OverrideLayer
 		}
 	}
 
-	// Token: 0x0600376B RID: 14187 RVA: 0x002244D8 File Offset: 0x002226D8
 	public float GetTubeTravellingSpeedMultiplier(Navigator navigator)
 	{
 		AttributeInstance attributeInstance = Db.Get().Attributes.TransitTubeTravelSpeed.Lookup(navigator.gameObject);
@@ -133,7 +128,6 @@ public class BipedTransitionLayer : TransitionDriver.OverrideLayer
 		return DUPLICANTSTATS.STANDARD.BaseStats.TRANSIT_TUBE_TRAVEL_SPEED;
 	}
 
-	// Token: 0x0600376C RID: 14188 RVA: 0x0022451C File Offset: 0x0022271C
 	public float GetMovementSpeedMultiplier(Navigator navigator)
 	{
 		float num = 1f;
@@ -144,30 +138,21 @@ public class BipedTransitionLayer : TransitionDriver.OverrideLayer
 		return Mathf.Max(0.1f, num);
 	}
 
-	// Token: 0x04002620 RID: 9760
 	private bool isWalking;
 
-	// Token: 0x04002621 RID: 9761
 	private float floorSpeed;
 
-	// Token: 0x04002622 RID: 9762
 	private float ladderSpeed;
 
-	// Token: 0x04002623 RID: 9763
 	private float startTime;
 
-	// Token: 0x04002624 RID: 9764
 	private float jetPackSpeed;
 
-	// Token: 0x04002625 RID: 9765
 	private const float downPoleSpeed = 15f;
 
-	// Token: 0x04002626 RID: 9766
 	private const float WATER_SPEED_PENALTY = 0.5f;
 
-	// Token: 0x04002627 RID: 9767
 	private AttributeConverterInstance movementSpeed;
 
-	// Token: 0x04002628 RID: 9768
 	private AttributeLevels attributeLevels;
 }

@@ -4,10 +4,8 @@ using System.Linq;
 using STRINGS;
 using TUNING;
 
-// Token: 0x02001E67 RID: 7783
 public class MeterScreen_Rations : MeterScreen_ValueTrackerDisplayer
 {
-	// Token: 0x0600A310 RID: 41744 RVA: 0x003EEC48 File Offset: 0x003ECE48
 	protected override string OnTooltip()
 	{
 		this.rationsDict.Clear();
@@ -28,7 +26,6 @@ public class MeterScreen_Rations : MeterScreen_ValueTrackerDisplayer
 		return "";
 	}
 
-	// Token: 0x0600A311 RID: 41745 RVA: 0x003EEE04 File Offset: 0x003ED004
 	protected override void InternalRefresh()
 	{
 		if (this.Label != null && WorldResourceAmountTracker<RationTracker>.Get() != null)
@@ -44,9 +41,7 @@ public class MeterScreen_Rations : MeterScreen_ValueTrackerDisplayer
 		this.diagnosticGraph.GetComponentInChildren<LineLayer>().RefreshLine(TrackerTool.Instance.GetWorldTracker<KCalTracker>(ClusterManager.Instance.activeWorldId).ChartableData(600f), "kcal");
 	}
 
-	// Token: 0x04007F88 RID: 32648
 	private long cachedCalories = -1L;
 
-	// Token: 0x04007F89 RID: 32649
 	private Dictionary<string, float> rationsDict = new Dictionary<string, float>();
 }

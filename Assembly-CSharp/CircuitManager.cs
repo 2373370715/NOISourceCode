@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020010AC RID: 4268
 public class CircuitManager
 {
-	// Token: 0x060056A4 RID: 22180 RVA: 0x000DCE9F File Offset: 0x000DB09F
 	public void Connect(Generator generator)
 	{
 		if (Game.IsQuitting())
@@ -16,7 +14,6 @@ public class CircuitManager
 		this.dirty = true;
 	}
 
-	// Token: 0x060056A5 RID: 22181 RVA: 0x000DCEBD File Offset: 0x000DB0BD
 	public void Disconnect(Generator generator)
 	{
 		if (Game.IsQuitting())
@@ -27,7 +24,6 @@ public class CircuitManager
 		this.dirty = true;
 	}
 
-	// Token: 0x060056A6 RID: 22182 RVA: 0x000DCEDB File Offset: 0x000DB0DB
 	public void Connect(IEnergyConsumer consumer)
 	{
 		if (Game.IsQuitting())
@@ -38,7 +34,6 @@ public class CircuitManager
 		this.dirty = true;
 	}
 
-	// Token: 0x060056A7 RID: 22183 RVA: 0x000DCEF9 File Offset: 0x000DB0F9
 	public void Disconnect(IEnergyConsumer consumer, bool isDestroy)
 	{
 		if (Game.IsQuitting())
@@ -53,21 +48,18 @@ public class CircuitManager
 		this.dirty = true;
 	}
 
-	// Token: 0x060056A8 RID: 22184 RVA: 0x000DCF21 File Offset: 0x000DB121
 	public void Connect(WireUtilityNetworkLink bridge)
 	{
 		this.bridges.Add(bridge);
 		this.dirty = true;
 	}
 
-	// Token: 0x060056A9 RID: 22185 RVA: 0x000DCF37 File Offset: 0x000DB137
 	public void Disconnect(WireUtilityNetworkLink bridge)
 	{
 		this.bridges.Remove(bridge);
 		this.dirty = true;
 	}
 
-	// Token: 0x060056AA RID: 22186 RVA: 0x00290C9C File Offset: 0x0028EE9C
 	public float GetPowerDraw(ushort circuitID, Generator generator)
 	{
 		float result = 0f;
@@ -80,21 +72,18 @@ public class CircuitManager
 		return result;
 	}
 
-	// Token: 0x060056AB RID: 22187 RVA: 0x00290CE4 File Offset: 0x0028EEE4
 	public ushort GetCircuitID(int cell)
 	{
 		UtilityNetwork networkForCell = Game.Instance.electricalConduitSystem.GetNetworkForCell(cell);
 		return (ushort)((networkForCell == null) ? 65535 : networkForCell.id);
 	}
 
-	// Token: 0x060056AC RID: 22188 RVA: 0x00290D14 File Offset: 0x0028EF14
 	public ushort GetVirtualCircuitID(object virtualKey)
 	{
 		UtilityNetwork networkForVirtualKey = Game.Instance.electricalConduitSystem.GetNetworkForVirtualKey(virtualKey);
 		return (ushort)((networkForVirtualKey == null) ? 65535 : networkForVirtualKey.id);
 	}
 
-	// Token: 0x060056AD RID: 22189 RVA: 0x000DCF4D File Offset: 0x000DB14D
 	public ushort GetCircuitID(ICircuitConnected ent)
 	{
 		if (!ent.IsVirtual)
@@ -104,19 +93,16 @@ public class CircuitManager
 		return this.GetVirtualCircuitID(ent.VirtualCircuitKey);
 	}
 
-	// Token: 0x060056AE RID: 22190 RVA: 0x000DCF70 File Offset: 0x000DB170
 	public void Sim200msFirst(float dt)
 	{
 		this.Refresh(dt);
 	}
 
-	// Token: 0x060056AF RID: 22191 RVA: 0x000DCF70 File Offset: 0x000DB170
 	public void RenderEveryTick(float dt)
 	{
 		this.Refresh(dt);
 	}
 
-	// Token: 0x060056B0 RID: 22192 RVA: 0x00290D44 File Offset: 0x0028EF44
 	private void Refresh(float dt)
 	{
 		UtilityNetworkManager<ElectricalUtilityNetwork, Wire> electricalConduitSystem = Game.Instance.electricalConduitSystem;
@@ -145,7 +131,6 @@ public class CircuitManager
 		}
 	}
 
-	// Token: 0x060056B1 RID: 22193 RVA: 0x00290E24 File Offset: 0x0028F024
 	public void Rebuild()
 	{
 		for (int i = 0; i < this.circuitInfo.Count; i++)
@@ -223,7 +208,6 @@ public class CircuitManager
 		this.dirty = false;
 	}
 
-	// Token: 0x060056B2 RID: 22194 RVA: 0x00291108 File Offset: 0x0028F308
 	private float GetBatteryJoulesAvailable(List<Battery> batteries, out int num_powered)
 	{
 		float result = 0f;
@@ -240,7 +224,6 @@ public class CircuitManager
 		return result;
 	}
 
-	// Token: 0x060056B3 RID: 22195 RVA: 0x0029115C File Offset: 0x0028F35C
 	public void Sim200msLast(float dt)
 	{
 		this.elapsedTime += dt;
@@ -437,7 +420,6 @@ public class CircuitManager
 		}
 	}
 
-	// Token: 0x060056B4 RID: 22196 RVA: 0x00291890 File Offset: 0x0028FA90
 	private float PowerFromBatteries(float joules_needed, List<Battery> batteries, IEnergyConsumer c)
 	{
 		int num2;
@@ -457,7 +439,6 @@ public class CircuitManager
 		return joules_needed;
 	}
 
-	// Token: 0x060056B5 RID: 22197 RVA: 0x0029190C File Offset: 0x0028FB0C
 	private float PowerFromGenerator(float joules_needed, Generator g, IEnergyConsumer c)
 	{
 		float num = Mathf.Min(g.JoulesAvailable, joules_needed);
@@ -467,7 +448,6 @@ public class CircuitManager
 		return joules_needed;
 	}
 
-	// Token: 0x060056B6 RID: 22198 RVA: 0x0029194C File Offset: 0x0028FB4C
 	private void ChargeBatteries(List<Battery> sink_batteries, List<Generator> source_generators, ref float joules_used)
 	{
 		if (sink_batteries.Count == 0)
@@ -482,7 +462,6 @@ public class CircuitManager
 		}
 	}
 
-	// Token: 0x060056B7 RID: 22199 RVA: 0x002919BC File Offset: 0x0028FBBC
 	private bool ChargeBatteriesFromGenerator(List<Battery> sink_batteries, Generator source_generator, ref float joules_used)
 	{
 		float num = source_generator.JoulesAvailable;
@@ -511,7 +490,6 @@ public class CircuitManager
 		return false;
 	}
 
-	// Token: 0x060056B8 RID: 22200 RVA: 0x00291A6C File Offset: 0x0028FC6C
 	private void UpdateBatteryConnectionStatus(List<Battery> batteries, bool is_connected_to_something_useful, int circuit_id)
 	{
 		foreach (Battery battery in batteries)
@@ -530,7 +508,6 @@ public class CircuitManager
 		}
 	}
 
-	// Token: 0x060056B9 RID: 22201 RVA: 0x00291AF0 File Offset: 0x0028FCF0
 	private void ChargeTransformer<T>(Battery sink_transformer, List<T> source_energy_producers, ref float joules_used) where T : IEnergyProducer
 	{
 		if (source_energy_producers.Count <= 0)
@@ -559,7 +536,6 @@ public class CircuitManager
 		joules_used += num3;
 	}
 
-	// Token: 0x060056BA RID: 22202 RVA: 0x00291BA4 File Offset: 0x0028FDA4
 	private void ChargeTransformers<T>(List<Battery> sink_transformers, List<T> source_energy_producers, ref float joules_used) where T : IEnergyProducer
 	{
 		foreach (Battery sink_transformer in sink_transformers)
@@ -568,7 +544,6 @@ public class CircuitManager
 		}
 	}
 
-	// Token: 0x060056BB RID: 22203 RVA: 0x00291BF4 File Offset: 0x0028FDF4
 	private void CheckCircuitOverloaded(float dt, int id, float watts_used)
 	{
 		UtilityNetwork networkByID = Game.Instance.electricalConduitSystem.GetNetworkByID(id);
@@ -582,7 +557,6 @@ public class CircuitManager
 		}
 	}
 
-	// Token: 0x060056BC RID: 22204 RVA: 0x000DCF79 File Offset: 0x000DB179
 	public float GetWattsUsedByCircuit(ushort circuitID)
 	{
 		if (circuitID == 65535)
@@ -592,7 +566,6 @@ public class CircuitManager
 		return this.circuitInfo[(int)circuitID].wattsUsed;
 	}
 
-	// Token: 0x060056BD RID: 22205 RVA: 0x00291C38 File Offset: 0x0028FE38
 	public float GetWattsNeededWhenActive(ushort originCircuitId)
 	{
 		if (originCircuitId == 65535)
@@ -673,7 +646,6 @@ public class CircuitManager
 		return num5;
 	}
 
-	// Token: 0x060056BE RID: 22206 RVA: 0x00291F78 File Offset: 0x00290178
 	public float GetWattsGeneratedByCircuit(ushort circuitID)
 	{
 		if (circuitID == 65535)
@@ -691,7 +663,6 @@ public class CircuitManager
 		return num;
 	}
 
-	// Token: 0x060056BF RID: 22207 RVA: 0x00292000 File Offset: 0x00290200
 	public float GetPotentialWattsGeneratedByCircuit(ushort circuitID)
 	{
 		if (circuitID == 65535)
@@ -706,14 +677,12 @@ public class CircuitManager
 		return num;
 	}
 
-	// Token: 0x060056C0 RID: 22208 RVA: 0x00292078 File Offset: 0x00290278
 	public float GetJoulesAvailableOnCircuit(ushort circuitID)
 	{
 		int num;
 		return this.GetBatteryJoulesAvailable(this.GetBatteriesOnCircuit(circuitID), out num) * (float)num;
 	}
 
-	// Token: 0x060056C1 RID: 22209 RVA: 0x000DCF9A File Offset: 0x000DB19A
 	public List<Generator> GetGeneratorsOnCircuit(ushort circuitID)
 	{
 		if (circuitID == 65535)
@@ -723,7 +692,6 @@ public class CircuitManager
 		return this.circuitInfo[(int)circuitID].generators;
 	}
 
-	// Token: 0x060056C2 RID: 22210 RVA: 0x000DCFB7 File Offset: 0x000DB1B7
 	public List<IEnergyConsumer> GetConsumersOnCircuit(ushort circuitID)
 	{
 		if (circuitID == 65535)
@@ -733,7 +701,6 @@ public class CircuitManager
 		return this.circuitInfo[(int)circuitID].consumers;
 	}
 
-	// Token: 0x060056C3 RID: 22211 RVA: 0x000DCFD4 File Offset: 0x000DB1D4
 	public List<Battery> GetTransformersOnCircuit(ushort circuitID)
 	{
 		if (circuitID == 65535)
@@ -743,7 +710,6 @@ public class CircuitManager
 		return this.circuitInfo[(int)circuitID].inputTransformers;
 	}
 
-	// Token: 0x060056C4 RID: 22212 RVA: 0x000DCFF1 File Offset: 0x000DB1F1
 	public List<Battery> GetBatteriesOnCircuit(ushort circuitID)
 	{
 		if (circuitID == 65535)
@@ -753,7 +719,6 @@ public class CircuitManager
 		return this.circuitInfo[(int)circuitID].batteries;
 	}
 
-	// Token: 0x060056C5 RID: 22213 RVA: 0x000DD00E File Offset: 0x000DB20E
 	public float GetMinBatteryPercentFullOnCircuit(ushort circuitID)
 	{
 		if (circuitID == 65535)
@@ -763,31 +728,26 @@ public class CircuitManager
 		return this.circuitInfo[(int)circuitID].minBatteryPercentFull;
 	}
 
-	// Token: 0x060056C6 RID: 22214 RVA: 0x000DD02F File Offset: 0x000DB22F
 	public bool HasBatteries(ushort circuitID)
 	{
 		return circuitID != ushort.MaxValue && this.circuitInfo[(int)circuitID].batteries.Count + this.circuitInfo[(int)circuitID].inputTransformers.Count > 0;
 	}
 
-	// Token: 0x060056C7 RID: 22215 RVA: 0x000DD06B File Offset: 0x000DB26B
 	public bool HasGenerators(ushort circuitID)
 	{
 		return circuitID != ushort.MaxValue && this.circuitInfo[(int)circuitID].generators.Count + this.circuitInfo[(int)circuitID].outputTransformers.Count > 0;
 	}
 
-	// Token: 0x060056C8 RID: 22216 RVA: 0x000DD0A7 File Offset: 0x000DB2A7
 	public bool HasGenerators()
 	{
 		return this.generators.Count > 0;
 	}
 
-	// Token: 0x060056C9 RID: 22217 RVA: 0x000DD0B7 File Offset: 0x000DB2B7
 	public bool HasConsumers(ushort circuitID)
 	{
 		return circuitID != ushort.MaxValue && this.circuitInfo[(int)circuitID].consumers.Count > 0;
 	}
 
-	// Token: 0x060056CA RID: 22218 RVA: 0x00292098 File Offset: 0x00290298
 	public float GetMaxSafeWattageForCircuit(ushort circuitID)
 	{
 		if (circuitID == 65535)
@@ -802,75 +762,51 @@ public class CircuitManager
 		return electricalUtilityNetwork.GetMaxSafeWattage();
 	}
 
-	// Token: 0x04003D5F RID: 15711
 	public const ushort INVALID_ID = 65535;
 
-	// Token: 0x04003D60 RID: 15712
 	private const int SimUpdateSortKey = 1000;
 
-	// Token: 0x04003D61 RID: 15713
 	private const float MIN_POWERED_THRESHOLD = 0.01f;
 
-	// Token: 0x04003D62 RID: 15714
 	private bool dirty = true;
 
-	// Token: 0x04003D63 RID: 15715
 	private HashSet<Generator> generators = new HashSet<Generator>();
 
-	// Token: 0x04003D64 RID: 15716
 	private HashSet<IEnergyConsumer> consumers = new HashSet<IEnergyConsumer>();
 
-	// Token: 0x04003D65 RID: 15717
 	private HashSet<WireUtilityNetworkLink> bridges = new HashSet<WireUtilityNetworkLink>();
 
-	// Token: 0x04003D66 RID: 15718
 	private float elapsedTime;
 
-	// Token: 0x04003D67 RID: 15719
 	private List<CircuitManager.CircuitInfo> circuitInfo = new List<CircuitManager.CircuitInfo>();
 
-	// Token: 0x04003D68 RID: 15720
 	private List<IEnergyConsumer> consumersShadow = new List<IEnergyConsumer>();
 
-	// Token: 0x04003D69 RID: 15721
 	private List<Generator> activeGenerators = new List<Generator>();
 
-	// Token: 0x020010AD RID: 4269
 	private struct CircuitInfo
 	{
-		// Token: 0x04003D6A RID: 15722
 		public List<Generator> generators;
 
-		// Token: 0x04003D6B RID: 15723
 		public List<IEnergyConsumer> consumers;
 
-		// Token: 0x04003D6C RID: 15724
 		public List<Battery> batteries;
 
-		// Token: 0x04003D6D RID: 15725
 		public List<Battery> inputTransformers;
 
-		// Token: 0x04003D6E RID: 15726
 		public List<Generator> outputTransformers;
 
-		// Token: 0x04003D6F RID: 15727
 		public List<WireUtilityNetworkLink>[] bridgeGroups;
 
-		// Token: 0x04003D70 RID: 15728
 		public float minBatteryPercentFull;
 
-		// Token: 0x04003D71 RID: 15729
 		public float wattsUsed;
 	}
 
-	// Token: 0x020010AE RID: 4270
 	public enum ConnectionStatus
 	{
-		// Token: 0x04003D73 RID: 15731
 		NotConnected,
-		// Token: 0x04003D74 RID: 15732
 		Unpowered,
-		// Token: 0x04003D75 RID: 15733
 		Powered
 	}
 }

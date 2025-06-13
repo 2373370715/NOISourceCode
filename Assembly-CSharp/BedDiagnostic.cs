@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001259 RID: 4697
 public class BedDiagnostic : ColonyDiagnostic
 {
-	// Token: 0x06005FF0 RID: 24560 RVA: 0x002B899C File Offset: 0x002B6B9C
 	public BedDiagnostic(int worldID) : base(worldID, UI.COLONY_DIAGNOSTICS.BEDDIAGNOSTIC.ALL_NAME)
 	{
 		this.icon = "icon_action_region_bedroom";
@@ -15,7 +13,6 @@ public class BedDiagnostic : ColonyDiagnostic
 		this.NO_MINIONS_WITH_STAMINA = (base.IsWorldModuleInterior ? UI.COLONY_DIAGNOSTICS.BEDDIAGNOSTIC.NO_MINIONS_ROCKET : UI.COLONY_DIAGNOSTICS.BEDDIAGNOSTIC.NO_MINIONS_PLANETOID);
 	}
 
-	// Token: 0x06005FF1 RID: 24561 RVA: 0x002B8A30 File Offset: 0x002B6C30
 	private ColonyDiagnostic.DiagnosticResult CheckEnoughBeds()
 	{
 		ColonyDiagnostic.DiagnosticResult result = new ColonyDiagnostic.DiagnosticResult(ColonyDiagnostic.DiagnosticResult.Opinion.Normal, UI.COLONY_DIAGNOSTICS.GENERIC_CRITERIA_PASS, null);
@@ -34,7 +31,6 @@ public class BedDiagnostic : ColonyDiagnostic
 		return result;
 	}
 
-	// Token: 0x06005FF2 RID: 24562 RVA: 0x002B8AC0 File Offset: 0x002B6CC0
 	private ColonyDiagnostic.DiagnosticResult CheckReachability()
 	{
 		ColonyDiagnostic.DiagnosticResult diagnosticResult = new ColonyDiagnostic.DiagnosticResult(ColonyDiagnostic.DiagnosticResult.Opinion.Normal, UI.COLONY_DIAGNOSTICS.GENERIC_CRITERIA_PASS, null);
@@ -94,7 +90,6 @@ public class BedDiagnostic : ColonyDiagnostic
 		return diagnosticResult;
 	}
 
-	// Token: 0x06005FF3 RID: 24563 RVA: 0x002B8D58 File Offset: 0x002B6F58
 	public override ColonyDiagnostic.DiagnosticResult Evaluate()
 	{
 		ColonyDiagnostic.DiagnosticResult result = new ColonyDiagnostic.DiagnosticResult(ColonyDiagnostic.DiagnosticResult.Opinion.Normal, this.NO_MINIONS_WITH_STAMINA, null);
@@ -106,19 +101,16 @@ public class BedDiagnostic : ColonyDiagnostic
 		return base.Evaluate();
 	}
 
-	// Token: 0x06005FF4 RID: 24564 RVA: 0x000E30BD File Offset: 0x000E12BD
 	private void RefreshData()
 	{
 		this.minionsWithStamina = Components.LiveMinionIdentities.GetWorldItems(base.worldID, true, new Func<MinionIdentity, bool>(this.MinionFilter));
 	}
 
-	// Token: 0x06005FF5 RID: 24565 RVA: 0x000E30E2 File Offset: 0x000E12E2
 	private bool MinionFilter(MinionIdentity minion)
 	{
 		return minion.modifiers.amounts.Has(Db.Get().Amounts.Stamina);
 	}
 
-	// Token: 0x06005FF6 RID: 24566 RVA: 0x002B8D94 File Offset: 0x002B6F94
 	public override string GetAverageValueString()
 	{
 		if (this.minionsWithStamina == null)
@@ -128,12 +120,9 @@ public class BedDiagnostic : ColonyDiagnostic
 		return Components.NormalBeds.CountWorldItems(base.worldID, true).ToString() + "/" + this.minionsWithStamina.Count.ToString();
 	}
 
-	// Token: 0x040044BE RID: 17598
 	private List<MinionIdentity> minionsWithStamina;
 
-	// Token: 0x040044BF RID: 17599
 	private const bool INCLUDE_CHILD_WORLDS = true;
 
-	// Token: 0x040044C0 RID: 17600
 	private readonly string NO_MINIONS_WITH_STAMINA;
 }

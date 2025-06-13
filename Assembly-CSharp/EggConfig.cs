@@ -5,17 +5,14 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000477 RID: 1143
 public class EggConfig
 {
-	// Token: 0x0600136B RID: 4971 RVA: 0x0019868C File Offset: 0x0019688C
 	[Obsolete("Mod compatibility: Use CreateEgg with requiredDlcIds and forbiddenDlcIds")]
 	public static GameObject CreateEgg(string id, string name, string desc, Tag creature_id, string anim, float mass, int egg_sort_order, float base_incubation_rate)
 	{
 		return EggConfig.CreateEgg(id, name, desc, creature_id, anim, mass, egg_sort_order, base_incubation_rate, null, null);
 	}
 
-	// Token: 0x0600136C RID: 4972 RVA: 0x001986AC File Offset: 0x001968AC
 	[Obsolete("Mod compatibility: Use CreateEgg with requiredDlcIds and forbiddenDlcIds")]
 	public static GameObject CreateEgg(string id, string name, string desc, Tag creature_id, string anim, float mass, int egg_sort_order, float base_incubation_rate, string[] dlcIds)
 	{
@@ -25,7 +22,6 @@ public class EggConfig
 		return EggConfig.CreateEgg(id, name, desc, creature_id, anim, mass, egg_sort_order, base_incubation_rate, requiredDlcIds, forbiddenDlcIds);
 	}
 
-	// Token: 0x0600136D RID: 4973 RVA: 0x001986D8 File Offset: 0x001968D8
 	public static GameObject CreateEgg(string id, string name, string desc, Tag creature_id, string anim, float mass, int egg_sort_order, float base_incubation_rate, string[] requiredDlcIds, string[] forbiddenDlcIds)
 	{
 		GameObject gameObject = EntityTemplates.CreateLooseEntity(id, name, desc, mass, true, Assets.GetAnim(anim), "idle", Grid.SceneLayer.Ore, EntityTemplates.CollisionShape.RECTANGLE, 0.8f, 0.8f, true, 0, SimHashes.Creature, null);

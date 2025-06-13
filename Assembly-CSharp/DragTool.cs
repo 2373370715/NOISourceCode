@@ -4,11 +4,8 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-// Token: 0x02001468 RID: 5224
 public class DragTool : InterfaceTool
 {
-	// Token: 0x170006CF RID: 1743
-	// (get) Token: 0x06006BC0 RID: 27584 RVA: 0x000EB315 File Offset: 0x000E9515
 	public bool Dragging
 	{
 		get
@@ -17,13 +14,11 @@ public class DragTool : InterfaceTool
 		}
 	}
 
-	// Token: 0x06006BC1 RID: 27585 RVA: 0x000EB31D File Offset: 0x000E951D
 	protected virtual DragTool.Mode GetMode()
 	{
 		return this.mode;
 	}
 
-	// Token: 0x06006BC2 RID: 27586 RVA: 0x000EB325 File Offset: 0x000E9525
 	protected override void OnActivateTool()
 	{
 		base.OnActivateTool();
@@ -31,7 +26,6 @@ public class DragTool : InterfaceTool
 		this.SetMode(this.mode);
 	}
 
-	// Token: 0x06006BC3 RID: 27587 RVA: 0x000EB340 File Offset: 0x000E9540
 	protected override void OnDeactivateTool(InterfaceTool new_tool)
 	{
 		if (KScreenManager.Instance != null)
@@ -46,7 +40,6 @@ public class DragTool : InterfaceTool
 		base.OnDeactivateTool(new_tool);
 	}
 
-	// Token: 0x06006BC4 RID: 27588 RVA: 0x002F1DAC File Offset: 0x002EFFAC
 	protected override void OnPrefabInit()
 	{
 		Game.Instance.Subscribe(1634669191, new Action<object>(this.OnTutorialOpened));
@@ -65,13 +58,11 @@ public class DragTool : InterfaceTool
 		}
 	}
 
-	// Token: 0x06006BC5 RID: 27589 RVA: 0x000EB376 File Offset: 0x000E9576
 	protected override void OnCmpEnable()
 	{
 		this.dragging = false;
 	}
 
-	// Token: 0x06006BC6 RID: 27590 RVA: 0x000EB37F File Offset: 0x000E957F
 	protected override void OnCmpDisable()
 	{
 		if (this.visualizer != null)
@@ -84,7 +75,6 @@ public class DragTool : InterfaceTool
 		}
 	}
 
-	// Token: 0x06006BC7 RID: 27591 RVA: 0x002F1E70 File Offset: 0x002F0070
 	public override void OnLeftClickDown(Vector3 cursor_pos)
 	{
 		cursor_pos = this.ClampPositionToWorld(cursor_pos, ClusterManager.Instance.activeWorld);
@@ -140,7 +130,6 @@ public class DragTool : InterfaceTool
 		}
 	}
 
-	// Token: 0x06006BC8 RID: 27592 RVA: 0x000EB3B5 File Offset: 0x000E95B5
 	public void RemoveCurrentAreaText()
 	{
 		if (this.areaVisualizerText != Guid.Empty)
@@ -150,7 +139,6 @@ public class DragTool : InterfaceTool
 		}
 	}
 
-	// Token: 0x06006BC9 RID: 27593 RVA: 0x002F1FE0 File Offset: 0x002F01E0
 	public void CancelDragging()
 	{
 		KScreenManager.Instance.SetEventSystemEnabled(true);
@@ -177,7 +165,6 @@ public class DragTool : InterfaceTool
 		}
 	}
 
-	// Token: 0x06006BCA RID: 27594 RVA: 0x002F2070 File Offset: 0x002F0270
 	public override void OnLeftClickUp(Vector3 cursor_pos)
 	{
 		KScreenManager.Instance.SetEventSystemEnabled(true);
@@ -242,25 +229,21 @@ public class DragTool : InterfaceTool
 		}
 	}
 
-	// Token: 0x06006BCB RID: 27595 RVA: 0x000EACE7 File Offset: 0x000E8EE7
 	protected virtual string GetConfirmSound()
 	{
 		return "Tile_Confirm";
 	}
 
-	// Token: 0x06006BCC RID: 27596 RVA: 0x000EACEE File Offset: 0x000E8EEE
 	protected virtual string GetDragSound()
 	{
 		return "Tile_Drag";
 	}
 
-	// Token: 0x06006BCD RID: 27597 RVA: 0x000EACF5 File Offset: 0x000E8EF5
 	public override string GetDeactivateSound()
 	{
 		return "Tile_Cancel";
 	}
 
-	// Token: 0x06006BCE RID: 27598 RVA: 0x002F2200 File Offset: 0x002F0400
 	protected Vector3 ClampPositionToWorld(Vector3 position, WorldContainer world)
 	{
 		position.x = Mathf.Clamp(position.x, world.minimumBounds.x, world.maximumBounds.x);
@@ -268,7 +251,6 @@ public class DragTool : InterfaceTool
 		return position;
 	}
 
-	// Token: 0x06006BCF RID: 27599 RVA: 0x002F2260 File Offset: 0x002F0460
 	protected Vector3 SnapToLine(Vector3 cursorPos)
 	{
 		Vector3 vector = cursorPos - this.downPos;
@@ -307,7 +289,6 @@ public class DragTool : InterfaceTool
 		return cursorPos;
 	}
 
-	// Token: 0x06006BD0 RID: 27600 RVA: 0x002F239C File Offset: 0x002F059C
 	public override void OnMouseMove(Vector3 cursorPos)
 	{
 		cursorPos = this.ClampPositionToWorld(cursorPos, ClusterManager.Instance.activeWorld);
@@ -382,23 +363,19 @@ public class DragTool : InterfaceTool
 		this.previousCursorPos = cursorPos;
 	}
 
-	// Token: 0x06006BD1 RID: 27601 RVA: 0x000AA038 File Offset: 0x000A8238
 	protected virtual void OnDragTool(int cell, int distFromOrigin)
 	{
 	}
 
-	// Token: 0x06006BD2 RID: 27602 RVA: 0x000AA038 File Offset: 0x000A8238
 	protected virtual void OnDragComplete(Vector3 cursorDown, Vector3 cursorUp)
 	{
 	}
 
-	// Token: 0x06006BD3 RID: 27603 RVA: 0x000B1628 File Offset: 0x000AF828
 	protected virtual int GetDragLength()
 	{
 		return 0;
 	}
 
-	// Token: 0x06006BD4 RID: 27604 RVA: 0x002F269C File Offset: 0x002F089C
 	private void AddDragPoint(Vector3 cursorPos)
 	{
 		cursorPos = this.ClampPositionToWorld(cursorPos, ClusterManager.Instance.activeWorld);
@@ -409,7 +386,6 @@ public class DragTool : InterfaceTool
 		}
 	}
 
-	// Token: 0x06006BD5 RID: 27605 RVA: 0x002F26DC File Offset: 0x002F08DC
 	private void AddDragPoints(Vector3 cursorPos, Vector3 previousCursorPos)
 	{
 		cursorPos = this.ClampPositionToWorld(cursorPos, ClusterManager.Instance.activeWorld);
@@ -425,7 +401,6 @@ public class DragTool : InterfaceTool
 		}
 	}
 
-	// Token: 0x06006BD6 RID: 27606 RVA: 0x000EB3E4 File Offset: 0x000E95E4
 	public override void OnKeyDown(KButtonEvent e)
 	{
 		if (this.interceptNumberKeysForPriority)
@@ -438,7 +413,6 @@ public class DragTool : InterfaceTool
 		}
 	}
 
-	// Token: 0x06006BD7 RID: 27607 RVA: 0x000EB404 File Offset: 0x000E9604
 	public override void OnKeyUp(KButtonEvent e)
 	{
 		if (this.interceptNumberKeysForPriority)
@@ -451,7 +425,6 @@ public class DragTool : InterfaceTool
 		}
 	}
 
-	// Token: 0x06006BD8 RID: 27608 RVA: 0x002EFC44 File Offset: 0x002EDE44
 	private void HandlePriortyKeysDown(KButtonEvent e)
 	{
 		global::Action action = e.GetAction();
@@ -468,7 +441,6 @@ public class DragTool : InterfaceTool
 		ToolMenu.Instance.PriorityScreen.SetScreenPriority(new PrioritySetting(PriorityScreen.PriorityClass.topPriority, 1), true);
 	}
 
-	// Token: 0x06006BD9 RID: 27609 RVA: 0x002EFCA8 File Offset: 0x002EDEA8
 	private void HandlePriorityKeysUp(KButtonEvent e)
 	{
 		global::Action action = e.GetAction();
@@ -478,7 +450,6 @@ public class DragTool : InterfaceTool
 		}
 	}
 
-	// Token: 0x06006BDA RID: 27610 RVA: 0x002F2754 File Offset: 0x002F0954
 	protected void SetMode(DragTool.Mode newMode)
 	{
 		this.mode = newMode;
@@ -516,7 +487,6 @@ public class DragTool : InterfaceTool
 		}
 	}
 
-	// Token: 0x06006BDB RID: 27611 RVA: 0x002F2834 File Offset: 0x002F0A34
 	public override void OnFocus(bool focus)
 	{
 		DragTool.Mode mode = this.GetMode();
@@ -540,94 +510,66 @@ public class DragTool : InterfaceTool
 		this.hasFocus = (focus || this.dragging);
 	}
 
-	// Token: 0x06006BDC RID: 27612 RVA: 0x000EB376 File Offset: 0x000E9576
 	private void OnTutorialOpened(object data)
 	{
 		this.dragging = false;
 	}
 
-	// Token: 0x06006BDD RID: 27613 RVA: 0x000EB424 File Offset: 0x000E9624
 	public override bool ShowHoverUI()
 	{
 		return this.dragging || base.ShowHoverUI();
 	}
 
-	// Token: 0x040051A1 RID: 20897
 	[SerializeField]
 	private Texture2D boxCursor;
 
-	// Token: 0x040051A2 RID: 20898
 	[SerializeField]
 	private GameObject areaVisualizer;
 
-	// Token: 0x040051A3 RID: 20899
 	[SerializeField]
 	private GameObject areaVisualizerTextPrefab;
 
-	// Token: 0x040051A4 RID: 20900
 	[SerializeField]
 	private Color32 areaColour = new Color(1f, 1f, 1f, 0.5f);
 
-	// Token: 0x040051A5 RID: 20901
 	protected SpriteRenderer areaVisualizerSpriteRenderer;
 
-	// Token: 0x040051A6 RID: 20902
 	protected Guid areaVisualizerText;
 
-	// Token: 0x040051A7 RID: 20903
 	protected Vector3 placementPivot;
 
-	// Token: 0x040051A8 RID: 20904
 	protected bool interceptNumberKeysForPriority;
 
-	// Token: 0x040051A9 RID: 20905
 	private bool dragging;
 
-	// Token: 0x040051AA RID: 20906
 	private Vector3 previousCursorPos;
 
-	// Token: 0x040051AB RID: 20907
 	private DragTool.Mode mode = DragTool.Mode.Box;
 
-	// Token: 0x040051AC RID: 20908
 	private DragTool.DragAxis dragAxis = DragTool.DragAxis.Invalid;
 
-	// Token: 0x040051AD RID: 20909
 	protected bool canChangeDragAxis = true;
 
-	// Token: 0x040051AE RID: 20910
 	protected int lineModeMaxLength = -1;
 
-	// Token: 0x040051AF RID: 20911
 	protected Vector3 downPos;
 
-	// Token: 0x040051B0 RID: 20912
 	private bool cellChangedSinceDown;
 
-	// Token: 0x040051B1 RID: 20913
 	private VirtualInputModule currentVirtualInputInUse;
 
-	// Token: 0x02001469 RID: 5225
 	private enum DragAxis
 	{
-		// Token: 0x040051B3 RID: 20915
 		Invalid = -1,
-		// Token: 0x040051B4 RID: 20916
 		None,
-		// Token: 0x040051B5 RID: 20917
 		Horizontal,
-		// Token: 0x040051B6 RID: 20918
 		Vertical
 	}
 
-	// Token: 0x0200146A RID: 5226
 	public enum Mode
 	{
-		// Token: 0x040051B8 RID: 20920
 		Brush,
-		// Token: 0x040051B9 RID: 20921
 		Box,
-		// Token: 0x040051BA RID: 20922
 		Line
 	}
 }

@@ -6,16 +6,13 @@ using Database;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001DAB RID: 7595
 public class KleiPermitDioramaVis : KMonoBehaviour
 {
-	// Token: 0x06009EB0 RID: 40624 RVA: 0x0010BBC8 File Offset: 0x00109DC8
 	protected override void OnPrefabInit()
 	{
 		this.Init();
 	}
 
-	// Token: 0x06009EB1 RID: 40625 RVA: 0x003DD368 File Offset: 0x003DB568
 	private void Init()
 	{
 		if (this.initComplete)
@@ -30,7 +27,6 @@ public class KleiPermitDioramaVis : KMonoBehaviour
 		this.initComplete = true;
 	}
 
-	// Token: 0x06009EB2 RID: 40626 RVA: 0x003DD3D8 File Offset: 0x003DB5D8
 	public void ConfigureWith(PermitResource permit)
 	{
 		if (!this.initComplete)
@@ -55,7 +51,6 @@ public class KleiPermitDioramaVis : KMonoBehaviour
 		this.dlcImage.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06009EB3 RID: 40627 RVA: 0x003DD4A4 File Offset: 0x003DB6A4
 	private IKleiPermitDioramaVisTarget GetPermitVisTarget(PermitResource permit)
 	{
 		KleiPermitDioramaVis.lastRenderedPermit = permit;
@@ -176,7 +171,6 @@ public class KleiPermitDioramaVis : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06009EB4 RID: 40628 RVA: 0x003DD87C File Offset: 0x003DBA7C
 	public static Sprite GetDioramaBackground(PermitCategory permitCategory)
 	{
 		switch (permitCategory)
@@ -204,7 +198,6 @@ public class KleiPermitDioramaVis : KMonoBehaviour
 		return null;
 	}
 
-	// Token: 0x06009EB5 RID: 40629 RVA: 0x003DD928 File Offset: 0x003DBB28
 	public static Sprite GetDioramaBackground(ClothingOutfitUtility.OutfitType outfitType)
 	{
 		switch (outfitType)
@@ -220,91 +213,69 @@ public class KleiPermitDioramaVis : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06009EB7 RID: 40631 RVA: 0x0010B5BE File Offset: 0x001097BE
 	[CompilerGenerated]
 	internal static bool <GetPermitVisTarget>g__Has|24_0<T>(BuildingDef buildingDef) where T : Component
 	{
 		return !buildingDef.BuildingComplete.GetComponent<T>().IsNullOrDestroyed();
 	}
 
-	// Token: 0x04007C9E RID: 31902
 	[SerializeField]
 	private Image dlcImage;
 
-	// Token: 0x04007C9F RID: 31903
 	[SerializeField]
 	private KleiPermitDioramaVis_Fallback fallbackVis;
 
-	// Token: 0x04007CA0 RID: 31904
 	[SerializeField]
 	private KleiPermitDioramaVis_DupeEquipment equipmentVis;
 
-	// Token: 0x04007CA1 RID: 31905
 	[SerializeField]
 	private KleiPermitDioramaVis_BuildingOnFloor buildingOnFloorVis;
 
-	// Token: 0x04007CA2 RID: 31906
 	[SerializeField]
 	private KleiPermitDioramaVis_BuildingOnFloorBig buildingOnFloorBigVis;
 
-	// Token: 0x04007CA3 RID: 31907
 	[SerializeField]
 	private KleiPermitDioramaVis_BuildingPresentationStand buildingOnWallVis;
 
-	// Token: 0x04007CA4 RID: 31908
 	[SerializeField]
 	private KleiPermitDioramaVis_BuildingPresentationStand buildingOnCeilingVis;
 
-	// Token: 0x04007CA5 RID: 31909
 	[SerializeField]
 	private KleiPermitDioramaVis_BuildingPresentationStand buildingInCeilingCornerVis;
 
-	// Token: 0x04007CA6 RID: 31910
 	[SerializeField]
 	private KleiPermitDioramaVis_BuildingRocket buildingRocketVis;
 
-	// Token: 0x04007CA7 RID: 31911
 	[SerializeField]
 	private KleiPermitDioramaVis_BuildingOnFloor buildingOnFloorBotanicalVis;
 
-	// Token: 0x04007CA8 RID: 31912
 	[SerializeField]
 	private KleiPermitDioramaVis_BuildingHangingHook buildingHangingHookBotanicalVis;
 
-	// Token: 0x04007CA9 RID: 31913
 	[SerializeField]
 	private KleiPermitDioramaVis_WiresAndAutomation buildingWiresAndAutomationVis;
 
-	// Token: 0x04007CAA RID: 31914
 	[SerializeField]
 	private KleiPermitDioramaVis_AutomationGates buildingAutomationGatesVis;
 
-	// Token: 0x04007CAB RID: 31915
 	[SerializeField]
 	private KleiPermitDioramaVis_Wallpaper wallpaperVis;
 
-	// Token: 0x04007CAC RID: 31916
 	[SerializeField]
 	private KleiPermitDioramaVis_ArtablePainting artablePaintingVis;
 
-	// Token: 0x04007CAD RID: 31917
 	[SerializeField]
 	private KleiPermitDioramaVis_ArtableSculpture artableSculptureVis;
 
-	// Token: 0x04007CAE RID: 31918
 	[SerializeField]
 	private KleiPermitDioramaVis_JoyResponseBalloon joyResponseBalloonVis;
 
-	// Token: 0x04007CAF RID: 31919
 	[SerializeField]
 	private KleiPermitDioramaVis_MonumentPart monumentPartVis;
 
-	// Token: 0x04007CB0 RID: 31920
 	private bool initComplete;
 
-	// Token: 0x04007CB1 RID: 31921
 	private IReadOnlyList<IKleiPermitDioramaVisTarget> allVisList;
 
-	// Token: 0x04007CB2 RID: 31922
 	public static PermitResource lastRenderedPermit;
 }

@@ -4,11 +4,9 @@ using Database;
 using Klei.AI;
 using UnityEngine;
 
-// Token: 0x020018B9 RID: 6329
 [AddComponentMenu("KMonoBehaviour/scripts/SicknessTrigger")]
 public class SicknessTrigger : KMonoBehaviour, IGameObjectEffectDescriptor
 {
-	// Token: 0x060082B9 RID: 33465 RVA: 0x0034B540 File Offset: 0x00349740
 	public void AddTrigger(GameHashes src_event, string[] sickness_ids, SicknessTrigger.SourceCallback source_callback)
 	{
 		this.triggers.Add(new SicknessTrigger.TriggerInfo
@@ -19,7 +17,6 @@ public class SicknessTrigger : KMonoBehaviour, IGameObjectEffectDescriptor
 		});
 	}
 
-	// Token: 0x060082BA RID: 33466 RVA: 0x0034B57C File Offset: 0x0034977C
 	protected override void OnSpawn()
 	{
 		for (int i = 0; i < this.triggers.Count; i++)
@@ -32,7 +29,6 @@ public class SicknessTrigger : KMonoBehaviour, IGameObjectEffectDescriptor
 		}
 	}
 
-	// Token: 0x060082BB RID: 33467 RVA: 0x0034B5DC File Offset: 0x003497DC
 	private void OnSicknessTrigger(GameObject target, SicknessTrigger.TriggerInfo trigger)
 	{
 		int num = UnityEngine.Random.Range(0, trigger.sickness_ids.Length);
@@ -60,7 +56,6 @@ public class SicknessTrigger : KMonoBehaviour, IGameObjectEffectDescriptor
 		});
 	}
 
-	// Token: 0x060082BC RID: 33468 RVA: 0x0034B698 File Offset: 0x00349898
 	public List<Descriptor> EffectDescriptors(GameObject go)
 	{
 		Dictionary<GameHashes, HashSet<string>> dictionary = new Dictionary<GameHashes, HashSet<string>>();
@@ -99,31 +94,24 @@ public class SicknessTrigger : KMonoBehaviour, IGameObjectEffectDescriptor
 		return list;
 	}
 
-	// Token: 0x060082BD RID: 33469 RVA: 0x000FA7B4 File Offset: 0x000F89B4
 	public List<Descriptor> GetDescriptors(GameObject go)
 	{
 		return this.EffectDescriptors(go);
 	}
 
-	// Token: 0x04006373 RID: 25459
 	public List<SicknessTrigger.TriggerInfo> triggers = new List<SicknessTrigger.TriggerInfo>();
 
-	// Token: 0x020018BA RID: 6330
-	// (Invoke) Token: 0x060082C0 RID: 33472
+Invoke) Token: 0x060082C0 RID: 33472
 	public delegate string SourceCallback(GameObject source, GameObject target);
 
-	// Token: 0x020018BB RID: 6331
 	[Serializable]
 	public struct TriggerInfo
 	{
-		// Token: 0x04006374 RID: 25460
 		[HashedEnum]
 		public GameHashes srcEvent;
 
-		// Token: 0x04006375 RID: 25461
 		public string[] sickness_ids;
 
-		// Token: 0x04006376 RID: 25462
 		public SicknessTrigger.SourceCallback sourceCallback;
 	}
 }

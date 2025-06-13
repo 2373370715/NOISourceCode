@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200029B RID: 667
 public class ForestTreeConfig : IEntityConfig
 {
-	// Token: 0x060009CC RID: 2508 RVA: 0x001714AC File Offset: 0x0016F6AC
 	public GameObject CreatePrefab()
 	{
 		string id = "ForestTree";
@@ -81,13 +79,11 @@ public class ForestTreeConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x060009CD RID: 2509 RVA: 0x000AEC23 File Offset: 0x000ACE23
 	public void RollChancesForSeed(PlantBranch.Instance branch_smi, PlantBranchGrower.Instance trunk_smi)
 	{
 		trunk_smi.GetComponent<ForestTreeSeedMonitor>().TryRollNewSeed();
 	}
 
-	// Token: 0x060009CE RID: 2510 RVA: 0x00171768 File Offset: 0x0016F968
 	public void TranslateOldBranchesToNewSystem(PlantBranchGrower.Instance smi)
 	{
 		KPrefabID[] andForgetOldSerializedBranches = smi.GetComponent<BuddingTrunk>().GetAndForgetOldSerializedBranches();
@@ -97,31 +93,23 @@ public class ForestTreeConfig : IEntityConfig
 		}
 	}
 
-	// Token: 0x060009CF RID: 2511 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x060009D0 RID: 2512 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x04000780 RID: 1920
 	public const string ID = "ForestTree";
 
-	// Token: 0x04000781 RID: 1921
 	public const string SEED_ID = "ForestTreeSeed";
 
-	// Token: 0x04000782 RID: 1922
 	public const float FERTILIZATION_RATE = 0.016666668f;
 
-	// Token: 0x04000783 RID: 1923
 	public const float WATER_RATE = 0.11666667f;
 
-	// Token: 0x04000784 RID: 1924
 	public const float BRANCH_GROWTH_TIME = 2100f;
 
-	// Token: 0x04000785 RID: 1925
 	public const int NUM_BRANCHES = 7;
 }

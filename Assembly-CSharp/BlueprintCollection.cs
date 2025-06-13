@@ -4,10 +4,8 @@ using System.Runtime.CompilerServices;
 using Database;
 using UnityEngine;
 
-// Token: 0x02000995 RID: 2453
 public class BlueprintCollection
 {
-	// Token: 0x06002BB6 RID: 11190 RVA: 0x000C0ECB File Offset: 0x000BF0CB
 	public void AddBlueprintsFrom<T>(T provider) where T : BlueprintProvider
 	{
 		provider.blueprintCollection = this;
@@ -15,7 +13,6 @@ public class BlueprintCollection
 		provider.SetupBlueprints();
 	}
 
-	// Token: 0x06002BB7 RID: 11191 RVA: 0x001ED938 File Offset: 0x001EBB38
 	public void AddBlueprintsFrom(BlueprintCollection collection)
 	{
 		this.artables.AddRange(collection.artables);
@@ -28,7 +25,6 @@ public class BlueprintCollection
 		this.outfits.AddRange(collection.outfits);
 	}
 
-	// Token: 0x06002BB8 RID: 11192 RVA: 0x001ED9D0 File Offset: 0x001EBBD0
 	public void PostProcess()
 	{
 		if (Application.isPlaying)
@@ -44,7 +40,6 @@ public class BlueprintCollection
 		}
 	}
 
-	// Token: 0x06002BBA RID: 11194 RVA: 0x001EDB14 File Offset: 0x001EBD14
 	[CompilerGenerated]
 	internal static bool <PostProcess>g__ShouldExcludeBlueprint|10_0(IHasDlcRestrictions blueprintDlcInfo)
 	{
@@ -68,27 +63,19 @@ public class BlueprintCollection
 		return false;
 	}
 
-	// Token: 0x04001DEF RID: 7663
 	public List<ArtableInfo> artables = new List<ArtableInfo>();
 
-	// Token: 0x04001DF0 RID: 7664
 	public List<BuildingFacadeInfo> buildingFacades = new List<BuildingFacadeInfo>();
 
-	// Token: 0x04001DF1 RID: 7665
 	public List<ClothingItemInfo> clothingItems = new List<ClothingItemInfo>();
 
-	// Token: 0x04001DF2 RID: 7666
 	public List<BalloonArtistFacadeInfo> balloonArtistFacades = new List<BalloonArtistFacadeInfo>();
 
-	// Token: 0x04001DF3 RID: 7667
 	public List<StickerBombFacadeInfo> stickerBombFacades = new List<StickerBombFacadeInfo>();
 
-	// Token: 0x04001DF4 RID: 7668
 	public List<EquippableFacadeInfo> equippableFacades = new List<EquippableFacadeInfo>();
 
-	// Token: 0x04001DF5 RID: 7669
 	public List<MonumentPartInfo> monumentParts = new List<MonumentPartInfo>();
 
-	// Token: 0x04001DF6 RID: 7670
 	public List<ClothingOutfitResource> outfits = new List<ClothingOutfitResource>();
 }

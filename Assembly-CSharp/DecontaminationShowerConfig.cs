@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000097 RID: 151
 public class DecontaminationShowerConfig : IBuildingConfig
 {
-	// Token: 0x0600026A RID: 618 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x0600026B RID: 619 RVA: 0x00150968 File Offset: 0x0014EB68
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "DecontaminationShower";
@@ -38,7 +35,6 @@ public class DecontaminationShowerConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600026C RID: 620 RVA: 0x001509F4 File Offset: 0x0014EBF4
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		KBatchedAnimController kbatchedAnimController = go.AddOrGet<KBatchedAnimController>();
@@ -76,32 +72,23 @@ public class DecontaminationShowerConfig : IBuildingConfig
 		go.AddOrGet<Storage>().SetDefaultStoredItemModifiers(Storage.StandardSealedStorage);
 	}
 
-	// Token: 0x0600026D RID: 621 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000193 RID: 403
 	public const string ID = "DecontaminationShower";
 
-	// Token: 0x04000194 RID: 404
 	private const float MASS_PER_USE = 100f;
 
-	// Token: 0x04000195 RID: 405
 	private const int DISEASE_REMOVAL_COUNT = 1000000;
 
-	// Token: 0x04000196 RID: 406
 	private const float WATER_PER_USE = 100f;
 
-	// Token: 0x04000197 RID: 407
 	private const int USES_PER_FLUSH = 1;
 
-	// Token: 0x04000198 RID: 408
 	private const float WORK_TIME = 15f;
 
-	// Token: 0x04000199 RID: 409
 	private const SimHashes CONSUMED_ELEMENT = SimHashes.Water;
 
-	// Token: 0x0400019A RID: 410
 	private const SimHashes PRODUCED_ELEMENT = SimHashes.DirtyWater;
 }

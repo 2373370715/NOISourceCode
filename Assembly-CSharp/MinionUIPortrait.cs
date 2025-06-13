@@ -2,10 +2,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000496 RID: 1174
 public class MinionUIPortrait : IEntityConfig
 {
-	// Token: 0x0600140D RID: 5133 RVA: 0x0019AC0C File Offset: 0x00198E0C
 	public GameObject CreatePrefab()
 	{
 		GameObject gameObject = EntityTemplates.CreateEntity(MinionUIPortrait.ID, MinionUIPortrait.ID, true);
@@ -40,16 +38,13 @@ public class MinionUIPortrait : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x0600140E RID: 5134 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject go)
 	{
 	}
 
-	// Token: 0x0600140F RID: 5135 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject go)
 	{
 	}
 
-	// Token: 0x04000DC9 RID: 3529
 	public static string ID = "MinionUIPortrait";
 }

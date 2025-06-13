@@ -4,17 +4,14 @@ using Database;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001F89 RID: 8073
 public class ArtableSelectionSideScreen : SideScreenContent
 {
-	// Token: 0x0600AA8A RID: 43658 RVA: 0x00415A18 File Offset: 0x00413C18
 	public override bool IsValidForTarget(GameObject target)
 	{
 		Artable component = target.GetComponent<Artable>();
 		return !(component == null) && !(component.CurrentStage == "Default");
 	}
 
-	// Token: 0x0600AA8B RID: 43659 RVA: 0x00113358 File Offset: 0x00111558
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -31,7 +28,6 @@ public class ArtableSelectionSideScreen : SideScreenContent
 		};
 	}
 
-	// Token: 0x0600AA8C RID: 43660 RVA: 0x00415A4C File Offset: 0x00413C4C
 	public override void SetTarget(GameObject target)
 	{
 		if (this.workCompleteSub != -1)
@@ -45,7 +41,6 @@ public class ArtableSelectionSideScreen : SideScreenContent
 		this.OnRefreshTarget(null);
 	}
 
-	// Token: 0x0600AA8D RID: 43661 RVA: 0x0011338E File Offset: 0x0011158E
 	public override void ClearTarget()
 	{
 		this.target.Unsubscribe(-2011693419);
@@ -53,7 +48,6 @@ public class ArtableSelectionSideScreen : SideScreenContent
 		base.ClearTarget();
 	}
 
-	// Token: 0x0600AA8E RID: 43662 RVA: 0x001133AD File Offset: 0x001115AD
 	private void OnRefreshTarget(object data = null)
 	{
 		if (this.target == null)
@@ -65,7 +59,6 @@ public class ArtableSelectionSideScreen : SideScreenContent
 		this.RefreshButtons();
 	}
 
-	// Token: 0x0600AA8F RID: 43663 RVA: 0x00415AAC File Offset: 0x00413CAC
 	public void GenerateStateButtons()
 	{
 		foreach (KeyValuePair<string, MultiToggle> keyValuePair in this.buttons)
@@ -87,7 +80,6 @@ public class ArtableSelectionSideScreen : SideScreenContent
 		}
 	}
 
-	// Token: 0x0600AA90 RID: 43664 RVA: 0x00415BE4 File Offset: 0x00413DE4
 	private void RefreshButtons()
 	{
 		List<ArtableStage> prefabStages = Db.GetArtableStages().GetPrefabStages(this.target.GetComponent<KPrefabID>().PrefabID());
@@ -126,35 +118,25 @@ public class ArtableSelectionSideScreen : SideScreenContent
 		this.scrollTransoform.GetComponent<LayoutElement>().preferredHeight = (float)((num > 3) ? 200 : 100);
 	}
 
-	// Token: 0x04008638 RID: 34360
 	private Artable target;
 
-	// Token: 0x04008639 RID: 34361
 	public KButton applyButton;
 
-	// Token: 0x0400863A RID: 34362
 	public KButton clearButton;
 
-	// Token: 0x0400863B RID: 34363
 	public GameObject stateButtonPrefab;
 
-	// Token: 0x0400863C RID: 34364
 	private Dictionary<string, MultiToggle> buttons = new Dictionary<string, MultiToggle>();
 
-	// Token: 0x0400863D RID: 34365
 	[SerializeField]
 	private RectTransform scrollTransoform;
 
-	// Token: 0x0400863E RID: 34366
 	private string selectedStage = "";
 
-	// Token: 0x0400863F RID: 34367
 	private const int INVALID_SUBSCRIPTION = -1;
 
-	// Token: 0x04008640 RID: 34368
 	private int workCompleteSub = -1;
 
-	// Token: 0x04008641 RID: 34369
 	[SerializeField]
 	private RectTransform buttonContainer;
 }

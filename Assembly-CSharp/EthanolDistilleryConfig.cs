@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000C9 RID: 201
 public class EthanolDistilleryConfig : IBuildingConfig
 {
-	// Token: 0x06000351 RID: 849 RVA: 0x00156534 File Offset: 0x00154734
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "EthanolDistillery";
@@ -33,7 +31,6 @@ public class EthanolDistilleryConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000352 RID: 850 RVA: 0x001565E0 File Offset: 0x001547E0
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
@@ -71,44 +68,33 @@ public class EthanolDistilleryConfig : IBuildingConfig
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x06000353 RID: 851 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 	}
 
-	// Token: 0x06000354 RID: 852 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 	}
 
-	// Token: 0x06000355 RID: 853 RVA: 0x000AA1AD File Offset: 0x000A83AD
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
 		go.AddOrGetDef<PoweredActiveController.Def>();
 	}
 
-	// Token: 0x04000205 RID: 517
 	public const string ID = "EthanolDistillery";
 
-	// Token: 0x04000206 RID: 518
 	public const float ORGANICS_CONSUME_PER_SECOND = 1f;
 
-	// Token: 0x04000207 RID: 519
 	public const float ORGANICS_STORAGE_AMOUNT = 600f;
 
-	// Token: 0x04000208 RID: 520
 	public const float ETHANOL_RATE = 0.5f;
 
-	// Token: 0x04000209 RID: 521
 	public const float SOLID_WASTE_RATE = 0.33333334f;
 
-	// Token: 0x0400020A RID: 522
 	public const float CO2_WASTE_RATE = 0.16666667f;
 
-	// Token: 0x0400020B RID: 523
 	public const float OUTPUT_TEMPERATURE = 346.5f;
 
-	// Token: 0x0400020C RID: 524
 	public const float WASTE_OUTPUT_TEMPERATURE = 366.5f;
 }

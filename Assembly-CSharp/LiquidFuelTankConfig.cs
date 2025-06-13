@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003CB RID: 971
 public class LiquidFuelTankConfig : IBuildingConfig
 {
-	// Token: 0x06000FCC RID: 4044 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetForbiddenDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06000FCD RID: 4045 RVA: 0x001887F4 File Offset: 0x001869F4
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "LiquidFuelTank";
@@ -44,7 +41,6 @@ public class LiquidFuelTankConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000FCE RID: 4046 RVA: 0x00188610 File Offset: 0x00186810
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -56,7 +52,6 @@ public class LiquidFuelTankConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
 	}
 
-	// Token: 0x06000FCF RID: 4047 RVA: 0x001888B8 File Offset: 0x00186AB8
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		Storage storage = go.AddOrGet<Storage>();
@@ -89,9 +84,7 @@ public class LiquidFuelTankConfig : IBuildingConfig
 		BuildingTemplates.ExtendBuildingToRocketModule(go, "rocket_liquid_fuel_tank_bg_kanim", false);
 	}
 
-	// Token: 0x04000B66 RID: 2918
 	public const string ID = "LiquidFuelTank";
 
-	// Token: 0x04000B67 RID: 2919
 	public const float FuelCapacity = 900f;
 }

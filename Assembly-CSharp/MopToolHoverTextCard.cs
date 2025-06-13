@@ -4,10 +4,8 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001B4A RID: 6986
 public class MopToolHoverTextCard : HoverTextConfiguration
 {
-	// Token: 0x0600928E RID: 37518 RVA: 0x0039386C File Offset: 0x00391A6C
 	public override void UpdateHoverElements(List<KSelectable> selected)
 	{
 		int num = Grid.PosToCell(Camera.main.ScreenToWorldPoint(KInputManager.GetMousePos()));
@@ -49,31 +47,22 @@ public class MopToolHoverTextCard : HoverTextConfiguration
 		hoverTextDrawer.EndDrawing();
 	}
 
-	// Token: 0x04006F10 RID: 28432
 	private MopToolHoverTextCard.HoverScreenFields hoverScreenElements;
 
-	// Token: 0x02001B4B RID: 6987
 	private struct HoverScreenFields
 	{
-		// Token: 0x04006F11 RID: 28433
 		public GameObject UnknownAreaLine;
 
-		// Token: 0x04006F12 RID: 28434
 		public Image ElementStateIcon;
 
-		// Token: 0x04006F13 RID: 28435
 		public LocText ElementCategory;
 
-		// Token: 0x04006F14 RID: 28436
 		public LocText ElementName;
 
-		// Token: 0x04006F15 RID: 28437
 		public LocText[] ElementMass;
 
-		// Token: 0x04006F16 RID: 28438
 		public LocText ElementHardness;
 
-		// Token: 0x04006F17 RID: 28439
 		public LocText ElementHardnessDescription;
 	}
 }

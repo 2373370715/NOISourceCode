@@ -2,10 +2,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001B8D RID: 7053
 public static class ResearchButtonImageToggleStateUtilityFunctions
 {
-	// Token: 0x06009409 RID: 37897 RVA: 0x0039C274 File Offset: 0x0039A474
 	public static void Opacity(this Graphic graphic, float opacity)
 	{
 		Color color = graphic.color;
@@ -13,7 +11,6 @@ public static class ResearchButtonImageToggleStateUtilityFunctions
 		graphic.color = color;
 	}
 
-	// Token: 0x0600940A RID: 37898 RVA: 0x0039C298 File Offset: 0x0039A498
 	public static WaitUntil FadeAway(this Graphic graphic, float duration, Func<bool> assertCondition = null)
 	{
 		float timer = 0f;
@@ -33,7 +30,6 @@ public static class ResearchButtonImageToggleStateUtilityFunctions
 		});
 	}
 
-	// Token: 0x0600940B RID: 37899 RVA: 0x0039C2F0 File Offset: 0x0039A4F0
 	public static WaitUntil FadeToVisible(this Graphic graphic, float duration, Func<bool> assertCondition = null)
 	{
 		float timer = 0f;

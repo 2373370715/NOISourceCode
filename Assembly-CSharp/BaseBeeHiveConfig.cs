@@ -5,22 +5,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000D5 RID: 213
 public class BaseBeeHiveConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x0600037B RID: 891 RVA: 0x000AA117 File Offset: 0x000A8317
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x0600037C RID: 892 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x0600037D RID: 893 RVA: 0x00157534 File Offset: 0x00155734
 	public GameObject CreatePrefab()
 	{
 		GameObject gameObject = EntityTemplates.CreatePlacedEntity("BeeHive", STRINGS.BUILDINGS.PREFABS.BEEHIVE.NAME, STRINGS.BUILDINGS.PREFABS.BEEHIVE.DESC, 100f, Assets.GetAnim("beehive_kanim"), "grow_pre", Grid.SceneLayer.Creatures, 2, 3, TUNING.BUILDINGS.DECOR.BONUS.TIER0, NOISE_POLLUTION.NOISY.TIER0, SimHashes.Creature, null, TUNING.CREATURES.TEMPERATURE.FREEZING_3);
@@ -100,7 +96,6 @@ public class BaseBeeHiveConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x0600037E RID: 894 RVA: 0x000AA768 File Offset: 0x000A8968
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.GetComponent<OccupyArea>().objectLayers = new ObjectLayer[]
@@ -109,20 +104,15 @@ public class BaseBeeHiveConfig : IEntityConfig, IHasDlcRestrictions
 		};
 	}
 
-	// Token: 0x0600037F RID: 895 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x0400022B RID: 555
 	public const string ID = "BeeHive";
 
-	// Token: 0x0400022C RID: 556
 	public const string BASE_TRAIT_ID = "BeeHiveBaseTrait";
 
-	// Token: 0x0400022D RID: 557
 	private const int WIDTH = 2;
 
-	// Token: 0x0400022E RID: 558
 	private const int HEIGHT = 3;
 }

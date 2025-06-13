@@ -7,20 +7,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001D8E RID: 7566
 public class KleiInventoryScreen : KModalScreen
 {
-	// Token: 0x17000A57 RID: 2647
-	// (get) Token: 0x06009DF8 RID: 40440 RVA: 0x0010B379 File Offset: 0x00109579
-	// (set) Token: 0x06009DF9 RID: 40441 RVA: 0x0010B381 File Offset: 0x00109581
 	private PermitResource SelectedPermit { get; set; }
 
-	// Token: 0x17000A58 RID: 2648
-	// (get) Token: 0x06009DFA RID: 40442 RVA: 0x0010B38A File Offset: 0x0010958A
-	// (set) Token: 0x06009DFB RID: 40443 RVA: 0x0010B392 File Offset: 0x00109592
 	private string SelectedCategoryId { get; set; }
 
-	// Token: 0x06009DFC RID: 40444 RVA: 0x003D9398 File Offset: 0x003D7598
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -39,7 +31,6 @@ public class KleiInventoryScreen : KModalScreen
 		InventoryOrganization.Initialize();
 	}
 
-	// Token: 0x06009DFD RID: 40445 RVA: 0x0010B39B File Offset: 0x0010959B
 	public override void OnKeyDown(KButtonEvent e)
 	{
 		if (e.TryConsume(global::Action.Escape) || e.TryConsume(global::Action.MouseRight))
@@ -49,19 +40,16 @@ public class KleiInventoryScreen : KModalScreen
 		base.OnKeyDown(e);
 	}
 
-	// Token: 0x06009DFE RID: 40446 RVA: 0x000CF8A0 File Offset: 0x000CDAA0
 	public override float GetSortKey()
 	{
 		return 20f;
 	}
 
-	// Token: 0x06009DFF RID: 40447 RVA: 0x0010B1EA File Offset: 0x001093EA
 	protected override void OnActivate()
 	{
 		this.OnShow(true);
 	}
 
-	// Token: 0x06009E00 RID: 40448 RVA: 0x0010B3BD File Offset: 0x001095BD
 	protected override void OnShow(bool show)
 	{
 		base.OnShow(show);
@@ -73,7 +61,6 @@ public class KleiInventoryScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x06009E01 RID: 40449 RVA: 0x003D940C File Offset: 0x003D760C
 	private void ToggleDoublesOnly(int newState)
 	{
 		this.showFilterState = newState;
@@ -99,7 +86,6 @@ public class KleiInventoryScreen : KModalScreen
 		this.RefreshGallery();
 	}
 
-	// Token: 0x06009E02 RID: 40450 RVA: 0x003D94C4 File Offset: 0x003D76C4
 	private void InitConfig()
 	{
 		if (this.initConfigComplete)
@@ -127,7 +113,6 @@ public class KleiInventoryScreen : KModalScreen
 		}));
 	}
 
-	// Token: 0x06009E03 RID: 40451 RVA: 0x0010B3DC File Offset: 0x001095DC
 	protected override void OnCmpEnable()
 	{
 		base.OnCmpEnable();
@@ -144,7 +129,6 @@ public class KleiInventoryScreen : KModalScreen
 		});
 	}
 
-	// Token: 0x06009E04 RID: 40452 RVA: 0x0010B41C File Offset: 0x0010961C
 	private void ClearSearch()
 	{
 		this.searchField.text = "";
@@ -152,13 +136,11 @@ public class KleiInventoryScreen : KModalScreen
 		this.RefreshGallery();
 	}
 
-	// Token: 0x06009E05 RID: 40453 RVA: 0x0010B453 File Offset: 0x00109653
 	private void Update()
 	{
 		this.galleryGridLayouter.CheckIfShouldResizeGrid();
 	}
 
-	// Token: 0x06009E06 RID: 40454 RVA: 0x003D9598 File Offset: 0x003D7798
 	private void RefreshUI()
 	{
 		this.IS_ONLINE = ThreadedHttps<KleiAccount>.Instance.HasValidTicket();
@@ -172,7 +154,6 @@ public class KleiInventoryScreen : KModalScreen
 		this.RefreshBarterPanel();
 	}
 
-	// Token: 0x06009E07 RID: 40455 RVA: 0x0010B460 File Offset: 0x00109660
 	private GameObject GetAvailableGridButton()
 	{
 		if (this.recycledGalleryGridButtons.Count == 0)
@@ -184,14 +165,12 @@ public class KleiInventoryScreen : KModalScreen
 		return result;
 	}
 
-	// Token: 0x06009E08 RID: 40456 RVA: 0x0010B49F File Offset: 0x0010969F
 	private void RecycleGalleryGridButton(GameObject button)
 	{
 		button.GetComponent<MultiToggle>().onClick = null;
 		this.recycledGalleryGridButtons.Add(button);
 	}
 
-	// Token: 0x06009E09 RID: 40457 RVA: 0x003D95E8 File Offset: 0x003D77E8
 	public void PopulateCategories()
 	{
 		foreach (KeyValuePair<string, MultiToggle> keyValuePair in this.categoryToggles)
@@ -221,7 +200,6 @@ public class KleiInventoryScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x06009E0A RID: 40458 RVA: 0x003D9768 File Offset: 0x003D7968
 	public void PopulateGallery()
 	{
 		foreach (KeyValuePair<PermitResource, MultiToggle> keyValuePair in this.galleryGridButtons)
@@ -246,7 +224,6 @@ public class KleiInventoryScreen : KModalScreen
 		this.CloseSubcategory("UNCATEGORIZED");
 	}
 
-	// Token: 0x06009E0B RID: 40459 RVA: 0x003D98C0 File Offset: 0x003D7AC0
 	private void CloseSubcategory(string subcategoryID)
 	{
 		KleiInventoryUISubcategory kleiInventoryUISubcategory = this.subcategories.Find((KleiInventoryUISubcategory match) => match.subcategoryID == subcategoryID);
@@ -256,7 +233,6 @@ public class KleiInventoryScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x06009E0C RID: 40460 RVA: 0x003D9904 File Offset: 0x003D7B04
 	private void AddItemToSubcategoryUIContainer(GameObject itemButton, string subcategoryId)
 	{
 		KleiInventoryUISubcategory kleiInventoryUISubcategory = this.subcategories.Find((KleiInventoryUISubcategory match) => match.subcategoryID == subcategoryId);
@@ -270,7 +246,6 @@ public class KleiInventoryScreen : KModalScreen
 		itemButton.transform.SetParent(kleiInventoryUISubcategory.gridLayout.transform);
 	}
 
-	// Token: 0x06009E0D RID: 40461 RVA: 0x003D99B0 File Offset: 0x003D7BB0
 	private void CollectSubcategoryGridLayouts()
 	{
 		this.galleryGridLayouter.OnSizeGridComplete = null;
@@ -283,7 +258,6 @@ public class KleiInventoryScreen : KModalScreen
 		this.galleryGridLayouter.RequestGridResize();
 	}
 
-	// Token: 0x06009E0E RID: 40462 RVA: 0x003D9A50 File Offset: 0x003D7C50
 	private void AddItemToGallery(PermitResource permit)
 	{
 		if (this.galleryGridButtons.ContainsKey(permit))
@@ -333,7 +307,6 @@ public class KleiInventoryScreen : KModalScreen
 		KleiItemsUI.ConfigureTooltipOn(availableGridButton, KleiItemsUI.GetTooltipStringFor(permit));
 	}
 
-	// Token: 0x06009E0F RID: 40463 RVA: 0x0010B4B9 File Offset: 0x001096B9
 	public void SelectCategory(string categoryId)
 	{
 		if (InventoryOrganization.categoryIdToIsEmptyMap[categoryId])
@@ -346,7 +319,6 @@ public class KleiInventoryScreen : KModalScreen
 		this.SelectDefaultCategoryItem();
 	}
 
-	// Token: 0x06009E10 RID: 40464 RVA: 0x003D9C1C File Offset: 0x003D7E1C
 	private void SelectDefaultCategoryItem()
 	{
 		foreach (KeyValuePair<PermitResource, MultiToggle> keyValuePair in this.galleryGridButtons)
@@ -360,7 +332,6 @@ public class KleiInventoryScreen : KModalScreen
 		this.SelectItem(null);
 	}
 
-	// Token: 0x06009E11 RID: 40465 RVA: 0x0010B4ED File Offset: 0x001096ED
 	public void SelectItem(PermitResource permit)
 	{
 		this.SelectedPermit = permit;
@@ -369,7 +340,6 @@ public class KleiInventoryScreen : KModalScreen
 		this.RefreshBarterPanel();
 	}
 
-	// Token: 0x06009E12 RID: 40466 RVA: 0x003D9CA4 File Offset: 0x003D7EA4
 	private void RefreshGallery()
 	{
 		string value = this.searchField.text.ToUpper();
@@ -431,7 +401,6 @@ public class KleiInventoryScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x06009E13 RID: 40467 RVA: 0x003D9F08 File Offset: 0x003D8108
 	private void RefreshCategories()
 	{
 		foreach (KeyValuePair<string, MultiToggle> keyValuePair in this.categoryToggles)
@@ -448,7 +417,6 @@ public class KleiInventoryScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x06009E14 RID: 40468 RVA: 0x003D9FC0 File Offset: 0x003D81C0
 	private void RefreshDetails()
 	{
 		PermitResource selectedPermit = this.SelectedPermit;
@@ -506,7 +474,6 @@ public class KleiInventoryScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x06009E15 RID: 40469 RVA: 0x003DA2D0 File Offset: 0x003D84D0
 	private KleiInventoryScreen.PermitPrintabilityState GetPermitPrintabilityState(PermitResource permit)
 	{
 		if (!this.IS_ONLINE)
@@ -538,7 +505,6 @@ public class KleiInventoryScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x06009E16 RID: 40470 RVA: 0x003DA344 File Offset: 0x003D8544
 	private void RefreshBarterPanel()
 	{
 		this.barterBuyButton.ClearOnClick();
@@ -633,7 +599,6 @@ public class KleiInventoryScreen : KModalScreen
 		};
 	}
 
-	// Token: 0x06009E17 RID: 40471 RVA: 0x003DA79C File Offset: 0x003D899C
 	private void SetCatogoryClickUISound(string categoryID, MultiToggle toggle)
 	{
 		if (!this.categoryToggles.ContainsKey(categoryID))
@@ -646,7 +611,6 @@ public class KleiInventoryScreen : KModalScreen
 		toggle.states[0].on_click_override_sound_path = "General_Category_Click";
 	}
 
-	// Token: 0x06009E18 RID: 40472 RVA: 0x003DA810 File Offset: 0x003D8A10
 	private void SetItemClickUISound(PermitResource permit, MultiToggle toggle)
 	{
 		string facadeItemSoundName = KleiInventoryScreen.GetFacadeItemSoundName(permit);
@@ -660,7 +624,6 @@ public class KleiInventoryScreen : KModalScreen
 		toggle.states[0].has_sound_parameter = true;
 	}
 
-	// Token: 0x06009E19 RID: 40473 RVA: 0x003DA8F8 File Offset: 0x003D8AF8
 	public static string GetFacadeItemSoundName(PermitResource permit)
 	{
 		if (permit == null)
@@ -1297,191 +1260,140 @@ public class KleiInventoryScreen : KModalScreen
 		return "HUD";
 	}
 
-	// Token: 0x06009E1A RID: 40474 RVA: 0x0010AC6E File Offset: 0x00108E6E
 	private void OnMouseOverToggle()
 	{
 		KFMOD.PlayUISound(GlobalAssets.GetSound("HUD_Mouseover", false));
 	}
 
-	// Token: 0x06009E22 RID: 40482 RVA: 0x0010B5BE File Offset: 0x001097BE
 	[CompilerGenerated]
 	internal static bool <GetFacadeItemSoundName>g__Has|76_0<T>(BuildingDef buildingDef) where T : Component
 	{
 		return !buildingDef.BuildingComplete.GetComponent<T>().IsNullOrDestroyed();
 	}
 
-	// Token: 0x04007C0A RID: 31754
 	[Header("Header")]
 	[SerializeField]
 	private KButton closeButton;
 
-	// Token: 0x04007C0B RID: 31755
 	[Header("CategoryColumn")]
 	[SerializeField]
 	private RectTransform categoryListContent;
 
-	// Token: 0x04007C0C RID: 31756
 	[SerializeField]
 	private GameObject categoryRowPrefab;
 
-	// Token: 0x04007C0D RID: 31757
 	private Dictionary<string, MultiToggle> categoryToggles = new Dictionary<string, MultiToggle>();
 
-	// Token: 0x04007C0E RID: 31758
 	[Header("ItemGalleryColumn")]
 	[SerializeField]
 	private LocText galleryHeaderLabel;
 
-	// Token: 0x04007C0F RID: 31759
 	[SerializeField]
 	private RectTransform galleryGridContent;
 
-	// Token: 0x04007C10 RID: 31760
 	[SerializeField]
 	private GameObject gridItemPrefab;
 
-	// Token: 0x04007C11 RID: 31761
 	[SerializeField]
 	private GameObject subcategoryPrefab;
 
-	// Token: 0x04007C12 RID: 31762
 	[SerializeField]
 	private GameObject itemDummyPrefab;
 
-	// Token: 0x04007C13 RID: 31763
 	[Header("GalleryFilters")]
 	[SerializeField]
 	private KInputTextField searchField;
 
-	// Token: 0x04007C14 RID: 31764
 	[SerializeField]
 	private KButton clearSearchButton;
 
-	// Token: 0x04007C15 RID: 31765
 	[SerializeField]
 	private MultiToggle doublesOnlyToggle;
 
-	// Token: 0x04007C16 RID: 31766
 	public const int FILTER_SHOW_ALL = 0;
 
-	// Token: 0x04007C17 RID: 31767
 	public const int FILTER_SHOW_OWNED_ONLY = 1;
 
-	// Token: 0x04007C18 RID: 31768
 	public const int FILTER_SHOW_DOUBLES_ONLY = 2;
 
-	// Token: 0x04007C19 RID: 31769
 	private int showFilterState;
 
-	// Token: 0x04007C1A RID: 31770
 	[Header("BarterSection")]
 	[SerializeField]
 	private Image barterPanelBG;
 
-	// Token: 0x04007C1B RID: 31771
 	[SerializeField]
 	private KButton barterBuyButton;
 
-	// Token: 0x04007C1C RID: 31772
 	[SerializeField]
 	private KButton barterSellButton;
 
-	// Token: 0x04007C1D RID: 31773
 	[SerializeField]
 	private GameObject barterConfirmationScreenPrefab;
 
-	// Token: 0x04007C1E RID: 31774
 	[SerializeField]
 	private GameObject filamentWalletSection;
 
-	// Token: 0x04007C1F RID: 31775
 	[SerializeField]
 	private GameObject barterOfflineLabel;
 
-	// Token: 0x04007C20 RID: 31776
 	private Dictionary<PermitResource, MultiToggle> galleryGridButtons = new Dictionary<PermitResource, MultiToggle>();
 
-	// Token: 0x04007C21 RID: 31777
 	private List<KleiInventoryUISubcategory> subcategories = new List<KleiInventoryUISubcategory>();
 
-	// Token: 0x04007C22 RID: 31778
 	private List<GameObject> recycledGalleryGridButtons = new List<GameObject>();
 
-	// Token: 0x04007C23 RID: 31779
 	private GridLayouter galleryGridLayouter;
 
-	// Token: 0x04007C24 RID: 31780
 	[Header("SelectionDetailsColumn")]
 	[SerializeField]
 	private LocText selectionHeaderLabel;
 
-	// Token: 0x04007C25 RID: 31781
 	[SerializeField]
 	private KleiPermitDioramaVis permitVis;
 
-	// Token: 0x04007C26 RID: 31782
 	[SerializeField]
 	private KScrollRect selectionDetailsScrollRect;
 
-	// Token: 0x04007C27 RID: 31783
 	[SerializeField]
 	private RectTransform selectionDetailsScrollRectScrollBarContainer;
 
-	// Token: 0x04007C28 RID: 31784
 	[SerializeField]
 	private LocText selectionNameLabel;
 
-	// Token: 0x04007C29 RID: 31785
 	[SerializeField]
 	private LocText selectionDescriptionLabel;
 
-	// Token: 0x04007C2A RID: 31786
 	[SerializeField]
 	private LocText selectionFacadeForLabel;
 
-	// Token: 0x04007C2B RID: 31787
 	[SerializeField]
 	private LocText selectionCollectionLabel;
 
-	// Token: 0x04007C2C RID: 31788
 	[SerializeField]
 	private LocText selectionRarityDetailsLabel;
 
-	// Token: 0x04007C2D RID: 31789
 	[SerializeField]
 	private LocText selectionOwnedCount;
 
-	// Token: 0x04007C2F RID: 31791
 	private bool IS_ONLINE;
 
-	// Token: 0x04007C30 RID: 31792
 	private bool initConfigComplete;
 
-	// Token: 0x02001D8F RID: 7567
 	private enum PermitPrintabilityState
 	{
-		// Token: 0x04007C33 RID: 31795
 		Printable,
-		// Token: 0x04007C34 RID: 31796
 		AlreadyOwned,
-		// Token: 0x04007C35 RID: 31797
 		TooExpensive,
-		// Token: 0x04007C36 RID: 31798
 		NotForSale,
-		// Token: 0x04007C37 RID: 31799
 		NotForSaleYet,
-		// Token: 0x04007C38 RID: 31800
 		UserOffline
 	}
 
-	// Token: 0x02001D90 RID: 7568
 	private enum MultiToggleState
 	{
-		// Token: 0x04007C3A RID: 31802
 		Default,
-		// Token: 0x04007C3B RID: 31803
 		Selected,
-		// Token: 0x04007C3C RID: 31804
 		NonInteractable
 	}
 }

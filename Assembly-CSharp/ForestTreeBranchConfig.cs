@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200029A RID: 666
 public class ForestTreeBranchConfig : IEntityConfig
 {
-	// Token: 0x060009C5 RID: 2501 RVA: 0x00170FB8 File Offset: 0x0016F1B8
 	public GameObject CreatePrefab()
 	{
 		string id = "ForestTreeBranch";
@@ -38,7 +36,6 @@ public class ForestTreeBranchConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x060009C6 RID: 2502 RVA: 0x001710CC File Offset: 0x0016F2CC
 	public void AdjustAnimation(PlantBranchGrower.Instance trunk, PlantBranch.Instance branch)
 	{
 		int base_cell = Grid.PosToCell(trunk);
@@ -52,7 +49,6 @@ public class ForestTreeBranchConfig : IEntityConfig
 		component.RefreshPositionPercent();
 	}
 
-	// Token: 0x060009C7 RID: 2503 RVA: 0x00171144 File Offset: 0x0016F344
 	public void TranslateOldTrunkToNewSystem(PlantBranch.Instance smi)
 	{
 		BuddingTrunk andForgetOldTrunk = smi.GetComponent<TreeBud>().GetAndForgetOldTrunk();
@@ -63,18 +59,15 @@ public class ForestTreeBranchConfig : IEntityConfig
 		}
 	}
 
-	// Token: 0x060009C8 RID: 2504 RVA: 0x000AEC07 File Offset: 0x000ACE07
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.AddOrGet<Harvestable>().readyForHarvestStatusItem = Db.Get().CreatureStatusItems.ReadyForHarvest_Branch;
 	}
 
-	// Token: 0x060009C9 RID: 2505 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x060009CB RID: 2507 RVA: 0x00171174 File Offset: 0x0016F374
 	// Note: this type is marked as 'beforefieldinit'.
 	static ForestTreeBranchConfig()
 	{
@@ -161,15 +154,11 @@ public class ForestTreeBranchConfig : IEntityConfig
 		ForestTreeBranchConfig.animOffset = dictionary2;
 	}
 
-	// Token: 0x0400077C RID: 1916
 	public const string ID = "ForestTreeBranch";
 
-	// Token: 0x0400077D RID: 1917
 	public const float WOOD_AMOUNT = 300f;
 
-	// Token: 0x0400077E RID: 1918
 	private static Dictionary<CellOffset, StandardCropPlant.AnimSet> animationSets;
 
-	// Token: 0x0400077F RID: 1919
 	private static Dictionary<CellOffset, Vector3> animOffset;
 }

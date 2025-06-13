@@ -7,16 +7,13 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-// Token: 0x02001C72 RID: 7282
 public class ClusterMapScreen : KScreen
 {
-	// Token: 0x06009761 RID: 38753 RVA: 0x00107133 File Offset: 0x00105333
 	public static void DestroyInstance()
 	{
 		ClusterMapScreen.Instance = null;
 	}
 
-	// Token: 0x06009762 RID: 38754 RVA: 0x0010713B File Offset: 0x0010533B
 	public ClusterMapVisualizer GetEntityVisAnim(ClusterGridEntity entity)
 	{
 		if (this.m_gridEntityAnims.ContainsKey(entity))
@@ -26,7 +23,6 @@ public class ClusterMapScreen : KScreen
 		return null;
 	}
 
-	// Token: 0x06009763 RID: 38755 RVA: 0x00107159 File Offset: 0x00105359
 	public override float GetSortKey()
 	{
 		if (base.isEditing)
@@ -36,13 +32,11 @@ public class ClusterMapScreen : KScreen
 		return 20f;
 	}
 
-	// Token: 0x06009764 RID: 38756 RVA: 0x0010716E File Offset: 0x0010536E
 	public float CurrentZoomPercentage()
 	{
 		return (this.m_currentZoomScale - 50f) / 100f;
 	}
 
-	// Token: 0x06009765 RID: 38757 RVA: 0x00107182 File Offset: 0x00105382
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -51,7 +45,6 @@ public class ClusterMapScreen : KScreen
 		ClusterMapScreen.Instance = this;
 	}
 
-	// Token: 0x06009766 RID: 38758 RVA: 0x003B2FA8 File Offset: 0x003B11A8
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -72,7 +65,6 @@ public class ClusterMapScreen : KScreen
 		base.Subscribe(1980521255, new Action<object>(this.UpdateVis));
 	}
 
-	// Token: 0x06009767 RID: 38759 RVA: 0x003B3108 File Offset: 0x003B1308
 	protected void MoveToNISPosition()
 	{
 		if (!this.movingToTargetNISPosition)
@@ -97,7 +89,6 @@ public class ClusterMapScreen : KScreen
 		}
 	}
 
-	// Token: 0x06009768 RID: 38760 RVA: 0x001071B9 File Offset: 0x001053B9
 	public void SetTargetFocusPosition(AxialI targetPosition, float delayBeforeMove = 0.5f)
 	{
 		if (this.activeMoveToTargetRoutine != null)
@@ -107,7 +98,6 @@ public class ClusterMapScreen : KScreen
 		this.activeMoveToTargetRoutine = base.StartCoroutine(this.MoveToTargetRoutine(targetPosition, delayBeforeMove));
 	}
 
-	// Token: 0x06009769 RID: 38761 RVA: 0x001071E3 File Offset: 0x001053E3
 	private IEnumerator MoveToTargetRoutine(AxialI targetPosition, float delayBeforeMove)
 	{
 		delayBeforeMove = Mathf.Max(delayBeforeMove, 0f);
@@ -119,7 +109,6 @@ public class ClusterMapScreen : KScreen
 		yield break;
 	}
 
-	// Token: 0x0600976A RID: 38762 RVA: 0x003B3224 File Offset: 0x003B1424
 	public override void OnKeyDown(KButtonEvent e)
 	{
 		if (!e.Consumed && (e.IsAction(global::Action.ZoomIn) || e.IsAction(global::Action.ZoomOut)) && CameraController.IsMouseOverGameWindow)
@@ -165,7 +154,6 @@ public class ClusterMapScreen : KScreen
 		base.OnKeyDown(e);
 	}
 
-	// Token: 0x0600976B RID: 38763 RVA: 0x00107200 File Offset: 0x00105400
 	public bool TryHandleCancel()
 	{
 		if (this.m_mode == ClusterMapScreen.Mode.SelectDestination && !this.m_closeOnSelect)
@@ -176,7 +164,6 @@ public class ClusterMapScreen : KScreen
 		return false;
 	}
 
-	// Token: 0x0600976C RID: 38764 RVA: 0x003B337C File Offset: 0x003B157C
 	public void ShowInSelectDestinationMode(ClusterDestinationSelector destination_selector)
 	{
 		this.m_destinationSelector = destination_selector;
@@ -200,7 +187,6 @@ public class ClusterMapScreen : KScreen
 		this.SetMode(ClusterMapScreen.Mode.SelectDestination);
 	}
 
-	// Token: 0x0600976D RID: 38765 RVA: 0x0010721D File Offset: 0x0010541D
 	private void SetMode(ClusterMapScreen.Mode mode)
 	{
 		this.m_mode = mode;
@@ -211,13 +197,11 @@ public class ClusterMapScreen : KScreen
 		this.UpdateVis(null);
 	}
 
-	// Token: 0x0600976E RID: 38766 RVA: 0x0010723C File Offset: 0x0010543C
 	public ClusterMapScreen.Mode GetMode()
 	{
 		return this.m_mode;
 	}
 
-	// Token: 0x0600976F RID: 38767 RVA: 0x003B3418 File Offset: 0x003B1618
 	protected override void OnShow(bool show)
 	{
 		base.OnShow(show);
@@ -256,7 +240,6 @@ public class ClusterMapScreen : KScreen
 		}
 	}
 
-	// Token: 0x06009770 RID: 38768 RVA: 0x00107244 File Offset: 0x00105444
 	private void SetShowingNonClusterMapHud(bool show)
 	{
 		PlanScreen.Instance.gameObject.SetActive(show);
@@ -264,7 +247,6 @@ public class ClusterMapScreen : KScreen
 		OverlayScreen.Instance.gameObject.SetActive(show);
 	}
 
-	// Token: 0x06009771 RID: 38769 RVA: 0x003B35A4 File Offset: 0x003B17A4
 	private void SetSelectedEntity(ClusterGridEntity entity, bool frameDelay = false)
 	{
 		if (this.m_selectedEntity != null)
@@ -287,13 +269,11 @@ public class ClusterMapScreen : KScreen
 		ClusterMapSelectTool.Instance.Select(new_selected, false);
 	}
 
-	// Token: 0x06009772 RID: 38770 RVA: 0x00107276 File Offset: 0x00105476
 	private void OnDestinationChanged(object data)
 	{
 		this.UpdateVis(null);
 	}
 
-	// Token: 0x06009773 RID: 38771 RVA: 0x003B3668 File Offset: 0x003B1868
 	private void OnSelectObject(object data)
 	{
 		if (this.m_selectedEntity == null)
@@ -320,19 +300,16 @@ public class ClusterMapScreen : KScreen
 		this.UpdateVis(null);
 	}
 
-	// Token: 0x06009774 RID: 38772 RVA: 0x00107276 File Offset: 0x00105476
 	private void OnFogOfWarRevealed(object data = null)
 	{
 		this.UpdateVis(null);
 	}
 
-	// Token: 0x06009775 RID: 38773 RVA: 0x00107276 File Offset: 0x00105476
 	private void OnNewTelescopeTarget(object data = null)
 	{
 		this.UpdateVis(null);
 	}
 
-	// Token: 0x06009776 RID: 38774 RVA: 0x0010727F File Offset: 0x0010547F
 	private void Update()
 	{
 		if (KInputManager.currentControllerIsGamepad)
@@ -341,7 +318,6 @@ public class ClusterMapScreen : KScreen
 		}
 	}
 
-	// Token: 0x06009777 RID: 38775 RVA: 0x003B36D8 File Offset: 0x003B18D8
 	private void TrySelectDefault()
 	{
 		if (this.m_selectedHex != null && this.m_selectedEntity != null)
@@ -362,7 +338,6 @@ public class ClusterMapScreen : KScreen
 		this.SelectEntity(component, false);
 	}
 
-	// Token: 0x06009778 RID: 38776 RVA: 0x003B3738 File Offset: 0x003B1938
 	private void GenerateGridVis(out int minR, out int maxR, out int minQ, out int maxQ)
 	{
 		minR = int.MaxValue;
@@ -386,7 +361,6 @@ public class ClusterMapScreen : KScreen
 		this.UpdateVis(null);
 	}
 
-	// Token: 0x06009779 RID: 38777 RVA: 0x003B388C File Offset: 0x003B1A8C
 	public Transform GetGridEntityNameTarget(ClusterGridEntity entity)
 	{
 		ClusterMapVisualizer clusterMapVisualizer;
@@ -397,7 +371,6 @@ public class ClusterMapScreen : KScreen
 		return null;
 	}
 
-	// Token: 0x0600977A RID: 38778 RVA: 0x003B38C0 File Offset: 0x003B1AC0
 	public override void ScreenUpdate(bool topLevel)
 	{
 		float t = Mathf.Min(4f * Time.unscaledDeltaTime, 0.9f);
@@ -411,7 +384,6 @@ public class ClusterMapScreen : KScreen
 		this.FloatyAsteroidAnimation();
 	}
 
-	// Token: 0x0600977B RID: 38779 RVA: 0x003B3994 File Offset: 0x003B1B94
 	private void FloatyAsteroidAnimation()
 	{
 		float num = 0f;
@@ -428,7 +400,6 @@ public class ClusterMapScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600977C RID: 38780 RVA: 0x003B3A6C File Offset: 0x003B1C6C
 	private void SetupVisGameObjects()
 	{
 		foreach (KeyValuePair<AxialI, List<ClusterGridEntity>> keyValuePair in ClusterGrid.Instance.cellContents)
@@ -492,7 +463,6 @@ public class ClusterMapScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600977D RID: 38781 RVA: 0x003B3CF0 File Offset: 0x003B1EF0
 	private void RemoveDeletedEntities(object obj = null)
 	{
 		foreach (ClusterGridEntity key in (from x in this.m_gridEntityVis.Keys
@@ -505,13 +475,11 @@ public class ClusterMapScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600977E RID: 38782 RVA: 0x00107276 File Offset: 0x00105476
 	private void OnClusterLocationChanged(object data)
 	{
 		this.UpdateVis(null);
 	}
 
-	// Token: 0x0600977F RID: 38783 RVA: 0x003B3D90 File Offset: 0x003B1F90
 	public static ClusterRevealLevel GetRevealLevel(ClusterGridEntity entity)
 	{
 		ClusterRevealLevel cellRevealLevel = ClusterGrid.Instance.GetCellRevealLevel(entity.Location);
@@ -527,7 +495,6 @@ public class ClusterMapScreen : KScreen
 		return ClusterRevealLevel.Hidden;
 	}
 
-	// Token: 0x06009780 RID: 38784 RVA: 0x003B3DCC File Offset: 0x003B1FCC
 	private void UpdateVis(object data = null)
 	{
 		this.SetupVisGameObjects();
@@ -566,13 +533,11 @@ public class ClusterMapScreen : KScreen
 		this.FloatyAsteroidAnimation();
 	}
 
-	// Token: 0x06009781 RID: 38785 RVA: 0x001072A8 File Offset: 0x001054A8
 	private void OnEntityDestroyed(object obj)
 	{
 		this.RemoveDeletedEntities(null);
 	}
 
-	// Token: 0x06009782 RID: 38786 RVA: 0x003B3F8C File Offset: 0x003B218C
 	private void UpdateHexToggleStates()
 	{
 		bool flag = this.m_hoveredHex != null && ClusterGrid.Instance.GetVisibleEntityOfLayerAtCell(this.m_hoveredHex.location, EntityLayer.Asteroid);
@@ -597,7 +562,6 @@ public class ClusterMapScreen : KScreen
 		}
 	}
 
-	// Token: 0x06009783 RID: 38787 RVA: 0x003B4064 File Offset: 0x003B2264
 	public void SelectEntity(ClusterGridEntity entity, bool frameDelay = false)
 	{
 		if (entity != null)
@@ -609,7 +573,6 @@ public class ClusterMapScreen : KScreen
 		this.UpdateVis(null);
 	}
 
-	// Token: 0x06009784 RID: 38788 RVA: 0x003B40A8 File Offset: 0x003B22A8
 	public void SelectHex(ClusterMapHex newSelectionHex)
 	{
 		if (this.m_mode == ClusterMapScreen.Mode.Default)
@@ -658,19 +621,16 @@ public class ClusterMapScreen : KScreen
 		this.UpdateVis(null);
 	}
 
-	// Token: 0x06009785 RID: 38789 RVA: 0x001072B1 File Offset: 0x001054B1
 	public bool HasCurrentHover()
 	{
 		return this.m_hoveredHex != null;
 	}
 
-	// Token: 0x06009786 RID: 38790 RVA: 0x001072BF File Offset: 0x001054BF
 	public AxialI GetCurrentHoverLocation()
 	{
 		return this.m_hoveredHex.location;
 	}
 
-	// Token: 0x06009787 RID: 38791 RVA: 0x001072CC File Offset: 0x001054CC
 	public void OnHoverHex(ClusterMapHex newHoverHex)
 	{
 		this.m_hoveredHex = newHoverHex;
@@ -681,7 +641,6 @@ public class ClusterMapScreen : KScreen
 		this.UpdateHexToggleStates();
 	}
 
-	// Token: 0x06009788 RID: 38792 RVA: 0x001072EB File Offset: 0x001054EB
 	public void OnUnhoverHex(ClusterMapHex unhoveredHex)
 	{
 		if (this.m_hoveredHex == unhoveredHex)
@@ -691,13 +650,11 @@ public class ClusterMapScreen : KScreen
 		}
 	}
 
-	// Token: 0x06009789 RID: 38793 RVA: 0x00107308 File Offset: 0x00105508
 	public void SetLocationHighlight(AxialI location, bool highlight)
 	{
 		this.m_cellVisByLocation[location].GetComponent<ClusterMapHex>().ChangeState(highlight ? 1 : 0);
 	}
 
-	// Token: 0x0600978A RID: 38794 RVA: 0x003B41C8 File Offset: 0x003B23C8
 	private void UpdatePaths()
 	{
 		ClusterDestinationSelector clusterDestinationSelector = (this.m_selectedEntity != null) ? this.m_selectedEntity.GetComponent<ClusterDestinationSelector>() : null;
@@ -744,7 +701,6 @@ public class ClusterMapScreen : KScreen
 		this.m_hoveredHex.SetDestinationStatus(text);
 	}
 
-	// Token: 0x0600978B RID: 38795 RVA: 0x003B4384 File Offset: 0x003B2584
 	private ClusterGridEntity GetSelectorGridEntity(ClusterDestinationSelector selector)
 	{
 		ClusterGridEntity component = selector.GetComponent<ClusterGridEntity>();
@@ -761,7 +717,6 @@ public class ClusterMapScreen : KScreen
 		return component;
 	}
 
-	// Token: 0x0600978C RID: 38796 RVA: 0x003B43FC File Offset: 0x003B25FC
 	private void UpdateTearStatus()
 	{
 		ClusterPOIManager clusterPOIManager = null;
@@ -779,155 +734,105 @@ public class ClusterMapScreen : KScreen
 		}
 	}
 
-	// Token: 0x040075DD RID: 30173
 	public static ClusterMapScreen Instance;
 
-	// Token: 0x040075DE RID: 30174
 	public GameObject cellVisContainer;
 
-	// Token: 0x040075DF RID: 30175
 	public GameObject terrainVisContainer;
 
-	// Token: 0x040075E0 RID: 30176
 	public GameObject mobileVisContainer;
 
-	// Token: 0x040075E1 RID: 30177
 	public GameObject telescopeVisContainer;
 
-	// Token: 0x040075E2 RID: 30178
 	public GameObject POIVisContainer;
 
-	// Token: 0x040075E3 RID: 30179
 	public GameObject FXVisContainer;
 
-	// Token: 0x040075E4 RID: 30180
 	public ClusterMapVisualizer cellVisPrefab;
 
-	// Token: 0x040075E5 RID: 30181
 	public ClusterMapVisualizer terrainVisPrefab;
 
-	// Token: 0x040075E6 RID: 30182
 	public ClusterMapVisualizer mobileVisPrefab;
 
-	// Token: 0x040075E7 RID: 30183
 	public ClusterMapVisualizer staticVisPrefab;
 
-	// Token: 0x040075E8 RID: 30184
 	public Color rocketPathColor;
 
-	// Token: 0x040075E9 RID: 30185
 	public Color rocketSelectedPathColor;
 
-	// Token: 0x040075EA RID: 30186
 	public Color rocketPreviewPathColor;
 
-	// Token: 0x040075EB RID: 30187
 	private ClusterMapHex m_selectedHex;
 
-	// Token: 0x040075EC RID: 30188
 	private ClusterMapHex m_hoveredHex;
 
-	// Token: 0x040075ED RID: 30189
 	private ClusterGridEntity m_selectedEntity;
 
-	// Token: 0x040075EE RID: 30190
 	public KButton closeButton;
 
-	// Token: 0x040075EF RID: 30191
 	private const float ZOOM_SCALE_MIN = 50f;
 
-	// Token: 0x040075F0 RID: 30192
 	private const float ZOOM_SCALE_MAX = 150f;
 
-	// Token: 0x040075F1 RID: 30193
 	private const float ZOOM_SCALE_INCREMENT = 25f;
 
-	// Token: 0x040075F2 RID: 30194
 	private const float ZOOM_SCALE_SPEED = 4f;
 
-	// Token: 0x040075F3 RID: 30195
 	private const float ZOOM_NAME_THRESHOLD = 115f;
 
-	// Token: 0x040075F4 RID: 30196
 	private float m_currentZoomScale = 75f;
 
-	// Token: 0x040075F5 RID: 30197
 	private float m_targetZoomScale = 75f;
 
-	// Token: 0x040075F6 RID: 30198
 	private ClusterMapPath m_previewMapPath;
 
-	// Token: 0x040075F7 RID: 30199
 	private Dictionary<ClusterGridEntity, ClusterMapVisualizer> m_gridEntityVis = new Dictionary<ClusterGridEntity, ClusterMapVisualizer>();
 
-	// Token: 0x040075F8 RID: 30200
 	private Dictionary<ClusterGridEntity, ClusterMapVisualizer> m_gridEntityAnims = new Dictionary<ClusterGridEntity, ClusterMapVisualizer>();
 
-	// Token: 0x040075F9 RID: 30201
 	private Dictionary<AxialI, ClusterMapVisualizer> m_cellVisByLocation = new Dictionary<AxialI, ClusterMapVisualizer>();
 
-	// Token: 0x040075FA RID: 30202
 	private Action<object> m_onDestinationChangedDelegate;
 
-	// Token: 0x040075FB RID: 30203
 	private Action<object> m_onSelectObjectDelegate;
 
-	// Token: 0x040075FC RID: 30204
 	[SerializeField]
 	private KScrollRect mapScrollRect;
 
-	// Token: 0x040075FD RID: 30205
 	[SerializeField]
 	private float scrollSpeed = 15f;
 
-	// Token: 0x040075FE RID: 30206
 	public GameObject selectMarkerPrefab;
 
-	// Token: 0x040075FF RID: 30207
 	public ClusterMapPathDrawer pathDrawer;
 
-	// Token: 0x04007600 RID: 30208
 	private SelectMarker m_selectMarker;
 
-	// Token: 0x04007601 RID: 30209
 	private bool movingToTargetNISPosition;
 
-	// Token: 0x04007602 RID: 30210
 	private Vector3 targetNISPosition;
 
-	// Token: 0x04007603 RID: 30211
 	private float targetNISZoom;
 
-	// Token: 0x04007604 RID: 30212
 	private AxialI selectOnMoveNISComplete;
 
-	// Token: 0x04007605 RID: 30213
 	private ClusterMapScreen.Mode m_mode;
 
-	// Token: 0x04007606 RID: 30214
 	private ClusterDestinationSelector m_destinationSelector;
 
-	// Token: 0x04007607 RID: 30215
 	private bool m_closeOnSelect;
 
-	// Token: 0x04007608 RID: 30216
 	private Coroutine activeMoveToTargetRoutine;
 
-	// Token: 0x04007609 RID: 30217
 	public float floatCycleScale = 4f;
 
-	// Token: 0x0400760A RID: 30218
 	public float floatCycleOffset = 0.75f;
 
-	// Token: 0x0400760B RID: 30219
 	public float floatCycleSpeed = 0.75f;
 
-	// Token: 0x02001C73 RID: 7283
 	public enum Mode
 	{
-		// Token: 0x0400760D RID: 30221
 		Default,
-		// Token: 0x0400760E RID: 30222
 		SelectDestination
 	}
 }

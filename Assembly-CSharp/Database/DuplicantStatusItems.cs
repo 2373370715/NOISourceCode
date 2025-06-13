@@ -5,28 +5,23 @@ using TUNING;
 
 namespace Database
 {
-	// Token: 0x020021A1 RID: 8609
 	public class DuplicantStatusItems : StatusItems
 	{
-		// Token: 0x0600B7BD RID: 47037 RVA: 0x0011B370 File Offset: 0x00119570
 		public DuplicantStatusItems(ResourceSet parent) : base("DuplicantStatusItems", parent)
 		{
 			this.CreateStatusItems();
 		}
 
-		// Token: 0x0600B7BE RID: 47038 RVA: 0x00459104 File Offset: 0x00457304
 		private StatusItem CreateStatusItem(string id, string prefix, string icon, StatusItem.IconType icon_type, NotificationType notification_type, bool allow_multiples, HashedString render_overlay, bool showWorldIcon = true, int status_overlays = 2)
 		{
 			return base.Add(new StatusItem(id, prefix, icon, icon_type, notification_type, allow_multiples, render_overlay, showWorldIcon, status_overlays, null));
 		}
 
-		// Token: 0x0600B7BF RID: 47039 RVA: 0x0045912C File Offset: 0x0045732C
 		private StatusItem CreateStatusItem(string id, string name, string tooltip, string icon, StatusItem.IconType icon_type, NotificationType notification_type, bool allow_multiples, HashedString render_overlay, int status_overlays = 2)
 		{
 			return base.Add(new StatusItem(id, name, tooltip, icon, icon_type, notification_type, allow_multiples, render_overlay, status_overlays, true, null));
 		}
 
-		// Token: 0x0600B7C0 RID: 47040 RVA: 0x00466DB0 File Offset: 0x00464FB0
 		private void CreateStatusItems()
 		{
 			Func<string, object, string> resolveStringCallback = delegate(string str, object data)
@@ -582,460 +577,308 @@ namespace Database
 			this.BionicCriticalBattery.AddNotification(null, null, null);
 		}
 
-		// Token: 0x04009404 RID: 37892
 		public StatusItem Idle;
 
-		// Token: 0x04009405 RID: 37893
 		public StatusItem IdleInRockets;
 
-		// Token: 0x04009406 RID: 37894
 		public StatusItem Pacified;
 
-		// Token: 0x04009407 RID: 37895
 		public StatusItem PendingPacification;
 
-		// Token: 0x04009408 RID: 37896
 		public StatusItem Dead;
 
-		// Token: 0x04009409 RID: 37897
 		public StatusItem CloggingToilet;
 
-		// Token: 0x0400940A RID: 37898
 		public StatusItem MoveToSuitNotRequired;
 
-		// Token: 0x0400940B RID: 37899
 		public StatusItem DroppingUnusedInventory;
 
-		// Token: 0x0400940C RID: 37900
 		public StatusItem MovingToSafeArea;
 
-		// Token: 0x0400940D RID: 37901
 		public StatusItem BedUnreachable;
 
-		// Token: 0x0400940E RID: 37902
 		public StatusItem Hungry;
 
-		// Token: 0x0400940F RID: 37903
 		public StatusItem Starving;
 
-		// Token: 0x04009410 RID: 37904
 		public StatusItem Rotten;
 
-		// Token: 0x04009411 RID: 37905
 		public StatusItem Quarantined;
 
-		// Token: 0x04009412 RID: 37906
 		public StatusItem NoRationsAvailable;
 
-		// Token: 0x04009413 RID: 37907
 		public StatusItem RationsUnreachable;
 
-		// Token: 0x04009414 RID: 37908
 		public StatusItem RationsNotPermitted;
 
-		// Token: 0x04009415 RID: 37909
 		public StatusItem DailyRationLimitReached;
 
-		// Token: 0x04009416 RID: 37910
 		public StatusItem Scalding;
 
-		// Token: 0x04009417 RID: 37911
 		public StatusItem Hot;
 
-		// Token: 0x04009418 RID: 37912
 		public StatusItem Cold;
 
-		// Token: 0x04009419 RID: 37913
 		public StatusItem ExitingCold;
 
-		// Token: 0x0400941A RID: 37914
 		public StatusItem ExitingHot;
 
-		// Token: 0x0400941B RID: 37915
 		public StatusItem QuarantineAreaUnassigned;
 
-		// Token: 0x0400941C RID: 37916
 		public StatusItem QuarantineAreaUnreachable;
 
-		// Token: 0x0400941D RID: 37917
 		public StatusItem Tired;
 
-		// Token: 0x0400941E RID: 37918
 		public StatusItem NervousBreakdown;
 
-		// Token: 0x0400941F RID: 37919
 		public StatusItem Unhappy;
 
-		// Token: 0x04009420 RID: 37920
 		public StatusItem Suffocating;
 
-		// Token: 0x04009421 RID: 37921
 		public StatusItem HoldingBreath;
 
-		// Token: 0x04009422 RID: 37922
 		public StatusItem ToiletUnreachable;
 
-		// Token: 0x04009423 RID: 37923
 		public StatusItem NoUsableToilets;
 
-		// Token: 0x04009424 RID: 37924
 		public StatusItem NoToilets;
 
-		// Token: 0x04009425 RID: 37925
 		public StatusItem Vomiting;
 
-		// Token: 0x04009426 RID: 37926
 		public StatusItem Coughing;
 
-		// Token: 0x04009427 RID: 37927
 		public StatusItem Slippering;
 
-		// Token: 0x04009428 RID: 37928
 		public StatusItem BreathingO2;
 
-		// Token: 0x04009429 RID: 37929
 		public StatusItem BreathingO2Bionic;
 
-		// Token: 0x0400942A RID: 37930
 		public StatusItem EmittingCO2;
 
-		// Token: 0x0400942B RID: 37931
 		public StatusItem LowOxygen;
 
-		// Token: 0x0400942C RID: 37932
 		public StatusItem RedAlert;
 
-		// Token: 0x0400942D RID: 37933
 		public StatusItem Digging;
 
-		// Token: 0x0400942E RID: 37934
 		public StatusItem Eating;
 
-		// Token: 0x0400942F RID: 37935
 		public StatusItem Dreaming;
 
-		// Token: 0x04009430 RID: 37936
 		public StatusItem Sleeping;
 
-		// Token: 0x04009431 RID: 37937
 		public StatusItem SleepingExhausted;
 
-		// Token: 0x04009432 RID: 37938
 		public StatusItem SleepingInterruptedByLight;
 
-		// Token: 0x04009433 RID: 37939
 		public StatusItem SleepingInterruptedByNoise;
 
-		// Token: 0x04009434 RID: 37940
 		public StatusItem SleepingInterruptedByFearOfDark;
 
-		// Token: 0x04009435 RID: 37941
 		public StatusItem SleepingInterruptedByMovement;
 
-		// Token: 0x04009436 RID: 37942
 		public StatusItem SleepingInterruptedByCold;
 
-		// Token: 0x04009437 RID: 37943
 		public StatusItem SleepingPeacefully;
 
-		// Token: 0x04009438 RID: 37944
 		public StatusItem SleepingBadly;
 
-		// Token: 0x04009439 RID: 37945
 		public StatusItem SleepingTerribly;
 
-		// Token: 0x0400943A RID: 37946
 		public StatusItem Cleaning;
 
-		// Token: 0x0400943B RID: 37947
 		public StatusItem PickingUp;
 
-		// Token: 0x0400943C RID: 37948
 		public StatusItem Mopping;
 
-		// Token: 0x0400943D RID: 37949
 		public StatusItem Cooking;
 
-		// Token: 0x0400943E RID: 37950
 		public StatusItem Arting;
 
-		// Token: 0x0400943F RID: 37951
 		public StatusItem Mushing;
 
-		// Token: 0x04009440 RID: 37952
 		public StatusItem Researching;
 
-		// Token: 0x04009441 RID: 37953
 		public StatusItem ResearchingFromPOI;
 
-		// Token: 0x04009442 RID: 37954
 		public StatusItem MissionControlling;
 
-		// Token: 0x04009443 RID: 37955
 		public StatusItem Tinkering;
 
-		// Token: 0x04009444 RID: 37956
 		public StatusItem Storing;
 
-		// Token: 0x04009445 RID: 37957
 		public StatusItem Building;
 
-		// Token: 0x04009446 RID: 37958
 		public StatusItem Equipping;
 
-		// Token: 0x04009447 RID: 37959
 		public StatusItem WarmingUp;
 
-		// Token: 0x04009448 RID: 37960
 		public StatusItem GeneratingPower;
 
-		// Token: 0x04009449 RID: 37961
 		public StatusItem Ranching;
 
-		// Token: 0x0400944A RID: 37962
 		public StatusItem Harvesting;
 
-		// Token: 0x0400944B RID: 37963
 		public StatusItem Uprooting;
 
-		// Token: 0x0400944C RID: 37964
 		public StatusItem Emptying;
 
-		// Token: 0x0400944D RID: 37965
 		public StatusItem Toggling;
 
-		// Token: 0x0400944E RID: 37966
 		public StatusItem Deconstructing;
 
-		// Token: 0x0400944F RID: 37967
 		public StatusItem Disinfecting;
 
-		// Token: 0x04009450 RID: 37968
 		public StatusItem Relocating;
 
-		// Token: 0x04009451 RID: 37969
 		public StatusItem Upgrading;
 
-		// Token: 0x04009452 RID: 37970
 		public StatusItem Fabricating;
 
-		// Token: 0x04009453 RID: 37971
 		public StatusItem Processing;
 
-		// Token: 0x04009454 RID: 37972
 		public StatusItem Spicing;
 
-		// Token: 0x04009455 RID: 37973
 		public StatusItem Clearing;
 
-		// Token: 0x04009456 RID: 37974
 		public StatusItem BodyRegulatingHeating;
 
-		// Token: 0x04009457 RID: 37975
 		public StatusItem BodyRegulatingCooling;
 
-		// Token: 0x04009458 RID: 37976
 		public StatusItem EntombedChore;
 
-		// Token: 0x04009459 RID: 37977
 		public StatusItem EarlyMorning;
 
-		// Token: 0x0400945A RID: 37978
 		public StatusItem NightTime;
 
-		// Token: 0x0400945B RID: 37979
 		public StatusItem PoorDecor;
 
-		// Token: 0x0400945C RID: 37980
 		public StatusItem PoorQualityOfLife;
 
-		// Token: 0x0400945D RID: 37981
 		public StatusItem PoorFoodQuality;
 
-		// Token: 0x0400945E RID: 37982
 		public StatusItem GoodFoodQuality;
 
-		// Token: 0x0400945F RID: 37983
 		public StatusItem SevereWounds;
 
-		// Token: 0x04009460 RID: 37984
 		public StatusItem Incapacitated;
 
-		// Token: 0x04009461 RID: 37985
 		public StatusItem BionicOfflineIncapacitated;
 
-		// Token: 0x04009462 RID: 37986
 		public StatusItem BionicWaitingForReboot;
 
-		// Token: 0x04009463 RID: 37987
 		public StatusItem BionicBeingRebooted;
 
-		// Token: 0x04009464 RID: 37988
 		public StatusItem BionicRequiresSkillPerk;
 
-		// Token: 0x04009465 RID: 37989
 		public StatusItem BionicWantsOilChange;
 
-		// Token: 0x04009466 RID: 37990
 		public StatusItem BionicMicrochipGeneration;
 
-		// Token: 0x04009467 RID: 37991
 		public StatusItem InstallingElectrobank;
 
-		// Token: 0x04009468 RID: 37992
 		public StatusItem Fighting;
 
-		// Token: 0x04009469 RID: 37993
 		public StatusItem Fleeing;
 
-		// Token: 0x0400946A RID: 37994
 		public StatusItem Stressed;
 
-		// Token: 0x0400946B RID: 37995
 		public StatusItem LashingOut;
 
-		// Token: 0x0400946C RID: 37996
 		public StatusItem LowImmunity;
 
-		// Token: 0x0400946D RID: 37997
 		public StatusItem Studying;
 
-		// Token: 0x0400946E RID: 37998
 		public StatusItem Socializing;
 
-		// Token: 0x0400946F RID: 37999
 		public StatusItem Mingling;
 
-		// Token: 0x04009470 RID: 38000
 		public StatusItem ContactWithGerms;
 
-		// Token: 0x04009471 RID: 38001
 		public StatusItem ExposedToGerms;
 
-		// Token: 0x04009472 RID: 38002
 		public StatusItem LightWorkEfficiencyBonus;
 
-		// Token: 0x04009473 RID: 38003
 		public StatusItem LaboratoryWorkEfficiencyBonus;
 
-		// Token: 0x04009474 RID: 38004
 		public StatusItem BeingProductive;
 
-		// Token: 0x04009475 RID: 38005
 		public StatusItem BalloonArtistPlanning;
 
-		// Token: 0x04009476 RID: 38006
 		public StatusItem BalloonArtistHandingOut;
 
-		// Token: 0x04009477 RID: 38007
 		public StatusItem Partying;
 
-		// Token: 0x04009478 RID: 38008
 		public StatusItem GasLiquidIrritation;
 
-		// Token: 0x04009479 RID: 38009
 		public StatusItem ExpellingRads;
 
-		// Token: 0x0400947A RID: 38010
 		public StatusItem AnalyzingGenes;
 
-		// Token: 0x0400947B RID: 38011
 		public StatusItem AnalyzingArtifact;
 
-		// Token: 0x0400947C RID: 38012
 		public StatusItem MegaBrainTank_Pajamas_Wearing;
 
-		// Token: 0x0400947D RID: 38013
 		public StatusItem MegaBrainTank_Pajamas_Sleeping;
 
-		// Token: 0x0400947E RID: 38014
 		public StatusItem JoyResponse_HasBalloon;
 
-		// Token: 0x0400947F RID: 38015
 		public StatusItem JoyResponse_HeardJoySinger;
 
-		// Token: 0x04009480 RID: 38016
 		public StatusItem JoyResponse_StickerBombing;
 
-		// Token: 0x04009481 RID: 38017
 		public StatusItem Meteorphile;
 
-		// Token: 0x04009482 RID: 38018
 		public StatusItem FossilHunt_WorkerExcavating;
 
-		// Token: 0x04009483 RID: 38019
 		public StatusItem MorbRoverMakerDoctorWorking;
 
-		// Token: 0x04009484 RID: 38020
 		public StatusItem MorbRoverMakerWorkingOnRevealing;
 
-		// Token: 0x04009485 RID: 38021
 		public StatusItem ArmingTrap;
 
-		// Token: 0x04009486 RID: 38022
 		public StatusItem WaxedForTransitTube;
 
-		// Token: 0x04009487 RID: 38023
 		public StatusItem DataRainerPlanning;
 
-		// Token: 0x04009488 RID: 38024
 		public StatusItem DataRainerRaining;
 
-		// Token: 0x04009489 RID: 38025
 		public StatusItem RoboDancerPlanning;
 
-		// Token: 0x0400948A RID: 38026
 		public StatusItem RoboDancerDancing;
 
-		// Token: 0x0400948B RID: 38027
 		public StatusItem WatchRoboDancerWorkable;
 
-		// Token: 0x0400948C RID: 38028
 		public StatusItem BionicExplorerBooster;
 
-		// Token: 0x0400948D RID: 38029
 		public StatusItem EnteringDock;
 
-		// Token: 0x0400948E RID: 38030
 		public StatusItem UnreachableDock;
 
-		// Token: 0x0400948F RID: 38031
 		public StatusItem NoHomeDock;
 
-		// Token: 0x04009490 RID: 38032
 		public StatusItem RemoteWorkerCapacitorStatus;
 
-		// Token: 0x04009491 RID: 38033
 		public StatusItem RemoteWorkerLowPower;
 
-		// Token: 0x04009492 RID: 38034
 		public StatusItem RemoteWorkerOutOfPower;
 
-		// Token: 0x04009493 RID: 38035
 		public StatusItem RemoteWorkerHighGunkLevel;
 
-		// Token: 0x04009494 RID: 38036
 		public StatusItem RemoteWorkerFullGunkLevel;
 
-		// Token: 0x04009495 RID: 38037
 		public StatusItem RemoteWorkerLowOil;
 
-		// Token: 0x04009496 RID: 38038
 		public StatusItem RemoteWorkerOutOfOil;
 
-		// Token: 0x04009497 RID: 38039
 		public StatusItem RemoteWorkerRecharging;
 
-		// Token: 0x04009498 RID: 38040
 		public StatusItem RemoteWorkerOiling;
 
-		// Token: 0x04009499 RID: 38041
 		public StatusItem RemoteWorkerDraining;
 
-		// Token: 0x0400949A RID: 38042
 		public StatusItem BionicCriticalBattery;
 
-		// Token: 0x0400949B RID: 38043
 		private const int NONE_OVERLAY = 0;
 	}
 }

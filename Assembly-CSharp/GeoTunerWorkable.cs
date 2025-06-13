@@ -1,10 +1,8 @@
 ﻿using System;
 using TUNING;
 
-// Token: 0x02000DE1 RID: 3553
 public class GeoTunerWorkable : Workable
 {
-	// Token: 0x0600453C RID: 17724 RVA: 0x002590C4 File Offset: 0x002572C4
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();

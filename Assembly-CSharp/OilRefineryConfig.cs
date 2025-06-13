@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020004DC RID: 1244
 public class OilRefineryConfig : IBuildingConfig
 {
-	// Token: 0x06001567 RID: 5479 RVA: 0x0019EBC8 File Offset: 0x0019CDC8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "OilRefinery";
@@ -35,7 +33,6 @@ public class OilRefineryConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001568 RID: 5480 RVA: 0x0019EC88 File Offset: 0x0019CE88
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
@@ -71,29 +68,21 @@ public class OilRefineryConfig : IBuildingConfig
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x06001569 RID: 5481 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000ECB RID: 3787
 	public const string ID = "OilRefinery";
 
-	// Token: 0x04000ECC RID: 3788
 	public const SimHashes INPUT_ELEMENT = SimHashes.CrudeOil;
 
-	// Token: 0x04000ECD RID: 3789
 	private const SimHashes OUTPUT_LIQUID_ELEMENT = SimHashes.Petroleum;
 
-	// Token: 0x04000ECE RID: 3790
 	private const SimHashes OUTPUT_GAS_ELEMENT = SimHashes.Methane;
 
-	// Token: 0x04000ECF RID: 3791
 	public const float CONSUMPTION_RATE = 10f;
 
-	// Token: 0x04000ED0 RID: 3792
 	public const float OUTPUT_LIQUID_RATE = 5f;
 
-	// Token: 0x04000ED1 RID: 3793
 	public const float OUTPUT_GAS_RATE = 0.09f;
 }

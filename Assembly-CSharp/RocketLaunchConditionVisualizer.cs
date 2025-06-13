@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000B20 RID: 2848
 public class RocketLaunchConditionVisualizer : KMonoBehaviour
 {
-	// Token: 0x060034D4 RID: 13524 RVA: 0x00218A24 File Offset: 0x00216C24
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -21,19 +19,16 @@ public class RocketLaunchConditionVisualizer : KMonoBehaviour
 		base.Subscribe(1512695988, new Action<object>(this.OnAnyRocketModuleChanged));
 	}
 
-	// Token: 0x060034D5 RID: 13525 RVA: 0x000C6E9C File Offset: 0x000C509C
 	protected override void OnCleanUp()
 	{
 		base.Unsubscribe(1512695988, new Action<object>(this.OnAnyRocketModuleChanged));
 	}
 
-	// Token: 0x060034D6 RID: 13526 RVA: 0x000C6EB5 File Offset: 0x000C50B5
 	private void OnAnyRocketModuleChanged(object obj)
 	{
 		this.UpdateAllModuleData();
 	}
 
-	// Token: 0x060034D7 RID: 13527 RVA: 0x00218A78 File Offset: 0x00216C78
 	private void UpdateAllModuleData()
 	{
 		if (this.moduleVisualizeData != null)
@@ -78,28 +73,20 @@ public class RocketLaunchConditionVisualizer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0400244B RID: 9291
 	public RocketLaunchConditionVisualizer.RocketModuleVisualizeData[] moduleVisualizeData;
 
-	// Token: 0x0400244C RID: 9292
 	private LaunchConditionManager launchConditionManager;
 
-	// Token: 0x0400244D RID: 9293
 	private RocketModuleCluster clusterModule;
 
-	// Token: 0x02000B21 RID: 2849
 	public struct RocketModuleVisualizeData
 	{
-		// Token: 0x0400244E RID: 9294
 		public RocketModule Module;
 
-		// Token: 0x0400244F RID: 9295
 		public Vector2I OriginOffset;
 
-		// Token: 0x04002450 RID: 9296
 		public int RangeMin;
 
-		// Token: 0x04002451 RID: 9297
 		public int RangeMax;
 	}
 }

@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003D2 RID: 978
 public class LiquidPumpingStationConfig : IBuildingConfig
 {
-	// Token: 0x06000FE5 RID: 4069 RVA: 0x00189070 File Offset: 0x00187270
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "LiquidPumpingStation";
@@ -33,7 +31,6 @@ public class LiquidPumpingStationConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000FE6 RID: 4070 RVA: 0x00189118 File Offset: 0x00187318
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<LoopingSounds>();
@@ -51,7 +48,6 @@ public class LiquidPumpingStationConfig : IBuildingConfig
 		go.AddTag(GameTags.LiquidSource);
 	}
 
-	// Token: 0x06000FE7 RID: 4071 RVA: 0x00189198 File Offset: 0x00187398
 	private static void AddGuide(GameObject go, bool occupy_tiles)
 	{
 		GameObject gameObject = new GameObject();
@@ -71,7 +67,6 @@ public class LiquidPumpingStationConfig : IBuildingConfig
 		pumpingStationGuide.occupyTiles = occupy_tiles;
 	}
 
-	// Token: 0x06000FE8 RID: 4072 RVA: 0x00189234 File Offset: 0x00187434
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		LiquidPumpingStationConfig.AddGuide(go.GetComponent<Building>().Def.BuildingPreview, false);
@@ -83,9 +78,7 @@ public class LiquidPumpingStationConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x04000B72 RID: 2930
 	public const string ID = "LiquidPumpingStation";
 
-	// Token: 0x04000B73 RID: 2931
 	public const int TAIL_LENGTH = 4;
 }

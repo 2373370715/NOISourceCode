@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020004F1 RID: 1265
 public class OxygenMaskMarkerConfig : IBuildingConfig
 {
-	// Token: 0x060015C1 RID: 5569 RVA: 0x001A0560 File Offset: 0x0019E760
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "OxygenMaskMarker";
@@ -28,7 +26,6 @@ public class OxygenMaskMarkerConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060015C2 RID: 5570 RVA: 0x001A05D8 File Offset: 0x0019E7D8
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		SuitMarker suitMarker = go.AddOrGet<SuitMarker>();
@@ -45,12 +42,10 @@ public class OxygenMaskMarkerConfig : IBuildingConfig
 		go.AddTag(GameTags.JetSuitBlocker);
 	}
 
-	// Token: 0x060015C3 RID: 5571 RVA: 0x000AAF59 File Offset: 0x000A9159
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
 	}
 
-	// Token: 0x04000EF6 RID: 3830
 	public const string ID = "OxygenMaskMarker";
 }

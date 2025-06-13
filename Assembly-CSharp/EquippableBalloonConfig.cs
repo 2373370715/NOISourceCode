@@ -4,10 +4,8 @@ using Klei.AI;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000BB RID: 187
 public class EquippableBalloonConfig : IEquipmentConfig
 {
-	// Token: 0x06000318 RID: 792 RVA: 0x00154CA8 File Offset: 0x00152EA8
 	public EquipmentDef CreateEquipmentDef()
 	{
 		List<AttributeModifier> attributeModifiers = new List<AttributeModifier>();
@@ -17,7 +15,6 @@ public class EquippableBalloonConfig : IEquipmentConfig
 		return equipmentDef;
 	}
 
-	// Token: 0x06000319 RID: 793 RVA: 0x00154D10 File Offset: 0x00152F10
 	private void OnEquipBalloon(Equippable eq)
 	{
 		if (!eq.IsNullOrDestroyed() && !eq.assignee.IsNullOrDestroyed())
@@ -42,7 +39,6 @@ public class EquippableBalloonConfig : IEquipmentConfig
 		}
 	}
 
-	// Token: 0x0600031A RID: 794 RVA: 0x00154DB8 File Offset: 0x00152FB8
 	private void OnUnequipBalloon(Equippable eq)
 	{
 		if (!eq.IsNullOrDestroyed() && !eq.assignee.IsNullOrDestroyed())
@@ -69,7 +65,6 @@ public class EquippableBalloonConfig : IEquipmentConfig
 		Util.KDestroyGameObject(eq.gameObject);
 	}
 
-	// Token: 0x0600031B RID: 795 RVA: 0x00154E60 File Offset: 0x00153060
 	public void DoPostConfigure(GameObject go)
 	{
 		go.GetComponent<KPrefabID>().AddTag(GameTags.Clothes, false);
@@ -83,18 +78,15 @@ public class EquippableBalloonConfig : IEquipmentConfig
 		go.AddOrGet<EquippableBalloon>();
 	}
 
-	// Token: 0x0600031C RID: 796 RVA: 0x000AB173 File Offset: 0x000A9373
 	private void SpawnFxInstanceFor(KMonoBehaviour target)
 	{
 		new BalloonFX.Instance(target.GetComponent<KMonoBehaviour>()).StartSM();
 	}
 
-	// Token: 0x0600031D RID: 797 RVA: 0x000AB185 File Offset: 0x000A9385
 	private void DestroyFxInstanceFor(KMonoBehaviour target)
 	{
 		target.GetSMI<BalloonFX.Instance>().StopSM("Unequipped");
 	}
 
-	// Token: 0x040001E8 RID: 488
 	public const string ID = "EquippableBalloon";
 }

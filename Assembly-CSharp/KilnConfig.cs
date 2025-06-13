@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003AD RID: 941
 public class KilnConfig : IBuildingConfig
 {
-	// Token: 0x06000F37 RID: 3895 RVA: 0x001860B4 File Offset: 0x001842B4
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "Kiln";
@@ -31,7 +29,6 @@ public class KilnConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000F38 RID: 3896 RVA: 0x0018613C File Offset: 0x0018433C
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
@@ -49,7 +46,6 @@ public class KilnConfig : IBuildingConfig
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x06000F39 RID: 3897 RVA: 0x001861B8 File Offset: 0x001843B8
 	private void ConfigureRecipes()
 	{
 		Tag tag = SimHashes.Ceramic.CreateTag();
@@ -122,7 +118,6 @@ public class KilnConfig : IBuildingConfig
 		ComplexRecipeManager.Get().AddObsoleteIDMapping(obsolete_id3, text3);
 	}
 
-	// Token: 0x06000F3A RID: 3898 RVA: 0x000B0F23 File Offset: 0x000AF123
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
@@ -130,27 +125,19 @@ public class KilnConfig : IBuildingConfig
 		SymbolOverrideControllerUtil.AddToPrefab(go);
 	}
 
-	// Token: 0x04000B26 RID: 2854
 	public const string ID = "Kiln";
 
-	// Token: 0x04000B27 RID: 2855
 	public const float INPUT_CLAY_PER_SECOND = 1f;
 
-	// Token: 0x04000B28 RID: 2856
 	public const float CERAMIC_PER_SECOND = 1f;
 
-	// Token: 0x04000B29 RID: 2857
 	public const float CO2_RATIO = 0.1f;
 
-	// Token: 0x04000B2A RID: 2858
 	public const float OUTPUT_TEMP = 353.15f;
 
-	// Token: 0x04000B2B RID: 2859
 	public const float REFILL_RATE = 2400f;
 
-	// Token: 0x04000B2C RID: 2860
 	public const float CERAMIC_STORAGE_AMOUNT = 2400f;
 
-	// Token: 0x04000B2D RID: 2861
 	public const float COAL_RATE = 0.1f;
 }

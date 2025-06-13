@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000530 RID: 1328
 public class PropGravitasFirstAidKitConfig : IEntityConfig
 {
-	// Token: 0x060016CD RID: 5837 RVA: 0x001A3DF4 File Offset: 0x001A1FF4
 	public GameObject CreatePrefab()
 	{
 		string id = "PropGravitasFirstAidKit";
@@ -33,7 +31,6 @@ public class PropGravitasFirstAidKitConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x060016CE RID: 5838 RVA: 0x001A3EB8 File Offset: 0x001A20B8
 	public static string[][] GetLockerBaseContents()
 	{
 		string text = DlcManager.FeatureRadiationEnabled() ? "BasicRadPill" : "IntermediateCure";
@@ -53,7 +50,6 @@ public class PropGravitasFirstAidKitConfig : IEntityConfig
 		};
 	}
 
-	// Token: 0x060016CF RID: 5839 RVA: 0x000B42BF File Offset: 0x000B24BF
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.GetComponent<OccupyArea>().objectLayers = new ObjectLayer[]
@@ -65,7 +61,6 @@ public class PropGravitasFirstAidKitConfig : IEntityConfig
 		component.ChooseContents();
 	}
 
-	// Token: 0x060016D0 RID: 5840 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}

@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000407 RID: 1031
 public class ManualGeneratorConfig : IBuildingConfig
 {
-	// Token: 0x0600111A RID: 4378 RVA: 0x0018CAF8 File Offset: 0x0018ACF8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "ManualGenerator";
@@ -35,7 +33,6 @@ public class ManualGeneratorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600111B RID: 4379 RVA: 0x0018CBBC File Offset: 0x0018ADBC
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
@@ -52,7 +49,6 @@ public class ManualGeneratorConfig : IBuildingConfig
 		kbatchedAnimController.initialAnim = "off";
 	}
 
-	// Token: 0x0600111C RID: 4380 RVA: 0x000B20DB File Offset: 0x000B02DB
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		base.ConfigureBuildingTemplate(go, prefab_tag);
@@ -60,6 +56,5 @@ public class ManualGeneratorConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.LightDutyGeneratorType, false);
 	}
 
-	// Token: 0x04000BE0 RID: 3040
 	public const string ID = "ManualGenerator";
 }

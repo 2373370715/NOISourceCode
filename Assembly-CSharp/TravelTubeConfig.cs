@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005EA RID: 1514
 public class TravelTubeConfig : IBuildingConfig
 {
-	// Token: 0x06001A85 RID: 6789 RVA: 0x001B41AC File Offset: 0x001B23AC
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "TravelTube";
@@ -40,7 +38,6 @@ public class TravelTubeConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001A86 RID: 6790 RVA: 0x000B5ADB File Offset: 0x000B3CDB
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
@@ -48,7 +45,6 @@ public class TravelTubeConfig : IBuildingConfig
 		go.AddOrGet<TravelTube>();
 	}
 
-	// Token: 0x06001A87 RID: 6791 RVA: 0x000B5AFF File Offset: 0x000B3CFF
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		KAnimGraphTileVisualizer kanimGraphTileVisualizer = go.AddComponent<KAnimGraphTileVisualizer>();
@@ -56,7 +52,6 @@ public class TravelTubeConfig : IBuildingConfig
 		kanimGraphTileVisualizer.isPhysicalBuilding = false;
 	}
 
-	// Token: 0x06001A88 RID: 6792 RVA: 0x000B5B14 File Offset: 0x000B3D14
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.GetComponent<Building>().Def.BuildingUnderConstruction.GetComponent<Constructable>().isDiggingRequired = false;
@@ -65,6 +60,5 @@ public class TravelTubeConfig : IBuildingConfig
 		kanimGraphTileVisualizer.isPhysicalBuilding = true;
 	}
 
-	// Token: 0x04001121 RID: 4385
 	public const string ID = "TravelTube";
 }

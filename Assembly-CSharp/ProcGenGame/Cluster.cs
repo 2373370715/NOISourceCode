@@ -11,12 +11,9 @@ using UnityEngine;
 
 namespace ProcGenGame
 {
-	// Token: 0x02002127 RID: 8487
 	[Serializable]
 	public class Cluster
 	{
-		// Token: 0x17000BA1 RID: 2977
-		// (get) Token: 0x0600B4D0 RID: 46288 RVA: 0x0011A03A File Offset: 0x0011823A
 		public ClusterLayout clusterLayout
 		{
 			get
@@ -25,13 +22,8 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x17000BA2 RID: 2978
-		// (get) Token: 0x0600B4D1 RID: 46289 RVA: 0x0011A047 File Offset: 0x00118247
-		// (set) Token: 0x0600B4D2 RID: 46290 RVA: 0x0011A04F File Offset: 0x0011824F
 		public bool IsGenerationComplete { get; private set; }
 
-		// Token: 0x17000BA3 RID: 2979
-		// (get) Token: 0x0600B4D3 RID: 46291 RVA: 0x0011A058 File Offset: 0x00118258
 		public bool IsGenerating
 		{
 			get
@@ -40,12 +32,10 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B4D4 RID: 46292 RVA: 0x0011A06F File Offset: 0x0011826F
 		private Cluster()
 		{
 		}
 
-		// Token: 0x0600B4D5 RID: 46293 RVA: 0x0044E92C File Offset: 0x0044CB2C
 		public Cluster(string clusterName, int seed, List<string> chosenStoryTraitIds, bool assertMissingTraits, bool skipWorldTraits, bool isRunningWorldgenDebug = false)
 		{
 			DebugUtil.Assert(!string.IsNullOrEmpty(clusterName), "Cluster file is missing");
@@ -92,7 +82,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B4D6 RID: 46294 RVA: 0x0044EAC8 File Offset: 0x0044CCC8
 		public void InitializeWorlds(bool reuseWorldgen = false, bool isRunningWorldgenDebug = false)
 		{
 			this.mutatedClusterLayout = WorldgenMixing.DoWorldMixing(SettingsCache.clusterLayouts.clusterCache[this.Id], this.seed, isRunningWorldgenDebug, false);
@@ -164,13 +153,11 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B4D7 RID: 46295 RVA: 0x0011A0A6 File Offset: 0x001182A6
 		public void Reset()
 		{
 			this.worlds.Clear();
 		}
 
-		// Token: 0x0600B4D8 RID: 46296 RVA: 0x0044EDB0 File Offset: 0x0044CFB0
 		private void LogBeginGeneration()
 		{
 			string str = (CustomGameSettings.Instance != null) ? CustomGameSettings.Instance.GetSettingsCoordinate() : this.seed.ToString();
@@ -208,7 +195,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B4D9 RID: 46297 RVA: 0x0044EEC8 File Offset: 0x0044D0C8
 		public void Generate(WorldGen.OfflineCallbackFunction callbackFn, Action<OfflineWorldGen.ErrorInfo> error_cb, int worldSeed = -1, int layoutSeed = -1, int terrainSeed = -1, int noiseSeed = -1, bool doSimSettle = true, bool debug = false, bool skipPlacingTemplates = false)
 		{
 			this.doSimSettle = doSimSettle;
@@ -226,19 +212,16 @@ namespace ProcGenGame
 			this.thread.Start();
 		}
 
-		// Token: 0x0600B4DA RID: 46298 RVA: 0x0011A0B3 File Offset: 0x001182B3
 		private void StopThread()
 		{
 			this.thread = null;
 		}
 
-		// Token: 0x0600B4DB RID: 46299 RVA: 0x0011A0BC File Offset: 0x001182BC
 		private bool IsRunningDebugGen()
 		{
 			return !this.ApplicationIsPlaying;
 		}
 
-		// Token: 0x0600B4DC RID: 46300 RVA: 0x0044EF7C File Offset: 0x0044D17C
 		private void BeginGeneration()
 		{
 			this.LogBeginGeneration();
@@ -370,13 +353,11 @@ namespace ProcGenGame
 			this.IsGenerationComplete = true;
 		}
 
-		// Token: 0x0600B4DD RID: 46301 RVA: 0x0011A0C7 File Offset: 0x001182C7
 		private bool IsValidHex(AxialI location)
 		{
 			return location.IsWithinRadius(AxialI.ZERO, this.numRings - 1);
 		}
 
-		// Token: 0x0600B4DE RID: 46302 RVA: 0x0044F370 File Offset: 0x0044D570
 		public bool AssignClusterLocations()
 		{
 			this.myRandom = new SeededRandom(this.seed);
@@ -529,7 +510,6 @@ namespace ProcGenGame
 			return true;
 		}
 
-		// Token: 0x0600B4DF RID: 46303 RVA: 0x0011A0DC File Offset: 0x001182DC
 		public void AbortGeneration()
 		{
 			if (this.thread != null && this.thread.IsAlive)
@@ -539,13 +519,11 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B4E0 RID: 46304 RVA: 0x0011A105 File Offset: 0x00118305
 		private void ThreadMain()
 		{
 			this.BeginGeneration();
 		}
 
-		// Token: 0x0600B4E1 RID: 46305 RVA: 0x0044FB5C File Offset: 0x0044DD5C
 		private void Save(BinaryWriter fileWriter)
 		{
 			try
@@ -617,7 +595,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B4E2 RID: 46306 RVA: 0x0044FE08 File Offset: 0x0044E008
 		public static Cluster Load(FastReader reader)
 		{
 			Cluster cluster = new Cluster();
@@ -675,7 +652,6 @@ namespace ProcGenGame
 			return cluster;
 		}
 
-		// Token: 0x0600B4E3 RID: 46307 RVA: 0x0044FFF4 File Offset: 0x0044E1F4
 		public void LoadClusterSim(List<SimSaveFileStructure> loadedWorlds, FastReader reader)
 		{
 			try
@@ -712,7 +688,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B4E4 RID: 46308 RVA: 0x004500A4 File Offset: 0x0044E2A4
 		public void SetIsRunningDebug(bool isDebug)
 		{
 			foreach (WorldGen worldGen in this.worlds)
@@ -721,14 +696,12 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B4E5 RID: 46309 RVA: 0x0011A10D File Offset: 0x0011830D
 		public void DEBUG_UpdateSeed(int seed)
 		{
 			this.seed = seed;
 			this.InitializeWorlds(true, true);
 		}
 
-		// Token: 0x0600B4E6 RID: 46310 RVA: 0x004500F8 File Offset: 0x0044E2F8
 		public int MaxSupportedSubworldMixings()
 		{
 			int num = 0;
@@ -739,7 +712,6 @@ namespace ProcGenGame
 			return num;
 		}
 
-		// Token: 0x0600B4E7 RID: 46311 RVA: 0x00450160 File Offset: 0x0044E360
 		public int MaxSupportedWorldMixings()
 		{
 			int num = 0;
@@ -753,69 +725,49 @@ namespace ProcGenGame
 			return num;
 		}
 
-		// Token: 0x04008EFB RID: 36603
 		public List<WorldGen> worlds = new List<WorldGen>();
 
-		// Token: 0x04008EFC RID: 36604
 		public WorldGen currentWorld;
 
-		// Token: 0x04008EFD RID: 36605
 		public Vector2I size;
 
-		// Token: 0x04008EFE RID: 36606
 		public string Id;
 
-		// Token: 0x04008EFF RID: 36607
 		public int numRings = 5;
 
-		// Token: 0x04008F00 RID: 36608
 		public bool worldTraitsEnabled;
 
-		// Token: 0x04008F01 RID: 36609
 		public bool assertMissingTraits;
 
-		// Token: 0x04008F02 RID: 36610
 		public Dictionary<ClusterLayoutSave.POIType, List<AxialI>> poiLocations = new Dictionary<ClusterLayoutSave.POIType, List<AxialI>>();
 
-		// Token: 0x04008F03 RID: 36611
 		public Dictionary<AxialI, string> poiPlacements = new Dictionary<AxialI, string>();
 
-		// Token: 0x04008F04 RID: 36612
 		private int seed;
 
-		// Token: 0x04008F05 RID: 36613
 		private SeededRandom myRandom;
 
-		// Token: 0x04008F06 RID: 36614
 		private bool doSimSettle = true;
 
-		// Token: 0x04008F07 RID: 36615
 		[NonSerialized]
 		public Action<int, WorldGen> PerWorldGenBeginCallback;
 
-		// Token: 0x04008F08 RID: 36616
 		[NonSerialized]
 		public Action<int, WorldGen, Sim.Cell[], Sim.DiseaseCell[]> PerWorldGenCompleteCallback;
 
-		// Token: 0x04008F09 RID: 36617
 		[NonSerialized]
 		public Func<int, WorldGen, bool> ShouldSkipWorldCallback;
 
-		// Token: 0x04008F0A RID: 36618
 		[NonSerialized]
 		public List<WorldTrait> unplacedStoryTraits;
 
-		// Token: 0x04008F0B RID: 36619
 		[NonSerialized]
 		public List<string> chosenStoryTraitIds;
 
-		// Token: 0x04008F0C RID: 36620
 		private MutatedClusterLayout mutatedClusterLayout;
 
-		// Token: 0x04008F0D RID: 36621
 		private Thread thread;
 
-		// Token: 0x04008F0F RID: 36623
 		private bool ApplicationIsPlaying;
 	}
 }

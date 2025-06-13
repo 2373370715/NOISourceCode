@@ -4,17 +4,14 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001C63 RID: 7267
 public class BuildingChoresPanel : TargetPanel
 {
-	// Token: 0x06009713 RID: 38675 RVA: 0x003B1938 File Offset: 0x003AFB38
 	public override bool IsValidForTarget(GameObject target)
 	{
 		KPrefabID component = target.GetComponent<KPrefabID>();
 		return component != null && component.HasTag(GameTags.HasChores) && !component.HasTag(GameTags.BaseMinion);
 	}
 
-	// Token: 0x06009714 RID: 38676 RVA: 0x00106D53 File Offset: 0x00104F53
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -22,32 +19,27 @@ public class BuildingChoresPanel : TargetPanel
 		this.choreGroup.gameObject.SetActive(true);
 	}
 
-	// Token: 0x06009715 RID: 38677 RVA: 0x00106D84 File Offset: 0x00104F84
 	private void Update()
 	{
 		this.Refresh();
 	}
 
-	// Token: 0x06009716 RID: 38678 RVA: 0x00106D8C File Offset: 0x00104F8C
 	protected override void OnSelectTarget(GameObject target)
 	{
 		base.OnSelectTarget(target);
 		this.Refresh();
 	}
 
-	// Token: 0x06009717 RID: 38679 RVA: 0x00106D9B File Offset: 0x00104F9B
 	public override void OnDeselectTarget(GameObject target)
 	{
 		base.OnDeselectTarget(target);
 	}
 
-	// Token: 0x06009718 RID: 38680 RVA: 0x00106DA4 File Offset: 0x00104FA4
 	private void Refresh()
 	{
 		this.RefreshDetails();
 	}
 
-	// Token: 0x06009719 RID: 38681 RVA: 0x003B1974 File Offset: 0x003AFB74
 	private void RefreshDetails()
 	{
 		int myParentWorldId = this.selectedTarget.GetMyParentWorldId();
@@ -87,7 +79,6 @@ public class BuildingChoresPanel : TargetPanel
 		this.activeChoreEntries = 0;
 	}
 
-	// Token: 0x0600971A RID: 38682 RVA: 0x003B1ABC File Offset: 0x003AFCBC
 	private void AddChoreEntry(Chore chore)
 	{
 		HierarchyReferences choreEntry = this.GetChoreEntry(GameUtil.GetChoreName(chore, null), chore.choreType, this.choreGroup.GetReference<RectTransform>("EntriesContainer"));
@@ -155,7 +146,6 @@ public class BuildingChoresPanel : TargetPanel
 		this.DupeEntryDatas.Clear();
 	}
 
-	// Token: 0x0600971B RID: 38683 RVA: 0x003B1DE0 File Offset: 0x003AFFE0
 	private HierarchyReferences GetChoreEntry(string label, ChoreType choreType, RectTransform parent)
 	{
 		HierarchyReferences hierarchyReferences;
@@ -201,7 +191,6 @@ public class BuildingChoresPanel : TargetPanel
 		return hierarchyReferences;
 	}
 
-	// Token: 0x0600971C RID: 38684 RVA: 0x003B1F7C File Offset: 0x003B017C
 	private BuildingChoresPanelDupeRow GetDupeEntry(BuildingChoresPanel.DupeEntryData data, RectTransform parent)
 	{
 		BuildingChoresPanelDupeRow buildingChoresPanelDupeRow;
@@ -222,43 +211,30 @@ public class BuildingChoresPanel : TargetPanel
 		return buildingChoresPanelDupeRow;
 	}
 
-	// Token: 0x04007596 RID: 30102
 	public GameObject choreGroupPrefab;
 
-	// Token: 0x04007597 RID: 30103
 	public GameObject chorePrefab;
 
-	// Token: 0x04007598 RID: 30104
 	public BuildingChoresPanelDupeRow dupePrefab;
 
-	// Token: 0x04007599 RID: 30105
 	private GameObject detailsPanel;
 
-	// Token: 0x0400759A RID: 30106
 	private DetailsPanelDrawer drawer;
 
-	// Token: 0x0400759B RID: 30107
 	private HierarchyReferences choreGroup;
 
-	// Token: 0x0400759C RID: 30108
 	private List<HierarchyReferences> choreEntries = new List<HierarchyReferences>();
 
-	// Token: 0x0400759D RID: 30109
 	private int activeChoreEntries;
 
-	// Token: 0x0400759E RID: 30110
 	private List<BuildingChoresPanelDupeRow> dupeEntries = new List<BuildingChoresPanelDupeRow>();
 
-	// Token: 0x0400759F RID: 30111
 	private int activeDupeEntries;
 
-	// Token: 0x040075A0 RID: 30112
 	private List<BuildingChoresPanel.DupeEntryData> DupeEntryDatas = new List<BuildingChoresPanel.DupeEntryData>();
 
-	// Token: 0x02001C64 RID: 7268
 	public class DupeEntryData : IComparable<BuildingChoresPanel.DupeEntryData>
 	{
-		// Token: 0x0600971E RID: 38686 RVA: 0x003B2010 File Offset: 0x003B0210
 		public int CompareTo(BuildingChoresPanel.DupeEntryData other)
 		{
 			if (this.personalPriority != other.personalPriority)
@@ -276,16 +252,12 @@ public class BuildingChoresPanel : TargetPanel
 			return this.consumer.GetInstanceID().CompareTo(other.consumer.GetInstanceID());
 		}
 
-		// Token: 0x040075A1 RID: 30113
 		public ChoreConsumer consumer;
 
-		// Token: 0x040075A2 RID: 30114
 		public Chore.Precondition.Context context;
 
-		// Token: 0x040075A3 RID: 30115
 		public int personalPriority;
 
-		// Token: 0x040075A4 RID: 30116
 		public int rank;
 	}
 }

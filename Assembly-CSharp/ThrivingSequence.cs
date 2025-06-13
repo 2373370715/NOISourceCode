@@ -3,16 +3,13 @@ using System.Collections;
 using FMOD.Studio;
 using UnityEngine;
 
-// Token: 0x020010F1 RID: 4337
 public static class ThrivingSequence
 {
-	// Token: 0x0600589E RID: 22686 RVA: 0x000DE327 File Offset: 0x000DC527
 	public static void Start(KMonoBehaviour controller)
 	{
 		controller.StartCoroutine(ThrivingSequence.Sequence());
 	}
 
-	// Token: 0x0600589F RID: 22687 RVA: 0x000DE335 File Offset: 0x000DC535
 	private static IEnumerator Sequence()
 	{
 		if (!SpeedControlScreen.Instance.IsPaused)

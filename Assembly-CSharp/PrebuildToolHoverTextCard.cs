@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02001B89 RID: 7049
 public class PrebuildToolHoverTextCard : HoverTextConfiguration
 {
-	// Token: 0x060093E9 RID: 37865 RVA: 0x0039BBA8 File Offset: 0x00399DA8
 	public override void UpdateHoverElements(List<KSelectable> selected)
 	{
 		HoverTextScreen instance = HoverTextScreen.Instance;
@@ -44,9 +42,7 @@ public class PrebuildToolHoverTextCard : HoverTextConfiguration
 		hoverTextDrawer.EndDrawing();
 	}
 
-	// Token: 0x04007034 RID: 28724
 	public string errorMessage;
 
-	// Token: 0x04007035 RID: 28725
 	public BuildingDef currentDef;
 }

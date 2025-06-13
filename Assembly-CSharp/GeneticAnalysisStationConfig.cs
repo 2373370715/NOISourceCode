@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000365 RID: 869
 public class GeneticAnalysisStationConfig : IBuildingConfig
 {
-	// Token: 0x06000DC8 RID: 3528 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06000DC9 RID: 3529 RVA: 0x0017F008 File Offset: 0x0017D208
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "GeneticAnalysisStation";
@@ -38,7 +35,6 @@ public class GeneticAnalysisStationConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000DCA RID: 3530 RVA: 0x0017F0B4 File Offset: 0x0017D2B4
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.ScienceBuilding, false);
@@ -58,12 +54,10 @@ public class GeneticAnalysisStationConfig : IBuildingConfig
 		manualDeliveryKG.capacity = 5f;
 	}
 
-	// Token: 0x06000DCB RID: 3531 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x06000DCC RID: 3532 RVA: 0x0017F174 File Offset: 0x0017D374
 	public override void ConfigurePost(BuildingDef def)
 	{
 		List<Tag> list = new List<Tag>();
@@ -77,6 +71,5 @@ public class GeneticAnalysisStationConfig : IBuildingConfig
 		def.BuildingComplete.GetComponent<Storage>().storageFilters = list;
 	}
 
-	// Token: 0x04000A09 RID: 2569
 	public const string ID = "GeneticAnalysisStation";
 }

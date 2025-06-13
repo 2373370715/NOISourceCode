@@ -11,10 +11,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001DC1 RID: 7617
 public class LanguageOptionsScreen : KModalScreen, SteamUGCService.IClient
 {
-	// Token: 0x06009F29 RID: 40745 RVA: 0x003DE92C File Offset: 0x003DCB2C
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -33,7 +31,6 @@ public class LanguageOptionsScreen : KModalScreen, SteamUGCService.IClient
 		this.RebuildScreen();
 	}
 
-	// Token: 0x06009F2A RID: 40746 RVA: 0x003DE9D8 File Offset: 0x003DCBD8
 	private void RebuildScreen()
 	{
 		foreach (GameObject obj in this.buttons)
@@ -46,7 +43,6 @@ public class LanguageOptionsScreen : KModalScreen, SteamUGCService.IClient
 		this.RebuildUGCButtons();
 	}
 
-	// Token: 0x06009F2B RID: 40747 RVA: 0x003DEA78 File Offset: 0x003DCC78
 	private void RebuildPreinstalledButtons()
 	{
 		using (List<string>.Enumerator enumerator = Localization.PreinstalledLanguages.GetEnumerator())
@@ -78,7 +74,6 @@ public class LanguageOptionsScreen : KModalScreen, SteamUGCService.IClient
 		}
 	}
 
-	// Token: 0x06009F2C RID: 40748 RVA: 0x0010BF80 File Offset: 0x0010A180
 	protected override void OnActivate()
 	{
 		base.OnActivate();
@@ -89,7 +84,6 @@ public class LanguageOptionsScreen : KModalScreen, SteamUGCService.IClient
 		}
 	}
 
-	// Token: 0x06009F2D RID: 40749 RVA: 0x0010BFB5 File Offset: 0x0010A1B5
 	protected override void OnDeactivate()
 	{
 		base.OnDeactivate();
@@ -99,7 +93,6 @@ public class LanguageOptionsScreen : KModalScreen, SteamUGCService.IClient
 		}
 	}
 
-	// Token: 0x06009F2E RID: 40750 RVA: 0x003DEBE8 File Offset: 0x003DCDE8
 	private void ConfirmLanguageChoiceDialog(string[] lines, bool is_template, System.Action install_language)
 	{
 		Localization.Locale locale = Localization.GetLocale(lines);
@@ -130,13 +123,11 @@ public class LanguageOptionsScreen : KModalScreen, SteamUGCService.IClient
 		}, null, null, title_text, func(UI.FRONTEND.TRANSLATIONS_SCREEN.RESTART), UI.FRONTEND.TRANSLATIONS_SCREEN.CANCEL, null);
 	}
 
-	// Token: 0x06009F2F RID: 40751 RVA: 0x0010BFD5 File Offset: 0x0010A1D5
 	private void ConfirmPreinstalledLanguage(string selected_preinstalled_translation)
 	{
 		Localization.GetSelectedLanguageType();
 	}
 
-	// Token: 0x06009F30 RID: 40752 RVA: 0x003DECCC File Offset: 0x003DCECC
 	private void ConfirmLanguagePreinstalledOrMod(string selected_preinstalled_translation, string mod_id)
 	{
 		Localization.SelectedLanguageType selectedLanguageType = Localization.GetSelectedLanguageType();
@@ -185,7 +176,6 @@ public class LanguageOptionsScreen : KModalScreen, SteamUGCService.IClient
 		}
 	}
 
-	// Token: 0x06009F31 RID: 40753 RVA: 0x0010BFDD File Offset: 0x0010A1DD
 	private ConfirmDialogScreen GetConfirmDialog()
 	{
 		KScreen component = KScreenManager.AddChild(base.transform.parent.gameObject, ScreenPrefabs.Instance.ConfirmDialogScreen.gameObject).GetComponent<KScreen>();
@@ -193,7 +183,6 @@ public class LanguageOptionsScreen : KModalScreen, SteamUGCService.IClient
 		return component.GetComponent<ConfirmDialogScreen>();
 	}
 
-	// Token: 0x06009F32 RID: 40754 RVA: 0x0010C013 File Offset: 0x0010A213
 	public override void OnKeyDown(KButtonEvent e)
 	{
 		if (e.Consumed)
@@ -207,7 +196,6 @@ public class LanguageOptionsScreen : KModalScreen, SteamUGCService.IClient
 		base.OnKeyDown(e);
 	}
 
-	// Token: 0x06009F33 RID: 40755 RVA: 0x003DEDD8 File Offset: 0x003DCFD8
 	private void RebuildUGCButtons()
 	{
 		foreach (Mod mod in Global.Instance.modManager.mods)
@@ -236,7 +224,6 @@ public class LanguageOptionsScreen : KModalScreen, SteamUGCService.IClient
 		}
 	}
 
-	// Token: 0x06009F34 RID: 40756 RVA: 0x003DEF64 File Offset: 0x003DD164
 	private void Uninstall()
 	{
 		this.GetConfirmDialog().PopupConfirmDialog(UI.FRONTEND.TRANSLATIONS_SCREEN.ARE_YOU_SURE, delegate
@@ -248,19 +235,16 @@ public class LanguageOptionsScreen : KModalScreen, SteamUGCService.IClient
 		}, null, null, null, null, null, null);
 	}
 
-	// Token: 0x06009F35 RID: 40757 RVA: 0x0010C034 File Offset: 0x0010A234
 	private void OnClickUninstall()
 	{
 		this.Uninstall();
 	}
 
-	// Token: 0x06009F36 RID: 40758 RVA: 0x0010C03C File Offset: 0x0010A23C
 	private void OnClickOpenWorkshop()
 	{
 		App.OpenWebURL("http://steamcommunity.com/workshop/browse/?appid=457140&requiredtags[]=language");
 	}
 
-	// Token: 0x06009F37 RID: 40759 RVA: 0x003DEFB8 File Offset: 0x003DD1B8
 	public void UpdateMods(IEnumerable<PublishedFileId_t> added, IEnumerable<PublishedFileId_t> updated, IEnumerable<PublishedFileId_t> removed, IEnumerable<SteamUGCService.Mod> loaded_previews)
 	{
 		string savedLanguageMod = LanguageOptionsScreen.GetSavedLanguageMod();
@@ -285,27 +269,21 @@ public class LanguageOptionsScreen : KModalScreen, SteamUGCService.IClient
 		this.RebuildScreen();
 	}
 
-	// Token: 0x06009F38 RID: 40760 RVA: 0x0010C048 File Offset: 0x0010A248
 	public static string GetSavedLanguageMod()
 	{
 		return KPlayerPrefs.GetString("InstalledLanguage");
 	}
 
-	// Token: 0x06009F39 RID: 40761 RVA: 0x0010C054 File Offset: 0x0010A254
 	public static void SetSavedLanguageMod(string mod_id)
 	{
 		KPlayerPrefs.SetString("InstalledLanguage", mod_id);
 	}
 
-	// Token: 0x06009F3A RID: 40762 RVA: 0x0010C061 File Offset: 0x0010A261
 	public static void CleanUpSavedLanguageMod()
 	{
 		KPlayerPrefs.SetString("InstalledLanguage", null);
 	}
 
-	// Token: 0x17000A66 RID: 2662
-	// (get) Token: 0x06009F3B RID: 40763 RVA: 0x0010C06E File Offset: 0x0010A26E
-	// (set) Token: 0x06009F3C RID: 40764 RVA: 0x0010C076 File Offset: 0x0010A276
 	public string currentLanguageModId
 	{
 		get
@@ -319,7 +297,6 @@ public class LanguageOptionsScreen : KModalScreen, SteamUGCService.IClient
 		}
 	}
 
-	// Token: 0x06009F3D RID: 40765 RVA: 0x0010C08A File Offset: 0x0010A28A
 	public static bool SetCurrentLanguage(string mod_id)
 	{
 		LanguageOptionsScreen.CleanUpSavedLanguageMod();
@@ -331,7 +308,6 @@ public class LanguageOptionsScreen : KModalScreen, SteamUGCService.IClient
 		return false;
 	}
 
-	// Token: 0x06009F3E RID: 40766 RVA: 0x003DF068 File Offset: 0x003DD268
 	public static bool HasInstalledLanguage()
 	{
 		string currentModId = LanguageOptionsScreen.GetSavedLanguageMod();
@@ -347,7 +323,6 @@ public class LanguageOptionsScreen : KModalScreen, SteamUGCService.IClient
 		return true;
 	}
 
-	// Token: 0x06009F3F RID: 40767 RVA: 0x003DF0BC File Offset: 0x003DD2BC
 	public static string GetInstalledLanguageCode()
 	{
 		string result = "";
@@ -363,7 +338,6 @@ public class LanguageOptionsScreen : KModalScreen, SteamUGCService.IClient
 		return result;
 	}
 
-	// Token: 0x06009F40 RID: 40768 RVA: 0x003DF0F0 File Offset: 0x003DD2F0
 	private static bool LoadTranslation(string mod_id)
 	{
 		Mod mod = Global.Instance.modManager.mods.Find((Mod m) => m.label.id == mod_id);
@@ -376,7 +350,6 @@ public class LanguageOptionsScreen : KModalScreen, SteamUGCService.IClient
 		return languageFilename != null && Localization.LoadLocalTranslationFile(Localization.SelectedLanguageType.UGC, languageFilename);
 	}
 
-	// Token: 0x06009F41 RID: 40769 RVA: 0x003DF158 File Offset: 0x003DD358
 	private static string GetLanguageFilename(Mod mod)
 	{
 		global::Debug.Assert(mod.content_source.GetType() == typeof(KMod.Directory), "Can only load translations from extracted mods.");
@@ -389,13 +362,11 @@ public class LanguageOptionsScreen : KModalScreen, SteamUGCService.IClient
 		return text;
 	}
 
-	// Token: 0x06009F42 RID: 40770 RVA: 0x003DF1C8 File Offset: 0x003DD3C8
 	private static string[] GetLanguageLinesForMod(string mod_id)
 	{
 		return LanguageOptionsScreen.GetLanguageLinesForMod(Global.Instance.modManager.mods.Find((Mod m) => m.label.id == mod_id));
 	}
 
-	// Token: 0x06009F43 RID: 40771 RVA: 0x003DF208 File Offset: 0x003DD408
 	private static string[] GetLanguageLinesForMod(Mod mod)
 	{
 		string languageFilename = LanguageOptionsScreen.GetLanguageFilename(mod);
@@ -412,55 +383,39 @@ public class LanguageOptionsScreen : KModalScreen, SteamUGCService.IClient
 		return array;
 	}
 
-	// Token: 0x04007CF2 RID: 31986
 	private static readonly string[] poFile = new string[]
 	{
 		"strings.po"
 	};
 
-	// Token: 0x04007CF3 RID: 31987
 	public const string KPLAYER_PREFS_LANGUAGE_KEY = "InstalledLanguage";
 
-	// Token: 0x04007CF4 RID: 31988
 	public const string TAG_LANGUAGE = "language";
 
-	// Token: 0x04007CF5 RID: 31989
 	public KButton textButton;
 
-	// Token: 0x04007CF6 RID: 31990
 	public KButton dismissButton;
 
-	// Token: 0x04007CF7 RID: 31991
 	public KButton closeButton;
 
-	// Token: 0x04007CF8 RID: 31992
 	public KButton workshopButton;
 
-	// Token: 0x04007CF9 RID: 31993
 	public KButton uninstallButton;
 
-	// Token: 0x04007CFA RID: 31994
 	[Space]
 	public GameObject languageButtonPrefab;
 
-	// Token: 0x04007CFB RID: 31995
 	public GameObject preinstalledLanguagesTitle;
 
-	// Token: 0x04007CFC RID: 31996
 	public GameObject preinstalledLanguagesContainer;
 
-	// Token: 0x04007CFD RID: 31997
 	public GameObject ugcLanguagesTitle;
 
-	// Token: 0x04007CFE RID: 31998
 	public GameObject ugcLanguagesContainer;
 
-	// Token: 0x04007CFF RID: 31999
 	private List<GameObject> buttons = new List<GameObject>();
 
-	// Token: 0x04007D00 RID: 32000
 	private string _currentLanguageModId;
 
-	// Token: 0x04007D01 RID: 32001
 	private System.DateTime currentLastModified;
 }

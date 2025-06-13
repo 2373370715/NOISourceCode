@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using STRINGS;
 
-// Token: 0x0200126B RID: 4715
 public class IdleDiagnostic : ColonyDiagnostic
 {
-	// Token: 0x06006046 RID: 24646 RVA: 0x002BA590 File Offset: 0x002B8790
 	public IdleDiagnostic(int worldID) : base(worldID, UI.COLONY_DIAGNOSTICS.IDLEDIAGNOSTIC.ALL_NAME)
 	{
 		this.tracker = TrackerTool.Instance.GetWorldTracker<IdleTracker>(worldID);
@@ -13,7 +11,6 @@ public class IdleDiagnostic : ColonyDiagnostic
 		base.AddCriterion("CheckIdle", new DiagnosticCriterion(UI.COLONY_DIAGNOSTICS.IDLEDIAGNOSTIC.CRITERIA.CHECKIDLE, new Func<ColonyDiagnostic.DiagnosticResult>(this.CheckIdle)));
 	}
 
-	// Token: 0x06006047 RID: 24647 RVA: 0x002BA5F0 File Offset: 0x002B87F0
 	private ColonyDiagnostic.DiagnosticResult CheckIdle()
 	{
 		List<MinionIdentity> worldItems = Components.LiveMinionIdentities.GetWorldItems(base.worldID, false);

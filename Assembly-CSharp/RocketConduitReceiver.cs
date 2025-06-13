@@ -1,10 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000F97 RID: 3991
 public class RocketConduitReceiver : StateMachineComponent<RocketConduitReceiver.StatesInstance>, ISecondaryOutput
 {
-	// Token: 0x0600505E RID: 20574 RVA: 0x0027D29C File Offset: 0x0027B49C
 	public void AddConduitPortToNetwork()
 	{
 		if (this.conduitPort.conduitDispenser == null)
@@ -18,7 +16,6 @@ public class RocketConduitReceiver : StateMachineComponent<RocketConduitReceiver
 		networkManager.AddToNetworks(num, this.conduitPort.networkItem, true);
 	}
 
-	// Token: 0x0600505F RID: 20575 RVA: 0x0027D32C File Offset: 0x0027B52C
 	public void RemoveConduitPortFromNetwork()
 	{
 		if (this.conduitPort.conduitDispenser == null)
@@ -28,7 +25,6 @@ public class RocketConduitReceiver : StateMachineComponent<RocketConduitReceiver
 		Conduit.GetNetworkManager(this.conduitPortInfo.conduitType).RemoveFromNetworks(this.conduitPort.outputCell, this.conduitPort.networkItem, true);
 	}
 
-	// Token: 0x06005060 RID: 20576 RVA: 0x0027D37C File Offset: 0x0027B57C
 	private bool CanTransferFromSender()
 	{
 		bool result = false;
@@ -39,7 +35,6 @@ public class RocketConduitReceiver : StateMachineComponent<RocketConduitReceiver
 		return result;
 	}
 
-	// Token: 0x06005061 RID: 20577 RVA: 0x0027D400 File Offset: 0x0027B600
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -51,7 +46,6 @@ public class RocketConduitReceiver : StateMachineComponent<RocketConduitReceiver
 		Components.RocketConduitReceivers.Add(this);
 	}
 
-	// Token: 0x06005062 RID: 20578 RVA: 0x000D8CBA File Offset: 0x000D6EBA
 	protected override void OnCleanUp()
 	{
 		this.RemoveConduitPortFromNetwork();
@@ -59,7 +53,6 @@ public class RocketConduitReceiver : StateMachineComponent<RocketConduitReceiver
 		Components.RocketConduitReceivers.Remove(this);
 	}
 
-	// Token: 0x06005063 RID: 20579 RVA: 0x0027D464 File Offset: 0x0027B664
 	private void FindPartner()
 	{
 		if (this.senderConduitStorage != null)
@@ -103,7 +96,6 @@ public class RocketConduitReceiver : StateMachineComponent<RocketConduitReceiver
 		this.SetStorage(rocketConduitSender.conduitStorage);
 	}
 
-	// Token: 0x06005064 RID: 20580 RVA: 0x000D8CD3 File Offset: 0x000D6ED3
 	public void SetStorage(Storage conduitStorage)
 	{
 		this.senderConduitStorage = conduitStorage;
@@ -114,13 +106,11 @@ public class RocketConduitReceiver : StateMachineComponent<RocketConduitReceiver
 		}
 	}
 
-	// Token: 0x06005065 RID: 20581 RVA: 0x000D8D0D File Offset: 0x000D6F0D
 	bool ISecondaryOutput.HasSecondaryConduitType(ConduitType type)
 	{
 		return type == this.conduitPortInfo.conduitType;
 	}
 
-	// Token: 0x06005066 RID: 20582 RVA: 0x000D8D1D File Offset: 0x000D6F1D
 	CellOffset ISecondaryOutput.GetSecondaryConduitOffset(ConduitType type)
 	{
 		if (type == this.conduitPortInfo.conduitType)
@@ -130,38 +120,30 @@ public class RocketConduitReceiver : StateMachineComponent<RocketConduitReceiver
 		return CellOffset.none;
 	}
 
-	// Token: 0x04003899 RID: 14489
 	[SerializeField]
 	public ConduitPortInfo conduitPortInfo;
 
-	// Token: 0x0400389A RID: 14490
 	public RocketConduitReceiver.ConduitPort conduitPort;
 
-	// Token: 0x0400389B RID: 14491
 	public Storage senderConduitStorage;
 
-	// Token: 0x0400389C RID: 14492
 	private static readonly EventSystem.IntraObjectHandler<RocketConduitReceiver> TryFindPartner = new EventSystem.IntraObjectHandler<RocketConduitReceiver>(delegate(RocketConduitReceiver component, object data)
 	{
 		component.FindPartner();
 	});
 
-	// Token: 0x0400389D RID: 14493
 	private static readonly EventSystem.IntraObjectHandler<RocketConduitReceiver> OnLandedDelegate = new EventSystem.IntraObjectHandler<RocketConduitReceiver>(delegate(RocketConduitReceiver component, object data)
 	{
 		component.AddConduitPortToNetwork();
 	});
 
-	// Token: 0x0400389E RID: 14494
 	private static readonly EventSystem.IntraObjectHandler<RocketConduitReceiver> OnLaunchedDelegate = new EventSystem.IntraObjectHandler<RocketConduitReceiver>(delegate(RocketConduitReceiver component, object data)
 	{
 		component.RemoveConduitPortFromNetwork();
 	});
 
-	// Token: 0x02000F98 RID: 3992
 	public struct ConduitPort
 	{
-		// Token: 0x06005069 RID: 20585 RVA: 0x0027D5FC File Offset: 0x0027B7FC
 		public void SetPortInfo(GameObject parent, ConduitPortInfo info, Storage senderStorage)
 		{
 			this.portInfo = info;
@@ -173,32 +155,24 @@ public class RocketConduitReceiver : StateMachineComponent<RocketConduitReceiver
 			this.conduitDispenser = conduitDispenser;
 		}
 
-		// Token: 0x0400389F RID: 14495
 		public ConduitPortInfo portInfo;
 
-		// Token: 0x040038A0 RID: 14496
 		public int outputCell;
 
-		// Token: 0x040038A1 RID: 14497
 		public FlowUtilityNetwork.NetworkItem networkItem;
 
-		// Token: 0x040038A2 RID: 14498
 		public ConduitDispenser conduitDispenser;
 	}
 
-	// Token: 0x02000F99 RID: 3993
 	public class StatesInstance : GameStateMachine<RocketConduitReceiver.States, RocketConduitReceiver.StatesInstance, RocketConduitReceiver, object>.GameInstance
 	{
-		// Token: 0x0600506A RID: 20586 RVA: 0x000D8D46 File Offset: 0x000D6F46
 		public StatesInstance(RocketConduitReceiver master) : base(master)
 		{
 		}
 	}
 
-	// Token: 0x02000F9A RID: 3994
 	public class States : GameStateMachine<RocketConduitReceiver.States, RocketConduitReceiver.StatesInstance, RocketConduitReceiver>
 	{
-		// Token: 0x0600506B RID: 20587 RVA: 0x0027D644 File Offset: 0x0027B844
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.off;
@@ -221,19 +195,14 @@ public class RocketConduitReceiver : StateMachineComponent<RocketConduitReceiver
 			}, UpdateRate.SIM_200ms, false);
 		}
 
-		// Token: 0x040038A3 RID: 14499
 		public GameStateMachine<RocketConduitReceiver.States, RocketConduitReceiver.StatesInstance, RocketConduitReceiver, object>.State off;
 
-		// Token: 0x040038A4 RID: 14500
 		public RocketConduitReceiver.States.onStates on;
 
-		// Token: 0x02000F9B RID: 3995
 		public class onStates : GameStateMachine<RocketConduitReceiver.States, RocketConduitReceiver.StatesInstance, RocketConduitReceiver, object>.State
 		{
-			// Token: 0x040038A5 RID: 14501
 			public GameStateMachine<RocketConduitReceiver.States, RocketConduitReceiver.StatesInstance, RocketConduitReceiver, object>.State hasResources;
 
-			// Token: 0x040038A6 RID: 14502
 			public GameStateMachine<RocketConduitReceiver.States, RocketConduitReceiver.StatesInstance, RocketConduitReceiver, object>.State empty;
 		}
 	}

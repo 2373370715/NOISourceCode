@@ -5,10 +5,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000278 RID: 632
 public class StaterpillarLiquidConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x06000923 RID: 2339 RVA: 0x0016E118 File Offset: 0x0016C318
 	public static GameObject CreateStaterpillarLiquid(string id, string name, string desc, string anim_file, bool is_baby)
 	{
 		InhaleStates.Def inhaleDef = new InhaleStates.Def
@@ -52,25 +50,21 @@ public class StaterpillarLiquidConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x06000924 RID: 2340 RVA: 0x000AA117 File Offset: 0x000A8317
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06000925 RID: 2341 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x06000926 RID: 2342 RVA: 0x0016E370 File Offset: 0x0016C570
 	public virtual GameObject CreatePrefab()
 	{
 		return EntityTemplates.ExtendEntityToFertileCreature(StaterpillarLiquidConfig.CreateStaterpillarLiquid("StaterpillarLiquid", STRINGS.CREATURES.SPECIES.STATERPILLAR.VARIANT_LIQUID.NAME, STRINGS.CREATURES.SPECIES.STATERPILLAR.VARIANT_LIQUID.DESC, "caterpillar_kanim", false), this, "StaterpillarLiquidEgg", STRINGS.CREATURES.SPECIES.STATERPILLAR.VARIANT_LIQUID.EGG_NAME, STRINGS.CREATURES.SPECIES.STATERPILLAR.VARIANT_LIQUID.DESC, "egg_caterpillar_kanim", StaterpillarTuning.EGG_MASS, "StaterpillarLiquidBaby", 60.000004f, 20f, StaterpillarTuning.EGG_CHANCES_LIQUID, 2, true, false, 1f, false);
 	}
 
-	// Token: 0x06000927 RID: 2343 RVA: 0x000AE94B File Offset: 0x000ACB4B
 	public void OnPrefabInit(GameObject prefab)
 	{
 		KBatchedAnimController component = prefab.GetComponent<KBatchedAnimController>();
@@ -78,41 +72,29 @@ public class StaterpillarLiquidConfig : IEntityConfig, IHasDlcRestrictions
 		component.SetSymbolVisiblity("gulp", false);
 	}
 
-	// Token: 0x06000928 RID: 2344 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x04000707 RID: 1799
 	public const string ID = "StaterpillarLiquid";
 
-	// Token: 0x04000708 RID: 1800
 	public const string BASE_TRAIT_ID = "StaterpillarLiquidBaseTrait";
 
-	// Token: 0x04000709 RID: 1801
 	public const string EGG_ID = "StaterpillarLiquidEgg";
 
-	// Token: 0x0400070A RID: 1802
 	public const int EGG_SORT_ORDER = 2;
 
-	// Token: 0x0400070B RID: 1803
 	private static float KG_ORE_EATEN_PER_CYCLE = 30f;
 
-	// Token: 0x0400070C RID: 1804
 	private static float CALORIES_PER_KG_OF_ORE = StaterpillarTuning.STANDARD_CALORIES_PER_CYCLE / StaterpillarLiquidConfig.KG_ORE_EATEN_PER_CYCLE;
 
-	// Token: 0x0400070D RID: 1805
 	private static float STORAGE_CAPACITY = 1000f;
 
-	// Token: 0x0400070E RID: 1806
 	private static float COOLDOWN_MIN = 20f;
 
-	// Token: 0x0400070F RID: 1807
 	private static float COOLDOWN_MAX = 40f;
 
-	// Token: 0x04000710 RID: 1808
 	private static float CONSUMPTION_RATE = 10f;
 
-	// Token: 0x04000711 RID: 1809
 	private static float INHALE_TIME = 6f;
 }

@@ -4,11 +4,9 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02001802 RID: 6146
 [AddComponentMenu("KMonoBehaviour/Workable/ResearchCenter")]
 public class ResearchCenter : Workable, IGameObjectEffectDescriptor, ISim200ms, IResearchCenter
 {
-	// Token: 0x06007E70 RID: 32368 RVA: 0x0033708C File Offset: 0x0033528C
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -21,7 +19,6 @@ public class ResearchCenter : Workable, IGameObjectEffectDescriptor, ISim200ms, 
 		elementConverter.onConvertMass = (Action<float>)Delegate.Combine(elementConverter.onConvertMass, new Action<float>(this.ConvertMassToResearchPoints));
 	}
 
-	// Token: 0x06007E71 RID: 32369 RVA: 0x00337120 File Offset: 0x00335320
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -33,7 +30,6 @@ public class ResearchCenter : Workable, IGameObjectEffectDescriptor, ISim200ms, 
 		this.UpdateWorkingState(null);
 	}
 
-	// Token: 0x06007E72 RID: 32370 RVA: 0x0033718C File Offset: 0x0033538C
 	private void ConvertMassToResearchPoints(float mass_consumed)
 	{
 		this.remainder_mass_points += mass_consumed / this.mass_per_point - (float)Mathf.FloorToInt(mass_consumed / this.mass_per_point);
@@ -51,7 +47,6 @@ public class ResearchCenter : Workable, IGameObjectEffectDescriptor, ISim200ms, 
 		}
 	}
 
-	// Token: 0x06007E73 RID: 32371 RVA: 0x00337250 File Offset: 0x00335450
 	public void Sim200ms(float dt)
 	{
 		if (!this.operational.IsActive && this.operational.IsOperational && this.chore == null && this.HasMaterial())
@@ -61,7 +56,6 @@ public class ResearchCenter : Workable, IGameObjectEffectDescriptor, ISim200ms, 
 		}
 	}
 
-	// Token: 0x06007E74 RID: 32372 RVA: 0x003372A0 File Offset: 0x003354A0
 	protected virtual Chore CreateChore()
 	{
 		return new WorkChore<ResearchCenter>(Db.Get().ChoreTypes.Research, this, null, true, null, null, null, true, null, false, true, null, true, true, true, PriorityScreen.PriorityClass.basic, 5, false, true)
@@ -70,7 +64,6 @@ public class ResearchCenter : Workable, IGameObjectEffectDescriptor, ISim200ms, 
 		};
 	}
 
-	// Token: 0x06007E75 RID: 32373 RVA: 0x003372E8 File Offset: 0x003354E8
 	private static bool CanPreemptCB(Chore.Precondition.Context context)
 	{
 		WorkerBase component = context.chore.driver.GetComponent<WorkerBase>();
@@ -79,7 +72,6 @@ public class ResearchCenter : Workable, IGameObjectEffectDescriptor, ISim200ms, 
 		return Db.Get().AttributeConverters.ResearchSpeed.Lookup(worker).Evaluate() > num && context.chore.gameObject.GetComponent<ResearchCenter>().GetPercentComplete() < 1f;
 	}
 
-	// Token: 0x06007E76 RID: 32374 RVA: 0x00337368 File Offset: 0x00335568
 	public override float GetPercentComplete()
 	{
 		if (Research.Instance.GetActiveResearch() == null)
@@ -95,7 +87,6 @@ public class ResearchCenter : Workable, IGameObjectEffectDescriptor, ISim200ms, 
 		return num / num2;
 	}
 
-	// Token: 0x06007E77 RID: 32375 RVA: 0x000F7B89 File Offset: 0x000F5D89
 	protected override void OnStartWork(WorkerBase worker)
 	{
 		base.OnStartWork(worker);
@@ -103,7 +94,6 @@ public class ResearchCenter : Workable, IGameObjectEffectDescriptor, ISim200ms, 
 		this.operational.SetActive(true, false);
 	}
 
-	// Token: 0x06007E78 RID: 32376 RVA: 0x003373DC File Offset: 0x003355DC
 	protected override bool OnWorkTick(WorkerBase worker, float dt)
 	{
 		float efficiencyMultiplier = this.GetEfficiencyMultiplier(worker);
@@ -116,7 +106,6 @@ public class ResearchCenter : Workable, IGameObjectEffectDescriptor, ISim200ms, 
 		return base.OnWorkTick(worker, dt);
 	}
 
-	// Token: 0x06007E79 RID: 32377 RVA: 0x000F7BBB File Offset: 0x000F5DBB
 	protected override void OnStopWork(WorkerBase worker)
 	{
 		base.OnStopWork(worker);
@@ -125,7 +114,6 @@ public class ResearchCenter : Workable, IGameObjectEffectDescriptor, ISim200ms, 
 		this.operational.SetActive(false, false);
 	}
 
-	// Token: 0x06007E7A RID: 32378 RVA: 0x00337424 File Offset: 0x00335624
 	protected bool ResearchComponentCompleted()
 	{
 		TechInstance activeResearch = Research.Instance.GetActiveResearch();
@@ -143,7 +131,6 @@ public class ResearchCenter : Workable, IGameObjectEffectDescriptor, ISim200ms, 
 		return false;
 	}
 
-	// Token: 0x06007E7B RID: 32379 RVA: 0x0031D160 File Offset: 0x0031B360
 	protected bool IsAllResearchComplete()
 	{
 		using (List<Tech>.Enumerator enumerator = Db.Get().Techs.resources.GetEnumerator())
@@ -159,7 +146,6 @@ public class ResearchCenter : Workable, IGameObjectEffectDescriptor, ISim200ms, 
 		return true;
 	}
 
-	// Token: 0x06007E7C RID: 32380 RVA: 0x00337484 File Offset: 0x00335684
 	protected virtual void UpdateWorkingState(object data)
 	{
 		bool flag = false;
@@ -206,19 +192,16 @@ public class ResearchCenter : Workable, IGameObjectEffectDescriptor, ISim200ms, 
 		}
 	}
 
-	// Token: 0x06007E7D RID: 32381 RVA: 0x000F7BF9 File Offset: 0x000F5DF9
 	private void ClearResearchScreen()
 	{
 		Game.Instance.Trigger(-1974454597, null);
 	}
 
-	// Token: 0x06007E7E RID: 32382 RVA: 0x000F7C0B File Offset: 0x000F5E0B
 	public string GetResearchType()
 	{
 		return this.research_point_type_id;
 	}
 
-	// Token: 0x06007E7F RID: 32383 RVA: 0x000F7C13 File Offset: 0x000F5E13
 	private void CheckHasMaterial(object o = null)
 	{
 		if (!this.HasMaterial() && this.chore != null)
@@ -228,13 +211,11 @@ public class ResearchCenter : Workable, IGameObjectEffectDescriptor, ISim200ms, 
 		}
 	}
 
-	// Token: 0x06007E80 RID: 32384 RVA: 0x000F7C3C File Offset: 0x000F5E3C
 	private bool HasMaterial()
 	{
 		return this.storage.MassStored() > 0f;
 	}
 
-	// Token: 0x06007E81 RID: 32385 RVA: 0x0033764C File Offset: 0x0033584C
 	protected override void OnCleanUp()
 	{
 		base.OnCleanUp();
@@ -245,7 +226,6 @@ public class ResearchCenter : Workable, IGameObjectEffectDescriptor, ISim200ms, 
 		this.ClearResearchScreen();
 	}
 
-	// Token: 0x06007E82 RID: 32386 RVA: 0x003376C0 File Offset: 0x003358C0
 	public string GetStatusString()
 	{
 		string text = RESEARCH.MESSAGING.NORESEARCHSELECTED;
@@ -293,7 +273,6 @@ public class ResearchCenter : Workable, IGameObjectEffectDescriptor, ISim200ms, 
 		return text;
 	}
 
-	// Token: 0x06007E83 RID: 32387 RVA: 0x003379A0 File Offset: 0x00335BA0
 	public override List<Descriptor> GetDescriptors(GameObject go)
 	{
 		List<Descriptor> descriptors = base.GetDescriptors(go);
@@ -302,57 +281,44 @@ public class ResearchCenter : Workable, IGameObjectEffectDescriptor, ISim200ms, 
 		return descriptors;
 	}
 
-	// Token: 0x06007E84 RID: 32388 RVA: 0x000B1628 File Offset: 0x000AF828
 	public override bool InstantlyFinish(WorkerBase worker)
 	{
 		return false;
 	}
 
-	// Token: 0x04006017 RID: 24599
 	private Chore chore;
 
-	// Token: 0x04006018 RID: 24600
 	[MyCmpAdd]
 	protected Notifier notifier;
 
-	// Token: 0x04006019 RID: 24601
 	[MyCmpAdd]
 	protected Operational operational;
 
-	// Token: 0x0400601A RID: 24602
 	[MyCmpAdd]
 	protected Storage storage;
 
-	// Token: 0x0400601B RID: 24603
 	[MyCmpGet]
 	private ElementConverter elementConverter;
 
-	// Token: 0x0400601C RID: 24604
 	[SerializeField]
 	public string research_point_type_id;
 
-	// Token: 0x0400601D RID: 24605
 	[SerializeField]
 	public Tag inputMaterial;
 
-	// Token: 0x0400601E RID: 24606
 	[SerializeField]
 	public float mass_per_point;
 
-	// Token: 0x0400601F RID: 24607
 	[SerializeField]
 	private float remainder_mass_points;
 
-	// Token: 0x04006020 RID: 24608
 	public static readonly Operational.Flag ResearchSelectedFlag = new Operational.Flag("researchSelected", Operational.Flag.Type.Requirement);
 
-	// Token: 0x04006021 RID: 24609
 	private static readonly EventSystem.IntraObjectHandler<ResearchCenter> UpdateWorkingStateDelegate = new EventSystem.IntraObjectHandler<ResearchCenter>(delegate(ResearchCenter component, object data)
 	{
 		component.UpdateWorkingState(data);
 	});
 
-	// Token: 0x04006022 RID: 24610
 	private static readonly EventSystem.IntraObjectHandler<ResearchCenter> CheckHasMaterialDelegate = new EventSystem.IntraObjectHandler<ResearchCenter>(delegate(ResearchCenter component, object data)
 	{
 		component.CheckHasMaterial(data);

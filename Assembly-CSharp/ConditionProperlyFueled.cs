@@ -1,16 +1,13 @@
 ﻿using System;
 using STRINGS;
 
-// Token: 0x020019E1 RID: 6625
 public class ConditionProperlyFueled : ProcessCondition
 {
-	// Token: 0x06008A14 RID: 35348 RVA: 0x000FEB9D File Offset: 0x000FCD9D
 	public ConditionProperlyFueled(IFuelTank fuelTank)
 	{
 		this.fuelTank = fuelTank;
 	}
 
-	// Token: 0x06008A15 RID: 35349 RVA: 0x00368F08 File Offset: 0x00367108
 	public override ProcessCondition.Status EvaluateCondition()
 	{
 		RocketModuleCluster component = ((KMonoBehaviour)this.fuelTank).GetComponent<RocketModuleCluster>();
@@ -48,7 +45,6 @@ public class ConditionProperlyFueled : ProcessCondition
 		return ProcessCondition.Status.Failure;
 	}
 
-	// Token: 0x06008A16 RID: 35350 RVA: 0x00368FAC File Offset: 0x003671AC
 	public override string GetStatusMessage(ProcessCondition.Status status)
 	{
 		string result;
@@ -70,7 +66,6 @@ public class ConditionProperlyFueled : ProcessCondition
 		return result;
 	}
 
-	// Token: 0x06008A17 RID: 35351 RVA: 0x00368FEC File Offset: 0x003671EC
 	public override string GetStatusTooltip(ProcessCondition.Status status)
 	{
 		Clustercraft component = ((KMonoBehaviour)this.fuelTank).GetComponent<RocketModuleCluster>().CraftInterface.GetComponent<Clustercraft>();
@@ -100,12 +95,10 @@ public class ConditionProperlyFueled : ProcessCondition
 		return result;
 	}
 
-	// Token: 0x06008A18 RID: 35352 RVA: 0x000AA7E7 File Offset: 0x000A89E7
 	public override bool ShowInUI()
 	{
 		return true;
 	}
 
-	// Token: 0x0400684B RID: 26699
 	private IFuelTank fuelTank;
 }

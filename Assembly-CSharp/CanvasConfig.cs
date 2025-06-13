@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200003F RID: 63
 public class CanvasConfig : IBuildingConfig
 {
-	// Token: 0x06000116 RID: 278 RVA: 0x0014B430 File Offset: 0x00149630
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "Canvas";
@@ -47,20 +45,17 @@ public class CanvasConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000117 RID: 279 RVA: 0x000AA54F File Offset: 0x000A874F
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<BuildingComplete>().isArtable = true;
 		go.GetComponent<KPrefabID>().AddTag(GameTags.Decoration, false);
 	}
 
-	// Token: 0x06000118 RID: 280 RVA: 0x000AA56E File Offset: 0x000A876E
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		SymbolOverrideControllerUtil.AddToPrefab(go);
 		go.AddComponent<Painting>().defaultAnimName = "off";
 	}
 
-	// Token: 0x040000AD RID: 173
 	public const string ID = "Canvas";
 }

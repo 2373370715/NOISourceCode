@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x020019D3 RID: 6611
 public class ConditionFlightPathIsClear : ProcessCondition
 {
-	// Token: 0x060089C6 RID: 35270 RVA: 0x00367D3C File Offset: 0x00365F3C
 	public ConditionFlightPathIsClear(GameObject module, int bufferWidth)
 	{
 		this.module = module.GetComponent<RocketModule>();
@@ -17,7 +15,6 @@ public class ConditionFlightPathIsClear : ProcessCondition
 		this.bufferWidth = bufferWidth;
 	}
 
-	// Token: 0x060089C7 RID: 35271 RVA: 0x000FE8DC File Offset: 0x000FCADC
 	public override ProcessCondition.Status EvaluateCondition()
 	{
 		this.Update();
@@ -28,7 +25,6 @@ public class ConditionFlightPathIsClear : ProcessCondition
 		return ProcessCondition.Status.Ready;
 	}
 
-	// Token: 0x060089C8 RID: 35272 RVA: 0x000FE8EF File Offset: 0x000FCAEF
 	public override StatusItem GetStatusItem(ProcessCondition.Status status)
 	{
 		if (status == ProcessCondition.Status.Failure)
@@ -38,7 +34,6 @@ public class ConditionFlightPathIsClear : ProcessCondition
 		return null;
 	}
 
-	// Token: 0x060089C9 RID: 35273 RVA: 0x00367D8C File Offset: 0x00365F8C
 	public override string GetStatusMessage(ProcessCondition.Status status)
 	{
 		if (DlcManager.FeatureClusterSpaceEnabled())
@@ -53,7 +48,6 @@ public class ConditionFlightPathIsClear : ProcessCondition
 		return "";
 	}
 
-	// Token: 0x060089CA RID: 35274 RVA: 0x00367DE0 File Offset: 0x00365FE0
 	public override string GetStatusTooltip(ProcessCondition.Status status)
 	{
 		if (DlcManager.FeatureClusterSpaceEnabled())
@@ -68,13 +62,11 @@ public class ConditionFlightPathIsClear : ProcessCondition
 		return "";
 	}
 
-	// Token: 0x060089CB RID: 35275 RVA: 0x000FE905 File Offset: 0x000FCB05
 	public override bool ShowInUI()
 	{
 		return DlcManager.FeatureClusterSpaceEnabled();
 	}
 
-	// Token: 0x060089CC RID: 35276 RVA: 0x00367E34 File Offset: 0x00366034
 	public void Update()
 	{
 		List<Building> list = new List<Building>();
@@ -117,7 +109,6 @@ public class ConditionFlightPathIsClear : ProcessCondition
 		}
 	}
 
-	// Token: 0x060089CD RID: 35277 RVA: 0x00367F90 File Offset: 0x00366190
 	public static bool HasModuleAccessToSpace(Building module, out int obstructionCell)
 	{
 		WorldContainer myWorld = module.GetMyWorld();
@@ -147,7 +138,6 @@ public class ConditionFlightPathIsClear : ProcessCondition
 		return result;
 	}
 
-	// Token: 0x060089CE RID: 35278 RVA: 0x0036804C File Offset: 0x0036624C
 	public static int PadTopEdgeDistanceToOutOfScreenEdge(GameObject launchpad)
 	{
 		WorldContainer myWorld = launchpad.GetMyWorld();
@@ -156,7 +146,6 @@ public class ConditionFlightPathIsClear : ProcessCondition
 		return (int)CameraController.GetHighestVisibleCell_Height((byte)myWorld.ParentWorldId) - y + 10;
 	}
 
-	// Token: 0x060089CF RID: 35279 RVA: 0x00368090 File Offset: 0x00366290
 	public static int PadTopEdgeDistanceToCeilingEdge(GameObject launchpad)
 	{
 		Vector2 maximumBounds = launchpad.GetMyWorld().maximumBounds;
@@ -165,7 +154,6 @@ public class ConditionFlightPathIsClear : ProcessCondition
 		return num - Grid.TopBorderHeight - y + 1;
 	}
 
-	// Token: 0x060089D0 RID: 35280 RVA: 0x003680DC File Offset: 0x003662DC
 	public static bool CheckFlightPathClear(CraftModuleInterface craft, GameObject launchpad, out int obstruction)
 	{
 		Vector2I vector2I = Grid.CellToXY(launchpad.GetComponent<LaunchPad>().RocketBottomPosition);
@@ -199,7 +187,6 @@ public class ConditionFlightPathIsClear : ProcessCondition
 		return true;
 	}
 
-	// Token: 0x060089D1 RID: 35281 RVA: 0x0036823C File Offset: 0x0036643C
 	private static bool CanReachSpace(int startCell, out int obstruction, out int highestCellInSky)
 	{
 		WorldContainer worldContainer = (startCell >= 0) ? ClusterManager.Instance.GetWorld((int)Grid.WorldIdx[startCell]) : null;
@@ -219,7 +206,6 @@ public class ConditionFlightPathIsClear : ProcessCondition
 		return true;
 	}
 
-	// Token: 0x060089D2 RID: 35282 RVA: 0x003682B4 File Offset: 0x003664B4
 	public string GetObstruction()
 	{
 		if (this.obstructedTile == -1)
@@ -233,24 +219,17 @@ public class ConditionFlightPathIsClear : ProcessCondition
 		return string.Format(BUILDING.STATUSITEMS.PATH_NOT_CLEAR.TILE_FORMAT, Grid.Element[this.obstructedTile].tag.ProperName());
 	}
 
-	// Token: 0x04006833 RID: 26675
 	private CraftModuleInterface moduleInterface;
 
-	// Token: 0x04006834 RID: 26676
 	private RocketModule module;
 
-	// Token: 0x04006835 RID: 26677
 	private int bufferWidth;
 
-	// Token: 0x04006836 RID: 26678
 	private bool hasClearSky;
 
-	// Token: 0x04006837 RID: 26679
 	private int obstructedTile = -1;
 
-	// Token: 0x04006838 RID: 26680
 	public const int MAXIMUM_ROCKET_HEIGHT = 35;
 
-	// Token: 0x04006839 RID: 26681
 	public const float FIRE_FX_HEIGHT = 10f;
 }

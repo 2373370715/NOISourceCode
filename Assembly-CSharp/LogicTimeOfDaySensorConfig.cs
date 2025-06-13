@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003F7 RID: 1015
 public class LogicTimeOfDaySensorConfig : IBuildingConfig
 {
-	// Token: 0x060010AE RID: 4270 RVA: 0x0018B720 File Offset: 0x00189920
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = LogicTimeOfDaySensorConfig.ID;
@@ -40,13 +38,11 @@ public class LogicTimeOfDaySensorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060010AF RID: 4271 RVA: 0x000B1C29 File Offset: 0x000AFE29
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicTimeOfDaySensor>().manuallyControlled = false;
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayInFrontOfConduits, false);
 	}
 
-	// Token: 0x04000BA2 RID: 2978
 	public static string ID = "LogicTimeOfDaySensor";
 }

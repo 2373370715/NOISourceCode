@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x0200081A RID: 2074
 public class BuildingPlacementQuery : PathFinderQuery
 {
-	// Token: 0x06002494 RID: 9364 RVA: 0x000BC3A1 File Offset: 0x000BA5A1
 	public BuildingPlacementQuery Reset(int max_results, GameObject toPlace)
 	{
 		this.max_results = max_results;
@@ -15,7 +13,6 @@ public class BuildingPlacementQuery : PathFinderQuery
 		return this;
 	}
 
-	// Token: 0x06002495 RID: 9365 RVA: 0x000BC3CE File Offset: 0x000BA5CE
 	public override bool IsMatch(int cell, int parent_cell, int cost)
 	{
 		if (!this.result_cells.Contains(cell) && this.CheckValidPlaceCell(cell))
@@ -25,7 +22,6 @@ public class BuildingPlacementQuery : PathFinderQuery
 		return this.result_cells.Count >= this.max_results;
 	}
 
-	// Token: 0x06002496 RID: 9366 RVA: 0x001D6C44 File Offset: 0x001D4E44
 	private bool CheckValidPlaceCell(int testCell)
 	{
 		if (!Grid.IsValidCell(testCell) || Grid.IsSolidCell(testCell) || Grid.ObjectLayers[1].ContainsKey(testCell))
@@ -61,15 +57,11 @@ public class BuildingPlacementQuery : PathFinderQuery
 		return flag;
 	}
 
-	// Token: 0x04001905 RID: 6405
 	public List<int> result_cells = new List<int>();
 
-	// Token: 0x04001906 RID: 6406
 	private int max_results;
 
-	// Token: 0x04001907 RID: 6407
 	private GameObject toPlace;
 
-	// Token: 0x04001908 RID: 6408
 	private CellOffset[] cellOffsets;
 }

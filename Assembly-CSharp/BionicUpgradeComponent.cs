@@ -4,16 +4,10 @@ using Klei.AI;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000C7D RID: 3197
 public class BionicUpgradeComponent : Assignable, IGameObjectEffectDescriptor
 {
-	// Token: 0x170002BB RID: 699
-	// (get) Token: 0x06003CB3 RID: 15539 RVA: 0x000CBAAB File Offset: 0x000C9CAB
-	// (set) Token: 0x06003CB2 RID: 15538 RVA: 0x000CBAA2 File Offset: 0x000C9CA2
 	public BionicUpgradeComponent.IWattageController WattageController { get; private set; }
 
-	// Token: 0x170002BC RID: 700
-	// (get) Token: 0x06003CB4 RID: 15540 RVA: 0x000CBAB3 File Offset: 0x000C9CB3
 	public float CurrentWattage
 	{
 		get
@@ -26,8 +20,6 @@ public class BionicUpgradeComponent : Assignable, IGameObjectEffectDescriptor
 		}
 	}
 
-	// Token: 0x170002BD RID: 701
-	// (get) Token: 0x06003CB5 RID: 15541 RVA: 0x000CBACE File Offset: 0x000C9CCE
 	public string CurrentWattageName
 	{
 		get
@@ -40,8 +32,6 @@ public class BionicUpgradeComponent : Assignable, IGameObjectEffectDescriptor
 		}
 	}
 
-	// Token: 0x170002BE RID: 702
-	// (get) Token: 0x06003CB6 RID: 15542 RVA: 0x000CBB06 File Offset: 0x000C9D06
 	public bool HasWattageController
 	{
 		get
@@ -50,8 +40,6 @@ public class BionicUpgradeComponent : Assignable, IGameObjectEffectDescriptor
 		}
 	}
 
-	// Token: 0x170002BF RID: 703
-	// (get) Token: 0x06003CB7 RID: 15543 RVA: 0x000CBB11 File Offset: 0x000C9D11
 	public float PotentialWattage
 	{
 		get
@@ -60,8 +48,6 @@ public class BionicUpgradeComponent : Assignable, IGameObjectEffectDescriptor
 		}
 	}
 
-	// Token: 0x170002C0 RID: 704
-	// (get) Token: 0x06003CB8 RID: 15544 RVA: 0x000CBB1E File Offset: 0x000C9D1E
 	public BionicUpgradeComponentConfig.BoosterType Booster
 	{
 		get
@@ -70,8 +56,6 @@ public class BionicUpgradeComponent : Assignable, IGameObjectEffectDescriptor
 		}
 	}
 
-	// Token: 0x170002C1 RID: 705
-	// (get) Token: 0x06003CB9 RID: 15545 RVA: 0x000CBB2B File Offset: 0x000C9D2B
 	public Func<StateMachine.Instance, StateMachine.Instance> StateMachine
 	{
 		get
@@ -80,7 +64,6 @@ public class BionicUpgradeComponent : Assignable, IGameObjectEffectDescriptor
 		}
 	}
 
-	// Token: 0x06003CBA RID: 15546 RVA: 0x0023D03C File Offset: 0x0023B23C
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -89,7 +72,6 @@ public class BionicUpgradeComponent : Assignable, IGameObjectEffectDescriptor
 		base.AddAssignPrecondition(new Func<MinionAssignablesProxy, bool>(this.AssignablePrecondition_HasAvailableSlots));
 	}
 
-	// Token: 0x06003CBB RID: 15547 RVA: 0x0023D090 File Offset: 0x0023B290
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -100,7 +82,6 @@ public class BionicUpgradeComponent : Assignable, IGameObjectEffectDescriptor
 		this.RefreshStatusItem(null);
 	}
 
-	// Token: 0x06003CBC RID: 15548 RVA: 0x0023D0F8 File Offset: 0x0023B2F8
 	private void RefreshStatusItem(object data = null)
 	{
 		if (this.assignee == null && !base.gameObject.HasTag(GameTags.Stored))
@@ -117,7 +98,6 @@ public class BionicUpgradeComponent : Assignable, IGameObjectEffectDescriptor
 		}
 	}
 
-	// Token: 0x06003CBD RID: 15549 RVA: 0x0023D180 File Offset: 0x0023B380
 	public string GetTooltipForMinionAssigment(Assignables assignables)
 	{
 		MinionAssignablesProxy component = assignables.GetComponent<MinionAssignablesProxy>();
@@ -169,7 +149,6 @@ public class BionicUpgradeComponent : Assignable, IGameObjectEffectDescriptor
 		});
 	}
 
-	// Token: 0x06003CBE RID: 15550 RVA: 0x0023D38C File Offset: 0x0023B58C
 	public string GetTooltipForBoosterAssignment(Assignables assignables)
 	{
 		MinionAssignablesProxy component = assignables.GetComponent<MinionAssignablesProxy>();
@@ -192,7 +171,6 @@ public class BionicUpgradeComponent : Assignable, IGameObjectEffectDescriptor
 		return BionicUpgradeComponentConfig.GenerateTooltipForBooster(this) + "\n\n" + str;
 	}
 
-	// Token: 0x06003CBF RID: 15551 RVA: 0x000CBB38 File Offset: 0x000C9D38
 	public void InformOfWattageChanged()
 	{
 		System.Action onWattageCostChanged = this.OnWattageCostChanged;
@@ -203,13 +181,11 @@ public class BionicUpgradeComponent : Assignable, IGameObjectEffectDescriptor
 		onWattageCostChanged();
 	}
 
-	// Token: 0x06003CC0 RID: 15552 RVA: 0x000CBB4A File Offset: 0x000C9D4A
 	public void SetWattageController(BionicUpgradeComponent.IWattageController wattageController)
 	{
 		this.WattageController = wattageController;
 	}
 
-	// Token: 0x06003CC1 RID: 15553 RVA: 0x0023D43C File Offset: 0x0023B63C
 	public override void Assign(IAssignableIdentity new_assignee)
 	{
 		AssignableSlotInstance specificSlotInstance = null;
@@ -238,7 +214,6 @@ public class BionicUpgradeComponent : Assignable, IGameObjectEffectDescriptor
 		this.RefreshStatusItem(null);
 	}
 
-	// Token: 0x06003CC2 RID: 15554 RVA: 0x000CBB53 File Offset: 0x000C9D53
 	public override void Unassign()
 	{
 		base.Unassign();
@@ -246,13 +221,11 @@ public class BionicUpgradeComponent : Assignable, IGameObjectEffectDescriptor
 		this.RefreshStatusItem(null);
 	}
 
-	// Token: 0x06003CC3 RID: 15555 RVA: 0x000CBB6E File Offset: 0x000C9D6E
 	private bool AssignablePrecondition_OnlyOnBionics(MinionAssignablesProxy worker)
 	{
 		return worker.GetMinionModel() == BionicMinionConfig.MODEL;
 	}
 
-	// Token: 0x06003CC4 RID: 15556 RVA: 0x0023D4C8 File Offset: 0x0023B6C8
 	private bool AssignablePrecondition_HasAvailableSlots(MinionAssignablesProxy worker)
 	{
 		if (SelectTool.Instance.selected != null && SelectTool.Instance.selected.gameObject == worker.GetTargetGameObject())
@@ -278,7 +251,6 @@ public class BionicUpgradeComponent : Assignable, IGameObjectEffectDescriptor
 		return false;
 	}
 
-	// Token: 0x06003CC5 RID: 15557 RVA: 0x000CBB80 File Offset: 0x000C9D80
 	public List<Descriptor> GetDescriptors(GameObject go)
 	{
 		return new List<Descriptor>
@@ -287,22 +259,16 @@ public class BionicUpgradeComponent : Assignable, IGameObjectEffectDescriptor
 		};
 	}
 
-	// Token: 0x04002A1E RID: 10782
 	private BionicUpgradeComponentConfig.BionicUpgradeData data;
 
-	// Token: 0x04002A1F RID: 10783
 	public System.Action OnWattageCostChanged;
 
-	// Token: 0x04002A20 RID: 10784
 	private Guid unassignedStatusItem = Guid.Empty;
 
-	// Token: 0x02000C7E RID: 3198
 	public interface IWattageController
 	{
-		// Token: 0x06003CC7 RID: 15559
 		float GetCurrentWattageCost();
 
-		// Token: 0x06003CC8 RID: 15560
 		string GetCurrentWattageCostName();
 	}
 }

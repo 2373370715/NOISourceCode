@@ -2,11 +2,9 @@
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x02000F59 RID: 3929
 [SerializationConfig(MemberSerialization.OptIn)]
 public class Polymerizer : StateMachineComponent<Polymerizer.StatesInstance>
 {
-	// Token: 0x06004EBC RID: 20156 RVA: 0x00277600 File Offset: 0x00275800
 	protected override void OnSpawn()
 	{
 		KBatchedAnimController component = base.GetComponent<KBatchedAnimController>();
@@ -18,7 +16,6 @@ public class Polymerizer : StateMachineComponent<Polymerizer.StatesInstance>
 		base.Subscribe<Polymerizer>(-1697596308, Polymerizer.OnStorageChangedDelegate);
 	}
 
-	// Token: 0x06004EBD RID: 20157 RVA: 0x002776A4 File Offset: 0x002758A4
 	private void TryEmit()
 	{
 		GameObject gameObject = this.storage.FindFirst(this.emitTag);
@@ -30,7 +27,6 @@ public class Polymerizer : StateMachineComponent<Polymerizer.StatesInstance>
 		}
 	}
 
-	// Token: 0x06004EBE RID: 20158 RVA: 0x002776E4 File Offset: 0x002758E4
 	private void TryEmit(PrimaryElement primary_elem)
 	{
 		if (primary_elem.Mass >= this.emitMass)
@@ -55,14 +51,12 @@ public class Polymerizer : StateMachineComponent<Polymerizer.StatesInstance>
 		}
 	}
 
-	// Token: 0x06004EBF RID: 20159 RVA: 0x002777DC File Offset: 0x002759DC
 	private void UpdatePercentDone(PrimaryElement primary_elem)
 	{
 		float positionPercent = Mathf.Clamp01(primary_elem.Mass / this.emitMass);
 		this.plasticMeter.SetPositionPercent(positionPercent);
 	}
 
-	// Token: 0x06004EC0 RID: 20160 RVA: 0x00277808 File Offset: 0x00275A08
 	private void OnStorageChanged(object data)
 	{
 		GameObject gameObject = (GameObject)data;
@@ -76,7 +70,6 @@ public class Polymerizer : StateMachineComponent<Polymerizer.StatesInstance>
 		}
 	}
 
-	// Token: 0x06004EC1 RID: 20161 RVA: 0x0027783C File Offset: 0x00275A3C
 	private void UpdateOilMeter()
 	{
 		float num = 0f;
@@ -92,67 +85,51 @@ public class Polymerizer : StateMachineComponent<Polymerizer.StatesInstance>
 		this.oilMeter.SetPositionPercent(positionPercent);
 	}
 
-	// Token: 0x0400373F RID: 14143
 	[SerializeField]
 	public float maxMass = 2.5f;
 
-	// Token: 0x04003740 RID: 14144
 	[SerializeField]
 	public float emitMass = 1f;
 
-	// Token: 0x04003741 RID: 14145
 	[SerializeField]
 	public Tag emitTag;
 
-	// Token: 0x04003742 RID: 14146
 	[SerializeField]
 	public Vector3 emitOffset = Vector3.zero;
 
-	// Token: 0x04003743 RID: 14147
 	[SerializeField]
 	public SimHashes exhaustElement = SimHashes.Vacuum;
 
-	// Token: 0x04003744 RID: 14148
 	[MyCmpAdd]
 	private Storage storage;
 
-	// Token: 0x04003745 RID: 14149
 	[MyCmpReq]
 	private Operational operational;
 
-	// Token: 0x04003746 RID: 14150
 	[MyCmpGet]
 	private ConduitConsumer consumer;
 
-	// Token: 0x04003747 RID: 14151
 	[MyCmpGet]
 	private ElementConverter converter;
 
-	// Token: 0x04003748 RID: 14152
 	private MeterController plasticMeter;
 
-	// Token: 0x04003749 RID: 14153
 	private MeterController oilMeter;
 
-	// Token: 0x0400374A RID: 14154
 	private static readonly EventSystem.IntraObjectHandler<Polymerizer> OnStorageChangedDelegate = new EventSystem.IntraObjectHandler<Polymerizer>(delegate(Polymerizer component, object data)
 	{
 		component.OnStorageChanged(data);
 	});
 
-	// Token: 0x02000F5A RID: 3930
 	public class StatesInstance : GameStateMachine<Polymerizer.States, Polymerizer.StatesInstance, Polymerizer, object>.GameInstance
 	{
-		// Token: 0x06004EC4 RID: 20164 RVA: 0x000D79A8 File Offset: 0x000D5BA8
 		public StatesInstance(Polymerizer smi) : base(smi)
 		{
 		}
 	}
 
-	// Token: 0x02000F5B RID: 3931
 	public class States : GameStateMachine<Polymerizer.States, Polymerizer.StatesInstance, Polymerizer>
 	{
-		// Token: 0x06004EC5 RID: 20165 RVA: 0x002778D4 File Offset: 0x00275AD4
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.off;
@@ -171,13 +148,10 @@ public class Polymerizer : StateMachineComponent<Polymerizer.StatesInstance>
 			});
 		}
 
-		// Token: 0x0400374B RID: 14155
 		public GameStateMachine<Polymerizer.States, Polymerizer.StatesInstance, Polymerizer, object>.State off;
 
-		// Token: 0x0400374C RID: 14156
 		public GameStateMachine<Polymerizer.States, Polymerizer.StatesInstance, Polymerizer, object>.State on;
 
-		// Token: 0x0400374D RID: 14157
 		public GameStateMachine<Polymerizer.States, Polymerizer.StatesInstance, Polymerizer, object>.State converting;
 	}
 }

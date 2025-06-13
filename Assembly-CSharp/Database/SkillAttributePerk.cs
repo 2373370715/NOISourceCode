@@ -4,10 +4,8 @@ using STRINGS;
 
 namespace Database
 {
-	// Token: 0x0200222C RID: 8748
 	public class SkillAttributePerk : SkillPerk
 	{
-		// Token: 0x0600BA09 RID: 47625 RVA: 0x0047A360 File Offset: 0x00478560
 		public SkillAttributePerk(string id, string attributeId, float modifierBonus, string modifierDesc, bool modifierCanStack = false) : base(id, "", null, null, delegate(MinionResume identity)
 		{
 		}, null, false)
@@ -40,7 +38,6 @@ namespace Database
 			};
 		}
 
-		// Token: 0x040097E7 RID: 38887
 		public AttributeModifier modifier;
 	}
 }

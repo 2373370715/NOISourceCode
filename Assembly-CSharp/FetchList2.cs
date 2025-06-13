@@ -2,12 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02001328 RID: 4904
 public class FetchList2 : IFetchList
 {
-	// Token: 0x1700063F RID: 1599
-	// (get) Token: 0x06006457 RID: 25687 RVA: 0x000E5F57 File Offset: 0x000E4157
-	// (set) Token: 0x06006458 RID: 25688 RVA: 0x000E5F5F File Offset: 0x000E415F
 	public bool ShowStatusItem
 	{
 		get
@@ -20,8 +16,6 @@ public class FetchList2 : IFetchList
 		}
 	}
 
-	// Token: 0x17000640 RID: 1600
-	// (get) Token: 0x06006459 RID: 25689 RVA: 0x000E5F68 File Offset: 0x000E4168
 	public bool IsComplete
 	{
 		get
@@ -30,8 +24,6 @@ public class FetchList2 : IFetchList
 		}
 	}
 
-	// Token: 0x17000641 RID: 1601
-	// (get) Token: 0x0600645A RID: 25690 RVA: 0x002CC5D0 File Offset: 0x002CA7D0
 	public bool InProgress
 	{
 		get
@@ -56,24 +48,16 @@ public class FetchList2 : IFetchList
 		}
 	}
 
-	// Token: 0x17000642 RID: 1602
-	// (get) Token: 0x0600645B RID: 25691 RVA: 0x000E5F78 File Offset: 0x000E4178
-	// (set) Token: 0x0600645C RID: 25692 RVA: 0x000E5F80 File Offset: 0x000E4180
 	public Storage Destination { get; private set; }
 
-	// Token: 0x17000643 RID: 1603
-	// (get) Token: 0x0600645D RID: 25693 RVA: 0x000E5F89 File Offset: 0x000E4189
-	// (set) Token: 0x0600645E RID: 25694 RVA: 0x000E5F91 File Offset: 0x000E4191
 	public int PriorityMod { get; private set; }
 
-	// Token: 0x0600645F RID: 25695 RVA: 0x002CC63C File Offset: 0x002CA83C
 	public FetchList2(Storage destination, ChoreType chore_type)
 	{
 		this.Destination = destination;
 		this.choreType = chore_type;
 	}
 
-	// Token: 0x06006460 RID: 25696 RVA: 0x002CC6A8 File Offset: 0x002CA8A8
 	public void SetPriorityMod(int priorityMod)
 	{
 		this.PriorityMod = priorityMod;
@@ -83,7 +67,6 @@ public class FetchList2 : IFetchList
 		}
 	}
 
-	// Token: 0x06006461 RID: 25697 RVA: 0x002CC6EC File Offset: 0x002CA8EC
 	public void Add(HashSet<Tag> tags, Tag requiredTag, Tag[] forbidden_tags = null, float amount = 1f, Operational.State operationalRequirementDEPRECATED = Operational.State.None)
 	{
 		foreach (Tag key in tags)
@@ -97,7 +80,6 @@ public class FetchList2 : IFetchList
 		this.FetchOrders.Add(item);
 	}
 
-	// Token: 0x06006462 RID: 25698 RVA: 0x002CC77C File Offset: 0x002CA97C
 	public void Add(HashSet<Tag> tags, Tag[] forbidden_tags = null, float amount = 1f, Operational.State operationalRequirementDEPRECATED = Operational.State.None)
 	{
 		foreach (Tag key in tags)
@@ -111,7 +93,6 @@ public class FetchList2 : IFetchList
 		this.FetchOrders.Add(item);
 	}
 
-	// Token: 0x06006463 RID: 25699 RVA: 0x002CC810 File Offset: 0x002CAA10
 	public void Add(Tag tag, Tag[] forbidden_tags = null, float amount = 1f, Operational.State operationalRequirementDEPRECATED = Operational.State.None)
 	{
 		if (!this.MinimumAmount.ContainsKey(tag))
@@ -125,7 +106,6 @@ public class FetchList2 : IFetchList
 		this.FetchOrders.Add(item);
 	}
 
-	// Token: 0x06006464 RID: 25700 RVA: 0x002CC874 File Offset: 0x002CAA74
 	public float GetMinimumAmount(Tag tag)
 	{
 		float result = 0f;
@@ -133,7 +113,6 @@ public class FetchList2 : IFetchList
 		return result;
 	}
 
-	// Token: 0x06006465 RID: 25701 RVA: 0x000E5F9A File Offset: 0x000E419A
 	private void OnFetchOrderComplete(FetchOrder2 fetch_order, Pickupable fetched_item)
 	{
 		this.FetchOrders.Remove(fetch_order);
@@ -148,7 +127,6 @@ public class FetchList2 : IFetchList
 		}
 	}
 
-	// Token: 0x06006466 RID: 25702 RVA: 0x002CC898 File Offset: 0x002CAA98
 	public void Cancel(string reason)
 	{
 		FetchListStatusItemUpdater.instance.RemoveFetchList(this);
@@ -159,7 +137,6 @@ public class FetchList2 : IFetchList
 		}
 	}
 
-	// Token: 0x06006467 RID: 25703 RVA: 0x002CC8FC File Offset: 0x002CAAFC
 	public void UpdateRemaining()
 	{
 		this.Remaining.Clear();
@@ -175,13 +152,11 @@ public class FetchList2 : IFetchList
 		}
 	}
 
-	// Token: 0x06006468 RID: 25704 RVA: 0x000E5FDA File Offset: 0x000E41DA
 	public Dictionary<Tag, float> GetRemaining()
 	{
 		return this.Remaining;
 	}
 
-	// Token: 0x06006469 RID: 25705 RVA: 0x002CC9A4 File Offset: 0x002CABA4
 	public Dictionary<Tag, float> GetRemainingMinimum()
 	{
 		Dictionary<Tag, float> dictionary = new Dictionary<Tag, float>();
@@ -217,7 +192,6 @@ public class FetchList2 : IFetchList
 		return dictionary;
 	}
 
-	// Token: 0x0600646A RID: 25706 RVA: 0x002CCB5C File Offset: 0x002CAD5C
 	public void Suspend(string reason)
 	{
 		foreach (FetchOrder2 fetchOrder in this.FetchOrders)
@@ -226,7 +200,6 @@ public class FetchList2 : IFetchList
 		}
 	}
 
-	// Token: 0x0600646B RID: 25707 RVA: 0x002CCBB0 File Offset: 0x002CADB0
 	public void Resume(string reason)
 	{
 		foreach (FetchOrder2 fetchOrder in this.FetchOrders)
@@ -235,7 +208,6 @@ public class FetchList2 : IFetchList
 		}
 	}
 
-	// Token: 0x0600646C RID: 25708 RVA: 0x002CCC04 File Offset: 0x002CAE04
 	public void Submit(System.Action on_complete, bool check_storage_contents)
 	{
 		this.OnComplete = on_complete;
@@ -249,7 +221,6 @@ public class FetchList2 : IFetchList
 		}
 	}
 
-	// Token: 0x0600646D RID: 25709 RVA: 0x002CCC98 File Offset: 0x002CAE98
 	private void ClearStatus()
 	{
 		if (this.Destination != null)
@@ -264,7 +235,6 @@ public class FetchList2 : IFetchList
 		}
 	}
 
-	// Token: 0x0600646E RID: 25710 RVA: 0x002CCD04 File Offset: 0x002CAF04
 	public void UpdateStatusItem(MaterialsStatusItem status_item, ref Guid handle, bool should_add)
 	{
 		bool flag = handle != Guid.Empty;
@@ -294,30 +264,21 @@ public class FetchList2 : IFetchList
 		}
 	}
 
-	// Token: 0x04004840 RID: 18496
 	private System.Action OnComplete;
 
-	// Token: 0x04004843 RID: 18499
 	private ChoreType choreType;
 
-	// Token: 0x04004844 RID: 18500
 	public Guid waitingForMaterialsHandle = Guid.Empty;
 
-	// Token: 0x04004845 RID: 18501
 	public Guid materialsUnavailableForRefillHandle = Guid.Empty;
 
-	// Token: 0x04004846 RID: 18502
 	public Guid materialsUnavailableHandle = Guid.Empty;
 
-	// Token: 0x04004847 RID: 18503
 	public Dictionary<Tag, float> MinimumAmount = new Dictionary<Tag, float>();
 
-	// Token: 0x04004848 RID: 18504
 	public List<FetchOrder2> FetchOrders = new List<FetchOrder2>();
 
-	// Token: 0x04004849 RID: 18505
 	private Dictionary<Tag, float> Remaining = new Dictionary<Tag, float>();
 
-	// Token: 0x0400484A RID: 18506
 	private bool bShowStatusItem = true;
 }

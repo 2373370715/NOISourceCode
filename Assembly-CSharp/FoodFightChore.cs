@@ -2,10 +2,8 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x020006DD RID: 1757
 public class FoodFightChore : Chore<FoodFightChore.StatesInstance>
 {
-	// Token: 0x06001F3E RID: 7998 RVA: 0x001C3F6C File Offset: 0x001C216C
 	public FoodFightChore(IStateMachineTarget master, GameObject locator) : base(Db.Get().ChoreTypes.Party, master, master.GetComponent<ChoreProvider>(), false, null, null, null, PriorityScreen.PriorityClass.high, 5, false, true, 0, false, ReportManager.ReportType.PersonalTime)
 	{
 		base.smi = new FoodFightChore.StatesInstance(this, locator);
@@ -14,7 +12,6 @@ public class FoodFightChore : Chore<FoodFightChore.StatesInstance>
 		this.AddPrecondition(FoodFightChore.EdibleIsNotNull, null);
 	}
 
-	// Token: 0x06001F3F RID: 7999 RVA: 0x001C3FD4 File Offset: 0x001C21D4
 	public override void Begin(Chore.Precondition.Context context)
 	{
 		if (context.consumerState.consumer == null)
@@ -58,7 +55,6 @@ public class FoodFightChore : Chore<FoodFightChore.StatesInstance>
 		base.Begin(context);
 	}
 
-	// Token: 0x04001489 RID: 5257
 	public static readonly Chore.Precondition EdibleIsNotNull = new Chore.Precondition
 	{
 		id = "EdibleIsNotNull",
@@ -69,16 +65,13 @@ public class FoodFightChore : Chore<FoodFightChore.StatesInstance>
 		}
 	};
 
-	// Token: 0x020006DE RID: 1758
 	public class StatesInstance : GameStateMachine<FoodFightChore.States, FoodFightChore.StatesInstance, FoodFightChore, object>.GameInstance
 	{
-		// Token: 0x06001F41 RID: 8001 RVA: 0x000B9093 File Offset: 0x000B7293
 		public StatesInstance(FoodFightChore master, GameObject locator) : base(master)
 		{
 			base.sm.locator.Set(locator, base.smi, false);
 		}
 
-		// Token: 0x06001F42 RID: 8002 RVA: 0x001C4188 File Offset: 0x001C2388
 		public void UpdateAttackTarget()
 		{
 			int num = 0;
@@ -106,14 +99,11 @@ public class FoodFightChore : Chore<FoodFightChore.StatesInstance>
 			base.smi.sm.attackableTarget.Set(minionIdentity.GetComponent<AttackableBase>(), base.smi);
 		}
 
-		// Token: 0x0400148A RID: 5258
 		private int locatorCell;
 	}
 
-	// Token: 0x020006DF RID: 1759
 	public class States : GameStateMachine<FoodFightChore.States, FoodFightChore.StatesInstance, FoodFightChore>
 	{
-		// Token: 0x06001F43 RID: 8003 RVA: 0x001C4328 File Offset: 0x001C2528
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.fetch;
@@ -179,52 +169,36 @@ public class FoodFightChore : Chore<FoodFightChore.StatesInstance>
 			});
 		}
 
-		// Token: 0x0400148B RID: 5259
 		public StateMachine<FoodFightChore.States, FoodFightChore.StatesInstance, FoodFightChore, object>.TargetParameter eater;
 
-		// Token: 0x0400148C RID: 5260
 		public StateMachine<FoodFightChore.States, FoodFightChore.StatesInstance, FoodFightChore, object>.TargetParameter ediblesource;
 
-		// Token: 0x0400148D RID: 5261
 		public StateMachine<FoodFightChore.States, FoodFightChore.StatesInstance, FoodFightChore, object>.TargetParameter ediblechunk;
 
-		// Token: 0x0400148E RID: 5262
 		public StateMachine<FoodFightChore.States, FoodFightChore.StatesInstance, FoodFightChore, object>.TargetParameter attackableTarget;
 
-		// Token: 0x0400148F RID: 5263
 		public StateMachine<FoodFightChore.States, FoodFightChore.StatesInstance, FoodFightChore, object>.FloatParameter requestedfoodunits;
 
-		// Token: 0x04001490 RID: 5264
 		public StateMachine<FoodFightChore.States, FoodFightChore.StatesInstance, FoodFightChore, object>.FloatParameter actualfoodunits;
 
-		// Token: 0x04001491 RID: 5265
 		public StateMachine<FoodFightChore.States, FoodFightChore.StatesInstance, FoodFightChore, object>.TargetParameter locator;
 
-		// Token: 0x04001492 RID: 5266
 		public GameStateMachine<FoodFightChore.States, FoodFightChore.StatesInstance, FoodFightChore, object>.State waitForParticipants;
 
-		// Token: 0x04001493 RID: 5267
 		public GameStateMachine<FoodFightChore.States, FoodFightChore.StatesInstance, FoodFightChore, object>.State emoteRoar;
 
-		// Token: 0x04001494 RID: 5268
 		public GameStateMachine<FoodFightChore.States, FoodFightChore.StatesInstance, FoodFightChore, object>.ApproachSubState<IApproachable> moveToArena;
 
-		// Token: 0x04001495 RID: 5269
 		public GameStateMachine<FoodFightChore.States, FoodFightChore.StatesInstance, FoodFightChore, object>.FetchSubState fetch;
 
-		// Token: 0x04001496 RID: 5270
 		public FoodFightChore.States.AttackStates fight;
 
-		// Token: 0x04001497 RID: 5271
 		public GameStateMachine<FoodFightChore.States, FoodFightChore.StatesInstance, FoodFightChore, object>.State end;
 
-		// Token: 0x020006E0 RID: 1760
 		public class AttackStates : GameStateMachine<FoodFightChore.States, FoodFightChore.StatesInstance, FoodFightChore, object>.State
 		{
-			// Token: 0x04001498 RID: 5272
 			public GameStateMachine<FoodFightChore.States, FoodFightChore.StatesInstance, FoodFightChore, object>.ApproachSubState<AttackableBase> moveto;
 
-			// Token: 0x04001499 RID: 5273
 			public GameStateMachine<FoodFightChore.States, FoodFightChore.StatesInstance, FoodFightChore, object>.State throwFood;
 		}
 	}

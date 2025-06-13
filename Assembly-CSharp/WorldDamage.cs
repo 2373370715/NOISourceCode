@@ -5,28 +5,21 @@ using FMODUnity;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001AA3 RID: 6819
 [AddComponentMenu("KMonoBehaviour/scripts/WorldDamage")]
 public class WorldDamage : KMonoBehaviour
 {
-	// Token: 0x17000966 RID: 2406
-	// (get) Token: 0x06008E94 RID: 36500 RVA: 0x00101A1B File Offset: 0x000FFC1B
-	// (set) Token: 0x06008E95 RID: 36501 RVA: 0x00101A22 File Offset: 0x000FFC22
 	public static WorldDamage Instance { get; private set; }
 
-	// Token: 0x06008E96 RID: 36502 RVA: 0x00101A2A File Offset: 0x000FFC2A
 	public static void DestroyInstance()
 	{
 		WorldDamage.Instance = null;
 	}
 
-	// Token: 0x06008E97 RID: 36503 RVA: 0x00101A32 File Offset: 0x000FFC32
 	protected override void OnPrefabInit()
 	{
 		WorldDamage.Instance = this;
 	}
 
-	// Token: 0x06008E98 RID: 36504 RVA: 0x00101A3A File Offset: 0x000FFC3A
 	public void RestoreDamageToValue(int cell, float amount)
 	{
 		if (Grid.Damage[cell] > amount)
@@ -35,13 +28,11 @@ public class WorldDamage : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008E99 RID: 36505 RVA: 0x00101A4E File Offset: 0x000FFC4E
 	public float ApplyDamage(Sim.WorldDamageInfo damage_info)
 	{
 		return this.ApplyDamage(damage_info.gameCell, this.damageAmount, damage_info.damageSourceOffset, BUILDINGS.DAMAGESOURCES.LIQUID_PRESSURE, UI.GAMEOBJECTEFFECTS.DAMAGE_POPS.LIQUID_PRESSURE);
 	}
 
-	// Token: 0x06008E9A RID: 36506 RVA: 0x0037A878 File Offset: 0x00378A78
 	public float ApplyDamage(int cell, float amount, int src_cell, WorldDamage.DamageType damageType, string source_name = null, string pop_text = null)
 	{
 		float result = 0f;
@@ -108,19 +99,16 @@ public class WorldDamage : KMonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06008E9B RID: 36507 RVA: 0x00101A7C File Offset: 0x000FFC7C
 	public float ApplyDamage(int cell, float amount, int src_cell, string source_name = null, string pop_text = null)
 	{
 		return this.ApplyDamage(cell, amount, src_cell, WorldDamage.DamageType.Absolute, source_name, pop_text);
 	}
 
-	// Token: 0x06008E9C RID: 36508 RVA: 0x00101A8C File Offset: 0x000FFC8C
 	private void ReleaseGO(GameObject go)
 	{
 		go.DeleteObject();
 	}
 
-	// Token: 0x06008E9D RID: 36509 RVA: 0x00101A94 File Offset: 0x000FFC94
 	private IEnumerator DelayedSpawnFX(int src_cell, int dest_cell, int offset, Element elem, ushort idx, float temperature)
 	{
 		float seconds = UnityEngine.Random.value * 0.25f;
@@ -172,7 +160,6 @@ public class WorldDamage : KMonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06008E9E RID: 36510 RVA: 0x0037AAA8 File Offset: 0x00378CA8
 	private void Update()
 	{
 		this.expiredCells.Clear();
@@ -191,7 +178,6 @@ public class WorldDamage : KMonoBehaviour
 		this.expiredCells.Clear();
 	}
 
-	// Token: 0x06008E9F RID: 36511 RVA: 0x00101AD0 File Offset: 0x000FFCD0
 	public void DestroyCell(int cell)
 	{
 		if (Grid.Solid[cell])
@@ -200,13 +186,11 @@ public class WorldDamage : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008EA0 RID: 36512 RVA: 0x00101AE7 File Offset: 0x000FFCE7
 	public void OnSolidStateChanged(int cell)
 	{
 		Grid.Damage[cell] = 0f;
 	}
 
-	// Token: 0x06008EA1 RID: 36513 RVA: 0x0037AB7C File Offset: 0x00378D7C
 	public void OnDigComplete(int cell, float mass, float temperature, ushort element_idx, byte disease_idx, int disease_count)
 	{
 		Vector3 vector = Grid.CellToPos(cell, CellAlignment.RandomInternal, Grid.SceneLayer.Ore);
@@ -226,7 +210,6 @@ public class WorldDamage : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008EA2 RID: 36514 RVA: 0x0037AC58 File Offset: 0x00378E58
 	private void PlaySoundForSubstance(Element element, Vector3 pos)
 	{
 		string text = element.substance.GetMiningBreakSound();
@@ -253,35 +236,25 @@ public class WorldDamage : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x04006B7C RID: 27516
 	public KBatchedAnimController leakEffect;
 
-	// Token: 0x04006B7D RID: 27517
 	[SerializeField]
 	private FMODAsset leakSound;
 
-	// Token: 0x04006B7E RID: 27518
 	[SerializeField]
 	private EventReference leakSoundMigrated;
 
-	// Token: 0x04006B7F RID: 27519
 	private float damageAmount = 0.00083333335f;
 
-	// Token: 0x04006B81 RID: 27521
 	private const float SPAWN_DELAY = 1f;
 
-	// Token: 0x04006B82 RID: 27522
 	private Dictionary<int, float> spawnTimes = new Dictionary<int, float>();
 
-	// Token: 0x04006B83 RID: 27523
 	private List<int> expiredCells = new List<int>();
 
-	// Token: 0x02001AA4 RID: 6820
 	public enum DamageType
 	{
-		// Token: 0x04006B85 RID: 27525
 		Absolute,
-		// Token: 0x04006B86 RID: 27526
 		NoBuildingDamage
 	}
 }

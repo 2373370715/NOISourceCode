@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 
-// Token: 0x02000806 RID: 2054
 public class PathFinder
 {
-	// Token: 0x06002437 RID: 9271 RVA: 0x001D5BF0 File Offset: 0x001D3DF0
 	public static void Initialize()
 	{
 		NavType[] array = new NavType[11];
@@ -27,18 +25,15 @@ public class PathFinder
 		Grid.OnReveal = (Action<int>)Delegate.Combine(Grid.OnReveal, new Action<int>(PathFinder.OnReveal));
 	}
 
-	// Token: 0x06002438 RID: 9272 RVA: 0x000AA038 File Offset: 0x000A8238
 	private static void OnReveal(int cell)
 	{
 	}
 
-	// Token: 0x06002439 RID: 9273 RVA: 0x000BBF05 File Offset: 0x000BA105
 	public static void UpdatePath(NavGrid nav_grid, PathFinderAbilities abilities, PathFinder.PotentialPath potential_path, PathFinderQuery query, ref PathFinder.Path path)
 	{
 		PathFinder.Run(nav_grid, abilities, potential_path, query, ref path);
 	}
 
-	// Token: 0x0600243A RID: 9274 RVA: 0x001D5C98 File Offset: 0x001D3E98
 	public static bool ValidatePath(NavGrid nav_grid, PathFinderAbilities abilities, ref PathFinder.Path path)
 	{
 		if (!path.IsValid())
@@ -77,7 +72,6 @@ public class PathFinder
 		return true;
 	}
 
-	// Token: 0x0600243B RID: 9275 RVA: 0x001D5DAC File Offset: 0x001D3FAC
 	public static void Run(NavGrid nav_grid, PathFinderAbilities abilities, PathFinder.PotentialPath potential_path, PathFinderQuery query)
 	{
 		int invalidCell = PathFinder.InvalidCell;
@@ -96,7 +90,6 @@ public class PathFinder
 		}
 	}
 
-	// Token: 0x0600243C RID: 9276 RVA: 0x000BBF12 File Offset: 0x000BA112
 	public static void Run(NavGrid nav_grid, PathFinderAbilities abilities, PathFinder.PotentialPath potential_path, PathFinderQuery query, ref PathFinder.Path path)
 	{
 		PathFinder.Run(nav_grid, abilities, potential_path, query);
@@ -108,7 +101,6 @@ public class PathFinder
 		path.Clear();
 	}
 
-	// Token: 0x0600243D RID: 9277 RVA: 0x001D5E10 File Offset: 0x001D4010
 	private static void BuildResultPath(int path_cell, NavType path_nav_type, ref PathFinder.Path path)
 	{
 		if (path_cell != PathFinder.InvalidCell)
@@ -143,7 +135,6 @@ public class PathFinder
 		}
 	}
 
-	// Token: 0x0600243E RID: 9278 RVA: 0x001D5F1C File Offset: 0x001D411C
 	private static void FindPaths(NavGrid nav_grid, ref PathFinderAbilities abilities, PathFinder.PotentialPath potential_path, PathFinderQuery query, PathFinder.PotentialList potentials, ref int result_cell, ref NavType result_nav_type)
 	{
 		potentials.Clear();
@@ -172,7 +163,6 @@ public class PathFinder
 		PathFinder.PathGrid.EndUpdate(true);
 	}
 
-	// Token: 0x0600243F RID: 9279 RVA: 0x000BBF45 File Offset: 0x000BA145
 	public static void AddPotential(PathFinder.PotentialPath potential_path, int parent_cell, NavType parent_nav_type, int cost, byte transition_id, PathFinder.PotentialList potentials, PathGrid path_grid, ref PathFinder.Cell cell_data)
 	{
 		cell_data.cost = cost;
@@ -183,19 +173,16 @@ public class PathFinder
 		path_grid.SetCell(potential_path, ref cell_data);
 	}
 
-	// Token: 0x06002440 RID: 9280 RVA: 0x000AA038 File Offset: 0x000A8238
 	[Conditional("ENABLE_PATH_DETAILS")]
 	private static void BeginDetailSample(string region_name)
 	{
 	}
 
-	// Token: 0x06002441 RID: 9281 RVA: 0x000AA038 File Offset: 0x000A8238
 	[Conditional("ENABLE_PATH_DETAILS")]
 	private static void EndDetailSample(string region_name)
 	{
 	}
 
-	// Token: 0x06002442 RID: 9282 RVA: 0x001D6058 File Offset: 0x001D4258
 	public static bool IsSubmerged(int cell)
 	{
 		if (!Grid.IsValidCell(cell))
@@ -206,7 +193,6 @@ public class PathFinder
 		return (Grid.IsValidCell(num) && Grid.Element[num].IsLiquid) || (Grid.Element[cell].IsLiquid && Grid.IsValidCell(num) && Grid.Solid[num]);
 	}
 
-	// Token: 0x06002443 RID: 9283 RVA: 0x001D60B4 File Offset: 0x001D42B4
 	public static void AddPotentials(PathFinder.PotentialScratchPad potential_scratch_pad, PathFinder.PotentialPath potential, int cost, ref PathFinderAbilities abilities, PathFinderQuery query, int max_links_per_cell, NavGrid.Link[] links, PathFinder.PotentialList potentials, PathGrid path_grid, int parent_cell, NavType parent_nav_type)
 	{
 		if (!Grid.IsValidCell(potential.cell))
@@ -281,7 +267,6 @@ public class PathFinder
 		}
 	}
 
-	// Token: 0x06002444 RID: 9284 RVA: 0x000BBF81 File Offset: 0x000BA181
 	public static void DestroyStatics()
 	{
 		PathFinder.PathGrid.OnCleanUp();
@@ -289,19 +274,14 @@ public class PathFinder
 		PathFinder.Temp.Potentials.Clear();
 	}
 
-	// Token: 0x040018A6 RID: 6310
 	public static int InvalidHandle = -1;
 
-	// Token: 0x040018A7 RID: 6311
 	public static int InvalidIdx = -1;
 
-	// Token: 0x040018A8 RID: 6312
 	public static int InvalidCell = -1;
 
-	// Token: 0x040018A9 RID: 6313
 	public static PathGrid PathGrid;
 
-	// Token: 0x040018AA RID: 6314
 	private static readonly Func<int, bool> allowPathfindingFloodFillCb = delegate(int cell)
 	{
 		if (Grid.Solid[cell])
@@ -316,11 +296,8 @@ public class PathFinder
 		return true;
 	};
 
-	// Token: 0x02000807 RID: 2055
 	public struct Cell
 	{
-		// Token: 0x1700010D RID: 269
-		// (get) Token: 0x06002447 RID: 9287 RVA: 0x000BBFC6 File Offset: 0x000BA1C6
 		public NavType navType
 		{
 			get
@@ -329,8 +306,6 @@ public class PathFinder
 			}
 		}
 
-		// Token: 0x1700010E RID: 270
-		// (get) Token: 0x06002448 RID: 9288 RVA: 0x000BBFD2 File Offset: 0x000BA1D2
 		public NavType parentNavType
 		{
 			get
@@ -339,32 +314,24 @@ public class PathFinder
 			}
 		}
 
-		// Token: 0x06002449 RID: 9289 RVA: 0x001D6300 File Offset: 0x001D4500
 		public void SetNavTypes(NavType type, NavType parent_type)
 		{
 			this.navTypes = (byte)(type | parent_type << 4);
 		}
 
-		// Token: 0x040018AB RID: 6315
 		public int cost;
 
-		// Token: 0x040018AC RID: 6316
 		public int parent;
 
-		// Token: 0x040018AD RID: 6317
 		public short queryId;
 
-		// Token: 0x040018AE RID: 6318
 		private byte navTypes;
 
-		// Token: 0x040018AF RID: 6319
 		public byte transitionId;
 	}
 
-	// Token: 0x02000808 RID: 2056
 	public struct PotentialPath
 	{
-		// Token: 0x0600244A RID: 9290 RVA: 0x000BBFDD File Offset: 0x000BA1DD
 		public PotentialPath(int cell, NavType nav_type, PathFinder.PotentialPath.Flags flags)
 		{
 			this.cell = cell;
@@ -372,64 +339,46 @@ public class PathFinder
 			this.flags = flags;
 		}
 
-		// Token: 0x0600244B RID: 9291 RVA: 0x000BBFF4 File Offset: 0x000BA1F4
 		public void SetFlags(PathFinder.PotentialPath.Flags new_flags)
 		{
 			this.flags |= new_flags;
 		}
 
-		// Token: 0x0600244C RID: 9292 RVA: 0x000BC004 File Offset: 0x000BA204
 		public void ClearFlags(PathFinder.PotentialPath.Flags new_flags)
 		{
 			this.flags &= ~new_flags;
 		}
 
-		// Token: 0x0600244D RID: 9293 RVA: 0x000BC016 File Offset: 0x000BA216
 		public bool HasFlag(PathFinder.PotentialPath.Flags flag)
 		{
 			return this.HasAnyFlag(flag);
 		}
 
-		// Token: 0x0600244E RID: 9294 RVA: 0x000BC01F File Offset: 0x000BA21F
 		public bool HasAnyFlag(PathFinder.PotentialPath.Flags mask)
 		{
 			return (this.flags & mask) > PathFinder.PotentialPath.Flags.None;
 		}
 
-		// Token: 0x1700010F RID: 271
-		// (get) Token: 0x0600244F RID: 9295 RVA: 0x000BC02C File Offset: 0x000BA22C
-		// (set) Token: 0x06002450 RID: 9296 RVA: 0x000BC034 File Offset: 0x000BA234
 		public PathFinder.PotentialPath.Flags flags { readonly get; private set; }
 
-		// Token: 0x040018B0 RID: 6320
 		public int cell;
 
-		// Token: 0x040018B1 RID: 6321
 		public NavType navType;
 
-		// Token: 0x02000809 RID: 2057
 		[Flags]
 		public enum Flags : byte
 		{
-			// Token: 0x040018B4 RID: 6324
 			None = 0,
-			// Token: 0x040018B5 RID: 6325
 			HasAtmoSuit = 1,
-			// Token: 0x040018B6 RID: 6326
 			HasJetPack = 2,
-			// Token: 0x040018B7 RID: 6327
 			HasOxygenMask = 4,
-			// Token: 0x040018B8 RID: 6328
 			PerformSuitChecks = 8,
-			// Token: 0x040018B9 RID: 6329
 			HasLeadSuit = 16
 		}
 	}
 
-	// Token: 0x0200080A RID: 2058
 	public struct Path
 	{
-		// Token: 0x06002451 RID: 9297 RVA: 0x000BC03D File Offset: 0x000BA23D
 		public void AddNode(PathFinder.Path.Node node)
 		{
 			if (this.nodes == null)
@@ -439,19 +388,16 @@ public class PathFinder
 			this.nodes.Add(node);
 		}
 
-		// Token: 0x06002452 RID: 9298 RVA: 0x000BC05E File Offset: 0x000BA25E
 		public bool IsValid()
 		{
 			return this.nodes != null && this.nodes.Count > 1;
 		}
 
-		// Token: 0x06002453 RID: 9299 RVA: 0x000BC078 File Offset: 0x000BA278
 		public bool HasArrived()
 		{
 			return this.nodes != null && this.nodes.Count > 0;
 		}
 
-		// Token: 0x06002454 RID: 9300 RVA: 0x000BC092 File Offset: 0x000BA292
 		public void Clear()
 		{
 			this.cost = 0;
@@ -461,37 +407,27 @@ public class PathFinder
 			}
 		}
 
-		// Token: 0x040018BA RID: 6330
 		public int cost;
 
-		// Token: 0x040018BB RID: 6331
 		public List<PathFinder.Path.Node> nodes;
 
-		// Token: 0x0200080B RID: 2059
 		public struct Node
 		{
-			// Token: 0x040018BC RID: 6332
 			public int cell;
 
-			// Token: 0x040018BD RID: 6333
 			public NavType navType;
 
-			// Token: 0x040018BE RID: 6334
 			public byte transitionId;
 		}
 	}
 
-	// Token: 0x0200080C RID: 2060
 	public class PotentialList
 	{
-		// Token: 0x06002455 RID: 9301 RVA: 0x000BC0AE File Offset: 0x000BA2AE
 		public KeyValuePair<int, PathFinder.PotentialPath> Next()
 		{
 			return this.queue.Dequeue();
 		}
 
-		// Token: 0x17000110 RID: 272
-		// (get) Token: 0x06002456 RID: 9302 RVA: 0x000BC0BB File Offset: 0x000BA2BB
 		public int Count
 		{
 			get
@@ -500,37 +436,30 @@ public class PathFinder
 			}
 		}
 
-		// Token: 0x06002457 RID: 9303 RVA: 0x000BC0C8 File Offset: 0x000BA2C8
 		public void Add(int cost, PathFinder.PotentialPath path)
 		{
 			this.queue.Enqueue(cost, path);
 		}
 
-		// Token: 0x06002458 RID: 9304 RVA: 0x000BC0D7 File Offset: 0x000BA2D7
 		public void Clear()
 		{
 			this.queue.Clear();
 		}
 
-		// Token: 0x040018BF RID: 6335
 		private PathFinder.PotentialList.HOTQueue<PathFinder.PotentialPath> queue = new PathFinder.PotentialList.HOTQueue<PathFinder.PotentialPath>();
 
-		// Token: 0x0200080D RID: 2061
 		public class PriorityQueue<TValue>
 		{
-			// Token: 0x0600245A RID: 9306 RVA: 0x000BC0F7 File Offset: 0x000BA2F7
 			public PriorityQueue()
 			{
 				this._baseHeap = new List<KeyValuePair<int, TValue>>();
 			}
 
-			// Token: 0x0600245B RID: 9307 RVA: 0x000BC10A File Offset: 0x000BA30A
 			public void Enqueue(int priority, TValue value)
 			{
 				this.Insert(priority, value);
 			}
 
-			// Token: 0x0600245C RID: 9308 RVA: 0x000BC114 File Offset: 0x000BA314
 			public KeyValuePair<int, TValue> Dequeue()
 			{
 				KeyValuePair<int, TValue> result = this._baseHeap[0];
@@ -538,7 +467,6 @@ public class PathFinder
 				return result;
 			}
 
-			// Token: 0x0600245D RID: 9309 RVA: 0x000BC128 File Offset: 0x000BA328
 			public KeyValuePair<int, TValue> Peek()
 			{
 				if (this.Count > 0)
@@ -548,7 +476,6 @@ public class PathFinder
 				throw new InvalidOperationException("Priority queue is empty");
 			}
 
-			// Token: 0x0600245E RID: 9310 RVA: 0x001D6320 File Offset: 0x001D4520
 			private void ExchangeElements(int pos1, int pos2)
 			{
 				KeyValuePair<int, TValue> value = this._baseHeap[pos1];
@@ -556,7 +483,6 @@ public class PathFinder
 				this._baseHeap[pos2] = value;
 			}
 
-			// Token: 0x0600245F RID: 9311 RVA: 0x001D6360 File Offset: 0x001D4560
 			private void Insert(int priority, TValue value)
 			{
 				KeyValuePair<int, TValue> item = new KeyValuePair<int, TValue>(priority, value);
@@ -564,7 +490,6 @@ public class PathFinder
 				this.HeapifyFromEndToBeginning(this._baseHeap.Count - 1);
 			}
 
-			// Token: 0x06002460 RID: 9312 RVA: 0x001D6398 File Offset: 0x001D4598
 			private int HeapifyFromEndToBeginning(int pos)
 			{
 				if (pos >= this._baseHeap.Count)
@@ -584,7 +509,6 @@ public class PathFinder
 				return pos;
 			}
 
-			// Token: 0x06002461 RID: 9313 RVA: 0x001D63F8 File Offset: 0x001D45F8
 			private void DeleteRoot()
 			{
 				if (this._baseHeap.Count <= 1)
@@ -597,7 +521,6 @@ public class PathFinder
 				this.HeapifyFromBeginningToEnd(0);
 			}
 
-			// Token: 0x06002462 RID: 9314 RVA: 0x001D6464 File Offset: 0x001D4664
 			private void HeapifyFromBeginningToEnd(int pos)
 			{
 				int count = this._baseHeap.Count;
@@ -627,14 +550,11 @@ public class PathFinder
 				}
 			}
 
-			// Token: 0x06002463 RID: 9315 RVA: 0x000BC14A File Offset: 0x000BA34A
 			public void Clear()
 			{
 				this._baseHeap.Clear();
 			}
 
-			// Token: 0x17000111 RID: 273
-			// (get) Token: 0x06002464 RID: 9316 RVA: 0x000BC157 File Offset: 0x000BA357
 			public int Count
 			{
 				get
@@ -643,14 +563,11 @@ public class PathFinder
 				}
 			}
 
-			// Token: 0x040018C0 RID: 6336
 			private List<KeyValuePair<int, TValue>> _baseHeap;
 		}
 
-		// Token: 0x0200080E RID: 2062
 		private class HOTQueue<TValue>
 		{
-			// Token: 0x06002465 RID: 9317 RVA: 0x001D650C File Offset: 0x001D470C
 			public KeyValuePair<int, TValue> Dequeue()
 			{
 				if (this.hotQueue.Count == 0)
@@ -664,7 +581,6 @@ public class PathFinder
 				return this.hotQueue.Dequeue();
 			}
 
-			// Token: 0x06002466 RID: 9318 RVA: 0x001D6568 File Offset: 0x001D4768
 			public void Enqueue(int priority, TValue value)
 			{
 				if (priority <= this.hotThreshold)
@@ -679,7 +595,6 @@ public class PathFinder
 				this.count++;
 			}
 
-			// Token: 0x06002467 RID: 9319 RVA: 0x001D65BC File Offset: 0x001D47BC
 			public KeyValuePair<int, TValue> Peek()
 			{
 				if (this.hotQueue.Count == 0)
@@ -692,7 +607,6 @@ public class PathFinder
 				return this.hotQueue.Peek();
 			}
 
-			// Token: 0x06002468 RID: 9320 RVA: 0x000BC164 File Offset: 0x000BA364
 			public void Clear()
 			{
 				this.count = 0;
@@ -702,8 +616,6 @@ public class PathFinder
 				this.coldQueue.Clear();
 			}
 
-			// Token: 0x17000112 RID: 274
-			// (get) Token: 0x06002469 RID: 9321 RVA: 0x000BC199 File Offset: 0x000BA399
 			public int Count
 			{
 				get
@@ -712,56 +624,41 @@ public class PathFinder
 				}
 			}
 
-			// Token: 0x040018C1 RID: 6337
 			private PathFinder.PotentialList.PriorityQueue<TValue> hotQueue = new PathFinder.PotentialList.PriorityQueue<TValue>();
 
-			// Token: 0x040018C2 RID: 6338
 			private PathFinder.PotentialList.PriorityQueue<TValue> coldQueue = new PathFinder.PotentialList.PriorityQueue<TValue>();
 
-			// Token: 0x040018C3 RID: 6339
 			private int hotThreshold = int.MinValue;
 
-			// Token: 0x040018C4 RID: 6340
 			private int coldThreshold = int.MinValue;
 
-			// Token: 0x040018C5 RID: 6341
 			private int count;
 		}
 	}
 
-	// Token: 0x0200080F RID: 2063
 	private class Temp
 	{
-		// Token: 0x040018C6 RID: 6342
 		public static PathFinder.PotentialList Potentials = new PathFinder.PotentialList();
 	}
 
-	// Token: 0x02000810 RID: 2064
 	public class PotentialScratchPad
 	{
-		// Token: 0x0600246D RID: 9325 RVA: 0x000BC1E1 File Offset: 0x000BA3E1
 		public PotentialScratchPad(int max_links_per_cell)
 		{
 			this.linksWithCorrectNavType = new NavGrid.Link[max_links_per_cell];
 			this.linksInCellRange = new PathFinder.PotentialScratchPad.PathGridCellData[max_links_per_cell];
 		}
 
-		// Token: 0x040018C7 RID: 6343
 		public NavGrid.Link[] linksWithCorrectNavType;
 
-		// Token: 0x040018C8 RID: 6344
 		public PathFinder.PotentialScratchPad.PathGridCellData[] linksInCellRange;
 
-		// Token: 0x02000811 RID: 2065
 		public struct PathGridCellData
 		{
-			// Token: 0x040018C9 RID: 6345
 			public PathFinder.Cell pathGridCell;
 
-			// Token: 0x040018CA RID: 6346
 			public NavGrid.Link link;
 
-			// Token: 0x040018CB RID: 6347
 			public bool isSubmerged;
 		}
 	}

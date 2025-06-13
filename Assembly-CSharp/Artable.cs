@@ -7,12 +7,9 @@ using KSerialization;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020009B8 RID: 2488
 [AddComponentMenu("KMonoBehaviour/Workable/Artable")]
 public class Artable : Workable
 {
-	// Token: 0x1700019C RID: 412
-	// (get) Token: 0x06002C98 RID: 11416 RVA: 0x000C1509 File Offset: 0x000BF709
 	public string CurrentStage
 	{
 		get
@@ -21,13 +18,11 @@ public class Artable : Workable
 		}
 	}
 
-	// Token: 0x06002C99 RID: 11417 RVA: 0x000C1511 File Offset: 0x000BF711
 	protected Artable()
 	{
 		this.faceTargetWhenWorking = true;
 	}
 
-	// Token: 0x06002C9A RID: 11418 RVA: 0x001F9EE8 File Offset: 0x001F80E8
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -40,7 +35,6 @@ public class Artable : Workable
 		base.SetWorkTime(80f);
 	}
 
-	// Token: 0x06002C9B RID: 11419 RVA: 0x001F9F7C File Offset: 0x001F817C
 	protected override void OnSpawn()
 	{
 		base.GetComponent<KPrefabID>().PrefabID();
@@ -56,7 +50,6 @@ public class Artable : Workable
 		base.OnSpawn();
 	}
 
-	// Token: 0x06002C9C RID: 11420 RVA: 0x001F9FD8 File Offset: 0x001F81D8
 	[OnDeserialized]
 	public void OnDeserialized()
 	{
@@ -73,7 +66,6 @@ public class Artable : Workable
 		}
 	}
 
-	// Token: 0x06002C9D RID: 11421 RVA: 0x001FA070 File Offset: 0x001F8270
 	protected override void OnCompleteWork(WorkerBase worker)
 	{
 		if (string.IsNullOrEmpty(this.userChosenTargetStage))
@@ -120,7 +112,6 @@ public class Artable : Workable
 		Prioritizable.RemoveRef(base.gameObject);
 	}
 
-	// Token: 0x06002C9E RID: 11422 RVA: 0x001FA268 File Offset: 0x001F8468
 	public void SetDefault()
 	{
 		this.currentStage = this.defaultArtworkId;
@@ -142,7 +133,6 @@ public class Artable : Workable
 		}
 	}
 
-	// Token: 0x06002C9F RID: 11423 RVA: 0x001FA38C File Offset: 0x001F858C
 	public virtual void SetStage(string stage_id, bool skip_effect)
 	{
 		ArtableStage artableStage = Db.GetArtableStages().Get(stage_id);
@@ -171,30 +161,23 @@ public class Artable : Workable
 		this.UpdateStatusItem(null);
 	}
 
-	// Token: 0x06002CA0 RID: 11424 RVA: 0x000C152B File Offset: 0x000BF72B
 	public void SetUserChosenTargetState(string stageID)
 	{
 		this.SetDefault();
 		this.userChosenTargetStage = stageID;
 	}
 
-	// Token: 0x04001E87 RID: 7815
 	[Serialize]
 	private string currentStage;
 
-	// Token: 0x04001E88 RID: 7816
 	[Serialize]
 	private string userChosenTargetStage;
 
-	// Token: 0x04001E89 RID: 7817
 	private AttributeModifier artQualityDecorModifier;
 
-	// Token: 0x04001E8A RID: 7818
 	private string defaultArtworkId = "Default";
 
-	// Token: 0x04001E8B RID: 7819
 	public string defaultAnimName;
 
-	// Token: 0x04001E8C RID: 7820
 	private WorkChore<Artable> chore;
 }

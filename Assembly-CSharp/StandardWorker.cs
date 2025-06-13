@@ -2,23 +2,19 @@
 using Klei.AI;
 using UnityEngine;
 
-// Token: 0x02000B46 RID: 2886
 [AddComponentMenu("KMonoBehaviour/scripts/Worker")]
 public class StandardWorker : WorkerBase
 {
-	// Token: 0x06003589 RID: 13705 RVA: 0x000C75D7 File Offset: 0x000C57D7
 	public override WorkerBase.State GetState()
 	{
 		return this.state;
 	}
 
-	// Token: 0x0600358A RID: 13706 RVA: 0x000C75DF File Offset: 0x000C57DF
 	public override WorkerBase.StartWorkInfo GetStartWorkInfo()
 	{
 		return this.startWorkInfo;
 	}
 
-	// Token: 0x0600358B RID: 13707 RVA: 0x000C75E7 File Offset: 0x000C57E7
 	public override Workable GetWorkable()
 	{
 		if (this.startWorkInfo != null)
@@ -28,55 +24,46 @@ public class StandardWorker : WorkerBase
 		return null;
 	}
 
-	// Token: 0x0600358C RID: 13708 RVA: 0x000C75FE File Offset: 0x000C57FE
 	public override KBatchedAnimController GetAnimController()
 	{
 		return base.GetComponent<KBatchedAnimController>();
 	}
 
-	// Token: 0x0600358D RID: 13709 RVA: 0x000C7606 File Offset: 0x000C5806
 	public override Attributes GetAttributes()
 	{
 		return base.gameObject.GetAttributes();
 	}
 
-	// Token: 0x0600358E RID: 13710 RVA: 0x000C7613 File Offset: 0x000C5813
 	public override AttributeConverterInstance GetAttributeConverter(string id)
 	{
 		return base.GetComponent<AttributeConverters>().GetConverter(id);
 	}
 
-	// Token: 0x0600358F RID: 13711 RVA: 0x000C7621 File Offset: 0x000C5821
 	public override Guid OfferStatusItem(StatusItem item, object data = null)
 	{
 		return base.GetComponent<KSelectable>().AddStatusItem(item, data);
 	}
 
-	// Token: 0x06003590 RID: 13712 RVA: 0x000C7630 File Offset: 0x000C5830
 	public override void RevokeStatusItem(Guid id)
 	{
 		base.GetComponent<KSelectable>().RemoveStatusItem(id, false);
 	}
 
-	// Token: 0x06003591 RID: 13713 RVA: 0x000C7640 File Offset: 0x000C5840
 	public override void SetWorkCompleteData(object data)
 	{
 		this.workCompleteData = data;
 	}
 
-	// Token: 0x06003592 RID: 13714 RVA: 0x000C7649 File Offset: 0x000C5849
 	public override bool UsesMultiTool()
 	{
 		return this.usesMultiTool;
 	}
 
-	// Token: 0x06003593 RID: 13715 RVA: 0x000C7651 File Offset: 0x000C5851
 	public override bool IsFetchDrone()
 	{
 		return this.isFetchDrone;
 	}
 
-	// Token: 0x06003594 RID: 13716 RVA: 0x000C7659 File Offset: 0x000C5859
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -84,7 +71,6 @@ public class StandardWorker : WorkerBase
 		base.Subscribe<StandardWorker>(1485595942, StandardWorker.OnChoreInterruptDelegate);
 	}
 
-	// Token: 0x06003595 RID: 13717 RVA: 0x000C7679 File Offset: 0x000C5879
 	private string GetWorkableDebugString()
 	{
 		if (this.GetWorkable() == null)
@@ -94,7 +80,6 @@ public class StandardWorker : WorkerBase
 		return this.GetWorkable().name;
 	}
 
-	// Token: 0x06003596 RID: 13718 RVA: 0x0021C0D0 File Offset: 0x0021A2D0
 	public void CompleteWork()
 	{
 		this.successFullyCompleted = false;
@@ -125,7 +110,6 @@ public class StandardWorker : WorkerBase
 		this.InternalStopWork(workable, false);
 	}
 
-	// Token: 0x06003597 RID: 13719 RVA: 0x0021C1AC File Offset: 0x0021A3AC
 	protected virtual void TryPlayingIdle()
 	{
 		Navigator component = base.GetComponent<Navigator>();
@@ -139,7 +123,6 @@ public class StandardWorker : WorkerBase
 		}
 	}
 
-	// Token: 0x06003598 RID: 13720 RVA: 0x0021C208 File Offset: 0x0021A408
 	public override WorkerBase.WorkResult Work(float dt)
 	{
 		if (this.state == WorkerBase.State.PendingCompletion)
@@ -218,7 +201,6 @@ public class StandardWorker : WorkerBase
 		}
 	}
 
-	// Token: 0x06003599 RID: 13721 RVA: 0x0021C3EC File Offset: 0x0021A5EC
 	private void StartPlayingPostAnim()
 	{
 		Workable workable = this.GetWorkable();
@@ -256,7 +238,6 @@ public class StandardWorker : WorkerBase
 		base.Trigger(-1142962013, this);
 	}
 
-	// Token: 0x0600359A RID: 13722 RVA: 0x0021C4A8 File Offset: 0x0021A6A8
 	protected virtual void InternalStopWork(Workable target_workable, bool is_aborted)
 	{
 		this.state = WorkerBase.State.Idle;
@@ -295,7 +276,6 @@ public class StandardWorker : WorkerBase
 		this.startWorkInfo = null;
 	}
 
-	// Token: 0x0600359B RID: 13723 RVA: 0x000C769A File Offset: 0x000C589A
 	private void OnChoreInterrupt(object data)
 	{
 		if (this.state == WorkerBase.State.Working)
@@ -305,7 +285,6 @@ public class StandardWorker : WorkerBase
 		}
 	}
 
-	// Token: 0x0600359C RID: 13724 RVA: 0x0021C5EC File Offset: 0x0021A7EC
 	private void OnWorkChoreDisabled(object data)
 	{
 		string text = data as string;
@@ -320,7 +299,6 @@ public class StandardWorker : WorkerBase
 		}
 	}
 
-	// Token: 0x0600359D RID: 13725 RVA: 0x0021C640 File Offset: 0x0021A840
 	public override void StopWork()
 	{
 		Workable workable = this.GetWorkable();
@@ -359,7 +337,6 @@ public class StandardWorker : WorkerBase
 		base.Trigger(2027193395, this);
 	}
 
-	// Token: 0x0600359E RID: 13726 RVA: 0x0021C70C File Offset: 0x0021A90C
 	public override void StartWork(WorkerBase.StartWorkInfo start_work_info)
 	{
 		this.startWorkInfo = start_work_info;
@@ -459,7 +436,6 @@ public class StandardWorker : WorkerBase
 		}
 	}
 
-	// Token: 0x0600359F RID: 13727 RVA: 0x000C76B2 File Offset: 0x000C58B2
 	private void Update()
 	{
 		if (this.state == WorkerBase.State.Working && !this.surpressForceSyncOnUpdate)
@@ -468,7 +444,6 @@ public class StandardWorker : WorkerBase
 		}
 	}
 
-	// Token: 0x060035A0 RID: 13728 RVA: 0x000C76CB File Offset: 0x000C58CB
 	private void ForceSyncAnims()
 	{
 		if (Time.deltaTime > 0f && this.kanimSynchronizer != null)
@@ -477,14 +452,12 @@ public class StandardWorker : WorkerBase
 		}
 	}
 
-	// Token: 0x060035A1 RID: 13729 RVA: 0x0021CA04 File Offset: 0x0021AC04
 	public override bool InstantlyFinish()
 	{
 		Workable workable = this.GetWorkable();
 		return workable != null && workable.InstantlyFinish(this);
 	}
 
-	// Token: 0x060035A2 RID: 13730 RVA: 0x0021CA2C File Offset: 0x0021AC2C
 	private void AttachOverrideAnims(KAnimControllerBase worker_controller)
 	{
 		if (this.animInfo.overrideAnims != null && this.animInfo.overrideAnims.Length != 0)
@@ -496,7 +469,6 @@ public class StandardWorker : WorkerBase
 		}
 	}
 
-	// Token: 0x060035A3 RID: 13731 RVA: 0x0021CA84 File Offset: 0x0021AC84
 	private void DetachAnimOverrides()
 	{
 		KAnimControllerBase component = base.GetComponent<KAnimControllerBase>();
@@ -515,7 +487,6 @@ public class StandardWorker : WorkerBase
 		}
 	}
 
-	// Token: 0x060035A4 RID: 13732 RVA: 0x0021CAF8 File Offset: 0x0021ACF8
 	private void CreateCompletionReactable(string topic)
 	{
 		if (GameClock.Instance.GetTime() / 600f < 1f)
@@ -537,7 +508,6 @@ public class StandardWorker : WorkerBase
 		}
 	}
 
-	// Token: 0x060035A5 RID: 13733 RVA: 0x0021CC10 File Offset: 0x0021AE10
 	private void CreatePasserbyReactable()
 	{
 		if (GameClock.Instance.GetTime() / 600f < 1f)
@@ -554,7 +524,6 @@ public class StandardWorker : WorkerBase
 		}
 	}
 
-	// Token: 0x060035A6 RID: 13734 RVA: 0x0021CD10 File Offset: 0x0021AF10
 	private void GetReactionEffect(GameObject reactor)
 	{
 		Effects component = base.GetComponent<Effects>();
@@ -564,27 +533,23 @@ public class StandardWorker : WorkerBase
 		}
 	}
 
-	// Token: 0x060035A7 RID: 13735 RVA: 0x000BB98A File Offset: 0x000B9B8A
 	private bool ReactorIsOnFloor(GameObject reactor, Navigator.ActiveTransition transition)
 	{
 		return transition.end == NavType.Floor;
 	}
 
-	// Token: 0x060035A8 RID: 13736 RVA: 0x0021CD3C File Offset: 0x0021AF3C
 	private bool ReactorIsFacingMe(GameObject reactor, Navigator.ActiveTransition transition)
 	{
 		Facing component = reactor.GetComponent<Facing>();
 		return base.transform.GetPosition().x < reactor.transform.GetPosition().x == component.GetFacing();
 	}
 
-	// Token: 0x060035A9 RID: 13737 RVA: 0x0021CD7C File Offset: 0x0021AF7C
 	private bool ReactorIsntPartying(GameObject reactor, Navigator.ActiveTransition transition)
 	{
 		ChoreConsumer component = reactor.GetComponent<ChoreConsumer>();
 		return component.choreDriver.HasChore() && component.choreDriver.GetCurrentChore().choreType != Db.Get().ChoreTypes.Party;
 	}
 
-	// Token: 0x060035AA RID: 13738 RVA: 0x000C76EC File Offset: 0x000C58EC
 	private void ClearPasserbyReactable()
 	{
 		if (this.passerbyReactable != null)
@@ -594,65 +559,46 @@ public class StandardWorker : WorkerBase
 		}
 	}
 
-	// Token: 0x04002504 RID: 9476
 	private WorkerBase.State state;
 
-	// Token: 0x04002505 RID: 9477
 	private WorkerBase.StartWorkInfo startWorkInfo;
 
-	// Token: 0x04002506 RID: 9478
 	private const float EARLIEST_REACT_TIME = 1f;
 
-	// Token: 0x04002507 RID: 9479
 	[MyCmpGet]
 	private Facing facing;
 
-	// Token: 0x04002508 RID: 9480
 	[MyCmpGet]
 	private IExperienceRecipient experienceRecipient;
 
-	// Token: 0x04002509 RID: 9481
 	private float workPendingCompletionTime;
 
-	// Token: 0x0400250A RID: 9482
 	private int onWorkChoreDisabledHandle;
 
-	// Token: 0x0400250B RID: 9483
 	public object workCompleteData;
 
-	// Token: 0x0400250C RID: 9484
 	private Workable.AnimInfo animInfo;
 
-	// Token: 0x0400250D RID: 9485
 	private KAnimSynchronizer kanimSynchronizer;
 
-	// Token: 0x0400250E RID: 9486
 	private StatusItemGroup.Entry previousStatusItem;
 
-	// Token: 0x0400250F RID: 9487
 	private StateMachine.Instance smi;
 
-	// Token: 0x04002510 RID: 9488
 	private bool successFullyCompleted;
 
-	// Token: 0x04002511 RID: 9489
 	private bool surpressForceSyncOnUpdate;
 
-	// Token: 0x04002512 RID: 9490
 	private Vector3 workAnimOffset = Vector3.zero;
 
-	// Token: 0x04002513 RID: 9491
 	public bool usesMultiTool = true;
 
-	// Token: 0x04002514 RID: 9492
 	public bool isFetchDrone;
 
-	// Token: 0x04002515 RID: 9493
 	private static readonly EventSystem.IntraObjectHandler<StandardWorker> OnChoreInterruptDelegate = new EventSystem.IntraObjectHandler<StandardWorker>(delegate(StandardWorker component, object data)
 	{
 		component.OnChoreInterrupt(data);
 	});
 
-	// Token: 0x04002516 RID: 9494
 	private Reactable passerbyReactable;
 }

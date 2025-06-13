@@ -5,10 +5,8 @@ using UnityEngine;
 
 namespace Database
 {
-	// Token: 0x020021CF RID: 8655
 	public class ScheduleGroups : ResourceSet<ScheduleGroup>
 	{
-		// Token: 0x0600B88F RID: 47247 RVA: 0x00470A84 File Offset: 0x0046EC84
 		public ScheduleGroup Add(string id, int defaultSegments, string name, string description, Color uiColor, string notificationTooltip, List<ScheduleBlockType> allowedTypes, bool alarm = false)
 		{
 			ScheduleGroup scheduleGroup = new ScheduleGroup(id, this, defaultSegments, name, description, uiColor, notificationTooltip, allowedTypes, alarm);
@@ -16,7 +14,6 @@ namespace Database
 			return scheduleGroup;
 		}
 
-		// Token: 0x0600B890 RID: 47248 RVA: 0x00470AB4 File Offset: 0x0046ECB4
 		public ScheduleGroups(ResourceSet parent) : base("ScheduleGroups", parent)
 		{
 			this.allGroups = new List<ScheduleGroup>();
@@ -48,7 +45,6 @@ namespace Database
 			global::Debug.Assert(num == 24, "Default schedule groups must add up to exactly 1 cycle!");
 		}
 
-		// Token: 0x0600B891 RID: 47249 RVA: 0x00470CDC File Offset: 0x0046EEDC
 		public ScheduleGroup FindGroupForScheduleTypes(List<ScheduleBlockType> types)
 		{
 			foreach (ScheduleGroup scheduleGroup in this.allGroups)
@@ -61,19 +57,14 @@ namespace Database
 			return null;
 		}
 
-		// Token: 0x04009690 RID: 38544
 		public List<ScheduleGroup> allGroups;
 
-		// Token: 0x04009691 RID: 38545
 		public ScheduleGroup Hygene;
 
-		// Token: 0x04009692 RID: 38546
 		public ScheduleGroup Worktime;
 
-		// Token: 0x04009693 RID: 38547
 		public ScheduleGroup Recreation;
 
-		// Token: 0x04009694 RID: 38548
 		public ScheduleGroup Sleep;
 	}
 }

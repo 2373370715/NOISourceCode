@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000431 RID: 1073
 public class ArtifactConfig : IMultiEntityConfig
 {
-	// Token: 0x060011ED RID: 4589 RVA: 0x0019105C File Offset: 0x0018F25C
 	public List<GameObject> CreatePrefabs()
 	{
 		List<GameObject> list = new List<GameObject>();
@@ -103,7 +101,6 @@ public class ArtifactConfig : IMultiEntityConfig
 		return list;
 	}
 
-	// Token: 0x060011EE RID: 4590 RVA: 0x00191A40 File Offset: 0x0018FC40
 	[Obsolete]
 	public static GameObject CreateArtifact(string id, string name, string desc, string initial_anim, string ui_anim, ArtifactTier artifact_tier, string[] dlcIDs, string animFile = "artifacts_kanim", ArtifactConfig.PostInitFn postInitFn = null, SimHashes element = SimHashes.Creature, ArtifactType artifact_type = ArtifactType.Any)
 	{
@@ -111,7 +108,6 @@ public class ArtifactConfig : IMultiEntityConfig
 		return ArtifactConfig.CreateArtifact(id, name, desc, initial_anim, ui_anim, artifact_tier, transientHelperObjectFromAllowList.GetRequiredDlcIds(), transientHelperObjectFromAllowList.GetForbiddenDlcIds(), animFile, postInitFn, element, artifact_type);
 	}
 
-	// Token: 0x060011EF RID: 4591 RVA: 0x00191A78 File Offset: 0x0018FC78
 	public static GameObject CreateArtifact(string id, string name, string desc, string initial_anim, string ui_anim, ArtifactTier artifact_tier, string[] requiredDlcIds, string[] forbiddenDlcIds, string animFile = "artifacts_kanim", ArtifactConfig.PostInitFn postInitFn = null, SimHashes element = SimHashes.Creature, ArtifactType artifact_type = ArtifactType.Any)
 	{
 		if (!DlcManager.IsCorrectDlcSubscribed(requiredDlcIds, forbiddenDlcIds))
@@ -150,20 +146,16 @@ public class ArtifactConfig : IMultiEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x060011F0 RID: 4592 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x060011F1 RID: 4593 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x04000C83 RID: 3203
 	public static Dictionary<ArtifactType, List<string>> artifactItems = new Dictionary<ArtifactType, List<string>>();
 
-	// Token: 0x02000432 RID: 1074
-	// (Invoke) Token: 0x060011F5 RID: 4597
+Invoke) Token: 0x060011F5 RID: 4597
 	public delegate void PostInitFn(GameObject gameObject);
 }

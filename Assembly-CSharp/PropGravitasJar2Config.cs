@@ -4,22 +4,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000534 RID: 1332
 public class PropGravitasJar2Config : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x060016E0 RID: 5856 RVA: 0x000AA117 File Offset: 0x000A8317
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x060016E1 RID: 5857 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x060016E2 RID: 5858 RVA: 0x001A40EC File Offset: 0x001A22EC
 	public GameObject CreatePrefab()
 	{
 		string id = "PropGravitasJar2";
@@ -40,7 +36,6 @@ public class PropGravitasJar2Config : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x060016E3 RID: 5859 RVA: 0x000AA768 File Offset: 0x000A8968
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.GetComponent<OccupyArea>().objectLayers = new ObjectLayer[]
@@ -49,7 +44,6 @@ public class PropGravitasJar2Config : IEntityConfig, IHasDlcRestrictions
 		};
 	}
 
-	// Token: 0x060016E4 RID: 5860 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}

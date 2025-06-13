@@ -7,13 +7,10 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020009EA RID: 2538
 [SerializationConfig(MemberSerialization.OptIn)]
 [AddComponentMenu("KMonoBehaviour/Workable/Constructable")]
 public class Constructable : Workable, ISaveLoadable
 {
-	// Token: 0x170001C1 RID: 449
-	// (get) Token: 0x06002E1C RID: 11804 RVA: 0x000C24E1 File Offset: 0x000C06E1
 	public Recipe Recipe
 	{
 		get
@@ -22,9 +19,6 @@ public class Constructable : Workable, ISaveLoadable
 		}
 	}
 
-	// Token: 0x170001C2 RID: 450
-	// (get) Token: 0x06002E1D RID: 11805 RVA: 0x000C24F3 File Offset: 0x000C06F3
-	// (set) Token: 0x06002E1E RID: 11806 RVA: 0x000C24FB File Offset: 0x000C06FB
 	public IList<Tag> SelectedElementsTags
 	{
 		get
@@ -41,13 +35,11 @@ public class Constructable : Workable, ISaveLoadable
 		}
 	}
 
-	// Token: 0x06002E1F RID: 11807 RVA: 0x000C2533 File Offset: 0x000C0733
 	public override string GetConversationTopic()
 	{
 		return this.building.Def.PrefabID;
 	}
 
-	// Token: 0x06002E20 RID: 11808 RVA: 0x00200B78 File Offset: 0x001FED78
 	protected override void OnCompleteWork(WorkerBase worker)
 	{
 		float num = 0f;
@@ -152,7 +144,6 @@ public class Constructable : Workable, ISaveLoadable
 		PopFXManager.Instance.SpawnFX(PopFXManager.Instance.sprite_Building, base.GetComponent<KSelectable>().GetName(), base.transform, 1.5f, false);
 	}
 
-	// Token: 0x06002E21 RID: 11809 RVA: 0x00200E78 File Offset: 0x001FF078
 	private void FinishConstruction(UtilityConnections connections, WorkerBase workerForGameplayEvent)
 	{
 		Rotatable component = base.GetComponent<Rotatable>();
@@ -193,7 +184,6 @@ public class Constructable : Workable, ISaveLoadable
 		this.DeleteObject();
 	}
 
-	// Token: 0x06002E22 RID: 11810 RVA: 0x00201014 File Offset: 0x001FF214
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -223,7 +213,6 @@ public class Constructable : Workable, ISaveLoadable
 		this.workingPstFailed = null;
 	}
 
-	// Token: 0x06002E23 RID: 11811 RVA: 0x0020116C File Offset: 0x001FF36C
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -327,7 +316,6 @@ public class Constructable : Workable, ISaveLoadable
 		this.OnPriorityChanged(component3.GetMasterPriority());
 	}
 
-	// Token: 0x06002E24 RID: 11812 RVA: 0x00201648 File Offset: 0x001FF848
 	private void OnPriorityChanged(PrioritySetting priority)
 	{
 		this.building.RunOnArea(delegate(int cell)
@@ -340,7 +328,6 @@ public class Constructable : Workable, ISaveLoadable
 		});
 	}
 
-	// Token: 0x06002E25 RID: 11813 RVA: 0x0020167C File Offset: 0x001FF87C
 	private void MarkArea()
 	{
 		int num = Grid.PosToCell(base.transform.GetPosition());
@@ -362,7 +349,6 @@ public class Constructable : Workable, ISaveLoadable
 		}
 	}
 
-	// Token: 0x06002E26 RID: 11814 RVA: 0x00201760 File Offset: 0x001FF960
 	private void UnmarkArea()
 	{
 		if (this.unmarked)
@@ -380,7 +366,6 @@ public class Constructable : Workable, ISaveLoadable
 		}
 	}
 
-	// Token: 0x06002E27 RID: 11815 RVA: 0x002017F0 File Offset: 0x001FF9F0
 	private void OnNearbyBuildingLayerChanged(object data)
 	{
 		this.hasLadderNearby = false;
@@ -400,13 +385,11 @@ public class Constructable : Workable, ISaveLoadable
 		}
 	}
 
-	// Token: 0x06002E28 RID: 11816 RVA: 0x000C2545 File Offset: 0x000C0745
 	private bool IsWire()
 	{
 		return this.building.Def.name.Contains("Wire");
 	}
 
-	// Token: 0x06002E29 RID: 11817 RVA: 0x0020187C File Offset: 0x001FFA7C
 	public bool IconConnectionAnimation(float delay, int connectionCount, string defName, string soundName)
 	{
 		int num = Grid.PosToCell(base.transform.GetPosition());
@@ -437,7 +420,6 @@ public class Constructable : Workable, ISaveLoadable
 		return false;
 	}
 
-	// Token: 0x06002E2A RID: 11818 RVA: 0x0020195C File Offset: 0x001FFB5C
 	protected override void OnCleanUp()
 	{
 		if (this.IsReplacementTile && this.building.Def.isKAnimTile)
@@ -474,7 +456,6 @@ public class Constructable : Workable, ISaveLoadable
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06002E2B RID: 11819 RVA: 0x00201AA8 File Offset: 0x001FFCA8
 	private void OnDiggableReachabilityChanged(object data)
 	{
 		if (!this.IsReplacementTile)
@@ -511,7 +492,6 @@ public class Constructable : Workable, ISaveLoadable
 		}
 	}
 
-	// Token: 0x06002E2C RID: 11820 RVA: 0x00201B54 File Offset: 0x001FFD54
 	private void PlaceDiggables()
 	{
 		if (this.waitForFetchesBeforeDigging && this.fetchList != null && !this.hasLadderNearby)
@@ -583,7 +563,6 @@ public class Constructable : Workable, ISaveLoadable
 		}
 	}
 
-	// Token: 0x06002E2D RID: 11821 RVA: 0x000C2561 File Offset: 0x000C0761
 	private void OnFetchListComplete()
 	{
 		this.fetchList = null;
@@ -591,7 +570,6 @@ public class Constructable : Workable, ISaveLoadable
 		this.ClearMaterialNeeds();
 	}
 
-	// Token: 0x06002E2E RID: 11822 RVA: 0x00201D58 File Offset: 0x001FFF58
 	private void ClearMaterialNeeds()
 	{
 		if (this.materialNeedsCleared)
@@ -605,7 +583,6 @@ public class Constructable : Workable, ISaveLoadable
 		this.materialNeedsCleared = true;
 	}
 
-	// Token: 0x06002E2F RID: 11823 RVA: 0x000C2576 File Offset: 0x000C0776
 	private void OnSolidChangedOrDigDestroyed(object data)
 	{
 		if (this == null || this.finished)
@@ -615,7 +592,6 @@ public class Constructable : Workable, ISaveLoadable
 		this.PlaceDiggables();
 	}
 
-	// Token: 0x06002E30 RID: 11824 RVA: 0x00201DB8 File Offset: 0x001FFFB8
 	private void UpdateBuildState(Chore chore)
 	{
 		KSelectable component = base.GetComponent<KSelectable>();
@@ -627,7 +603,6 @@ public class Constructable : Workable, ISaveLoadable
 		component.SetStatusItem(Db.Get().StatusItemCategories.Main, Db.Get().BuildingStatusItems.UnderConstructionNoWorker, null);
 	}
 
-	// Token: 0x06002E31 RID: 11825 RVA: 0x00201E24 File Offset: 0x00200024
 	[OnDeserialized]
 	internal void OnDeserialized()
 	{
@@ -654,7 +629,6 @@ public class Constructable : Workable, ISaveLoadable
 		}
 	}
 
-	// Token: 0x06002E32 RID: 11826 RVA: 0x00201F10 File Offset: 0x00200110
 	private void OnReachableChanged(object data)
 	{
 		KAnimControllerBase component = base.GetComponent<KAnimControllerBase>();
@@ -677,137 +651,102 @@ public class Constructable : Workable, ISaveLoadable
 		}
 	}
 
-	// Token: 0x06002E33 RID: 11827 RVA: 0x00201FB8 File Offset: 0x002001B8
 	private void OnRefreshUserMenu(object data)
 	{
 		Game.Instance.userMenu.AddButton(base.gameObject, new KIconButtonMenu.ButtonInfo("action_cancel", UI.USERMENUACTIONS.CANCELCONSTRUCTION.NAME, new System.Action(this.OnPressCancel), global::Action.NumActions, null, null, null, UI.USERMENUACTIONS.CANCELCONSTRUCTION.TOOLTIP, true), 1f);
 	}
 
-	// Token: 0x06002E34 RID: 11828 RVA: 0x000C2590 File Offset: 0x000C0790
 	private void OnPressCancel()
 	{
 		base.gameObject.Trigger(2127324410, null);
 	}
 
-	// Token: 0x06002E35 RID: 11829 RVA: 0x000C25A3 File Offset: 0x000C07A3
 	private void OnCancel(object data = null)
 	{
 		DetailsScreen.Instance.Show(false);
 		this.ClearMaterialNeeds();
 	}
 
-	// Token: 0x04001F82 RID: 8066
 	[MyCmpAdd]
 	private Storage storage;
 
-	// Token: 0x04001F83 RID: 8067
 	[MyCmpAdd]
 	private Notifier notifier;
 
-	// Token: 0x04001F84 RID: 8068
 	[MyCmpAdd]
 	private Prioritizable prioritizable;
 
-	// Token: 0x04001F85 RID: 8069
 	[MyCmpReq]
 	private Building building;
 
-	// Token: 0x04001F86 RID: 8070
 	[MyCmpGet]
 	private Rotatable rotatable;
 
-	// Token: 0x04001F87 RID: 8071
 	private Notification invalidLocation;
 
-	// Token: 0x04001F88 RID: 8072
 	private float initialTemperature = -1f;
 
-	// Token: 0x04001F89 RID: 8073
 	[Serialize]
 	private bool isPrioritized;
 
-	// Token: 0x04001F8A RID: 8074
 	private FetchList2 fetchList;
 
-	// Token: 0x04001F8B RID: 8075
 	private Chore buildChore;
 
-	// Token: 0x04001F8C RID: 8076
 	private bool materialNeedsCleared;
 
-	// Token: 0x04001F8D RID: 8077
 	private bool hasUnreachableDigs;
 
-	// Token: 0x04001F8E RID: 8078
 	private bool finished;
 
-	// Token: 0x04001F8F RID: 8079
 	private bool unmarked;
 
-	// Token: 0x04001F90 RID: 8080
 	public bool isDiggingRequired = true;
 
-	// Token: 0x04001F91 RID: 8081
 	private bool waitForFetchesBeforeDigging;
 
-	// Token: 0x04001F92 RID: 8082
 	private bool hasLadderNearby;
 
-	// Token: 0x04001F93 RID: 8083
 	private Extents ladderDetectionExtents;
 
-	// Token: 0x04001F94 RID: 8084
 	[Serialize]
 	public bool IsReplacementTile;
 
-	// Token: 0x04001F95 RID: 8085
 	private HandleVector<int>.Handle solidPartitionerEntry;
 
-	// Token: 0x04001F96 RID: 8086
 	private HandleVector<int>.Handle digPartitionerEntry;
 
-	// Token: 0x04001F97 RID: 8087
 	private HandleVector<int>.Handle ladderParititonerEntry;
 
-	// Token: 0x04001F98 RID: 8088
 	private LoggerFSS log = new LoggerFSS("Constructable", 35);
 
-	// Token: 0x04001F99 RID: 8089
 	[Serialize]
 	private Tag[] selectedElementsTags;
 
-	// Token: 0x04001F9A RID: 8090
 	private Element[] selectedElements;
 
-	// Token: 0x04001F9B RID: 8091
 	[Serialize]
 	private int[] ids;
 
-	// Token: 0x04001F9C RID: 8092
 	private static readonly EventSystem.IntraObjectHandler<Constructable> OnReachableChangedDelegate = new EventSystem.IntraObjectHandler<Constructable>(delegate(Constructable component, object data)
 	{
 		component.OnReachableChanged(data);
 	});
 
-	// Token: 0x04001F9D RID: 8093
 	private static readonly EventSystem.IntraObjectHandler<Constructable> OnCancelDelegate = new EventSystem.IntraObjectHandler<Constructable>(delegate(Constructable component, object data)
 	{
 		component.OnCancel(data);
 	});
 
-	// Token: 0x04001F9E RID: 8094
 	private static readonly EventSystem.IntraObjectHandler<Constructable> OnRefreshUserMenuDelegate = new EventSystem.IntraObjectHandler<Constructable>(delegate(Constructable component, object data)
 	{
 		component.OnRefreshUserMenu(data);
 	});
 
-	// Token: 0x020009EB RID: 2539
 	public struct ReplaceCallbackParameters
 	{
-		// Token: 0x04001F9F RID: 8095
 		public ObjectLayer TileLayer;
 
-		// Token: 0x04001FA0 RID: 8096
 		public WorkerBase Worker;
 	}
 }

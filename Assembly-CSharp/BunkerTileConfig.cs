@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200003A RID: 58
 public class BunkerTileConfig : IBuildingConfig
 {
-	// Token: 0x060000F9 RID: 249 RVA: 0x0014A9E8 File Offset: 0x00148BE8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "BunkerTile";
@@ -44,7 +42,6 @@ public class BunkerTileConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060000FA RID: 250 RVA: 0x0014AB08 File Offset: 0x00148D08
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
@@ -57,7 +54,6 @@ public class BunkerTileConfig : IBuildingConfig
 		go.AddOrGet<BuildingHP>().destroyOnDamaged = true;
 	}
 
-	// Token: 0x060000FB RID: 251 RVA: 0x000AA4E4 File Offset: 0x000A86E4
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		GeneratedBuildings.RemoveLoopingSounds(go);
@@ -66,16 +62,13 @@ public class BunkerTileConfig : IBuildingConfig
 		component.AddTag(GameTags.FloorTiles, false);
 	}
 
-	// Token: 0x060000FC RID: 252 RVA: 0x000AA509 File Offset: 0x000A8709
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		base.DoPostConfigureUnderConstruction(go);
 		go.AddOrGet<KAnimGridTileVisualizer>();
 	}
 
-	// Token: 0x04000098 RID: 152
 	public const string ID = "BunkerTile";
 
-	// Token: 0x04000099 RID: 153
 	public static readonly int BlockTileConnectorID = Hash.SDBMLower("tiles_bunker_tops");
 }

@@ -4,16 +4,13 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200059E RID: 1438
 public class SmallOxidizerTankConfig : IBuildingConfig
 {
-	// Token: 0x060018D7 RID: 6359 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x060018D8 RID: 6360 RVA: 0x001AC804 File Offset: 0x001AAA04
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "SmallOxidizerTank";
@@ -43,7 +40,6 @@ public class SmallOxidizerTankConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060018D9 RID: 6361 RVA: 0x001AC8B4 File Offset: 0x001AAAB4
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -56,7 +52,6 @@ public class SmallOxidizerTankConfig : IBuildingConfig
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x060018DA RID: 6362 RVA: 0x001AC920 File Offset: 0x001AAB20
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		Storage storage = go.AddOrGet<Storage>();
@@ -86,9 +81,7 @@ public class SmallOxidizerTankConfig : IBuildingConfig
 		BuildingTemplates.ExtendBuildingToRocketModuleCluster(go, null, ROCKETRY.BURDEN.MINOR, 0f, 0f);
 	}
 
-	// Token: 0x04001039 RID: 4153
 	public const string ID = "SmallOxidizerTank";
 
-	// Token: 0x0400103A RID: 4154
 	public const float FuelCapacity = 450f;
 }

@@ -4,10 +4,8 @@ using UnityEngine;
 
 namespace Database
 {
-	// Token: 0x020021D6 RID: 8662
 	public class Spices : ResourceSet<Spice>
 	{
-		// Token: 0x0600B8B2 RID: 47282 RVA: 0x00471EEC File Offset: 0x004700EC
 		public Spices(ResourceSet parent) : base("Spices", parent)
 		{
 			this.PreservingSpice = new Spice(this, "PRESERVING_SPICE", new Spice.Ingredient[]
@@ -88,16 +86,12 @@ namespace Database
 			}, new Color(0.788f, 0.443f, 0.792f), Color.white, null, new AttributeModifier("Machinery", 3f, "Spices", false, false, true), "spice_recipe4", null);
 		}
 
-		// Token: 0x040096CD RID: 38605
 		public Spice PreservingSpice;
 
-		// Token: 0x040096CE RID: 38606
 		public Spice PilotingSpice;
 
-		// Token: 0x040096CF RID: 38607
 		public Spice StrengthSpice;
 
-		// Token: 0x040096D0 RID: 38608
 		public Spice MachinerySpice;
 	}
 }

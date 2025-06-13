@@ -1,14 +1,11 @@
 ﻿using System;
 
-// Token: 0x02000B91 RID: 2961
 public class NavTeleportTransitionLayer : TransitionDriver.OverrideLayer
 {
-	// Token: 0x06003786 RID: 14214 RVA: 0x000C8704 File Offset: 0x000C6904
 	public NavTeleportTransitionLayer(Navigator navigator) : base(navigator)
 	{
 	}
 
-	// Token: 0x06003787 RID: 14215 RVA: 0x00224B84 File Offset: 0x00222D84
 	public override void BeginTransition(Navigator navigator, Navigator.ActiveTransition transition)
 	{
 		base.BeginTransition(navigator, transition);

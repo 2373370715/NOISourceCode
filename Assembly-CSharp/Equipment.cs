@@ -5,16 +5,11 @@ using KSerialization;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020012E7 RID: 4839
 [SerializationConfig(MemberSerialization.OptIn)]
 public class Equipment : Assignables
 {
-	// Token: 0x1700062F RID: 1583
-	// (get) Token: 0x06006344 RID: 25412 RVA: 0x000E52D0 File Offset: 0x000E34D0
-	// (set) Token: 0x06006345 RID: 25413 RVA: 0x000E52D8 File Offset: 0x000E34D8
 	public bool destroyed { get; private set; }
 
-	// Token: 0x06006346 RID: 25414 RVA: 0x002C7D18 File Offset: 0x002C5F18
 	public GameObject GetTargetGameObject()
 	{
 		MinionAssignablesProxy minionAssignablesProxy = (MinionAssignablesProxy)base.GetAssignableIdentity();
@@ -25,14 +20,12 @@ public class Equipment : Assignables
 		return null;
 	}
 
-	// Token: 0x06006347 RID: 25415 RVA: 0x000E52E1 File Offset: 0x000E34E1
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 		Components.Equipment.Add(this);
 	}
 
-	// Token: 0x06006348 RID: 25416 RVA: 0x000E52F4 File Offset: 0x000E34F4
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -40,7 +33,6 @@ public class Equipment : Assignables
 		base.Subscribe<Equipment>(1969584890, Equipment.SetDestroyedTrueDelegate);
 	}
 
-	// Token: 0x06006349 RID: 25417 RVA: 0x000E531E File Offset: 0x000E351E
 	protected override void OnCleanUp()
 	{
 		base.OnCleanUp();
@@ -48,7 +40,6 @@ public class Equipment : Assignables
 		Components.Equipment.Remove(this);
 	}
 
-	// Token: 0x0600634A RID: 25418 RVA: 0x002C7D44 File Offset: 0x002C5F44
 	public void Equip(Equippable equippable)
 	{
 		GameObject targetGameObject = this.GetTargetGameObject();
@@ -127,7 +118,6 @@ public class Equipment : Assignables
 		Game.Instance.Trigger(-2146166042, null);
 	}
 
-	// Token: 0x0600634B RID: 25419 RVA: 0x002C8014 File Offset: 0x002C6214
 	public void Unequip(Equippable equippable)
 	{
 		AssignableSlotInstance slot = base.GetSlot(equippable.slot);
@@ -237,20 +227,17 @@ public class Equipment : Assignables
 		Game.Instance.Trigger(-2146166042, null);
 	}
 
-	// Token: 0x0600634C RID: 25420 RVA: 0x000E533C File Offset: 0x000E353C
 	public bool IsEquipped(Equippable equippable)
 	{
 		return equippable.assignee is Equipment && (Equipment)equippable.assignee == this && equippable.isEquipped;
 	}
 
-	// Token: 0x0600634D RID: 25421 RVA: 0x002C83B4 File Offset: 0x002C65B4
 	public bool IsSlotOccupied(AssignableSlot slot)
 	{
 		EquipmentSlotInstance equipmentSlotInstance = base.GetSlot(slot) as EquipmentSlotInstance;
 		return equipmentSlotInstance.IsAssigned() && (equipmentSlotInstance.assignable as Equippable).isEquipped;
 	}
 
-	// Token: 0x0600634E RID: 25422 RVA: 0x002C83E8 File Offset: 0x002C65E8
 	public void UnequipAll()
 	{
 		foreach (AssignableSlotInstance assignableSlotInstance in this.slots)
@@ -262,7 +249,6 @@ public class Equipment : Assignables
 		}
 	}
 
-	// Token: 0x0600634F RID: 25423 RVA: 0x000E5366 File Offset: 0x000E3566
 	private void SetEquippableStoredModifiers(Equippable equippable, bool isStoring)
 	{
 		GameObject gameObject = equippable.gameObject;
@@ -270,10 +256,8 @@ public class Equipment : Assignables
 		Storage.MakeItemInvisible(gameObject, isStoring, false);
 	}
 
-	// Token: 0x0400472B RID: 18219
 	private SchedulerHandle refreshHandle;
 
-	// Token: 0x0400472D RID: 18221
 	private static readonly EventSystem.IntraObjectHandler<Equipment> SetDestroyedTrueDelegate = new EventSystem.IntraObjectHandler<Equipment>(delegate(Equipment component, object data)
 	{
 		component.destroyed = true;

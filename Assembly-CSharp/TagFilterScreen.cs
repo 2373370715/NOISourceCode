@@ -2,16 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02001B9F RID: 7071
 public class TagFilterScreen : SideScreenContent
 {
-	// Token: 0x0600948F RID: 38031 RVA: 0x00105753 File Offset: 0x00103953
 	public override bool IsValidForTarget(GameObject target)
 	{
 		return target.GetComponent<TreeFilterable>() != null;
 	}
 
-	// Token: 0x06009490 RID: 38032 RVA: 0x003A0230 File Offset: 0x0039E430
 	public override void SetTarget(GameObject target)
 	{
 		if (target == null)
@@ -33,7 +30,6 @@ public class TagFilterScreen : SideScreenContent
 		base.Activate();
 	}
 
-	// Token: 0x06009491 RID: 38033 RVA: 0x003A029C File Offset: 0x0039E49C
 	protected override void OnActivate()
 	{
 		this.rootItem = this.BuildDisplay(this.rootTag);
@@ -42,7 +38,6 @@ public class TagFilterScreen : SideScreenContent
 		this.Filter(this.treeControl.root, this.acceptedTags, false);
 	}
 
-	// Token: 0x06009492 RID: 38034 RVA: 0x003A02F8 File Offset: 0x0039E4F8
 	public static List<Tag> GetAllTags()
 	{
 		List<Tag> list = new List<Tag>();
@@ -56,7 +51,6 @@ public class TagFilterScreen : SideScreenContent
 		return list;
 	}
 
-	// Token: 0x06009493 RID: 38035 RVA: 0x003A0344 File Offset: 0x0039E544
 	private KTreeControl.UserItem BuildDisplay(TagFilterScreen.TagEntry root)
 	{
 		KTreeControl.UserItem userItem = null;
@@ -80,7 +74,6 @@ public class TagFilterScreen : SideScreenContent
 		return userItem;
 	}
 
-	// Token: 0x06009494 RID: 38036 RVA: 0x003A03D0 File Offset: 0x0039E5D0
 	private static KTreeControl.UserItem CreateTree(string tree_name, Tag tree_tag, IList<Element> items)
 	{
 		KTreeControl.UserItem userItem = new KTreeControl.UserItem
@@ -101,19 +94,16 @@ public class TagFilterScreen : SideScreenContent
 		return userItem;
 	}
 
-	// Token: 0x06009495 RID: 38037 RVA: 0x00105761 File Offset: 0x00103961
 	public void SetRootTag(TagFilterScreen.TagEntry root_tag)
 	{
 		this.rootTag = root_tag;
 	}
 
-	// Token: 0x06009496 RID: 38038 RVA: 0x0010576A File Offset: 0x0010396A
 	public void Filter(HashSet<Tag> acceptedTags)
 	{
 		this.acceptedTags = acceptedTags;
 	}
 
-	// Token: 0x06009497 RID: 38039 RVA: 0x003A046C File Offset: 0x0039E66C
 	private void Filter(KTreeItem root, HashSet<Tag> acceptedTags, bool parentEnabled)
 	{
 		root.checkboxChecked = (parentEnabled || (root.userData != null && acceptedTags.Contains((Tag)root.userData)));
@@ -139,23 +129,17 @@ public class TagFilterScreen : SideScreenContent
 		}
 	}
 
-	// Token: 0x040070B4 RID: 28852
 	[SerializeField]
 	private KTreeControl treeControl;
 
-	// Token: 0x040070B5 RID: 28853
 	private KTreeControl.UserItem rootItem;
 
-	// Token: 0x040070B6 RID: 28854
 	private TagFilterScreen.TagEntry rootTag = TagFilterScreen.defaultRootTag;
 
-	// Token: 0x040070B7 RID: 28855
 	private HashSet<Tag> acceptedTags = new HashSet<Tag>();
 
-	// Token: 0x040070B8 RID: 28856
 	private TreeFilterable targetFilterable;
 
-	// Token: 0x040070B9 RID: 28857
 	public static TagFilterScreen.TagEntry defaultRootTag = new TagFilterScreen.TagEntry
 	{
 		name = "All",
@@ -163,16 +147,12 @@ public class TagFilterScreen : SideScreenContent
 		children = new TagFilterScreen.TagEntry[0]
 	};
 
-	// Token: 0x02001BA0 RID: 7072
 	public class TagEntry
 	{
-		// Token: 0x040070BA RID: 28858
 		public string name;
 
-		// Token: 0x040070BB RID: 28859
 		public Tag tag;
 
-		// Token: 0x040070BC RID: 28860
 		public TagFilterScreen.TagEntry[] children;
 	}
 }

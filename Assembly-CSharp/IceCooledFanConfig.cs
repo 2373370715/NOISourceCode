@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200038E RID: 910
 public class IceCooledFanConfig : IBuildingConfig
 {
-	// Token: 0x06000E9D RID: 3741 RVA: 0x001842D8 File Offset: 0x001824D8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "IceCooledFan";
@@ -28,7 +26,6 @@ public class IceCooledFanConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000E9E RID: 3742 RVA: 0x00184364 File Offset: 0x00182564
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		Storage storage = go.AddComponent<Storage>();
@@ -64,7 +61,6 @@ public class IceCooledFanConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x06000E9F RID: 3743 RVA: 0x000B0B5E File Offset: 0x000AED5E
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.GetComponent<KPrefabID>().prefabSpawnFn += delegate(GameObject game_object)
@@ -77,19 +73,14 @@ public class IceCooledFanConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x04000AC0 RID: 2752
 	public const string ID = "IceCooledFan";
 
-	// Token: 0x04000AC1 RID: 2753
 	private float COOLING_RATE = 32f;
 
-	// Token: 0x04000AC2 RID: 2754
 	private float TARGET_TEMPERATURE = 278.15f;
 
-	// Token: 0x04000AC3 RID: 2755
 	private float ICE_CAPACITY = 50f;
 
-	// Token: 0x04000AC4 RID: 2756
 	private static readonly CellOffset[] overrideOffsets = new CellOffset[]
 	{
 		new CellOffset(-2, 1),

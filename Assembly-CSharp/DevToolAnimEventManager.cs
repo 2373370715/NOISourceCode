@@ -5,10 +5,8 @@ using ImGuiNET;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000BCD RID: 3021
 public class DevToolAnimEventManager : DevTool
 {
-	// Token: 0x0600394F RID: 14671 RVA: 0x0022AA00 File Offset: 0x00228C00
 	protected override void RenderTo(DevPanel panel)
 	{
 		ValueTuple<Option<AnimEventManager.DevTools_DebugInfo>, string> animEventManagerDebugInfo = this.GetAnimEventManagerDebugInfo();
@@ -38,7 +36,6 @@ public class DevToolAnimEventManager : DevTool
 		}
 	}
 
-	// Token: 0x06003950 RID: 14672 RVA: 0x0022AAC4 File Offset: 0x00228CC4
 	public void DrawFor(string uniqueTableId, List<AnimEventManager.EventPlayerData> eventDataList, List<AnimEventManager.AnimData> animDataList)
 	{
 		if (eventDataList == null)
@@ -102,7 +99,6 @@ public class DevToolAnimEventManager : DevTool
 		ImGui.PopID();
 	}
 
-	// Token: 0x06003951 RID: 14673 RVA: 0x000C989D File Offset: 0x000C7A9D
 	[return: TupleElementNames(new string[]
 	{
 		"value",

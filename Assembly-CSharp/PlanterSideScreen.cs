@@ -5,12 +5,8 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02002009 RID: 8201
 public class PlanterSideScreen : ReceptacleSideScreen
 {
-	// Token: 0x17000B1E RID: 2846
-	// (get) Token: 0x0600AD73 RID: 44403 RVA: 0x004226AC File Offset: 0x004208AC
-	// (set) Token: 0x0600AD74 RID: 44404 RVA: 0x00422704 File Offset: 0x00420904
 	private Tag selectedSubspecies
 	{
 		get
@@ -32,7 +28,6 @@ public class PlanterSideScreen : ReceptacleSideScreen
 		}
 	}
 
-	// Token: 0x0600AD75 RID: 44405 RVA: 0x00422764 File Offset: 0x00420964
 	private void LoadTargetSubSpeciesRequest()
 	{
 		PlantablePlot plantablePlot = (PlantablePlot)this.targetReceptacle;
@@ -70,13 +65,11 @@ public class PlanterSideScreen : ReceptacleSideScreen
 		}
 	}
 
-	// Token: 0x0600AD76 RID: 44406 RVA: 0x00115303 File Offset: 0x00113503
 	public override bool IsValidForTarget(GameObject target)
 	{
 		return target.GetComponent<PlantablePlot>() != null;
 	}
 
-	// Token: 0x0600AD77 RID: 44407 RVA: 0x00115311 File Offset: 0x00113511
 	protected override void ToggleClicked(ReceptacleToggle toggle)
 	{
 		this.LoadTargetSubSpeciesRequest();
@@ -84,14 +77,12 @@ public class PlanterSideScreen : ReceptacleSideScreen
 		this.UpdateState(null);
 	}
 
-	// Token: 0x0600AD78 RID: 44408 RVA: 0x00115327 File Offset: 0x00113527
 	protected void MutationToggleClicked(GameObject toggle)
 	{
 		this.selectedSubspecies = this.subspeciesToggles[toggle];
 		this.UpdateState(null);
 	}
 
-	// Token: 0x0600AD79 RID: 44409 RVA: 0x00115342 File Offset: 0x00113542
 	protected override void UpdateState(object data)
 	{
 		base.UpdateState(data);
@@ -99,7 +90,6 @@ public class PlanterSideScreen : ReceptacleSideScreen
 		this.RefreshSubspeciesToggles();
 	}
 
-	// Token: 0x0600AD7A RID: 44410 RVA: 0x00115368 File Offset: 0x00113568
 	private IEnumerator ExpandMutations()
 	{
 		LayoutElement le = this.mutationViewport.GetComponent<LayoutElement>();
@@ -120,7 +110,6 @@ public class PlanterSideScreen : ReceptacleSideScreen
 		yield break;
 	}
 
-	// Token: 0x0600AD7B RID: 44411 RVA: 0x00115377 File Offset: 0x00113577
 	private IEnumerator CollapseMutations()
 	{
 		LayoutElement le = this.mutationViewport.GetComponent<LayoutElement>();
@@ -141,7 +130,6 @@ public class PlanterSideScreen : ReceptacleSideScreen
 		yield break;
 	}
 
-	// Token: 0x0600AD7C RID: 44412 RVA: 0x0042287C File Offset: 0x00420A7C
 	private void RefreshSubspeciesToggles()
 	{
 		foreach (KeyValuePair<GameObject, Tag> keyValuePair in this.subspeciesToggles)
@@ -259,7 +247,6 @@ public class PlanterSideScreen : ReceptacleSideScreen
 		}
 	}
 
-	// Token: 0x0600AD7D RID: 44413 RVA: 0x00422DBC File Offset: 0x00420FBC
 	protected override Sprite GetEntityIcon(Tag prefabTag)
 	{
 		PlantableSeed component = Assets.GetPrefab(prefabTag).GetComponent<PlantableSeed>();
@@ -270,7 +257,6 @@ public class PlanterSideScreen : ReceptacleSideScreen
 		return base.GetEntityIcon(prefabTag);
 	}
 
-	// Token: 0x0600AD7E RID: 44414 RVA: 0x00422DF8 File Offset: 0x00420FF8
 	protected override string GetEntityName(Tag prefabTag)
 	{
 		PlantableSeed component = Assets.GetPrefab(prefabTag).GetComponent<PlantableSeed>();
@@ -281,14 +267,12 @@ public class PlanterSideScreen : ReceptacleSideScreen
 		return base.GetEntityName(prefabTag);
 	}
 
-	// Token: 0x0600AD7F RID: 44415 RVA: 0x00422E34 File Offset: 0x00421034
 	protected override string GetEntityTooltip(Tag prefabTag)
 	{
 		PlantableSeed component = Assets.GetPrefab(prefabTag).GetComponent<PlantableSeed>();
 		return string.Format(UI.UISIDESCREENS.PLANTERSIDESCREEN.TOOLTIPS.PLANT_TOGGLE_TOOLTIP, this.GetEntityName(prefabTag), component.domesticatedDescription, base.GetAvailableAmount(prefabTag));
 	}
 
-	// Token: 0x0600AD80 RID: 44416 RVA: 0x00422E78 File Offset: 0x00421078
 	protected override void SetResultDescriptions(GameObject seed_or_plant)
 	{
 		string text = "";
@@ -379,7 +363,6 @@ public class PlanterSideScreen : ReceptacleSideScreen
 		this.EffectsDescriptorPanel.gameObject.SetActive(false);
 	}
 
-	// Token: 0x0600AD81 RID: 44417 RVA: 0x00423120 File Offset: 0x00421320
 	protected override bool AdditionalCanDepositTest()
 	{
 		bool flag = false;
@@ -399,7 +382,6 @@ public class PlanterSideScreen : ReceptacleSideScreen
 		return flag && plantablePlot.ValidPlant && myWorld.worldInventory.GetCountWithAdditionalTag(this.selectedDepositObjectTag, this.selectedDepositObjectAdditionalTag, myWorld.IsModuleInterior) > 0;
 	}
 
-	// Token: 0x0600AD82 RID: 44418 RVA: 0x00115386 File Offset: 0x00113586
 	public override void SetTarget(GameObject target)
 	{
 		this.selectedDepositObjectTag = Tag.Invalid;
@@ -409,7 +391,6 @@ public class PlanterSideScreen : ReceptacleSideScreen
 		this.RefreshSubspeciesToggles();
 	}
 
-	// Token: 0x0600AD83 RID: 44419 RVA: 0x004231B0 File Offset: 0x004213B0
 	protected override void RestoreSelectionFromOccupant()
 	{
 		base.RestoreSelectionFromOccupant();
@@ -463,54 +444,37 @@ public class PlanterSideScreen : ReceptacleSideScreen
 		}
 	}
 
-	// Token: 0x04008886 RID: 34950
 	public DescriptorPanel RequirementsDescriptorPanel;
 
-	// Token: 0x04008887 RID: 34951
 	public DescriptorPanel HarvestDescriptorPanel;
 
-	// Token: 0x04008888 RID: 34952
 	public DescriptorPanel EffectsDescriptorPanel;
 
-	// Token: 0x04008889 RID: 34953
 	public GameObject mutationPanel;
 
-	// Token: 0x0400888A RID: 34954
 	public GameObject mutationViewport;
 
-	// Token: 0x0400888B RID: 34955
 	public GameObject mutationContainer;
 
-	// Token: 0x0400888C RID: 34956
 	public GameObject mutationOption;
 
-	// Token: 0x0400888D RID: 34957
 	public GameObject blankMutationOption;
 
-	// Token: 0x0400888E RID: 34958
 	public GameObject selectSpeciesPrompt;
 
-	// Token: 0x0400888F RID: 34959
 	private bool mutationPanelCollapsed = true;
 
-	// Token: 0x04008890 RID: 34960
 	public Dictionary<GameObject, Tag> subspeciesToggles = new Dictionary<GameObject, Tag>();
 
-	// Token: 0x04008891 RID: 34961
 	private List<GameObject> blankMutationObjects = new List<GameObject>();
 
-	// Token: 0x04008892 RID: 34962
 	private Dictionary<PlantablePlot, Tag> entityPreviousSubSelectionMap = new Dictionary<PlantablePlot, Tag>();
 
-	// Token: 0x04008893 RID: 34963
 	private Coroutine activeAnimationRoutine;
 
-	// Token: 0x04008894 RID: 34964
 	private const float EXPAND_DURATION = 0.33f;
 
-	// Token: 0x04008895 RID: 34965
 	private const float EXPAND_MIN = 24f;
 
-	// Token: 0x04008896 RID: 34966
 	private const float EXPAND_MAX = 118f;
 }

@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000593 RID: 1427
 public class SetLockerConfig : IEntityConfig
 {
-	// Token: 0x060018A7 RID: 6311 RVA: 0x001ABCE8 File Offset: 0x001A9EE8
 	public GameObject CreatePrefab()
 	{
 		string id = "SetLocker";
@@ -43,7 +41,6 @@ public class SetLockerConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x060018A8 RID: 6312 RVA: 0x001AB814 File Offset: 0x001A9A14
 	public void OnPrefabInit(GameObject inst)
 	{
 		SetLocker component = inst.GetComponent<SetLocker>();
@@ -61,7 +58,6 @@ public class SetLockerConfig : IEntityConfig
 		component.ChooseContents();
 	}
 
-	// Token: 0x060018A9 RID: 6313 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}

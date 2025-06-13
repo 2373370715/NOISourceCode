@@ -4,16 +4,13 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020004DF RID: 1247
 public class OrbitalResearchCenterConfig : IBuildingConfig
 {
-	// Token: 0x06001576 RID: 5494 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06001577 RID: 5495 RVA: 0x0019F1AC File Offset: 0x0019D3AC
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "OrbitalResearchCenter";
@@ -40,7 +37,6 @@ public class OrbitalResearchCenterConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001578 RID: 5496 RVA: 0x0019F268 File Offset: 0x0019D468
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.ScienceBuilding, false);
@@ -62,7 +58,6 @@ public class OrbitalResearchCenterConfig : IBuildingConfig
 		this.ConfigureRecipes();
 	}
 
-	// Token: 0x06001579 RID: 5497 RVA: 0x0019F30C File Offset: 0x0019D50C
 	private void ConfigureRecipes()
 	{
 		ComplexRecipe.RecipeElement[] array = new ComplexRecipe.RecipeElement[]
@@ -85,23 +80,17 @@ public class OrbitalResearchCenterConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x0600157A RID: 5498 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000EDE RID: 3806
 	public const string ID = "OrbitalResearchCenter";
 
-	// Token: 0x04000EDF RID: 3807
 	public const float BASE_SECONDS_PER_POINT = 33f;
 
-	// Token: 0x04000EE0 RID: 3808
 	public const float MASS_PER_POINT = 5f;
 
-	// Token: 0x04000EE1 RID: 3809
 	public static readonly Tag INPUT_MATERIAL = SimHashes.Polypropylene.CreateTag();
 
-	// Token: 0x04000EE2 RID: 3810
 	public const float OUTPUT_TEMPERATURE = 308.15f;
 }

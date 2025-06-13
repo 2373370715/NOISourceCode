@@ -9,10 +9,8 @@ using UnityEngine;
 
 namespace KMod
 {
-	// Token: 0x0200224A RID: 8778
 	internal struct ZipFile : IFileSource
 	{
-		// Token: 0x0600BA5E RID: 47710 RVA: 0x0011C876 File Offset: 0x0011AA76
 		public ZipFile(string filename)
 		{
 			this.filename = filename;
@@ -20,19 +18,16 @@ namespace KMod
 			this.file_system = new ZipFileDirectory(this.zipfile.Name, this.zipfile, Application.streamingAssetsPath, true);
 		}
 
-		// Token: 0x0600BA5F RID: 47711 RVA: 0x0011C8AD File Offset: 0x0011AAAD
 		public string GetRoot()
 		{
 			return this.filename;
 		}
 
-		// Token: 0x0600BA60 RID: 47712 RVA: 0x0011C8B5 File Offset: 0x0011AAB5
 		public bool Exists()
 		{
 			return File.Exists(this.GetRoot());
 		}
 
-		// Token: 0x0600BA61 RID: 47713 RVA: 0x0047EBAC File Offset: 0x0047CDAC
 		public bool Exists(string relative_path)
 		{
 			if (!this.Exists())
@@ -52,7 +47,6 @@ namespace KMod
 			return false;
 		}
 
-		// Token: 0x0600BA62 RID: 47714 RVA: 0x0047EC14 File Offset: 0x0047CE14
 		public void GetTopLevelItems(List<FileSystemItem> file_system_items, string relative_root)
 		{
 			HashSetPool<string, ZipFile>.PooledHashSet pooledHashSet = HashSetPool<string, ZipFile>.Allocate();
@@ -92,7 +86,6 @@ namespace KMod
 			pooledHashSet.Recycle();
 		}
 
-		// Token: 0x0600BA63 RID: 47715 RVA: 0x0047ED3C File Offset: 0x0047CF3C
 		private bool IsSharedRoot(string[] root_path, List<string> check_path)
 		{
 			for (int i = 0; i < root_path.Length; i++)
@@ -105,13 +98,11 @@ namespace KMod
 			return true;
 		}
 
-		// Token: 0x0600BA64 RID: 47716 RVA: 0x0011C8C2 File Offset: 0x0011AAC2
 		public IFileDirectory GetFileSystem()
 		{
 			return this.file_system;
 		}
 
-		// Token: 0x0600BA65 RID: 47717 RVA: 0x0047ED74 File Offset: 0x0047CF74
 		public void CopyTo(string path, List<string> extensions = null)
 		{
 			foreach (ZipEntry zipEntry in this.zipfile.Entries)
@@ -147,7 +138,6 @@ namespace KMod
 			}
 		}
 
-		// Token: 0x0600BA66 RID: 47718 RVA: 0x0047EEC4 File Offset: 0x0047D0C4
 		public string Read(string relative_path)
 		{
 			ICollection<ZipEntry> collection = this.zipfile.SelectEntries(relative_path);
@@ -166,19 +156,15 @@ namespace KMod
 			return string.Empty;
 		}
 
-		// Token: 0x0600BA67 RID: 47719 RVA: 0x0011C8CA File Offset: 0x0011AACA
 		public void Dispose()
 		{
 			this.zipfile.Dispose();
 		}
 
-		// Token: 0x040098CD RID: 39117
 		private string filename;
 
-		// Token: 0x040098CE RID: 39118
 		private ZipFile zipfile;
 
-		// Token: 0x040098CF RID: 39119
 		private ZipFileDirectory file_system;
 	}
 }

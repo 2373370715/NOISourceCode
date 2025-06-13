@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000481 RID: 1153
 public class HarvestablePOIConfig : IMultiEntityConfig
 {
-	// Token: 0x060013A0 RID: 5024 RVA: 0x00198E0C File Offset: 0x0019700C
 	public List<GameObject> CreatePrefabs()
 	{
 		List<GameObject> list = new List<GameObject>();
@@ -16,13 +14,11 @@ public class HarvestablePOIConfig : IMultiEntityConfig
 		return list;
 	}
 
-	// Token: 0x060013A1 RID: 5025 RVA: 0x000B2FA5 File Offset: 0x000B11A5
 	public static GameObject CreateHarvestablePOI(string id, string anim, string name, StringKey descStringKey, HashedString poiType, bool canProvideArtifacts = false)
 	{
 		return HarvestablePOIConfig.CreateHarvestablePOI(id, anim, name, descStringKey, poiType, canProvideArtifacts, DlcManager.EXPANSION1, null);
 	}
 
-	// Token: 0x060013A2 RID: 5026 RVA: 0x00198EB8 File Offset: 0x001970B8
 	public static GameObject CreateHarvestablePOI(string id, string anim, string name, StringKey descStringKey, HashedString poiType, bool canProvideArtifacts = false, string[] requiredDlcIds = null, string[] forbiddenDlcIds = null)
 	{
 		GameObject gameObject = EntityTemplates.CreateEntity(id, id, true);
@@ -44,17 +40,14 @@ public class HarvestablePOIConfig : IMultiEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x060013A3 RID: 5027 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x060013A4 RID: 5028 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x060013A5 RID: 5029 RVA: 0x00198F48 File Offset: 0x00197148
 	private List<HarvestablePOIConfig.HarvestablePOIParams> GenerateConfigs()
 	{
 		List<HarvestablePOIConfig.HarvestablePOIParams> list = new List<HarvestablePOIConfig.HarvestablePOIParams>();
@@ -473,82 +466,56 @@ public class HarvestablePOIConfig : IMultiEntityConfig
 		return list;
 	}
 
-	// Token: 0x04000D6E RID: 3438
 	public const string CarbonAsteroidField = "CarbonAsteroidField";
 
-	// Token: 0x04000D6F RID: 3439
 	public const string MetallicAsteroidField = "MetallicAsteroidField";
 
-	// Token: 0x04000D70 RID: 3440
 	public const string SatelliteField = "SatelliteField";
 
-	// Token: 0x04000D71 RID: 3441
 	public const string RockyAsteroidField = "RockyAsteroidField";
 
-	// Token: 0x04000D72 RID: 3442
 	public const string InterstellarIceField = "InterstellarIceField";
 
-	// Token: 0x04000D73 RID: 3443
 	public const string OrganicMassField = "OrganicMassField";
 
-	// Token: 0x04000D74 RID: 3444
 	public const string IceAsteroidField = "IceAsteroidField";
 
-	// Token: 0x04000D75 RID: 3445
 	public const string GasGiantCloud = "GasGiantCloud";
 
-	// Token: 0x04000D76 RID: 3446
 	public const string ChlorineCloud = "ChlorineCloud";
 
-	// Token: 0x04000D77 RID: 3447
 	public const string GildedAsteroidField = "GildedAsteroidField";
 
-	// Token: 0x04000D78 RID: 3448
 	public const string GlimmeringAsteroidField = "GlimmeringAsteroidField";
 
-	// Token: 0x04000D79 RID: 3449
 	public const string HeliumCloud = "HeliumCloud";
 
-	// Token: 0x04000D7A RID: 3450
 	public const string OilyAsteroidField = "OilyAsteroidField";
 
-	// Token: 0x04000D7B RID: 3451
 	public const string OxidizedAsteroidField = "OxidizedAsteroidField";
 
-	// Token: 0x04000D7C RID: 3452
 	public const string SaltyAsteroidField = "SaltyAsteroidField";
 
-	// Token: 0x04000D7D RID: 3453
 	public const string FrozenOreField = "FrozenOreField";
 
-	// Token: 0x04000D7E RID: 3454
 	public const string ForestyOreField = "ForestyOreField";
 
-	// Token: 0x04000D7F RID: 3455
 	public const string SwampyOreField = "SwampyOreField";
 
-	// Token: 0x04000D80 RID: 3456
 	public const string SandyOreField = "SandyOreField";
 
-	// Token: 0x04000D81 RID: 3457
 	public const string RadioactiveGasCloud = "RadioactiveGasCloud";
 
-	// Token: 0x04000D82 RID: 3458
 	public const string RadioactiveAsteroidField = "RadioactiveAsteroidField";
 
-	// Token: 0x04000D83 RID: 3459
 	public const string OxygenRichAsteroidField = "OxygenRichAsteroidField";
 
-	// Token: 0x04000D84 RID: 3460
 	public const string InterstellarOcean = "InterstellarOcean";
 
-	// Token: 0x04000D85 RID: 3461
 	public const string DLC2CeresField = "DLC2CeresField";
 
-	// Token: 0x04000D86 RID: 3462
 	public const string DLC2CeresOreField = "DLC2CeresOreField";
 
-	// Token: 0x04000D87 RID: 3463
 	private static readonly List<string> GasFieldOrbit = new List<string>
 	{
 		Db.Get().OrbitalTypeCategories.iceCloud.Id,
@@ -557,7 +524,6 @@ public class HarvestablePOIConfig : IMultiEntityConfig
 		Db.Get().OrbitalTypeCategories.radioactiveGas.Id
 	};
 
-	// Token: 0x04000D88 RID: 3464
 	private static readonly List<string> AsteroidFieldOrbit = new List<string>
 	{
 		Db.Get().OrbitalTypeCategories.iceRock.Id,
@@ -565,10 +531,8 @@ public class HarvestablePOIConfig : IMultiEntityConfig
 		Db.Get().OrbitalTypeCategories.rocky.Id
 	};
 
-	// Token: 0x02000482 RID: 1154
 	public struct HarvestablePOIParams
 	{
-		// Token: 0x060013A8 RID: 5032 RVA: 0x00199C50 File Offset: 0x00197E50
 		public HarvestablePOIParams(string anim, HarvestablePOIConfigurator.HarvestablePOIType poiType)
 		{
 			this.id = "HarvestableSpacePOI_" + poiType.id;
@@ -578,19 +542,14 @@ public class HarvestablePOIConfig : IMultiEntityConfig
 			this.poiType = poiType;
 		}
 
-		// Token: 0x04000D89 RID: 3465
 		public string id;
 
-		// Token: 0x04000D8A RID: 3466
 		public string anim;
 
-		// Token: 0x04000D8B RID: 3467
 		public StringKey nameStringKey;
 
-		// Token: 0x04000D8C RID: 3468
 		public StringKey descStringKey;
 
-		// Token: 0x04000D8D RID: 3469
 		public HarvestablePOIConfigurator.HarvestablePOIType poiType;
 	}
 }

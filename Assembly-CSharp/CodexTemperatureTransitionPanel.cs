@@ -4,17 +4,14 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001CAF RID: 7343
 public class CodexTemperatureTransitionPanel : CodexWidget<CodexTemperatureTransitionPanel>
 {
-	// Token: 0x06009923 RID: 39203 RVA: 0x00108059 File Offset: 0x00106259
 	public CodexTemperatureTransitionPanel(Element source, CodexTemperatureTransitionPanel.TransitionType type)
 	{
 		this.sourceElement = source;
 		this.transitionType = type;
 	}
 
-	// Token: 0x06009924 RID: 39204 RVA: 0x003C1478 File Offset: 0x003BF678
 	public override void Configure(GameObject contentGameObject, Transform displayPane, Dictionary<CodexTextStyle, TextStyleSetting> textStyles)
 	{
 		HierarchyReferences component = contentGameObject.GetComponent<HierarchyReferences>();
@@ -30,7 +27,6 @@ public class CodexTemperatureTransitionPanel : CodexWidget<CodexTemperatureTrans
 		base.ConfigurePreferredLayout(contentGameObject);
 	}
 
-	// Token: 0x06009925 RID: 39205 RVA: 0x003C1520 File Offset: 0x003BF720
 	private void ConfigureSource(GameObject contentGameObject, Transform displayPane, Dictionary<CodexTextStyle, TextStyleSetting> textStyles)
 	{
 		HierarchyReferences component = Util.KInstantiateUI(this.materialPrefab, this.sourceContainer, true).GetComponent<HierarchyReferences>();
@@ -46,7 +42,6 @@ public class CodexTemperatureTransitionPanel : CodexWidget<CodexTemperatureTrans
 		};
 	}
 
-	// Token: 0x06009926 RID: 39206 RVA: 0x003C15FC File Offset: 0x003BF7FC
 	private void ConfigureTemperature(GameObject contentGameObject, Transform displayPane, Dictionary<CodexTextStyle, TextStyleSetting> textStyles)
 	{
 		float temp = (this.transitionType == CodexTemperatureTransitionPanel.TransitionType.COOL) ? this.sourceElement.lowTemp : this.sourceElement.highTemp;
@@ -58,7 +53,6 @@ public class CodexTemperatureTransitionPanel : CodexWidget<CodexTemperatureTrans
 		component.GetReference<ToolTip>("ToolTip").toolTip = string.Format(format, GameUtil.GetFormattedTemperature(temp, GameUtil.TimeSlice.None, GameUtil.TemperatureInterpretation.Absolute, true, false));
 	}
 
-	// Token: 0x06009927 RID: 39207 RVA: 0x003C16E0 File Offset: 0x003BF8E0
 	private void ConfigureResults(GameObject contentGameObject, Transform displayPane, Dictionary<CodexTextStyle, TextStyleSetting> textStyles)
 	{
 		Element primaryElement = (this.transitionType == CodexTemperatureTransitionPanel.TransitionType.COOL) ? this.sourceElement.lowTempTransition : this.sourceElement.highTempTransition;
@@ -105,7 +99,6 @@ public class CodexTemperatureTransitionPanel : CodexWidget<CodexTemperatureTrans
 		this.headerLabel.SetText((secondaryElement == null) ? string.Format(CODEX.FORMAT_STRINGS.TRANSITION_LABEL_TO_ONE_ELEMENT, this.sourceElement.name, primaryElement.name) : string.Format(CODEX.FORMAT_STRINGS.TRANSITION_LABEL_TO_TWO_ELEMENTS, this.sourceElement.name, primaryElement.name, secondaryElement.name));
 	}
 
-	// Token: 0x06009928 RID: 39208 RVA: 0x003C19CC File Offset: 0x003BFBCC
 	private void ClearPanel()
 	{
 		foreach (object obj in this.sourceContainer.transform)
@@ -118,33 +111,23 @@ public class CodexTemperatureTransitionPanel : CodexWidget<CodexTemperatureTrans
 		}
 	}
 
-	// Token: 0x04007716 RID: 30486
 	private Element sourceElement;
 
-	// Token: 0x04007717 RID: 30487
 	private CodexTemperatureTransitionPanel.TransitionType transitionType;
 
-	// Token: 0x04007718 RID: 30488
 	private GameObject materialPrefab;
 
-	// Token: 0x04007719 RID: 30489
 	private GameObject sourceContainer;
 
-	// Token: 0x0400771A RID: 30490
 	private GameObject temperaturePanel;
 
-	// Token: 0x0400771B RID: 30491
 	private GameObject resultsContainer;
 
-	// Token: 0x0400771C RID: 30492
 	private LocText headerLabel;
 
-	// Token: 0x02001CB0 RID: 7344
 	public enum TransitionType
 	{
-		// Token: 0x0400771E RID: 30494
 		HEAT,
-		// Token: 0x0400771F RID: 30495
 		COOL
 	}
 }

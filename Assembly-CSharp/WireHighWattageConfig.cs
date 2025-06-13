@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000600 RID: 1536
 public class WireHighWattageConfig : BaseWireConfig
 {
-	// Token: 0x06001B27 RID: 6951 RVA: 0x001B6748 File Offset: 0x001B4948
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "HighWattageWire";
@@ -22,18 +20,15 @@ public class WireHighWattageConfig : BaseWireConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001B28 RID: 6952 RVA: 0x000B6287 File Offset: 0x000B4487
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		base.DoPostConfigureComplete(Wire.WattageRating.Max20000, go);
 	}
 
-	// Token: 0x06001B29 RID: 6953 RVA: 0x000B6291 File Offset: 0x000B4491
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		base.DoPostConfigureUnderConstruction(go);
 	}
 
-	// Token: 0x0400116A RID: 4458
 	public const string ID = "HighWattageWire";
 }

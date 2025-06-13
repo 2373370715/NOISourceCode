@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020004BB RID: 1211
 public class MonumentTopConfig : IBuildingConfig
 {
-	// Token: 0x060014BD RID: 5309 RVA: 0x0019C564 File Offset: 0x0019A764
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "MonumentTop";
@@ -47,7 +45,6 @@ public class MonumentTopConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060014BE RID: 5310 RVA: 0x000B37A2 File Offset: 0x000B19A2
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -55,17 +52,14 @@ public class MonumentTopConfig : IBuildingConfig
 		go.AddOrGet<MonumentPart>().part = MonumentPartResource.Part.Top;
 	}
 
-	// Token: 0x060014BF RID: 5311 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 	}
 
-	// Token: 0x060014C0 RID: 5312 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 	}
 
-	// Token: 0x060014C1 RID: 5313 RVA: 0x000B37CC File Offset: 0x000B19CC
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<KBatchedAnimController>().initialAnim = "option_a";
@@ -77,6 +71,5 @@ public class MonumentTopConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x04000E17 RID: 3607
 	public const string ID = "MonumentTop";
 }

@@ -2,10 +2,8 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000734 RID: 1844
 public class RescueIncapacitatedChore : Chore<RescueIncapacitatedChore.StatesInstance>
 {
-	// Token: 0x06002074 RID: 8308 RVA: 0x001C836C File Offset: 0x001C656C
 	public RescueIncapacitatedChore(IStateMachineTarget master, GameObject incapacitatedDuplicant) : base(Db.Get().ChoreTypes.RescueIncapacitated, master, null, false, null, null, null, PriorityScreen.PriorityClass.personalNeeds, 5, false, true, 0, false, ReportManager.ReportType.WorkTime)
 	{
 		base.smi = new RescueIncapacitatedChore.StatesInstance(this);
@@ -14,7 +12,6 @@ public class RescueIncapacitatedChore : Chore<RescueIncapacitatedChore.StatesIns
 		this.AddPrecondition(RescueIncapacitatedChore.CanReachIncapacitated, incapacitatedDuplicant);
 	}
 
-	// Token: 0x06002075 RID: 8309 RVA: 0x001C83D4 File Offset: 0x001C65D4
 	public override void Begin(Chore.Precondition.Context context)
 	{
 		base.smi.sm.rescuer.Set(context.consumerState.gameObject, base.smi, false);
@@ -23,14 +20,12 @@ public class RescueIncapacitatedChore : Chore<RescueIncapacitatedChore.StatesIns
 		base.Begin(context);
 	}
 
-	// Token: 0x06002076 RID: 8310 RVA: 0x000B9C2C File Offset: 0x000B7E2C
 	protected override void End(string reason)
 	{
 		this.DropIncapacitatedDuplicant();
 		base.End(reason);
 	}
 
-	// Token: 0x06002077 RID: 8311 RVA: 0x001C8468 File Offset: 0x001C6668
 	private void DropIncapacitatedDuplicant()
 	{
 		if (base.smi.sm.rescuer.Get(base.smi) != null && base.smi.sm.rescueTarget.Get(base.smi) != null)
@@ -39,7 +34,6 @@ public class RescueIncapacitatedChore : Chore<RescueIncapacitatedChore.StatesIns
 		}
 	}
 
-	// Token: 0x04001592 RID: 5522
 	public static Chore.Precondition CanReachIncapacitated = new Chore.Precondition
 	{
 		id = "CanReachIncapacitated",
@@ -61,19 +55,15 @@ public class RescueIncapacitatedChore : Chore<RescueIncapacitatedChore.StatesIns
 		}
 	};
 
-	// Token: 0x02000735 RID: 1845
 	public class StatesInstance : GameStateMachine<RescueIncapacitatedChore.States, RescueIncapacitatedChore.StatesInstance, RescueIncapacitatedChore, object>.GameInstance
 	{
-		// Token: 0x06002079 RID: 8313 RVA: 0x000B9C3B File Offset: 0x000B7E3B
 		public StatesInstance(RescueIncapacitatedChore master) : base(master)
 		{
 		}
 	}
 
-	// Token: 0x02000736 RID: 1846
 	public class States : GameStateMachine<RescueIncapacitatedChore.States, RescueIncapacitatedChore.StatesInstance, RescueIncapacitatedChore>
 	{
-		// Token: 0x0600207A RID: 8314 RVA: 0x001C8550 File Offset: 0x001C6750
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.approachIncapacitated;
@@ -152,37 +142,26 @@ public class RescueIncapacitatedChore : Chore<RescueIncapacitatedChore.StatesIns
 			});
 		}
 
-		// Token: 0x04001593 RID: 5523
 		public GameStateMachine<RescueIncapacitatedChore.States, RescueIncapacitatedChore.StatesInstance, RescueIncapacitatedChore, object>.ApproachSubState<Chattable> approachIncapacitated;
 
-		// Token: 0x04001594 RID: 5524
 		public GameStateMachine<RescueIncapacitatedChore.States, RescueIncapacitatedChore.StatesInstance, RescueIncapacitatedChore, object>.State failure;
 
-		// Token: 0x04001595 RID: 5525
 		public RescueIncapacitatedChore.States.HoldingIncapacitated holding;
 
-		// Token: 0x04001596 RID: 5526
 		public StateMachine<RescueIncapacitatedChore.States, RescueIncapacitatedChore.StatesInstance, RescueIncapacitatedChore, object>.TargetParameter rescueTarget;
 
-		// Token: 0x04001597 RID: 5527
 		public StateMachine<RescueIncapacitatedChore.States, RescueIncapacitatedChore.StatesInstance, RescueIncapacitatedChore, object>.TargetParameter deliverTarget;
 
-		// Token: 0x04001598 RID: 5528
 		public StateMachine<RescueIncapacitatedChore.States, RescueIncapacitatedChore.StatesInstance, RescueIncapacitatedChore, object>.TargetParameter rescuer;
 
-		// Token: 0x02000737 RID: 1847
 		public class HoldingIncapacitated : GameStateMachine<RescueIncapacitatedChore.States, RescueIncapacitatedChore.StatesInstance, RescueIncapacitatedChore, object>.State
 		{
-			// Token: 0x04001599 RID: 5529
 			public GameStateMachine<RescueIncapacitatedChore.States, RescueIncapacitatedChore.StatesInstance, RescueIncapacitatedChore, object>.State pickup;
 
-			// Token: 0x0400159A RID: 5530
 			public GameStateMachine<RescueIncapacitatedChore.States, RescueIncapacitatedChore.StatesInstance, RescueIncapacitatedChore, object>.ApproachSubState<IApproachable> delivering;
 
-			// Token: 0x0400159B RID: 5531
 			public GameStateMachine<RescueIncapacitatedChore.States, RescueIncapacitatedChore.StatesInstance, RescueIncapacitatedChore, object>.State deposit;
 
-			// Token: 0x0400159C RID: 5532
 			public GameStateMachine<RescueIncapacitatedChore.States, RescueIncapacitatedChore.StatesInstance, RescueIncapacitatedChore, object>.State ditch;
 		}
 	}

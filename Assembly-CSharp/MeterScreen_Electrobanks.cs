@@ -4,10 +4,8 @@ using System.Linq;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001E65 RID: 7781
 public class MeterScreen_Electrobanks : MeterScreen_ValueTrackerDisplayer
 {
-	// Token: 0x0600A303 RID: 41731 RVA: 0x003EE8E4 File Offset: 0x003ECAE4
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -27,14 +25,12 @@ public class MeterScreen_Electrobanks : MeterScreen_ValueTrackerDisplayer
 		this.bionicJoulesPerCycle = (difficultyModifier.value + 200f) * 600f;
 	}
 
-	// Token: 0x0600A304 RID: 41732 RVA: 0x0010E66D File Offset: 0x0010C86D
 	protected override void OnCleanUp()
 	{
 		Components.LiveMinionIdentities.OnAdd -= this.OnNewMinionAdded;
 		base.OnCleanUp();
 	}
 
-	// Token: 0x0600A305 RID: 41733 RVA: 0x0010E68B File Offset: 0x0010C88B
 	private void OnNewMinionAdded(MinionIdentity id)
 	{
 		if (id.model == BionicMinionConfig.MODEL)
@@ -43,13 +39,11 @@ public class MeterScreen_Electrobanks : MeterScreen_ValueTrackerDisplayer
 		}
 	}
 
-	// Token: 0x0600A306 RID: 41734 RVA: 0x0010E6A6 File Offset: 0x0010C8A6
 	public void SetVisibility(bool isVisible)
 	{
 		base.gameObject.SetActive(isVisible);
 	}
 
-	// Token: 0x0600A307 RID: 41735 RVA: 0x003EE96C File Offset: 0x003ECB6C
 	protected override string OnTooltip()
 	{
 		this.per_electrobankType_UnitCount_Dictionary.Clear();
@@ -69,7 +63,6 @@ public class MeterScreen_Electrobanks : MeterScreen_ValueTrackerDisplayer
 		return "";
 	}
 
-	// Token: 0x0600A308 RID: 41736 RVA: 0x003EEB5C File Offset: 0x003ECD5C
 	protected override void InternalRefresh()
 	{
 		if (!Game.IsDlcActiveForCurrentSave("DLC3_ID"))
@@ -94,12 +87,9 @@ public class MeterScreen_Electrobanks : MeterScreen_ValueTrackerDisplayer
 		}
 	}
 
-	// Token: 0x04007F80 RID: 32640
 	private long cachedJoules = -1L;
 
-	// Token: 0x04007F81 RID: 32641
 	private Dictionary<string, float> per_electrobankType_UnitCount_Dictionary = new Dictionary<string, float>();
 
-	// Token: 0x04007F82 RID: 32642
 	private float bionicJoulesPerCycle;
 }

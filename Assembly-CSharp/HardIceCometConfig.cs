@@ -2,22 +2,18 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x0200046D RID: 1133
 public class HardIceCometConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x0600132C RID: 4908 RVA: 0x000AA117 File Offset: 0x000A8317
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x0600132D RID: 4909 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x0600132E RID: 4910 RVA: 0x00197EE8 File Offset: 0x001960E8
 	public GameObject CreatePrefab()
 	{
 		GameObject gameObject = EntityTemplates.CreateEntity(HardIceCometConfig.ID, UI.SPACEDESTINATIONS.COMETS.HARDICECOMET.NAME, true);
@@ -54,22 +50,17 @@ public class HardIceCometConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x0600132F RID: 4911 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject go)
 	{
 	}
 
-	// Token: 0x06001330 RID: 4912 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject go)
 	{
 	}
 
-	// Token: 0x04000D4B RID: 3403
 	public static readonly string ID = "HardIceComet";
 
-	// Token: 0x04000D4C RID: 3404
 	private const SimHashes element = SimHashes.CrushedIce;
 
-	// Token: 0x04000D4D RID: 3405
 	private const int ADDED_CELLS = 6;
 }

@@ -3,16 +3,13 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003AE RID: 942
 public class LadderBedConfig : IBuildingConfig
 {
-	// Token: 0x06000F3C RID: 3900 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06000F3D RID: 3901 RVA: 0x00186480 File Offset: 0x00184680
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = LadderBedConfig.ID;
@@ -37,7 +34,6 @@ public class LadderBedConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000F3E RID: 3902 RVA: 0x00186510 File Offset: 0x00184710
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<LoopingSounds>();
@@ -49,7 +45,6 @@ public class LadderBedConfig : IBuildingConfig
 		go.AddOrGet<AnimTileable>();
 	}
 
-	// Token: 0x06000F3F RID: 3903 RVA: 0x00186568 File Offset: 0x00184768
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		CellOffset[] offsets = new CellOffset[]
@@ -86,6 +81,5 @@ public class LadderBedConfig : IBuildingConfig
 		go.AddOrGetDef<RocketUsageRestriction.Def>();
 	}
 
-	// Token: 0x04000B2E RID: 2862
 	public static string ID = "LadderBed";
 }

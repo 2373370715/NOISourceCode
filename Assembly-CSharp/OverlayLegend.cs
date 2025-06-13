@@ -4,10 +4,8 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001EE7 RID: 7911
 public class OverlayLegend : KScreen
 {
-	// Token: 0x0600A601 RID: 42497 RVA: 0x003FC5F0 File Offset: 0x003FA7F0
 	[ContextMenu("Set all fonts color")]
 	public void SetAllFontsColor()
 	{
@@ -23,7 +21,6 @@ public class OverlayLegend : KScreen
 		}
 	}
 
-	// Token: 0x0600A602 RID: 42498 RVA: 0x003FC688 File Offset: 0x003FA888
 	[ContextMenu("Set all tooltips")]
 	public void SetAllTooltips()
 	{
@@ -41,7 +38,6 @@ public class OverlayLegend : KScreen
 		}
 	}
 
-	// Token: 0x0600A603 RID: 42499 RVA: 0x003FC74C File Offset: 0x003FA94C
 	[ContextMenu("Set Sliced for empty icons")]
 	public void SetSlicedForEmptyIcons()
 	{
@@ -57,7 +53,6 @@ public class OverlayLegend : KScreen
 		}
 	}
 
-	// Token: 0x0600A604 RID: 42500 RVA: 0x003FC7E0 File Offset: 0x003FA9E0
 	protected override void OnSpawn()
 	{
 		base.ConsumeMouseScroll = true;
@@ -86,7 +81,6 @@ public class OverlayLegend : KScreen
 		UnityEngine.Object.Destroy(base.gameObject);
 	}
 
-	// Token: 0x0600A605 RID: 42501 RVA: 0x00110238 File Offset: 0x0010E438
 	protected override void OnLoadLevel()
 	{
 		OverlayLegend.Instance = null;
@@ -95,7 +89,6 @@ public class OverlayLegend : KScreen
 		base.OnLoadLevel();
 	}
 
-	// Token: 0x0600A606 RID: 42502 RVA: 0x003FC93C File Offset: 0x003FAB3C
 	private void SetLegend(OverlayLegend.OverlayInfo overlayInfo)
 	{
 		if (overlayInfo == null)
@@ -122,7 +115,6 @@ public class OverlayLegend : KScreen
 		this.ConfigureUIHeight();
 	}
 
-	// Token: 0x0600A607 RID: 42503 RVA: 0x003FC9B8 File Offset: 0x003FABB8
 	public void SetLegend(OverlayModes.Mode mode, bool refreshing = false)
 	{
 		if (this.currentMode != null && this.currentMode.ViewMode() == mode.ViewMode() && !refreshing)
@@ -135,7 +127,6 @@ public class OverlayLegend : KScreen
 		this.SetLegend(legend);
 	}
 
-	// Token: 0x0600A608 RID: 42504 RVA: 0x003FCA2C File Offset: 0x003FAC2C
 	public GameObject GetFreeUnitObject()
 	{
 		if (this.inactiveUnitObjs.Count == 0)
@@ -148,7 +139,6 @@ public class OverlayLegend : KScreen
 		return gameObject;
 	}
 
-	// Token: 0x0600A609 RID: 42505 RVA: 0x003FCA8C File Offset: 0x003FAC8C
 	private void RemoveActiveObjects()
 	{
 		while (this.activeUnitObjs.Count > 0)
@@ -162,7 +152,6 @@ public class OverlayLegend : KScreen
 		}
 	}
 
-	// Token: 0x0600A60A RID: 42506 RVA: 0x0011025C File Offset: 0x0010E45C
 	public void ClearLegend()
 	{
 		this.RemoveActiveObjects();
@@ -171,7 +160,6 @@ public class OverlayLegend : KScreen
 		this.Show(false);
 	}
 
-	// Token: 0x0600A60B RID: 42507 RVA: 0x00110277 File Offset: 0x0010E477
 	public void ClearFilters()
 	{
 		if (this.filterMenu != null)
@@ -181,7 +169,6 @@ public class OverlayLegend : KScreen
 		this.filterMenu = null;
 	}
 
-	// Token: 0x0600A60C RID: 42508 RVA: 0x003FCB44 File Offset: 0x003FAD44
 	public void ClearDiagrams()
 	{
 		for (int i = 0; i < this.activeDiagrams.Count; i++)
@@ -197,7 +184,6 @@ public class OverlayLegend : KScreen
 		this.diagramsParent.GetComponent<RectTransform>().sizeDelta = sizeDelta;
 	}
 
-	// Token: 0x0600A60D RID: 42509 RVA: 0x003FCBC8 File Offset: 0x003FADC8
 	public OverlayLegend.OverlayInfo GetOverlayInfo(OverlayModes.Mode mode)
 	{
 		for (int i = 0; i < this.overlayInfoList.Count; i++)
@@ -210,7 +196,6 @@ public class OverlayLegend : KScreen
 		return null;
 	}
 
-	// Token: 0x0600A60E RID: 42510 RVA: 0x003FCC18 File Offset: 0x003FAE18
 	private void PopulateOverlayInfoUnits(OverlayLegend.OverlayInfo overlayInfo, bool isRefresh = false)
 	{
 		if (overlayInfo.infoUnits != null && overlayInfo.infoUnits.Count > 0)
@@ -261,7 +246,6 @@ public class OverlayLegend : KScreen
 		this.activeUnitsParent.SetActive(false);
 	}
 
-	// Token: 0x0600A60F RID: 42511 RVA: 0x003FCDC4 File Offset: 0x003FAFC4
 	private void PopulateOverlayDiagrams(OverlayLegend.OverlayInfo overlayInfo, bool isRefresh = false)
 	{
 		if (!isRefresh)
@@ -301,7 +285,6 @@ public class OverlayLegend : KScreen
 		}
 	}
 
-	// Token: 0x0600A610 RID: 42512 RVA: 0x003FCEE0 File Offset: 0x003FB0E0
 	private void PopulateGeneratedLegend(OverlayLegend.OverlayInfo info, bool isRefresh = false)
 	{
 		if (isRefresh)
@@ -357,7 +340,6 @@ public class OverlayLegend : KScreen
 		this.ConfigureUIHeight();
 	}
 
-	// Token: 0x0600A611 RID: 42513 RVA: 0x0011029E File Offset: 0x0010E49E
 	private void OnFiltersChanged()
 	{
 		this.currentMode.OnFiltersChanged();
@@ -365,7 +347,6 @@ public class OverlayLegend : KScreen
 		Game.Instance.ForceOverlayUpdate(false);
 	}
 
-	// Token: 0x0600A612 RID: 42514 RVA: 0x001102C9 File Offset: 0x0010E4C9
 	private void DisableOverlay()
 	{
 		this.filterMenu.onParametersChanged -= this.OnFiltersChanged;
@@ -374,7 +355,6 @@ public class OverlayLegend : KScreen
 		this.filterMenu = null;
 	}
 
-	// Token: 0x0600A613 RID: 42515 RVA: 0x003FD0E4 File Offset: 0x003FB2E4
 	private void ConfigureUIHeight()
 	{
 		this.scrollRectLayout.enabled = false;
@@ -388,65 +368,48 @@ public class OverlayLegend : KScreen
 		LayoutRebuilder.ForceRebuildLayoutImmediate(base.gameObject.rectTransform());
 	}
 
-	// Token: 0x040081F6 RID: 33270
 	public static OverlayLegend Instance;
 
-	// Token: 0x040081F7 RID: 33271
 	[SerializeField]
 	private LocText title;
 
-	// Token: 0x040081F8 RID: 33272
 	[SerializeField]
 	private Sprite emptySprite;
 
-	// Token: 0x040081F9 RID: 33273
 	[SerializeField]
 	private List<OverlayLegend.OverlayInfo> overlayInfoList;
 
-	// Token: 0x040081FA RID: 33274
 	[SerializeField]
 	private GameObject unitPrefab;
 
-	// Token: 0x040081FB RID: 33275
 	[SerializeField]
 	private GameObject activeUnitsParent;
 
-	// Token: 0x040081FC RID: 33276
 	[SerializeField]
 	private GameObject diagramsParent;
 
-	// Token: 0x040081FD RID: 33277
 	[SerializeField]
 	private GameObject inactiveUnitsParent;
 
-	// Token: 0x040081FE RID: 33278
 	[SerializeField]
 	private GameObject toolParameterMenuPrefab;
 
-	// Token: 0x040081FF RID: 33279
 	[SerializeField]
 	private LayoutElement scrollRectLayout;
 
-	// Token: 0x04008200 RID: 33280
 	private ToolParameterMenu filterMenu;
 
-	// Token: 0x04008201 RID: 33281
 	private OverlayModes.Mode currentMode;
 
-	// Token: 0x04008202 RID: 33282
 	private List<GameObject> inactiveUnitObjs;
 
-	// Token: 0x04008203 RID: 33283
 	private List<GameObject> activeUnitObjs;
 
-	// Token: 0x04008204 RID: 33284
 	private List<GameObject> activeDiagrams = new List<GameObject>();
 
-	// Token: 0x02001EE8 RID: 7912
 	[Serializable]
 	public class OverlayInfoUnit
 	{
-		// Token: 0x0600A615 RID: 42517 RVA: 0x00110318 File Offset: 0x0010E518
 		public OverlayInfoUnit(Sprite icon, string description, Color color, Color fontColor, object formatData = null, bool sliceIcon = false)
 		{
 			this.icon = icon;
@@ -457,48 +420,34 @@ public class OverlayLegend : KScreen
 			this.sliceIcon = sliceIcon;
 		}
 
-		// Token: 0x04008205 RID: 33285
 		public Sprite icon;
 
-		// Token: 0x04008206 RID: 33286
 		public string description;
 
-		// Token: 0x04008207 RID: 33287
 		public string tooltip;
 
-		// Token: 0x04008208 RID: 33288
 		public Color color;
 
-		// Token: 0x04008209 RID: 33289
 		public Color fontColor;
 
-		// Token: 0x0400820A RID: 33290
 		public object formatData;
 
-		// Token: 0x0400820B RID: 33291
 		public object tooltipFormatData;
 
-		// Token: 0x0400820C RID: 33292
 		public bool sliceIcon;
 	}
 
-	// Token: 0x02001EE9 RID: 7913
 	[Serializable]
 	public class OverlayInfo
 	{
-		// Token: 0x0400820D RID: 33293
 		public string name;
 
-		// Token: 0x0400820E RID: 33294
 		public HashedString mode;
 
-		// Token: 0x0400820F RID: 33295
 		public List<OverlayLegend.OverlayInfoUnit> infoUnits;
 
-		// Token: 0x04008210 RID: 33296
 		public List<GameObject> diagrams;
 
-		// Token: 0x04008211 RID: 33297
 		public bool isProgrammaticallyPopulated;
 	}
 }

@@ -2,15 +2,12 @@
 using FMOD.Studio;
 using UnityEngine;
 
-// Token: 0x02000994 RID: 2452
 public class WallDamageSoundEvent : SoundEvent
 {
-	// Token: 0x06002BB3 RID: 11187 RVA: 0x000C041D File Offset: 0x000BE61D
 	public WallDamageSoundEvent(string file_name, string sound_name, int frame, float min_interval) : base(file_name, sound_name, frame, true, false, min_interval, false)
 	{
 	}
 
-	// Token: 0x06002BB4 RID: 11188 RVA: 0x001ED7B0 File Offset: 0x001EB9B0
 	public override void PlaySound(AnimEventManager.EventPlayerData behaviour)
 	{
 		Vector3 vector = default(Vector3);
@@ -35,7 +32,6 @@ public class WallDamageSoundEvent : SoundEvent
 		}
 	}
 
-	// Token: 0x06002BB5 RID: 11189 RVA: 0x001ED88C File Offset: 0x001EBA8C
 	private static int GetAudioCategory(int tile)
 	{
 		Element element = Grid.Element[tile];
@@ -74,6 +70,5 @@ public class WallDamageSoundEvent : SoundEvent
 		return 7;
 	}
 
-	// Token: 0x04001DEE RID: 7662
 	public int tile;
 }

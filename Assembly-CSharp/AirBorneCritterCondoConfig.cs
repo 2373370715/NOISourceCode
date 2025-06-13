@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200001A RID: 26
 public class AirBorneCritterCondoConfig : IBuildingConfig
 {
-	// Token: 0x06000065 RID: 101 RVA: 0x00147B5C File Offset: 0x00145D5C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "AirBorneCritterCondo";
@@ -33,17 +31,14 @@ public class AirBorneCritterCondoConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000066 RID: 102 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 	}
 
-	// Token: 0x06000067 RID: 103 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 	}
 
-	// Token: 0x06000068 RID: 104 RVA: 0x00147BE8 File Offset: 0x00145DE8
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		RoomTracker roomTracker = go.AddOrGet<RoomTracker>();
@@ -61,11 +56,9 @@ public class AirBorneCritterCondoConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.RanchStationType, false);
 	}
 
-	// Token: 0x06000069 RID: 105 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void ConfigurePost(BuildingDef def)
 	{
 	}
 
-	// Token: 0x0400004E RID: 78
 	public const string ID = "AirBorneCritterCondo";
 }

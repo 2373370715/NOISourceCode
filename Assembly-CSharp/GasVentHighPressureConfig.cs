@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200035E RID: 862
 public class GasVentHighPressureConfig : IBuildingConfig
 {
-	// Token: 0x06000DAA RID: 3498 RVA: 0x0017E590 File Offset: 0x0017C790
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "GasVentHighPressure";
@@ -42,7 +40,6 @@ public class GasVentHighPressureConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000DAB RID: 3499 RVA: 0x0017E680 File Offset: 0x0017C880
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
@@ -60,19 +57,15 @@ public class GasVentHighPressureConfig : IBuildingConfig
 		go.AddOrGet<SimpleVent>();
 	}
 
-	// Token: 0x06000DAC RID: 3500 RVA: 0x000B0614 File Offset: 0x000AE814
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGetDef<VentController.Def>();
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayInFrontOfConduits, false);
 	}
 
-	// Token: 0x040009FF RID: 2559
 	public const string ID = "GasVentHighPressure";
 
-	// Token: 0x04000A00 RID: 2560
 	private const ConduitType CONDUIT_TYPE = ConduitType.Gas;
 
-	// Token: 0x04000A01 RID: 2561
 	public const float OVERPRESSURE_MASS = 20f;
 }

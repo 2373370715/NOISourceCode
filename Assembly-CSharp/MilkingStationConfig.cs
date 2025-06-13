@@ -3,10 +3,8 @@ using Klei.AI;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000425 RID: 1061
 public class MilkingStationConfig : IBuildingConfig
 {
-	// Token: 0x060011A9 RID: 4521 RVA: 0x00190308 File Offset: 0x0018E508
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "MilkingStation";
@@ -43,7 +41,6 @@ public class MilkingStationConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060011AA RID: 4522 RVA: 0x001903FC File Offset: 0x0018E5FC
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<LoopingSounds>();
@@ -55,7 +52,6 @@ public class MilkingStationConfig : IBuildingConfig
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x060011AB RID: 4523 RVA: 0x00190450 File Offset: 0x0018E650
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		RoomTracker roomTracker = go.AddOrGet<RoomTracker>();
@@ -110,6 +106,5 @@ public class MilkingStationConfig : IBuildingConfig
 		conduitDispenser.elementFilter = null;
 	}
 
-	// Token: 0x04000C55 RID: 3157
 	public const string ID = "MilkingStation";
 }

@@ -4,22 +4,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000529 RID: 1321
 public class PropGravitasCeilingRobotConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x060016A9 RID: 5801 RVA: 0x000AA117 File Offset: 0x000A8317
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x060016AA RID: 5802 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x060016AB RID: 5803 RVA: 0x001A398C File Offset: 0x001A1B8C
 	public GameObject CreatePrefab()
 	{
 		string id = "PropGravitasCeilingRobot";
@@ -39,7 +35,6 @@ public class PropGravitasCeilingRobotConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x060016AC RID: 5804 RVA: 0x000AA768 File Offset: 0x000A8968
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.GetComponent<OccupyArea>().objectLayers = new ObjectLayer[]
@@ -48,7 +43,6 @@ public class PropGravitasCeilingRobotConfig : IEntityConfig, IHasDlcRestrictions
 		};
 	}
 
-	// Token: 0x060016AD RID: 5805 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}

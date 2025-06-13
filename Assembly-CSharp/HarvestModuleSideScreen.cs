@@ -3,11 +3,8 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001FDA RID: 8154
 public class HarvestModuleSideScreen : SideScreenContent, ISimEveryTick
 {
-	// Token: 0x17000AFE RID: 2814
-	// (get) Token: 0x0600AC47 RID: 44103 RVA: 0x00114747 File Offset: 0x00112947
 	private CraftModuleInterface craftModuleInterface
 	{
 		get
@@ -16,26 +13,22 @@ public class HarvestModuleSideScreen : SideScreenContent, ISimEveryTick
 		}
 	}
 
-	// Token: 0x0600AC48 RID: 44104 RVA: 0x00114713 File Offset: 0x00112913
 	protected override void OnShow(bool show)
 	{
 		base.OnShow(show);
 		base.ConsumeMouseScroll = true;
 	}
 
-	// Token: 0x0600AC49 RID: 44105 RVA: 0x00104020 File Offset: 0x00102220
 	public override float GetSortKey()
 	{
 		return 21f;
 	}
 
-	// Token: 0x0600AC4A RID: 44106 RVA: 0x00114754 File Offset: 0x00112954
 	public override bool IsValidForTarget(GameObject target)
 	{
 		return target.GetComponent<Clustercraft>() != null && this.GetResourceHarvestModule(target.GetComponent<Clustercraft>()) != null;
 	}
 
-	// Token: 0x0600AC4B RID: 44107 RVA: 0x0041D1C4 File Offset: 0x0041B3C4
 	public override void SetTarget(GameObject target)
 	{
 		base.SetTarget(target);
@@ -44,7 +37,6 @@ public class HarvestModuleSideScreen : SideScreenContent, ISimEveryTick
 		this.RefreshModulePanel(resourceHarvestModule);
 	}
 
-	// Token: 0x0600AC4C RID: 44108 RVA: 0x0041D1F8 File Offset: 0x0041B3F8
 	private ResourceHarvestModule.StatesInstance GetResourceHarvestModule(Clustercraft craft)
 	{
 		foreach (Ref<RocketModuleCluster> @ref in craft.GetComponent<CraftModuleInterface>().ClusterModules)
@@ -58,7 +50,6 @@ public class HarvestModuleSideScreen : SideScreenContent, ISimEveryTick
 		return null;
 	}
 
-	// Token: 0x0600AC4D RID: 44109 RVA: 0x0041D264 File Offset: 0x0041B464
 	private void RefreshModulePanel(StateMachine.Instance module)
 	{
 		HierarchyReferences component = base.GetComponent<HierarchyReferences>();
@@ -66,7 +57,6 @@ public class HarvestModuleSideScreen : SideScreenContent, ISimEveryTick
 		component.GetReference<LocText>("label").SetText(module.gameObject.GetProperName());
 	}
 
-	// Token: 0x0600AC4E RID: 44110 RVA: 0x0041D2B8 File Offset: 0x0041B4B8
 	public void SimEveryTick(float dt)
 	{
 		if (this.targetCraft.IsNullOrDestroyed())
@@ -99,12 +89,9 @@ public class HarvestModuleSideScreen : SideScreenContent, ISimEveryTick
 		reference2.label.SetText(ElementLoader.GetElement(SimHashes.Diamond.CreateTag()).name + ": " + GameUtil.GetFormattedMass(component2.MassStored(), GameUtil.TimeSlice.None, GameUtil.MetricMassFormat.UseThreshold, true, "{0:0.#}"));
 	}
 
-	// Token: 0x040087A9 RID: 34729
 	private Clustercraft targetCraft;
 
-	// Token: 0x040087AA RID: 34730
 	public GameObject moduleContentContainer;
 
-	// Token: 0x040087AB RID: 34731
 	public GameObject modulePanelPrefab;
 }

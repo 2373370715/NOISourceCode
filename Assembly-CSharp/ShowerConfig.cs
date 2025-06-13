@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000598 RID: 1432
 public class ShowerConfig : IBuildingConfig
 {
-	// Token: 0x060018B9 RID: 6329 RVA: 0x001AC110 File Offset: 0x001AA310
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = ShowerConfig.ID;
@@ -31,7 +29,6 @@ public class ShowerConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060018BA RID: 6330 RVA: 0x001AC1A8 File Offset: 0x001AA3A8
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<LoopingSounds>();
@@ -76,11 +73,9 @@ public class ShowerConfig : IBuildingConfig
 		go.AddOrGetDef<RocketUsageRestriction.Def>();
 	}
 
-	// Token: 0x060018BB RID: 6331 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04001029 RID: 4137
 	public static string ID = "Shower";
 }

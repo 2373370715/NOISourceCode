@@ -2,10 +2,8 @@
 using Klei.AI;
 using UnityEngine;
 
-// Token: 0x0200043B RID: 1083
 public class BalloonStandConfig : IEntityConfig
 {
-	// Token: 0x06001223 RID: 4643 RVA: 0x0019219C File Offset: 0x0019039C
 	public GameObject CreatePrefab()
 	{
 		GameObject gameObject = EntityTemplates.CreateEntity(BalloonStandConfig.ID, BalloonStandConfig.ID, false);
@@ -21,12 +19,10 @@ public class BalloonStandConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06001224 RID: 4644 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x06001225 RID: 4645 RVA: 0x001921FC File Offset: 0x001903FC
 	public void OnSpawn(GameObject inst)
 	{
 		GetBalloonWorkable component = inst.GetComponent<GetBalloonWorkable>();
@@ -36,7 +32,6 @@ public class BalloonStandConfig : IEntityConfig
 		component.GetBalloonArtist().NextBalloonOverride();
 	}
 
-	// Token: 0x06001226 RID: 4646 RVA: 0x0019227C File Offset: 0x0019047C
 	private void MakeNewBalloonChore(Chore chore)
 	{
 		GetBalloonWorkable component = chore.target.GetComponent<GetBalloonWorkable>();
@@ -46,7 +41,6 @@ public class BalloonStandConfig : IEntityConfig
 		component.GetBalloonArtist().NextBalloonOverride();
 	}
 
-	// Token: 0x06001227 RID: 4647 RVA: 0x00192300 File Offset: 0x00190500
 	public BalloonStandConfig()
 	{
 		Chore.Precondition hasNoBalloon = default(Chore.Precondition);
@@ -60,9 +54,7 @@ public class BalloonStandConfig : IEntityConfig
 		base..ctor();
 	}
 
-	// Token: 0x04000CA3 RID: 3235
 	public static readonly string ID = "BalloonStand";
 
-	// Token: 0x04000CA4 RID: 3236
 	private Chore.Precondition HasNoBalloon;
 }

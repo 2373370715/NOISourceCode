@@ -5,10 +5,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000AD RID: 173
 public class EntityTemplates
 {
-	// Token: 0x060002CA RID: 714 RVA: 0x001528BC File Offset: 0x00150ABC
 	public static void CreateTemplates()
 	{
 		EntityTemplates.unselectableEntityTemplate = new GameObject("unselectableEntityTemplate");
@@ -38,7 +36,6 @@ public class EntityTemplates
 		UnityEngine.Object.DontDestroyOnLoad(EntityTemplates.placedEntityTemplate);
 	}
 
-	// Token: 0x060002CB RID: 715 RVA: 0x000AAFB9 File Offset: 0x000A91B9
 	private static void ConfigEntity(GameObject template, string id, string name, bool is_selectable = true)
 	{
 		template.name = id;
@@ -49,7 +46,6 @@ public class EntityTemplates
 		}
 	}
 
-	// Token: 0x060002CC RID: 716 RVA: 0x001529F4 File Offset: 0x00150BF4
 	public static GameObject CreateEntity(string id, string name, bool is_selectable = true)
 	{
 		GameObject gameObject;
@@ -66,7 +62,6 @@ public class EntityTemplates
 		return gameObject;
 	}
 
-	// Token: 0x060002CD RID: 717 RVA: 0x00152A30 File Offset: 0x00150C30
 	public static GameObject ConfigBasicEntity(GameObject template, string id, string name, string desc, float mass, bool unitMass, KAnimFile anim, string initialAnim, Grid.SceneLayer sceneLayer, SimHashes element = SimHashes.Creature, List<Tag> additionalTags = null, float defaultTemperature = 293f)
 	{
 		EntityTemplates.ConfigEntity(template, id, name, true);
@@ -104,7 +99,6 @@ public class EntityTemplates
 		return template;
 	}
 
-	// Token: 0x060002CE RID: 718 RVA: 0x00152B24 File Offset: 0x00150D24
 	public static GameObject CreateBasicEntity(string id, string name, string desc, float mass, bool unitMass, KAnimFile anim, string initialAnim, Grid.SceneLayer sceneLayer, SimHashes element = SimHashes.Creature, List<Tag> additionalTags = null, float defaultTemperature = 293f)
 	{
 		GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(EntityTemplates.baseEntityTemplate);
@@ -113,7 +107,6 @@ public class EntityTemplates
 		return gameObject;
 	}
 
-	// Token: 0x060002CF RID: 719 RVA: 0x00152B5C File Offset: 0x00150D5C
 	private static GameObject ConfigPlacedEntity(GameObject template, string id, string name, string desc, float mass, KAnimFile anim, string initialAnim, Grid.SceneLayer sceneLayer, int width, int height, EffectorValues decor, EffectorValues noise = default(EffectorValues), SimHashes element = SimHashes.Creature, List<Tag> additionalTags = null, float defaultTemperature = 293f)
 	{
 		if (anim == null)
@@ -136,7 +129,6 @@ public class EntityTemplates
 		return template;
 	}
 
-	// Token: 0x060002D0 RID: 720 RVA: 0x00152C28 File Offset: 0x00150E28
 	public static GameObject CreatePlacedEntity(string id, string name, string desc, float mass, KAnimFile anim, string initialAnim, Grid.SceneLayer sceneLayer, int width, int height, EffectorValues decor, EffectorValues noise = default(EffectorValues), SimHashes element = SimHashes.Creature, List<Tag> additionalTags = null, float defaultTemperature = 293f)
 	{
 		GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(EntityTemplates.placedEntityTemplate);
@@ -145,7 +137,6 @@ public class EntityTemplates
 		return gameObject;
 	}
 
-	// Token: 0x060002D1 RID: 721 RVA: 0x00152C64 File Offset: 0x00150E64
 	public static GameObject CreatePlacedEntity(string id, string name, string desc, float mass, KAnimFile anim, string initialAnim, Grid.SceneLayer sceneLayer, int width, int height, EffectorValues decor, PermittedRotations permittedRotation, Orientation orientation = Orientation.Neutral, EffectorValues noise = default(EffectorValues), SimHashes element = SimHashes.Creature, List<Tag> additionalTags = null, float defaultTemperature = 293f)
 	{
 		GameObject gameObject = EntityTemplates.CreatePlacedEntity(id, name, desc, mass, anim, initialAnim, sceneLayer, width, height, decor, noise, element, additionalTags, defaultTemperature);
@@ -159,7 +150,6 @@ public class EntityTemplates
 		return gameObject;
 	}
 
-	// Token: 0x060002D2 RID: 722 RVA: 0x00152CB4 File Offset: 0x00150EB4
 	public static GameObject MakeHangingOffsets(GameObject template, int width, int height)
 	{
 		KBoxCollider2D component = template.GetComponent<KBoxCollider2D>();
@@ -177,7 +167,6 @@ public class EntityTemplates
 		return template;
 	}
 
-	// Token: 0x060002D3 RID: 723 RVA: 0x00152D2C File Offset: 0x00150F2C
 	public static GameObject ExtendEntityToBasicPlant(GameObject template, float temperature_lethal_low = 218.15f, float temperature_warning_low = 283.15f, float temperature_warning_high = 303.15f, float temperature_lethal_high = 398.15f, SimHashes[] safe_elements = null, bool pressure_sensitive = true, float pressure_lethal_low = 0f, float pressure_warning_low = 0.15f, string crop_id = null, bool can_drown = true, bool can_tinker = true, bool require_solid_tile = true, bool should_grow_old = true, float max_age = 2400f, float min_radiation = 0f, float max_radiation = 2200f, string baseTraitId = null, string baseTraitName = null)
 	{
 		Modifiers component = template.GetComponent<Modifiers>();
@@ -270,13 +259,11 @@ public class EntityTemplates
 		return template;
 	}
 
-	// Token: 0x060002D4 RID: 724 RVA: 0x000AAFE3 File Offset: 0x000A91E3
 	public static GameObject ExtendEntityToWildCreature(GameObject prefab, int space_required_per_creature)
 	{
 		return EntityTemplates.ExtendEntityToWildCreature(prefab, space_required_per_creature, true);
 	}
 
-	// Token: 0x060002D5 RID: 725 RVA: 0x00153090 File Offset: 0x00151290
 	public static GameObject ExtendEntityToWildCreature(GameObject prefab, int space_required_per_creature, bool add_fixed_capturable_monitor)
 	{
 		prefab.AddOrGetDef<AgeMonitor.Def>();
@@ -297,7 +284,6 @@ public class EntityTemplates
 		return prefab;
 	}
 
-	// Token: 0x060002D6 RID: 726 RVA: 0x00153248 File Offset: 0x00151448
 	public static GameObject ExtendEntityToFertileCreature(GameObject prefab, IHasDlcRestrictions dlcRestrictions, string eggId, string eggName, string eggDesc, string eggAnim, float eggMass, string babyId, float fertilityCycles, float incubationCycles, List<FertilityMonitor.BreedingChance> eggChances, int eggSortOrder = -1, bool is_ranchable = true, bool add_fish_overcrowding_monitor = false, float egg_anim_scale = 1f, bool deprecated = false)
 	{
 		FertilityMonitor.Def def = prefab.AddOrGetDef<FertilityMonitor.Def>();
@@ -344,7 +330,6 @@ public class EntityTemplates
 		return prefab;
 	}
 
-	// Token: 0x060002D7 RID: 727 RVA: 0x0015339C File Offset: 0x0015159C
 	[Obsolete("Mod compatibility: use ExtendEntityToFertileCreature with IHasDlcRestrictions")]
 	public static GameObject ExtendEntityToFertileCreature(GameObject prefab, string eggId, string eggName, string eggDesc, string egg_anim, float egg_mass, string baby_id, float fertility_cycles, float incubation_cycles, List<FertilityMonitor.BreedingChance> egg_chances, string[] dlcIds, int eggSortOrder = -1, bool is_ranchable = true, bool add_fish_overcrowding_monitor = false, bool add_fixed_capturable_monitor = true, float egg_anim_scale = 1f, bool deprecated = false)
 	{
@@ -354,14 +339,12 @@ public class EntityTemplates
 		return EntityTemplates.ExtendEntityToFertileCreature(prefab, DlcRestrictionsUtil.GetTransientHelperObject(requiredDlcIds, forbiddenDlcIds), eggId, eggName, eggDesc, egg_anim, egg_mass, baby_id, fertility_cycles, incubation_cycles, egg_chances, eggSortOrder, is_ranchable, add_fish_overcrowding_monitor, egg_anim_scale, deprecated);
 	}
 
-	// Token: 0x060002D8 RID: 728 RVA: 0x001533DC File Offset: 0x001515DC
 	[Obsolete("Mod compatibility: use ExtendEntityToFertileCreature with IHasDlcRestrictions")]
 	public static GameObject ExtendEntityToFertileCreature(GameObject prefab, string eggId, string eggName, string eggDesc, string egg_anim, float egg_mass, string baby_id, float fertility_cycles, float incubation_cycles, List<FertilityMonitor.BreedingChance> egg_chances, int eggSortOrder = -1, bool is_ranchable = true, bool add_fish_overcrowding_monitor = false, bool add_fixed_capturable_monitor = true, float egg_anim_scale = 1f, bool deprecated = false)
 	{
 		return EntityTemplates.ExtendEntityToFertileCreature(prefab, null, eggId, eggName, eggDesc, egg_anim, egg_mass, baby_id, fertility_cycles, incubation_cycles, egg_chances, eggSortOrder, is_ranchable, add_fish_overcrowding_monitor, egg_anim_scale, deprecated);
 	}
 
-	// Token: 0x060002D9 RID: 729 RVA: 0x0015340C File Offset: 0x0015160C
 	public static GameObject ExtendEntityToBeingABaby(GameObject prefab, Tag adult_prefab_id, string on_grow_item_drop_id = null, bool force_adult_nav_type = false, float adult_threshold = 5f)
 	{
 		prefab.AddOrGetDef<BabyMonitor.Def>().adultPrefab = adult_prefab_id;
@@ -378,13 +361,11 @@ public class EntityTemplates
 		return prefab;
 	}
 
-	// Token: 0x060002DA RID: 730 RVA: 0x00153490 File Offset: 0x00151690
 	public static GameObject ExtendEntityToBasicCreature(GameObject template, FactionManager.FactionID faction = FactionManager.FactionID.Prey, string initialTraitID = null, string NavGridName = "WalkerNavGrid1x1", NavType navType = NavType.Floor, int max_probing_radius = 32, float moveSpeed = 2f, string onDeathDropID = "Meat", int onDeathDropCount = 1, bool drownVulnerable = true, bool entombVulnerable = true, float warningLowTemperature = 283.15f, float warningHighTemperature = 293.15f, float lethalLowTemperature = 243.15f, float lethalHighTemperature = 343.15f)
 	{
 		return EntityTemplates.ExtendEntityToBasicCreature(false, template, faction, initialTraitID, NavGridName, navType, max_probing_radius, moveSpeed, onDeathDropID, onDeathDropCount, drownVulnerable, entombVulnerable, warningLowTemperature, warningHighTemperature, lethalLowTemperature, lethalHighTemperature);
 	}
 
-	// Token: 0x060002DB RID: 731 RVA: 0x001534C0 File Offset: 0x001516C0
 	public static GameObject ExtendEntityToBasicCreature(bool isWarmBlooded, GameObject template, FactionManager.FactionID faction = FactionManager.FactionID.Prey, string initialTraitID = null, string NavGridName = "WalkerNavGrid1x1", NavType navType = NavType.Floor, int max_probing_radius = 32, float moveSpeed = 2f, string onDeathDropID = "Meat", int onDeathDropCount = 1, bool drownVulnerable = true, bool entombVulnerable = true, float warningLowTemperature = 283.15f, float warningHighTemperature = 293.15f, float lethalLowTemperature = 243.15f, float lethalHighTemperature = 343.15f)
 	{
 		template.GetComponent<KBatchedAnimController>().isMovable = true;
@@ -470,7 +451,6 @@ public class EntityTemplates
 		return template;
 	}
 
-	// Token: 0x060002DC RID: 732 RVA: 0x00153754 File Offset: 0x00151954
 	public static void AddCreatureBrain(GameObject prefab, ChoreTable.Builder chore_table, Tag species, string symbol_prefix)
 	{
 		CreatureBrain creatureBrain = prefab.AddOrGet<CreatureBrain>();
@@ -499,25 +479,21 @@ public class EntityTemplates
 		};
 	}
 
-	// Token: 0x060002DD RID: 733 RVA: 0x000AAFED File Offset: 0x000A91ED
 	public static Tag GetBaggedCreatureTag(Tag tag)
 	{
 		return TagManager.Create("Bagged" + tag.Name);
 	}
 
-	// Token: 0x060002DE RID: 734 RVA: 0x000AB005 File Offset: 0x000A9205
 	public static Tag GetUnbaggedCreatureTag(Tag bagged_tag)
 	{
 		return TagManager.Create(bagged_tag.Name.Substring(6));
 	}
 
-	// Token: 0x060002DF RID: 735 RVA: 0x000AB019 File Offset: 0x000A9219
 	public static string GetBaggedCreatureID(string name)
 	{
 		return "Bagged" + name;
 	}
 
-	// Token: 0x060002E0 RID: 736 RVA: 0x00153814 File Offset: 0x00151A14
 	public static GameObject CreateAndRegisterBaggedCreature(GameObject creature, bool must_stand_on_top_for_pickup, bool allow_mark_for_capture, bool use_gun_for_pickup = false)
 	{
 		KPrefabID creature_prefab_id = creature.GetComponent<KPrefabID>();
@@ -537,7 +513,6 @@ public class EntityTemplates
 		return creature;
 	}
 
-	// Token: 0x060002E1 RID: 737 RVA: 0x00153888 File Offset: 0x00151A88
 	public static GameObject CreateLooseEntity(string id, string name, string desc, float mass, bool unitMass, KAnimFile anim, string initialAnim, Grid.SceneLayer sceneLayer, EntityTemplates.CollisionShape collisionShape, float width = 1f, float height = 1f, bool isPickupable = false, int sortOrder = 0, SimHashes element = SimHashes.Creature, List<Tag> additionalTags = null)
 	{
 		GameObject gameObject = EntityTemplates.CreateBasicEntity(id, name, desc, mass, unitMass, anim, initialAnim, sceneLayer, element, additionalTags, 293f);
@@ -554,7 +529,6 @@ public class EntityTemplates
 		return gameObject;
 	}
 
-	// Token: 0x060002E2 RID: 738 RVA: 0x001538F4 File Offset: 0x00151AF4
 	public static void CreateBaseOreTemplates()
 	{
 		EntityTemplates.baseOreTemplate = new GameObject("OreTemplate");
@@ -579,14 +553,12 @@ public class EntityTemplates
 		EntityTemplates.baseOreTemplate.AddOrGet<ElementChunk>();
 	}
 
-	// Token: 0x060002E3 RID: 739 RVA: 0x000AB026 File Offset: 0x000A9226
 	public static void DestroyBaseOreTemplates()
 	{
 		UnityEngine.Object.Destroy(EntityTemplates.baseOreTemplate);
 		EntityTemplates.baseOreTemplate = null;
 	}
 
-	// Token: 0x060002E4 RID: 740 RVA: 0x001539E8 File Offset: 0x00151BE8
 	public static GameObject CreateOreEntity(SimHashes elementID, EntityTemplates.CollisionShape shape, float width, float height, List<Tag> additionalTags = null, float default_temperature = 293f)
 	{
 		Element element = ElementLoader.FindElementByHash(elementID);
@@ -627,13 +599,11 @@ public class EntityTemplates
 		return gameObject;
 	}
 
-	// Token: 0x060002E5 RID: 741 RVA: 0x000AB038 File Offset: 0x000A9238
 	public static GameObject CreateSolidOreEntity(SimHashes elementId, List<Tag> additionalTags = null)
 	{
 		return EntityTemplates.CreateOreEntity(elementId, EntityTemplates.CollisionShape.CIRCLE, 0.5f, 0.5f, additionalTags, 293f);
 	}
 
-	// Token: 0x060002E6 RID: 742 RVA: 0x000AB051 File Offset: 0x000A9251
 	public static GameObject CreateLiquidOreEntity(SimHashes elementId, List<Tag> additionalTags = null)
 	{
 		GameObject gameObject = EntityTemplates.CreateOreEntity(elementId, EntityTemplates.CollisionShape.RECTANGLE, 0.5f, 0.6f, additionalTags, 293f);
@@ -642,7 +612,6 @@ public class EntityTemplates
 		return gameObject;
 	}
 
-	// Token: 0x060002E7 RID: 743 RVA: 0x000AB051 File Offset: 0x000A9251
 	public static GameObject CreateGasOreEntity(SimHashes elementId, List<Tag> additionalTags = null)
 	{
 		GameObject gameObject = EntityTemplates.CreateOreEntity(elementId, EntityTemplates.CollisionShape.RECTANGLE, 0.5f, 0.6f, additionalTags, 293f);
@@ -651,13 +620,11 @@ public class EntityTemplates
 		return gameObject;
 	}
 
-	// Token: 0x060002E8 RID: 744 RVA: 0x000AB081 File Offset: 0x000A9281
 	public static GameObject ExtendEntityToFood(GameObject template, EdiblesManager.FoodInfo foodInfo)
 	{
 		return EntityTemplates.ExtendEntityToFood(template, foodInfo, true);
 	}
 
-	// Token: 0x060002E9 RID: 745 RVA: 0x00153B38 File Offset: 0x00151D38
 	public static GameObject ExtendEntityToFood(GameObject template, EdiblesManager.FoodInfo foodInfo, bool splittable)
 	{
 		if (splittable)
@@ -693,7 +660,6 @@ public class EntityTemplates
 		return template;
 	}
 
-	// Token: 0x060002EA RID: 746 RVA: 0x00153C34 File Offset: 0x00151E34
 	public static GameObject ExtendEntityToDehydratedFoodPackage(GameObject template, EdiblesManager.FoodInfo foodInfo)
 	{
 		KPrefabID component = template.GetComponent<KPrefabID>();
@@ -718,7 +684,6 @@ public class EntityTemplates
 		return template;
 	}
 
-	// Token: 0x060002EB RID: 747 RVA: 0x00153CE4 File Offset: 0x00151EE4
 	public static GameObject ExtendEntityToMedicine(GameObject template, MedicineInfo medicineInfo)
 	{
 		template.AddOrGet<EntitySplitter>();
@@ -739,7 +704,6 @@ public class EntityTemplates
 		return template;
 	}
 
-	// Token: 0x060002EC RID: 748 RVA: 0x00153D6C File Offset: 0x00151F6C
 	public static GameObject ExtendPlantToFertilizable(GameObject template, PlantElementAbsorber.ConsumeInfo[] fertilizers)
 	{
 		template.GetComponent<Modifiers>().initialAttributes.Add(Db.Get().PlantAttributes.FertilizerUsageMod.Id);
@@ -769,7 +733,6 @@ public class EntityTemplates
 		return template;
 	}
 
-	// Token: 0x060002ED RID: 749 RVA: 0x000AB08B File Offset: 0x000A928B
 	public static GameObject ExtendPlantToIrrigated(GameObject template, PlantElementAbsorber.ConsumeInfo info)
 	{
 		return EntityTemplates.ExtendPlantToIrrigated(template, new PlantElementAbsorber.ConsumeInfo[]
@@ -778,7 +741,6 @@ public class EntityTemplates
 		});
 	}
 
-	// Token: 0x060002EE RID: 750 RVA: 0x00153E74 File Offset: 0x00152074
 	public static GameObject ExtendPlantToIrrigated(GameObject template, PlantElementAbsorber.ConsumeInfo[] consume_info)
 	{
 		template.GetComponent<Modifiers>().initialAttributes.Add(Db.Get().PlantAttributes.FertilizerUsageMod.Id);
@@ -799,7 +761,6 @@ public class EntityTemplates
 		return template;
 	}
 
-	// Token: 0x060002EF RID: 751 RVA: 0x00153F54 File Offset: 0x00152154
 	public static GameObject CreateAndRegisterCompostableFromPrefab(GameObject original)
 	{
 		if (original.GetComponent<Compostable>() != null)
@@ -825,7 +786,6 @@ public class EntityTemplates
 		return gameObject;
 	}
 
-	// Token: 0x060002F0 RID: 752 RVA: 0x00154040 File Offset: 0x00152240
 	public static GameObject CreateAndRegisterSeedForPlant(GameObject plant, IHasDlcRestrictions dlcRestrictions, SeedProducer.ProductionType productionType, string id, string name, string desc, KAnimFile anim, string initialAnim = "object", int numberOfSeeds = 1, List<Tag> additionalTags = null, SingleEntityReceptacle.ReceptacleDirection planterDirection = SingleEntityReceptacle.ReceptacleDirection.Top, Tag replantGroundTag = default(Tag), int sortOrder = 0, string domesticatedDescription = "", EntityTemplates.CollisionShape collisionShape = EntityTemplates.CollisionShape.CIRCLE, float width = 0.25f, float height = 0.25f, Recipe.Ingredient[] recipe_ingredients = null, string recipe_description = "", bool ignoreDefaultSeedTag = false)
 	{
 		GameObject gameObject = EntityTemplates.CreateLooseEntity(id, name, desc, 1f, true, anim, initialAnim, Grid.SceneLayer.Front, collisionShape, width, height, true, SORTORDER.SEEDS + sortOrder, SimHashes.Creature, null);
@@ -861,14 +821,12 @@ public class EntityTemplates
 		return gameObject;
 	}
 
-	// Token: 0x060002F1 RID: 753 RVA: 0x00154184 File Offset: 0x00152384
 	[Obsolete("Use version with IHasDlcRestrictions instead")]
 	public static GameObject CreateAndRegisterSeedForPlant(GameObject plant, SeedProducer.ProductionType productionType, string id, string name, string desc, KAnimFile anim, string initialAnim = "object", int numberOfSeeds = 1, List<Tag> additionalTags = null, SingleEntityReceptacle.ReceptacleDirection planterDirection = SingleEntityReceptacle.ReceptacleDirection.Top, Tag replantGroundTag = default(Tag), int sortOrder = 0, string domesticatedDescription = "", EntityTemplates.CollisionShape collisionShape = EntityTemplates.CollisionShape.CIRCLE, float width = 0.25f, float height = 0.25f, Recipe.Ingredient[] recipe_ingredients = null, string recipe_description = "", bool ignoreDefaultSeedTag = false, string[] dlcIds = null)
 	{
 		return EntityTemplates.CreateAndRegisterSeedForPlant(plant, DlcRestrictionsUtil.GetTransientHelperObjectFromAllowList(dlcIds), productionType, id, name, desc, anim, initialAnim, numberOfSeeds, additionalTags, planterDirection, replantGroundTag, sortOrder, domesticatedDescription, collisionShape, width, height, recipe_ingredients, recipe_description, ignoreDefaultSeedTag);
 	}
 
-	// Token: 0x060002F2 RID: 754 RVA: 0x001541C0 File Offset: 0x001523C0
 	public static GameObject CreateAndRegisterPreview(string id, KAnimFile anim, string initial_anim, ObjectLayer object_layer, int width, int height)
 	{
 		GameObject gameObject = EntityTemplates.CreatePlacedEntity(id, id, id, 1f, anim, initial_anim, Grid.SceneLayer.Front, width, height, TUNING.BUILDINGS.DECOR.NONE, default(EffectorValues), SimHashes.Creature, null, 293f);
@@ -886,7 +844,6 @@ public class EntityTemplates
 		return gameObject;
 	}
 
-	// Token: 0x060002F3 RID: 755 RVA: 0x000AB0A1 File Offset: 0x000A92A1
 	public static GameObject CreateAndRegisterPreviewForPlant(GameObject seed, string id, KAnimFile anim, string initialAnim, int width, int height)
 	{
 		GameObject result = EntityTemplates.CreateAndRegisterPreview(id, anim, initialAnim, ObjectLayer.Building, width, height);
@@ -894,7 +851,6 @@ public class EntityTemplates
 		return result;
 	}
 
-	// Token: 0x060002F4 RID: 756 RVA: 0x0015424C File Offset: 0x0015244C
 	public static CellOffset[] GenerateOffsets(int width, int height)
 	{
 		int num = width / 2;
@@ -904,7 +860,6 @@ public class EntityTemplates
 		return EntityTemplates.GenerateOffsets(startX, startY, num, endY);
 	}
 
-	// Token: 0x060002F5 RID: 757 RVA: 0x00154270 File Offset: 0x00152470
 	private static CellOffset[] GenerateOffsets(int startX, int startY, int endX, int endY)
 	{
 		List<CellOffset> list = new List<CellOffset>();
@@ -922,7 +877,6 @@ public class EntityTemplates
 		return list.ToArray();
 	}
 
-	// Token: 0x060002F6 RID: 758 RVA: 0x001542C0 File Offset: 0x001524C0
 	public static CellOffset[] GenerateHangingOffsets(int width, int height)
 	{
 		int num = width / 2;
@@ -932,7 +886,6 @@ public class EntityTemplates
 		return EntityTemplates.GenerateOffsets(startX, startY, num, endY);
 	}
 
-	// Token: 0x060002F7 RID: 759 RVA: 0x001542E8 File Offset: 0x001524E8
 	public static GameObject AddCollision(GameObject template, EntityTemplates.CollisionShape shape, float width, float height)
 	{
 		if (shape != EntityTemplates.CollisionShape.RECTANGLE)
@@ -953,29 +906,20 @@ public class EntityTemplates
 		return template;
 	}
 
-	// Token: 0x040001CB RID: 459
 	private static GameObject selectableEntityTemplate;
 
-	// Token: 0x040001CC RID: 460
 	private static GameObject unselectableEntityTemplate;
 
-	// Token: 0x040001CD RID: 461
 	private static GameObject baseEntityTemplate;
 
-	// Token: 0x040001CE RID: 462
 	private static GameObject placedEntityTemplate;
 
-	// Token: 0x040001CF RID: 463
 	private static GameObject baseOreTemplate;
 
-	// Token: 0x020000AE RID: 174
 	public enum CollisionShape
 	{
-		// Token: 0x040001D1 RID: 465
 		CIRCLE,
-		// Token: 0x040001D2 RID: 466
 		RECTANGLE,
-		// Token: 0x040001D3 RID: 467
 		POLYGONAL
 	}
 }

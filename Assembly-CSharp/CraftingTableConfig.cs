@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000087 RID: 135
 public class CraftingTableConfig : IBuildingConfig
 {
-	// Token: 0x06000220 RID: 544 RVA: 0x0014F070 File Offset: 0x0014D270
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "CraftingTable";
@@ -32,7 +30,6 @@ public class CraftingTableConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000221 RID: 545 RVA: 0x0014F104 File Offset: 0x0014D304
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<DropAllWorkable>();
@@ -52,7 +49,6 @@ public class CraftingTableConfig : IBuildingConfig
 		this.ConfigureRecipes();
 	}
 
-	// Token: 0x06000222 RID: 546 RVA: 0x0014F188 File Offset: 0x0014D388
 	private void ConfigureRecipes()
 	{
 		foreach (Tag inputMetal in GameTags.StartingMetalOres)
@@ -222,7 +218,6 @@ public class CraftingTableConfig : IBuildingConfig
 		AtmoSuitConfig.recipe.RequiresAllIngredientsDiscovered = true;
 	}
 
-	// Token: 0x06000223 RID: 547 RVA: 0x0014F79C File Offset: 0x0014D99C
 	private void CreateMetalMiniVoltRecipe(Tag inputMetal)
 	{
 		if (ElementLoader.FindElementByTag(inputMetal) == null)
@@ -255,7 +250,6 @@ public class CraftingTableConfig : IBuildingConfig
 		});
 	}
 
-	// Token: 0x06000224 RID: 548 RVA: 0x0014F89C File Offset: 0x0014DA9C
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.GetComponent<KPrefabID>().prefabInitFn += delegate(GameObject game_object)
@@ -273,6 +267,5 @@ public class CraftingTableConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x04000165 RID: 357
 	public const string ID = "CraftingTable";
 }

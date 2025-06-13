@@ -4,10 +4,8 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001FCE RID: 8142
 public class FilterSideScreen : SingleItemSelectionSideScreenBase
 {
-	// Token: 0x0600AC07 RID: 44039 RVA: 0x0041BD78 File Offset: 0x00419F78
 	public override bool IsValidForTarget(GameObject target)
 	{
 		bool flag;
@@ -22,7 +20,6 @@ public class FilterSideScreen : SingleItemSelectionSideScreenBase
 		return flag && target.GetComponent<Filterable>() != null;
 	}
 
-	// Token: 0x0600AC08 RID: 44040 RVA: 0x0041BDEC File Offset: 0x00419FEC
 	public override void SetTarget(GameObject target)
 	{
 		base.SetTarget(target);
@@ -46,14 +43,12 @@ public class FilterSideScreen : SingleItemSelectionSideScreenBase
 		this.SetFilterTag(this.targetFilterable.SelectedTag);
 	}
 
-	// Token: 0x0600AC09 RID: 44041 RVA: 0x001143F7 File Offset: 0x001125F7
 	public override void ItemRowClicked(SingleItemSelectionRow rowClicked)
 	{
 		this.SetFilterTag(rowClicked.tag);
 		base.ItemRowClicked(rowClicked);
 	}
 
-	// Token: 0x0600AC0A RID: 44042 RVA: 0x0041BEA0 File Offset: 0x0041A0A0
 	private void Configure(Filterable filterable)
 	{
 		Dictionary<Tag, HashSet<Tag>> tagOptions = filterable.GetTagOptions();
@@ -98,7 +93,6 @@ public class FilterSideScreen : SingleItemSelectionSideScreenBase
 		this.RefreshUI();
 	}
 
-	// Token: 0x0600AC0B RID: 44043 RVA: 0x0011440C File Offset: 0x0011260C
 	private void SetFilterTag(Tag tag)
 	{
 		if (this.targetFilterable == null)
@@ -112,7 +106,6 @@ public class FilterSideScreen : SingleItemSelectionSideScreenBase
 		this.RefreshUI();
 	}
 
-	// Token: 0x0600AC0C RID: 44044 RVA: 0x0041BFF0 File Offset: 0x0041A1F0
 	private void RefreshUI()
 	{
 		LocString loc_string;
@@ -140,36 +133,25 @@ public class FilterSideScreen : SingleItemSelectionSideScreenBase
 		this.currentSelectionLabel.text = UI.UISIDESCREENS.FILTERSIDESCREEN.NO_SELECTION;
 	}
 
-	// Token: 0x04008774 RID: 34676
 	public HierarchyReferences categoryFoldoutPrefab;
 
-	// Token: 0x04008775 RID: 34677
 	public RectTransform elementEntryContainer;
 
-	// Token: 0x04008776 RID: 34678
 	public Image outputIcon;
 
-	// Token: 0x04008777 RID: 34679
 	public Image everythingElseIcon;
 
-	// Token: 0x04008778 RID: 34680
 	public LocText outputElementHeaderLabel;
 
-	// Token: 0x04008779 RID: 34681
 	public LocText everythingElseHeaderLabel;
 
-	// Token: 0x0400877A RID: 34682
 	public LocText selectElementHeaderLabel;
 
-	// Token: 0x0400877B RID: 34683
 	public LocText currentSelectionLabel;
 
-	// Token: 0x0400877C RID: 34684
 	private SingleItemSelectionRow voidRow;
 
-	// Token: 0x0400877D RID: 34685
 	public bool isLogicFilter;
 
-	// Token: 0x0400877E RID: 34686
 	private Filterable targetFilterable;
 }

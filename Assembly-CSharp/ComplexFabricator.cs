@@ -6,13 +6,10 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000D20 RID: 3360
 [SerializationConfig(MemberSerialization.OptIn)]
 [AddComponentMenu("KMonoBehaviour/scripts/ComplexFabricator")]
 public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1000ms
 {
-	// Token: 0x17000313 RID: 787
-	// (get) Token: 0x060040A2 RID: 16546 RVA: 0x000CE5A9 File Offset: 0x000CC7A9
 	public ComplexFabricatorWorkable Workable
 	{
 		get
@@ -21,9 +18,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		}
 	}
 
-	// Token: 0x17000314 RID: 788
-	// (get) Token: 0x060040A3 RID: 16547 RVA: 0x000CE5B1 File Offset: 0x000CC7B1
-	// (set) Token: 0x060040A4 RID: 16548 RVA: 0x000CE5B9 File Offset: 0x000CC7B9
 	public bool ForbidMutantSeeds
 	{
 		get
@@ -38,8 +32,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		}
 	}
 
-	// Token: 0x17000315 RID: 789
-	// (get) Token: 0x060040A5 RID: 16549 RVA: 0x000CE5CE File Offset: 0x000CC7CE
 	public Tag[] ForbiddenTags
 	{
 		get
@@ -52,8 +44,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		}
 	}
 
-	// Token: 0x17000316 RID: 790
-	// (get) Token: 0x060040A6 RID: 16550 RVA: 0x000CE5E0 File Offset: 0x000CC7E0
 	public int CurrentOrderIdx
 	{
 		get
@@ -62,8 +52,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		}
 	}
 
-	// Token: 0x17000317 RID: 791
-	// (get) Token: 0x060040A7 RID: 16551 RVA: 0x000CE5E8 File Offset: 0x000CC7E8
 	public ComplexRecipe CurrentWorkingOrder
 	{
 		get
@@ -76,8 +64,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		}
 	}
 
-	// Token: 0x17000318 RID: 792
-	// (get) Token: 0x060040A8 RID: 16552 RVA: 0x000CE601 File Offset: 0x000CC801
 	public ComplexRecipe NextOrder
 	{
 		get
@@ -90,9 +76,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		}
 	}
 
-	// Token: 0x17000319 RID: 793
-	// (get) Token: 0x060040A9 RID: 16553 RVA: 0x000CE61A File Offset: 0x000CC81A
-	// (set) Token: 0x060040AA RID: 16554 RVA: 0x000CE622 File Offset: 0x000CC822
 	public float OrderProgress
 	{
 		get
@@ -105,8 +88,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		}
 	}
 
-	// Token: 0x1700031A RID: 794
-	// (get) Token: 0x060040AB RID: 16555 RVA: 0x000CE62B File Offset: 0x000CC82B
 	public bool HasAnyOrder
 	{
 		get
@@ -115,8 +96,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		}
 	}
 
-	// Token: 0x1700031B RID: 795
-	// (get) Token: 0x060040AC RID: 16556 RVA: 0x000CE63D File Offset: 0x000CC83D
 	public bool HasWorker
 	{
 		get
@@ -125,8 +104,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		}
 	}
 
-	// Token: 0x1700031C RID: 796
-	// (get) Token: 0x060040AD RID: 16557 RVA: 0x000CE65A File Offset: 0x000CC85A
 	public bool WaitingForWorker
 	{
 		get
@@ -135,8 +112,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		}
 	}
 
-	// Token: 0x1700031D RID: 797
-	// (get) Token: 0x060040AE RID: 16558 RVA: 0x000CE66F File Offset: 0x000CC86F
 	private bool HasWorkingOrder
 	{
 		get
@@ -145,8 +120,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		}
 	}
 
-	// Token: 0x1700031E RID: 798
-	// (get) Token: 0x060040AF RID: 16559 RVA: 0x000CE67A File Offset: 0x000CC87A
 	public List<FetchList2> DebugFetchLists
 	{
 		get
@@ -155,7 +128,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		}
 	}
 
-	// Token: 0x060040B0 RID: 16560 RVA: 0x00249694 File Offset: 0x00247894
 	[OnDeserialized]
 	protected virtual void OnDeserializedMethod()
 	{
@@ -178,7 +150,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		}
 	}
 
-	// Token: 0x060040B1 RID: 16561 RVA: 0x00249764 File Offset: 0x00247964
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -195,7 +166,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		base.Subscribe<ComplexFabricator>(493375141, ComplexFabricator.OnRefreshUserMenuDelegate);
 	}
 
-	// Token: 0x060040B2 RID: 16562 RVA: 0x00249818 File Offset: 0x00247A18
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -217,7 +187,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		this.UpdateMutantSeedStatusItem();
 	}
 
-	// Token: 0x060040B3 RID: 16563 RVA: 0x000CE682 File Offset: 0x000CC882
 	protected override void OnCleanUp()
 	{
 		this.CancelAllOpenOrders();
@@ -226,7 +195,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		base.OnCleanUp();
 	}
 
-	// Token: 0x060040B4 RID: 16564 RVA: 0x002498D4 File Offset: 0x00247AD4
 	private void OnRefreshUserMenu(object data)
 	{
 		if (Game.IsDlcActiveForCurrentSave("EXPANSION1_ID") && this.HasRecipiesWithSeeds())
@@ -239,7 +207,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		}
 	}
 
-	// Token: 0x060040B5 RID: 16565 RVA: 0x00249954 File Offset: 0x00247B54
 	private bool HasRecipiesWithSeeds()
 	{
 		bool result = false;
@@ -260,13 +227,11 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		return result;
 	}
 
-	// Token: 0x060040B6 RID: 16566 RVA: 0x002499C4 File Offset: 0x00247BC4
 	private void UpdateMutantSeedStatusItem()
 	{
 		base.gameObject.GetComponent<KSelectable>().ToggleStatusItem(Db.Get().BuildingStatusItems.FabricatorAcceptsMutantSeeds, Game.IsDlcActiveForCurrentSave("EXPANSION1_ID") && this.HasRecipiesWithSeeds() && !this.forbidMutantSeeds, null);
 	}
 
-	// Token: 0x060040B7 RID: 16567 RVA: 0x000CE6A1 File Offset: 0x000CC8A1
 	private void OnOperationalChanged(object data)
 	{
 		if ((bool)data)
@@ -280,7 +245,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		this.UpdateChore();
 	}
 
-	// Token: 0x060040B8 RID: 16568 RVA: 0x00249A18 File Offset: 0x00247C18
 	public virtual void Sim1000ms(float dt)
 	{
 		this.RefreshAndStartNextOrder();
@@ -296,13 +260,11 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		}
 	}
 
-	// Token: 0x060040B9 RID: 16569 RVA: 0x000CE6C0 File Offset: 0x000CC8C0
 	protected virtual float ComputeWorkProgress(float dt, ComplexRecipe recipe)
 	{
 		return dt / recipe.time;
 	}
 
-	// Token: 0x060040BA RID: 16570 RVA: 0x00249A94 File Offset: 0x00247C94
 	public void Sim200ms(float dt)
 	{
 		if (!this.operational.IsOperational)
@@ -321,7 +283,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		}
 	}
 
-	// Token: 0x060040BB RID: 16571 RVA: 0x00249B18 File Offset: 0x00247D18
 	private void RefreshAndStartNextOrder()
 	{
 		if (!this.operational.IsOperational)
@@ -339,13 +300,11 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		}
 	}
 
-	// Token: 0x060040BC RID: 16572 RVA: 0x000CE61A File Offset: 0x000CC81A
 	public virtual float GetPercentComplete()
 	{
 		return this.orderProgress;
 	}
 
-	// Token: 0x060040BD RID: 16573 RVA: 0x00249B64 File Offset: 0x00247D64
 	private void ShowProgressBar(bool show)
 	{
 		if (show && this.showProgressBar && !this.duplicantOperated)
@@ -365,13 +324,11 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		}
 	}
 
-	// Token: 0x060040BE RID: 16574 RVA: 0x000CE6CA File Offset: 0x000CC8CA
 	public void SetQueueDirty()
 	{
 		this.queueDirty = true;
 	}
 
-	// Token: 0x060040BF RID: 16575 RVA: 0x000CE6D3 File Offset: 0x000CC8D3
 	private void RefreshQueue()
 	{
 		this.queueDirty = false;
@@ -382,7 +339,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		base.Trigger(1721324763, this);
 	}
 
-	// Token: 0x060040C0 RID: 16576 RVA: 0x00249BF0 File Offset: 0x00247DF0
 	private void StartWorkingOrder(int index)
 	{
 		global::Debug.Assert(!this.HasWorkingOrder, "machineOrderIdx already set");
@@ -403,7 +359,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		this.AdvanceNextOrder();
 	}
 
-	// Token: 0x060040C1 RID: 16577 RVA: 0x000CE706 File Offset: 0x000CC906
 	private void CancelWorkingOrder()
 	{
 		global::Debug.Assert(this.HasWorkingOrder, "machineOrderIdx not set");
@@ -413,7 +368,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		this.UpdateChore();
 	}
 
-	// Token: 0x060040C2 RID: 16578 RVA: 0x00249CC0 File Offset: 0x00247EC0
 	public virtual void CompleteWorkingOrder()
 	{
 		if (!this.HasWorkingOrder)
@@ -444,7 +398,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		}
 	}
 
-	// Token: 0x060040C3 RID: 16579 RVA: 0x00249D88 File Offset: 0x00247F88
 	private void ValidateWorkingOrder()
 	{
 		if (!this.HasWorkingOrder)
@@ -458,7 +411,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		}
 	}
 
-	// Token: 0x060040C4 RID: 16580 RVA: 0x00249DBC File Offset: 0x00247FBC
 	private void UpdateChore()
 	{
 		if (!this.duplicantOperated)
@@ -477,7 +429,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		}
 	}
 
-	// Token: 0x060040C5 RID: 16581 RVA: 0x00249E0C File Offset: 0x0024800C
 	private void AdvanceNextOrder()
 	{
 		for (int i = 0; i < this.recipe_list.Length; i++)
@@ -492,7 +443,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		}
 	}
 
-	// Token: 0x060040C6 RID: 16582 RVA: 0x00249E7C File Offset: 0x0024807C
 	private void ValidateNextOrder()
 	{
 		ComplexRecipe recipe = this.recipe_list[this.nextOrderIdx];
@@ -503,7 +453,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		}
 	}
 
-	// Token: 0x060040C7 RID: 16583 RVA: 0x00249EC8 File Offset: 0x002480C8
 	private void CancelAllOpenOrders()
 	{
 		for (int i = 0; i < this.openOrderCounts.Count; i++)
@@ -514,7 +463,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		this.CancelFetches();
 	}
 
-	// Token: 0x060040C8 RID: 16584 RVA: 0x00249F04 File Offset: 0x00248104
 	private void UpdateOpenOrders()
 	{
 		ComplexRecipe[] recipes = this.GetRecipes();
@@ -596,7 +544,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		pooledDictionary.Recycle();
 	}
 
-	// Token: 0x060040C9 RID: 16585 RVA: 0x0024A150 File Offset: 0x00248350
 	private void UpdateMaterialNeeds(Dictionary<Tag, float> missingAmounts)
 	{
 		this.ClearMaterialNeeds();
@@ -607,7 +554,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		}
 	}
 
-	// Token: 0x060040CA RID: 16586 RVA: 0x0024A1D4 File Offset: 0x002483D4
 	private void ClearMaterialNeeds()
 	{
 		foreach (KeyValuePair<Tag, float> keyValuePair in this.materialNeedCache)
@@ -617,7 +563,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		this.materialNeedCache.Clear();
 	}
 
-	// Token: 0x060040CB RID: 16587 RVA: 0x0024A24C File Offset: 0x0024844C
 	public int HighestHEPQueued()
 	{
 		int num = 0;
@@ -631,7 +576,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		return num;
 	}
 
-	// Token: 0x060040CC RID: 16588 RVA: 0x0024A2C8 File Offset: 0x002484C8
 	private void OnFetchComplete()
 	{
 		for (int i = this.fetchListList.Count - 1; i >= 0; i--)
@@ -644,13 +588,11 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		}
 	}
 
-	// Token: 0x060040CD RID: 16589 RVA: 0x000CE6CA File Offset: 0x000CC8CA
 	private void OnStorageChange(object data)
 	{
 		this.queueDirty = true;
 	}
 
-	// Token: 0x060040CE RID: 16590 RVA: 0x000CE743 File Offset: 0x000CC943
 	private void OnDroppedAll(object data)
 	{
 		if (this.HasWorkingOrder)
@@ -661,7 +603,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		this.RefreshQueue();
 	}
 
-	// Token: 0x060040CF RID: 16591 RVA: 0x0024A314 File Offset: 0x00248514
 	private void DropExcessIngredients(Storage storage)
 	{
 		HashSet<Tag> hashSet = new HashSet<Tag>();
@@ -698,7 +639,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		}
 	}
 
-	// Token: 0x060040D0 RID: 16592 RVA: 0x0024A424 File Offset: 0x00248624
 	private void OnCopySettings(object data)
 	{
 		GameObject gameObject = (GameObject)data;
@@ -724,7 +664,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		this.RefreshQueue();
 	}
 
-	// Token: 0x060040D1 RID: 16593 RVA: 0x000CE75F File Offset: 0x000CC95F
 	private int CompareRecipe(ComplexRecipe a, ComplexRecipe b)
 	{
 		if (a.sortOrder != b.sortOrder)
@@ -734,7 +673,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		return StringComparer.InvariantCulture.Compare(a.id, b.id);
 	}
 
-	// Token: 0x060040D2 RID: 16594 RVA: 0x0024A4A4 File Offset: 0x002486A4
 	public ComplexRecipe[] GetRecipes()
 	{
 		if (this.recipe_list == null)
@@ -761,7 +699,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		return this.recipe_list;
 	}
 
-	// Token: 0x060040D3 RID: 16595 RVA: 0x0024A58C File Offset: 0x0024878C
 	private void InitRecipeQueueCount()
 	{
 		foreach (ComplexRecipe complexRecipe in this.GetRecipes())
@@ -786,7 +723,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		}
 	}
 
-	// Token: 0x060040D4 RID: 16596 RVA: 0x0024A62C File Offset: 0x0024882C
 	private int FindRecipeIndex(string id)
 	{
 		for (int i = 0; i < this.recipe_list.Length; i++)
@@ -799,13 +735,11 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		return -1;
 	}
 
-	// Token: 0x060040D5 RID: 16597 RVA: 0x000CE793 File Offset: 0x000CC993
 	public int GetRecipeQueueCount(ComplexRecipe recipe)
 	{
 		return this.recipeQueueCounts[recipe.id];
 	}
 
-	// Token: 0x060040D6 RID: 16598 RVA: 0x0024A664 File Offset: 0x00248864
 	public bool IsRecipeQueued(ComplexRecipe recipe)
 	{
 		int num = this.recipeQueueCounts[recipe.id];
@@ -813,7 +747,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		return num != 0;
 	}
 
-	// Token: 0x060040D7 RID: 16599 RVA: 0x0024A69C File Offset: 0x0024889C
 	public int GetRecipePrefetchCount(ComplexRecipe recipe)
 	{
 		int remainingQueueCount = this.GetRemainingQueueCount(recipe);
@@ -821,7 +754,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		return Mathf.Min(2, remainingQueueCount);
 	}
 
-	// Token: 0x060040D8 RID: 16600 RVA: 0x0024A6C4 File Offset: 0x002488C4
 	private int GetRemainingQueueCount(ComplexRecipe recipe)
 	{
 		int num = this.recipeQueueCounts[recipe.id];
@@ -841,26 +773,22 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		return 0;
 	}
 
-	// Token: 0x060040D9 RID: 16601 RVA: 0x000CE7A6 File Offset: 0x000CC9A6
 	private bool IsCurrentRecipe(ComplexRecipe recipe)
 	{
 		return this.workingOrderIdx >= 0 && this.recipe_list[this.workingOrderIdx].id == recipe.id;
 	}
 
-	// Token: 0x060040DA RID: 16602 RVA: 0x000CE7D0 File Offset: 0x000CC9D0
 	public void SetRecipeQueueCount(ComplexRecipe recipe, int count)
 	{
 		this.SetRecipeQueueCountInternal(recipe, count);
 		this.RefreshQueue();
 	}
 
-	// Token: 0x060040DB RID: 16603 RVA: 0x000CE7E0 File Offset: 0x000CC9E0
 	private void SetRecipeQueueCountInternal(ComplexRecipe recipe, int count)
 	{
 		this.recipeQueueCounts[recipe.id] = count;
 	}
 
-	// Token: 0x060040DC RID: 16604 RVA: 0x0024A71C File Offset: 0x0024891C
 	public void IncrementRecipeQueueCount(ComplexRecipe recipe)
 	{
 		if (this.recipeQueueCounts[recipe.id] == ComplexFabricator.QUEUE_INFINITE)
@@ -881,14 +809,12 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		this.RefreshQueue();
 	}
 
-	// Token: 0x060040DD RID: 16605 RVA: 0x000CE7F4 File Offset: 0x000CC9F4
 	public void DecrementRecipeQueueCount(ComplexRecipe recipe, bool respectInfinite = true)
 	{
 		this.DecrementRecipeQueueCountInternal(recipe, respectInfinite);
 		this.RefreshQueue();
 	}
 
-	// Token: 0x060040DE RID: 16606 RVA: 0x0024A7AC File Offset: 0x002489AC
 	private void DecrementRecipeQueueCountInternal(ComplexRecipe recipe, bool respectInfinite = true)
 	{
 		if (!respectInfinite || this.recipeQueueCounts[recipe.id] != ComplexFabricator.QUEUE_INFINITE)
@@ -910,15 +836,12 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		}
 	}
 
-	// Token: 0x060040DF RID: 16607 RVA: 0x000CE804 File Offset: 0x000CCA04
 	private void CreateChore()
 	{
 		global::Debug.Assert(this.chore == null, "chore should be null");
 		this.chore = this.workable.CreateWorkChore(this.choreType, this.orderProgress);
 	}
 
-	// Token: 0x1700031F RID: 799
-	// (get) Token: 0x060040E0 RID: 16608 RVA: 0x000CE836 File Offset: 0x000CCA36
 	public override Chore RemoteDockChore
 	{
 		get
@@ -931,7 +854,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		}
 	}
 
-	// Token: 0x060040E1 RID: 16609 RVA: 0x000CE848 File Offset: 0x000CCA48
 	private void CancelChore()
 	{
 		if (this.cancelling)
@@ -947,7 +869,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		this.cancelling = false;
 	}
 
-	// Token: 0x060040E2 RID: 16610 RVA: 0x0024A84C File Offset: 0x00248A4C
 	private void UpdateFetches(DictionaryPool<Tag, float, ComplexFabricator>.PooledDictionary missingAmounts)
 	{
 		ChoreType byHash = Db.Get().ChoreTypes.GetByHash(this.fetchChoreTypeIdHash);
@@ -975,7 +896,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		}
 	}
 
-	// Token: 0x060040E3 RID: 16611 RVA: 0x0024A94C File Offset: 0x00248B4C
 	private bool HasPendingFetch(Tag tag)
 	{
 		foreach (FetchList2 fetchList in this.fetchListList)
@@ -990,7 +910,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		return false;
 	}
 
-	// Token: 0x060040E4 RID: 16612 RVA: 0x0024A9B4 File Offset: 0x00248BB4
 	private void CancelFetches()
 	{
 		foreach (FetchList2 fetchList in this.fetchListList)
@@ -1000,7 +919,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		this.fetchListList.Clear();
 	}
 
-	// Token: 0x060040E5 RID: 16613 RVA: 0x0024AA14 File Offset: 0x00248C14
 	protected virtual void TransferCurrentRecipeIngredientsForBuild()
 	{
 		ComplexRecipe.RecipeElement[] ingredients = this.recipe_list[this.workingOrderIdx].ingredients;
@@ -1035,7 +953,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		}
 	}
 
-	// Token: 0x060040E6 RID: 16614 RVA: 0x0024AACC File Offset: 0x00248CCC
 	protected virtual bool HasIngredients(ComplexRecipe recipe, Storage storage)
 	{
 		ComplexRecipe.RecipeElement[] ingredients = recipe.ingredients;
@@ -1058,7 +975,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		return true;
 	}
 
-	// Token: 0x060040E7 RID: 16615 RVA: 0x0024AB44 File Offset: 0x00248D44
 	private void ToggleMutantSeedFetches()
 	{
 		if (this.HasAnyOrder)
@@ -1101,7 +1017,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		}
 	}
 
-	// Token: 0x060040E8 RID: 16616 RVA: 0x0024AD84 File Offset: 0x00248F84
 	protected virtual List<GameObject> SpawnOrderProduct(ComplexRecipe recipe)
 	{
 		List<GameObject> list = new List<GameObject>();
@@ -1265,7 +1180,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		return list;
 	}
 
-	// Token: 0x060040E9 RID: 16617 RVA: 0x0024B330 File Offset: 0x00249530
 	public virtual List<Descriptor> GetDescriptors(GameObject go)
 	{
 		List<Descriptor> list = new List<Descriptor>();
@@ -1291,13 +1205,11 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		return list;
 	}
 
-	// Token: 0x060040EA RID: 16618 RVA: 0x000CE880 File Offset: 0x000CCA80
 	public virtual List<Descriptor> AdditionalEffectsForRecipe(ComplexRecipe recipe)
 	{
 		return new List<Descriptor>();
 	}
 
-	// Token: 0x060040EB RID: 16619 RVA: 0x0024B428 File Offset: 0x00249628
 	public string GetConversationTopic()
 	{
 		if (this.HasWorkingOrder)
@@ -1311,7 +1223,6 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		return null;
 	}
 
-	// Token: 0x060040EC RID: 16620 RVA: 0x0024B464 File Offset: 0x00249664
 	public bool NeedsMoreHEPForQueuedRecipe()
 	{
 		if (this.hasOpenOrders)
@@ -1335,180 +1246,132 @@ public class ComplexFabricator : RemoteDockWorkTargetComponent, ISim200ms, ISim1
 		return false;
 	}
 
-	// Token: 0x04002CC0 RID: 11456
 	private const int MaxPrefetchCount = 2;
 
-	// Token: 0x04002CC1 RID: 11457
 	public bool duplicantOperated = true;
 
-	// Token: 0x04002CC2 RID: 11458
 	protected ComplexFabricatorWorkable workable;
 
-	// Token: 0x04002CC3 RID: 11459
 	public string SideScreenSubtitleLabel = UI.UISIDESCREENS.FABRICATORSIDESCREEN.SUBTITLE;
 
-	// Token: 0x04002CC4 RID: 11460
 	public string SideScreenRecipeScreenTitle = UI.UISIDESCREENS.FABRICATORSIDESCREEN.RECIPE_DETAILS;
 
-	// Token: 0x04002CC5 RID: 11461
 	[SerializeField]
 	public HashedString fetchChoreTypeIdHash = Db.Get().ChoreTypes.FabricateFetch.IdHash;
 
-	// Token: 0x04002CC6 RID: 11462
 	[SerializeField]
 	public float heatedTemperature;
 
-	// Token: 0x04002CC7 RID: 11463
 	[SerializeField]
 	public bool storeProduced;
 
-	// Token: 0x04002CC8 RID: 11464
 	[SerializeField]
 	public bool allowManualFluidDelivery = true;
 
-	// Token: 0x04002CC9 RID: 11465
 	public ComplexFabricatorSideScreen.StyleSetting sideScreenStyle = ComplexFabricatorSideScreen.StyleSetting.ListQueueHybrid;
 
-	// Token: 0x04002CCA RID: 11466
 	public bool labelByResult = true;
 
-	// Token: 0x04002CCB RID: 11467
 	public Vector3 outputOffset = Vector3.zero;
 
-	// Token: 0x04002CCC RID: 11468
 	public ChoreType choreType;
 
-	// Token: 0x04002CCD RID: 11469
 	public bool keepExcessLiquids;
 
-	// Token: 0x04002CCE RID: 11470
 	public Tag keepAdditionalTag = Tag.Invalid;
 
-	// Token: 0x04002CCF RID: 11471
 	public StatusItem workingStatusItem = Db.Get().BuildingStatusItems.ComplexFabricatorProducing;
 
-	// Token: 0x04002CD0 RID: 11472
 	public static int MAX_QUEUE_SIZE = 99;
 
-	// Token: 0x04002CD1 RID: 11473
 	public static int QUEUE_INFINITE = -1;
 
-	// Token: 0x04002CD2 RID: 11474
 	[Serialize]
 	private Dictionary<string, int> recipeQueueCounts = new Dictionary<string, int>();
 
-	// Token: 0x04002CD3 RID: 11475
 	private int nextOrderIdx;
 
-	// Token: 0x04002CD4 RID: 11476
 	private bool nextOrderIsWorkable;
 
-	// Token: 0x04002CD5 RID: 11477
 	private int workingOrderIdx = -1;
 
-	// Token: 0x04002CD6 RID: 11478
 	[Serialize]
 	private string lastWorkingRecipe;
 
-	// Token: 0x04002CD7 RID: 11479
 	[Serialize]
 	private float orderProgress;
 
-	// Token: 0x04002CD8 RID: 11480
 	private List<int> openOrderCounts = new List<int>();
 
-	// Token: 0x04002CD9 RID: 11481
 	[Serialize]
 	private bool forbidMutantSeeds;
 
-	// Token: 0x04002CDA RID: 11482
 	private Tag[] forbiddenMutantTags = new Tag[]
 	{
 		GameTags.MutatedSeed
 	};
 
-	// Token: 0x04002CDB RID: 11483
 	private bool queueDirty = true;
 
-	// Token: 0x04002CDC RID: 11484
 	private bool hasOpenOrders;
 
-	// Token: 0x04002CDD RID: 11485
 	private List<FetchList2> fetchListList = new List<FetchList2>();
 
-	// Token: 0x04002CDE RID: 11486
 	private Chore chore;
 
-	// Token: 0x04002CDF RID: 11487
 	private bool cancelling;
 
-	// Token: 0x04002CE0 RID: 11488
 	private ComplexRecipe[] recipe_list;
 
-	// Token: 0x04002CE1 RID: 11489
 	private Dictionary<Tag, float> materialNeedCache = new Dictionary<Tag, float>();
 
-	// Token: 0x04002CE2 RID: 11490
 	[SerializeField]
 	public Storage inStorage;
 
-	// Token: 0x04002CE3 RID: 11491
 	[SerializeField]
 	public Storage buildStorage;
 
-	// Token: 0x04002CE4 RID: 11492
 	[SerializeField]
 	public Storage outStorage;
 
-	// Token: 0x04002CE5 RID: 11493
 	[MyCmpAdd]
 	private LoopingSounds loopingSounds;
 
-	// Token: 0x04002CE6 RID: 11494
 	[MyCmpReq]
 	protected Operational operational;
 
-	// Token: 0x04002CE7 RID: 11495
 	[MyCmpAdd]
 	protected ComplexFabricatorSM fabricatorSM;
 
-	// Token: 0x04002CE8 RID: 11496
 	private ProgressBar progressBar;
 
-	// Token: 0x04002CE9 RID: 11497
 	public bool showProgressBar;
 
-	// Token: 0x04002CEA RID: 11498
 	private static readonly EventSystem.IntraObjectHandler<ComplexFabricator> OnStorageChangeDelegate = new EventSystem.IntraObjectHandler<ComplexFabricator>(delegate(ComplexFabricator component, object data)
 	{
 		component.OnStorageChange(data);
 	});
 
-	// Token: 0x04002CEB RID: 11499
 	private static readonly EventSystem.IntraObjectHandler<ComplexFabricator> OnParticleStorageChangedDelegate = new EventSystem.IntraObjectHandler<ComplexFabricator>(delegate(ComplexFabricator component, object data)
 	{
 		component.OnStorageChange(data);
 	});
 
-	// Token: 0x04002CEC RID: 11500
 	private static readonly EventSystem.IntraObjectHandler<ComplexFabricator> OnDroppedAllDelegate = new EventSystem.IntraObjectHandler<ComplexFabricator>(delegate(ComplexFabricator component, object data)
 	{
 		component.OnDroppedAll(data);
 	});
 
-	// Token: 0x04002CED RID: 11501
 	private static readonly EventSystem.IntraObjectHandler<ComplexFabricator> OnOperationalChangedDelegate = new EventSystem.IntraObjectHandler<ComplexFabricator>(delegate(ComplexFabricator component, object data)
 	{
 		component.OnOperationalChanged(data);
 	});
 
-	// Token: 0x04002CEE RID: 11502
 	private static readonly EventSystem.IntraObjectHandler<ComplexFabricator> OnCopySettingsDelegate = new EventSystem.IntraObjectHandler<ComplexFabricator>(delegate(ComplexFabricator component, object data)
 	{
 		component.OnCopySettings(data);
 	});
 
-	// Token: 0x04002CEF RID: 11503
 	private static readonly EventSystem.IntraObjectHandler<ComplexFabricator> OnRefreshUserMenuDelegate = new EventSystem.IntraObjectHandler<ComplexFabricator>(delegate(ComplexFabricator component, object data)
 	{
 		component.OnRefreshUserMenu(data);

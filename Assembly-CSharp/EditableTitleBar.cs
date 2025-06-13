@@ -4,20 +4,16 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.Events;
 
-// Token: 0x02001D11 RID: 7441
 public class EditableTitleBar : TitleBar
 {
-	// Token: 0x1400002B RID: 43
-	// (add) Token: 0x06009B70 RID: 39792 RVA: 0x003CCBEC File Offset: 0x003CADEC
-	// (remove) Token: 0x06009B71 RID: 39793 RVA: 0x003CCC24 File Offset: 0x003CAE24
+add) Token: 0x06009B70 RID: 39792 RVA: 0x003CCBEC File Offset: 0x003CADEC
+remove) Token: 0x06009B71 RID: 39793 RVA: 0x003CCC24 File Offset: 0x003CAE24
 	public event Action<string> OnNameChanged;
 
-	// Token: 0x1400002C RID: 44
-	// (add) Token: 0x06009B72 RID: 39794 RVA: 0x003CCC5C File Offset: 0x003CAE5C
-	// (remove) Token: 0x06009B73 RID: 39795 RVA: 0x003CCC94 File Offset: 0x003CAE94
+add) Token: 0x06009B72 RID: 39794 RVA: 0x003CCC5C File Offset: 0x003CAE5C
+remove) Token: 0x06009B73 RID: 39795 RVA: 0x003CCC94 File Offset: 0x003CAE94
 	public event System.Action OnStartedEditing;
 
-	// Token: 0x06009B74 RID: 39796 RVA: 0x003CCCCC File Offset: 0x003CAECC
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -35,7 +31,6 @@ public class EditableTitleBar : TitleBar
 		}
 	}
 
-	// Token: 0x06009B75 RID: 39797 RVA: 0x003CCD44 File Offset: 0x003CAF44
 	public void UpdateRenameTooltip(GameObject target)
 	{
 		if (this.editNameButton != null && target != null)
@@ -53,7 +48,6 @@ public class EditableTitleBar : TitleBar
 		}
 	}
 
-	// Token: 0x06009B76 RID: 39798 RVA: 0x003CCDF4 File Offset: 0x003CAFF4
 	private void OnEndEdit(string finalStr)
 	{
 		finalStr = Localization.FilterDirtyWords(finalStr);
@@ -77,7 +71,6 @@ public class EditableTitleBar : TitleBar
 		}
 	}
 
-	// Token: 0x06009B77 RID: 39799 RVA: 0x00109A5A File Offset: 0x00107C5A
 	private IEnumerator PostOnEndEditRoutine()
 	{
 		int i = 0;
@@ -95,7 +88,6 @@ public class EditableTitleBar : TitleBar
 		yield break;
 	}
 
-	// Token: 0x06009B78 RID: 39800 RVA: 0x00109A69 File Offset: 0x00107C69
 	private IEnumerator PreToggleNameEditingRoutine()
 	{
 		yield return SequenceUtil.WaitForEndOfFrame;
@@ -104,7 +96,6 @@ public class EditableTitleBar : TitleBar
 		yield break;
 	}
 
-	// Token: 0x06009B79 RID: 39801 RVA: 0x00109A78 File Offset: 0x00107C78
 	private void EnableEditButtonClick()
 	{
 		this.editNameButton.onClick += delegate()
@@ -117,7 +108,6 @@ public class EditableTitleBar : TitleBar
 		};
 	}
 
-	// Token: 0x06009B7A RID: 39802 RVA: 0x003CCE74 File Offset: 0x003CB074
 	private void GenerateRandomName()
 	{
 		if (this.postEndEdit != null)
@@ -133,7 +123,6 @@ public class EditableTitleBar : TitleBar
 		this.SetEditingState(true);
 	}
 
-	// Token: 0x06009B7B RID: 39803 RVA: 0x003CCEC4 File Offset: 0x003CB0C4
 	private void ToggleNameEditing()
 	{
 		this.editNameButton.ClearOnClick();
@@ -145,7 +134,6 @@ public class EditableTitleBar : TitleBar
 		this.SetEditingState(flag);
 	}
 
-	// Token: 0x06009B7C RID: 39804 RVA: 0x003CCF18 File Offset: 0x003CB118
 	private void SetEditingState(bool state)
 	{
 		this.titleText.gameObject.SetActive(!state);
@@ -175,7 +163,6 @@ public class EditableTitleBar : TitleBar
 		}
 	}
 
-	// Token: 0x06009B7D RID: 39805 RVA: 0x00109A91 File Offset: 0x00107C91
 	public void ForceStopEditing()
 	{
 		if (this.postEndEdit != null)
@@ -187,7 +174,6 @@ public class EditableTitleBar : TitleBar
 		this.EnableEditButtonClick();
 	}
 
-	// Token: 0x06009B7E RID: 39806 RVA: 0x00109ABF File Offset: 0x00107CBF
 	public void SetUserEditable(bool editable)
 	{
 		this.userEditable = editable;
@@ -196,18 +182,13 @@ public class EditableTitleBar : TitleBar
 		this.EnableEditButtonClick();
 	}
 
-	// Token: 0x04007991 RID: 31121
 	public KButton editNameButton;
 
-	// Token: 0x04007992 RID: 31122
 	public KButton randomNameButton;
 
-	// Token: 0x04007993 RID: 31123
 	public KInputTextField inputField;
 
-	// Token: 0x04007996 RID: 31126
 	private Coroutine postEndEdit;
 
-	// Token: 0x04007997 RID: 31127
 	private Coroutine preToggleNameEditing;
 }

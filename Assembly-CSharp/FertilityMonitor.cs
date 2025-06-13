@@ -7,10 +7,8 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x020011BA RID: 4538
 public class FertilityMonitor : GameStateMachine<FertilityMonitor, FertilityMonitor.Instance, IStateMachineTarget, FertilityMonitor.Def>
 {
-	// Token: 0x06005C42 RID: 23618 RVA: 0x002A86E0 File Offset: 0x002A68E0
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.fertile;
@@ -20,13 +18,11 @@ public class FertilityMonitor : GameStateMachine<FertilityMonitor, FertilityMoni
 		this.infertile.Transition(this.fertile, new StateMachine<FertilityMonitor, FertilityMonitor.Instance, IStateMachineTarget, FertilityMonitor.Def>.Transition.ConditionCallback(FertilityMonitor.IsFertile), UpdateRate.SIM_1000ms);
 	}
 
-	// Token: 0x06005C43 RID: 23619 RVA: 0x000E096E File Offset: 0x000DEB6E
 	public static bool IsFertile(FertilityMonitor.Instance smi)
 	{
 		return !smi.HasTag(GameTags.Creatures.PausedReproduction) && !smi.HasTag(GameTags.Creatures.Confined) && !smi.HasTag(GameTags.Creatures.Expecting);
 	}
 
-	// Token: 0x06005C44 RID: 23620 RVA: 0x002A87A0 File Offset: 0x002A69A0
 	public static Tag EggBreedingRoll(List<FertilityMonitor.BreedingChance> breedingChances, bool excludeOriginalCreature = false)
 	{
 		float num = UnityEngine.Random.value;
@@ -52,46 +48,34 @@ public class FertilityMonitor : GameStateMachine<FertilityMonitor, FertilityMoni
 		return Tag.Invalid;
 	}
 
-	// Token: 0x040041B4 RID: 16820
 	private GameStateMachine<FertilityMonitor, FertilityMonitor.Instance, IStateMachineTarget, FertilityMonitor.Def>.State fertile;
 
-	// Token: 0x040041B5 RID: 16821
 	private GameStateMachine<FertilityMonitor, FertilityMonitor.Instance, IStateMachineTarget, FertilityMonitor.Def>.State infertile;
 
-	// Token: 0x020011BB RID: 4539
 	[Serializable]
 	public class BreedingChance
 	{
-		// Token: 0x040041B6 RID: 16822
 		public Tag egg;
 
-		// Token: 0x040041B7 RID: 16823
 		public float weight;
 	}
 
-	// Token: 0x020011BC RID: 4540
 	public class Def : StateMachine.BaseDef
 	{
-		// Token: 0x06005C47 RID: 23623 RVA: 0x000E09A6 File Offset: 0x000DEBA6
 		public override void Configure(GameObject prefab)
 		{
 			prefab.AddOrGet<Modifiers>().initialAmounts.Add(Db.Get().Amounts.Fertility.Id);
 		}
 
-		// Token: 0x040041B8 RID: 16824
 		public Tag eggPrefab;
 
-		// Token: 0x040041B9 RID: 16825
 		public List<FertilityMonitor.BreedingChance> initialBreedingWeights;
 
-		// Token: 0x040041BA RID: 16826
 		public float baseFertileCycles;
 	}
 
-	// Token: 0x020011BD RID: 4541
 	public new class Instance : GameStateMachine<FertilityMonitor, FertilityMonitor.Instance, IStateMachineTarget, FertilityMonitor.Def>.GameInstance
 	{
-		// Token: 0x06005C49 RID: 23625 RVA: 0x002A8830 File Offset: 0x002A6A30
 		public Instance(IStateMachineTarget master, FertilityMonitor.Def def) : base(master, def)
 		{
 			this.fertility = Db.Get().Amounts.Fertility.Lookup(base.gameObject);
@@ -105,7 +89,6 @@ public class FertilityMonitor : GameStateMachine<FertilityMonitor, FertilityMoni
 			this.InitializeBreedingChances();
 		}
 
-		// Token: 0x06005C4A RID: 23626 RVA: 0x002A8930 File Offset: 0x002A6B30
 		[OnDeserialized]
 		private void OnDeserialized()
 		{
@@ -116,7 +99,6 @@ public class FertilityMonitor : GameStateMachine<FertilityMonitor, FertilityMoni
 			}
 		}
 
-		// Token: 0x06005C4B RID: 23627 RVA: 0x002A8974 File Offset: 0x002A6B74
 		private void InitializeBreedingChances()
 		{
 			this.breedingChances = new List<FertilityMonitor.BreedingChance>();
@@ -138,7 +120,6 @@ public class FertilityMonitor : GameStateMachine<FertilityMonitor, FertilityMoni
 			}
 		}
 
-		// Token: 0x06005C4C RID: 23628 RVA: 0x002A8A6C File Offset: 0x002A6C6C
 		public void ShowEgg()
 		{
 			if (this.egg != null)
@@ -160,7 +141,6 @@ public class FertilityMonitor : GameStateMachine<FertilityMonitor, FertilityMoni
 			}
 		}
 
-		// Token: 0x06005C4D RID: 23629 RVA: 0x002A8B1C File Offset: 0x002A6D1C
 		public void LayEgg()
 		{
 			this.fertility.value = 0f;
@@ -198,13 +178,11 @@ public class FertilityMonitor : GameStateMachine<FertilityMonitor, FertilityMoni
 			base.Trigger(1193600993, this.egg);
 		}
 
-		// Token: 0x06005C4E RID: 23630 RVA: 0x000E09CC File Offset: 0x000DEBCC
 		public bool IsReadyToLayEgg()
 		{
 			return base.smi.fertility.value >= base.smi.fertility.GetMax();
 		}
 
-		// Token: 0x06005C4F RID: 23631 RVA: 0x002A8C94 File Offset: 0x002A6E94
 		public void AddBreedingChance(Tag type, float addedPercentChance)
 		{
 			foreach (FertilityMonitor.BreedingChance breedingChance in this.breedingChances)
@@ -219,7 +197,6 @@ public class FertilityMonitor : GameStateMachine<FertilityMonitor, FertilityMoni
 			base.master.Trigger(1059811075, this.breedingChances);
 		}
 
-		// Token: 0x06005C50 RID: 23632 RVA: 0x002A8D3C File Offset: 0x002A6F3C
 		public float GetBreedingChance(Tag type)
 		{
 			foreach (FertilityMonitor.BreedingChance breedingChance in this.breedingChances)
@@ -232,7 +209,6 @@ public class FertilityMonitor : GameStateMachine<FertilityMonitor, FertilityMoni
 			return -1f;
 		}
 
-		// Token: 0x06005C51 RID: 23633 RVA: 0x002A8DA8 File Offset: 0x002A6FA8
 		public void NormalizeBreedingChances()
 		{
 			float num = 0f;
@@ -246,7 +222,6 @@ public class FertilityMonitor : GameStateMachine<FertilityMonitor, FertilityMoni
 			}
 		}
 
-		// Token: 0x06005C52 RID: 23634 RVA: 0x000E09F3 File Offset: 0x000DEBF3
 		protected override void OnCleanUp()
 		{
 			base.OnCleanUp();
@@ -257,20 +232,15 @@ public class FertilityMonitor : GameStateMachine<FertilityMonitor, FertilityMoni
 			}
 		}
 
-		// Token: 0x040041BB RID: 16827
 		public AmountInstance fertility;
 
-		// Token: 0x040041BC RID: 16828
 		private GameObject egg;
 
-		// Token: 0x040041BD RID: 16829
 		[Serialize]
 		public List<FertilityMonitor.BreedingChance> breedingChances;
 
-		// Token: 0x040041BE RID: 16830
 		public Effect fertileEffect;
 
-		// Token: 0x040041BF RID: 16831
 		private static HashedString targetEggSymbol = "snapto_egg";
 	}
 }

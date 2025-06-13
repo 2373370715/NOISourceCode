@@ -3,16 +3,13 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020004DB RID: 1243
 public class OilChangerConfig : IBuildingConfig
 {
-	// Token: 0x06001562 RID: 5474 RVA: 0x000AA12F File Offset: 0x000A832F
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.DLC3;
 	}
 
-	// Token: 0x06001563 RID: 5475 RVA: 0x0019EA64 File Offset: 0x0019CC64
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "OilChanger";
@@ -42,7 +39,6 @@ public class OilChangerConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001564 RID: 5476 RVA: 0x0019EB28 File Offset: 0x0019CD28
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.BionicUpkeepType, false);
@@ -64,14 +60,11 @@ public class OilChangerConfig : IBuildingConfig
 		go.AddOrGetDef<OilChanger.Def>();
 	}
 
-	// Token: 0x06001565 RID: 5477 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000EC9 RID: 3785
 	public const string ID = "OilChanger";
 
-	// Token: 0x04000ECA RID: 3786
 	public float OIL_CAPACITY = 400f;
 }

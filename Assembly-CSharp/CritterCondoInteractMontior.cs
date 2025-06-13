@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000A2A RID: 2602
 public class CritterCondoInteractMontior : GameStateMachine<CritterCondoInteractMontior, CritterCondoInteractMontior.Instance, IStateMachineTarget, CritterCondoInteractMontior.Def>
 {
-	// Token: 0x06002F35 RID: 12085 RVA: 0x002051DC File Offset: 0x002033DC
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.lookingForCondo;
@@ -21,7 +19,6 @@ public class CritterCondoInteractMontior : GameStateMachine<CritterCondoInteract
 		}).ScheduleGoTo((CritterCondoInteractMontior.Instance smi) => this.remainingSecondsForEffect.Get(smi), this.lookingForCondo);
 	}
 
-	// Token: 0x06002F36 RID: 12086 RVA: 0x002052AC File Offset: 0x002034AC
 	private static void FindCondoTarget(CritterCondoInteractMontior.Instance smi)
 	{
 		using (ListPool<CritterCondo.Instance, CritterCondoInteractMontior>.PooledList pooledList = PoolsFor<CritterCondoInteractMontior>.AllocateList<CritterCondo.Instance>())
@@ -74,34 +71,25 @@ public class CritterCondoInteractMontior : GameStateMachine<CritterCondoInteract
 		}
 	}
 
-	// Token: 0x04002061 RID: 8289
 	public GameStateMachine<CritterCondoInteractMontior, CritterCondoInteractMontior.Instance, IStateMachineTarget, CritterCondoInteractMontior.Def>.State lookingForCondo;
 
-	// Token: 0x04002062 RID: 8290
 	public GameStateMachine<CritterCondoInteractMontior, CritterCondoInteractMontior.Instance, IStateMachineTarget, CritterCondoInteractMontior.Def>.State satisfied;
 
-	// Token: 0x04002063 RID: 8291
 	private StateMachine<CritterCondoInteractMontior, CritterCondoInteractMontior.Instance, IStateMachineTarget, CritterCondoInteractMontior.Def>.FloatParameter remainingSecondsForEffect;
 
-	// Token: 0x02000A2B RID: 2603
 	public class Def : StateMachine.BaseDef
 	{
-		// Token: 0x04002064 RID: 8292
 		public bool requireCavity = true;
 
-		// Token: 0x04002065 RID: 8293
 		public Tag condoPrefabTag = "CritterCondo";
 	}
 
-	// Token: 0x02000A2C RID: 2604
 	public new class Instance : GameStateMachine<CritterCondoInteractMontior, CritterCondoInteractMontior.Instance, IStateMachineTarget, CritterCondoInteractMontior.Def>.GameInstance
 	{
-		// Token: 0x06002F3C RID: 12092 RVA: 0x000C3121 File Offset: 0x000C1321
 		public Instance(IStateMachineTarget master, CritterCondoInteractMontior.Def def) : base(master, def)
 		{
 		}
 
-		// Token: 0x04002066 RID: 8294
 		public CritterCondo.Instance targetCondo;
 	}
 }

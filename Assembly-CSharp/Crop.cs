@@ -4,12 +4,9 @@ using Klei.AI;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001190 RID: 4496
 [AddComponentMenu("KMonoBehaviour/scripts/Crop")]
 public class Crop : KMonoBehaviour, IGameObjectEffectDescriptor
 {
-	// Token: 0x1700056F RID: 1391
-	// (get) Token: 0x06005B84 RID: 23428 RVA: 0x000E00AC File Offset: 0x000DE2AC
 	public string cropId
 	{
 		get
@@ -18,9 +15,6 @@ public class Crop : KMonoBehaviour, IGameObjectEffectDescriptor
 		}
 	}
 
-	// Token: 0x17000570 RID: 1392
-	// (get) Token: 0x06005B85 RID: 23429 RVA: 0x000E00B9 File Offset: 0x000DE2B9
-	// (set) Token: 0x06005B86 RID: 23430 RVA: 0x000E00C1 File Offset: 0x000DE2C1
 	public Storage PlanterStorage
 	{
 		get
@@ -33,7 +27,6 @@ public class Crop : KMonoBehaviour, IGameObjectEffectDescriptor
 		}
 	}
 
-	// Token: 0x06005B87 RID: 23431 RVA: 0x000E00CA File Offset: 0x000DE2CA
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -41,26 +34,22 @@ public class Crop : KMonoBehaviour, IGameObjectEffectDescriptor
 		this.yield = this.GetAttributes().Add(Db.Get().PlantAttributes.YieldAmount);
 	}
 
-	// Token: 0x06005B88 RID: 23432 RVA: 0x000E00FD File Offset: 0x000DE2FD
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
 		base.Subscribe<Crop>(1272413801, Crop.OnHarvestDelegate);
 	}
 
-	// Token: 0x06005B89 RID: 23433 RVA: 0x000E0116 File Offset: 0x000DE316
 	public void Configure(Crop.CropVal cropval)
 	{
 		this.cropVal = cropval;
 	}
 
-	// Token: 0x06005B8A RID: 23434 RVA: 0x000E011F File Offset: 0x000DE31F
 	public bool CanGrow()
 	{
 		return this.cropVal.renewable;
 	}
 
-	// Token: 0x06005B8B RID: 23435 RVA: 0x002A6334 File Offset: 0x002A4534
 	public void SpawnConfiguredFruit(object callbackParam)
 	{
 		if (this == null)
@@ -75,7 +64,6 @@ public class Crop : KMonoBehaviour, IGameObjectEffectDescriptor
 		}
 	}
 
-	// Token: 0x06005B8C RID: 23436 RVA: 0x002A6388 File Offset: 0x002A4588
 	public void SpawnSomeFruit(Tag cropID, float amount)
 	{
 		GameObject gameObject = GameUtil.KInstantiate(Assets.GetPrefab(cropID), base.transform.GetPosition() + new Vector3(0f, 0.75f, 0f), Grid.SceneLayer.Ore, null, 0);
@@ -109,25 +97,21 @@ public class Crop : KMonoBehaviour, IGameObjectEffectDescriptor
 		}
 	}
 
-	// Token: 0x06005B8D RID: 23437 RVA: 0x000E012C File Offset: 0x000DE32C
 	protected override void OnCleanUp()
 	{
 		Components.Crops.Remove(this);
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06005B8E RID: 23438 RVA: 0x000AA038 File Offset: 0x000A8238
 	private void OnHarvest(object obj)
 	{
 	}
 
-	// Token: 0x06005B8F RID: 23439 RVA: 0x000CE880 File Offset: 0x000CCA80
 	public List<Descriptor> RequirementDescriptors(GameObject go)
 	{
 		return new List<Descriptor>();
 	}
 
-	// Token: 0x06005B90 RID: 23440 RVA: 0x002A64AC File Offset: 0x002A46AC
 	public List<Descriptor> InformationDescriptors(GameObject go)
 	{
 		List<Descriptor> list = new List<Descriptor>();
@@ -162,7 +146,6 @@ public class Crop : KMonoBehaviour, IGameObjectEffectDescriptor
 		return list;
 	}
 
-	// Token: 0x06005B91 RID: 23441 RVA: 0x002A661C File Offset: 0x002A481C
 	public List<Descriptor> GetDescriptors(GameObject go)
 	{
 		List<Descriptor> list = new List<Descriptor>();
@@ -177,33 +160,25 @@ public class Crop : KMonoBehaviour, IGameObjectEffectDescriptor
 		return list;
 	}
 
-	// Token: 0x04004123 RID: 16675
 	[MyCmpReq]
 	private KSelectable selectable;
 
-	// Token: 0x04004124 RID: 16676
 	public Crop.CropVal cropVal;
 
-	// Token: 0x04004125 RID: 16677
 	private AttributeInstance yield;
 
-	// Token: 0x04004126 RID: 16678
 	public string domesticatedDesc = "";
 
-	// Token: 0x04004127 RID: 16679
 	private Storage planterStorage;
 
-	// Token: 0x04004128 RID: 16680
 	private static readonly EventSystem.IntraObjectHandler<Crop> OnHarvestDelegate = new EventSystem.IntraObjectHandler<Crop>(delegate(Crop component, object data)
 	{
 		component.OnHarvest(data);
 	});
 
-	// Token: 0x02001191 RID: 4497
 	[Serializable]
 	public struct CropVal
 	{
-		// Token: 0x06005B94 RID: 23444 RVA: 0x000E016E File Offset: 0x000DE36E
 		public CropVal(string crop_id, float crop_duration, int num_produced = 1, bool renewable = true)
 		{
 			this.cropId = crop_id;
@@ -212,16 +187,12 @@ public class Crop : KMonoBehaviour, IGameObjectEffectDescriptor
 			this.renewable = renewable;
 		}
 
-		// Token: 0x04004129 RID: 16681
 		public string cropId;
 
-		// Token: 0x0400412A RID: 16682
 		public float cropDuration;
 
-		// Token: 0x0400412B RID: 16683
 		public int numProduced;
 
-		// Token: 0x0400412C RID: 16684
 		public bool renewable;
 	}
 }

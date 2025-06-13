@@ -6,10 +6,8 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001E1A RID: 7706
 public class ConsumablesTableScreen : TableScreen
 {
-	// Token: 0x0600A0EC RID: 41196 RVA: 0x003E5308 File Offset: 0x003E3508
 	protected override void OnActivate()
 	{
 		this.title = UI.CONSUMABLESSCREEN.TITLE;
@@ -155,7 +153,6 @@ public class ConsumablesTableScreen : TableScreen
 		base.AddSuperCheckboxColumn(id2, columns_affected, new Action<IAssignableIdentity, GameObject>(base.on_load_value_checkbox_column_super), new Func<IAssignableIdentity, GameObject, TableScreen.ResultValues>(this.get_value_checkbox_column_super), new Action<GameObject>(base.on_press_checkbox_column_super), new Action<GameObject, TableScreen.ResultValues>(base.set_value_checkbox_column_super), null, new Action<IAssignableIdentity, GameObject, ToolTip>(this.on_tooltip_consumable_info_super));
 	}
 
-	// Token: 0x0600A0ED RID: 41197 RVA: 0x003E579C File Offset: 0x003E399C
 	private void refresh_scrollers()
 	{
 		int num = 0;
@@ -183,7 +180,6 @@ public class ConsumablesTableScreen : TableScreen
 		}
 	}
 
-	// Token: 0x0600A0EE RID: 41198 RVA: 0x003E58D8 File Offset: 0x003E3AD8
 	private void on_load_qualityoflife_expectations(IAssignableIdentity minion, GameObject widget_go)
 	{
 		TableRow widgetRow = base.GetWidgetRow(widget_go);
@@ -196,7 +192,6 @@ public class ConsumablesTableScreen : TableScreen
 		componentInChildren.text = (widgetRow.isDefault ? "" : UI.VITALSSCREEN.QUALITYOFLIFE_EXPECTATIONS.ToString());
 	}
 
-	// Token: 0x0600A0EF RID: 41199 RVA: 0x003E5938 File Offset: 0x003E3B38
 	private string get_value_qualityoflife_label(IAssignableIdentity minion, GameObject widget_go)
 	{
 		string result = "";
@@ -212,7 +207,6 @@ public class ConsumablesTableScreen : TableScreen
 		return result;
 	}
 
-	// Token: 0x0600A0F0 RID: 41200 RVA: 0x003E5994 File Offset: 0x003E3B94
 	private int compare_rows_qualityoflife_expectations(IAssignableIdentity a, IAssignableIdentity b)
 	{
 		MinionIdentity minionIdentity = a as MinionIdentity;
@@ -234,7 +228,6 @@ public class ConsumablesTableScreen : TableScreen
 		return totalValue.CompareTo(totalValue2);
 	}
 
-	// Token: 0x0600A0F1 RID: 41201 RVA: 0x003E5A18 File Offset: 0x003E3C18
 	protected void on_tooltip_qualityoflife_expectations(IAssignableIdentity minion, GameObject widget_go, ToolTip tooltip)
 	{
 		tooltip.ClearMultiStringTooltip();
@@ -261,7 +254,6 @@ public class ConsumablesTableScreen : TableScreen
 		}
 	}
 
-	// Token: 0x0600A0F2 RID: 41202 RVA: 0x003E5A8C File Offset: 0x003E3C8C
 	protected void on_tooltip_sort_qualityoflife_expectations(IAssignableIdentity minion, GameObject widget_go, ToolTip tooltip)
 	{
 		tooltip.ClearMultiStringTooltip();
@@ -279,7 +271,6 @@ public class ConsumablesTableScreen : TableScreen
 		}
 	}
 
-	// Token: 0x0600A0F3 RID: 41203 RVA: 0x003E5AD4 File Offset: 0x003E3CD4
 	private TableScreen.ResultValues get_value_food_info_super(MinionIdentity minion, GameObject widget_go)
 	{
 		SuperCheckboxTableColumn superCheckboxTableColumn = base.GetWidgetColumn(widget_go) as SuperCheckboxTableColumn;
@@ -331,7 +322,6 @@ public class ConsumablesTableScreen : TableScreen
 		return TableScreen.ResultValues.Partial;
 	}
 
-	// Token: 0x0600A0F4 RID: 41204 RVA: 0x003E5B80 File Offset: 0x003E3D80
 	private void set_value_consumable_info(GameObject widget_go, TableScreen.ResultValues new_value)
 	{
 		TableRow widgetRow = base.GetWidgetRow(widget_go);
@@ -412,7 +402,6 @@ public class ConsumablesTableScreen : TableScreen
 		}
 	}
 
-	// Token: 0x0600A0F5 RID: 41205 RVA: 0x003E5D98 File Offset: 0x003E3F98
 	private void on_click_consumable_info(GameObject widget_go)
 	{
 		TableRow widgetRow = base.GetWidgetRow(widget_go);
@@ -475,7 +464,6 @@ public class ConsumablesTableScreen : TableScreen
 		}
 	}
 
-	// Token: 0x0600A0F6 RID: 41206 RVA: 0x003E5F04 File Offset: 0x003E4104
 	private void on_tooltip_consumable_info(IAssignableIdentity minion, GameObject widget_go, ToolTip tooltip)
 	{
 		tooltip.ClearMultiStringTooltip();
@@ -551,12 +539,10 @@ public class ConsumablesTableScreen : TableScreen
 		}
 	}
 
-	// Token: 0x0600A0F7 RID: 41207 RVA: 0x000AA038 File Offset: 0x000A8238
 	private void on_tooltip_sort_consumable_info(IAssignableIdentity minion, GameObject widget_go, ToolTip tooltip)
 	{
 	}
 
-	// Token: 0x0600A0F8 RID: 41208 RVA: 0x003E627C File Offset: 0x003E447C
 	private void on_tooltip_consumable_info_super(IAssignableIdentity minion, GameObject widget_go, ToolTip tooltip)
 	{
 		tooltip.ClearMultiStringTooltip();
@@ -581,7 +567,6 @@ public class ConsumablesTableScreen : TableScreen
 		}
 	}
 
-	// Token: 0x0600A0F9 RID: 41209 RVA: 0x003E630C File Offset: 0x003E450C
 	private void on_load_consumable_info(IAssignableIdentity minion, GameObject widget_go)
 	{
 		TableRow widgetRow = base.GetWidgetRow(widget_go);
@@ -675,13 +660,11 @@ public class ConsumablesTableScreen : TableScreen
 		this.refresh_scrollers();
 	}
 
-	// Token: 0x0600A0FA RID: 41210 RVA: 0x000B1628 File Offset: 0x000AF828
 	private int compare_consumable_info(IAssignableIdentity a, IAssignableIdentity b)
 	{
 		return 0;
 	}
 
-	// Token: 0x0600A0FB RID: 41211 RVA: 0x003E6608 File Offset: 0x003E4808
 	private TableScreen.ResultValues get_value_consumable_info(IAssignableIdentity minion, GameObject widget_go)
 	{
 		ConsumableInfoTableColumn consumableInfoTableColumn = base.GetWidgetColumn(widget_go) as ConsumableInfoTableColumn;
@@ -781,7 +764,6 @@ public class ConsumablesTableScreen : TableScreen
 		return result;
 	}
 
-	// Token: 0x0600A0FC RID: 41212 RVA: 0x003E67DC File Offset: 0x003E49DC
 	protected void on_tooltip_name(IAssignableIdentity minion, GameObject widget_go, ToolTip tooltip)
 	{
 		tooltip.ClearMultiStringTooltip();
@@ -802,7 +784,6 @@ public class ConsumablesTableScreen : TableScreen
 		}
 	}
 
-	// Token: 0x0600A0FD RID: 41213 RVA: 0x003E6834 File Offset: 0x003E4A34
 	protected ConsumableInfoTableColumn AddConsumableInfoColumn(string id, IConsumableUIItem consumable_info, Action<IAssignableIdentity, GameObject> load_value_action, Func<IAssignableIdentity, GameObject, TableScreen.ResultValues> get_value_action, Action<GameObject> on_press_action, Action<GameObject, TableScreen.ResultValues> set_value_action, Comparison<IAssignableIdentity> sort_comparison, Action<IAssignableIdentity, GameObject, ToolTip> on_tooltip, Action<IAssignableIdentity, GameObject, ToolTip> on_sort_tooltip)
 	{
 		ConsumableInfoTableColumn consumableInfoTableColumn = new ConsumableInfoTableColumn(consumable_info, load_value_action, get_value_action, on_press_action, set_value_action, sort_comparison, on_tooltip, on_sort_tooltip, (GameObject widget_go) => "", () => DebugHandler.InstantBuildMode || consumable_info.RevealTest());
@@ -814,13 +795,11 @@ public class ConsumablesTableScreen : TableScreen
 		return null;
 	}
 
-	// Token: 0x0600A0FE RID: 41214 RVA: 0x0010D54D File Offset: 0x0010B74D
 	private void OnConsumableDiscovered(Tag tag)
 	{
 		base.MarkRowsDirty();
 	}
 
-	// Token: 0x0600A0FF RID: 41215 RVA: 0x003E68AC File Offset: 0x003E4AAC
 	private void StoredMinionTooltip(IAssignableIdentity minion, ToolTip tooltip)
 	{
 		StoredMinionIdentity storedMinionIdentity = minion as StoredMinionIdentity;
@@ -830,10 +809,8 @@ public class ConsumablesTableScreen : TableScreen
 		}
 	}
 
-	// Token: 0x04007E69 RID: 32361
 	private const int CONSUMABLE_COLUMNS_BEFORE_SCROLL = 12;
 
-	// Token: 0x04007E6A RID: 32362
 	[SerializeField]
 	private GameObject horizontalScrollBar;
 }

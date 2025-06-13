@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020004FB RID: 1275
 public class PetroleumGeneratorConfig : IBuildingConfig
 {
-	// Token: 0x060015EA RID: 5610 RVA: 0x001A1130 File Offset: 0x0019F330
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "PetroleumGenerator";
@@ -43,7 +41,6 @@ public class PetroleumGeneratorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060015EB RID: 5611 RVA: 0x001A121C File Offset: 0x0019F41C
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
@@ -83,33 +80,23 @@ public class PetroleumGeneratorConfig : IBuildingConfig
 		go.AddOrGetDef<PoweredActiveController.Def>();
 	}
 
-	// Token: 0x04000F10 RID: 3856
 	public const string ID = "PetroleumGenerator";
 
-	// Token: 0x04000F11 RID: 3857
 	public const float CONSUMPTION_RATE = 2f;
 
-	// Token: 0x04000F12 RID: 3858
 	private const SimHashes INPUT_ELEMENT = SimHashes.Petroleum;
 
-	// Token: 0x04000F13 RID: 3859
 	private const SimHashes EXHAUST_ELEMENT_GAS = SimHashes.CarbonDioxide;
 
-	// Token: 0x04000F14 RID: 3860
 	private const SimHashes EXHAUST_ELEMENT_LIQUID = SimHashes.DirtyWater;
 
-	// Token: 0x04000F15 RID: 3861
 	public const float EFFICIENCY_RATE = 0.5f;
 
-	// Token: 0x04000F16 RID: 3862
 	public const float EXHAUST_GAS_RATE = 0.5f;
 
-	// Token: 0x04000F17 RID: 3863
 	public const float EXHAUST_LIQUID_RATE = 0.75f;
 
-	// Token: 0x04000F18 RID: 3864
 	private const int WIDTH = 3;
 
-	// Token: 0x04000F19 RID: 3865
 	private const int HEIGHT = 4;
 }

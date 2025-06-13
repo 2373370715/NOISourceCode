@@ -3,21 +3,17 @@ using System.Runtime.CompilerServices;
 using ImGuiNET;
 using UnityEngine;
 
-// Token: 0x02000BE4 RID: 3044
 public class DevToolEntity_DebugGoTo : DevTool
 {
-	// Token: 0x060039AF RID: 14767 RVA: 0x000C9CB4 File Offset: 0x000C7EB4
 	public DevToolEntity_DebugGoTo() : this(Option.None)
 	{
 	}
 
-	// Token: 0x060039B0 RID: 14768 RVA: 0x000C9CC6 File Offset: 0x000C7EC6
 	public DevToolEntity_DebugGoTo(Option<DevToolEntityTarget.ForWorldGameObject> target)
 	{
 		this.targetOpt = target;
 	}
 
-	// Token: 0x060039B1 RID: 14769 RVA: 0x0022D094 File Offset: 0x0022B294
 	protected override void RenderTo(DevPanel panel)
 	{
 		if (ImGui.BeginMenuBar())
@@ -105,7 +101,6 @@ public class DevToolEntity_DebugGoTo : DevTool
 		}
 	}
 
-	// Token: 0x060039B2 RID: 14770 RVA: 0x0022D308 File Offset: 0x0022B508
 	public static Option<string> GetErrorForCandidateTarget(DevToolEntityTarget uncastTarget)
 	{
 		if (!(uncastTarget is DevToolEntityTarget.ForWorldGameObject))
@@ -124,7 +119,6 @@ public class DevToolEntity_DebugGoTo : DevTool
 		return Option.None;
 	}
 
-	// Token: 0x060039B4 RID: 14772 RVA: 0x000C9CEF File Offset: 0x000C7EEF
 	[CompilerGenerated]
 	internal static string <RenderTo>g__GetCellName|6_1(Option<DevToolEntityTarget.ForSimCell> target)
 	{
@@ -135,15 +129,11 @@ public class DevToolEntity_DebugGoTo : DevTool
 		return "<None>";
 	}
 
-	// Token: 0x040027C8 RID: 10184
 	private Option<DevToolEntityTarget.ForWorldGameObject> targetOpt;
 
-	// Token: 0x040027C9 RID: 10185
 	private Option<DevToolEntityTarget.ForSimCell> destinationSimCellTarget;
 
-	// Token: 0x040027CA RID: 10186
 	private bool shouldDrawBoundingBox = true;
 
-	// Token: 0x040027CB RID: 10187
 	private bool shouldContinouslyRequest;
 }

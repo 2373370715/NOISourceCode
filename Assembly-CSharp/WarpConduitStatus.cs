@@ -1,10 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200106E RID: 4206
 public static class WarpConduitStatus
 {
-	// Token: 0x06005575 RID: 21877 RVA: 0x0028CCDC File Offset: 0x0028AEDC
 	public static void UpdateWarpConduitsOperational(GameObject sender, GameObject receiver)
 	{
 		object obj = sender != null && sender.GetComponent<Activatable>().IsActivated;
@@ -46,6 +44,5 @@ public static class WarpConduitStatus
 		}
 	}
 
-	// Token: 0x04003C70 RID: 15472
 	public static readonly Operational.Flag warpConnectedFlag = new Operational.Flag("warp_conduit_connected", Operational.Flag.Type.Requirement);
 }

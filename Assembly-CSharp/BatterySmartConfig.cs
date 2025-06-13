@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000030 RID: 48
 public class BatterySmartConfig : BaseBatteryConfig
 {
-	// Token: 0x060000CA RID: 202 RVA: 0x00149BC4 File Offset: 0x00147DC4
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "BatterySmart";
@@ -32,7 +30,6 @@ public class BatterySmartConfig : BaseBatteryConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060000CB RID: 203 RVA: 0x000AA3B9 File Offset: 0x000A85B9
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		BatterySmart batterySmart = go.AddOrGet<BatterySmart>();
@@ -42,13 +39,11 @@ public class BatterySmartConfig : BaseBatteryConfig
 		base.DoPostConfigureComplete(go);
 	}
 
-	// Token: 0x060000CC RID: 204 RVA: 0x000AA364 File Offset: 0x000A8564
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		base.ConfigureBuildingTemplate(go, prefab_tag);
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.PowerBuilding, false);
 	}
 
-	// Token: 0x04000087 RID: 135
 	public const string ID = "BatterySmart";
 }

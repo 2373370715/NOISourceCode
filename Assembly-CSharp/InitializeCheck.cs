@@ -4,15 +4,10 @@ using ProcGenGame;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x0200144D RID: 5197
 public class InitializeCheck : MonoBehaviour
 {
-	// Token: 0x170006C9 RID: 1737
-	// (get) Token: 0x06006AEB RID: 27371 RVA: 0x000EA9AF File Offset: 0x000E8BAF
-	// (set) Token: 0x06006AEC RID: 27372 RVA: 0x000EA9B6 File Offset: 0x000E8BB6
 	public static InitializeCheck.SavePathIssue savePathState { get; private set; }
 
-	// Token: 0x06006AED RID: 27373 RVA: 0x002EE1FC File Offset: 0x002EC3FC
 	private void Awake()
 	{
 		this.CheckForSavePathIssue();
@@ -37,20 +32,17 @@ public class InitializeCheck : MonoBehaviour
 		this.ShowFileErrorDialogs();
 	}
 
-	// Token: 0x06006AEE RID: 27374 RVA: 0x000EA9BE File Offset: 0x000E8BBE
 	private GameObject CreateUIRoot()
 	{
 		return Util.KInstantiate(this.rootCanvasPrefab, null, "CanvasRoot");
 	}
 
-	// Token: 0x06006AEF RID: 27375 RVA: 0x002EE2D8 File Offset: 0x002EC4D8
 	private void ShowErrorDialog(string msg)
 	{
 		GameObject parent = this.CreateUIRoot();
 		Util.KInstantiateUI<ConfirmDialogScreen>(this.confirmDialogScreen.gameObject, parent, true).PopupConfirmDialog(msg, new System.Action(this.Quit), null, null, null, null, null, null, this.sadDupe);
 	}
 
-	// Token: 0x06006AF0 RID: 27376 RVA: 0x002EE31C File Offset: 0x002EC51C
 	private void ShowFileErrorDialogs()
 	{
 		string text = null;
@@ -72,7 +64,6 @@ public class InitializeCheck : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06006AF1 RID: 27377 RVA: 0x002EE394 File Offset: 0x002EC594
 	private void CheckForSavePathIssue()
 	{
 		if (this.test_issue != InitializeCheck.SavePathIssue.Ok)
@@ -138,41 +129,29 @@ public class InitializeCheck : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06006AF2 RID: 27378 RVA: 0x000EA9D1 File Offset: 0x000E8BD1
 	private void Quit()
 	{
 		global::Debug.Log("Quitting...");
 		App.Quit();
 	}
 
-	// Token: 0x04005130 RID: 20784
 	private static readonly string testFile = "testfile";
 
-	// Token: 0x04005131 RID: 20785
 	private static readonly string testSave = "testsavefile";
 
-	// Token: 0x04005132 RID: 20786
 	public Canvas rootCanvasPrefab;
 
-	// Token: 0x04005133 RID: 20787
 	public ConfirmDialogScreen confirmDialogScreen;
 
-	// Token: 0x04005134 RID: 20788
 	public Sprite sadDupe;
 
-	// Token: 0x04005135 RID: 20789
 	private InitializeCheck.SavePathIssue test_issue;
 
-	// Token: 0x0200144E RID: 5198
 	public enum SavePathIssue
 	{
-		// Token: 0x04005137 RID: 20791
 		Ok,
-		// Token: 0x04005138 RID: 20792
 		WriteTestFail,
-		// Token: 0x04005139 RID: 20793
 		SpaceTestFail,
-		// Token: 0x0400513A RID: 20794
 		WorldGenFilesFail
 	}
 }

@@ -2,28 +2,23 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001A71 RID: 6769
 public class UtilityNetworkTubesManager : UtilityNetworkManager<TravelTubeNetwork, TravelTube>
 {
-	// Token: 0x06008D2D RID: 36141 RVA: 0x00100B9A File Offset: 0x000FED9A
 	public UtilityNetworkTubesManager(int game_width, int game_height, int tile_layer) : base(game_width, game_height, tile_layer)
 	{
 	}
 
-	// Token: 0x06008D2E RID: 36142 RVA: 0x00100BA5 File Offset: 0x000FEDA5
 	public override bool CanAddConnection(UtilityConnections new_connection, int cell, bool is_physical_building, out string fail_reason)
 	{
 		return this.TestForUTurnLeft(cell, new_connection, is_physical_building, out fail_reason) && this.TestForUTurnRight(cell, new_connection, is_physical_building, out fail_reason) && this.TestForNoAdjacentBridge(cell, new_connection, out fail_reason);
 	}
 
-	// Token: 0x06008D2F RID: 36143 RVA: 0x00100BCD File Offset: 0x000FEDCD
 	public override void SetConnections(UtilityConnections connections, int cell, bool is_physical_building)
 	{
 		base.SetConnections(connections, cell, is_physical_building);
 		Pathfinding.Instance.AddDirtyNavGridCell(cell);
 	}
 
-	// Token: 0x06008D30 RID: 36144 RVA: 0x003754EC File Offset: 0x003736EC
 	private bool TestForUTurnLeft(int first_cell, UtilityConnections first_connection, bool is_physical_building, out string fail_reason)
 	{
 		int from_cell = first_cell;
@@ -44,7 +39,6 @@ public class UtilityNetworkTubesManager : UtilityNetworkManager<TravelTubeNetwor
 		return num <= 2;
 	}
 
-	// Token: 0x06008D31 RID: 36145 RVA: 0x00375548 File Offset: 0x00373748
 	private bool TestForUTurnRight(int first_cell, UtilityConnections first_connection, bool is_physical_building, out string fail_reason)
 	{
 		int from_cell = first_cell;
@@ -65,7 +59,6 @@ public class UtilityNetworkTubesManager : UtilityNetworkManager<TravelTubeNetwor
 		return num <= 2;
 	}
 
-	// Token: 0x06008D32 RID: 36146 RVA: 0x003755A4 File Offset: 0x003737A4
 	private bool TestForNoAdjacentBridge(int cell, UtilityConnections connection, out string fail_reason)
 	{
 		UtilityConnections direction = connection.LeftDirection();
@@ -78,7 +71,6 @@ public class UtilityNetworkTubesManager : UtilityNetworkManager<TravelTubeNetwor
 		return (gameObject == null || gameObject.GetComponent<TravelTubeBridge>() == null) && (gameObject2 == null || gameObject2.GetComponent<TravelTubeBridge>() == null);
 	}
 
-	// Token: 0x06008D33 RID: 36147 RVA: 0x00100BE3 File Offset: 0x000FEDE3
 	private bool HasConnection(int cell, UtilityConnections connection, bool is_physical_building)
 	{
 		return (base.GetConnections(cell, is_physical_building) & connection) > (UtilityConnections)0;

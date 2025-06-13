@@ -3,19 +3,16 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000D9B RID: 3483
 [SerializationConfig(MemberSerialization.OptIn)]
 [AddComponentMenu("KMonoBehaviour/scripts/ElementFilter")]
 public class ElementFilter : KMonoBehaviour, ISaveLoadable, ISecondaryOutput
 {
-	// Token: 0x060043AD RID: 17325 RVA: 0x000D0330 File Offset: 0x000CE530
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 		this.InitializeStatusItems();
 	}
 
-	// Token: 0x060043AE RID: 17326 RVA: 0x00253760 File Offset: 0x00251960
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -66,7 +63,6 @@ public class ElementFilter : KMonoBehaviour, ISaveLoadable, ISecondaryOutput
 		}
 	}
 
-	// Token: 0x060043AF RID: 17327 RVA: 0x0025396C File Offset: 0x00251B6C
 	protected override void OnCleanUp()
 	{
 		Conduit.GetNetworkManager(this.portInfo.conduitType).RemoveFromNetworks(this.filteredCell, this.itemFilter, true);
@@ -85,7 +81,6 @@ public class ElementFilter : KMonoBehaviour, ISaveLoadable, ISecondaryOutput
 		base.OnCleanUp();
 	}
 
-	// Token: 0x060043B0 RID: 17328 RVA: 0x00253A14 File Offset: 0x00251C14
 	private void OnConduitTick(float dt)
 	{
 		bool value = false;
@@ -142,7 +137,6 @@ public class ElementFilter : KMonoBehaviour, ISaveLoadable, ISecondaryOutput
 		this.operational.SetActive(value, false);
 	}
 
-	// Token: 0x060043B1 RID: 17329 RVA: 0x00253C18 File Offset: 0x00251E18
 	private void UpdateConduitExistsStatus()
 	{
 		bool flag = RequireOutputs.IsConnected(this.filteredCell, this.portInfo.conduitType);
@@ -168,7 +162,6 @@ public class ElementFilter : KMonoBehaviour, ISaveLoadable, ISecondaryOutput
 		}
 	}
 
-	// Token: 0x060043B2 RID: 17330 RVA: 0x00253CCC File Offset: 0x00251ECC
 	private void UpdateConduitBlockedStatus()
 	{
 		bool flag = Conduit.GetFlowManager(this.portInfo.conduitType).IsConduitEmpty(this.filteredCell);
@@ -180,14 +173,12 @@ public class ElementFilter : KMonoBehaviour, ISaveLoadable, ISecondaryOutput
 		}
 	}
 
-	// Token: 0x060043B3 RID: 17331 RVA: 0x00253D38 File Offset: 0x00251F38
 	private void OnFilterChanged(Tag tag)
 	{
 		bool on = !tag.IsValid || tag == GameTags.Void;
 		base.GetComponent<KSelectable>().ToggleStatusItem(Db.Get().BuildingStatusItems.NoFilterElementSelected, on, null);
 	}
 
-	// Token: 0x060043B4 RID: 17332 RVA: 0x00253D7C File Offset: 0x00251F7C
 	private void InitializeStatusItems()
 	{
 		if (ElementFilter.filterStatusItem == null)
@@ -210,7 +201,6 @@ public class ElementFilter : KMonoBehaviour, ISaveLoadable, ISecondaryOutput
 		}
 	}
 
-	// Token: 0x060043B5 RID: 17333 RVA: 0x00253DF8 File Offset: 0x00251FF8
 	private bool ShowInUtilityOverlay(HashedString mode, object data)
 	{
 		bool result = false;
@@ -229,65 +219,49 @@ public class ElementFilter : KMonoBehaviour, ISaveLoadable, ISecondaryOutput
 		return result;
 	}
 
-	// Token: 0x060043B6 RID: 17334 RVA: 0x000D033E File Offset: 0x000CE53E
 	public bool HasSecondaryConduitType(ConduitType type)
 	{
 		return this.portInfo.conduitType == type;
 	}
 
-	// Token: 0x060043B7 RID: 17335 RVA: 0x000D034E File Offset: 0x000CE54E
 	public CellOffset GetSecondaryConduitOffset(ConduitType type)
 	{
 		return this.portInfo.offset;
 	}
 
-	// Token: 0x060043B8 RID: 17336 RVA: 0x000D035B File Offset: 0x000CE55B
 	public int GetFilteredCell()
 	{
 		return this.filteredCell;
 	}
 
-	// Token: 0x04002EDA RID: 11994
 	[SerializeField]
 	public ConduitPortInfo portInfo;
 
-	// Token: 0x04002EDB RID: 11995
 	[MyCmpReq]
 	private Operational operational;
 
-	// Token: 0x04002EDC RID: 11996
 	[MyCmpReq]
 	private Building building;
 
-	// Token: 0x04002EDD RID: 11997
 	[MyCmpReq]
 	private KSelectable selectable;
 
-	// Token: 0x04002EDE RID: 11998
 	[MyCmpReq]
 	private Filterable filterable;
 
-	// Token: 0x04002EDF RID: 11999
 	private Guid needsConduitStatusItemGuid;
 
-	// Token: 0x04002EE0 RID: 12000
 	private Guid conduitBlockedStatusItemGuid;
 
-	// Token: 0x04002EE1 RID: 12001
 	private int inputCell = -1;
 
-	// Token: 0x04002EE2 RID: 12002
 	private int outputCell = -1;
 
-	// Token: 0x04002EE3 RID: 12003
 	private int filteredCell = -1;
 
-	// Token: 0x04002EE4 RID: 12004
 	private FlowUtilityNetwork.NetworkItem itemFilter;
 
-	// Token: 0x04002EE5 RID: 12005
 	private HandleVector<int>.Handle partitionerEntry;
 
-	// Token: 0x04002EE6 RID: 12006
 	private static StatusItem filterStatusItem;
 }

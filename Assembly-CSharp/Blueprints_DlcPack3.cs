@@ -1,16 +1,13 @@
 ﻿using System;
 using Database;
 
-// Token: 0x020009A9 RID: 2473
 public class Blueprints_DlcPack3 : BlueprintProvider
 {
-	// Token: 0x06002C3C RID: 11324 RVA: 0x000AA12F File Offset: 0x000A832F
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.DLC3;
 	}
 
-	// Token: 0x06002C3D RID: 11325 RVA: 0x001F09D4 File Offset: 0x001EEBD4
 	public override void SetupBlueprints()
 	{
 		base.AddClothing(BlueprintProvider.ClothingType.AtmoSuitBelt, PermitRarity.Universal, "permit_atmo_belt_3tone_purple", "atmo_belt_3tone_purple_kanim");

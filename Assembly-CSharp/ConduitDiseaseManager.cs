@@ -3,10 +3,8 @@ using Klei;
 using Klei.AI;
 using Klei.AI.DiseaseGrowthRules;
 
-// Token: 0x02001112 RID: 4370
 public class ConduitDiseaseManager : KCompactedVector<ConduitDiseaseManager.Data>
 {
-	// Token: 0x06005960 RID: 22880 RVA: 0x0029D508 File Offset: 0x0029B708
 	private static ElemGrowthInfo GetGrowthInfo(byte disease_idx, ushort elem_idx)
 	{
 		ElemGrowthInfo result;
@@ -21,13 +19,11 @@ public class ConduitDiseaseManager : KCompactedVector<ConduitDiseaseManager.Data
 		return result;
 	}
 
-	// Token: 0x06005961 RID: 22881 RVA: 0x000DEAE0 File Offset: 0x000DCCE0
 	public ConduitDiseaseManager(ConduitTemperatureManager temperature_manager) : base(0)
 	{
 		this.temperatureManager = temperature_manager;
 	}
 
-	// Token: 0x06005962 RID: 22882 RVA: 0x0029D544 File Offset: 0x0029B744
 	public HandleVector<int>.Handle Allocate(HandleVector<int>.Handle temperature_handle, ref ConduitFlow.ConduitContents contents)
 	{
 		ushort elementIndex = ElementLoader.GetElementIndex(contents.element);
@@ -35,7 +31,6 @@ public class ConduitDiseaseManager : KCompactedVector<ConduitDiseaseManager.Data
 		return base.Allocate(initial_data);
 	}
 
-	// Token: 0x06005963 RID: 22883 RVA: 0x0029D580 File Offset: 0x0029B780
 	public void SetData(HandleVector<int>.Handle handle, ref ConduitFlow.ConduitContents contents)
 	{
 		ConduitDiseaseManager.Data data = base.GetData(handle);
@@ -49,7 +44,6 @@ public class ConduitDiseaseManager : KCompactedVector<ConduitDiseaseManager.Data
 		base.SetData(handle, data);
 	}
 
-	// Token: 0x06005964 RID: 22884 RVA: 0x0029D5E4 File Offset: 0x0029B7E4
 	public void Sim200ms(float dt)
 	{
 		using (new KProfiler.Region("ConduitDiseaseManager.SimUpdate", null))
@@ -79,7 +73,6 @@ public class ConduitDiseaseManager : KCompactedVector<ConduitDiseaseManager.Data
 		}
 	}
 
-	// Token: 0x06005965 RID: 22885 RVA: 0x0029D734 File Offset: 0x0029B934
 	public void ModifyDiseaseCount(HandleVector<int>.Handle h, int disease_count_delta)
 	{
 		ConduitDiseaseManager.Data data = base.GetData(h);
@@ -91,7 +84,6 @@ public class ConduitDiseaseManager : KCompactedVector<ConduitDiseaseManager.Data
 		base.SetData(h, data);
 	}
 
-	// Token: 0x06005966 RID: 22886 RVA: 0x0029D77C File Offset: 0x0029B97C
 	public void AddDisease(HandleVector<int>.Handle h, byte disease_idx, int disease_count)
 	{
 		ConduitDiseaseManager.Data data = base.GetData(h);
@@ -101,13 +93,10 @@ public class ConduitDiseaseManager : KCompactedVector<ConduitDiseaseManager.Data
 		base.SetData(h, data);
 	}
 
-	// Token: 0x04003F93 RID: 16275
 	private ConduitTemperatureManager temperatureManager;
 
-	// Token: 0x02001113 RID: 4371
 	public struct Data
 	{
-		// Token: 0x06005967 RID: 22887 RVA: 0x000DEAF0 File Offset: 0x000DCCF0
 		public Data(HandleVector<int>.Handle temperature_handle, ushort elem_idx, float mass, byte disease_idx, int disease_count)
 		{
 			this.diseaseIdx = disease_idx;
@@ -119,25 +108,18 @@ public class ConduitDiseaseManager : KCompactedVector<ConduitDiseaseManager.Data
 			this.growthInfo = ConduitDiseaseManager.GetGrowthInfo(disease_idx, elem_idx);
 		}
 
-		// Token: 0x04003F94 RID: 16276
 		public byte diseaseIdx;
 
-		// Token: 0x04003F95 RID: 16277
 		public ushort elemIdx;
 
-		// Token: 0x04003F96 RID: 16278
 		public int diseaseCount;
 
-		// Token: 0x04003F97 RID: 16279
 		public float accumulatedError;
 
-		// Token: 0x04003F98 RID: 16280
 		public float mass;
 
-		// Token: 0x04003F99 RID: 16281
 		public HandleVector<int>.Handle temperatureHandle;
 
-		// Token: 0x04003F9A RID: 16282
 		public ElemGrowthInfo growthInfo;
 	}
 }

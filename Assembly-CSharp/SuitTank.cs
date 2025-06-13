@@ -5,12 +5,10 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001A2A RID: 6698
 [SerializationConfig(MemberSerialization.OptIn)]
 [AddComponentMenu("KMonoBehaviour/scripts/SuitTank")]
 public class SuitTank : KMonoBehaviour, IGameObjectEffectDescriptor, OxygenBreather.IGasProvider
 {
-	// Token: 0x06008B77 RID: 35703 RVA: 0x000FFCD4 File Offset: 0x000FDED4
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -18,7 +16,6 @@ public class SuitTank : KMonoBehaviour, IGameObjectEffectDescriptor, OxygenBreat
 		base.Subscribe<SuitTank>(-170173755, SuitTank.OnUnequippedDelegate);
 	}
 
-	// Token: 0x06008B78 RID: 35704 RVA: 0x0036DCE4 File Offset: 0x0036BEE4
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -30,7 +27,6 @@ public class SuitTank : KMonoBehaviour, IGameObjectEffectDescriptor, OxygenBreat
 		this.equippable = base.GetComponent<Equippable>();
 	}
 
-	// Token: 0x06008B79 RID: 35705 RVA: 0x000FFCFE File Offset: 0x000FDEFE
 	public float GetTankAmount()
 	{
 		if (this.storage == null)
@@ -40,31 +36,26 @@ public class SuitTank : KMonoBehaviour, IGameObjectEffectDescriptor, OxygenBreat
 		return this.storage.GetMassAvailable(this.elementTag);
 	}
 
-	// Token: 0x06008B7A RID: 35706 RVA: 0x000FFD2B File Offset: 0x000FDF2B
 	public float PercentFull()
 	{
 		return this.GetTankAmount() / this.capacity;
 	}
 
-	// Token: 0x06008B7B RID: 35707 RVA: 0x000FFD3A File Offset: 0x000FDF3A
 	public bool IsEmpty()
 	{
 		return this.GetTankAmount() <= 0f;
 	}
 
-	// Token: 0x06008B7C RID: 35708 RVA: 0x000FFD4C File Offset: 0x000FDF4C
 	public bool IsFull()
 	{
 		return this.PercentFull() >= 1f;
 	}
 
-	// Token: 0x06008B7D RID: 35709 RVA: 0x000FFD5E File Offset: 0x000FDF5E
 	public bool NeedsRecharging()
 	{
 		return this.PercentFull() < 0.25f;
 	}
 
-	// Token: 0x06008B7E RID: 35710 RVA: 0x0036DD48 File Offset: 0x0036BF48
 	public List<Descriptor> GetDescriptors(GameObject go)
 	{
 		List<Descriptor> list = new List<Descriptor>();
@@ -76,7 +67,6 @@ public class SuitTank : KMonoBehaviour, IGameObjectEffectDescriptor, OxygenBreat
 		return list;
 	}
 
-	// Token: 0x06008B7F RID: 35711 RVA: 0x0036DDCC File Offset: 0x0036BFCC
 	private void OnEquipped(object data)
 	{
 		Equipment equipment = (Equipment)data;
@@ -91,7 +81,6 @@ public class SuitTank : KMonoBehaviour, IGameObjectEffectDescriptor, OxygenBreat
 		targetGameObject.AddTag(GameTags.HasSuitTank);
 	}
 
-	// Token: 0x06008B80 RID: 35712 RVA: 0x0036DE4C File Offset: 0x0036C04C
 	private void OnUnequipped(object data)
 	{
 		Equipment equipment = (Equipment)data;
@@ -109,17 +98,14 @@ public class SuitTank : KMonoBehaviour, IGameObjectEffectDescriptor, OxygenBreat
 		}
 	}
 
-	// Token: 0x06008B81 RID: 35713 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSetOxygenBreather(OxygenBreather oxygen_breather)
 	{
 	}
 
-	// Token: 0x06008B82 RID: 35714 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnClearOxygenBreather(OxygenBreather oxygen_breather)
 	{
 	}
 
-	// Token: 0x06008B83 RID: 35715 RVA: 0x0036DECC File Offset: 0x0036C0CC
 	public bool ConsumeGas(OxygenBreather oxygen_breather, float amount)
 	{
 		if (this.IsEmpty())
@@ -136,7 +122,6 @@ public class SuitTank : KMonoBehaviour, IGameObjectEffectDescriptor, OxygenBreat
 		return true;
 	}
 
-	// Token: 0x06008B84 RID: 35716 RVA: 0x0036DF30 File Offset: 0x0036C130
 	public bool ShouldEmitCO2()
 	{
 		bool flag = base.GetComponent<KPrefabID>().HasTag(GameTags.AirtightSuit);
@@ -148,7 +133,6 @@ public class SuitTank : KMonoBehaviour, IGameObjectEffectDescriptor, OxygenBreat
 		return !flag && !flag2;
 	}
 
-	// Token: 0x06008B85 RID: 35717 RVA: 0x0036DF64 File Offset: 0x0036C164
 	public bool ShouldStoreCO2()
 	{
 		bool flag = base.GetComponent<KPrefabID>().HasTag(GameTags.AirtightSuit);
@@ -160,7 +144,6 @@ public class SuitTank : KMonoBehaviour, IGameObjectEffectDescriptor, OxygenBreat
 		return flag && !flag2;
 	}
 
-	// Token: 0x06008B86 RID: 35718 RVA: 0x0036DF98 File Offset: 0x0036C198
 	public bool IsOwnerBionic()
 	{
 		bool result = false;
@@ -179,13 +162,11 @@ public class SuitTank : KMonoBehaviour, IGameObjectEffectDescriptor, OxygenBreat
 		return result;
 	}
 
-	// Token: 0x06008B87 RID: 35719 RVA: 0x000FFD6D File Offset: 0x000FDF6D
 	public bool IsLowOxygen()
 	{
 		return this.NeedsRecharging();
 	}
 
-	// Token: 0x06008B88 RID: 35720 RVA: 0x0036E014 File Offset: 0x0036C214
 	[ContextMenu("SetToRefillAmount")]
 	public void SetToRefillAmount()
 	{
@@ -197,14 +178,12 @@ public class SuitTank : KMonoBehaviour, IGameObjectEffectDescriptor, OxygenBreat
 		}
 	}
 
-	// Token: 0x06008B89 RID: 35721 RVA: 0x000FFD75 File Offset: 0x000FDF75
 	[ContextMenu("Empty")]
 	public void Empty()
 	{
 		this.storage.ConsumeIgnoringDisease(this.elementTag, this.GetTankAmount());
 	}
 
-	// Token: 0x06008B8A RID: 35722 RVA: 0x000FFD8E File Offset: 0x000FDF8E
 	[ContextMenu("Fill Tank")]
 	public void FillTank()
 	{
@@ -212,55 +191,42 @@ public class SuitTank : KMonoBehaviour, IGameObjectEffectDescriptor, OxygenBreat
 		this.storage.AddGasChunk(SimHashes.Oxygen, this.capacity, 15f, 0, 0, false, false);
 	}
 
-	// Token: 0x06008B8B RID: 35723 RVA: 0x000FFDB6 File Offset: 0x000FDFB6
 	public bool HasOxygen()
 	{
 		return !this.IsEmpty();
 	}
 
-	// Token: 0x06008B8C RID: 35724 RVA: 0x000B1628 File Offset: 0x000AF828
 	public bool IsBlocked()
 	{
 		return false;
 	}
 
-	// Token: 0x04006949 RID: 26953
 	public SafeCellQuery.SafeFlags SafeCellFlagsToIgnoreOnEquipped = (SafeCellQuery.SafeFlags)464;
 
-	// Token: 0x0400694A RID: 26954
 	[Serialize]
 	public string element;
 
-	// Token: 0x0400694B RID: 26955
 	[Serialize]
 	public float amount;
 
-	// Token: 0x0400694C RID: 26956
 	public Tag elementTag;
 
-	// Token: 0x0400694D RID: 26957
 	[MyCmpReq]
 	public Storage storage;
 
-	// Token: 0x0400694E RID: 26958
 	public float capacity;
 
-	// Token: 0x0400694F RID: 26959
 	public const float REFILL_PERCENT = 0.25f;
 
-	// Token: 0x04006950 RID: 26960
 	public bool underwaterSupport;
 
-	// Token: 0x04006951 RID: 26961
 	private Equippable equippable;
 
-	// Token: 0x04006952 RID: 26962
 	private static readonly EventSystem.IntraObjectHandler<SuitTank> OnEquippedDelegate = new EventSystem.IntraObjectHandler<SuitTank>(delegate(SuitTank component, object data)
 	{
 		component.OnEquipped(data);
 	});
 
-	// Token: 0x04006953 RID: 26963
 	private static readonly EventSystem.IntraObjectHandler<SuitTank> OnUnequippedDelegate = new EventSystem.IntraObjectHandler<SuitTank>(delegate(SuitTank component, object data)
 	{
 		component.OnUnequipped(data);

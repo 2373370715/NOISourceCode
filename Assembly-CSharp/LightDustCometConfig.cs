@@ -2,22 +2,18 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x0200046E RID: 1134
 public class LightDustCometConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x06001333 RID: 4915 RVA: 0x000AA117 File Offset: 0x000A8317
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06001334 RID: 4916 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x06001335 RID: 4917 RVA: 0x00198060 File Offset: 0x00196260
 	public GameObject CreatePrefab()
 	{
 		GameObject gameObject = EntityTemplates.CreateEntity(LightDustCometConfig.ID, UI.SPACEDESTINATIONS.COMETS.LIGHTDUSTCOMET.NAME, true);
@@ -54,16 +50,13 @@ public class LightDustCometConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x06001336 RID: 4918 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject go)
 	{
 	}
 
-	// Token: 0x06001337 RID: 4919 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject go)
 	{
 	}
 
-	// Token: 0x04000D4E RID: 3406
 	public static string ID = "LightDustComet";
 }

@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020004ED RID: 1261
 public class OxidizerTankLiquidClusterConfig : IBuildingConfig
 {
-	// Token: 0x060015B0 RID: 5552 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x060015B1 RID: 5553 RVA: 0x001A0038 File Offset: 0x0019E238
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "OxidizerTankLiquidCluster";
@@ -47,7 +44,6 @@ public class OxidizerTankLiquidClusterConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060015B2 RID: 5554 RVA: 0x001A0114 File Offset: 0x0019E314
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -59,7 +55,6 @@ public class OxidizerTankLiquidClusterConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
 	}
 
-	// Token: 0x060015B3 RID: 5555 RVA: 0x001A0178 File Offset: 0x0019E378
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		Storage storage = go.AddOrGet<Storage>();
@@ -101,9 +96,7 @@ public class OxidizerTankLiquidClusterConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x04000EEF RID: 3823
 	public const string ID = "OxidizerTankLiquidCluster";
 
-	// Token: 0x04000EF0 RID: 3824
 	public const float FuelCapacity = 450f;
 }

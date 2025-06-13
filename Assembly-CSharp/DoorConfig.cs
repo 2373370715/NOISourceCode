@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000A7 RID: 167
 public class DoorConfig : IBuildingConfig
 {
-	// Token: 0x060002AE RID: 686 RVA: 0x00151F70 File Offset: 0x00150170
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "Door";
@@ -34,7 +32,6 @@ public class DoorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060002AF RID: 687 RVA: 0x0015202C File Offset: 0x0015022C
 	public static List<LogicPorts.Port> CreateSingleInputPortList(CellOffset offset)
 	{
 		return new List<LogicPorts.Port>
@@ -43,7 +40,6 @@ public class DoorConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x060002B0 RID: 688 RVA: 0x00152070 File Offset: 0x00150270
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		Door door = go.AddOrGet<Door>();
@@ -61,12 +57,10 @@ public class DoorConfig : IBuildingConfig
 		UnityEngine.Object.DestroyImmediate(go.GetComponent<BuildingEnabledButton>());
 	}
 
-	// Token: 0x060002B1 RID: 689 RVA: 0x000AAF4C File Offset: 0x000A914C
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		go.AddTag(GameTags.NoCreatureIdling);
 	}
 
-	// Token: 0x040001BA RID: 442
 	public const string ID = "Door";
 }

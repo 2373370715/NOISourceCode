@@ -6,10 +6,8 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001FB0 RID: 8112
 public class ComplexFabricatorSideScreen : SideScreenContent
 {
-	// Token: 0x0600AB81 RID: 43905 RVA: 0x00419860 File Offset: 0x00417A60
 	public override string GetTitle()
 	{
 		if (this.targetFab == null)
@@ -19,14 +17,12 @@ public class ComplexFabricatorSideScreen : SideScreenContent
 		return string.Format(Strings.Get(this.titleKey), this.targetFab.GetProperName());
 	}
 
-	// Token: 0x0600AB82 RID: 43906 RVA: 0x004198BC File Offset: 0x00417ABC
 	public override bool IsValidForTarget(GameObject target)
 	{
 		ComplexFabricator component = target.GetComponent<ComplexFabricator>();
 		return component != null && component.enabled;
 	}
 
-	// Token: 0x0600AB83 RID: 43907 RVA: 0x004198E4 File Offset: 0x00417AE4
 	public override void SetTarget(GameObject target)
 	{
 		ComplexFabricator component = target.GetComponent<ComplexFabricator>();
@@ -44,7 +40,6 @@ public class ComplexFabricatorSideScreen : SideScreenContent
 		this.UpdateQueueCountLabels(null);
 	}
 
-	// Token: 0x0600AB84 RID: 43908 RVA: 0x00419954 File Offset: 0x00417B54
 	private void UpdateQueueCountLabels(object data = null)
 	{
 		ComplexRecipe[] recipes = this.targetFab.GetRecipes();
@@ -73,7 +68,6 @@ public class ComplexFabricatorSideScreen : SideScreenContent
 		this.nextOrderLabel.text = string.Format(UI.UISIDESCREENS.FABRICATORSIDESCREEN.NEXT_ORDER, UI.UISIDESCREENS.FABRICATORSIDESCREEN.NO_WORKABLE_ORDER);
 	}
 
-	// Token: 0x0600AB85 RID: 43909 RVA: 0x00419A70 File Offset: 0x00417C70
 	protected override void OnShow(bool show)
 	{
 		if (show)
@@ -90,7 +84,6 @@ public class ComplexFabricatorSideScreen : SideScreenContent
 		base.OnShow(show);
 	}
 
-	// Token: 0x0600AB86 RID: 43910 RVA: 0x00419ACC File Offset: 0x00417CCC
 	public void Initialize(ComplexFabricator target)
 	{
 		if (target == null)
@@ -300,7 +293,6 @@ public class ComplexFabricatorSideScreen : SideScreenContent
 		this.RefreshIngredientAvailabilityVis();
 	}
 
-	// Token: 0x0600AB87 RID: 43911 RVA: 0x0041A564 File Offset: 0x00418764
 	public void RefreshQueueCountDisplayForRecipe(ComplexRecipe recipe, ComplexFabricator fabricator)
 	{
 		GameObject gameObject = this.recipeToggles.Find((GameObject match) => this.recipeMap[match] == recipe);
@@ -310,7 +302,6 @@ public class ComplexFabricatorSideScreen : SideScreenContent
 		}
 	}
 
-	// Token: 0x0600AB88 RID: 43912 RVA: 0x0041A5B0 File Offset: 0x004187B0
 	private void RefreshQueueCountDisplay(GameObject entryGO, ComplexFabricator fabricator)
 	{
 		HierarchyReferences component = entryGO.GetComponent<HierarchyReferences>();
@@ -331,7 +322,6 @@ public class ComplexFabricatorSideScreen : SideScreenContent
 		}
 	}
 
-	// Token: 0x0600AB89 RID: 43913 RVA: 0x0041A69C File Offset: 0x0041889C
 	private void ToggleClicked(KToggle toggle)
 	{
 		if (!this.recipeMap.ContainsKey(toggle.gameObject))
@@ -362,7 +352,6 @@ public class ComplexFabricatorSideScreen : SideScreenContent
 		DetailsScreen.Instance.ClearSecondarySideScreen();
 	}
 
-	// Token: 0x0600AB8A RID: 43914 RVA: 0x0041A794 File Offset: 0x00418994
 	public void CycleRecipe(int increment)
 	{
 		int num = 0;
@@ -378,7 +367,6 @@ public class ComplexFabricatorSideScreen : SideScreenContent
 		this.ToggleClicked(this.recipeToggles[num2].GetComponent<KToggle>());
 	}
 
-	// Token: 0x0600AB8B RID: 43915 RVA: 0x0041A804 File Offset: 0x00418A04
 	private bool HasAnyRecipeRequirements(ComplexRecipe recipe)
 	{
 		foreach (ComplexRecipe.RecipeElement recipeElement in recipe.ingredients)
@@ -391,7 +379,6 @@ public class ComplexFabricatorSideScreen : SideScreenContent
 		return false;
 	}
 
-	// Token: 0x0600AB8C RID: 43916 RVA: 0x0041A8A4 File Offset: 0x00418AA4
 	private bool HasAllRecipeRequirements(ComplexRecipe recipe)
 	{
 		bool result = true;
@@ -406,7 +393,6 @@ public class ComplexFabricatorSideScreen : SideScreenContent
 		return result;
 	}
 
-	// Token: 0x0600AB8D RID: 43917 RVA: 0x0041A948 File Offset: 0x00418B48
 	private bool AnyRecipeRequirementsDiscovered(ComplexRecipe recipe)
 	{
 		foreach (ComplexRecipe.RecipeElement recipeElement in recipe.ingredients)
@@ -419,7 +405,6 @@ public class ComplexFabricatorSideScreen : SideScreenContent
 		return false;
 	}
 
-	// Token: 0x0600AB8E RID: 43918 RVA: 0x0041A984 File Offset: 0x00418B84
 	private bool AllRecipeRequirementsDiscovered(ComplexRecipe recipe)
 	{
 		foreach (ComplexRecipe.RecipeElement recipeElement in recipe.ingredients)
@@ -432,13 +417,11 @@ public class ComplexFabricatorSideScreen : SideScreenContent
 		return true;
 	}
 
-	// Token: 0x0600AB8F RID: 43919 RVA: 0x00113EEB File Offset: 0x001120EB
 	private void Update()
 	{
 		this.RefreshIngredientAvailabilityVis();
 	}
 
-	// Token: 0x0600AB90 RID: 43920 RVA: 0x0041A9C0 File Offset: 0x00418BC0
 	private void RefreshIngredientAvailabilityVis()
 	{
 		foreach (KeyValuePair<GameObject, ComplexRecipe> keyValuePair in this.recipeMap)
@@ -469,7 +452,6 @@ public class ComplexFabricatorSideScreen : SideScreenContent
 		}
 	}
 
-	// Token: 0x0600AB91 RID: 43921 RVA: 0x0041AAB4 File Offset: 0x00418CB4
 	private Element[] GetRecipeElements(Recipe recipe)
 	{
 		Element[] array = new Element[recipe.Ingredients.Count];
@@ -488,131 +470,92 @@ public class ComplexFabricatorSideScreen : SideScreenContent
 		return array;
 	}
 
-	// Token: 0x040086FD RID: 34557
 	[Header("Recipe List")]
 	[SerializeField]
 	private GameObject recipeGrid;
 
-	// Token: 0x040086FE RID: 34558
 	[Header("Recipe button variants")]
 	[SerializeField]
 	private GameObject recipeButton;
 
-	// Token: 0x040086FF RID: 34559
 	[SerializeField]
 	private GameObject recipeButtonMultiple;
 
-	// Token: 0x04008700 RID: 34560
 	[SerializeField]
 	private GameObject recipeButtonQueueHybrid;
 
-	// Token: 0x04008701 RID: 34561
 	[SerializeField]
 	private GameObject recipeCategoryHeader;
 
-	// Token: 0x04008702 RID: 34562
 	[SerializeField]
 	private Sprite buttonSelectedBG;
 
-	// Token: 0x04008703 RID: 34563
 	[SerializeField]
 	private Sprite buttonNormalBG;
 
-	// Token: 0x04008704 RID: 34564
 	[SerializeField]
 	private Sprite elementPlaceholderSpr;
 
-	// Token: 0x04008705 RID: 34565
 	[SerializeField]
 	public Sprite radboltSprite;
 
-	// Token: 0x04008706 RID: 34566
 	private KToggle selectedToggle;
 
-	// Token: 0x04008707 RID: 34567
 	public LayoutElement buttonScrollContainer;
 
-	// Token: 0x04008708 RID: 34568
 	public RectTransform buttonContentContainer;
 
-	// Token: 0x04008709 RID: 34569
 	[SerializeField]
 	private GameObject elementContainer;
 
-	// Token: 0x0400870A RID: 34570
 	[SerializeField]
 	private LocText currentOrderLabel;
 
-	// Token: 0x0400870B RID: 34571
 	[SerializeField]
 	private LocText nextOrderLabel;
 
-	// Token: 0x0400870C RID: 34572
 	private Dictionary<ComplexFabricator, int> selectedRecipeFabricatorMap = new Dictionary<ComplexFabricator, int>();
 
-	// Token: 0x0400870D RID: 34573
 	public EventReference createOrderSound;
 
-	// Token: 0x0400870E RID: 34574
 	[SerializeField]
 	private RectTransform content;
 
-	// Token: 0x0400870F RID: 34575
 	[SerializeField]
 	private LocText subtitleLabel;
 
-	// Token: 0x04008710 RID: 34576
 	[SerializeField]
 	private LocText noRecipesDiscoveredLabel;
 
-	// Token: 0x04008711 RID: 34577
 	public TextStyleSetting styleTooltipHeader;
 
-	// Token: 0x04008712 RID: 34578
 	public TextStyleSetting styleTooltipBody;
 
-	// Token: 0x04008713 RID: 34579
 	private ComplexFabricator targetFab;
 
-	// Token: 0x04008714 RID: 34580
 	private ComplexRecipe selectedRecipe;
 
-	// Token: 0x04008715 RID: 34581
 	private Dictionary<GameObject, ComplexRecipe> recipeMap;
 
-	// Token: 0x04008716 RID: 34582
 	private Dictionary<string, GameObject> recipeCategories = new Dictionary<string, GameObject>();
 
-	// Token: 0x04008717 RID: 34583
 	private List<GameObject> recipeToggles = new List<GameObject>();
 
-	// Token: 0x04008718 RID: 34584
 	public SelectedRecipeQueueScreen recipeScreenPrefab;
 
-	// Token: 0x04008719 RID: 34585
 	private SelectedRecipeQueueScreen recipeScreen;
 
-	// Token: 0x0400871A RID: 34586
 	private int targetOrdersUpdatedSubHandle = -1;
 
-	// Token: 0x02001FB1 RID: 8113
 	public enum StyleSetting
 	{
-		// Token: 0x0400871C RID: 34588
 		GridResult,
-		// Token: 0x0400871D RID: 34589
 		ListResult,
-		// Token: 0x0400871E RID: 34590
 		GridInput,
-		// Token: 0x0400871F RID: 34591
 		ListInput,
-		// Token: 0x04008720 RID: 34592
 		ListInputOutput,
-		// Token: 0x04008721 RID: 34593
 		GridInputOutput,
-		// Token: 0x04008722 RID: 34594
 		ClassicFabricator,
-		// Token: 0x04008723 RID: 34595
 		ListQueueHybrid
 	}
 }

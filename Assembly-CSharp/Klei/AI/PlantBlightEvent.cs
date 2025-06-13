@@ -6,10 +6,8 @@ using UnityEngine;
 
 namespace Klei.AI
 {
-	// Token: 0x02003CC6 RID: 15558
 	public class PlantBlightEvent : GameplayEvent<PlantBlightEvent.StatesInstance>
 	{
-		// Token: 0x0600EED4 RID: 61140 RVA: 0x004E8310 File Offset: 0x004E6510
 		public PlantBlightEvent(string id, string targetPlantPrefab, float infectionDuration, float incubationDuration) : base(id, 0, 0)
 		{
 			this.targetPlantPrefab = targetPlantPrefab;
@@ -19,28 +17,21 @@ namespace Klei.AI
 			this.description = GAMEPLAY_EVENTS.EVENT_TYPES.PLANT_BLIGHT.DESCRIPTION;
 		}
 
-		// Token: 0x0600EED5 RID: 61141 RVA: 0x00144B11 File Offset: 0x00142D11
 		public override StateMachine.Instance GetSMI(GameplayEventManager manager, GameplayEventInstance eventInstance)
 		{
 			return new PlantBlightEvent.StatesInstance(manager, eventInstance, this);
 		}
 
-		// Token: 0x0400EAA1 RID: 60065
 		private const float BLIGHT_DISTANCE = 6f;
 
-		// Token: 0x0400EAA2 RID: 60066
 		public string targetPlantPrefab;
 
-		// Token: 0x0400EAA3 RID: 60067
 		public float infectionDuration;
 
-		// Token: 0x0400EAA4 RID: 60068
 		public float incubationDuration;
 
-		// Token: 0x02003CC7 RID: 15559
 		public class States : GameplayEventStateMachine<PlantBlightEvent.States, PlantBlightEvent.StatesInstance, GameplayEventManager, PlantBlightEvent>
 		{
-			// Token: 0x0600EED6 RID: 61142 RVA: 0x004E835C File Offset: 0x004E655C
 			public override void InitializeStates(out StateMachine.BaseState default_state)
 			{
 				base.InitializeStates(out default_state);
@@ -62,7 +53,6 @@ namespace Klei.AI
 				this.finished.DoNotification((PlantBlightEvent.StatesInstance smi) => this.CreateSuccessNotification(smi, this.GenerateEventPopupData(smi))).ReturnSuccess();
 			}
 
-			// Token: 0x0600EED7 RID: 61143 RVA: 0x004E84BC File Offset: 0x004E66BC
 			public override EventInfoData GenerateEventPopupData(PlantBlightEvent.StatesInstance smi)
 			{
 				EventInfoData eventInfoData = new EventInfoData(smi.gameplayEvent.title, smi.gameplayEvent.description, smi.gameplayEvent.animFileName);
@@ -73,14 +63,12 @@ namespace Klei.AI
 				return eventInfoData;
 			}
 
-			// Token: 0x0600EED8 RID: 61144 RVA: 0x004E8534 File Offset: 0x004E6734
 			private Notification CreateSuccessNotification(PlantBlightEvent.StatesInstance smi, EventInfoData eventInfoData)
 			{
 				string plantName = smi.gameplayEvent.targetPlantPrefab.ToTag().ProperName();
 				return new Notification(GAMEPLAY_EVENTS.EVENT_TYPES.PLANT_BLIGHT.SUCCESS.Replace("{plant}", plantName), NotificationType.Neutral, (List<Notification> list, object data) => GAMEPLAY_EVENTS.EVENT_TYPES.PLANT_BLIGHT.SUCCESS_TOOLTIP.Replace("{plant}", plantName), null, true, 0f, null, null, null, true, false, false);
 			}
 
-			// Token: 0x0600EED9 RID: 61145 RVA: 0x004E8598 File Offset: 0x004E6798
 			private bool NoBlightedPlants(PlantBlightEvent.StatesInstance smi, object obj)
 			{
 				GameObject gameObject = (GameObject)obj;
@@ -98,42 +86,31 @@ namespace Klei.AI
 				return true;
 			}
 
-			// Token: 0x0400EAA5 RID: 60069
 			public GameStateMachine<PlantBlightEvent.States, PlantBlightEvent.StatesInstance, GameplayEventManager, object>.State planning;
 
-			// Token: 0x0400EAA6 RID: 60070
 			public PlantBlightEvent.States.RunningStates running;
 
-			// Token: 0x0400EAA7 RID: 60071
 			public GameStateMachine<PlantBlightEvent.States, PlantBlightEvent.StatesInstance, GameplayEventManager, object>.State finished;
 
-			// Token: 0x0400EAA8 RID: 60072
 			public StateMachine<PlantBlightEvent.States, PlantBlightEvent.StatesInstance, GameplayEventManager, object>.Signal doFinish;
 
-			// Token: 0x0400EAA9 RID: 60073
 			public StateMachine<PlantBlightEvent.States, PlantBlightEvent.StatesInstance, GameplayEventManager, object>.FloatParameter nextInfection;
 
-			// Token: 0x02003CC8 RID: 15560
 			public class RunningStates : GameStateMachine<PlantBlightEvent.States, PlantBlightEvent.StatesInstance, GameplayEventManager, object>.State
 			{
-				// Token: 0x0400EAAA RID: 60074
 				public GameStateMachine<PlantBlightEvent.States, PlantBlightEvent.StatesInstance, GameplayEventManager, object>.State waiting;
 
-				// Token: 0x0400EAAB RID: 60075
 				public GameStateMachine<PlantBlightEvent.States, PlantBlightEvent.StatesInstance, GameplayEventManager, object>.State infect;
 			}
 		}
 
-		// Token: 0x02003CCC RID: 15564
 		public class StatesInstance : GameplayEventStateMachine<PlantBlightEvent.States, PlantBlightEvent.StatesInstance, GameplayEventManager, PlantBlightEvent>.GameplayEventStateMachineInstance
 		{
-			// Token: 0x0600EEE8 RID: 61160 RVA: 0x00144BAD File Offset: 0x00142DAD
 			public StatesInstance(GameplayEventManager master, GameplayEventInstance eventInstance, PlantBlightEvent blightEvent) : base(master, eventInstance, blightEvent)
 			{
 				this.startTime = Time.time;
 			}
 
-			// Token: 0x0600EEE9 RID: 61161 RVA: 0x004E8648 File Offset: 0x004E6848
 			public void InfectAPlant(bool initialInfection)
 			{
 				if (Time.time - this.startTime > base.smi.gameplayEvent.infectionDuration)
@@ -193,7 +170,6 @@ namespace Klei.AI
 				base.sm.nextInfection.Set(base.smi.gameplayEvent.incubationDuration, this, false);
 			}
 
-			// Token: 0x0400EAB2 RID: 60082
 			[Serialize]
 			private float startTime;
 		}

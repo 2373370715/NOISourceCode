@@ -1,12 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02001310 RID: 4880
 [SkipSaveFileSerialization]
 [AddComponentMenu("KMonoBehaviour/scripts/Exhaust")]
 public class Exhaust : KMonoBehaviour, ISim200ms
 {
-	// Token: 0x060063F5 RID: 25589 RVA: 0x000E5B68 File Offset: 0x000E3D68
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -16,26 +14,22 @@ public class Exhaust : KMonoBehaviour, ISim200ms
 		this.simRenderLoadBalance = true;
 	}
 
-	// Token: 0x060063F6 RID: 25590 RVA: 0x000E5BA5 File Offset: 0x000E3DA5
 	protected override void OnSpawn()
 	{
 		this.OnConduitStateChanged(null);
 	}
 
-	// Token: 0x060063F7 RID: 25591 RVA: 0x000E5BAE File Offset: 0x000E3DAE
 	private void OnConduitStateChanged(object data)
 	{
 		this.operational.SetActive(this.operational.IsOperational && !this.vent.IsBlocked, false);
 	}
 
-	// Token: 0x060063F8 RID: 25592 RVA: 0x000E5BDA File Offset: 0x000E3DDA
 	private void CalculateDiseaseTransfer(PrimaryElement item1, PrimaryElement item2, float transfer_rate, out int disease_to_item1, out int disease_to_item2)
 	{
 		disease_to_item1 = (int)((float)item2.DiseaseCount * transfer_rate);
 		disease_to_item2 = (int)((float)item1.DiseaseCount * transfer_rate);
 	}
 
-	// Token: 0x060063F9 RID: 25593 RVA: 0x002CA4B0 File Offset: 0x002C86B0
 	public void Sim200ms(float dt)
 	{
 		this.operational.SetFlag(Exhaust.canExhaust, !this.vent.IsBlocked);
@@ -63,13 +57,11 @@ public class Exhaust : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x060063FA RID: 25594 RVA: 0x000E5BF6 File Offset: 0x000E3DF6
 	public bool IsAnimating()
 	{
 		return this.isAnimating;
 	}
 
-	// Token: 0x060063FB RID: 25595 RVA: 0x002CA564 File Offset: 0x002C8764
 	private void UpdateEmission()
 	{
 		if (this.consumer.ConsumptionRate == 0f)
@@ -100,7 +92,6 @@ public class Exhaust : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x060063FC RID: 25596 RVA: 0x002CA5DC File Offset: 0x002C87DC
 	private bool EmitCommon(int cell, PrimaryElement primary_element, Exhaust.EmitDelegate emit)
 	{
 		if (primary_element.Mass <= 0f)
@@ -134,7 +125,6 @@ public class Exhaust : KMonoBehaviour, ISim200ms
 		return true;
 	}
 
-	// Token: 0x060063FD RID: 25597 RVA: 0x002CA704 File Offset: 0x002C8904
 	private void EmitLiquid(int cell)
 	{
 		int num = Grid.CellBelow(cell);
@@ -149,7 +139,6 @@ public class Exhaust : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x060063FE RID: 25598 RVA: 0x002CA7A0 File Offset: 0x002C89A0
 	private void EmitGas(int cell)
 	{
 		foreach (GameObject gameObject in this.storage.items)
@@ -162,63 +151,48 @@ public class Exhaust : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x040047D3 RID: 18387
 	[MyCmpGet]
 	private Vent vent;
 
-	// Token: 0x040047D4 RID: 18388
 	[MyCmpGet]
 	private Storage storage;
 
-	// Token: 0x040047D5 RID: 18389
 	[MyCmpGet]
 	private Operational operational;
 
-	// Token: 0x040047D6 RID: 18390
 	[MyCmpGet]
 	private ConduitConsumer consumer;
 
-	// Token: 0x040047D7 RID: 18391
 	[MyCmpGet]
 	private PrimaryElement exhaustPE;
 
-	// Token: 0x040047D8 RID: 18392
 	private static readonly Operational.Flag canExhaust = new Operational.Flag("canExhaust", Operational.Flag.Type.Requirement);
 
-	// Token: 0x040047D9 RID: 18393
 	private bool isAnimating;
 
-	// Token: 0x040047DA RID: 18394
 	private bool recentlyExhausted;
 
-	// Token: 0x040047DB RID: 18395
 	private const float MinSwitchTime = 1f;
 
-	// Token: 0x040047DC RID: 18396
 	private float elapsedSwitchTime;
 
-	// Token: 0x040047DD RID: 18397
 	private SimHashes lastElementEmmited;
 
-	// Token: 0x040047DE RID: 18398
 	private static readonly EventSystem.IntraObjectHandler<Exhaust> OnConduitStateChangedDelegate = new EventSystem.IntraObjectHandler<Exhaust>(delegate(Exhaust component, object data)
 	{
 		component.OnConduitStateChanged(data);
 	});
 
-	// Token: 0x040047DF RID: 18399
 	private static Exhaust.EmitDelegate emit_element = delegate(int cell, PrimaryElement primary_element)
 	{
 		SimMessages.AddRemoveSubstance(cell, primary_element.ElementID, CellEventLogger.Instance.ExhaustSimUpdate, primary_element.Mass, primary_element.Temperature, primary_element.DiseaseIdx, primary_element.DiseaseCount, true, -1);
 	};
 
-	// Token: 0x040047E0 RID: 18400
 	private static Exhaust.EmitDelegate emit_particle = delegate(int cell, PrimaryElement primary_element)
 	{
 		FallingWater.instance.AddParticle(cell, primary_element.Element.idx, primary_element.Mass, primary_element.Temperature, primary_element.DiseaseIdx, primary_element.DiseaseCount, true, false, true, false);
 	};
 
-	// Token: 0x02001311 RID: 4881
-	// (Invoke) Token: 0x06006402 RID: 25602
+Invoke) Token: 0x06006402 RID: 25602
 	private delegate void EmitDelegate(int cell, PrimaryElement primary_element);
 }

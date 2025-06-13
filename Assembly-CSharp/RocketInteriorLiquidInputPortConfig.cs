@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200057C RID: 1404
 public class RocketInteriorLiquidInputPortConfig : IBuildingConfig
 {
-	// Token: 0x0600182A RID: 6186 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x0600182B RID: 6187 RVA: 0x001AA1A8 File Offset: 0x001A83A8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "RocketInteriorLiquidInputPort";
@@ -40,13 +37,11 @@ public class RocketInteriorLiquidInputPortConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600182C RID: 6188 RVA: 0x000B4AFA File Offset: 0x000B2CFA
 	private void AttachPort(GameObject go)
 	{
 		go.AddComponent<ConduitSecondaryInput>().portInfo = this.liquidInputPort;
 	}
 
-	// Token: 0x0600182D RID: 6189 RVA: 0x001AA248 File Offset: 0x001A8448
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
@@ -67,7 +62,6 @@ public class RocketInteriorLiquidInputPortConfig : IBuildingConfig
 		def.dropOffset = new CellOffset(0, 1);
 	}
 
-	// Token: 0x0600182E RID: 6190 RVA: 0x001A9DA4 File Offset: 0x001A7FA4
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		GeneratedBuildings.RemoveLoopingSounds(go);
@@ -83,7 +77,6 @@ public class RocketInteriorLiquidInputPortConfig : IBuildingConfig
 		go.GetComponent<Deconstructable>().allowDeconstruction = false;
 	}
 
-	// Token: 0x0600182F RID: 6191 RVA: 0x000B4B0D File Offset: 0x000B2D0D
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 		base.DoPostConfigurePreview(def, go);
@@ -91,7 +84,6 @@ public class RocketInteriorLiquidInputPortConfig : IBuildingConfig
 		this.AttachPort(go);
 	}
 
-	// Token: 0x06001830 RID: 6192 RVA: 0x000B4B25 File Offset: 0x000B2D25
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		base.DoPostConfigureUnderConstruction(go);
@@ -99,9 +91,7 @@ public class RocketInteriorLiquidInputPortConfig : IBuildingConfig
 		this.AttachPort(go);
 	}
 
-	// Token: 0x04000FFE RID: 4094
 	public const string ID = "RocketInteriorLiquidInputPort";
 
-	// Token: 0x04000FFF RID: 4095
 	private ConduitPortInfo liquidInputPort = new ConduitPortInfo(ConduitType.Liquid, new CellOffset(0, 0));
 }

@@ -3,18 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001D42 RID: 7490
 [AddComponentMenu("KMonoBehaviour/scripts/GraphedBar")]
 [Serializable]
 public class GraphedBar : KMonoBehaviour
 {
-	// Token: 0x06009C77 RID: 40055 RVA: 0x0010A37A File Offset: 0x0010857A
 	public void SetFormat(GraphedBarFormatting format)
 	{
 		this.format = format;
 	}
 
-	// Token: 0x06009C78 RID: 40056 RVA: 0x003D157C File Offset: 0x003CF77C
 	public void SetValues(int[] values, float x_position)
 	{
 		this.ClearValues();
@@ -32,7 +29,6 @@ public class GraphedBar : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06009C79 RID: 40057 RVA: 0x003D165C File Offset: 0x003CF85C
 	public void ClearValues()
 	{
 		foreach (GameObject obj in this.segments)
@@ -42,15 +38,11 @@ public class GraphedBar : KMonoBehaviour
 		this.segments.Clear();
 	}
 
-	// Token: 0x04007A7E RID: 31358
 	public GameObject segments_container;
 
-	// Token: 0x04007A7F RID: 31359
 	public GameObject prefab_segment;
 
-	// Token: 0x04007A80 RID: 31360
 	private List<GameObject> segments = new List<GameObject>();
 
-	// Token: 0x04007A81 RID: 31361
 	private GraphedBarFormatting format;
 }

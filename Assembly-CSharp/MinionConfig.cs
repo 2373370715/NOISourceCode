@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000493 RID: 1171
 public class MinionConfig : IEntityConfig
 {
-	// Token: 0x060013F5 RID: 5109 RVA: 0x000B314C File Offset: 0x000B134C
 	public static string[] GetAttributes()
 	{
 		return BaseMinionConfig.BaseMinionAttributes().Append(new string[]
@@ -17,7 +15,6 @@ public class MinionConfig : IEntityConfig
 		});
 	}
 
-	// Token: 0x060013F6 RID: 5110 RVA: 0x0019A654 File Offset: 0x00198854
 	public static string[] GetAmounts()
 	{
 		return BaseMinionConfig.BaseMinionAmounts().Append(new string[]
@@ -28,7 +25,6 @@ public class MinionConfig : IEntityConfig
 		});
 	}
 
-	// Token: 0x060013F7 RID: 5111 RVA: 0x0019A6B8 File Offset: 0x001988B8
 	public static AttributeModifier[] GetTraits()
 	{
 		return BaseMinionConfig.BaseMinionTraits(MinionConfig.MODEL).Append(new AttributeModifier[]
@@ -42,13 +38,11 @@ public class MinionConfig : IEntityConfig
 		});
 	}
 
-	// Token: 0x060013F8 RID: 5112 RVA: 0x000B318C File Offset: 0x000B138C
 	public GameObject CreatePrefab()
 	{
 		return BaseMinionConfig.BaseMinion(MinionConfig.MODEL, MinionConfig.GetAttributes(), MinionConfig.GetAmounts(), MinionConfig.GetTraits());
 	}
 
-	// Token: 0x060013F9 RID: 5113 RVA: 0x0019A840 File Offset: 0x00198A40
 	public void OnPrefabInit(GameObject go)
 	{
 		BaseMinionConfig.BasePrefabInit(go, MinionConfig.MODEL);
@@ -60,7 +54,6 @@ public class MinionConfig : IEntityConfig
 		amountInstance2.value = amountInstance2.GetMax();
 	}
 
-	// Token: 0x060013FA RID: 5114 RVA: 0x000B31A7 File Offset: 0x000B13A7
 	public void OnSpawn(GameObject go)
 	{
 		Sensors component = go.GetComponent<Sensors>();
@@ -70,7 +63,6 @@ public class MinionConfig : IEntityConfig
 		go.Trigger(1589886948, go);
 	}
 
-	// Token: 0x060013FB RID: 5115 RVA: 0x0019A8EC File Offset: 0x00198AEC
 	public MinionConfig()
 	{
 		Func<RationalAi.Instance, StateMachine.Instance>[] array = BaseMinionConfig.BaseRationalAiStateMachines();
@@ -88,15 +80,11 @@ public class MinionConfig : IEntityConfig
 		base..ctor();
 	}
 
-	// Token: 0x04000DBA RID: 3514
 	public static Tag MODEL = GameTags.Minions.Models.Standard;
 
-	// Token: 0x04000DBB RID: 3515
 	public static string NAME = DUPLICANTS.MODEL.STANDARD.NAME;
 
-	// Token: 0x04000DBC RID: 3516
 	public static string ID = MinionConfig.MODEL.ToString();
 
-	// Token: 0x04000DBD RID: 3517
 	public Func<RationalAi.Instance, StateMachine.Instance>[] RATIONAL_AI_STATE_MACHINES;
 }

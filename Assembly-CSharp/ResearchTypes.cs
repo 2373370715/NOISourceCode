@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x020017FA RID: 6138
 public class ResearchTypes
 {
-	// Token: 0x06007E46 RID: 32326 RVA: 0x003366B0 File Offset: 0x003348B0
 	public ResearchTypes()
 	{
 		ResearchType item = new ResearchType("basic", RESEARCH.TYPES.ALPHA.NAME, RESEARCH.TYPES.ALPHA.DESC, Assets.GetSprite("research_type_alpha_icon"), new Color(0.59607846f, 0.6666667f, 0.9137255f), new Recipe.Ingredient[]
@@ -43,7 +41,6 @@ public class ResearchTypes
 		this.Types.Add(item5);
 	}
 
-	// Token: 0x06007E47 RID: 32327 RVA: 0x00336974 File Offset: 0x00334B74
 	public ResearchType GetResearchType(string id)
 	{
 		foreach (ResearchType researchType in this.Types)
@@ -57,25 +54,18 @@ public class ResearchTypes
 		return null;
 	}
 
-	// Token: 0x04005FF4 RID: 24564
 	public List<ResearchType> Types = new List<ResearchType>();
 
-	// Token: 0x020017FB RID: 6139
 	public class ID
 	{
-		// Token: 0x04005FF5 RID: 24565
 		public const string BASIC = "basic";
 
-		// Token: 0x04005FF6 RID: 24566
 		public const string ADVANCED = "advanced";
 
-		// Token: 0x04005FF7 RID: 24567
 		public const string SPACE = "space";
 
-		// Token: 0x04005FF8 RID: 24568
 		public const string NUCLEAR = "nuclear";
 
-		// Token: 0x04005FF9 RID: 24569
 		public const string ORBITAL = "orbital";
 	}
 }

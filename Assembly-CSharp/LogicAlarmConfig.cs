@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003D6 RID: 982
 public class LogicAlarmConfig : IBuildingConfig
 {
-	// Token: 0x06000FF6 RID: 4086 RVA: 0x001896A0 File Offset: 0x001878A0
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = LogicAlarmConfig.ID;
@@ -40,13 +38,11 @@ public class LogicAlarmConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000FF7 RID: 4087 RVA: 0x000B147A File Offset: 0x000AF67A
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicAlarm>();
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayInFrontOfConduits, false);
 	}
 
-	// Token: 0x04000B7D RID: 2941
 	public static string ID = "LogicAlarm";
 }

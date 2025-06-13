@@ -2,10 +2,8 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x0200126D RID: 4717
 public class PowerUseDiagnostic : ColonyDiagnostic
 {
-	// Token: 0x0600604A RID: 24650 RVA: 0x002BA7A8 File Offset: 0x002B89A8
 	public PowerUseDiagnostic(int worldID) : base(worldID, UI.COLONY_DIAGNOSTICS.POWERUSEDIAGNOSTIC.ALL_NAME)
 	{
 		this.tracker = TrackerTool.Instance.GetWorldTracker<PowerUseTracker>(worldID);
@@ -15,7 +13,6 @@ public class PowerUseDiagnostic : ColonyDiagnostic
 		base.AddCriterion("CheckPowerUseChange", new DiagnosticCriterion(UI.COLONY_DIAGNOSTICS.POWERUSEDIAGNOSTIC.CRITERIA.CHECKPOWERUSECHANGE, new Func<ColonyDiagnostic.DiagnosticResult>(this.CheckPowerChange)));
 	}
 
-	// Token: 0x0600604B RID: 24651 RVA: 0x002BA83C File Offset: 0x002B8A3C
 	private ColonyDiagnostic.DiagnosticResult CheckOverWattage()
 	{
 		ColonyDiagnostic.DiagnosticResult result = new ColonyDiagnostic.DiagnosticResult(ColonyDiagnostic.DiagnosticResult.Opinion.Normal, UI.COLONY_DIAGNOSTICS.GENERIC_CRITERIA_PASS, null);
@@ -46,7 +43,6 @@ public class PowerUseDiagnostic : ColonyDiagnostic
 		return result;
 	}
 
-	// Token: 0x0600604C RID: 24652 RVA: 0x002BA9A0 File Offset: 0x002B8BA0
 	private ColonyDiagnostic.DiagnosticResult CheckPowerChange()
 	{
 		ColonyDiagnostic.DiagnosticResult result = new ColonyDiagnostic.DiagnosticResult(ColonyDiagnostic.DiagnosticResult.Opinion.Normal, UI.COLONY_DIAGNOSTICS.GENERIC_CRITERIA_PASS, null);
@@ -73,7 +69,6 @@ public class PowerUseDiagnostic : ColonyDiagnostic
 		return result;
 	}
 
-	// Token: 0x0600604D RID: 24653 RVA: 0x002B9A68 File Offset: 0x002B7C68
 	public override ColonyDiagnostic.DiagnosticResult Evaluate()
 	{
 		ColonyDiagnostic.DiagnosticResult result = new ColonyDiagnostic.DiagnosticResult(ColonyDiagnostic.DiagnosticResult.Opinion.Normal, base.NO_MINIONS, null);

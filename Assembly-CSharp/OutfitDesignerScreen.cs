@@ -8,30 +8,16 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x02001ED5 RID: 7893
 public class OutfitDesignerScreen : KMonoBehaviour
 {
-	// Token: 0x17000A9C RID: 2716
-	// (get) Token: 0x0600A598 RID: 42392 RVA: 0x0010FE22 File Offset: 0x0010E022
-	// (set) Token: 0x0600A599 RID: 42393 RVA: 0x0010FE2A File Offset: 0x0010E02A
 	public OutfitDesignerScreenConfig Config { get; private set; }
 
-	// Token: 0x17000A9D RID: 2717
-	// (get) Token: 0x0600A59A RID: 42394 RVA: 0x0010FE33 File Offset: 0x0010E033
-	// (set) Token: 0x0600A59B RID: 42395 RVA: 0x0010FE3B File Offset: 0x0010E03B
 	public PermitResource SelectedPermit { get; private set; }
 
-	// Token: 0x17000A9E RID: 2718
-	// (get) Token: 0x0600A59C RID: 42396 RVA: 0x0010FE44 File Offset: 0x0010E044
-	// (set) Token: 0x0600A59D RID: 42397 RVA: 0x0010FE4C File Offset: 0x0010E04C
 	public PermitCategory SelectedCategory { get; private set; }
 
-	// Token: 0x17000A9F RID: 2719
-	// (get) Token: 0x0600A59E RID: 42398 RVA: 0x0010FE55 File Offset: 0x0010E055
-	// (set) Token: 0x0600A59F RID: 42399 RVA: 0x0010FE5D File Offset: 0x0010E05D
 	public OutfitDesignerScreen_OutfitState outfitState { get; private set; }
 
-	// Token: 0x0600A5A0 RID: 42400 RVA: 0x003FA5E8 File Offset: 0x003F87E8
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -60,13 +46,11 @@ public class OutfitDesignerScreen : KMonoBehaviour
 		InventoryOrganization.Initialize();
 	}
 
-	// Token: 0x0600A5A1 RID: 42401 RVA: 0x0010FE66 File Offset: 0x0010E066
 	private void Update()
 	{
 		this.galleryGridLayouter.CheckIfShouldResizeGrid();
 	}
 
-	// Token: 0x0600A5A2 RID: 42402 RVA: 0x0010FE73 File Offset: 0x0010E073
 	protected override void OnSpawn()
 	{
 		this.postponeConfiguration = false;
@@ -78,7 +62,6 @@ public class OutfitDesignerScreen : KMonoBehaviour
 		this.Configure(this.Config);
 	}
 
-	// Token: 0x0600A5A3 RID: 42403 RVA: 0x0010FEAC File Offset: 0x0010E0AC
 	protected override void OnCmpEnable()
 	{
 		base.OnCmpEnable();
@@ -90,14 +73,12 @@ public class OutfitDesignerScreen : KMonoBehaviour
 		});
 	}
 
-	// Token: 0x0600A5A4 RID: 42404 RVA: 0x0010FECB File Offset: 0x0010E0CB
 	protected override void OnCmpDisable()
 	{
 		base.OnCmpDisable();
 		this.UnregisterPreventScreenPop();
 	}
 
-	// Token: 0x0600A5A5 RID: 42405 RVA: 0x0010FED9 File Offset: 0x0010E0D9
 	private void UpdateSaveButtons()
 	{
 		if (this.updateSaveButtonsFn != null)
@@ -106,7 +87,6 @@ public class OutfitDesignerScreen : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600A5A6 RID: 42406 RVA: 0x003FA74C File Offset: 0x003F894C
 	public void Configure(OutfitDesignerScreenConfig config)
 	{
 		this.Config = config;
@@ -248,7 +228,6 @@ public class OutfitDesignerScreen : KMonoBehaviour
 		this.UpdateSaveButtons();
 	}
 
-	// Token: 0x0600A5A7 RID: 42407 RVA: 0x0010FEEE File Offset: 0x0010E0EE
 	private void RefreshOutfitState()
 	{
 		this.selectionHeaderLabel.text = this.outfitState.name;
@@ -256,7 +235,6 @@ public class OutfitDesignerScreen : KMonoBehaviour
 		this.UpdateSaveButtons();
 	}
 
-	// Token: 0x0600A5A8 RID: 42408 RVA: 0x0010FF28 File Offset: 0x0010E128
 	private void RefreshCategories()
 	{
 		if (this.RefreshCategoriesFn != null)
@@ -265,7 +243,6 @@ public class OutfitDesignerScreen : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600A5A9 RID: 42409 RVA: 0x003FA9FC File Offset: 0x003F8BFC
 	public void PopulateCategories()
 	{
 		this.RefreshCategoriesFn = null;
@@ -295,7 +272,6 @@ public class OutfitDesignerScreen : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600A5AA RID: 42410 RVA: 0x003FAB50 File Offset: 0x003F8D50
 	public void SelectCategory(PermitCategory permitCategory)
 	{
 		this.SelectedCategory = permitCategory;
@@ -311,7 +287,6 @@ public class OutfitDesignerScreen : KMonoBehaviour
 		this.SelectPermit(null);
 	}
 
-	// Token: 0x0600A5AB RID: 42411 RVA: 0x0010FF3D File Offset: 0x0010E13D
 	private void RefreshGallery()
 	{
 		if (this.RefreshGalleryFn != null)
@@ -320,7 +295,6 @@ public class OutfitDesignerScreen : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600A5AC RID: 42412 RVA: 0x003FABAC File Offset: 0x003F8DAC
 	public void PopulateGallery()
 	{
 		OutfitDesignerScreen.<>c__DisplayClass51_0 CS$<>8__locals1 = new OutfitDesignerScreen.<>c__DisplayClass51_0();
@@ -359,7 +333,6 @@ public class OutfitDesignerScreen : KMonoBehaviour
 		this.RefreshGallery();
 	}
 
-	// Token: 0x0600A5AD RID: 42413 RVA: 0x0010FF52 File Offset: 0x0010E152
 	public void SelectPermit(PermitResource permit)
 	{
 		this.SelectedPermit = permit;
@@ -368,7 +341,6 @@ public class OutfitDesignerScreen : KMonoBehaviour
 		this.UpdateSaveButtons();
 	}
 
-	// Token: 0x0600A5AE RID: 42414 RVA: 0x003FAD70 File Offset: 0x003F8F70
 	public void UpdateSelectedItemDetails()
 	{
 		Option<ClothingItemResource> item = Option.None;
@@ -387,7 +359,6 @@ public class OutfitDesignerScreen : KMonoBehaviour
 		this.dioramaBG.sprite = KleiPermitDioramaVis.GetDioramaBackground(this.SelectedCategory);
 	}
 
-	// Token: 0x0600A5AF RID: 42415 RVA: 0x0010FF6D File Offset: 0x0010E16D
 	private void RegisterPreventScreenPop()
 	{
 		this.UnregisterPreventScreenPop();
@@ -408,7 +379,6 @@ public class OutfitDesignerScreen : KMonoBehaviour
 		LockerNavigator.Instance.preventScreenPop.Add(this.preventScreenPopFn);
 	}
 
-	// Token: 0x0600A5B0 RID: 42416 RVA: 0x0010FF9C File Offset: 0x0010E19C
 	private void UnregisterPreventScreenPop()
 	{
 		if (this.preventScreenPopFn != null)
@@ -418,7 +388,6 @@ public class OutfitDesignerScreen : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600A5B1 RID: 42417 RVA: 0x003FAE18 File Offset: 0x003F9018
 	public static void MakeSaveWarningPopup(OutfitDesignerScreen_OutfitState outfitState, System.Action discardChangesFn)
 	{
 		Action<InfoDialogScreen> <>9__1;
@@ -442,7 +411,6 @@ public class OutfitDesignerScreen : KMonoBehaviour
 		});
 	}
 
-	// Token: 0x0600A5B2 RID: 42418 RVA: 0x003FAE50 File Offset: 0x003F9050
 	public static void MakeApplyToTemplatePopup(KInputTextField inputFieldPrefab, OutfitDesignerScreen_OutfitState outfitState, GameObject targetMinionInstance, Option<ClothingOutfitTarget> existingOutfitTemplate, Action<ClothingOutfitTarget> onWriteToOutfitTargetFn)
 	{
 		ClothingOutfitNameProposal proposal = default(ClothingOutfitNameProposal);
@@ -503,7 +471,6 @@ public class OutfitDesignerScreen : KMonoBehaviour
 		});
 	}
 
-	// Token: 0x0600A5B3 RID: 42419 RVA: 0x003FAECC File Offset: 0x003F90CC
 	public static void MakeCopyPopup(OutfitDesignerScreen screen, KInputTextField inputFieldPrefab, OutfitDesignerScreen_OutfitState outfitState, ClothingOutfitTarget outfitTemplate, Option<Personality> minionPersonality, Action<ClothingOutfitTarget> onWriteToOutfitTargetFn)
 	{
 		ClothingOutfitNameProposal proposal = default(ClothingOutfitNameProposal);
@@ -550,14 +517,12 @@ public class OutfitDesignerScreen : KMonoBehaviour
 		});
 	}
 
-	// Token: 0x0600A5B4 RID: 42420 RVA: 0x003FAF30 File Offset: 0x003F9130
 	private void SetCatogoryClickUISound(PermitCategory category, MultiToggle toggle)
 	{
 		toggle.states[1].on_click_override_sound_path = category.ToString() + "_Click";
 		toggle.states[0].on_click_override_sound_path = category.ToString() + "_Click";
 	}
 
-	// Token: 0x0600A5B5 RID: 42421 RVA: 0x003FAF90 File Offset: 0x003F9190
 	private void SetItemClickUISound(PermitResource permit, MultiToggle toggle)
 	{
 		if (permit == null)
@@ -577,7 +542,6 @@ public class OutfitDesignerScreen : KMonoBehaviour
 		toggle.states[0].has_sound_parameter = true;
 	}
 
-	// Token: 0x0600A5B6 RID: 42422 RVA: 0x003FB0A8 File Offset: 0x003F92A8
 	public static string GetClothingItemSoundName(PermitResource permit)
 	{
 		if (permit == null)
@@ -601,105 +565,77 @@ public class OutfitDesignerScreen : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600A5B7 RID: 42423 RVA: 0x0010AC6E File Offset: 0x00108E6E
 	private void OnMouseOverToggle()
 	{
 		KFMOD.PlayUISound(GlobalAssets.GetSound("HUD_Mouseover", false));
 	}
 
-	// Token: 0x0400819A RID: 33178
 	[Header("CategoryColumn")]
 	[SerializeField]
 	private RectTransform categoryListContent;
 
-	// Token: 0x0400819B RID: 33179
 	[SerializeField]
 	private GameObject categoryRowPrefab;
 
-	// Token: 0x0400819C RID: 33180
 	private UIPrefabLocalPool categoryRowPool;
 
-	// Token: 0x0400819D RID: 33181
 	[Header("ItemGalleryColumn")]
 	[SerializeField]
 	private LocText galleryHeaderLabel;
 
-	// Token: 0x0400819E RID: 33182
 	[SerializeField]
 	private RectTransform galleryGridContent;
 
-	// Token: 0x0400819F RID: 33183
 	[SerializeField]
 	private GameObject subcategoryUiPrefab;
 
-	// Token: 0x040081A0 RID: 33184
 	[SerializeField]
 	private GameObject gridItemPrefab;
 
-	// Token: 0x040081A1 RID: 33185
 	private UIPrefabLocalPool subcategoryUiPool;
 
-	// Token: 0x040081A2 RID: 33186
 	private UIPrefabLocalPool galleryGridItemPool;
 
-	// Token: 0x040081A3 RID: 33187
 	private GridLayouter galleryGridLayouter;
 
-	// Token: 0x040081A4 RID: 33188
 	[Header("SelectionDetailsColumn")]
 	[SerializeField]
 	private LocText selectionHeaderLabel;
 
-	// Token: 0x040081A5 RID: 33189
 	[SerializeField]
 	private UIMinionOrMannequin minionOrMannequin;
 
-	// Token: 0x040081A6 RID: 33190
 	[SerializeField]
 	private Image dioramaBG;
 
-	// Token: 0x040081A7 RID: 33191
 	[SerializeField]
 	private KButton primaryButton;
 
-	// Token: 0x040081A8 RID: 33192
 	[SerializeField]
 	private KButton secondaryButton;
 
-	// Token: 0x040081A9 RID: 33193
 	[SerializeField]
 	private OutfitDescriptionPanel outfitDescriptionPanel;
 
-	// Token: 0x040081AA RID: 33194
 	[SerializeField]
 	private KInputTextField inputFieldPrefab;
 
-	// Token: 0x040081AF RID: 33199
 	public static Dictionary<ClothingOutfitUtility.OutfitType, PermitCategory[]> outfitTypeToCategoriesDict;
 
-	// Token: 0x040081B0 RID: 33200
 	private bool postponeConfiguration = true;
 
-	// Token: 0x040081B1 RID: 33201
 	private System.Action updateSaveButtonsFn;
 
-	// Token: 0x040081B2 RID: 33202
 	private System.Action RefreshCategoriesFn;
 
-	// Token: 0x040081B3 RID: 33203
 	private System.Action RefreshGalleryFn;
 
-	// Token: 0x040081B4 RID: 33204
 	private Func<bool> preventScreenPopFn;
 
-	// Token: 0x02001ED6 RID: 7894
 	private enum MultiToggleState
 	{
-		// Token: 0x040081B6 RID: 33206
 		Default,
-		// Token: 0x040081B7 RID: 33207
 		Selected,
-		// Token: 0x040081B8 RID: 33208
 		NonInteractable
 	}
 }

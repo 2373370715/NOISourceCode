@@ -4,10 +4,8 @@ using Klei.AI;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001161 RID: 4449
 public class BabyMonitor : GameStateMachine<BabyMonitor, BabyMonitor.Instance, IStateMachineTarget, BabyMonitor.Def>
 {
-	// Token: 0x06005ACA RID: 23242 RVA: 0x002A45C4 File Offset: 0x002A27C4
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.baby;
@@ -19,13 +17,11 @@ public class BabyMonitor : GameStateMachine<BabyMonitor, BabyMonitor.Instance, I
 		this.babyEffect.Add(new AttributeModifier(Db.Get().CritterAttributes.Happiness.Id, 5f, CREATURES.MODIFIERS.BABY.NAME, false, false, true));
 	}
 
-	// Token: 0x06005ACB RID: 23243 RVA: 0x000DF88A File Offset: 0x000DDA8A
 	private static void AddBabyEffect(BabyMonitor.Instance smi)
 	{
 		smi.Get<Effects>().Add(smi.sm.babyEffect, false);
 	}
 
-	// Token: 0x06005ACC RID: 23244 RVA: 0x002A46EC File Offset: 0x002A28EC
 	private static bool IsReadyToSpawnAdult(BabyMonitor.Instance smi)
 	{
 		AmountInstance amountInstance = Db.Get().Amounts.Age.Lookup(smi.gameObject);
@@ -37,43 +33,31 @@ public class BabyMonitor : GameStateMachine<BabyMonitor, BabyMonitor.Instance, I
 		return amountInstance.value > num;
 	}
 
-	// Token: 0x0400409C RID: 16540
 	public GameStateMachine<BabyMonitor, BabyMonitor.Instance, IStateMachineTarget, BabyMonitor.Def>.State baby;
 
-	// Token: 0x0400409D RID: 16541
 	public GameStateMachine<BabyMonitor, BabyMonitor.Instance, IStateMachineTarget, BabyMonitor.Def>.State spawnadult;
 
-	// Token: 0x0400409E RID: 16542
 	public Effect babyEffect;
 
-	// Token: 0x02001162 RID: 4450
 	public class Def : StateMachine.BaseDef
 	{
-		// Token: 0x0400409F RID: 16543
 		public Tag adultPrefab;
 
-		// Token: 0x040040A0 RID: 16544
 		public string onGrowDropID;
 
-		// Token: 0x040040A1 RID: 16545
 		public bool forceAdultNavType;
 
-		// Token: 0x040040A2 RID: 16546
 		public float adultThreshold = 5f;
 
-		// Token: 0x040040A3 RID: 16547
 		public Action<GameObject> configureAdultOnMaturation;
 	}
 
-	// Token: 0x02001163 RID: 4451
 	public new class Instance : GameStateMachine<BabyMonitor, BabyMonitor.Instance, IStateMachineTarget, BabyMonitor.Def>.GameInstance
 	{
-		// Token: 0x06005ACF RID: 23247 RVA: 0x000DF8BF File Offset: 0x000DDABF
 		public Instance(IStateMachineTarget master, BabyMonitor.Def def) : base(master, def)
 		{
 		}
 
-		// Token: 0x06005AD0 RID: 23248 RVA: 0x002A473C File Offset: 0x002A293C
 		public void SpawnAdult()
 		{
 			Vector3 position = base.smi.transform.GetPosition();

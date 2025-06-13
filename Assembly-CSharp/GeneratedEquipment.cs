@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x020000BE RID: 190
 public class GeneratedEquipment
 {
-	// Token: 0x06000325 RID: 805 RVA: 0x00154FFC File Offset: 0x001531FC
 	public static void LoadGeneratedEquipment(List<Type> types)
 	{
 		Type typeFromHandle = typeof(IEquipmentConfig);

@@ -2,10 +2,8 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000144 RID: 324
 public class ConduitSleepStates : GameStateMachine<ConduitSleepStates, ConduitSleepStates.Instance, IStateMachineTarget, ConduitSleepStates.Def>
 {
-	// Token: 0x060004BB RID: 1211 RVA: 0x0015FDC4 File Offset: 0x0015DFC4
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.connector.moveToSleepLocation;
@@ -80,7 +78,6 @@ public class ConduitSleepStates : GameStateMachine<ConduitSleepStates, ConduitSl
 		this.behaviourcomplete.BehaviourComplete(GameTags.Creatures.WantsConduitConnection, false);
 	}
 
-	// Token: 0x060004BC RID: 1212 RVA: 0x0016022C File Offset: 0x0015E42C
 	private static Grid.SceneLayer GetSleepingLayer(ConduitSleepStates.Instance smi)
 	{
 		ObjectLayer conduitLayer = smi.staterpillar.conduitLayer;
@@ -110,7 +107,6 @@ public class ConduitSleepStates : GameStateMachine<ConduitSleepStates, ConduitSl
 		return result;
 	}
 
-	// Token: 0x060004BD RID: 1213 RVA: 0x00160268 File Offset: 0x0015E468
 	private static StatusItem GetStatusItem(ConduitSleepStates.Instance smi)
 	{
 		ObjectLayer conduitLayer = smi.staterpillar.conduitLayer;
@@ -140,7 +136,6 @@ public class ConduitSleepStates : GameStateMachine<ConduitSleepStates, ConduitSl
 		return result;
 	}
 
-	// Token: 0x060004BE RID: 1214 RVA: 0x001602D8 File Offset: 0x0015E4D8
 	private static void OnStorageChanged(ConduitSleepStates.Instance smi, object obj)
 	{
 		GameObject gameObject = obj as GameObject;
@@ -150,14 +145,12 @@ public class ConduitSleepStates : GameStateMachine<ConduitSleepStates, ConduitSl
 		}
 	}
 
-	// Token: 0x060004BF RID: 1215 RVA: 0x000ABDFA File Offset: 0x000A9FFA
 	private static void UpdateGulpSymbol(ConduitSleepStates.Instance smi, float dt)
 	{
 		smi.SetGulpSymbolVisibility(smi.amountDeposited > 0f);
 		smi.amountDeposited = 0f;
 	}
 
-	// Token: 0x060004C0 RID: 1216 RVA: 0x00160310 File Offset: 0x0015E510
 	private static void CleanUp(ConduitSleepStates.Instance smi)
 	{
 		ConduitSleepMonitor.Instance smi2 = smi.GetSMI<ConduitSleepMonitor.Instance>();
@@ -168,32 +161,24 @@ public class ConduitSleepStates : GameStateMachine<ConduitSleepStates, ConduitSl
 		smi.staterpillar.DestroyOrphanedConnectorBuilding();
 	}
 
-	// Token: 0x0400036E RID: 878
 	public ConduitSleepStates.DrowsyStates drowsy;
 
-	// Token: 0x0400036F RID: 879
 	public ConduitSleepStates.HasConnectorStates connector;
 
-	// Token: 0x04000370 RID: 880
 	public GameStateMachine<ConduitSleepStates, ConduitSleepStates.Instance, IStateMachineTarget, ConduitSleepStates.Def>.State behaviourcomplete;
 
-	// Token: 0x02000145 RID: 325
 	public class Def : StateMachine.BaseDef
 	{
-		// Token: 0x04000371 RID: 881
 		public HashedString gulpSymbol = "gulp";
 	}
 
-	// Token: 0x02000146 RID: 326
 	public new class Instance : GameStateMachine<ConduitSleepStates, ConduitSleepStates.Instance, IStateMachineTarget, ConduitSleepStates.Def>.GameInstance
 	{
-		// Token: 0x060004C5 RID: 1221 RVA: 0x000ABE59 File Offset: 0x000AA059
 		public Instance(Chore<ConduitSleepStates.Instance> chore, ConduitSleepStates.Def def) : base(chore, def)
 		{
 			chore.AddPrecondition(ChorePreconditions.instance.CheckBehaviourPrecondition, GameTags.Creatures.WantsConduitConnection);
 		}
 
-		// Token: 0x060004C6 RID: 1222 RVA: 0x001603C4 File Offset: 0x0015E5C4
 		public void SetGulpSymbolVisibility(bool state)
 		{
 			string sound = GlobalAssets.GetSound("PlugSlug_Charging_Gulp_LP", false);
@@ -210,58 +195,42 @@ public class ConduitSleepStates : GameStateMachine<ConduitSleepStates, ConduitSl
 			}
 		}
 
-		// Token: 0x04000372 RID: 882
 		[MyCmpReq]
 		public KBatchedAnimController animController;
 
-		// Token: 0x04000373 RID: 883
 		[MyCmpReq]
 		public Staterpillar staterpillar;
 
-		// Token: 0x04000374 RID: 884
 		[MyCmpAdd]
 		private LoopingSounds loopingSounds;
 
-		// Token: 0x04000375 RID: 885
 		public bool gulpSymbolVisible;
 
-		// Token: 0x04000376 RID: 886
 		public float amountDeposited;
 	}
 
-	// Token: 0x02000147 RID: 327
 	public class SleepStates : GameStateMachine<ConduitSleepStates, ConduitSleepStates.Instance, IStateMachineTarget, ConduitSleepStates.Def>.State
 	{
-		// Token: 0x04000377 RID: 887
 		public GameStateMachine<ConduitSleepStates, ConduitSleepStates.Instance, IStateMachineTarget, ConduitSleepStates.Def>.State connected;
 
-		// Token: 0x04000378 RID: 888
 		public GameStateMachine<ConduitSleepStates, ConduitSleepStates.Instance, IStateMachineTarget, ConduitSleepStates.Def>.State noConnection;
 	}
 
-	// Token: 0x02000148 RID: 328
 	public class DrowsyStates : GameStateMachine<ConduitSleepStates, ConduitSleepStates.Instance, IStateMachineTarget, ConduitSleepStates.Def>.State
 	{
-		// Token: 0x04000379 RID: 889
 		public GameStateMachine<ConduitSleepStates, ConduitSleepStates.Instance, IStateMachineTarget, ConduitSleepStates.Def>.State loop;
 
-		// Token: 0x0400037A RID: 890
 		public GameStateMachine<ConduitSleepStates, ConduitSleepStates.Instance, IStateMachineTarget, ConduitSleepStates.Def>.State pst;
 	}
 
-	// Token: 0x02000149 RID: 329
 	public class HasConnectorStates : GameStateMachine<ConduitSleepStates, ConduitSleepStates.Instance, IStateMachineTarget, ConduitSleepStates.Def>.State
 	{
-		// Token: 0x0400037B RID: 891
 		public GameStateMachine<ConduitSleepStates, ConduitSleepStates.Instance, IStateMachineTarget, ConduitSleepStates.Def>.State moveToSleepLocation;
 
-		// Token: 0x0400037C RID: 892
 		public ConduitSleepStates.SleepStates sleep;
 
-		// Token: 0x0400037D RID: 893
 		public GameStateMachine<ConduitSleepStates, ConduitSleepStates.Instance, IStateMachineTarget, ConduitSleepStates.Def>.State noConnectionWake;
 
-		// Token: 0x0400037E RID: 894
 		public GameStateMachine<ConduitSleepStates, ConduitSleepStates.Instance, IStateMachineTarget, ConduitSleepStates.Def>.State connectedWake;
 	}
 }

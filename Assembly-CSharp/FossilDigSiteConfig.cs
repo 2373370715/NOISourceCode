@@ -4,16 +4,13 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200033A RID: 826
 public class FossilDigSiteConfig : IBuildingConfig
 {
-	// Token: 0x06000CFE RID: 3326 RVA: 0x000AFF15 File Offset: 0x000AE115
 	public static string GetBodyContentForFossil(int id)
 	{
 		return CODEX.STORY_TRAITS.FOSSILHUNT.DNADATA_ENTRY.TELEPORTFAILURE;
 	}
 
-	// Token: 0x06000CFF RID: 3327 RVA: 0x0017BC14 File Offset: 0x00179E14
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "FossilDig";
@@ -43,7 +40,6 @@ public class FossilDigSiteConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000D00 RID: 3328 RVA: 0x0017BCBC File Offset: 0x00179EBC
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddTag(GameTags.Gravitas);
@@ -82,7 +78,6 @@ public class FossilDigSiteConfig : IBuildingConfig
 		go.AddOrGet<LoopingSounds>();
 	}
 
-	// Token: 0x06000D01 RID: 3329 RVA: 0x000AFF21 File Offset: 0x000AE121
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		KBatchedAnimController component = go.GetComponent<KBatchedAnimController>();
@@ -91,7 +86,6 @@ public class FossilDigSiteConfig : IBuildingConfig
 		UnityEngine.Object.DestroyImmediate(go.GetComponent<BuildingEnabledButton>());
 	}
 
-	// Token: 0x06000D02 RID: 3330 RVA: 0x0017BE00 File Offset: 0x0017A000
 	private void ConfigureRecipes()
 	{
 		ComplexRecipe.RecipeElement[] array = new ComplexRecipe.RecipeElement[]
@@ -113,31 +107,23 @@ public class FossilDigSiteConfig : IBuildingConfig
 		complexRecipe.sortOrder = 21;
 	}
 
-	// Token: 0x040009B2 RID: 2482
 	public static int DiscoveredDigsitesRequired = 4;
 
-	// Token: 0x040009B3 RID: 2483
 	public static HashedString hashID = new HashedString("FossilDig");
 
-	// Token: 0x040009B4 RID: 2484
 	public const string ID = "FossilDig";
 
-	// Token: 0x040009B5 RID: 2485
 	public static readonly HashedString QUEST_CRITERIA = "LostSpecimen";
 
-	// Token: 0x040009B6 RID: 2486
 	public const string CODEX_ENTRY_ID = "STORYTRAITFOSSILHUNT";
 
-	// Token: 0x0200033B RID: 827
 	public static class FOSSIL_HUNT_LORE_UNLOCK_ID
 	{
-		// Token: 0x06000D05 RID: 3333 RVA: 0x000AFF6F File Offset: 0x000AE16F
 		public static string For(int id)
 		{
 			return string.Format("story_trait_fossilhunt_poi{0}", Mathf.Clamp(id, 1, FossilDigSiteConfig.FOSSIL_HUNT_LORE_UNLOCK_ID.popupsAvailablesForSmallSites));
 		}
 
-		// Token: 0x040009B7 RID: 2487
 		public static int popupsAvailablesForSmallSites = 3;
 	}
 }

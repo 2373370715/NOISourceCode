@@ -12,16 +12,13 @@ using UnityEngine;
 
 namespace KMod
 {
-	// Token: 0x02002255 RID: 8789
 	public class Manager
 	{
-		// Token: 0x0600BAC9 RID: 47817 RVA: 0x0011CD53 File Offset: 0x0011AF53
 		public static string GetDirectory()
 		{
 			return Path.Combine(Util.RootFolder(), "mods/");
 		}
 
-		// Token: 0x0600BACB RID: 47819 RVA: 0x004803A4 File Offset: 0x0047E5A4
 		public void LoadModDBAndInitialize()
 		{
 			string filename = this.GetFilename();
@@ -127,7 +124,6 @@ namespace KMod
 			}
 		}
 
-		// Token: 0x0600BACC RID: 47820 RVA: 0x004806C4 File Offset: 0x0047E8C4
 		public void Shutdown()
 		{
 			foreach (Mod mod in this.mods)
@@ -136,7 +132,6 @@ namespace KMod
 			}
 		}
 
-		// Token: 0x0600BACD RID: 47821 RVA: 0x00480718 File Offset: 0x0047E918
 		public void Sanitize(GameObject parent)
 		{
 			ListPool<Label, Manager>.PooledList pooledList = ListPool<Label, Manager>.Allocate();
@@ -155,7 +150,6 @@ namespace KMod
 			this.Report(parent);
 		}
 
-		// Token: 0x0600BACE RID: 47822 RVA: 0x004807CC File Offset: 0x0047E9CC
 		public bool HaveMods()
 		{
 			foreach (Mod mod in this.mods)
@@ -168,7 +162,6 @@ namespace KMod
 			return false;
 		}
 
-		// Token: 0x0600BACF RID: 47823 RVA: 0x00480830 File Offset: 0x0047EA30
 		public List<Mod> GetAllCrashableMods()
 		{
 			List<Mod> list = new List<Mod>();
@@ -182,13 +175,11 @@ namespace KMod
 			return list;
 		}
 
-		// Token: 0x0600BAD0 RID: 47824 RVA: 0x0011CDA2 File Offset: 0x0011AFA2
 		public bool HasCrashableMods()
 		{
 			return this.GetAllCrashableMods().Count > 0;
 		}
 
-		// Token: 0x0600BAD1 RID: 47825 RVA: 0x004808AC File Offset: 0x0047EAAC
 		private void Install(Mod mod)
 		{
 			if (mod.status != Mod.Status.NotInstalled)
@@ -223,7 +214,6 @@ namespace KMod
 			});
 		}
 
-		// Token: 0x0600BAD2 RID: 47826 RVA: 0x0048097C File Offset: 0x0047EB7C
 		private void Uninstall(Mod mod)
 		{
 			if (mod.status == Mod.Status.NotInstalled)
@@ -247,7 +237,6 @@ namespace KMod
 			}
 		}
 
-		// Token: 0x0600BAD3 RID: 47827 RVA: 0x004809F8 File Offset: 0x0047EBF8
 		public void Subscribe(Mod mod, object caller)
 		{
 			global::Debug.LogFormat("Subscribe to mod {0}", new object[]
@@ -339,7 +328,6 @@ namespace KMod
 			this.Update(caller);
 		}
 
-		// Token: 0x0600BAD4 RID: 47828 RVA: 0x00480CB4 File Offset: 0x0047EEB4
 		public void Update(Mod mod, object caller)
 		{
 			global::Debug.LogFormat("Update mod {0}", new object[]
@@ -383,7 +371,6 @@ namespace KMod
 			this.Update(caller);
 		}
 
-		// Token: 0x0600BAD5 RID: 47829 RVA: 0x00480E44 File Offset: 0x0047F044
 		public void Unsubscribe(Label label, object caller)
 		{
 			global::Debug.LogFormat("Unsubscribe from mod {0}", new object[]
@@ -451,13 +438,11 @@ namespace KMod
 			this.Update(caller);
 		}
 
-		// Token: 0x0600BAD6 RID: 47830 RVA: 0x0011CDB2 File Offset: 0x0011AFB2
 		public bool IsInDevMode()
 		{
 			return this.mods.Exists((Mod mod) => mod.IsEnabledForActiveDlc() && mod.label.distribution_platform == Label.DistributionPlatform.Dev);
 		}
 
-		// Token: 0x0600BAD7 RID: 47831 RVA: 0x00481030 File Offset: 0x0047F230
 		public void Load(Content content)
 		{
 			if ((content & Content.DLL) != (Content)0 && this.load_user_mod_loader_dll)
@@ -524,7 +509,6 @@ namespace KMod
 			}
 		}
 
-		// Token: 0x0600BAD8 RID: 47832 RVA: 0x00481218 File Offset: 0x0047F418
 		public void Unload(Content content)
 		{
 			foreach (Mod mod in this.mods)
@@ -533,7 +517,6 @@ namespace KMod
 			}
 		}
 
-		// Token: 0x0600BAD9 RID: 47833 RVA: 0x0011CDDE File Offset: 0x0011AFDE
 		public void Update(object change_source)
 		{
 			if (!this.dirty)
@@ -548,7 +531,6 @@ namespace KMod
 			}
 		}
 
-		// Token: 0x0600BADA RID: 47834 RVA: 0x0048126C File Offset: 0x0047F46C
 		public bool MatchFootprint(List<Label> footprint, Content relevant_content)
 		{
 			if (footprint == null)
@@ -644,19 +626,16 @@ namespace KMod
 			return flag2 && flag && !flag3;
 		}
 
-		// Token: 0x0600BADB RID: 47835 RVA: 0x0011CE0B File Offset: 0x0011B00B
 		private string GetFilename()
 		{
 			return FileSystem.Normalize(Path.Combine(Manager.GetDirectory(), "mods.json"));
 		}
 
-		// Token: 0x0600BADC RID: 47836 RVA: 0x00481500 File Offset: 0x0047F700
 		public static void Dialog(GameObject parent = null, string title = null, string text = null, string confirm_text = null, System.Action on_confirm = null, string cancel_text = null, System.Action on_cancel = null, string configurable_text = null, System.Action on_configurable_clicked = null, Sprite image_sprite = null)
 		{
 			((ConfirmDialogScreen)KScreenManager.Instance.StartScreen(ScreenPrefabs.Instance.ConfirmDialogScreen.gameObject, parent ?? Global.Instance.globalCanvas)).PopupConfirmDialog(text, on_confirm, on_cancel, configurable_text, on_configurable_clicked, title, confirm_text, cancel_text, image_sprite);
 		}
 
-		// Token: 0x0600BADD RID: 47837 RVA: 0x00481550 File Offset: 0x0047F750
 		private static string MakeModList(List<Event> events, EventType event_type)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
@@ -677,13 +656,11 @@ namespace KMod
 			return stringBuilder.ToString();
 		}
 
-		// Token: 0x0600BADE RID: 47838 RVA: 0x0011CE21 File Offset: 0x0011B021
 		private static string MakeEventList(List<Event> events)
 		{
 			return Manager.MakeEventList(events, "\n");
 		}
 
-		// Token: 0x0600BADF RID: 47839 RVA: 0x004815E4 File Offset: 0x0047F7E4
 		private static string MakeEventList(List<Event> events, string prefix)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
@@ -709,13 +686,11 @@ namespace KMod
 			return stringBuilder.ToString();
 		}
 
-		// Token: 0x0600BAE0 RID: 47840 RVA: 0x0011CE2E File Offset: 0x0011B02E
 		private static string MakeModList(List<Event> events)
 		{
 			return Manager.MakeModList(events, "\n");
 		}
 
-		// Token: 0x0600BAE1 RID: 47841 RVA: 0x004816BC File Offset: 0x0047F8BC
 		private static string MakeModList(List<Event> events, string prefix)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
@@ -738,7 +713,6 @@ namespace KMod
 			return stringBuilder.ToString();
 		}
 
-		// Token: 0x0600BAE2 RID: 47842 RVA: 0x0048176C File Offset: 0x0047F96C
 		private void LoadFailureDialog(GameObject parent)
 		{
 			if (this.events.Count == 0)
@@ -770,7 +744,6 @@ namespace KMod
 			this.events.Clear();
 		}
 
-		// Token: 0x0600BAE3 RID: 47843 RVA: 0x004818BC File Offset: 0x0047FABC
 		private void DevRestartDialog(GameObject parent, bool is_crash)
 		{
 			if (this.events.Count == 0)
@@ -804,7 +777,6 @@ namespace KMod
 			this.events.Clear();
 		}
 
-		// Token: 0x0600BAE4 RID: 47844 RVA: 0x004819D4 File Offset: 0x0047FBD4
 		public void RestartDialog(string title, string message_format, System.Action on_cancel, bool with_details, GameObject parent, string cancel_text = null)
 		{
 			if (this.events.Count == 0)
@@ -818,7 +790,6 @@ namespace KMod
 			this.events.Clear();
 		}
 
-		// Token: 0x0600BAE5 RID: 47845 RVA: 0x00481A58 File Offset: 0x0047FC58
 		public void NotifyDialog(string title, string message_format, GameObject parent)
 		{
 			if (this.events.Count == 0)
@@ -829,7 +800,6 @@ namespace KMod
 			this.events.Clear();
 		}
 
-		// Token: 0x0600BAE6 RID: 47846 RVA: 0x00481AA0 File Offset: 0x0047FCA0
 		public void SearchForModsInStackTrace(StackTrace stackTrace)
 		{
 			foreach (StackFrame stackFrame in stackTrace.GetFrames())
@@ -868,7 +838,6 @@ namespace KMod
 			this.SearchForModsInStackTrace(stackStr);
 		}
 
-		// Token: 0x0600BAE7 RID: 47847 RVA: 0x00481C08 File Offset: 0x0047FE08
 		public void SearchForModsInStackTrace(string stackStr)
 		{
 			foreach (Mod mod in this.mods)
@@ -888,7 +857,6 @@ namespace KMod
 			}
 		}
 
-		// Token: 0x0600BAE8 RID: 47848 RVA: 0x00481D10 File Offset: 0x0047FF10
 		public void HandleErrors(List<YamlIO.Error> world_gen_errors)
 		{
 			string value = FileSystem.Normalize(Manager.GetDirectory());
@@ -931,7 +899,6 @@ namespace KMod
 			this.Update(this);
 		}
 
-		// Token: 0x0600BAE9 RID: 47849 RVA: 0x00481F0C File Offset: 0x0048010C
 		public void Report(GameObject parent)
 		{
 			if (this.events.Count == 0)
@@ -1009,7 +976,6 @@ namespace KMod
 			this.NotifyDialog(UI.FRONTEND.MOD_DIALOGS.MOD_EVENTS.TITLE, flag4 ? UI.FRONTEND.MOD_DIALOGS.MOD_EVENTS.DEV_MESSAGE : UI.FRONTEND.MOD_DIALOGS.MOD_EVENTS.MESSAGE, parent);
 		}
 
-		// Token: 0x0600BAEA RID: 47850 RVA: 0x00482100 File Offset: 0x00480300
 		public bool Save()
 		{
 			if (!FileUtil.CreateDirectory(Manager.GetDirectory(), 5))
@@ -1035,7 +1001,6 @@ namespace KMod
 			return true;
 		}
 
-		// Token: 0x0600BAEB RID: 47851 RVA: 0x004821C0 File Offset: 0x004803C0
 		public Mod FindMod(Label label)
 		{
 			foreach (Mod mod in this.mods)
@@ -1048,14 +1013,12 @@ namespace KMod
 			return null;
 		}
 
-		// Token: 0x0600BAEC RID: 47852 RVA: 0x0048222C File Offset: 0x0048042C
 		public bool IsModEnabled(Label id)
 		{
 			Mod mod = this.FindMod(id);
 			return mod != null && mod.IsEnabledForActiveDlc();
 		}
 
-		// Token: 0x0600BAED RID: 47853 RVA: 0x0048224C File Offset: 0x0048044C
 		public bool EnableMod(Label id, bool enabled, object caller)
 		{
 			Mod mod = this.FindMod(id);
@@ -1085,7 +1048,6 @@ namespace KMod
 			return true;
 		}
 
-		// Token: 0x0600BAEE RID: 47854 RVA: 0x004822A4 File Offset: 0x004804A4
 		public void Reinsert(int source_index, int target_index, bool move_to_end, object caller)
 		{
 			if (move_to_end)
@@ -1119,7 +1081,6 @@ namespace KMod
 			this.Update(caller);
 		}
 
-		// Token: 0x0600BAEF RID: 47855 RVA: 0x00482350 File Offset: 0x00480550
 		public void SendMetricsEvent()
 		{
 			ListPool<string, Manager>.PooledList pooledList = ListPool<string, Manager>.Allocate();
@@ -1139,65 +1100,47 @@ namespace KMod
 			KCrashReporter.haveActiveMods = (pooledList.Count > 0);
 		}
 
-		// Token: 0x0400991B RID: 39195
 		public const Content all_content = Content.LayerableFiles | Content.Strings | Content.DLL | Content.Translation | Content.Animation;
 
-		// Token: 0x0400991C RID: 39196
 		public const Content boot_content = Content.LayerableFiles | Content.Strings | Content.DLL | Content.Translation | Content.Animation;
 
-		// Token: 0x0400991D RID: 39197
 		public const Content on_demand_content = (Content)0;
 
-		// Token: 0x0400991E RID: 39198
 		public List<IDistributionPlatform> distribution_platforms = new List<IDistributionPlatform>();
 
-		// Token: 0x0400991F RID: 39199
 		public List<Mod> mods = new List<Mod>();
 
-		// Token: 0x04009920 RID: 39200
 		public List<Event> events = new List<Event>();
 
-		// Token: 0x04009921 RID: 39201
 		private bool dirty = true;
 
-		// Token: 0x04009922 RID: 39202
 		public Manager.OnUpdate on_update;
 
-		// Token: 0x04009923 RID: 39203
 		private const int IO_OP_RETRY_COUNT = 5;
 
-		// Token: 0x04009924 RID: 39204
 		private bool load_user_mod_loader_dll = true;
 
-		// Token: 0x04009925 RID: 39205
 		private const int MAX_DIALOG_ENTRIES = 30;
 
-		// Token: 0x04009926 RID: 39206
 		private int current_version = 1;
 
-		// Token: 0x02002256 RID: 8790
-		// (Invoke) Token: 0x0600BAF2 RID: 47858
+Invoke) Token: 0x0600BAF2 RID: 47858
 		public delegate void OnUpdate(object change_source);
 
-		// Token: 0x02002257 RID: 8791
 		private class PersistentData
 		{
-			// Token: 0x0600BAF5 RID: 47861 RVA: 0x000AA024 File Offset: 0x000A8224
 			public PersistentData()
 			{
 			}
 
-			// Token: 0x0600BAF6 RID: 47862 RVA: 0x0011CE3B File Offset: 0x0011B03B
 			public PersistentData(int version, List<Mod> mods)
 			{
 				this.version = version;
 				this.mods = mods;
 			}
 
-			// Token: 0x04009927 RID: 39207
 			public int version;
 
-			// Token: 0x04009928 RID: 39208
 			public List<Mod> mods;
 		}
 	}

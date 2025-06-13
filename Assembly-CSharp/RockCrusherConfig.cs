@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000573 RID: 1395
 public class RockCrusherConfig : IBuildingConfig
 {
-	// Token: 0x060017F6 RID: 6134 RVA: 0x001A8BD8 File Offset: 0x001A6DD8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "RockCrusher";
@@ -32,7 +30,6 @@ public class RockCrusherConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060017F7 RID: 6135 RVA: 0x001A8C6C File Offset: 0x001A6E6C
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
@@ -303,7 +300,6 @@ public class RockCrusherConfig : IBuildingConfig
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x060017F8 RID: 6136 RVA: 0x000B4959 File Offset: 0x000B2B59
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		SymbolOverrideControllerUtil.AddToPrefab(go);
@@ -318,12 +314,9 @@ public class RockCrusherConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x04000FE0 RID: 4064
 	public const string ID = "RockCrusher";
 
-	// Token: 0x04000FE1 RID: 4065
 	private const float INPUT_KG = 100f;
 
-	// Token: 0x04000FE2 RID: 4066
 	private const float METAL_ORE_EFFICIENCY = 0.5f;
 }

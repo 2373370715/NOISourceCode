@@ -2,10 +2,8 @@
 using FMOD.Studio;
 using UnityEngine;
 
-// Token: 0x0200095D RID: 2397
 public class SculptingSoundEvent : SoundEvent
 {
-	// Token: 0x06002ABF RID: 10943 RVA: 0x001E2C30 File Offset: 0x001E0E30
 	private static string BaseSoundName(string sound_name)
 	{
 		int num = sound_name.IndexOf(":");
@@ -16,7 +14,6 @@ public class SculptingSoundEvent : SoundEvent
 		return sound_name;
 	}
 
-	// Token: 0x06002AC0 RID: 10944 RVA: 0x001E897C File Offset: 0x001E6B7C
 	public SculptingSoundEvent(string file_name, string sound_name, int frame, bool do_load, bool is_looping, float min_interval, bool is_dynamic) : base(file_name, SculptingSoundEvent.BaseSoundName(sound_name), frame, do_load, is_looping, min_interval, is_dynamic)
 	{
 		if (sound_name.Contains(":"))
@@ -60,7 +57,6 @@ public class SculptingSoundEvent : SoundEvent
 		});
 	}
 
-	// Token: 0x06002AC1 RID: 10945 RVA: 0x001E8A98 File Offset: 0x001E6C98
 	public override void OnPlay(AnimEventManager.EventPlayerData behaviour)
 	{
 		if (string.IsNullOrEmpty(base.sound))
@@ -131,7 +127,6 @@ public class SculptingSoundEvent : SoundEvent
 		}
 	}
 
-	// Token: 0x06002AC2 RID: 10946 RVA: 0x000C042D File Offset: 0x000BE62D
 	private void ParseParameter(string param)
 	{
 		this.counterModulus = int.Parse(param);
@@ -141,12 +136,9 @@ public class SculptingSoundEvent : SoundEvent
 		}
 	}
 
-	// Token: 0x04001D05 RID: 7429
 	private const int COUNTER_MODULUS_INVALID = -2147483648;
 
-	// Token: 0x04001D06 RID: 7430
 	private const int COUNTER_MODULUS_CLEAR = -1;
 
-	// Token: 0x04001D07 RID: 7431
 	private int counterModulus = int.MinValue;
 }

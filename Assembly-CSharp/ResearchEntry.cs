@@ -5,11 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UI.Extensions;
 
-// Token: 0x02001F24 RID: 7972
 [AddComponentMenu("KMonoBehaviour/scripts/ResearchEntry")]
 public class ResearchEntry : KMonoBehaviour
 {
-	// Token: 0x0600A7AC RID: 42924 RVA: 0x00405CB8 File Offset: 0x00403EB8
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -59,7 +57,6 @@ public class ResearchEntry : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600A7AD RID: 42925 RVA: 0x00405F78 File Offset: 0x00404178
 	public void SetTech(Tech newTech)
 	{
 		if (newTech == null)
@@ -141,7 +138,6 @@ public class ResearchEntry : KMonoBehaviour
 		};
 	}
 
-	// Token: 0x0600A7AE RID: 42926 RVA: 0x00406308 File Offset: 0x00404508
 	public void SetEverythingOff()
 	{
 		if (!this.isOn)
@@ -157,7 +153,6 @@ public class ResearchEntry : KMonoBehaviour
 		this.isOn = false;
 	}
 
-	// Token: 0x0600A7AF RID: 42927 RVA: 0x0040639C File Offset: 0x0040459C
 	public void SetEverythingOn()
 	{
 		if (this.isOn)
@@ -175,7 +170,6 @@ public class ResearchEntry : KMonoBehaviour
 		this.isOn = true;
 	}
 
-	// Token: 0x0600A7B0 RID: 42928 RVA: 0x00406440 File Offset: 0x00404640
 	public void OnHover(bool entered, Tech hoverSource)
 	{
 		this.SetEverythingOn();
@@ -189,7 +183,6 @@ public class ResearchEntry : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600A7B1 RID: 42929 RVA: 0x004064BC File Offset: 0x004046BC
 	private void OnResearchClicked()
 	{
 		TechInstance activeResearch = Research.Instance.GetActiveResearch();
@@ -205,7 +198,6 @@ public class ResearchEntry : KMonoBehaviour
 		this.UpdateProgressBars();
 	}
 
-	// Token: 0x0600A7B2 RID: 42930 RVA: 0x00406518 File Offset: 0x00404718
 	private void OnResearchCanceled()
 	{
 		if (this.targetTech.IsComplete())
@@ -218,7 +210,6 @@ public class ResearchEntry : KMonoBehaviour
 		Research.Instance.CancelResearch(this.targetTech, true);
 	}
 
-	// Token: 0x0600A7B3 RID: 42931 RVA: 0x00406574 File Offset: 0x00404774
 	public void QueueStateChanged(bool isSelected)
 	{
 		if (isSelected)
@@ -275,18 +266,15 @@ public class ResearchEntry : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600A7B4 RID: 42932 RVA: 0x00406818 File Offset: 0x00404A18
 	public void UpdateFilterState(bool state)
 	{
 		this.filterLowlight.gameObject.SetActive(!state);
 	}
 
-	// Token: 0x0600A7B5 RID: 42933 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void SetPercentage(float percent)
 	{
 	}
 
-	// Token: 0x0600A7B6 RID: 42934 RVA: 0x0040683C File Offset: 0x00404A3C
 	public void UpdateProgressBars()
 	{
 		foreach (KeyValuePair<string, GameObject> keyValuePair in this.progressBarsByResearchTypeID)
@@ -313,7 +301,6 @@ public class ResearchEntry : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600A7B7 RID: 42935 RVA: 0x001114CD File Offset: 0x0010F6CD
 	private GameObject GetFreeIcon()
 	{
 		GameObject gameObject = Util.KInstantiateUI(this.iconPrefab, this.iconPanel, false);
@@ -321,13 +308,11 @@ public class ResearchEntry : KMonoBehaviour
 		return gameObject;
 	}
 
-	// Token: 0x0600A7B8 RID: 42936 RVA: 0x001114E8 File Offset: 0x0010F6E8
 	private Image GetFreeLine()
 	{
 		return Util.KInstantiateUI<Image>(this.linePrefab.gameObject, base.gameObject, false);
 	}
 
-	// Token: 0x0600A7B9 RID: 42937 RVA: 0x004069F4 File Offset: 0x00404BF4
 	public void ResearchCompleted(bool notify = true)
 	{
 		this.BG.color = this.completedColor;
@@ -347,135 +332,100 @@ public class ResearchEntry : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x040083A2 RID: 33698
 	[Header("Labels")]
 	[SerializeField]
 	private LocText researchName;
 
-	// Token: 0x040083A3 RID: 33699
 	[Header("Transforms")]
 	[SerializeField]
 	private Transform progressBarContainer;
 
-	// Token: 0x040083A4 RID: 33700
 	[SerializeField]
 	private Transform lineContainer;
 
-	// Token: 0x040083A5 RID: 33701
 	[Header("Prefabs")]
 	[SerializeField]
 	private GameObject iconPanel;
 
-	// Token: 0x040083A6 RID: 33702
 	[SerializeField]
 	private GameObject iconPrefab;
 
-	// Token: 0x040083A7 RID: 33703
 	[SerializeField]
 	private GameObject linePrefab;
 
-	// Token: 0x040083A8 RID: 33704
 	[SerializeField]
 	private GameObject progressBarPrefab;
 
-	// Token: 0x040083A9 RID: 33705
 	[Header("Graphics")]
 	[SerializeField]
 	private Image BG;
 
-	// Token: 0x040083AA RID: 33706
 	[SerializeField]
 	private Image titleBG;
 
-	// Token: 0x040083AB RID: 33707
 	[SerializeField]
 	private Image borderHighlight;
 
-	// Token: 0x040083AC RID: 33708
 	[SerializeField]
 	private Image filterHighlight;
 
-	// Token: 0x040083AD RID: 33709
 	[SerializeField]
 	private Image filterLowlight;
 
-	// Token: 0x040083AE RID: 33710
 	[SerializeField]
 	private Sprite hoverBG;
 
-	// Token: 0x040083AF RID: 33711
 	[SerializeField]
 	private Sprite completedBG;
 
-	// Token: 0x040083B0 RID: 33712
 	[Header("Colors")]
 	[SerializeField]
 	private Color defaultColor = Color.blue;
 
-	// Token: 0x040083B1 RID: 33713
 	[SerializeField]
 	private Color completedColor = Color.yellow;
 
-	// Token: 0x040083B2 RID: 33714
 	[SerializeField]
 	private Color pendingColor = Color.magenta;
 
-	// Token: 0x040083B3 RID: 33715
 	[SerializeField]
 	private Color completedHeaderColor = Color.grey;
 
-	// Token: 0x040083B4 RID: 33716
 	[SerializeField]
 	private Color incompleteHeaderColor = Color.grey;
 
-	// Token: 0x040083B5 RID: 33717
 	[SerializeField]
 	private Color pendingHeaderColor = Color.grey;
 
-	// Token: 0x040083B6 RID: 33718
 	private Sprite defaultBG;
 
-	// Token: 0x040083B7 RID: 33719
 	[MyCmpGet]
 	private KToggle toggle;
 
-	// Token: 0x040083B8 RID: 33720
 	private ResearchScreen researchScreen;
 
-	// Token: 0x040083B9 RID: 33721
 	private Dictionary<Tech, UILineRenderer> techLineMap;
 
-	// Token: 0x040083BA RID: 33722
 	private Tech targetTech;
 
-	// Token: 0x040083BB RID: 33723
 	private bool isOn = true;
 
-	// Token: 0x040083BC RID: 33724
 	private Coroutine fadeRoutine;
 
-	// Token: 0x040083BD RID: 33725
 	public Color activeLineColor;
 
-	// Token: 0x040083BE RID: 33726
 	public Color inactiveLineColor;
 
-	// Token: 0x040083BF RID: 33727
 	public int lineThickness_active = 6;
 
-	// Token: 0x040083C0 RID: 33728
 	public int lineThickness_inactive = 2;
 
-	// Token: 0x040083C1 RID: 33729
 	public Material StandardUIMaterial;
 
-	// Token: 0x040083C2 RID: 33730
 	private Dictionary<string, GameObject> progressBarsByResearchTypeID = new Dictionary<string, GameObject>();
 
-	// Token: 0x040083C3 RID: 33731
 	public static readonly string UnlockedTechKey = "UnlockedTech";
 
-	// Token: 0x040083C4 RID: 33732
 	private Dictionary<string, object> unlockedTechMetric = new Dictionary<string, object>
 	{
 		{

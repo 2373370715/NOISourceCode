@@ -11,13 +11,10 @@ using KSerialization;
 using ProcGen;
 using UnityEngine;
 
-// Token: 0x02001239 RID: 4665
 [SerializationConfig(MemberSerialization.OptIn)]
 [AddComponentMenu("KMonoBehaviour/scripts/CustomGameSettings")]
 public class CustomGameSettings : KMonoBehaviour
 {
-	// Token: 0x170005A5 RID: 1445
-	// (get) Token: 0x06005EB9 RID: 24249 RVA: 0x000E24DC File Offset: 0x000E06DC
 	public static CustomGameSettings Instance
 	{
 		get
@@ -26,8 +23,6 @@ public class CustomGameSettings : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x170005A6 RID: 1446
-	// (get) Token: 0x06005EBA RID: 24250 RVA: 0x000E24E3 File Offset: 0x000E06E3
 	public IReadOnlyDictionary<string, string> CurrentStoryLevelsBySetting
 	{
 		get
@@ -36,22 +31,18 @@ public class CustomGameSettings : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x1400001A RID: 26
-	// (add) Token: 0x06005EBB RID: 24251 RVA: 0x002B0AC8 File Offset: 0x002AECC8
-	// (remove) Token: 0x06005EBC RID: 24252 RVA: 0x002B0B00 File Offset: 0x002AED00
+add) Token: 0x06005EBB RID: 24251 RVA: 0x002B0AC8 File Offset: 0x002AECC8
+remove) Token: 0x06005EBC RID: 24252 RVA: 0x002B0B00 File Offset: 0x002AED00
 	public event Action<SettingConfig, SettingLevel> OnQualitySettingChanged;
 
-	// Token: 0x1400001B RID: 27
-	// (add) Token: 0x06005EBD RID: 24253 RVA: 0x002B0B38 File Offset: 0x002AED38
-	// (remove) Token: 0x06005EBE RID: 24254 RVA: 0x002B0B70 File Offset: 0x002AED70
+add) Token: 0x06005EBD RID: 24253 RVA: 0x002B0B38 File Offset: 0x002AED38
+remove) Token: 0x06005EBE RID: 24254 RVA: 0x002B0B70 File Offset: 0x002AED70
 	public event Action<SettingConfig, SettingLevel> OnStorySettingChanged;
 
-	// Token: 0x1400001C RID: 28
-	// (add) Token: 0x06005EBF RID: 24255 RVA: 0x002B0BA8 File Offset: 0x002AEDA8
-	// (remove) Token: 0x06005EC0 RID: 24256 RVA: 0x002B0BE0 File Offset: 0x002AEDE0
+add) Token: 0x06005EBF RID: 24255 RVA: 0x002B0BA8 File Offset: 0x002AEDA8
+remove) Token: 0x06005EC0 RID: 24256 RVA: 0x002B0BE0 File Offset: 0x002AEDE0
 	public event Action<SettingConfig, SettingLevel> OnMixingSettingChanged;
 
-	// Token: 0x06005EC1 RID: 24257 RVA: 0x002B0C18 File Offset: 0x002AEE18
 	[OnDeserialized]
 	private void OnDeserialized()
 	{
@@ -108,7 +99,6 @@ public class CustomGameSettings : KMonoBehaviour
 		this.CheckCustomGameMode();
 	}
 
-	// Token: 0x06005EC2 RID: 24258 RVA: 0x002B0DEC File Offset: 0x002AEFEC
 	private void AddMissingQualitySettings()
 	{
 		foreach (KeyValuePair<string, SettingConfig> keyValuePair in this.QualitySettings)
@@ -139,7 +129,6 @@ public class CustomGameSettings : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06005EC3 RID: 24259 RVA: 0x002B0EE4 File Offset: 0x002AF0E4
 	protected override void OnPrefabInit()
 	{
 		DlcManager.IsExpansion1Active();
@@ -211,7 +200,6 @@ public class CustomGameSettings : KMonoBehaviour
 		this.VerifySettingCoordinates();
 	}
 
-	// Token: 0x06005EC4 RID: 24260 RVA: 0x002B1154 File Offset: 0x002AF354
 	public void DisableAllStories()
 	{
 		foreach (KeyValuePair<string, SettingConfig> keyValuePair in this.StorySettings)
@@ -220,7 +208,6 @@ public class CustomGameSettings : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06005EC5 RID: 24261 RVA: 0x002B11B0 File Offset: 0x002AF3B0
 	public void SetSurvivalDefaults()
 	{
 		this.customGameMode = CustomGameSettings.CustomGameMode.Survival;
@@ -230,7 +217,6 @@ public class CustomGameSettings : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06005EC6 RID: 24262 RVA: 0x002B121C File Offset: 0x002AF41C
 	public void SetNosweatDefaults()
 	{
 		this.customGameMode = CustomGameSettings.CustomGameMode.Nosweat;
@@ -240,21 +226,18 @@ public class CustomGameSettings : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06005EC7 RID: 24263 RVA: 0x000E24EB File Offset: 0x000E06EB
 	public SettingLevel CycleQualitySettingLevel(ListSettingConfig config, int direction)
 	{
 		this.SetQualitySetting(config, config.CycleSettingLevelID(this.CurrentQualityLevelsBySetting[config.id], direction));
 		return config.GetLevel(this.CurrentQualityLevelsBySetting[config.id]);
 	}
 
-	// Token: 0x06005EC8 RID: 24264 RVA: 0x000E2523 File Offset: 0x000E0723
 	public SettingLevel ToggleQualitySettingLevel(ToggleSettingConfig config)
 	{
 		this.SetQualitySetting(config, config.ToggleSettingLevelID(this.CurrentQualityLevelsBySetting[config.id]));
 		return config.GetLevel(this.CurrentQualityLevelsBySetting[config.id]);
 	}
 
-	// Token: 0x06005EC9 RID: 24265 RVA: 0x002B1288 File Offset: 0x002AF488
 	private void CheckCustomGameMode()
 	{
 		bool flag = true;
@@ -310,13 +293,11 @@ public class CustomGameSettings : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06005ECA RID: 24266 RVA: 0x000E255A File Offset: 0x000E075A
 	public void SetQualitySetting(SettingConfig config, string value)
 	{
 		this.SetQualitySetting(config, value, true);
 	}
 
-	// Token: 0x06005ECB RID: 24267 RVA: 0x000E2565 File Offset: 0x000E0765
 	public void SetQualitySetting(SettingConfig config, string value, bool notify)
 	{
 		this.CurrentQualityLevelsBySetting[config.id] = value;
@@ -327,13 +308,11 @@ public class CustomGameSettings : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06005ECC RID: 24268 RVA: 0x000E259D File Offset: 0x000E079D
 	public SettingLevel GetCurrentQualitySetting(SettingConfig setting)
 	{
 		return this.GetCurrentQualitySetting(setting.id);
 	}
 
-	// Token: 0x06005ECD RID: 24269 RVA: 0x002B13DC File Offset: 0x002AF5DC
 	public SettingLevel GetCurrentQualitySetting(string setting_id)
 	{
 		SettingConfig settingConfig = this.QualitySettings[setting_id];
@@ -353,13 +332,11 @@ public class CustomGameSettings : KMonoBehaviour
 		return this.QualitySettings[setting_id].GetLevel(level_id);
 	}
 
-	// Token: 0x06005ECE RID: 24270 RVA: 0x000E25AB File Offset: 0x000E07AB
 	public string GetCurrentQualitySettingLevelId(SettingConfig config)
 	{
 		return this.CurrentQualityLevelsBySetting[config.id];
 	}
 
-	// Token: 0x06005ECF RID: 24271 RVA: 0x002B1490 File Offset: 0x002AF690
 	public string GetSettingLevelLabel(string setting_id, string level_id)
 	{
 		SettingConfig settingConfig = this.QualitySettings[setting_id];
@@ -375,7 +352,6 @@ public class CustomGameSettings : KMonoBehaviour
 		return "";
 	}
 
-	// Token: 0x06005ED0 RID: 24272 RVA: 0x002B14DC File Offset: 0x002AF6DC
 	public string GetQualitySettingLevelTooltip(string setting_id, string level_id)
 	{
 		SettingConfig settingConfig = this.QualitySettings[setting_id];
@@ -391,7 +367,6 @@ public class CustomGameSettings : KMonoBehaviour
 		return "";
 	}
 
-	// Token: 0x06005ED1 RID: 24273 RVA: 0x002B1528 File Offset: 0x002AF728
 	public void AddQualitySettingConfig(SettingConfig config)
 	{
 		this.QualitySettings.Add(config.id, config);
@@ -401,7 +376,6 @@ public class CustomGameSettings : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06005ED2 RID: 24274 RVA: 0x002B158C File Offset: 0x002AF78C
 	public void AddStorySettingConfig(SettingConfig config)
 	{
 		this.StorySettings.Add(config.id, config);
@@ -411,13 +385,11 @@ public class CustomGameSettings : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06005ED3 RID: 24275 RVA: 0x000E25BE File Offset: 0x000E07BE
 	public void SetStorySetting(SettingConfig config, string value)
 	{
 		this.SetStorySetting(config, value == "Guaranteed");
 	}
 
-	// Token: 0x06005ED4 RID: 24276 RVA: 0x000E25D2 File Offset: 0x000E07D2
 	public void SetStorySetting(SettingConfig config, bool value)
 	{
 		this.currentStoryLevelsBySetting[config.id] = (value ? "Guaranteed" : "Disabled");
@@ -427,7 +399,6 @@ public class CustomGameSettings : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06005ED5 RID: 24277 RVA: 0x002B15F0 File Offset: 0x002AF7F0
 	public void ParseAndApplyStoryTraitSettingsCode(string code)
 	{
 		BigInteger dividend = this.Base36toBinary(code);
@@ -456,7 +427,6 @@ public class CustomGameSettings : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06005ED6 RID: 24278 RVA: 0x002B174C File Offset: 0x002AF94C
 	private string GetStoryTraitSettingsCode()
 	{
 		BigInteger bigInteger = 0;
@@ -469,13 +439,11 @@ public class CustomGameSettings : KMonoBehaviour
 		return this.BinarytoBase36(bigInteger);
 	}
 
-	// Token: 0x06005ED7 RID: 24279 RVA: 0x000E260F File Offset: 0x000E080F
 	public SettingLevel GetCurrentStoryTraitSetting(SettingConfig setting)
 	{
 		return this.GetCurrentStoryTraitSetting(setting.id);
 	}
 
-	// Token: 0x06005ED8 RID: 24280 RVA: 0x002B17E8 File Offset: 0x002AF9E8
 	public SettingLevel GetCurrentStoryTraitSetting(string settingId)
 	{
 		SettingConfig settingConfig = this.StorySettings[settingId];
@@ -495,7 +463,6 @@ public class CustomGameSettings : KMonoBehaviour
 		return this.StorySettings[settingId].GetLevel(level_id);
 	}
 
-	// Token: 0x06005ED9 RID: 24281 RVA: 0x002B189C File Offset: 0x002AFA9C
 	public List<string> GetCurrentStories()
 	{
 		List<string> list = new List<string>();
@@ -509,20 +476,17 @@ public class CustomGameSettings : KMonoBehaviour
 		return list;
 	}
 
-	// Token: 0x06005EDA RID: 24282 RVA: 0x002B1914 File Offset: 0x002AFB14
 	public bool IsStoryActive(string id, string level)
 	{
 		SettingConfig settingConfig;
 		return this.StorySettings.TryGetValue(id, out settingConfig) && settingConfig != null && level == "Guaranteed";
 	}
 
-	// Token: 0x06005EDB RID: 24283 RVA: 0x000E261D File Offset: 0x000E081D
 	public void SetMixingSetting(SettingConfig config, string value)
 	{
 		this.SetMixingSetting(config, value, true);
 	}
 
-	// Token: 0x06005EDC RID: 24284 RVA: 0x000E2628 File Offset: 0x000E0828
 	public void SetMixingSetting(SettingConfig config, string value, bool notify)
 	{
 		this.CurrentMixingLevelsBySetting[config.id] = value;
@@ -532,7 +496,6 @@ public class CustomGameSettings : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06005EDD RID: 24285 RVA: 0x002B1944 File Offset: 0x002AFB44
 	public void AddMixingSettingsConfig(SettingConfig config)
 	{
 		this.MixingSettings.Add(config.id, config);
@@ -542,13 +505,11 @@ public class CustomGameSettings : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06005EDE RID: 24286 RVA: 0x000E265A File Offset: 0x000E085A
 	public SettingLevel GetCurrentMixingSettingLevel(SettingConfig setting)
 	{
 		return this.GetCurrentMixingSettingLevel(setting.id);
 	}
 
-	// Token: 0x06005EDF RID: 24287 RVA: 0x002B19A8 File Offset: 0x002AFBA8
 	public SettingConfig GetWorldMixingSettingForWorldgenFile(string file)
 	{
 		foreach (KeyValuePair<string, SettingConfig> keyValuePair in this.MixingSettings)
@@ -562,7 +523,6 @@ public class CustomGameSettings : KMonoBehaviour
 		return null;
 	}
 
-	// Token: 0x06005EE0 RID: 24288 RVA: 0x002B1A20 File Offset: 0x002AFC20
 	public SettingConfig GetSubworldMixingSettingForWorldgenFile(string file)
 	{
 		foreach (KeyValuePair<string, SettingConfig> keyValuePair in this.MixingSettings)
@@ -576,7 +536,6 @@ public class CustomGameSettings : KMonoBehaviour
 		return null;
 	}
 
-	// Token: 0x06005EE1 RID: 24289 RVA: 0x002B1A98 File Offset: 0x002AFC98
 	public void DisableAllMixing()
 	{
 		foreach (SettingConfig settingConfig in this.MixingSettings.Values)
@@ -585,7 +544,6 @@ public class CustomGameSettings : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06005EE2 RID: 24290 RVA: 0x002B1AF8 File Offset: 0x002AFCF8
 	public List<SubworldMixingSettingConfig> GetActiveSubworldMixingSettings()
 	{
 		List<SubworldMixingSettingConfig> list = new List<SubworldMixingSettingConfig>();
@@ -600,7 +558,6 @@ public class CustomGameSettings : KMonoBehaviour
 		return list;
 	}
 
-	// Token: 0x06005EE3 RID: 24291 RVA: 0x002B1B7C File Offset: 0x002AFD7C
 	public List<WorldMixingSettingConfig> GetActiveWorldMixingSettings()
 	{
 		List<WorldMixingSettingConfig> list = new List<WorldMixingSettingConfig>();
@@ -615,21 +572,18 @@ public class CustomGameSettings : KMonoBehaviour
 		return list;
 	}
 
-	// Token: 0x06005EE4 RID: 24292 RVA: 0x000E2668 File Offset: 0x000E0868
 	public SettingLevel CycleMixingSettingLevel(ListSettingConfig config, int direction)
 	{
 		this.SetMixingSetting(config, config.CycleSettingLevelID(this.CurrentMixingLevelsBySetting[config.id], direction));
 		return config.GetLevel(this.CurrentMixingLevelsBySetting[config.id]);
 	}
 
-	// Token: 0x06005EE5 RID: 24293 RVA: 0x000E26A0 File Offset: 0x000E08A0
 	public SettingLevel ToggleMixingSettingLevel(ToggleSettingConfig config)
 	{
 		this.SetMixingSetting(config, config.ToggleSettingLevelID(this.CurrentMixingLevelsBySetting[config.id]));
 		return config.GetLevel(this.CurrentMixingLevelsBySetting[config.id]);
 	}
 
-	// Token: 0x06005EE6 RID: 24294 RVA: 0x002B1C00 File Offset: 0x002AFE00
 	public SettingLevel GetCurrentMixingSettingLevel(string settingId)
 	{
 		SettingConfig settingConfig = this.MixingSettings[settingId];
@@ -641,7 +595,6 @@ public class CustomGameSettings : KMonoBehaviour
 		return this.MixingSettings[settingId].GetLevel(level_id);
 	}
 
-	// Token: 0x06005EE7 RID: 24295 RVA: 0x002B1C7C File Offset: 0x002AFE7C
 	public List<string> GetCurrentDlcMixingIds()
 	{
 		List<string> list = new List<string>();
@@ -656,7 +609,6 @@ public class CustomGameSettings : KMonoBehaviour
 		return list;
 	}
 
-	// Token: 0x06005EE8 RID: 24296 RVA: 0x002B1D04 File Offset: 0x002AFF04
 	public void ParseAndApplyMixingSettingsCode(string code)
 	{
 		BigInteger dividend = this.Base36toBinary(code);
@@ -685,7 +637,6 @@ public class CustomGameSettings : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06005EE9 RID: 24297 RVA: 0x002B1E60 File Offset: 0x002B0060
 	private string GetMixingSettingsCode()
 	{
 		BigInteger bigInteger = 0;
@@ -698,7 +649,6 @@ public class CustomGameSettings : KMonoBehaviour
 		return this.BinarytoBase36(bigInteger);
 	}
 
-	// Token: 0x06005EEA RID: 24298 RVA: 0x002B1EFC File Offset: 0x002B00FC
 	public void RemoveInvalidMixingSettings()
 	{
 		ClusterLayout currentClusterLayout = this.GetCurrentClusterLayout();
@@ -735,7 +685,6 @@ public class CustomGameSettings : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06005EEB RID: 24299 RVA: 0x002B2070 File Offset: 0x002B0270
 	public ClusterLayout GetCurrentClusterLayout()
 	{
 		SettingLevel currentQualitySetting = CustomGameSettings.Instance.GetCurrentQualitySetting(CustomGameSettingConfigs.ClusterLayout);
@@ -746,7 +695,6 @@ public class CustomGameSettings : KMonoBehaviour
 		return SettingsCache.clusterLayouts.GetClusterData(currentQualitySetting.id);
 	}
 
-	// Token: 0x06005EEC RID: 24300 RVA: 0x002B20A4 File Offset: 0x002B02A4
 	public int GetCurrentWorldgenSeed()
 	{
 		SettingLevel currentQualitySetting = CustomGameSettings.Instance.GetCurrentQualitySetting(CustomGameSettingConfigs.WorldgenSeed);
@@ -757,7 +705,6 @@ public class CustomGameSettings : KMonoBehaviour
 		return int.Parse(currentQualitySetting.id);
 	}
 
-	// Token: 0x06005EED RID: 24301 RVA: 0x002B20D4 File Offset: 0x002B02D4
 	public void LoadClusters()
 	{
 		Dictionary<string, ClusterLayout> clusterCache = SettingsCache.clusterLayouts.clusterCache;
@@ -772,7 +719,6 @@ public class CustomGameSettings : KMonoBehaviour
 		CustomGameSettingConfigs.ClusterLayout.StompLevels(list, WorldGenSettings.ClusterDefaultName, WorldGenSettings.ClusterDefaultName);
 	}
 
-	// Token: 0x06005EEE RID: 24302 RVA: 0x002B21C4 File Offset: 0x002B03C4
 	public void Print()
 	{
 		string text = "Custom Settings: ";
@@ -816,7 +762,6 @@ public class CustomGameSettings : KMonoBehaviour
 		global::Debug.Log(text);
 	}
 
-	// Token: 0x06005EEF RID: 24303 RVA: 0x002B2348 File Offset: 0x002B0548
 	private bool AllValuesMatch(Dictionary<string, string> data, CustomGameSettings.CustomGameMode mode)
 	{
 		bool result = true;
@@ -846,7 +791,6 @@ public class CustomGameSettings : KMonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06005EF0 RID: 24304 RVA: 0x002B23FC File Offset: 0x002B05FC
 	public List<CustomGameSettings.MetricSettingsData> GetSettingsForMetrics()
 	{
 		List<CustomGameSettings.MetricSettingsData> list = new List<CustomGameSettings.MetricSettingsData>();
@@ -881,7 +825,6 @@ public class CustomGameSettings : KMonoBehaviour
 		return list;
 	}
 
-	// Token: 0x06005EF1 RID: 24305 RVA: 0x002B2568 File Offset: 0x002B0768
 	public List<CustomGameSettings.MetricSettingsData> GetSettingsForMixingMetrics()
 	{
 		List<CustomGameSettings.MetricSettingsData> list = new List<CustomGameSettings.MetricSettingsData>();
@@ -899,7 +842,6 @@ public class CustomGameSettings : KMonoBehaviour
 		return list;
 	}
 
-	// Token: 0x06005EF2 RID: 24306 RVA: 0x002B2604 File Offset: 0x002B0804
 	public bool VerifySettingCoordinates()
 	{
 		bool flag = this.VerifySettingsDictionary(this.QualitySettings);
@@ -907,7 +849,6 @@ public class CustomGameSettings : KMonoBehaviour
 		return flag || flag2;
 	}
 
-	// Token: 0x06005EF3 RID: 24307 RVA: 0x002B262C File Offset: 0x002B082C
 	private bool VerifySettingsDictionary(Dictionary<string, SettingConfig> configs)
 	{
 		bool result = false;
@@ -973,7 +914,6 @@ public class CustomGameSettings : KMonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06005EF4 RID: 24308 RVA: 0x002B28AC File Offset: 0x002B0AAC
 	public static string[] ParseSettingCoordinate(string coord)
 	{
 		Match match = new Regex("(.*)-(\\d*)-(.*)-(.*)-(.*)").Match(coord);
@@ -992,7 +932,6 @@ public class CustomGameSettings : KMonoBehaviour
 		return array;
 	}
 
-	// Token: 0x06005EF5 RID: 24309 RVA: 0x002B2944 File Offset: 0x002B0B44
 	public string GetSettingsCoordinate()
 	{
 		SettingLevel currentQualitySetting = CustomGameSettings.Instance.GetCurrentQualitySetting(CustomGameSettingConfigs.ClusterLayout);
@@ -1018,7 +957,6 @@ public class CustomGameSettings : KMonoBehaviour
 		});
 	}
 
-	// Token: 0x06005EF6 RID: 24310 RVA: 0x002B2A10 File Offset: 0x002B0C10
 	public void ParseAndApplySettingsCode(string code)
 	{
 		BigInteger dividend = this.Base36toBinary(code);
@@ -1050,7 +988,6 @@ public class CustomGameSettings : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06005EF7 RID: 24311 RVA: 0x002B2B7C File Offset: 0x002B0D7C
 	private string GetOtherSettingsCode()
 	{
 		BigInteger bigInteger = 0;
@@ -1063,7 +1000,6 @@ public class CustomGameSettings : KMonoBehaviour
 		return this.BinarytoBase36(bigInteger);
 	}
 
-	// Token: 0x06005EF8 RID: 24312 RVA: 0x002B2C18 File Offset: 0x002B0E18
 	private BigInteger Base36toBinary(string input)
 	{
 		if (input == "0")
@@ -1089,7 +1025,6 @@ public class CustomGameSettings : KMonoBehaviour
 		return bigInteger;
 	}
 
-	// Token: 0x06005EF9 RID: 24313 RVA: 0x002B2CC0 File Offset: 0x002B0EC0
 	private string BinarytoBase36(BigInteger input)
 	{
 		if (input == 0L)
@@ -1106,7 +1041,6 @@ public class CustomGameSettings : KMonoBehaviour
 		return text;
 	}
 
-	// Token: 0x06005EFE RID: 24318 RVA: 0x002B2DB0 File Offset: 0x002B0FB0
 	[CompilerGenerated]
 	internal static bool <RemoveInvalidMixingSettings>g__HasRequiredContent|71_0(string[] requiredContent, ref CustomGameSettings.<>c__DisplayClass71_0 A_1)
 	{
@@ -1120,82 +1054,57 @@ public class CustomGameSettings : KMonoBehaviour
 		return true;
 	}
 
-	// Token: 0x040043B5 RID: 17333
 	private static CustomGameSettings instance;
 
-	// Token: 0x040043B6 RID: 17334
 	public const long NO_COORDINATE_RANGE = -1L;
 
-	// Token: 0x040043B7 RID: 17335
 	private const int NUM_STORY_LEVELS = 3;
 
-	// Token: 0x040043B8 RID: 17336
 	public const string STORY_DISABLED_LEVEL = "Disabled";
 
-	// Token: 0x040043B9 RID: 17337
 	public const string STORY_GUARANTEED_LEVEL = "Guaranteed";
 
-	// Token: 0x040043BA RID: 17338
 	[Serialize]
 	public bool is_custom_game;
 
-	// Token: 0x040043BB RID: 17339
 	[Serialize]
 	public CustomGameSettings.CustomGameMode customGameMode;
 
-	// Token: 0x040043BC RID: 17340
 	[Serialize]
 	private Dictionary<string, string> CurrentQualityLevelsBySetting = new Dictionary<string, string>();
 
-	// Token: 0x040043BD RID: 17341
 	[Serialize]
 	private Dictionary<string, string> CurrentMixingLevelsBySetting = new Dictionary<string, string>();
 
-	// Token: 0x040043BE RID: 17342
 	private Dictionary<string, string> currentStoryLevelsBySetting = new Dictionary<string, string>();
 
-	// Token: 0x040043BF RID: 17343
 	public List<string> CoordinatedQualitySettings = new List<string>();
 
-	// Token: 0x040043C0 RID: 17344
 	public Dictionary<string, SettingConfig> QualitySettings = new Dictionary<string, SettingConfig>();
 
-	// Token: 0x040043C1 RID: 17345
 	public List<string> CoordinatedStorySettings = new List<string>();
 
-	// Token: 0x040043C2 RID: 17346
 	public Dictionary<string, SettingConfig> StorySettings = new Dictionary<string, SettingConfig>();
 
-	// Token: 0x040043C3 RID: 17347
 	public List<string> CoordinatedMixingSettings = new List<string>();
 
-	// Token: 0x040043C4 RID: 17348
 	public Dictionary<string, SettingConfig> MixingSettings = new Dictionary<string, SettingConfig>();
 
-	// Token: 0x040043C8 RID: 17352
 	private const string coordinatePatern = "(.*)-(\\d*)-(.*)-(.*)-(.*)";
 
-	// Token: 0x040043C9 RID: 17353
 	private string hexChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-	// Token: 0x0200123A RID: 4666
 	public enum CustomGameMode
 	{
-		// Token: 0x040043CB RID: 17355
 		Survival,
-		// Token: 0x040043CC RID: 17356
 		Nosweat,
-		// Token: 0x040043CD RID: 17357
 		Custom = 255
 	}
 
-	// Token: 0x0200123B RID: 4667
 	public struct MetricSettingsData
 	{
-		// Token: 0x040043CE RID: 17358
 		public string Name;
 
-		// Token: 0x040043CF RID: 17359
 		public string Value;
 	}
 }

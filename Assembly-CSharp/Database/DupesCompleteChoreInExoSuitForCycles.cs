@@ -4,16 +4,13 @@ using System.Linq;
 
 namespace Database
 {
-	// Token: 0x0200221A RID: 8730
 	public class DupesCompleteChoreInExoSuitForCycles : ColonyAchievementRequirement, AchievementRequirementSerialization_Deprecated
 	{
-		// Token: 0x0600B9C4 RID: 47556 RVA: 0x0011C306 File Offset: 0x0011A506
 		public DupesCompleteChoreInExoSuitForCycles(int numCycles)
 		{
 			this.numCycles = numCycles;
 		}
 
-		// Token: 0x0600B9C5 RID: 47557 RVA: 0x00477FA4 File Offset: 0x004761A4
 		public override bool Success()
 		{
 			Dictionary<int, List<int>> dupesCompleteChoresInSuits = SaveGame.Instance.ColonyAchievementTracker.dupesCompleteChoresInSuits;
@@ -66,13 +63,11 @@ namespace Database
 			return false;
 		}
 
-		// Token: 0x0600B9C6 RID: 47558 RVA: 0x0011C315 File Offset: 0x0011A515
 		public void Deserialize(IReader reader)
 		{
 			this.numCycles = reader.ReadInt32();
 		}
 
-		// Token: 0x0600B9C7 RID: 47559 RVA: 0x00478134 File Offset: 0x00476334
 		public int GetNumberOfDupesForCycle(int cycle)
 		{
 			int result = 0;
@@ -84,10 +79,8 @@ namespace Database
 			return result;
 		}
 
-		// Token: 0x0400979B RID: 38811
 		public int currentCycleStreak;
 
-		// Token: 0x0400979C RID: 38812
 		public int numCycles;
 	}
 }

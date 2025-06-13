@@ -5,10 +5,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000048 RID: 72
 public class ClothingAlterationStationConfig : IBuildingConfig
 {
-	// Token: 0x06000146 RID: 326 RVA: 0x0014C130 File Offset: 0x0014A330
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "ClothingAlterationStation";
@@ -32,7 +30,6 @@ public class ClothingAlterationStationConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000147 RID: 327 RVA: 0x0014C1C8 File Offset: 0x0014A3C8
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<BuildingComplete>().isManuallyOperated = true;
@@ -56,7 +53,6 @@ public class ClothingAlterationStationConfig : IBuildingConfig
 		BuildingTemplates.CreateComplexFabricatorStorage(go, complexFabricator);
 	}
 
-	// Token: 0x06000148 RID: 328 RVA: 0x0014C274 File Offset: 0x0014A474
 	private void ConfigureRecipes()
 	{
 		ComplexRecipe.RecipeElement[] array = new ComplexRecipe.RecipeElement[]
@@ -82,7 +78,6 @@ public class ClothingAlterationStationConfig : IBuildingConfig
 		}
 	}
 
-	// Token: 0x06000149 RID: 329 RVA: 0x000AA630 File Offset: 0x000A8830
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.GetComponent<KPrefabID>().prefabSpawnFn += delegate(GameObject game_object)
@@ -98,6 +93,5 @@ public class ClothingAlterationStationConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x040000CB RID: 203
 	public const string ID = "ClothingAlterationStation";
 }

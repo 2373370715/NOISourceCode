@@ -3,10 +3,8 @@ using System.Runtime.CompilerServices;
 using TemplateClasses;
 using UnityEngine;
 
-// Token: 0x020014A2 RID: 5282
 public class StampToolPreview_SolidLiquidGas : IStampToolPreviewPlugin
 {
-	// Token: 0x06006D5C RID: 27996 RVA: 0x002F88AC File Offset: 0x002F6AAC
 	public void Setup(StampToolPreviewContext context)
 	{
 		this.SetupMaterials(context);
@@ -103,7 +101,6 @@ public class StampToolPreview_SolidLiquidGas : IStampToolPreviewPlugin
 		}
 	}
 
-	// Token: 0x06006D5D RID: 27997 RVA: 0x002F8BD0 File Offset: 0x002F6DD0
 	private void SetupMaterials(StampToolPreviewContext context)
 	{
 		if (StampToolPreview_SolidLiquidGas.solidMaterial.IsNullOrDestroyed())
@@ -139,25 +136,20 @@ public class StampToolPreview_SolidLiquidGas : IStampToolPreviewPlugin
 		}));
 	}
 
-	// Token: 0x06006D5E RID: 27998 RVA: 0x000EC50B File Offset: 0x000EA70B
 	private static int CellHash(int x, int y)
 	{
 		return x + y * 10000;
 	}
 
-	// Token: 0x06006D60 RID: 28000 RVA: 0x000EC516 File Offset: 0x000EA716
 	[CompilerGenerated]
 	internal static Color <SetupMaterials>g__WithAlpha|4_1(Color c, float a)
 	{
 		return new Color(c.r, c.g, c.b, a);
 	}
 
-	// Token: 0x0400527B RID: 21115
 	public static Material solidMaterial;
 
-	// Token: 0x0400527C RID: 21116
 	public static Material liquidMaterial;
 
-	// Token: 0x0400527D RID: 21117
 	public static Material gasMaterial;
 }

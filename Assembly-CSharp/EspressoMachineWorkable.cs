@@ -5,17 +5,14 @@ using Klei.AI;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02001302 RID: 4866
 [AddComponentMenu("KMonoBehaviour/Workable/EspressoMachineWorkable")]
 public class EspressoMachineWorkable : Workable, IWorkerPrioritizable
 {
-	// Token: 0x060063C6 RID: 25542 RVA: 0x000E5983 File Offset: 0x000E3B83
 	private EspressoMachineWorkable()
 	{
 		base.SetReportType(ReportManager.ReportType.PersonalTime);
 	}
 
-	// Token: 0x060063C7 RID: 25543 RVA: 0x002C972C File Offset: 0x002C792C
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -29,7 +26,6 @@ public class EspressoMachineWorkable : Workable, IWorkerPrioritizable
 		base.SetWorkTime(30f);
 	}
 
-	// Token: 0x060063C8 RID: 25544 RVA: 0x002C9780 File Offset: 0x002C7980
 	public override Workable.AnimInfo GetAnim(WorkerBase worker)
 	{
 		KAnimFile[] overrideAnims = null;
@@ -40,13 +36,11 @@ public class EspressoMachineWorkable : Workable, IWorkerPrioritizable
 		return base.GetAnim(worker);
 	}
 
-	// Token: 0x060063C9 RID: 25545 RVA: 0x000E59A9 File Offset: 0x000E3BA9
 	protected override void OnStartWork(WorkerBase worker)
 	{
 		this.operational.SetActive(true, false);
 	}
 
-	// Token: 0x060063CA RID: 25546 RVA: 0x002C97B4 File Offset: 0x002C79B4
 	protected override void OnCompleteWork(WorkerBase worker)
 	{
 		Storage component = base.GetComponent<Storage>();
@@ -73,13 +67,11 @@ public class EspressoMachineWorkable : Workable, IWorkerPrioritizable
 		}
 	}
 
-	// Token: 0x060063CB RID: 25547 RVA: 0x000E59B8 File Offset: 0x000E3BB8
 	protected override void OnStopWork(WorkerBase worker)
 	{
 		this.operational.SetActive(false, false);
 	}
 
-	// Token: 0x060063CC RID: 25548 RVA: 0x002C986C File Offset: 0x002C7A6C
 	public bool GetWorkerPriority(WorkerBase worker, out int priority)
 	{
 		priority = this.basePriority;
@@ -96,19 +88,14 @@ public class EspressoMachineWorkable : Workable, IWorkerPrioritizable
 		return true;
 	}
 
-	// Token: 0x04004781 RID: 18305
 	public Dictionary<Tag, KAnimFile[]> workerTypeOverrideAnims = new Dictionary<Tag, KAnimFile[]>();
 
-	// Token: 0x04004782 RID: 18306
 	[MyCmpReq]
 	private Operational operational;
 
-	// Token: 0x04004783 RID: 18307
 	public int basePriority = RELAXATION.PRIORITY.TIER5;
 
-	// Token: 0x04004784 RID: 18308
 	private static string specificEffect = "Espresso";
 
-	// Token: 0x04004785 RID: 18309
 	private static string trackingEffect = "RecentlyRecDrink";
 }

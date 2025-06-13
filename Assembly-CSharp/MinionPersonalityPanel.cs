@@ -5,23 +5,19 @@ using Klei.AI;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001E82 RID: 7810
 public class MinionPersonalityPanel : DetailScreenTab
 {
-	// Token: 0x0600A39A RID: 41882 RVA: 0x00109826 File Offset: 0x00107A26
 	public override bool IsValidForTarget(GameObject target)
 	{
 		return target.GetComponent<MinionIdentity>() != null;
 	}
 
-	// Token: 0x0600A39B RID: 41883 RVA: 0x0010EBA9 File Offset: 0x0010CDA9
 	protected override void OnSelectTarget(GameObject target)
 	{
 		base.OnSelectTarget(target);
 		this.Refresh();
 	}
 
-	// Token: 0x0600A39C RID: 41884 RVA: 0x003F0194 File Offset: 0x003EE394
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -33,14 +29,12 @@ public class MinionPersonalityPanel : DetailScreenTab
 		this.equipmentPanel = base.CreateCollapsableSection(UI.DETAILTABS.PERSONALITY.EQUIPMENT.GROUPNAME_OWNABLE);
 	}
 
-	// Token: 0x0600A39D RID: 41885 RVA: 0x0010EBB8 File Offset: 0x0010CDB8
 	protected override void OnCleanUp()
 	{
 		this.updateHandle.ClearScheduler();
 		base.OnCleanUp();
 	}
 
-	// Token: 0x0600A39E RID: 41886 RVA: 0x0010EBCB File Offset: 0x0010CDCB
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -48,7 +42,6 @@ public class MinionPersonalityPanel : DetailScreenTab
 		this.ScheduleUpdate();
 	}
 
-	// Token: 0x0600A39F RID: 41887 RVA: 0x0010EBDF File Offset: 0x0010CDDF
 	private void ScheduleUpdate()
 	{
 		this.updateHandle = UIScheduler.Instance.Schedule("RefreshMinionPersonalityPanel", 1f, delegate(object o)
@@ -58,7 +51,6 @@ public class MinionPersonalityPanel : DetailScreenTab
 		}, null, null);
 	}
 
-	// Token: 0x0600A3A0 RID: 41888 RVA: 0x003F022C File Offset: 0x003EE42C
 	private void Refresh()
 	{
 		if (!base.gameObject.activeSelf)
@@ -77,7 +69,6 @@ public class MinionPersonalityPanel : DetailScreenTab
 		MinionPersonalityPanel.RefreshAttributesPanel(this.attributesPanel, this.selectedTarget);
 	}
 
-	// Token: 0x0600A3A1 RID: 41889 RVA: 0x003F02D0 File Offset: 0x003EE4D0
 	private static void RefreshBioPanel(CollapsibleDetailContentPanel targetPanel, GameObject targetEntity)
 	{
 		MinionIdentity component = targetEntity.GetComponent<MinionIdentity>();
@@ -111,7 +102,6 @@ public class MinionPersonalityPanel : DetailScreenTab
 		targetPanel.Commit();
 	}
 
-	// Token: 0x0600A3A2 RID: 41890 RVA: 0x003F0564 File Offset: 0x003EE764
 	private static void RefreshTraitsPanel(CollapsibleDetailContentPanel targetPanel, GameObject targetEntity)
 	{
 		if (!targetEntity.GetComponent<MinionIdentity>())
@@ -130,7 +120,6 @@ public class MinionPersonalityPanel : DetailScreenTab
 		targetPanel.Commit();
 	}
 
-	// Token: 0x0600A3A3 RID: 41891 RVA: 0x003F05FC File Offset: 0x003EE7FC
 	private static void RefreshEquipmentPanel(CollapsibleDetailContentPanel targetPanel, GameObject targetEntity)
 	{
 		Assignables equipment = targetEntity.GetComponent<MinionIdentity>().GetEquipment();
@@ -161,7 +150,6 @@ public class MinionPersonalityPanel : DetailScreenTab
 		targetPanel.Commit();
 	}
 
-	// Token: 0x0600A3A4 RID: 41892 RVA: 0x003F079C File Offset: 0x003EE99C
 	private static void RefreshAmenitiesPanel(CollapsibleDetailContentPanel targetPanel, GameObject targetEntity)
 	{
 		Assignables soleOwner = targetEntity.GetComponent<MinionIdentity>().GetSoleOwner();
@@ -192,7 +180,6 @@ public class MinionPersonalityPanel : DetailScreenTab
 		targetPanel.Commit();
 	}
 
-	// Token: 0x0600A3A5 RID: 41893 RVA: 0x003F093C File Offset: 0x003EEB3C
 	private static void RefreshAttributesPanel(CollapsibleDetailContentPanel targetPanel, GameObject targetEntity)
 	{
 		if (!targetEntity.GetComponent<MinionIdentity>())
@@ -211,7 +198,6 @@ public class MinionPersonalityPanel : DetailScreenTab
 		targetPanel.Commit();
 	}
 
-	// Token: 0x0600A3A6 RID: 41894 RVA: 0x003F0A04 File Offset: 0x003EEC04
 	private static void RefreshResumePanel(CollapsibleDetailContentPanel targetPanel, GameObject targetEntity)
 	{
 		MinionResume component = targetEntity.GetComponent<MinionResume>();
@@ -251,24 +237,17 @@ public class MinionPersonalityPanel : DetailScreenTab
 		targetPanel.Commit();
 	}
 
-	// Token: 0x04007FDB RID: 32731
 	private CollapsibleDetailContentPanel bioPanel;
 
-	// Token: 0x04007FDC RID: 32732
 	private CollapsibleDetailContentPanel traitsPanel;
 
-	// Token: 0x04007FDD RID: 32733
 	private CollapsibleDetailContentPanel resumePanel;
 
-	// Token: 0x04007FDE RID: 32734
 	private CollapsibleDetailContentPanel attributesPanel;
 
-	// Token: 0x04007FDF RID: 32735
 	private CollapsibleDetailContentPanel equipmentPanel;
 
-	// Token: 0x04007FE0 RID: 32736
 	private CollapsibleDetailContentPanel amenitiesPanel;
 
-	// Token: 0x04007FE1 RID: 32737
 	private SchedulerHandle updateHandle;
 }

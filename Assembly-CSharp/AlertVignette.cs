@@ -2,16 +2,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001C1F RID: 7199
 public class AlertVignette : KMonoBehaviour
 {
-	// Token: 0x060095BA RID: 38330 RVA: 0x000C474E File Offset: 0x000C294E
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
 	}
 
-	// Token: 0x060095BB RID: 38331 RVA: 0x003A87E8 File Offset: 0x003A69E8
 	private void Update()
 	{
 		Color color = this.image.color;
@@ -49,9 +46,7 @@ public class AlertVignette : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x04007483 RID: 29827
 	public Image image;
 
-	// Token: 0x04007484 RID: 29828
 	public int worldID;
 }

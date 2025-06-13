@@ -6,10 +6,8 @@ using System.Threading;
 using Newtonsoft.Json;
 using UnityEngine;
 
-// Token: 0x02001809 RID: 6153
 public static class RetireColonyUtility
 {
-	// Token: 0x06007EA0 RID: 32416 RVA: 0x00337B2C File Offset: 0x00335D2C
 	public static bool SaveColonySummaryData()
 	{
 		if (!Directory.Exists(Util.RootFolder()))
@@ -94,7 +92,6 @@ public static class RetireColonyUtility
 		return flag2;
 	}
 
-	// Token: 0x06007EA1 RID: 32417 RVA: 0x00337D90 File Offset: 0x00335F90
 	public static RetiredColonyData GetCurrentColonyRetiredColonyData()
 	{
 		List<MinionAssignablesProxy> list = new List<MinionAssignablesProxy>();
@@ -134,7 +131,6 @@ public static class RetireColonyUtility
 		return new RetiredColonyData(SaveGame.Instance.BaseName, GameClock.Instance.GetCycle(), System.DateTime.Now.ToShortDateString(), list2.ToArray(), list.ToArray(), array, startWorld, dictionary);
 	}
 
-	// Token: 0x06007EA2 RID: 32418 RVA: 0x00337F4C File Offset: 0x0033614C
 	private static RetiredColonyData LoadRetiredColony(string file, bool skipStats, Encoding enc)
 	{
 		RetiredColonyData retiredColonyData = new RetiredColonyData();
@@ -358,7 +354,6 @@ public static class RetireColonyUtility
 		return retiredColonyData;
 	}
 
-	// Token: 0x06007EA3 RID: 32419 RVA: 0x0033855C File Offset: 0x0033675C
 	public static RetiredColonyData[] LoadRetiredColonies(bool skipStats = false)
 	{
 		List<RetiredColonyData> list = new List<RetiredColonyData>();
@@ -411,7 +406,6 @@ public static class RetireColonyUtility
 		return list.ToArray();
 	}
 
-	// Token: 0x06007EA4 RID: 32420 RVA: 0x00338694 File Offset: 0x00336894
 	public static string[] LoadColonySlideshowFiles(string colonyName, string world_name)
 	{
 		string path = RetireColonyUtility.StripInvalidCharacters(colonyName);
@@ -441,7 +435,6 @@ public static class RetireColonyUtility
 		return list.ToArray();
 	}
 
-	// Token: 0x06007EA5 RID: 32421 RVA: 0x00338730 File Offset: 0x00336930
 	public static Sprite[] LoadColonySlideshow(string colonyName)
 	{
 		string path = RetireColonyUtility.StripInvalidCharacters(colonyName);
@@ -470,7 +463,6 @@ public static class RetireColonyUtility
 		return list.ToArray();
 	}
 
-	// Token: 0x06007EA6 RID: 32422 RVA: 0x00338824 File Offset: 0x00336A24
 	public static Sprite LoadRetiredColonyPreview(string colonyName, string startName = null)
 	{
 		try
@@ -518,7 +510,6 @@ public static class RetireColonyUtility
 		return null;
 	}
 
-	// Token: 0x06007EA7 RID: 32423 RVA: 0x0033899C File Offset: 0x00336B9C
 	public static Sprite LoadColonyPreview(string savePath, string colonyName, bool fallbackToTimelapse = false)
 	{
 		string path = Path.ChangeExtension(savePath, ".png");
@@ -563,7 +554,6 @@ public static class RetireColonyUtility
 		return null;
 	}
 
-	// Token: 0x06007EA8 RID: 32424 RVA: 0x00338ABC File Offset: 0x00336CBC
 	public static string StripInvalidCharacters(string source)
 	{
 		foreach (char oldChar in RetireColonyUtility.invalidCharacters)
@@ -574,13 +564,10 @@ public static class RetireColonyUtility
 		return source;
 	}
 
-	// Token: 0x0400602E RID: 24622
 	private const int FILE_IO_RETRY_ATTEMPTS = 5;
 
-	// Token: 0x0400602F RID: 24623
 	private static char[] invalidCharacters = "<>:\"\\/|?*.".ToCharArray();
 
-	// Token: 0x04006030 RID: 24624
 	private static Encoding[] attempt_encodings = new Encoding[]
 	{
 		new UTF8Encoding(false, true),

@@ -4,18 +4,12 @@ using Klei.AI;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x020016DE RID: 5854
 [RequireComponent(typeof(Health))]
 [AddComponentMenu("KMonoBehaviour/scripts/OxygenBreather")]
 public class OxygenBreather : KMonoBehaviour, ISim200ms
 {
-	// Token: 0x17000794 RID: 1940
-	// (get) Token: 0x060078BA RID: 30906 RVA: 0x000F3D5C File Offset: 0x000F1F5C
-	// (set) Token: 0x060078B9 RID: 30905 RVA: 0x000F3D53 File Offset: 0x000F1F53
 	public KPrefabID prefabID { get; private set; }
 
-	// Token: 0x17000795 RID: 1941
-	// (get) Token: 0x060078BB RID: 30907 RVA: 0x000F3D64 File Offset: 0x000F1F64
 	public float ConsumptionRate
 	{
 		get
@@ -28,8 +22,6 @@ public class OxygenBreather : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x17000796 RID: 1942
-	// (get) Token: 0x060078BC RID: 30908 RVA: 0x000F3D7F File Offset: 0x000F1F7F
 	public float CO2EmitRate
 	{
 		get
@@ -38,8 +30,6 @@ public class OxygenBreather : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x17000797 RID: 1943
-	// (get) Token: 0x060078BD RID: 30909 RVA: 0x000F3D96 File Offset: 0x000F1F96
 	public HandleVector<int>.Handle O2Accumulator
 	{
 		get
@@ -48,7 +38,6 @@ public class OxygenBreather : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x060078BE RID: 30910 RVA: 0x00320CD0 File Offset: 0x0031EED0
 	public OxygenBreather.IGasProvider GetCurrentGasProvider()
 	{
 		if (this.gasProviders.Count == 0)
@@ -71,15 +60,12 @@ public class OxygenBreather : KMonoBehaviour, ISim200ms
 		return result;
 	}
 
-	// Token: 0x060078BF RID: 30911 RVA: 0x00320D28 File Offset: 0x0031EF28
 	public bool IsLowOxygen()
 	{
 		OxygenBreather.IGasProvider currentGasProvider = this.GetCurrentGasProvider();
 		return currentGasProvider == null || currentGasProvider.IsLowOxygen();
 	}
 
-	// Token: 0x17000798 RID: 1944
-	// (get) Token: 0x060078C0 RID: 30912 RVA: 0x000F3D9E File Offset: 0x000F1F9E
 	public bool HasOxygen
 	{
 		get
@@ -88,8 +74,6 @@ public class OxygenBreather : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x17000799 RID: 1945
-	// (get) Token: 0x060078C1 RID: 30913 RVA: 0x000F3DA6 File Offset: 0x000F1FA6
 	public bool IsOutOfOxygen
 	{
 		get
@@ -98,14 +82,12 @@ public class OxygenBreather : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x060078C2 RID: 30914 RVA: 0x000F3DB1 File Offset: 0x000F1FB1
 	protected override void OnPrefabInit()
 	{
 		GameUtil.SubscribeToTags<OxygenBreather>(this, OxygenBreather.OnDeadTagAddedDelegate, true);
 		this.prefabID = base.GetComponent<KPrefabID>();
 	}
 
-	// Token: 0x060078C3 RID: 30915 RVA: 0x00320D48 File Offset: 0x0031EF48
 	protected override void OnSpawn()
 	{
 		this.airConsumptionRate = Db.Get().Attributes.AirConsumptionRate.Lookup(this);
@@ -119,7 +101,6 @@ public class OxygenBreather : KMonoBehaviour, ISim200ms
 		NameDisplayScreen.Instance.RegisterComponent(base.gameObject, this, false);
 	}
 
-	// Token: 0x060078C4 RID: 30916 RVA: 0x00320E44 File Offset: 0x0031F044
 	private void BreathableGasConsumed(SimHashes elementConsumed, float massConsumed, float temperature, byte disseaseIDX, int disseaseCount)
 	{
 		if (this.prefabID.HasTag(GameTags.Dead) || this.O2Accumulator == HandleVector<int>.Handle.InvalidHandle)
@@ -139,7 +120,6 @@ public class OxygenBreather : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x060078C5 RID: 30917 RVA: 0x000F3DCB File Offset: 0x000F1FCB
 	public static void BreathableGasConsumed(OxygenBreather breather, SimHashes elementConsumed, float massConsumed, float temperature, byte disseaseIDX, int disseaseCount)
 	{
 		if (breather != null)
@@ -148,7 +128,6 @@ public class OxygenBreather : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x060078C6 RID: 30918 RVA: 0x00320EDC File Offset: 0x0031F0DC
 	public void Sim200ms(float dt)
 	{
 		if (!base.gameObject.HasTag(GameTags.Dead))
@@ -224,7 +203,6 @@ public class OxygenBreather : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x060078C7 RID: 30919 RVA: 0x000F3DE3 File Offset: 0x000F1FE3
 	public void AddGasProvider(OxygenBreather.IGasProvider gas_provider)
 	{
 		global::Debug.Assert(gas_provider != null, "Error at OxygenBreather.cs  adding gas provider, the gas provider param is null!");
@@ -233,7 +211,6 @@ public class OxygenBreather : KMonoBehaviour, ISim200ms
 		gas_provider.OnSetOxygenBreather(this);
 	}
 
-	// Token: 0x060078C8 RID: 30920 RVA: 0x003211E8 File Offset: 0x0031F3E8
 	public bool RemoveGasProvider(OxygenBreather.IGasProvider provider)
 	{
 		if (this.gasProviders.Count > 0 && this.gasProviders.Contains(provider))
@@ -246,7 +223,6 @@ public class OxygenBreather : KMonoBehaviour, ISim200ms
 		return false;
 	}
 
-	// Token: 0x060078C9 RID: 30921 RVA: 0x000F3E1F File Offset: 0x000F201F
 	private void OnDeath(object data)
 	{
 		base.enabled = false;
@@ -255,7 +231,6 @@ public class OxygenBreather : KMonoBehaviour, ISim200ms
 		component.RemoveStatusItem(Db.Get().DuplicantStatusItems.EmittingCO2, false);
 	}
 
-	// Token: 0x060078CA RID: 30922 RVA: 0x00321244 File Offset: 0x0031F444
 	protected override void OnCleanUp()
 	{
 		Game.Instance.accumulators.Remove(this.o2Accumulator);
@@ -270,95 +245,67 @@ public class OxygenBreather : KMonoBehaviour, ISim200ms
 		base.OnCleanUp();
 	}
 
-	// Token: 0x04005AA8 RID: 23208
 	public float O2toCO2conversion = 0.5f;
 
-	// Token: 0x04005AA9 RID: 23209
 	public Vector2 mouthOffset;
 
-	// Token: 0x04005AAA RID: 23210
 	[Serialize]
 	public float accumulatedCO2;
 
-	// Token: 0x04005AAB RID: 23211
 	[SerializeField]
 	public float minCO2ToEmit = 0.3f;
 
-	// Token: 0x04005AAC RID: 23212
 	private bool hasAir = true;
 
-	// Token: 0x04005AAD RID: 23213
 	private Timer hasAirTimer = new Timer();
 
-	// Token: 0x04005AAE RID: 23214
 	[MyCmpAdd]
 	private Notifier notifier;
 
-	// Token: 0x04005AAF RID: 23215
 	[MyCmpGet]
 	private Facing facing;
 
-	// Token: 0x04005AB1 RID: 23217
 	private HandleVector<int>.Handle o2Accumulator = HandleVector<int>.InvalidHandle;
 
-	// Token: 0x04005AB2 RID: 23218
 	private HandleVector<int>.Handle co2Accumulator = HandleVector<int>.InvalidHandle;
 
-	// Token: 0x04005AB3 RID: 23219
 	private AmountInstance temperature;
 
-	// Token: 0x04005AB4 RID: 23220
 	public float lowOxygenThreshold;
 
-	// Token: 0x04005AB5 RID: 23221
 	public float noOxygenThreshold;
 
-	// Token: 0x04005AB6 RID: 23222
 	private AttributeInstance airConsumptionRate;
 
-	// Token: 0x04005AB7 RID: 23223
 	public Action<SimHashes, float, float, byte, int> onBreathableGasConsumed;
 
-	// Token: 0x04005AB8 RID: 23224
 	private static readonly EventSystem.IntraObjectHandler<OxygenBreather> OnDeadTagAddedDelegate = GameUtil.CreateHasTagHandler<OxygenBreather>(GameTags.Dead, delegate(OxygenBreather component, object data)
 	{
 		component.OnDeath(data);
 	});
 
-	// Token: 0x04005AB9 RID: 23225
 	private List<OxygenBreather.IGasProvider> gasProviders = new List<OxygenBreather.IGasProvider>();
 
-	// Token: 0x04005ABA RID: 23226
 	private Guid o2StatusItem;
 
-	// Token: 0x04005ABB RID: 23227
 	private Guid cO2StatusItem;
 
-	// Token: 0x020016DF RID: 5855
 	public interface IGasProvider
 	{
-		// Token: 0x060078CD RID: 30925
 		void OnSetOxygenBreather(OxygenBreather oxygen_breather);
 
-		// Token: 0x060078CE RID: 30926
 		void OnClearOxygenBreather(OxygenBreather oxygen_breather);
 
-		// Token: 0x060078CF RID: 30927
 		bool ConsumeGas(OxygenBreather oxygen_breather, float amount);
 
-		// Token: 0x060078D0 RID: 30928
 		bool ShouldEmitCO2();
 
-		// Token: 0x060078D1 RID: 30929
 		bool ShouldStoreCO2();
 
-		// Token: 0x060078D2 RID: 30930
 		bool IsLowOxygen();
 
-		// Token: 0x060078D3 RID: 30931
 		bool HasOxygen();
 
-		// Token: 0x060078D4 RID: 30932
 		bool IsBlocked();
 	}
 }

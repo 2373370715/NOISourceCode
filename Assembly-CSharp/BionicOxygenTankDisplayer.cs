@@ -3,15 +3,12 @@ using Klei.AI;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001C34 RID: 7220
 public class BionicOxygenTankDisplayer : StandardAmountDisplayer
 {
-	// Token: 0x0600963A RID: 38458 RVA: 0x00106542 File Offset: 0x00104742
 	public BionicOxygenTankDisplayer(GameUtil.UnitClass unitClass, GameUtil.TimeSlice deltaTimeSlice) : base(unitClass, deltaTimeSlice, null, GameUtil.IdentityDescriptorTense.Normal)
 	{
 	}
 
-	// Token: 0x0600963B RID: 38459 RVA: 0x003AB978 File Offset: 0x003A9B78
 	public override string GetTooltip(Amount master, AmountInstance instance)
 	{
 		BionicOxygenTankMonitor.Instance smi = instance.gameObject.GetSMI<BionicOxygenTankMonitor.Instance>();

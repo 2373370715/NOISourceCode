@@ -1,10 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02001DA3 RID: 7587
 public class KleiItemDropScreen_PermitVis_DupeEquipment : KMonoBehaviour
 {
-	// Token: 0x06009E85 RID: 40581 RVA: 0x003DC96C File Offset: 0x003DAB6C
 	public void ConfigureWith(DropScreenPresentationInfo info)
 	{
 		this.dupeKAnim.GetComponent<UIDupeRandomizer>().Randomize();
@@ -29,11 +27,9 @@ public class KleiItemDropScreen_PermitVis_DupeEquipment : KMonoBehaviour
 		this.dupeKAnim.Queue("idle_default", KAnim.PlayMode.Loop, 1f, 0f);
 	}
 
-	// Token: 0x04007C90 RID: 31888
 	[SerializeField]
 	private KBatchedAnimController droppedItemKAnim;
 
-	// Token: 0x04007C91 RID: 31889
 	[SerializeField]
 	private KBatchedAnimController dupeKAnim;
 }

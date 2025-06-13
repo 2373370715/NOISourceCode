@@ -4,16 +4,13 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200037F RID: 895
 public class HEPEngineConfig : IBuildingConfig
 {
-	// Token: 0x06000E50 RID: 3664 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06000E51 RID: 3665 RVA: 0x001827BC File Offset: 0x001809BC
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "HEPEngine";
@@ -54,7 +51,6 @@ public class HEPEngineConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000E52 RID: 3666 RVA: 0x0017D1D0 File Offset: 0x0017B3D0
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -66,17 +62,14 @@ public class HEPEngineConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x06000E53 RID: 3667 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 	}
 
-	// Token: 0x06000E54 RID: 3668 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 	}
 
-	// Token: 0x06000E55 RID: 3669 RVA: 0x001828F0 File Offset: 0x00180AF0
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		RadiationEmitter radiationEmitter = go.AddOrGet<RadiationEmitter>();
@@ -111,21 +104,15 @@ public class HEPEngineConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x04000A8E RID: 2702
 	private const int PARTICLES_PER_HEX = 200;
 
-	// Token: 0x04000A8F RID: 2703
 	private const int RANGE = 20;
 
-	// Token: 0x04000A90 RID: 2704
 	private const int PARTICLE_STORAGE_CAPACITY = 4000;
 
-	// Token: 0x04000A91 RID: 2705
 	private const int PORT_OFFSET_Y = 3;
 
-	// Token: 0x04000A92 RID: 2706
 	public const string ID = "HEPEngine";
 
-	// Token: 0x04000A93 RID: 2707
 	public const string PORT_ID = "HEP_STORAGE";
 }

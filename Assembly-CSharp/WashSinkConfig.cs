@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005FA RID: 1530
 public class WashSinkConfig : IBuildingConfig
 {
-	// Token: 0x06001B01 RID: 6913 RVA: 0x001B5CCC File Offset: 0x001B3ECC
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "WashSink";
@@ -29,7 +27,6 @@ public class WashSinkConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001B02 RID: 6914 RVA: 0x001B5D50 File Offset: 0x001B3F50
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.WashStation, false);
@@ -71,7 +68,6 @@ public class WashSinkConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().prefabInitFn += this.OnInit;
 	}
 
-	// Token: 0x06001B03 RID: 6915 RVA: 0x001B5EA0 File Offset: 0x001B40A0
 	private void OnInit(GameObject go)
 	{
 		HandSanitizer.Work component = go.GetComponent<HandSanitizer.Work>();
@@ -86,23 +82,17 @@ public class WashSinkConfig : IBuildingConfig
 		});
 	}
 
-	// Token: 0x06001B04 RID: 6916 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04001158 RID: 4440
 	public const string ID = "WashSink";
 
-	// Token: 0x04001159 RID: 4441
 	public static readonly int DISEASE_REMOVAL_COUNT = DUPLICANTSTATS.STANDARD.Secretions.DISEASE_PER_PEE + 20000;
 
-	// Token: 0x0400115A RID: 4442
 	public const float WATER_PER_USE = 5f;
 
-	// Token: 0x0400115B RID: 4443
 	public const int USES_PER_FLUSH = 2;
 
-	// Token: 0x0400115C RID: 4444
 	public const float WORK_TIME = 5f;
 }

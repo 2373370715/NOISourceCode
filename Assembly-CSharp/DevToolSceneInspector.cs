@@ -5,10 +5,8 @@ using System.Reflection;
 using ImGuiNET;
 using UnityEngine;
 
-// Token: 0x02000BFF RID: 3071
 public class DevToolSceneInspector : DevTool
 {
-	// Token: 0x06003A2A RID: 14890 RVA: 0x00232090 File Offset: 0x00230290
 	public DevToolSceneInspector()
 	{
 		this.drawFlags = ImGuiWindowFlags.MenuBar;
@@ -31,13 +29,11 @@ public class DevToolSceneInspector : DevTool
 		};
 	}
 
-	// Token: 0x06003A2B RID: 14891 RVA: 0x000CA127 File Offset: 0x000C8327
 	public static void Inspect(object obj)
 	{
 		DevToolManager.Instance.panels.AddOrGetDevTool<DevToolSceneInspector>().PushObject(obj);
 	}
 
-	// Token: 0x06003A2C RID: 14892 RVA: 0x00232118 File Offset: 0x00230318
 	public void PushObject(object obj)
 	{
 		if (obj == null)
@@ -59,7 +55,6 @@ public class DevToolSceneInspector : DevTool
 		this.StackIndex++;
 	}
 
-	// Token: 0x06003A2D RID: 14893 RVA: 0x002321D0 File Offset: 0x002303D0
 	protected override void RenderTo(DevPanel panel)
 	{
 		for (int i = this.Stack.Count - 1; i >= 0; i--)
@@ -194,7 +189,6 @@ public class DevToolSceneInspector : DevTool
 		ImGui.PopID();
 	}
 
-	// Token: 0x06003A2E RID: 14894 RVA: 0x00232604 File Offset: 0x00230804
 	private bool DisplayField(string name, Type ft, ref object obj)
 	{
 		bool result = false;
@@ -272,7 +266,6 @@ public class DevToolSceneInspector : DevTool
 		return result;
 	}
 
-	// Token: 0x06003A2F RID: 14895 RVA: 0x002327D4 File Offset: 0x002309D4
 	private void CustomGameObjectDisplay(object obj, string filter)
 	{
 		GameObject gameObject = (GameObject)obj;
@@ -300,7 +293,6 @@ public class DevToolSceneInspector : DevTool
 		ImGui.EndChild();
 	}
 
-	// Token: 0x06003A30 RID: 14896 RVA: 0x002328A0 File Offset: 0x00230AA0
 	private void CustomPrefabTagView(object obj, string filter)
 	{
 		KPrefabID kprefabID = (KPrefabID)obj;
@@ -320,39 +312,29 @@ public class DevToolSceneInspector : DevTool
 		ImGui.EndChild();
 	}
 
-	// Token: 0x04002838 RID: 10296
 	private List<DevToolSceneInspector.StackItem> Stack = new List<DevToolSceneInspector.StackItem>();
 
-	// Token: 0x04002839 RID: 10297
 	private int StackIndex = -1;
 
-	// Token: 0x0400283A RID: 10298
 	private Dictionary<Type, DevToolSceneInspector.ViewInfo> CustomTypeViews;
 
-	// Token: 0x02000C00 RID: 3072
 	private class StackItem
 	{
-		// Token: 0x0400283B RID: 10299
 		public object Obj;
 
-		// Token: 0x0400283C RID: 10300
 		public string Filter;
 	}
 
-	// Token: 0x02000C01 RID: 3073
 	private class ViewInfo
 	{
-		// Token: 0x06003A34 RID: 14900 RVA: 0x000CA152 File Offset: 0x000C8352
 		public ViewInfo(string s, Action<object, string> a)
 		{
 			this.Name = s;
 			this.Callback = a;
 		}
 
-		// Token: 0x0400283D RID: 10301
 		public string Name;
 
-		// Token: 0x0400283E RID: 10302
 		public Action<object, string> Callback;
 	}
 }

@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000CF RID: 207
 public class FarmTileConfig : IBuildingConfig
 {
-	// Token: 0x0600036C RID: 876 RVA: 0x00156F08 File Offset: 0x00155108
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "FarmTile";
@@ -38,7 +36,6 @@ public class FarmTileConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600036D RID: 877 RVA: 0x00156FD4 File Offset: 0x001551D4
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(GameTags.CodexCategories.FarmBuilding, false);
@@ -59,7 +56,6 @@ public class FarmTileConfig : IBuildingConfig
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x0600036E RID: 878 RVA: 0x000AB2E0 File Offset: 0x000A94E0
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		GeneratedBuildings.RemoveLoopingSounds(go);
@@ -67,7 +63,6 @@ public class FarmTileConfig : IBuildingConfig
 		FarmTileConfig.SetUpFarmPlotTags(go);
 	}
 
-	// Token: 0x0600036F RID: 879 RVA: 0x000AB2FF File Offset: 0x000A94FF
 	public static void SetUpFarmPlotTags(GameObject go)
 	{
 		go.GetComponent<KPrefabID>().prefabSpawnFn += delegate(GameObject inst)
@@ -96,6 +91,5 @@ public class FarmTileConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x04000217 RID: 535
 	public const string ID = "FarmTile";
 }

@@ -4,11 +4,9 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001910 RID: 6416
 [AddComponentMenu("KMonoBehaviour/scripts/CargoBay")]
 public class CargoBay : KMonoBehaviour
 {
-	// Token: 0x060084D9 RID: 34009 RVA: 0x00353ADC File Offset: 0x00351CDC
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -28,7 +26,6 @@ public class CargoBay : KMonoBehaviour
 		base.Subscribe<CargoBay>(-1697596308, CargoBay.OnStorageChangeDelegate);
 	}
 
-	// Token: 0x060084DA RID: 34010 RVA: 0x00353BB4 File Offset: 0x00351DB4
 	private void OnRefreshUserMenu(object data)
 	{
 		KIconButtonMenu.ButtonInfo button = new KIconButtonMenu.ButtonInfo("action_empty_contents", UI.USERMENUACTIONS.EMPTYSTORAGE.NAME, delegate()
@@ -38,13 +35,11 @@ public class CargoBay : KMonoBehaviour
 		Game.Instance.userMenu.AddButton(base.gameObject, button, 1f);
 	}
 
-	// Token: 0x060084DB RID: 34011 RVA: 0x000FBCB4 File Offset: 0x000F9EB4
 	private void OnStorageChange(object data)
 	{
 		this.meter.SetPositionPercent(this.storage.MassStored() / this.storage.Capacity());
 	}
 
-	// Token: 0x060084DC RID: 34012 RVA: 0x00353C10 File Offset: 0x00351E10
 	public void SpawnResources(object data)
 	{
 		if (DlcManager.FeatureClusterSpaceEnabled())
@@ -106,7 +101,6 @@ public class CargoBay : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060084DD RID: 34013 RVA: 0x00353F00 File Offset: 0x00352100
 	public void OnLaunch(object data)
 	{
 		this.ReserveResources();
@@ -117,7 +111,6 @@ public class CargoBay : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060084DE RID: 34014 RVA: 0x00353F2C File Offset: 0x0035212C
 	private void ReserveResources()
 	{
 		if (DlcManager.FeatureClusterSpaceEnabled())
@@ -134,7 +127,6 @@ public class CargoBay : KMonoBehaviour
 		this.reservedResources = spacecraftDestination.ReserveResources(this);
 	}
 
-	// Token: 0x060084DF RID: 34015 RVA: 0x00353F84 File Offset: 0x00352184
 	public void OnLand(object data)
 	{
 		this.SpawnResources(data);
@@ -156,20 +148,15 @@ public class CargoBay : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0400651B RID: 25883
 	public Storage storage;
 
-	// Token: 0x0400651C RID: 25884
 	private MeterController meter;
 
-	// Token: 0x0400651D RID: 25885
 	[Serialize]
 	public float reservedResources;
 
-	// Token: 0x0400651E RID: 25886
 	public CargoBay.CargoType storageType;
 
-	// Token: 0x0400651F RID: 25887
 	public static Dictionary<Element.State, CargoBay.CargoType> ElementStateToCargoTypes = new Dictionary<Element.State, CargoBay.CargoType>
 	{
 		{
@@ -186,40 +173,31 @@ public class CargoBay : KMonoBehaviour
 		}
 	};
 
-	// Token: 0x04006520 RID: 25888
 	private static readonly EventSystem.IntraObjectHandler<CargoBay> OnLaunchDelegate = new EventSystem.IntraObjectHandler<CargoBay>(delegate(CargoBay component, object data)
 	{
 		component.OnLaunch(data);
 	});
 
-	// Token: 0x04006521 RID: 25889
 	private static readonly EventSystem.IntraObjectHandler<CargoBay> OnLandDelegate = new EventSystem.IntraObjectHandler<CargoBay>(delegate(CargoBay component, object data)
 	{
 		component.OnLand(data);
 	});
 
-	// Token: 0x04006522 RID: 25890
 	private static readonly EventSystem.IntraObjectHandler<CargoBay> OnRefreshUserMenuDelegate = new EventSystem.IntraObjectHandler<CargoBay>(delegate(CargoBay component, object data)
 	{
 		component.OnRefreshUserMenu(data);
 	});
 
-	// Token: 0x04006523 RID: 25891
 	private static readonly EventSystem.IntraObjectHandler<CargoBay> OnStorageChangeDelegate = new EventSystem.IntraObjectHandler<CargoBay>(delegate(CargoBay component, object data)
 	{
 		component.OnStorageChange(data);
 	});
 
-	// Token: 0x02001911 RID: 6417
 	public enum CargoType
 	{
-		// Token: 0x04006525 RID: 25893
 		Solids,
-		// Token: 0x04006526 RID: 25894
 		Liquids,
-		// Token: 0x04006527 RID: 25895
 		Gasses,
-		// Token: 0x04006528 RID: 25896
 		Entities
 	}
 }

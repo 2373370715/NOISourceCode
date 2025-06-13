@@ -5,15 +5,12 @@ using UnityEngine;
 
 namespace ProcGenGame
 {
-	// Token: 0x02002103 RID: 8451
 	public class River : River, SymbolicMapElement
 	{
-		// Token: 0x0600B3E7 RID: 46055 RVA: 0x00119788 File Offset: 0x00117988
 		public River(River other) : base(other, true)
 		{
 		}
 
-		// Token: 0x0600B3E8 RID: 46056 RVA: 0x00446CE0 File Offset: 0x00444EE0
 		public void ConvertToMap(Chunk world, TerrainCell.SetValuesFunction SetValues, float temperatureMin, float temperatureRange, SeededRandom rnd)
 		{
 			Element element = ElementLoader.FindElementByName(base.backgroundElement);
@@ -66,7 +63,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B3E9 RID: 46057 RVA: 0x00446F64 File Offset: 0x00445164
 		public static void ProcessRivers(Chunk world, List<River> rivers, Sim.Cell[] cells, Sim.DiseaseCell[] dcs)
 		{
 			TerrainCell.SetValuesFunction setValues = delegate(int index, object elem, Sim.PhysicsData pd, Sim.DiseaseCell dc)
@@ -94,13 +90,11 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B3EA RID: 46058 RVA: 0x00446FC0 File Offset: 0x004451C0
 		public static River GetRiverForCell(List<River> rivers, int cell)
 		{
 			return new River(rivers.Find((River river) => Grid.PosToCell(river.SourcePosition()) == cell || Grid.PosToCell(river.SinkPosition()) == cell));
 		}
 
-		// Token: 0x0600B3EB RID: 46059 RVA: 0x00446FF4 File Offset: 0x004451F4
 		private static void GetRiverLocation(List<River> rivers, ref GameSpawnData gsd)
 		{
 			for (int i = 0; i < rivers.Count; i++)

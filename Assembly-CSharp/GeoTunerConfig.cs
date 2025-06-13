@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000366 RID: 870
 public class GeoTunerConfig : IBuildingConfig
 {
-	// Token: 0x06000DCE RID: 3534 RVA: 0x0017F1F8 File Offset: 0x0017D3F8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "GeoTuner";
@@ -44,7 +42,6 @@ public class GeoTunerConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000DCF RID: 3535 RVA: 0x0017F31C File Offset: 0x0017D51C
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.ScienceBuilding, false);
@@ -75,12 +72,10 @@ public class GeoTunerConfig : IBuildingConfig
 		roomTracker.requirement = RoomTracker.Requirement.Required;
 	}
 
-	// Token: 0x06000DD0 RID: 3536 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x06000DD2 RID: 3538 RVA: 0x0017F418 File Offset: 0x0017D618
 	// Note: this type is marked as 'beforefieldinit'.
 	static GeoTunerConfig()
 	{
@@ -303,31 +298,22 @@ public class GeoTunerConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x04000A0A RID: 2570
 	public const int MAX_GEOTUNED = 5;
 
-	// Token: 0x04000A0B RID: 2571
 	public static Dictionary<GeoTunerConfig.Category, GeoTunerConfig.GeotunedGeyserSettings> CategorySettings;
 
-	// Token: 0x04000A0C RID: 2572
 	public static Dictionary<HashedString, GeoTunerConfig.GeotunedGeyserSettings> geotunerGeyserSettings;
 
-	// Token: 0x04000A0D RID: 2573
 	public const string ID = "GeoTuner";
 
-	// Token: 0x04000A0E RID: 2574
 	public const string OUTPUT_LOGIC_PORT_ID = "GEYSER_ERUPTION_STATUS_PORT";
 
-	// Token: 0x04000A0F RID: 2575
 	public const string GeyserAnimationModelTarget = "geyser_target";
 
-	// Token: 0x04000A10 RID: 2576
 	public const string GeyserAnimation_GeyserSymbols_LogicLightSymbol = "light_bloom";
 
-	// Token: 0x02000367 RID: 871
 	public struct GeotunedGeyserSettings
 	{
-		// Token: 0x06000DD3 RID: 3539 RVA: 0x000B06E7 File Offset: 0x000AE8E7
 		public GeotunedGeyserSettings(Tag material, float quantity, float duration, Geyser.GeyserModification template)
 		{
 			this.quantity = quantity;
@@ -336,35 +322,23 @@ public class GeoTunerConfig : IBuildingConfig
 			this.duration = duration;
 		}
 
-		// Token: 0x04000A11 RID: 2577
 		public Tag material;
 
-		// Token: 0x04000A12 RID: 2578
 		public float quantity;
 
-		// Token: 0x04000A13 RID: 2579
 		public Geyser.GeyserModification template;
 
-		// Token: 0x04000A14 RID: 2580
 		public float duration;
 	}
 
-	// Token: 0x02000368 RID: 872
 	public enum Category
 	{
-		// Token: 0x04000A16 RID: 2582
 		DEFAULT_CATEGORY,
-		// Token: 0x04000A17 RID: 2583
 		WATER_CATEGORY,
-		// Token: 0x04000A18 RID: 2584
 		ORGANIC_CATEGORY,
-		// Token: 0x04000A19 RID: 2585
 		HYDROCARBON_CATEGORY,
-		// Token: 0x04000A1A RID: 2586
 		VOLCANO_CATEGORY,
-		// Token: 0x04000A1B RID: 2587
 		METALS_CATEGORY,
-		// Token: 0x04000A1C RID: 2588
 		CO2_CATEGORY
 	}
 }

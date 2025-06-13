@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 
-// Token: 0x02001AD6 RID: 6870
 public class ScannerNetworkVisualizerEffect : VisualizerEffect
 {
-	// Token: 0x06008FA9 RID: 36777 RVA: 0x0010248C File Offset: 0x0010068C
 	protected override void SetupMaterial()
 	{
 		this.material = new Material(Shader.Find("Klei/PostFX/ScannerNetwork"));
 	}
 
-	// Token: 0x06008FAA RID: 36778 RVA: 0x00102442 File Offset: 0x00100642
 	protected override void SetupOcclusionTex()
 	{
 		this.OcclusionTex = new Texture2D(512, 1, TextureFormat.RGFloat, false);
@@ -20,7 +17,6 @@ public class ScannerNetworkVisualizerEffect : VisualizerEffect
 		this.OcclusionTex.wrapMode = TextureWrapMode.Clamp;
 	}
 
-	// Token: 0x06008FAB RID: 36779 RVA: 0x00384348 File Offset: 0x00382548
 	protected override void OnPostRender()
 	{
 		ScannerNetworkVisualizer scannerNetworkVisualizer = null;
@@ -121,7 +117,6 @@ public class ScannerNetworkVisualizerEffect : VisualizerEffect
 		}
 	}
 
-	// Token: 0x06008FAC RID: 36780 RVA: 0x00384778 File Offset: 0x00382978
 	private static void ComputeVisibility(ScannerNetworkVisualizer scan, NativeArray<float> pixels, Vector2I world_min, Vector2I world_max, ref int visible_column_count)
 	{
 		Vector2I u = Grid.PosToXY(scan.transform.GetPosition());
@@ -152,7 +147,6 @@ public class ScannerNetworkVisualizerEffect : VisualizerEffect
 		}
 	}
 
-	// Token: 0x06008FAD RID: 36781 RVA: 0x0038483C File Offset: 0x00382A3C
 	private static void ComputeVisibility(int x_abs, int y_abs, NativeArray<float> pixels, Vector2I world_min, Vector2I world_max, ref bool visible)
 	{
 		int num = x_abs - world_min.x;
@@ -179,7 +173,6 @@ public class ScannerNetworkVisualizerEffect : VisualizerEffect
 		pixels[2 * num + 1] = (float)(y_abs + 1);
 	}
 
-	// Token: 0x06008FAE RID: 36782 RVA: 0x00384228 File Offset: 0x00382428
 	private static void FindWorldBounds(out Vector2I world_min, out Vector2I world_max)
 	{
 		if (ClusterManager.Instance != null)
@@ -195,18 +188,14 @@ public class ScannerNetworkVisualizerEffect : VisualizerEffect
 		world_max.y = Grid.HeightInCells;
 	}
 
-	// Token: 0x06008FAF RID: 36783 RVA: 0x000C747C File Offset: 0x000C567C
 	private static bool HasSkyVisibility(int cell)
 	{
 		return Grid.ExposedToSunlight[cell] >= 1;
 	}
 
-	// Token: 0x04006C3D RID: 27709
 	public Color highlightColor = new Color(0f, 1f, 0.8f, 1f);
 
-	// Token: 0x04006C3E RID: 27710
 	public Color highlightColor2 = new Color(1f, 0.32f, 0f, 1f);
 
-	// Token: 0x04006C3F RID: 27711
 	private int LastVisibleColumnCount;
 }

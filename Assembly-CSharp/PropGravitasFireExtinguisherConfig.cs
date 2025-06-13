@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200052F RID: 1327
 public class PropGravitasFireExtinguisherConfig : IEntityConfig
 {
-	// Token: 0x060016C9 RID: 5833 RVA: 0x001A3D60 File Offset: 0x001A1F60
 	public GameObject CreatePrefab()
 	{
 		string id = "PropGravitasFireExtinguisher";
@@ -27,7 +25,6 @@ public class PropGravitasFireExtinguisherConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x060016CA RID: 5834 RVA: 0x000AA768 File Offset: 0x000A8968
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.GetComponent<OccupyArea>().objectLayers = new ObjectLayer[]
@@ -36,7 +33,6 @@ public class PropGravitasFireExtinguisherConfig : IEntityConfig
 		};
 	}
 
-	// Token: 0x060016CB RID: 5835 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}

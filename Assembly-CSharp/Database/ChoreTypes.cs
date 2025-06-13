@@ -3,10 +3,8 @@ using STRINGS;
 
 namespace Database
 {
-	// Token: 0x02002193 RID: 8595
 	public class ChoreTypes : ResourceSet<ChoreType>
 	{
-		// Token: 0x0600B75A RID: 46938 RVA: 0x00460D3C File Offset: 0x0045EF3C
 		public ChoreType GetByHash(HashedString id_hash)
 		{
 			int num = this.resources.FindIndex((ChoreType item) => item.IdHash == id_hash);
@@ -17,7 +15,6 @@ namespace Database
 			return null;
 		}
 
-		// Token: 0x0600B75B RID: 46939 RVA: 0x00460D80 File Offset: 0x0045EF80
 		private ChoreType Add(string id, string[] chore_groups, string urge, string[] interrupt_exclusion, string name, string status_message, string tooltip, bool skip_implicit_priority_change, int explicit_priority = -1, string report_name = null)
 		{
 			ListPool<Tag, ChoreTypes>.PooledList pooledList = ListPool<Tag, ChoreTypes>.Allocate();
@@ -42,7 +39,6 @@ namespace Database
 			return choreType;
 		}
 
-		// Token: 0x0600B75C RID: 46940 RVA: 0x00460E00 File Offset: 0x0045F000
 		public ChoreTypes(ResourceSet parent) : base("ChoreTypes", parent)
 		{
 			this.Die = this.Add("Die", new string[0], "", new string[0], DUPLICANTS.CHORES.DIE.NAME, DUPLICANTS.CHORES.DIE.STATUS, DUPLICANTS.CHORES.DIE.TOOLTIP, false, -1, null);
@@ -724,439 +720,294 @@ namespace Database
 			}
 		}
 
-		// Token: 0x040092C3 RID: 37571
 		public ChoreType Attack;
 
-		// Token: 0x040092C4 RID: 37572
 		public ChoreType Capture;
 
-		// Token: 0x040092C5 RID: 37573
 		public ChoreType Flee;
 
-		// Token: 0x040092C6 RID: 37574
 		public ChoreType BeIncapacitated;
 
-		// Token: 0x040092C7 RID: 37575
 		public ChoreType BeOffline;
 
-		// Token: 0x040092C8 RID: 37576
 		public ChoreType BionicBedtimeMode;
 
-		// Token: 0x040092C9 RID: 37577
 		public ChoreType DebugGoTo;
 
-		// Token: 0x040092CA RID: 37578
 		public ChoreType DeliverFood;
 
-		// Token: 0x040092CB RID: 37579
 		public ChoreType Die;
 
-		// Token: 0x040092CC RID: 37580
 		public ChoreType GeneShuffle;
 
-		// Token: 0x040092CD RID: 37581
 		public ChoreType Doctor;
 
-		// Token: 0x040092CE RID: 37582
 		public ChoreType WashHands;
 
-		// Token: 0x040092CF RID: 37583
 		public ChoreType Shower;
 
-		// Token: 0x040092D0 RID: 37584
 		public ChoreType Eat;
 
-		// Token: 0x040092D1 RID: 37585
 		public ChoreType ReloadElectrobank;
 
-		// Token: 0x040092D2 RID: 37586
 		public ChoreType FindOxygenSourceItem;
 
-		// Token: 0x040092D3 RID: 37587
 		public ChoreType FindOxygenSourceItem_Critical;
 
-		// Token: 0x040092D4 RID: 37588
 		public ChoreType BionicAbsorbOxygen;
 
-		// Token: 0x040092D5 RID: 37589
 		public ChoreType BionicAbsorbOxygen_Critical;
 
-		// Token: 0x040092D6 RID: 37590
 		public ChoreType SeekAndInstallUpgrade;
 
-		// Token: 0x040092D7 RID: 37591
 		public ChoreType Entombed;
 
-		// Token: 0x040092D8 RID: 37592
 		public ChoreType Idle;
 
-		// Token: 0x040092D9 RID: 37593
 		public ChoreType MoveToQuarantine;
 
-		// Token: 0x040092DA RID: 37594
 		public ChoreType RescueIncapacitated;
 
-		// Token: 0x040092DB RID: 37595
 		public ChoreType RecoverBreath;
 
-		// Token: 0x040092DC RID: 37596
 		public ChoreType RecoverWarmth;
 
-		// Token: 0x040092DD RID: 37597
 		public ChoreType RecoverFromHeat;
 
-		// Token: 0x040092DE RID: 37598
 		public ChoreType Sigh;
 
-		// Token: 0x040092DF RID: 37599
 		public ChoreType Sleep;
 
-		// Token: 0x040092E0 RID: 37600
 		public ChoreType Narcolepsy;
 
-		// Token: 0x040092E1 RID: 37601
 		public ChoreType Vomit;
 
-		// Token: 0x040092E2 RID: 37602
 		public ChoreType WaterDamageZap;
 
-		// Token: 0x040092E3 RID: 37603
 		public ChoreType Cough;
 
-		// Token: 0x040092E4 RID: 37604
 		public ChoreType Pee;
 
-		// Token: 0x040092E5 RID: 37605
 		public ChoreType ExpellGunk;
 
-		// Token: 0x040092E6 RID: 37606
 		public ChoreType BreakPee;
 
-		// Token: 0x040092E7 RID: 37607
 		public ChoreType TakeMedicine;
 
-		// Token: 0x040092E8 RID: 37608
 		public ChoreType GetDoctored;
 
-		// Token: 0x040092E9 RID: 37609
 		public ChoreType RestDueToDisease;
 
-		// Token: 0x040092EA RID: 37610
 		public ChoreType BionicRestDueToDisease;
 
-		// Token: 0x040092EB RID: 37611
 		public ChoreType SleepDueToDisease;
 
-		// Token: 0x040092EC RID: 37612
 		public ChoreType Heal;
 
-		// Token: 0x040092ED RID: 37613
 		public ChoreType HealCritical;
 
-		// Token: 0x040092EE RID: 37614
 		public ChoreType EmoteIdle;
 
-		// Token: 0x040092EF RID: 37615
 		public ChoreType Emote;
 
-		// Token: 0x040092F0 RID: 37616
 		public ChoreType EmoteHighPriority;
 
-		// Token: 0x040092F1 RID: 37617
 		public ChoreType StressEmote;
 
-		// Token: 0x040092F2 RID: 37618
 		public ChoreType StressActingOut;
 
-		// Token: 0x040092F3 RID: 37619
 		public ChoreType Relax;
 
-		// Token: 0x040092F4 RID: 37620
 		public ChoreType RadiationPain;
 
-		// Token: 0x040092F5 RID: 37621
 		public ChoreType StressHeal;
 
-		// Token: 0x040092F6 RID: 37622
 		public ChoreType MoveToSafety;
 
-		// Token: 0x040092F7 RID: 37623
 		public ChoreType Equip;
 
-		// Token: 0x040092F8 RID: 37624
 		public ChoreType Recharge;
 
-		// Token: 0x040092F9 RID: 37625
 		public ChoreType Unequip;
 
-		// Token: 0x040092FA RID: 37626
 		public ChoreType Warmup;
 
-		// Token: 0x040092FB RID: 37627
 		public ChoreType Cooldown;
 
-		// Token: 0x040092FC RID: 37628
 		public ChoreType Mop;
 
-		// Token: 0x040092FD RID: 37629
 		public ChoreType Relocate;
 
-		// Token: 0x040092FE RID: 37630
 		public ChoreType Toggle;
 
-		// Token: 0x040092FF RID: 37631
 		public ChoreType Mourn;
 
-		// Token: 0x04009300 RID: 37632
 		public ChoreType Migrate;
 
-		// Token: 0x04009301 RID: 37633
 		public ChoreType Fetch;
 
-		// Token: 0x04009302 RID: 37634
 		public ChoreType FetchCritical;
 
-		// Token: 0x04009303 RID: 37635
 		public ChoreType StorageFetch;
 
-		// Token: 0x04009304 RID: 37636
 		public ChoreType Transport;
 
-		// Token: 0x04009305 RID: 37637
 		public ChoreType RepairFetch;
 
-		// Token: 0x04009306 RID: 37638
 		public ChoreType MachineFetch;
 
-		// Token: 0x04009307 RID: 37639
 		public ChoreType ResearchFetch;
 
-		// Token: 0x04009308 RID: 37640
 		public ChoreType FarmFetch;
 
-		// Token: 0x04009309 RID: 37641
 		public ChoreType FabricateFetch;
 
-		// Token: 0x0400930A RID: 37642
 		public ChoreType CookFetch;
 
-		// Token: 0x0400930B RID: 37643
 		public ChoreType PowerFetch;
 
-		// Token: 0x0400930C RID: 37644
 		public ChoreType BuildFetch;
 
-		// Token: 0x0400930D RID: 37645
 		public ChoreType CreatureFetch;
 
-		// Token: 0x0400930E RID: 37646
 		public ChoreType RanchingFetch;
 
-		// Token: 0x0400930F RID: 37647
 		public ChoreType FoodFetch;
 
-		// Token: 0x04009310 RID: 37648
 		public ChoreType DoctorFetch;
 
-		// Token: 0x04009311 RID: 37649
 		public ChoreType EquipmentFetch;
 
-		// Token: 0x04009312 RID: 37650
 		public ChoreType ArmTrap;
 
-		// Token: 0x04009313 RID: 37651
 		public ChoreType Research;
 
-		// Token: 0x04009314 RID: 37652
 		public ChoreType AnalyzeArtifact;
 
-		// Token: 0x04009315 RID: 37653
 		public ChoreType AnalyzeSeed;
 
-		// Token: 0x04009316 RID: 37654
 		public ChoreType ExcavateFossil;
 
-		// Token: 0x04009317 RID: 37655
 		public ChoreType Disinfect;
 
-		// Token: 0x04009318 RID: 37656
 		public ChoreType Repair;
 
-		// Token: 0x04009319 RID: 37657
 		public ChoreType EmptyStorage;
 
-		// Token: 0x0400931A RID: 37658
 		public ChoreType Deconstruct;
 
-		// Token: 0x0400931B RID: 37659
 		public ChoreType Demolish;
 
-		// Token: 0x0400931C RID: 37660
 		public ChoreType Art;
 
-		// Token: 0x0400931D RID: 37661
 		public ChoreType GeneratePower;
 
-		// Token: 0x0400931E RID: 37662
 		public ChoreType Harvest;
 
-		// Token: 0x0400931F RID: 37663
 		public ChoreType Uproot;
 
-		// Token: 0x04009320 RID: 37664
 		public ChoreType CleanToilet;
 
-		// Token: 0x04009321 RID: 37665
 		public ChoreType EmptyDesalinator;
 
-		// Token: 0x04009322 RID: 37666
 		public ChoreType LiquidCooledFan;
 
-		// Token: 0x04009323 RID: 37667
 		public ChoreType IceCooledFan;
 
-		// Token: 0x04009324 RID: 37668
 		public ChoreType CompostWorkable;
 
-		// Token: 0x04009325 RID: 37669
 		public ChoreType Fabricate;
 
-		// Token: 0x04009326 RID: 37670
 		public ChoreType FarmingFabricate;
 
-		// Token: 0x04009327 RID: 37671
 		public ChoreType PowerFabricate;
 
-		// Token: 0x04009328 RID: 37672
 		public ChoreType Compound;
 
-		// Token: 0x04009329 RID: 37673
 		public ChoreType Cook;
 
-		// Token: 0x0400932A RID: 37674
 		public ChoreType ProcessCritter;
 
-		// Token: 0x0400932B RID: 37675
 		public ChoreType Train;
 
-		// Token: 0x0400932C RID: 37676
 		public ChoreType Ranch;
 
-		// Token: 0x0400932D RID: 37677
 		public ChoreType Build;
 
-		// Token: 0x0400932E RID: 37678
 		public ChoreType BuildDig;
 
-		// Token: 0x0400932F RID: 37679
 		public ChoreType Dig;
 
-		// Token: 0x04009330 RID: 37680
 		public ChoreType FlipCompost;
 
-		// Token: 0x04009331 RID: 37681
 		public ChoreType PowerTinker;
 
-		// Token: 0x04009332 RID: 37682
 		public ChoreType RemoteOperate;
 
-		// Token: 0x04009333 RID: 37683
 		public ChoreType MachineTinker;
 
-		// Token: 0x04009334 RID: 37684
 		public ChoreType CropTend;
 
-		// Token: 0x04009335 RID: 37685
 		public ChoreType Depressurize;
 
-		// Token: 0x04009336 RID: 37686
 		public ChoreType DropUnusedInventory;
 
-		// Token: 0x04009337 RID: 37687
 		public ChoreType StressVomit;
 
-		// Token: 0x04009338 RID: 37688
 		public ChoreType MoveTo;
 
-		// Token: 0x04009339 RID: 37689
 		public ChoreType RocketEnterExit;
 
-		// Token: 0x0400933A RID: 37690
 		public ChoreType UglyCry;
 
-		// Token: 0x0400933B RID: 37691
 		public ChoreType BansheeWail;
 
-		// Token: 0x0400933C RID: 37692
 		public ChoreType StressShock;
 
-		// Token: 0x0400933D RID: 37693
 		public ChoreType BingeEat;
 
-		// Token: 0x0400933E RID: 37694
 		public ChoreType StressIdle;
 
-		// Token: 0x0400933F RID: 37695
 		public ChoreType ScrubOre;
 
-		// Token: 0x04009340 RID: 37696
 		public ChoreType SuitMarker;
 
-		// Token: 0x04009341 RID: 37697
 		public ChoreType Slip;
 
-		// Token: 0x04009342 RID: 37698
 		public ChoreType ReturnSuitUrgent;
 
-		// Token: 0x04009343 RID: 37699
 		public ChoreType ReturnSuitIdle;
 
-		// Token: 0x04009344 RID: 37700
 		public ChoreType Checkpoint;
 
-		// Token: 0x04009345 RID: 37701
 		public ChoreType TravelTubeEntrance;
 
-		// Token: 0x04009346 RID: 37702
 		public ChoreType LearnSkill;
 
-		// Token: 0x04009347 RID: 37703
 		public ChoreType UnlearnSkill;
 
-		// Token: 0x04009348 RID: 37704
 		public ChoreType SwitchHat;
 
-		// Token: 0x04009349 RID: 37705
 		public ChoreType EggSing;
 
-		// Token: 0x0400934A RID: 37706
 		public ChoreType Astronaut;
 
-		// Token: 0x0400934B RID: 37707
 		public ChoreType TopPriority;
 
-		// Token: 0x0400934C RID: 37708
 		public ChoreType JoyReaction;
 
-		// Token: 0x0400934D RID: 37709
 		public ChoreType RocketControl;
 
-		// Token: 0x0400934E RID: 37710
 		public ChoreType Party;
 
-		// Token: 0x0400934F RID: 37711
 		public ChoreType Hug;
 
-		// Token: 0x04009350 RID: 37712
 		public ChoreType OilChange;
 
-		// Token: 0x04009351 RID: 37713
 		public ChoreType SolidOilChange;
 
-		// Token: 0x04009352 RID: 37714
 		private int nextImplicitPriority = 10000;
 
-		// Token: 0x04009353 RID: 37715
 		private const int INVALID_PRIORITY = -1;
 	}
 }

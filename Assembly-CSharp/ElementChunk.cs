@@ -2,12 +2,10 @@
 using Klei;
 using UnityEngine;
 
-// Token: 0x020012BA RID: 4794
 [SkipSaveFileSerialization]
 [AddComponentMenu("KMonoBehaviour/scripts/ElementChunk")]
 public class ElementChunk : KMonoBehaviour
 {
-	// Token: 0x0600620B RID: 25099 RVA: 0x000E4664 File Offset: 0x000E2864
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -16,7 +14,6 @@ public class ElementChunk : KMonoBehaviour
 		base.Subscribe<ElementChunk>(-2064133523, ElementChunk.OnAbsorbDelegate);
 	}
 
-	// Token: 0x0600620C RID: 25100 RVA: 0x002C3450 File Offset: 0x002C1650
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -32,7 +29,6 @@ public class ElementChunk : KMonoBehaviour
 		component2.AddStatusItem(Db.Get().MiscStatusItems.OreTemp, base.gameObject);
 	}
 
-	// Token: 0x0600620D RID: 25101 RVA: 0x000E469F File Offset: 0x000E289F
 	protected override void OnCleanUp()
 	{
 		GameComps.ElementSplitters.Remove(base.gameObject);
@@ -40,7 +36,6 @@ public class ElementChunk : KMonoBehaviour
 		base.OnCleanUp();
 	}
 
-	// Token: 0x0600620E RID: 25102 RVA: 0x002C3504 File Offset: 0x002C1704
 	private void OnAbsorb(object data)
 	{
 		Pickupable pickupable = (Pickupable)data;
@@ -71,7 +66,6 @@ public class ElementChunk : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x04004653 RID: 18003
 	private static readonly EventSystem.IntraObjectHandler<ElementChunk> OnAbsorbDelegate = new EventSystem.IntraObjectHandler<ElementChunk>(delegate(ElementChunk component, object data)
 	{
 		component.OnAbsorb(data);

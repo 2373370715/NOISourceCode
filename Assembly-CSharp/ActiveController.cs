@@ -1,9 +1,7 @@
 ﻿using System;
 
-// Token: 0x0200005A RID: 90
 public class ActiveController : GameStateMachine<ActiveController, ActiveController.Instance>
 {
-	// Token: 0x060001A7 RID: 423 RVA: 0x0014D774 File Offset: 0x0014B974
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.off;
@@ -13,27 +11,20 @@ public class ActiveController : GameStateMachine<ActiveController, ActiveControl
 		this.working_pst.PlayAnim("working_pst").OnAnimQueueComplete(this.off);
 	}
 
-	// Token: 0x040000F9 RID: 249
 	public GameStateMachine<ActiveController, ActiveController.Instance, IStateMachineTarget, object>.State off;
 
-	// Token: 0x040000FA RID: 250
 	public GameStateMachine<ActiveController, ActiveController.Instance, IStateMachineTarget, object>.State working_pre;
 
-	// Token: 0x040000FB RID: 251
 	public GameStateMachine<ActiveController, ActiveController.Instance, IStateMachineTarget, object>.State working_loop;
 
-	// Token: 0x040000FC RID: 252
 	public GameStateMachine<ActiveController, ActiveController.Instance, IStateMachineTarget, object>.State working_pst;
 
-	// Token: 0x0200005B RID: 91
 	public class Def : StateMachine.BaseDef
 	{
 	}
 
-	// Token: 0x0200005C RID: 92
 	public new class Instance : GameStateMachine<ActiveController, ActiveController.Instance, IStateMachineTarget, object>.GameInstance
 	{
-		// Token: 0x060001AA RID: 426 RVA: 0x000AA8B0 File Offset: 0x000A8AB0
 		public Instance(IStateMachineTarget master, ActiveController.Def def) : base(master, def)
 		{
 		}

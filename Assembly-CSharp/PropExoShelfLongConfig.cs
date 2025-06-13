@@ -4,22 +4,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200058D RID: 1421
 public class PropExoShelfLongConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x06001885 RID: 6277 RVA: 0x000AA536 File Offset: 0x000A8736
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.DLC2;
 	}
 
-	// Token: 0x06001886 RID: 6278 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x06001887 RID: 6279 RVA: 0x001AB85C File Offset: 0x001A9A5C
 	public GameObject CreatePrefab()
 	{
 		string id = "PropExoShelfLong";
@@ -39,7 +35,6 @@ public class PropExoShelfLongConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x06001888 RID: 6280 RVA: 0x000AA768 File Offset: 0x000A8968
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.GetComponent<OccupyArea>().objectLayers = new ObjectLayer[]
@@ -48,7 +43,6 @@ public class PropExoShelfLongConfig : IEntityConfig, IHasDlcRestrictions
 		};
 	}
 
-	// Token: 0x06001889 RID: 6281 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}

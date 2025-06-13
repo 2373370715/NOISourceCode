@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003D5 RID: 981
 public class LiquidVentConfig : IBuildingConfig
 {
-	// Token: 0x06000FF2 RID: 4082 RVA: 0x00189570 File Offset: 0x00187770
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "LiquidVent";
@@ -33,7 +31,6 @@ public class LiquidVentConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000FF3 RID: 4083 RVA: 0x00189638 File Offset: 0x00187838
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<LoopingSounds>();
@@ -50,7 +47,6 @@ public class LiquidVentConfig : IBuildingConfig
 		go.AddOrGet<SimpleVent>();
 	}
 
-	// Token: 0x06000FF4 RID: 4084 RVA: 0x000B1450 File Offset: 0x000AF650
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		VentController.Def def = go.AddOrGetDef<VentController.Def>();
@@ -59,12 +55,9 @@ public class LiquidVentConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayInFrontOfConduits, false);
 	}
 
-	// Token: 0x04000B7A RID: 2938
 	public const string ID = "LiquidVent";
 
-	// Token: 0x04000B7B RID: 2939
 	public const float OVERPRESSURE_MASS = 1000f;
 
-	// Token: 0x04000B7C RID: 2940
 	private const ConduitType CONDUIT_TYPE = ConduitType.Liquid;
 }

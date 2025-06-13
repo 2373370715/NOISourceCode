@@ -3,17 +3,14 @@ using UnityEngine;
 
 namespace Rendering.World
 {
-	// Token: 0x02002143 RID: 8515
 	public class LiquidTileOverlayRenderer : TileRenderer
 	{
-		// Token: 0x0600B568 RID: 46440 RVA: 0x0011A551 File Offset: 0x00118751
 		protected override void OnPrefabInit()
 		{
 			base.OnPrefabInit();
 			ShaderReloader.Register(new System.Action(this.OnShadersReloaded));
 		}
 
-		// Token: 0x0600B569 RID: 46441 RVA: 0x00453B94 File Offset: 0x00451D94
 		protected override Mask[] GetMasks()
 		{
 			return new Mask[]
@@ -24,7 +21,6 @@ namespace Rendering.World
 			};
 		}
 
-		// Token: 0x0600B56A RID: 46442 RVA: 0x00453BEC File Offset: 0x00451DEC
 		public void OnShadersReloaded()
 		{
 			foreach (Element element in ElementLoader.elements)
@@ -44,7 +40,6 @@ namespace Rendering.World
 			}
 		}
 
-		// Token: 0x0600B56B RID: 46443 RVA: 0x00453CD8 File Offset: 0x00451ED8
 		public override void LoadBrushes()
 		{
 			this.Brushes = new Brush[ElementLoader.elements.Count * this.Masks.Length];
@@ -65,7 +60,6 @@ namespace Rendering.World
 			}
 		}
 
-		// Token: 0x0600B56C RID: 46444 RVA: 0x00453E18 File Offset: 0x00452018
 		private void InitAlphaMaterial(Material alpha_material, Element element)
 		{
 			alpha_material.name = element.name;
@@ -79,7 +73,6 @@ namespace Rendering.World
 			alpha_material.SetColor("_Colour", element.substance.colour);
 		}
 
-		// Token: 0x0600B56D RID: 46445 RVA: 0x00453EB4 File Offset: 0x004520B4
 		private bool RenderLiquid(int cell, int cell_above)
 		{
 			bool result = false;
@@ -94,7 +87,6 @@ namespace Rendering.World
 			return result;
 		}
 
-		// Token: 0x0600B56E RID: 46446 RVA: 0x00453EF8 File Offset: 0x004520F8
 		private void SetBrushIdx(int i, ref Tile tile, int substance_idx, LiquidTileOverlayRenderer.LiquidConnections connections, Brush[] brush_array, int[] brush_grid)
 		{
 			if (connections == LiquidTileOverlayRenderer.LiquidConnections.Empty)
@@ -107,7 +99,6 @@ namespace Rendering.World
 			brush_grid[tile.Idx * 4 + i] = brush.Id;
 		}
 
-		// Token: 0x0600B56F RID: 46447 RVA: 0x00453F50 File Offset: 0x00452150
 		public override void MarkDirty(ref Tile tile, Brush[] brush_array, int[] brush_grid)
 		{
 			if (!this.RenderLiquid(tile.TileCells.Cell0, tile.TileCells.Cell2))
@@ -126,16 +117,11 @@ namespace Rendering.World
 			this.SetBrushIdx(0, ref tile, Grid.Element[tile.TileCells.Cell2].substance.idx, LiquidTileOverlayRenderer.LiquidConnections.Left, brush_array, brush_grid);
 		}
 
-		// Token: 0x02002144 RID: 8516
 		private enum LiquidConnections
 		{
-			// Token: 0x04008FAE RID: 36782
 			Left = 1,
-			// Token: 0x04008FAF RID: 36783
 			Right,
-			// Token: 0x04008FB0 RID: 36784
 			Both,
-			// Token: 0x04008FB1 RID: 36785
 			Empty = 128
 		}
 	}

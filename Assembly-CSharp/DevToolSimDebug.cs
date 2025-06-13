@@ -4,10 +4,8 @@ using System.Reflection;
 using ImGuiNET;
 using UnityEngine;
 
-// Token: 0x02000C02 RID: 3074
 public class DevToolSimDebug : DevTool
 {
-	// Token: 0x06003A35 RID: 14901 RVA: 0x0023297C File Offset: 0x00230B7C
 	public DevToolSimDebug()
 	{
 		this.elementNames = Enum.GetNames(typeof(SimHashes));
@@ -61,7 +59,6 @@ public class DevToolSimDebug : DevTool
 		this.gameGridModes = Enum.GetNames(typeof(SimDebugView.GameGridMode));
 	}
 
-	// Token: 0x06003A36 RID: 14902 RVA: 0x00232BE4 File Offset: 0x00230DE4
 	protected override void RenderTo(DevPanel panel)
 	{
 		if (Game.Instance == null)
@@ -406,7 +403,6 @@ public class DevToolSimDebug : DevTool
 		}
 	}
 
-	// Token: 0x06003A37 RID: 14903 RVA: 0x00233C74 File Offset: 0x00231E74
 	private void DrawElem(Element element)
 	{
 		ImGui.Indent();
@@ -462,7 +458,6 @@ public class DevToolSimDebug : DevTool
 		ImGui.Unindent();
 	}
 
-	// Token: 0x06003A38 RID: 14904 RVA: 0x00233F88 File Offset: 0x00232188
 	private void DrawConduitFlow(ConduitFlow flow_mgr, int cell)
 	{
 		ImGui.Indent();
@@ -504,7 +499,6 @@ public class DevToolSimDebug : DevTool
 		ImGui.Unindent();
 	}
 
-	// Token: 0x06003A39 RID: 14905 RVA: 0x00234108 File Offset: 0x00232308
 	private void DrawBoundingBoxOverlay()
 	{
 		ImGui.InputInt("Width:", ref this.xBound, 2);
@@ -530,93 +524,64 @@ public class DevToolSimDebug : DevTool
 		}
 	}
 
-	// Token: 0x06003A3A RID: 14906 RVA: 0x000CA168 File Offset: 0x000C8368
 	public void SetCell(int cell)
 	{
 		this.worldPos = Grid.CellToPosCCC(cell, Grid.SceneLayer.Move);
 	}
 
-	// Token: 0x0400283F RID: 10303
 	private Vector3 worldPos = Vector3.zero;
 
-	// Token: 0x04002840 RID: 10304
 	private string[] elementNames;
 
-	// Token: 0x04002841 RID: 10305
 	private Dictionary<SimHashes, double> elementCounts = new Dictionary<SimHashes, double>();
 
-	// Token: 0x04002842 RID: 10306
 	public static DevToolSimDebug Instance;
 
-	// Token: 0x04002843 RID: 10307
 	private const string INVALID_OVERLAY_MODE_STR = "None";
 
-	// Token: 0x04002844 RID: 10308
 	private bool shouldDrawBoundingBox = true;
 
-	// Token: 0x04002845 RID: 10309
 	private Option<DevToolEntityTarget.ForSimCell> boundBoxSimCellTarget;
 
-	// Token: 0x04002846 RID: 10310
 	private int xBound = 8;
 
-	// Token: 0x04002847 RID: 10311
 	private int yBound = 8;
 
-	// Token: 0x04002848 RID: 10312
 	private bool showElementData;
 
-	// Token: 0x04002849 RID: 10313
 	private bool showMouseData = true;
 
-	// Token: 0x0400284A RID: 10314
 	private bool showAccessRestrictions;
 
-	// Token: 0x0400284B RID: 10315
 	private bool showGridContents;
 
-	// Token: 0x0400284C RID: 10316
 	private bool showScenePartitionerContents;
 
-	// Token: 0x0400284D RID: 10317
 	private bool showLayerToggles;
 
-	// Token: 0x0400284E RID: 10318
 	private bool showCavityInfo;
 
-	// Token: 0x0400284F RID: 10319
 	private bool showPropertyInfo;
 
-	// Token: 0x04002850 RID: 10320
 	private bool showBuildings;
 
-	// Token: 0x04002851 RID: 10321
 	private bool showCreatures;
 
-	// Token: 0x04002852 RID: 10322
 	private bool showPhysicsData;
 
-	// Token: 0x04002853 RID: 10323
 	private bool showGasConduitData;
 
-	// Token: 0x04002854 RID: 10324
 	private bool showLiquidConduitData;
 
-	// Token: 0x04002855 RID: 10325
 	private string[] overlayModes;
 
-	// Token: 0x04002856 RID: 10326
 	private int selectedOverlayMode;
 
-	// Token: 0x04002857 RID: 10327
 	private string[] gameGridModes;
 
-	// Token: 0x04002858 RID: 10328
 	private Dictionary<string, HashedString> modeLookup;
 
-	// Token: 0x04002859 RID: 10329
 	private Dictionary<HashedString, string> revModeLookup;
 
-	// Token: 0x0400285A RID: 10330
 	private HashSet<ScenePartitionerLayer> toggledLayers = new HashSet<ScenePartitionerLayer>();
 }

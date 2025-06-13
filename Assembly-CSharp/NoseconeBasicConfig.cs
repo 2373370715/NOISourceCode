@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020004D6 RID: 1238
 public class NoseconeBasicConfig : IBuildingConfig
 {
-	// Token: 0x0600154A RID: 5450 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x0600154B RID: 5451 RVA: 0x0019E1A8 File Offset: 0x0019C3A8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "NoseconeBasic";
@@ -45,7 +42,6 @@ public class NoseconeBasicConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600154C RID: 5452 RVA: 0x000B3F21 File Offset: 0x000B2121
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -54,13 +50,11 @@ public class NoseconeBasicConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(GameTags.NoseRocketModule, false);
 	}
 
-	// Token: 0x0600154D RID: 5453 RVA: 0x000B3F61 File Offset: 0x000B2161
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		BuildingTemplates.ExtendBuildingToRocketModuleCluster(go, null, ROCKETRY.BURDEN.MINOR, 0f, 0f);
 		go.GetComponent<ReorderableBuilding>().buildConditions.Add(new TopOnly());
 	}
 
-	// Token: 0x04000EA6 RID: 3750
 	public const string ID = "NoseconeBasic";
 }

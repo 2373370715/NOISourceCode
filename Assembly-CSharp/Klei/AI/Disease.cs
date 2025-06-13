@@ -8,12 +8,9 @@ using UnityEngine;
 
 namespace Klei.AI
 {
-	// Token: 0x02003C6D RID: 15469
 	[DebuggerDisplay("{base.Id}")]
 	public abstract class Disease : Resource
 	{
-		// Token: 0x17000C55 RID: 3157
-		// (get) Token: 0x0600ED54 RID: 60756 RVA: 0x00143CA4 File Offset: 0x00141EA4
 		public new string Name
 		{
 			get
@@ -22,7 +19,6 @@ namespace Klei.AI
 			}
 		}
 
-		// Token: 0x0600ED55 RID: 60757 RVA: 0x004E05C4 File Offset: 0x004DE7C4
 		public Disease(string id, float strength, Disease.RangeInfo temperature_range, Disease.RangeInfo temperature_half_lives, Disease.RangeInfo pressure_range, Disease.RangeInfo pressure_half_lives, float radiation_kill_rate, bool statsOnly) : base(id, null, null)
 		{
 			this.name = new StringKey("STRINGS.DUPLICANTS.DISEASES." + id.ToUpper() + ".NAME");
@@ -54,7 +50,6 @@ namespace Klei.AI
 			}
 		}
 
-		// Token: 0x0600ED56 RID: 60758 RVA: 0x004E0810 File Offset: 0x004DEA10
 		protected virtual void PopulateElemGrowthInfo()
 		{
 			this.InitializeElemGrowthArray(ref this.elemGrowthInfo, Disease.DEFAULT_GROWTH_INFO);
@@ -76,7 +71,6 @@ namespace Klei.AI
 			});
 		}
 
-		// Token: 0x0600ED57 RID: 60759 RVA: 0x004E08E4 File Offset: 0x004DEAE4
 		protected void AddGrowthRule(GrowthRule g)
 		{
 			if (this.growthRules == null)
@@ -99,7 +93,6 @@ namespace Klei.AI
 			this.growthRules.Add(g);
 		}
 
-		// Token: 0x0600ED58 RID: 60760 RVA: 0x004E09FC File Offset: 0x004DEBFC
 		protected void AddExposureRule(ExposureRule g)
 		{
 			if (this.exposureRules == null)
@@ -115,7 +108,6 @@ namespace Klei.AI
 			this.exposureRules.Add(g);
 		}
 
-		// Token: 0x0600ED59 RID: 60761 RVA: 0x004E0A80 File Offset: 0x004DEC80
 		public CompositeGrowthRule GetGrowthRuleForElement(Element e)
 		{
 			CompositeGrowthRule compositeGrowthRule = new CompositeGrowthRule();
@@ -132,7 +124,6 @@ namespace Klei.AI
 			return compositeGrowthRule;
 		}
 
-		// Token: 0x0600ED5A RID: 60762 RVA: 0x004E0AD8 File Offset: 0x004DECD8
 		public CompositeExposureRule GetExposureRuleForElement(Element e)
 		{
 			CompositeExposureRule compositeExposureRule = new CompositeExposureRule();
@@ -149,7 +140,6 @@ namespace Klei.AI
 			return compositeExposureRule;
 		}
 
-		// Token: 0x0600ED5B RID: 60763 RVA: 0x004E0B30 File Offset: 0x004DED30
 		public TagGrowthRule GetGrowthRuleForTag(Tag t)
 		{
 			if (this.growthRules != null)
@@ -166,7 +156,6 @@ namespace Klei.AI
 			return null;
 		}
 
-		// Token: 0x0600ED5C RID: 60764 RVA: 0x004E0B84 File Offset: 0x004DED84
 		protected void ApplyRules()
 		{
 			if (this.growthRules != null)
@@ -185,7 +174,6 @@ namespace Klei.AI
 			}
 		}
 
-		// Token: 0x0600ED5D RID: 60765 RVA: 0x004E0BFC File Offset: 0x004DEDFC
 		protected void InitializeElemGrowthArray(ref ElemGrowthInfo[] infoArray, ElemGrowthInfo default_value)
 		{
 			List<Element> elements = ElementLoader.elements;
@@ -217,7 +205,6 @@ namespace Klei.AI
 			};
 		}
 
-		// Token: 0x0600ED5E RID: 60766 RVA: 0x004E0D20 File Offset: 0x004DEF20
 		protected void InitializeElemExposureArray(ref ElemExposureInfo[] infoArray, ElemExposureInfo default_value)
 		{
 			List<Element> elements = ElementLoader.elements;
@@ -228,7 +215,6 @@ namespace Klei.AI
 			}
 		}
 
-		// Token: 0x0600ED5F RID: 60767 RVA: 0x004E0D5C File Offset: 0x004DEF5C
 		public float GetGrowthRateForTags(HashSet<Tag> tags, bool overpopulated)
 		{
 			float num = 1f;
@@ -246,7 +232,6 @@ namespace Klei.AI
 			return num;
 		}
 
-		// Token: 0x0600ED60 RID: 60768 RVA: 0x004E0DD8 File Offset: 0x004DEFD8
 		public static float HalfLifeToGrowthRate(float half_life_in_seconds, float dt)
 		{
 			float result;
@@ -266,7 +251,6 @@ namespace Klei.AI
 			return result;
 		}
 
-		// Token: 0x0600ED61 RID: 60769 RVA: 0x004E0E24 File Offset: 0x004DF024
 		public static float GrowthRateToHalfLife(float growth_rate)
 		{
 			float result;
@@ -285,13 +269,11 @@ namespace Klei.AI
 			return result;
 		}
 
-		// Token: 0x0600ED62 RID: 60770 RVA: 0x00143CB6 File Offset: 0x00141EB6
 		public float CalculateTemperatureHalfLife(float temperature)
 		{
 			return Disease.CalculateRangeHalfLife(temperature, ref this.temperatureRange, ref this.temperatureHalfLives);
 		}
 
-		// Token: 0x0600ED63 RID: 60771 RVA: 0x004E0E64 File Offset: 0x004DF064
 		public static float CalculateRangeHalfLife(float range_value, ref Disease.RangeInfo range, ref Disease.RangeInfo half_lives)
 		{
 			int num = 3;
@@ -330,7 +312,6 @@ namespace Klei.AI
 			return Mathf.Lerp(value, value2, t);
 		}
 
-		// Token: 0x0600ED64 RID: 60772 RVA: 0x004E0F0C File Offset: 0x004DF10C
 		public List<Descriptor> GetQuantitativeDescriptors()
 		{
 			List<Descriptor> list = new List<Descriptor>();
@@ -387,7 +368,6 @@ namespace Klei.AI
 			return list;
 		}
 
-		// Token: 0x0600ED65 RID: 60773 RVA: 0x004E1284 File Offset: 0x004DF484
 		private List<Descriptor> BuildGrowthInfoDescriptors(List<GrowthRule> rules, string section_text, string section_tooltip, string item_tooltip)
 		{
 			List<Descriptor> list = new List<Descriptor>();
@@ -402,58 +382,40 @@ namespace Klei.AI
 			return list;
 		}
 
-		// Token: 0x0400E95C RID: 59740
 		private StringKey name;
 
-		// Token: 0x0400E95D RID: 59741
 		public HashedString id;
 
-		// Token: 0x0400E95E RID: 59742
 		public float strength;
 
-		// Token: 0x0400E95F RID: 59743
 		public Disease.RangeInfo temperatureRange;
 
-		// Token: 0x0400E960 RID: 59744
 		public Disease.RangeInfo temperatureHalfLives;
 
-		// Token: 0x0400E961 RID: 59745
 		public Disease.RangeInfo pressureRange;
 
-		// Token: 0x0400E962 RID: 59746
 		public Disease.RangeInfo pressureHalfLives;
 
-		// Token: 0x0400E963 RID: 59747
 		public List<GrowthRule> growthRules;
 
-		// Token: 0x0400E964 RID: 59748
 		public List<ExposureRule> exposureRules;
 
-		// Token: 0x0400E965 RID: 59749
 		public ElemGrowthInfo[] elemGrowthInfo;
 
-		// Token: 0x0400E966 RID: 59750
 		public ElemExposureInfo[] elemExposureInfo;
 
-		// Token: 0x0400E967 RID: 59751
 		public string overlayColourName;
 
-		// Token: 0x0400E968 RID: 59752
 		public string overlayLegendHovertext;
 
-		// Token: 0x0400E969 RID: 59753
 		public float radiationKillRate;
 
-		// Token: 0x0400E96A RID: 59754
 		public Amount amount;
 
-		// Token: 0x0400E96B RID: 59755
 		public Attribute amountDeltaAttribute;
 
-		// Token: 0x0400E96C RID: 59756
 		public Attribute cureSpeedBase;
 
-		// Token: 0x0400E96D RID: 59757
 		public static readonly ElemGrowthInfo DEFAULT_GROWTH_INFO = new ElemGrowthInfo
 		{
 			underPopulationDeathRate = 0f,
@@ -466,16 +428,13 @@ namespace Klei.AI
 			minDiffusionInfestationTickCount = byte.MaxValue
 		};
 
-		// Token: 0x0400E96E RID: 59758
 		public static ElemExposureInfo DEFAULT_EXPOSURE_INFO = new ElemExposureInfo
 		{
 			populationHalfLife = float.PositiveInfinity
 		};
 
-		// Token: 0x02003C6E RID: 15470
 		public struct RangeInfo
 		{
-			// Token: 0x0600ED67 RID: 60775 RVA: 0x00143CCA File Offset: 0x00141ECA
 			public RangeInfo(float min_viable, float min_growth, float max_growth, float max_viable)
 			{
 				this.minViable = min_viable;
@@ -484,7 +443,6 @@ namespace Klei.AI
 				this.maxViable = max_viable;
 			}
 
-			// Token: 0x0600ED68 RID: 60776 RVA: 0x00143CE9 File Offset: 0x00141EE9
 			public void Write(BinaryWriter writer)
 			{
 				writer.Write(this.minViable);
@@ -493,7 +451,6 @@ namespace Klei.AI
 				writer.Write(this.maxViable);
 			}
 
-			// Token: 0x0600ED69 RID: 60777 RVA: 0x00143D1B File Offset: 0x00141F1B
 			public float GetValue(int idx)
 			{
 				switch (idx)
@@ -511,22 +468,17 @@ namespace Klei.AI
 				}
 			}
 
-			// Token: 0x0600ED6A RID: 60778 RVA: 0x00143D56 File Offset: 0x00141F56
 			public static Disease.RangeInfo Idempotent()
 			{
 				return new Disease.RangeInfo(float.PositiveInfinity, float.PositiveInfinity, float.PositiveInfinity, float.PositiveInfinity);
 			}
 
-			// Token: 0x0400E96F RID: 59759
 			public float minViable;
 
-			// Token: 0x0400E970 RID: 59760
 			public float minGrowth;
 
-			// Token: 0x0400E971 RID: 59761
 			public float maxGrowth;
 
-			// Token: 0x0400E972 RID: 59762
 			public float maxViable;
 		}
 	}

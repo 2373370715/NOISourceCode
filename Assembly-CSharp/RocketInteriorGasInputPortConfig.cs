@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000578 RID: 1400
 public class RocketInteriorGasInputPortConfig : IBuildingConfig
 {
-	// Token: 0x06001810 RID: 6160 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06001811 RID: 6161 RVA: 0x001A9C68 File Offset: 0x001A7E68
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "RocketInteriorGasInputPort";
@@ -40,13 +37,11 @@ public class RocketInteriorGasInputPortConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001812 RID: 6162 RVA: 0x000B4A40 File Offset: 0x000B2C40
 	private void AttachPort(GameObject go)
 	{
 		go.AddComponent<ConduitSecondaryInput>().portInfo = this.gasInputPort;
 	}
 
-	// Token: 0x06001813 RID: 6163 RVA: 0x001A9D08 File Offset: 0x001A7F08
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
@@ -67,7 +62,6 @@ public class RocketInteriorGasInputPortConfig : IBuildingConfig
 		def.dropOffset = new CellOffset(0, -1);
 	}
 
-	// Token: 0x06001814 RID: 6164 RVA: 0x001A9DA4 File Offset: 0x001A7FA4
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		GeneratedBuildings.RemoveLoopingSounds(go);
@@ -83,7 +77,6 @@ public class RocketInteriorGasInputPortConfig : IBuildingConfig
 		go.GetComponent<Deconstructable>().allowDeconstruction = false;
 	}
 
-	// Token: 0x06001815 RID: 6165 RVA: 0x000B4A53 File Offset: 0x000B2C53
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 		base.DoPostConfigurePreview(def, go);
@@ -91,7 +84,6 @@ public class RocketInteriorGasInputPortConfig : IBuildingConfig
 		this.AttachPort(go);
 	}
 
-	// Token: 0x06001816 RID: 6166 RVA: 0x000B4A6B File Offset: 0x000B2C6B
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		base.DoPostConfigureUnderConstruction(go);
@@ -99,9 +91,7 @@ public class RocketInteriorGasInputPortConfig : IBuildingConfig
 		this.AttachPort(go);
 	}
 
-	// Token: 0x04000FF4 RID: 4084
 	public const string ID = "RocketInteriorGasInputPort";
 
-	// Token: 0x04000FF5 RID: 4085
 	private ConduitPortInfo gasInputPort = new ConduitPortInfo(ConduitType.Gas, new CellOffset(0, 0));
 }

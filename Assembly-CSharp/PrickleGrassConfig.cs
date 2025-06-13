@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020002B7 RID: 695
 public class PrickleGrassConfig : IEntityConfig
 {
-	// Token: 0x06000A2E RID: 2606 RVA: 0x00173B9C File Offset: 0x00171D9C
 	public GameObject CreatePrefab()
 	{
 		string id = "PrickleGrass";
@@ -42,25 +40,19 @@ public class PrickleGrassConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06000A2F RID: 2607 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x06000A30 RID: 2608 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x04000803 RID: 2051
 	public const string ID = "PrickleGrass";
 
-	// Token: 0x04000804 RID: 2052
 	public const string SEED_ID = "PrickleGrassSeed";
 
-	// Token: 0x04000805 RID: 2053
 	public static readonly EffectorValues POSITIVE_DECOR_EFFECT = DECOR.BONUS.TIER3;
 
-	// Token: 0x04000806 RID: 2054
 	public static readonly EffectorValues NEGATIVE_DECOR_EFFECT = DECOR.PENALTY.TIER3;
 }

@@ -3,16 +3,13 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000AB RID: 171
 public class ElectrobankChargerConfig : IBuildingConfig
 {
-	// Token: 0x060002C1 RID: 705 RVA: 0x000AA12F File Offset: 0x000A832F
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.DLC3;
 	}
 
-	// Token: 0x060002C2 RID: 706 RVA: 0x00152540 File Offset: 0x00150740
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "ElectrobankCharger";
@@ -40,7 +37,6 @@ public class ElectrobankChargerConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060002C3 RID: 707 RVA: 0x00152600 File Offset: 0x00150800
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
@@ -58,19 +54,15 @@ public class ElectrobankChargerConfig : IBuildingConfig
 		manualDeliveryKG.choreTypeIDHash = Db.Get().ChoreTypes.PowerFetch.IdHash;
 	}
 
-	// Token: 0x060002C4 RID: 708 RVA: 0x000AAFA9 File Offset: 0x000A91A9
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
 		go.AddOrGetDef<ElectrobankCharger.Def>();
 	}
 
-	// Token: 0x040001C5 RID: 453
 	public const string ID = "ElectrobankCharger";
 
-	// Token: 0x040001C6 RID: 454
 	public const float BUILDING_WATTAGE_COST = 480f;
 
-	// Token: 0x040001C7 RID: 455
 	public const float CHARGE_RATE = 400f;
 }

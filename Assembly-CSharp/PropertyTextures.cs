@@ -4,11 +4,9 @@ using Klei;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 
-// Token: 0x02001765 RID: 5989
 [AddComponentMenu("KMonoBehaviour/scripts/PropertyTextures")]
 public class PropertyTextures : KMonoBehaviour, ISim200ms
 {
-	// Token: 0x06007B3F RID: 31551 RVA: 0x00328C08 File Offset: 0x00326E08
 	public static void DestroyInstance()
 	{
 		ShaderReloader.Unregister(new System.Action(PropertyTextures.instance.OnShadersReloaded));
@@ -20,7 +18,6 @@ public class PropertyTextures : KMonoBehaviour, ISim200ms
 		PropertyTextures.instance = null;
 	}
 
-	// Token: 0x06007B40 RID: 31552 RVA: 0x000F59CA File Offset: 0x000F3BCA
 	protected override void OnPrefabInit()
 	{
 		PropertyTextures.instance = this;
@@ -28,8 +25,6 @@ public class PropertyTextures : KMonoBehaviour, ISim200ms
 		ShaderReloader.Register(new System.Action(this.OnShadersReloaded));
 	}
 
-	// Token: 0x170007B1 RID: 1969
-	// (get) Token: 0x06007B41 RID: 31553 RVA: 0x000F59E9 File Offset: 0x000F3BE9
 	public static bool IsFogOfWarEnabled
 	{
 		get
@@ -38,19 +33,16 @@ public class PropertyTextures : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x06007B42 RID: 31554 RVA: 0x000F59F7 File Offset: 0x000F3BF7
 	public Texture GetTexture(PropertyTextures.Property property)
 	{
 		return this.textureBuffers[(int)property].texture;
 	}
 
-	// Token: 0x06007B43 RID: 31555 RVA: 0x000F5A06 File Offset: 0x000F3C06
 	private string GetShaderPropertyName(PropertyTextures.Property property)
 	{
 		return "_" + property.ToString() + "Tex";
 	}
 
-	// Token: 0x06007B44 RID: 31556 RVA: 0x00328C64 File Offset: 0x00326E64
 	protected override void OnSpawn()
 	{
 		if (GenericGameSettings.instance.disableFogOfWar)
@@ -66,7 +58,6 @@ public class PropertyTextures : KMonoBehaviour, ISim200ms
 		this.CameraZoomID = Shader.PropertyToID("_CameraZoomInfo");
 	}
 
-	// Token: 0x06007B45 RID: 31557 RVA: 0x00328CF8 File Offset: 0x00326EF8
 	public void OnReset(object data = null)
 	{
 		this.lerpers = new TextureLerper[15];
@@ -127,7 +118,6 @@ public class PropertyTextures : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x06007B46 RID: 31558 RVA: 0x00328EDC File Offset: 0x003270DC
 	private void OnShadersReloaded()
 	{
 		for (int i = 0; i < 15; i++)
@@ -140,7 +130,6 @@ public class PropertyTextures : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x06007B47 RID: 31559 RVA: 0x00328F20 File Offset: 0x00327120
 	public void Sim200ms(float dt)
 	{
 		if (this.lerpers == null || this.lerpers.Length == 0)
@@ -157,7 +146,6 @@ public class PropertyTextures : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x06007B48 RID: 31560 RVA: 0x00328F68 File Offset: 0x00327168
 	private void UpdateTextureThreaded(TextureRegion texture_region, int x0, int y0, int x1, int y1, PropertyTextures.WorkItem.Callback update_texture_cb)
 	{
 		this.workItems.Reset(null);
@@ -170,7 +158,6 @@ public class PropertyTextures : KMonoBehaviour, ISim200ms
 		GlobalJobManager.Run(this.workItems);
 	}
 
-	// Token: 0x06007B49 RID: 31561 RVA: 0x00328FC4 File Offset: 0x003271C4
 	private void UpdateProperty(ref PropertyTextures.TextureProperties p, int x0, int y0, int x1, int y1)
 	{
 		if (Game.Instance == null || Game.Instance.IsLoading())
@@ -249,7 +236,6 @@ public class PropertyTextures : KMonoBehaviour, ISim200ms
 		this.externallyUpdatedTextures[simProperty].Apply();
 	}
 
-	// Token: 0x06007B4A RID: 31562 RVA: 0x0032925C File Offset: 0x0032745C
 	public static Vector4 CalculateClusterWorldSize()
 	{
 		WorldContainer activeWorld = ClusterManager.Instance.activeWorld;
@@ -267,7 +253,6 @@ public class PropertyTextures : KMonoBehaviour, ISim200ms
 		return zero;
 	}
 
-	// Token: 0x06007B4B RID: 31563 RVA: 0x003292EC File Offset: 0x003274EC
 	private void LateUpdate()
 	{
 		if (!Grid.IsInitialized())
@@ -321,7 +306,6 @@ public class PropertyTextures : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x06007B4C RID: 31564 RVA: 0x0032954C File Offset: 0x0032774C
 	private void GetVisibleCellRange(out int x0, out int y0, out int x1, out int y1)
 	{
 		int num = 16;
@@ -342,7 +326,6 @@ public class PropertyTextures : KMonoBehaviour, ISim200ms
 		y1 = Mathf.Min(y1, heightInCells - 1);
 	}
 
-	// Token: 0x06007B4D RID: 31565 RVA: 0x003295F4 File Offset: 0x003277F4
 	private static void UpdateFogOfWar(TextureRegion region, int x0, int y0, int x1, int y1)
 	{
 		byte[] visible = Grid.Visible;
@@ -377,7 +360,6 @@ public class PropertyTextures : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x06007B4E RID: 31566 RVA: 0x003296B0 File Offset: 0x003278B0
 	private static void UpdatePressure(TextureRegion region, int x0, int y0, int x1, int y1)
 	{
 		Vector2 pressureRange = PropertyTextures.instance.PressureRange;
@@ -418,7 +400,6 @@ public class PropertyTextures : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x06007B4F RID: 31567 RVA: 0x003297F0 File Offset: 0x003279F0
 	private static void UpdateDanger(TextureRegion region, int x0, int y0, int x1, int y1)
 	{
 		for (int i = y0; i <= y1; i++)
@@ -439,7 +420,6 @@ public class PropertyTextures : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x06007B50 RID: 31568 RVA: 0x0032985C File Offset: 0x00327A5C
 	private static void UpdateStateChange(TextureRegion region, int x0, int y0, int x1, int y1)
 	{
 		float temperatureStateChangeRange = PropertyTextures.instance.TemperatureStateChangeRange;
@@ -471,7 +451,6 @@ public class PropertyTextures : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x06007B51 RID: 31569 RVA: 0x00329944 File Offset: 0x00327B44
 	private static void UpdateFallingSolidChange(TextureRegion region, int x0, int y0, int x1, int y1)
 	{
 		for (int i = y0; i <= y1; i++)
@@ -497,7 +476,6 @@ public class PropertyTextures : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x06007B52 RID: 31570 RVA: 0x003299C8 File Offset: 0x00327BC8
 	private static void UpdateGasColour(TextureRegion region, int x0, int y0, int x1, int y1)
 	{
 		for (int i = y0; i <= y1; i++)
@@ -536,7 +514,6 @@ public class PropertyTextures : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x06007B53 RID: 31571 RVA: 0x00329AE0 File Offset: 0x00327CE0
 	private static void UpdateLiquid(TextureRegion region, int x0, int y0, int x1, int y1)
 	{
 		for (int i = x0; i <= x1; i++)
@@ -580,7 +557,6 @@ public class PropertyTextures : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x06007B54 RID: 31572 RVA: 0x00329C2C File Offset: 0x00327E2C
 	private static void UpdateSolidDigAmount(TextureRegion region, int x0, int y0, int x1, int y1)
 	{
 		ushort elementIndex = ElementLoader.GetElementIndex(SimHashes.Void);
@@ -611,7 +587,6 @@ public class PropertyTextures : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x06007B55 RID: 31573 RVA: 0x00329CC8 File Offset: 0x00327EC8
 	private static void UpdateSolidLiquidGasMass(TextureRegion region, int x0, int y0, int x1, int y1)
 	{
 		for (int i = y0; i <= y1; i++)
@@ -660,7 +635,6 @@ public class PropertyTextures : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x06007B56 RID: 31574 RVA: 0x00329DD4 File Offset: 0x00327FD4
 	private static void GetTemperatureAlpha(float t, Vector2 cold_range, Vector2 hot_range, out byte cold_alpha, out byte hot_alpha)
 	{
 		cold_alpha = 0;
@@ -678,7 +652,6 @@ public class PropertyTextures : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x06007B57 RID: 31575 RVA: 0x00329E48 File Offset: 0x00328048
 	private static void UpdateTemperature(TextureRegion region, int x0, int y0, int x1, int y1)
 	{
 		Vector2 cold_range = PropertyTextures.instance.coldRange;
@@ -705,7 +678,6 @@ public class PropertyTextures : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x06007B58 RID: 31576 RVA: 0x00329F00 File Offset: 0x00328100
 	private static void UpdateWorldLight(TextureRegion region, int x0, int y0, int x1, int y1)
 	{
 		if (!PropertyTextures.instance.ForceLightEverywhere)
@@ -735,7 +707,6 @@ public class PropertyTextures : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x06007B59 RID: 31577 RVA: 0x00329FF8 File Offset: 0x003281F8
 	private static void UpdateRadiation(TextureRegion region, int x0, int y0, int x1, int y1)
 	{
 		Vector2 vector = PropertyTextures.instance.coldRange;
@@ -758,90 +729,64 @@ public class PropertyTextures : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x04005CC3 RID: 23747
 	[NonSerialized]
 	public bool ForceLightEverywhere;
 
-	// Token: 0x04005CC4 RID: 23748
 	[SerializeField]
 	private Vector2 PressureRange = new Vector2(15f, 200f);
 
-	// Token: 0x04005CC5 RID: 23749
 	[SerializeField]
 	private float MinPressureVisibility = 0.1f;
 
-	// Token: 0x04005CC6 RID: 23750
 	[SerializeField]
 	[Range(0f, 1f)]
 	private float TemperatureStateChangeRange = 0.05f;
 
-	// Token: 0x04005CC7 RID: 23751
 	public static PropertyTextures instance;
 
-	// Token: 0x04005CC8 RID: 23752
 	public static IntPtr externalFlowTex;
 
-	// Token: 0x04005CC9 RID: 23753
 	public static IntPtr externalLiquidTex;
 
-	// Token: 0x04005CCA RID: 23754
 	public static IntPtr externalLiquidDataTex;
 
-	// Token: 0x04005CCB RID: 23755
 	public static IntPtr externalExposedToSunlight;
 
-	// Token: 0x04005CCC RID: 23756
 	public static IntPtr externalSolidDigAmountTex;
 
-	// Token: 0x04005CCD RID: 23757
 	[SerializeField]
 	private Vector2 coldRange;
 
-	// Token: 0x04005CCE RID: 23758
 	[SerializeField]
 	private Vector2 hotRange;
 
-	// Token: 0x04005CCF RID: 23759
 	public static float FogOfWarScale;
 
-	// Token: 0x04005CD0 RID: 23760
 	private int WorldSizeID;
 
-	// Token: 0x04005CD1 RID: 23761
 	private int ClusterWorldSizeID;
 
-	// Token: 0x04005CD2 RID: 23762
 	private int FogOfWarScaleID;
 
-	// Token: 0x04005CD3 RID: 23763
 	private int PropTexWsToCsID;
 
-	// Token: 0x04005CD4 RID: 23764
 	private int PropTexCsToWsID;
 
-	// Token: 0x04005CD5 RID: 23765
 	private int TopBorderHeightID;
 
-	// Token: 0x04005CD6 RID: 23766
 	private int CameraZoomID;
 
-	// Token: 0x04005CD7 RID: 23767
 	private int NextPropertyIdx;
 
-	// Token: 0x04005CD8 RID: 23768
 	public TextureBuffer[] textureBuffers;
 
-	// Token: 0x04005CD9 RID: 23769
 	public TextureLerper[] lerpers;
 
-	// Token: 0x04005CDA RID: 23770
 	private TexturePagePool texturePagePool;
 
-	// Token: 0x04005CDB RID: 23771
 	[SerializeField]
 	private Texture2D[] externallyUpdatedTextures;
 
-	// Token: 0x04005CDC RID: 23772
 	private PropertyTextures.TextureProperties[] textureProperties = new PropertyTextures.TextureProperties[]
 	{
 		new PropertyTextures.TextureProperties
@@ -996,84 +941,53 @@ public class PropertyTextures : KMonoBehaviour, ISim200ms
 		}
 	};
 
-	// Token: 0x04005CDD RID: 23773
 	private List<PropertyTextures.TextureProperties> allTextureProperties = new List<PropertyTextures.TextureProperties>();
 
-	// Token: 0x04005CDE RID: 23774
 	private WorkItemCollection<PropertyTextures.WorkItem, object> workItems = new WorkItemCollection<PropertyTextures.WorkItem, object>();
 
-	// Token: 0x02001766 RID: 5990
 	public enum Property
 	{
-		// Token: 0x04005CE0 RID: 23776
 		StateChange,
-		// Token: 0x04005CE1 RID: 23777
 		GasPressure,
-		// Token: 0x04005CE2 RID: 23778
 		GasColour,
-		// Token: 0x04005CE3 RID: 23779
 		GasDanger,
-		// Token: 0x04005CE4 RID: 23780
 		FogOfWar,
-		// Token: 0x04005CE5 RID: 23781
 		Flow,
-		// Token: 0x04005CE6 RID: 23782
 		SolidDigAmount,
-		// Token: 0x04005CE7 RID: 23783
 		SolidLiquidGasMass,
-		// Token: 0x04005CE8 RID: 23784
 		WorldLight,
-		// Token: 0x04005CE9 RID: 23785
 		Liquid,
-		// Token: 0x04005CEA RID: 23786
 		Temperature,
-		// Token: 0x04005CEB RID: 23787
 		ExposedToSunlight,
-		// Token: 0x04005CEC RID: 23788
 		FallingSolid,
-		// Token: 0x04005CED RID: 23789
 		Radiation,
-		// Token: 0x04005CEE RID: 23790
 		LiquidData,
-		// Token: 0x04005CEF RID: 23791
 		Num
 	}
 
-	// Token: 0x02001767 RID: 5991
 	private struct TextureProperties
 	{
-		// Token: 0x04005CF0 RID: 23792
 		public string name;
 
-		// Token: 0x04005CF1 RID: 23793
 		public PropertyTextures.Property simProperty;
 
-		// Token: 0x04005CF2 RID: 23794
 		public TextureFormat textureFormat;
 
-		// Token: 0x04005CF3 RID: 23795
 		public FilterMode filterMode;
 
-		// Token: 0x04005CF4 RID: 23796
 		public bool updateEveryFrame;
 
-		// Token: 0x04005CF5 RID: 23797
 		public bool updatedExternally;
 
-		// Token: 0x04005CF6 RID: 23798
 		public bool blend;
 
-		// Token: 0x04005CF7 RID: 23799
 		public float blendSpeed;
 
-		// Token: 0x04005CF8 RID: 23800
 		public string texturePropertyName;
 	}
 
-	// Token: 0x02001768 RID: 5992
 	private struct WorkItem : IWorkItem<object>
 	{
-		// Token: 0x06007B5B RID: 31579 RVA: 0x000F5A24 File Offset: 0x000F3C24
 		public WorkItem(TextureRegion texture_region, int x0, int y0, int x1, int y1, PropertyTextures.WorkItem.Callback update_texture_cb)
 		{
 			this.textureRegion = texture_region;
@@ -1084,32 +998,24 @@ public class PropertyTextures : KMonoBehaviour, ISim200ms
 			this.updateTextureCb = update_texture_cb;
 		}
 
-		// Token: 0x06007B5C RID: 31580 RVA: 0x000F5A53 File Offset: 0x000F3C53
 		public void Run(object shared_data, int threadIndex)
 		{
 			this.updateTextureCb(this.textureRegion, this.x0, this.y0, this.x1, this.y1);
 		}
 
-		// Token: 0x04005CF9 RID: 23801
 		private int x0;
 
-		// Token: 0x04005CFA RID: 23802
 		private int y0;
 
-		// Token: 0x04005CFB RID: 23803
 		private int x1;
 
-		// Token: 0x04005CFC RID: 23804
 		private int y1;
 
-		// Token: 0x04005CFD RID: 23805
 		private TextureRegion textureRegion;
 
-		// Token: 0x04005CFE RID: 23806
 		private PropertyTextures.WorkItem.Callback updateTextureCb;
 
-		// Token: 0x02001769 RID: 5993
-		// (Invoke) Token: 0x06007B5E RID: 31582
+Invoke) Token: 0x06007B5E RID: 31582
 		public delegate void Callback(TextureRegion texture_region, int x0, int y0, int x1, int y1);
 	}
 }

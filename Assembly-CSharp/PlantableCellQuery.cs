@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000824 RID: 2084
 public class PlantableCellQuery : PathFinderQuery
 {
-	// Token: 0x060024B8 RID: 9400 RVA: 0x000BC5A4 File Offset: 0x000BA7A4
 	public PlantableCellQuery Reset(PlantableSeed seed, int max_results)
 	{
 		this.seed = seed;
@@ -14,7 +12,6 @@ public class PlantableCellQuery : PathFinderQuery
 		return this;
 	}
 
-	// Token: 0x060024B9 RID: 9401 RVA: 0x001D7020 File Offset: 0x001D5220
 	public override bool IsMatch(int cell, int parent_cell, int cost)
 	{
 		if (!this.result_cells.Contains(cell) && this.CheckValidPlotCell(this.seed, cell))
@@ -24,7 +21,6 @@ public class PlantableCellQuery : PathFinderQuery
 		return this.result_cells.Count >= this.max_results;
 	}
 
-	// Token: 0x060024BA RID: 9402 RVA: 0x001D706C File Offset: 0x001D526C
 	private bool CheckValidPlotCell(PlantableSeed seed, int plant_cell)
 	{
 		if (!Grid.IsValidCell(plant_cell))
@@ -87,7 +83,6 @@ public class PlantableCellQuery : PathFinderQuery
 		return true;
 	}
 
-	// Token: 0x060024BB RID: 9403 RVA: 0x001D7148 File Offset: 0x001D5348
 	private static int CountNearbyPlants(int cell, int radius)
 	{
 		int num = 0;
@@ -113,18 +108,13 @@ public class PlantableCellQuery : PathFinderQuery
 		return num4;
 	}
 
-	// Token: 0x0400191B RID: 6427
 	public List<int> result_cells = new List<int>();
 
-	// Token: 0x0400191C RID: 6428
 	private PlantableSeed seed;
 
-	// Token: 0x0400191D RID: 6429
 	private int max_results;
 
-	// Token: 0x0400191E RID: 6430
 	private int plantDetectionRadius = 6;
 
-	// Token: 0x0400191F RID: 6431
 	private int maxPlantsInRadius = 2;
 }

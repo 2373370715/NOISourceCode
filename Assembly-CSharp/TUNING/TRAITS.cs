@@ -6,10 +6,8 @@ using UnityEngine;
 
 namespace TUNING
 {
-	// Token: 0x02002290 RID: 8848
 	public class TRAITS
 	{
-		// Token: 0x0600BB4F RID: 47951 RVA: 0x00486328 File Offset: 0x00484528
 		private static void OnAddStressVomiter(GameObject go)
 		{
 			Notification notification = new Notification(DUPLICANTS.STATUSITEMS.STRESSVOMITING.NOTIFICATION_NAME, NotificationType.Bad, (List<Notification> notificationList, object data) => DUPLICANTS.STATUSITEMS.STRESSVOMITING.NOTIFICATION_TOOLTIP + notificationList.ReduceMessages(false), null, true, 0f, null, null, null, true, false, false);
@@ -33,7 +31,6 @@ namespace TUNING
 			}, (ChoreProvider chore_provider) => new VomitChore(Db.Get().ChoreTypes.StressVomit, chore_provider, Db.Get().DuplicantStatusItems.Vomiting, notification, null), "anim_loco_vomiter_kanim", 3f).StartSM();
 		}
 
-		// Token: 0x0600BB50 RID: 47952 RVA: 0x004863E8 File Offset: 0x004845E8
 		private static void OnAddBanshee(GameObject go)
 		{
 			Notification notification = new Notification(DUPLICANTS.MODIFIERS.BANSHEE_WAILING.NOTIFICATION_NAME, NotificationType.Bad, (List<Notification> notificationList, object data) => DUPLICANTS.MODIFIERS.BANSHEE_WAILING.NOTIFICATION_TOOLTIP + notificationList.ReduceMessages(false), null, true, 0f, null, null, null, true, false, false);
@@ -57,7 +54,6 @@ namespace TUNING
 			}, (ChoreProvider chore_provider) => new BansheeChore(Db.Get().ChoreTypes.BansheeWail, chore_provider, notification, null), "anim_loco_banshee_60_kanim", 3f).StartSM();
 		}
 
-		// Token: 0x0600BB51 RID: 47953 RVA: 0x004864A8 File Offset: 0x004846A8
 		private static void OnAddShocker(GameObject go)
 		{
 			Notification notification = new Notification(DUPLICANTS.MODIFIERS.STRESSSHOCKER.NOTIFICATION_NAME, NotificationType.Bad, (List<Notification> notificationList, object data) => DUPLICANTS.MODIFIERS.STRESSSHOCKER.NOTIFICATION_TOOLTIP + notificationList.ReduceMessages(false), null, true, 0f, null, null, null, true, false, false);
@@ -81,7 +77,6 @@ namespace TUNING
 			}, (ChoreProvider chore_provider) => new StressShockChore(Db.Get().ChoreTypes.StressShock, chore_provider, notification, null), "anim_loco_stressshocker_kanim", 12f).StartSM();
 		}
 
-		// Token: 0x0600BB52 RID: 47954 RVA: 0x00486568 File Offset: 0x00484768
 		private static void OnAddAggressive(GameObject go)
 		{
 			StatusItem tierOneBehaviourStatusItem = new StatusItem("StressSignalAggresive", DUPLICANTS.STATUSITEMS.STRESS_SIGNAL_AGGRESIVE.NAME, DUPLICANTS.STATUSITEMS.STRESS_SIGNAL_AGGRESIVE.TOOLTIP, "", StatusItem.IconType.Info, NotificationType.BadMinor, false, OverlayModes.None.ID, 129022, true, null);
@@ -104,7 +99,6 @@ namespace TUNING
 			}, (ChoreProvider chore_provider) => new AggressiveChore(chore_provider, null), "anim_loco_destructive_kanim", 3f).StartSM();
 		}
 
-		// Token: 0x0600BB53 RID: 47955 RVA: 0x004865F8 File Offset: 0x004847F8
 		private static void OnAddUglyCrier(GameObject go)
 		{
 			StatusItem tierOneBehaviourStatusItem = new StatusItem("StressSignalUglyCrier", DUPLICANTS.STATUSITEMS.STRESS_SIGNAL_UGLY_CRIER.NAME, DUPLICANTS.STATUSITEMS.STRESS_SIGNAL_UGLY_CRIER.TOOLTIP, "", StatusItem.IconType.Info, NotificationType.BadMinor, false, OverlayModes.None.ID, 129022, true, null);
@@ -129,7 +123,6 @@ namespace TUNING
 			}, (ChoreProvider chore_provider) => new UglyCryChore(Db.Get().ChoreTypes.UglyCry, chore_provider, null), "anim_loco_cry_kanim", 3f).StartSM();
 		}
 
-		// Token: 0x0600BB54 RID: 47956 RVA: 0x00486688 File Offset: 0x00484888
 		private static void OnAddBingeEater(GameObject go)
 		{
 			StatusItem tierOneBehaviourStatusItem = new StatusItem("StressSignalBingeEater", DUPLICANTS.STATUSITEMS.STRESS_SIGNAL_BINGE_EAT.NAME, DUPLICANTS.STATUSITEMS.STRESS_SIGNAL_BINGE_EAT.TOOLTIP, "", StatusItem.IconType.Info, NotificationType.BadMinor, false, OverlayModes.None.ID, 129022, true, null);
@@ -152,128 +145,96 @@ namespace TUNING
 			}, (ChoreProvider chore_provider) => new BingeEatChore(chore_provider, null), "anim_loco_binge_eat_kanim", 8f).StartSM();
 		}
 
-		// Token: 0x0600BB55 RID: 47957 RVA: 0x0011CF79 File Offset: 0x0011B179
 		private static void OnAddBalloonArtist(GameObject go)
 		{
 			new BalloonArtist.Instance(go.GetComponent<KMonoBehaviour>()).StartSM();
 			new JoyBehaviourMonitor.Instance(go.GetComponent<KMonoBehaviour>(), "anim_loco_happy_balloon_kanim", null, Db.Get().Expressions.Balloon).StartSM();
 		}
 
-		// Token: 0x0600BB56 RID: 47958 RVA: 0x0011CFB0 File Offset: 0x0011B1B0
 		private static void OnAddSparkleStreaker(GameObject go)
 		{
 			new SparkleStreaker.Instance(go.GetComponent<KMonoBehaviour>()).StartSM();
 			new JoyBehaviourMonitor.Instance(go.GetComponent<KMonoBehaviour>(), "anim_loco_sparkle_kanim", null, Db.Get().Expressions.Sparkle).StartSM();
 		}
 
-		// Token: 0x0600BB57 RID: 47959 RVA: 0x0011CFE7 File Offset: 0x0011B1E7
 		private static void OnAddStickerBomber(GameObject go)
 		{
 			new StickerBomber.Instance(go.GetComponent<KMonoBehaviour>()).StartSM();
 			new JoyBehaviourMonitor.Instance(go.GetComponent<KMonoBehaviour>(), "anim_loco_stickers_kanim", null, Db.Get().Expressions.Sticker).StartSM();
 		}
 
-		// Token: 0x0600BB58 RID: 47960 RVA: 0x0011D01E File Offset: 0x0011B21E
 		private static void OnAddSuperProductive(GameObject go)
 		{
 			new SuperProductive.Instance(go.GetComponent<KMonoBehaviour>()).StartSM();
 			new JoyBehaviourMonitor.Instance(go.GetComponent<KMonoBehaviour>(), "anim_loco_productive_kanim", "anim_loco_walk_productive_kanim", Db.Get().Expressions.Productive).StartSM();
 		}
 
-		// Token: 0x0600BB59 RID: 47961 RVA: 0x0011D059 File Offset: 0x0011B259
 		private static void OnAddHappySinger(GameObject go)
 		{
 			new HappySinger.Instance(go.GetComponent<KMonoBehaviour>()).StartSM();
 			new JoyBehaviourMonitor.Instance(go.GetComponent<KMonoBehaviour>(), "anim_loco_singer_kanim", null, Db.Get().Expressions.Music).StartSM();
 		}
 
-		// Token: 0x0600BB5A RID: 47962 RVA: 0x0011D090 File Offset: 0x0011B290
 		private static void OnAddDataRainer(GameObject go)
 		{
 			new DataRainer.Instance(go.GetComponent<KMonoBehaviour>()).StartSM();
 			new JoyBehaviourMonitor.Instance(go.GetComponent<KMonoBehaviour>(), "anim_loco_productive_kanim", "anim_loco_walk_productive_kanim", Db.Get().Expressions.Happy).StartSM();
 		}
 
-		// Token: 0x0600BB5B RID: 47963 RVA: 0x0011D0CB File Offset: 0x0011B2CB
 		private static void OnAddRoboDancer(GameObject go)
 		{
 			new RoboDancer.Instance(go.GetComponent<KMonoBehaviour>()).StartSM();
 			new JoyBehaviourMonitor.Instance(go.GetComponent<KMonoBehaviour>(), "anim_loco_run_robotdance_kanim", "anim_loco_walk_robotdance_kanim", Db.Get().Expressions.Happy).StartSM();
 		}
 
-		// Token: 0x04009A7E RID: 39550
 		public static float EARLYBIRD_MODIFIER = 2f;
 
-		// Token: 0x04009A7F RID: 39551
 		public static int EARLYBIRD_SCHEDULEBLOCK = 5;
 
-		// Token: 0x04009A80 RID: 39552
 		public static float NIGHTOWL_MODIFIER = 3f;
 
-		// Token: 0x04009A81 RID: 39553
 		public static float METEORPHILE_MODIFIER = 3f;
 
-		// Token: 0x04009A82 RID: 39554
 		public const float FLATULENCE_EMIT_MASS = 0.1f;
 
-		// Token: 0x04009A83 RID: 39555
 		public static float FLATULENCE_EMIT_INTERVAL_MIN = 10f;
 
-		// Token: 0x04009A84 RID: 39556
 		public static float FLATULENCE_EMIT_INTERVAL_MAX = 40f;
 
-		// Token: 0x04009A85 RID: 39557
 		public static float STINKY_EMIT_INTERVAL_MIN = 10f;
 
-		// Token: 0x04009A86 RID: 39558
 		public static float STINKY_EMIT_INTERVAL_MAX = 30f;
 
-		// Token: 0x04009A87 RID: 39559
 		public static float NARCOLEPSY_INTERVAL_MIN = 300f;
 
-		// Token: 0x04009A88 RID: 39560
 		public static float NARCOLEPSY_INTERVAL_MAX = 600f;
 
-		// Token: 0x04009A89 RID: 39561
 		public static float NARCOLEPSY_SLEEPDURATION_MIN = 15f;
 
-		// Token: 0x04009A8A RID: 39562
 		public static float NARCOLEPSY_SLEEPDURATION_MAX = 30f;
 
-		// Token: 0x04009A8B RID: 39563
 		public const float INTERRUPTED_SLEEP_STRESS_DELTA = 10f;
 
-		// Token: 0x04009A8C RID: 39564
 		public const float INTERRUPTED_SLEEP_ATHLETICS_DELTA = -2f;
 
-		// Token: 0x04009A8D RID: 39565
 		public static int NO_ATTRIBUTE_BONUS = 0;
 
-		// Token: 0x04009A8E RID: 39566
 		public static int GOOD_ATTRIBUTE_BONUS = 3;
 
-		// Token: 0x04009A8F RID: 39567
 		public static int GREAT_ATTRIBUTE_BONUS = 5;
 
-		// Token: 0x04009A90 RID: 39568
 		public static int BAD_ATTRIBUTE_PENALTY = -3;
 
-		// Token: 0x04009A91 RID: 39569
 		public static int HORRIBLE_ATTRIBUTE_PENALTY = -5;
 
-		// Token: 0x04009A92 RID: 39570
 		public static float GLOWSTICK_LUX_VALUE = 500f;
 
-		// Token: 0x04009A93 RID: 39571
 		public static float GLOWSTICK_RADIATION_RESISTANCE = 0.33f;
 
-		// Token: 0x04009A94 RID: 39572
 		public static float RADIATION_EATER_RECOVERY = -0.25f;
 
-		// Token: 0x04009A95 RID: 39573
 		public static float RADS_TO_CALS = 333.33f;
 
-		// Token: 0x04009A96 RID: 39574
 		public static readonly List<System.Action> TRAIT_CREATORS = new List<System.Action>
 		{
 			TraitUtil.CreateAttributeEffectTrait("None", DUPLICANTS.CONGENITALTRAITS.NONE.NAME, DUPLICANTS.CONGENITALTRAITS.NONE.DESC, "", (float)TRAITS.NO_ATTRIBUTE_BONUS, false, null, true),
@@ -472,65 +433,46 @@ namespace TUNING
 			TraitUtil.CreateComponentTrait<Workaholic>("Workaholic", DUPLICANTS.TRAITS.NEEDS.WORKAHOLIC.NAME, DUPLICANTS.TRAITS.NEEDS.WORKAHOLIC.DESC, false, null)
 		};
 
-		// Token: 0x02002291 RID: 8849
 		public class JOY_REACTIONS
 		{
-			// Token: 0x04009A97 RID: 39575
 			public static float MIN_MORALE_EXCESS = 8f;
 
-			// Token: 0x04009A98 RID: 39576
 			public static float MAX_MORALE_EXCESS = 20f;
 
-			// Token: 0x04009A99 RID: 39577
 			public static float MIN_REACTION_CHANCE = 0.083333336f;
 
-			// Token: 0x04009A9A RID: 39578
 			public static float MAX_REACTION_CHANCE = 0.20833333f;
 
-			// Token: 0x04009A9B RID: 39579
 			public static float JOY_REACTION_DURATION = 1800f;
 
-			// Token: 0x04009A9C RID: 39580
 			public const float CHARISMATIC_CHANCE = 1f;
 
-			// Token: 0x02002292 RID: 8850
 			public class SUPER_PRODUCTIVE
 			{
-				// Token: 0x04009A9D RID: 39581
 				public static float INSTANT_SUCCESS_CHANCE = 10f;
 			}
 
-			// Token: 0x02002293 RID: 8851
 			public class BALLOON_ARTIST
 			{
-				// Token: 0x04009A9E RID: 39582
 				public static float MINIMUM_BALLOON_MOVESPEED = 5f;
 
-				// Token: 0x04009A9F RID: 39583
 				public static int NUM_BALLOONS_TO_GIVE = 4;
 			}
 
-			// Token: 0x02002294 RID: 8852
 			public class STICKER_BOMBER
 			{
-				// Token: 0x04009AA0 RID: 39584
 				public static float TIME_PER_STICKER_BOMB = 150f;
 
-				// Token: 0x04009AA1 RID: 39585
 				public static float STICKER_DURATION = 12000f;
 			}
 
-			// Token: 0x02002295 RID: 8853
 			public class DATA_RAINER
 			{
-				// Token: 0x04009AA2 RID: 39586
 				public static int NUM_MICROCHIPS = 10;
 			}
 
-			// Token: 0x02002296 RID: 8854
 			public class ROBO_DANCER
 			{
-				// Token: 0x04009AA3 RID: 39587
 				public static float DANCE_DURATION = 75f;
 			}
 		}

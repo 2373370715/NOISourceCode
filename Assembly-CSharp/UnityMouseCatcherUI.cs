@@ -2,10 +2,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000C20 RID: 3104
 public class UnityMouseCatcherUI
 {
-	// Token: 0x06003ADA RID: 15066 RVA: 0x002366F8 File Offset: 0x002348F8
 	public static Canvas ManifestCanvas()
 	{
 		if (UnityMouseCatcherUI.m_instance_canvas != null && UnityMouseCatcherUI.m_instance_canvas)
@@ -37,7 +35,6 @@ public class UnityMouseCatcherUI
 		return UnityMouseCatcherUI.m_instance_canvas;
 	}
 
-	// Token: 0x06003ADB RID: 15067 RVA: 0x00236800 File Offset: 0x00234A00
 	public static void SetEnabled(bool is_enabled)
 	{
 		Canvas canvas = UnityMouseCatcherUI.ManifestCanvas();
@@ -51,6 +48,5 @@ public class UnityMouseCatcherUI
 		}
 	}
 
-	// Token: 0x040028A8 RID: 10408
 	private static Canvas m_instance_canvas;
 }

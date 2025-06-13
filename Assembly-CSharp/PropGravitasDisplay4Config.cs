@@ -4,22 +4,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200052E RID: 1326
 public class PropGravitasDisplay4Config : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x060016C3 RID: 5827 RVA: 0x000AA117 File Offset: 0x000A8317
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x060016C4 RID: 5828 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x060016C5 RID: 5829 RVA: 0x001A3CB8 File Offset: 0x001A1EB8
 	public GameObject CreatePrefab()
 	{
 		string id = "PropGravitasDisplay4";
@@ -40,7 +36,6 @@ public class PropGravitasDisplay4Config : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x060016C6 RID: 5830 RVA: 0x000AA768 File Offset: 0x000A8968
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.GetComponent<OccupyArea>().objectLayers = new ObjectLayer[]
@@ -49,7 +44,6 @@ public class PropGravitasDisplay4Config : IEntityConfig, IHasDlcRestrictions
 		};
 	}
 
-	// Token: 0x060016C7 RID: 5831 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}

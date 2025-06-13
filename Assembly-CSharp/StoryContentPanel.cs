@@ -8,10 +8,8 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02002087 RID: 8327
 public class StoryContentPanel : KMonoBehaviour
 {
-	// Token: 0x0600B16C RID: 45420 RVA: 0x00438D04 File Offset: 0x00436F04
 	public List<string> GetActiveStories()
 	{
 		List<string> list = new List<string>();
@@ -25,7 +23,6 @@ public class StoryContentPanel : KMonoBehaviour
 		return list;
 	}
 
-	// Token: 0x0600B16D RID: 45421 RVA: 0x00117D42 File Offset: 0x00115F42
 	public void Init()
 	{
 		this.SpawnRows();
@@ -35,20 +32,17 @@ public class StoryContentPanel : KMonoBehaviour
 		CustomGameSettings.Instance.OnStorySettingChanged += this.OnStorySettingChanged;
 	}
 
-	// Token: 0x0600B16E RID: 45422 RVA: 0x00117D72 File Offset: 0x00115F72
 	public void Cleanup()
 	{
 		CustomGameSettings.Instance.OnStorySettingChanged -= this.OnStorySettingChanged;
 	}
 
-	// Token: 0x0600B16F RID: 45423 RVA: 0x00117D8A File Offset: 0x00115F8A
 	private void OnStorySettingChanged(SettingConfig config, SettingLevel level)
 	{
 		this.storyStates[config.id] = ((level.id == "Guaranteed") ? StoryContentPanel.StoryState.Guaranteed : StoryContentPanel.StoryState.Forbidden);
 		this.RefreshStoryDisplay(config.id);
 	}
 
-	// Token: 0x0600B170 RID: 45424 RVA: 0x00438D70 File Offset: 0x00436F70
 	private void SpawnRows()
 	{
 		using (List<Story>.Enumerator enumerator = Db.Get().Stories.resources.GetEnumerator())
@@ -79,7 +73,6 @@ public class StoryContentPanel : KMonoBehaviour
 		this.mainScreen.RefreshStoryLabel();
 	}
 
-	// Token: 0x0600B171 RID: 45425 RVA: 0x00117DBF File Offset: 0x00115FBF
 	private void SelectRow(string id)
 	{
 		this.selectedStoryId = id;
@@ -87,7 +80,6 @@ public class StoryContentPanel : KMonoBehaviour
 		this.RefreshDescriptionPanel();
 	}
 
-	// Token: 0x0600B172 RID: 45426 RVA: 0x00438EEC File Offset: 0x004370EC
 	public void SelectDefault()
 	{
 		foreach (KeyValuePair<string, StoryContentPanel.StoryState> keyValuePair in this.storyStates)
@@ -108,7 +100,6 @@ public class StoryContentPanel : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600B173 RID: 45427 RVA: 0x00438F9C File Offset: 0x0043719C
 	private void IncrementStorySetting(string storyId, bool forward = true)
 	{
 		int num = (int)this.storyStates[storyId];
@@ -122,7 +113,6 @@ public class StoryContentPanel : KMonoBehaviour
 		this.mainScreen.RefreshRowsAndDescriptions();
 	}
 
-	// Token: 0x0600B174 RID: 45428 RVA: 0x00438FE0 File Offset: 0x004371E0
 	private void SetStoryState(string storyId, StoryContentPanel.StoryState state)
 	{
 		this.storyStates[storyId] = state;
@@ -130,7 +120,6 @@ public class StoryContentPanel : KMonoBehaviour
 		CustomGameSettings.Instance.SetStorySetting(config, this.storyStates[storyId] == StoryContentPanel.StoryState.Guaranteed);
 	}
 
-	// Token: 0x0600B175 RID: 45429 RVA: 0x00439028 File Offset: 0x00437228
 	public void SelectRandomStories(int min = 5, int max = 5, bool useBias = false)
 	{
 		int num = UnityEngine.Random.Range(min, max);
@@ -165,7 +154,6 @@ public class StoryContentPanel : KMonoBehaviour
 		this.mainScreen.RefreshRowsAndDescriptions();
 	}
 
-	// Token: 0x0600B176 RID: 45430 RVA: 0x0043918C File Offset: 0x0043738C
 	private void RefreshAllStoryStates()
 	{
 		foreach (string id in this.storyRows.Keys)
@@ -174,7 +162,6 @@ public class StoryContentPanel : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600B177 RID: 45431 RVA: 0x004391E4 File Offset: 0x004373E4
 	private void RefreshStoryDisplay(string id)
 	{
 		MultiToggle reference = this.storyRows[id].GetComponent<HierarchyReferences>().GetReference<MultiToggle>("checkbox");
@@ -191,7 +178,6 @@ public class StoryContentPanel : KMonoBehaviour
 		reference.ChangeState(1);
 	}
 
-	// Token: 0x0600B178 RID: 45432 RVA: 0x00439234 File Offset: 0x00437434
 	private void RefreshRows()
 	{
 		foreach (KeyValuePair<string, GameObject> keyValuePair in this.storyRows)
@@ -200,7 +186,6 @@ public class StoryContentPanel : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600B179 RID: 45433 RVA: 0x004392AC File Offset: 0x004374AC
 	private void RefreshDescriptionPanel()
 	{
 		if (this.selectedStoryId.IsNullOrWhiteSpace())
@@ -216,7 +201,6 @@ public class StoryContentPanel : KMonoBehaviour
 		this.selectedStoryImage.sprite = Assets.GetSprite(s);
 	}
 
-	// Token: 0x0600B17A RID: 45434 RVA: 0x00439360 File Offset: 0x00437560
 	public string GetTraitsString(bool tooltip = false)
 	{
 		int num = 0;
@@ -275,60 +259,45 @@ public class StoryContentPanel : KMonoBehaviour
 		return text;
 	}
 
-	// Token: 0x04008BE5 RID: 35813
 	[SerializeField]
 	private GameObject storyRowPrefab;
 
-	// Token: 0x04008BE6 RID: 35814
 	[SerializeField]
 	private GameObject storyRowContainer;
 
-	// Token: 0x04008BE7 RID: 35815
 	private Dictionary<string, GameObject> storyRows = new Dictionary<string, GameObject>();
 
-	// Token: 0x04008BE8 RID: 35816
 	public const int DEFAULT_RANDOMIZE_STORY_COUNT = 5;
 
-	// Token: 0x04008BE9 RID: 35817
 	private Dictionary<string, StoryContentPanel.StoryState> storyStates = new Dictionary<string, StoryContentPanel.StoryState>();
 
-	// Token: 0x04008BEA RID: 35818
 	private string selectedStoryId = "";
 
-	// Token: 0x04008BEB RID: 35819
 	[SerializeField]
 	private ColonyDestinationSelectScreen mainScreen;
 
-	// Token: 0x04008BEC RID: 35820
 	[Header("Trait Count")]
 	[Header("SelectedStory")]
 	[SerializeField]
 	private Image selectedStoryImage;
 
-	// Token: 0x04008BED RID: 35821
 	[SerializeField]
 	private LocText selectedStoryTitleLabel;
 
-	// Token: 0x04008BEE RID: 35822
 	[SerializeField]
 	private LocText selectedStoryDescriptionLabel;
 
-	// Token: 0x04008BEF RID: 35823
 	[SerializeField]
 	private Sprite spriteForbidden;
 
-	// Token: 0x04008BF0 RID: 35824
 	[SerializeField]
 	private Sprite spritePossible;
 
-	// Token: 0x04008BF1 RID: 35825
 	[SerializeField]
 	private Sprite spriteGuaranteed;
 
-	// Token: 0x04008BF2 RID: 35826
 	private StoryContentPanel.StoryState _defaultStoryState;
 
-	// Token: 0x04008BF3 RID: 35827
 	private List<string> storyTraitSettings = new List<string>
 	{
 		"None",
@@ -336,14 +305,10 @@ public class StoryContentPanel : KMonoBehaviour
 		"Lots"
 	};
 
-	// Token: 0x02002088 RID: 8328
 	private enum StoryState
 	{
-		// Token: 0x04008BF5 RID: 35829
 		Forbidden,
-		// Token: 0x04008BF6 RID: 35830
 		Guaranteed,
-		// Token: 0x04008BF7 RID: 35831
 		LENGTH
 	}
 }

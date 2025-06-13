@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000022 RID: 34
 public class ArcadeMachineConfig : IBuildingConfig
 {
-	// Token: 0x06000087 RID: 135 RVA: 0x001489F8 File Offset: 0x00146BF8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "ArcadeMachine";
@@ -32,7 +30,6 @@ public class ArcadeMachineConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000088 RID: 136 RVA: 0x00148A90 File Offset: 0x00146C90
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.RecBuilding, false);
@@ -43,17 +40,13 @@ public class ArcadeMachineConfig : IBuildingConfig
 		go.AddOrGetDef<RocketUsageRestriction.Def>();
 	}
 
-	// Token: 0x06000089 RID: 137 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000069 RID: 105
 	public const string ID = "ArcadeMachine";
 
-	// Token: 0x0400006A RID: 106
 	public const string SPECIFIC_EFFECT = "PlayedArcade";
 
-	// Token: 0x0400006B RID: 107
 	public const string TRACKING_EFFECT = "RecentlyPlayedArcade";
 }

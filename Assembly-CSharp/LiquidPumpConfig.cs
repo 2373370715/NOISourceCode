@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003D1 RID: 977
 public class LiquidPumpConfig : IBuildingConfig
 {
-	// Token: 0x06000FE2 RID: 4066 RVA: 0x00188EDC File Offset: 0x001870DC
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "LiquidPump";
@@ -37,7 +35,6 @@ public class LiquidPumpConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000FE3 RID: 4067 RVA: 0x00188FBC File Offset: 0x001871BC
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
@@ -61,6 +58,5 @@ public class LiquidPumpConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayBehindConduits, false);
 	}
 
-	// Token: 0x04000B71 RID: 2929
 	public const string ID = "LiquidPump";
 }

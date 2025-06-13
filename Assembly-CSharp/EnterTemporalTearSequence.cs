@@ -3,16 +3,13 @@ using System.Collections;
 using FMOD.Studio;
 using UnityEngine;
 
-// Token: 0x020010E6 RID: 4326
 public static class EnterTemporalTearSequence
 {
-	// Token: 0x06005874 RID: 22644 RVA: 0x000DE247 File Offset: 0x000DC447
 	public static void Start(KMonoBehaviour controller)
 	{
 		controller.StartCoroutine(EnterTemporalTearSequence.Sequence());
 	}
 
-	// Token: 0x06005875 RID: 22645 RVA: 0x000DE255 File Offset: 0x000DC455
 	private static IEnumerator Sequence()
 	{
 		if (!SpeedControlScreen.Instance.IsPaused)
@@ -119,6 +116,5 @@ public static class EnterTemporalTearSequence
 		yield break;
 	}
 
-	// Token: 0x04003E51 RID: 15953
 	public static GameObject tearOpenerGameObject;
 }

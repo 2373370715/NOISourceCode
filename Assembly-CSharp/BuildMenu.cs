@@ -4,28 +4,20 @@ using FMOD.Studio;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001C5D RID: 7261
 public class BuildMenu : KScreen
 {
-	// Token: 0x060096E4 RID: 38628 RVA: 0x00106BA8 File Offset: 0x00104DA8
 	public override float GetSortKey()
 	{
 		return 6f;
 	}
 
-	// Token: 0x170009CC RID: 2508
-	// (get) Token: 0x060096E5 RID: 38629 RVA: 0x00106BAF File Offset: 0x00104DAF
-	// (set) Token: 0x060096E6 RID: 38630 RVA: 0x00106BB6 File Offset: 0x00104DB6
 	public static BuildMenu Instance { get; private set; }
 
-	// Token: 0x060096E7 RID: 38631 RVA: 0x00106BBE File Offset: 0x00104DBE
 	public static void DestroyInstance()
 	{
 		BuildMenu.Instance = null;
 	}
 
-	// Token: 0x170009CD RID: 2509
-	// (get) Token: 0x060096E8 RID: 38632 RVA: 0x00106BC6 File Offset: 0x00104DC6
 	public BuildingDef SelectedBuildingDef
 	{
 		get
@@ -34,19 +26,16 @@ public class BuildMenu : KScreen
 		}
 	}
 
-	// Token: 0x060096E9 RID: 38633 RVA: 0x00106BCE File Offset: 0x00104DCE
 	private static HashedString CacheHashString(string str)
 	{
 		return HashCache.Get().Add(str);
 	}
 
-	// Token: 0x060096EA RID: 38634 RVA: 0x00106BDB File Offset: 0x00104DDB
 	public static bool UseHotkeyBuildMenu()
 	{
 		return KPlayerPrefs.GetInt("ENABLE_HOTKEY_BUILD_MENU") != 0;
 	}
 
-	// Token: 0x060096EB RID: 38635 RVA: 0x003AEDFC File Offset: 0x003ACFFC
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -73,7 +62,6 @@ public class BuildMenu : KScreen
 		base.gameObject.SetActive(flag);
 	}
 
-	// Token: 0x060096EC RID: 38636 RVA: 0x003AEF40 File Offset: 0x003AD140
 	private void Initialize()
 	{
 		foreach (KeyValuePair<HashedString, BuildMenuCategoriesScreen> keyValuePair in this.submenus)
@@ -109,7 +97,6 @@ public class BuildMenu : KScreen
 		this.PositionMenus();
 	}
 
-	// Token: 0x060096ED RID: 38637 RVA: 0x003AF0C0 File Offset: 0x003AD2C0
 	[ContextMenu("PositionMenus")]
 	private void PositionMenus()
 	{
@@ -140,7 +127,6 @@ public class BuildMenu : KScreen
 		this.buildingsScreen.rectTransform().anchoredPosition = this.buildingsMenuOffset;
 	}
 
-	// Token: 0x060096EE RID: 38638 RVA: 0x003AF1D0 File Offset: 0x003AD3D0
 	public void Refresh()
 	{
 		foreach (KeyValuePair<HashedString, BuildMenuCategoriesScreen> keyValuePair in this.submenus)
@@ -149,21 +135,18 @@ public class BuildMenu : KScreen
 		}
 	}
 
-	// Token: 0x060096EF RID: 38639 RVA: 0x00106BEA File Offset: 0x00104DEA
 	protected override void OnCmpEnable()
 	{
 		base.OnCmpEnable();
 		Game.Instance.Subscribe(-107300940, new Action<object>(this.OnResearchComplete));
 	}
 
-	// Token: 0x060096F0 RID: 38640 RVA: 0x00106C0E File Offset: 0x00104E0E
 	protected override void OnCmpDisable()
 	{
 		Game.Instance.Unsubscribe(-107300940, new Action<object>(this.OnResearchComplete));
 		base.OnCmpDisable();
 	}
 
-	// Token: 0x060096F1 RID: 38641 RVA: 0x003AF22C File Offset: 0x003AD42C
 	private BuildMenuCategoriesScreen CreateCategorySubMenu(HashedString category, int depth, object data, Dictionary<HashedString, List<BuildingDef>> categorized_building_map, Dictionary<HashedString, List<HashedString>> categorized_category_map, Dictionary<Tag, HashedString> tag_category_map, BuildMenuBuildingsScreen buildings_screen)
 	{
 		BuildMenuCategoriesScreen buildMenuCategoriesScreen = global::Util.KInstantiateUI<BuildMenuCategoriesScreen>(this.categoriesMenuPrefab.gameObject, base.gameObject, true);
@@ -174,7 +157,6 @@ public class BuildMenu : KScreen
 		return buildMenuCategoriesScreen;
 	}
 
-	// Token: 0x060096F2 RID: 38642 RVA: 0x003AF2B4 File Offset: 0x003AD4B4
 	private void PopulateCategorizedMaps(HashedString category, int depth, object data, Dictionary<Tag, HashedString> category_map, Dictionary<Tag, int> order_map, ref int building_index, Dictionary<HashedString, List<BuildingDef>> categorized_building_map, Dictionary<HashedString, List<HashedString>> categorized_category_map)
 	{
 		Type type = data.GetType();
@@ -233,7 +215,6 @@ public class BuildMenu : KScreen
 		this.submenus[category] = this.CreateCategorySubMenu(category, depth, data, this.categorizedBuildingMap, this.categorizedCategoryMap, this.tagCategoryMap, this.buildingsScreen);
 	}
 
-	// Token: 0x060096F3 RID: 38643 RVA: 0x003AF4A0 File Offset: 0x003AD6A0
 	public override void OnKeyDown(KButtonEvent e)
 	{
 		if (e.Consumed)
@@ -255,7 +236,6 @@ public class BuildMenu : KScreen
 		}
 	}
 
-	// Token: 0x060096F4 RID: 38644 RVA: 0x003AF50C File Offset: 0x003AD70C
 	public override void OnKeyUp(KButtonEvent e)
 	{
 		if (this.selectedCategory.IsValid && PlayerController.Instance.ConsumeIfNotDragging(e, global::Action.MouseRight))
@@ -269,7 +249,6 @@ public class BuildMenu : KScreen
 		}
 	}
 
-	// Token: 0x060096F5 RID: 38645 RVA: 0x003AF55C File Offset: 0x003AD75C
 	private void OnUIClear(object data)
 	{
 		SelectTool.Instance.Activate();
@@ -279,7 +258,6 @@ public class BuildMenu : KScreen
 		this.CloseMenus();
 	}
 
-	// Token: 0x060096F6 RID: 38646 RVA: 0x00106C31 File Offset: 0x00104E31
 	private void OnBuildToolDeactivated(object data)
 	{
 		if (this.updating)
@@ -291,7 +269,6 @@ public class BuildMenu : KScreen
 		this.productInfoScreen.materialSelectionPanel.PriorityScreen.ResetPriority();
 	}
 
-	// Token: 0x060096F7 RID: 38647 RVA: 0x003AF5AC File Offset: 0x003AD7AC
 	private void CloseMenus()
 	{
 		this.productInfoScreen.Close();
@@ -304,7 +281,6 @@ public class BuildMenu : KScreen
 		this.submenus[BuildMenu.ROOT_HASHSTR].ClearSelection();
 	}
 
-	// Token: 0x060096F8 RID: 38648 RVA: 0x00106C5E File Offset: 0x00104E5E
 	public override void ScreenUpdate(bool topLevel)
 	{
 		base.ScreenUpdate(topLevel);
@@ -318,7 +294,6 @@ public class BuildMenu : KScreen
 		}
 	}
 
-	// Token: 0x060096F9 RID: 38649 RVA: 0x003AF610 File Offset: 0x003AD810
 	public void PlayNewBuildingSounds()
 	{
 		if (KTime.Instance.UnscaledGameTime - this.initTime > 1.5f)
@@ -343,7 +318,6 @@ public class BuildMenu : KScreen
 		this.notificationPingCount++;
 	}
 
-	// Token: 0x060096FA RID: 38650 RVA: 0x003AF6E0 File Offset: 0x003AD8E0
 	public PlanScreen.RequirementsState BuildableState(BuildingDef def)
 	{
 		PlanScreen.RequirementsState result = PlanScreen.RequirementsState.Complete;
@@ -361,14 +335,12 @@ public class BuildMenu : KScreen
 		return result;
 	}
 
-	// Token: 0x060096FB RID: 38651 RVA: 0x00106C9A File Offset: 0x00104E9A
 	private void CloseProductInfoScreen()
 	{
 		this.productInfoScreen.ClearProduct(true);
 		this.productInfoScreen.Show(false);
 	}
 
-	// Token: 0x060096FC RID: 38652 RVA: 0x003AF730 File Offset: 0x003AD930
 	private void Update()
 	{
 		if (this.deactivateToolQueued)
@@ -394,7 +366,6 @@ public class BuildMenu : KScreen
 		this.updating = false;
 	}
 
-	// Token: 0x060096FD RID: 38653 RVA: 0x003AF7F8 File Offset: 0x003AD9F8
 	private void OnRecipeElementsFullySelected()
 	{
 		if (this.selectedBuilding == null)
@@ -410,7 +381,6 @@ public class BuildMenu : KScreen
 		BuildTool.Instance.Activate(this.selectedBuilding, this.productInfoScreen.materialSelectionPanel.GetSelectedElementAsList);
 	}
 
-	// Token: 0x060096FE RID: 38654 RVA: 0x003AF89C File Offset: 0x003ADA9C
 	private void OnBuildingSelected(BuildingDef def)
 	{
 		if (this.selecting)
@@ -443,7 +413,6 @@ public class BuildMenu : KScreen
 		this.selecting = false;
 	}
 
-	// Token: 0x060096FF RID: 38655 RVA: 0x003AF9CC File Offset: 0x003ADBCC
 	private void OnCategoryClicked(HashedString new_category, int depth)
 	{
 		while (this.submenuStack.Count > depth)
@@ -486,7 +455,6 @@ public class BuildMenu : KScreen
 		this.submenus[BuildMenu.ROOT_HASHSTR].UpdateBuildableStates(true);
 	}
 
-	// Token: 0x06009700 RID: 38656 RVA: 0x00106CB4 File Offset: 0x00104EB4
 	public void RefreshProductInfoScreen(BuildingDef def)
 	{
 		if (this.productInfoScreen.currentDef == def)
@@ -497,7 +465,6 @@ public class BuildMenu : KScreen
 		}
 	}
 
-	// Token: 0x06009701 RID: 38657 RVA: 0x003AFB24 File Offset: 0x003ADD24
 	private HashedString GetParentCategory(HashedString desired_category)
 	{
 		foreach (KeyValuePair<HashedString, List<HashedString>> keyValuePair in this.categorizedCategoryMap)
@@ -516,7 +483,6 @@ public class BuildMenu : KScreen
 		return HashedString.Invalid;
 	}
 
-	// Token: 0x06009702 RID: 38658 RVA: 0x003AFBC4 File Offset: 0x003ADDC4
 	private void AddParentCategories(HashedString child_category, ICollection<HashedString> categories)
 	{
 		for (;;)
@@ -531,7 +497,6 @@ public class BuildMenu : KScreen
 		}
 	}
 
-	// Token: 0x06009703 RID: 38659 RVA: 0x003AFBF4 File Offset: 0x003ADDF4
 	private void OnResearchComplete(object data)
 	{
 		HashSet<HashedString> hashSet = new HashSet<HashedString>();
@@ -572,7 +537,6 @@ public class BuildMenu : KScreen
 		this.UpdateNotifications(hashSet, BuildMenu.OrderedBuildings);
 	}
 
-	// Token: 0x06009704 RID: 38660 RVA: 0x003AFD04 File Offset: 0x003ADF04
 	private void UpdateNotifications(ICollection<HashedString> updated_categories, object data)
 	{
 		foreach (KeyValuePair<HashedString, BuildMenuCategoriesScreen> keyValuePair in this.submenus)
@@ -581,78 +545,57 @@ public class BuildMenu : KScreen
 		}
 	}
 
-	// Token: 0x06009705 RID: 38661 RVA: 0x00106CED File Offset: 0x00104EED
 	public PrioritySetting GetBuildingPriority()
 	{
 		return this.productInfoScreen.materialSelectionPanel.PriorityScreen.GetLastSelectedPriority();
 	}
 
-	// Token: 0x04007568 RID: 30056
 	public const string ENABLE_HOTKEY_BUILD_MENU_KEY = "ENABLE_HOTKEY_BUILD_MENU";
 
-	// Token: 0x04007569 RID: 30057
 	[SerializeField]
 	private BuildMenuCategoriesScreen categoriesMenuPrefab;
 
-	// Token: 0x0400756A RID: 30058
 	[SerializeField]
 	private BuildMenuBuildingsScreen buildingsMenuPrefab;
 
-	// Token: 0x0400756B RID: 30059
 	[SerializeField]
 	private GameObject productInfoScreenPrefab;
 
-	// Token: 0x0400756C RID: 30060
 	private ProductInfoScreen productInfoScreen;
 
-	// Token: 0x0400756D RID: 30061
 	private BuildMenuBuildingsScreen buildingsScreen;
 
-	// Token: 0x0400756E RID: 30062
 	private BuildingDef selectedBuilding;
 
-	// Token: 0x0400756F RID: 30063
 	private HashedString selectedCategory;
 
-	// Token: 0x04007570 RID: 30064
 	private static readonly HashedString ROOT_HASHSTR = new HashedString("ROOT");
 
-	// Token: 0x04007571 RID: 30065
 	private Dictionary<HashedString, BuildMenuCategoriesScreen> submenus = new Dictionary<HashedString, BuildMenuCategoriesScreen>();
 
-	// Token: 0x04007572 RID: 30066
 	private Stack<KIconToggleMenu> submenuStack = new Stack<KIconToggleMenu>();
 
-	// Token: 0x04007573 RID: 30067
 	private bool selecting;
 
-	// Token: 0x04007574 RID: 30068
 	private bool updating;
 
-	// Token: 0x04007575 RID: 30069
 	private bool deactivateToolQueued;
 
-	// Token: 0x04007576 RID: 30070
 	[SerializeField]
 	private Vector2 rootMenuOffset = Vector2.zero;
 
-	// Token: 0x04007577 RID: 30071
 	[SerializeField]
 	private BuildMenu.PadInfo rootMenuPadding;
 
-	// Token: 0x04007578 RID: 30072
 	[SerializeField]
 	private Vector2 nestedMenuOffset = Vector2.zero;
 
-	// Token: 0x04007579 RID: 30073
 	[SerializeField]
 	private BuildMenu.PadInfo nestedMenuPadding;
 
-	// Token: 0x0400757A RID: 30074
 	[SerializeField]
 	private Vector2 buildingsMenuOffset = Vector2.zero;
 
-	// Token: 0x0400757B RID: 30075
 	public static BuildMenu.DisplayInfo OrderedBuildings = new BuildMenu.DisplayInfo(BuildMenu.CacheHashString("ROOT"), "icon_category_base", global::Action.NumActions, KKeyCode.None, new List<BuildMenu.DisplayInfo>
 	{
 		new BuildMenu.DisplayInfo(BuildMenu.CacheHashString("Base"), "icon_category_base", global::Action.Plan1, KKeyCode.None, new List<BuildMenu.DisplayInfo>
@@ -1040,77 +983,55 @@ public class BuildMenu : KScreen
 		})
 	});
 
-	// Token: 0x0400757C RID: 30076
 	private Dictionary<HashedString, List<BuildingDef>> categorizedBuildingMap;
 
-	// Token: 0x0400757D RID: 30077
 	private Dictionary<HashedString, List<HashedString>> categorizedCategoryMap;
 
-	// Token: 0x0400757E RID: 30078
 	private Dictionary<Tag, HashedString> tagCategoryMap;
 
-	// Token: 0x0400757F RID: 30079
 	private Dictionary<Tag, int> tagOrderMap;
 
-	// Token: 0x04007580 RID: 30080
 	private const float NotificationPingExpire = 0.5f;
 
-	// Token: 0x04007581 RID: 30081
 	private const float SpecialNotificationEmbellishDelay = 8f;
 
-	// Token: 0x04007582 RID: 30082
 	private float timeSinceNotificationPing;
 
-	// Token: 0x04007583 RID: 30083
 	private int notificationPingCount;
 
-	// Token: 0x04007584 RID: 30084
 	private float initTime;
 
-	// Token: 0x04007585 RID: 30085
 	private float updateInterval = 1f;
 
-	// Token: 0x04007586 RID: 30086
 	private float elapsedTime;
 
-	// Token: 0x02001C5E RID: 7262
 	[Serializable]
 	private struct PadInfo
 	{
-		// Token: 0x04007587 RID: 30087
 		public int left;
 
-		// Token: 0x04007588 RID: 30088
 		public int right;
 
-		// Token: 0x04007589 RID: 30089
 		public int top;
 
-		// Token: 0x0400758A RID: 30090
 		public int bottom;
 	}
 
-	// Token: 0x02001C5F RID: 7263
 	public struct BuildingInfo
 	{
-		// Token: 0x06009708 RID: 38664 RVA: 0x00106D04 File Offset: 0x00104F04
 		public BuildingInfo(string id, global::Action hotkey)
 		{
 			this.id = id;
 			this.hotkey = hotkey;
 		}
 
-		// Token: 0x0400758B RID: 30091
 		public string id;
 
-		// Token: 0x0400758C RID: 30092
 		public global::Action hotkey;
 	}
 
-	// Token: 0x02001C60 RID: 7264
 	public struct DisplayInfo
 	{
-		// Token: 0x06009709 RID: 38665 RVA: 0x00106D14 File Offset: 0x00104F14
 		public DisplayInfo(HashedString category, string icon_name, global::Action hotkey, KKeyCode key_code, object data)
 		{
 			this.category = category;
@@ -1120,7 +1041,6 @@ public class BuildMenu : KScreen
 			this.data = data;
 		}
 
-		// Token: 0x0600970A RID: 38666 RVA: 0x003B1634 File Offset: 0x003AF834
 		public BuildMenu.DisplayInfo GetInfo(HashedString category)
 		{
 			BuildMenu.DisplayInfo displayInfo = default(BuildMenu.DisplayInfo);
@@ -1143,19 +1063,14 @@ public class BuildMenu : KScreen
 			return displayInfo;
 		}
 
-		// Token: 0x0400758D RID: 30093
 		public HashedString category;
 
-		// Token: 0x0400758E RID: 30094
 		public string iconName;
 
-		// Token: 0x0400758F RID: 30095
 		public global::Action hotkey;
 
-		// Token: 0x04007590 RID: 30096
 		public KKeyCode keyCode;
 
-		// Token: 0x04007591 RID: 30097
 		public object data;
 	}
 }

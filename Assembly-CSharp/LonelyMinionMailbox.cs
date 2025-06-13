@@ -1,10 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000EB6 RID: 3766
 public class LonelyMinionMailbox : KMonoBehaviour
 {
-	// Token: 0x06004B4A RID: 19274 RVA: 0x0026C580 File Offset: 0x0026A780
 	public void Initialize(LonelyMinionHouse.Instance house)
 	{
 		this.House = house;
@@ -17,7 +15,6 @@ public class LonelyMinionMailbox : KMonoBehaviour
 		this.OnStoryStateChanged(storyInstance.CurrentState);
 	}
 
-	// Token: 0x06004B4B RID: 19275 RVA: 0x000D5157 File Offset: 0x000D3357
 	protected override void OnSpawn()
 	{
 		if (StoryManager.Instance.CheckState(StoryInstance.State.COMPLETE, Db.Get().Stories.LonelyMinion))
@@ -26,14 +23,12 @@ public class LonelyMinionMailbox : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06004B4C RID: 19276 RVA: 0x0026C610 File Offset: 0x0026A810
 	protected override void OnCleanUp()
 	{
 		StoryInstance storyInstance = StoryManager.Instance.GetStoryInstance(Db.Get().Stories.LonelyMinion.HashId);
 		storyInstance.StoryStateChanged = (Action<StoryInstance.State>)Delegate.Remove(storyInstance.StoryStateChanged, new Action<StoryInstance.State>(this.OnStoryStateChanged));
 	}
 
-	// Token: 0x06004B4D RID: 19277 RVA: 0x0026C65C File Offset: 0x0026A85C
 	private void OnStoryStateChanged(StoryInstance.State state)
 	{
 		QuestInstance quest = QuestManager.GetInstance(this.House.QuestOwnerId, Db.Get().Quests.LonelyMinionFoodQuest);
@@ -63,12 +58,10 @@ public class LonelyMinionMailbox : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06004B4E RID: 19278 RVA: 0x000D5186 File Offset: 0x000D3386
 	private void OnStorageChanged(object data)
 	{
 		this.House.MailboxContentChanged(data as GameObject);
 	}
 
-	// Token: 0x040034B1 RID: 13489
 	public LonelyMinionHouse.Instance House;
 }

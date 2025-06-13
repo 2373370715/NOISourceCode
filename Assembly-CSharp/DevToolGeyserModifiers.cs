@@ -4,11 +4,8 @@ using ImGuiNET;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000BEC RID: 3052
 public class DevToolGeyserModifiers : DevTool
 {
-	// Token: 0x170002A6 RID: 678
-	// (get) Token: 0x060039DC RID: 14812 RVA: 0x000C9EC4 File Offset: 0x000C80C4
 	private float GraphHeight
 	{
 		get
@@ -17,7 +14,6 @@ public class DevToolGeyserModifiers : DevTool
 		}
 	}
 
-	// Token: 0x060039DD RID: 14813 RVA: 0x0022E858 File Offset: 0x0022CA58
 	private void DrawGeyserVariable(string variableTitle, float currentValue, float modifier, string modifierFormating = "+0.##; -0.##; +0", string unit = "", string modifierUnit = "", float altValue = 0f, string altUnit = "")
 	{
 		ImGui.BulletText(variableTitle + ": " + currentValue.ToString() + unit);
@@ -33,13 +29,11 @@ public class DevToolGeyserModifiers : DevTool
 		}
 	}
 
-	// Token: 0x060039DE RID: 14814 RVA: 0x000C9ECB File Offset: 0x000C80CB
 	public static uint Color(byte r, byte g, byte b, byte a)
 	{
 		return (uint)((int)a << 24 | (int)b << 16 | (int)g << 8 | (int)r);
 	}
 
-	// Token: 0x060039DF RID: 14815 RVA: 0x0022E8E4 File Offset: 0x0022CAE4
 	private void DrawYearAndIterationsGraph(Geyser geyser)
 	{
 		Vector2 windowContentRegionMin = ImGui.GetWindowContentRegionMin();
@@ -106,7 +100,6 @@ public class DevToolGeyserModifiers : DevTool
 		ImGui.GetForegroundDrawList().AddRectFilled(vector3, vector4, this.CURRENT_TIME_COLOR);
 	}
 
-	// Token: 0x060039E0 RID: 14816 RVA: 0x0022ECA4 File Offset: 0x0022CEA4
 	protected override void RenderTo(DevPanel panel)
 	{
 		this.Update();
@@ -374,7 +367,6 @@ public class DevToolGeyserModifiers : DevTool
 		}
 	}
 
-	// Token: 0x060039E1 RID: 14817 RVA: 0x0022FAEC File Offset: 0x0022DCEC
 	private void PrepareSummaryForModification(Geyser.GeyserModification modification)
 	{
 		float num = (float)((Geyser.massModificationMethod == Geyser.ModificationMethod.Percentages) ? 100 : 1);
@@ -402,7 +394,6 @@ public class DevToolGeyserModifiers : DevTool
 		this.modifiers_FormatedList[8] = this.modifiers_FormatedList_Titles[8] + ": " + (modification.IsNewElementInUse() ? modification.newElement.ToString() : "None");
 	}
 
-	// Token: 0x060039E2 RID: 14818 RVA: 0x0022FDF4 File Offset: 0x0022DFF4
 	private void Update()
 	{
 		this.Setup();
@@ -426,7 +417,6 @@ public class DevToolGeyserModifiers : DevTool
 		this.lastSelectedGameObject = gameObject2;
 	}
 
-	// Token: 0x060039E3 RID: 14819 RVA: 0x0022FE64 File Offset: 0x0022E064
 	private void Setup()
 	{
 		if (this.AllSimHashesValues == null)
@@ -454,76 +444,52 @@ public class DevToolGeyserModifiers : DevTool
 		}
 	}
 
-	// Token: 0x040027E6 RID: 10214
 	private const string DEV_MODIFIER_ID = "DEV MODIFIER";
 
-	// Token: 0x040027E7 RID: 10215
 	private const string NO_SELECTED_STR = "No Geyser Selected";
 
-	// Token: 0x040027E8 RID: 10216
 	private int DevModifierID;
 
-	// Token: 0x040027E9 RID: 10217
 	private const float ITERATION_BAR_HEIGHT = 10f;
 
-	// Token: 0x040027EA RID: 10218
 	private const float YEAR_BAR_HEIGHT = 10f;
 
-	// Token: 0x040027EB RID: 10219
 	private const float BAR_SPACING = 2f;
 
-	// Token: 0x040027EC RID: 10220
 	private const float CURRENT_TIME_PADDING = 2f;
 
-	// Token: 0x040027ED RID: 10221
 	private const float CURRENT_TIME_LINE_WIDTH = 2f;
 
-	// Token: 0x040027EE RID: 10222
 	private uint YEAR_ACTIVE_COLOR = DevToolGeyserModifiers.Color(220, 15, 65, 175);
 
-	// Token: 0x040027EF RID: 10223
 	private uint YEAR_DORMANT_COLOR = DevToolGeyserModifiers.Color(byte.MaxValue, 0, 65, 60);
 
-	// Token: 0x040027F0 RID: 10224
 	private uint ITERATION_ERUPTION_COLOR = DevToolGeyserModifiers.Color(60, 80, byte.MaxValue, 200);
 
-	// Token: 0x040027F1 RID: 10225
 	private uint ITERATION_QUIET_COLOR = DevToolGeyserModifiers.Color(60, 80, byte.MaxValue, 80);
 
-	// Token: 0x040027F2 RID: 10226
 	private uint CURRENT_TIME_COLOR = DevToolGeyserModifiers.Color(byte.MaxValue, 0, 0, byte.MaxValue);
 
-	// Token: 0x040027F3 RID: 10227
 	private Vector4 MODFIED_VALUE_TEXT_COLOR = new Vector4(0.8f, 0.7f, 0.1f, 1f);
 
-	// Token: 0x040027F4 RID: 10228
 	private Vector4 COMMENT_COLOR = new Vector4(0.1f, 0.5f, 0.1f, 1f);
 
-	// Token: 0x040027F5 RID: 10229
 	private Vector4 SUBTITLE_SLEEP_COLOR = new Vector4(0.15f, 0.35f, 0.7f, 1f);
 
-	// Token: 0x040027F6 RID: 10230
 	private Vector4 SUBTITLE_OVERPRESSURE_COLOR = new Vector4(0.7f, 0f, 0f, 1f);
 
-	// Token: 0x040027F7 RID: 10231
 	private Vector4 SUBTITLE_ERUPTING_COLOR = new Vector4(1f, 0.7f, 0f, 1f);
 
-	// Token: 0x040027F8 RID: 10232
 	private Vector4 ALT_COLOR = new Vector4(0.5f, 0.5f, 0.5f, 1f);
 
-	// Token: 0x040027F9 RID: 10233
 	private List<bool> modificationListUnfold = new List<bool>();
 
-	// Token: 0x040027FA RID: 10234
 	private GameObject lastSelectedGameObject;
 
-	// Token: 0x040027FB RID: 10235
 	private Geyser selectedGeyser;
 
-	// Token: 0x040027FC RID: 10236
 	private Geyser.GeyserModification dev_modification;
 
-	// Token: 0x040027FD RID: 10237
 	private string[] modifiers_FormatedList_Titles = new string[]
 	{
 		"Mass per cycle",
@@ -537,18 +503,13 @@ public class DevToolGeyserModifiers : DevTool
 		"Secondary element"
 	};
 
-	// Token: 0x040027FE RID: 10238
 	private string[] modifiers_FormatedList = new string[9];
 
-	// Token: 0x040027FF RID: 10239
 	private string[] modifiers_FormatedList_Tooltip = new string[9];
 
-	// Token: 0x04002800 RID: 10240
 	private string[] AllSimHashesValues;
 
-	// Token: 0x04002801 RID: 10241
 	private int modifierSelected = -1;
 
-	// Token: 0x04002802 RID: 10242
 	private int modifierFormatting_ValuePadding = -1;
 }

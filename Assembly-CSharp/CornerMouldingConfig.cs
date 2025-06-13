@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000085 RID: 133
 public class CornerMouldingConfig : IBuildingConfig
 {
-	// Token: 0x06000216 RID: 534 RVA: 0x0014EDD8 File Offset: 0x0014CFD8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "CornerMoulding";
@@ -36,17 +34,14 @@ public class CornerMouldingConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000217 RID: 535 RVA: 0x000AAC1B File Offset: 0x000A8E1B
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(GameTags.Decoration, false);
 	}
 
-	// Token: 0x06000218 RID: 536 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x0400015E RID: 350
 	public const string ID = "CornerMoulding";
 }

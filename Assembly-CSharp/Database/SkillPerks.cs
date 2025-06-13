@@ -4,10 +4,8 @@ using TUNING;
 
 namespace Database
 {
-	// Token: 0x02002230 RID: 8752
 	public class SkillPerks : ResourceSet<SkillPerk>
 	{
-		// Token: 0x0600BA13 RID: 47635 RVA: 0x0047A494 File Offset: 0x00478694
 		public SkillPerks(ResourceSet parent) : base("SkillPerks", parent)
 		{
 			this.IncreaseDigSpeedSmall = base.Add(new SkillAttributePerk("IncreaseDigSpeedSmall", Db.Get().Attributes.Digging.Id, (float)ROLES.ATTRIBUTE_BONUS_FIRST, DUPLICANTS.ROLES.JUNIOR_MINER.NAME, false));
@@ -112,301 +110,202 @@ namespace Database
 			}
 		}
 
-		// Token: 0x040097ED RID: 38893
 		public SkillPerk IncreaseDigSpeedSmall;
 
-		// Token: 0x040097EE RID: 38894
 		public SkillPerk IncreaseDigSpeedMedium;
 
-		// Token: 0x040097EF RID: 38895
 		public SkillPerk IncreaseDigSpeedLarge;
 
-		// Token: 0x040097F0 RID: 38896
 		public SkillPerk CanDigVeryFirm;
 
-		// Token: 0x040097F1 RID: 38897
 		public SkillPerk CanDigNearlyImpenetrable;
 
-		// Token: 0x040097F2 RID: 38898
 		public SkillPerk CanDigSuperDuperHard;
 
-		// Token: 0x040097F3 RID: 38899
 		public SkillPerk CanDigRadioactiveMaterials;
 
-		// Token: 0x040097F4 RID: 38900
 		public SkillPerk CanDigUnobtanium;
 
-		// Token: 0x040097F5 RID: 38901
 		public SkillPerk IncreaseConstructionSmall;
 
-		// Token: 0x040097F6 RID: 38902
 		public SkillPerk IncreaseConstructionMedium;
 
-		// Token: 0x040097F7 RID: 38903
 		public SkillPerk IncreaseConstructionLarge;
 
-		// Token: 0x040097F8 RID: 38904
 		public SkillPerk IncreaseConstructionMechatronics;
 
-		// Token: 0x040097F9 RID: 38905
 		public SkillPerk CanDemolish;
 
-		// Token: 0x040097FA RID: 38906
 		public SkillPerk IncreaseLearningSmall;
 
-		// Token: 0x040097FB RID: 38907
 		public SkillPerk IncreaseLearningMedium;
 
-		// Token: 0x040097FC RID: 38908
 		public SkillPerk IncreaseLearningLarge;
 
-		// Token: 0x040097FD RID: 38909
 		public SkillPerk IncreaseLearningLargeSpace;
 
-		// Token: 0x040097FE RID: 38910
 		public SkillPerk IncreaseBotanySmall;
 
-		// Token: 0x040097FF RID: 38911
 		public SkillPerk IncreaseBotanyMedium;
 
-		// Token: 0x04009800 RID: 38912
 		public SkillPerk IncreaseBotanyLarge;
 
-		// Token: 0x04009801 RID: 38913
 		public SkillPerk CanFarmTinker;
 
-		// Token: 0x04009802 RID: 38914
 		public SkillPerk CanIdentifyMutantSeeds;
 
-		// Token: 0x04009803 RID: 38915
 		public SkillPerk CanFarmStation;
 
-		// Token: 0x04009804 RID: 38916
 		public SkillPerk CanWrangleCreatures;
 
-		// Token: 0x04009805 RID: 38917
 		public SkillPerk CanUseRanchStation;
 
-		// Token: 0x04009806 RID: 38918
 		public SkillPerk CanUseMilkingStation;
 
-		// Token: 0x04009807 RID: 38919
 		public SkillPerk IncreaseRanchingSmall;
 
-		// Token: 0x04009808 RID: 38920
 		public SkillPerk IncreaseRanchingMedium;
 
-		// Token: 0x04009809 RID: 38921
 		public SkillPerk IncreaseAthleticsSmall;
 
-		// Token: 0x0400980A RID: 38922
 		public SkillPerk IncreaseAthleticsMedium;
 
-		// Token: 0x0400980B RID: 38923
 		public SkillPerk IncreaseAthleticsLarge;
 
-		// Token: 0x0400980C RID: 38924
 		public SkillPerk IncreaseStrengthSmall;
 
-		// Token: 0x0400980D RID: 38925
 		public SkillPerk IncreaseStrengthMedium;
 
-		// Token: 0x0400980E RID: 38926
 		public SkillPerk IncreaseStrengthGofer;
 
-		// Token: 0x0400980F RID: 38927
 		public SkillPerk IncreaseStrengthCourier;
 
-		// Token: 0x04009810 RID: 38928
 		public SkillPerk IncreaseStrengthGroundskeeper;
 
-		// Token: 0x04009811 RID: 38929
 		public SkillPerk IncreaseStrengthPlumber;
 
-		// Token: 0x04009812 RID: 38930
 		public SkillPerk IncreaseCarryAmountSmall;
 
-		// Token: 0x04009813 RID: 38931
 		public SkillPerk IncreaseCarryAmountMedium;
 
-		// Token: 0x04009814 RID: 38932
 		public SkillPerk IncreaseCarryAmountBionic;
 
-		// Token: 0x04009815 RID: 38933
 		public SkillPerk IncreaseArtSmall;
 
-		// Token: 0x04009816 RID: 38934
 		public SkillPerk IncreaseArtMedium;
 
-		// Token: 0x04009817 RID: 38935
 		public SkillPerk IncreaseArtLarge;
 
-		// Token: 0x04009818 RID: 38936
 		public SkillPerk CanArt;
 
-		// Token: 0x04009819 RID: 38937
 		public SkillPerk CanArtUgly;
 
-		// Token: 0x0400981A RID: 38938
 		public SkillPerk CanArtOkay;
 
-		// Token: 0x0400981B RID: 38939
 		public SkillPerk CanArtGreat;
 
-		// Token: 0x0400981C RID: 38940
 		public SkillPerk CanStudyArtifact;
 
-		// Token: 0x0400981D RID: 38941
 		public SkillPerk CanClothingAlteration;
 
-		// Token: 0x0400981E RID: 38942
 		public SkillPerk IncreaseMachinerySmall;
 
-		// Token: 0x0400981F RID: 38943
 		public SkillPerk IncreaseMachineryMedium;
 
-		// Token: 0x04009820 RID: 38944
 		public SkillPerk IncreaseMachineryLarge;
 
-		// Token: 0x04009821 RID: 38945
 		public SkillPerk ConveyorBuild;
 
-		// Token: 0x04009822 RID: 38946
 		public SkillPerk CanMakeMissiles;
 
-		// Token: 0x04009823 RID: 38947
 		public SkillPerk CanPowerTinker;
 
-		// Token: 0x04009824 RID: 38948
 		public SkillPerk CanCraftElectronics;
 
-		// Token: 0x04009825 RID: 38949
 		public SkillPerk CanElectricGrill;
 
-		// Token: 0x04009826 RID: 38950
 		public SkillPerk CanGasRange;
 
-		// Token: 0x04009827 RID: 38951
 		public SkillPerk CanDeepFry;
 
-		// Token: 0x04009828 RID: 38952
 		public SkillPerk IncreaseCookingSmall;
 
-		// Token: 0x04009829 RID: 38953
 		public SkillPerk IncreaseCookingMedium;
 
-		// Token: 0x0400982A RID: 38954
 		public SkillPerk CanSpiceGrinder;
 
-		// Token: 0x0400982B RID: 38955
 		public SkillPerk IncreaseCaringSmall;
 
-		// Token: 0x0400982C RID: 38956
 		public SkillPerk IncreaseCaringMedium;
 
-		// Token: 0x0400982D RID: 38957
 		public SkillPerk IncreaseCaringLarge;
 
-		// Token: 0x0400982E RID: 38958
 		public SkillPerk CanCompound;
 
-		// Token: 0x0400982F RID: 38959
 		public SkillPerk CanDoctor;
 
-		// Token: 0x04009830 RID: 38960
 		public SkillPerk CanAdvancedMedicine;
 
-		// Token: 0x04009831 RID: 38961
 		public SkillPerk ExosuitExpertise;
 
-		// Token: 0x04009832 RID: 38962
 		public SkillPerk ExosuitDurability;
 
-		// Token: 0x04009833 RID: 38963
 		public SkillPerk AllowAdvancedResearch;
 
-		// Token: 0x04009834 RID: 38964
 		public SkillPerk AllowInterstellarResearch;
 
-		// Token: 0x04009835 RID: 38965
 		public SkillPerk AllowNuclearResearch;
 
-		// Token: 0x04009836 RID: 38966
 		public SkillPerk AllowOrbitalResearch;
 
-		// Token: 0x04009837 RID: 38967
 		public SkillPerk AllowGeyserTuning;
 
-		// Token: 0x04009838 RID: 38968
 		public SkillPerk CanStudyWorldObjects;
 
-		// Token: 0x04009839 RID: 38969
 		public SkillPerk CanUseClusterTelescope;
 
-		// Token: 0x0400983A RID: 38970
 		public SkillPerk CanUseClusterTelescopeEnclosed;
 
-		// Token: 0x0400983B RID: 38971
 		public SkillPerk IncreaseRocketSpeedSmall;
 
-		// Token: 0x0400983C RID: 38972
 		public SkillPerk CanMissionControl;
 
-		// Token: 0x0400983D RID: 38973
 		public SkillPerk CanDoPlumbing;
 
-		// Token: 0x0400983E RID: 38974
 		public SkillPerk CanUseRockets;
 
-		// Token: 0x0400983F RID: 38975
 		public SkillPerk FasterSpaceFlight;
 
-		// Token: 0x04009840 RID: 38976
 		public SkillPerk CanTrainToBeAstronaut;
 
-		// Token: 0x04009841 RID: 38977
 		public SkillPerk CanUseRocketControlStation;
 
-		// Token: 0x04009842 RID: 38978
 		public SkillPerk ExtraBionicBooster1;
 
-		// Token: 0x04009843 RID: 38979
 		public SkillPerk ExtraBionicBooster2;
 
-		// Token: 0x04009844 RID: 38980
 		public SkillPerk ExtraBionicBooster3;
 
-		// Token: 0x04009845 RID: 38981
 		public SkillPerk ExtraBionicBooster4;
 
-		// Token: 0x04009846 RID: 38982
 		public SkillPerk ExtraBionicBooster5;
 
-		// Token: 0x04009847 RID: 38983
 		public SkillPerk ExtraBionicBooster6;
 
-		// Token: 0x04009848 RID: 38984
 		public SkillPerk ReducedBionicGunkProduction;
 
-		// Token: 0x04009849 RID: 38985
 		public SkillPerk EfficientBionicGears;
 
-		// Token: 0x0400984A RID: 38986
 		public SkillPerk ExtraBionicBatteries;
 
-		// Token: 0x0400984B RID: 38987
 		public SkillPerk IncreaseAthleticsBionicsC1;
 
-		// Token: 0x0400984C RID: 38988
 		public SkillPerk IncreaseAthleticsBionicsC2;
 
-		// Token: 0x0400984D RID: 38989
 		public SkillPerk IncreaseAthleticsBionicsB2;
 
-		// Token: 0x0400984E RID: 38990
 		public SkillPerk IncreaseAthleticsBionicsA2;
 
-		// Token: 0x0400984F RID: 38991
 		public SkillPerk IncreasedCarryBionics;
 	}
 }

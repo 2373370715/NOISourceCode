@@ -1,10 +1,8 @@
 ﻿using System;
 using Klei.AI;
 
-// Token: 0x0200163C RID: 5692
 public class StaminaMonitor : GameStateMachine<StaminaMonitor, StaminaMonitor.Instance>
 {
-	// Token: 0x060075C3 RID: 30147 RVA: 0x00316644 File Offset: 0x00314844
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.satisfied;
@@ -22,29 +20,21 @@ public class StaminaMonitor : GameStateMachine<StaminaMonitor, StaminaMonitor.In
 		}).Transition(this.satisfied, (StaminaMonitor.Instance smi) => !smi.IsSleeping(), UpdateRate.SIM_200ms);
 	}
 
-	// Token: 0x04005880 RID: 22656
 	public GameStateMachine<StaminaMonitor, StaminaMonitor.Instance, IStateMachineTarget, object>.State satisfied;
 
-	// Token: 0x04005881 RID: 22657
 	public StaminaMonitor.SleepyState sleepy;
 
-	// Token: 0x04005882 RID: 22658
 	private const float OUTSIDE_SCHEDULE_STAMINA_THRESHOLD = 0f;
 
-	// Token: 0x0200163D RID: 5693
 	public class SleepyState : GameStateMachine<StaminaMonitor, StaminaMonitor.Instance, IStateMachineTarget, object>.State
 	{
-		// Token: 0x04005883 RID: 22659
 		public GameStateMachine<StaminaMonitor, StaminaMonitor.Instance, IStateMachineTarget, object>.State needssleep;
 
-		// Token: 0x04005884 RID: 22660
 		public GameStateMachine<StaminaMonitor, StaminaMonitor.Instance, IStateMachineTarget, object>.State sleeping;
 	}
 
-	// Token: 0x0200163E RID: 5694
 	public new class Instance : GameStateMachine<StaminaMonitor, StaminaMonitor.Instance, IStateMachineTarget, object>.GameInstance
 	{
-		// Token: 0x060075C6 RID: 30150 RVA: 0x003167FC File Offset: 0x003149FC
 		public Instance(IStateMachineTarget master) : base(master)
 		{
 			this.stamina = Db.Get().Amounts.Stamina.Lookup(base.gameObject);
@@ -52,19 +42,16 @@ public class StaminaMonitor : GameStateMachine<StaminaMonitor, StaminaMonitor.In
 			this.schedulable = base.GetComponent<Schedulable>();
 		}
 
-		// Token: 0x060075C7 RID: 30151 RVA: 0x000F1E10 File Offset: 0x000F0010
 		public bool NeedsToSleep()
 		{
 			return this.stamina.value <= 0f;
 		}
 
-		// Token: 0x060075C8 RID: 30152 RVA: 0x000F1E27 File Offset: 0x000F0027
 		public bool WantsToSleep()
 		{
 			return this.choreDriver.HasChore() && this.choreDriver.GetCurrentChore().SatisfiesUrge(Db.Get().Urges.Sleep);
 		}
 
-		// Token: 0x060075C9 RID: 30153 RVA: 0x000F1E57 File Offset: 0x000F0057
 		public void TryExitSleepState()
 		{
 			if (!this.NeedsToSleep() && !this.WantsToSleep())
@@ -73,7 +60,6 @@ public class StaminaMonitor : GameStateMachine<StaminaMonitor, StaminaMonitor.In
 			}
 		}
 
-		// Token: 0x060075CA RID: 30154 RVA: 0x00316848 File Offset: 0x00314A48
 		public bool IsSleeping()
 		{
 			bool result = false;
@@ -84,7 +70,6 @@ public class StaminaMonitor : GameStateMachine<StaminaMonitor, StaminaMonitor.In
 			return result;
 		}
 
-		// Token: 0x060075CB RID: 30155 RVA: 0x000F1E84 File Offset: 0x000F0084
 		public void CheckDebugFastWorkMode()
 		{
 			if (Game.Instance.FastWorkersModeActive)
@@ -93,7 +78,6 @@ public class StaminaMonitor : GameStateMachine<StaminaMonitor, StaminaMonitor.In
 			}
 		}
 
-		// Token: 0x060075CC RID: 30156 RVA: 0x0031687C File Offset: 0x00314A7C
 		public bool ShouldExitSleep()
 		{
 			if (this.schedulable.IsAllowed(Db.Get().ScheduleBlockTypes.Sleep))
@@ -104,13 +88,10 @@ public class StaminaMonitor : GameStateMachine<StaminaMonitor, StaminaMonitor.In
 			return (!(component != null) || !component.IsNarcolepsing()) && this.stamina.value >= this.stamina.GetMax();
 		}
 
-		// Token: 0x04005885 RID: 22661
 		private ChoreDriver choreDriver;
 
-		// Token: 0x04005886 RID: 22662
 		private Schedulable schedulable;
 
-		// Token: 0x04005887 RID: 22663
 		public AmountInstance stamina;
 	}
 }

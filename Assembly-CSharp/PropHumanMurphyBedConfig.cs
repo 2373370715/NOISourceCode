@@ -4,22 +4,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000592 RID: 1426
 public class PropHumanMurphyBedConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x060018A1 RID: 6305 RVA: 0x000AA536 File Offset: 0x000A8736
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.DLC2;
 	}
 
-	// Token: 0x060018A2 RID: 6306 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x060018A3 RID: 6307 RVA: 0x001ABC54 File Offset: 0x001A9E54
 	public GameObject CreatePrefab()
 	{
 		string id = "PropHumanMurphyBed";
@@ -39,7 +35,6 @@ public class PropHumanMurphyBedConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x060018A4 RID: 6308 RVA: 0x000AA768 File Offset: 0x000A8968
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.GetComponent<OccupyArea>().objectLayers = new ObjectLayer[]
@@ -48,7 +43,6 @@ public class PropHumanMurphyBedConfig : IEntityConfig, IHasDlcRestrictions
 		};
 	}
 
-	// Token: 0x060018A5 RID: 6309 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}

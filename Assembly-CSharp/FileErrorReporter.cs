@@ -4,18 +4,15 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001334 RID: 4916
 [AddComponentMenu("KMonoBehaviour/scripts/FileErrorReporter")]
 public class FileErrorReporter : KMonoBehaviour
 {
-	// Token: 0x060064C0 RID: 25792 RVA: 0x000E6259 File Offset: 0x000E4459
 	protected override void OnSpawn()
 	{
 		this.OnFileError();
 		FileUtil.onErrorMessage += this.OnFileError;
 	}
 
-	// Token: 0x060064C1 RID: 25793 RVA: 0x002CE838 File Offset: 0x002CCA38
 	private void OnFileError()
 	{
 		if (FileUtil.errorType == FileUtil.ErrorType.None)
@@ -66,7 +63,6 @@ public class FileErrorReporter : KMonoBehaviour
 		UnityEngine.Object.DontDestroyOnLoad(component.gameObject);
 	}
 
-	// Token: 0x060064C2 RID: 25794 RVA: 0x000AA038 File Offset: 0x000A8238
 	private void OpenMoreInfo()
 	{
 	}

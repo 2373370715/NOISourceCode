@@ -1,18 +1,15 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020009CD RID: 2509
 [SkipSaveFileSerialization]
 [AddComponentMenu("KMonoBehaviour/scripts/BuildingCellVisualizer")]
 public class BuildingCellVisualizer : EntityCellVisualizer
 {
-	// Token: 0x06002D20 RID: 11552 RVA: 0x000C1B2F File Offset: 0x000BFD2F
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 	}
 
-	// Token: 0x06002D21 RID: 11553 RVA: 0x001FB788 File Offset: 0x001F9988
 	protected override void LoadDiseaseIcon()
 	{
 		DiseaseVisualization.Info info = Assets.instance.DiseaseVisualization.GetInfo(this.building.Def.DiseaseCellVisName);
@@ -23,7 +20,6 @@ public class BuildingCellVisualizer : EntityCellVisualizer
 		}
 	}
 
-	// Token: 0x06002D22 RID: 11554 RVA: 0x001FB7F4 File Offset: 0x001F99F4
 	protected override void DefinePorts()
 	{
 		BuildingDef def = this.building.Def;
@@ -137,14 +133,12 @@ public class BuildingCellVisualizer : EntityCellVisualizer
 		}
 	}
 
-	// Token: 0x06002D23 RID: 11555 RVA: 0x000C1B37 File Offset: 0x000BFD37
 	protected override void OnCmpEnable()
 	{
 		this.enableRaycast = (this.building as BuildingComplete != null);
 		base.OnCmpEnable();
 	}
 
-	// Token: 0x04001EE7 RID: 7911
 	[MyCmpReq]
 	private Building building;
 }

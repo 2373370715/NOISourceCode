@@ -2,22 +2,18 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000469 RID: 1129
 public class UraniumCometConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x06001310 RID: 4880 RVA: 0x000AA117 File Offset: 0x000A8317
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06001311 RID: 4881 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x06001312 RID: 4882 RVA: 0x00197AB8 File Offset: 0x00195CB8
 	public GameObject CreatePrefab()
 	{
 		float mass = ElementLoader.FindElementByHash(SimHashes.UraniumOre).defaultValues.mass;
@@ -32,22 +28,17 @@ public class UraniumCometConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x06001313 RID: 4883 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject go)
 	{
 	}
 
-	// Token: 0x06001314 RID: 4884 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject go)
 	{
 	}
 
-	// Token: 0x04000D43 RID: 3395
 	public static readonly string ID = "UraniumComet";
 
-	// Token: 0x04000D44 RID: 3396
 	private const SimHashes element = SimHashes.UraniumOre;
 
-	// Token: 0x04000D45 RID: 3397
 	private const int ADDED_CELLS = 6;
 }

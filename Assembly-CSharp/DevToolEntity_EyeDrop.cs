@@ -5,17 +5,14 @@ using ImGuiNET;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-// Token: 0x02000BE6 RID: 3046
 public class DevToolEntity_EyeDrop : DevTool
 {
-	// Token: 0x060039B9 RID: 14777 RVA: 0x000C9D4F File Offset: 0x000C7F4F
 	public DevToolEntity_EyeDrop(Action<DevToolEntityTarget> onSelectionMadeFn, Func<DevToolEntityTarget, Option<string>> getErrorForCandidateTargetFn = null)
 	{
 		this.onSelectionMadeFn = onSelectionMadeFn;
 		this.getErrorForCandidateTargetFn = getErrorForCandidateTargetFn;
 	}
 
-	// Token: 0x060039BA RID: 14778 RVA: 0x0022D380 File Offset: 0x0022B580
 	protected override void RenderTo(DevPanel panel)
 	{
 		if (this.requestingNavBack)
@@ -98,7 +95,6 @@ public class DevToolEntity_EyeDrop : DevTool
 		}
 	}
 
-	// Token: 0x060039BB RID: 14779 RVA: 0x0022D5F4 File Offset: 0x0022B7F4
 	public static Option<string> CollectUIGameObjectHitsTo(IList<DevToolEntityTarget> targets, Vector3 screenPosition)
 	{
 		using (ListPool<RaycastResult, DevToolEntity_EyeDrop>.PooledList pooledList = PoolsFor<DevToolEntity_EyeDrop>.AllocateList<RaycastResult>())
@@ -123,7 +119,6 @@ public class DevToolEntity_EyeDrop : DevTool
 		return Option.None;
 	}
 
-	// Token: 0x060039BC RID: 14780 RVA: 0x0022D6C8 File Offset: 0x0022B8C8
 	public static Option<string> CollectWorldGameObjectHitsTo(IList<DevToolEntityTarget> targets, Vector3 screenPosition)
 	{
 		Camera main = Camera.main;
@@ -166,7 +161,6 @@ public class DevToolEntity_EyeDrop : DevTool
 		return Option.None;
 	}
 
-	// Token: 0x060039BD RID: 14781 RVA: 0x0022D844 File Offset: 0x0022BA44
 	[return: TupleElementNames(new string[]
 	{
 		"target",
@@ -201,7 +195,6 @@ public class DevToolEntity_EyeDrop : DevTool
 		return new ValueTuple<Option<DevToolEntityTarget.ForSimCell>, Option<string>>(new DevToolEntityTarget.ForSimCell(num), Option.None);
 	}
 
-	// Token: 0x060039BE RID: 14782 RVA: 0x0022D994 File Offset: 0x0022BB94
 	public static void ImGuiInput_SampleScreenPosition(ref Vector2 unityScreenPosition)
 	{
 		float num = 4f;
@@ -267,7 +260,6 @@ public class DevToolEntity_EyeDrop : DevTool
 		ImGui.PopStyleVar(2);
 	}
 
-	// Token: 0x060039C0 RID: 14784 RVA: 0x0022DC94 File Offset: 0x0022BE94
 	[CompilerGenerated]
 	internal static void <RenderTo>g__DrawBullet|5_0(string groupName, Option<string> error)
 	{
@@ -284,21 +276,15 @@ public class DevToolEntity_EyeDrop : DevTool
 		ImGui.Text("No errors.");
 	}
 
-	// Token: 0x040027CE RID: 10190
 	private Vector2 sampleAtScreenPosition;
 
-	// Token: 0x040027CF RID: 10191
 	private Action<DevToolEntityTarget> onSelectionMadeFn;
 
-	// Token: 0x040027D0 RID: 10192
 	private Func<DevToolEntityTarget, Option<string>> getErrorForCandidateTargetFn;
 
-	// Token: 0x040027D1 RID: 10193
 	private bool requestingNavBack;
 
-	// Token: 0x040027D2 RID: 10194
 	private static Vector2 posSampler_rectBasePos = new Vector2(200f, 200f);
 
-	// Token: 0x040027D3 RID: 10195
 	private static Option<Vector2> posSampler_dragStartPos = Option.None;
 }

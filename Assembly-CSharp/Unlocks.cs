@@ -9,12 +9,9 @@ using ProcGen;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001A4E RID: 6734
 [AddComponentMenu("KMonoBehaviour/scripts/Unlocks")]
 public class Unlocks : KMonoBehaviour
 {
-	// Token: 0x17000925 RID: 2341
-	// (get) Token: 0x06008C4E RID: 35918 RVA: 0x00100498 File Offset: 0x000FE698
 	private static string UnlocksFilename
 	{
 		get
@@ -23,13 +20,11 @@ public class Unlocks : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008C4F RID: 35919 RVA: 0x001004A9 File Offset: 0x000FE6A9
 	protected override void OnPrefabInit()
 	{
 		this.LoadUnlocks();
 	}
 
-	// Token: 0x06008C50 RID: 35920 RVA: 0x00371194 File Offset: 0x0036F394
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -41,19 +36,16 @@ public class Unlocks : KMonoBehaviour
 		Components.LiveMinionIdentities.OnAdd += this.OnNewDupe;
 	}
 
-	// Token: 0x06008C51 RID: 35921 RVA: 0x001004B1 File Offset: 0x000FE6B1
 	public bool IsUnlocked(string unlockID)
 	{
 		return !string.IsNullOrEmpty(unlockID) && (DebugHandler.InstantBuildMode || this.unlocked.Contains(unlockID));
 	}
 
-	// Token: 0x06008C52 RID: 35922 RVA: 0x001004D2 File Offset: 0x000FE6D2
 	public IReadOnlyList<string> GetAllUnlockedIds()
 	{
 		return this.unlocked;
 	}
 
-	// Token: 0x06008C53 RID: 35923 RVA: 0x001004DA File Offset: 0x000FE6DA
 	public void Lock(string unlockID)
 	{
 		if (this.unlocked.Contains(unlockID))
@@ -64,7 +56,6 @@ public class Unlocks : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008C54 RID: 35924 RVA: 0x00371214 File Offset: 0x0036F414
 	public void Unlock(string unlockID, bool shouldTryShowCodexNotification = true)
 	{
 		if (string.IsNullOrEmpty(unlockID))
@@ -89,7 +80,6 @@ public class Unlocks : KMonoBehaviour
 		this.EvalMetaCategories();
 	}
 
-	// Token: 0x06008C55 RID: 35925 RVA: 0x0037128C File Offset: 0x0036F48C
 	private void EvalMetaCategories()
 	{
 		foreach (Unlocks.MetaUnlockCategory metaUnlockCategory in this.MetaUnlockCategories)
@@ -142,7 +132,6 @@ public class Unlocks : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008C56 RID: 35926 RVA: 0x0037149C File Offset: 0x0036F69C
 	private void SaveUnlocks()
 	{
 		if (!Directory.Exists(global::Util.RootFolder()))
@@ -176,7 +165,6 @@ public class Unlocks : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008C57 RID: 35927 RVA: 0x00371564 File Offset: 0x0036F764
 	public void LoadUnlocks()
 	{
 		this.unlocked.Clear();
@@ -237,7 +225,6 @@ public class Unlocks : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008C58 RID: 35928 RVA: 0x003716D4 File Offset: 0x0036F8D4
 	private string GetNextClusterUnlock(string collectionID, out LoreCollectionOverride.OrderRule orderRule, bool randomize)
 	{
 		foreach (LoreCollectionOverride loreCollectionOverride in SaveLoader.Instance.ClusterLayout.clusterUnlocks)
@@ -274,14 +261,12 @@ public class Unlocks : KMonoBehaviour
 		return null;
 	}
 
-	// Token: 0x06008C59 RID: 35929 RVA: 0x003717D8 File Offset: 0x0036F9D8
 	private string GetNextGlobalDlcUnlock(string collectionID, out LoreCollectionOverride.OrderRule orderRule, bool randomize)
 	{
 		foreach (string name in CustomGameSettings.Instance.GetCurrentDlcMixingIds())
 		{
 			DlcMixingSettings cachedDlcMixingSettings = SettingsCache.GetCachedDlcMixingSettings(name);
 			if (cachedDlcMixingSettings != null)
-			{
 				foreach (LoreCollectionOverride loreCollectionOverride in cachedDlcMixingSettings.globalLoreUnlocks)
 				{
 					if (!(loreCollectionOverride.id != collectionID))
@@ -318,14 +303,12 @@ public class Unlocks : KMonoBehaviour
 		return null;
 	}
 
-	// Token: 0x06008C5A RID: 35930 RVA: 0x00371944 File Offset: 0x0036FB44
 	public string UnlockNext(string collectionID, bool randomize = false)
 	{
 		if (SaveLoader.Instance != null)
 		{
 			LoreCollectionOverride.OrderRule orderRule;
 			string text = this.GetNextClusterUnlock(collectionID, out orderRule, randomize);
-			if (text != null && (orderRule == LoreCollectionOverride.OrderRule.Prepend || orderRule == LoreCollectionOverride.OrderRule.Replace))
 			{
 				this.Unlock(text, true);
 				return text;
@@ -382,14 +365,12 @@ public class Unlocks : KMonoBehaviour
 		return null;
 	}
 
-	// Token: 0x06008C5B RID: 35931 RVA: 0x00371A64 File Offset: 0x0036FC64
 	private MessageNotification GenerateCodexUnlockNotification(string lockID)
 	{
 		string entryForLock = CodexCache.GetEntryForLock(lockID);
 		if (string.IsNullOrEmpty(entryForLock))
 		{
 			return null;
-		}
 		string text = null;
 		if (CodexCache.FindSubEntry(lockID) != null)
 		{
@@ -423,64 +404,51 @@ public class Unlocks : KMonoBehaviour
 		return null;
 	}
 
-	// Token: 0x06008C5C RID: 35932 RVA: 0x00371B90 File Offset: 0x0036FD90
 	private void UnlockCycleCodexes()
 	{
 		foreach (KeyValuePair<int, string> keyValuePair in this.cycleLocked)
 		{
 			if (GameClock.Instance.GetCycle() + 1 >= keyValuePair.Key)
 			{
-				this.Unlock(keyValuePair.Value, true);
 			}
 		}
 	}
 
-	// Token: 0x06008C5D RID: 35933 RVA: 0x0010050D File Offset: 0x000FE70D
 	private void OnNewDay(object data)
 	{
 		this.UnlockCycleCodexes();
 	}
 
-	// Token: 0x06008C5E RID: 35934 RVA: 0x00100515 File Offset: 0x000FE715
-	private void OnLaunchRocket(object data)
 	{
 		this.Unlock("surfacebreach", true);
 		this.Unlock("firstrocketlaunch", true);
 	}
 
-	// Token: 0x06008C5F RID: 35935 RVA: 0x0010052F File Offset: 0x000FE72F
 	private void OnDuplicantDied(object data)
 	{
 		this.Unlock("duplicantdeath", true);
 		if (Components.LiveMinionIdentities.Count == 1)
 		{
 			this.Unlock("onedupeleft", true);
-		}
 	}
 
-	// Token: 0x06008C60 RID: 35936 RVA: 0x00100556 File Offset: 0x000FE756
 	private void OnNewDupe(MinionIdentity minion_identity)
 	{
 		if (Components.LiveMinionIdentities.Count >= Db.Get().Personalities.GetAll(true, false).Count)
 		{
 			this.Unlock("fulldupecolony", true);
 		}
-	}
 
-	// Token: 0x06008C61 RID: 35937 RVA: 0x00100586 File Offset: 0x000FE786
 	private void OnDiscoveredSpace(object data)
 	{
 		this.Unlock("surfacebreach", true);
 	}
 
-	// Token: 0x06008C62 RID: 35938 RVA: 0x00371C00 File Offset: 0x0036FE00
-	public void Sim4000ms(float dt)
 	{
 		int x = int.MinValue;
 		int num = int.MinValue;
 		int x2 = int.MaxValue;
 		int num2 = int.MaxValue;
-		foreach (MinionIdentity minionIdentity in Components.MinionIdentities.Items)
 		{
 			if (!(minionIdentity == null))
 			{
@@ -503,19 +471,15 @@ public class Unlocks : KMonoBehaviour
 				}
 			}
 		}
-		if (num != -2147483648)
 		{
 			int num5 = num;
-			for (int i = 0; i < 30; i++)
 			{
 				num5++;
-				int cell2 = Grid.XYToCell(x, num5);
 				if (!Grid.IsValidCell(cell2))
 				{
 					break;
 				}
 				if (global::World.Instance.zoneRenderData.GetSubWorldZoneType(cell2) == SubWorld.ZoneType.Space)
-				{
 					this.Unlock("nearingsurface", true);
 					break;
 				}
@@ -541,7 +505,6 @@ public class Unlocks : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008C65 RID: 35941 RVA: 0x00372430 File Offset: 0x00370630
 	[CompilerGenerated]
 	private bool <EvalMetaCategories>g__EvaluateCollection|14_0(LoreCollectionOverride loreUnlock, ref Unlocks.<>c__DisplayClass14_0 A_2)
 	{
@@ -564,19 +527,15 @@ public class Unlocks : KMonoBehaviour
 		return false;
 	}
 
-	// Token: 0x040069F1 RID: 27121
 	private const int FILE_IO_RETRY_ATTEMPTS = 5;
 
-	// Token: 0x040069F2 RID: 27122
 	private List<string> unlocked = new List<string>();
 
-	// Token: 0x040069F3 RID: 27123
 	private List<Unlocks.MetaUnlockCategory> MetaUnlockCategories = new List<Unlocks.MetaUnlockCategory>
 	{
 		new Unlocks.MetaUnlockCategory("dimensionalloreMeta", "dimensionallore", 4)
 	};
 
-	// Token: 0x040069F4 RID: 27124
 	public Dictionary<string, string[]> lockCollections = new Dictionary<string, string[]>
 	{
 		{
@@ -780,7 +739,6 @@ public class Unlocks : KMonoBehaviour
 				"display_spaceprop1",
 				"notice_pilot",
 				"journal_inspace",
-				"notes_firstcolony"
 			}
 		},
 		{
@@ -808,7 +766,6 @@ public class Unlocks : KMonoBehaviour
 		}
 	};
 
-	// Token: 0x040069F5 RID: 27125
 	public Dictionary<int, string> cycleLocked = new Dictionary<int, string>
 	{
 		{
@@ -829,56 +786,43 @@ public class Unlocks : KMonoBehaviour
 		},
 		{
 			1500,
-			"log4b"
 		},
 		{
 			2000,
 			"log5"
 		},
-		{
 			2500,
 			"log5b"
 		},
 		{
 			3000,
-			"log6"
 		},
 		{
 			3500,
 			"log6b"
 		},
-		{
 			4000,
 			"log7"
-		},
 		{
 			4001,
 			"log8"
 		}
 	};
 
-	// Token: 0x040069F6 RID: 27126
-	private static readonly EventSystem.IntraObjectHandler<Unlocks> OnLaunchRocketDelegate = new EventSystem.IntraObjectHandler<Unlocks>(delegate(Unlocks component, object data)
 	{
 		component.OnLaunchRocket(data);
-	});
 
-	// Token: 0x040069F7 RID: 27127
-	private static readonly EventSystem.IntraObjectHandler<Unlocks> OnDuplicantDiedDelegate = new EventSystem.IntraObjectHandler<Unlocks>(delegate(Unlocks component, object data)
 	{
 		component.OnDuplicantDied(data);
 	});
 
-	// Token: 0x040069F8 RID: 27128
 	private static readonly EventSystem.IntraObjectHandler<Unlocks> OnDiscoveredSpaceDelegate = new EventSystem.IntraObjectHandler<Unlocks>(delegate(Unlocks component, object data)
 	{
 		component.OnDiscoveredSpace(data);
 	});
 
-	// Token: 0x02001A4F RID: 6735
 	private class MetaUnlockCategory
 	{
-		// Token: 0x06008C66 RID: 35942 RVA: 0x00100594 File Offset: 0x000FE794
 		public MetaUnlockCategory(string metaCollectionID, string mesaCollectionID, int mesaUnlockCount)
 		{
 			this.metaCollectionID = metaCollectionID;
@@ -886,13 +830,10 @@ public class Unlocks : KMonoBehaviour
 			this.mesaUnlockCount = mesaUnlockCount;
 		}
 
-		// Token: 0x040069F9 RID: 27129
 		public string metaCollectionID;
 
-		// Token: 0x040069FA RID: 27130
 		public string mesaCollectionID;
 
-		// Token: 0x040069FB RID: 27131
 		public int mesaUnlockCount;
 	}
 }

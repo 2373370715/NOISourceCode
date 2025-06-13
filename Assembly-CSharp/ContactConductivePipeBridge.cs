@@ -2,10 +2,8 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000D43 RID: 3395
 public class ContactConductivePipeBridge : GameStateMachine<ContactConductivePipeBridge, ContactConductivePipeBridge.Instance, IStateMachineTarget, ContactConductivePipeBridge.Def>
 {
-	// Token: 0x060041D8 RID: 16856 RVA: 0x0024D304 File Offset: 0x0024B504
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.noLiquid;
@@ -13,7 +11,6 @@ public class ContactConductivePipeBridge : GameStateMachine<ContactConductivePip
 		this.withLiquid.Update(new Action<ContactConductivePipeBridge.Instance, float>(ContactConductivePipeBridge.ExpirationTimerUpdate), UpdateRate.SIM_200ms, false).PlayAnim("on", KAnim.PlayMode.Loop).ParamTransition<float>(this.noLiquidTimer, this.noLiquid, GameStateMachine<ContactConductivePipeBridge, ContactConductivePipeBridge.Instance, IStateMachineTarget, ContactConductivePipeBridge.Def>.IsLTEZero);
 	}
 
-	// Token: 0x060041D9 RID: 16857 RVA: 0x0024D37C File Offset: 0x0024B57C
 	private static void ExpirationTimerUpdate(ContactConductivePipeBridge.Instance smi, float dt)
 	{
 		float num = smi.sm.noLiquidTimer.Get(smi);
@@ -21,7 +18,6 @@ public class ContactConductivePipeBridge : GameStateMachine<ContactConductivePip
 		smi.sm.noLiquidTimer.Set(num, smi, false);
 	}
 
-	// Token: 0x060041DA RID: 16858 RVA: 0x0024D3B4 File Offset: 0x0024B5B4
 	private static float CalculateMaxWattsTransfered(float buildingTemperature, float building_thermal_conductivity, float content_temperature, float content_thermal_conductivity)
 	{
 		float num = 1f;
@@ -32,7 +28,6 @@ public class ContactConductivePipeBridge : GameStateMachine<ContactConductivePip
 		return num4 * num5 * num * num3 / num2;
 	}
 
-	// Token: 0x060041DB RID: 16859 RVA: 0x0024D3E8 File Offset: 0x0024B5E8
 	private static float GetKilloJoulesTransfered(float maxWattsTransfered, float dt, float building_Temperature, float building_heat_capacity, float content_temperature, float content_heat_capacity)
 	{
 		float num = maxWattsTransfered * dt / 1000f;
@@ -49,7 +44,6 @@ public class ContactConductivePipeBridge : GameStateMachine<ContactConductivePip
 		return Mathf.Min(a, b) * Mathf.Sign(maxWattsTransfered);
 	}
 
-	// Token: 0x060041DC RID: 16860 RVA: 0x0024D45C File Offset: 0x0024B65C
 	private static float GetFinalContentTemperature(float KJT, float building_Temperature, float building_heat_capacity, float content_temperature, float content_heat_capacity)
 	{
 		float num = -KJT;
@@ -62,7 +56,6 @@ public class ContactConductivePipeBridge : GameStateMachine<ContactConductivePip
 		return num2;
 	}
 
-	// Token: 0x060041DD RID: 16861 RVA: 0x0024D4B0 File Offset: 0x0024B6B0
 	private static float GetFinalBuildingTemperature(float content_temperature, float content_final_temperature, float content_heat_capacity, float building_temperature, float building_heat_capacity)
 	{
 		float num = (content_temperature - content_final_temperature) * content_heat_capacity;
@@ -72,36 +65,25 @@ public class ContactConductivePipeBridge : GameStateMachine<ContactConductivePip
 		return Mathf.Clamp(building_temperature + num2, min, max);
 	}
 
-	// Token: 0x04002D67 RID: 11623
 	private const string loopAnimName = "on";
 
-	// Token: 0x04002D68 RID: 11624
 	private const string loopAnim_noWater = "off";
 
-	// Token: 0x04002D69 RID: 11625
 	private GameStateMachine<ContactConductivePipeBridge, ContactConductivePipeBridge.Instance, IStateMachineTarget, ContactConductivePipeBridge.Def>.State withLiquid;
 
-	// Token: 0x04002D6A RID: 11626
 	private GameStateMachine<ContactConductivePipeBridge, ContactConductivePipeBridge.Instance, IStateMachineTarget, ContactConductivePipeBridge.Def>.State noLiquid;
 
-	// Token: 0x04002D6B RID: 11627
 	private StateMachine<ContactConductivePipeBridge, ContactConductivePipeBridge.Instance, IStateMachineTarget, ContactConductivePipeBridge.Def>.FloatParameter noLiquidTimer;
 
-	// Token: 0x02000D44 RID: 3396
 	public class Def : StateMachine.BaseDef
 	{
-		// Token: 0x04002D6C RID: 11628
 		public ConduitType type = ConduitType.Liquid;
 
-		// Token: 0x04002D6D RID: 11629
 		public float pumpKGRate;
 	}
 
-	// Token: 0x02000D45 RID: 3397
 	public new class Instance : GameStateMachine<ContactConductivePipeBridge, ContactConductivePipeBridge.Instance, IStateMachineTarget, ContactConductivePipeBridge.Def>.GameInstance
 	{
-		// Token: 0x1700033E RID: 830
-		// (get) Token: 0x060041E0 RID: 16864 RVA: 0x000CF04D File Offset: 0x000CD24D
 		public Tag tag
 		{
 			get
@@ -114,12 +96,10 @@ public class ContactConductivePipeBridge : GameStateMachine<ContactConductivePip
 			}
 		}
 
-		// Token: 0x060041E1 RID: 16865 RVA: 0x000CF063 File Offset: 0x000CD263
 		public Instance(IStateMachineTarget master, ContactConductivePipeBridge.Def def) : base(master, def)
 		{
 		}
 
-		// Token: 0x060041E2 RID: 16866 RVA: 0x0024D4E0 File Offset: 0x0024B6E0
 		public override void StartSM()
 		{
 			base.StartSM();
@@ -129,14 +109,12 @@ public class ContactConductivePipeBridge : GameStateMachine<ContactConductivePip
 			Conduit.GetFlowManager(this.type).AddConduitUpdater(new Action<float>(this.Flow), ConduitFlowPriority.Default);
 		}
 
-		// Token: 0x060041E3 RID: 16867 RVA: 0x000CF082 File Offset: 0x000CD282
 		protected override void OnCleanUp()
 		{
 			base.OnCleanUp();
 			Conduit.GetFlowManager(this.type).RemoveConduitUpdater(new Action<float>(this.Flow));
 		}
 
-		// Token: 0x060041E4 RID: 16868 RVA: 0x0024D548 File Offset: 0x0024B748
 		private void Flow(float dt)
 		{
 			ConduitFlow flowManager = Conduit.GetFlowManager(this.type);
@@ -163,7 +141,6 @@ public class ContactConductivePipeBridge : GameStateMachine<ContactConductivePip
 			}
 		}
 
-		// Token: 0x060041E5 RID: 16869 RVA: 0x0024D684 File Offset: 0x0024B884
 		private float ExchangeStorageTemperatureWithBuilding(ConduitFlow.ConduitContents content, float mass, float dt)
 		{
 			PrimaryElement component = this.building.GetComponent<PrimaryElement>();
@@ -188,19 +165,14 @@ public class ContactConductivePipeBridge : GameStateMachine<ContactConductivePip
 			return 0f;
 		}
 
-		// Token: 0x04002D6E RID: 11630
 		public ConduitType type = ConduitType.Liquid;
 
-		// Token: 0x04002D6F RID: 11631
 		public HandleVector<int>.Handle structureHandle;
 
-		// Token: 0x04002D70 RID: 11632
 		public int inputCell = -1;
 
-		// Token: 0x04002D71 RID: 11633
 		public int outputCell = -1;
 
-		// Token: 0x04002D72 RID: 11634
 		[MyCmpGet]
 		public Building building;
 	}

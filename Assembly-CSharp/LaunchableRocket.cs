@@ -4,12 +4,9 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001956 RID: 6486
 [SerializationConfig(MemberSerialization.OptIn)]
 public class LaunchableRocket : StateMachineComponent<LaunchableRocket.StatesInstance>, ILaunchableRocket
 {
-	// Token: 0x170008D4 RID: 2260
-	// (get) Token: 0x060086F7 RID: 34551 RVA: 0x000B1628 File Offset: 0x000AF828
 	public LaunchableRocketRegisterType registerType
 	{
 		get
@@ -18,8 +15,6 @@ public class LaunchableRocket : StateMachineComponent<LaunchableRocket.StatesIns
 		}
 	}
 
-	// Token: 0x170008D5 RID: 2261
-	// (get) Token: 0x060086F8 RID: 34552 RVA: 0x000CEC86 File Offset: 0x000CCE86
 	public GameObject LaunchableGameObject
 	{
 		get
@@ -28,17 +23,10 @@ public class LaunchableRocket : StateMachineComponent<LaunchableRocket.StatesIns
 		}
 	}
 
-	// Token: 0x170008D6 RID: 2262
-	// (get) Token: 0x060086F9 RID: 34553 RVA: 0x000FD032 File Offset: 0x000FB232
-	// (set) Token: 0x060086FA RID: 34554 RVA: 0x000FD03A File Offset: 0x000FB23A
 	public float rocketSpeed { get; private set; }
 
-	// Token: 0x170008D7 RID: 2263
-	// (get) Token: 0x060086FB RID: 34555 RVA: 0x000FD043 File Offset: 0x000FB243
-	// (set) Token: 0x060086FC RID: 34556 RVA: 0x000FD04B File Offset: 0x000FB24B
 	public bool isLanding { get; private set; }
 
-	// Token: 0x060086FD RID: 34557 RVA: 0x0035C008 File Offset: 0x0035A208
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -53,7 +41,6 @@ public class LaunchableRocket : StateMachineComponent<LaunchableRocket.StatesIns
 		base.smi.StartSM();
 	}
 
-	// Token: 0x060086FE RID: 34558 RVA: 0x0035C084 File Offset: 0x0035A284
 	public List<GameObject> GetEngines()
 	{
 		List<GameObject> list = new List<GameObject>();
@@ -67,52 +54,41 @@ public class LaunchableRocket : StateMachineComponent<LaunchableRocket.StatesIns
 		return list;
 	}
 
-	// Token: 0x060086FF RID: 34559 RVA: 0x000FD054 File Offset: 0x000FB254
 	protected override void OnCleanUp()
 	{
 		SpacecraftManager.instance.UnregisterSpacecraft(base.GetComponent<LaunchConditionManager>());
 		base.OnCleanUp();
 	}
 
-	// Token: 0x0400664E RID: 26190
 	public List<GameObject> parts = new List<GameObject>();
 
-	// Token: 0x0400664F RID: 26191
 	[Serialize]
 	private int takeOffLocation;
 
-	// Token: 0x04006650 RID: 26192
 	[Serialize]
 	private float flightAnimOffset;
 
-	// Token: 0x04006651 RID: 26193
 	private GameObject soundSpeakerObject;
 
-	// Token: 0x02001957 RID: 6487
 	public class StatesInstance : GameStateMachine<LaunchableRocket.States, LaunchableRocket.StatesInstance, LaunchableRocket, object>.GameInstance
 	{
-		// Token: 0x06008701 RID: 34561 RVA: 0x000FD07F File Offset: 0x000FB27F
 		public StatesInstance(LaunchableRocket master) : base(master)
 		{
 		}
 
-		// Token: 0x06008702 RID: 34562 RVA: 0x000FD088 File Offset: 0x000FB288
 		public bool IsMissionState(Spacecraft.MissionState state)
 		{
 			return SpacecraftManager.instance.GetSpacecraftFromLaunchConditionManager(base.master.GetComponent<LaunchConditionManager>()).state == state;
 		}
 
-		// Token: 0x06008703 RID: 34563 RVA: 0x000FD0A7 File Offset: 0x000FB2A7
 		public void SetMissionState(Spacecraft.MissionState state)
 		{
 			SpacecraftManager.instance.GetSpacecraftFromLaunchConditionManager(base.master.GetComponent<LaunchConditionManager>()).SetState(state);
 		}
 	}
 
-	// Token: 0x02001958 RID: 6488
 	public class States : GameStateMachine<LaunchableRocket.States, LaunchableRocket.StatesInstance, LaunchableRocket>
 	{
-		// Token: 0x06008704 RID: 34564 RVA: 0x0035C0EC File Offset: 0x0035A2EC
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.grounded;
@@ -343,7 +319,6 @@ public class LaunchableRocket : StateMachineComponent<LaunchableRocket.StatesIns
 			}, UpdateRate.SIM_33ms, false);
 		}
 
-		// Token: 0x06008705 RID: 34565 RVA: 0x0035C37C File Offset: 0x0035A57C
 		private static void DoWorldDamage(GameObject part, Vector3 apparentPosition)
 		{
 			OccupyArea component = part.GetComponent<OccupyArea>();
@@ -378,28 +353,20 @@ public class LaunchableRocket : StateMachineComponent<LaunchableRocket.StatesIns
 			}
 		}
 
-		// Token: 0x04006654 RID: 26196
 		public GameStateMachine<LaunchableRocket.States, LaunchableRocket.StatesInstance, LaunchableRocket, object>.State grounded;
 
-		// Token: 0x04006655 RID: 26197
 		public LaunchableRocket.States.NotGroundedStates not_grounded;
 
-		// Token: 0x02001959 RID: 6489
 		public class NotGroundedStates : GameStateMachine<LaunchableRocket.States, LaunchableRocket.StatesInstance, LaunchableRocket, object>.State
 		{
-			// Token: 0x04006656 RID: 26198
 			public GameStateMachine<LaunchableRocket.States, LaunchableRocket.StatesInstance, LaunchableRocket, object>.State launch_pre;
 
-			// Token: 0x04006657 RID: 26199
 			public GameStateMachine<LaunchableRocket.States, LaunchableRocket.StatesInstance, LaunchableRocket, object>.State space;
 
-			// Token: 0x04006658 RID: 26200
 			public GameStateMachine<LaunchableRocket.States, LaunchableRocket.StatesInstance, LaunchableRocket, object>.State launch_loop;
 
-			// Token: 0x04006659 RID: 26201
 			public GameStateMachine<LaunchableRocket.States, LaunchableRocket.StatesInstance, LaunchableRocket, object>.State returning;
 
-			// Token: 0x0400665A RID: 26202
 			public GameStateMachine<LaunchableRocket.States, LaunchableRocket.StatesInstance, LaunchableRocket, object>.State landing_loop;
 		}
 	}

@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using ImGuiNET;
 using UnityEngine;
 
-// Token: 0x02000BFA RID: 3066
 public class DevToolResearchDebugger : DevTool
 {
-	// Token: 0x06003A1D RID: 14877 RVA: 0x000CA0BD File Offset: 0x000C82BD
 	public DevToolResearchDebugger()
 	{
 		this.RequiresGameRunning = true;
 	}
 
-	// Token: 0x06003A1E RID: 14878 RVA: 0x00231698 File Offset: 0x0022F898
 	protected override void RenderTo(DevPanel panel)
 	{
 		TechInstance activeResearch = Research.Instance.GetActiveResearch();

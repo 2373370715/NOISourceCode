@@ -1,10 +1,8 @@
 ﻿using System;
 using ImGuiNET;
 
-// Token: 0x02000BFB RID: 3067
 public class DevToolSaveGameInfo : DevTool
 {
-	// Token: 0x06003A20 RID: 14880 RVA: 0x00231888 File Offset: 0x0022FA88
 	protected override void RenderTo(DevPanel panel)
 	{
 		if (Game.Instance == null)
@@ -36,6 +34,5 @@ public class DevToolSaveGameInfo : DevTool
 		ImGui.NewLine();
 	}
 
-	// Token: 0x0400282B RID: 10283
 	private string clSearch = "";
 }

@@ -5,10 +5,8 @@ using STRINGS;
 
 namespace Database
 {
-	// Token: 0x02002232 RID: 8754
 	public class SkillGroups : ResourceSet<SkillGroup>
 	{
-		// Token: 0x0600BA16 RID: 47638 RVA: 0x0047B630 File Offset: 0x00479830
 		public SkillGroups(ResourceSet parent) : base("SkillGroups", parent)
 		{
 			this.Mining = base.Add(new SkillGroup("Mining", Db.Get().ChoreGroups.Dig.Id, DUPLICANTS.CHOREGROUPS.DIG.NAME, "icon_errand_dig", "icon_archetype_dig"));
@@ -136,46 +134,32 @@ namespace Database
 			}
 		}
 
-		// Token: 0x04009856 RID: 38998
 		public SkillGroup Mining;
 
-		// Token: 0x04009857 RID: 38999
 		public SkillGroup Building;
 
-		// Token: 0x04009858 RID: 39000
 		public SkillGroup Farming;
 
-		// Token: 0x04009859 RID: 39001
 		public SkillGroup Ranching;
 
-		// Token: 0x0400985A RID: 39002
 		public SkillGroup Cooking;
 
-		// Token: 0x0400985B RID: 39003
 		public SkillGroup Art;
 
-		// Token: 0x0400985C RID: 39004
 		public SkillGroup Research;
 
-		// Token: 0x0400985D RID: 39005
 		public SkillGroup Rocketry;
 
-		// Token: 0x0400985E RID: 39006
 		public SkillGroup Suits;
 
-		// Token: 0x0400985F RID: 39007
 		public SkillGroup Hauling;
 
-		// Token: 0x04009860 RID: 39008
 		public SkillGroup Technicals;
 
-		// Token: 0x04009861 RID: 39009
 		public SkillGroup MedicalAid;
 
-		// Token: 0x04009862 RID: 39010
 		public SkillGroup Basekeeping;
 
-		// Token: 0x04009863 RID: 39011
 		public SkillGroup BionicSkills;
 	}
 }

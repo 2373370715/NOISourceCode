@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x0200126F RID: 4719
 public class ReactorDiagnostic : ColonyDiagnostic
 {
-	// Token: 0x06006054 RID: 24660 RVA: 0x002BAD8C File Offset: 0x002B8F8C
 	public ReactorDiagnostic(int worldID) : base(worldID, UI.COLONY_DIAGNOSTICS.REACTORDIAGNOSTIC.ALL_NAME)
 	{
 		this.icon = "overlay_radiation";
@@ -14,13 +12,11 @@ public class ReactorDiagnostic : ColonyDiagnostic
 		base.AddCriterion("CheckCoolant", new DiagnosticCriterion(UI.COLONY_DIAGNOSTICS.REACTORDIAGNOSTIC.CRITERIA.CHECKCOOLANT, new Func<ColonyDiagnostic.DiagnosticResult>(this.CheckCoolant)));
 	}
 
-	// Token: 0x06006055 RID: 24661 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06006056 RID: 24662 RVA: 0x002BAE04 File Offset: 0x002B9004
 	private ColonyDiagnostic.DiagnosticResult CheckTemperature()
 	{
 		List<Reactor> worldItems = Components.NuclearReactors.GetWorldItems(base.worldID, false);
@@ -39,7 +35,6 @@ public class ReactorDiagnostic : ColonyDiagnostic
 		return result;
 	}
 
-	// Token: 0x06006057 RID: 24663 RVA: 0x002BAED0 File Offset: 0x002B90D0
 	private ColonyDiagnostic.DiagnosticResult CheckCoolant()
 	{
 		List<Reactor> worldItems = Components.NuclearReactors.GetWorldItems(base.worldID, false);

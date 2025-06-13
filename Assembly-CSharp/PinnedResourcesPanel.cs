@@ -4,17 +4,14 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001EF6 RID: 7926
 public class PinnedResourcesPanel : KScreen, IRender1000ms
 {
-	// Token: 0x0600A661 RID: 42593 RVA: 0x001106D6 File Offset: 0x0010E8D6
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 		this.rowContainerLayout = this.rowContainer.GetComponent<QuickLayout>();
 	}
 
-	// Token: 0x0600A662 RID: 42594 RVA: 0x003FE164 File Offset: 0x003FC364
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -48,14 +45,12 @@ public class PinnedResourcesPanel : KScreen, IRender1000ms
 		this.Refresh();
 	}
 
-	// Token: 0x0600A663 RID: 42595 RVA: 0x001106EF File Offset: 0x0010E8EF
 	protected override void OnForcedCleanUp()
 	{
 		PinnedResourcesPanel.Instance = null;
 		base.OnForcedCleanUp();
 	}
 
-	// Token: 0x0600A664 RID: 42596 RVA: 0x001106FD File Offset: 0x0010E8FD
 	public void ClearExcessiveNewItems()
 	{
 		if (DiscoveredResources.Instance.CheckAllDiscoveredAreNew())
@@ -64,7 +59,6 @@ public class PinnedResourcesPanel : KScreen, IRender1000ms
 		}
 	}
 
-	// Token: 0x0600A665 RID: 42597 RVA: 0x003FE270 File Offset: 0x003FC470
 	private void ClearAllNew()
 	{
 		foreach (KeyValuePair<Tag, PinnedResourcesPanel.PinnedResourceRow> keyValuePair in this.rows)
@@ -76,7 +70,6 @@ public class PinnedResourcesPanel : KScreen, IRender1000ms
 		}
 	}
 
-	// Token: 0x0600A666 RID: 42598 RVA: 0x003FE300 File Offset: 0x003FC500
 	private void UnPinAll()
 	{
 		WorldInventory worldInventory = ClusterManager.Instance.GetWorld(ClusterManager.Instance.activeWorldId).worldInventory;
@@ -86,7 +79,6 @@ public class PinnedResourcesPanel : KScreen, IRender1000ms
 		}
 	}
 
-	// Token: 0x0600A667 RID: 42599 RVA: 0x003FE37C File Offset: 0x003FC57C
 	private PinnedResourcesPanel.PinnedResourceRow CreateRow(Tag tag)
 	{
 		PinnedResourcesPanel.PinnedResourceRow pinnedResourceRow = new PinnedResourcesPanel.PinnedResourceRow(tag);
@@ -118,7 +110,6 @@ public class PinnedResourcesPanel : KScreen, IRender1000ms
 		return pinnedResourceRow;
 	}
 
-	// Token: 0x0600A668 RID: 42600 RVA: 0x003FE4AC File Offset: 0x003FC6AC
 	public void Populate(object data = null)
 	{
 		WorldInventory worldInventory = ClusterManager.Instance.GetWorld(ClusterManager.Instance.activeWorldId).worldInventory;
@@ -165,7 +156,6 @@ public class PinnedResourcesPanel : KScreen, IRender1000ms
 		this.rowContainerLayout.ForceUpdate();
 	}
 
-	// Token: 0x0600A669 RID: 42601 RVA: 0x003FE784 File Offset: 0x003FC984
 	private void SortRows()
 	{
 		List<PinnedResourcesPanel.PinnedResourceRow> list = new List<PinnedResourcesPanel.PinnedResourceRow>();
@@ -182,7 +172,6 @@ public class PinnedResourcesPanel : KScreen, IRender1000ms
 		this.seeAllButton.transform.SetAsLastSibling();
 	}
 
-	// Token: 0x0600A66A RID: 42602 RVA: 0x003FE880 File Offset: 0x003FCA80
 	private bool IsDisplayedTag(Tag tag)
 	{
 		foreach (TagSet tagSet in AllResourcesScreen.Instance.allowDisplayCategories)
@@ -198,7 +187,6 @@ public class PinnedResourcesPanel : KScreen, IRender1000ms
 		return false;
 	}
 
-	// Token: 0x0600A66B RID: 42603 RVA: 0x003FE928 File Offset: 0x003FCB28
 	private void SyncRows()
 	{
 		WorldInventory worldInventory = ClusterManager.Instance.GetWorld(ClusterManager.Instance.activeWorldId).worldInventory;
@@ -250,7 +238,6 @@ public class PinnedResourcesPanel : KScreen, IRender1000ms
 		}
 	}
 
-	// Token: 0x0600A66C RID: 42604 RVA: 0x003FEB24 File Offset: 0x003FCD24
 	public void Refresh()
 	{
 		this.SyncRows();
@@ -268,7 +255,6 @@ public class PinnedResourcesPanel : KScreen, IRender1000ms
 		this.seeAllLabel.SetText(string.Format(UI.RESOURCESCREEN.SEE_ALL, AllResourcesScreen.Instance.UniqueResourceRowCount()));
 	}
 
-	// Token: 0x0600A66D RID: 42605 RVA: 0x003FEC0C File Offset: 0x003FCE0C
 	private void RefreshLine(Tag tag, WorldInventory inventory, bool initialConfig = false)
 	{
 		Tag tag2 = tag;
@@ -330,7 +316,6 @@ public class PinnedResourcesPanel : KScreen, IRender1000ms
 		};
 	}
 
-	// Token: 0x0600A66E RID: 42606 RVA: 0x0011071A File Offset: 0x0010E91A
 	public void Render1000ms(float dt)
 	{
 		if (this.headerButton != null && this.headerButton.CurrentState == 0)
@@ -340,60 +325,40 @@ public class PinnedResourcesPanel : KScreen, IRender1000ms
 		this.Refresh();
 	}
 
-	// Token: 0x0400823F RID: 33343
 	public GameObject linePrefab;
 
-	// Token: 0x04008240 RID: 33344
 	public GameObject rowContainer;
 
-	// Token: 0x04008241 RID: 33345
 	public MultiToggle headerButton;
 
-	// Token: 0x04008242 RID: 33346
 	public MultiToggle clearNewButton;
 
-	// Token: 0x04008243 RID: 33347
 	public KButton clearAllButton;
 
-	// Token: 0x04008244 RID: 33348
 	public MultiToggle seeAllButton;
 
-	// Token: 0x04008245 RID: 33349
 	private LocText seeAllLabel;
 
-	// Token: 0x04008246 RID: 33350
 	private QuickLayout rowContainerLayout;
 
-	// Token: 0x04008247 RID: 33351
 	private Dictionary<Tag, PinnedResourcesPanel.PinnedResourceRow> rows = new Dictionary<Tag, PinnedResourcesPanel.PinnedResourceRow>();
 
-	// Token: 0x04008248 RID: 33352
 	public static PinnedResourcesPanel Instance;
 
-	// Token: 0x04008249 RID: 33353
 	private int clickIdx;
 
-	// Token: 0x02001EF7 RID: 7927
 	public class PinnedResourceRow
 	{
-		// Token: 0x0600A673 RID: 42611 RVA: 0x00110775 File Offset: 0x0010E975
 		public PinnedResourceRow(Tag tag)
 		{
 			this.Tag = tag;
 			this.SortableNameWithoutLink = tag.ProperNameStripLink();
 		}
 
-		// Token: 0x17000AAE RID: 2734
-		// (get) Token: 0x0600A674 RID: 42612 RVA: 0x0011079B File Offset: 0x0010E99B
-		// (set) Token: 0x0600A675 RID: 42613 RVA: 0x001107A3 File Offset: 0x0010E9A3
 		public Tag Tag { get; private set; }
 
-		// Token: 0x17000AAF RID: 2735
-		// (get) Token: 0x0600A676 RID: 42614 RVA: 0x001107AC File Offset: 0x0010E9AC
-		// (set) Token: 0x0600A677 RID: 42615 RVA: 0x001107B4 File Offset: 0x0010E9B4
 		public string SortableNameWithoutLink { get; private set; }
 
-		// Token: 0x0600A678 RID: 42616 RVA: 0x001107BD File Offset: 0x0010E9BD
 		public bool CheckAmountChanged(float newResourceAmount, bool updateIfTrue)
 		{
 			bool flag = newResourceAmount != this.oldResourceAmount;
@@ -404,28 +369,20 @@ public class PinnedResourcesPanel : KScreen, IRender1000ms
 			return flag;
 		}
 
-		// Token: 0x0400824A RID: 33354
 		public GameObject gameObject;
 
-		// Token: 0x0400824B RID: 33355
 		public Image icon;
 
-		// Token: 0x0400824C RID: 33356
 		public LocText nameLabel;
 
-		// Token: 0x0400824D RID: 33357
 		public LocText valueLabel;
 
-		// Token: 0x0400824E RID: 33358
 		public MultiToggle pinToggle;
 
-		// Token: 0x0400824F RID: 33359
 		public MultiToggle notifyToggle;
 
-		// Token: 0x04008250 RID: 33360
 		public MultiToggle newLabel;
 
-		// Token: 0x04008251 RID: 33361
 		private float oldResourceAmount = -1f;
 	}
 }

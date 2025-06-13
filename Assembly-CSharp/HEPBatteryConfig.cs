@@ -4,16 +4,13 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200037C RID: 892
 public class HEPBatteryConfig : IBuildingConfig
 {
-	// Token: 0x06000E41 RID: 3649 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06000E42 RID: 3650 RVA: 0x001823B0 File Offset: 0x001805B0
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "HEPBattery";
@@ -55,7 +52,6 @@ public class HEPBatteryConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000E43 RID: 3651 RVA: 0x00182524 File Offset: 0x00180724
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		Prioritizable.AddRef(go);
@@ -73,32 +69,23 @@ public class HEPBatteryConfig : IBuildingConfig
 		def.particleDecayRate = 0.5f;
 	}
 
-	// Token: 0x06000E44 RID: 3652 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000A83 RID: 2691
 	public const string ID = "HEPBattery";
 
-	// Token: 0x04000A84 RID: 2692
 	public const float MIN_LAUNCH_INTERVAL = 1f;
 
-	// Token: 0x04000A85 RID: 2693
 	public const int MIN_SLIDER = 0;
 
-	// Token: 0x04000A86 RID: 2694
 	public const int MAX_SLIDER = 100;
 
-	// Token: 0x04000A87 RID: 2695
 	public const float HEP_CAPACITY = 1000f;
 
-	// Token: 0x04000A88 RID: 2696
 	public const float DISABLED_DECAY_RATE = 0.5f;
 
-	// Token: 0x04000A89 RID: 2697
 	public const string STORAGE_PORT_ID = "HEP_STORAGE";
 
-	// Token: 0x04000A8A RID: 2698
 	public const string FIRE_PORT_ID = "HEP_FIRE";
 }

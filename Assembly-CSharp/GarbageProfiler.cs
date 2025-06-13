@@ -7,22 +7,18 @@ using System.Reflection;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x0200000F RID: 15
 public static class GarbageProfiler
 {
-	// Token: 0x06000037 RID: 55 RVA: 0x000AA08C File Offset: 0x000A828C
 	private static void UnloadUnusedAssets()
 	{
 		Resources.UnloadUnusedAssets();
 	}
 
-	// Token: 0x06000038 RID: 56 RVA: 0x000AA094 File Offset: 0x000A8294
 	private static void ClearFileName()
 	{
 		GarbageProfiler.filename_suffix = null;
 	}
 
-	// Token: 0x06000039 RID: 57 RVA: 0x001464D0 File Offset: 0x001446D0
 	public static string GetFileName(string name)
 	{
 		string fullPath = Path.GetFullPath(GarbageProfiler.ROOT_MEMORY_DUMP_PATH);
@@ -53,7 +49,6 @@ public static class GarbageProfiler
 		return Path.Combine(fullPath, name + GarbageProfiler.filename_suffix);
 	}
 
-	// Token: 0x0600003A RID: 58 RVA: 0x001465D4 File Offset: 0x001447D4
 	private static void Dump()
 	{
 		global::Debug.Log("Writing snapshot...");
@@ -127,7 +122,6 @@ public static class GarbageProfiler
 		global::Debug.Log("Done writing snapshot!");
 	}
 
-	// Token: 0x0600003B RID: 59 RVA: 0x001468C8 File Offset: 0x00144AC8
 	public static void DebugDumpGarbageStats()
 	{
 		global::Debug.Log("Writing reference stats...");
@@ -220,7 +214,6 @@ public static class GarbageProfiler
 		global::Debug.Log("Done writing reference stats!");
 	}
 
-	// Token: 0x0600003C RID: 60 RVA: 0x00146C60 File Offset: 0x00144E60
 	public static void DebugDumpRootItems()
 	{
 		global::Debug.Log("Writing root items...");
@@ -341,42 +334,32 @@ public static class GarbageProfiler
 		global::Debug.Log("Done writing reference stats!");
 	}
 
-	// Token: 0x04000039 RID: 57
 	private static MemorySnapshot previousSnapshot;
 
-	// Token: 0x0400003A RID: 58
 	private static string ROOT_MEMORY_DUMP_PATH = "./memory/";
 
-	// Token: 0x0400003B RID: 59
 	private static string filename_suffix = null;
 
-	// Token: 0x0400003C RID: 60
 	private static Type DEBUG_STATIC_TYPE = null;
 
-	// Token: 0x02000010 RID: 16
 	private class InstanceCountComparer : IComparer<MemorySnapshot.TypeData>
 	{
-		// Token: 0x0600003E RID: 62 RVA: 0x000AA0B4 File Offset: 0x000A82B4
 		public int Compare(MemorySnapshot.TypeData a, MemorySnapshot.TypeData b)
 		{
 			return b.instanceCount - a.instanceCount;
 		}
 	}
 
-	// Token: 0x02000011 RID: 17
 	private class RefCountComparer : IComparer<MemorySnapshot.TypeData>
 	{
-		// Token: 0x06000040 RID: 64 RVA: 0x000AA0C3 File Offset: 0x000A82C3
 		public int Compare(MemorySnapshot.TypeData a, MemorySnapshot.TypeData b)
 		{
 			return b.refCount - a.refCount;
 		}
 	}
 
-	// Token: 0x02000012 RID: 18
 	private class FieldCountComparer : IComparer<MemorySnapshot.FieldCount>
 	{
-		// Token: 0x06000042 RID: 66 RVA: 0x000AA0D2 File Offset: 0x000A82D2
 		public int Compare(MemorySnapshot.FieldCount a, MemorySnapshot.FieldCount b)
 		{
 			return b.count - a.count;

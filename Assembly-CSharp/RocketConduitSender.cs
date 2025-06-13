@@ -1,10 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000F9E RID: 3998
 public class RocketConduitSender : StateMachineComponent<RocketConduitSender.StatesInstance>, ISecondaryInput
 {
-	// Token: 0x06005078 RID: 20600 RVA: 0x0027D718 File Offset: 0x0027B918
 	public void AddConduitPortToNetwork()
 	{
 		if (this.conduitPort == null)
@@ -18,7 +16,6 @@ public class RocketConduitSender : StateMachineComponent<RocketConduitSender.Sta
 		networkManager.AddToNetworks(num, this.conduitPort.networkItem, true);
 	}
 
-	// Token: 0x06005079 RID: 20601 RVA: 0x000D8DE1 File Offset: 0x000D6FE1
 	public void RemoveConduitPortFromNetwork()
 	{
 		if (this.conduitPort == null)
@@ -28,7 +25,6 @@ public class RocketConduitSender : StateMachineComponent<RocketConduitSender.Sta
 		Conduit.GetNetworkManager(this.conduitPortInfo.conduitType).RemoveFromNetworks(this.conduitPort.inputCell, this.conduitPort.networkItem, true);
 	}
 
-	// Token: 0x0600507A RID: 20602 RVA: 0x0027D79C File Offset: 0x0027B99C
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -40,7 +36,6 @@ public class RocketConduitSender : StateMachineComponent<RocketConduitSender.Sta
 		Components.RocketConduitSenders.Add(this);
 	}
 
-	// Token: 0x0600507B RID: 20603 RVA: 0x000D8E18 File Offset: 0x000D7018
 	protected override void OnCleanUp()
 	{
 		this.RemoveConduitPortFromNetwork();
@@ -48,7 +43,6 @@ public class RocketConduitSender : StateMachineComponent<RocketConduitSender.Sta
 		Components.RocketConduitSenders.Remove(this);
 	}
 
-	// Token: 0x0600507C RID: 20604 RVA: 0x0027D800 File Offset: 0x0027BA00
 	private void FindPartner()
 	{
 		WorldContainer world = ClusterManager.Instance.GetWorld(base.gameObject.GetMyWorldId());
@@ -92,13 +86,11 @@ public class RocketConduitSender : StateMachineComponent<RocketConduitSender.Sta
 		this.partnerReceiver.SetStorage(this.conduitStorage);
 	}
 
-	// Token: 0x0600507D RID: 20605 RVA: 0x000D8E31 File Offset: 0x000D7031
 	bool ISecondaryInput.HasSecondaryConduitType(ConduitType type)
 	{
 		return this.conduitPortInfo.conduitType == type;
 	}
 
-	// Token: 0x0600507E RID: 20606 RVA: 0x000D8E41 File Offset: 0x000D7041
 	CellOffset ISecondaryInput.GetSecondaryConduitOffset(ConduitType type)
 	{
 		if (this.conduitPortInfo.conduitType == type)
@@ -108,41 +100,32 @@ public class RocketConduitSender : StateMachineComponent<RocketConduitSender.Sta
 		return CellOffset.none;
 	}
 
-	// Token: 0x040038AA RID: 14506
 	public Storage conduitStorage;
 
-	// Token: 0x040038AB RID: 14507
 	[SerializeField]
 	public ConduitPortInfo conduitPortInfo;
 
-	// Token: 0x040038AC RID: 14508
 	private RocketConduitSender.ConduitPort conduitPort;
 
-	// Token: 0x040038AD RID: 14509
 	private RocketConduitReceiver partnerReceiver;
 
-	// Token: 0x040038AE RID: 14510
 	private static readonly EventSystem.IntraObjectHandler<RocketConduitSender> TryFindPartnerDelegate = new EventSystem.IntraObjectHandler<RocketConduitSender>(delegate(RocketConduitSender component, object data)
 	{
 		component.FindPartner();
 	});
 
-	// Token: 0x040038AF RID: 14511
 	private static readonly EventSystem.IntraObjectHandler<RocketConduitSender> OnLandedDelegate = new EventSystem.IntraObjectHandler<RocketConduitSender>(delegate(RocketConduitSender component, object data)
 	{
 		component.AddConduitPortToNetwork();
 	});
 
-	// Token: 0x040038B0 RID: 14512
 	private static readonly EventSystem.IntraObjectHandler<RocketConduitSender> OnLaunchedDelegate = new EventSystem.IntraObjectHandler<RocketConduitSender>(delegate(RocketConduitSender component, object data)
 	{
 		component.RemoveConduitPortFromNetwork();
 	});
 
-	// Token: 0x02000F9F RID: 3999
 	private class ConduitPort
 	{
-		// Token: 0x06005081 RID: 20609 RVA: 0x0027D9C4 File Offset: 0x0027BBC4
 		public ConduitPort(GameObject parent, ConduitPortInfo info, Storage targetStorage)
 		{
 			this.conduitPortInfo = info;
@@ -157,32 +140,24 @@ public class RocketConduitSender : StateMachineComponent<RocketConduitSender.Sta
 			this.conduitConsumer.keepZeroMassObject = false;
 		}
 
-		// Token: 0x040038B1 RID: 14513
 		public ConduitPortInfo conduitPortInfo;
 
-		// Token: 0x040038B2 RID: 14514
 		public int inputCell;
 
-		// Token: 0x040038B3 RID: 14515
 		public FlowUtilityNetwork.NetworkItem networkItem;
 
-		// Token: 0x040038B4 RID: 14516
 		private ConduitConsumer conduitConsumer;
 	}
 
-	// Token: 0x02000FA0 RID: 4000
 	public class StatesInstance : GameStateMachine<RocketConduitSender.States, RocketConduitSender.StatesInstance, RocketConduitSender, object>.GameInstance
 	{
-		// Token: 0x06005082 RID: 20610 RVA: 0x000D8E6A File Offset: 0x000D706A
 		public StatesInstance(RocketConduitSender smi) : base(smi)
 		{
 		}
 	}
 
-	// Token: 0x02000FA1 RID: 4001
 	public class States : GameStateMachine<RocketConduitSender.States, RocketConduitSender.StatesInstance, RocketConduitSender>
 	{
-		// Token: 0x06005083 RID: 20611 RVA: 0x0027DA34 File Offset: 0x0027BC34
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.on;
@@ -227,26 +202,19 @@ public class RocketConduitSender : StateMachineComponent<RocketConduitSender.Sta
 			});
 		}
 
-		// Token: 0x040038B5 RID: 14517
 		public RocketConduitSender.States.onStates on;
 
-		// Token: 0x02000FA2 RID: 4002
 		public class onStates : GameStateMachine<RocketConduitSender.States, RocketConduitSender.StatesInstance, RocketConduitSender, object>.State
 		{
-			// Token: 0x040038B6 RID: 14518
 			public RocketConduitSender.States.workingStates working;
 
-			// Token: 0x040038B7 RID: 14519
 			public GameStateMachine<RocketConduitSender.States, RocketConduitSender.StatesInstance, RocketConduitSender, object>.State waiting;
 		}
 
-		// Token: 0x02000FA3 RID: 4003
 		public class workingStates : GameStateMachine<RocketConduitSender.States, RocketConduitSender.StatesInstance, RocketConduitSender, object>.State
 		{
-			// Token: 0x040038B8 RID: 14520
 			public GameStateMachine<RocketConduitSender.States, RocketConduitSender.StatesInstance, RocketConduitSender, object>.State notOnGround;
 
-			// Token: 0x040038B9 RID: 14521
 			public GameStateMachine<RocketConduitSender.States, RocketConduitSender.StatesInstance, RocketConduitSender, object>.State ground;
 		}
 	}

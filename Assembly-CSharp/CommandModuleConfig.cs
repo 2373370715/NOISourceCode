@@ -4,16 +4,13 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000050 RID: 80
 public class CommandModuleConfig : IBuildingConfig
 {
-	// Token: 0x06000177 RID: 375 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetForbiddenDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06000178 RID: 376 RVA: 0x0014CCE8 File Offset: 0x0014AEE8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "CommandModule";
@@ -52,7 +49,6 @@ public class CommandModuleConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000179 RID: 377 RVA: 0x0014CE40 File Offset: 0x0014B040
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -75,7 +71,6 @@ public class CommandModuleConfig : IBuildingConfig
 		go.AddOrGet<LaunchableRocket>();
 	}
 
-	// Token: 0x0600017A RID: 378 RVA: 0x0014CEF0 File Offset: 0x0014B0F0
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		BuildingTemplates.ExtendBuildingToRocketModule(go, "rocket_command_module_bg_kanim", false);
@@ -85,12 +80,9 @@ public class CommandModuleConfig : IBuildingConfig
 		go.AddOrGet<CharacterOverlay>().shouldShowName = true;
 	}
 
-	// Token: 0x040000E2 RID: 226
 	public const string ID = "CommandModule";
 
-	// Token: 0x040000E3 RID: 227
 	private const string TRIGGER_LAUNCH_PORT_ID = "TriggerLaunch";
 
-	// Token: 0x040000E4 RID: 228
 	private const string LAUNCH_READY_PORT_ID = "LaunchReady";
 }

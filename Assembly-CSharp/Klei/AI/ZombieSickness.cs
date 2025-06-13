@@ -4,10 +4,8 @@ using STRINGS;
 
 namespace Klei.AI
 {
-	// Token: 0x02003C88 RID: 15496
 	public class ZombieSickness : Sickness
 	{
-		// Token: 0x0600EDC1 RID: 60865 RVA: 0x004E35FC File Offset: 0x004E17FC
 		public ZombieSickness() : base("ZombieSickness", Sickness.SicknessType.Pathogen, Sickness.Severity.Major, 0.00025f, new List<Sickness.InfectionVector>
 		{
 			Sickness.InfectionVector.Inhalation,
@@ -36,13 +34,10 @@ namespace Klei.AI
 			}));
 		}
 
-		// Token: 0x0400E9BF RID: 59839
 		public const string ID = "ZombieSickness";
 
-		// Token: 0x0400E9C0 RID: 59840
 		public const string RECOVERY_ID = "ZombieSicknessRecovery";
 
-		// Token: 0x0400E9C1 RID: 59841
 		public const int ATTRIBUTE_PENALTY = -10;
 	}
 }

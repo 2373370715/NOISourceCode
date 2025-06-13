@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001E2F RID: 7727
 [AddComponentMenu("KMonoBehaviour/scripts/TableRow")]
 public class TableRow : KMonoBehaviour
 {
-	// Token: 0x0600A191 RID: 41361 RVA: 0x003E9CF0 File Offset: 0x003E7EF0
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -18,19 +16,16 @@ public class TableRow : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600A192 RID: 41362 RVA: 0x0010D886 File Offset: 0x0010BA86
 	public GameObject GetScroller(string scrollerID)
 	{
 		return this.scrollers[scrollerID];
 	}
 
-	// Token: 0x0600A193 RID: 41363 RVA: 0x0010D894 File Offset: 0x0010BA94
 	public GameObject GetScrollerBorder(string scrolledID)
 	{
 		return this.scrollerBorders[scrolledID];
 	}
 
-	// Token: 0x0600A194 RID: 41364 RVA: 0x003E9D40 File Offset: 0x003E7F40
 	public void SelectMinion()
 	{
 		MinionIdentity minionIdentity = this.minion as MinionIdentity;
@@ -41,7 +36,6 @@ public class TableRow : KMonoBehaviour
 		SelectTool.Instance.Select(minionIdentity.GetComponent<KSelectable>(), false);
 	}
 
-	// Token: 0x0600A195 RID: 41365 RVA: 0x003E9D74 File Offset: 0x003E7F74
 	public void SelectAndFocusMinion()
 	{
 		MinionIdentity minionIdentity = this.minion as MinionIdentity;
@@ -52,7 +46,6 @@ public class TableRow : KMonoBehaviour
 		SelectTool.Instance.SelectAndFocus(minionIdentity.transform.GetPosition(), minionIdentity.GetComponent<KSelectable>(), new Vector3(8f, 0f, 0f));
 	}
 
-	// Token: 0x0600A196 RID: 41366 RVA: 0x003E9DC8 File Offset: 0x003E7FC8
 	public void ConfigureAsWorldDivider(Dictionary<string, TableColumn> columns, TableScreen screen)
 	{
 		ScrollRect scroll_rect = base.gameObject.GetComponentInChildren<ScrollRect>();
@@ -75,7 +68,6 @@ public class TableRow : KMonoBehaviour
 		});
 	}
 
-	// Token: 0x0600A197 RID: 41367 RVA: 0x003E9E74 File Offset: 0x003E8074
 	public void ConfigureContent(IAssignableIdentity minion, Dictionary<string, TableColumn> columns, TableScreen screen)
 	{
 		this.minion = minion;
@@ -168,7 +160,6 @@ public class TableRow : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600A198 RID: 41368 RVA: 0x003EA384 File Offset: 0x003E8584
 	public void RefreshColumns(Dictionary<string, TableColumn> columns)
 	{
 		foreach (KeyValuePair<string, TableColumn> keyValuePair in columns)
@@ -180,7 +171,6 @@ public class TableRow : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600A199 RID: 41369 RVA: 0x003EA404 File Offset: 0x003E8604
 	public void RefreshScrollers()
 	{
 		foreach (KeyValuePair<string, GameObject> keyValuePair in this.scrollers)
@@ -195,7 +185,6 @@ public class TableRow : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600A19A RID: 41370 RVA: 0x003EA514 File Offset: 0x003E8714
 	public GameObject GetWidget(TableColumn column)
 	{
 		if (this.widgets.ContainsKey(column) && this.widgets[column] != null)
@@ -206,19 +195,16 @@ public class TableRow : KMonoBehaviour
 		return null;
 	}
 
-	// Token: 0x0600A19B RID: 41371 RVA: 0x0010D8A2 File Offset: 0x0010BAA2
 	public IAssignableIdentity GetIdentity()
 	{
 		return this.minion;
 	}
 
-	// Token: 0x0600A19C RID: 41372 RVA: 0x0010D8AA File Offset: 0x0010BAAA
 	public bool ContainsWidget(GameObject widget)
 	{
 		return this.widgets.ContainsValue(widget);
 	}
 
-	// Token: 0x0600A19D RID: 41373 RVA: 0x003EA570 File Offset: 0x003E8770
 	public void Clear()
 	{
 		foreach (KeyValuePair<TableColumn, GameObject> keyValuePair in this.widgets)
@@ -228,55 +214,38 @@ public class TableRow : KMonoBehaviour
 		UnityEngine.Object.Destroy(base.gameObject);
 	}
 
-	// Token: 0x04007EAB RID: 32427
 	public TableRow.RowType rowType;
 
-	// Token: 0x04007EAC RID: 32428
 	private IAssignableIdentity minion;
 
-	// Token: 0x04007EAD RID: 32429
 	private Dictionary<TableColumn, GameObject> widgets = new Dictionary<TableColumn, GameObject>();
 
-	// Token: 0x04007EAE RID: 32430
 	private Dictionary<string, GameObject> scrollers = new Dictionary<string, GameObject>();
 
-	// Token: 0x04007EAF RID: 32431
 	private Dictionary<string, GameObject> scrollerBorders = new Dictionary<string, GameObject>();
 
-	// Token: 0x04007EB0 RID: 32432
 	public bool isDefault;
 
-	// Token: 0x04007EB1 RID: 32433
 	public KButton selectMinionButton;
 
-	// Token: 0x04007EB2 RID: 32434
 	[SerializeField]
 	private ColorStyleSetting style_setting_default;
 
-	// Token: 0x04007EB3 RID: 32435
 	[SerializeField]
 	private ColorStyleSetting style_setting_minion;
 
-	// Token: 0x04007EB4 RID: 32436
 	[SerializeField]
 	private GameObject scrollerPrefab;
 
-	// Token: 0x04007EB5 RID: 32437
 	[SerializeField]
 	private Scrollbar scrollbar;
 
-	// Token: 0x02001E30 RID: 7728
 	public enum RowType
 	{
-		// Token: 0x04007EB7 RID: 32439
 		Header,
-		// Token: 0x04007EB8 RID: 32440
 		Default,
-		// Token: 0x04007EB9 RID: 32441
 		Minion,
-		// Token: 0x04007EBA RID: 32442
 		StoredMinon,
-		// Token: 0x04007EBB RID: 32443
 		WorldDivider
 	}
 }

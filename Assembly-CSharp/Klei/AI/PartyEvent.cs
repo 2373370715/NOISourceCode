@@ -6,10 +6,8 @@ using UnityEngine;
 
 namespace Klei.AI
 {
-	// Token: 0x02003CBD RID: 15549
 	public class PartyEvent : GameplayEvent<PartyEvent.StatesInstance>
 	{
-		// Token: 0x0600EEB2 RID: 61106 RVA: 0x0014497E File Offset: 0x00142B7E
 		public PartyEvent() : base("Party", 0, 0)
 		{
 			this.animFileName = "event_pop_up_assets_kanim";
@@ -17,30 +15,23 @@ namespace Klei.AI
 			this.description = GAMEPLAY_EVENTS.EVENT_TYPES.PARTY.DESCRIPTION;
 		}
 
-		// Token: 0x0600EEB3 RID: 61107 RVA: 0x001449BD File Offset: 0x00142BBD
 		public override StateMachine.Instance GetSMI(GameplayEventManager manager, GameplayEventInstance eventInstance)
 		{
 			return new PartyEvent.StatesInstance(manager, eventInstance, this);
 		}
 
-		// Token: 0x0400EA86 RID: 60038
 		public const string cancelEffect = "NoFunAllowed";
 
-		// Token: 0x0400EA87 RID: 60039
 		public const float FUTURE_TIME = 60f;
 
-		// Token: 0x0400EA88 RID: 60040
 		public const float DURATION = 60f;
 
-		// Token: 0x02003CBE RID: 15550
 		public class StatesInstance : GameplayEventStateMachine<PartyEvent.States, PartyEvent.StatesInstance, GameplayEventManager, PartyEvent>.GameplayEventStateMachineInstance
 		{
-			// Token: 0x0600EEB4 RID: 61108 RVA: 0x001449C7 File Offset: 0x00142BC7
 			public StatesInstance(GameplayEventManager master, GameplayEventInstance eventInstance, PartyEvent partyEvent) : base(master, eventInstance, partyEvent)
 			{
 			}
 
-			// Token: 0x0600EEB5 RID: 61109 RVA: 0x004E7AE4 File Offset: 0x004E5CE4
 			public void AddNewChore(Room room)
 			{
 				List<KPrefabID> list = room.buildings.FindAll((KPrefabID match) => match.HasTag(RoomConstraints.ConstraintTags.RecBuilding));
@@ -98,7 +89,6 @@ namespace Klei.AI
 				this.chores.Add(item);
 			}
 
-			// Token: 0x0600EEB6 RID: 61110 RVA: 0x004E7C88 File Offset: 0x004E5E88
 			public void ClearChores()
 			{
 				if (this.chores != null)
@@ -114,7 +104,6 @@ namespace Klei.AI
 				this.chores = null;
 			}
 
-			// Token: 0x0600EEB7 RID: 61111 RVA: 0x004E7CE0 File Offset: 0x004E5EE0
 			public void UpdateChores(Room room)
 			{
 				if (room == null)
@@ -131,17 +120,13 @@ namespace Klei.AI
 				}
 			}
 
-			// Token: 0x0400EA89 RID: 60041
 			private List<Chore> chores;
 
-			// Token: 0x0400EA8A RID: 60042
 			public Notification mainNotification;
 		}
 
-		// Token: 0x02003CC1 RID: 15553
 		public class States : GameplayEventStateMachine<PartyEvent.States, PartyEvent.StatesInstance, GameplayEventManager, PartyEvent>
 		{
-			// Token: 0x0600EEBE RID: 61118 RVA: 0x004E7D2C File Offset: 0x004E5F2C
 			public override void InitializeStates(out StateMachine.BaseState default_state)
 			{
 				base.InitializeStates(out default_state);
@@ -188,13 +173,11 @@ namespace Klei.AI
 				}).ReturnFailure();
 			}
 
-			// Token: 0x0600EEBF RID: 61119 RVA: 0x00144A24 File Offset: 0x00142C24
 			public Room GetChosenRoom(PartyEvent.StatesInstance smi)
 			{
 				return Game.Instance.roomProber.GetRoomOfGameObject(this.roomObject.Get(smi));
 			}
 
-			// Token: 0x0600EEC0 RID: 61120 RVA: 0x004E7E9C File Offset: 0x004E609C
 			public override EventInfoData GenerateEventPopupData(PartyEvent.StatesInstance smi)
 			{
 				EventInfoData eventInfoData = new EventInfoData(smi.gameplayEvent.title, smi.gameplayEvent.description, smi.gameplayEvent.animFileName);
@@ -237,7 +220,6 @@ namespace Klei.AI
 				return eventInfoData;
 			}
 
-			// Token: 0x0600EEC1 RID: 61121 RVA: 0x004E80F8 File Offset: 0x004E62F8
 			public void PopulateTargetsAndText(PartyEvent.StatesInstance smi)
 			{
 				if (this.roomObject.Get(smi) == null)
@@ -260,47 +242,33 @@ namespace Klei.AI
 				}
 			}
 
-			// Token: 0x0400EA91 RID: 60049
 			public StateMachine<PartyEvent.States, PartyEvent.StatesInstance, GameplayEventManager, object>.TargetParameter roomObject;
 
-			// Token: 0x0400EA92 RID: 60050
 			public StateMachine<PartyEvent.States, PartyEvent.StatesInstance, GameplayEventManager, object>.TargetParameter planner;
 
-			// Token: 0x0400EA93 RID: 60051
 			public StateMachine<PartyEvent.States, PartyEvent.StatesInstance, GameplayEventManager, object>.TargetParameter guest;
 
-			// Token: 0x0400EA94 RID: 60052
 			public PartyEvent.States.PlanningStates planning;
 
-			// Token: 0x0400EA95 RID: 60053
 			public PartyEvent.States.WarmupStates warmup;
 
-			// Token: 0x0400EA96 RID: 60054
 			public GameStateMachine<PartyEvent.States, PartyEvent.StatesInstance, GameplayEventManager, object>.State partying;
 
-			// Token: 0x0400EA97 RID: 60055
 			public GameStateMachine<PartyEvent.States, PartyEvent.StatesInstance, GameplayEventManager, object>.State ending;
 
-			// Token: 0x0400EA98 RID: 60056
 			public GameStateMachine<PartyEvent.States, PartyEvent.StatesInstance, GameplayEventManager, object>.State canceled;
 
-			// Token: 0x02003CC2 RID: 15554
 			public class PlanningStates : GameStateMachine<PartyEvent.States, PartyEvent.StatesInstance, GameplayEventManager, object>.State
 			{
-				// Token: 0x0400EA99 RID: 60057
 				public GameStateMachine<PartyEvent.States, PartyEvent.StatesInstance, GameplayEventManager, object>.State prepare_entities;
 
-				// Token: 0x0400EA9A RID: 60058
 				public GameStateMachine<PartyEvent.States, PartyEvent.StatesInstance, GameplayEventManager, object>.State wait_for_input;
 			}
 
-			// Token: 0x02003CC3 RID: 15555
 			public class WarmupStates : GameStateMachine<PartyEvent.States, PartyEvent.StatesInstance, GameplayEventManager, object>.State
 			{
-				// Token: 0x0400EA9B RID: 60059
 				public GameStateMachine<PartyEvent.States, PartyEvent.StatesInstance, GameplayEventManager, object>.State wait;
 
-				// Token: 0x0400EA9C RID: 60060
 				public GameStateMachine<PartyEvent.States, PartyEvent.StatesInstance, GameplayEventManager, object>.State start;
 			}
 		}

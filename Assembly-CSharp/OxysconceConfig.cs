@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020004F4 RID: 1268
 public class OxysconceConfig : IBuildingConfig
 {
-	// Token: 0x060015CD RID: 5581 RVA: 0x000AA536 File Offset: 0x000A8736
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.DLC2;
 	}
 
-	// Token: 0x060015CE RID: 5582 RVA: 0x001A0A9C File Offset: 0x0019EC9C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "Oxysconce";
@@ -35,7 +32,6 @@ public class OxysconceConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060015CF RID: 5583 RVA: 0x001A0B1C File Offset: 0x0019ED1C
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		Prioritizable.AddRef(go);
@@ -54,7 +50,6 @@ public class OxysconceConfig : IBuildingConfig
 		go.AddOrGet<StorageMeter>();
 	}
 
-	// Token: 0x060015D0 RID: 5584 RVA: 0x000B40BF File Offset: 0x000B22BF
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.GetComponent<KPrefabID>().prefabSpawnFn += delegate(GameObject game_object)
@@ -63,9 +58,7 @@ public class OxysconceConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x04000F07 RID: 3847
 	public const string ID = "Oxysconce";
 
-	// Token: 0x04000F08 RID: 3848
 	private const float OXYLITE_STORAGE = 240f;
 }

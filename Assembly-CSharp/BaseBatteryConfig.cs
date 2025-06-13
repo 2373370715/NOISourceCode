@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000029 RID: 41
 public abstract class BaseBatteryConfig : IBuildingConfig
 {
-	// Token: 0x060000A7 RID: 167 RVA: 0x0014936C File Offset: 0x0014756C
 	public BuildingDef CreateBuildingDef(string id, int width, int height, int hitpoints, string anim, float construction_time, float[] construction_mass, string[] construction_materials, float melting_point, float exhaust_temperature_active, float self_heat_kilowatts_active, EffectorValues decor, EffectorValues noise)
 	{
 		BuildLocationRule build_location_rule = BuildLocationRule.OnFloor;
@@ -21,13 +19,11 @@ public abstract class BaseBatteryConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060000A8 RID: 168 RVA: 0x000AA24F File Offset: 0x000A844F
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddComponent<RequireInputs>();
 	}
 
-	// Token: 0x060000A9 RID: 169 RVA: 0x000AA258 File Offset: 0x000A8458
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<Battery>().powerSortOrder = 1000;

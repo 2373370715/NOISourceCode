@@ -2,11 +2,9 @@
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x02001708 RID: 5896
 [AddComponentMenu("KMonoBehaviour/scripts/BuddingTrunk")]
 public class BuddingTrunk : KMonoBehaviour
 {
-	// Token: 0x0600796F RID: 31087 RVA: 0x0032302C File Offset: 0x0032122C
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -17,7 +15,6 @@ public class BuddingTrunk : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06007970 RID: 31088 RVA: 0x0032305C File Offset: 0x0032125C
 	public KPrefabID[] GetAndForgetOldSerializedBranches()
 	{
 		KPrefabID[] array = null;
@@ -34,7 +31,6 @@ public class BuddingTrunk : KMonoBehaviour
 		return array;
 	}
 
-	// Token: 0x04005B37 RID: 23351
 	[Serialize]
 	private Ref<HarvestDesignatable>[] buds;
 }

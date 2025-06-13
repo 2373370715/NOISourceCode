@@ -5,10 +5,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000E1 RID: 225
 public static class BaseDivergentConfig
 {
-	// Token: 0x060003A1 RID: 929 RVA: 0x00158D78 File Offset: 0x00156F78
 	public static GameObject BaseDivergent(string id, string name, string desc, float mass, string anim_file, string traitId, bool is_baby, float num_tended_per_cycle = 8f, string symbolOverridePrefix = null, string cropTendingEffect = "DivergentCropTended", int meatAmount = 1, bool is_pacifist = true)
 	{
 		EffectorValues tier = DECOR.BONUS.TIER0;
@@ -59,7 +57,6 @@ public static class BaseDivergentConfig
 		return gameObject;
 	}
 
-	// Token: 0x060003A2 RID: 930 RVA: 0x001590BC File Offset: 0x001572BC
 	public static List<Diet.Info> BasicSulfurDiet(Tag poopTag, float caloriesPerKg, float producedConversionRate, string diseaseId, float diseasePerKgProduced)
 	{
 		HashSet<Tag> hashSet = new HashSet<Tag>();
@@ -70,7 +67,6 @@ public static class BaseDivergentConfig
 		};
 	}
 
-	// Token: 0x060003A3 RID: 931 RVA: 0x001580FC File Offset: 0x001562FC
 	public static GameObject SetupDiet(GameObject prefab, List<Diet.Info> diet_infos, float referenceCaloriesPerKg, float minPoopSizeInKg)
 	{
 		Diet diet = new Diet(diet_infos.ToArray());
@@ -81,13 +77,10 @@ public static class BaseDivergentConfig
 		return prefab;
 	}
 
-	// Token: 0x0400025E RID: 606
 	public const float CROP_TENDED_MULTIPLIER_DURATION = 600f;
 
-	// Token: 0x0400025F RID: 607
 	public const float CROP_TENDED_MULTIPLIER_EFFECT = 0.05f;
 
-	// Token: 0x04000260 RID: 608
 	public static string[] ignoreEffectGroup = new string[]
 	{
 		"DivergentCropTended",

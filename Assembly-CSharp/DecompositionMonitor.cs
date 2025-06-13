@@ -3,10 +3,8 @@ using Klei.AI;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x0200159D RID: 5533
 public class DecompositionMonitor : GameStateMachine<DecompositionMonitor, DecompositionMonitor.Instance>
 {
-	// Token: 0x0600730A RID: 29450 RVA: 0x0030E32C File Offset: 0x0030C52C
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.satisfied;
@@ -42,7 +40,6 @@ public class DecompositionMonitor : GameStateMachine<DecompositionMonitor, Decom
 		this.rotten.stored.EventTransition(GameHashes.OnStore, this.rotten.exposed, (DecompositionMonitor.Instance smi) => smi.IsExposed());
 	}
 
-	// Token: 0x0600730B RID: 29451 RVA: 0x000EFD5C File Offset: 0x000EDF5C
 	private FliesFX.Instance CreateFX(DecompositionMonitor.Instance smi)
 	{
 		if (!smi.isMasterNull)
@@ -52,56 +49,40 @@ public class DecompositionMonitor : GameStateMachine<DecompositionMonitor, Decom
 		return null;
 	}
 
-	// Token: 0x0400563E RID: 22078
 	public StateMachine<DecompositionMonitor, DecompositionMonitor.Instance, IStateMachineTarget, object>.FloatParameter decomposition;
 
-	// Token: 0x0400563F RID: 22079
 	[SerializeField]
 	public int remainingRotMonsters = 3;
 
-	// Token: 0x04005640 RID: 22080
 	public GameStateMachine<DecompositionMonitor, DecompositionMonitor.Instance, IStateMachineTarget, object>.State satisfied;
 
-	// Token: 0x04005641 RID: 22081
 	public DecompositionMonitor.RottenState rotten;
 
-	// Token: 0x0200159E RID: 5534
 	public class SubmergedState : GameStateMachine<DecompositionMonitor, DecompositionMonitor.Instance, IStateMachineTarget, object>.State
 	{
-		// Token: 0x04005642 RID: 22082
 		public GameStateMachine<DecompositionMonitor, DecompositionMonitor.Instance, IStateMachineTarget, object>.State idle;
 
-		// Token: 0x04005643 RID: 22083
 		public GameStateMachine<DecompositionMonitor, DecompositionMonitor.Instance, IStateMachineTarget, object>.State dirtywater;
 	}
 
-	// Token: 0x0200159F RID: 5535
 	public class ExposedState : GameStateMachine<DecompositionMonitor, DecompositionMonitor.Instance, IStateMachineTarget, object>.State
 	{
-		// Token: 0x04005644 RID: 22084
 		public DecompositionMonitor.SubmergedState submerged;
 
-		// Token: 0x04005645 RID: 22085
 		public GameStateMachine<DecompositionMonitor, DecompositionMonitor.Instance, IStateMachineTarget, object>.State openair;
 	}
 
-	// Token: 0x020015A0 RID: 5536
 	public class RottenState : GameStateMachine<DecompositionMonitor, DecompositionMonitor.Instance, IStateMachineTarget, object>.State
 	{
-		// Token: 0x04005646 RID: 22086
 		public DecompositionMonitor.ExposedState exposed;
 
-		// Token: 0x04005647 RID: 22087
 		public GameStateMachine<DecompositionMonitor, DecompositionMonitor.Instance, IStateMachineTarget, object>.State stored;
 
-		// Token: 0x04005648 RID: 22088
 		public GameStateMachine<DecompositionMonitor, DecompositionMonitor.Instance, IStateMachineTarget, object>.State spawningmonster;
 	}
 
-	// Token: 0x020015A1 RID: 5537
 	public new class Instance : GameStateMachine<DecompositionMonitor, DecompositionMonitor.Instance, IStateMachineTarget, object>.GameInstance
 	{
-		// Token: 0x06007313 RID: 29459 RVA: 0x0030E6CC File Offset: 0x0030C8CC
 		public Instance(IStateMachineTarget master, Disease disease, float decompositionRate = 0.00083333335f, bool spawnRotMonsters = true) : base(master)
 		{
 			base.gameObject.AddComponent<DecorProvider>();
@@ -110,33 +91,28 @@ public class DecompositionMonitor : GameStateMachine<DecompositionMonitor, Decom
 			this.spawnsRotMonsters = spawnRotMonsters;
 		}
 
-		// Token: 0x06007314 RID: 29460 RVA: 0x0030E7D4 File Offset: 0x0030C9D4
 		public void UpdateDecomposition(float dt)
 		{
 			float delta_value = dt * this.decompositionRate;
 			base.sm.decomposition.Delta(delta_value, base.smi);
 		}
 
-		// Token: 0x06007315 RID: 29461 RVA: 0x0030E804 File Offset: 0x0030CA04
 		public bool IsExposed()
 		{
 			KPrefabID component = base.smi.GetComponent<KPrefabID>();
 			return component == null || !component.HasTag(GameTags.Preserved);
 		}
 
-		// Token: 0x06007316 RID: 29462 RVA: 0x000EFDD1 File Offset: 0x000EDFD1
 		public bool IsRotten()
 		{
 			return base.IsInsideState(base.sm.rotten);
 		}
 
-		// Token: 0x06007317 RID: 29463 RVA: 0x000EFDE4 File Offset: 0x000EDFE4
 		public bool IsSubmerged()
 		{
 			return PathFinder.IsSubmerged(Grid.PosToCell(base.master.transform.GetPosition()));
 		}
 
-		// Token: 0x06007318 RID: 29464 RVA: 0x0030E838 File Offset: 0x0030CA38
 		public void DirtyWater(int maxCellRange = 3)
 		{
 			int num = Grid.PosToCell(base.master.transform.GetPosition());
@@ -170,28 +146,20 @@ public class DecompositionMonitor : GameStateMachine<DecompositionMonitor, Decom
 			}
 		}
 
-		// Token: 0x04005649 RID: 22089
 		public float decompositionRate;
 
-		// Token: 0x0400564A RID: 22090
 		public Disease disease;
 
-		// Token: 0x0400564B RID: 22091
 		public int dirtyWaterMaxRange = 3;
 
-		// Token: 0x0400564C RID: 22092
 		public bool spawnsRotMonsters = true;
 
-		// Token: 0x0400564D RID: 22093
 		public AttributeModifier satisfiedDecorModifier = new AttributeModifier(Db.Get().BuildingAttributes.Decor.Id, -65f, DUPLICANTS.MODIFIERS.DEAD.NAME, false, false, true);
 
-		// Token: 0x0400564E RID: 22094
 		public AttributeModifier satisfiedDecorRadiusModifier = new AttributeModifier(Db.Get().BuildingAttributes.DecorRadius.Id, 4f, DUPLICANTS.MODIFIERS.DEAD.NAME, false, false, true);
 
-		// Token: 0x0400564F RID: 22095
 		public AttributeModifier rottenDecorModifier = new AttributeModifier(Db.Get().BuildingAttributes.Decor.Id, -100f, DUPLICANTS.MODIFIERS.ROTTING.NAME, false, false, true);
 
-		// Token: 0x04005650 RID: 22096
 		public AttributeModifier rottenDecorRadiusModifier = new AttributeModifier(Db.Get().BuildingAttributes.DecorRadius.Id, 4f, DUPLICANTS.MODIFIERS.ROTTING.NAME, false, false, true);
 	}
 }

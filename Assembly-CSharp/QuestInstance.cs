@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x0200176D RID: 5997
 [SerializationConfig(MemberSerialization.OptIn)]
 public class QuestInstance : ISaveLoadable
 {
-	// Token: 0x170007B3 RID: 1971
-	// (get) Token: 0x06007B64 RID: 31588 RVA: 0x000F5A93 File Offset: 0x000F3C93
 	public HashedString Id
 	{
 		get
@@ -17,8 +14,6 @@ public class QuestInstance : ISaveLoadable
 		}
 	}
 
-	// Token: 0x170007B4 RID: 1972
-	// (get) Token: 0x06007B65 RID: 31589 RVA: 0x000F5AA0 File Offset: 0x000F3CA0
 	public int CriteriaCount
 	{
 		get
@@ -27,8 +22,6 @@ public class QuestInstance : ISaveLoadable
 		}
 	}
 
-	// Token: 0x170007B5 RID: 1973
-	// (get) Token: 0x06007B66 RID: 31590 RVA: 0x000F5AAF File Offset: 0x000F3CAF
 	public string Name
 	{
 		get
@@ -37,8 +30,6 @@ public class QuestInstance : ISaveLoadable
 		}
 	}
 
-	// Token: 0x170007B6 RID: 1974
-	// (get) Token: 0x06007B67 RID: 31591 RVA: 0x000F5ABC File Offset: 0x000F3CBC
 	public string CompletionText
 	{
 		get
@@ -47,8 +38,6 @@ public class QuestInstance : ISaveLoadable
 		}
 	}
 
-	// Token: 0x170007B7 RID: 1975
-	// (get) Token: 0x06007B68 RID: 31592 RVA: 0x000F5AC9 File Offset: 0x000F3CC9
 	public bool IsStarted
 	{
 		get
@@ -57,8 +46,6 @@ public class QuestInstance : ISaveLoadable
 		}
 	}
 
-	// Token: 0x170007B8 RID: 1976
-	// (get) Token: 0x06007B69 RID: 31593 RVA: 0x000F5AD4 File Offset: 0x000F3CD4
 	public bool IsComplete
 	{
 		get
@@ -67,13 +54,8 @@ public class QuestInstance : ISaveLoadable
 		}
 	}
 
-	// Token: 0x170007B9 RID: 1977
-	// (get) Token: 0x06007B6A RID: 31594 RVA: 0x000F5ADF File Offset: 0x000F3CDF
-	// (set) Token: 0x06007B6B RID: 31595 RVA: 0x000F5AE7 File Offset: 0x000F3CE7
 	public float CurrentProgress { get; private set; }
 
-	// Token: 0x170007BA RID: 1978
-	// (get) Token: 0x06007B6C RID: 31596 RVA: 0x000F5AF0 File Offset: 0x000F3CF0
 	public Quest.State CurrentState
 	{
 		get
@@ -82,7 +64,6 @@ public class QuestInstance : ISaveLoadable
 		}
 	}
 
-	// Token: 0x06007B6D RID: 31597 RVA: 0x0032A5E8 File Offset: 0x003287E8
 	public QuestInstance(Quest quest)
 	{
 		this.quest = quest;
@@ -109,7 +90,6 @@ public class QuestInstance : ISaveLoadable
 		}
 	}
 
-	// Token: 0x06007B6E RID: 31598 RVA: 0x000F5AF8 File Offset: 0x000F3CF8
 	public void Initialize(Quest quest)
 	{
 		this.quest = quest;
@@ -117,13 +97,11 @@ public class QuestInstance : ISaveLoadable
 		this.UpdateQuestProgress(false);
 	}
 
-	// Token: 0x06007B6F RID: 31599 RVA: 0x000F5B0E File Offset: 0x000F3D0E
 	public bool HasCriteria(HashedString criteriaId)
 	{
 		return this.criteriaStates.ContainsKey(criteriaId.HashValue);
 	}
 
-	// Token: 0x06007B70 RID: 31600 RVA: 0x0032A6B8 File Offset: 0x003288B8
 	public bool HasBehavior(QuestCriteria.BehaviorFlags behavior)
 	{
 		bool flag = false;
@@ -136,7 +114,6 @@ public class QuestInstance : ISaveLoadable
 		return flag;
 	}
 
-	// Token: 0x06007B71 RID: 31601 RVA: 0x0032A6FC File Offset: 0x003288FC
 	public int GetTargetCount(HashedString criteriaId)
 	{
 		QuestInstance.CriteriaState criteriaState;
@@ -147,7 +124,6 @@ public class QuestInstance : ISaveLoadable
 		return this.quest.Criteria[criteriaState.Handle].RequiredCount;
 	}
 
-	// Token: 0x06007B72 RID: 31602 RVA: 0x0032A738 File Offset: 0x00328938
 	public int GetCurrentCount(HashedString criteriaId)
 	{
 		QuestInstance.CriteriaState criteriaState;
@@ -158,7 +134,6 @@ public class QuestInstance : ISaveLoadable
 		return criteriaState.CurrentCount;
 	}
 
-	// Token: 0x06007B73 RID: 31603 RVA: 0x0032A764 File Offset: 0x00328964
 	public float GetCurrentValue(HashedString criteriaId, int valueHandle = 0)
 	{
 		QuestInstance.CriteriaState criteriaState;
@@ -169,7 +144,6 @@ public class QuestInstance : ISaveLoadable
 		return criteriaState.CurrentValues[valueHandle];
 	}
 
-	// Token: 0x06007B74 RID: 31604 RVA: 0x0032A7A0 File Offset: 0x003289A0
 	public float GetTargetValue(HashedString criteriaId, int valueHandle = 0)
 	{
 		QuestInstance.CriteriaState criteriaState;
@@ -184,7 +158,6 @@ public class QuestInstance : ISaveLoadable
 		return this.quest.Criteria[criteriaState.Handle].TargetValues[valueHandle];
 	}
 
-	// Token: 0x06007B75 RID: 31605 RVA: 0x0032A804 File Offset: 0x00328A04
 	public Tag GetSatisfyingItem(HashedString criteriaId, int valueHandle = 0)
 	{
 		QuestInstance.CriteriaState criteriaState;
@@ -195,7 +168,6 @@ public class QuestInstance : ISaveLoadable
 		return criteriaState.SatisfyingItems[valueHandle];
 	}
 
-	// Token: 0x06007B76 RID: 31606 RVA: 0x0032A848 File Offset: 0x00328A48
 	public float GetAreaAverage(HashedString criteriaId)
 	{
 		QuestInstance.CriteriaState criteriaState;
@@ -215,7 +187,6 @@ public class QuestInstance : ISaveLoadable
 		return num / (float)criteriaState.CurrentValues.Length;
 	}
 
-	// Token: 0x06007B77 RID: 31607 RVA: 0x0032A8C8 File Offset: 0x00328AC8
 	public bool IsItemRedundant(HashedString criteriaId, Tag item)
 	{
 		QuestInstance.CriteriaState criteriaState;
@@ -233,21 +204,18 @@ public class QuestInstance : ISaveLoadable
 		return flag;
 	}
 
-	// Token: 0x06007B78 RID: 31608 RVA: 0x0032A924 File Offset: 0x00328B24
 	public bool IsCriteriaSatisfied(HashedString id)
 	{
 		QuestInstance.CriteriaState criteriaState;
 		return this.criteriaStates.TryGetValue(id.HashValue, out criteriaState) && this.quest.Criteria[criteriaState.Handle].IsSatisfied(criteriaState.SatisfactionState, this.GetSatisfactionMask(criteriaState));
 	}
 
-	// Token: 0x06007B79 RID: 31609 RVA: 0x0032A970 File Offset: 0x00328B70
 	public bool IsCriteriaSatisfied(Tag id)
 	{
 		QuestInstance.CriteriaState criteriaState;
 		return this.criteriaStates.TryGetValue(id.GetHash(), out criteriaState) && this.quest.Criteria[criteriaState.Handle].IsSatisfied(criteriaState.SatisfactionState, this.GetSatisfactionMask(criteriaState));
 	}
 
-	// Token: 0x06007B7A RID: 31610 RVA: 0x0032A9BC File Offset: 0x00328BBC
 	public void TrackAreaForCriteria(HashedString criteriaId, Extents area)
 	{
 		QuestInstance.CriteriaState criteriaState;
@@ -269,7 +237,6 @@ public class QuestInstance : ISaveLoadable
 		this.criteriaStates[criteriaId.HashValue] = criteriaState;
 	}
 
-	// Token: 0x06007B7B RID: 31611 RVA: 0x0032AA58 File Offset: 0x00328C58
 	private uint GetSatisfactionMask(QuestInstance.CriteriaState state)
 	{
 		QuestCriteria questCriteria = this.quest.Criteria[state.Handle];
@@ -289,7 +256,6 @@ public class QuestInstance : ISaveLoadable
 		return questCriteria.GetSatisfactionMask();
 	}
 
-	// Token: 0x06007B7C RID: 31612 RVA: 0x0032AAC8 File Offset: 0x00328CC8
 	public int TrackProgress(Quest.ItemData data, out bool dataSatisfies, out bool itemIsRedundant)
 	{
 		dataSatisfies = false;
@@ -346,7 +312,6 @@ public class QuestInstance : ISaveLoadable
 		return valueHandle;
 	}
 
-	// Token: 0x06007B7D RID: 31613 RVA: 0x0032AC64 File Offset: 0x00328E64
 	public bool DataSatisfiesCriteria(Quest.ItemData data, ref int valueHandle)
 	{
 		QuestInstance.CriteriaState criteriaState;
@@ -393,7 +358,6 @@ public class QuestInstance : ISaveLoadable
 		return flag3;
 	}
 
-	// Token: 0x06007B7E RID: 31614 RVA: 0x0032AD9C File Offset: 0x00328F9C
 	private void UpdateQuestProgress(bool startQuest = false)
 	{
 		if (!this.IsStarted && !startQuest)
@@ -452,7 +416,6 @@ public class QuestInstance : ISaveLoadable
 		}
 	}
 
-	// Token: 0x06007B7F RID: 31615 RVA: 0x0032AF78 File Offset: 0x00329178
 	public ICheckboxListGroupControl.CheckboxItem[] GetCheckBoxData(Func<int, string, QuestInstance, string> resolveToolTip = null)
 	{
 		ICheckboxListGroupControl.CheckboxItem[] array = new ICheckboxListGroupControl.CheckboxItem[this.quest.Criteria.Length];
@@ -473,7 +436,6 @@ public class QuestInstance : ISaveLoadable
 		return array;
 	}
 
-	// Token: 0x06007B80 RID: 31616 RVA: 0x0032B060 File Offset: 0x00329260
 	public void ValidateCriteriasOnLoad()
 	{
 		if (this.criteriaStates.Count != this.quest.Criteria.Length)
@@ -511,24 +473,18 @@ public class QuestInstance : ISaveLoadable
 		}
 	}
 
-	// Token: 0x04005D0D RID: 23821
 	public Action<QuestInstance, Quest.State, float> QuestProgressChanged;
 
-	// Token: 0x04005D0F RID: 23823
 	private Quest quest;
 
-	// Token: 0x04005D10 RID: 23824
 	[Serialize]
 	private Dictionary<int, QuestInstance.CriteriaState> criteriaStates;
 
-	// Token: 0x04005D11 RID: 23825
 	[Serialize]
 	private Quest.State currentState;
 
-	// Token: 0x0200176E RID: 5998
 	private struct CriteriaState
 	{
-		// Token: 0x06007B81 RID: 31617 RVA: 0x0032B174 File Offset: 0x00329374
 		public static bool ItemAlreadySatisfying(QuestInstance.CriteriaState state, Tag item)
 		{
 			bool result = false;
@@ -545,19 +501,14 @@ public class QuestInstance : ISaveLoadable
 			return result;
 		}
 
-		// Token: 0x04005D12 RID: 23826
 		public int Handle;
 
-		// Token: 0x04005D13 RID: 23827
 		public int CurrentCount;
 
-		// Token: 0x04005D14 RID: 23828
 		public uint SatisfactionState;
 
-		// Token: 0x04005D15 RID: 23829
 		public Tag[] SatisfyingItems;
 
-		// Token: 0x04005D16 RID: 23830
 		public float[] CurrentValues;
 	}
 }

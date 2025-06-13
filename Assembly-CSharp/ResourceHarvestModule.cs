@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02001975 RID: 6517
 public class ResourceHarvestModule : GameStateMachine<ResourceHarvestModule, ResourceHarvestModule.StatesInstance, IStateMachineTarget, ResourceHarvestModule.Def>
 {
-	// Token: 0x060087B8 RID: 34744 RVA: 0x0035F868 File Offset: 0x0035DA68
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.grounded;
@@ -51,39 +49,28 @@ public class ResourceHarvestModule : GameStateMachine<ResourceHarvestModule, Res
 		}, UpdateRate.SIM_4000ms, false).ParamTransition<bool>(this.canHarvest, this.not_grounded.not_harvesting, GameStateMachine<ResourceHarvestModule, ResourceHarvestModule.StatesInstance, IStateMachineTarget, ResourceHarvestModule.Def>.IsFalse);
 	}
 
-	// Token: 0x040066CB RID: 26315
 	public StateMachine<ResourceHarvestModule, ResourceHarvestModule.StatesInstance, IStateMachineTarget, ResourceHarvestModule.Def>.BoolParameter canHarvest;
 
-	// Token: 0x040066CC RID: 26316
 	public StateMachine<ResourceHarvestModule, ResourceHarvestModule.StatesInstance, IStateMachineTarget, ResourceHarvestModule.Def>.FloatParameter lastHarvestTime;
 
-	// Token: 0x040066CD RID: 26317
 	public GameStateMachine<ResourceHarvestModule, ResourceHarvestModule.StatesInstance, IStateMachineTarget, ResourceHarvestModule.Def>.State grounded;
 
-	// Token: 0x040066CE RID: 26318
 	public ResourceHarvestModule.NotGroundedStates not_grounded;
 
-	// Token: 0x02001976 RID: 6518
 	public class Def : StateMachine.BaseDef
 	{
-		// Token: 0x040066CF RID: 26319
 		public float harvestSpeed;
 	}
 
-	// Token: 0x02001977 RID: 6519
 	public class NotGroundedStates : GameStateMachine<ResourceHarvestModule, ResourceHarvestModule.StatesInstance, IStateMachineTarget, ResourceHarvestModule.Def>.State
 	{
-		// Token: 0x040066D0 RID: 26320
 		public GameStateMachine<ResourceHarvestModule, ResourceHarvestModule.StatesInstance, IStateMachineTarget, ResourceHarvestModule.Def>.State not_harvesting;
 
-		// Token: 0x040066D1 RID: 26321
 		public GameStateMachine<ResourceHarvestModule, ResourceHarvestModule.StatesInstance, IStateMachineTarget, ResourceHarvestModule.Def>.State harvesting;
 	}
 
-	// Token: 0x02001978 RID: 6520
 	public class StatesInstance : GameStateMachine<ResourceHarvestModule, ResourceHarvestModule.StatesInstance, IStateMachineTarget, ResourceHarvestModule.Def>.GameInstance
 	{
-		// Token: 0x060087BD RID: 34749 RVA: 0x0035FAA8 File Offset: 0x0035DCA8
 		public StatesInstance(IStateMachineTarget master, ResourceHarvestModule.Def def) : base(master, def)
 		{
 			this.storage = base.GetComponent<Storage>();
@@ -102,20 +89,17 @@ public class ResourceHarvestModule : GameStateMachine<ResourceHarvestModule, Res
 			this.UpdateMeter(null);
 		}
 
-		// Token: 0x060087BE RID: 34750 RVA: 0x000FD66D File Offset: 0x000FB86D
 		protected override void OnCleanUp()
 		{
 			base.OnCleanUp();
 			base.Unsubscribe(-1697596308, new Action<object>(this.UpdateMeter));
 		}
 
-		// Token: 0x060087BF RID: 34751 RVA: 0x000FD68C File Offset: 0x000FB88C
 		public void UpdateMeter(object data = null)
 		{
 			this.meter.SetPositionPercent(this.storage.MassStored() / this.storage.Capacity());
 		}
 
-		// Token: 0x060087C0 RID: 34752 RVA: 0x0035FB6C File Offset: 0x0035DD6C
 		public void HarvestFromPOI(float dt)
 		{
 			Clustercraft component = base.GetComponent<RocketModuleCluster>().CraftInterface.GetComponent<Clustercraft>();
@@ -201,19 +185,16 @@ public class ResourceHarvestModule : GameStateMachine<ResourceHarvestModule, Res
 			SaveGame.Instance.ColonyAchievementTracker.totalMaterialsHarvestFromPOI += num3;
 		}
 
-		// Token: 0x060087C1 RID: 34753 RVA: 0x000FD6B0 File Offset: 0x000FB8B0
 		public void ConsumeDiamond(float amount)
 		{
 			base.GetComponent<Storage>().ConsumeIgnoringDisease(SimHashes.Diamond.CreateTag(), amount);
 		}
 
-		// Token: 0x060087C2 RID: 34754 RVA: 0x000FD6C8 File Offset: 0x000FB8C8
 		public float GetMaxExtractKGFromDiamondAvailable()
 		{
 			return base.GetComponent<Storage>().GetAmountAvailable(SimHashes.Diamond.CreateTag()) / 0.05f;
 		}
 
-		// Token: 0x060087C3 RID: 34755 RVA: 0x0035FF10 File Offset: 0x0035E110
 		public bool CheckIfCanHarvest()
 		{
 			Clustercraft component = base.GetComponent<RocketModuleCluster>().CraftInterface.GetComponent<Clustercraft>();
@@ -265,22 +246,18 @@ public class ResourceHarvestModule : GameStateMachine<ResourceHarvestModule, Res
 			return flag;
 		}
 
-		// Token: 0x060087C4 RID: 34756 RVA: 0x000FD6E5 File Offset: 0x000FB8E5
 		public static void AddHarvestStatusItems(GameObject statusTarget, float harvestRate)
 		{
 			statusTarget.GetComponent<KSelectable>().AddStatusItem(Db.Get().BuildingStatusItems.SpacePOIHarvesting, harvestRate);
 		}
 
-		// Token: 0x060087C5 RID: 34757 RVA: 0x000FD708 File Offset: 0x000FB908
 		public static void RemoveHarvestStatusItems(GameObject statusTarget)
 		{
 			statusTarget.GetComponent<KSelectable>().RemoveStatusItem(Db.Get().BuildingStatusItems.SpacePOIHarvesting, false);
 		}
 
-		// Token: 0x040066D2 RID: 26322
 		private MeterController meter;
 
-		// Token: 0x040066D3 RID: 26323
 		private Storage storage;
 	}
 }

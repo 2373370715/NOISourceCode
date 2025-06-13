@@ -4,16 +4,13 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000098 RID: 152
 public class DeepfryerConfig : IBuildingConfig
 {
-	// Token: 0x0600026F RID: 623 RVA: 0x000AA536 File Offset: 0x000A8736
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.DLC2;
 	}
 
-	// Token: 0x06000270 RID: 624 RVA: 0x00150B14 File Offset: 0x0014ED14
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "Deepfryer";
@@ -40,7 +37,6 @@ public class DeepfryerConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000271 RID: 625 RVA: 0x00150BCC File Offset: 0x0014EDCC
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<BuildingComplete>().isManuallyOperated = true;
@@ -64,7 +60,6 @@ public class DeepfryerConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.CookTop, false);
 	}
 
-	// Token: 0x06000272 RID: 626 RVA: 0x00150C88 File Offset: 0x0014EE88
 	private void ConfigureRecipes()
 	{
 		ComplexRecipe.RecipeElement[] array = new ComplexRecipe.RecipeElement[]
@@ -151,11 +146,9 @@ public class DeepfryerConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x06000273 RID: 627 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x0400019B RID: 411
 	public const string ID = "Deepfryer";
 }

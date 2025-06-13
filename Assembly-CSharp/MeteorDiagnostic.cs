@@ -3,17 +3,14 @@ using System.Collections.Generic;
 using Klei.AI;
 using STRINGS;
 
-// Token: 0x0200126C RID: 4716
 public class MeteorDiagnostic : ColonyDiagnostic
 {
-	// Token: 0x06006048 RID: 24648 RVA: 0x002BA6B0 File Offset: 0x002B88B0
 	public MeteorDiagnostic(int worldID) : base(worldID, UI.COLONY_DIAGNOSTICS.METEORDIAGNOSTIC.ALL_NAME)
 	{
 		this.icon = "meteors";
 		base.AddCriterion("BombardmentUnderway", new DiagnosticCriterion(UI.COLONY_DIAGNOSTICS.METEORDIAGNOSTIC.CRITERIA.CHECKUNDERWAY, new Func<ColonyDiagnostic.DiagnosticResult>(this.CheckMeteorBombardment)));
 	}
 
-	// Token: 0x06006049 RID: 24649 RVA: 0x002BA700 File Offset: 0x002B8900
 	public ColonyDiagnostic.DiagnosticResult CheckMeteorBombardment()
 	{
 		ColonyDiagnostic.DiagnosticResult result = new ColonyDiagnostic.DiagnosticResult(ColonyDiagnostic.DiagnosticResult.Opinion.Normal, UI.COLONY_DIAGNOSTICS.METEORDIAGNOSTIC.NORMAL, null);

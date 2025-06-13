@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005FB RID: 1531
 public class WaterCoolerConfig : IBuildingConfig
 {
-	// Token: 0x06001B07 RID: 6919 RVA: 0x001B5F10 File Offset: 0x001B4110
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "WaterCooler";
@@ -30,7 +28,6 @@ public class WaterCoolerConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001B08 RID: 6920 RVA: 0x001B5F90 File Offset: 0x001B4190
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.RecBuilding, false);
@@ -78,7 +75,6 @@ public class WaterCoolerConfig : IBuildingConfig
 		go.AddOrGetDef<RocketUsageRestriction.Def>();
 	}
 
-	// Token: 0x06001B09 RID: 6921 RVA: 0x001B6128 File Offset: 0x001B4328
 	private string GetImmunityProviderAnimFileName(GameObject theEntitySeekingImmunity)
 	{
 		if (theEntitySeekingImmunity == null)
@@ -93,7 +89,6 @@ public class WaterCoolerConfig : IBuildingConfig
 		return "anim_interacts_watercooler_kanim";
 	}
 
-	// Token: 0x06001B0A RID: 6922 RVA: 0x001B6174 File Offset: 0x001B4374
 	private void ApplyImmunityEffectWhenDrankRecreationally(GameObject duplicant, GameObject waterCoolerInstance)
 	{
 		HeatImmunityProvider.Instance smi = waterCoolerInstance.GetSMI<HeatImmunityProvider.Instance>();
@@ -103,34 +98,28 @@ public class WaterCoolerConfig : IBuildingConfig
 		}
 	}
 
-	// Token: 0x06001B0B RID: 6923 RVA: 0x000B6110 File Offset: 0x000B4310
 	private void OnHeatImmunityEffectApplied(GameObject duplicant, HeatImmunityProvider.Instance smi)
 	{
 		smi.GetSMI<WaterCooler.StatesInstance>().Drink(duplicant, false);
 	}
 
-	// Token: 0x06001B0C RID: 6924 RVA: 0x001B6194 File Offset: 0x001B4394
 	private bool RefreshFromHeatCondition(GameObject go_instance)
 	{
 		WaterCooler.StatesInstance smi = go_instance.GetSMI<WaterCooler.StatesInstance>();
 		return smi != null && smi.IsInsideState(smi.sm.dispensing);
 	}
 
-	// Token: 0x06001B0D RID: 6925 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x0400115D RID: 4445
 	public const string ID = "WaterCooler";
 
-	// Token: 0x0400115E RID: 4446
 	public static global::Tuple<Tag, string>[] BEVERAGE_CHOICE_OPTIONS = new global::Tuple<Tag, string>[]
 	{
 		new global::Tuple<Tag, string>(SimHashes.Water.CreateTag(), ""),
 		new global::Tuple<Tag, string>(SimHashes.Milk.CreateTag(), "DuplicantGotMilk")
 	};
 
-	// Token: 0x0400115F RID: 4447
 	public const string MilkEffectID = "DuplicantGotMilk";
 }

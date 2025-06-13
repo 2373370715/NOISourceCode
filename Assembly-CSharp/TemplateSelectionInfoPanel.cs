@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x0200208F RID: 8335
 [AddComponentMenu("KMonoBehaviour/scripts/TemplateSelectionInfoPanel")]
 public class TemplateSelectionInfoPanel : KMonoBehaviour, IRender1000ms
 {
-	// Token: 0x0600B198 RID: 45464 RVA: 0x004397F4 File Offset: 0x004379F4
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -19,7 +17,6 @@ public class TemplateSelectionInfoPanel : KMonoBehaviour, IRender1000ms
 		this.save_button.onClick += this.SaveCurrentDetails;
 	}
 
-	// Token: 0x0600B199 RID: 45465 RVA: 0x0043984C File Offset: 0x00437A4C
 	public void SaveCurrentDetails()
 	{
 		string text = "";
@@ -32,13 +29,11 @@ public class TemplateSelectionInfoPanel : KMonoBehaviour, IRender1000ms
 		this.saved_detail_label.text = text;
 	}
 
-	// Token: 0x0600B19A RID: 45466 RVA: 0x00117EF0 File Offset: 0x001160F0
 	public void Render1000ms(float dt)
 	{
 		this.RefreshDetails();
 	}
 
-	// Token: 0x0600B19B RID: 45467 RVA: 0x004398C0 File Offset: 0x00437AC0
 	public void RefreshDetails()
 	{
 		for (int i = 0; i < this.details.Length; i++)
@@ -47,7 +42,6 @@ public class TemplateSelectionInfoPanel : KMonoBehaviour, IRender1000ms
 		}
 	}
 
-	// Token: 0x0600B19C RID: 45468 RVA: 0x00439914 File Offset: 0x00437B14
 	private static string TotalMass(List<int> cells)
 	{
 		float num = 0f;
@@ -58,7 +52,6 @@ public class TemplateSelectionInfoPanel : KMonoBehaviour, IRender1000ms
 		return string.Format(UI.DEBUG_TOOLS.SAVE_BASE_TEMPLATE.SELECTION_INFO_PANEL.TOTAL_MASS, GameUtil.GetFormattedMass(num, GameUtil.TimeSlice.None, GameUtil.MetricMassFormat.UseThreshold, true, "{0:0.#}"));
 	}
 
-	// Token: 0x0600B19D RID: 45469 RVA: 0x0043998C File Offset: 0x00437B8C
 	private static string AverageMass(List<int> cells)
 	{
 		float num = 0f;
@@ -70,7 +63,6 @@ public class TemplateSelectionInfoPanel : KMonoBehaviour, IRender1000ms
 		return string.Format(UI.DEBUG_TOOLS.SAVE_BASE_TEMPLATE.SELECTION_INFO_PANEL.AVERAGE_MASS, GameUtil.GetFormattedMass(num, GameUtil.TimeSlice.None, GameUtil.MetricMassFormat.UseThreshold, true, "{0:0.#}"));
 	}
 
-	// Token: 0x0600B19E RID: 45470 RVA: 0x00439A10 File Offset: 0x00437C10
 	private static string AverageTemperature(List<int> cells)
 	{
 		float num = 0f;
@@ -82,7 +74,6 @@ public class TemplateSelectionInfoPanel : KMonoBehaviour, IRender1000ms
 		return string.Format(UI.DEBUG_TOOLS.SAVE_BASE_TEMPLATE.SELECTION_INFO_PANEL.AVERAGE_TEMPERATURE, GameUtil.GetFormattedTemperature(num, GameUtil.TimeSlice.None, GameUtil.TemperatureInterpretation.Absolute, true, false));
 	}
 
-	// Token: 0x0600B19F RID: 45471 RVA: 0x00439A90 File Offset: 0x00437C90
 	private static string TotalJoules(List<int> cells)
 	{
 		List<GameObject> list = new List<GameObject>();
@@ -95,7 +86,6 @@ public class TemplateSelectionInfoPanel : KMonoBehaviour, IRender1000ms
 		return string.Format(UI.DEBUG_TOOLS.SAVE_BASE_TEMPLATE.SELECTION_INFO_PANEL.TOTAL_JOULES, GameUtil.GetFormattedJoules(num, "F5", GameUtil.TimeSlice.None));
 	}
 
-	// Token: 0x0600B1A0 RID: 45472 RVA: 0x00439B38 File Offset: 0x00437D38
 	private static float GetCellEntityEnergy(int cell, ref List<GameObject> ignoreObjects)
 	{
 		float num = 0f;
@@ -173,7 +163,6 @@ public class TemplateSelectionInfoPanel : KMonoBehaviour, IRender1000ms
 		return num;
 	}
 
-	// Token: 0x0600B1A1 RID: 45473 RVA: 0x00439DA4 File Offset: 0x00437FA4
 	private static string JoulesPerKilogram(List<int> cells)
 	{
 		float num = 0f;
@@ -187,7 +176,6 @@ public class TemplateSelectionInfoPanel : KMonoBehaviour, IRender1000ms
 		return string.Format(UI.DEBUG_TOOLS.SAVE_BASE_TEMPLATE.SELECTION_INFO_PANEL.JOULES_PER_KILOGRAM, GameUtil.GetFormattedJoules(num, "F1", GameUtil.TimeSlice.None));
 	}
 
-	// Token: 0x0600B1A2 RID: 45474 RVA: 0x00439E54 File Offset: 0x00438054
 	private static string TotalRadiation(List<int> cells)
 	{
 		float num = 0f;
@@ -198,7 +186,6 @@ public class TemplateSelectionInfoPanel : KMonoBehaviour, IRender1000ms
 		return string.Format(UI.DEBUG_TOOLS.SAVE_BASE_TEMPLATE.SELECTION_INFO_PANEL.TOTAL_RADS, GameUtil.GetFormattedRads(num, GameUtil.TimeSlice.None));
 	}
 
-	// Token: 0x0600B1A3 RID: 45475 RVA: 0x00439EC8 File Offset: 0x004380C8
 	private static string AverageRadiation(List<int> cells)
 	{
 		float num = 0f;
@@ -210,7 +197,6 @@ public class TemplateSelectionInfoPanel : KMonoBehaviour, IRender1000ms
 		return string.Format(UI.DEBUG_TOOLS.SAVE_BASE_TEMPLATE.SELECTION_INFO_PANEL.AVERAGE_RADS, GameUtil.GetFormattedRads(num, GameUtil.TimeSlice.None));
 	}
 
-	// Token: 0x0600B1A4 RID: 45476 RVA: 0x00439F44 File Offset: 0x00438144
 	private static string MassPerElement(List<int> cells)
 	{
 		TemplateSelectionInfoPanel.mass_per_element.Clear();
@@ -258,23 +244,18 @@ public class TemplateSelectionInfoPanel : KMonoBehaviour, IRender1000ms
 		return text;
 	}
 
-	// Token: 0x04008C09 RID: 35849
 	[SerializeField]
 	private GameObject prefab_detail_label;
 
-	// Token: 0x04008C0A RID: 35850
 	[SerializeField]
 	private GameObject current_detail_container;
 
-	// Token: 0x04008C0B RID: 35851
 	[SerializeField]
 	private LocText saved_detail_label;
 
-	// Token: 0x04008C0C RID: 35852
 	[SerializeField]
 	private KButton save_button;
 
-	// Token: 0x04008C0D RID: 35853
 	private Func<List<int>, string>[] details = new Func<List<int>, string>[]
 	{
 		new Func<List<int>, string>(TemplateSelectionInfoPanel.TotalMass),
@@ -287,6 +268,5 @@ public class TemplateSelectionInfoPanel : KMonoBehaviour, IRender1000ms
 		new Func<List<int>, string>(TemplateSelectionInfoPanel.AverageRadiation)
 	};
 
-	// Token: 0x04008C0E RID: 35854
 	private static List<global::Tuple<Element, float>> mass_per_element = new List<global::Tuple<Element, float>>();
 }

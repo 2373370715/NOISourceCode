@@ -1,16 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200131C RID: 4892
 public class FallerComponents : KGameObjectComponentManager<FallerComponent>
 {
-	// Token: 0x06006424 RID: 25636 RVA: 0x000E5D9E File Offset: 0x000E3F9E
 	public HandleVector<int>.Handle Add(GameObject go, Vector2 initial_velocity)
 	{
 		return base.Add(go, new FallerComponent(go.transform, initial_velocity));
 	}
 
-	// Token: 0x06006425 RID: 25637 RVA: 0x002CAC08 File Offset: 0x002C8E08
 	public override void Remove(GameObject go)
 	{
 		HandleVector<int>.Handle handle = base.GetHandle(go);
@@ -24,7 +21,6 @@ public class FallerComponents : KGameObjectComponentManager<FallerComponent>
 		base.InternalRemoveComponent(info);
 	}
 
-	// Token: 0x06006426 RID: 25638 RVA: 0x002CAC44 File Offset: 0x002C8E44
 	protected override void OnPrefabInit(HandleVector<int>.Handle h)
 	{
 		FallerComponent data = base.GetData(h);
@@ -63,7 +59,6 @@ public class FallerComponents : KGameObjectComponentManager<FallerComponent>
 		FallerComponents.AddGravity(data.transform, data.initialVelocity);
 	}
 
-	// Token: 0x06006427 RID: 25639 RVA: 0x002CADE4 File Offset: 0x002C8FE4
 	protected override void OnSpawn(HandleVector<int>.Handle h)
 	{
 		base.OnSpawn(h);
@@ -71,7 +66,6 @@ public class FallerComponents : KGameObjectComponentManager<FallerComponent>
 		Singleton<CellChangeMonitor>.Instance.RegisterCellChangedHandler(data.transform, data.cellChangedCB, "FallerComponent.OnSpawn");
 	}
 
-	// Token: 0x06006428 RID: 25640 RVA: 0x002CAE1C File Offset: 0x002C901C
 	private void OnCleanUpImmediate(HandleVector<int>.Handle h)
 	{
 		FallerComponent data = base.GetData(h);
@@ -88,7 +82,6 @@ public class FallerComponents : KGameObjectComponentManager<FallerComponent>
 		base.SetData(h, data);
 	}
 
-	// Token: 0x06006429 RID: 25641 RVA: 0x002CAE9C File Offset: 0x002C909C
 	private static void AddGravity(Transform transform, Vector2 initial_velocity)
 	{
 		if (!GameComps.Gravities.Has(transform.gameObject))
@@ -107,7 +100,6 @@ public class FallerComponents : KGameObjectComponentManager<FallerComponent>
 		}
 	}
 
-	// Token: 0x0600642A RID: 25642 RVA: 0x002CAF40 File Offset: 0x002C9140
 	private static void RemoveGravity(Transform transform)
 	{
 		if (GameComps.Gravities.Has(transform.gameObject))
@@ -129,13 +121,11 @@ public class FallerComponents : KGameObjectComponentManager<FallerComponent>
 		}
 	}
 
-	// Token: 0x0600642B RID: 25643 RVA: 0x000E5DB3 File Offset: 0x000E3FB3
 	private static void OnLanded(Transform transform)
 	{
 		FallerComponents.RemoveGravity(transform);
 	}
 
-	// Token: 0x0600642C RID: 25644 RVA: 0x002CB01C File Offset: 0x002C921C
 	private static void OnSolidChanged(HandleVector<int>.Handle handle)
 	{
 		FallerComponent data = GameComps.Fallers.GetData(handle);
@@ -163,6 +153,5 @@ public class FallerComponents : KGameObjectComponentManager<FallerComponent>
 		}
 	}
 
-	// Token: 0x040047FB RID: 18427
 	private const float EPSILON = 0.07f;
 }

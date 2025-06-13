@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using ImGuiNET;
 
-// Token: 0x02000C0F RID: 3087
 public class DevToolStoryManager : DevTool
 {
-	// Token: 0x06003A8B RID: 14987 RVA: 0x000CA44C File Offset: 0x000C864C
 	protected override void RenderTo(DevPanel panel)
 	{
 		if (ImGui.CollapsingHeader("Story Instance Data", ImGuiTreeNodeFlags.DefaultOpen))
@@ -19,7 +17,6 @@ public class DevToolStoryManager : DevTool
 		}
 	}
 
-	// Token: 0x06003A8C RID: 14988 RVA: 0x00235588 File Offset: 0x00233788
 	private void DrawStoryInstanceData()
 	{
 		if (StoryManager.Instance == null)
@@ -40,7 +37,6 @@ public class DevToolStoryManager : DevTool
 		}
 	}
 
-	// Token: 0x06003A8D RID: 14989 RVA: 0x002356A4 File Offset: 0x002338A4
 	private void DrawTelemetryData()
 	{
 		ImGuiEx.DrawObjectTable<StoryManager.StoryTelemetry>("ID_telemetry", StoryManager.GetTelemetry(), null);

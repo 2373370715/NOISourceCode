@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000FF RID: 255
 public static class BaseSealConfig
 {
-	// Token: 0x060003F4 RID: 1012 RVA: 0x0015CF00 File Offset: 0x0015B100
 	public static GameObject BaseSeal(string id, string name, string desc, string anim_file, string traitId, bool is_baby, string symbolOverridePrefix = null)
 	{
 		float mass = 100f;
@@ -48,7 +46,6 @@ public static class BaseSealConfig
 		return gameObject;
 	}
 
-	// Token: 0x060003F5 RID: 1013 RVA: 0x0015D248 File Offset: 0x0015B448
 	public static Diet.Info CreateDietInfo(Tag foodTag, Tag poopTag, float caloriesPerKg, float producedConversionRate, string diseaseId, float diseasePerKgProduced)
 	{
 		return new Diet.Info(new HashSet<Tag>
@@ -57,7 +54,6 @@ public static class BaseSealConfig
 		}, poopTag, caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, Diet.Info.FoodType.EatPlantStorage, false, null);
 	}
 
-	// Token: 0x060003F6 RID: 1014 RVA: 0x0015D274 File Offset: 0x0015B474
 	public static GameObject SetupDiet(GameObject prefab, List<Diet.Info> diet_infos, float referenceCaloriesPerKg, float minPoopSizeInKg)
 	{
 		Diet diet = new Diet(diet_infos.ToArray());

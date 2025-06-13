@@ -3,10 +3,8 @@ using STRINGS;
 
 namespace Database
 {
-	// Token: 0x020021E8 RID: 8680
 	public class Thoughts : ResourceSet<Thought>
 	{
-		// Token: 0x0600B8E7 RID: 47335 RVA: 0x00475740 File Offset: 0x00473940
 		public Thoughts(ResourceSet parent) : base("Thoughts", parent)
 		{
 			this.GotInfected = new Thought("GotInfected", this, "crew_state_sick", null, "crew_state_sick", "bubble_alert", SpeechMonitor.PREFIX_SAD, DUPLICANTS.THOUGHTS.GOTINFECTED.TOOLTIP, false, 4f);
@@ -40,79 +38,54 @@ namespace Database
 			}
 		}
 
-		// Token: 0x04009727 RID: 38695
 		public Thought Starving;
 
-		// Token: 0x04009728 RID: 38696
 		public Thought Hot;
 
-		// Token: 0x04009729 RID: 38697
 		public Thought Cold;
 
-		// Token: 0x0400972A RID: 38698
 		public Thought BreakBladder;
 
-		// Token: 0x0400972B RID: 38699
 		public Thought FullBladder;
 
-		// Token: 0x0400972C RID: 38700
 		public Thought ExpellGunkDesire;
 
-		// Token: 0x0400972D RID: 38701
 		public Thought ExpellingGunk;
 
-		// Token: 0x0400972E RID: 38702
 		public Thought RefillOilDesire;
 
-		// Token: 0x0400972F RID: 38703
 		public Thought Happy;
 
-		// Token: 0x04009730 RID: 38704
 		public Thought Unhappy;
 
-		// Token: 0x04009731 RID: 38705
 		public Thought PoorDecor;
 
-		// Token: 0x04009732 RID: 38706
 		public Thought PoorFoodQuality;
 
-		// Token: 0x04009733 RID: 38707
 		public Thought GoodFoodQuality;
 
-		// Token: 0x04009734 RID: 38708
 		public Thought Sleepy;
 
-		// Token: 0x04009735 RID: 38709
 		public Thought Suffocating;
 
-		// Token: 0x04009736 RID: 38710
 		public Thought Angry;
 
-		// Token: 0x04009737 RID: 38711
 		public Thought Raging;
 
-		// Token: 0x04009738 RID: 38712
 		public Thought GotInfected;
 
-		// Token: 0x04009739 RID: 38713
 		public Thought PutridOdour;
 
-		// Token: 0x0400973A RID: 38714
 		public Thought Noisy;
 
-		// Token: 0x0400973B RID: 38715
 		public Thought NewRole;
 
-		// Token: 0x0400973C RID: 38716
 		public Thought Chatty;
 
-		// Token: 0x0400973D RID: 38717
 		public Thought Encourage;
 
-		// Token: 0x0400973E RID: 38718
 		public Thought CatchyTune;
 
-		// Token: 0x0400973F RID: 38719
 		public Thought Dreaming;
 	}
 }

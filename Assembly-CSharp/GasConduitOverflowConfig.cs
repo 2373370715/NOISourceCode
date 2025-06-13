@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000352 RID: 850
 public class GasConduitOverflowConfig : IBuildingConfig
 {
-	// Token: 0x06000D70 RID: 3440 RVA: 0x0017D698 File Offset: 0x0017B898
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "GasConduitOverflow";
@@ -36,27 +34,23 @@ public class GasConduitOverflowConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000D71 RID: 3441 RVA: 0x000B0349 File Offset: 0x000AE549
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 		base.DoPostConfigurePreview(def, go);
 		this.AttachPort(go);
 	}
 
-	// Token: 0x06000D72 RID: 3442 RVA: 0x000B035A File Offset: 0x000AE55A
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		base.DoPostConfigureUnderConstruction(go);
 		this.AttachPort(go);
 	}
 
-	// Token: 0x06000D73 RID: 3443 RVA: 0x000B036A File Offset: 0x000AE56A
 	private void AttachPort(GameObject go)
 	{
 		go.AddComponent<ConduitSecondaryOutput>().portInfo = this.secondaryPort;
 	}
 
-	// Token: 0x06000D74 RID: 3444 RVA: 0x000B037D File Offset: 0x000AE57D
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
@@ -65,7 +59,6 @@ public class GasConduitOverflowConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayInFrontOfConduits, false);
 	}
 
-	// Token: 0x06000D75 RID: 3445 RVA: 0x000B02E8 File Offset: 0x000AE4E8
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		UnityEngine.Object.DestroyImmediate(go.GetComponent<RequireInputs>());
@@ -73,12 +66,9 @@ public class GasConduitOverflowConfig : IBuildingConfig
 		UnityEngine.Object.DestroyImmediate(go.GetComponent<ConduitDispenser>());
 	}
 
-	// Token: 0x040009E4 RID: 2532
 	public const string ID = "GasConduitOverflow";
 
-	// Token: 0x040009E5 RID: 2533
 	private const ConduitType CONDUIT_TYPE = ConduitType.Gas;
 
-	// Token: 0x040009E6 RID: 2534
 	private ConduitPortInfo secondaryPort = new ConduitPortInfo(ConduitType.Gas, new CellOffset(1, 1));
 }

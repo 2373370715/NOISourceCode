@@ -5,15 +5,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02002072 RID: 8306
 public class SpacePOISimpleInfoPanel : SimpleInfoPanel
 {
-	// Token: 0x0600B0CE RID: 45262 RVA: 0x00117873 File Offset: 0x00115A73
 	public SpacePOISimpleInfoPanel(SimpleInfoScreen simpleInfoScreen) : base(simpleInfoScreen)
 	{
 	}
 
-	// Token: 0x0600B0CF RID: 45263 RVA: 0x00433A8C File Offset: 0x00431C8C
 	public override void Refresh(CollapsibleDetailContentPanel spacePOIPanel, GameObject selectedTarget)
 	{
 		spacePOIPanel.SetTitle(UI.CLUSTERMAP.POI.TITLE);
@@ -61,7 +58,6 @@ public class SpacePOISimpleInfoPanel : SimpleInfoPanel
 		this.RefreshArtifacts(component2, selectedTarget, spacePOIPanel);
 	}
 
-	// Token: 0x0600B0D0 RID: 45264 RVA: 0x00433C00 File Offset: 0x00431E00
 	private void RefreshMassHeader(HarvestablePOIStates.Instance harvestable, GameObject selectedTarget, CollapsibleDetailContentPanel spacePOIPanel)
 	{
 		if (this.massHeader == null)
@@ -84,7 +80,6 @@ public class SpacePOISimpleInfoPanel : SimpleInfoPanel
 		component.GetReference<LocText>("ValueLabel").alignment = TextAlignmentOptions.MidlineRight;
 	}
 
-	// Token: 0x0600B0D1 RID: 45265 RVA: 0x00433CD8 File Offset: 0x00431ED8
 	private void RefreshElements(HarvestablePOIStates.Instance harvestable, GameObject selectedTarget, CollapsibleDetailContentPanel spacePOIPanel)
 	{
 		foreach (KeyValuePair<Tag, GameObject> keyValuePair in this.elementRows)
@@ -126,7 +121,6 @@ public class SpacePOISimpleInfoPanel : SimpleInfoPanel
 		}
 	}
 
-	// Token: 0x0600B0D2 RID: 45266 RVA: 0x00433F38 File Offset: 0x00432138
 	private void RefreshRocketsAtThisLocation(HarvestablePOIStates.Instance harvestable, GameObject selectedTarget, CollapsibleDetailContentPanel spacePOIPanel)
 	{
 		if (this.rocketsHeader == null)
@@ -176,7 +170,6 @@ public class SpacePOISimpleInfoPanel : SimpleInfoPanel
 		this.rocketsSpacer.SetActive(this.rocketsHeader.activeSelf);
 	}
 
-	// Token: 0x0600B0D3 RID: 45267 RVA: 0x004341E8 File Offset: 0x004323E8
 	private void RefreshArtifacts(ArtifactPOIConfigurator artifactConfigurator, GameObject selectedTarget, CollapsibleDetailContentPanel spacePOIPanel)
 	{
 		if (this.artifactsSpacer == null)
@@ -201,24 +194,17 @@ public class SpacePOISimpleInfoPanel : SimpleInfoPanel
 		component.GetReference<LocText>("ValueLabel").text = string.Format(UI.CLUSTERMAP.POI.ARTIFACTS_DEPLETED, GameUtil.GetFormattedCycles(smi.RechargeTimeRemaining(), "F1", true));
 	}
 
-	// Token: 0x04008B42 RID: 35650
 	private Dictionary<Tag, GameObject> elementRows = new Dictionary<Tag, GameObject>();
 
-	// Token: 0x04008B43 RID: 35651
 	private Dictionary<Clustercraft, GameObject> rocketRows = new Dictionary<Clustercraft, GameObject>();
 
-	// Token: 0x04008B44 RID: 35652
 	private GameObject massHeader;
 
-	// Token: 0x04008B45 RID: 35653
 	private GameObject rocketsSpacer;
 
-	// Token: 0x04008B46 RID: 35654
 	private GameObject rocketsHeader;
 
-	// Token: 0x04008B47 RID: 35655
 	private GameObject artifactsSpacer;
 
-	// Token: 0x04008B48 RID: 35656
 	private GameObject artifactRow;
 }

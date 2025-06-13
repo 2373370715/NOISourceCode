@@ -4,22 +4,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200052D RID: 1325
 public class PropGravitasDeskPodiumGeothermalPlantConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x060016BD RID: 5821 RVA: 0x000AA536 File Offset: 0x000A8736
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.DLC2;
 	}
 
-	// Token: 0x060016BE RID: 5822 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x060016BF RID: 5823 RVA: 0x001A3C0C File Offset: 0x001A1E0C
 	public GameObject CreatePrefab()
 	{
 		string id = "PropGravitasDeskPodiumGeothermalPlant";
@@ -43,7 +39,6 @@ public class PropGravitasDeskPodiumGeothermalPlantConfig : IEntityConfig, IHasDl
 		return gameObject;
 	}
 
-	// Token: 0x060016C0 RID: 5824 RVA: 0x000AA768 File Offset: 0x000A8968
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.GetComponent<OccupyArea>().objectLayers = new ObjectLayer[]
@@ -52,7 +47,6 @@ public class PropGravitasDeskPodiumGeothermalPlantConfig : IEntityConfig, IHasDl
 		};
 	}
 
-	// Token: 0x060016C1 RID: 5825 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}

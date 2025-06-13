@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200040B RID: 1035
 public class MassageTableConfig : IBuildingConfig
 {
-	// Token: 0x0600112C RID: 4396 RVA: 0x0018D164 File Offset: 0x0018B364
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "MassageTable";
@@ -30,7 +28,6 @@ public class MassageTableConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600112D RID: 4397 RVA: 0x0018D1F4 File Offset: 0x0018B3F4
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<LoopingSounds>();
@@ -51,13 +48,11 @@ public class MassageTableConfig : IBuildingConfig
 		roomTracker.requirement = RoomTracker.Requirement.Recommended;
 	}
 
-	// Token: 0x0600112E RID: 4398 RVA: 0x000B2145 File Offset: 0x000B0345
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.GetComponent<KAnimControllerBase>().initialAnim = "off";
 		go.AddOrGet<CopyBuildingSettings>();
 	}
 
-	// Token: 0x04000BEF RID: 3055
 	public const string ID = "MassageTable";
 }

@@ -3,11 +3,8 @@ using System.Collections.Generic;
 
 namespace ImGuiObjectDrawer
 {
-	// Token: 0x0200215A RID: 8538
 	public class PrimaryMemberDrawerProvider : IMemberDrawerProvider
 	{
-		// Token: 0x17000BDC RID: 3036
-		// (get) Token: 0x0600B61B RID: 46619 RVA: 0x000D3AD3 File Offset: 0x000D1CD3
 		public int Priority
 		{
 			get
@@ -16,7 +13,6 @@ namespace ImGuiObjectDrawer
 			}
 		}
 
-		// Token: 0x0600B61C RID: 46620 RVA: 0x00455BF0 File Offset: 0x00453DF0
 		public void AppendDrawersTo(List<MemberDrawer> drawers)
 		{
 			drawers.AddRange(new MemberDrawer[]

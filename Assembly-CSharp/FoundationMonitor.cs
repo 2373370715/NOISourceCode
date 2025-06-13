@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x020011C9 RID: 4553
 [AddComponentMenu("KMonoBehaviour/scripts/FoundationMonitor")]
 public class FoundationMonitor : KMonoBehaviour
 {
-	// Token: 0x06005C82 RID: 23682 RVA: 0x002A9908 File Offset: 0x002A7B08
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -23,7 +21,6 @@ public class FoundationMonitor : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06005C83 RID: 23683 RVA: 0x002A99AC File Offset: 0x002A7BAC
 	protected override void OnCleanUp()
 	{
 		foreach (HandleVector<int>.Handle handle in this.partitionerEntries)
@@ -33,13 +30,11 @@ public class FoundationMonitor : KMonoBehaviour
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06005C84 RID: 23684 RVA: 0x000E0BD1 File Offset: 0x000DEDD1
 	public bool CheckFoundationValid()
 	{
 		return !this.needsFoundation || this.IsSuitableFoundation(this.position);
 	}
 
-	// Token: 0x06005C85 RID: 23685 RVA: 0x002A9A0C File Offset: 0x002A7C0C
 	public bool IsSuitableFoundation(int cell)
 	{
 		bool flag = true;
@@ -59,7 +54,6 @@ public class FoundationMonitor : KMonoBehaviour
 		return flag;
 	}
 
-	// Token: 0x06005C86 RID: 23686 RVA: 0x002A9A60 File Offset: 0x002A7C60
 	public void OnGroundChanged(object callbackData)
 	{
 		if (!this.hasFoundation && this.CheckFoundationValid())
@@ -76,23 +70,18 @@ public class FoundationMonitor : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x040041E8 RID: 16872
 	private int position;
 
-	// Token: 0x040041E9 RID: 16873
 	[Serialize]
 	public bool needsFoundation = true;
 
-	// Token: 0x040041EA RID: 16874
 	[Serialize]
 	private bool hasFoundation = true;
 
-	// Token: 0x040041EB RID: 16875
 	public CellOffset[] monitorCells = new CellOffset[]
 	{
 		new CellOffset(0, -1)
 	};
 
-	// Token: 0x040041EC RID: 16876
 	private List<HandleVector<int>.Handle> partitionerEntries = new List<HandleVector<int>.Handle>();
 }

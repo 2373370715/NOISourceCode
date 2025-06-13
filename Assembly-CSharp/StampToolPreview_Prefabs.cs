@@ -3,10 +3,8 @@ using Database;
 using TemplateClasses;
 using UnityEngine;
 
-// Token: 0x0200149E RID: 5278
 public class StampToolPreview_Prefabs : IStampToolPreviewPlugin
 {
-	// Token: 0x06006D4B RID: 27979 RVA: 0x002F7EC8 File Offset: 0x002F60C8
 	public void Setup(StampToolPreviewContext context)
 	{
 		if (!context.stampTemplate.elementalOres.IsNullOrDestroyed())
@@ -39,7 +37,6 @@ public class StampToolPreview_Prefabs : IStampToolPreviewPlugin
 		}
 	}
 
-	// Token: 0x06006D4C RID: 27980 RVA: 0x002F8040 File Offset: 0x002F6240
 	public static void SpawnPrefab(StampToolPreviewContext context, Prefab prefabInfo)
 	{
 		GameObject gameObject = Assets.TryGetPrefab(prefabInfo.id);
@@ -61,7 +58,6 @@ public class StampToolPreview_Prefabs : IStampToolPreviewPlugin
 		StampToolPreview_Prefabs.SpawnPrefab_Building(context, prefabInfo, component);
 	}
 
-	// Token: 0x06006D4D RID: 27981 RVA: 0x002F80A4 File Offset: 0x002F62A4
 	public static void SpawnPrefab_Tile(StampToolPreviewContext context, Prefab prefabInfo, Building buildingPrefab)
 	{
 		TextureAtlas textureAtlas = buildingPrefab.Def.BlockTilePlaceAtlas;
@@ -103,7 +99,6 @@ public class StampToolPreview_Prefabs : IStampToolPreviewPlugin
 		}));
 	}
 
-	// Token: 0x06006D4E RID: 27982 RVA: 0x002F8220 File Offset: 0x002F6420
 	public static void SpawnPrefab_Building(StampToolPreviewContext context, Prefab prefabInfo, Building buildingPrefab)
 	{
 		int num = LayerMask.NameToLayer("Place");
@@ -206,7 +201,6 @@ public class StampToolPreview_Prefabs : IStampToolPreviewPlugin
 		}
 	}
 
-	// Token: 0x06006D4F RID: 27983 RVA: 0x002F8470 File Offset: 0x002F6670
 	public static void SpawnPrefab_Default(StampToolPreviewContext context, Prefab prefabInfo, GameObject prefab)
 	{
 		KBatchedAnimController component = prefab.GetComponent<KBatchedAnimController>();

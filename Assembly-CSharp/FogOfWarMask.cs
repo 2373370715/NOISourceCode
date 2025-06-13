@@ -1,18 +1,15 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200133F RID: 4927
 [AddComponentMenu("KMonoBehaviour/scripts/FogOfWarMask")]
 public class FogOfWarMask : KMonoBehaviour
 {
-	// Token: 0x060064E5 RID: 25829 RVA: 0x000E6429 File Offset: 0x000E4629
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
 		Grid.OnReveal = (Action<int>)Delegate.Combine(Grid.OnReveal, new Action<int>(this.OnReveal));
 	}
 
-	// Token: 0x060064E6 RID: 25830 RVA: 0x000E6451 File Offset: 0x000E4651
 	private void OnReveal(int cell)
 	{
 		if (Grid.PosToCell(this) == cell)
@@ -22,7 +19,6 @@ public class FogOfWarMask : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060064E7 RID: 25831 RVA: 0x002CF354 File Offset: 0x002CD554
 	protected override void OnCmpEnable()
 	{
 		base.OnCmpEnable();
@@ -50,7 +46,6 @@ public class FogOfWarMask : KMonoBehaviour
 		}, 300, null, true);
 	}
 
-	// Token: 0x060064E8 RID: 25832 RVA: 0x000E6487 File Offset: 0x000E4687
 	public static void ClearMask(int cell)
 	{
 		if (Grid.PreventFogOfWarReveal[cell])
@@ -59,7 +54,6 @@ public class FogOfWarMask : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060064E9 RID: 25833 RVA: 0x000E64B0 File Offset: 0x000E46B0
 	public static bool RevealFogOfWarMask(int cell)
 	{
 		bool flag = Grid.PreventFogOfWarReveal[cell];

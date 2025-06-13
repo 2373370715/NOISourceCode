@@ -4,11 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000058 RID: 88
 public class LiquidConduitTemperatureSensorConfig : ConduitSensorConfig
 {
-	// Token: 0x1700000F RID: 15
-	// (get) Token: 0x0600019E RID: 414 RVA: 0x000AA7FE File Offset: 0x000A89FE
 	protected override ConduitType ConduitType
 	{
 		get
@@ -17,7 +14,6 @@ public class LiquidConduitTemperatureSensorConfig : ConduitSensorConfig
 		}
 	}
 
-	// Token: 0x0600019F RID: 415 RVA: 0x0014D5FC File Offset: 0x0014B7FC
 	public override BuildingDef CreateBuildingDef()
 	{
 		BuildingDef result = base.CreateBuildingDef(LiquidConduitTemperatureSensorConfig.ID, "liquid_temperature_sensor_kanim", TUNING.BUILDINGS.CONSTRUCTION_MASS_KG.TIER0, MATERIALS.REFINED_METALS, new List<LogicPorts.Port>
@@ -28,7 +24,6 @@ public class LiquidConduitTemperatureSensorConfig : ConduitSensorConfig
 		return result;
 	}
 
-	// Token: 0x060001A0 RID: 416 RVA: 0x0014D590 File Offset: 0x0014B790
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		base.DoPostConfigureComplete(go);
@@ -43,6 +38,5 @@ public class LiquidConduitTemperatureSensorConfig : ConduitSensorConfig
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayInFrontOfConduits, false);
 	}
 
-	// Token: 0x040000F1 RID: 241
 	public static string ID = "LiquidConduitTemperatureSensor";
 }

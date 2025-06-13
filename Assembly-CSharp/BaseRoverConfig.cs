@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using Klei.AI;
 using UnityEngine;
 
-// Token: 0x020000FC RID: 252
 public static class BaseRoverConfig
 {
-	// Token: 0x060003EF RID: 1007 RVA: 0x0015C2C8 File Offset: 0x0015A4C8
 	public static GameObject BaseRover(string id, string name, Tag model, string desc, string anim_file, float mass, float width, float height, float carryingAmount, float digging, float construction, float athletics, float hitPoints, float batteryCapacity, float batteryDepletionRate, Amount batteryType, bool deleteOnDeath)
 	{
 		carryingAmount = 2000f;
@@ -120,7 +118,6 @@ public static class BaseRoverConfig
 		return gameObject;
 	}
 
-	// Token: 0x060003F0 RID: 1008 RVA: 0x0015C874 File Offset: 0x0015AA74
 	private static void SetupLaserEffects(GameObject prefab)
 	{
 		GameObject gameObject = new GameObject("LaserEffect");
@@ -258,7 +255,6 @@ public static class BaseRoverConfig
 		}
 	}
 
-	// Token: 0x060003F1 RID: 1009 RVA: 0x0015CDB4 File Offset: 0x0015AFB4
 	public static void OnPrefabInit(GameObject inst, Amount batteryType)
 	{
 		ChoreConsumer component = inst.GetComponent<ChoreConsumer>();
@@ -270,7 +266,6 @@ public static class BaseRoverConfig
 		amountInstance.value = amountInstance.GetMax();
 	}
 
-	// Token: 0x060003F2 RID: 1010 RVA: 0x0015CDF0 File Offset: 0x0015AFF0
 	public static void OnSpawn(GameObject inst)
 	{
 		Sensors component = inst.GetComponent<Sensors>();
@@ -290,19 +285,14 @@ public static class BaseRoverConfig
 		}
 	}
 
-	// Token: 0x020000FD RID: 253
 	public struct LaserEffect
 	{
-		// Token: 0x040002C9 RID: 713
 		public string id;
 
-		// Token: 0x040002CA RID: 714
 		public string animFile;
 
-		// Token: 0x040002CB RID: 715
 		public string anim;
 
-		// Token: 0x040002CC RID: 716
 		public HashedString context;
 	}
 }

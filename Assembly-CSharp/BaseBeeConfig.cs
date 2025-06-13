@@ -3,10 +3,8 @@ using Klei.AI;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000D2 RID: 210
 public static class BaseBeeConfig
 {
-	// Token: 0x06000375 RID: 885 RVA: 0x001570F0 File Offset: 0x001552F0
 	public static GameObject BaseBee(string id, string name, string desc, string anim_file, string traitId, EffectorValues decor, bool is_baby, string symbolOverridePrefix = null)
 	{
 		float mass = 5f;
@@ -95,7 +93,6 @@ public static class BaseBeeConfig
 		return gameObject;
 	}
 
-	// Token: 0x06000376 RID: 886 RVA: 0x000AB357 File Offset: 0x000A9557
 	public static void SetupLoopingSounds(GameObject inst)
 	{
 		inst.GetComponent<LoopingSounds>().StartSound(GlobalAssets.GetSound("Bee_wings_LP", false));

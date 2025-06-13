@@ -4,10 +4,8 @@ using Klei.AI;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000FA RID: 250
 public static class BasePuftConfig
 {
-	// Token: 0x060003E7 RID: 999 RVA: 0x0015BF08 File Offset: 0x0015A108
 	public static GameObject BasePuft(string id, string name, string desc, string traitId, string anim_file, bool is_baby, string symbol_override_prefix, float warningLowTemperature, float warningHighTemperature, float lethalLowTemperature, float lethalHighTemperature)
 	{
 		float mass = 50f;
@@ -66,7 +64,6 @@ public static class BasePuftConfig
 		return gameObject;
 	}
 
-	// Token: 0x060003E8 RID: 1000 RVA: 0x0015C24C File Offset: 0x0015A44C
 	public static GameObject SetupDiet(GameObject prefab, Tag consumed_tag, Tag producedTag, float caloriesPerKg, float producedConversionRate, string diseaseId, float diseasePerKgProduced, float minPoopSizeInKg)
 	{
 		Diet.Info[] diet_infos = new Diet.Info[]
@@ -79,7 +76,6 @@ public static class BasePuftConfig
 		return BasePuftConfig.SetupDiet(prefab, diet_infos, caloriesPerKg, minPoopSizeInKg);
 	}
 
-	// Token: 0x060003E9 RID: 1001 RVA: 0x0015C290 File Offset: 0x0015A490
 	public static GameObject SetupDiet(GameObject prefab, Diet.Info[] diet_infos, float caloriesPerKg, float minPoopSizeInKg)
 	{
 		Diet diet = new Diet(diet_infos);
@@ -90,14 +86,12 @@ public static class BasePuftConfig
 		return prefab;
 	}
 
-	// Token: 0x060003EA RID: 1002 RVA: 0x0015B030 File Offset: 0x00159230
 	private static HashedString CustomIdleAnim(IdleStates.Instance smi, ref HashedString pre_anim)
 	{
 		CreatureCalorieMonitor.Instance smi2 = smi.GetSMI<CreatureCalorieMonitor.Instance>();
 		return (smi2 != null && smi2.stomach.IsReadyToPoop()) ? "idle_loop_full" : "idle_loop";
 	}
 
-	// Token: 0x060003EB RID: 1003 RVA: 0x0015B068 File Offset: 0x00159268
 	public static void OnSpawn(GameObject inst)
 	{
 		Navigator component = inst.GetComponent<Navigator>();

@@ -5,13 +5,9 @@ using Klei.CustomSettings;
 using ProcGen;
 using UnityEngine;
 
-// Token: 0x02001CF6 RID: 7414
 [AddComponentMenu("KMonoBehaviour/scripts/DestinationSelectPanel")]
 public class DestinationSelectPanel : KMonoBehaviour
 {
-	// Token: 0x17000A2F RID: 2607
-	// (get) Token: 0x06009AB3 RID: 39603 RVA: 0x00109296 File Offset: 0x00107496
-	// (set) Token: 0x06009AB4 RID: 39604 RVA: 0x0010929D File Offset: 0x0010749D
 	public static int ChosenClusterCategorySetting
 	{
 		get
@@ -24,13 +20,10 @@ public class DestinationSelectPanel : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x1400002A RID: 42
-	// (add) Token: 0x06009AB5 RID: 39605 RVA: 0x003C8D68 File Offset: 0x003C6F68
-	// (remove) Token: 0x06009AB6 RID: 39606 RVA: 0x003C8DA0 File Offset: 0x003C6FA0
+add) Token: 0x06009AB5 RID: 39605 RVA: 0x003C8D68 File Offset: 0x003C6F68
+remove) Token: 0x06009AB6 RID: 39606 RVA: 0x003C8DA0 File Offset: 0x003C6FA0
 	public event Action<ColonyDestinationAsteroidBeltData> OnAsteroidClicked;
 
-	// Token: 0x17000A30 RID: 2608
-	// (get) Token: 0x06009AB7 RID: 39607 RVA: 0x003C8DD8 File Offset: 0x003C6FD8
 	private float min
 	{
 		get
@@ -39,8 +32,6 @@ public class DestinationSelectPanel : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x17000A31 RID: 2609
-	// (get) Token: 0x06009AB8 RID: 39608 RVA: 0x003C8E00 File Offset: 0x003C7000
 	private float max
 	{
 		get
@@ -49,7 +40,6 @@ public class DestinationSelectPanel : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06009AB9 RID: 39609 RVA: 0x003C8E28 File Offset: 0x003C7028
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -62,7 +52,6 @@ public class DestinationSelectPanel : KMonoBehaviour
 		multiToggle2.onClick = (System.Action)Delegate.Combine(multiToggle2.onClick, new System.Action(this.ClickRight));
 	}
 
-	// Token: 0x06009ABA RID: 39610 RVA: 0x001092A5 File Offset: 0x001074A5
 	private void BeginDrag()
 	{
 		this.dragStartPos = KInputManager.GetMousePos();
@@ -71,7 +60,6 @@ public class DestinationSelectPanel : KMonoBehaviour
 		KFMOD.PlayUISound(GlobalAssets.GetSound("DestinationSelect_Scroll_Start", false));
 	}
 
-	// Token: 0x06009ABB RID: 39611 RVA: 0x003C8ED0 File Offset: 0x003C70D0
 	private void Drag()
 	{
 		Vector2 vector = KInputManager.GetMousePos();
@@ -88,7 +76,6 @@ public class DestinationSelectPanel : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06009ABC RID: 39612 RVA: 0x001092DA File Offset: 0x001074DA
 	private void EndDrag()
 	{
 		this.Drag();
@@ -96,21 +83,18 @@ public class DestinationSelectPanel : KMonoBehaviour
 		KFMOD.PlayUISound(GlobalAssets.GetSound("DestinationSelect_Scroll_Stop", false));
 	}
 
-	// Token: 0x06009ABD RID: 39613 RVA: 0x003C8F90 File Offset: 0x003C7190
 	private void ClickLeft()
 	{
 		this.selectedIndex = Mathf.Clamp(this.selectedIndex - 1, 0, this.clusterKeys.Count - 1);
 		this.OnAsteroidClicked(this.asteroidData[this.clusterKeys[this.selectedIndex]]);
 	}
 
-	// Token: 0x06009ABE RID: 39614 RVA: 0x003C8FE8 File Offset: 0x003C71E8
 	private void ClickRight()
 	{
 		this.selectedIndex = Mathf.Clamp(this.selectedIndex + 1, 0, this.clusterKeys.Count - 1);
 		this.OnAsteroidClicked(this.asteroidData[this.clusterKeys[this.selectedIndex]]);
 	}
 
-	// Token: 0x06009ABF RID: 39615 RVA: 0x001092F9 File Offset: 0x001074F9
 	public void Init()
 	{
 		this.clusterKeys = new List<string>();
@@ -118,12 +102,10 @@ public class DestinationSelectPanel : KMonoBehaviour
 		this.UpdateDisplayedClusters();
 	}
 
-	// Token: 0x06009AC0 RID: 39616 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void Uninit()
 	{
 	}
 
-	// Token: 0x06009AC1 RID: 39617 RVA: 0x003C9040 File Offset: 0x003C7240
 	private void Update()
 	{
 		if (!this.isDragging)
@@ -160,7 +142,6 @@ public class DestinationSelectPanel : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06009AC2 RID: 39618 RVA: 0x003C91DC File Offset: 0x003C73DC
 	public void UpdateDisplayedClusters()
 	{
 		this.clusterKeys.Clear();
@@ -179,7 +160,6 @@ public class DestinationSelectPanel : KMonoBehaviour
 		this.clusterKeys.Sort((string a, string b) => SettingsCache.clusterLayouts.clusterCache[a].menuOrder.CompareTo(SettingsCache.clusterLayouts.clusterCache[b].menuOrder));
 	}
 
-	// Token: 0x06009AC3 RID: 39619 RVA: 0x003C9308 File Offset: 0x003C7508
 	[ContextMenu("RePlaceAsteroids")]
 	public void RePlaceAsteroids()
 	{
@@ -194,13 +174,11 @@ public class DestinationSelectPanel : KMonoBehaviour
 		this.EndAsteroidDrawing();
 	}
 
-	// Token: 0x06009AC4 RID: 39620 RVA: 0x00109317 File Offset: 0x00107517
 	private void BeginAsteroidDrawing()
 	{
 		this.numAsteroids = 0;
 	}
 
-	// Token: 0x06009AC5 RID: 39621 RVA: 0x003C93D0 File Offset: 0x003C75D0
 	private void ShowMoons(ColonyDestinationAsteroidBeltData asteroid)
 	{
 		if (asteroid.worlds.Count > 0)
@@ -250,7 +228,6 @@ public class DestinationSelectPanel : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06009AC6 RID: 39622 RVA: 0x003C95CC File Offset: 0x003C77CC
 	private DestinationAsteroid2 GetAsteroid(string name, float scale)
 	{
 		DestinationAsteroid2 destinationAsteroid;
@@ -272,7 +249,6 @@ public class DestinationSelectPanel : KMonoBehaviour
 		return destinationAsteroid;
 	}
 
-	// Token: 0x06009AC7 RID: 39623 RVA: 0x003C96D4 File Offset: 0x003C78D4
 	private void EndAsteroidDrawing()
 	{
 		for (int i = 0; i < this.asteroids.Count; i++)
@@ -281,7 +257,6 @@ public class DestinationSelectPanel : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06009AC8 RID: 39624 RVA: 0x00109320 File Offset: 0x00107520
 	public ColonyDestinationAsteroidBeltData SelectCluster(string name, int seed)
 	{
 		this.selectedIndex = this.clusterKeys.IndexOf(name);
@@ -289,7 +264,6 @@ public class DestinationSelectPanel : KMonoBehaviour
 		return this.asteroidData[name];
 	}
 
-	// Token: 0x06009AC9 RID: 39625 RVA: 0x003C9718 File Offset: 0x003C7918
 	public string GetDefaultAsteroid()
 	{
 		foreach (string text in this.clusterKeys)
@@ -302,7 +276,6 @@ public class DestinationSelectPanel : KMonoBehaviour
 		return this.clusterKeys.First<string>();
 	}
 
-	// Token: 0x06009ACA RID: 39626 RVA: 0x003C9790 File Offset: 0x003C7990
 	public ColonyDestinationAsteroidBeltData SelectDefaultAsteroid(int seed)
 	{
 		this.selectedIndex = 0;
@@ -311,21 +284,18 @@ public class DestinationSelectPanel : KMonoBehaviour
 		return this.asteroidData[key];
 	}
 
-	// Token: 0x06009ACB RID: 39627 RVA: 0x003C97D4 File Offset: 0x003C79D4
 	public void ScrollLeft()
 	{
 		int index = Mathf.Max(this.selectedIndex - 1, 0);
 		this.OnAsteroidClicked(this.asteroidData[this.clusterKeys[index]]);
 	}
 
-	// Token: 0x06009ACC RID: 39628 RVA: 0x003C9814 File Offset: 0x003C7A14
 	public void ScrollRight()
 	{
 		int index = Mathf.Min(this.selectedIndex + 1, this.clusterStartWorlds.Count - 1);
 		this.OnAsteroidClicked(this.asteroidData[this.clusterKeys[index]]);
 	}
 
-	// Token: 0x06009ACD RID: 39629 RVA: 0x003C9860 File Offset: 0x003C7A60
 	private void DebugCurrentSetting()
 	{
 		ColonyDestinationAsteroidBeltData colonyDestinationAsteroidBeltData = this.asteroidData[this.clusterKeys[this.selectedIndex]];
@@ -376,83 +346,60 @@ public class DestinationSelectPanel : KMonoBehaviour
 		global::Debug.Log(text);
 	}
 
-	// Token: 0x040078CE RID: 30926
 	[SerializeField]
 	private GameObject asteroidPrefab;
 
-	// Token: 0x040078CF RID: 30927
 	[SerializeField]
 	private KButtonDrag dragTarget;
 
-	// Token: 0x040078D0 RID: 30928
 	[SerializeField]
 	private MultiToggle leftArrowButton;
 
-	// Token: 0x040078D1 RID: 30929
 	[SerializeField]
 	private MultiToggle rightArrowButton;
 
-	// Token: 0x040078D2 RID: 30930
 	[SerializeField]
 	private RectTransform asteroidContainer;
 
-	// Token: 0x040078D3 RID: 30931
 	[SerializeField]
 	private float asteroidFocusScale = 2f;
 
-	// Token: 0x040078D4 RID: 30932
 	[SerializeField]
 	private float asteroidXSeparation = 240f;
 
-	// Token: 0x040078D5 RID: 30933
 	[SerializeField]
 	private float focusScaleSpeed = 0.5f;
 
-	// Token: 0x040078D6 RID: 30934
 	[SerializeField]
 	private float centeringSpeed = 0.5f;
 
-	// Token: 0x040078D7 RID: 30935
 	[SerializeField]
 	private GameObject moonContainer;
 
-	// Token: 0x040078D8 RID: 30936
 	[SerializeField]
 	private GameObject moonPrefab;
 
-	// Token: 0x040078D9 RID: 30937
 	private static int chosenClusterCategorySetting;
 
-	// Token: 0x040078DB RID: 30939
 	private float offset;
 
-	// Token: 0x040078DC RID: 30940
 	private int selectedIndex = -1;
 
-	// Token: 0x040078DD RID: 30941
 	private List<DestinationAsteroid2> asteroids = new List<DestinationAsteroid2>();
 
-	// Token: 0x040078DE RID: 30942
 	private int numAsteroids;
 
-	// Token: 0x040078DF RID: 30943
 	private List<string> clusterKeys;
 
-	// Token: 0x040078E0 RID: 30944
 	private Dictionary<string, string> clusterStartWorlds;
 
-	// Token: 0x040078E1 RID: 30945
 	private Dictionary<string, ColonyDestinationAsteroidBeltData> asteroidData = new Dictionary<string, ColonyDestinationAsteroidBeltData>();
 
-	// Token: 0x040078E2 RID: 30946
 	private Vector2 dragStartPos;
 
-	// Token: 0x040078E3 RID: 30947
 	private Vector2 dragLastPos;
 
-	// Token: 0x040078E4 RID: 30948
 	private bool isDragging;
 
-	// Token: 0x040078E5 RID: 30949
 	private const string debugFmt = "{world}: {seed} [{traits}] {{settings}}";
 }

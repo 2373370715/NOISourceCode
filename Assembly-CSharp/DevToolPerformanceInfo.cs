@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using ImGuiNET;
 using UnityEngine;
 
-// Token: 0x02000BF8 RID: 3064
 public class DevToolPerformanceInfo : DevTool
 {
-	// Token: 0x06003A19 RID: 14873 RVA: 0x00231198 File Offset: 0x0022F398
 	protected override void RenderTo(DevPanel panel)
 	{
 		if (Game.Instance == null)
@@ -80,6 +78,5 @@ public class DevToolPerformanceInfo : DevTool
 		}
 	}
 
-	// Token: 0x0400282A RID: 10282
 	private PerformanceMonitor performanceMonitor;
 }

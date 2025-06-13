@@ -1,11 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02001D4E RID: 7502
 [AddComponentMenu("KMonoBehaviour/scripts/HealthyGameMessageScreen")]
 public class HealthyGameMessageScreen : KMonoBehaviour
 {
-	// Token: 0x06009CAB RID: 40107 RVA: 0x0010A5EA File Offset: 0x001087EA
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -16,7 +14,6 @@ public class HealthyGameMessageScreen : KMonoBehaviour
 		this.confirmButton.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06009CAC RID: 40108 RVA: 0x003D319C File Offset: 0x003D139C
 	private void PlayIntroShort()
 	{
 		string @string = KPlayerPrefs.GetString("PlayShortOnLaunch", "");
@@ -37,14 +34,12 @@ public class HealthyGameMessageScreen : KMonoBehaviour
 		UnityEngine.Object.Destroy(base.gameObject);
 	}
 
-	// Token: 0x06009CAD RID: 40109 RVA: 0x0010A61A File Offset: 0x0010881A
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
 		UnityEngine.Object.Destroy(base.gameObject);
 	}
 
-	// Token: 0x06009CAE RID: 40110 RVA: 0x003D3250 File Offset: 0x003D1450
 	private void Update()
 	{
 		if (!DistributionPlatform.Inst.IsDLCStatusReady())
@@ -76,21 +71,15 @@ public class HealthyGameMessageScreen : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x04007AC0 RID: 31424
 	public KButton confirmButton;
 
-	// Token: 0x04007AC1 RID: 31425
 	public CanvasGroup canvasGroup;
 
-	// Token: 0x04007AC2 RID: 31426
 	private float spawnTime;
 
-	// Token: 0x04007AC3 RID: 31427
 	private float totalTime = 10f;
 
-	// Token: 0x04007AC4 RID: 31428
 	private float fadeTime = 1.5f;
 
-	// Token: 0x04007AC5 RID: 31429
 	private bool isFirstUpdate = true;
 }

@@ -4,12 +4,10 @@ using System.Runtime.Serialization;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x02001A54 RID: 6740
 [SerializationConfig(MemberSerialization.OptIn)]
 [AddComponentMenu("KMonoBehaviour/scripts/UnstableGroundManager")]
 public class UnstableGroundManager : KMonoBehaviour
 {
-	// Token: 0x06008C6F RID: 35951 RVA: 0x003724A0 File Offset: 0x003706A0
 	protected override void OnPrefabInit()
 	{
 		this.fallingTileOffset = new Vector3(0.5f, 0f, 0f);
@@ -31,7 +29,6 @@ public class UnstableGroundManager : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008C70 RID: 35952 RVA: 0x001005EB File Offset: 0x000FE7EB
 	private void ReleaseGO(GameObject go)
 	{
 		if (GameComps.Gravities.Has(go))
@@ -41,7 +38,6 @@ public class UnstableGroundManager : KMonoBehaviour
 		go.SetActive(false);
 	}
 
-	// Token: 0x06008C71 RID: 35953 RVA: 0x0010060C File Offset: 0x000FE80C
 	private GameObject InstantiateObj(GameObject prefab)
 	{
 		GameObject gameObject = GameUtil.KInstantiate(prefab, Grid.SceneLayer.BuildingBack, null, 0);
@@ -50,7 +46,6 @@ public class UnstableGroundManager : KMonoBehaviour
 		return gameObject;
 	}
 
-	// Token: 0x06008C72 RID: 35954 RVA: 0x00372564 File Offset: 0x00370764
 	public void Spawn(int cell, Element element, float mass, float temperature, byte disease_idx, int disease_count)
 	{
 		Vector3 vector = Grid.CellToPosCCC(cell, Grid.SceneLayer.TileMain);
@@ -73,7 +68,6 @@ public class UnstableGroundManager : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008C73 RID: 35955 RVA: 0x00372674 File Offset: 0x00370874
 	private void SpawnOld(Vector3 pos, Element element, float mass, float temperature, byte disease_idx, int disease_count)
 	{
 		if (!element.IsUnstable)
@@ -87,7 +81,6 @@ public class UnstableGroundManager : KMonoBehaviour
 		kbatchedAnimController.gameObject.name = "SpawnOld " + element.name;
 	}
 
-	// Token: 0x06008C74 RID: 35956 RVA: 0x00372704 File Offset: 0x00370904
 	private void SpawnPuff(Vector3 pos, Element element, float mass, float temperature, byte disease_idx, int disease_count)
 	{
 		if (!element.IsUnstable)
@@ -100,7 +93,6 @@ public class UnstableGroundManager : KMonoBehaviour
 		kbatchedAnimController.transform.SetPosition(kbatchedAnimController.transform.GetPosition() + this.spawnPuffOffset);
 	}
 
-	// Token: 0x06008C75 RID: 35957 RVA: 0x0037278C File Offset: 0x0037098C
 	private KBatchedAnimController Spawn(Vector3 pos, Element element, float mass, float temperature, byte disease_idx, int disease_count)
 	{
 		UnstableGroundManager.EffectRuntimeInfo effectRuntimeInfo;
@@ -132,7 +124,6 @@ public class UnstableGroundManager : KMonoBehaviour
 		return component2;
 	}
 
-	// Token: 0x06008C76 RID: 35958 RVA: 0x00372874 File Offset: 0x00370A74
 	public List<int> GetCellsContainingFallingAbove(Vector2I cellXY)
 	{
 		List<int> list = new List<int>();
@@ -157,13 +148,11 @@ public class UnstableGroundManager : KMonoBehaviour
 		return list;
 	}
 
-	// Token: 0x06008C77 RID: 35959 RVA: 0x0010062A File Offset: 0x000FE82A
 	private void RemoveFromPending(int cell)
 	{
 		this.pendingCells.Remove(cell);
 	}
 
-	// Token: 0x06008C78 RID: 35960 RVA: 0x0037294C File Offset: 0x00370B4C
 	private void Update()
 	{
 		if (App.isLoading)
@@ -224,7 +213,6 @@ public class UnstableGroundManager : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008C79 RID: 35961 RVA: 0x00372C40 File Offset: 0x00370E40
 	[OnSerializing]
 	private void OnSerializing()
 	{
@@ -249,14 +237,12 @@ public class UnstableGroundManager : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008C7A RID: 35962 RVA: 0x00100639 File Offset: 0x000FE839
 	[OnSerialized]
 	private void OnSerialized()
 	{
 		this.serializedInfo = null;
 	}
 
-	// Token: 0x06008C7B RID: 35963 RVA: 0x00372D44 File Offset: 0x00370F44
 	[OnDeserialized]
 	private void OnDeserialized()
 	{
@@ -280,75 +266,54 @@ public class UnstableGroundManager : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x04006A06 RID: 27142
 	[SerializeField]
 	private Vector3 spawnPuffOffset;
 
-	// Token: 0x04006A07 RID: 27143
 	[SerializeField]
 	private Vector3 landEffectOffset;
 
-	// Token: 0x04006A08 RID: 27144
 	private Vector3 fallingTileOffset;
 
-	// Token: 0x04006A09 RID: 27145
 	[SerializeField]
 	private UnstableGroundManager.EffectInfo[] effects;
 
-	// Token: 0x04006A0A RID: 27146
 	private List<GameObject> fallingObjects = new List<GameObject>();
 
-	// Token: 0x04006A0B RID: 27147
 	private List<int> pendingCells = new List<int>();
 
-	// Token: 0x04006A0C RID: 27148
 	private Dictionary<SimHashes, UnstableGroundManager.EffectRuntimeInfo> runtimeInfo = new Dictionary<SimHashes, UnstableGroundManager.EffectRuntimeInfo>();
 
-	// Token: 0x04006A0D RID: 27149
 	[Serialize]
 	private List<UnstableGroundManager.SerializedInfo> serializedInfo;
 
-	// Token: 0x02001A55 RID: 6741
 	[Serializable]
 	private struct EffectInfo
 	{
-		// Token: 0x04006A0E RID: 27150
 		[HashedEnum]
 		public SimHashes element;
 
-		// Token: 0x04006A0F RID: 27151
 		public GameObject prefab;
 	}
 
-	// Token: 0x02001A56 RID: 6742
 	private struct EffectRuntimeInfo
 	{
-		// Token: 0x04006A10 RID: 27152
 		public GameObjectPool pool;
 
-		// Token: 0x04006A11 RID: 27153
 		public Action<GameObject> releaseFunc;
 	}
 
-	// Token: 0x02001A57 RID: 6743
 	private struct SerializedInfo
 	{
-		// Token: 0x04006A12 RID: 27154
 		public Vector3 position;
 
-		// Token: 0x04006A13 RID: 27155
 		public SimHashes element;
 
-		// Token: 0x04006A14 RID: 27156
 		public float mass;
 
-		// Token: 0x04006A15 RID: 27157
 		public float temperature;
 
-		// Token: 0x04006A16 RID: 27158
 		public int diseaseID;
 
-		// Token: 0x04006A17 RID: 27159
 		public int diseaseCount;
 	}
 }

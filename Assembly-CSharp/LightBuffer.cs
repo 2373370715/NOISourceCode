@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020017CE RID: 6094
 public class LightBuffer : MonoBehaviour
 {
-	// Token: 0x06007D56 RID: 32086 RVA: 0x00330B3C File Offset: 0x0032ED3C
 	private void Awake()
 	{
 		LightBuffer.Instance = this;
@@ -46,7 +44,6 @@ public class LightBuffer : MonoBehaviour
 		this.Camera.targetTexture = this.Texture;
 	}
 
-	// Token: 0x06007D57 RID: 32087 RVA: 0x00330D2C File Offset: 0x0032EF2C
 	private void LateUpdate()
 	{
 		if (PropertyTextures.instance == null)
@@ -109,54 +106,39 @@ public class LightBuffer : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06007D58 RID: 32088 RVA: 0x000F70F3 File Offset: 0x000F52F3
 	private void OnDestroy()
 	{
 		LightBuffer.Instance = null;
 	}
 
-	// Token: 0x04005E5A RID: 24154
 	private Mesh Mesh;
 
-	// Token: 0x04005E5B RID: 24155
 	private Camera Camera;
 
-	// Token: 0x04005E5C RID: 24156
 	[NonSerialized]
 	public Material Material;
 
-	// Token: 0x04005E5D RID: 24157
 	[NonSerialized]
 	public Material CircleMaterial;
 
-	// Token: 0x04005E5E RID: 24158
 	[NonSerialized]
 	public Material ConeMaterial;
 
-	// Token: 0x04005E5F RID: 24159
 	private int ColorRangeTag;
 
-	// Token: 0x04005E60 RID: 24160
 	private int LightPosTag;
 
-	// Token: 0x04005E61 RID: 24161
 	private int LightDirectionAngleTag;
 
-	// Token: 0x04005E62 RID: 24162
 	private int TintColorTag;
 
-	// Token: 0x04005E63 RID: 24163
 	private int Layer;
 
-	// Token: 0x04005E64 RID: 24164
 	public RenderTexture Texture;
 
-	// Token: 0x04005E65 RID: 24165
 	public Texture WorldLight;
 
-	// Token: 0x04005E66 RID: 24166
 	public static LightBuffer Instance;
 
-	// Token: 0x04005E67 RID: 24167
 	private const RenderTextureFormat RTFormat = RenderTextureFormat.ARGBHalf;
 }

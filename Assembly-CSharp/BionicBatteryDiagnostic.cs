@@ -2,10 +2,8 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x0200125A RID: 4698
 public class BionicBatteryDiagnostic : BionicColonyDiagnostic
 {
-	// Token: 0x06005FF7 RID: 24567 RVA: 0x002B8DE8 File Offset: 0x002B6FE8
 	public BionicBatteryDiagnostic(int worldID) : base(worldID, UI.COLONY_DIAGNOSTICS.BIONICBATTERYDIAGNOSTIC.ALL_NAME)
 	{
 		this.tracker = TrackerTool.Instance.GetWorldTracker<ElectrobankJoulesTracker>(worldID);
@@ -20,7 +18,6 @@ public class BionicBatteryDiagnostic : BionicColonyDiagnostic
 		this.bionicJoulesPerCycle = 120000f * this.multiplier;
 	}
 
-	// Token: 0x06005FF8 RID: 24568 RVA: 0x002B8ED0 File Offset: 0x002B70D0
 	private ColonyDiagnostic.DiagnosticResult CheckEnoughBatteries()
 	{
 		ColonyDiagnostic.DiagnosticResult result = new ColonyDiagnostic.DiagnosticResult(ColonyDiagnostic.DiagnosticResult.Opinion.Normal, UI.COLONY_DIAGNOSTICS.GENERIC_CRITERIA_PASS, null);
@@ -52,7 +49,6 @@ public class BionicBatteryDiagnostic : BionicColonyDiagnostic
 		return result;
 	}
 
-	// Token: 0x06005FF9 RID: 24569 RVA: 0x002B9008 File Offset: 0x002B7208
 	private ColonyDiagnostic.DiagnosticResult CheckPowerLevel()
 	{
 		ColonyDiagnostic.DiagnosticResult diagnosticResult = new ColonyDiagnostic.DiagnosticResult(ColonyDiagnostic.DiagnosticResult.Opinion.Normal, UI.COLONY_DIAGNOSTICS.GENERIC_CRITERIA_PASS, null);
@@ -81,24 +77,19 @@ public class BionicBatteryDiagnostic : BionicColonyDiagnostic
 		return diagnosticResult;
 	}
 
-	// Token: 0x06005FFA RID: 24570 RVA: 0x000E3103 File Offset: 0x000E1303
 	public override string GetCurrentValueString()
 	{
 		return GameUtil.GetFormattedJoules(this.tracker.GetCurrentValue(), "F1", GameUtil.TimeSlice.None);
 	}
 
-	// Token: 0x06005FFB RID: 24571 RVA: 0x000E311B File Offset: 0x000E131B
 	protected override string GetDefaultResultMessage()
 	{
 		return UI.COLONY_DIAGNOSTICS.BIONICBATTERYDIAGNOSTIC.CRITERIA_BATTERIES.PASS;
 	}
 
-	// Token: 0x040044C1 RID: 17601
 	private float bionicJoulesPerCycle;
 
-	// Token: 0x040044C2 RID: 17602
 	private float recommendedJoulesPerBionic;
 
-	// Token: 0x040044C3 RID: 17603
 	private float multiplier = 1f;
 }

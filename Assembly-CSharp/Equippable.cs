@@ -4,25 +4,19 @@ using Klei.AI;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x020012F2 RID: 4850
 [SerializationConfig(MemberSerialization.OptIn)]
 public class Equippable : Assignable, ISaveLoadable, IGameObjectEffectDescriptor, IQuality
 {
-	// Token: 0x0600636C RID: 25452 RVA: 0x000E5509 File Offset: 0x000E3709
 	public global::QualityLevel GetQuality()
 	{
 		return this.quality;
 	}
 
-	// Token: 0x0600636D RID: 25453 RVA: 0x000E5511 File Offset: 0x000E3711
 	public void SetQuality(global::QualityLevel level)
 	{
 		this.quality = level;
 	}
 
-	// Token: 0x17000636 RID: 1590
-	// (get) Token: 0x0600636E RID: 25454 RVA: 0x000E551A File Offset: 0x000E371A
-	// (set) Token: 0x0600636F RID: 25455 RVA: 0x000E5527 File Offset: 0x000E3727
 	public EquipmentDef def
 	{
 		get
@@ -35,7 +29,6 @@ public class Equippable : Assignable, ISaveLoadable, IGameObjectEffectDescriptor
 		}
 	}
 
-	// Token: 0x06006370 RID: 25456 RVA: 0x002C8778 File Offset: 0x002C6978
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -48,7 +41,6 @@ public class Equippable : Assignable, ISaveLoadable, IGameObjectEffectDescriptor
 		}
 	}
 
-	// Token: 0x06006371 RID: 25457 RVA: 0x002C87C8 File Offset: 0x002C69C8
 	protected override void OnSpawn()
 	{
 		Components.AssignableItems.Add(this);
@@ -95,7 +87,6 @@ public class Equippable : Assignable, ISaveLoadable, IGameObjectEffectDescriptor
 		base.Subscribe<Equippable>(1969584890, Equippable.SetDestroyedTrueDelegate);
 	}
 
-	// Token: 0x06006372 RID: 25458 RVA: 0x000E5535 File Offset: 0x000E3735
 	private void EquipToAssignable()
 	{
 		if (this.assignee != null)
@@ -104,7 +95,6 @@ public class Equippable : Assignable, ISaveLoadable, IGameObjectEffectDescriptor
 		}
 	}
 
-	// Token: 0x06006373 RID: 25459 RVA: 0x000E5555 File Offset: 0x000E3755
 	private void OnAsigneeSpawnedAndReadyForEquip(object o)
 	{
 		GameObject go = (GameObject)o;
@@ -112,7 +102,6 @@ public class Equippable : Assignable, ISaveLoadable, IGameObjectEffectDescriptor
 		go.Unsubscribe(1589886948, new Action<object>(this.OnAsigneeSpawnedAndReadyForEquip));
 	}
 
-	// Token: 0x06006374 RID: 25460 RVA: 0x002C88F8 File Offset: 0x002C6AF8
 	public KAnimFile GetBuildOverride()
 	{
 		EquippableFacade component = base.GetComponent<EquippableFacade>();
@@ -123,7 +112,6 @@ public class Equippable : Assignable, ISaveLoadable, IGameObjectEffectDescriptor
 		return Assets.GetAnim(component.BuildOverride);
 	}
 
-	// Token: 0x06006375 RID: 25461 RVA: 0x002C893C File Offset: 0x002C6B3C
 	public override void Assign(IAssignableIdentity new_assignee)
 	{
 		if (new_assignee == this.assignee)
@@ -153,7 +141,6 @@ public class Equippable : Assignable, ISaveLoadable, IGameObjectEffectDescriptor
 		base.Assign(new_assignee);
 	}
 
-	// Token: 0x06006376 RID: 25462 RVA: 0x002C89D8 File Offset: 0x002C6BD8
 	public override void Unassign()
 	{
 		if (this.isEquipped)
@@ -164,7 +151,6 @@ public class Equippable : Assignable, ISaveLoadable, IGameObjectEffectDescriptor
 		base.Unassign();
 	}
 
-	// Token: 0x06006377 RID: 25463 RVA: 0x002C8A38 File Offset: 0x002C6C38
 	public void OnEquip(AssignableSlotInstance slot)
 	{
 		this.isEquipped = true;
@@ -192,7 +178,6 @@ public class Equippable : Assignable, ISaveLoadable, IGameObjectEffectDescriptor
 		targetGameObject.Trigger(-210173199, this);
 	}
 
-	// Token: 0x06006378 RID: 25464 RVA: 0x002C8B44 File Offset: 0x002C6D44
 	public void OnUnequip()
 	{
 		this.isEquipped = false;
@@ -241,7 +226,6 @@ public class Equippable : Assignable, ISaveLoadable, IGameObjectEffectDescriptor
 		}
 	}
 
-	// Token: 0x06006379 RID: 25465 RVA: 0x002C8C8C File Offset: 0x002C6E8C
 	public List<Descriptor> GetDescriptors(GameObject go)
 	{
 		if (this.def != null)
@@ -259,40 +243,30 @@ public class Equippable : Assignable, ISaveLoadable, IGameObjectEffectDescriptor
 		return new List<Descriptor>();
 	}
 
-	// Token: 0x0400474E RID: 18254
 	private global::QualityLevel quality;
 
-	// Token: 0x0400474F RID: 18255
 	[MyCmpAdd]
 	private EquippableWorkable equippableWorkable;
 
-	// Token: 0x04004750 RID: 18256
 	[MyCmpAdd]
 	private EquippableFacade facade;
 
-	// Token: 0x04004751 RID: 18257
 	[MyCmpReq]
 	private KSelectable selectable;
 
-	// Token: 0x04004752 RID: 18258
 	public DefHandle defHandle;
 
-	// Token: 0x04004753 RID: 18259
 	[Serialize]
 	public bool isEquipped;
 
-	// Token: 0x04004754 RID: 18260
 	private bool destroyed;
 
-	// Token: 0x04004755 RID: 18261
 	[Serialize]
 	public bool unequippable = true;
 
-	// Token: 0x04004756 RID: 18262
 	[Serialize]
 	public bool hideInCodex;
 
-	// Token: 0x04004757 RID: 18263
 	private static readonly EventSystem.IntraObjectHandler<Equippable> SetDestroyedTrueDelegate = new EventSystem.IntraObjectHandler<Equippable>(delegate(Equippable component, object data)
 	{
 		component.destroyed = true;

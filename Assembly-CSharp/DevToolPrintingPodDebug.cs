@@ -2,10 +2,8 @@
 using ImGuiNET;
 using UnityEngine;
 
-// Token: 0x02000BF9 RID: 3065
 public class DevToolPrintingPodDebug : DevTool
 {
-	// Token: 0x06003A1A RID: 14874 RVA: 0x000CA09D File Offset: 0x000C829D
 	protected override void RenderTo(DevPanel panel)
 	{
 		if (Immigration.Instance != null)
@@ -16,7 +14,6 @@ public class DevToolPrintingPodDebug : DevTool
 		ImGui.Text("Game not available");
 	}
 
-	// Token: 0x06003A1B RID: 14875 RVA: 0x002315F4 File Offset: 0x0022F7F4
 	private void ShowButtons()
 	{
 		if (Components.Telepads.Count == 0)

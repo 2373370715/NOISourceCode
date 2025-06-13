@@ -3,10 +3,8 @@ using Klei.AI;
 using STRINGS;
 using TUNING;
 
-// Token: 0x02000710 RID: 1808
 public class RancherChore : Chore<RancherChore.RancherChoreStates.Instance>
 {
-	// Token: 0x06001FE3 RID: 8163 RVA: 0x001C67E8 File Offset: 0x001C49E8
 	public RancherChore(KPrefabID rancher_station)
 	{
 		Chore.Precondition isOpenForRanching = default(Chore.Precondition);
@@ -35,27 +33,22 @@ public class RancherChore : Chore<RancherChore.RancherChoreStates.Instance>
 		base.SetPrioritizable(rancher_station.GetComponent<Prioritizable>());
 	}
 
-	// Token: 0x06001FE4 RID: 8164 RVA: 0x000B95FB File Offset: 0x000B77FB
 	public override void Begin(Chore.Precondition.Context context)
 	{
 		base.smi.sm.rancher.Set(context.consumerState.gameObject, base.smi, false);
 		base.Begin(context);
 	}
 
-	// Token: 0x06001FE5 RID: 8165 RVA: 0x000B962C File Offset: 0x000B782C
 	protected override void End(string reason)
 	{
 		base.End(reason);
 		base.smi.sm.rancher.Set(null, base.smi);
 	}
 
-	// Token: 0x04001520 RID: 5408
 	public Chore.Precondition IsOpenForRanching;
 
-	// Token: 0x02000711 RID: 1809
 	public class RancherChoreStates : GameStateMachine<RancherChore.RancherChoreStates, RancherChore.RancherChoreStates.Instance>
 	{
-		// Token: 0x06001FE6 RID: 8166 RVA: 0x001C693C File Offset: 0x001C4B3C
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.moveToRanch;
@@ -81,13 +74,11 @@ public class RancherChore : Chore<RancherChore.RancherChoreStates.Instance>
 			this.ranchCritter.pst.ToggleAnims(new Func<RancherChore.RancherChoreStates.Instance, HashedString>(RancherChore.RancherChoreStates.GetRancherInteractAnim)).QueueAnim("wipe_brow", false, null).OnAnimQueueComplete(this.waitForAvailableRanchable);
 		}
 
-		// Token: 0x06001FE7 RID: 8167 RVA: 0x000B9651 File Offset: 0x000B7851
 		private static HashedString GetRancherInteractAnim(RancherChore.RancherChoreStates.Instance smi)
 		{
 			return smi.ranchStation.def.RancherInteractAnim;
 		}
 
-		// Token: 0x06001FE8 RID: 8168 RVA: 0x001C6B18 File Offset: 0x001C4D18
 		public static bool TryRanchCreature(RancherChore.RancherChoreStates.Instance smi)
 		{
 			Debug.Assert(smi.ranchStation != null, "smi.ranchStation was null");
@@ -102,41 +93,30 @@ public class RancherChore : Chore<RancherChore.RancherChoreStates.Instance>
 			return true;
 		}
 
-		// Token: 0x04001521 RID: 5409
 		public StateMachine<RancherChore.RancherChoreStates, RancherChore.RancherChoreStates.Instance, IStateMachineTarget, object>.TargetParameter rancher;
 
-		// Token: 0x04001522 RID: 5410
 		private GameStateMachine<RancherChore.RancherChoreStates, RancherChore.RancherChoreStates.Instance, IStateMachineTarget, object>.State moveToRanch;
 
-		// Token: 0x04001523 RID: 5411
 		private RancherChore.RancherChoreStates.RanchState ranchCritter;
 
-		// Token: 0x04001524 RID: 5412
 		private GameStateMachine<RancherChore.RancherChoreStates, RancherChore.RancherChoreStates.Instance, IStateMachineTarget, object>.State waitForAvailableRanchable;
 
-		// Token: 0x02000712 RID: 1810
 		private class RanchState : GameStateMachine<RancherChore.RancherChoreStates, RancherChore.RancherChoreStates.Instance, IStateMachineTarget, object>.State
 		{
-			// Token: 0x04001525 RID: 5413
 			public GameStateMachine<RancherChore.RancherChoreStates, RancherChore.RancherChoreStates.Instance, IStateMachineTarget, object>.State callForCritter;
 
-			// Token: 0x04001526 RID: 5414
 			public GameStateMachine<RancherChore.RancherChoreStates, RancherChore.RancherChoreStates.Instance, IStateMachineTarget, object>.State working;
 
-			// Token: 0x04001527 RID: 5415
 			public GameStateMachine<RancherChore.RancherChoreStates, RancherChore.RancherChoreStates.Instance, IStateMachineTarget, object>.State pst;
 		}
 
-		// Token: 0x02000713 RID: 1811
 		public new class Instance : GameStateMachine<RancherChore.RancherChoreStates, RancherChore.RancherChoreStates.Instance, IStateMachineTarget, object>.GameInstance
 		{
-			// Token: 0x06001FEB RID: 8171 RVA: 0x000B9673 File Offset: 0x000B7873
 			public Instance(KPrefabID rancher_station) : base(rancher_station)
 			{
 				this.ranchStation = rancher_station.GetSMI<RanchStation.Instance>();
 			}
 
-			// Token: 0x06001FEC RID: 8172 RVA: 0x001C6B88 File Offset: 0x001C4D88
 			public void WaitForAvailableRanchable(float dt)
 			{
 				this.waitTime += dt;
@@ -148,21 +128,16 @@ public class RancherChore : Chore<RancherChore.RancherChoreStates.Instance>
 				}
 			}
 
-			// Token: 0x04001528 RID: 5416
 			private const float WAIT_FOR_RANCHABLE_TIMEOUT = 2f;
 
-			// Token: 0x04001529 RID: 5417
 			public RanchStation.Instance ranchStation;
 
-			// Token: 0x0400152A RID: 5418
 			private float waitTime;
 		}
 	}
 
-	// Token: 0x02000715 RID: 1813
 	public class RancherWorkable : Workable
 	{
-		// Token: 0x06001FF4 RID: 8180 RVA: 0x001C6BE4 File Offset: 0x001C4DE4
 		protected override void OnPrefabInit()
 		{
 			base.OnPrefabInit();
@@ -179,13 +154,11 @@ public class RancherChore : Chore<RancherChore.RancherChoreStates.Instance>
 			this.lightEfficiencyBonus = false;
 		}
 
-		// Token: 0x06001FF5 RID: 8181 RVA: 0x000B96C4 File Offset: 0x000B78C4
 		public override Klei.AI.Attribute GetWorkAttribute()
 		{
 			return Db.Get().Attributes.Ranching;
 		}
 
-		// Token: 0x06001FF6 RID: 8182 RVA: 0x001C6C90 File Offset: 0x001C4E90
 		protected override void OnStartWork(WorkerBase worker)
 		{
 			if (this.ranch == null)
@@ -197,7 +170,6 @@ public class RancherChore : Chore<RancherChore.RancherChoreStates.Instance>
 			this.critterAnimController.Queue(this.ranch.def.RanchedLoopAnim, KAnim.PlayMode.Loop, 1f, 0f);
 		}
 
-		// Token: 0x06001FF7 RID: 8183 RVA: 0x001C6D08 File Offset: 0x001C4F08
 		protected override bool OnWorkTick(WorkerBase worker, float dt)
 		{
 			if (this.ranch.def.OnRanchWorkTick != null)
@@ -207,7 +179,6 @@ public class RancherChore : Chore<RancherChore.RancherChoreStates.Instance>
 			return base.OnWorkTick(worker, dt);
 		}
 
-		// Token: 0x06001FF8 RID: 8184 RVA: 0x001C6D58 File Offset: 0x001C4F58
 		public override void OnPendingCompleteWork(WorkerBase work)
 		{
 			RancherChore.RancherChoreStates.Instance smi = base.gameObject.GetSMI<RancherChore.RancherChoreStates.Instance>();
@@ -221,7 +192,6 @@ public class RancherChore : Chore<RancherChore.RancherChoreStates.Instance>
 			}
 		}
 
-		// Token: 0x06001FF9 RID: 8185 RVA: 0x000B96D5 File Offset: 0x000B78D5
 		protected override void OnAbortWork(WorkerBase worker)
 		{
 			if (this.ranch == null || this.critterAnimController == null)
@@ -231,10 +201,8 @@ public class RancherChore : Chore<RancherChore.RancherChoreStates.Instance>
 			this.critterAnimController.Play(this.ranch.def.RanchedAbortAnim, KAnim.PlayMode.Once, 1f, 0f);
 		}
 
-		// Token: 0x04001531 RID: 5425
 		private RanchStation.Instance ranch;
 
-		// Token: 0x04001532 RID: 5426
 		private KBatchedAnimController critterAnimController;
 	}
 }

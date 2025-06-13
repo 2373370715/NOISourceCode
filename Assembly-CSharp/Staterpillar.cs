@@ -5,10 +5,8 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001158 RID: 4440
 public class Staterpillar : KMonoBehaviour
 {
-	// Token: 0x06005AA3 RID: 23203 RVA: 0x000DF63A File Offset: 0x000DD83A
 	protected override void OnPrefabInit()
 	{
 		this.dummyElement = new List<Tag>
@@ -18,7 +16,6 @@ public class Staterpillar : KMonoBehaviour
 		this.connectorDef = Assets.GetBuildingDef(this.connectorDefId);
 	}
 
-	// Token: 0x06005AA4 RID: 23204 RVA: 0x000DF668 File Offset: 0x000DD868
 	public void SpawnConnectorBuilding(int targetCell)
 	{
 		if (this.conduitLayer == ObjectLayer.Wire)
@@ -29,7 +26,6 @@ public class Staterpillar : KMonoBehaviour
 		this.SpawnConduitConnector(targetCell);
 	}
 
-	// Token: 0x06005AA5 RID: 23205 RVA: 0x002A4018 File Offset: 0x002A2218
 	public void DestroyOrphanedConnectorBuilding()
 	{
 		KPrefabID building = this.GetConnectorBuilding();
@@ -48,7 +44,6 @@ public class Staterpillar : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06005AA6 RID: 23206 RVA: 0x000DF683 File Offset: 0x000DD883
 	public void EnableConnector()
 	{
 		if (this.conduitLayer == ObjectLayer.Wire)
@@ -59,13 +54,11 @@ public class Staterpillar : KMonoBehaviour
 		this.EnableConduitConnector();
 	}
 
-	// Token: 0x06005AA7 RID: 23207 RVA: 0x000DF69C File Offset: 0x000DD89C
 	public bool IsConnectorBuildingSpawned()
 	{
 		return this.GetConnectorBuilding() != null;
 	}
 
-	// Token: 0x06005AA8 RID: 23208 RVA: 0x000DF6AA File Offset: 0x000DD8AA
 	public bool IsConnected()
 	{
 		if (this.conduitLayer == ObjectLayer.Wire)
@@ -75,13 +68,11 @@ public class Staterpillar : KMonoBehaviour
 		return this.GetConduitDispenser().IsConnected;
 	}
 
-	// Token: 0x06005AA9 RID: 23209 RVA: 0x000DF6D7 File Offset: 0x000DD8D7
 	public KPrefabID GetConnectorBuilding()
 	{
 		return this.connectorRef.Get();
 	}
 
-	// Token: 0x06005AAA RID: 23210 RVA: 0x002A4080 File Offset: 0x002A2280
 	private void SpawnConduitConnector(int targetCell)
 	{
 		if (this.GetConduitDispenser() == null)
@@ -93,7 +84,6 @@ public class Staterpillar : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06005AAB RID: 23211 RVA: 0x000DF6E4 File Offset: 0x000DD8E4
 	private void EnableConduitConnector()
 	{
 		ConduitDispenser conduitDispenser = this.GetConduitDispenser();
@@ -102,7 +92,6 @@ public class Staterpillar : KMonoBehaviour
 		conduitDispenser.SetOnState(true);
 	}
 
-	// Token: 0x06005AAC RID: 23212 RVA: 0x002A40EC File Offset: 0x002A22EC
 	public ConduitDispenser GetConduitDispenser()
 	{
 		if (this.cachedConduitDispenser == null)
@@ -116,7 +105,6 @@ public class Staterpillar : KMonoBehaviour
 		return this.cachedConduitDispenser;
 	}
 
-	// Token: 0x06005AAD RID: 23213 RVA: 0x002A4130 File Offset: 0x002A2330
 	private void DestroyOrphanedConduitDispenserBuilding()
 	{
 		ConduitDispenser dispenser = this.GetConduitDispenser();
@@ -133,7 +121,6 @@ public class Staterpillar : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06005AAE RID: 23214 RVA: 0x002A4188 File Offset: 0x002A2388
 	private void SpawnGenerator(int targetCell)
 	{
 		StaterpillarGenerator generator = this.GetGenerator();
@@ -193,7 +180,6 @@ public class Staterpillar : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06005AAF RID: 23215 RVA: 0x000DF70A File Offset: 0x000DD90A
 	private void EnableGenerator()
 	{
 		StaterpillarGenerator generator = this.GetGenerator();
@@ -201,7 +187,6 @@ public class Staterpillar : KMonoBehaviour
 		generator.GetComponent<BuildingCellVisualizer>().enabled = true;
 	}
 
-	// Token: 0x06005AB0 RID: 23216 RVA: 0x002A4348 File Offset: 0x002A2548
 	public StaterpillarGenerator GetGenerator()
 	{
 		if (this.cachedGenerator == null)
@@ -215,28 +200,20 @@ public class Staterpillar : KMonoBehaviour
 		return this.cachedGenerator;
 	}
 
-	// Token: 0x0400408A RID: 16522
 	public ObjectLayer conduitLayer;
 
-	// Token: 0x0400408B RID: 16523
 	public string connectorDefId;
 
-	// Token: 0x0400408C RID: 16524
 	private IList<Tag> dummyElement;
 
-	// Token: 0x0400408D RID: 16525
 	private BuildingDef connectorDef;
 
-	// Token: 0x0400408E RID: 16526
 	[Serialize]
 	private Ref<KPrefabID> connectorRef = new Ref<KPrefabID>();
 
-	// Token: 0x0400408F RID: 16527
 	private AttributeModifier wildMod = new AttributeModifier(Db.Get().Attributes.GeneratorOutput.Id, -75f, BUILDINGS.PREFABS.STATERPILLARGENERATOR.MODIFIERS.WILD, false, false, true);
 
-	// Token: 0x04004090 RID: 16528
 	private ConduitDispenser cachedConduitDispenser;
 
-	// Token: 0x04004091 RID: 16529
 	private StaterpillarGenerator cachedGenerator;
 }

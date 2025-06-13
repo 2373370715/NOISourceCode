@@ -2,10 +2,8 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x0200012D RID: 301
 public class BeeSleepStates : GameStateMachine<BeeSleepStates, BeeSleepStates.Instance, IStateMachineTarget, BeeSleepStates.Def>
 {
-	// Token: 0x0600047A RID: 1146 RVA: 0x0015F504 File Offset: 0x0015D704
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.findSleepLocation;
@@ -51,7 +49,6 @@ public class BeeSleepStates : GameStateMachine<BeeSleepStates, BeeSleepStates.In
 		this.behaviourcomplete.BehaviourComplete(GameTags.Creatures.BeeWantsToSleep, false);
 	}
 
-	// Token: 0x0600047B RID: 1147 RVA: 0x0015F6D8 File Offset: 0x0015D8D8
 	private static void FindSleepLocation(BeeSleepStates.Instance smi)
 	{
 		smi.targetSleepCell = Grid.InvalidCell;
@@ -63,55 +60,41 @@ public class BeeSleepStates : GameStateMachine<BeeSleepStates, BeeSleepStates.In
 		}
 	}
 
-	// Token: 0x0600047C RID: 1148 RVA: 0x000ABAA3 File Offset: 0x000A9CA3
 	public static bool ShouldWakeUp(BeeSleepStates.Instance smi)
 	{
 		return smi.GetSMI<BeeSleepMonitor.Instance>().CO2Exposure <= 0f;
 	}
 
-	// Token: 0x0400033E RID: 830
 	public BeeSleepStates.SleepStates sleep;
 
-	// Token: 0x0400033F RID: 831
 	public GameStateMachine<BeeSleepStates, BeeSleepStates.Instance, IStateMachineTarget, BeeSleepStates.Def>.State findSleepLocation;
 
-	// Token: 0x04000340 RID: 832
 	public GameStateMachine<BeeSleepStates, BeeSleepStates.Instance, IStateMachineTarget, BeeSleepStates.Def>.State moveToSleepLocation;
 
-	// Token: 0x04000341 RID: 833
 	public GameStateMachine<BeeSleepStates, BeeSleepStates.Instance, IStateMachineTarget, BeeSleepStates.Def>.State behaviourcomplete;
 
-	// Token: 0x0200012E RID: 302
 	public class Def : StateMachine.BaseDef
 	{
 	}
 
-	// Token: 0x0200012F RID: 303
 	public new class Instance : GameStateMachine<BeeSleepStates, BeeSleepStates.Instance, IStateMachineTarget, BeeSleepStates.Def>.GameInstance
 	{
-		// Token: 0x06000480 RID: 1152 RVA: 0x000ABAF0 File Offset: 0x000A9CF0
 		public Instance(Chore<BeeSleepStates.Instance> chore, BeeSleepStates.Def def) : base(chore, def)
 		{
 			chore.AddPrecondition(ChorePreconditions.instance.CheckBehaviourPrecondition, GameTags.Creatures.BeeWantsToSleep);
 		}
 
-		// Token: 0x04000342 RID: 834
 		public int targetSleepCell;
 
-		// Token: 0x04000343 RID: 835
 		public float co2Exposure;
 	}
 
-	// Token: 0x02000130 RID: 304
 	public class SleepStates : GameStateMachine<BeeSleepStates, BeeSleepStates.Instance, IStateMachineTarget, BeeSleepStates.Def>.State
 	{
-		// Token: 0x04000344 RID: 836
 		public GameStateMachine<BeeSleepStates, BeeSleepStates.Instance, IStateMachineTarget, BeeSleepStates.Def>.State pre;
 
-		// Token: 0x04000345 RID: 837
 		public GameStateMachine<BeeSleepStates, BeeSleepStates.Instance, IStateMachineTarget, BeeSleepStates.Def>.State loop;
 
-		// Token: 0x04000346 RID: 838
 		public GameStateMachine<BeeSleepStates, BeeSleepStates.Instance, IStateMachineTarget, BeeSleepStates.Def>.State pst;
 	}
 }

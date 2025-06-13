@@ -4,11 +4,8 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001FED RID: 8173
 public class MinionTodoSideScreen : SideScreenContent
 {
-	// Token: 0x17000B01 RID: 2817
-	// (get) Token: 0x0600ACB2 RID: 44210 RVA: 0x0041F014 File Offset: 0x0041D214
 	public static List<JobsTableScreen.PriorityInfo> priorityInfo
 	{
 		get
@@ -29,7 +26,6 @@ public class MinionTodoSideScreen : SideScreenContent
 		}
 	}
 
-	// Token: 0x0600ACB3 RID: 44211 RVA: 0x0041F0EC File Offset: 0x0041D2EC
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -65,20 +61,17 @@ public class MinionTodoSideScreen : SideScreenContent
 		}
 	}
 
-	// Token: 0x0600ACB4 RID: 44212 RVA: 0x00114B77 File Offset: 0x00112D77
 	public override bool IsValidForTarget(GameObject target)
 	{
 		return target.GetComponent<MinionIdentity>() != null && !target.HasTag(GameTags.Dead);
 	}
 
-	// Token: 0x0600ACB5 RID: 44213 RVA: 0x00114B97 File Offset: 0x00112D97
 	public override void ClearTarget()
 	{
 		base.ClearTarget();
 		this.refreshHandle.ClearScheduler();
 	}
 
-	// Token: 0x0600ACB6 RID: 44214 RVA: 0x00114BAA File Offset: 0x00112DAA
 	public override void SetTarget(GameObject target)
 	{
 		this.refreshHandle.ClearScheduler();
@@ -89,14 +82,12 @@ public class MinionTodoSideScreen : SideScreenContent
 		base.SetTarget(target);
 	}
 
-	// Token: 0x0600ACB7 RID: 44215 RVA: 0x00114BD1 File Offset: 0x00112DD1
 	public override void ScreenUpdate(bool topLevel)
 	{
 		base.ScreenUpdate(topLevel);
 		this.PopulateElements(null);
 	}
 
-	// Token: 0x0600ACB8 RID: 44216 RVA: 0x0041F2D8 File Offset: 0x0041D4D8
 	protected override void OnShow(bool show)
 	{
 		base.OnShow(show);
@@ -120,7 +111,6 @@ public class MinionTodoSideScreen : SideScreenContent
 		this.PopulateElements(null);
 	}
 
-	// Token: 0x0600ACB9 RID: 44217 RVA: 0x0041F37C File Offset: 0x0041D57C
 	private void PopulateElements(object data = null)
 	{
 		this.refreshHandle.ClearScheduler();
@@ -196,7 +186,6 @@ public class MinionTodoSideScreen : SideScreenContent
 		}
 	}
 
-	// Token: 0x0600ACBA RID: 44218 RVA: 0x0041F700 File Offset: 0x0041D900
 	private MinionTodoChoreEntry GetChoreEntry(RectTransform parent)
 	{
 		MinionTodoChoreEntry minionTodoChoreEntry;
@@ -216,7 +205,6 @@ public class MinionTodoSideScreen : SideScreenContent
 		return minionTodoChoreEntry;
 	}
 
-	// Token: 0x0600ACBB RID: 44219 RVA: 0x0041F78C File Offset: 0x0041D98C
 	private HierarchyReferences PriorityGroupForPriority(ChoreConsumer choreConsumer, Chore chore)
 	{
 		foreach (global::Tuple<PriorityScreen.PriorityClass, int, HierarchyReferences> tuple in this.priorityGroups)
@@ -236,62 +224,44 @@ public class MinionTodoSideScreen : SideScreenContent
 		return null;
 	}
 
-	// Token: 0x0600ACBC RID: 44220 RVA: 0x000AFECA File Offset: 0x000AE0CA
 	private void Button_onPointerEnter()
 	{
 		throw new NotImplementedException();
 	}
 
-	// Token: 0x040087F9 RID: 34809
 	private bool useOffscreenIndicators;
 
-	// Token: 0x040087FA RID: 34810
 	public MinionTodoChoreEntry taskEntryPrefab;
 
-	// Token: 0x040087FB RID: 34811
 	public GameObject priorityGroupPrefab;
 
-	// Token: 0x040087FC RID: 34812
 	public GameObject taskEntryContainer;
 
-	// Token: 0x040087FD RID: 34813
 	public MinionTodoChoreEntry currentTask;
 
-	// Token: 0x040087FE RID: 34814
 	public LocText currentShiftLabel;
 
-	// Token: 0x040087FF RID: 34815
 	public Image currentShiftIcon;
 
-	// Token: 0x04008800 RID: 34816
 	public LocText currentScheduleBlockLabel;
 
-	// Token: 0x04008801 RID: 34817
 	private List<global::Tuple<PriorityScreen.PriorityClass, int, HierarchyReferences>> priorityGroups = new List<global::Tuple<PriorityScreen.PriorityClass, int, HierarchyReferences>>();
 
-	// Token: 0x04008802 RID: 34818
 	private List<MinionTodoChoreEntry> choreEntries = new List<MinionTodoChoreEntry>();
 
-	// Token: 0x04008803 RID: 34819
 	private List<GameObject> choreTargets = new List<GameObject>();
 
-	// Token: 0x04008804 RID: 34820
 	private SchedulerHandle refreshHandle;
 
-	// Token: 0x04008805 RID: 34821
 	private ChoreConsumer choreConsumer;
 
-	// Token: 0x04008806 RID: 34822
 	[SerializeField]
 	private ColorStyleSetting buttonColorSettingCurrent;
 
-	// Token: 0x04008807 RID: 34823
 	[SerializeField]
 	private ColorStyleSetting buttonColorSettingStandard;
 
-	// Token: 0x04008808 RID: 34824
 	private static List<JobsTableScreen.PriorityInfo> _priorityInfo;
 
-	// Token: 0x04008809 RID: 34825
 	private int activeChoreEntries;
 }

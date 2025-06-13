@@ -17,25 +17,18 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-// Token: 0x020014BB RID: 5307
 public class KCrashReporter : MonoBehaviour
 {
-	// Token: 0x14000020 RID: 32
-	// (add) Token: 0x06006DCF RID: 28111 RVA: 0x002FAC80 File Offset: 0x002F8E80
-	// (remove) Token: 0x06006DD0 RID: 28112 RVA: 0x002FACB4 File Offset: 0x002F8EB4
+add) Token: 0x06006DCF RID: 28111 RVA: 0x002FAC80 File Offset: 0x002F8E80
+remove) Token: 0x06006DD0 RID: 28112 RVA: 0x002FACB4 File Offset: 0x002F8EB4
 	public static event Action<bool> onCrashReported;
 
-	// Token: 0x14000021 RID: 33
-	// (add) Token: 0x06006DD1 RID: 28113 RVA: 0x002FACE8 File Offset: 0x002F8EE8
-	// (remove) Token: 0x06006DD2 RID: 28114 RVA: 0x002FAD1C File Offset: 0x002F8F1C
+add) Token: 0x06006DD1 RID: 28113 RVA: 0x002FACE8 File Offset: 0x002F8EE8
+remove) Token: 0x06006DD2 RID: 28114 RVA: 0x002FAD1C File Offset: 0x002F8F1C
 	public static event Action<float> onCrashUploadProgress;
 
-	// Token: 0x170006DC RID: 1756
-	// (get) Token: 0x06006DD3 RID: 28115 RVA: 0x000EC8FE File Offset: 0x000EAAFE
-	// (set) Token: 0x06006DD4 RID: 28116 RVA: 0x000EC905 File Offset: 0x000EAB05
 	public static bool hasReportedError { get; private set; }
 
-	// Token: 0x06006DD5 RID: 28117 RVA: 0x002FAD50 File Offset: 0x002F8F50
 	private void OnEnable()
 	{
 		KCrashReporter.dataRoot = Application.dataPath;
@@ -97,13 +90,11 @@ public class KCrashReporter : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06006DD6 RID: 28118 RVA: 0x000EC90D File Offset: 0x000EAB0D
 	private void OnDisable()
 	{
 		Application.logMessageReceived -= this.HandleLog;
 	}
 
-	// Token: 0x06006DD7 RID: 28119 RVA: 0x002FAEF8 File Offset: 0x002F90F8
 	private void HandleLog(string msg, string stack_trace, LogType type)
 	{
 		if ((KCrashReporter.logCount += 1U) == 10000000U)
@@ -176,7 +167,6 @@ public class KCrashReporter : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06006DD8 RID: 28120 RVA: 0x002FB06C File Offset: 0x002F926C
 	public bool ShowDialog(string error, string stack_trace)
 	{
 		if (this.errorScreen != null)
@@ -217,7 +207,6 @@ public class KCrashReporter : MonoBehaviour
 		return true;
 	}
 
-	// Token: 0x06006DD9 RID: 28121 RVA: 0x000EC920 File Offset: 0x000EAB20
 	private void OnCloseErrorDialog()
 	{
 		UnityEngine.Object.Destroy(this.errorScreen);
@@ -229,13 +218,11 @@ public class KCrashReporter : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06006DDA RID: 28122 RVA: 0x000E870F File Offset: 0x000E690F
 	private void OnQuitToDesktop()
 	{
 		App.Quit();
 	}
 
-	// Token: 0x06006DDB RID: 28123 RVA: 0x002FB240 File Offset: 0x002F9440
 	private static string GetUserID()
 	{
 		if (DistributionPlatform.Initialized)
@@ -253,7 +240,6 @@ public class KCrashReporter : MonoBehaviour
 		return "LocalUser_" + Environment.UserName;
 	}
 
-	// Token: 0x06006DDC RID: 28124 RVA: 0x002FB2BC File Offset: 0x002F94BC
 	private static string GetLogContents()
 	{
 		string path = Util.LogFilePath();
@@ -270,7 +256,6 @@ public class KCrashReporter : MonoBehaviour
 		return "";
 	}
 
-	// Token: 0x06006DDD RID: 28125 RVA: 0x002FB328 File Offset: 0x002F9528
 	public static void ReportDevNotification(string notification_name, string stack_trace, string details = "", bool includeSaveFile = false, string[] extraCategories = null)
 	{
 		if (KCrashReporter.previouslyReportedDevNotifications == null)
@@ -301,7 +286,6 @@ public class KCrashReporter : MonoBehaviour
 		KCrashReporter.hasReportedError = hasReportedError;
 	}
 
-	// Token: 0x06006DDE RID: 28126 RVA: 0x002FB3D8 File Offset: 0x002F95D8
 	public static void ReportError(string msg, string stack_trace, ConfirmDialogScreen confirm_prefab, GameObject confirm_parent, string userMessage = "", bool includeSaveFile = true, string[] extraCategories = null, string[] extraFiles = null)
 	{
 		if (KPrivacyPrefs.instance.disableDataCollection)
@@ -452,7 +436,6 @@ public class KCrashReporter : MonoBehaviour
 		};
 	}
 
-	// Token: 0x06006DDF RID: 28127 RVA: 0x000EC952 File Offset: 0x000EAB52
 	private static IEnumerator SubmitCrashAsync(string jsonString, byte[] archiveData, System.Action successCallback, Action<long> failureCallback)
 	{
 		bool success = false;
@@ -504,14 +487,12 @@ public class KCrashReporter : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06006DE0 RID: 28128 RVA: 0x002FB754 File Offset: 0x002F9954
 	public static void ReportBug(string msg, GameObject confirmParent)
 	{
 		string stack_trace = "Bug Report From: " + KCrashReporter.GetUserID() + " at " + System.DateTime.Now.ToString();
 		KCrashReporter.ReportError(msg, stack_trace, ScreenPrefabs.Instance.ConfirmDialogScreen, confirmParent, "", true, null, null);
 	}
 
-	// Token: 0x06006DE1 RID: 28129 RVA: 0x002FB7A0 File Offset: 0x002F99A0
 	public static void Assert(bool condition, string message, string[] extraCategories = null)
 	{
 		if (!condition && !KCrashReporter.hasReportedError)
@@ -521,7 +502,6 @@ public class KCrashReporter : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06006DE2 RID: 28130 RVA: 0x002FB7DC File Offset: 0x002F99DC
 	public static void ReportSimDLLCrash(string msg, string stack_trace, string dmp_filename)
 	{
 		if (KCrashReporter.hasReportedError)
@@ -537,7 +517,6 @@ public class KCrashReporter : MonoBehaviour
 		});
 	}
 
-	// Token: 0x06006DE3 RID: 28131 RVA: 0x002FB818 File Offset: 0x002F9A18
 	private static byte[] CreateArchiveZip(string log, List<string> files)
 	{
 		byte[] result;
@@ -585,7 +564,6 @@ public class KCrashReporter : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06006DE4 RID: 28132 RVA: 0x002FB9D8 File Offset: 0x002F9BD8
 	private void Update()
 	{
 		if (KCrashReporter.pendingCrash != null)
@@ -597,61 +575,43 @@ public class KCrashReporter : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040052B5 RID: 21173
 	public static string MOST_RECENT_SAVEFILE = null;
 
-	// Token: 0x040052B6 RID: 21174
 	public const string CRASH_REPORTER_SERVER = "https://games-feedback.klei.com";
 
-	// Token: 0x040052B7 RID: 21175
 	public const uint MAX_LOGS = 10000000U;
 
-	// Token: 0x040052BA RID: 21178
 	public static bool ignoreAll = false;
 
-	// Token: 0x040052BB RID: 21179
 	public static bool debugWasUsed = false;
 
-	// Token: 0x040052BC RID: 21180
 	public static bool haveActiveMods = false;
 
-	// Token: 0x040052BD RID: 21181
 	public static uint logCount = 0U;
 
-	// Token: 0x040052BE RID: 21182
 	public static string error_canvas_name = "ErrorCanvas";
 
-	// Token: 0x040052BF RID: 21183
 	public static bool disableDeduping = false;
 
-	// Token: 0x040052C1 RID: 21185
 	public static bool hasCrash = false;
 
-	// Token: 0x040052C2 RID: 21186
 	private static readonly Regex failedToLoadModuleRegEx = new Regex("^Failed to load '(.*?)' with error (.*)", RegexOptions.Multiline);
 
-	// Token: 0x040052C3 RID: 21187
 	[SerializeField]
 	private LoadScreen loadScreenPrefab;
 
-	// Token: 0x040052C4 RID: 21188
 	[SerializeField]
 	private GameObject reportErrorPrefab;
 
-	// Token: 0x040052C5 RID: 21189
 	[SerializeField]
 	private ConfirmDialogScreen confirmDialogPrefab;
 
-	// Token: 0x040052C6 RID: 21190
 	private GameObject errorScreen;
 
-	// Token: 0x040052C7 RID: 21191
 	public static bool terminateOnError = true;
 
-	// Token: 0x040052C8 RID: 21192
 	private static string dataRoot;
 
-	// Token: 0x040052C9 RID: 21193
 	private static readonly string[] IgnoreStrings = new string[]
 	{
 		"Releasing render texture whose render buffer is set as Camera's target buffer with Camera.SetTargetBuffers!",
@@ -661,53 +621,37 @@ public class KCrashReporter : MonoBehaviour
 		"<I> Failed to get cursor position:\r\nSuccess.\r\n"
 	};
 
-	// Token: 0x040052CA RID: 21194
 	private static HashSet<int> previouslyReportedDevNotifications;
 
-	// Token: 0x040052CB RID: 21195
 	private static KCrashReporter.PendingCrash pendingCrash;
 
-	// Token: 0x020014BC RID: 5308
 	public class CRASH_CATEGORY
 	{
-		// Token: 0x040052CC RID: 21196
 		public static string DEVNOTIFICATION = "DevNotification";
 
-		// Token: 0x040052CD RID: 21197
 		public static string VANILLA = "Vanilla";
 
-		// Token: 0x040052CE RID: 21198
 		public static string SPACEDOUT = "SpacedOut";
 
-		// Token: 0x040052CF RID: 21199
 		public static string MODDED = "Modded";
 
-		// Token: 0x040052D0 RID: 21200
 		public static string DEBUGUSED = "DebugUsed";
 
-		// Token: 0x040052D1 RID: 21201
 		public static string SANDBOX = "Sandbox";
 
-		// Token: 0x040052D2 RID: 21202
 		public static string STEAMDECK = "SteamDeck";
 
-		// Token: 0x040052D3 RID: 21203
 		public static string SIM = "SimDll";
 
-		// Token: 0x040052D4 RID: 21204
 		public static string FILEIO = "FileIO";
 
-		// Token: 0x040052D5 RID: 21205
 		public static string MODSYSTEM = "ModSystem";
 
-		// Token: 0x040052D6 RID: 21206
 		public static string WORLDGENFAILURE = "WorldgenFailure";
 	}
 
-	// Token: 0x020014BD RID: 5309
 	private class Error
 	{
-		// Token: 0x06006DE9 RID: 28137 RVA: 0x002FBB30 File Offset: 0x002F9D30
 		public Error()
 		{
 			this.userName = KCrashReporter.GetUserID();
@@ -731,7 +675,6 @@ public class KCrashReporter : MonoBehaviour
 			}
 		}
 
-		// Token: 0x06006DEA RID: 28138 RVA: 0x002FBC7C File Offset: 0x002F9E7C
 		private void InitDefaultCategories()
 		{
 			if (DlcManager.IsPureVanilla())
@@ -767,7 +710,6 @@ public class KCrashReporter : MonoBehaviour
 			}
 		}
 
-		// Token: 0x06006DEB RID: 28139 RVA: 0x002FBD88 File Offset: 0x002F9F88
 		private void InitSku()
 		{
 			this.sku = "steam";
@@ -793,7 +735,6 @@ public class KCrashReporter : MonoBehaviour
 			}
 		}
 
-		// Token: 0x06006DEC RID: 28140 RVA: 0x002FBE28 File Offset: 0x002FA028
 		private void InitSlackSummary()
 		{
 			string buildText = BuildWatermark.GetBuildText();
@@ -819,86 +760,59 @@ public class KCrashReporter : MonoBehaviour
 			});
 		}
 
-		// Token: 0x040052D7 RID: 21207
 		public string game = "ONI";
 
-		// Token: 0x040052D8 RID: 21208
 		public string userName;
 
-		// Token: 0x040052D9 RID: 21209
 		public string platform;
 
-		// Token: 0x040052DA RID: 21210
 		public string version = LaunchInitializer.BuildPrefix();
 
-		// Token: 0x040052DB RID: 21211
 		public string branch = "default";
 
-		// Token: 0x040052DC RID: 21212
 		public string sku = "";
 
-		// Token: 0x040052DD RID: 21213
 		public int build = 663500;
 
-		// Token: 0x040052DE RID: 21214
 		public string callstack = "";
 
-		// Token: 0x040052DF RID: 21215
 		public string fullstack = "";
 
-		// Token: 0x040052E0 RID: 21216
 		public string summaryline = "";
 
-		// Token: 0x040052E1 RID: 21217
 		public string userMessage = "";
 
-		// Token: 0x040052E2 RID: 21218
 		public List<string> categories = new List<string>();
 
-		// Token: 0x040052E3 RID: 21219
 		public string slackSummary;
 
-		// Token: 0x040052E4 RID: 21220
 		public string logFilename = "Player.log";
 
-		// Token: 0x040052E5 RID: 21221
 		public string saveFilename = "";
 
-		// Token: 0x040052E6 RID: 21222
 		public string screenshotFilename = "";
 
-		// Token: 0x040052E7 RID: 21223
 		public List<string> extraFilenames = new List<string>();
 
-		// Token: 0x040052E8 RID: 21224
 		public string title = "";
 
-		// Token: 0x040052E9 RID: 21225
 		public bool isServer;
 
-		// Token: 0x040052EA RID: 21226
 		public bool isDedicated;
 
-		// Token: 0x040052EB RID: 21227
 		public bool isError = true;
 
-		// Token: 0x040052EC RID: 21228
 		public string emote = "";
 	}
 
-	// Token: 0x020014BF RID: 5311
 	public class PendingCrash
 	{
-		// Token: 0x040052EF RID: 21231
 		public string jsonString;
 
-		// Token: 0x040052F0 RID: 21232
 		public byte[] archiveData;
 
-		// Token: 0x040052F1 RID: 21233
 		public System.Action successCallback;
 
-		// Token: 0x040052F2 RID: 21234
 		public Action<long> failureCallback;
 	}
 }

@@ -2,16 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x0200146C RID: 5228
 public class FilteredDragTool : DragTool
 {
-	// Token: 0x06006BE7 RID: 27623 RVA: 0x000EB487 File Offset: 0x000E9687
 	public bool IsActiveLayer(string layer)
 	{
 		return this.currentFilterTargets[ToolParameterMenu.FILTERLAYERS.ALL] == ToolParameterMenu.ToggleState.On || (this.currentFilterTargets.ContainsKey(layer.ToUpper()) && this.currentFilterTargets[layer.ToUpper()] == ToolParameterMenu.ToggleState.On);
 	}
 
-	// Token: 0x06006BE8 RID: 27624 RVA: 0x002F2980 File Offset: 0x002F0B80
 	public bool IsActiveLayer(ObjectLayer layer)
 	{
 		if (this.currentFilterTargets.ContainsKey(ToolParameterMenu.FILTERLAYERS.ALL) && this.currentFilterTargets[ToolParameterMenu.FILTERLAYERS.ALL] == ToolParameterMenu.ToggleState.On)
@@ -30,7 +27,6 @@ public class FilteredDragTool : DragTool
 		return result;
 	}
 
-	// Token: 0x06006BE9 RID: 27625 RVA: 0x002F2A14 File Offset: 0x002F0C14
 	protected virtual void GetDefaultFilters(Dictionary<string, ToolParameterMenu.ToggleState> filters)
 	{
 		filters.Add(ToolParameterMenu.FILTERLAYERS.ALL, ToolParameterMenu.ToggleState.On);
@@ -43,14 +39,12 @@ public class FilteredDragTool : DragTool
 		filters.Add(ToolParameterMenu.FILTERLAYERS.BACKWALL, ToolParameterMenu.ToggleState.Off);
 	}
 
-	// Token: 0x06006BEA RID: 27626 RVA: 0x000EB4C6 File Offset: 0x000E96C6
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 		this.ResetFilter(this.filterTargets);
 	}
 
-	// Token: 0x06006BEB RID: 27627 RVA: 0x000EB4DA File Offset: 0x000E96DA
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -58,7 +52,6 @@ public class FilteredDragTool : DragTool
 		instance.OnOverlayChanged = (Action<HashedString>)Delegate.Combine(instance.OnOverlayChanged, new Action<HashedString>(this.OnOverlayChanged));
 	}
 
-	// Token: 0x06006BEC RID: 27628 RVA: 0x000EB508 File Offset: 0x000E9708
 	protected override void OnCleanUp()
 	{
 		OverlayScreen instance = OverlayScreen.Instance;
@@ -66,13 +59,11 @@ public class FilteredDragTool : DragTool
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06006BED RID: 27629 RVA: 0x000EB536 File Offset: 0x000E9736
 	public void ResetFilter()
 	{
 		this.ResetFilter(this.filterTargets);
 	}
 
-	// Token: 0x06006BEE RID: 27630 RVA: 0x000EB544 File Offset: 0x000E9744
 	protected void ResetFilter(Dictionary<string, ToolParameterMenu.ToggleState> filters)
 	{
 		filters.Clear();
@@ -80,7 +71,6 @@ public class FilteredDragTool : DragTool
 		this.currentFilterTargets = filters;
 	}
 
-	// Token: 0x06006BEF RID: 27631 RVA: 0x000EB55A File Offset: 0x000E975A
 	protected override void OnActivateTool()
 	{
 		this.active = true;
@@ -88,7 +78,6 @@ public class FilteredDragTool : DragTool
 		this.OnOverlayChanged(OverlayScreen.Instance.mode);
 	}
 
-	// Token: 0x06006BF0 RID: 27632 RVA: 0x000EB579 File Offset: 0x000E9779
 	protected override void OnDeactivateTool(InterfaceTool new_tool)
 	{
 		this.active = false;
@@ -96,7 +85,6 @@ public class FilteredDragTool : DragTool
 		base.OnDeactivateTool(new_tool);
 	}
 
-	// Token: 0x06006BF1 RID: 27633 RVA: 0x002F2A84 File Offset: 0x002F0C84
 	public virtual string GetFilterLayerFromGameObject(GameObject input)
 	{
 		BuildingComplete component = input.GetComponent<BuildingComplete>();
@@ -120,7 +108,6 @@ public class FilteredDragTool : DragTool
 		return "Default";
 	}
 
-	// Token: 0x06006BF2 RID: 27634 RVA: 0x002F2B10 File Offset: 0x002F0D10
 	public string GetFilterLayerFromObjectLayer(ObjectLayer gamer_layer)
 	{
 		if (gamer_layer > ObjectLayer.FoundationTile)
@@ -185,7 +172,6 @@ public class FilteredDragTool : DragTool
 		return "Default";
 	}
 
-	// Token: 0x06006BF3 RID: 27635 RVA: 0x002F2BD0 File Offset: 0x002F0DD0
 	private ObjectLayer GetObjectLayerFromFilterLayer(string filter_layer)
 	{
 		string text = filter_layer.ToLower();
@@ -258,7 +244,6 @@ public class FilteredDragTool : DragTool
 		throw new ArgumentException("Invalid filter layer: " + filter_layer);
 	}
 
-	// Token: 0x06006BF4 RID: 27636 RVA: 0x002F2D18 File Offset: 0x002F0F18
 	private void OnOverlayChanged(HashedString overlay)
 	{
 		if (!this.active)
@@ -312,15 +297,11 @@ public class FilteredDragTool : DragTool
 		ToolMenu.Instance.toolParameterMenu.PopulateMenu(this.currentFilterTargets);
 	}
 
-	// Token: 0x040051BC RID: 20924
 	private Dictionary<string, ToolParameterMenu.ToggleState> filterTargets = new Dictionary<string, ToolParameterMenu.ToggleState>();
 
-	// Token: 0x040051BD RID: 20925
 	private Dictionary<string, ToolParameterMenu.ToggleState> overlayFilterTargets = new Dictionary<string, ToolParameterMenu.ToggleState>();
 
-	// Token: 0x040051BE RID: 20926
 	private Dictionary<string, ToolParameterMenu.ToggleState> currentFilterTargets;
 
-	// Token: 0x040051BF RID: 20927
 	private bool active;
 }

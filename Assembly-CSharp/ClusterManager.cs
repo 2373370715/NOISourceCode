@@ -6,17 +6,13 @@ using ProcGenGame;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020010CF RID: 4303
 public class ClusterManager : KMonoBehaviour, ISaveLoadable
 {
-	// Token: 0x060057B8 RID: 22456 RVA: 0x000DDACC File Offset: 0x000DBCCC
 	public static void DestroyInstance()
 	{
 		ClusterManager.Instance = null;
 	}
 
-	// Token: 0x17000520 RID: 1312
-	// (get) Token: 0x060057B9 RID: 22457 RVA: 0x000DDAD4 File Offset: 0x000DBCD4
 	public int worldCount
 	{
 		get
@@ -25,8 +21,6 @@ public class ClusterManager : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x17000521 RID: 1313
-	// (get) Token: 0x060057BA RID: 22458 RVA: 0x000DDAE1 File Offset: 0x000DBCE1
 	public int activeWorldId
 	{
 		get
@@ -35,8 +29,6 @@ public class ClusterManager : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x17000522 RID: 1314
-	// (get) Token: 0x060057BB RID: 22459 RVA: 0x000DDAE9 File Offset: 0x000DBCE9
 	public List<WorldContainer> WorldContainers
 	{
 		get
@@ -45,14 +37,11 @@ public class ClusterManager : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x060057BC RID: 22460 RVA: 0x000DDAF1 File Offset: 0x000DBCF1
 	public ClusterPOIManager GetClusterPOIManager()
 	{
 		return this.m_clusterPOIsManager;
 	}
 
-	// Token: 0x17000523 RID: 1315
-	// (get) Token: 0x060057BD RID: 22461 RVA: 0x002947CC File Offset: 0x002929CC
 	public Dictionary<int, List<IAssignableIdentity>> MinionsByWorld
 	{
 		get
@@ -74,20 +63,17 @@ public class ClusterManager : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x060057BE RID: 22462 RVA: 0x000DDAF9 File Offset: 0x000DBCF9
 	public void RegisterWorldContainer(WorldContainer worldContainer)
 	{
 		this.m_worldContainers.Add(worldContainer);
 	}
 
-	// Token: 0x060057BF RID: 22463 RVA: 0x000DDB07 File Offset: 0x000DBD07
 	public void UnregisterWorldContainer(WorldContainer worldContainer)
 	{
 		base.Trigger(-1078710002, worldContainer.id);
 		this.m_worldContainers.Remove(worldContainer);
 	}
 
-	// Token: 0x060057C0 RID: 22464 RVA: 0x0029487C File Offset: 0x00292A7C
 	public List<int> GetWorldIDsSorted()
 	{
 		ListPool<WorldContainer, ClusterManager>.PooledList pooledList = ListPool<WorldContainer, ClusterManager>.Allocate(this.m_worldContainers);
@@ -101,7 +87,6 @@ public class ClusterManager : KMonoBehaviour, ISaveLoadable
 		return this._worldIDs;
 	}
 
-	// Token: 0x060057C1 RID: 22465 RVA: 0x0029491C File Offset: 0x00292B1C
 	public List<int> GetDiscoveredAsteroidIDsSorted()
 	{
 		ListPool<WorldContainer, ClusterManager>.PooledList pooledList = ListPool<WorldContainer, ClusterManager>.Allocate(this.m_worldContainers);
@@ -118,7 +103,6 @@ public class ClusterManager : KMonoBehaviour, ISaveLoadable
 		return this._discoveredAsteroidIds;
 	}
 
-	// Token: 0x060057C2 RID: 22466 RVA: 0x002949B8 File Offset: 0x00292BB8
 	public WorldContainer GetStartWorld()
 	{
 		foreach (WorldContainer worldContainer in this.WorldContainers)
@@ -131,7 +115,6 @@ public class ClusterManager : KMonoBehaviour, ISaveLoadable
 		return this.WorldContainers[0];
 	}
 
-	// Token: 0x060057C3 RID: 22467 RVA: 0x000DDB2C File Offset: 0x000DBD2C
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -140,7 +123,6 @@ public class ClusterManager : KMonoBehaviour, ISaveLoadable
 		instance.OnWorldGenComplete = (Action<Cluster>)Delegate.Combine(instance.OnWorldGenComplete, new Action<Cluster>(this.OnWorldGenComplete));
 	}
 
-	// Token: 0x060057C4 RID: 22468 RVA: 0x000DDB60 File Offset: 0x000DBD60
 	protected override void OnSpawn()
 	{
 		if (this.m_grid == null)
@@ -151,14 +133,11 @@ public class ClusterManager : KMonoBehaviour, ISaveLoadable
 		base.OnSpawn();
 	}
 
-	// Token: 0x060057C5 RID: 22469 RVA: 0x000C4795 File Offset: 0x000C2995
 	protected override void OnCleanUp()
 	{
 		base.OnCleanUp();
 	}
 
-	// Token: 0x17000524 RID: 1316
-	// (get) Token: 0x060057C6 RID: 22470 RVA: 0x000DDB8D File Offset: 0x000DBD8D
 	public WorldContainer activeWorld
 	{
 		get
@@ -167,7 +146,6 @@ public class ClusterManager : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x060057C7 RID: 22471 RVA: 0x00294A20 File Offset: 0x00292C20
 	private void OnWorldGenComplete(Cluster clusterLayout)
 	{
 		this.m_numRings = clusterLayout.numRings;
@@ -200,7 +178,6 @@ public class ClusterManager : KMonoBehaviour, ISaveLoadable
 		this.m_clusterPOIsManager.PopulatePOIsFromWorldGen(clusterLayout);
 	}
 
-	// Token: 0x060057C8 RID: 22472 RVA: 0x00294B4C File Offset: 0x00292D4C
 	private int GetNextWorldId()
 	{
 		HashSetPool<int, ClusterManager>.PooledHashSet pooledHashSet = HashSetPool<int, ClusterManager>.Allocate();
@@ -221,7 +198,6 @@ public class ClusterManager : KMonoBehaviour, ISaveLoadable
 		return 255;
 	}
 
-	// Token: 0x060057C9 RID: 22473 RVA: 0x00294BF4 File Offset: 0x00292DF4
 	private WorldContainer CreateAsteroidWorldContainer(WorldGen world)
 	{
 		int nextWorldId = this.GetNextWorldId();
@@ -251,7 +227,6 @@ public class ClusterManager : KMonoBehaviour, ISaveLoadable
 		return component;
 	}
 
-	// Token: 0x060057CA RID: 22474 RVA: 0x00294CB8 File Offset: 0x00292EB8
 	private void CreateDefaultAsteroidWorldContainer()
 	{
 		if (this.m_worldContainers.Count == 0)
@@ -275,7 +250,6 @@ public class ClusterManager : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x060057CB RID: 22475 RVA: 0x00294D50 File Offset: 0x00292F50
 	public void InitializeWorldGrid()
 	{
 		if (SaveLoader.Instance.GameInfo.IsVersionOlderThan(7, 20))
@@ -305,7 +279,6 @@ public class ClusterManager : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x060057CC RID: 22476 RVA: 0x00294E58 File Offset: 0x00293058
 	public void SetActiveWorld(int worldIdx)
 	{
 		int num = this.activeWorldIdx;
@@ -317,13 +290,11 @@ public class ClusterManager : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x060057CD RID: 22477 RVA: 0x000DDB9B File Offset: 0x000DBD9B
 	public void TimelapseModeOverrideActiveWorld(int overrideValue)
 	{
 		this.activeWorldIdx = overrideValue;
 	}
 
-	// Token: 0x060057CE RID: 22478 RVA: 0x00294E98 File Offset: 0x00293098
 	public WorldContainer GetWorld(int id)
 	{
 		for (int i = 0; i < this.m_worldContainers.Count; i++)
@@ -336,7 +307,6 @@ public class ClusterManager : KMonoBehaviour, ISaveLoadable
 		return null;
 	}
 
-	// Token: 0x060057CF RID: 22479 RVA: 0x00294EE0 File Offset: 0x002930E0
 	public WorldContainer GetWorldFromPosition(Vector3 position)
 	{
 		foreach (WorldContainer worldContainer in this.m_worldContainers)
@@ -349,7 +319,6 @@ public class ClusterManager : KMonoBehaviour, ISaveLoadable
 		return null;
 	}
 
-	// Token: 0x060057D0 RID: 22480 RVA: 0x00294F44 File Offset: 0x00293144
 	public float CountAllRations()
 	{
 		float result = 0f;
@@ -360,7 +329,6 @@ public class ClusterManager : KMonoBehaviour, ISaveLoadable
 		return result;
 	}
 
-	// Token: 0x060057D1 RID: 22481 RVA: 0x00294FAC File Offset: 0x002931AC
 	public Dictionary<Tag, float> GetAllWorldsAccessibleAmounts()
 	{
 		Dictionary<Tag, float> dictionary = new Dictionary<Tag, float>();
@@ -383,19 +351,16 @@ public class ClusterManager : KMonoBehaviour, ISaveLoadable
 		return dictionary;
 	}
 
-	// Token: 0x060057D2 RID: 22482 RVA: 0x000DDBA4 File Offset: 0x000DBDA4
 	public void MigrateMinion(MinionIdentity minion, int targetID)
 	{
 		this.MigrateMinion(minion, targetID, minion.GetMyWorldId());
 	}
 
-	// Token: 0x060057D3 RID: 22483 RVA: 0x000DDBB4 File Offset: 0x000DBDB4
 	public void MigrateCritter(GameObject critter, int targetID)
 	{
 		this.MigrateCritter(critter, targetID, critter.GetMyWorldId());
 	}
 
-	// Token: 0x060057D4 RID: 22484 RVA: 0x000DDBC4 File Offset: 0x000DBDC4
 	public void MigrateCritter(GameObject critter, int targetID, int prevID)
 	{
 		this.critterMigrationEvArg.entity = critter;
@@ -404,7 +369,6 @@ public class ClusterManager : KMonoBehaviour, ISaveLoadable
 		Game.Instance.Trigger(1142724171, this.critterMigrationEvArg);
 	}
 
-	// Token: 0x060057D5 RID: 22485 RVA: 0x00295090 File Offset: 0x00293290
 	public void MigrateMinion(MinionIdentity minion, int targetID, int prevID)
 	{
 		if (!ClusterManager.Instance.GetWorld(targetID).IsDiscovered)
@@ -422,7 +386,6 @@ public class ClusterManager : KMonoBehaviour, ISaveLoadable
 		Game.Instance.Trigger(586301400, this.migrationEvArg);
 	}
 
-	// Token: 0x060057D6 RID: 22486 RVA: 0x00295138 File Offset: 0x00293338
 	public int GetLandingBeaconLocation(int worldId)
 	{
 		foreach (object obj in Components.LandingBeacons)
@@ -436,7 +399,6 @@ public class ClusterManager : KMonoBehaviour, ISaveLoadable
 		return Grid.InvalidCell;
 	}
 
-	// Token: 0x060057D7 RID: 22487 RVA: 0x002951AC File Offset: 0x002933AC
 	public int GetRandomClearCell(int worldId)
 	{
 		bool flag = false;
@@ -463,14 +425,12 @@ public class ClusterManager : KMonoBehaviour, ISaveLoadable
 		return Grid.InvalidCell;
 	}
 
-	// Token: 0x060057D8 RID: 22488 RVA: 0x00295238 File Offset: 0x00293438
 	private bool NotObstructedCell(int x, int y)
 	{
 		int cell = Grid.XYToCell(x, y);
 		return Grid.IsValidCell(cell) && Grid.Objects[cell, 1] == null;
 	}
 
-	// Token: 0x060057D9 RID: 22489 RVA: 0x0029526C File Offset: 0x0029346C
 	private int LowestYThatSeesSky(int topCellYPos, int x)
 	{
 		int num = topCellYPos;
@@ -481,14 +441,12 @@ public class ClusterManager : KMonoBehaviour, ISaveLoadable
 		return num;
 	}
 
-	// Token: 0x060057DA RID: 22490 RVA: 0x0029528C File Offset: 0x0029348C
 	private bool ValidSurfaceCell(int x, int y)
 	{
 		int i = Grid.XYToCell(x, y - 1);
 		return Grid.Solid[i] || Grid.Foundation[i];
 	}
 
-	// Token: 0x060057DB RID: 22491 RVA: 0x002952C0 File Offset: 0x002934C0
 	public int GetRandomSurfaceCell(int worldID, int width = 1, bool excludeTopBorderHeight = true)
 	{
 		WorldContainer worldContainer = this.m_worldContainers.Find((WorldContainer match) => match.id == worldID);
@@ -540,7 +498,6 @@ public class ClusterManager : KMonoBehaviour, ISaveLoadable
 		return Grid.XYToCell(num3, num4);
 	}
 
-	// Token: 0x060057DC RID: 22492 RVA: 0x002953EC File Offset: 0x002935EC
 	public bool IsPositionInActiveWorld(Vector3 pos)
 	{
 		if (this.activeWorld != null && !CameraController.Instance.ignoreClusterFX)
@@ -555,7 +512,6 @@ public class ClusterManager : KMonoBehaviour, ISaveLoadable
 		return true;
 	}
 
-	// Token: 0x060057DD RID: 22493 RVA: 0x00295494 File Offset: 0x00293694
 	public WorldContainer CreateRocketInteriorWorld(GameObject craft_go, string interiorTemplateName, System.Action callback)
 	{
 		Vector2I rocket_INTERIOR_SIZE = ROCKETRY.ROCKET_INTERIOR_SIZE;
@@ -593,7 +549,6 @@ public class ClusterManager : KMonoBehaviour, ISaveLoadable
 		return null;
 	}
 
-	// Token: 0x060057DE RID: 22494 RVA: 0x002955D0 File Offset: 0x002937D0
 	public void DestoryRocketInteriorWorld(int world_id, ClustercraftExteriorDoor door)
 	{
 		WorldContainer world = this.GetWorld(world_id);
@@ -657,7 +612,6 @@ public class ClusterManager : KMonoBehaviour, ISaveLoadable
 		}, null, null);
 	}
 
-	// Token: 0x060057DF RID: 22495 RVA: 0x002957A4 File Offset: 0x002939A4
 	public void UpdateWorldReverbSnapshot(int worldId)
 	{
 		if (DlcManager.FeatureClusterSpaceEnabled())
@@ -676,7 +630,6 @@ public class ClusterManager : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x060057E0 RID: 22496 RVA: 0x00295834 File Offset: 0x00293A34
 	public void UpdateRocketInteriorAudio()
 	{
 		WorldContainer activeWorld = this.activeWorld;
@@ -704,7 +657,6 @@ public class ClusterManager : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x060057E1 RID: 22497 RVA: 0x002958E0 File Offset: 0x00293AE0
 	private void DeleteWorldObjects(WorldContainer world)
 	{
 		Grid.FreeGridSpace(world.WorldSize, world.WorldOffset);
@@ -723,30 +675,22 @@ public class ClusterManager : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x04003DF2 RID: 15858
 	public static int MAX_ROCKET_INTERIOR_COUNT = 16;
 
-	// Token: 0x04003DF3 RID: 15859
 	public static ClusterManager.RocketStatesForAudio RocketInteriorState = ClusterManager.RocketStatesForAudio.Grounded;
 
-	// Token: 0x04003DF4 RID: 15860
 	public static ClusterManager Instance;
 
-	// Token: 0x04003DF5 RID: 15861
 	private ClusterGrid m_grid;
 
-	// Token: 0x04003DF6 RID: 15862
 	[Serialize]
 	private int m_numRings = 9;
 
-	// Token: 0x04003DF7 RID: 15863
 	[Serialize]
 	private int activeWorldIdx;
 
-	// Token: 0x04003DF8 RID: 15864
 	public const byte INVALID_WORLD_IDX = 255;
 
-	// Token: 0x04003DF9 RID: 15865
 	public static Color[] worldColors = new Color[]
 	{
 		Color.HSVToRGB(0.15f, 0.3f, 0.5f),
@@ -757,40 +701,27 @@ public class ClusterManager : KMonoBehaviour, ISaveLoadable
 		Color.HSVToRGB(0.9f, 0.3f, 0.5f)
 	};
 
-	// Token: 0x04003DFA RID: 15866
 	private List<WorldContainer> m_worldContainers = new List<WorldContainer>();
 
-	// Token: 0x04003DFB RID: 15867
 	[MyCmpGet]
 	private ClusterPOIManager m_clusterPOIsManager;
 
-	// Token: 0x04003DFC RID: 15868
 	private Dictionary<int, List<IAssignableIdentity>> minionsByWorld = new Dictionary<int, List<IAssignableIdentity>>();
 
-	// Token: 0x04003DFD RID: 15869
 	private MinionMigrationEventArgs migrationEvArg = new MinionMigrationEventArgs();
 
-	// Token: 0x04003DFE RID: 15870
 	private MigrationEventArgs critterMigrationEvArg = new MigrationEventArgs();
 
-	// Token: 0x04003DFF RID: 15871
 	private List<int> _worldIDs = new List<int>();
 
-	// Token: 0x04003E00 RID: 15872
 	private List<int> _discoveredAsteroidIds = new List<int>();
 
-	// Token: 0x020010D0 RID: 4304
 	public enum RocketStatesForAudio
 	{
-		// Token: 0x04003E02 RID: 15874
 		Grounded,
-		// Token: 0x04003E03 RID: 15875
 		ReadyForLaunch,
-		// Token: 0x04003E04 RID: 15876
 		Launching,
-		// Token: 0x04003E05 RID: 15877
 		InSpace,
-		// Token: 0x04003E06 RID: 15878
 		Landing
 	}
 }

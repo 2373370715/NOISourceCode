@@ -4,11 +4,9 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020009BD RID: 2493
 [AddComponentMenu("KMonoBehaviour/Workable/AutoDisinfectable")]
 public class AutoDisinfectable : Workable
 {
-	// Token: 0x06002CB6 RID: 11446 RVA: 0x001FA6FC File Offset: 0x001F88FC
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -21,7 +19,6 @@ public class AutoDisinfectable : Workable
 		this.multitoolHitEffectTag = "fx_disinfect_splash";
 	}
 
-	// Token: 0x06002CB7 RID: 11447 RVA: 0x001FA764 File Offset: 0x001F8964
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -34,7 +31,6 @@ public class AutoDisinfectable : Workable
 		this.shouldTransferDiseaseWithWorker = false;
 	}
 
-	// Token: 0x06002CB8 RID: 11448 RVA: 0x000C1605 File Offset: 0x000BF805
 	public void CancelChore()
 	{
 		if (this.chore != null)
@@ -44,7 +40,6 @@ public class AutoDisinfectable : Workable
 		}
 	}
 
-	// Token: 0x06002CB9 RID: 11449 RVA: 0x001FA7E0 File Offset: 0x001F89E0
 	public void RefreshChore()
 	{
 		if (KMonoBehaviour.isLoadingScene)
@@ -76,14 +71,12 @@ public class AutoDisinfectable : Workable
 		}
 	}
 
-	// Token: 0x06002CBA RID: 11450 RVA: 0x000C1626 File Offset: 0x000BF826
 	protected override void OnStartWork(WorkerBase worker)
 	{
 		base.OnStartWork(worker);
 		this.diseasePerSecond = (float)base.GetComponent<PrimaryElement>().DiseaseCount / 10f;
 	}
 
-	// Token: 0x06002CBB RID: 11451 RVA: 0x000C1647 File Offset: 0x000BF847
 	protected override bool OnWorkTick(WorkerBase worker, float dt)
 	{
 		base.OnWorkTick(worker, dt);
@@ -92,7 +85,6 @@ public class AutoDisinfectable : Workable
 		return false;
 	}
 
-	// Token: 0x06002CBC RID: 11452 RVA: 0x001FA8C4 File Offset: 0x001F8AC4
 	protected override void OnCompleteWork(WorkerBase worker)
 	{
 		base.OnCompleteWork(worker);
@@ -103,21 +95,18 @@ public class AutoDisinfectable : Workable
 		Game.Instance.userMenu.Refresh(base.gameObject);
 	}
 
-	// Token: 0x06002CBD RID: 11453 RVA: 0x000C1679 File Offset: 0x000BF879
 	private void EnableAutoDisinfect()
 	{
 		this.enableAutoDisinfect = true;
 		this.RefreshChore();
 	}
 
-	// Token: 0x06002CBE RID: 11454 RVA: 0x000C1688 File Offset: 0x000BF888
 	private void DisableAutoDisinfect()
 	{
 		this.enableAutoDisinfect = false;
 		this.RefreshChore();
 	}
 
-	// Token: 0x06002CBF RID: 11455 RVA: 0x001FA934 File Offset: 0x001F8B34
 	private void OnRefreshUserMenu(object data)
 	{
 		KIconButtonMenu.ButtonInfo button;
@@ -132,24 +121,18 @@ public class AutoDisinfectable : Workable
 		Game.Instance.userMenu.AddButton(base.gameObject, button, 10f);
 	}
 
-	// Token: 0x04001E98 RID: 7832
 	private Chore chore;
 
-	// Token: 0x04001E99 RID: 7833
 	private const float MAX_WORK_TIME = 10f;
 
-	// Token: 0x04001E9A RID: 7834
 	private float diseasePerSecond;
 
-	// Token: 0x04001E9B RID: 7835
 	[MyCmpGet]
 	private PrimaryElement primaryElement;
 
-	// Token: 0x04001E9C RID: 7836
 	[Serialize]
 	private bool enableAutoDisinfect = true;
 
-	// Token: 0x04001E9D RID: 7837
 	private static readonly EventSystem.IntraObjectHandler<AutoDisinfectable> OnRefreshUserMenuDelegate = new EventSystem.IntraObjectHandler<AutoDisinfectable>(delegate(AutoDisinfectable component, object data)
 	{
 		component.OnRefreshUserMenu(data);

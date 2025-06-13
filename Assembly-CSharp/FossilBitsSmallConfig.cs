@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000339 RID: 825
 public class FossilBitsSmallConfig : IEntityConfig
 {
-	// Token: 0x06000CFA RID: 3322 RVA: 0x0017BB5C File Offset: 0x00179D5C
 	public GameObject CreatePrefab()
 	{
 		string id = "FossilBitsSmall";
@@ -32,7 +30,6 @@ public class FossilBitsSmallConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06000CFB RID: 3323 RVA: 0x000AFEDD File Offset: 0x000AE0DD
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.GetComponent<OccupyArea>().objectLayers = new ObjectLayer[]
@@ -44,7 +41,6 @@ public class FossilBitsSmallConfig : IEntityConfig
 		component.SetShowStatusItemOnEntombed(false);
 	}
 
-	// Token: 0x06000CFC RID: 3324 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}

@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003C4 RID: 964
 public class LiquidConduitOverflowConfig : IBuildingConfig
 {
-	// Token: 0x06000FA6 RID: 4006 RVA: 0x00187FB4 File Offset: 0x001861B4
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "LiquidConduitOverflow";
@@ -36,27 +34,23 @@ public class LiquidConduitOverflowConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000FA7 RID: 4007 RVA: 0x000B1200 File Offset: 0x000AF400
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 		base.DoPostConfigurePreview(def, go);
 		this.AttachPort(go);
 	}
 
-	// Token: 0x06000FA8 RID: 4008 RVA: 0x000B1211 File Offset: 0x000AF411
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		base.DoPostConfigureUnderConstruction(go);
 		this.AttachPort(go);
 	}
 
-	// Token: 0x06000FA9 RID: 4009 RVA: 0x000B1221 File Offset: 0x000AF421
 	private void AttachPort(GameObject go)
 	{
 		go.AddComponent<ConduitSecondaryOutput>().portInfo = this.secondaryPort;
 	}
 
-	// Token: 0x06000FAA RID: 4010 RVA: 0x000B1234 File Offset: 0x000AF434
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
@@ -64,7 +58,6 @@ public class LiquidConduitOverflowConfig : IBuildingConfig
 		go.AddOrGet<ConduitOverflow>().portInfo = this.secondaryPort;
 	}
 
-	// Token: 0x06000FAB RID: 4011 RVA: 0x000B1262 File Offset: 0x000AF462
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		UnityEngine.Object.DestroyImmediate(go.GetComponent<RequireInputs>());
@@ -73,12 +66,9 @@ public class LiquidConduitOverflowConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayInFrontOfConduits, false);
 	}
 
-	// Token: 0x04000B57 RID: 2903
 	public const string ID = "LiquidConduitOverflow";
 
-	// Token: 0x04000B58 RID: 2904
 	private const ConduitType CONDUIT_TYPE = ConduitType.Liquid;
 
-	// Token: 0x04000B59 RID: 2905
 	private ConduitPortInfo secondaryPort = new ConduitPortInfo(ConduitType.Liquid, new CellOffset(1, 1));
 }

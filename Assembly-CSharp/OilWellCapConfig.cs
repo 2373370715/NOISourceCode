@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020004DD RID: 1245
 public class OilWellCapConfig : IBuildingConfig
 {
-	// Token: 0x0600156B RID: 5483 RVA: 0x0019EDE8 File Offset: 0x0019CFE8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "OilWellCap";
@@ -37,7 +35,6 @@ public class OilWellCapConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600156C RID: 5484 RVA: 0x0019EEC0 File Offset: 0x0019D0C0
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<LoopingSounds>();
@@ -66,36 +63,26 @@ public class OilWellCapConfig : IBuildingConfig
 		go.AddOrGet<RequireInputs>().requireConduitHasMass = false;
 	}
 
-	// Token: 0x0600156D RID: 5485 RVA: 0x000AAF59 File Offset: 0x000A9159
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
 	}
 
-	// Token: 0x04000ED2 RID: 3794
 	private const float WATER_INTAKE_RATE = 1f;
 
-	// Token: 0x04000ED3 RID: 3795
 	private const float WATER_TO_OIL_RATIO = 3.3333333f;
 
-	// Token: 0x04000ED4 RID: 3796
 	private const float LIQUID_STORAGE = 10f;
 
-	// Token: 0x04000ED5 RID: 3797
 	private const float GAS_RATE = 0.033333335f;
 
-	// Token: 0x04000ED6 RID: 3798
 	private const float OVERPRESSURE_TIME = 2400f;
 
-	// Token: 0x04000ED7 RID: 3799
 	private const float PRESSURE_RELEASE_TIME = 180f;
 
-	// Token: 0x04000ED8 RID: 3800
 	private const float PRESSURE_RELEASE_RATE = 0.44444448f;
 
-	// Token: 0x04000ED9 RID: 3801
 	private static readonly Tag INPUT_WATER_TAG = SimHashes.Water.CreateTag();
 
-	// Token: 0x04000EDA RID: 3802
 	public const string ID = "OilWellCap";
 }

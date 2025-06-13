@@ -3,24 +3,20 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 
-// Token: 0x020012EE RID: 4846
 [AddComponentMenu("KMonoBehaviour/scripts/EquipmentConfigManager")]
 public class EquipmentConfigManager : KMonoBehaviour
 {
-	// Token: 0x0600635D RID: 25437 RVA: 0x000E53D1 File Offset: 0x000E35D1
 	public static void DestroyInstance()
 	{
 		EquipmentConfigManager.Instance = null;
 	}
 
-	// Token: 0x0600635E RID: 25438 RVA: 0x000E53D9 File Offset: 0x000E35D9
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 		EquipmentConfigManager.Instance = this;
 	}
 
-	// Token: 0x0600635F RID: 25439 RVA: 0x002C8498 File Offset: 0x002C6698
 	public void RegisterEquipment(IEquipmentConfig config)
 	{
 		string[] required = null;
@@ -67,7 +63,6 @@ public class EquipmentConfigManager : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06006360 RID: 25440 RVA: 0x002C8650 File Offset: 0x002C6850
 	private void LoadRecipe(EquipmentDef def, Equippable equippable)
 	{
 		Recipe recipe = new Recipe(def.Id, 1f, (SimHashes)0, null, def.RecipeDescription, 0);
@@ -79,7 +74,6 @@ public class EquipmentConfigManager : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06006361 RID: 25441 RVA: 0x002C86F0 File Offset: 0x002C68F0
 	[Conditional("UNITY_EDITOR")]
 	private void ValidateEquipmentConfig(IEquipmentConfig equipmentConfig)
 	{
@@ -101,6 +95,5 @@ public class EquipmentConfigManager : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x04004734 RID: 18228
 	public static EquipmentConfigManager Instance;
 }

@@ -2,10 +2,8 @@
 using FMODUnity;
 using UnityEngine;
 
-// Token: 0x020013D7 RID: 5079
 public class GravityComponents : KGameObjectComponentManager<GravityComponent>
 {
-	// Token: 0x06006841 RID: 26689 RVA: 0x002E5F84 File Offset: 0x002E4184
 	public HandleVector<int>.Handle Add(GameObject go, Vector2 initial_velocity, System.Action on_landed = null)
 	{
 		bool land_on_fake_floors = false;
@@ -18,7 +16,6 @@ public class GravityComponents : KGameObjectComponentManager<GravityComponent>
 		return base.Add(go, new GravityComponent(go.transform, on_landed, initial_velocity, land_on_fake_floors, mayLeaveWorld));
 	}
 
-	// Token: 0x06006842 RID: 26690 RVA: 0x002E5FD4 File Offset: 0x002E41D4
 	public override void FixedUpdate(float dt)
 	{
 		GravityComponents.Tuning tuning = TuningData<GravityComponents.Tuning>.Get();
@@ -140,10 +137,8 @@ public class GravityComponents : KGameObjectComponentManager<GravityComponent>
 		}
 	}
 
-	// Token: 0x04004EC8 RID: 20168
 	private const float Acceleration = -9.8f;
 
-	// Token: 0x04004EC9 RID: 20169
 	private static Tag[] LANDS_ON_FAKEFLOOR = new Tag[]
 	{
 		GameTags.BaseMinion,
@@ -151,13 +146,10 @@ public class GravityComponents : KGameObjectComponentManager<GravityComponent>
 		GameTags.Creatures.Hoverer
 	};
 
-	// Token: 0x020013D8 RID: 5080
 	public class Tuning : TuningData<GravityComponents.Tuning>
 	{
-		// Token: 0x04004ECA RID: 20170
 		public float maxVelocity;
 
-		// Token: 0x04004ECB RID: 20171
 		public float maxVelocityInLiquid;
 	}
 }

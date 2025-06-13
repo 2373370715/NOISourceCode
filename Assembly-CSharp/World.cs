@@ -4,21 +4,13 @@ using Klei;
 using Rendering;
 using UnityEngine;
 
-// Token: 0x02001A9E RID: 6814
 [AddComponentMenu("KMonoBehaviour/scripts/World")]
 public class World : KMonoBehaviour
 {
-	// Token: 0x1700094A RID: 2378
-	// (get) Token: 0x06008E2F RID: 36399 RVA: 0x0010159E File Offset: 0x000FF79E
-	// (set) Token: 0x06008E30 RID: 36400 RVA: 0x001015A5 File Offset: 0x000FF7A5
 	public static World Instance { get; private set; }
 
-	// Token: 0x1700094B RID: 2379
-	// (get) Token: 0x06008E31 RID: 36401 RVA: 0x001015AD File Offset: 0x000FF7AD
-	// (set) Token: 0x06008E32 RID: 36402 RVA: 0x001015B5 File Offset: 0x000FF7B5
 	public SubworldZoneRenderData zoneRenderData { get; private set; }
 
-	// Token: 0x06008E33 RID: 36403 RVA: 0x001015BE File Offset: 0x000FF7BE
 	protected override void OnPrefabInit()
 	{
 		global::Debug.Assert(World.Instance == null);
@@ -26,7 +18,6 @@ public class World : KMonoBehaviour
 		this.blockTileRenderer = base.GetComponent<BlockTileRenderer>();
 	}
 
-	// Token: 0x06008E34 RID: 36404 RVA: 0x00378564 File Offset: 0x00376764
 	protected override void OnSpawn()
 	{
 		base.GetComponent<SimDebugView>().OnReset();
@@ -35,7 +26,6 @@ public class World : KMonoBehaviour
 		Grid.OnReveal = (Action<int>)Delegate.Combine(Grid.OnReveal, new Action<int>(this.OnReveal));
 	}
 
-	// Token: 0x06008E35 RID: 36405 RVA: 0x003785B4 File Offset: 0x003767B4
 	protected override void OnLoadLevel()
 	{
 		World.Instance = null;
@@ -54,7 +44,6 @@ public class World : KMonoBehaviour
 		base.OnLoadLevel();
 	}
 
-	// Token: 0x06008E36 RID: 36406 RVA: 0x00378620 File Offset: 0x00376820
 	public unsafe void UpdateCellInfo(List<SolidInfo> solidInfo, List<CallbackInfo> callbackInfo, int num_solid_substance_change_info, Sim.SolidSubstanceChangeInfo* solid_substance_change_info, int num_liquid_change_info, Sim.LiquidChangeInfo* liquid_change_info)
 	{
 		int count = solidInfo.Count;
@@ -110,13 +99,11 @@ public class World : KMonoBehaviour
 		instance.TriggerEvent(this.changedCells, GameScenePartitioner.Instance.liquidChangedLayer, null);
 	}
 
-	// Token: 0x06008E37 RID: 36407 RVA: 0x001015E2 File Offset: 0x000FF7E2
 	private void OnReveal(int cell)
 	{
 		this.revealedCells.Add(cell);
 	}
 
-	// Token: 0x06008E38 RID: 36408 RVA: 0x003787F8 File Offset: 0x003769F8
 	private void LateUpdate()
 	{
 		if (Game.IsQuitting())
@@ -155,26 +142,19 @@ public class World : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x04006B43 RID: 27459
 	public Action<int> OnSolidChanged;
 
-	// Token: 0x04006B44 RID: 27460
 	public Action<int> OnLiquidChanged;
 
-	// Token: 0x04006B46 RID: 27462
 	public BlockTileRenderer blockTileRenderer;
 
-	// Token: 0x04006B47 RID: 27463
 	[MyCmpGet]
 	[NonSerialized]
 	public GroundRenderer groundRenderer;
 
-	// Token: 0x04006B48 RID: 27464
 	private List<int> revealedCells = new List<int>();
 
-	// Token: 0x04006B49 RID: 27465
 	public static int DebugCellID = -1;
 
-	// Token: 0x04006B4A RID: 27466
 	private List<int> changedCells = new List<int>();
 }

@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200009C RID: 156
 public class DevLifeSupportConfig : IBuildingConfig
 {
-	// Token: 0x06000283 RID: 643 RVA: 0x0015123C File Offset: 0x0014F43C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "DevLifeSupport";
@@ -28,7 +26,6 @@ public class DevLifeSupportConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000284 RID: 644 RVA: 0x001512B0 File Offset: 0x0014F4B0
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddTag(GameTags.DevBuilding);
@@ -55,23 +52,17 @@ public class DevLifeSupportConfig : IBuildingConfig
 		go.AddOrGet<DevLifeSupport>();
 	}
 
-	// Token: 0x06000285 RID: 645 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x0400019F RID: 415
 	public const string ID = "DevLifeSupport";
 
-	// Token: 0x040001A0 RID: 416
 	private const float OXYGEN_GENERATION_RATE = 50.000004f;
 
-	// Token: 0x040001A1 RID: 417
 	private const float OXYGEN_TEMPERATURE = 303.15f;
 
-	// Token: 0x040001A2 RID: 418
 	private const float OXYGEN_MAX_PRESSURE = 1.5f;
 
-	// Token: 0x040001A3 RID: 419
 	private const float CO2_CONSUMPTION_RATE = 50.000004f;
 }

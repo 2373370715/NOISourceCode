@@ -3,11 +3,9 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001ECE RID: 7886
 [Serializable]
 public class OutfitBrowserScreen_CategoriesAndSearchBar
 {
-	// Token: 0x0600A57B RID: 42363 RVA: 0x003F9B24 File Offset: 0x003F7D24
 	public void InitializeWith(OutfitBrowserScreen outfitBrowserScreen)
 	{
 		this.outfitBrowserScreen = outfitBrowserScreen;
@@ -56,45 +54,33 @@ public class OutfitBrowserScreen_CategoriesAndSearchBar
 		};
 	}
 
-	// Token: 0x0600A57C RID: 42364 RVA: 0x0010FCAB File Offset: 0x0010DEAB
 	public void SetOutfitType(ClothingOutfitUtility.OutfitType outfitType)
 	{
 		this.outfitBrowserScreen.state.CurrentOutfitType = outfitType;
 	}
 
-	// Token: 0x04008177 RID: 33143
 	[NonSerialized]
 	public OutfitBrowserScreen_CategoriesAndSearchBar.SelectOutfitTypeButton clothingOutfitTypeButton;
 
-	// Token: 0x04008178 RID: 33144
 	[NonSerialized]
 	public OutfitBrowserScreen_CategoriesAndSearchBar.SelectOutfitTypeButton atmosuitOutfitTypeButton;
 
-	// Token: 0x04008179 RID: 33145
 	[NonSerialized]
 	public OutfitBrowserScreen outfitBrowserScreen;
 
-	// Token: 0x0400817A RID: 33146
 	public KButton selectOutfitType_Prefab;
 
-	// Token: 0x0400817B RID: 33147
 	public KInputTextField searchTextField;
 
-	// Token: 0x02001ECF RID: 7887
 	public enum SelectOutfitTypeButtonState
 	{
-		// Token: 0x0400817D RID: 33149
 		Disabled,
-		// Token: 0x0400817E RID: 33150
 		Unselected,
-		// Token: 0x0400817F RID: 33151
 		Selected
 	}
 
-	// Token: 0x02001ED0 RID: 7888
 	public readonly struct SelectOutfitTypeButton
 	{
-		// Token: 0x0600A57E RID: 42366 RVA: 0x003F9CBC File Offset: 0x003F7EBC
 		public SelectOutfitTypeButton(OutfitBrowserScreen outfitBrowserScreen, GameObject rootGameObject)
 		{
 			this.outfitBrowserScreen = outfitBrowserScreen;
@@ -108,7 +94,6 @@ public class OutfitBrowserScreen_CategoriesAndSearchBar
 			global::Debug.Assert(this.icon != null);
 		}
 
-		// Token: 0x0600A57F RID: 42367 RVA: 0x003F9D50 File Offset: 0x003F7F50
 		public void SetState(OutfitBrowserScreen_CategoriesAndSearchBar.SelectOutfitTypeButtonState state)
 		{
 			switch (state)
@@ -133,19 +118,14 @@ public class OutfitBrowserScreen_CategoriesAndSearchBar
 			}
 		}
 
-		// Token: 0x04008180 RID: 33152
 		public readonly OutfitBrowserScreen outfitBrowserScreen;
 
-		// Token: 0x04008181 RID: 33153
 		public readonly RectTransform root;
 
-		// Token: 0x04008182 RID: 33154
 		public readonly KButton button;
 
-		// Token: 0x04008183 RID: 33155
 		public readonly KImage buttonImage;
 
-		// Token: 0x04008184 RID: 33156
 		public readonly Image icon;
 	}
 }

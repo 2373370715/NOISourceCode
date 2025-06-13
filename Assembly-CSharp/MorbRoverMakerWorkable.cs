@@ -1,10 +1,8 @@
 ﻿using System;
 using TUNING;
 
-// Token: 0x020004D2 RID: 1234
 public class MorbRoverMakerWorkable : Workable
 {
-	// Token: 0x06001536 RID: 5430 RVA: 0x0019DD7C File Offset: 0x0019BF7C
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -25,18 +23,15 @@ public class MorbRoverMakerWorkable : Workable
 		this.resetProgressOnStop = true;
 	}
 
-	// Token: 0x06001537 RID: 5431 RVA: 0x000AF921 File Offset: 0x000ADB21
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
 	}
 
-	// Token: 0x06001538 RID: 5432 RVA: 0x000AF929 File Offset: 0x000ADB29
 	protected override void OnStartWork(WorkerBase worker)
 	{
 		base.OnStartWork(worker);
 	}
 
-	// Token: 0x04000E93 RID: 3731
 	public const float DOCTOR_WORKING_TIME = 90f;
 }

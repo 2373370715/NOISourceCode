@@ -4,10 +4,8 @@ using System.Linq;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000173 RID: 371
 public class DrinkMilkStates : GameStateMachine<DrinkMilkStates, DrinkMilkStates.Instance, IStateMachineTarget, DrinkMilkStates.Def>
 {
-	// Token: 0x0600054D RID: 1357 RVA: 0x001618E4 File Offset: 0x0015FAE4
 	private static void SetSceneLayer(DrinkMilkStates.Instance smi, Grid.SceneLayer layer)
 	{
 		SegmentedCreature.Instance smi2 = smi.GetSMI<SegmentedCreature.Instance>();
@@ -26,7 +24,6 @@ public class DrinkMilkStates : GameStateMachine<DrinkMilkStates, DrinkMilkStates
 		smi.GetComponent<KBatchedAnimController>().SetSceneLayer(layer);
 	}
 
-	// Token: 0x0600054E RID: 1358 RVA: 0x00161958 File Offset: 0x0015FB58
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.goingToDrink;
@@ -79,7 +76,6 @@ public class DrinkMilkStates : GameStateMachine<DrinkMilkStates, DrinkMilkStates
 		this.behaviourComplete.QueueAnim("idle_loop", true, null).BehaviourComplete(GameTags.Creatures.Behaviour_TryToDrinkMilkFromFeeder, false);
 	}
 
-	// Token: 0x0600054F RID: 1359 RVA: 0x00161BCC File Offset: 0x0015FDCC
 	private static MilkFeeder.Instance GetTargetMilkFeeder(DrinkMilkStates.Instance smi)
 	{
 		if (smi.sm.targetMilkFeeder.IsNullOrDestroyed())
@@ -99,19 +95,16 @@ public class DrinkMilkStates : GameStateMachine<DrinkMilkStates, DrinkMilkStates
 		return smi2;
 	}
 
-	// Token: 0x06000550 RID: 1360 RVA: 0x000AC416 File Offset: 0x000AA616
 	private static void SetTarget(DrinkMilkStates.Instance smi)
 	{
 		smi.sm.targetMilkFeeder.Set(smi.GetSMI<DrinkMilkMonitor.Instance>().targetMilkFeeder.gameObject, smi, false);
 	}
 
-	// Token: 0x06000551 RID: 1361 RVA: 0x000AC43B File Offset: 0x000AA63B
 	private static void CheckIfCramped(DrinkMilkStates.Instance smi)
 	{
 		smi.critterIsCramped = smi.GetSMI<DrinkMilkMonitor.Instance>().doesTargetMilkFeederHaveSpaceForCritter;
 	}
 
-	// Token: 0x06000552 RID: 1362 RVA: 0x00161C24 File Offset: 0x0015FE24
 	private static void ReserveMilkFeeder(DrinkMilkStates.Instance smi)
 	{
 		MilkFeeder.Instance instance = DrinkMilkStates.GetTargetMilkFeeder(smi);
@@ -122,7 +115,6 @@ public class DrinkMilkStates : GameStateMachine<DrinkMilkStates, DrinkMilkStates
 		instance.SetReserved(true);
 	}
 
-	// Token: 0x06000553 RID: 1363 RVA: 0x00161C44 File Offset: 0x0015FE44
 	private static void UnreserveMilkFeeder(DrinkMilkStates.Instance smi)
 	{
 		MilkFeeder.Instance instance = DrinkMilkStates.GetTargetMilkFeeder(smi);
@@ -133,7 +125,6 @@ public class DrinkMilkStates : GameStateMachine<DrinkMilkStates, DrinkMilkStates
 		instance.SetReserved(false);
 	}
 
-	// Token: 0x06000554 RID: 1364 RVA: 0x00161C64 File Offset: 0x0015FE64
 	private static void DrinkMilkComplete(DrinkMilkStates.Instance smi)
 	{
 		MilkFeeder.Instance instance = DrinkMilkStates.GetTargetMilkFeeder(smi);
@@ -144,7 +135,6 @@ public class DrinkMilkStates : GameStateMachine<DrinkMilkStates, DrinkMilkStates
 		smi.GetSMI<DrinkMilkMonitor.Instance>().NotifyFinishedDrinkingMilkFrom(instance);
 	}
 
-	// Token: 0x06000555 RID: 1365 RVA: 0x00161C88 File Offset: 0x0015FE88
 	private static int GetCellToDrinkFrom(DrinkMilkStates.Instance smi)
 	{
 		MilkFeeder.Instance instance = DrinkMilkStates.GetTargetMilkFeeder(smi);
@@ -155,7 +145,6 @@ public class DrinkMilkStates : GameStateMachine<DrinkMilkStates, DrinkMilkStates
 		return smi.GetSMI<DrinkMilkMonitor.Instance>().GetDrinkCellOf(instance, smi.critterIsCramped);
 	}
 
-	// Token: 0x06000556 RID: 1366 RVA: 0x000AC44E File Offset: 0x000AA64E
 	private static string GetAnimDrinkPre(DrinkMilkStates.Instance smi)
 	{
 		if (smi.critterIsCramped)
@@ -165,7 +154,6 @@ public class DrinkMilkStates : GameStateMachine<DrinkMilkStates, DrinkMilkStates
 		return "drink_pre";
 	}
 
-	// Token: 0x06000557 RID: 1367 RVA: 0x000AC463 File Offset: 0x000AA663
 	private static string GetAnimDrinkLoop(DrinkMilkStates.Instance smi)
 	{
 		if (smi.critterIsCramped)
@@ -175,7 +163,6 @@ public class DrinkMilkStates : GameStateMachine<DrinkMilkStates, DrinkMilkStates
 		return "drink_loop";
 	}
 
-	// Token: 0x06000558 RID: 1368 RVA: 0x000AC478 File Offset: 0x000AA678
 	private static string GetAnimDrinkPst(DrinkMilkStates.Instance smi)
 	{
 		if (smi.critterIsCramped)
@@ -185,7 +172,6 @@ public class DrinkMilkStates : GameStateMachine<DrinkMilkStates, DrinkMilkStates
 		return "drink_pst";
 	}
 
-	// Token: 0x06000559 RID: 1369 RVA: 0x00161CB8 File Offset: 0x0015FEB8
 	private static void FaceMilkFeeder(DrinkMilkStates.Instance smi)
 	{
 		MilkFeeder.Instance instance = DrinkMilkStates.GetTargetMilkFeeder(smi);
@@ -223,31 +209,23 @@ public class DrinkMilkStates : GameStateMachine<DrinkMilkStates, DrinkMilkStates
 		smi.GetComponent<Facing>().Face(target_x);
 	}
 
-	// Token: 0x040003E6 RID: 998
 	public GameStateMachine<DrinkMilkStates, DrinkMilkStates.Instance, IStateMachineTarget, DrinkMilkStates.Def>.State goingToDrink;
 
-	// Token: 0x040003E7 RID: 999
 	public DrinkMilkStates.EatingState drink;
 
-	// Token: 0x040003E8 RID: 1000
 	public GameStateMachine<DrinkMilkStates, DrinkMilkStates.Instance, IStateMachineTarget, DrinkMilkStates.Def>.State behaviourComplete;
 
-	// Token: 0x040003E9 RID: 1001
 	public StateMachine<DrinkMilkStates, DrinkMilkStates.Instance, IStateMachineTarget, DrinkMilkStates.Def>.TargetParameter targetMilkFeeder;
 
-	// Token: 0x040003EA RID: 1002
 	public StateMachine<DrinkMilkStates, DrinkMilkStates.Instance, IStateMachineTarget, DrinkMilkStates.Def>.Signal requestedToStopFeeding;
 
-	// Token: 0x02000174 RID: 372
 	public class Def : StateMachine.BaseDef
 	{
-		// Token: 0x0600055C RID: 1372 RVA: 0x000AC495 File Offset: 0x000AA695
 		public static CellOffset DrinkCellOffsetGet_CritterOneByOne(MilkFeeder.Instance milkFeederInstance, DrinkMilkMonitor.Instance critterInstance, bool isCramped)
 		{
 			return milkFeederInstance.GetComponent<Rotatable>().GetRotatedCellOffset(MilkFeederConfig.DRINK_FROM_OFFSET);
 		}
 
-		// Token: 0x0600055D RID: 1373 RVA: 0x00161D70 File Offset: 0x0015FF70
 		public static CellOffset DrinkCellOffsetGet_GassyMoo(MilkFeeder.Instance milkFeederInstance, DrinkMilkMonitor.Instance critterInstance, bool isCramped)
 		{
 			Rotatable component = milkFeederInstance.GetComponent<Rotatable>();
@@ -270,7 +248,6 @@ public class DrinkMilkStates : GameStateMachine<DrinkMilkStates, DrinkMilkStates
 			return rotatedCellOffset;
 		}
 
-		// Token: 0x0600055E RID: 1374 RVA: 0x00161DCC File Offset: 0x0015FFCC
 		public static CellOffset DrinkCellOffsetGet_BammothAdult(MilkFeeder.Instance milkFeederInstance, DrinkMilkMonitor.Instance critterInstance, bool isCramped)
 		{
 			Rotatable component = milkFeederInstance.GetComponent<Rotatable>();
@@ -310,46 +287,35 @@ public class DrinkMilkStates : GameStateMachine<DrinkMilkStates, DrinkMilkStates
 			return rotatedCellOffset;
 		}
 
-		// Token: 0x040003EB RID: 1003
 		public bool shouldBeBehindMilkTank = true;
 
-		// Token: 0x040003EC RID: 1004
 		public DrinkMilkStates.Def.DrinkCellOffsetGetFn drinkCellOffsetGetFn = new DrinkMilkStates.Def.DrinkCellOffsetGetFn(DrinkMilkStates.Def.DrinkCellOffsetGet_CritterOneByOne);
 
-		// Token: 0x02000175 RID: 373
-		// (Invoke) Token: 0x06000561 RID: 1377
+Invoke) Token: 0x06000561 RID: 1377
 		public delegate CellOffset DrinkCellOffsetGetFn(MilkFeeder.Instance milkFeederInstance, DrinkMilkMonitor.Instance critterInstance, bool isCramped);
 	}
 
-	// Token: 0x02000176 RID: 374
 	public new class Instance : GameStateMachine<DrinkMilkStates, DrinkMilkStates.Instance, IStateMachineTarget, DrinkMilkStates.Def>.GameInstance
 	{
-		// Token: 0x06000564 RID: 1380 RVA: 0x000AC4C8 File Offset: 0x000AA6C8
 		public Instance(Chore<DrinkMilkStates.Instance> chore, DrinkMilkStates.Def def) : base(chore, def)
 		{
 			chore.AddPrecondition(ChorePreconditions.instance.CheckBehaviourPrecondition, GameTags.Creatures.Behaviour_TryToDrinkMilkFromFeeder);
 		}
 
-		// Token: 0x06000565 RID: 1381 RVA: 0x000AC4EC File Offset: 0x000AA6EC
 		public void RequestToStopFeeding()
 		{
 			base.sm.requestedToStopFeeding.Trigger(base.smi);
 		}
 
-		// Token: 0x040003ED RID: 1005
 		public bool critterIsCramped;
 	}
 
-	// Token: 0x02000177 RID: 375
 	public class EatingState : GameStateMachine<DrinkMilkStates, DrinkMilkStates.Instance, IStateMachineTarget, DrinkMilkStates.Def>.State
 	{
-		// Token: 0x040003EE RID: 1006
 		public GameStateMachine<DrinkMilkStates, DrinkMilkStates.Instance, IStateMachineTarget, DrinkMilkStates.Def>.State pre;
 
-		// Token: 0x040003EF RID: 1007
 		public GameStateMachine<DrinkMilkStates, DrinkMilkStates.Instance, IStateMachineTarget, DrinkMilkStates.Def>.State loop;
 
-		// Token: 0x040003F0 RID: 1008
 		public GameStateMachine<DrinkMilkStates, DrinkMilkStates.Instance, IStateMachineTarget, DrinkMilkStates.Def>.State pst;
 	}
 }

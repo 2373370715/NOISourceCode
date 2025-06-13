@@ -5,10 +5,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000DE RID: 222
 public static class BaseDeerConfig
 {
-	// Token: 0x0600039A RID: 922 RVA: 0x001588A0 File Offset: 0x00156AA0
 	public static GameObject BaseDeer(string id, string name, string desc, string anim_file, string traitId, bool is_baby, string symbolOverridePrefix = null)
 	{
 		float mass = 100f;
@@ -53,7 +51,6 @@ public static class BaseDeerConfig
 		return gameObject;
 	}
 
-	// Token: 0x0600039B RID: 923 RVA: 0x00158C14 File Offset: 0x00156E14
 	public static Diet.Info CreateDietInfo(Tag foodTag, Tag poopTag, float caloriesPerKg, float producedConversionRate, string diseaseId, float diseasePerKgProduced)
 	{
 		return new Diet.Info(new HashSet<Tag>
@@ -62,7 +59,6 @@ public static class BaseDeerConfig
 		}, poopTag, caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, Diet.Info.FoodType.EatPlantDirectly, false, null);
 	}
 
-	// Token: 0x0600039C RID: 924 RVA: 0x00158C40 File Offset: 0x00156E40
 	public static GameObject SetupDiet(GameObject prefab, Diet.Info[] diet_infos, float minPoopSizeInKg)
 	{
 		Diet diet = new Diet(diet_infos);

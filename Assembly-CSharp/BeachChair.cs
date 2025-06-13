@@ -4,23 +4,19 @@ using Klei.AI;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000C73 RID: 3187
 public class BeachChair : StateMachineComponent<BeachChair.StatesInstance>, IGameObjectEffectDescriptor
 {
-	// Token: 0x06003C89 RID: 15497 RVA: 0x000CB87D File Offset: 0x000C9A7D
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
 		base.smi.StartSM();
 	}
 
-	// Token: 0x06003C8A RID: 15498 RVA: 0x000CB890 File Offset: 0x000C9A90
 	protected override void OnCleanUp()
 	{
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06003C8B RID: 15499 RVA: 0x0023C53C File Offset: 0x0023A73C
 	public static void AddModifierDescriptions(List<Descriptor> descs, string effect_id, bool high_lux)
 	{
 		Klei.AI.Modifier modifier = Db.Get().effects.Get(effect_id);
@@ -34,7 +30,6 @@ public class BeachChair : StateMachineComponent<BeachChair.StatesInstance>, IGam
 		}
 	}
 
-	// Token: 0x06003C8C RID: 15500 RVA: 0x0023C67C File Offset: 0x0023A87C
 	List<Descriptor> IGameObjectEffectDescriptor.GetDescriptors(GameObject go)
 	{
 		List<Descriptor> list = new List<Descriptor>();
@@ -44,34 +39,26 @@ public class BeachChair : StateMachineComponent<BeachChair.StatesInstance>, IGam
 		return list;
 	}
 
-	// Token: 0x06003C8D RID: 15501 RVA: 0x000CB898 File Offset: 0x000C9A98
 	public void SetLit(bool v)
 	{
 		base.smi.sm.lit.Set(v, base.smi, false);
 	}
 
-	// Token: 0x06003C8E RID: 15502 RVA: 0x000CB8B8 File Offset: 0x000C9AB8
 	public void SetWorker(WorkerBase worker)
 	{
 		base.smi.sm.worker.Set(worker, base.smi);
 	}
 
-	// Token: 0x040029FB RID: 10747
 	public string specificEffectUnlit;
 
-	// Token: 0x040029FC RID: 10748
 	public string specificEffectLit;
 
-	// Token: 0x040029FD RID: 10749
 	public string trackingEffect;
 
-	// Token: 0x040029FE RID: 10750
 	public const float LIT_RATIO_FOR_POSITIVE_EFFECT = 0.75f;
 
-	// Token: 0x02000C74 RID: 3188
 	public class States : GameStateMachine<BeachChair.States, BeachChair.StatesInstance, BeachChair>
 	{
-		// Token: 0x06003C90 RID: 15504 RVA: 0x0023C6CC File Offset: 0x0023A8CC
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.inoperational;
@@ -124,7 +111,6 @@ public class BeachChair : StateMachineComponent<BeachChair.StatesInstance>, IGam
 			}).OnAnimQueueComplete(this.ready);
 		}
 
-		// Token: 0x06003C91 RID: 15505 RVA: 0x0023CAE8 File Offset: 0x0023ACE8
 		private Chore CreateChore(BeachChair.StatesInstance smi)
 		{
 			Workable component = smi.master.GetComponent<BeachChairWorkable>();
@@ -133,33 +119,26 @@ public class BeachChair : StateMachineComponent<BeachChair.StatesInstance>, IGam
 			return workChore;
 		}
 
-		// Token: 0x040029FF RID: 10751
 		public StateMachine<BeachChair.States, BeachChair.StatesInstance, BeachChair, object>.BoolParameter lit;
 
-		// Token: 0x04002A00 RID: 10752
 		public StateMachine<BeachChair.States, BeachChair.StatesInstance, BeachChair, object>.TargetParameter worker;
 
-		// Token: 0x04002A01 RID: 10753
 		private GameStateMachine<BeachChair.States, BeachChair.StatesInstance, BeachChair, object>.State inoperational;
 
-		// Token: 0x04002A02 RID: 10754
 		private BeachChair.States.ReadyStates ready;
 
-		// Token: 0x04002A03 RID: 10755
 		private HashedString[] UNLIT_PST_ANIMS = new HashedString[]
 		{
 			"working_unlit_pst",
 			"working_pst"
 		};
 
-		// Token: 0x04002A04 RID: 10756
 		private HashedString[] LIT_PST_ANIMS = new HashedString[]
 		{
 			"working_lit_pst",
 			"working_pst"
 		};
 
-		// Token: 0x04002A05 RID: 10757
 		private string[] SILLY_ANIMS = new string[]
 		{
 			"working_lit_loop1",
@@ -167,53 +146,38 @@ public class BeachChair : StateMachineComponent<BeachChair.StatesInstance>, IGam
 			"working_lit_loop3"
 		};
 
-		// Token: 0x02000C75 RID: 3189
 		public class LitWorkingStates : GameStateMachine<BeachChair.States, BeachChair.StatesInstance, BeachChair, object>.State
 		{
-			// Token: 0x04002A06 RID: 10758
 			public GameStateMachine<BeachChair.States, BeachChair.StatesInstance, BeachChair, object>.State working;
 
-			// Token: 0x04002A07 RID: 10759
 			public GameStateMachine<BeachChair.States, BeachChair.StatesInstance, BeachChair, object>.State silly;
 
-			// Token: 0x04002A08 RID: 10760
 			public GameStateMachine<BeachChair.States, BeachChair.StatesInstance, BeachChair, object>.State post;
 		}
 
-		// Token: 0x02000C76 RID: 3190
 		public class WorkingStates : GameStateMachine<BeachChair.States, BeachChair.StatesInstance, BeachChair, object>.State
 		{
-			// Token: 0x04002A09 RID: 10761
 			public GameStateMachine<BeachChair.States, BeachChair.StatesInstance, BeachChair, object>.State working;
 
-			// Token: 0x04002A0A RID: 10762
 			public GameStateMachine<BeachChair.States, BeachChair.StatesInstance, BeachChair, object>.State post;
 		}
 
-		// Token: 0x02000C77 RID: 3191
 		public class ReadyStates : GameStateMachine<BeachChair.States, BeachChair.StatesInstance, BeachChair, object>.State
 		{
-			// Token: 0x04002A0B RID: 10763
 			public GameStateMachine<BeachChair.States, BeachChair.StatesInstance, BeachChair, object>.State idle;
 
-			// Token: 0x04002A0C RID: 10764
 			public GameStateMachine<BeachChair.States, BeachChair.StatesInstance, BeachChair, object>.State working_pre;
 
-			// Token: 0x04002A0D RID: 10765
 			public BeachChair.States.WorkingStates working_unlit;
 
-			// Token: 0x04002A0E RID: 10766
 			public BeachChair.States.LitWorkingStates working_lit;
 
-			// Token: 0x04002A0F RID: 10767
 			public GameStateMachine<BeachChair.States, BeachChair.StatesInstance, BeachChair, object>.State post;
 		}
 	}
 
-	// Token: 0x02000C79 RID: 3193
 	public class StatesInstance : GameStateMachine<BeachChair.States, BeachChair.StatesInstance, BeachChair, object>.GameInstance
 	{
-		// Token: 0x06003CA3 RID: 15523 RVA: 0x000CB9D9 File Offset: 0x000C9BD9
 		public StatesInstance(BeachChair smi) : base(smi)
 		{
 		}

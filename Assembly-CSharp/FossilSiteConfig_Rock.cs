@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200034A RID: 842
 public class FossilSiteConfig_Rock : IEntityConfig
 {
-	// Token: 0x06000D48 RID: 3400 RVA: 0x0017CD4C File Offset: 0x0017AF4C
 	public GameObject CreatePrefab()
 	{
 		string id = "FossilRock";
@@ -35,7 +33,6 @@ public class FossilSiteConfig_Rock : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06000D49 RID: 3401 RVA: 0x000B014E File Offset: 0x000AE34E
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.GetComponent<EntombVulnerable>().SetStatusItem(Db.Get().BuildingStatusItems.FossilEntombed);
@@ -45,14 +42,11 @@ public class FossilSiteConfig_Rock : IEntityConfig
 		};
 	}
 
-	// Token: 0x06000D4A RID: 3402 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x040009D1 RID: 2513
 	public static readonly HashedString FossilQuestCriteriaID = "LostRockFossil";
 
-	// Token: 0x040009D2 RID: 2514
 	public const string ID = "FossilRock";
 }

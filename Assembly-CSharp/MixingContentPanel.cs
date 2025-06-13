@@ -8,10 +8,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001E8D RID: 7821
 public class MixingContentPanel : CustomGameSettingsPanelBase
 {
-	// Token: 0x0600A3F6 RID: 41974 RVA: 0x003F2BE0 File Offset: 0x003F0DE0
 	public override void Init()
 	{
 		MixingContentPanel.<>c__DisplayClass8_0 CS$<>8__locals1 = new MixingContentPanel.<>c__DisplayClass8_0();
@@ -130,7 +128,6 @@ public class MixingContentPanel : CustomGameSettingsPanelBase
 		this.Refresh();
 	}
 
-	// Token: 0x0600A3F7 RID: 41975 RVA: 0x0010EE30 File Offset: 0x0010D030
 	public override void Uninit()
 	{
 		if (this.onDestroy != null)
@@ -139,7 +136,6 @@ public class MixingContentPanel : CustomGameSettingsPanelBase
 		}
 	}
 
-	// Token: 0x0600A3F8 RID: 41976 RVA: 0x003F2FF8 File Offset: 0x003F11F8
 	private GameObject CreateSection(string name)
 	{
 		GameObject gameObject = global::Util.KInstantiateUI(this.prefabMixingSection, this.contentPanel, false);
@@ -156,7 +152,6 @@ public class MixingContentPanel : CustomGameSettingsPanelBase
 		return gameObject;
 	}
 
-	// Token: 0x0600A3F9 RID: 41977 RVA: 0x003F30A8 File Offset: 0x003F12A8
 	private void AddDLCMixingWidget(GameObject prefab, GameObject parent, string name, DlcMixingSettingConfig config)
 	{
 		MixingContentPanel.<>c__DisplayClass11_0 CS$<>8__locals1 = new MixingContentPanel.<>c__DisplayClass11_0();
@@ -193,7 +188,6 @@ public class MixingContentPanel : CustomGameSettingsPanelBase
 		base.AddWidget(CS$<>8__locals1.widget);
 	}
 
-	// Token: 0x0600A3FA RID: 41978 RVA: 0x003F32F4 File Offset: 0x003F14F4
 	private void AddWorldMixingWidget(GameObject prefab, GameObject parent, string name, MixingSettingConfig config)
 	{
 		MixingContentPanel.<>c__DisplayClass12_0 CS$<>8__locals1 = new MixingContentPanel.<>c__DisplayClass12_0();
@@ -249,7 +243,6 @@ public class MixingContentPanel : CustomGameSettingsPanelBase
 		base.AddWidget(CS$<>8__locals1.widget);
 	}
 
-	// Token: 0x0600A3FB RID: 41979 RVA: 0x003F3670 File Offset: 0x003F1870
 	public override void Refresh()
 	{
 		base.Refresh();
@@ -262,7 +255,6 @@ public class MixingContentPanel : CustomGameSettingsPanelBase
 		}
 	}
 
-	// Token: 0x0600A3FC RID: 41980 RVA: 0x003F36D8 File Offset: 0x003F18D8
 	public int GetMaxNumOfGuaranteedWorldMixings()
 	{
 		SettingLevel currentQualitySetting = CustomGameSettings.Instance.GetCurrentQualitySetting(CustomGameSettingConfigs.ClusterLayout);
@@ -281,7 +273,6 @@ public class MixingContentPanel : CustomGameSettingsPanelBase
 		return num;
 	}
 
-	// Token: 0x0600A3FD RID: 41981 RVA: 0x003F3750 File Offset: 0x003F1950
 	public int GetCurrentNumOfGuaranteedWorldMixings()
 	{
 		int num = 0;
@@ -300,7 +291,6 @@ public class MixingContentPanel : CustomGameSettingsPanelBase
 		return num;
 	}
 
-	// Token: 0x0600A3FE RID: 41982 RVA: 0x003F3804 File Offset: 0x003F1A04
 	public int GetMaxNumOfGuaranteedSubworldMixings()
 	{
 		SettingLevel currentQualitySetting = CustomGameSettings.Instance.GetCurrentQualitySetting(CustomGameSettingConfigs.ClusterLayout);
@@ -313,7 +303,6 @@ public class MixingContentPanel : CustomGameSettingsPanelBase
 		return num;
 	}
 
-	// Token: 0x0600A3FF RID: 41983 RVA: 0x003F3890 File Offset: 0x003F1A90
 	public int GetCurrentNumOfGuaranteedSubworldMixings()
 	{
 		int num = 0;
@@ -332,7 +321,6 @@ public class MixingContentPanel : CustomGameSettingsPanelBase
 		return num;
 	}
 
-	// Token: 0x0600A402 RID: 41986 RVA: 0x003F3944 File Offset: 0x003F1B44
 	[CompilerGenerated]
 	internal static bool <AddWorldMixingWidget>g__IsDlcMixedIn|12_2(string dlcId)
 	{
@@ -349,31 +337,23 @@ public class MixingContentPanel : CustomGameSettingsPanelBase
 		return dlcId == "";
 	}
 
-	// Token: 0x0400801B RID: 32795
 	[SerializeField]
 	private GameObject prefabMixingSection;
 
-	// Token: 0x0400801C RID: 32796
 	[SerializeField]
 	private GameObject prefabSettingCycle;
 
-	// Token: 0x0400801D RID: 32797
 	[SerializeField]
 	private GameObject prefabSettingDlcContent;
 
-	// Token: 0x0400801E RID: 32798
 	[SerializeField]
 	private GameObject contentPanel;
 
-	// Token: 0x0400801F RID: 32799
 	private static Dictionary<string, string> dlcSettingIdToLastSetLevelId = new Dictionary<string, string>();
 
-	// Token: 0x04008020 RID: 32800
 	private Dictionary<string, bool> settingIdToIsInteractableRecord = new Dictionary<string, bool>();
 
-	// Token: 0x04008021 RID: 32801
 	private System.Action onRefresh;
 
-	// Token: 0x04008022 RID: 32802
 	private System.Action onDestroy;
 }

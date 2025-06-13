@@ -6,12 +6,9 @@ using Database;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000CA0 RID: 3232
 [AddComponentMenu("KMonoBehaviour/scripts/Building")]
 public class Building : KMonoBehaviour, IGameObjectEffectDescriptor, IUniformGridObject, IApproachable
 {
-	// Token: 0x170002CB RID: 715
-	// (get) Token: 0x06003D62 RID: 15714 RVA: 0x000CC2A2 File Offset: 0x000CA4A2
 	public Orientation Orientation
 	{
 		get
@@ -24,8 +21,6 @@ public class Building : KMonoBehaviour, IGameObjectEffectDescriptor, IUniformGri
 		}
 	}
 
-	// Token: 0x170002CC RID: 716
-	// (get) Token: 0x06003D63 RID: 15715 RVA: 0x000CC2BF File Offset: 0x000CA4BF
 	public int[] PlacementCells
 	{
 		get
@@ -38,7 +33,6 @@ public class Building : KMonoBehaviour, IGameObjectEffectDescriptor, IUniformGri
 		}
 	}
 
-	// Token: 0x06003D64 RID: 15716 RVA: 0x000CC2D5 File Offset: 0x000CA4D5
 	public Extents GetExtents()
 	{
 		if (this.extents.width == 0 || this.extents.height == 0)
@@ -48,7 +42,6 @@ public class Building : KMonoBehaviour, IGameObjectEffectDescriptor, IUniformGri
 		return this.extents;
 	}
 
-	// Token: 0x06003D65 RID: 15717 RVA: 0x0023F05C File Offset: 0x0023D25C
 	public Extents GetValidPlacementExtents()
 	{
 		Extents result = this.GetExtents();
@@ -59,7 +52,6 @@ public class Building : KMonoBehaviour, IGameObjectEffectDescriptor, IUniformGri
 		return result;
 	}
 
-	// Token: 0x06003D66 RID: 15718 RVA: 0x0023F0A4 File Offset: 0x0023D2A4
 	public bool PlacementCellsContainCell(int cell)
 	{
 		for (int i = 0; i < this.PlacementCells.Length; i++)
@@ -72,7 +64,6 @@ public class Building : KMonoBehaviour, IGameObjectEffectDescriptor, IUniformGri
 		return false;
 	}
 
-	// Token: 0x06003D67 RID: 15719 RVA: 0x0023F0D4 File Offset: 0x0023D2D4
 	public void RefreshCells()
 	{
 		this.placementCells = new int[this.Def.PlacementOffsets.Length];
@@ -113,7 +104,6 @@ public class Building : KMonoBehaviour, IGameObjectEffectDescriptor, IUniformGri
 		this.extents.height = num6 - num4 + 1;
 	}
 
-	// Token: 0x06003D68 RID: 15720 RVA: 0x0023F244 File Offset: 0x0023D444
 	[OnDeserialized]
 	internal void OnDeserialized()
 	{
@@ -133,7 +123,6 @@ public class Building : KMonoBehaviour, IGameObjectEffectDescriptor, IUniformGri
 		}
 	}
 
-	// Token: 0x06003D69 RID: 15721 RVA: 0x0023F2DC File Offset: 0x0023D4DC
 	public static void CreateBuildingMeltedNotification(GameObject building)
 	{
 		Vector3 pos = building.transform.GetPosition();
@@ -145,14 +134,11 @@ public class Building : KMonoBehaviour, IGameObjectEffectDescriptor, IUniformGri
 		notifier.Add(notification, "");
 	}
 
-	// Token: 0x06003D6A RID: 15722 RVA: 0x000CC2FD File Offset: 0x000CA4FD
 	public void SetDescription(string desc)
 	{
 		this.description = desc;
 	}
 
-	// Token: 0x170002CD RID: 717
-	// (get) Token: 0x06003D6B RID: 15723 RVA: 0x000CC306 File Offset: 0x000CA506
 	public string Desc
 	{
 		get
@@ -161,8 +147,6 @@ public class Building : KMonoBehaviour, IGameObjectEffectDescriptor, IUniformGri
 		}
 	}
 
-	// Token: 0x170002CE RID: 718
-	// (get) Token: 0x06003D6C RID: 15724 RVA: 0x000CC313 File Offset: 0x000CA513
 	public string DescFlavour
 	{
 		get
@@ -171,8 +155,6 @@ public class Building : KMonoBehaviour, IGameObjectEffectDescriptor, IUniformGri
 		}
 	}
 
-	// Token: 0x170002CF RID: 719
-	// (get) Token: 0x06003D6D RID: 15725 RVA: 0x000CC31B File Offset: 0x000CA51B
 	public string DescEffect
 	{
 		get
@@ -181,13 +163,11 @@ public class Building : KMonoBehaviour, IGameObjectEffectDescriptor, IUniformGri
 		}
 	}
 
-	// Token: 0x06003D6E RID: 15726 RVA: 0x000CC328 File Offset: 0x000CA528
 	public void SetDescriptionFlavour(string descriptionFlavour)
 	{
 		this.descriptionFlavour = descriptionFlavour;
 	}
 
-	// Token: 0x06003D6F RID: 15727 RVA: 0x0023F36C File Offset: 0x0023D56C
 	protected override void OnSpawn()
 	{
 		if (this.Def == null)
@@ -217,21 +197,18 @@ public class Building : KMonoBehaviour, IGameObjectEffectDescriptor, IUniformGri
 		}
 	}
 
-	// Token: 0x06003D70 RID: 15728 RVA: 0x000CC331 File Offset: 0x000CA531
 	protected override void OnCleanUp()
 	{
 		GameScenePartitioner.Instance.Free(ref this.scenePartitionerEntry);
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06003D71 RID: 15729 RVA: 0x000CC349 File Offset: 0x000CA549
 	public virtual void UpdatePosition()
 	{
 		this.RefreshCells();
 		GameScenePartitioner.Instance.UpdatePosition(this.scenePartitionerEntry, this.GetExtents());
 	}
 
-	// Token: 0x06003D72 RID: 15730 RVA: 0x0023F48C File Offset: 0x0023D68C
 	protected void RegisterBlockTileRenderer()
 	{
 		if (this.Def.BlockTileAtlas != null)
@@ -248,7 +225,6 @@ public class Building : KMonoBehaviour, IGameObjectEffectDescriptor, IUniformGri
 		}
 	}
 
-	// Token: 0x06003D73 RID: 15731 RVA: 0x000CC367 File Offset: 0x000CA567
 	public CellOffset GetRotatedOffset(CellOffset offset)
 	{
 		if (!(this.rotatable != null))
@@ -258,79 +234,67 @@ public class Building : KMonoBehaviour, IGameObjectEffectDescriptor, IUniformGri
 		return this.rotatable.GetRotatedCellOffset(offset);
 	}
 
-	// Token: 0x06003D74 RID: 15732 RVA: 0x000CC385 File Offset: 0x000CA585
 	public int GetBottomLeftCell()
 	{
 		return Grid.PosToCell(base.transform.GetPosition());
 	}
 
-	// Token: 0x06003D75 RID: 15733 RVA: 0x0023F514 File Offset: 0x0023D714
 	public int GetPowerInputCell()
 	{
 		CellOffset rotatedOffset = this.GetRotatedOffset(this.Def.PowerInputOffset);
 		return Grid.OffsetCell(this.GetBottomLeftCell(), rotatedOffset);
 	}
 
-	// Token: 0x06003D76 RID: 15734 RVA: 0x0023F540 File Offset: 0x0023D740
 	public int GetPowerOutputCell()
 	{
 		CellOffset rotatedOffset = this.GetRotatedOffset(this.Def.PowerOutputOffset);
 		return Grid.OffsetCell(this.GetBottomLeftCell(), rotatedOffset);
 	}
 
-	// Token: 0x06003D77 RID: 15735 RVA: 0x0023F56C File Offset: 0x0023D76C
 	public int GetUtilityInputCell()
 	{
 		CellOffset rotatedOffset = this.GetRotatedOffset(this.Def.UtilityInputOffset);
 		return Grid.OffsetCell(this.GetBottomLeftCell(), rotatedOffset);
 	}
 
-	// Token: 0x06003D78 RID: 15736 RVA: 0x0023F598 File Offset: 0x0023D798
 	public int GetHighEnergyParticleInputCell()
 	{
 		CellOffset rotatedOffset = this.GetRotatedOffset(this.Def.HighEnergyParticleInputOffset);
 		return Grid.OffsetCell(this.GetBottomLeftCell(), rotatedOffset);
 	}
 
-	// Token: 0x06003D79 RID: 15737 RVA: 0x0023F5C4 File Offset: 0x0023D7C4
 	public int GetHighEnergyParticleOutputCell()
 	{
 		CellOffset rotatedOffset = this.GetRotatedOffset(this.Def.HighEnergyParticleOutputOffset);
 		return Grid.OffsetCell(this.GetBottomLeftCell(), rotatedOffset);
 	}
 
-	// Token: 0x06003D7A RID: 15738 RVA: 0x0023F5F0 File Offset: 0x0023D7F0
 	public int GetUtilityOutputCell()
 	{
 		CellOffset rotatedOffset = this.GetRotatedOffset(this.Def.UtilityOutputOffset);
 		return Grid.OffsetCell(this.GetBottomLeftCell(), rotatedOffset);
 	}
 
-	// Token: 0x06003D7B RID: 15739 RVA: 0x000CC397 File Offset: 0x000CA597
 	public CellOffset GetUtilityInputOffset()
 	{
 		return this.GetRotatedOffset(this.Def.UtilityInputOffset);
 	}
 
-	// Token: 0x06003D7C RID: 15740 RVA: 0x000CC3AA File Offset: 0x000CA5AA
 	public CellOffset GetUtilityOutputOffset()
 	{
 		return this.GetRotatedOffset(this.Def.UtilityOutputOffset);
 	}
 
-	// Token: 0x06003D7D RID: 15741 RVA: 0x000CC3BD File Offset: 0x000CA5BD
 	public CellOffset GetHighEnergyParticleInputOffset()
 	{
 		return this.GetRotatedOffset(this.Def.HighEnergyParticleInputOffset);
 	}
 
-	// Token: 0x06003D7E RID: 15742 RVA: 0x000CC3D0 File Offset: 0x000CA5D0
 	public CellOffset GetHighEnergyParticleOutputOffset()
 	{
 		return this.GetRotatedOffset(this.Def.HighEnergyParticleOutputOffset);
 	}
 
-	// Token: 0x06003D7F RID: 15743 RVA: 0x0023F61C File Offset: 0x0023D81C
 	protected void UnregisterBlockTileRenderer()
 	{
 		if (this.Def.BlockTileAtlas != null)
@@ -347,7 +311,6 @@ public class Building : KMonoBehaviour, IGameObjectEffectDescriptor, IUniformGri
 		}
 	}
 
-	// Token: 0x06003D80 RID: 15744 RVA: 0x000CC3E3 File Offset: 0x000CA5E3
 	private SimHashes GetVisualizationElementID(PrimaryElement pe)
 	{
 		if (!(this is BuildingComplete))
@@ -357,13 +320,11 @@ public class Building : KMonoBehaviour, IGameObjectEffectDescriptor, IUniformGri
 		return pe.ElementID;
 	}
 
-	// Token: 0x06003D81 RID: 15745 RVA: 0x000CC3F9 File Offset: 0x000CA5F9
 	public void RunOnArea(Action<int> callback)
 	{
 		this.Def.RunOnArea(Grid.PosToCell(this), this.Orientation, callback);
 	}
 
-	// Token: 0x06003D82 RID: 15746 RVA: 0x0023F69C File Offset: 0x0023D89C
 	public List<Descriptor> RequirementDescriptors(BuildingDef def)
 	{
 		List<Descriptor> list = new List<Descriptor>();
@@ -453,7 +414,6 @@ public class Building : KMonoBehaviour, IGameObjectEffectDescriptor, IUniformGri
 		return list;
 	}
 
-	// Token: 0x06003D83 RID: 15747 RVA: 0x0023F9E4 File Offset: 0x0023DBE4
 	public List<Descriptor> EffectDescriptors(BuildingDef def)
 	{
 		List<Descriptor> list = new List<Descriptor>();
@@ -477,7 +437,6 @@ public class Building : KMonoBehaviour, IGameObjectEffectDescriptor, IUniformGri
 		return list;
 	}
 
-	// Token: 0x06003D84 RID: 15748 RVA: 0x0023FAE4 File Offset: 0x0023DCE4
 	public List<Descriptor> GetDescriptors(GameObject go)
 	{
 		List<Descriptor> list = new List<Descriptor>();
@@ -492,58 +451,45 @@ public class Building : KMonoBehaviour, IGameObjectEffectDescriptor, IUniformGri
 		return list;
 	}
 
-	// Token: 0x06003D85 RID: 15749 RVA: 0x0023FB8C File Offset: 0x0023DD8C
 	public override Vector2 PosMin()
 	{
 		Extents extents = this.GetExtents();
 		return new Vector2((float)extents.x, (float)extents.y);
 	}
 
-	// Token: 0x06003D86 RID: 15750 RVA: 0x0023FBB4 File Offset: 0x0023DDB4
 	public override Vector2 PosMax()
 	{
 		Extents extents = this.GetExtents();
 		return new Vector2((float)(extents.x + extents.width), (float)(extents.y + extents.height));
 	}
 
-	// Token: 0x06003D87 RID: 15751 RVA: 0x000C14FA File Offset: 0x000BF6FA
 	public CellOffset[] GetOffsets()
 	{
 		return OffsetGroups.Use;
 	}
 
-	// Token: 0x06003D88 RID: 15752 RVA: 0x000C1501 File Offset: 0x000BF701
 	public int GetCell()
 	{
 		return Grid.PosToCell(this);
 	}
 
-	// Token: 0x04002A6B RID: 10859
 	public BuildingDef Def;
 
-	// Token: 0x04002A6C RID: 10860
 	[MyCmpGet]
 	private Rotatable rotatable;
 
-	// Token: 0x04002A6D RID: 10861
 	[MyCmpAdd]
 	private StateMachineController stateMachineController;
 
-	// Token: 0x04002A6E RID: 10862
 	private int[] placementCells;
 
-	// Token: 0x04002A6F RID: 10863
 	private Extents extents;
 
-	// Token: 0x04002A70 RID: 10864
 	private static StatusItem deprecatedBuildingStatusItem;
 
-	// Token: 0x04002A71 RID: 10865
 	private string description;
 
-	// Token: 0x04002A72 RID: 10866
 	private string descriptionFlavour;
 
-	// Token: 0x04002A73 RID: 10867
 	private HandleVector<int>.Handle scenePartitionerEntry;
 }

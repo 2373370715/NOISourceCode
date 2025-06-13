@@ -3,16 +3,13 @@ using System.Linq;
 using ImGuiNET;
 using UnityEngine;
 
-// Token: 0x02000BF4 RID: 3060
 public class DevToolNavGrid : DevTool
 {
-	// Token: 0x06003A07 RID: 14855 RVA: 0x000CA033 File Offset: 0x000C8233
 	public DevToolNavGrid()
 	{
 		DevToolNavGrid.Instance = this;
 	}
 
-	// Token: 0x06003A08 RID: 14856 RVA: 0x00230818 File Offset: 0x0022EA18
 	private bool Init()
 	{
 		if (Pathfinding.Instance == null)
@@ -28,7 +25,6 @@ public class DevToolNavGrid : DevTool
 		return true;
 	}
 
-	// Token: 0x06003A09 RID: 14857 RVA: 0x000CA041 File Offset: 0x000C8241
 	protected override void RenderTo(DevPanel panel)
 	{
 		if (this.Init())
@@ -39,13 +35,11 @@ public class DevToolNavGrid : DevTool
 		ImGui.Text("Game not initialized");
 	}
 
-	// Token: 0x06003A0A RID: 14858 RVA: 0x000CA05C File Offset: 0x000C825C
 	public void SetCell(int cell)
 	{
 		this.selectedCell = cell;
 	}
 
-	// Token: 0x06003A0B RID: 14859 RVA: 0x00230878 File Offset: 0x0022EA78
 	private void Contents()
 	{
 		ImGui.Combo("Nav Grid ID", ref this.selectedNavGrid, this.navGridNames, this.navGridNames.Length);
@@ -176,7 +170,6 @@ public class DevToolNavGrid : DevTool
 		}
 	}
 
-	// Token: 0x06003A0C RID: 14860 RVA: 0x00230D4C File Offset: 0x0022EF4C
 	private void DrawLink(int idx, NavGrid.Link l, NavGrid navGrid)
 	{
 		NavGrid.Transition transition = navGrid.transitions[(int)l.transitionId];
@@ -191,7 +184,6 @@ public class DevToolNavGrid : DevTool
 		}));
 	}
 
-	// Token: 0x06003A0D RID: 14861 RVA: 0x00230DD0 File Offset: 0x0022EFD0
 	private void DebugDrawLinks(NavGrid navGrid)
 	{
 		if (Camera.main == null)
@@ -225,14 +217,12 @@ public class DevToolNavGrid : DevTool
 		}
 	}
 
-	// Token: 0x06003A0E RID: 14862 RVA: 0x00230F14 File Offset: 0x0022F114
 	private bool IsInCameraView(Camera camera, Vector3 pos)
 	{
 		Vector3 vector = camera.WorldToViewportPoint(pos);
 		return vector.x >= 0f && vector.y >= 0f && vector.x <= 1f && vector.y <= 1f;
 	}
 
-	// Token: 0x06003A0F RID: 14863 RVA: 0x00230F64 File Offset: 0x0022F164
 	private bool DrawNavTypeLink(NavGrid navGrid, int end_cell_idx, ref Color color)
 	{
 		for (int i = 0; i < navGrid.ValidNavTypes.Length; i++)
@@ -251,7 +241,6 @@ public class DevToolNavGrid : DevTool
 		return false;
 	}
 
-	// Token: 0x06003A10 RID: 14864 RVA: 0x00230FFC File Offset: 0x0022F1FC
 	private void DrawArrowLink(Vector2 start, Vector2 end, uint color)
 	{
 		ImDrawListPtr backgroundDrawList = ImGui.GetBackgroundDrawList();
@@ -267,36 +256,25 @@ public class DevToolNavGrid : DevTool
 		backgroundDrawList.AddTriangleFilled(end, p, p2, color);
 	}
 
-	// Token: 0x0400281C RID: 10268
 	private const string INVALID_OVERLAY_MODE_STR = "None";
 
-	// Token: 0x0400281D RID: 10269
 	private string[] navGridNames;
 
-	// Token: 0x0400281E RID: 10270
 	private int selectedNavGrid;
 
-	// Token: 0x0400281F RID: 10271
 	private bool drawLinks;
 
-	// Token: 0x04002820 RID: 10272
 	public static DevToolNavGrid Instance;
 
-	// Token: 0x04002821 RID: 10273
 	private int[] linkStats;
 
-	// Token: 0x04002822 RID: 10274
 	private int highestLinkCell;
 
-	// Token: 0x04002823 RID: 10275
 	private int highestLinkCount;
 
-	// Token: 0x04002824 RID: 10276
 	private int selectedCell;
 
-	// Token: 0x04002825 RID: 10277
 	private bool follow;
 
-	// Token: 0x04002826 RID: 10278
 	private GameObject lockObject;
 }

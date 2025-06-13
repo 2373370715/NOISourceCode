@@ -4,11 +4,8 @@ using System.Runtime.Serialization;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x02000C62 RID: 3170
 public abstract class Assignable : KMonoBehaviour, ISaveLoadable
 {
-	// Token: 0x170002B3 RID: 691
-	// (get) Token: 0x06003C01 RID: 15361 RVA: 0x000CB2EC File Offset: 0x000C94EC
 	public AssignableSlot slot
 	{
 		get
@@ -21,8 +18,6 @@ public abstract class Assignable : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x170002B4 RID: 692
-	// (get) Token: 0x06003C02 RID: 15362 RVA: 0x000CB317 File Offset: 0x000C9517
 	public bool CanBeAssigned
 	{
 		get
@@ -31,18 +26,15 @@ public abstract class Assignable : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x14000011 RID: 17
-	// (add) Token: 0x06003C03 RID: 15363 RVA: 0x0023A930 File Offset: 0x00238B30
-	// (remove) Token: 0x06003C04 RID: 15364 RVA: 0x0023A968 File Offset: 0x00238B68
+add) Token: 0x06003C03 RID: 15363 RVA: 0x0023A930 File Offset: 0x00238B30
+remove) Token: 0x06003C04 RID: 15364 RVA: 0x0023A968 File Offset: 0x00238B68
 	public event Action<IAssignableIdentity> OnAssign;
 
-	// Token: 0x06003C05 RID: 15365 RVA: 0x000AA038 File Offset: 0x000A8238
 	[OnDeserialized]
 	internal void OnDeserialized()
 	{
 	}
 
-	// Token: 0x06003C06 RID: 15366 RVA: 0x0023A9A0 File Offset: 0x00238BA0
 	private void RestoreAssignee()
 	{
 		IAssignableIdentity savedAssignee = this.GetSavedAssignee();
@@ -53,7 +45,6 @@ public abstract class Assignable : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x06003C07 RID: 15367 RVA: 0x0023A9C8 File Offset: 0x00238BC8
 	private AssignableSlotInstance GetSavedSlotInstance(IAssignableIdentity savedAsignee)
 	{
 		if ((savedAsignee != null && savedAsignee is MinionIdentity) || savedAsignee is StoredMinionIdentity || savedAsignee is MinionAssignablesProxy)
@@ -88,7 +79,6 @@ public abstract class Assignable : KMonoBehaviour, ISaveLoadable
 		return null;
 	}
 
-	// Token: 0x06003C08 RID: 15368 RVA: 0x0023AA68 File Offset: 0x00238C68
 	private IAssignableIdentity GetSavedAssignee()
 	{
 		if (this.assignee_identityRef.Get() != null)
@@ -102,7 +92,6 @@ public abstract class Assignable : KMonoBehaviour, ISaveLoadable
 		return null;
 	}
 
-	// Token: 0x06003C09 RID: 15369 RVA: 0x0023AAC4 File Offset: 0x00238CC4
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -125,7 +114,6 @@ public abstract class Assignable : KMonoBehaviour, ISaveLoadable
 		});
 	}
 
-	// Token: 0x06003C0A RID: 15370 RVA: 0x000CB31F File Offset: 0x000C951F
 	protected override void OnCleanUp()
 	{
 		this.Unassign();
@@ -134,7 +122,6 @@ public abstract class Assignable : KMonoBehaviour, ISaveLoadable
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06003C0B RID: 15371 RVA: 0x0023AB58 File Offset: 0x00238D58
 	public bool CanAutoAssignTo(IAssignableIdentity identity)
 	{
 		MinionAssignablesProxy minionAssignablesProxy = identity as MinionAssignablesProxy;
@@ -159,7 +146,6 @@ public abstract class Assignable : KMonoBehaviour, ISaveLoadable
 		return true;
 	}
 
-	// Token: 0x06003C0C RID: 15372 RVA: 0x0023ABD0 File Offset: 0x00238DD0
 	public bool CanAssignTo(IAssignableIdentity identity)
 	{
 		MinionAssignablesProxy minionAssignablesProxy = identity as MinionAssignablesProxy;
@@ -180,13 +166,11 @@ public abstract class Assignable : KMonoBehaviour, ISaveLoadable
 		return true;
 	}
 
-	// Token: 0x06003C0D RID: 15373 RVA: 0x000CB348 File Offset: 0x000C9548
 	public bool IsAssigned()
 	{
 		return this.assignee != null;
 	}
 
-	// Token: 0x06003C0E RID: 15374 RVA: 0x0023AC3C File Offset: 0x00238E3C
 	public bool IsAssignedTo(IAssignableIdentity identity)
 	{
 		global::Debug.Assert(identity != null, "IsAssignedTo identity is null");
@@ -207,13 +191,11 @@ public abstract class Assignable : KMonoBehaviour, ISaveLoadable
 		return false;
 	}
 
-	// Token: 0x06003C0F RID: 15375 RVA: 0x000CB353 File Offset: 0x000C9553
 	public virtual void Assign(IAssignableIdentity new_assignee)
 	{
 		this.Assign(new_assignee, null);
 	}
 
-	// Token: 0x06003C10 RID: 15376 RVA: 0x0023ACE4 File Offset: 0x00238EE4
 	public virtual void Assign(IAssignableIdentity new_assignee, AssignableSlotInstance specificSlotInstance)
 	{
 		if (new_assignee == this.assignee)
@@ -275,7 +257,6 @@ public abstract class Assignable : KMonoBehaviour, ISaveLoadable
 		base.Trigger(684616645, new_assignee);
 	}
 
-	// Token: 0x06003C11 RID: 15377 RVA: 0x0023AE30 File Offset: 0x00239030
 	public virtual void Unassign()
 	{
 		if (this.assignee == null)
@@ -321,25 +302,21 @@ public abstract class Assignable : KMonoBehaviour, ISaveLoadable
 		base.Trigger(684616645, null);
 	}
 
-	// Token: 0x06003C12 RID: 15378 RVA: 0x000CB35D File Offset: 0x000C955D
 	public void SetCanBeAssigned(bool state)
 	{
 		this.canBeAssigned = state;
 	}
 
-	// Token: 0x06003C13 RID: 15379 RVA: 0x000CB366 File Offset: 0x000C9566
 	public void AddAssignPrecondition(Func<MinionAssignablesProxy, bool> precondition)
 	{
 		this.assignmentPreconditions.Add(precondition);
 	}
 
-	// Token: 0x06003C14 RID: 15380 RVA: 0x000CB374 File Offset: 0x000C9574
 	public void AddAutoassignPrecondition(Func<MinionAssignablesProxy, bool> precondition)
 	{
 		this.autoassignmentPreconditions.Add(precondition);
 	}
 
-	// Token: 0x06003C15 RID: 15381 RVA: 0x0023AF54 File Offset: 0x00239154
 	public int GetNavigationCost(Navigator navigator)
 	{
 		int num = -1;
@@ -363,46 +340,33 @@ public abstract class Assignable : KMonoBehaviour, ISaveLoadable
 		return num;
 	}
 
-	// Token: 0x040029CA RID: 10698
 	public string slotID;
 
-	// Token: 0x040029CB RID: 10699
 	private AssignableSlot _slot;
 
-	// Token: 0x040029CC RID: 10700
 	public IAssignableIdentity assignee;
 
-	// Token: 0x040029CD RID: 10701
 	[Serialize]
 	protected Ref<KMonoBehaviour> assignee_identityRef = new Ref<KMonoBehaviour>();
 
-	// Token: 0x040029CE RID: 10702
 	[Serialize]
 	protected string assignee_slotInstanceID;
 
-	// Token: 0x040029CF RID: 10703
 	[Serialize]
 	private string assignee_groupID = "";
 
-	// Token: 0x040029D0 RID: 10704
 	public AssignableSlot[] subSlots;
 
-	// Token: 0x040029D1 RID: 10705
 	public bool canBePublic;
 
-	// Token: 0x040029D2 RID: 10706
 	[Serialize]
 	private bool canBeAssigned = true;
 
-	// Token: 0x040029D3 RID: 10707
 	private List<Func<MinionAssignablesProxy, bool>> autoassignmentPreconditions = new List<Func<MinionAssignablesProxy, bool>>();
 
-	// Token: 0x040029D4 RID: 10708
 	private List<Func<MinionAssignablesProxy, bool>> assignmentPreconditions = new List<Func<MinionAssignablesProxy, bool>>();
 
-	// Token: 0x040029D5 RID: 10709
 	public Func<Assignables, string> customAssignmentUITooltipFunc;
 
-	// Token: 0x040029D6 RID: 10710
 	public Func<Assignables, string> customAssignablesUITooltipFunc;
 }

@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000045 RID: 69
 public class CeilingLightConfig : IBuildingConfig
 {
-	// Token: 0x06000135 RID: 309 RVA: 0x0014BC58 File Offset: 0x00149E58
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "CeilingLight";
@@ -28,7 +26,6 @@ public class CeilingLightConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000136 RID: 310 RVA: 0x000AA5F0 File Offset: 0x000A87F0
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 		LightShapePreview lightShapePreview = go.AddComponent<LightShapePreview>();
@@ -37,13 +34,11 @@ public class CeilingLightConfig : IBuildingConfig
 		lightShapePreview.shape = global::LightShape.Cone;
 	}
 
-	// Token: 0x06000137 RID: 311 RVA: 0x000AA614 File Offset: 0x000A8814
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.LightSource, false);
 	}
 
-	// Token: 0x06000138 RID: 312 RVA: 0x0014BCD4 File Offset: 0x00149ED4
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LoopingSounds>();
@@ -60,6 +55,5 @@ public class CeilingLightConfig : IBuildingConfig
 		go.AddOrGetDef<LightController.Def>();
 	}
 
-	// Token: 0x040000BB RID: 187
 	public const string ID = "CeilingLight";
 }

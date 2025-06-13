@@ -4,17 +4,14 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001C26 RID: 7206
 public class AllResourcesScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 {
-	// Token: 0x060095E5 RID: 38373 RVA: 0x00106172 File Offset: 0x00104372
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 		AllResourcesScreen.Instance = this;
 	}
 
-	// Token: 0x060095E6 RID: 38374 RVA: 0x00106180 File Offset: 0x00104380
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -22,14 +19,12 @@ public class AllResourcesScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		this.Init();
 	}
 
-	// Token: 0x060095E7 RID: 38375 RVA: 0x00106195 File Offset: 0x00104395
 	protected override void OnForcedCleanUp()
 	{
 		AllResourcesScreen.Instance = null;
 		base.OnForcedCleanUp();
 	}
 
-	// Token: 0x060095E8 RID: 38376 RVA: 0x001061A3 File Offset: 0x001043A3
 	public void SetFilter(string filter)
 	{
 		if (string.IsNullOrEmpty(filter))
@@ -39,7 +34,6 @@ public class AllResourcesScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		this.searchInputField.text = filter;
 	}
 
-	// Token: 0x060095E9 RID: 38377 RVA: 0x003A9A5C File Offset: 0x003A7C5C
 	public void Init()
 	{
 		if (this.initialized)
@@ -77,7 +71,6 @@ public class AllResourcesScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		this.Show(false);
 	}
 
-	// Token: 0x060095EA RID: 38378 RVA: 0x001061C0 File Offset: 0x001043C0
 	protected override void OnShow(bool show)
 	{
 		base.OnShow(show);
@@ -91,7 +84,6 @@ public class AllResourcesScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		this.SetFilter(null);
 	}
 
-	// Token: 0x060095EB RID: 38379 RVA: 0x003A8ADC File Offset: 0x003A6CDC
 	public override void OnKeyDown(KButtonEvent e)
 	{
 		if (this.isHiddenButActive)
@@ -112,7 +104,6 @@ public class AllResourcesScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		base.OnKeyDown(e);
 	}
 
-	// Token: 0x060095EC RID: 38380 RVA: 0x003A8B30 File Offset: 0x003A6D30
 	public override void OnKeyUp(KButtonEvent e)
 	{
 		if (this.isHiddenButActive)
@@ -131,19 +122,16 @@ public class AllResourcesScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		}
 	}
 
-	// Token: 0x060095ED RID: 38381 RVA: 0x00102E82 File Offset: 0x00101082
 	public override float GetSortKey()
 	{
 		return 50f;
 	}
 
-	// Token: 0x060095EE RID: 38382 RVA: 0x001061EF File Offset: 0x001043EF
 	public void Populate(object data = null)
 	{
 		this.SpawnRows();
 	}
 
-	// Token: 0x060095EF RID: 38383 RVA: 0x003A9B44 File Offset: 0x003A7D44
 	private void SpawnRows()
 	{
 		WorldInventory worldInventory = ClusterManager.Instance.GetWorld(ClusterManager.Instance.activeWorldId).worldInventory;
@@ -174,7 +162,6 @@ public class AllResourcesScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		}
 	}
 
-	// Token: 0x060095F0 RID: 38384 RVA: 0x003A9D20 File Offset: 0x003A7F20
 	private void SpawnCategoryRow(Tag categoryTag, GameUtil.MeasureUnit unit)
 	{
 		if (!this.categoryRows.ContainsKey(categoryTag))
@@ -267,13 +254,11 @@ public class AllResourcesScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		}
 	}
 
-	// Token: 0x060095F1 RID: 38385 RVA: 0x001061F7 File Offset: 0x001043F7
 	private void FilterRowBySearch(Tag tag, string filter)
 	{
 		this.currentlyDisplayedRows[tag] = this.PassesSearchFilter(tag, filter);
 	}
 
-	// Token: 0x060095F2 RID: 38386 RVA: 0x003AA0B8 File Offset: 0x003A82B8
 	private void SearchFilter(string search)
 	{
 		foreach (KeyValuePair<Tag, AllResourcesScreen.ResourceRow> keyValuePair in this.resourceRows)
@@ -304,7 +289,6 @@ public class AllResourcesScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		this.SetRowsActive();
 	}
 
-	// Token: 0x060095F3 RID: 38387 RVA: 0x003AA1FC File Offset: 0x003A83FC
 	private bool PassesSearchFilter(Tag tag, string filter)
 	{
 		filter = filter.ToUpper();
@@ -312,7 +296,6 @@ public class AllResourcesScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		return !(filter != "") || text.Contains(filter);
 	}
 
-	// Token: 0x060095F4 RID: 38388 RVA: 0x003AA238 File Offset: 0x003A8438
 	private void EnableCategoriesByActiveChildren()
 	{
 		foreach (KeyValuePair<Tag, AllResourcesScreen.CategoryRow> keyValuePair in this.categoryRows)
@@ -335,14 +318,12 @@ public class AllResourcesScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		}
 	}
 
-	// Token: 0x060095F5 RID: 38389 RVA: 0x003AA36C File Offset: 0x003A856C
 	private void RefreshPinnedState(Tag tag)
 	{
 		this.resourceRows[tag].notificiationToggle.ChangeState(ClusterManager.Instance.activeWorld.worldInventory.notifyResources.Contains(tag) ? 1 : 0);
 		this.resourceRows[tag].pinToggle.ChangeState(ClusterManager.Instance.activeWorld.worldInventory.pinnedResources.Contains(tag) ? 1 : 0);
 	}
 
-	// Token: 0x060095F6 RID: 38390 RVA: 0x003AA3E8 File Offset: 0x003A85E8
 	public void RefreshRows()
 	{
 		WorldInventory worldInventory = ClusterManager.Instance.GetWorld(ClusterManager.Instance.activeWorldId).worldInventory;
@@ -484,13 +465,11 @@ public class AllResourcesScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		}
 	}
 
-	// Token: 0x060095F7 RID: 38391 RVA: 0x0010620D File Offset: 0x0010440D
 	public int UniqueResourceRowCount()
 	{
 		return this.resourceRows.Count;
 	}
 
-	// Token: 0x060095F8 RID: 38392 RVA: 0x003AAA1C File Offset: 0x003A8C1C
 	private void RefreshCharts()
 	{
 		float time = GameClock.Instance.GetTime();
@@ -546,7 +525,6 @@ public class AllResourcesScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		}
 	}
 
-	// Token: 0x060095F9 RID: 38393 RVA: 0x003AAC54 File Offset: 0x003A8E54
 	private void SetRowsActive()
 	{
 		foreach (KeyValuePair<Tag, AllResourcesScreen.CategoryRow> keyValuePair in this.categoryRows)
@@ -569,7 +547,6 @@ public class AllResourcesScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		}
 	}
 
-	// Token: 0x060095FA RID: 38394 RVA: 0x0010621A File Offset: 0x0010441A
 	public void Sim4000ms(float dt)
 	{
 		if (this.isHiddenButActive)
@@ -579,7 +556,6 @@ public class AllResourcesScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		this.RefreshCharts();
 	}
 
-	// Token: 0x060095FB RID: 38395 RVA: 0x0010622B File Offset: 0x0010442B
 	public void Sim1000ms(float dt)
 	{
 		if (this.isHiddenButActive)
@@ -589,54 +565,38 @@ public class AllResourcesScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		this.RefreshRows();
 	}
 
-	// Token: 0x0400749B RID: 29851
 	private Dictionary<Tag, AllResourcesScreen.ResourceRow> resourceRows = new Dictionary<Tag, AllResourcesScreen.ResourceRow>();
 
-	// Token: 0x0400749C RID: 29852
 	private Dictionary<Tag, AllResourcesScreen.CategoryRow> categoryRows = new Dictionary<Tag, AllResourcesScreen.CategoryRow>();
 
-	// Token: 0x0400749D RID: 29853
 	public Dictionary<Tag, GameUtil.MeasureUnit> units = new Dictionary<Tag, GameUtil.MeasureUnit>();
 
-	// Token: 0x0400749E RID: 29854
 	public GameObject rootListContainer;
 
-	// Token: 0x0400749F RID: 29855
 	public GameObject resourceLinePrefab;
 
-	// Token: 0x040074A0 RID: 29856
 	public GameObject categoryLinePrefab;
 
-	// Token: 0x040074A1 RID: 29857
 	public KButton closeButton;
 
-	// Token: 0x040074A2 RID: 29858
 	public bool allowRefresh = true;
 
-	// Token: 0x040074A3 RID: 29859
 	[SerializeField]
 	private KInputTextField searchInputField;
 
-	// Token: 0x040074A4 RID: 29860
 	[SerializeField]
 	private KButton clearSearchButton;
 
-	// Token: 0x040074A5 RID: 29861
 	public static AllResourcesScreen Instance;
 
-	// Token: 0x040074A6 RID: 29862
 	public Dictionary<Tag, bool> currentlyDisplayedRows = new Dictionary<Tag, bool>();
 
-	// Token: 0x040074A7 RID: 29863
 	public List<TagSet> allowDisplayCategories = new List<TagSet>();
 
-	// Token: 0x040074A8 RID: 29864
 	private bool initialized;
 
-	// Token: 0x02001C27 RID: 7207
 	private class ScreenRowBase
 	{
-		// Token: 0x06009603 RID: 38403 RVA: 0x003AAE00 File Offset: 0x003A9000
 		public ScreenRowBase(Tag tag, GameObject gameObject)
 		{
 			this.Tag = tag;
@@ -648,17 +608,10 @@ public class AllResourcesScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 			this.sparkLayer = component.GetReference<SparkLayer>("Chart");
 		}
 
-		// Token: 0x170009BB RID: 2491
-		// (get) Token: 0x06009604 RID: 38404 RVA: 0x0010626A File Offset: 0x0010446A
-		// (set) Token: 0x06009605 RID: 38405 RVA: 0x00106272 File Offset: 0x00104472
 		public Tag Tag { get; private set; }
 
-		// Token: 0x170009BC RID: 2492
-		// (get) Token: 0x06009606 RID: 38406 RVA: 0x0010627B File Offset: 0x0010447B
-		// (set) Token: 0x06009607 RID: 38407 RVA: 0x00106283 File Offset: 0x00104483
 		public GameObject GameObject { get; private set; }
 
-		// Token: 0x06009608 RID: 38408 RVA: 0x0010628C File Offset: 0x0010448C
 		public bool CheckAvailableAmountChanged(float newAvailableResourceAmount, bool updateIfTrue)
 		{
 			bool flag = newAvailableResourceAmount != this.oldAvailableResourceAmount;
@@ -669,7 +622,6 @@ public class AllResourcesScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 			return flag;
 		}
 
-		// Token: 0x06009609 RID: 38409 RVA: 0x001062A6 File Offset: 0x001044A6
 		public bool CheckTotalResourceAmountChanged(float newTotalResourceAmount, bool updateIfTrue)
 		{
 			bool flag = newTotalResourceAmount != this.oldTotalResourceAmount;
@@ -680,7 +632,6 @@ public class AllResourcesScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 			return flag;
 		}
 
-		// Token: 0x0600960A RID: 38410 RVA: 0x001062C0 File Offset: 0x001044C0
 		public bool CheckReservedResourceAmountChanged(float newReservedResourceAmount, bool updateIfTrue)
 		{
 			bool flag = newReservedResourceAmount != this.oldReserverResourceAmount;
@@ -691,47 +642,33 @@ public class AllResourcesScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 			return flag;
 		}
 
-		// Token: 0x040074AB RID: 29867
 		public LocText availableLabel;
 
-		// Token: 0x040074AC RID: 29868
 		public LocText totalLabel;
 
-		// Token: 0x040074AD RID: 29869
 		public LocText reservedLabel;
 
-		// Token: 0x040074AE RID: 29870
 		public SparkLayer sparkLayer;
 
-		// Token: 0x040074AF RID: 29871
 		private float oldAvailableResourceAmount = -1f;
 
-		// Token: 0x040074B0 RID: 29872
 		private float oldTotalResourceAmount = -1f;
 
-		// Token: 0x040074B1 RID: 29873
 		private float oldReserverResourceAmount = -1f;
 	}
 
-	// Token: 0x02001C28 RID: 7208
 	private class CategoryRow : AllResourcesScreen.ScreenRowBase
 	{
-		// Token: 0x0600960B RID: 38411 RVA: 0x001062DA File Offset: 0x001044DA
 		public CategoryRow(Tag tag, GameObject gameObject) : base(tag, gameObject)
 		{
 			this.FoldOutPanel = base.GameObject.GetComponent<FoldOutPanel>();
 		}
 
-		// Token: 0x170009BD RID: 2493
-		// (get) Token: 0x0600960C RID: 38412 RVA: 0x001062F5 File Offset: 0x001044F5
-		// (set) Token: 0x0600960D RID: 38413 RVA: 0x001062FD File Offset: 0x001044FD
 		public FoldOutPanel FoldOutPanel { get; private set; }
 	}
 
-	// Token: 0x02001C29 RID: 7209
 	private class ResourceRow : AllResourcesScreen.ScreenRowBase
 	{
-		// Token: 0x0600960E RID: 38414 RVA: 0x003AAE94 File Offset: 0x003A9094
 		public ResourceRow(Tag tag, GameObject gameObject) : base(tag, gameObject)
 		{
 			HierarchyReferences component = base.GameObject.GetComponent<HierarchyReferences>();
@@ -740,13 +677,10 @@ public class AllResourcesScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 			this.horizontalLayoutGroup = gameObject.GetComponent<HorizontalLayoutGroup>();
 		}
 
-		// Token: 0x040074B3 RID: 29875
 		public MultiToggle notificiationToggle;
 
-		// Token: 0x040074B4 RID: 29876
 		public MultiToggle pinToggle;
 
-		// Token: 0x040074B5 RID: 29877
 		public HorizontalLayoutGroup horizontalLayoutGroup;
 	}
 }

@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000510 RID: 1296
 public class PressureSwitchGasConfig : IBuildingConfig
 {
-	// Token: 0x06001637 RID: 5687 RVA: 0x001A26D0 File Offset: 0x001A08D0
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = PressureSwitchGasConfig.ID;
@@ -31,7 +29,6 @@ public class PressureSwitchGasConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001638 RID: 5688 RVA: 0x001A277C File Offset: 0x001A097C
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
@@ -45,12 +42,10 @@ public class PressureSwitchGasConfig : IBuildingConfig
 		pressureSwitch.desiredState = Element.State.Gas;
 	}
 
-	// Token: 0x06001639 RID: 5689 RVA: 0x000B428C File Offset: 0x000B248C
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddComponent<BuildingCellVisualizer>();
 	}
 
-	// Token: 0x04000F40 RID: 3904
 	public static string ID = "PressureSwitchGas";
 }

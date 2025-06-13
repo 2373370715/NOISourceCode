@@ -4,22 +4,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000C7 RID: 199
 public class EscapePodConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x06000346 RID: 838 RVA: 0x000AA117 File Offset: 0x000A8317
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06000347 RID: 839 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x06000348 RID: 840 RVA: 0x001561C0 File Offset: 0x001543C0
 	public GameObject CreatePrefab()
 	{
 		string id = "EscapePod";
@@ -60,7 +56,6 @@ public class EscapePodConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x06000349 RID: 841 RVA: 0x000AB23D File Offset: 0x000A943D
 	public void OnPrefabInit(GameObject inst)
 	{
 		OccupyArea component = inst.GetComponent<OccupyArea>();
@@ -71,14 +66,11 @@ public class EscapePodConfig : IEntityConfig, IHasDlcRestrictions
 		};
 	}
 
-	// Token: 0x0600034A RID: 842 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x04000202 RID: 514
 	public const string ID = "EscapePod";
 
-	// Token: 0x04000203 RID: 515
 	public const float MASS = 100f;
 }

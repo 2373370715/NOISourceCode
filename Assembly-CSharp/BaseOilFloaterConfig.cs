@@ -4,10 +4,8 @@ using Klei.AI;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000F3 RID: 243
 public static class BaseOilFloaterConfig
 {
-	// Token: 0x060003D2 RID: 978 RVA: 0x0015B250 File Offset: 0x00159450
 	public static GameObject BaseOilFloater(string id, string name, string desc, string anim_file, string traitId, float warnLowTemp, float warnHighTemp, float lethalLowTemp, float lethalHighTemp, bool is_baby, string symbolOverridePrefix = null)
 	{
 		float mass = 50f;
@@ -59,7 +57,6 @@ public static class BaseOilFloaterConfig
 		return gameObject;
 	}
 
-	// Token: 0x060003D3 RID: 979 RVA: 0x0015B4E8 File Offset: 0x001596E8
 	public static GameObject SetupDiet(GameObject prefab, Tag consumed_tag, Tag producedTag, float caloriesPerKg, float producedConversionRate, string diseaseId, float diseasePerKgProduced, float minPoopSizeInKg)
 	{
 		Diet diet = new Diet(new Diet.Info[]

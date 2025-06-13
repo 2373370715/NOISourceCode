@@ -6,10 +6,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x02001C58 RID: 7256
 public class AudioOptionsScreen : KModalScreen
 {
-	// Token: 0x060096C0 RID: 38592 RVA: 0x003AE0DC File Offset: 0x003AC2DC
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -78,7 +76,6 @@ public class AudioOptionsScreen : KModalScreen
 		component3.GetReference("CheckMark").gameObject.SetActive(KPlayerPrefs.GetInt(AudioOptionsScreen.MuteOnFocusLost) == 1);
 	}
 
-	// Token: 0x060096C1 RID: 38593 RVA: 0x001069E4 File Offset: 0x00104BE4
 	public override void OnKeyDown(KButtonEvent e)
 	{
 		if (e.TryConsume(global::Action.Escape) || e.TryConsume(global::Action.MouseRight))
@@ -89,19 +86,16 @@ public class AudioOptionsScreen : KModalScreen
 		base.OnKeyDown(e);
 	}
 
-	// Token: 0x060096C2 RID: 38594 RVA: 0x00106A06 File Offset: 0x00104C06
 	private void CheckMasterValue(float value)
 	{
 		this.jambell.enabled = (value == 0f);
 	}
 
-	// Token: 0x060096C3 RID: 38595 RVA: 0x00106A1B File Offset: 0x00104C1B
 	private void OnReleaseHandle(KSlider slider)
 	{
 		AudioMixer.instance.SetUserVolume(this.sliderBusMap[slider], slider.value);
 	}
 
-	// Token: 0x060096C4 RID: 38596 RVA: 0x003AE454 File Offset: 0x003AC654
 	private void ToggleAlwaysPlayMusic()
 	{
 		MusicManager.instance.alwaysPlayMusic = !MusicManager.instance.alwaysPlayMusic;
@@ -109,21 +103,18 @@ public class AudioOptionsScreen : KModalScreen
 		KPlayerPrefs.SetInt(AudioOptionsScreen.AlwaysPlayMusicKey, MusicManager.instance.alwaysPlayMusic ? 1 : 0);
 	}
 
-	// Token: 0x060096C5 RID: 38597 RVA: 0x003AE4BC File Offset: 0x003AC6BC
 	private void ToggleAlwaysPlayAutomation()
 	{
 		KPlayerPrefs.SetInt(AudioOptionsScreen.AlwaysPlayAutomation, (KPlayerPrefs.GetInt(AudioOptionsScreen.AlwaysPlayAutomation) == 1) ? 0 : 1);
 		this.alwaysPlayAutomationButton.GetComponent<HierarchyReferences>().GetReference("CheckMark").gameObject.SetActive(KPlayerPrefs.GetInt(AudioOptionsScreen.AlwaysPlayAutomation) == 1);
 	}
 
-	// Token: 0x060096C6 RID: 38598 RVA: 0x003AE514 File Offset: 0x003AC714
 	private void ToggleMuteOnFocusLost()
 	{
 		KPlayerPrefs.SetInt(AudioOptionsScreen.MuteOnFocusLost, (KPlayerPrefs.GetInt(AudioOptionsScreen.MuteOnFocusLost) == 1) ? 0 : 1);
 		this.muteOnFocusLostToggle.GetComponent<HierarchyReferences>().GetReference("CheckMark").gameObject.SetActive(KPlayerPrefs.GetInt(AudioOptionsScreen.MuteOnFocusLost) == 1);
 	}
 
-	// Token: 0x060096C7 RID: 38599 RVA: 0x003AE56C File Offset: 0x003AC76C
 	private void BuildAudioDeviceList()
 	{
 		this.audioDevices.Clear();
@@ -142,7 +133,6 @@ public class AudioOptionsScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x060096C8 RID: 38600 RVA: 0x003AE618 File Offset: 0x003AC818
 	private void OnAudioDeviceChanged(int idx)
 	{
 		RuntimeManager.CoreSystem.setDriver(idx);
@@ -157,7 +147,6 @@ public class AudioOptionsScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x060096C9 RID: 38601 RVA: 0x00106A39 File Offset: 0x00104C39
 	private void OnClose(GameObject go)
 	{
 		this.alwaysPlayMusicMetric[AudioOptionsScreen.AlwaysPlayMusicKey] = MusicManager.instance.alwaysPlayMusic;
@@ -165,58 +154,43 @@ public class AudioOptionsScreen : KModalScreen
 		UnityEngine.Object.Destroy(go);
 	}
 
-	// Token: 0x04007530 RID: 30000
 	[SerializeField]
 	private KButton closeButton;
 
-	// Token: 0x04007531 RID: 30001
 	[SerializeField]
 	private KButton doneButton;
 
-	// Token: 0x04007532 RID: 30002
 	[SerializeField]
 	private SliderContainer sliderPrefab;
 
-	// Token: 0x04007533 RID: 30003
 	[SerializeField]
 	private GameObject sliderGroup;
 
-	// Token: 0x04007534 RID: 30004
 	[SerializeField]
 	private Image jambell;
 
-	// Token: 0x04007535 RID: 30005
 	[SerializeField]
 	private GameObject alwaysPlayMusicButton;
 
-	// Token: 0x04007536 RID: 30006
 	[SerializeField]
 	private GameObject alwaysPlayAutomationButton;
 
-	// Token: 0x04007537 RID: 30007
 	[SerializeField]
 	private GameObject muteOnFocusLostToggle;
 
-	// Token: 0x04007538 RID: 30008
 	[SerializeField]
 	private Dropdown deviceDropdown;
 
-	// Token: 0x04007539 RID: 30009
 	private UIPool<SliderContainer> sliderPool;
 
-	// Token: 0x0400753A RID: 30010
 	private Dictionary<KSlider, string> sliderBusMap = new Dictionary<KSlider, string>();
 
-	// Token: 0x0400753B RID: 30011
 	public static readonly string AlwaysPlayMusicKey = "AlwaysPlayMusic";
 
-	// Token: 0x0400753C RID: 30012
 	public static readonly string AlwaysPlayAutomation = "AlwaysPlayAutomation";
 
-	// Token: 0x0400753D RID: 30013
 	public static readonly string MuteOnFocusLost = "MuteOnFocusLost";
 
-	// Token: 0x0400753E RID: 30014
 	private Dictionary<string, object> alwaysPlayMusicMetric = new Dictionary<string, object>
 	{
 		{
@@ -225,9 +199,7 @@ public class AudioOptionsScreen : KModalScreen
 		}
 	};
 
-	// Token: 0x0400753F RID: 30015
 	private List<KFMOD.AudioDevice> audioDevices = new List<KFMOD.AudioDevice>();
 
-	// Token: 0x04007540 RID: 30016
 	private List<Dropdown.OptionData> audioDeviceOptions = new List<Dropdown.OptionData>();
 }

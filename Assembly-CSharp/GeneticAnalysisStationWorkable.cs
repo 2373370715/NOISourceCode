@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000DD2 RID: 3538
 public class GeneticAnalysisStationWorkable : Workable
 {
-	// Token: 0x060044F1 RID: 17649 RVA: 0x00257B64 File Offset: 0x00255D64
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -24,28 +22,24 @@ public class GeneticAnalysisStationWorkable : Workable
 		this.lightEfficiencyBonus = true;
 	}
 
-	// Token: 0x060044F2 RID: 17650 RVA: 0x000D107E File Offset: 0x000CF27E
 	protected override void OnStartWork(WorkerBase worker)
 	{
 		base.OnStartWork(worker);
 		base.GetComponent<KSelectable>().AddStatusItem(Db.Get().BuildingStatusItems.ComplexFabricatorResearching, this.storage.FindFirst(GameTags.UnidentifiedSeed));
 	}
 
-	// Token: 0x060044F3 RID: 17651 RVA: 0x000D10B2 File Offset: 0x000CF2B2
 	protected override void OnStopWork(WorkerBase worker)
 	{
 		base.OnStopWork(worker);
 		base.GetComponent<KSelectable>().RemoveStatusItem(Db.Get().BuildingStatusItems.ComplexFabricatorResearching, false);
 	}
 
-	// Token: 0x060044F4 RID: 17652 RVA: 0x000D10D7 File Offset: 0x000CF2D7
 	protected override void OnCompleteWork(WorkerBase worker)
 	{
 		base.OnCompleteWork(worker);
 		this.IdentifyMutant();
 	}
 
-	// Token: 0x060044F5 RID: 17653 RVA: 0x00257C24 File Offset: 0x00255E24
 	public void IdentifyMutant()
 	{
 		GameObject gameObject = this.storage.FindFirst(GameTags.UnidentifiedSeed);
@@ -73,21 +67,16 @@ public class GeneticAnalysisStationWorkable : Workable
 		}
 	}
 
-	// Token: 0x04002FD9 RID: 12249
 	[MyCmpAdd]
 	public Notifier notifier;
 
-	// Token: 0x04002FDA RID: 12250
 	[MyCmpReq]
 	public Storage storage;
 
-	// Token: 0x04002FDB RID: 12251
 	[SerializeField]
 	public Vector3 finishedSeedDropOffset;
 
-	// Token: 0x04002FDC RID: 12252
 	private Notification notification;
 
-	// Token: 0x04002FDD RID: 12253
 	public GeneticAnalysisStation.StatesInstance statesInstance;
 }

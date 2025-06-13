@@ -2,11 +2,9 @@
 using Klei;
 using UnityEngine;
 
-// Token: 0x02000E69 RID: 3689
 [AddComponentMenu("KMonoBehaviour/Workable/LiquidPumpingStation")]
 public class LiquidPumpingStation : Workable, ISim200ms
 {
-	// Token: 0x0600482C RID: 18476 RVA: 0x000D33B8 File Offset: 0x000D15B8
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -14,7 +12,6 @@ public class LiquidPumpingStation : Workable, ISim200ms
 		this.showProgressBar = false;
 	}
 
-	// Token: 0x0600482D RID: 18477 RVA: 0x00263090 File Offset: 0x00261290
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -39,7 +36,6 @@ public class LiquidPumpingStation : Workable, ISim200ms
 		}
 	}
 
-	// Token: 0x0600482E RID: 18478 RVA: 0x00263178 File Offset: 0x00261378
 	private void RegisterListenersToCellChanges()
 	{
 		int widthInCells = base.GetComponent<BuildingComplete>().Def.WidthInCells;
@@ -57,20 +53,17 @@ public class LiquidPumpingStation : Workable, ISim200ms
 		this.partitionerEntry_buildings = GameScenePartitioner.Instance.Add("LiquidPumpingStation", base.gameObject, extents, GameScenePartitioner.Instance.objectLayers[1], new Action<object>(this.OnLowerCellChanged));
 	}
 
-	// Token: 0x0600482F RID: 18479 RVA: 0x000D33CE File Offset: 0x000D15CE
 	private void UnregisterListenersToCellChanges()
 	{
 		GameScenePartitioner.Instance.Free(ref this.partitionerEntry_solids);
 		GameScenePartitioner.Instance.Free(ref this.partitionerEntry_buildings);
 	}
 
-	// Token: 0x06004830 RID: 18480 RVA: 0x000D33F0 File Offset: 0x000D15F0
 	private void OnLowerCellChanged(object o)
 	{
 		this.RefreshDepthAvailable();
 	}
 
-	// Token: 0x06004831 RID: 18481 RVA: 0x00263254 File Offset: 0x00261454
 	private void RefreshDepthAvailable()
 	{
 		int num = PumpingStationGuide.GetDepthAvailable(Grid.PosToCell(this), base.gameObject);
@@ -87,7 +80,6 @@ public class LiquidPumpingStation : Workable, ISim200ms
 		}
 	}
 
-	// Token: 0x06004832 RID: 18482 RVA: 0x002632C8 File Offset: 0x002614C8
 	public void Sim200ms(float dt)
 	{
 		if (this.session != null)
@@ -172,7 +164,6 @@ public class LiquidPumpingStation : Workable, ISim200ms
 		}
 	}
 
-	// Token: 0x06004833 RID: 18483 RVA: 0x00263598 File Offset: 0x00261798
 	private void RefreshStatusItem()
 	{
 		if (this.infoCount > 0)
@@ -183,7 +174,6 @@ public class LiquidPumpingStation : Workable, ISim200ms
 		base.GetComponent<KSelectable>().SetStatusItem(Db.Get().StatusItemCategories.Main, Db.Get().BuildingStatusItems.EmptyPumpingStation, this);
 	}
 
-	// Token: 0x06004834 RID: 18484 RVA: 0x00263608 File Offset: 0x00261808
 	public string ResolveString(string base_string)
 	{
 		string text = "";
@@ -204,13 +194,11 @@ public class LiquidPumpingStation : Workable, ISim200ms
 		return base_string.Replace("{Liquids}", text);
 	}
 
-	// Token: 0x06004835 RID: 18485 RVA: 0x000AA7E7 File Offset: 0x000A89E7
 	public static bool IsLiquidAccessible(Element element)
 	{
 		return true;
 	}
 
-	// Token: 0x06004836 RID: 18486 RVA: 0x000D33F8 File Offset: 0x000D15F8
 	public override float GetPercentComplete()
 	{
 		if (this.session != null)
@@ -220,7 +208,6 @@ public class LiquidPumpingStation : Workable, ISim200ms
 		return 0f;
 	}
 
-	// Token: 0x06004837 RID: 18487 RVA: 0x002636AC File Offset: 0x002618AC
 	protected override void OnStartWork(WorkerBase worker)
 	{
 		base.OnStartWork(worker);
@@ -232,7 +219,6 @@ public class LiquidPumpingStation : Workable, ISim200ms
 		this.meter.SetSymbolTint(new KAnimHashedString("meter_target"), element.substance.colour);
 	}
 
-	// Token: 0x06004838 RID: 18488 RVA: 0x00263740 File Offset: 0x00261940
 	protected override void OnStopWork(WorkerBase worker)
 	{
 		base.OnStopWork(worker);
@@ -261,7 +247,6 @@ public class LiquidPumpingStation : Workable, ISim200ms
 		base.GetComponent<KAnimControllerBase>().Play("on", KAnim.PlayMode.Once, 1f, 0f);
 	}
 
-	// Token: 0x06004839 RID: 18489 RVA: 0x00263864 File Offset: 0x00261A64
 	private void OnReservationsChanged(Pickupable _ignore, bool _ignore2, Pickupable.Reservation _ignore3)
 	{
 		bool forceUnfetchable = false;
@@ -286,7 +271,6 @@ public class LiquidPumpingStation : Workable, ISim200ms
 		}
 	}
 
-	// Token: 0x0600483A RID: 18490 RVA: 0x000D3413 File Offset: 0x000D1613
 	protected override bool OnWorkTick(WorkerBase worker, float dt)
 	{
 		if (this.session != null)
@@ -300,7 +284,6 @@ public class LiquidPumpingStation : Workable, ISim200ms
 		return false;
 	}
 
-	// Token: 0x0600483B RID: 18491 RVA: 0x00263910 File Offset: 0x00261B10
 	protected override void OnCleanUp()
 	{
 		this.UnregisterListenersToCellChanges();
@@ -319,7 +302,6 @@ public class LiquidPumpingStation : Workable, ISim200ms
 		}
 	}
 
-	// Token: 0x040032AA RID: 12970
 	private static readonly CellOffset[] liquidOffsets = new CellOffset[]
 	{
 		new CellOffset(0, 0),
@@ -334,31 +316,22 @@ public class LiquidPumpingStation : Workable, ISim200ms
 		new CellOffset(1, -4)
 	};
 
-	// Token: 0x040032AB RID: 12971
 	private LiquidPumpingStation.LiquidInfo[] infos;
 
-	// Token: 0x040032AC RID: 12972
 	private int infoCount;
 
-	// Token: 0x040032AD RID: 12973
 	private int depthAvailable = -1;
 
-	// Token: 0x040032AE RID: 12974
 	private HandleVector<int>.Handle partitionerEntry_buildings;
 
-	// Token: 0x040032AF RID: 12975
 	private HandleVector<int>.Handle partitionerEntry_solids;
 
-	// Token: 0x040032B0 RID: 12976
 	private LiquidPumpingStation.WorkSession session;
 
-	// Token: 0x040032B1 RID: 12977
 	private MeterController meter;
 
-	// Token: 0x02000E6A RID: 3690
 	private class WorkSession
 	{
-		// Token: 0x0600483E RID: 18494 RVA: 0x00263A30 File Offset: 0x00261C30
 		public WorkSession(int cell, SimHashes element, SubstanceChunk source, float amount_to_pickup, GameObject pump)
 		{
 			this.cell = cell;
@@ -373,13 +346,11 @@ public class LiquidPumpingStation : Workable, ISim200ms
 			this.ConsumeMass();
 		}
 
-		// Token: 0x0600483F RID: 18495 RVA: 0x000D3457 File Offset: 0x000D1657
 		private static void OnSimConsumeCallback(Sim.MassConsumedCallback mass_cb_info, object data)
 		{
 			((LiquidPumpingStation.WorkSession)data).OnSimConsume(mass_cb_info);
 		}
 
-		// Token: 0x06004840 RID: 18496 RVA: 0x00263AA8 File Offset: 0x00261CA8
 		private void OnSimConsume(Sim.MassConsumedCallback mass_cb_info)
 		{
 			if (this.consumedAmount == 0f)
@@ -401,7 +372,6 @@ public class LiquidPumpingStation : Workable, ISim200ms
 			this.ConsumeMass();
 		}
 
-		// Token: 0x06004841 RID: 18497 RVA: 0x00263B6C File Offset: 0x00261D6C
 		private void ConsumeMass()
 		{
 			if (this.amountPerTick > 0f)
@@ -414,37 +384,31 @@ public class LiquidPumpingStation : Workable, ISim200ms
 			}
 		}
 
-		// Token: 0x06004842 RID: 18498 RVA: 0x000D3465 File Offset: 0x000D1665
 		public float GetPercentComplete()
 		{
 			return this.consumedAmount / this.amountToPickup;
 		}
 
-		// Token: 0x06004843 RID: 18499 RVA: 0x000D3474 File Offset: 0x000D1674
 		public float GetLastTickAmount()
 		{
 			return this.lastTickAmount;
 		}
 
-		// Token: 0x06004844 RID: 18500 RVA: 0x000D347C File Offset: 0x000D167C
 		public SimUtil.DiseaseInfo GetDiseaseInfo()
 		{
 			return this.diseaseInfo;
 		}
 
-		// Token: 0x06004845 RID: 18501 RVA: 0x000D3484 File Offset: 0x000D1684
 		public SubstanceChunk GetSource()
 		{
 			return this.source;
 		}
 
-		// Token: 0x06004846 RID: 18502 RVA: 0x000D348C File Offset: 0x000D168C
 		public float GetConsumedAmount()
 		{
 			return this.consumedAmount;
 		}
 
-		// Token: 0x06004847 RID: 18503 RVA: 0x000D3494 File Offset: 0x000D1694
 		public float GetTemperature()
 		{
 			if (this.temperature <= 0f)
@@ -455,54 +419,39 @@ public class LiquidPumpingStation : Workable, ISim200ms
 			return this.temperature;
 		}
 
-		// Token: 0x06004848 RID: 18504 RVA: 0x000D34C9 File Offset: 0x000D16C9
 		public void Cleanup()
 		{
 			this.amountPerTick = 0f;
 			this.diseaseInfo = SimUtil.DiseaseInfo.Invalid;
 		}
 
-		// Token: 0x040032B2 RID: 12978
 		private int cell;
 
-		// Token: 0x040032B3 RID: 12979
 		private float amountToPickup;
 
-		// Token: 0x040032B4 RID: 12980
 		private float consumedAmount;
 
-		// Token: 0x040032B5 RID: 12981
 		private float temperature;
 
-		// Token: 0x040032B6 RID: 12982
 		private float amountPerTick;
 
-		// Token: 0x040032B7 RID: 12983
 		private SimHashes element;
 
-		// Token: 0x040032B8 RID: 12984
 		private float lastTickAmount;
 
-		// Token: 0x040032B9 RID: 12985
 		private SubstanceChunk source;
 
-		// Token: 0x040032BA RID: 12986
 		private SimUtil.DiseaseInfo diseaseInfo;
 
-		// Token: 0x040032BB RID: 12987
 		private GameObject pump;
 	}
 
-	// Token: 0x02000E6B RID: 3691
 	private struct LiquidInfo
 	{
-		// Token: 0x040032BC RID: 12988
 		public float amount;
 
-		// Token: 0x040032BD RID: 12989
 		public Element element;
 
-		// Token: 0x040032BE RID: 12990
 		public SubstanceChunk source;
 	}
 }

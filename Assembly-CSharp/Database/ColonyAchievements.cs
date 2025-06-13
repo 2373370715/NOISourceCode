@@ -6,10 +6,8 @@ using TUNING;
 
 namespace Database
 {
-	// Token: 0x02002229 RID: 8745
 	public class ColonyAchievements : ResourceSet<ColonyAchievement>
 	{
-		// Token: 0x0600B9F4 RID: 47604 RVA: 0x00478518 File Offset: 0x00476718
 		public ColonyAchievements(ResourceSet parent) : base("ColonyAchievements", parent)
 		{
 			this.Thriving = base.Add(new ColonyAchievement("Thriving", "WINCONDITION_STAY", COLONY_ACHIEVEMENTS.THRIVING.NAME, COLONY_ACHIEVEMENTS.THRIVING.DESCRIPTION, true, new List<ColonyAchievementRequirement>
@@ -436,148 +434,100 @@ namespace Database
 			}
 		}
 
-		// Token: 0x040097A3 RID: 38819
 		public ColonyAchievement Thriving;
 
-		// Token: 0x040097A4 RID: 38820
 		public ColonyAchievement ReachedDistantPlanet;
 
-		// Token: 0x040097A5 RID: 38821
 		public ColonyAchievement CollectedArtifacts;
 
-		// Token: 0x040097A6 RID: 38822
 		public ColonyAchievement Survived100Cycles;
 
-		// Token: 0x040097A7 RID: 38823
 		public ColonyAchievement ReachedSpace;
 
-		// Token: 0x040097A8 RID: 38824
 		public ColonyAchievement CompleteSkillBranch;
 
-		// Token: 0x040097A9 RID: 38825
 		public ColonyAchievement CompleteResearchTree;
 
-		// Token: 0x040097AA RID: 38826
 		public ColonyAchievement Clothe8Dupes;
 
-		// Token: 0x040097AB RID: 38827
 		public ColonyAchievement Build4NatureReserves;
 
-		// Token: 0x040097AC RID: 38828
 		public ColonyAchievement Minimum20LivingDupes;
 
-		// Token: 0x040097AD RID: 38829
 		public ColonyAchievement TameAGassyMoo;
 
-		// Token: 0x040097AE RID: 38830
 		public ColonyAchievement CoolBuildingTo6K;
 
-		// Token: 0x040097AF RID: 38831
 		public ColonyAchievement EatkCalFromMeatByCycle100;
 
-		// Token: 0x040097B0 RID: 38832
 		public ColonyAchievement NoFarmTilesAndKCal;
 
-		// Token: 0x040097B1 RID: 38833
 		public ColonyAchievement Generate240000kJClean;
 
-		// Token: 0x040097B2 RID: 38834
 		public ColonyAchievement BuildOutsideStartBiome;
 
-		// Token: 0x040097B3 RID: 38835
 		public ColonyAchievement Travel10000InTubes;
 
-		// Token: 0x040097B4 RID: 38836
 		public ColonyAchievement VarietyOfRooms;
 
-		// Token: 0x040097B5 RID: 38837
 		public ColonyAchievement TameAllBasicCritters;
 
-		// Token: 0x040097B6 RID: 38838
 		public ColonyAchievement SurviveOneYear;
 
-		// Token: 0x040097B7 RID: 38839
 		public ColonyAchievement ExploreOilBiome;
 
-		// Token: 0x040097B8 RID: 38840
 		public ColonyAchievement EatCookedFood;
 
-		// Token: 0x040097B9 RID: 38841
 		public ColonyAchievement BasicPumping;
 
-		// Token: 0x040097BA RID: 38842
 		public ColonyAchievement BasicComforts;
 
-		// Token: 0x040097BB RID: 38843
 		public ColonyAchievement PlumbedWashrooms;
 
-		// Token: 0x040097BC RID: 38844
 		public ColonyAchievement AutomateABuilding;
 
-		// Token: 0x040097BD RID: 38845
 		public ColonyAchievement MasterpiecePainting;
 
-		// Token: 0x040097BE RID: 38846
 		public ColonyAchievement InspectPOI;
 
-		// Token: 0x040097BF RID: 38847
 		public ColonyAchievement HatchACritter;
 
-		// Token: 0x040097C0 RID: 38848
 		public ColonyAchievement CuredDisease;
 
-		// Token: 0x040097C1 RID: 38849
 		public ColonyAchievement GeneratorTuneup;
 
-		// Token: 0x040097C2 RID: 38850
 		public ColonyAchievement ClearFOW;
 
-		// Token: 0x040097C3 RID: 38851
 		public ColonyAchievement HatchRefinement;
 
-		// Token: 0x040097C4 RID: 38852
 		public ColonyAchievement BunkerDoorDefense;
 
-		// Token: 0x040097C5 RID: 38853
 		public ColonyAchievement IdleDuplicants;
 
-		// Token: 0x040097C6 RID: 38854
 		public ColonyAchievement ExosuitCycles;
 
-		// Token: 0x040097C7 RID: 38855
 		public ColonyAchievement FirstTeleport;
 
-		// Token: 0x040097C8 RID: 38856
 		public ColonyAchievement SoftLaunch;
 
-		// Token: 0x040097C9 RID: 38857
 		public ColonyAchievement GMOOK;
 
-		// Token: 0x040097CA RID: 38858
 		public ColonyAchievement MineTheGap;
 
-		// Token: 0x040097CB RID: 38859
 		public ColonyAchievement LandedOnAllWorlds;
 
-		// Token: 0x040097CC RID: 38860
 		public ColonyAchievement RadicalTrip;
 
-		// Token: 0x040097CD RID: 38861
 		public ColonyAchievement SweeterThanHoney;
 
-		// Token: 0x040097CE RID: 38862
 		public ColonyAchievement SurviveInARocket;
 
-		// Token: 0x040097CF RID: 38863
 		public ColonyAchievement RunAReactor;
 
-		// Token: 0x040097D0 RID: 38864
 		public ColonyAchievement ActivateGeothermalPlant;
 
-		// Token: 0x040097D1 RID: 38865
 		public ColonyAchievement EfficientData;
 
-		// Token: 0x040097D2 RID: 38866
 		public ColonyAchievement AllTheCircuits;
 	}
 }

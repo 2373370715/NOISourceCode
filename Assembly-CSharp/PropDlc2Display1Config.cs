@@ -4,22 +4,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000518 RID: 1304
 public class PropDlc2Display1Config : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x06001661 RID: 5729 RVA: 0x000AA536 File Offset: 0x000A8736
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.DLC2;
 	}
 
-	// Token: 0x06001662 RID: 5730 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x06001663 RID: 5731 RVA: 0x001A2D60 File Offset: 0x001A0F60
 	public GameObject CreatePrefab()
 	{
 		string id = "PropDlc2Display1";
@@ -40,7 +36,6 @@ public class PropDlc2Display1Config : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x06001664 RID: 5732 RVA: 0x000AA768 File Offset: 0x000A8968
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.GetComponent<OccupyArea>().objectLayers = new ObjectLayer[]
@@ -49,7 +44,6 @@ public class PropDlc2Display1Config : IEntityConfig, IHasDlcRestrictions
 		};
 	}
 
-	// Token: 0x06001665 RID: 5733 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}

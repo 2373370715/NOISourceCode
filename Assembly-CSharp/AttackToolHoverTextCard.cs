@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02001AF2 RID: 6898
 public class AttackToolHoverTextCard : HoverTextConfiguration
 {
-	// Token: 0x06009048 RID: 36936 RVA: 0x003862F8 File Offset: 0x003844F8
 	public override void UpdateHoverElements(List<KSelectable> hover_objects)
 	{
 		HoverTextScreen instance = HoverTextScreen.Instance;

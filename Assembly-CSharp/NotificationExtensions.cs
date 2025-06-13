@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x02000AE4 RID: 2788
 public static class NotificationExtensions
 {
-	// Token: 0x06003362 RID: 13154 RVA: 0x002137D0 File Offset: 0x002119D0
 	public static string ReduceMessages(this List<Notification> notifications, bool countNames = true)
 	{
 		Dictionary<string, int> dictionary = new Dictionary<string, int>();

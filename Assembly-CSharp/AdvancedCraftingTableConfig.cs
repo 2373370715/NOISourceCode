@@ -4,16 +4,13 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000016 RID: 22
 public class AdvancedCraftingTableConfig : IBuildingConfig
 {
-	// Token: 0x06000053 RID: 83 RVA: 0x000AA12F File Offset: 0x000A832F
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.DLC3;
 	}
 
-	// Token: 0x06000054 RID: 84 RVA: 0x00147324 File Offset: 0x00145524
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "AdvancedCraftingTable";
@@ -38,7 +35,6 @@ public class AdvancedCraftingTableConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000055 RID: 85 RVA: 0x001473CC File Offset: 0x001455CC
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<DropAllWorkable>();
@@ -58,7 +54,6 @@ public class AdvancedCraftingTableConfig : IBuildingConfig
 		this.ConfigureRecipes();
 	}
 
-	// Token: 0x06000056 RID: 86 RVA: 0x00147450 File Offset: 0x00145650
 	private void ConfigureRecipes()
 	{
 		ComplexRecipe.RecipeElement[] array = new ComplexRecipe.RecipeElement[]
@@ -125,7 +120,6 @@ public class AdvancedCraftingTableConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x06000057 RID: 87 RVA: 0x000AA136 File Offset: 0x000A8336
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.GetComponent<KPrefabID>().prefabSpawnFn += delegate(GameObject game_object)
@@ -140,6 +134,5 @@ public class AdvancedCraftingTableConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x04000044 RID: 68
 	public const string ID = "AdvancedCraftingTable";
 }

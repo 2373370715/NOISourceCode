@@ -1,10 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02001831 RID: 6193
 public class SweepBotTrappedMonitor : GameStateMachine<SweepBotTrappedMonitor, SweepBotTrappedMonitor.Instance, IStateMachineTarget, SweepBotTrappedMonitor.Def>
 {
-	// Token: 0x06007F54 RID: 32596 RVA: 0x0033BB54 File Offset: 0x00339D54
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.notTrapped;
@@ -75,33 +73,25 @@ public class SweepBotTrappedMonitor : GameStateMachine<SweepBotTrappedMonitor, S
 		});
 	}
 
-	// Token: 0x040060D2 RID: 24786
 	public static CellOffset[] defaultOffsets = new CellOffset[]
 	{
 		new CellOffset(0, 0)
 	};
 
-	// Token: 0x040060D3 RID: 24787
 	public GameStateMachine<SweepBotTrappedMonitor, SweepBotTrappedMonitor.Instance, IStateMachineTarget, SweepBotTrappedMonitor.Def>.State notTrapped;
 
-	// Token: 0x040060D4 RID: 24788
 	public GameStateMachine<SweepBotTrappedMonitor, SweepBotTrappedMonitor.Instance, IStateMachineTarget, SweepBotTrappedMonitor.Def>.State trapped;
 
-	// Token: 0x040060D5 RID: 24789
 	public GameStateMachine<SweepBotTrappedMonitor, SweepBotTrappedMonitor.Instance, IStateMachineTarget, SweepBotTrappedMonitor.Def>.State death;
 
-	// Token: 0x040060D6 RID: 24790
 	public GameStateMachine<SweepBotTrappedMonitor, SweepBotTrappedMonitor.Instance, IStateMachineTarget, SweepBotTrappedMonitor.Def>.State destroySelf;
 
-	// Token: 0x02001832 RID: 6194
 	public class Def : StateMachine.BaseDef
 	{
 	}
 
-	// Token: 0x02001833 RID: 6195
 	public new class Instance : GameStateMachine<SweepBotTrappedMonitor, SweepBotTrappedMonitor.Instance, IStateMachineTarget, SweepBotTrappedMonitor.Def>.GameInstance
 	{
-		// Token: 0x06007F5A RID: 32602 RVA: 0x000F85CB File Offset: 0x000F67CB
 		public Instance(IStateMachineTarget master, SweepBotTrappedMonitor.Def def) : base(master, def)
 		{
 		}

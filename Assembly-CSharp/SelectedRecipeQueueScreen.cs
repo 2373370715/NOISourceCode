@@ -5,10 +5,8 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200202C RID: 8236
 public class SelectedRecipeQueueScreen : KScreen
 {
-	// Token: 0x0600AE7F RID: 44671 RVA: 0x00427370 File Offset: 0x00425570
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -56,7 +54,6 @@ public class SelectedRecipeQueueScreen : KScreen
 		multiToggle2.onClick = (System.Action)Delegate.Combine(multiToggle2.onClick, new System.Action(this.CycleNextRecipe));
 	}
 
-	// Token: 0x0600AE80 RID: 44672 RVA: 0x00427460 File Offset: 0x00425660
 	protected override void OnCmpDisable()
 	{
 		base.OnCmpDisable();
@@ -71,7 +68,6 @@ public class SelectedRecipeQueueScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600AE81 RID: 44673 RVA: 0x004274CC File Offset: 0x004256CC
 	public void SetRecipe(ComplexFabricatorSideScreen owner, ComplexFabricator target, ComplexRecipe recipe)
 	{
 		this.ownerScreen = owner;
@@ -112,25 +108,21 @@ public class SelectedRecipeQueueScreen : KScreen
 		this.ToggleAndRefreshMinionDisplay();
 	}
 
-	// Token: 0x0600AE82 RID: 44674 RVA: 0x00115E34 File Offset: 0x00114034
 	private void CyclePreviousRecipe()
 	{
 		this.ownerScreen.CycleRecipe(-1);
 	}
 
-	// Token: 0x0600AE83 RID: 44675 RVA: 0x00115E42 File Offset: 0x00114042
 	private void CycleNextRecipe()
 	{
 		this.ownerScreen.CycleRecipe(1);
 	}
 
-	// Token: 0x0600AE84 RID: 44676 RVA: 0x00115E50 File Offset: 0x00114050
 	private void ToggleAndRefreshMinionDisplay()
 	{
 		this.minionWidget.gameObject.SetActive(this.RefreshMinionDisplayAnim());
 	}
 
-	// Token: 0x0600AE85 RID: 44677 RVA: 0x00427638 File Offset: 0x00425838
 	private bool RefreshMinionDisplayAnim()
 	{
 		GameObject prefab = Assets.GetPrefab(this.selectedRecipe.results[0].material);
@@ -162,7 +154,6 @@ public class SelectedRecipeQueueScreen : KScreen
 		return true;
 	}
 
-	// Token: 0x0600AE86 RID: 44678 RVA: 0x004276F4 File Offset: 0x004258F4
 	private void RefreshQueueCountDisplay()
 	{
 		this.ResearchRequiredContainer.SetActive(!this.selectedRecipe.IsRequiredTechUnlocked());
@@ -178,7 +169,6 @@ public class SelectedRecipeQueueScreen : KScreen
 		this.InfiniteIcon.gameObject.SetActive(flag);
 	}
 
-	// Token: 0x0600AE87 RID: 44679 RVA: 0x00427778 File Offset: 0x00425978
 	private void RefreshResultDescriptors()
 	{
 		List<SelectedRecipeQueueScreen.DescriptorWithSprite> list = new List<SelectedRecipeQueueScreen.DescriptorWithSprite>();
@@ -216,7 +206,6 @@ public class SelectedRecipeQueueScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600AE88 RID: 44680 RVA: 0x004279FC File Offset: 0x00425BFC
 	private List<SelectedRecipeQueueScreen.DescriptorWithSprite> GetResultDescriptions(ComplexRecipe recipe)
 	{
 		List<SelectedRecipeQueueScreen.DescriptorWithSprite> list = new List<SelectedRecipeQueueScreen.DescriptorWithSprite>();
@@ -260,7 +249,6 @@ public class SelectedRecipeQueueScreen : KScreen
 		return list;
 	}
 
-	// Token: 0x0600AE89 RID: 44681 RVA: 0x00427CCC File Offset: 0x00425ECC
 	private void RefreshIngredientDescriptors()
 	{
 		new List<SelectedRecipeQueueScreen.DescriptorWithSprite>();
@@ -284,7 +272,6 @@ public class SelectedRecipeQueueScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600AE8A RID: 44682 RVA: 0x00427E64 File Offset: 0x00426064
 	private List<SelectedRecipeQueueScreen.DescriptorWithSprite> GetIngredientDescriptions(ComplexRecipe recipe)
 	{
 		List<SelectedRecipeQueueScreen.DescriptorWithSprite> list = new List<SelectedRecipeQueueScreen.DescriptorWithSprite>();
@@ -305,88 +292,60 @@ public class SelectedRecipeQueueScreen : KScreen
 		return list;
 	}
 
-	// Token: 0x0400894F RID: 35151
 	public Image recipeIcon;
 
-	// Token: 0x04008950 RID: 35152
 	public LocText recipeName;
 
-	// Token: 0x04008951 RID: 35153
 	public LocText recipeMainDescription;
 
-	// Token: 0x04008952 RID: 35154
 	public LocText recipeDuration;
 
-	// Token: 0x04008953 RID: 35155
 	public ToolTip recipeDurationTooltip;
 
-	// Token: 0x04008954 RID: 35156
 	public GameObject IngredientsDescriptorPanel;
 
-	// Token: 0x04008955 RID: 35157
 	public GameObject EffectsDescriptorPanel;
 
-	// Token: 0x04008956 RID: 35158
 	public KNumberInputField QueueCount;
 
-	// Token: 0x04008957 RID: 35159
 	public MultiToggle DecrementButton;
 
-	// Token: 0x04008958 RID: 35160
 	public MultiToggle IncrementButton;
 
-	// Token: 0x04008959 RID: 35161
 	public KButton InfiniteButton;
 
-	// Token: 0x0400895A RID: 35162
 	public GameObject InfiniteIcon;
 
-	// Token: 0x0400895B RID: 35163
 	public GameObject ResearchRequiredContainer;
 
-	// Token: 0x0400895C RID: 35164
 	private ComplexFabricator target;
 
-	// Token: 0x0400895D RID: 35165
 	private ComplexFabricatorSideScreen ownerScreen;
 
-	// Token: 0x0400895E RID: 35166
 	private ComplexRecipe selectedRecipe;
 
-	// Token: 0x0400895F RID: 35167
 	[SerializeField]
 	private GameObject recipeElementDescriptorPrefab;
 
-	// Token: 0x04008960 RID: 35168
 	private Dictionary<SelectedRecipeQueueScreen.DescriptorWithSprite, GameObject> recipeIngredientDescriptorRows = new Dictionary<SelectedRecipeQueueScreen.DescriptorWithSprite, GameObject>();
 
-	// Token: 0x04008961 RID: 35169
 	private Dictionary<SelectedRecipeQueueScreen.DescriptorWithSprite, GameObject> recipeEffectsDescriptorRows = new Dictionary<SelectedRecipeQueueScreen.DescriptorWithSprite, GameObject>();
 
-	// Token: 0x04008962 RID: 35170
 	[SerializeField]
 	private FullBodyUIMinionWidget minionWidget;
 
-	// Token: 0x04008963 RID: 35171
 	[SerializeField]
 	private MultiToggle previousRecipeButton;
 
-	// Token: 0x04008964 RID: 35172
 	[SerializeField]
 	private MultiToggle nextRecipeButton;
 
-	// Token: 0x0200202D RID: 8237
 	private class DescriptorWithSprite
 	{
-		// Token: 0x17000B2D RID: 2861
-		// (get) Token: 0x0600AE91 RID: 44689 RVA: 0x00115EE7 File Offset: 0x001140E7
 		public Descriptor descriptor { get; }
 
-		// Token: 0x17000B2E RID: 2862
-		// (get) Token: 0x0600AE92 RID: 44690 RVA: 0x00115EEF File Offset: 0x001140EF
 		public global::Tuple<Sprite, Color> tintedSprite { get; }
 
-		// Token: 0x0600AE93 RID: 44691 RVA: 0x00115EF7 File Offset: 0x001140F7
 		public DescriptorWithSprite(Descriptor desc, global::Tuple<Sprite, Color> sprite, bool filterRowVisible = false)
 		{
 			this.descriptor = desc;
@@ -394,7 +353,6 @@ public class SelectedRecipeQueueScreen : KScreen
 			this.showFilterRow = filterRowVisible;
 		}
 
-		// Token: 0x04008967 RID: 35175
 		public bool showFilterRow;
 	}
 }

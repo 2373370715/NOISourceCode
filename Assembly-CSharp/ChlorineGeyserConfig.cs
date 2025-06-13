@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000291 RID: 657
 public class ChlorineGeyserConfig : IEntityConfig
 {
-	// Token: 0x06000999 RID: 2457 RVA: 0x001700C8 File Offset: 0x0016E2C8
 	public GameObject CreatePrefab()
 	{
 		string id = "ChlorineGeyser";
@@ -34,16 +32,13 @@ public class ChlorineGeyserConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x0600099A RID: 2458 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x0600099B RID: 2459 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x0400075A RID: 1882
 	public const string ID = "ChlorineGeyser";
 }

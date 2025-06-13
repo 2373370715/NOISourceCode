@@ -7,61 +7,48 @@ using TUNING;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001B51 RID: 6993
 public abstract class OverlayModes
 {
-	// Token: 0x02001B52 RID: 6994
 	public class GasConduits : OverlayModes.ConduitMode
 	{
-		// Token: 0x060092B2 RID: 37554 RVA: 0x00104781 File Offset: 0x00102981
 		public override HashedString ViewMode()
 		{
 			return OverlayModes.GasConduits.ID;
 		}
 
-		// Token: 0x060092B3 RID: 37555 RVA: 0x00104788 File Offset: 0x00102988
 		public override string GetSoundName()
 		{
 			return "GasVent";
 		}
 
-		// Token: 0x060092B4 RID: 37556 RVA: 0x0010478F File Offset: 0x0010298F
 		public GasConduits() : base(OverlayScreen.GasVentIDs)
 		{
 		}
 
-		// Token: 0x04006F27 RID: 28455
 		public static readonly HashedString ID = "GasConduit";
 	}
 
-	// Token: 0x02001B53 RID: 6995
 	public class LiquidConduits : OverlayModes.ConduitMode
 	{
-		// Token: 0x060092B6 RID: 37558 RVA: 0x001047AD File Offset: 0x001029AD
 		public override HashedString ViewMode()
 		{
 			return OverlayModes.LiquidConduits.ID;
 		}
 
-		// Token: 0x060092B7 RID: 37559 RVA: 0x001047B4 File Offset: 0x001029B4
 		public override string GetSoundName()
 		{
 			return "LiquidVent";
 		}
 
-		// Token: 0x060092B8 RID: 37560 RVA: 0x001047BB File Offset: 0x001029BB
 		public LiquidConduits() : base(OverlayScreen.LiquidVentIDs)
 		{
 		}
 
-		// Token: 0x04006F28 RID: 28456
 		public static readonly HashedString ID = "LiquidConduit";
 	}
 
-	// Token: 0x02001B54 RID: 6996
 	public abstract class ConduitMode : OverlayModes.Mode
 	{
-		// Token: 0x060092BA RID: 37562 RVA: 0x00394430 File Offset: 0x00392630
 		public ConduitMode(ICollection<Tag> ids)
 		{
 			this.objectTargetLayer = LayerMask.NameToLayer("MaskedOverlayBG");
@@ -75,7 +62,6 @@ public abstract class OverlayModes
 			this.targetIDs = ids;
 		}
 
-		// Token: 0x060092BB RID: 37563 RVA: 0x003944B8 File Offset: 0x003926B8
 		public override void Enable()
 		{
 			base.RegisterSaveLoadListeners();
@@ -86,7 +72,6 @@ public abstract class OverlayModes
 			base.Enable();
 		}
 
-		// Token: 0x060092BC RID: 37564 RVA: 0x00394514 File Offset: 0x00392714
 		protected override void OnSaveLoadRootRegistered(SaveLoadRoot item)
 		{
 			Tag saveLoadTag = item.GetComponent<KPrefabID>().GetSaveLoadTag();
@@ -96,7 +81,6 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x060092BD RID: 37565 RVA: 0x00394548 File Offset: 0x00392748
 		protected override void OnSaveLoadRootUnregistered(SaveLoadRoot item)
 		{
 			if (item == null || item.gameObject == null)
@@ -110,7 +94,6 @@ public abstract class OverlayModes
 			this.partition.Remove(item);
 		}
 
-		// Token: 0x060092BE RID: 37566 RVA: 0x00394594 File Offset: 0x00392794
 		public override void Disable()
 		{
 			foreach (SaveLoadRoot saveLoadRoot in this.layerTargets)
@@ -135,7 +118,6 @@ public abstract class OverlayModes
 			base.Disable();
 		}
 
-		// Token: 0x060092BF RID: 37567 RVA: 0x00394684 File Offset: 0x00392884
 		public override void Update()
 		{
 			Vector2I vector2I;
@@ -246,7 +228,6 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x060092C0 RID: 37568 RVA: 0x001047D9 File Offset: 0x001029D9
 		private void TriggerResorting(KBatchedAnimController kbac)
 		{
 			if (kbac.enabled)
@@ -256,7 +237,6 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x060092C1 RID: 37569 RVA: 0x003949B8 File Offset: 0x00392BB8
 		private void FindConnectedNetworks(int cell, IUtilityNetworkMgr mgr, ICollection<UtilityNetwork> networks, List<int> visited)
 		{
 			if (visited.Contains(cell))
@@ -301,50 +281,37 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x04006F29 RID: 28457
 		private UniformGrid<SaveLoadRoot> partition;
 
-		// Token: 0x04006F2A RID: 28458
 		private HashSet<SaveLoadRoot> layerTargets = new HashSet<SaveLoadRoot>();
 
-		// Token: 0x04006F2B RID: 28459
 		private HashSet<UtilityNetwork> connectedNetworks = new HashSet<UtilityNetwork>();
 
-		// Token: 0x04006F2C RID: 28460
 		private List<int> visited = new List<int>();
 
-		// Token: 0x04006F2D RID: 28461
 		private ICollection<Tag> targetIDs;
 
-		// Token: 0x04006F2E RID: 28462
 		private int objectTargetLayer;
 
-		// Token: 0x04006F2F RID: 28463
 		private int conduitTargetLayer;
 
-		// Token: 0x04006F30 RID: 28464
 		private int cameraLayerMask;
 
-		// Token: 0x04006F31 RID: 28465
 		private int selectionMask;
 	}
 
-	// Token: 0x02001B55 RID: 6997
 	public class Crop : OverlayModes.BasePlantMode
 	{
-		// Token: 0x060092C4 RID: 37572 RVA: 0x001047F1 File Offset: 0x001029F1
 		public override HashedString ViewMode()
 		{
 			return OverlayModes.Crop.ID;
 		}
 
-		// Token: 0x060092C5 RID: 37573 RVA: 0x001047F8 File Offset: 0x001029F8
 		public override string GetSoundName()
 		{
 			return "Harvest";
 		}
 
-		// Token: 0x060092C6 RID: 37574 RVA: 0x00394B9C File Offset: 0x00392D9C
 		public Crop(Canvas ui_root, GameObject harvestable_notification_prefab)
 		{
 			OverlayModes.ColorHighlightCondition[] array = new OverlayModes.ColorHighlightCondition[3];
@@ -361,7 +328,6 @@ public abstract class OverlayModes
 			this.harvestableNotificationPrefab = harvestable_notification_prefab;
 		}
 
-		// Token: 0x060092C7 RID: 37575 RVA: 0x00394CB8 File Offset: 0x00392EB8
 		public override List<LegendEntry> GetCustomLegendData()
 		{
 			return new List<LegendEntry>
@@ -372,7 +338,6 @@ public abstract class OverlayModes
 			};
 		}
 
-		// Token: 0x060092C8 RID: 37576 RVA: 0x00394D6C File Offset: 0x00392F6C
 		public override void Update()
 		{
 			this.updateCropInfo.Clear();
@@ -409,14 +374,12 @@ public abstract class OverlayModes
 			base.Update();
 		}
 
-		// Token: 0x060092C9 RID: 37577 RVA: 0x001047FF File Offset: 0x001029FF
 		public override void Disable()
 		{
 			this.DisableHarvestableUINotifications();
 			base.Disable();
 		}
 
-		// Token: 0x060092CA RID: 37578 RVA: 0x00394F5C File Offset: 0x0039315C
 		private void DisableHarvestableUINotifications()
 		{
 			this.freeHarvestableNotificationIdx = 0;
@@ -427,7 +390,6 @@ public abstract class OverlayModes
 			this.updateCropInfo.Clear();
 		}
 
-		// Token: 0x060092CB RID: 37579 RVA: 0x00394FC0 File Offset: 0x003931C0
 		public GameObject GetFreeCropUI()
 		{
 			GameObject gameObject;
@@ -449,7 +411,6 @@ public abstract class OverlayModes
 			return gameObject;
 		}
 
-		// Token: 0x060092CC RID: 37580 RVA: 0x0039505C File Offset: 0x0039325C
 		private void AddCropUI(HarvestDesignatable harvestable)
 		{
 			GameObject freeCropUI = this.GetFreeCropUI();
@@ -459,61 +420,46 @@ public abstract class OverlayModes
 			this.updateCropInfo.Add(item);
 		}
 
-		// Token: 0x04006F32 RID: 28466
 		public static readonly HashedString ID = "Crop";
 
-		// Token: 0x04006F33 RID: 28467
 		private Canvas uiRoot;
 
-		// Token: 0x04006F34 RID: 28468
 		private List<OverlayModes.Crop.UpdateCropInfo> updateCropInfo = new List<OverlayModes.Crop.UpdateCropInfo>();
 
-		// Token: 0x04006F35 RID: 28469
 		private int freeHarvestableNotificationIdx;
 
-		// Token: 0x04006F36 RID: 28470
 		private List<GameObject> harvestableNotificationList = new List<GameObject>();
 
-		// Token: 0x04006F37 RID: 28471
 		private GameObject harvestableNotificationPrefab;
 
-		// Token: 0x04006F38 RID: 28472
 		private OverlayModes.ColorHighlightCondition[] highlightConditions;
 
-		// Token: 0x02001B56 RID: 6998
 		private struct UpdateCropInfo
 		{
-			// Token: 0x060092CE RID: 37582 RVA: 0x0010481E File Offset: 0x00102A1E
 			public UpdateCropInfo(HarvestDesignatable harvestable, GameObject harvestableUI)
 			{
 				this.harvestable = harvestable;
 				this.harvestableUI = harvestableUI;
 			}
 
-			// Token: 0x04006F39 RID: 28473
 			public HarvestDesignatable harvestable;
 
-			// Token: 0x04006F3A RID: 28474
 			public GameObject harvestableUI;
 		}
 	}
 
-	// Token: 0x02001B58 RID: 7000
 	public class Harvest : OverlayModes.BasePlantMode
 	{
-		// Token: 0x060092D7 RID: 37591 RVA: 0x00104899 File Offset: 0x00102A99
 		public override HashedString ViewMode()
 		{
 			return OverlayModes.Harvest.ID;
 		}
 
-		// Token: 0x060092D8 RID: 37592 RVA: 0x001047F8 File Offset: 0x001029F8
 		public override string GetSoundName()
 		{
 			return "Harvest";
 		}
 
-		// Token: 0x060092D9 RID: 37593 RVA: 0x003950F0 File Offset: 0x003932F0
 		public Harvest()
 		{
 			OverlayModes.ColorHighlightCondition[] array = new OverlayModes.ColorHighlightCondition[1];
@@ -522,7 +468,6 @@ public abstract class OverlayModes
 			base..ctor(OverlayScreen.HarvestableIDs);
 		}
 
-		// Token: 0x060092DA RID: 37594 RVA: 0x0039515C File Offset: 0x0039335C
 		public override void Update()
 		{
 			Vector2I vector2I;
@@ -538,17 +483,13 @@ public abstract class OverlayModes
 			base.Update();
 		}
 
-		// Token: 0x04006F42 RID: 28482
 		public static readonly HashedString ID = "HarvestWhenReady";
 
-		// Token: 0x04006F43 RID: 28483
 		private OverlayModes.ColorHighlightCondition[] highlightConditions;
 	}
 
-	// Token: 0x02001B5A RID: 7002
 	public abstract class BasePlantMode : OverlayModes.Mode
 	{
-		// Token: 0x060092E0 RID: 37600 RVA: 0x00395234 File Offset: 0x00393434
 		public BasePlantMode(ICollection<Tag> ids)
 		{
 			this.targetLayer = LayerMask.NameToLayer("MaskedOverlay");
@@ -564,7 +505,6 @@ public abstract class OverlayModes
 			this.targetIDs = ids;
 		}
 
-		// Token: 0x060092E1 RID: 37601 RVA: 0x001048D8 File Offset: 0x00102AD8
 		public override void Enable()
 		{
 			base.RegisterSaveLoadListeners();
@@ -573,7 +513,6 @@ public abstract class OverlayModes
 			SelectTool.Instance.SetLayerMask(this.selectionMask);
 		}
 
-		// Token: 0x060092E2 RID: 37602 RVA: 0x003952A4 File Offset: 0x003934A4
 		protected override void OnSaveLoadRootRegistered(SaveLoadRoot item)
 		{
 			Tag saveLoadTag = item.GetComponent<KPrefabID>().GetSaveLoadTag();
@@ -589,7 +528,6 @@ public abstract class OverlayModes
 			this.partition.Add(component);
 		}
 
-		// Token: 0x060092E3 RID: 37603 RVA: 0x003952EC File Offset: 0x003934EC
 		protected override void OnSaveLoadRootUnregistered(SaveLoadRoot item)
 		{
 			if (item == null || item.gameObject == null)
@@ -608,7 +546,6 @@ public abstract class OverlayModes
 			this.partition.Remove(component);
 		}
 
-		// Token: 0x060092E4 RID: 37604 RVA: 0x0039534C File Offset: 0x0039354C
 		public override void Disable()
 		{
 			base.UnregisterSaveLoadListeners();
@@ -619,41 +556,31 @@ public abstract class OverlayModes
 			SelectTool.Instance.ClearLayerMask();
 		}
 
-		// Token: 0x04006F47 RID: 28487
 		protected UniformGrid<HarvestDesignatable> partition;
 
-		// Token: 0x04006F48 RID: 28488
 		protected HashSet<HarvestDesignatable> layerTargets = new HashSet<HarvestDesignatable>();
 
-		// Token: 0x04006F49 RID: 28489
 		protected ICollection<Tag> targetIDs;
 
-		// Token: 0x04006F4A RID: 28490
 		protected int targetLayer;
 
-		// Token: 0x04006F4B RID: 28491
 		private int cameraLayerMask;
 
-		// Token: 0x04006F4C RID: 28492
 		private int selectionMask;
 	}
 
-	// Token: 0x02001B5B RID: 7003
 	public class Decor : OverlayModes.Mode
 	{
-		// Token: 0x060092E5 RID: 37605 RVA: 0x00104918 File Offset: 0x00102B18
 		public override HashedString ViewMode()
 		{
 			return OverlayModes.Decor.ID;
 		}
 
-		// Token: 0x060092E6 RID: 37606 RVA: 0x0010491F File Offset: 0x00102B1F
 		public override string GetSoundName()
 		{
 			return "Decor";
 		}
 
-		// Token: 0x060092E7 RID: 37607 RVA: 0x003953A4 File Offset: 0x003935A4
 		public override List<LegendEntry> GetCustomLegendData()
 		{
 			return new List<LegendEntry>
@@ -663,7 +590,6 @@ public abstract class OverlayModes
 			};
 		}
 
-		// Token: 0x060092E8 RID: 37608 RVA: 0x00395424 File Offset: 0x00393624
 		public Decor()
 		{
 			OverlayModes.ColorHighlightCondition[] array = new OverlayModes.ColorHighlightCondition[1];
@@ -713,7 +639,6 @@ public abstract class OverlayModes
 			});
 		}
 
-		// Token: 0x060092E9 RID: 37609 RVA: 0x003954DC File Offset: 0x003936DC
 		public override void Enable()
 		{
 			base.RegisterSaveLoadListeners();
@@ -744,7 +669,6 @@ public abstract class OverlayModes
 			Camera.main.cullingMask |= this.cameraLayerMask;
 		}
 
-		// Token: 0x060092EA RID: 37610 RVA: 0x00395664 File Offset: 0x00393864
 		public override void Update()
 		{
 			Vector2I vector2I;
@@ -761,7 +685,6 @@ public abstract class OverlayModes
 			this.workingTargets.Clear();
 		}
 
-		// Token: 0x060092EB RID: 37611 RVA: 0x00395728 File Offset: 0x00393928
 		protected override void OnSaveLoadRootRegistered(SaveLoadRoot item)
 		{
 			Tag saveLoadTag = item.GetComponent<KPrefabID>().GetSaveLoadTag();
@@ -775,7 +698,6 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x060092EC RID: 37612 RVA: 0x0039576C File Offset: 0x0039396C
 		protected override void OnSaveLoadRootUnregistered(SaveLoadRoot item)
 		{
 			if (item == null || item.gameObject == null)
@@ -793,7 +715,6 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x060092ED RID: 37613 RVA: 0x003957C8 File Offset: 0x003939C8
 		public override void Disable()
 		{
 			base.DisableHighlightTypeOverlay<DecorProvider>(this.layerTargets);
@@ -803,35 +724,25 @@ public abstract class OverlayModes
 			this.layerTargets.Clear();
 		}
 
-		// Token: 0x04006F4D RID: 28493
 		public static readonly HashedString ID = "Decor";
 
-		// Token: 0x04006F4E RID: 28494
 		private UniformGrid<DecorProvider> partition;
 
-		// Token: 0x04006F4F RID: 28495
 		private HashSet<DecorProvider> layerTargets = new HashSet<DecorProvider>();
 
-		// Token: 0x04006F50 RID: 28496
 		private List<DecorProvider> workingTargets = new List<DecorProvider>();
 
-		// Token: 0x04006F51 RID: 28497
 		private HashSet<Tag> targetIDs = new HashSet<Tag>();
 
-		// Token: 0x04006F52 RID: 28498
 		private int targetLayer;
 
-		// Token: 0x04006F53 RID: 28499
 		private int cameraLayerMask;
 
-		// Token: 0x04006F54 RID: 28500
 		private OverlayModes.ColorHighlightCondition[] highlightConditions;
 	}
 
-	// Token: 0x02001B5D RID: 7005
 	public class Disease : OverlayModes.Mode
 	{
-		// Token: 0x060092F3 RID: 37619 RVA: 0x00395960 File Offset: 0x00393B60
 		private static float CalculateHUE(Color32 colour)
 		{
 			byte b = Math.Max(colour.r, Math.Max(colour.g, colour.b));
@@ -857,19 +768,16 @@ public abstract class OverlayModes
 			return result;
 		}
 
-		// Token: 0x060092F4 RID: 37620 RVA: 0x00104955 File Offset: 0x00102B55
 		public override HashedString ViewMode()
 		{
 			return OverlayModes.Disease.ID;
 		}
 
-		// Token: 0x060092F5 RID: 37621 RVA: 0x0010495C File Offset: 0x00102B5C
 		public override string GetSoundName()
 		{
 			return "Disease";
 		}
 
-		// Token: 0x060092F6 RID: 37622 RVA: 0x00395A24 File Offset: 0x00393C24
 		public Disease(Canvas diseaseUIParent, GameObject diseaseOverlayPrefab)
 		{
 			this.diseaseUIParent = diseaseUIParent;
@@ -882,7 +790,6 @@ public abstract class OverlayModes
 			});
 		}
 
-		// Token: 0x060092F7 RID: 37623 RVA: 0x00395AAC File Offset: 0x00393CAC
 		public override void Enable()
 		{
 			Infrared.Instance.SetMode(Infrared.Mode.Disease);
@@ -898,7 +805,6 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x060092F8 RID: 37624 RVA: 0x00104963 File Offset: 0x00102B63
 		public override Dictionary<string, ToolParameterMenu.ToggleState> CreateDefaultFilters()
 		{
 			return new Dictionary<string, ToolParameterMenu.ToggleState>
@@ -918,14 +824,12 @@ public abstract class OverlayModes
 			};
 		}
 
-		// Token: 0x060092F9 RID: 37625 RVA: 0x0010498E File Offset: 0x00102B8E
 		public override void OnFiltersChanged()
 		{
 			Game.Instance.showGasConduitDisease = base.InFilter(ToolParameterMenu.FILTERLAYERS.GASCONDUIT, this.legendFilters);
 			Game.Instance.showLiquidConduitDisease = base.InFilter(ToolParameterMenu.FILTERLAYERS.LIQUIDCONDUIT, this.legendFilters);
 		}
 
-		// Token: 0x060092FA RID: 37626 RVA: 0x00395B44 File Offset: 0x00393D44
 		protected override void OnSaveLoadRootRegistered(SaveLoadRoot item)
 		{
 			if (item == null)
@@ -940,12 +844,10 @@ public abstract class OverlayModes
 			InfraredVisualizerComponents.ClearOverlayColour(component);
 		}
 
-		// Token: 0x060092FB RID: 37627 RVA: 0x000AA038 File Offset: 0x000A8238
 		protected override void OnSaveLoadRootUnregistered(SaveLoadRoot item)
 		{
 		}
 
-		// Token: 0x060092FC RID: 37628 RVA: 0x00395B74 File Offset: 0x00393D74
 		public override void Disable()
 		{
 			foreach (DiseaseSourceVisualizer diseaseSourceVisualizer in Components.DiseaseSourceVisualizers.Items)
@@ -984,7 +886,6 @@ public abstract class OverlayModes
 			this.layerTargets.Clear();
 		}
 
-		// Token: 0x060092FD RID: 37629 RVA: 0x00395D18 File Offset: 0x00393F18
 		public override List<LegendEntry> GetCustomLegendData()
 		{
 			List<LegendEntry> list = new List<LegendEntry>();
@@ -1001,7 +902,6 @@ public abstract class OverlayModes
 			return list;
 		}
 
-		// Token: 0x060092FE RID: 37630 RVA: 0x00395E30 File Offset: 0x00394030
 		public GameObject GetFreeDiseaseUI()
 		{
 			GameObject gameObject;
@@ -1020,7 +920,6 @@ public abstract class OverlayModes
 			return gameObject;
 		}
 
-		// Token: 0x060092FF RID: 37631 RVA: 0x00395EB8 File Offset: 0x003940B8
 		private void AddDiseaseUI(MinionIdentity target)
 		{
 			GameObject gameObject = this.GetFreeDiseaseUI();
@@ -1033,7 +932,6 @@ public abstract class OverlayModes
 			this.updateDiseaseInfo.Add(item);
 		}
 
-		// Token: 0x06009300 RID: 37632 RVA: 0x00395F44 File Offset: 0x00394144
 		public override void Update()
 		{
 			Vector2I u;
@@ -1121,7 +1019,6 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x06009301 RID: 37633 RVA: 0x0039625C File Offset: 0x0039445C
 		private void SetLayerZ(float offset_z)
 		{
 			Vector2I vector2I;
@@ -1167,87 +1064,65 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x04006F58 RID: 28504
 		public static readonly HashedString ID = "Disease";
 
-		// Token: 0x04006F59 RID: 28505
 		private int cameraLayerMask;
 
-		// Token: 0x04006F5A RID: 28506
 		private int freeDiseaseUI;
 
-		// Token: 0x04006F5B RID: 28507
 		private List<GameObject> diseaseUIList = new List<GameObject>();
 
-		// Token: 0x04006F5C RID: 28508
 		private List<OverlayModes.Disease.UpdateDiseaseInfo> updateDiseaseInfo = new List<OverlayModes.Disease.UpdateDiseaseInfo>();
 
-		// Token: 0x04006F5D RID: 28509
 		private HashSet<KMonoBehaviour> layerTargets = new HashSet<KMonoBehaviour>();
 
-		// Token: 0x04006F5E RID: 28510
 		private HashSet<KMonoBehaviour> privateTargets = new HashSet<KMonoBehaviour>();
 
-		// Token: 0x04006F5F RID: 28511
 		private List<KMonoBehaviour> queuedAdds = new List<KMonoBehaviour>();
 
-		// Token: 0x04006F60 RID: 28512
 		private Canvas diseaseUIParent;
 
-		// Token: 0x04006F61 RID: 28513
 		private GameObject diseaseOverlayPrefab;
 
-		// Token: 0x02001B5E RID: 7006
 		private struct DiseaseSortInfo
 		{
-			// Token: 0x06009303 RID: 37635 RVA: 0x001049D7 File Offset: 0x00102BD7
 			public DiseaseSortInfo(Klei.AI.Disease d)
 			{
 				this.disease = d;
 				this.sortkey = OverlayModes.Disease.CalculateHUE(GlobalAssets.Instance.colorSet.GetColorByName(d.overlayColourName));
 			}
 
-			// Token: 0x04006F62 RID: 28514
 			public float sortkey;
 
-			// Token: 0x04006F63 RID: 28515
 			public Klei.AI.Disease disease;
 		}
 
-		// Token: 0x02001B5F RID: 7007
 		private struct UpdateDiseaseInfo
 		{
-			// Token: 0x06009304 RID: 37636 RVA: 0x00104A00 File Offset: 0x00102C00
 			public UpdateDiseaseInfo(AmountInstance amount_inst, DiseaseOverlayWidget ui)
 			{
 				this.ui = ui;
 				this.valueSrc = amount_inst;
 			}
 
-			// Token: 0x04006F64 RID: 28516
 			public DiseaseOverlayWidget ui;
 
-			// Token: 0x04006F65 RID: 28517
 			public AmountInstance valueSrc;
 		}
 	}
 
-	// Token: 0x02001B61 RID: 7009
 	public class Logic : OverlayModes.Mode
 	{
-		// Token: 0x06009309 RID: 37641 RVA: 0x00104A30 File Offset: 0x00102C30
 		public override HashedString ViewMode()
 		{
 			return OverlayModes.Logic.ID;
 		}
 
-		// Token: 0x0600930A RID: 37642 RVA: 0x00104A37 File Offset: 0x00102C37
 		public override string GetSoundName()
 		{
 			return "Logic";
 		}
 
-		// Token: 0x0600930B RID: 37643 RVA: 0x00396438 File Offset: 0x00394638
 		public override List<LegendEntry> GetCustomLegendData()
 		{
 			return new List<LegendEntry>
@@ -1265,7 +1140,6 @@ public abstract class OverlayModes
 			};
 		}
 
-		// Token: 0x0600930C RID: 37644 RVA: 0x00396638 File Offset: 0x00394838
 		public Logic(LogicModeUI ui_asset)
 		{
 			this.conduitTargetLayer = LayerMask.NameToLayer("MaskedOverlay");
@@ -1279,7 +1153,6 @@ public abstract class OverlayModes
 			this.uiAsset = ui_asset;
 		}
 
-		// Token: 0x0600930D RID: 37645 RVA: 0x0039671C File Offset: 0x0039491C
 		public override void Enable()
 		{
 			Camera.main.cullingMask |= this.cameraLayerMask;
@@ -1295,7 +1168,6 @@ public abstract class OverlayModes
 			AudioMixer.instance.Start(AudioMixerSnapshots.Get().TechFilterLogicOn);
 		}
 
-		// Token: 0x0600930E RID: 37646 RVA: 0x003967E8 File Offset: 0x003949E8
 		public override void Disable()
 		{
 			LogicCircuitManager logicCircuitManager = Game.Instance.logicCircuitManager;
@@ -1350,7 +1222,6 @@ public abstract class OverlayModes
 			GridCompositor.Instance.ToggleMinor(false);
 		}
 
-		// Token: 0x0600930F RID: 37647 RVA: 0x00396AA4 File Offset: 0x00394CA4
 		protected override void OnSaveLoadRootRegistered(SaveLoadRoot item)
 		{
 			Tag saveLoadTag = item.GetComponent<KPrefabID>().GetSaveLoadTag();
@@ -1360,7 +1231,6 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x06009310 RID: 37648 RVA: 0x00396AD8 File Offset: 0x00394CD8
 		protected override void OnSaveLoadRootUnregistered(SaveLoadRoot item)
 		{
 			if (item == null || item.gameObject == null)
@@ -1374,13 +1244,11 @@ public abstract class OverlayModes
 			this.gameObjPartition.Remove(item);
 		}
 
-		// Token: 0x06009311 RID: 37649 RVA: 0x00104A3E File Offset: 0x00102C3E
 		private void OnUIElemAdded(ILogicUIElement elem)
 		{
 			this.ioPartition.Add(elem);
 		}
 
-		// Token: 0x06009312 RID: 37650 RVA: 0x00104A4C File Offset: 0x00102C4C
 		private void OnUIElemRemoved(ILogicUIElement elem)
 		{
 			this.ioPartition.Remove(elem);
@@ -1391,7 +1259,6 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x06009313 RID: 37651 RVA: 0x00396B24 File Offset: 0x00394D24
 		public override void Update()
 		{
 			Vector2I vector2I;
@@ -1698,7 +1565,6 @@ public abstract class OverlayModes
 			this.UpdateUI();
 		}
 
-		// Token: 0x06009314 RID: 37652 RVA: 0x0039757C File Offset: 0x0039577C
 		private void UpdateUI()
 		{
 			Color32 logicOn = GlobalAssets.Instance.colorSet.logicOn;
@@ -1736,7 +1602,6 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x06009315 RID: 37653 RVA: 0x003976D4 File Offset: 0x003958D4
 		private void AddUI(ILogicUIElement ui_elem)
 		{
 			if (this.uiNodes.ContainsKey(ui_elem))
@@ -1750,7 +1615,6 @@ public abstract class OverlayModes
 			});
 		}
 
-		// Token: 0x06009316 RID: 37654 RVA: 0x00397728 File Offset: 0x00395928
 		private void FreeUI(ILogicUIElement item)
 		{
 			if (item == null)
@@ -1766,7 +1630,6 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x06009317 RID: 37655 RVA: 0x00397784 File Offset: 0x00395984
 		protected UniformGrid<ILogicUIElement> CreateLogicUIPartition()
 		{
 			UniformGrid<ILogicUIElement> uniformGrid = new UniformGrid<ILogicUIElement>(Grid.WidthInCells, Grid.HeightInCells, 8, 8);
@@ -1780,13 +1643,11 @@ public abstract class OverlayModes
 			return uniformGrid;
 		}
 
-		// Token: 0x06009318 RID: 37656 RVA: 0x00104A7C File Offset: 0x00102C7C
 		private bool IsBitActive(int value, int bit)
 		{
 			return (value & 1 << bit) > 0;
 		}
 
-		// Token: 0x06009319 RID: 37657 RVA: 0x003977F8 File Offset: 0x003959F8
 		private void FindConnectedNetworks(int cell, IUtilityNetworkMgr mgr, ICollection<UtilityNetwork> networks, List<int> visited)
 		{
 			if (visited.Contains(cell))
@@ -1818,7 +1679,6 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x0600931A RID: 37658 RVA: 0x00397888 File Offset: 0x00395A88
 		private void ResetRibbonSymbolTints<T>(ICollection<T> targets) where T : MonoBehaviour
 		{
 			foreach (T t in targets)
@@ -1831,7 +1691,6 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x0600931B RID: 37659 RVA: 0x003978EC File Offset: 0x00395AEC
 		private void ResetRibbonTint(KBatchedAnimController kbac)
 		{
 			if (kbac != null)
@@ -1843,99 +1702,68 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x04006F69 RID: 28521
 		public static readonly HashedString ID = "Logic";
 
-		// Token: 0x04006F6A RID: 28522
 		public static HashSet<Tag> HighlightItemIDs = new HashSet<Tag>();
 
-		// Token: 0x04006F6B RID: 28523
 		public static KAnimHashedString RIBBON_WIRE_1_SYMBOL_NAME = "wire1";
 
-		// Token: 0x04006F6C RID: 28524
 		public static KAnimHashedString RIBBON_WIRE_2_SYMBOL_NAME = "wire2";
 
-		// Token: 0x04006F6D RID: 28525
 		public static KAnimHashedString RIBBON_WIRE_3_SYMBOL_NAME = "wire3";
 
-		// Token: 0x04006F6E RID: 28526
 		public static KAnimHashedString RIBBON_WIRE_4_SYMBOL_NAME = "wire4";
 
-		// Token: 0x04006F6F RID: 28527
 		private int conduitTargetLayer;
 
-		// Token: 0x04006F70 RID: 28528
 		private int objectTargetLayer;
 
-		// Token: 0x04006F71 RID: 28529
 		private int cameraLayerMask;
 
-		// Token: 0x04006F72 RID: 28530
 		private int selectionMask;
 
-		// Token: 0x04006F73 RID: 28531
 		private UniformGrid<ILogicUIElement> ioPartition;
 
-		// Token: 0x04006F74 RID: 28532
 		private HashSet<ILogicUIElement> ioTargets = new HashSet<ILogicUIElement>();
 
-		// Token: 0x04006F75 RID: 28533
 		private HashSet<ILogicUIElement> workingIOTargets = new HashSet<ILogicUIElement>();
 
-		// Token: 0x04006F76 RID: 28534
 		private HashSet<KBatchedAnimController> wireControllers = new HashSet<KBatchedAnimController>();
 
-		// Token: 0x04006F77 RID: 28535
 		private HashSet<KBatchedAnimController> ribbonControllers = new HashSet<KBatchedAnimController>();
 
-		// Token: 0x04006F78 RID: 28536
 		private HashSet<UtilityNetwork> connectedNetworks = new HashSet<UtilityNetwork>();
 
-		// Token: 0x04006F79 RID: 28537
 		private List<int> visited = new List<int>();
 
-		// Token: 0x04006F7A RID: 28538
 		private HashSet<OverlayModes.Logic.BridgeInfo> bridgeControllers = new HashSet<OverlayModes.Logic.BridgeInfo>();
 
-		// Token: 0x04006F7B RID: 28539
 		private HashSet<OverlayModes.Logic.BridgeInfo> ribbonBridgeControllers = new HashSet<OverlayModes.Logic.BridgeInfo>();
 
-		// Token: 0x04006F7C RID: 28540
 		private UniformGrid<SaveLoadRoot> gameObjPartition;
 
-		// Token: 0x04006F7D RID: 28541
 		private HashSet<SaveLoadRoot> gameObjTargets = new HashSet<SaveLoadRoot>();
 
-		// Token: 0x04006F7E RID: 28542
 		private LogicModeUI uiAsset;
 
-		// Token: 0x04006F7F RID: 28543
 		private Dictionary<ILogicUIElement, OverlayModes.Logic.EventInfo> uiNodes = new Dictionary<ILogicUIElement, OverlayModes.Logic.EventInfo>();
 
-		// Token: 0x04006F80 RID: 28544
 		private KCompactedVector<OverlayModes.Logic.UIInfo> uiInfo = new KCompactedVector<OverlayModes.Logic.UIInfo>(0);
 
-		// Token: 0x02001B62 RID: 7010
 		private struct BridgeInfo
 		{
-			// Token: 0x04006F81 RID: 28545
 			public int cell;
 
-			// Token: 0x04006F82 RID: 28546
 			public KBatchedAnimController controller;
 		}
 
-		// Token: 0x02001B63 RID: 7011
 		private struct EventInfo
 		{
-			// Token: 0x04006F83 RID: 28547
 			public HandleVector<int>.Handle uiHandle;
 		}
 
-		// Token: 0x02001B64 RID: 7012
 		private struct UIInfo
 		{
-			// Token: 0x0600931D RID: 37661 RVA: 0x003979A8 File Offset: 0x00395BA8
 			public UIInfo(ILogicUIElement ui_elem, LogicModeUI ui_data)
 			{
 				this.cell = ui_elem.GetLogicUICell();
@@ -1978,108 +1806,83 @@ public abstract class OverlayModes
 				}
 			}
 
-			// Token: 0x0600931E RID: 37662 RVA: 0x00104A89 File Offset: 0x00102C89
 			public void Release()
 			{
 				global::Util.KDestroyGameObject(this.instance);
 			}
 
-			// Token: 0x04006F84 RID: 28548
 			public GameObject instance;
 
-			// Token: 0x04006F85 RID: 28549
 			public Image image;
 
-			// Token: 0x04006F86 RID: 28550
 			public int cell;
 
-			// Token: 0x04006F87 RID: 28551
 			public int bitDepth;
 		}
 	}
 
-	// Token: 0x02001B69 RID: 7017
 	public enum BringToFrontLayerSetting
 	{
-		// Token: 0x04006F94 RID: 28564
 		None,
-		// Token: 0x04006F95 RID: 28565
 		Constant,
-		// Token: 0x04006F96 RID: 28566
 		Conditional
 	}
 
-	// Token: 0x02001B6A RID: 7018
 	public class ColorHighlightCondition
 	{
-		// Token: 0x0600932A RID: 37674 RVA: 0x00104AEA File Offset: 0x00102CEA
 		public ColorHighlightCondition(Func<KMonoBehaviour, Color> highlight_color, Func<KMonoBehaviour, bool> highlight_condition)
 		{
 			this.highlight_color = highlight_color;
 			this.highlight_condition = highlight_condition;
 		}
 
-		// Token: 0x04006F97 RID: 28567
 		public Func<KMonoBehaviour, Color> highlight_color;
 
-		// Token: 0x04006F98 RID: 28568
 		public Func<KMonoBehaviour, bool> highlight_condition;
 	}
 
-	// Token: 0x02001B6B RID: 7019
 	public class None : OverlayModes.Mode
 	{
-		// Token: 0x0600932B RID: 37675 RVA: 0x00104B00 File Offset: 0x00102D00
 		public override HashedString ViewMode()
 		{
 			return OverlayModes.None.ID;
 		}
 
-		// Token: 0x0600932C RID: 37676 RVA: 0x00104B07 File Offset: 0x00102D07
 		public override string GetSoundName()
 		{
 			return "Off";
 		}
 
-		// Token: 0x04006F99 RID: 28569
 		public static readonly HashedString ID = HashedString.Invalid;
 	}
 
-	// Token: 0x02001B6C RID: 7020
 	public class PathProber : OverlayModes.Mode
 	{
-		// Token: 0x0600932F RID: 37679 RVA: 0x00104B22 File Offset: 0x00102D22
 		public override HashedString ViewMode()
 		{
 			return OverlayModes.PathProber.ID;
 		}
 
-		// Token: 0x06009330 RID: 37680 RVA: 0x00104B07 File Offset: 0x00102D07
 		public override string GetSoundName()
 		{
 			return "Off";
 		}
 
-		// Token: 0x04006F9A RID: 28570
 		public static readonly HashedString ID = "PathProber";
 	}
 
-	// Token: 0x02001B6D RID: 7021
 	public class Oxygen : OverlayModes.Mode
 	{
-		// Token: 0x06009333 RID: 37683 RVA: 0x00104B3A File Offset: 0x00102D3A
 		public override HashedString ViewMode()
 		{
 			return OverlayModes.Oxygen.ID;
 		}
 
-		// Token: 0x06009334 RID: 37684 RVA: 0x00104B41 File Offset: 0x00102D41
 		public override string GetSoundName()
 		{
 			return "Oxygen";
 		}
 
-		// Token: 0x06009335 RID: 37685 RVA: 0x00397DD8 File Offset: 0x00395FD8
 		public override void Enable()
 		{
 			base.Enable();
@@ -2091,109 +1894,87 @@ public abstract class OverlayModes
 			SelectTool.Instance.SetLayerMask(defaultLayerMask | mask);
 		}
 
-		// Token: 0x06009336 RID: 37686 RVA: 0x00104B48 File Offset: 0x00102D48
 		public override void Disable()
 		{
 			base.Disable();
 			SelectTool.Instance.ClearLayerMask();
 		}
 
-		// Token: 0x04006F9B RID: 28571
 		public static readonly HashedString ID = "Oxygen";
 	}
 
-	// Token: 0x02001B6E RID: 7022
 	public class Light : OverlayModes.Mode
 	{
-		// Token: 0x06009339 RID: 37689 RVA: 0x00104B6B File Offset: 0x00102D6B
 		public override HashedString ViewMode()
 		{
 			return OverlayModes.Light.ID;
 		}
 
-		// Token: 0x0600933A RID: 37690 RVA: 0x00104B72 File Offset: 0x00102D72
 		public override string GetSoundName()
 		{
 			return "Lights";
 		}
 
-		// Token: 0x04006F9C RID: 28572
 		public static readonly HashedString ID = "Light";
 	}
 
-	// Token: 0x02001B6F RID: 7023
 	public class Priorities : OverlayModes.Mode
 	{
-		// Token: 0x0600933D RID: 37693 RVA: 0x00104B8A File Offset: 0x00102D8A
 		public override HashedString ViewMode()
 		{
 			return OverlayModes.Priorities.ID;
 		}
 
-		// Token: 0x0600933E RID: 37694 RVA: 0x00104B91 File Offset: 0x00102D91
 		public override string GetSoundName()
 		{
 			return "Priorities";
 		}
 
-		// Token: 0x04006F9D RID: 28573
 		public static readonly HashedString ID = "Priorities";
 	}
 
-	// Token: 0x02001B70 RID: 7024
 	public class ThermalConductivity : OverlayModes.Mode
 	{
-		// Token: 0x06009341 RID: 37697 RVA: 0x00104BA9 File Offset: 0x00102DA9
 		public override HashedString ViewMode()
 		{
 			return OverlayModes.ThermalConductivity.ID;
 		}
 
-		// Token: 0x06009342 RID: 37698 RVA: 0x00104BB0 File Offset: 0x00102DB0
 		public override string GetSoundName()
 		{
 			return "HeatFlow";
 		}
 
-		// Token: 0x04006F9E RID: 28574
 		public static readonly HashedString ID = "ThermalConductivity";
 	}
 
-	// Token: 0x02001B71 RID: 7025
 	public class HeatFlow : OverlayModes.Mode
 	{
-		// Token: 0x06009345 RID: 37701 RVA: 0x00104BC8 File Offset: 0x00102DC8
 		public override HashedString ViewMode()
 		{
 			return OverlayModes.HeatFlow.ID;
 		}
 
-		// Token: 0x06009346 RID: 37702 RVA: 0x00104BB0 File Offset: 0x00102DB0
 		public override string GetSoundName()
 		{
 			return "HeatFlow";
 		}
 
-		// Token: 0x04006F9F RID: 28575
 		public static readonly HashedString ID = "HeatFlow";
 	}
 
-	// Token: 0x02001B72 RID: 7026
 	public class Rooms : OverlayModes.Mode
 	{
-		// Token: 0x06009349 RID: 37705 RVA: 0x00104BE0 File Offset: 0x00102DE0
 		public override HashedString ViewMode()
 		{
 			return OverlayModes.Rooms.ID;
 		}
 
-		// Token: 0x0600934A RID: 37706 RVA: 0x00104BE7 File Offset: 0x00102DE7
 		public override string GetSoundName()
 		{
 			return "Rooms";
 		}
 
-		// Token: 0x0600934B RID: 37707 RVA: 0x00397E18 File Offset: 0x00396018
 		public override List<LegendEntry> GetCustomLegendData()
 		{
 			List<LegendEntry> list = new List<LegendEntry>();
@@ -2211,74 +1992,59 @@ public abstract class OverlayModes
 			return list;
 		}
 
-		// Token: 0x04006FA0 RID: 28576
 		public static readonly HashedString ID = "Rooms";
 	}
 
-	// Token: 0x02001B74 RID: 7028
 	public abstract class Mode
 	{
-		// Token: 0x06009351 RID: 37713 RVA: 0x00104C0B File Offset: 0x00102E0B
 		public static void Clear()
 		{
 			OverlayModes.Mode.workingTargets.Clear();
 		}
 
-		// Token: 0x06009352 RID: 37714
 		public abstract HashedString ViewMode();
 
-		// Token: 0x06009353 RID: 37715 RVA: 0x000AA038 File Offset: 0x000A8238
 		public virtual void Enable()
 		{
 		}
 
-		// Token: 0x06009354 RID: 37716 RVA: 0x000AA038 File Offset: 0x000A8238
 		public virtual void Update()
 		{
 		}
 
-		// Token: 0x06009355 RID: 37717 RVA: 0x000AA038 File Offset: 0x000A8238
 		public virtual void Disable()
 		{
 		}
 
-		// Token: 0x06009356 RID: 37718 RVA: 0x000AA765 File Offset: 0x000A8965
 		public virtual List<LegendEntry> GetCustomLegendData()
 		{
 			return null;
 		}
 
-		// Token: 0x06009357 RID: 37719 RVA: 0x000AA765 File Offset: 0x000A8965
 		public virtual Dictionary<string, ToolParameterMenu.ToggleState> CreateDefaultFilters()
 		{
 			return null;
 		}
 
-		// Token: 0x06009358 RID: 37720 RVA: 0x000AA038 File Offset: 0x000A8238
 		public virtual void OnFiltersChanged()
 		{
 		}
 
-		// Token: 0x06009359 RID: 37721 RVA: 0x000AA038 File Offset: 0x000A8238
 		public virtual void DisableOverlay()
 		{
 		}
 
-		// Token: 0x0600935A RID: 37722 RVA: 0x000AA038 File Offset: 0x000A8238
 		public virtual void OnRenderImage(RenderTexture src, RenderTexture dest)
 		{
 		}
 
-		// Token: 0x0600935B RID: 37723
 		public abstract string GetSoundName();
 
-		// Token: 0x0600935C RID: 37724 RVA: 0x00104C17 File Offset: 0x00102E17
 		protected bool InFilter(string layer, Dictionary<string, ToolParameterMenu.ToggleState> filter)
 		{
 			return (filter.ContainsKey(ToolParameterMenu.FILTERLAYERS.ALL) && filter[ToolParameterMenu.FILTERLAYERS.ALL] == ToolParameterMenu.ToggleState.On) || (filter.ContainsKey(layer) && filter[layer] == ToolParameterMenu.ToggleState.On);
 		}
 
-		// Token: 0x0600935D RID: 37725 RVA: 0x00104C4A File Offset: 0x00102E4A
 		public void RegisterSaveLoadListeners()
 		{
 			SaveManager saveManager = SaveLoader.Instance.saveManager;
@@ -2286,7 +2052,6 @@ public abstract class OverlayModes
 			saveManager.onUnregister += this.OnSaveLoadRootUnregistered;
 		}
 
-		// Token: 0x0600935E RID: 37726 RVA: 0x00104C7B File Offset: 0x00102E7B
 		public void UnregisterSaveLoadListeners()
 		{
 			SaveManager saveManager = SaveLoader.Instance.saveManager;
@@ -2294,17 +2059,14 @@ public abstract class OverlayModes
 			saveManager.onUnregister -= this.OnSaveLoadRootUnregistered;
 		}
 
-		// Token: 0x0600935F RID: 37727 RVA: 0x000AA038 File Offset: 0x000A8238
 		protected virtual void OnSaveLoadRootRegistered(SaveLoadRoot root)
 		{
 		}
 
-		// Token: 0x06009360 RID: 37728 RVA: 0x000AA038 File Offset: 0x000A8238
 		protected virtual void OnSaveLoadRootUnregistered(SaveLoadRoot root)
 		{
 		}
 
-		// Token: 0x06009361 RID: 37729 RVA: 0x00397F30 File Offset: 0x00396130
 		protected void ProcessExistingSaveLoadRoots()
 		{
 			foreach (KeyValuePair<Tag, List<SaveLoadRoot>> keyValuePair in SaveLoader.Instance.saveManager.GetLists())
@@ -2316,7 +2078,6 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x06009362 RID: 37730 RVA: 0x00397FC8 File Offset: 0x003961C8
 		protected static UniformGrid<T> PopulatePartition<T>(ICollection<Tag> tags) where T : IUniformGridObject
 		{
 			Dictionary<Tag, List<SaveLoadRoot>> lists = SaveLoader.Instance.saveManager.GetLists();
@@ -2339,7 +2100,6 @@ public abstract class OverlayModes
 			return uniformGrid;
 		}
 
-		// Token: 0x06009363 RID: 37731 RVA: 0x0039808C File Offset: 0x0039628C
 		protected static void ResetDisplayValues<T>(ICollection<T> targets) where T : MonoBehaviour
 		{
 			foreach (T t in targets)
@@ -2355,7 +2115,6 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x06009364 RID: 37732 RVA: 0x00104CAC File Offset: 0x00102EAC
 		protected static void ResetDisplayValues(KBatchedAnimController controller)
 		{
 			controller.SetLayer(0);
@@ -2364,7 +2123,6 @@ public abstract class OverlayModes
 			controller.SetLayer(controller.GetComponent<KPrefabID>().defaultLayer);
 		}
 
-		// Token: 0x06009365 RID: 37733 RVA: 0x003980F8 File Offset: 0x003962F8
 		protected static void RemoveOffscreenTargets<T>(ICollection<T> targets, Vector2I min, Vector2I max, Action<T> on_removed = null) where T : KMonoBehaviour
 		{
 			OverlayModes.Mode.ClearOutsideViewObjects<T>(targets, min, max, null, delegate(T cmp)
@@ -2385,7 +2143,6 @@ public abstract class OverlayModes
 			OverlayModes.Mode.workingTargets.Clear();
 		}
 
-		// Token: 0x06009366 RID: 37734 RVA: 0x00398134 File Offset: 0x00396334
 		protected static void ClearOutsideViewObjects<T>(ICollection<T> targets, Vector2I vis_min, Vector2I vis_max, ICollection<Tag> item_ids, Action<T> on_remove) where T : KMonoBehaviour
 		{
 			OverlayModes.Mode.workingTargets.Clear();
@@ -2423,7 +2180,6 @@ public abstract class OverlayModes
 			OverlayModes.Mode.workingTargets.Clear();
 		}
 
-		// Token: 0x06009367 RID: 37735 RVA: 0x003982A8 File Offset: 0x003964A8
 		protected static void RemoveOffscreenTargets<T>(ICollection<T> targets, ICollection<T> working_targets, Vector2I vis_min, Vector2I vis_max, Action<T> on_removed = null, Func<T, bool> special_clear_condition = null) where T : IUniformGridObject
 		{
 			OverlayModes.Mode.ClearOutsideViewObjects<T>(targets, working_targets, vis_min, vis_max, delegate(T cmp)
@@ -2458,7 +2214,6 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x06009368 RID: 37736 RVA: 0x00398384 File Offset: 0x00396584
 		protected static void ClearOutsideViewObjects<T>(ICollection<T> targets, ICollection<T> working_targets, Vector2I vis_min, Vector2I vis_max, Action<T> on_removed = null) where T : IUniformGridObject
 		{
 			working_targets.Clear();
@@ -2488,7 +2243,6 @@ public abstract class OverlayModes
 			working_targets.Clear();
 		}
 
-		// Token: 0x06009369 RID: 37737 RVA: 0x00398488 File Offset: 0x00396688
 		protected static float GetDefaultDepth(KMonoBehaviour cmp)
 		{
 			BuildingComplete component = cmp.GetComponent<BuildingComplete>();
@@ -2504,7 +2258,6 @@ public abstract class OverlayModes
 			return layerZ;
 		}
 
-		// Token: 0x0600936A RID: 37738 RVA: 0x003984C4 File Offset: 0x003966C4
 		protected void UpdateHighlightTypeOverlay<T>(Vector2I min, Vector2I max, ICollection<T> targets, ICollection<Tag> item_ids, OverlayModes.ColorHighlightCondition[] highlights, OverlayModes.BringToFrontLayerSetting bringToFrontSetting, int layer) where T : KMonoBehaviour
 		{
 			foreach (T t in targets)
@@ -2550,7 +2303,6 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x0600936B RID: 37739 RVA: 0x0039861C File Offset: 0x0039681C
 		protected void DisableHighlightTypeOverlay<T>(ICollection<T> targets) where T : KMonoBehaviour
 		{
 			Color32 highlightColour = Color.clear;
@@ -2569,7 +2321,6 @@ public abstract class OverlayModes
 			targets.Clear();
 		}
 
-		// Token: 0x0600936C RID: 37740 RVA: 0x003986A0 File Offset: 0x003968A0
 		protected void AddTargetIfVisible<T>(T instance, Vector2I vis_min, Vector2I vis_max, ICollection<T> targets, int layer, Action<T> on_added = null, Func<KMonoBehaviour, bool> should_add = null) where T : IUniformGridObject
 		{
 			if (instance.Equals(null))
@@ -2630,39 +2381,31 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x04006FA3 RID: 28579
 		public Dictionary<string, ToolParameterMenu.ToggleState> legendFilters;
 
-		// Token: 0x04006FA4 RID: 28580
 		private static List<KMonoBehaviour> workingTargets = new List<KMonoBehaviour>();
 	}
 
-	// Token: 0x02001B77 RID: 7031
 	public class ModeUtil
 	{
-		// Token: 0x06009373 RID: 37747 RVA: 0x00104D10 File Offset: 0x00102F10
 		public static float GetHighlightScale()
 		{
 			return Mathf.SmoothStep(0.5f, 1f, Mathf.Abs(Mathf.Sin(Time.unscaledTime * 4f)));
 		}
 	}
 
-	// Token: 0x02001B78 RID: 7032
 	public class Power : OverlayModes.Mode
 	{
-		// Token: 0x06009375 RID: 37749 RVA: 0x00104D36 File Offset: 0x00102F36
 		public override HashedString ViewMode()
 		{
 			return OverlayModes.Power.ID;
 		}
 
-		// Token: 0x06009376 RID: 37750 RVA: 0x00104D3D File Offset: 0x00102F3D
 		public override string GetSoundName()
 		{
 			return "Power";
 		}
 
-		// Token: 0x06009377 RID: 37751 RVA: 0x0039884C File Offset: 0x00396A4C
 		public Power(Canvas powerLabelParent, LocText powerLabelPrefab, BatteryUI batteryUIPrefab, Vector3 powerLabelOffset, Vector3 batteryUIOffset, Vector3 batteryUITransformerOffset, Vector3 batteryUISmallTransformerOffset)
 		{
 			this.powerLabelParent = powerLabelParent;
@@ -2681,7 +2424,6 @@ public abstract class OverlayModes
 			this.selectionMask = this.cameraLayerMask;
 		}
 
-		// Token: 0x06009378 RID: 37752 RVA: 0x00398934 File Offset: 0x00396B34
 		public override void Enable()
 		{
 			Camera.main.cullingMask |= this.cameraLayerMask;
@@ -2691,7 +2433,6 @@ public abstract class OverlayModes
 			GridCompositor.Instance.ToggleMinor(true);
 		}
 
-		// Token: 0x06009379 RID: 37753 RVA: 0x0039898C File Offset: 0x00396B8C
 		public override void Disable()
 		{
 			OverlayModes.Mode.ResetDisplayValues<SaveLoadRoot>(this.layerTargets);
@@ -2707,7 +2448,6 @@ public abstract class OverlayModes
 			GridCompositor.Instance.ToggleMinor(false);
 		}
 
-		// Token: 0x0600937A RID: 37754 RVA: 0x00398A10 File Offset: 0x00396C10
 		protected override void OnSaveLoadRootRegistered(SaveLoadRoot item)
 		{
 			Tag saveLoadTag = item.GetComponent<KPrefabID>().GetSaveLoadTag();
@@ -2717,7 +2457,6 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x0600937B RID: 37755 RVA: 0x00398A44 File Offset: 0x00396C44
 		protected override void OnSaveLoadRootUnregistered(SaveLoadRoot item)
 		{
 			if (item == null || item.gameObject == null)
@@ -2731,7 +2470,6 @@ public abstract class OverlayModes
 			this.partition.Remove(item);
 		}
 
-		// Token: 0x0600937C RID: 37756 RVA: 0x00398A90 File Offset: 0x00396C90
 		public override void Update()
 		{
 			Vector2I vector2I;
@@ -2862,7 +2600,6 @@ public abstract class OverlayModes
 			this.UpdatePowerLabels();
 		}
 
-		// Token: 0x0600937D RID: 37757 RVA: 0x003990A8 File Offset: 0x003972A8
 		private LocText GetFreePowerLabel()
 		{
 			LocText locText;
@@ -2880,7 +2617,6 @@ public abstract class OverlayModes
 			return locText;
 		}
 
-		// Token: 0x0600937E RID: 37758 RVA: 0x0039912C File Offset: 0x0039732C
 		private void UpdatePowerLabels()
 		{
 			foreach (OverlayModes.Power.UpdatePowerInfo updatePowerInfo in this.updatePowerInfo)
@@ -2947,7 +2683,6 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x0600937F RID: 37759 RVA: 0x00399408 File Offset: 0x00397608
 		private void AddPowerLabels(KMonoBehaviour item)
 		{
 			if (item.gameObject.GetMyWorldId() == ClusterManager.Instance.activeWorldId)
@@ -2993,7 +2728,6 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x06009380 RID: 37760 RVA: 0x00399654 File Offset: 0x00397854
 		private void DisablePowerLabels()
 		{
 			this.freePowerLabelIdx = 0;
@@ -3004,7 +2738,6 @@ public abstract class OverlayModes
 			this.updatePowerInfo.Clear();
 		}
 
-		// Token: 0x06009381 RID: 37761 RVA: 0x003996BC File Offset: 0x003978BC
 		private void AddBatteryUI(Battery bat)
 		{
 			BatteryUI freeBatteryUI = this.GetFreeBatteryUI();
@@ -3027,7 +2760,6 @@ public abstract class OverlayModes
 			this.updateBatteryInfo.Add(new OverlayModes.Power.UpdateBatteryInfo(bat, freeBatteryUI));
 		}
 
-		// Token: 0x06009382 RID: 37762 RVA: 0x0039978C File Offset: 0x0039798C
 		private void SetToolTip(LocText label, string text)
 		{
 			ToolTip component = label.GetComponent<ToolTip>();
@@ -3037,7 +2769,6 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x06009383 RID: 37763 RVA: 0x003997B0 File Offset: 0x003979B0
 		private void DisableBatteryUIs()
 		{
 			this.freeBatteryUIIdx = 0;
@@ -3048,7 +2779,6 @@ public abstract class OverlayModes
 			this.updateBatteryInfo.Clear();
 		}
 
-		// Token: 0x06009384 RID: 37764 RVA: 0x00399818 File Offset: 0x00397A18
 		private BatteryUI GetFreeBatteryUI()
 		{
 			BatteryUI batteryUI;
@@ -3067,7 +2797,6 @@ public abstract class OverlayModes
 			return batteryUI;
 		}
 
-		// Token: 0x06009385 RID: 37765 RVA: 0x003998A8 File Offset: 0x00397AA8
 		private void FindConnectedNetworks(int cell, IUtilityNetworkMgr mgr, ICollection<UtilityNetwork> networks, List<int> visited)
 		{
 			if (visited.Contains(cell))
@@ -3099,79 +2828,54 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x04006FA7 RID: 28583
 		public static readonly HashedString ID = "Power";
 
-		// Token: 0x04006FA8 RID: 28584
 		private int targetLayer;
 
-		// Token: 0x04006FA9 RID: 28585
 		private int cameraLayerMask;
 
-		// Token: 0x04006FAA RID: 28586
 		private int selectionMask;
 
-		// Token: 0x04006FAB RID: 28587
 		private List<OverlayModes.Power.UpdatePowerInfo> updatePowerInfo = new List<OverlayModes.Power.UpdatePowerInfo>();
 
-		// Token: 0x04006FAC RID: 28588
 		private List<OverlayModes.Power.UpdateBatteryInfo> updateBatteryInfo = new List<OverlayModes.Power.UpdateBatteryInfo>();
 
-		// Token: 0x04006FAD RID: 28589
 		private Canvas powerLabelParent;
 
-		// Token: 0x04006FAE RID: 28590
 		private LocText powerLabelPrefab;
 
-		// Token: 0x04006FAF RID: 28591
 		private Vector3 powerLabelOffset;
 
-		// Token: 0x04006FB0 RID: 28592
 		private BatteryUI batteryUIPrefab;
 
-		// Token: 0x04006FB1 RID: 28593
 		private Vector3 batteryUIOffset;
 
-		// Token: 0x04006FB2 RID: 28594
 		private Vector3 batteryUITransformerOffset;
 
-		// Token: 0x04006FB3 RID: 28595
 		private Vector3 batteryUISmallTransformerOffset;
 
-		// Token: 0x04006FB4 RID: 28596
 		private int freePowerLabelIdx;
 
-		// Token: 0x04006FB5 RID: 28597
 		private int freeBatteryUIIdx;
 
-		// Token: 0x04006FB6 RID: 28598
 		private List<LocText> powerLabels = new List<LocText>();
 
-		// Token: 0x04006FB7 RID: 28599
 		private List<BatteryUI> batteryUIList = new List<BatteryUI>();
 
-		// Token: 0x04006FB8 RID: 28600
 		private UniformGrid<SaveLoadRoot> partition;
 
-		// Token: 0x04006FB9 RID: 28601
 		private List<SaveLoadRoot> queuedAdds = new List<SaveLoadRoot>();
 
-		// Token: 0x04006FBA RID: 28602
 		private HashSet<SaveLoadRoot> layerTargets = new HashSet<SaveLoadRoot>();
 
-		// Token: 0x04006FBB RID: 28603
 		private HashSet<SaveLoadRoot> privateTargets = new HashSet<SaveLoadRoot>();
 
-		// Token: 0x04006FBC RID: 28604
 		private HashSet<UtilityNetwork> connectedNetworks = new HashSet<UtilityNetwork>();
 
-		// Token: 0x04006FBD RID: 28605
 		private List<int> visited = new List<int>();
 
-		// Token: 0x02001B79 RID: 7033
 		private struct UpdatePowerInfo
 		{
-			// Token: 0x06009387 RID: 37767 RVA: 0x00104D55 File Offset: 0x00102F55
 			public UpdatePowerInfo(KMonoBehaviour item, LocText power_label, LocText unit_label, Generator g, IEnergyConsumer c)
 			{
 				this.item = item;
@@ -3181,87 +2885,68 @@ public abstract class OverlayModes
 				this.consumer = c;
 			}
 
-			// Token: 0x04006FBE RID: 28606
 			public KMonoBehaviour item;
 
-			// Token: 0x04006FBF RID: 28607
 			public LocText powerLabel;
 
-			// Token: 0x04006FC0 RID: 28608
 			public LocText unitLabel;
 
-			// Token: 0x04006FC1 RID: 28609
 			public Generator generator;
 
-			// Token: 0x04006FC2 RID: 28610
 			public IEnergyConsumer consumer;
 		}
 
-		// Token: 0x02001B7A RID: 7034
 		private struct UpdateBatteryInfo
 		{
-			// Token: 0x06009388 RID: 37768 RVA: 0x00104D7C File Offset: 0x00102F7C
 			public UpdateBatteryInfo(Battery battery, BatteryUI ui)
 			{
 				this.battery = battery;
 				this.ui = ui;
 			}
 
-			// Token: 0x04006FC3 RID: 28611
 			public Battery battery;
 
-			// Token: 0x04006FC4 RID: 28612
 			public BatteryUI ui;
 		}
 	}
 
-	// Token: 0x02001B7B RID: 7035
 	public class Radiation : OverlayModes.Mode
 	{
-		// Token: 0x06009389 RID: 37769 RVA: 0x00104D8C File Offset: 0x00102F8C
 		public override HashedString ViewMode()
 		{
 			return OverlayModes.Radiation.ID;
 		}
 
-		// Token: 0x0600938A RID: 37770 RVA: 0x00104D93 File Offset: 0x00102F93
 		public override string GetSoundName()
 		{
 			return "Radiation";
 		}
 
-		// Token: 0x0600938B RID: 37771 RVA: 0x00104D9A File Offset: 0x00102F9A
 		public override void Enable()
 		{
 			AudioMixer.instance.Start(AudioMixerSnapshots.Get().TechFilterRadiationOn);
 		}
 
-		// Token: 0x0600938C RID: 37772 RVA: 0x00104DB1 File Offset: 0x00102FB1
 		public override void Disable()
 		{
 			AudioMixer.instance.Stop(AudioMixerSnapshots.Get().TechFilterRadiationOn, STOP_MODE.ALLOWFADEOUT);
 		}
 
-		// Token: 0x04006FC5 RID: 28613
 		public static readonly HashedString ID = "Radiation";
 	}
 
-	// Token: 0x02001B7C RID: 7036
 	public class SolidConveyor : OverlayModes.Mode
 	{
-		// Token: 0x0600938F RID: 37775 RVA: 0x00104DDA File Offset: 0x00102FDA
 		public override HashedString ViewMode()
 		{
 			return OverlayModes.SolidConveyor.ID;
 		}
 
-		// Token: 0x06009390 RID: 37776 RVA: 0x001047B4 File Offset: 0x001029B4
 		public override string GetSoundName()
 		{
 			return "LiquidVent";
 		}
 
-		// Token: 0x06009391 RID: 37777 RVA: 0x00399938 File Offset: 0x00397B38
 		public SolidConveyor()
 		{
 			this.targetLayer = LayerMask.NameToLayer("MaskedOverlay");
@@ -3273,7 +2958,6 @@ public abstract class OverlayModes
 			this.selectionMask = this.cameraLayerMask;
 		}
 
-		// Token: 0x06009392 RID: 37778 RVA: 0x003999D0 File Offset: 0x00397BD0
 		public override void Enable()
 		{
 			base.RegisterSaveLoadListeners();
@@ -3284,7 +2968,6 @@ public abstract class OverlayModes
 			base.Enable();
 		}
 
-		// Token: 0x06009393 RID: 37779 RVA: 0x00399A2C File Offset: 0x00397C2C
 		protected override void OnSaveLoadRootRegistered(SaveLoadRoot item)
 		{
 			Tag saveLoadTag = item.GetComponent<KPrefabID>().GetSaveLoadTag();
@@ -3294,7 +2977,6 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x06009394 RID: 37780 RVA: 0x00399A60 File Offset: 0x00397C60
 		protected override void OnSaveLoadRootUnregistered(SaveLoadRoot item)
 		{
 			if (item == null || item.gameObject == null)
@@ -3308,7 +2990,6 @@ public abstract class OverlayModes
 			this.partition.Remove(item);
 		}
 
-		// Token: 0x06009395 RID: 37781 RVA: 0x00399AAC File Offset: 0x00397CAC
 		public override void Disable()
 		{
 			OverlayModes.Mode.ResetDisplayValues<SaveLoadRoot>(this.layerTargets);
@@ -3321,7 +3002,6 @@ public abstract class OverlayModes
 			base.Disable();
 		}
 
-		// Token: 0x06009396 RID: 37782 RVA: 0x00399B14 File Offset: 0x00397D14
 		public override void Update()
 		{
 			Vector2I vector2I;
@@ -3373,14 +3053,12 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x06009397 RID: 37783 RVA: 0x00399D38 File Offset: 0x00397F38
 		public bool IsConnectedToNetworks(SolidConduit conduit, ICollection<UtilityNetwork> networks)
 		{
 			UtilityNetwork network = conduit.GetNetwork();
 			return networks.Contains(network);
 		}
 
-		// Token: 0x06009398 RID: 37784 RVA: 0x00399D54 File Offset: 0x00397F54
 		private void FindConnectedNetworks(int cell, IUtilityNetworkMgr mgr, ICollection<UtilityNetwork> networks, List<int> visited)
 		{
 			if (visited.Contains(cell))
@@ -3429,53 +3107,39 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x04006FC6 RID: 28614
 		public static readonly HashedString ID = "SolidConveyor";
 
-		// Token: 0x04006FC7 RID: 28615
 		private UniformGrid<SaveLoadRoot> partition;
 
-		// Token: 0x04006FC8 RID: 28616
 		private HashSet<SaveLoadRoot> layerTargets = new HashSet<SaveLoadRoot>();
 
-		// Token: 0x04006FC9 RID: 28617
 		private ICollection<Tag> targetIDs = OverlayScreen.SolidConveyorIDs;
 
-		// Token: 0x04006FCA RID: 28618
 		private Color32 tint_color = new Color32(201, 201, 201, 0);
 
-		// Token: 0x04006FCB RID: 28619
 		private HashSet<UtilityNetwork> connectedNetworks = new HashSet<UtilityNetwork>();
 
-		// Token: 0x04006FCC RID: 28620
 		private List<int> visited = new List<int>();
 
-		// Token: 0x04006FCD RID: 28621
 		private int targetLayer;
 
-		// Token: 0x04006FCE RID: 28622
 		private int cameraLayerMask;
 
-		// Token: 0x04006FCF RID: 28623
 		private int selectionMask;
 	}
 
-	// Token: 0x02001B7D RID: 7037
 	public class Sound : OverlayModes.Mode
 	{
-		// Token: 0x0600939A RID: 37786 RVA: 0x00104DF2 File Offset: 0x00102FF2
 		public override HashedString ViewMode()
 		{
 			return OverlayModes.Sound.ID;
 		}
 
-		// Token: 0x0600939B RID: 37787 RVA: 0x00104DF9 File Offset: 0x00102FF9
 		public override string GetSoundName()
 		{
 			return "Sound";
 		}
 
-		// Token: 0x0600939C RID: 37788 RVA: 0x00399E20 File Offset: 0x00398020
 		public Sound()
 		{
 			OverlayModes.ColorHighlightCondition[] array = new OverlayModes.ColorHighlightCondition[1];
@@ -3520,7 +3184,6 @@ public abstract class OverlayModes
 			this.targetIDs.UnionWith(prefabTagsWithComponent);
 		}
 
-		// Token: 0x0600939D RID: 37789 RVA: 0x00399EE0 File Offset: 0x003980E0
 		public override void Enable()
 		{
 			base.RegisterSaveLoadListeners();
@@ -3530,7 +3193,6 @@ public abstract class OverlayModes
 			Camera.main.cullingMask |= this.cameraLayerMask;
 		}
 
-		// Token: 0x0600939E RID: 37790 RVA: 0x00399F30 File Offset: 0x00398130
 		public override void Update()
 		{
 			Vector2I vector2I;
@@ -3545,7 +3207,6 @@ public abstract class OverlayModes
 			base.UpdateHighlightTypeOverlay<NoisePolluter>(vector2I, vector2I2, this.layerTargets, this.targetIDs, this.highlightConditions, OverlayModes.BringToFrontLayerSetting.Conditional, this.targetLayer);
 		}
 
-		// Token: 0x0600939F RID: 37791 RVA: 0x0039A000 File Offset: 0x00398200
 		protected override void OnSaveLoadRootRegistered(SaveLoadRoot item)
 		{
 			Tag saveLoadTag = item.GetComponent<KPrefabID>().GetSaveLoadTag();
@@ -3556,7 +3217,6 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x060093A0 RID: 37792 RVA: 0x0039A03C File Offset: 0x0039823C
 		protected override void OnSaveLoadRootUnregistered(SaveLoadRoot item)
 		{
 			if (item == null || item.gameObject == null)
@@ -3571,7 +3231,6 @@ public abstract class OverlayModes
 			this.partition.Remove(component);
 		}
 
-		// Token: 0x060093A1 RID: 37793 RVA: 0x0039A090 File Offset: 0x00398290
 		public override void Disable()
 		{
 			base.DisableHighlightTypeOverlay<NoisePolluter>(this.layerTargets);
@@ -3581,44 +3240,33 @@ public abstract class OverlayModes
 			this.layerTargets.Clear();
 		}
 
-		// Token: 0x04006FD0 RID: 28624
 		public static readonly HashedString ID = "Sound";
 
-		// Token: 0x04006FD1 RID: 28625
 		private UniformGrid<NoisePolluter> partition;
 
-		// Token: 0x04006FD2 RID: 28626
 		private HashSet<NoisePolluter> layerTargets = new HashSet<NoisePolluter>();
 
-		// Token: 0x04006FD3 RID: 28627
 		private HashSet<Tag> targetIDs = new HashSet<Tag>();
 
-		// Token: 0x04006FD4 RID: 28628
 		private int targetLayer;
 
-		// Token: 0x04006FD5 RID: 28629
 		private int cameraLayerMask;
 
-		// Token: 0x04006FD6 RID: 28630
 		private OverlayModes.ColorHighlightCondition[] highlightConditions;
 	}
 
-	// Token: 0x02001B7F RID: 7039
 	public class Suit : OverlayModes.Mode
 	{
-		// Token: 0x060093A7 RID: 37799 RVA: 0x00104E1D File Offset: 0x0010301D
 		public override HashedString ViewMode()
 		{
 			return OverlayModes.Suit.ID;
 		}
 
-		// Token: 0x060093A8 RID: 37800 RVA: 0x00104E24 File Offset: 0x00103024
 		public override string GetSoundName()
 		{
 			return "SuitRequired";
 		}
 
-		// Token: 0x060093A9 RID: 37801 RVA: 0x0039A1A8 File Offset: 0x003983A8
 		public Suit(Canvas ui_parent, GameObject overlay_prefab)
 		{
 			this.targetLayer = LayerMask.NameToLayer("MaskedOverlay");
@@ -3633,7 +3281,6 @@ public abstract class OverlayModes
 			this.overlayPrefab = overlay_prefab;
 		}
 
-		// Token: 0x060093AA RID: 37802 RVA: 0x0039A228 File Offset: 0x00398428
 		public override void Enable()
 		{
 			this.partition = new UniformGrid<SaveLoadRoot>(Grid.WidthInCells, Grid.HeightInCells, 8, 8);
@@ -3645,7 +3292,6 @@ public abstract class OverlayModes
 			base.Enable();
 		}
 
-		// Token: 0x060093AB RID: 37803 RVA: 0x0039A290 File Offset: 0x00398490
 		public override void Disable()
 		{
 			base.UnregisterSaveLoadListeners();
@@ -3663,7 +3309,6 @@ public abstract class OverlayModes
 			base.Disable();
 		}
 
-		// Token: 0x060093AC RID: 37804 RVA: 0x0039A328 File Offset: 0x00398528
 		protected override void OnSaveLoadRootRegistered(SaveLoadRoot item)
 		{
 			Tag saveLoadTag = item.GetComponent<KPrefabID>().GetSaveLoadTag();
@@ -3673,7 +3318,6 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x060093AD RID: 37805 RVA: 0x0039A35C File Offset: 0x0039855C
 		protected override void OnSaveLoadRootUnregistered(SaveLoadRoot item)
 		{
 			if (item == null || item.gameObject == null)
@@ -3687,7 +3331,6 @@ public abstract class OverlayModes
 			this.partition.Remove(item);
 		}
 
-		// Token: 0x060093AE RID: 37806 RVA: 0x0039A3A8 File Offset: 0x003985A8
 		private GameObject GetFreeUI()
 		{
 			GameObject gameObject;
@@ -3710,7 +3353,6 @@ public abstract class OverlayModes
 			return gameObject;
 		}
 
-		// Token: 0x060093AF RID: 37807 RVA: 0x0039A424 File Offset: 0x00398624
 		public override void Update()
 		{
 			this.freeUiIdx = 0;
@@ -3756,62 +3398,46 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x04006FDA RID: 28634
 		public static readonly HashedString ID = "Suit";
 
-		// Token: 0x04006FDB RID: 28635
 		private UniformGrid<SaveLoadRoot> partition;
 
-		// Token: 0x04006FDC RID: 28636
 		private HashSet<SaveLoadRoot> layerTargets = new HashSet<SaveLoadRoot>();
 
-		// Token: 0x04006FDD RID: 28637
 		private ICollection<Tag> targetIDs;
 
-		// Token: 0x04006FDE RID: 28638
 		private List<GameObject> uiList = new List<GameObject>();
 
-		// Token: 0x04006FDF RID: 28639
 		private int freeUiIdx;
 
-		// Token: 0x04006FE0 RID: 28640
 		private int targetLayer;
 
-		// Token: 0x04006FE1 RID: 28641
 		private int cameraLayerMask;
 
-		// Token: 0x04006FE2 RID: 28642
 		private int selectionMask;
 
-		// Token: 0x04006FE3 RID: 28643
 		private Canvas uiParent;
 
-		// Token: 0x04006FE4 RID: 28644
 		private GameObject overlayPrefab;
 	}
 
-	// Token: 0x02001B80 RID: 7040
 	public class Temperature : OverlayModes.Mode
 	{
-		// Token: 0x060093B1 RID: 37809 RVA: 0x00104E3C File Offset: 0x0010303C
 		public override HashedString ViewMode()
 		{
 			return OverlayModes.Temperature.ID;
 		}
 
-		// Token: 0x060093B2 RID: 37810 RVA: 0x00104E43 File Offset: 0x00103043
 		public override string GetSoundName()
 		{
 			return "Temperature";
 		}
 
-		// Token: 0x060093B3 RID: 37811 RVA: 0x0039A5E0 File Offset: 0x003987E0
 		public Temperature()
 		{
 			this.legendFilters = this.CreateDefaultFilters();
 		}
 
-		// Token: 0x060093B4 RID: 37812 RVA: 0x00104E4A File Offset: 0x0010304A
 		public override void Update()
 		{
 			base.Update();
@@ -3822,7 +3448,6 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x060093B5 RID: 37813 RVA: 0x00104E7F File Offset: 0x0010307F
 		public override void Enable()
 		{
 			base.Enable();
@@ -3830,7 +3455,6 @@ public abstract class OverlayModes
 			this.RefreshLegendValues();
 		}
 
-		// Token: 0x060093B6 RID: 37814 RVA: 0x0039AC78 File Offset: 0x00398E78
 		public void RefreshLegendValues()
 		{
 			int num = SimDebugView.Instance.temperatureThresholds.Length - 1;
@@ -3841,7 +3465,6 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x060093B7 RID: 37815 RVA: 0x00104E9D File Offset: 0x0010309D
 		public override Dictionary<string, ToolParameterMenu.ToggleState> CreateDefaultFilters()
 		{
 			return new Dictionary<string, ToolParameterMenu.ToggleState>
@@ -3865,7 +3488,6 @@ public abstract class OverlayModes
 			};
 		}
 
-		// Token: 0x060093B8 RID: 37816 RVA: 0x00104ED4 File Offset: 0x001030D4
 		public override void OnRenderImage(RenderTexture src, RenderTexture dest)
 		{
 			if (Game.IsQuitting())
@@ -3875,7 +3497,6 @@ public abstract class OverlayModes
 			KAnimBatchManager.Instance().RenderKAnimTemperaturePostProcessingEffects();
 		}
 
-		// Token: 0x060093B9 RID: 37817 RVA: 0x0039AD10 File Offset: 0x00398F10
 		public override List<LegendEntry> GetCustomLegendData()
 		{
 			switch (Game.Instance.temperatureOverlayMode)
@@ -3895,7 +3516,6 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x060093BA RID: 37818 RVA: 0x0039AD6C File Offset: 0x00398F6C
 		public override void OnFiltersChanged()
 		{
 			if (base.InFilter(ToolParameterMenu.FILTERLAYERS.HEATFLOW, this.legendFilters))
@@ -3945,7 +3565,6 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x060093BB RID: 37819 RVA: 0x00104EE8 File Offset: 0x001030E8
 		public override void Disable()
 		{
 			Infrared.Instance.SetMode(Infrared.Mode.Disabled);
@@ -3953,13 +3572,10 @@ public abstract class OverlayModes
 			base.Disable();
 		}
 
-		// Token: 0x04006FE5 RID: 28645
 		public static readonly HashedString ID = "Temperature";
 
-		// Token: 0x04006FE6 RID: 28646
 		private Vector2 previousUserSetting;
 
-		// Token: 0x04006FE7 RID: 28647
 		public List<LegendEntry> temperatureLegend = new List<LegendEntry>
 		{
 			new LegendEntry(UI.OVERLAYS.TEMPERATURE.MAXHOT, UI.OVERLAYS.TEMPERATURE.TOOLTIPS.TEMPERATURE, new Color(0.8901961f, 0.13725491f, 0.12941177f), null, null, true),
@@ -3974,7 +3590,6 @@ public abstract class OverlayModes
 			new LegendEntry(UI.OVERLAYS.TEMPERATURE.HEATSINK, UI.OVERLAYS.TEMPERATURE.TOOLTIPS.HEATSINK, Color.white, null, Assets.GetSprite("heat_sink"), true)
 		};
 
-		// Token: 0x04006FE8 RID: 28648
 		public List<LegendEntry> heatFlowLegend = new List<LegendEntry>
 		{
 			new LegendEntry(UI.OVERLAYS.HEATFLOW.HEATING, UI.OVERLAYS.HEATFLOW.TOOLTIPS.HEATING, new Color(0.9098039f, 0.25882354f, 0.14901961f), null, null, true),
@@ -3984,7 +3599,6 @@ public abstract class OverlayModes
 			new LegendEntry(UI.OVERLAYS.TEMPERATURE.HEATSINK, UI.OVERLAYS.TEMPERATURE.TOOLTIPS.HEATSINK, Color.white, null, Assets.GetSprite("heat_sink"), true)
 		};
 
-		// Token: 0x04006FE9 RID: 28649
 		public List<LegendEntry> expandedTemperatureLegend = new List<LegendEntry>
 		{
 			new LegendEntry(UI.OVERLAYS.TEMPERATURE.MAXHOT, UI.OVERLAYS.TEMPERATURE.TOOLTIPS.TEMPERATURE, new Color(0.8901961f, 0.13725491f, 0.12941177f), null, null, true),
@@ -3999,7 +3613,6 @@ public abstract class OverlayModes
 			new LegendEntry(UI.OVERLAYS.TEMPERATURE.HEATSINK, UI.OVERLAYS.TEMPERATURE.TOOLTIPS.HEATSINK, Color.white, null, Assets.GetSprite("heat_sink"), true)
 		};
 
-		// Token: 0x04006FEA RID: 28650
 		public List<LegendEntry> stateChangeLegend = new List<LegendEntry>
 		{
 			new LegendEntry(UI.OVERLAYS.STATECHANGE.HIGHPOINT, UI.OVERLAYS.STATECHANGE.TOOLTIPS.HIGHPOINT, new Color(0.8901961f, 0.13725491f, 0.12941177f), null, null, true),
@@ -4010,22 +3623,18 @@ public abstract class OverlayModes
 		};
 	}
 
-	// Token: 0x02001B81 RID: 7041
 	public class TileMode : OverlayModes.Mode
 	{
-		// Token: 0x060093BD RID: 37821 RVA: 0x00104F17 File Offset: 0x00103117
 		public override HashedString ViewMode()
 		{
 			return OverlayModes.TileMode.ID;
 		}
 
-		// Token: 0x060093BE RID: 37822 RVA: 0x00104E24 File Offset: 0x00103024
 		public override string GetSoundName()
 		{
 			return "SuitRequired";
 		}
 
-		// Token: 0x060093BF RID: 37823 RVA: 0x0039AEA8 File Offset: 0x003990A8
 		public TileMode()
 		{
 			OverlayModes.ColorHighlightCondition[] array = new OverlayModes.ColorHighlightCondition[1];
@@ -4049,7 +3658,6 @@ public abstract class OverlayModes
 			this.legendFilters = this.CreateDefaultFilters();
 		}
 
-		// Token: 0x060093C0 RID: 37824 RVA: 0x0039AF60 File Offset: 0x00399160
 		public override void Enable()
 		{
 			base.Enable();
@@ -4064,7 +3672,6 @@ public abstract class OverlayModes
 			SelectTool.Instance.SetLayerMask(defaultLayerMask | mask);
 		}
 
-		// Token: 0x060093C1 RID: 37825 RVA: 0x0039AFC8 File Offset: 0x003991C8
 		public override void Update()
 		{
 			Vector2I vector2I;
@@ -4098,7 +3705,6 @@ public abstract class OverlayModes
 			base.UpdateHighlightTypeOverlay<PrimaryElement>(vector2I, vector2I2, this.layerTargets, this.targetIDs, this.highlightConditions, OverlayModes.BringToFrontLayerSetting.Conditional, this.targetLayer);
 		}
 
-		// Token: 0x060093C2 RID: 37826 RVA: 0x0039B154 File Offset: 0x00399354
 		private void TryAddObject(PrimaryElement pe, Vector2I min, Vector2I max)
 		{
 			Element element = pe.Element;
@@ -4112,7 +3718,6 @@ public abstract class OverlayModes
 			}
 		}
 
-		// Token: 0x060093C3 RID: 37827 RVA: 0x0039B1D0 File Offset: 0x003993D0
 		public override void Disable()
 		{
 			base.Disable();
@@ -4122,7 +3727,6 @@ public abstract class OverlayModes
 			SelectTool.Instance.ClearLayerMask();
 		}
 
-		// Token: 0x060093C4 RID: 37828 RVA: 0x0039B21C File Offset: 0x0039941C
 		public override Dictionary<string, ToolParameterMenu.ToggleState> CreateDefaultFilters()
 		{
 			return new Dictionary<string, ToolParameterMenu.ToggleState>
@@ -4174,7 +3778,6 @@ public abstract class OverlayModes
 			};
 		}
 
-		// Token: 0x060093C5 RID: 37829 RVA: 0x0039B2B4 File Offset: 0x003994B4
 		public override void OnFiltersChanged()
 		{
 			Game.Instance.tileOverlayFilters.Clear();
@@ -4228,22 +3831,16 @@ public abstract class OverlayModes
 			Game.Instance.ForceOverlayUpdate(false);
 		}
 
-		// Token: 0x04006FEB RID: 28651
 		public static readonly HashedString ID = "TileMode";
 
-		// Token: 0x04006FEC RID: 28652
 		private HashSet<PrimaryElement> layerTargets = new HashSet<PrimaryElement>();
 
-		// Token: 0x04006FED RID: 28653
 		private HashSet<Tag> targetIDs = new HashSet<Tag>();
 
-		// Token: 0x04006FEE RID: 28654
 		private int targetLayer;
 
-		// Token: 0x04006FEF RID: 28655
 		private int cameraLayerMask;
 
-		// Token: 0x04006FF0 RID: 28656
 		private OverlayModes.ColorHighlightCondition[] highlightConditions;
 	}
 }

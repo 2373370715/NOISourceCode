@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200034E RID: 846
 public class GasCargoBayConfig : IBuildingConfig
 {
-	// Token: 0x06000D5D RID: 3421 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetForbiddenDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06000D5E RID: 3422 RVA: 0x0017D234 File Offset: 0x0017B434
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "GasCargoBay";
@@ -43,7 +40,6 @@ public class GasCargoBayConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000D5F RID: 3423 RVA: 0x0017D1D0 File Offset: 0x0017B3D0
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -55,7 +51,6 @@ public class GasCargoBayConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x06000D60 RID: 3424 RVA: 0x0017D2F8 File Offset: 0x0017B4F8
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		CargoBay cargoBay = go.AddOrGet<CargoBay>();
@@ -69,6 +64,5 @@ public class GasCargoBayConfig : IBuildingConfig
 		BuildingTemplates.ExtendBuildingToRocketModule(go, "rocket_storage_gas_bg_kanim", false);
 	}
 
-	// Token: 0x040009DE RID: 2526
 	public const string ID = "GasCargoBay";
 }

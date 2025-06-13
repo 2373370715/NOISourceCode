@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000605 RID: 1541
 public class WoodGasGeneratorConfig : IBuildingConfig
 {
-	// Token: 0x06001B3B RID: 6971 RVA: 0x001B6938 File Offset: 0x001B4B38
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "WoodGasGenerator";
@@ -36,8 +34,6 @@ public class WoodGasGeneratorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001B3C RID: 6972 RVA: 0x001B6A0C File Offset: 0x001B4C0C
-	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
@@ -64,30 +60,12 @@ public class WoodGasGeneratorConfig : IBuildingConfig
 		go.AddOrGetDef<PoweredActiveController.Def>();
 	}
 
-	// Token: 0x0400116F RID: 4463
-	public const string ID = "WoodGasGenerator";
 
-	// Token: 0x04001170 RID: 4464
-	private const float BRANCHES_PER_GENERATOR = 8f;
 
-	// Token: 0x04001171 RID: 4465
-	public const float CONSUMPTION_RATE = 1.2f;
 
-	// Token: 0x04001172 RID: 4466
-	private const float WOOD_PER_REFILL = 360f;
 
-	// Token: 0x04001173 RID: 4467
-	private const SimHashes EXHAUST_ELEMENT_GAS = SimHashes.CarbonDioxide;
 
-	// Token: 0x04001174 RID: 4468
-	private const SimHashes EXHAUST_ELEMENT_GAS2 = SimHashes.Syngas;
 
-	// Token: 0x04001175 RID: 4469
-	public const float CO2_EXHAUST_RATE = 0.17f;
 
-	// Token: 0x04001176 RID: 4470
-	private const int WIDTH = 2;
 
-	// Token: 0x04001177 RID: 4471
-	private const int HEIGHT = 2;
 }

@@ -5,10 +5,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000F0 RID: 240
 public static class BaseMooConfig
 {
-	// Token: 0x060003CA RID: 970 RVA: 0x0015ACE0 File Offset: 0x00158EE0
 	public static GameObject BaseMoo(string id, string name, string desc, string traitId, string anim_file, bool is_baby, string symbol_override_prefix)
 	{
 		float mass = 50f;
@@ -66,7 +64,6 @@ public static class BaseMooConfig
 		return gameObject;
 	}
 
-	// Token: 0x060003CB RID: 971 RVA: 0x0015AFD0 File Offset: 0x001591D0
 	public static GameObject SetupDiet(GameObject prefab, Tag consumed_tag, Tag producedTag, float caloriesPerKg, float producedConversionRate, string diseaseId, float diseasePerKgProduced, float minPoopSizeInKg)
 	{
 		Diet diet = new Diet(new Diet.Info[]
@@ -83,14 +80,12 @@ public static class BaseMooConfig
 		return prefab;
 	}
 
-	// Token: 0x060003CC RID: 972 RVA: 0x0015B030 File Offset: 0x00159230
 	private static HashedString CustomIdleAnim(IdleStates.Instance smi, ref HashedString pre_anim)
 	{
 		CreatureCalorieMonitor.Instance smi2 = smi.GetSMI<CreatureCalorieMonitor.Instance>();
 		return (smi2 != null && smi2.stomach.IsReadyToPoop()) ? "idle_loop_full" : "idle_loop";
 	}
 
-	// Token: 0x060003CD RID: 973 RVA: 0x0015B068 File Offset: 0x00159268
 	public static void OnSpawn(GameObject inst)
 	{
 		Navigator component = inst.GetComponent<Navigator>();

@@ -4,15 +4,12 @@ using UnityEngine;
 
 namespace Database
 {
-	// Token: 0x020021E1 RID: 8673
 	public class TechItems : ResourceSet<TechItem>
 	{
-		// Token: 0x0600B8C9 RID: 47305 RVA: 0x0011B9EA File Offset: 0x00119BEA
 		public TechItems(ResourceSet parent) : base("TechItems", parent)
 		{
 		}
 
-		// Token: 0x0600B8CA RID: 47306 RVA: 0x00472710 File Offset: 0x00470910
 		public void Init()
 		{
 			this.automationOverlay = this.AddTechItem("AutomationOverlay", RESEARCH.OTHER_TECH_ITEMS.AUTOMATION_OVERLAY.NAME, RESEARCH.OTHER_TECH_ITEMS.AUTOMATION_OVERLAY.DESC, this.GetSpriteFnBuilder("overlay_logic"), null, null, false);
@@ -50,19 +47,16 @@ namespace Database
 			}, null, false);
 		}
 
-		// Token: 0x0600B8CB RID: 47307 RVA: 0x0011B9F8 File Offset: 0x00119BF8
 		private Func<string, bool, Sprite> GetSpriteFnBuilder(string spriteName)
 		{
 			return (string anim, bool centered) => Assets.GetSprite(spriteName);
 		}
 
-		// Token: 0x0600B8CC RID: 47308 RVA: 0x0011BA11 File Offset: 0x00119C11
 		private Func<string, bool, Sprite> GetPrefabSpriteFnBuilder(Tag prefabTag)
 		{
 			return (string anim, bool centered) => Def.GetUISprite(prefabTag, "ui", false).first;
 		}
 
-		// Token: 0x0600B8CD RID: 47309 RVA: 0x00472B30 File Offset: 0x00470D30
 		[Obsolete("Used AddTechItem with requiredDlcIds and forbiddenDlcIds instead.")]
 		public TechItem AddTechItem(string id, string name, string description, Func<string, bool, Sprite> getUISprite, string[] DLCIds, bool poi_unlock = false)
 		{
@@ -72,7 +66,6 @@ namespace Database
 			return this.AddTechItem(id, name, description, getUISprite, requiredDlcIds, forbiddenDlcIds, poi_unlock);
 		}
 
-		// Token: 0x0600B8CE RID: 47310 RVA: 0x00472B58 File Offset: 0x00470D58
 		public TechItem AddTechItem(string id, string name, string description, Func<string, bool, Sprite> getUISprite, string[] requiredDlcIds = null, string[] forbiddenDlcIds = null, bool poi_unlock = false)
 		{
 			if (!DlcManager.IsCorrectDlcSubscribed(requiredDlcIds, forbiddenDlcIds))
@@ -100,7 +93,6 @@ namespace Database
 			return techItem;
 		}
 
-		// Token: 0x0600B8CF RID: 47311 RVA: 0x00472BD8 File Offset: 0x00470DD8
 		public bool IsTechItemComplete(string id)
 		{
 			bool result = true;
@@ -115,7 +107,6 @@ namespace Database
 			return result;
 		}
 
-		// Token: 0x0600B8D0 RID: 47312 RVA: 0x0011BA2A File Offset: 0x00119C2A
 		public Tech GetTechFromItemID(string itemId)
 		{
 			Techs techs = Db.Get().Techs;
@@ -126,7 +117,6 @@ namespace Database
 			return techs.TryGetTechForTechItem(itemId);
 		}
 
-		// Token: 0x0600B8D1 RID: 47313 RVA: 0x00472C40 File Offset: 0x00470E40
 		public int GetTechTierForItem(string itemId)
 		{
 			Tech techFromItemID = this.GetTechFromItemID(itemId);
@@ -137,88 +127,60 @@ namespace Database
 			return 0;
 		}
 
-		// Token: 0x04009704 RID: 38660
 		public const string AUTOMATION_OVERLAY_ID = "AutomationOverlay";
 
-		// Token: 0x04009705 RID: 38661
 		public TechItem automationOverlay;
 
-		// Token: 0x04009706 RID: 38662
 		public const string SUITS_OVERLAY_ID = "SuitsOverlay";
 
-		// Token: 0x04009707 RID: 38663
 		public TechItem suitsOverlay;
 
-		// Token: 0x04009708 RID: 38664
 		public const string JET_SUIT_ID = "JetSuit";
 
-		// Token: 0x04009709 RID: 38665
 		public TechItem jetSuit;
 
-		// Token: 0x0400970A RID: 38666
 		public const string ATMO_SUIT_ID = "AtmoSuit";
 
-		// Token: 0x0400970B RID: 38667
 		public TechItem atmoSuit;
 
-		// Token: 0x0400970C RID: 38668
 		public const string OXYGEN_MASK_ID = "OxygenMask";
 
-		// Token: 0x0400970D RID: 38669
 		public TechItem oxygenMask;
 
-		// Token: 0x0400970E RID: 38670
 		public const string LEAD_SUIT_ID = "LeadSuit";
 
-		// Token: 0x0400970F RID: 38671
 		public TechItem leadSuit;
 
-		// Token: 0x04009710 RID: 38672
 		public TechItem disposableElectrobankMetalOre;
 
-		// Token: 0x04009711 RID: 38673
 		public TechItem lubricationStick;
 
-		// Token: 0x04009712 RID: 38674
 		public TechItem disposableElectrobankUraniumOre;
 
-		// Token: 0x04009713 RID: 38675
 		public TechItem electrobank;
 
-		// Token: 0x04009714 RID: 38676
 		public TechItem fetchDrone;
 
-		// Token: 0x04009715 RID: 38677
 		public TechItem selfChargingElectrobank;
 
-		// Token: 0x04009716 RID: 38678
 		public const string BETA_RESEARCH_POINT_ID = "BetaResearchPoint";
 
-		// Token: 0x04009717 RID: 38679
 		public TechItem betaResearchPoint;
 
-		// Token: 0x04009718 RID: 38680
 		public const string GAMMA_RESEARCH_POINT_ID = "GammaResearchPoint";
 
-		// Token: 0x04009719 RID: 38681
 		public TechItem gammaResearchPoint;
 
-		// Token: 0x0400971A RID: 38682
 		public const string DELTA_RESEARCH_POINT_ID = "DeltaResearchPoint";
 
-		// Token: 0x0400971B RID: 38683
 		public TechItem deltaResearchPoint;
 
-		// Token: 0x0400971C RID: 38684
 		public const string ORBITAL_RESEARCH_POINT_ID = "OrbitalResearchPoint";
 
-		// Token: 0x0400971D RID: 38685
 		public TechItem orbitalResearchPoint;
 
-		// Token: 0x0400971E RID: 38686
 		public const string CONVEYOR_OVERLAY_ID = "ConveyorOverlay";
 
-		// Token: 0x0400971F RID: 38687
 		public TechItem conveyorOverlay;
 	}
 }

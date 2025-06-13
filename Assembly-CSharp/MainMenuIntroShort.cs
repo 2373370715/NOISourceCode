@@ -1,11 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02001DE3 RID: 7651
 [AddComponentMenu("KMonoBehaviour/scripts/MainMenuIntroShort")]
 public class MainMenuIntroShort : KMonoBehaviour
 {
-	// Token: 0x06009FFA RID: 40954 RVA: 0x003E18CC File Offset: 0x003DFACC
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -24,7 +22,6 @@ public class MainMenuIntroShort : KMonoBehaviour
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x04007DA7 RID: 32167
 	[SerializeField]
 	private bool alwaysPlay;
 }

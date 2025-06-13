@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x020017F8 RID: 6136
 [AddComponentMenu("KMonoBehaviour/scripts/ResearchPointObject")]
 public class ResearchPointObject : KMonoBehaviour, IGameObjectEffectDescriptor
 {
-	// Token: 0x06007E39 RID: 32313 RVA: 0x00336520 File Offset: 0x00334720
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -17,7 +15,6 @@ public class ResearchPointObject : KMonoBehaviour, IGameObjectEffectDescriptor
 		Util.KDestroyGameObject(base.gameObject);
 	}
 
-	// Token: 0x06007E3A RID: 32314 RVA: 0x0033658C File Offset: 0x0033478C
 	public List<Descriptor> GetDescriptors(GameObject go)
 	{
 		List<Descriptor> list = new List<Descriptor>();
@@ -26,6 +23,5 @@ public class ResearchPointObject : KMonoBehaviour, IGameObjectEffectDescriptor
 		return list;
 	}
 
-	// Token: 0x04005FED RID: 24557
 	public string TypeID = "";
 }

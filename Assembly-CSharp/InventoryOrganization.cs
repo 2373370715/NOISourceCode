@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using Database;
 using UnityEngine;
 
-// Token: 0x02001D61 RID: 7521
 public static class InventoryOrganization
 {
-	// Token: 0x06009D0F RID: 40207 RVA: 0x003D4320 File Offset: 0x003D2520
 	public static string GetPermitSubcategory(PermitResource permit)
 	{
 		foreach (KeyValuePair<string, HashSet<string>> keyValuePair in InventoryOrganization.subcategoryIdToPermitIdsMap)
@@ -23,19 +21,16 @@ public static class InventoryOrganization
 		return "UNCATEGORIZED";
 	}
 
-	// Token: 0x06009D10 RID: 40208 RVA: 0x0010AA92 File Offset: 0x00108C92
 	public static string GetCategoryName(string categoryId)
 	{
 		return Strings.Get("STRINGS.UI.KLEI_INVENTORY_SCREEN.TOP_LEVEL_CATEGORIES." + categoryId.ToUpper());
 	}
 
-	// Token: 0x06009D11 RID: 40209 RVA: 0x0010AAAE File Offset: 0x00108CAE
 	public static string GetSubcategoryName(string subcategoryId)
 	{
 		return Strings.Get("STRINGS.UI.KLEI_INVENTORY_SCREEN.SUBCATEGORIES." + subcategoryId.ToUpper());
 	}
 
-	// Token: 0x06009D12 RID: 40210 RVA: 0x003D4394 File Offset: 0x003D2594
 	public static void Initialize()
 	{
 		if (InventoryOrganization.initialized)
@@ -66,14 +61,12 @@ public static class InventoryOrganization
 		}
 	}
 
-	// Token: 0x06009D13 RID: 40211 RVA: 0x0010AACA File Offset: 0x00108CCA
 	private static void AddTopLevelCategory(string categoryID, Sprite icon, string[] subcategoryIDs)
 	{
 		InventoryOrganization.categoryIdToSubcategoryIdsMap.Add(categoryID, new List<string>(subcategoryIDs));
 		InventoryOrganization.categoryIdToIconMap.Add(categoryID, icon);
 	}
 
-	// Token: 0x06009D14 RID: 40212 RVA: 0x003D446C File Offset: 0x003D266C
 	private static void AddSubcategory(string subcategoryID, Sprite icon, int sortkey, string[] permitIDs)
 	{
 		if (InventoryOrganization.subcategoryIdToPermitIdsMap.ContainsKey(subcategoryID))
@@ -88,7 +81,6 @@ public static class InventoryOrganization
 		}
 	}
 
-	// Token: 0x06009D15 RID: 40213 RVA: 0x003D44CC File Offset: 0x003D26CC
 	private static void GenerateTopLevelCategories()
 	{
 		InventoryOrganization.AddTopLevelCategory("CLOTHING_TOPS", Assets.GetSprite("icon_inventory_tops"), new string[]
@@ -173,7 +165,6 @@ public static class InventoryOrganization
 		});
 	}
 
-	// Token: 0x06009D16 RID: 40214 RVA: 0x003D479C File Offset: 0x003D299C
 	private static void GenerateSubcategories()
 	{
 		InventoryOrganization.AddSubcategory("BUILDING_CEILING_LIGHT", Def.GetUISprite("CeilingLight", "ui", false).first, 100, new string[]
@@ -1183,19 +1174,14 @@ public static class InventoryOrganization
 		});
 	}
 
-	// Token: 0x04007B08 RID: 31496
 	public static Dictionary<string, List<string>> categoryIdToSubcategoryIdsMap = new Dictionary<string, List<string>>();
 
-	// Token: 0x04007B09 RID: 31497
 	public static Dictionary<string, Sprite> categoryIdToIconMap = new Dictionary<string, Sprite>();
 
-	// Token: 0x04007B0A RID: 31498
 	public static Dictionary<string, bool> categoryIdToIsEmptyMap = new Dictionary<string, bool>();
 
-	// Token: 0x04007B0B RID: 31499
 	public static bool initialized = false;
 
-	// Token: 0x04007B0C RID: 31500
 	public static Dictionary<string, HashSet<string>> subcategoryIdToPermitIdsMap = new Dictionary<string, HashSet<string>>
 	{
 		{
@@ -1208,7 +1194,6 @@ public static class InventoryOrganization
 		}
 	};
 
-	// Token: 0x04007B0D RID: 31501
 	public static Dictionary<string, InventoryOrganization.SubcategoryPresentationData> subcategoryIdToPresentationDataMap = new Dictionary<string, InventoryOrganization.SubcategoryPresentationData>
 	{
 		{
@@ -1221,10 +1206,8 @@ public static class InventoryOrganization
 		}
 	};
 
-	// Token: 0x02001D62 RID: 7522
 	public class SubcategoryPresentationData
 	{
-		// Token: 0x06009D18 RID: 40216 RVA: 0x0010AAE9 File Offset: 0x00108CE9
 		public SubcategoryPresentationData(string subcategoryID, Sprite icon, int sortKey)
 		{
 			this.subcategoryID = subcategoryID;
@@ -1232,234 +1215,158 @@ public static class InventoryOrganization
 			this.icon = icon;
 		}
 
-		// Token: 0x04007B0E RID: 31502
 		public string subcategoryID;
 
-		// Token: 0x04007B0F RID: 31503
 		public int sortKey;
 
-		// Token: 0x04007B10 RID: 31504
 		public Sprite icon;
 	}
 
-	// Token: 0x02001D63 RID: 7523
 	public static class InventoryPermitCategories
 	{
-		// Token: 0x04007B11 RID: 31505
 		public const string CLOTHING_TOPS = "CLOTHING_TOPS";
 
-		// Token: 0x04007B12 RID: 31506
 		public const string CLOTHING_BOTTOMS = "CLOTHING_BOTTOMS";
 
-		// Token: 0x04007B13 RID: 31507
 		public const string CLOTHING_GLOVES = "CLOTHING_GLOVES";
 
-		// Token: 0x04007B14 RID: 31508
 		public const string CLOTHING_SHOES = "CLOTHING_SHOES";
 
-		// Token: 0x04007B15 RID: 31509
 		public const string ATMOSUITS = "ATMOSUITS";
 
-		// Token: 0x04007B16 RID: 31510
 		public const string BUILDINGS = "BUILDINGS";
 
-		// Token: 0x04007B17 RID: 31511
 		public const string WALLPAPERS = "WALLPAPERS";
 
-		// Token: 0x04007B18 RID: 31512
 		public const string ARTWORK = "ARTWORK";
 
-		// Token: 0x04007B19 RID: 31513
 		public const string JOY_RESPONSES = "JOY_RESPONSES";
 
-		// Token: 0x04007B1A RID: 31514
 		public const string ATMO_SUIT_HELMET = "ATMO_SUIT_HELMET";
 
-		// Token: 0x04007B1B RID: 31515
 		public const string ATMO_SUIT_BODY = "ATMO_SUIT_BODY";
 
-		// Token: 0x04007B1C RID: 31516
 		public const string ATMO_SUIT_GLOVES = "ATMO_SUIT_GLOVES";
 
-		// Token: 0x04007B1D RID: 31517
 		public const string ATMO_SUIT_BELT = "ATMO_SUIT_BELT";
 
-		// Token: 0x04007B1E RID: 31518
 		public const string ATMO_SUIT_SHOES = "ATMO_SUIT_SHOES";
 	}
 
-	// Token: 0x02001D64 RID: 7524
 	public static class PermitSubcategories
 	{
-		// Token: 0x04007B1F RID: 31519
 		public const string YAML = "YAML";
 
-		// Token: 0x04007B20 RID: 31520
 		public const string UNCATEGORIZED = "UNCATEGORIZED";
 
-		// Token: 0x04007B21 RID: 31521
 		public const string JOY_BALLOON = "JOY_BALLOON";
 
-		// Token: 0x04007B22 RID: 31522
 		public const string JOY_STICKER = "JOY_STICKER";
 
-		// Token: 0x04007B23 RID: 31523
 		public const string PRIMO_GARB = "PRIMO_GARB";
 
-		// Token: 0x04007B24 RID: 31524
 		public const string CLOTHING_TOPS_BASIC = "CLOTHING_TOPS_BASIC";
 
-		// Token: 0x04007B25 RID: 31525
 		public const string CLOTHING_TOPS_TSHIRT = "CLOTHING_TOPS_TSHIRT";
 
-		// Token: 0x04007B26 RID: 31526
 		public const string CLOTHING_TOPS_FANCY = "CLOTHING_TOPS_FANCY";
 
-		// Token: 0x04007B27 RID: 31527
 		public const string CLOTHING_TOPS_JACKET = "CLOTHING_TOPS_JACKET";
 
-		// Token: 0x04007B28 RID: 31528
 		public const string CLOTHING_TOPS_UNDERSHIRT = "CLOTHING_TOPS_UNDERSHIRT";
 
-		// Token: 0x04007B29 RID: 31529
 		public const string CLOTHING_TOPS_DRESS = "CLOTHING_TOPS_DRESS";
 
-		// Token: 0x04007B2A RID: 31530
 		public const string CLOTHING_BOTTOMS_BASIC = "CLOTHING_BOTTOMS_BASIC";
 
-		// Token: 0x04007B2B RID: 31531
 		public const string CLOTHING_BOTTOMS_FANCY = "CLOTHING_BOTTOMS_FANCY";
 
-		// Token: 0x04007B2C RID: 31532
 		public const string CLOTHING_BOTTOMS_SHORTS = "CLOTHING_BOTTOMS_SHORTS";
 
-		// Token: 0x04007B2D RID: 31533
 		public const string CLOTHING_BOTTOMS_SKIRTS = "CLOTHING_BOTTOMS_SKIRTS";
 
-		// Token: 0x04007B2E RID: 31534
 		public const string CLOTHING_BOTTOMS_UNDERWEAR = "CLOTHING_BOTTOMS_UNDERWEAR";
 
-		// Token: 0x04007B2F RID: 31535
 		public const string CLOTHING_GLOVES_BASIC = "CLOTHING_GLOVES_BASIC";
 
-		// Token: 0x04007B30 RID: 31536
 		public const string CLOTHING_GLOVES_PRINTS = "CLOTHING_GLOVES_PRINTS";
 
-		// Token: 0x04007B31 RID: 31537
 		public const string CLOTHING_GLOVES_SHORT = "CLOTHING_GLOVES_SHORT";
 
-		// Token: 0x04007B32 RID: 31538
 		public const string CLOTHING_GLOVES_FORMAL = "CLOTHING_GLOVES_FORMAL";
 
-		// Token: 0x04007B33 RID: 31539
 		public const string CLOTHING_SHOES_BASIC = "CLOTHING_SHOES_BASIC";
 
-		// Token: 0x04007B34 RID: 31540
 		public const string CLOTHING_SHOES_FANCY = "CLOTHING_SHOES_FANCY";
 
-		// Token: 0x04007B35 RID: 31541
 		public const string CLOTHING_SHOE_SOCKS = "CLOTHING_SHOE_SOCKS";
 
-		// Token: 0x04007B36 RID: 31542
 		public const string ATMOSUIT_HELMETS_BASIC = "ATMOSUIT_HELMETS_BASIC";
 
-		// Token: 0x04007B37 RID: 31543
 		public const string ATMOSUIT_HELMETS_FANCY = "ATMOSUIT_HELMETS_FANCY";
 
-		// Token: 0x04007B38 RID: 31544
 		public const string ATMOSUIT_BODIES_BASIC = "ATMOSUIT_BODIES_BASIC";
 
-		// Token: 0x04007B39 RID: 31545
 		public const string ATMOSUIT_BODIES_FANCY = "ATMOSUIT_BODIES_FANCY";
 
-		// Token: 0x04007B3A RID: 31546
 		public const string ATMOSUIT_GLOVES_BASIC = "ATMOSUIT_GLOVES_BASIC";
 
-		// Token: 0x04007B3B RID: 31547
 		public const string ATMOSUIT_GLOVES_FANCY = "ATMOSUIT_GLOVES_FANCY";
 
-		// Token: 0x04007B3C RID: 31548
 		public const string ATMOSUIT_BELTS_BASIC = "ATMOSUIT_BELTS_BASIC";
 
-		// Token: 0x04007B3D RID: 31549
 		public const string ATMOSUIT_BELTS_FANCY = "ATMOSUIT_BELTS_FANCY";
 
-		// Token: 0x04007B3E RID: 31550
 		public const string ATMOSUIT_SHOES_BASIC = "ATMOSUIT_SHOES_BASIC";
 
-		// Token: 0x04007B3F RID: 31551
 		public const string ATMOSUIT_SHOES_FANCY = "ATMOSUIT_SHOES_FANCY";
 
-		// Token: 0x04007B40 RID: 31552
 		public const string BUILDING_WALLPAPER_BASIC = "BUILDING_WALLPAPER_BASIC";
 
-		// Token: 0x04007B41 RID: 31553
 		public const string BUILDING_WALLPAPER_FANCY = "BUILDING_WALLPAPER_FANCY";
 
-		// Token: 0x04007B42 RID: 31554
 		public const string BUILDING_WALLPAPER_PRINTS = "BUILDING_WALLPAPER_PRINTS";
 
-		// Token: 0x04007B43 RID: 31555
 		public const string BUILDINGS_STORAGE = "BUILDINGS_STORAGE";
 
-		// Token: 0x04007B44 RID: 31556
 		public const string BUILDINGS_INDUSTRIAL = "BUILDINGS_INDUSTRIAL";
 
-		// Token: 0x04007B45 RID: 31557
 		public const string BUILDINGS_FOOD = "BUILDINGS_FOOD";
 
-		// Token: 0x04007B46 RID: 31558
 		public const string BUILDINGS_RANCHING = "BUILDINGS_RANCHING";
 
-		// Token: 0x04007B47 RID: 31559
 		public const string BUILDINGS_WASHROOM = "BUILDINGS_WASHROOM";
 
-		// Token: 0x04007B48 RID: 31560
 		public const string BUILDINGS_RECREATION = "BUILDINGS_RECREATION";
 
-		// Token: 0x04007B49 RID: 31561
 		public const string BUILDINGS_PRINTING_POD = "BUILDINGS_PRINTING_POD";
 
-		// Token: 0x04007B4A RID: 31562
 		public const string BUILDING_CANVAS_STANDARD = "BUILDING_CANVAS_STANDARD";
 
-		// Token: 0x04007B4B RID: 31563
 		public const string BUILDING_CANVAS_PORTRAIT = "BUILDING_CANVAS_PORTRAIT";
 
-		// Token: 0x04007B4C RID: 31564
 		public const string BUILDING_CANVAS_LANDSCAPE = "BUILDING_CANVAS_LANDSCAPE";
 
-		// Token: 0x04007B4D RID: 31565
 		public const string BUILDING_SCULPTURE = "BUILDING_SCULPTURE";
 
-		// Token: 0x04007B4E RID: 31566
 		public const string MONUMENT_BOTTOM = "MONUMENT_BOTTOM";
 
-		// Token: 0x04007B4F RID: 31567
 		public const string MONUMENT_MIDDLE = "MONUMENT_MIDDLE";
 
-		// Token: 0x04007B50 RID: 31568
 		public const string MONUMENT_TOP = "MONUMENT_TOP";
 
-		// Token: 0x04007B51 RID: 31569
 		public const string BUILDINGS_FLOWER_VASE = "BUILDINGS_FLOWER_VASE";
 
-		// Token: 0x04007B52 RID: 31570
 		public const string BUILDINGS_BED_COT = "BUILDINGS_BED_COT";
 
-		// Token: 0x04007B53 RID: 31571
 		public const string BUILDINGS_BED_LUXURY = "BUILDINGS_BED_LUXURY";
 
-		// Token: 0x04007B54 RID: 31572
 		public const string BUILDING_CEILING_LIGHT = "BUILDING_CEILING_LIGHT";
 
-		// Token: 0x04007B55 RID: 31573
 		public const string BUILDINGS_RESEARCH = "BUILDINGS_RESEARCH";
 
-		// Token: 0x04007B56 RID: 31574
 		public const string BUILDINGS_AUTOMATION = "BUILDINGS_AUTOMATION";
 
-		// Token: 0x04007B57 RID: 31575
 		public const string BUILDINGS_ELECTRIC_WIRES = "BUILDINGS_ELECTIC_WIRES";
 	}
 }

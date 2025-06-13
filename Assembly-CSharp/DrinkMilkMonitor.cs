@@ -4,10 +4,8 @@ using System.Runtime.CompilerServices;
 using Klei.AI;
 using UnityEngine;
 
-// Token: 0x02000A2E RID: 2606
 public class DrinkMilkMonitor : GameStateMachine<DrinkMilkMonitor, DrinkMilkMonitor.Instance, IStateMachineTarget, DrinkMilkMonitor.Def>
 {
-	// Token: 0x06002F41 RID: 12097 RVA: 0x002054E0 File Offset: 0x002036E0
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.lookingToDrinkMilk;
@@ -47,7 +45,6 @@ public class DrinkMilkMonitor : GameStateMachine<DrinkMilkMonitor, DrinkMilkMoni
 		}, UpdateRate.SIM_1000ms, false);
 	}
 
-	// Token: 0x06002F42 RID: 12098 RVA: 0x00205650 File Offset: 0x00203850
 	private static void FindMilkFeederTarget(DrinkMilkMonitor.Instance smi)
 	{
 		DrinkMilkMonitor.<>c__DisplayClass8_0 CS$<>8__locals1;
@@ -100,7 +97,6 @@ public class DrinkMilkMonitor : GameStateMachine<DrinkMilkMonitor, DrinkMilkMoni
 		}
 	}
 
-	// Token: 0x06002F4A RID: 12106 RVA: 0x0020588C File Offset: 0x00203A8C
 	[CompilerGenerated]
 	internal static bool <FindMilkFeederTarget>g__ConsiderCell|8_0(int cell, ref DrinkMilkMonitor.<>c__DisplayClass8_0 A_1, ref DrinkMilkMonitor.<>c__DisplayClass8_1 A_2, ref DrinkMilkMonitor.<>c__DisplayClass8_2 A_3)
 	{
@@ -122,40 +118,29 @@ public class DrinkMilkMonitor : GameStateMachine<DrinkMilkMonitor, DrinkMilkMoni
 		return false;
 	}
 
-	// Token: 0x0400206A RID: 8298
 	public GameStateMachine<DrinkMilkMonitor, DrinkMilkMonitor.Instance, IStateMachineTarget, DrinkMilkMonitor.Def>.State lookingToDrinkMilk;
 
-	// Token: 0x0400206B RID: 8299
 	public GameStateMachine<DrinkMilkMonitor, DrinkMilkMonitor.Instance, IStateMachineTarget, DrinkMilkMonitor.Def>.State applyEffect;
 
-	// Token: 0x0400206C RID: 8300
 	public GameStateMachine<DrinkMilkMonitor, DrinkMilkMonitor.Instance, IStateMachineTarget, DrinkMilkMonitor.Def>.State satisfied;
 
-	// Token: 0x0400206D RID: 8301
 	private StateMachine<DrinkMilkMonitor, DrinkMilkMonitor.Instance, IStateMachineTarget, DrinkMilkMonitor.Def>.Signal didFinishDrinkingMilk;
 
-	// Token: 0x0400206E RID: 8302
 	private StateMachine<DrinkMilkMonitor, DrinkMilkMonitor.Instance, IStateMachineTarget, DrinkMilkMonitor.Def>.FloatParameter remainingSecondsForEffect;
 
-	// Token: 0x02000A2F RID: 2607
 	public class Def : StateMachine.BaseDef
 	{
-		// Token: 0x0400206F RID: 8303
 		public bool consumesMilk = true;
 
-		// Token: 0x04002070 RID: 8304
 		public DrinkMilkStates.Def.DrinkCellOffsetGetFn drinkCellOffsetGetFn;
 	}
 
-	// Token: 0x02000A30 RID: 2608
 	public new class Instance : GameStateMachine<DrinkMilkMonitor, DrinkMilkMonitor.Instance, IStateMachineTarget, DrinkMilkMonitor.Def>.GameInstance
 	{
-		// Token: 0x06002F4C RID: 12108 RVA: 0x000C324E File Offset: 0x000C144E
 		public Instance(IStateMachineTarget master, DrinkMilkMonitor.Def def) : base(master, def)
 		{
 		}
 
-		// Token: 0x06002F4D RID: 12109 RVA: 0x000C3258 File Offset: 0x000C1458
 		public void NotifyFinishedDrinkingMilkFrom(MilkFeeder.Instance milkFeeder)
 		{
 			if (milkFeeder != null && base.def.consumesMilk)
@@ -165,23 +150,18 @@ public class DrinkMilkMonitor : GameStateMachine<DrinkMilkMonitor, DrinkMilkMoni
 			base.sm.didFinishDrinkingMilk.Trigger(base.smi);
 		}
 
-		// Token: 0x06002F4E RID: 12110 RVA: 0x000C3286 File Offset: 0x000C1486
 		public int GetDrinkCellOf(MilkFeeder.Instance milkFeeder, bool isTwoByTwoCritterCramped)
 		{
 			return Grid.OffsetCell(Grid.PosToCell(milkFeeder), base.def.drinkCellOffsetGetFn(milkFeeder, this, isTwoByTwoCritterCramped));
 		}
 
-		// Token: 0x04002071 RID: 8305
 		public MilkFeeder.Instance targetMilkFeeder;
 
-		// Token: 0x04002072 RID: 8306
 		public bool doesTargetMilkFeederHaveSpaceForCritter;
 
-		// Token: 0x04002073 RID: 8307
 		[MyCmpReq]
 		public Navigator navigator;
 
-		// Token: 0x04002074 RID: 8308
 		[MyCmpGet]
 		public DrowningMonitor drowningMonitor;
 	}

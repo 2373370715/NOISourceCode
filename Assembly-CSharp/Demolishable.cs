@@ -4,12 +4,9 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000A5F RID: 2655
 [RequireComponent(typeof(Prioritizable))]
 public class Demolishable : Workable
 {
-	// Token: 0x170001D9 RID: 473
-	// (get) Token: 0x06002FFB RID: 12283 RVA: 0x000C39E5 File Offset: 0x000C1BE5
 	public bool HasBeenDestroyed
 	{
 		get
@@ -18,8 +15,6 @@ public class Demolishable : Workable
 		}
 	}
 
-	// Token: 0x170001DA RID: 474
-	// (get) Token: 0x06002FFC RID: 12284 RVA: 0x00207B28 File Offset: 0x00205D28
 	private CellOffset[] placementOffsets
 	{
 		get
@@ -39,7 +34,6 @@ public class Demolishable : Workable
 		}
 	}
 
-	// Token: 0x06002FFD RID: 12285 RVA: 0x00207B78 File Offset: 0x00205D78
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -65,7 +59,6 @@ public class Demolishable : Workable
 		base.SetWorkTime(30f);
 	}
 
-	// Token: 0x06002FFE RID: 12286 RVA: 0x00207C88 File Offset: 0x00205E88
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -89,20 +82,17 @@ public class Demolishable : Workable
 		}
 	}
 
-	// Token: 0x06002FFF RID: 12287 RVA: 0x000C39ED File Offset: 0x000C1BED
 	protected override void OnStartWork(WorkerBase worker)
 	{
 		this.progressBar.barColor = ProgressBarsConfig.Instance.GetBarColor("DeconstructBar");
 		base.GetComponent<KSelectable>().RemoveStatusItem(Db.Get().BuildingStatusItems.PendingDemolition, false);
 	}
 
-	// Token: 0x06003000 RID: 12288 RVA: 0x000C3A25 File Offset: 0x000C1C25
 	protected override void OnCompleteWork(WorkerBase worker)
 	{
 		this.TriggerDestroy();
 	}
 
-	// Token: 0x06003001 RID: 12289 RVA: 0x000C3A2D File Offset: 0x000C1C2D
 	private void TriggerDestroy()
 	{
 		if (this == null || this.destroyed)
@@ -114,7 +104,6 @@ public class Demolishable : Workable
 		base.gameObject.DeleteObject();
 	}
 
-	// Token: 0x06003002 RID: 12290 RVA: 0x00207D3C File Offset: 0x00205F3C
 	private void QueueDemolition()
 	{
 		if (DebugHandler.InstantBuildMode)
@@ -134,7 +123,6 @@ public class Demolishable : Workable
 		this.UpdateStatusItem(null);
 	}
 
-	// Token: 0x06003003 RID: 12291 RVA: 0x00207DFC File Offset: 0x00205FFC
 	private void OnRefreshUserMenu(object data)
 	{
 		if (!this.allowDemolition)
@@ -145,7 +133,6 @@ public class Demolishable : Workable
 		Game.Instance.userMenu.AddButton(base.gameObject, button, 0f);
 	}
 
-	// Token: 0x06003004 RID: 12292 RVA: 0x00207EA0 File Offset: 0x002060A0
 	public void CancelDemolition()
 	{
 		if (this.chore != null)
@@ -160,13 +147,11 @@ public class Demolishable : Workable
 		this.UpdateStatusItem(null);
 	}
 
-	// Token: 0x06003005 RID: 12293 RVA: 0x000C3A5A File Offset: 0x000C1C5A
 	private void OnCancel(object data)
 	{
 		this.CancelDemolition();
 	}
 
-	// Token: 0x06003006 RID: 12294 RVA: 0x000C3A62 File Offset: 0x000C1C62
 	private void OnDemolish(object data)
 	{
 		if (this.allowDemolition || DebugHandler.InstantBuildMode)
@@ -175,7 +160,6 @@ public class Demolishable : Workable
 		}
 	}
 
-	// Token: 0x06003007 RID: 12295 RVA: 0x000C3A79 File Offset: 0x000C1C79
 	private void OnDemolish()
 	{
 		if (this.chore == null)
@@ -186,39 +170,31 @@ public class Demolishable : Workable
 		this.CancelDemolition();
 	}
 
-	// Token: 0x06003008 RID: 12296 RVA: 0x000C3A90 File Offset: 0x000C1C90
 	protected override void UpdateStatusItem(object data = null)
 	{
 		this.shouldShowSkillPerkStatusItem = this.isMarkedForDemolition;
 		base.UpdateStatusItem(data);
 	}
 
-	// Token: 0x04002105 RID: 8453
 	public Chore chore;
 
-	// Token: 0x04002106 RID: 8454
 	public bool allowDemolition = true;
 
-	// Token: 0x04002107 RID: 8455
 	[Serialize]
 	private bool isMarkedForDemolition;
 
-	// Token: 0x04002108 RID: 8456
 	private bool destroyed;
 
-	// Token: 0x04002109 RID: 8457
 	private static readonly EventSystem.IntraObjectHandler<Demolishable> OnRefreshUserMenuDelegate = new EventSystem.IntraObjectHandler<Demolishable>(delegate(Demolishable component, object data)
 	{
 		component.OnRefreshUserMenu(data);
 	});
 
-	// Token: 0x0400210A RID: 8458
 	private static readonly EventSystem.IntraObjectHandler<Demolishable> OnCancelDelegate = new EventSystem.IntraObjectHandler<Demolishable>(delegate(Demolishable component, object data)
 	{
 		component.OnCancel(data);
 	});
 
-	// Token: 0x0400210B RID: 8459
 	private static readonly EventSystem.IntraObjectHandler<Demolishable> OnDeconstructDelegate = new EventSystem.IntraObjectHandler<Demolishable>(delegate(Demolishable component, object data)
 	{
 		component.OnDemolish(data);

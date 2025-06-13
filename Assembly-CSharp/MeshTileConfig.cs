@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200041A RID: 1050
 public class MeshTileConfig : IBuildingConfig
 {
-	// Token: 0x06001171 RID: 4465 RVA: 0x0018EA98 File Offset: 0x0018CC98
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "MeshTile";
@@ -42,7 +40,6 @@ public class MeshTileConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001172 RID: 4466 RVA: 0x0018EBAC File Offset: 0x0018CDAC
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
@@ -53,7 +50,6 @@ public class MeshTileConfig : IBuildingConfig
 		go.AddOrGet<BuildingHP>().destroyOnDamaged = true;
 	}
 
-	// Token: 0x06001173 RID: 4467 RVA: 0x000B21A3 File Offset: 0x000B03A3
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		GeneratedBuildings.RemoveLoopingSounds(go);
@@ -62,16 +58,13 @@ public class MeshTileConfig : IBuildingConfig
 		go.AddComponent<ZoneTile>();
 	}
 
-	// Token: 0x06001174 RID: 4468 RVA: 0x000AA509 File Offset: 0x000A8709
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		base.DoPostConfigureUnderConstruction(go);
 		go.AddOrGet<KAnimGridTileVisualizer>();
 	}
 
-	// Token: 0x04000C2C RID: 3116
 	public static readonly int BlockTileConnectorID = Hash.SDBMLower("tiles_mesh_tops");
 
-	// Token: 0x04000C2D RID: 3117
 	public const string ID = "MeshTile";
 }

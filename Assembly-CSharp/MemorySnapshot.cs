@@ -6,10 +6,8 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
-// Token: 0x02001511 RID: 5393
 public class MemorySnapshot
 {
-	// Token: 0x0600702E RID: 28718 RVA: 0x00303754 File Offset: 0x00301954
 	public static MemorySnapshot.TypeData GetTypeData(Type type, Dictionary<int, MemorySnapshot.TypeData> types)
 	{
 		int hashCode = type.GetHashCode();
@@ -22,7 +20,6 @@ public class MemorySnapshot
 		return typeData;
 	}
 
-	// Token: 0x0600702F RID: 28719 RVA: 0x00303788 File Offset: 0x00301988
 	public static void IncrementFieldCount(Dictionary<int, MemorySnapshot.FieldCount> field_counts, string name)
 	{
 		int hashCode = name.GetHashCode();
@@ -36,7 +33,6 @@ public class MemorySnapshot
 		fieldCount.count++;
 	}
 
-	// Token: 0x06007030 RID: 28720 RVA: 0x003037CC File Offset: 0x003019CC
 	private void CountReference(MemorySnapshot.ReferenceArgs refArgs)
 	{
 		if (MemorySnapshot.ShouldExclude(refArgs.reference_type))
@@ -146,7 +142,6 @@ public class MemorySnapshot
 		}
 	}
 
-	// Token: 0x06007031 RID: 28721 RVA: 0x00303CD4 File Offset: 0x00301ED4
 	private void CountField(MemorySnapshot.FieldArgs fieldArgs)
 	{
 		if (MemorySnapshot.ShouldExclude(fieldArgs.field.FieldType))
@@ -169,13 +164,11 @@ public class MemorySnapshot
 		this.refsToProcess.Add(new MemorySnapshot.ReferenceArgs(fieldArgs.field.FieldType, field_name, new MemorySnapshot.Lineage(obj, fieldArgs.lineage.parent3, fieldArgs.lineage.parent2, fieldArgs.lineage.parent1, fieldArgs.lineage.parent0, fieldArgs.field.DeclaringType)));
 	}
 
-	// Token: 0x06007032 RID: 28722 RVA: 0x000EDEA1 File Offset: 0x000EC0A1
 	private static bool ShouldExclude(Type type)
 	{
 		return type.IsPrimitive || type.IsEnum || type == typeof(MemorySnapshot);
 	}
 
-	// Token: 0x06007033 RID: 28723 RVA: 0x00303DC0 File Offset: 0x00301FC0
 	private void CountAll()
 	{
 		while (this.refsToProcess.Count > 0 || this.fieldsToProcess.Count > 0)
@@ -195,7 +188,6 @@ public class MemorySnapshot
 		}
 	}
 
-	// Token: 0x06007034 RID: 28724 RVA: 0x00303E7C File Offset: 0x0030207C
 	public MemorySnapshot()
 	{
 		MemorySnapshot.Lineage lineage = new MemorySnapshot.Lineage(null, null, null, null, null, null);
@@ -221,7 +213,6 @@ public class MemorySnapshot
 		this.CountAll();
 	}
 
-	// Token: 0x06007035 RID: 28725 RVA: 0x00303FEC File Offset: 0x003021EC
 	public void WriteTypeDetails(MemorySnapshot compare)
 	{
 		List<KeyValuePair<string, MemorySnapshot.DetailInfo>> list = null;
@@ -266,37 +257,26 @@ public class MemorySnapshot
 		}
 	}
 
-	// Token: 0x04005436 RID: 21558
 	public Dictionary<int, MemorySnapshot.TypeData> types = new Dictionary<int, MemorySnapshot.TypeData>();
 
-	// Token: 0x04005437 RID: 21559
 	public Dictionary<int, MemorySnapshot.FieldCount> fieldCounts = new Dictionary<int, MemorySnapshot.FieldCount>();
 
-	// Token: 0x04005438 RID: 21560
 	public HashSet<object> walked = new HashSet<object>();
 
-	// Token: 0x04005439 RID: 21561
 	public List<FieldInfo> statics = new List<FieldInfo>();
 
-	// Token: 0x0400543A RID: 21562
 	public Dictionary<string, MemorySnapshot.DetailInfo> detailTypeCount = new Dictionary<string, MemorySnapshot.DetailInfo>();
 
-	// Token: 0x0400543B RID: 21563
 	private static readonly Type detailType = typeof(byte[]);
 
-	// Token: 0x0400543C RID: 21564
 	private static readonly string detailTypeStr = MemorySnapshot.detailType.ToString();
 
-	// Token: 0x0400543D RID: 21565
 	private List<MemorySnapshot.FieldArgs> fieldsToProcess = new List<MemorySnapshot.FieldArgs>();
 
-	// Token: 0x0400543E RID: 21566
 	private List<MemorySnapshot.ReferenceArgs> refsToProcess = new List<MemorySnapshot.ReferenceArgs>();
 
-	// Token: 0x02001512 RID: 5394
 	public struct HierarchyNode
 	{
-		// Token: 0x06007037 RID: 28727 RVA: 0x000EDEE5 File Offset: 0x000EC0E5
 		public HierarchyNode(Type parent_0, Type parent_1, Type parent_2, Type parent_3, Type parent_4)
 		{
 			this.parent0 = parent_0;
@@ -306,13 +286,11 @@ public class MemorySnapshot
 			this.parent4 = parent_4;
 		}
 
-		// Token: 0x06007038 RID: 28728 RVA: 0x003041BC File Offset: 0x003023BC
 		public bool Equals(MemorySnapshot.HierarchyNode a, MemorySnapshot.HierarchyNode b)
 		{
 			return a.parent0 == b.parent0 && a.parent1 == b.parent1 && a.parent2 == b.parent2 && a.parent3 == b.parent3 && a.parent4 == b.parent4;
 		}
 
-		// Token: 0x06007039 RID: 28729 RVA: 0x00304228 File Offset: 0x00302428
 		public override int GetHashCode()
 		{
 			int num = 0;
@@ -339,7 +317,6 @@ public class MemorySnapshot
 			return num;
 		}
 
-		// Token: 0x0600703A RID: 28730 RVA: 0x003042C4 File Offset: 0x003024C4
 		public override string ToString()
 		{
 			if (this.parent4 != null)
@@ -388,36 +365,26 @@ public class MemorySnapshot
 			return this.parent0.ToString();
 		}
 
-		// Token: 0x0400543F RID: 21567
 		public Type parent0;
 
-		// Token: 0x04005440 RID: 21568
 		public Type parent1;
 
-		// Token: 0x04005441 RID: 21569
 		public Type parent2;
 
-		// Token: 0x04005442 RID: 21570
 		public Type parent3;
 
-		// Token: 0x04005443 RID: 21571
 		public Type parent4;
 	}
 
-	// Token: 0x02001513 RID: 5395
 	public class FieldCount
 	{
-		// Token: 0x04005444 RID: 21572
 		public string name;
 
-		// Token: 0x04005445 RID: 21573
 		public int count;
 	}
 
-	// Token: 0x02001514 RID: 5396
 	public class TypeData
 	{
-		// Token: 0x0600703C RID: 28732 RVA: 0x0030444C File Offset: 0x0030264C
 		public TypeData(Type type)
 		{
 			this.type = type;
@@ -434,39 +401,28 @@ public class MemorySnapshot
 			}
 		}
 
-		// Token: 0x04005446 RID: 21574
 		public Dictionary<MemorySnapshot.HierarchyNode, int> hierarchies = new Dictionary<MemorySnapshot.HierarchyNode, int>();
 
-		// Token: 0x04005447 RID: 21575
 		public Type type;
 
-		// Token: 0x04005448 RID: 21576
 		public List<FieldInfo> fields;
 
-		// Token: 0x04005449 RID: 21577
 		public int instanceCount;
 
-		// Token: 0x0400544A RID: 21578
 		public int refCount;
 
-		// Token: 0x0400544B RID: 21579
 		public int numArrayEntries;
 	}
 
-	// Token: 0x02001515 RID: 5397
 	public struct DetailInfo
 	{
-		// Token: 0x0400544C RID: 21580
 		public int count;
 
-		// Token: 0x0400544D RID: 21581
 		public int numArrayEntries;
 	}
 
-	// Token: 0x02001516 RID: 5398
 	private struct Lineage
 	{
-		// Token: 0x0600703D RID: 28733 RVA: 0x000EDF0C File Offset: 0x000EC10C
 		public Lineage(object obj, Type parent4, Type parent3, Type parent2, Type parent1, Type parent0)
 		{
 			this.obj = obj;
@@ -477,29 +433,21 @@ public class MemorySnapshot
 			this.parent4 = parent4;
 		}
 
-		// Token: 0x0400544E RID: 21582
 		public object obj;
 
-		// Token: 0x0400544F RID: 21583
 		public Type parent0;
 
-		// Token: 0x04005450 RID: 21584
 		public Type parent1;
 
-		// Token: 0x04005451 RID: 21585
 		public Type parent2;
 
-		// Token: 0x04005452 RID: 21586
 		public Type parent3;
 
-		// Token: 0x04005453 RID: 21587
 		public Type parent4;
 	}
 
-	// Token: 0x02001517 RID: 5399
 	private struct ReferenceArgs
 	{
-		// Token: 0x0600703E RID: 28734 RVA: 0x000EDF3B File Offset: 0x000EC13B
 		public ReferenceArgs(Type reference_type, string field_name, MemorySnapshot.Lineage lineage)
 		{
 			this.reference_type = reference_type;
@@ -507,30 +455,23 @@ public class MemorySnapshot
 			this.field_name = field_name;
 		}
 
-		// Token: 0x04005454 RID: 21588
 		public Type reference_type;
 
-		// Token: 0x04005455 RID: 21589
 		public string field_name;
 
-		// Token: 0x04005456 RID: 21590
 		public MemorySnapshot.Lineage lineage;
 	}
 
-	// Token: 0x02001518 RID: 5400
 	private struct FieldArgs
 	{
-		// Token: 0x0600703F RID: 28735 RVA: 0x000EDF52 File Offset: 0x000EC152
 		public FieldArgs(FieldInfo field, MemorySnapshot.Lineage lineage)
 		{
 			this.field = field;
 			this.lineage = lineage;
 		}
 
-		// Token: 0x04005457 RID: 21591
 		public FieldInfo field;
 
-		// Token: 0x04005458 RID: 21592
 		public MemorySnapshot.Lineage lineage;
 	}
 }

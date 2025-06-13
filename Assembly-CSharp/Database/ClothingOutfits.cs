@@ -2,10 +2,8 @@
 
 namespace Database
 {
-	// Token: 0x02002198 RID: 8600
 	public class ClothingOutfits : ResourceSet<ClothingOutfitResource>
 	{
-		// Token: 0x0600B76C RID: 46956 RVA: 0x00464048 File Offset: 0x00462248
 		public ClothingOutfits(ResourceSet parent, ClothingItems items_resource) : base("ClothingOutfits", parent)
 		{
 			base.Initialize();

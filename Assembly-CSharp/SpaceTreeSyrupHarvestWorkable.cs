@@ -1,10 +1,8 @@
 ﻿using System;
 using TUNING;
 
-// Token: 0x020002D8 RID: 728
 public class SpaceTreeSyrupHarvestWorkable : Workable
 {
-	// Token: 0x06000B23 RID: 2851 RVA: 0x00177698 File Offset: 0x00175898
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -37,13 +35,11 @@ public class SpaceTreeSyrupHarvestWorkable : Workable
 		this.resetProgressOnStop = true;
 	}
 
-	// Token: 0x06000B24 RID: 2852 RVA: 0x000AF921 File Offset: 0x000ADB21
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
 	}
 
-	// Token: 0x06000B25 RID: 2853 RVA: 0x000AF929 File Offset: 0x000ADB29
 	protected override void OnStartWork(WorkerBase worker)
 	{
 		base.OnStartWork(worker);

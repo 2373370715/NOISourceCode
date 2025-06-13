@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000372 RID: 882
 public class GravitasContainerConfig : IBuildingConfig
 {
-	// Token: 0x06000E02 RID: 3586 RVA: 0x001814B4 File Offset: 0x0017F6B4
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "GravitasContainer";
@@ -28,7 +26,6 @@ public class GravitasContainerConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000E03 RID: 3587 RVA: 0x000B0862 File Offset: 0x000AEA62
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddTag(GameTags.Gravitas);
@@ -36,7 +33,6 @@ public class GravitasContainerConfig : IBuildingConfig
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x06000E04 RID: 3588 RVA: 0x00181524 File Offset: 0x0017F724
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		PajamaDispenser pajamaDispenser = go.AddComponent<PajamaDispenser>();
@@ -49,9 +45,7 @@ public class GravitasContainerConfig : IBuildingConfig
 		go.GetComponent<Deconstructable>().allowDeconstruction = false;
 	}
 
-	// Token: 0x04000A6C RID: 2668
 	public const string ID = "GravitasContainer";
 
-	// Token: 0x04000A6D RID: 2669
 	private const float WORK_TIME = 1.5f;
 }

@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200041E RID: 1054
 public class MetalTileConfig : IBuildingConfig
 {
-	// Token: 0x06001184 RID: 4484 RVA: 0x0018F184 File Offset: 0x0018D384
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "MetalTile";
@@ -42,7 +40,6 @@ public class MetalTileConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001185 RID: 4485 RVA: 0x0018F298 File Offset: 0x0018D498
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
@@ -55,23 +52,19 @@ public class MetalTileConfig : IBuildingConfig
 		go.AddOrGet<BuildingHP>().destroyOnDamaged = true;
 	}
 
-	// Token: 0x06001186 RID: 4486 RVA: 0x000B0779 File Offset: 0x000AE979
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		GeneratedBuildings.RemoveLoopingSounds(go);
 		go.GetComponent<KPrefabID>().AddTag(GameTags.FloorTiles, false);
 	}
 
-	// Token: 0x06001187 RID: 4487 RVA: 0x000AA509 File Offset: 0x000A8709
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		base.DoPostConfigureUnderConstruction(go);
 		go.AddOrGet<KAnimGridTileVisualizer>();
 	}
 
-	// Token: 0x04000C38 RID: 3128
 	public const string ID = "MetalTile";
 
-	// Token: 0x04000C39 RID: 3129
 	public static readonly int BlockTileConnectorID = Hash.SDBMLower("tiles_metal_tops");
 }

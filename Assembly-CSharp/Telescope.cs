@@ -6,17 +6,14 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200102C RID: 4140
 [AddComponentMenu("KMonoBehaviour/Workable/Telescope")]
 public class Telescope : Workable, OxygenBreather.IGasProvider, IGameObjectEffectDescriptor, ISim200ms, BuildingStatusItems.ISkyVisInfo
 {
-	// Token: 0x060053B5 RID: 21429 RVA: 0x000DAF43 File Offset: 0x000D9143
 	float BuildingStatusItems.ISkyVisInfo.GetPercentVisible01()
 	{
 		return this.percentClear;
 	}
 
-	// Token: 0x060053B6 RID: 21430 RVA: 0x002875A4 File Offset: 0x002857A4
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -26,7 +23,6 @@ public class Telescope : Workable, OxygenBreather.IGasProvider, IGameObjectEffec
 		this.skillExperienceMultiplier = SKILLS.ALL_DAY_EXPERIENCE;
 	}
 
-	// Token: 0x060053B7 RID: 21431 RVA: 0x002875FC File Offset: 0x002857FC
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -38,7 +34,6 @@ public class Telescope : Workable, OxygenBreather.IGasProvider, IGameObjectEffec
 		this.UpdateWorkingState(null);
 	}
 
-	// Token: 0x060053B8 RID: 21432 RVA: 0x000DAF4B File Offset: 0x000D914B
 	protected override void OnCleanUp()
 	{
 		Components.Telescopes.Remove(this);
@@ -46,7 +41,6 @@ public class Telescope : Workable, OxygenBreather.IGasProvider, IGameObjectEffec
 		base.OnCleanUp();
 	}
 
-	// Token: 0x060053B9 RID: 21433 RVA: 0x00287678 File Offset: 0x00285878
 	public void Sim200ms(float dt)
 	{
 		base.GetComponent<Building>().GetExtents();
@@ -66,7 +60,6 @@ public class Telescope : Workable, OxygenBreather.IGasProvider, IGameObjectEffec
 		}
 	}
 
-	// Token: 0x060053BA RID: 21434 RVA: 0x0028773C File Offset: 0x0028593C
 	private void OnWorkableEvent(Workable workable, Workable.WorkableEvent ev)
 	{
 		WorkerBase worker = base.worker;
@@ -111,13 +104,11 @@ public class Telescope : Workable, OxygenBreather.IGasProvider, IGameObjectEffec
 		component3.AddStatusItem(Db.Get().BuildingStatusItems.TelescopeWorking, this);
 	}
 
-	// Token: 0x060053BB RID: 21435 RVA: 0x000DAF79 File Offset: 0x000D9179
 	public override float GetEfficiencyMultiplier(WorkerBase worker)
 	{
 		return base.GetEfficiencyMultiplier(worker) * Mathf.Clamp01(this.percentClear);
 	}
 
-	// Token: 0x060053BC RID: 21436 RVA: 0x00287830 File Offset: 0x00285A30
 	protected override bool OnWorkTick(WorkerBase worker, float dt)
 	{
 		if (SpacecraftManager.instance.HasAnalysisTarget())
@@ -134,7 +125,6 @@ public class Telescope : Workable, OxygenBreather.IGasProvider, IGameObjectEffec
 		return base.OnWorkTick(worker, dt);
 	}
 
-	// Token: 0x060053BD RID: 21437 RVA: 0x00248884 File Offset: 0x00246A84
 	public override List<Descriptor> GetDescriptors(GameObject go)
 	{
 		List<Descriptor> descriptors = base.GetDescriptors(go);
@@ -145,7 +135,6 @@ public class Telescope : Workable, OxygenBreather.IGasProvider, IGameObjectEffec
 		return descriptors;
 	}
 
-	// Token: 0x060053BE RID: 21438 RVA: 0x002878A4 File Offset: 0x00285AA4
 	protected Chore CreateChore()
 	{
 		WorkChore<Telescope> workChore = new WorkChore<Telescope>(Db.Get().ChoreTypes.Research, this, null, true, null, null, null, true, null, false, true, null, false, true, true, PriorityScreen.PriorityClass.basic, 5, false, true);
@@ -153,7 +142,6 @@ public class Telescope : Workable, OxygenBreather.IGasProvider, IGameObjectEffec
 		return workChore;
 	}
 
-	// Token: 0x060053BF RID: 21439 RVA: 0x002878E4 File Offset: 0x00285AE4
 	protected void UpdateWorkingState(object data)
 	{
 		bool flag = false;
@@ -171,29 +159,24 @@ public class Telescope : Workable, OxygenBreather.IGasProvider, IGameObjectEffec
 		}
 	}
 
-	// Token: 0x060053C0 RID: 21440 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSetOxygenBreather(OxygenBreather oxygen_breather)
 	{
 	}
 
-	// Token: 0x060053C1 RID: 21441 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnClearOxygenBreather(OxygenBreather oxygen_breather)
 	{
 	}
 
-	// Token: 0x060053C2 RID: 21442 RVA: 0x000B1628 File Offset: 0x000AF828
 	public bool ShouldEmitCO2()
 	{
 		return false;
 	}
 
-	// Token: 0x060053C3 RID: 21443 RVA: 0x000B1628 File Offset: 0x000AF828
 	public bool ShouldStoreCO2()
 	{
 		return false;
 	}
 
-	// Token: 0x060053C4 RID: 21444 RVA: 0x00287984 File Offset: 0x00285B84
 	public bool ConsumeGas(OxygenBreather oxygen_breather, float amount)
 	{
 		if (this.storage.items.Count <= 0)
@@ -216,7 +199,6 @@ public class Telescope : Workable, OxygenBreather.IGasProvider, IGameObjectEffec
 		return result;
 	}
 
-	// Token: 0x060053C5 RID: 21445 RVA: 0x00287A18 File Offset: 0x00285C18
 	public bool IsLowOxygen()
 	{
 		if (this.storage.items.Count <= 0)
@@ -227,7 +209,6 @@ public class Telescope : Workable, OxygenBreather.IGasProvider, IGameObjectEffec
 		return primaryElement == null || primaryElement.Mass == 0f;
 	}
 
-	// Token: 0x060053C6 RID: 21446 RVA: 0x00287A68 File Offset: 0x00285C68
 	public bool HasOxygen()
 	{
 		if (this.storage.items.Count <= 0)
@@ -238,25 +219,19 @@ public class Telescope : Workable, OxygenBreather.IGasProvider, IGameObjectEffec
 		return primaryElement != null && primaryElement.Mass > 0f;
 	}
 
-	// Token: 0x060053C7 RID: 21447 RVA: 0x000B1628 File Offset: 0x000AF828
 	public bool IsBlocked()
 	{
 		return false;
 	}
 
-	// Token: 0x04003B0B RID: 15115
 	private Operational operational;
 
-	// Token: 0x04003B0C RID: 15116
 	private float percentClear;
 
-	// Token: 0x04003B0D RID: 15117
 	private static readonly Operational.Flag visibleSkyFlag = new Operational.Flag("VisibleSky", Operational.Flag.Type.Requirement);
 
-	// Token: 0x04003B0E RID: 15118
 	private Storage storage;
 
-	// Token: 0x04003B0F RID: 15119
 	public static readonly Chore.Precondition ContainsOxygen = new Chore.Precondition
 	{
 		id = "ContainsOxygen",
@@ -268,9 +243,7 @@ public class Telescope : Workable, OxygenBreather.IGasProvider, IGameObjectEffec
 		}
 	};
 
-	// Token: 0x04003B10 RID: 15120
 	private Chore chore;
 
-	// Token: 0x04003B11 RID: 15121
 	private static readonly Operational.Flag flag = new Operational.Flag("ValidTarget", Operational.Flag.Type.Requirement);
 }

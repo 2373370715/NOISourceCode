@@ -3,16 +3,13 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005F4 RID: 1524
 public class WallToiletConfig : IBuildingConfig
 {
-	// Token: 0x06001AD8 RID: 6872 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06001AD9 RID: 6873 RVA: 0x001B5080 File Offset: 0x001B3280
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "WallToilet";
@@ -41,7 +38,6 @@ public class WallToiletConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001ADA RID: 6874 RVA: 0x001B5148 File Offset: 0x001B3348
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		KPrefabID component = go.GetComponent<KPrefabID>();
@@ -107,7 +103,6 @@ public class WallToiletConfig : IBuildingConfig
 		component.prefabInitFn += this.OnInit;
 	}
 
-	// Token: 0x06001ADB RID: 6875 RVA: 0x001B53AC File Offset: 0x001B35AC
 	private void OnInit(GameObject go)
 	{
 		ToiletWorkableUse component = go.GetComponent<ToiletWorkableUse>();
@@ -131,14 +126,11 @@ public class WallToiletConfig : IBuildingConfig
 		});
 	}
 
-	// Token: 0x06001ADC RID: 6876 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04001147 RID: 4423
 	private const float WATER_USAGE = 2.5f;
 
-	// Token: 0x04001148 RID: 4424
 	public const string ID = "WallToilet";
 }

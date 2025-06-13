@@ -3,10 +3,8 @@ using Klei.AI;
 
 namespace Database
 {
-	// Token: 0x02002183 RID: 8579
 	public class Attributes : ResourceSet<Klei.AI.Attribute>
 	{
-		// Token: 0x0600B698 RID: 46744 RVA: 0x004580C4 File Offset: 0x004562C4
 		public Attributes(ResourceSet parent) : base("Attributes", parent)
 		{
 			this.Construction = base.Add(new Klei.AI.Attribute("Construction", true, Klei.AI.Attribute.Display.Skill, true, 0f, null, null, "mod_construction", null));
@@ -106,136 +104,92 @@ namespace Database
 			this.Toggle.SetFormatter(new StandardAttributeFormatter(GameUtil.UnitClass.SimpleInteger, GameUtil.TimeSlice.None));
 		}
 
-		// Token: 0x04009098 RID: 37016
 		public Klei.AI.Attribute Construction;
 
-		// Token: 0x04009099 RID: 37017
 		public Klei.AI.Attribute Digging;
 
-		// Token: 0x0400909A RID: 37018
 		public Klei.AI.Attribute Machinery;
 
-		// Token: 0x0400909B RID: 37019
 		public Klei.AI.Attribute Athletics;
 
-		// Token: 0x0400909C RID: 37020
 		public Klei.AI.Attribute Learning;
 
-		// Token: 0x0400909D RID: 37021
 		public Klei.AI.Attribute Cooking;
 
-		// Token: 0x0400909E RID: 37022
 		public Klei.AI.Attribute Caring;
 
-		// Token: 0x0400909F RID: 37023
 		public Klei.AI.Attribute Strength;
 
-		// Token: 0x040090A0 RID: 37024
 		public Klei.AI.Attribute Art;
 
-		// Token: 0x040090A1 RID: 37025
 		public Klei.AI.Attribute Botanist;
 
-		// Token: 0x040090A2 RID: 37026
 		public Klei.AI.Attribute Ranching;
 
-		// Token: 0x040090A3 RID: 37027
 		public Klei.AI.Attribute LifeSupport;
 
-		// Token: 0x040090A4 RID: 37028
 		public Klei.AI.Attribute Toggle;
 
-		// Token: 0x040090A5 RID: 37029
 		public Klei.AI.Attribute PowerTinker;
 
-		// Token: 0x040090A6 RID: 37030
 		public Klei.AI.Attribute FarmTinker;
 
-		// Token: 0x040090A7 RID: 37031
 		public Klei.AI.Attribute SpaceNavigation;
 
-		// Token: 0x040090A8 RID: 37032
 		public Klei.AI.Attribute Immunity;
 
-		// Token: 0x040090A9 RID: 37033
 		public Klei.AI.Attribute GermResistance;
 
-		// Token: 0x040090AA RID: 37034
 		public Klei.AI.Attribute BionicBoosterSlots;
 
-		// Token: 0x040090AB RID: 37035
 		public Klei.AI.Attribute BionicBatteryCountCapacity;
 
-		// Token: 0x040090AC RID: 37036
 		public Klei.AI.Attribute Insulation;
 
-		// Token: 0x040090AD RID: 37037
 		public Klei.AI.Attribute Luminescence;
 
-		// Token: 0x040090AE RID: 37038
 		public Klei.AI.Attribute ThermalConductivityBarrier;
 
-		// Token: 0x040090AF RID: 37039
 		public Klei.AI.Attribute Decor;
 
-		// Token: 0x040090B0 RID: 37040
 		public Klei.AI.Attribute FoodQuality;
 
-		// Token: 0x040090B1 RID: 37041
 		public Klei.AI.Attribute ScaldingThreshold;
 
-		// Token: 0x040090B2 RID: 37042
 		public Klei.AI.Attribute ScoldingThreshold;
 
-		// Token: 0x040090B3 RID: 37043
 		public Klei.AI.Attribute GeneratorOutput;
 
-		// Token: 0x040090B4 RID: 37044
 		public Klei.AI.Attribute MachinerySpeed;
 
-		// Token: 0x040090B5 RID: 37045
 		public Klei.AI.Attribute RadiationResistance;
 
-		// Token: 0x040090B6 RID: 37046
 		public Klei.AI.Attribute RadiationRecovery;
 
-		// Token: 0x040090B7 RID: 37047
 		public Klei.AI.Attribute DecorExpectation;
 
-		// Token: 0x040090B8 RID: 37048
 		public Klei.AI.Attribute FoodExpectation;
 
-		// Token: 0x040090B9 RID: 37049
 		public Klei.AI.Attribute RoomTemperaturePreference;
 
-		// Token: 0x040090BA RID: 37050
 		public Klei.AI.Attribute QualityOfLifeExpectation;
 
-		// Token: 0x040090BB RID: 37051
 		public Klei.AI.Attribute AirConsumptionRate;
 
-		// Token: 0x040090BC RID: 37052
 		public Klei.AI.Attribute MaxUnderwaterTravelCost;
 
-		// Token: 0x040090BD RID: 37053
 		public Klei.AI.Attribute ToiletEfficiency;
 
-		// Token: 0x040090BE RID: 37054
 		public Klei.AI.Attribute Sneezyness;
 
-		// Token: 0x040090BF RID: 37055
 		public Klei.AI.Attribute TransitTubeTravelSpeed;
 
-		// Token: 0x040090C0 RID: 37056
 		public Klei.AI.Attribute DiseaseCureSpeed;
 
-		// Token: 0x040090C1 RID: 37057
 		public Klei.AI.Attribute DoctoredLevel;
 
-		// Token: 0x040090C2 RID: 37058
 		public Klei.AI.Attribute CarryAmount;
 
-		// Token: 0x040090C3 RID: 37059
 		public Klei.AI.Attribute QualityOfLife;
 	}
 }

@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x02001936 RID: 6454
 [SerializationConfig(MemberSerialization.OptIn)]
 public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 {
-	// Token: 0x170008A8 RID: 2216
-	// (get) Token: 0x06008617 RID: 34327 RVA: 0x000FC938 File Offset: 0x000FAB38
 	public IList<Ref<RocketModuleCluster>> ClusterModules
 	{
 		get
@@ -17,7 +14,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		}
 	}
 
-	// Token: 0x06008618 RID: 34328 RVA: 0x000FC940 File Offset: 0x000FAB40
 	public LaunchPad GetPreferredLaunchPadForWorld(int world_id)
 	{
 		if (this.preferredLaunchPad.ContainsKey(world_id))
@@ -27,7 +23,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		return null;
 	}
 
-	// Token: 0x06008619 RID: 34329 RVA: 0x003583D4 File Offset: 0x003565D4
 	private void SetPreferredLaunchPadForWorld(LaunchPad pad)
 	{
 		if (!this.preferredLaunchPad.ContainsKey(pad.GetMyWorldId()))
@@ -37,8 +32,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		this.preferredLaunchPad[this.CurrentPad.GetMyWorldId()].Set(this.CurrentPad);
 	}
 
-	// Token: 0x170008A9 RID: 2217
-	// (get) Token: 0x0600861A RID: 34330 RVA: 0x00358430 File Offset: 0x00356630
 	public LaunchPad CurrentPad
 	{
 		get
@@ -65,8 +58,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		}
 	}
 
-	// Token: 0x170008AA RID: 2218
-	// (get) Token: 0x0600861B RID: 34331 RVA: 0x000FC963 File Offset: 0x000FAB63
 	public float Speed
 	{
 		get
@@ -75,8 +66,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		}
 	}
 
-	// Token: 0x170008AB RID: 2219
-	// (get) Token: 0x0600861C RID: 34332 RVA: 0x003584EC File Offset: 0x003566EC
 	public float Range
 	{
 		get
@@ -97,8 +86,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		}
 	}
 
-	// Token: 0x170008AC RID: 2220
-	// (get) Token: 0x0600861D RID: 34333 RVA: 0x000FC970 File Offset: 0x000FAB70
 	public int RangeInTiles
 	{
 		get
@@ -107,8 +94,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		}
 	}
 
-	// Token: 0x170008AD RID: 2221
-	// (get) Token: 0x0600861E RID: 34334 RVA: 0x00358548 File Offset: 0x00356748
 	public float FuelPerHex
 	{
 		get
@@ -122,8 +107,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		}
 	}
 
-	// Token: 0x170008AE RID: 2222
-	// (get) Token: 0x0600861F RID: 34335 RVA: 0x00358584 File Offset: 0x00356784
 	public float BurnableMassRemaining
 	{
 		get
@@ -141,8 +124,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		}
 	}
 
-	// Token: 0x170008AF RID: 2223
-	// (get) Token: 0x06008620 RID: 34336 RVA: 0x003585C8 File Offset: 0x003567C8
 	public float FuelRemaining
 	{
 		get
@@ -165,8 +146,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		}
 	}
 
-	// Token: 0x170008B0 RID: 2224
-	// (get) Token: 0x06008621 RID: 34337 RVA: 0x00358660 File Offset: 0x00356860
 	public float OxidizerPowerRemaining
 	{
 		get
@@ -184,8 +163,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		}
 	}
 
-	// Token: 0x170008B1 RID: 2225
-	// (get) Token: 0x06008622 RID: 34338 RVA: 0x003586D8 File Offset: 0x003568D8
 	public int MaxHeight
 	{
 		get
@@ -199,8 +176,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		}
 	}
 
-	// Token: 0x170008B2 RID: 2226
-	// (get) Token: 0x06008623 RID: 34339 RVA: 0x000FC98A File Offset: 0x000FAB8A
 	public float TotalBurden
 	{
 		get
@@ -209,8 +184,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		}
 	}
 
-	// Token: 0x170008B3 RID: 2227
-	// (get) Token: 0x06008624 RID: 34340 RVA: 0x000FC997 File Offset: 0x000FAB97
 	public float EnginePower
 	{
 		get
@@ -219,8 +192,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		}
 	}
 
-	// Token: 0x170008B4 RID: 2228
-	// (get) Token: 0x06008625 RID: 34341 RVA: 0x00358700 File Offset: 0x00356900
 	public int RocketHeight
 	{
 		get
@@ -234,8 +205,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		}
 	}
 
-	// Token: 0x170008B5 RID: 2229
-	// (get) Token: 0x06008626 RID: 34342 RVA: 0x00358764 File Offset: 0x00356964
 	public bool HasCargoModule
 	{
 		get
@@ -254,14 +223,12 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		}
 	}
 
-	// Token: 0x06008627 RID: 34343 RVA: 0x000FC9A4 File Offset: 0x000FABA4
 	protected override void OnPrefabInit()
 	{
 		Game instance = Game.Instance;
 		instance.OnLoad = (Action<Game.GameSaveData>)Delegate.Combine(instance.OnLoad, new Action<Game.GameSaveData>(this.OnLoad));
 	}
 
-	// Token: 0x06008628 RID: 34344 RVA: 0x003587BC File Offset: 0x003569BC
 	protected override void OnSpawn()
 	{
 		Game instance = Game.Instance;
@@ -274,7 +241,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		base.Subscribe(-1311384361, new Action<object>(this.CompleteSelfDestruct));
 	}
 
-	// Token: 0x06008629 RID: 34345 RVA: 0x00358820 File Offset: 0x00356A20
 	private void OnLoad(Game.GameSaveData data)
 	{
 		foreach (Ref<RocketModule> @ref in this.modules)
@@ -335,7 +301,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		}
 	}
 
-	// Token: 0x0600862A RID: 34346 RVA: 0x00358B14 File Offset: 0x00356D14
 	public void AddModule(RocketModuleCluster newModule)
 	{
 		for (int i = 0; i < this.clusterModules.Count; i++)
@@ -367,7 +332,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		this.SetBottomModule();
 	}
 
-	// Token: 0x0600862B RID: 34347 RVA: 0x00358C30 File Offset: 0x00356E30
 	public void RemoveModule(RocketModuleCluster module)
 	{
 		for (int i = this.clusterModules.Count - 1; i >= 0; i--)
@@ -390,7 +354,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		}
 	}
 
-	// Token: 0x0600862C RID: 34348 RVA: 0x000FC9CC File Offset: 0x000FABCC
 	private void SortModuleListByPosition()
 	{
 		this.clusterModules.Sort(delegate(Ref<RocketModuleCluster> a, Ref<RocketModuleCluster> b)
@@ -403,7 +366,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		});
 	}
 
-	// Token: 0x0600862D RID: 34349 RVA: 0x00358CF4 File Offset: 0x00356EF4
 	private void SetBottomModule()
 	{
 		if (this.clusterModules.Count > 0)
@@ -428,7 +390,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		this.bottomModule = null;
 	}
 
-	// Token: 0x0600862E RID: 34350 RVA: 0x00358DA8 File Offset: 0x00356FA8
 	public int GetHeightOfModuleTop(GameObject module)
 	{
 		int num = 0;
@@ -444,7 +405,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		return 0;
 	}
 
-	// Token: 0x0600862F RID: 34351 RVA: 0x00358E38 File Offset: 0x00357038
 	public int GetModuleRelativeVerticalPosition(GameObject module)
 	{
 		int num = 0;
@@ -460,7 +420,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		return 0;
 	}
 
-	// Token: 0x06008630 RID: 34352 RVA: 0x00358EC8 File Offset: 0x003570C8
 	public void Sim4000ms(float dt)
 	{
 		int num = 0;
@@ -478,43 +437,36 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		}
 	}
 
-	// Token: 0x06008631 RID: 34353 RVA: 0x000FC9F8 File Offset: 0x000FABF8
 	public bool IsLaunchRequested()
 	{
 		return this.m_clustercraft.LaunchRequested;
 	}
 
-	// Token: 0x06008632 RID: 34354 RVA: 0x000FCA05 File Offset: 0x000FAC05
 	public bool CheckPreppedForLaunch()
 	{
 		return this.EvaluateConditionSet(ProcessCondition.ProcessConditionType.RocketPrep) != ProcessCondition.Status.Failure && this.EvaluateConditionSet(ProcessCondition.ProcessConditionType.RocketStorage) != ProcessCondition.Status.Failure && this.EvaluateConditionSet(ProcessCondition.ProcessConditionType.RocketFlight) > ProcessCondition.Status.Failure;
 	}
 
-	// Token: 0x06008633 RID: 34355 RVA: 0x000FCA25 File Offset: 0x000FAC25
 	public bool CheckReadyToLaunch()
 	{
 		return this.EvaluateConditionSet(ProcessCondition.ProcessConditionType.RocketPrep) != ProcessCondition.Status.Failure && this.EvaluateConditionSet(ProcessCondition.ProcessConditionType.RocketStorage) != ProcessCondition.Status.Failure && this.EvaluateConditionSet(ProcessCondition.ProcessConditionType.RocketFlight) != ProcessCondition.Status.Failure && this.EvaluateConditionSet(ProcessCondition.ProcessConditionType.RocketBoard) > ProcessCondition.Status.Failure;
 	}
 
-	// Token: 0x06008634 RID: 34356 RVA: 0x000FCA4E File Offset: 0x000FAC4E
 	public bool HasLaunchWarnings()
 	{
 		return this.EvaluateConditionSet(ProcessCondition.ProcessConditionType.RocketPrep) == ProcessCondition.Status.Warning || this.EvaluateConditionSet(ProcessCondition.ProcessConditionType.RocketStorage) == ProcessCondition.Status.Warning || this.EvaluateConditionSet(ProcessCondition.ProcessConditionType.RocketBoard) == ProcessCondition.Status.Warning;
 	}
 
-	// Token: 0x06008635 RID: 34357 RVA: 0x000FCA70 File Offset: 0x000FAC70
 	public bool CheckReadyForAutomatedLaunchCommand()
 	{
 		return this.EvaluateConditionSet(ProcessCondition.ProcessConditionType.RocketPrep) == ProcessCondition.Status.Ready && this.EvaluateConditionSet(ProcessCondition.ProcessConditionType.RocketStorage) == ProcessCondition.Status.Ready;
 	}
 
-	// Token: 0x06008636 RID: 34358 RVA: 0x000FCA88 File Offset: 0x000FAC88
 	public bool CheckReadyForAutomatedLaunch()
 	{
 		return this.EvaluateConditionSet(ProcessCondition.ProcessConditionType.RocketPrep) == ProcessCondition.Status.Ready && this.EvaluateConditionSet(ProcessCondition.ProcessConditionType.RocketStorage) == ProcessCondition.Status.Ready && this.EvaluateConditionSet(ProcessCondition.ProcessConditionType.RocketBoard) == ProcessCondition.Status.Ready;
 	}
 
-	// Token: 0x06008637 RID: 34359 RVA: 0x00358F40 File Offset: 0x00357140
 	public void TriggerEventOnCraftAndRocket(GameHashes evt, object data)
 	{
 		base.Trigger((int)evt, data);
@@ -524,19 +476,16 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		}
 	}
 
-	// Token: 0x06008638 RID: 34360 RVA: 0x000FCAAA File Offset: 0x000FACAA
 	public void CancelLaunch()
 	{
 		this.m_clustercraft.CancelLaunch();
 	}
 
-	// Token: 0x06008639 RID: 34361 RVA: 0x000FCAB7 File Offset: 0x000FACB7
 	public void TriggerLaunch(bool automated = false)
 	{
 		this.m_clustercraft.RequestLaunch(automated);
 	}
 
-	// Token: 0x0600863A RID: 34362 RVA: 0x00358FA0 File Offset: 0x003571A0
 	public void DoLaunch()
 	{
 		this.SortModuleListByPosition();
@@ -548,7 +497,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		}
 	}
 
-	// Token: 0x0600863B RID: 34363 RVA: 0x00359020 File Offset: 0x00357220
 	public void DoLand(LaunchPad pad)
 	{
 		int num = pad.RocketBottomPosition;
@@ -565,7 +513,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		pad.Trigger(-1165815793, this);
 	}
 
-	// Token: 0x0600863C RID: 34364 RVA: 0x003590EC File Offset: 0x003572EC
 	public LaunchConditionManager FindLaunchConditionManager()
 	{
 		foreach (Ref<RocketModuleCluster> @ref in this.clusterModules)
@@ -579,7 +526,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		return null;
 	}
 
-	// Token: 0x0600863D RID: 34365 RVA: 0x00359154 File Offset: 0x00357354
 	public LaunchableRocketCluster FindLaunchableRocket()
 	{
 		foreach (Ref<RocketModuleCluster> @ref in this.clusterModules)
@@ -594,7 +540,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		return null;
 	}
 
-	// Token: 0x0600863E RID: 34366 RVA: 0x003591DC File Offset: 0x003573DC
 	public List<GameObject> GetParts()
 	{
 		List<GameObject> list = new List<GameObject>();
@@ -605,7 +550,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		return list;
 	}
 
-	// Token: 0x0600863F RID: 34367 RVA: 0x00359240 File Offset: 0x00357440
 	public RocketEngineCluster GetEngine()
 	{
 		foreach (Ref<RocketModuleCluster> @ref in this.clusterModules)
@@ -619,7 +563,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		return null;
 	}
 
-	// Token: 0x06008640 RID: 34368 RVA: 0x003592A8 File Offset: 0x003574A8
 	public RocketModuleCluster GetPrimaryPilotModule(out bool is_robo_pilot)
 	{
 		is_robo_pilot = false;
@@ -642,7 +585,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		return result;
 	}
 
-	// Token: 0x06008641 RID: 34369 RVA: 0x00359328 File Offset: 0x00357528
 	public PassengerRocketModule GetPassengerModule()
 	{
 		foreach (Ref<RocketModuleCluster> @ref in this.clusterModules)
@@ -656,7 +598,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		return null;
 	}
 
-	// Token: 0x06008642 RID: 34370 RVA: 0x00359390 File Offset: 0x00357590
 	public WorldContainer GetInteriorWorld()
 	{
 		PassengerRocketModule passengerModule = this.GetPassengerModule();
@@ -672,7 +613,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		return interiorDoor.GetMyWorld();
 	}
 
-	// Token: 0x06008643 RID: 34371 RVA: 0x003593CC File Offset: 0x003575CC
 	public RoboPilotModule GetRobotPilotModule()
 	{
 		foreach (Ref<RocketModuleCluster> @ref in this.clusterModules)
@@ -686,19 +626,16 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		return null;
 	}
 
-	// Token: 0x06008644 RID: 34372 RVA: 0x000FCAC5 File Offset: 0x000FACC5
 	public RocketClusterDestinationSelector GetClusterDestinationSelector()
 	{
 		return base.GetComponent<RocketClusterDestinationSelector>();
 	}
 
-	// Token: 0x06008645 RID: 34373 RVA: 0x000FCACD File Offset: 0x000FACCD
 	public bool HasClusterDestinationSelector()
 	{
 		return base.GetComponent<RocketClusterDestinationSelector>() != null;
 	}
 
-	// Token: 0x06008646 RID: 34374 RVA: 0x00359434 File Offset: 0x00357634
 	public List<ProcessCondition> GetConditionSet(ProcessCondition.ProcessConditionType conditionType)
 	{
 		this.returnConditions.Clear();
@@ -721,7 +658,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		return this.returnConditions;
 	}
 
-	// Token: 0x06008647 RID: 34375 RVA: 0x003594DC File Offset: 0x003576DC
 	private ProcessCondition.Status EvaluateConditionSet(ProcessCondition.ProcessConditionType conditionType)
 	{
 		ProcessCondition.Status status = ProcessCondition.Status.Ready;
@@ -740,7 +676,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		return status;
 	}
 
-	// Token: 0x06008648 RID: 34376 RVA: 0x0035953C File Offset: 0x0035773C
 	private void ForceAttachmentNetwork()
 	{
 		RocketModuleCluster rocketModuleCluster = null;
@@ -757,7 +692,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		}
 	}
 
-	// Token: 0x06008649 RID: 34377 RVA: 0x003595B8 File Offset: 0x003577B8
 	public static Storage SpawnRocketDebris(string nameSuffix, SimHashes element)
 	{
 		Vector3 position = new Vector3(-1f, -1f, 0f);
@@ -768,7 +702,6 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		return gameObject.GetComponent<Storage>();
 	}
 
-	// Token: 0x0600864A RID: 34378 RVA: 0x0035961C File Offset: 0x0035781C
 	public void CompleteSelfDestruct(object data = null)
 	{
 		global::Debug.Assert(this.HasTag(GameTags.RocketInSpace), "Self Destruct is only valid for in-space rockets!");
@@ -845,26 +778,20 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		this.m_clustercraft.SetExploding();
 	}
 
-	// Token: 0x040065CC RID: 26060
 	[Serialize]
 	private List<Ref<RocketModule>> modules = new List<Ref<RocketModule>>();
 
-	// Token: 0x040065CD RID: 26061
 	[Serialize]
 	private List<Ref<RocketModuleCluster>> clusterModules = new List<Ref<RocketModuleCluster>>();
 
-	// Token: 0x040065CE RID: 26062
 	private Ref<RocketModuleCluster> bottomModule;
 
-	// Token: 0x040065CF RID: 26063
 	[Serialize]
 	private Dictionary<int, Ref<LaunchPad>> preferredLaunchPad = new Dictionary<int, Ref<LaunchPad>>();
 
-	// Token: 0x040065D0 RID: 26064
 	[MyCmpReq]
 	private Clustercraft m_clustercraft;
 
-	// Token: 0x040065D1 RID: 26065
 	private List<ProcessCondition.ProcessConditionType> conditionsToCheck = new List<ProcessCondition.ProcessConditionType>
 	{
 		ProcessCondition.ProcessConditionType.RocketPrep,
@@ -873,9 +800,7 @@ public class CraftModuleInterface : KMonoBehaviour, ISim4000ms
 		ProcessCondition.ProcessConditionType.RocketFlight
 	};
 
-	// Token: 0x040065D2 RID: 26066
 	private int lastConditionTypeSucceeded = -1;
 
-	// Token: 0x040065D3 RID: 26067
 	private List<ProcessCondition> returnConditions = new List<ProcessCondition>();
 }

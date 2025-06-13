@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200036E RID: 878
 public class GlassTileConfig : IBuildingConfig
 {
-	// Token: 0x06000DED RID: 3565 RVA: 0x0018082C File Offset: 0x0017EA2C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "GlassTile";
@@ -43,7 +41,6 @@ public class GlassTileConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000DEE RID: 3566 RVA: 0x00180948 File Offset: 0x0017EB48
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
@@ -57,23 +54,19 @@ public class GlassTileConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(GameTags.Window, false);
 	}
 
-	// Token: 0x06000DEF RID: 3567 RVA: 0x000B0779 File Offset: 0x000AE979
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		GeneratedBuildings.RemoveLoopingSounds(go);
 		go.GetComponent<KPrefabID>().AddTag(GameTags.FloorTiles, false);
 	}
 
-	// Token: 0x06000DF0 RID: 3568 RVA: 0x000AA509 File Offset: 0x000A8709
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		base.DoPostConfigureUnderConstruction(go);
 		go.AddOrGet<KAnimGridTileVisualizer>();
 	}
 
-	// Token: 0x04000A5C RID: 2652
 	public const string ID = "GlassTile";
 
-	// Token: 0x04000A5D RID: 2653
 	public static readonly int BlockTileConnectorID = Hash.SDBMLower("tiles_glass_tops");
 }

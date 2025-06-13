@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000540 RID: 1344
 public class PropLightConfig : IEntityConfig
 {
-	// Token: 0x06001719 RID: 5913 RVA: 0x001A4878 File Offset: 0x001A2A78
 	public GameObject CreatePrefab()
 	{
 		string id = "PropLight";
@@ -31,12 +29,10 @@ public class PropLightConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x0600171A RID: 5914 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x0600171B RID: 5915 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}

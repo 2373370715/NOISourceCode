@@ -6,10 +6,8 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x0200101C RID: 4124
 public class Telepad : StateMachineComponent<Telepad.StatesInstance>
 {
-	// Token: 0x06005361 RID: 21345 RVA: 0x0028642C File Offset: 0x0028462C
 	public void AddNewBaseMinion(GameObject minion, bool extra_power_banks)
 	{
 		Ref<MinionIdentity> item = new Ref<MinionIdentity>(minion.GetComponent<MinionIdentity>());
@@ -20,7 +18,6 @@ public class Telepad : StateMachineComponent<Telepad.StatesInstance>
 		}
 	}
 
-	// Token: 0x06005362 RID: 21346 RVA: 0x00286460 File Offset: 0x00284660
 	public void ScheduleNewBaseEvents()
 	{
 		this.aNewHopeEvents.RemoveAll((Ref<MinionIdentity> entry) => entry == null || entry.Get() == null);
@@ -74,7 +71,6 @@ public class Telepad : StateMachineComponent<Telepad.StatesInstance>
 		}
 	}
 
-	// Token: 0x06005363 RID: 21347 RVA: 0x002865CC File Offset: 0x002847CC
 	private void RemoveFromEvents(List<Ref<MinionIdentity>> listToRemove, GameObject go)
 	{
 		for (int i = listToRemove.Count - 1; i >= 0; i--)
@@ -87,7 +83,6 @@ public class Telepad : StateMachineComponent<Telepad.StatesInstance>
 		}
 	}
 
-	// Token: 0x06005364 RID: 21348 RVA: 0x00286624 File Offset: 0x00284824
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -108,7 +103,6 @@ public class Telepad : StateMachineComponent<Telepad.StatesInstance>
 		}
 	}
 
-	// Token: 0x06005365 RID: 21349 RVA: 0x00286698 File Offset: 0x00284898
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -125,14 +119,12 @@ public class Telepad : StateMachineComponent<Telepad.StatesInstance>
 		this.ScheduleNewBaseEvents();
 	}
 
-	// Token: 0x06005366 RID: 21350 RVA: 0x000DAC2C File Offset: 0x000D8E2C
 	protected override void OnCleanUp()
 	{
 		Components.Telepads.Remove(this);
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06005367 RID: 21351 RVA: 0x00286720 File Offset: 0x00284920
 	public void Update()
 	{
 		if (base.smi.IsColonyLost())
@@ -156,14 +148,12 @@ public class Telepad : StateMachineComponent<Telepad.StatesInstance>
 		}
 	}
 
-	// Token: 0x06005368 RID: 21352 RVA: 0x000DAC3F File Offset: 0x000D8E3F
 	public void RejectAll()
 	{
 		Immigration.Instance.EndImmigration();
 		base.smi.sm.closePortal.Trigger(base.smi);
 	}
 
-	// Token: 0x06005369 RID: 21353 RVA: 0x0028680C File Offset: 0x00284A0C
 	public void OnAcceptDelivery(ITelepadDeliverable delivery)
 	{
 		int cell = Grid.PosToCell(this);
@@ -195,60 +185,46 @@ public class Telepad : StateMachineComponent<Telepad.StatesInstance>
 		base.smi.sm.closePortal.Trigger(base.smi);
 	}
 
-	// Token: 0x0600536A RID: 21354 RVA: 0x000DAC67 File Offset: 0x000D8E67
 	public float GetTimeRemaining()
 	{
 		return Immigration.Instance.GetTimeRemaining();
 	}
 
-	// Token: 0x04003AC5 RID: 15045
 	[MyCmpReq]
 	private KSelectable selectable;
 
-	// Token: 0x04003AC6 RID: 15046
 	private MeterController meter;
 
-	// Token: 0x04003AC7 RID: 15047
 	private const float MAX_IMMIGRATION_TIME = 120f;
 
-	// Token: 0x04003AC8 RID: 15048
 	private const int NUM_METER_NOTCHES = 8;
 
-	// Token: 0x04003AC9 RID: 15049
 	private List<MinionStartingStats> minionStats;
 
-	// Token: 0x04003ACA RID: 15050
 	public float startingSkillPoints;
 
-	// Token: 0x04003ACB RID: 15051
 	[Serialize]
 	private List<Ref<MinionIdentity>> aNewHopeEvents = new List<Ref<MinionIdentity>>();
 
-	// Token: 0x04003ACC RID: 15052
 	[Serialize]
 	private List<Ref<MinionIdentity>> extraPowerBanksEvents = new List<Ref<MinionIdentity>>();
 
-	// Token: 0x04003ACD RID: 15053
 	public static readonly HashedString[] PortalBirthAnim = new HashedString[]
 	{
 		"portalbirth"
 	};
 
-	// Token: 0x0200101D RID: 4125
 	public class StatesInstance : GameStateMachine<Telepad.States, Telepad.StatesInstance, Telepad, object>.GameInstance
 	{
-		// Token: 0x0600536E RID: 21358 RVA: 0x000DACBD File Offset: 0x000D8EBD
 		public StatesInstance(Telepad master) : base(master)
 		{
 		}
 
-		// Token: 0x0600536F RID: 21359 RVA: 0x000DACC6 File Offset: 0x000D8EC6
 		public bool IsColonyLost()
 		{
 			return GameFlowManager.Instance != null && GameFlowManager.Instance.IsGameOver();
 		}
 
-		// Token: 0x06005370 RID: 21360 RVA: 0x00286950 File Offset: 0x00284B50
 		public void UpdateMeter()
 		{
 			float timeRemaining = Immigration.Instance.GetTimeRemaining();
@@ -257,7 +233,6 @@ public class Telepad : StateMachineComponent<Telepad.StatesInstance>
 			base.master.meter.SetPositionPercent(positionPercent);
 		}
 
-		// Token: 0x06005371 RID: 21361 RVA: 0x000DACE1 File Offset: 0x000D8EE1
 		public IEnumerator SpawnExtraPowerBanks()
 		{
 			int cellTarget = Grid.OffsetCell(Grid.PosToCell(base.gameObject), 1, 2);
@@ -294,10 +269,8 @@ public class Telepad : StateMachineComponent<Telepad.StatesInstance>
 		}
 	}
 
-	// Token: 0x0200101F RID: 4127
 	public class States : GameStateMachine<Telepad.States, Telepad.StatesInstance, Telepad>
 	{
-		// Token: 0x06005378 RID: 21368 RVA: 0x00286C2C File Offset: 0x00284E2C
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.idle;
@@ -335,53 +308,38 @@ public class Telepad : StateMachineComponent<Telepad.StatesInstance>
 			this.bonusDelivery.pst.PlayAnim("bionic_working_pst").OnAnimQueueComplete(this.idle);
 		}
 
-		// Token: 0x04003AD4 RID: 15060
 		public StateMachine<Telepad.States, Telepad.StatesInstance, Telepad, object>.Signal openPortal;
 
-		// Token: 0x04003AD5 RID: 15061
 		public StateMachine<Telepad.States, Telepad.StatesInstance, Telepad, object>.Signal closePortal;
 
-		// Token: 0x04003AD6 RID: 15062
 		public StateMachine<Telepad.States, Telepad.StatesInstance, Telepad, object>.Signal idlePortal;
 
-		// Token: 0x04003AD7 RID: 15063
 		public GameStateMachine<Telepad.States, Telepad.StatesInstance, Telepad, object>.State idle;
 
-		// Token: 0x04003AD8 RID: 15064
 		public GameStateMachine<Telepad.States, Telepad.StatesInstance, Telepad, object>.State resetToIdle;
 
-		// Token: 0x04003AD9 RID: 15065
 		public GameStateMachine<Telepad.States, Telepad.StatesInstance, Telepad, object>.State opening;
 
-		// Token: 0x04003ADA RID: 15066
 		public GameStateMachine<Telepad.States, Telepad.StatesInstance, Telepad, object>.State open;
 
-		// Token: 0x04003ADB RID: 15067
 		public GameStateMachine<Telepad.States, Telepad.StatesInstance, Telepad, object>.State close;
 
-		// Token: 0x04003ADC RID: 15068
 		public GameStateMachine<Telepad.States, Telepad.StatesInstance, Telepad, object>.State unoperational;
 
-		// Token: 0x04003ADD RID: 15069
 		public Telepad.States.BonusDeliveryStates bonusDelivery;
 
-		// Token: 0x04003ADE RID: 15070
 		private static readonly HashedString[] workingAnims = new HashedString[]
 		{
 			"working_loop",
 			"working_pst"
 		};
 
-		// Token: 0x02001020 RID: 4128
 		public class BonusDeliveryStates : GameStateMachine<Telepad.States, Telepad.StatesInstance, Telepad, object>.State
 		{
-			// Token: 0x04003ADF RID: 15071
 			public GameStateMachine<Telepad.States, Telepad.StatesInstance, Telepad, object>.State pre;
 
-			// Token: 0x04003AE0 RID: 15072
 			public GameStateMachine<Telepad.States, Telepad.StatesInstance, Telepad, object>.State loop;
 
-			// Token: 0x04003AE1 RID: 15073
 			public GameStateMachine<Telepad.States, Telepad.StatesInstance, Telepad, object>.State pst;
 		}
 	}

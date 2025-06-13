@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005B1 RID: 1457
 public class SolidLogicValveConfig : IBuildingConfig
 {
-	// Token: 0x0600193B RID: 6459 RVA: 0x001ADFD8 File Offset: 0x001AC1D8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "SolidLogicValve";
@@ -45,12 +43,10 @@ public class SolidLogicValveConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600193C RID: 6460 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 	}
 
-	// Token: 0x0600193D RID: 6461 RVA: 0x000B5055 File Offset: 0x000B3255
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>().unNetworkedValue = 0;
@@ -59,9 +55,7 @@ public class SolidLogicValveConfig : IBuildingConfig
 		go.AddOrGet<SolidLogicValve>();
 	}
 
-	// Token: 0x0400105D RID: 4189
 	public const string ID = "SolidLogicValve";
 
-	// Token: 0x0400105E RID: 4190
 	private const ConduitType CONDUIT_TYPE = ConduitType.Solid;
 }

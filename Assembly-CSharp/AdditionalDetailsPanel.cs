@@ -6,16 +6,13 @@ using Klei.AI.DiseaseGrowthRules;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001C1C RID: 7196
 public class AdditionalDetailsPanel : DetailScreenTab
 {
-	// Token: 0x0600959F RID: 38303 RVA: 0x000AA7E7 File Offset: 0x000A89E7
 	public override bool IsValidForTarget(GameObject target)
 	{
 		return true;
 	}
 
-	// Token: 0x060095A0 RID: 38304 RVA: 0x003A69FC File Offset: 0x003A4BFC
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -31,26 +28,22 @@ public class AdditionalDetailsPanel : DetailScreenTab
 		base.Subscribe<AdditionalDetailsPanel>(-1514841199, AdditionalDetailsPanel.OnRefreshDataDelegate);
 	}
 
-	// Token: 0x060095A1 RID: 38305 RVA: 0x00105F87 File Offset: 0x00104187
 	private void OnRefreshData(object obj)
 	{
 		this.Refresh();
 	}
 
-	// Token: 0x060095A2 RID: 38306 RVA: 0x00105F87 File Offset: 0x00104187
 	private void Update()
 	{
 		this.Refresh();
 	}
 
-	// Token: 0x060095A3 RID: 38307 RVA: 0x00105F8F File Offset: 0x0010418F
 	protected override void OnSelectTarget(GameObject target)
 	{
 		base.OnSelectTarget(target);
 		this.Refresh();
 	}
 
-	// Token: 0x060095A4 RID: 38308 RVA: 0x003A6AF8 File Offset: 0x003A4CF8
 	private void Refresh()
 	{
 		AdditionalDetailsPanel.RefreshDetailsPanel(this.detailsPanel, this.selectedTarget);
@@ -63,7 +56,6 @@ public class AdditionalDetailsPanel : DetailScreenTab
 		AdditionalDetailsPanel.RefreshEnergyBatteriesPanel(this.batteriesPanel, this.selectedTarget);
 	}
 
-	// Token: 0x060095A5 RID: 38309 RVA: 0x003A6B90 File Offset: 0x003A4D90
 	private static void RefreshDetailsPanel(CollapsibleDetailContentPanel targetPanel, GameObject targetEntity)
 	{
 		PrimaryElement component = targetEntity.GetComponent<PrimaryElement>();
@@ -222,7 +214,6 @@ public class AdditionalDetailsPanel : DetailScreenTab
 		targetPanel.Commit();
 	}
 
-	// Token: 0x060095A6 RID: 38310 RVA: 0x003A73A0 File Offset: 0x003A55A0
 	private static void RefreshDiseaseSourcePanel(CollapsibleDetailContentPanel targetPanel, GameObject targetEntity)
 	{
 		List<Descriptor> list = GameUtil.GetAllDescriptors(targetEntity, true);
@@ -245,7 +236,6 @@ public class AdditionalDetailsPanel : DetailScreenTab
 		targetPanel.Commit();
 	}
 
-	// Token: 0x060095A7 RID: 38311 RVA: 0x003A7458 File Offset: 0x003A5658
 	private static void RefreshCurrentGermsPanel(CollapsibleDetailContentPanel targetPanel, GameObject targetEntity)
 	{
 		if (targetEntity != null)
@@ -285,7 +275,6 @@ public class AdditionalDetailsPanel : DetailScreenTab
 		targetPanel.Commit();
 	}
 
-	// Token: 0x060095A8 RID: 38312 RVA: 0x003A75B4 File Offset: 0x003A57B4
 	private static void RefreshImuneSystemPanel(CollapsibleDetailContentPanel targetPanel, GameObject targetEntity)
 	{
 		GermExposureMonitor.Instance smi = targetEntity.GetSMI<GermExposureMonitor.Instance>();
@@ -415,13 +404,11 @@ public class AdditionalDetailsPanel : DetailScreenTab
 		targetPanel.Commit();
 	}
 
-	// Token: 0x060095A9 RID: 38313 RVA: 0x00105F9E File Offset: 0x0010419E
 	private static string GetFormattedHalfLife(float hl)
 	{
 		return AdditionalDetailsPanel.GetFormattedGrowthRate(Disease.HalfLifeToGrowthRate(hl, 600f));
 	}
 
-	// Token: 0x060095AA RID: 38314 RVA: 0x003A7A60 File Offset: 0x003A5C60
 	private static string GetFormattedGrowthRate(float rate)
 	{
 		if (rate < 1f)
@@ -435,7 +422,6 @@ public class AdditionalDetailsPanel : DetailScreenTab
 		return string.Format(UI.DETAILTABS.DISEASE.DETAILS.NEUTRAL_FORMAT, UI.DETAILTABS.DISEASE.DETAILS.NEUTRAL_FORMAT_TOOLTIP);
 	}
 
-	// Token: 0x060095AB RID: 38315 RVA: 0x003A7AE4 File Offset: 0x003A5CE4
 	private static string GetFormattedGrowthEntry(string name, float halfLife, string dyingFormat, string growingFormat, string neutralFormat)
 	{
 		string format;
@@ -454,7 +440,6 @@ public class AdditionalDetailsPanel : DetailScreenTab
 		return string.Format(format, name, AdditionalDetailsPanel.GetFormattedHalfLife(halfLife));
 	}
 
-	// Token: 0x060095AC RID: 38316 RVA: 0x003A7B1C File Offset: 0x003A5D1C
 	private static void BuildFactorsStrings(CollapsibleDetailContentPanel targetPanel, int diseaseCount, ushort elementIdx, int environmentCell, float environmentMass, float temperature, HashSet<Tag> tags, Disease disease, bool isCell = false)
 	{
 		targetPanel.SetTitle(string.Format(UI.DETAILTABS.DISEASE.CURRENT_GERMS, disease.Name.ToUpper()));
@@ -550,7 +535,6 @@ public class AdditionalDetailsPanel : DetailScreenTab
 		}
 	}
 
-	// Token: 0x060095AD RID: 38317 RVA: 0x003A810C File Offset: 0x003A630C
 	private static void RefreshEnergyOverviewPanel(CollapsibleDetailContentPanel targetPanel, GameObject targetEntity)
 	{
 		if (targetEntity == null)
@@ -588,7 +572,6 @@ public class AdditionalDetailsPanel : DetailScreenTab
 		targetPanel.Commit();
 	}
 
-	// Token: 0x060095AE RID: 38318 RVA: 0x003A82E0 File Offset: 0x003A64E0
 	private static void RefreshEnergyGeneratorPanel(CollapsibleDetailContentPanel targetPanel, GameObject targetEntity)
 	{
 		if (targetEntity == null)
@@ -633,7 +616,6 @@ public class AdditionalDetailsPanel : DetailScreenTab
 		targetPanel.Commit();
 	}
 
-	// Token: 0x060095AF RID: 38319 RVA: 0x003A845C File Offset: 0x003A665C
 	private static void RefreshEnergyConsumerPanel(CollapsibleDetailContentPanel targetPanel, GameObject targetEntity)
 	{
 		AdditionalDetailsPanel.<>c__DisplayClass27_0 CS$<>8__locals1;
@@ -673,7 +655,6 @@ public class AdditionalDetailsPanel : DetailScreenTab
 		CS$<>8__locals1.targetPanel.Commit();
 	}
 
-	// Token: 0x060095B0 RID: 38320 RVA: 0x003A8594 File Offset: 0x003A6794
 	private static void RefreshEnergyBatteriesPanel(CollapsibleDetailContentPanel targetPanel, GameObject targetEntity)
 	{
 		if (targetEntity == null)
@@ -710,7 +691,6 @@ public class AdditionalDetailsPanel : DetailScreenTab
 		targetPanel.Commit();
 	}
 
-	// Token: 0x060095B1 RID: 38321 RVA: 0x003A86BC File Offset: 0x003A68BC
 	private static ushort GetSelectedTargetCircuitID(GameObject targetEntity)
 	{
 		CircuitManager circuitManager = Game.Instance.circuitManager;
@@ -728,7 +708,6 @@ public class AdditionalDetailsPanel : DetailScreenTab
 		return result;
 	}
 
-	// Token: 0x060095B4 RID: 38324 RVA: 0x003A8728 File Offset: 0x003A6928
 	[CompilerGenerated]
 	internal static void <RefreshEnergyConsumerPanel>g__AddConsumerInfo|27_0(IEnergyConsumer consumer, ref AdditionalDetailsPanel.<>c__DisplayClass27_0 A_1)
 	{
@@ -752,37 +731,26 @@ public class AdditionalDetailsPanel : DetailScreenTab
 		}
 	}
 
-	// Token: 0x04007473 RID: 29811
 	public GameObject attributesLabelTemplate;
 
-	// Token: 0x04007474 RID: 29812
 	private CollapsibleDetailContentPanel detailsPanel;
 
-	// Token: 0x04007475 RID: 29813
 	private DetailsPanelDrawer drawer;
 
-	// Token: 0x04007476 RID: 29814
 	private CollapsibleDetailContentPanel immuneSystemPanel;
 
-	// Token: 0x04007477 RID: 29815
 	private CollapsibleDetailContentPanel diseaseSourcePanel;
 
-	// Token: 0x04007478 RID: 29816
 	private CollapsibleDetailContentPanel currentGermsPanel;
 
-	// Token: 0x04007479 RID: 29817
 	private CollapsibleDetailContentPanel overviewPanel;
 
-	// Token: 0x0400747A RID: 29818
 	private CollapsibleDetailContentPanel generatorsPanel;
 
-	// Token: 0x0400747B RID: 29819
 	private CollapsibleDetailContentPanel consumersPanel;
 
-	// Token: 0x0400747C RID: 29820
 	private CollapsibleDetailContentPanel batteriesPanel;
 
-	// Token: 0x0400747D RID: 29821
 	private static readonly EventSystem.IntraObjectHandler<AdditionalDetailsPanel> OnRefreshDataDelegate = new EventSystem.IntraObjectHandler<AdditionalDetailsPanel>(delegate(AdditionalDetailsPanel component, object data)
 	{
 		component.OnRefreshData(data);

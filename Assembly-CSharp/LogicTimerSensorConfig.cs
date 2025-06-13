@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003F8 RID: 1016
 public class LogicTimerSensorConfig : IBuildingConfig
 {
-	// Token: 0x060010B2 RID: 4274 RVA: 0x0018B834 File Offset: 0x00189A34
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = LogicTimerSensorConfig.ID;
@@ -40,13 +38,11 @@ public class LogicTimerSensorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060010B3 RID: 4275 RVA: 0x000B1C54 File Offset: 0x000AFE54
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicTimerSensor>().manuallyControlled = false;
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayInFrontOfConduits, false);
 	}
 
-	// Token: 0x04000BA3 RID: 2979
 	public static string ID = "LogicTimerSensor";
 }

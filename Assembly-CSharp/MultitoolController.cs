@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000C32 RID: 3122
 public class MultitoolController : GameStateMachine<MultitoolController, MultitoolController.Instance, WorkerBase>
 {
-	// Token: 0x06003B13 RID: 15123 RVA: 0x00237210 File Offset: 0x00235410
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.pre;
@@ -32,7 +30,6 @@ public class MultitoolController : GameStateMachine<MultitoolController, Multito
 		});
 	}
 
-	// Token: 0x06003B14 RID: 15124 RVA: 0x00237348 File Offset: 0x00235548
 	public static string[] GetAnimationStrings(Workable workable, WorkerBase worker, string toolString = "dig")
 	{
 		global::Debug.Assert(toolString != "build");
@@ -84,7 +81,6 @@ public class MultitoolController : GameStateMachine<MultitoolController, Multito
 		return array[num4][num5];
 	}
 
-	// Token: 0x06003B15 RID: 15125 RVA: 0x002374CC File Offset: 0x002356CC
 	private static string[] GetDroneAnimationStrings(HashedString context)
 	{
 		string[] result;
@@ -101,7 +97,6 @@ public class MultitoolController : GameStateMachine<MultitoolController, Multito
 		};
 	}
 
-	// Token: 0x06003B16 RID: 15126 RVA: 0x000CA952 File Offset: 0x000C8B52
 	private static void GetTargetPoints(Workable workable, WorkerBase worker, out Vector3 source, out Vector3 target)
 	{
 		target = workable.GetTargetPoint();
@@ -109,19 +104,14 @@ public class MultitoolController : GameStateMachine<MultitoolController, Multito
 		source.y += 0.7f;
 	}
 
-	// Token: 0x040028DA RID: 10458
 	public GameStateMachine<MultitoolController, MultitoolController.Instance, WorkerBase, object>.State pre;
 
-	// Token: 0x040028DB RID: 10459
 	public GameStateMachine<MultitoolController, MultitoolController.Instance, WorkerBase, object>.State loop;
 
-	// Token: 0x040028DC RID: 10460
 	public GameStateMachine<MultitoolController, MultitoolController.Instance, WorkerBase, object>.State pst;
 
-	// Token: 0x040028DD RID: 10461
 	public StateMachine<MultitoolController, MultitoolController.Instance, WorkerBase, object>.TargetParameter worker;
 
-	// Token: 0x040028DE RID: 10462
 	private static readonly string[][][] ANIM_BASE = new string[][][]
 	{
 		new string[][]
@@ -261,10 +251,8 @@ public class MultitoolController : GameStateMachine<MultitoolController, Multito
 		}
 	};
 
-	// Token: 0x040028DF RID: 10463
 	private static Dictionary<string, string[][][]> TOOL_ANIM_SETS = new Dictionary<string, string[][][]>();
 
-	// Token: 0x040028E0 RID: 10464
 	private static Dictionary<HashedString, string[]> drone_anims = new Dictionary<HashedString, string[]>
 	{
 		{
@@ -296,10 +284,8 @@ public class MultitoolController : GameStateMachine<MultitoolController, Multito
 		}
 	};
 
-	// Token: 0x02000C33 RID: 3123
 	public new class Instance : GameStateMachine<MultitoolController, MultitoolController.Instance, WorkerBase, object>.GameInstance
 	{
-		// Token: 0x06003B1A RID: 15130 RVA: 0x0023789C File Offset: 0x00235A9C
 		public Instance(Workable workable, WorkerBase worker, HashedString context, GameObject hit_effect) : base(worker)
 		{
 			this.hitEffectPrefab = hit_effect;
@@ -314,13 +300,11 @@ public class MultitoolController : GameStateMachine<MultitoolController, Multito
 			this.anims = MultitoolController.GetAnimationStrings(workable, worker, "dig");
 		}
 
-		// Token: 0x06003B1B RID: 15131 RVA: 0x000CA9B1 File Offset: 0x000C8BB1
 		public void PlayPre()
 		{
 			base.sm.worker.Get<KAnimControllerBase>(base.smi).Play(this.anims[0], KAnim.PlayMode.Once, 1f, 0f);
 		}
 
-		// Token: 0x06003B1C RID: 15132 RVA: 0x0023790C File Offset: 0x00235B0C
 		public void PlayLoop()
 		{
 			if (base.sm.worker.Get<KAnimControllerBase>(base.smi).currentAnim != this.anims[1])
@@ -329,7 +313,6 @@ public class MultitoolController : GameStateMachine<MultitoolController, Multito
 			}
 		}
 
-		// Token: 0x06003B1D RID: 15133 RVA: 0x0023797C File Offset: 0x00235B7C
 		public void PlayPost()
 		{
 			if (base.sm.worker.Get<KAnimControllerBase>(base.smi).currentAnim != this.anims[2])
@@ -338,7 +321,6 @@ public class MultitoolController : GameStateMachine<MultitoolController, Multito
 			}
 		}
 
-		// Token: 0x06003B1E RID: 15134 RVA: 0x002379EC File Offset: 0x00235BEC
 		public void UpdateHitEffectTarget()
 		{
 			if (this.hitEffect == null)
@@ -356,7 +338,6 @@ public class MultitoolController : GameStateMachine<MultitoolController, Multito
 			this.hitEffect.transform.SetPosition(targetPoint);
 		}
 
-		// Token: 0x06003B1F RID: 15135 RVA: 0x00237A94 File Offset: 0x00235C94
 		public void CreateHitEffect()
 		{
 			WorkerBase workerBase = base.sm.worker.Get<WorkerBase>(base.smi);
@@ -394,7 +375,6 @@ public class MultitoolController : GameStateMachine<MultitoolController, Multito
 			component.UpdateWorkTarget(this.workable.GetTargetPoint());
 		}
 
-		// Token: 0x06003B20 RID: 15136 RVA: 0x00237BA4 File Offset: 0x00235DA4
 		public void DestroyHitEffect()
 		{
 			WorkerBase workerBase = base.sm.worker.Get<WorkerBase>(base.smi);
@@ -414,28 +394,20 @@ public class MultitoolController : GameStateMachine<MultitoolController, Multito
 			this.hitEffect.DeleteObject();
 		}
 
-		// Token: 0x040028E1 RID: 10465
 		public Workable workable;
 
-		// Token: 0x040028E2 RID: 10466
 		private GameObject hitEffectPrefab;
 
-		// Token: 0x040028E3 RID: 10467
 		private GameObject hitEffect;
 
-		// Token: 0x040028E4 RID: 10468
 		private string[] anims;
 
-		// Token: 0x040028E5 RID: 10469
 		private bool inPlace;
 	}
 
-	// Token: 0x02000C34 RID: 3124
 	private enum DigDirection
 	{
-		// Token: 0x040028E7 RID: 10471
 		dig_down,
-		// Token: 0x040028E8 RID: 10472
 		dig_up
 	}
 }

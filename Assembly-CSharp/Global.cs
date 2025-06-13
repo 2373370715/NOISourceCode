@@ -12,15 +12,10 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.U2D;
 
-// Token: 0x020013C6 RID: 5062
 public class Global : MonoBehaviour
 {
-	// Token: 0x17000675 RID: 1653
-	// (get) Token: 0x060067E0 RID: 26592 RVA: 0x000E85BB File Offset: 0x000E67BB
-	// (set) Token: 0x060067E1 RID: 26593 RVA: 0x000E85C2 File Offset: 0x000E67C2
 	public static Global Instance { get; private set; }
 
-	// Token: 0x060067E2 RID: 26594 RVA: 0x002E2DF8 File Offset: 0x002E0FF8
 	public static BindingEntry[] GenerateDefaultBindings(bool hotKeyBuildMenuPermitted = true)
 	{
 		List<BindingEntry> list = new List<BindingEntry>
@@ -249,7 +244,6 @@ public class Global : MonoBehaviour
 		return list.ToArray();
 	}
 
-	// Token: 0x060067E3 RID: 26595 RVA: 0x002E4544 File Offset: 0x002E2744
 	private static void AddBindings(HashedString parent_category, BuildMenu.DisplayInfo display_info, List<BindingEntry> bindings)
 	{
 		if (display_info.data != null)
@@ -277,7 +271,6 @@ public class Global : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060067E4 RID: 26596 RVA: 0x002E4628 File Offset: 0x002E2828
 	private void Awake()
 	{
 		KCrashReporter crash_reporter = base.GetComponent<KCrashReporter>();
@@ -371,7 +364,6 @@ public class Global : MonoBehaviour
 		GlobalResources.Instance();
 	}
 
-	// Token: 0x060067E5 RID: 26597 RVA: 0x000E85CA File Offset: 0x000E67CA
 	private static void InitializeGlobalInput()
 	{
 		if (Game.IsQuitting())
@@ -381,14 +373,12 @@ public class Global : MonoBehaviour
 		Global.mInputManager = new GameInputManager(Global.GenerateDefaultBindings(true));
 	}
 
-	// Token: 0x060067E6 RID: 26598 RVA: 0x000E85E4 File Offset: 0x000E67E4
 	private static void InitializeGlobalSound()
 	{
 		Audio.Get();
 		Singleton<SoundEventVolumeCache>.CreateInstance();
 	}
 
-	// Token: 0x060067E7 RID: 26599 RVA: 0x000E85F1 File Offset: 0x000E67F1
 	private static void InitializeGlobalAnimation()
 	{
 		KAnimBatchManager.CreateInstance();
@@ -396,7 +386,6 @@ public class Global : MonoBehaviour
 		Singleton<KBatchedAnimUpdater>.CreateInstance();
 	}
 
-	// Token: 0x060067E8 RID: 26600 RVA: 0x002E4948 File Offset: 0x002E2B48
 	private void OnExitRequest()
 	{
 		bool flag = true;
@@ -429,7 +418,6 @@ public class Global : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060067E9 RID: 26601 RVA: 0x002E4A74 File Offset: 0x002E2C74
 	private void OnDlcAuthenticationFailed()
 	{
 		if (DlcManager.IsExpansion1Active())
@@ -445,7 +433,6 @@ public class Global : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060067EA RID: 26602 RVA: 0x000E8602 File Offset: 0x000E6802
 	private void RestoreLegacyMetricsSetting()
 	{
 		if (KPlayerPrefs.GetInt("ENABLE_METRICS", 1) == 0)
@@ -457,7 +444,6 @@ public class Global : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060067EB RID: 26603 RVA: 0x002E4AF0 File Offset: 0x002E2CF0
 	private void TestDataLocations()
 	{
 		if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
@@ -603,7 +589,6 @@ public class Global : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060067EC RID: 26604 RVA: 0x000E8630 File Offset: 0x000E6830
 	public static GameInputManager GetInputManager()
 	{
 		if (Global.mInputManager == null)
@@ -613,7 +598,6 @@ public class Global : MonoBehaviour
 		return Global.mInputManager;
 	}
 
-	// Token: 0x060067ED RID: 26605 RVA: 0x000E8643 File Offset: 0x000E6843
 	private void OnApplicationFocus(bool focus)
 	{
 		if (Global.mInputManager != null)
@@ -622,13 +606,11 @@ public class Global : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060067EE RID: 26606 RVA: 0x000E8657 File Offset: 0x000E6857
 	private void OnGetUserIdKey()
 	{
 		this.gotKleiUserID = true;
 	}
 
-	// Token: 0x060067EF RID: 26607 RVA: 0x002E4F14 File Offset: 0x002E3114
 	private void Update()
 	{
 		ImGuiRenderer instance = ImGuiRenderer.GetInstance();
@@ -672,7 +654,6 @@ public class Global : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060067F0 RID: 26608 RVA: 0x002E504C File Offset: 0x002E324C
 	private void SetONIStaticSessionVariables()
 	{
 		ThreadedHttps<KleiMetrics>.Instance.SetStaticSessionVariable("Branch", "release");
@@ -694,7 +675,6 @@ public class Global : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060067F1 RID: 26609 RVA: 0x002E5130 File Offset: 0x002E3330
 	private void SetONIDynamicSessionVariables(Dictionary<string, object> data)
 	{
 		if (Game.Instance != null && GameClock.Instance != null)
@@ -705,7 +685,6 @@ public class Global : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060067F2 RID: 26610 RVA: 0x000E8660 File Offset: 0x000E6860
 	private void LateUpdate()
 	{
 		StreamedTextures.UpdateRequests();
@@ -721,7 +700,6 @@ public class Global : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060067F3 RID: 26611 RVA: 0x000E868D File Offset: 0x000E688D
 	private void OnDestroy()
 	{
 		if (this.modManager != null)
@@ -736,14 +714,12 @@ public class Global : MonoBehaviour
 		Singleton<KBatchedAnimUpdater>.DestroyInstance();
 	}
 
-	// Token: 0x060067F4 RID: 26612 RVA: 0x000E86BE File Offset: 0x000E68BE
 	private void OnApplicationQuit()
 	{
 		KGlobalAnimParser.DestroyInstance();
 		ThreadedHttps<KleiMetrics>.Instance.EndSession(false);
 	}
 
-	// Token: 0x060067F5 RID: 26613 RVA: 0x002E51A8 File Offset: 0x002E33A8
 	private void OutputSystemInfo()
 	{
 		try
@@ -766,36 +742,25 @@ public class Global : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04004E7E RID: 20094
 	public SpriteAtlas[] forcedAtlasInitializationList;
 
-	// Token: 0x04004E7F RID: 20095
 	public GameObject modErrorsPrefab;
 
-	// Token: 0x04004E80 RID: 20096
 	public GameObject globalCanvas;
 
-	// Token: 0x04004E81 RID: 20097
 	private static GameInputManager mInputManager;
 
-	// Token: 0x04004E82 RID: 20098
 	private DevToolManager DevTools = new DevToolManager();
 
-	// Token: 0x04004E83 RID: 20099
 	public KMod.Manager modManager;
 
-	// Token: 0x04004E84 RID: 20100
 	private bool gotKleiUserID;
 
-	// Token: 0x04004E85 RID: 20101
 	private static string saveFolderTestResult = "unknown";
 
-	// Token: 0x04004E86 RID: 20102
 	private bool updated_with_initialized_distribution_platform;
 
-	// Token: 0x04004E87 RID: 20103
 	public static readonly string LanguageModKey = "LanguageMod";
 
-	// Token: 0x04004E88 RID: 20104
 	public static readonly string LanguageCodeKey = "LanguageCode";
 }

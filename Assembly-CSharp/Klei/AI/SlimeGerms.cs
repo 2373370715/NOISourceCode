@@ -3,15 +3,12 @@ using Klei.AI.DiseaseGrowthRules;
 
 namespace Klei.AI
 {
-	// Token: 0x02003C80 RID: 15488
 	public class SlimeGerms : Disease
 	{
-		// Token: 0x0600EDAD RID: 60845 RVA: 0x004E2CEC File Offset: 0x004E0EEC
 		public SlimeGerms(bool statsOnly) : base("SlimeLung", 20f, new Disease.RangeInfo(283.15f, 293.15f, 363.15f, 373.15f), new Disease.RangeInfo(10f, 1200f, 1200f, 10f), new Disease.RangeInfo(0f, 0f, 1000f, 1000f), Disease.RangeInfo.Idempotent(), 2.5f, statsOnly)
 		{
 		}
 
-		// Token: 0x0600EDAE RID: 60846 RVA: 0x004E2D60 File Offset: 0x004E0F60
 		protected override void PopulateElemGrowthInfo()
 		{
 			base.InitializeElemGrowthArray(ref this.elemGrowthInfo, Disease.DEFAULT_GROWTH_INFO);
@@ -107,13 +104,10 @@ namespace Klei.AI
 			});
 		}
 
-		// Token: 0x0400E9AD RID: 59821
 		private const float COUGH_FREQUENCY = 20f;
 
-		// Token: 0x0400E9AE RID: 59822
 		private const int DISEASE_AMOUNT = 1000;
 
-		// Token: 0x0400E9AF RID: 59823
 		public const string ID = "SlimeLung";
 	}
 }

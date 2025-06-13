@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-// Token: 0x020006BF RID: 1727
 public class FetchAreaChore : Chore<FetchAreaChore.StatesInstance>
 {
-	// Token: 0x170000C2 RID: 194
-	// (get) Token: 0x06001E9E RID: 7838 RVA: 0x000B8ABD File Offset: 0x000B6CBD
 	public bool IsFetching
 	{
 		get
@@ -16,8 +13,6 @@ public class FetchAreaChore : Chore<FetchAreaChore.StatesInstance>
 		}
 	}
 
-	// Token: 0x170000C3 RID: 195
-	// (get) Token: 0x06001E9F RID: 7839 RVA: 0x000B8ACA File Offset: 0x000B6CCA
 	public bool IsDelivering
 	{
 		get
@@ -26,8 +21,6 @@ public class FetchAreaChore : Chore<FetchAreaChore.StatesInstance>
 		}
 	}
 
-	// Token: 0x170000C4 RID: 196
-	// (get) Token: 0x06001EA0 RID: 7840 RVA: 0x000B8AD7 File Offset: 0x000B6CD7
 	public GameObject GetFetchTarget
 	{
 		get
@@ -36,34 +29,29 @@ public class FetchAreaChore : Chore<FetchAreaChore.StatesInstance>
 		}
 	}
 
-	// Token: 0x06001EA1 RID: 7841 RVA: 0x001C0B14 File Offset: 0x001BED14
 	public FetchAreaChore(Chore.Precondition.Context context) : base(context.chore.choreType, context.consumerState.consumer, context.consumerState.choreProvider, false, null, null, null, context.masterPriority.priority_class, context.masterPriority.priority_value, false, true, 0, false, ReportManager.ReportType.WorkTime)
 	{
 		this.showAvailabilityInHoverText = false;
 		base.smi = new FetchAreaChore.StatesInstance(this, context);
 	}
 
-	// Token: 0x06001EA2 RID: 7842 RVA: 0x000B8AF4 File Offset: 0x000B6CF4
 	public override void Cleanup()
 	{
 		base.Cleanup();
 	}
 
-	// Token: 0x06001EA3 RID: 7843 RVA: 0x000B8AFC File Offset: 0x000B6CFC
 	public override void Begin(Chore.Precondition.Context context)
 	{
 		base.smi.Begin(context);
 		base.Begin(context);
 	}
 
-	// Token: 0x06001EA4 RID: 7844 RVA: 0x000B8B11 File Offset: 0x000B6D11
 	protected override void End(string reason)
 	{
 		base.smi.End();
 		base.End(reason);
 	}
 
-	// Token: 0x06001EA5 RID: 7845 RVA: 0x000B8B25 File Offset: 0x000B6D25
 	private void OnTagsChanged(object data)
 	{
 		if (base.smi.sm.fetchTarget.Get(base.smi) != null)
@@ -72,7 +60,6 @@ public class FetchAreaChore : Chore<FetchAreaChore.StatesInstance>
 		}
 	}
 
-	// Token: 0x06001EA6 RID: 7846 RVA: 0x001C0B7C File Offset: 0x001BED7C
 	private static bool IsPickupableStillValidForChore(Pickupable pickupable, FetchChore chore)
 	{
 		KPrefabID kprefabID = pickupable.KPrefabID;
@@ -94,7 +81,6 @@ public class FetchAreaChore : Chore<FetchAreaChore.StatesInstance>
 		return pickupable.isChoreAllowedToPickup(chore.choreType);
 	}
 
-	// Token: 0x06001EA7 RID: 7847 RVA: 0x001C0C58 File Offset: 0x001BEE58
 	public static void GatherNearbyFetchChores(FetchChore root_chore, Chore.Precondition.Context context, int x, int y, int radius, List<Chore.Precondition.Context> succeeded_contexts, List<Chore.Precondition.Context> failed_contexts)
 	{
 		ListPool<ScenePartitionerEntry, FetchAreaChore>.PooledList pooledList = ListPool<ScenePartitionerEntry, FetchAreaChore>.Allocate();
@@ -106,11 +92,8 @@ public class FetchAreaChore : Chore<FetchAreaChore.StatesInstance>
 		pooledList.Recycle();
 	}
 
-	// Token: 0x020006C0 RID: 1728
 	public class StatesInstance : GameStateMachine<FetchAreaChore.States, FetchAreaChore.StatesInstance, FetchAreaChore, object>.GameInstance
 	{
-		// Token: 0x170000C5 RID: 197
-		// (get) Token: 0x06001EA8 RID: 7848 RVA: 0x000B8B55 File Offset: 0x000B6D55
 		public Tag RootChore_RequiredTag
 		{
 			get
@@ -119,8 +102,6 @@ public class FetchAreaChore : Chore<FetchAreaChore.StatesInstance>
 			}
 		}
 
-		// Token: 0x170000C6 RID: 198
-		// (get) Token: 0x06001EA9 RID: 7849 RVA: 0x000B8B62 File Offset: 0x000B6D62
 		public bool RootChore_ValidateRequiredTagOnTagChange
 		{
 			get
@@ -129,14 +110,12 @@ public class FetchAreaChore : Chore<FetchAreaChore.StatesInstance>
 			}
 		}
 
-		// Token: 0x06001EAA RID: 7850 RVA: 0x001C0CD0 File Offset: 0x001BEED0
 		public StatesInstance(FetchAreaChore master, Chore.Precondition.Context context) : base(master)
 		{
 			this.rootContext = context;
 			this.rootChore = (context.chore as FetchChore);
 		}
 
-		// Token: 0x06001EAB RID: 7851 RVA: 0x001C0D34 File Offset: 0x001BEF34
 		public void Begin(Chore.Precondition.Context context)
 		{
 			base.sm.fetcher.Set(context.consumerState.gameObject, base.smi, false);
@@ -307,7 +286,6 @@ public class FetchAreaChore : Chore<FetchAreaChore.StatesInstance>
 			potential_fetchables.Recycle();
 		}
 
-		// Token: 0x06001EAC RID: 7852 RVA: 0x001C11F8 File Offset: 0x001BF3F8
 		public void End()
 		{
 			foreach (FetchAreaChore.StatesInstance.Delivery delivery in this.deliveries)
@@ -317,7 +295,6 @@ public class FetchAreaChore : Chore<FetchAreaChore.StatesInstance>
 			this.deliveries.Clear();
 		}
 
-		// Token: 0x06001EAD RID: 7853 RVA: 0x001C1258 File Offset: 0x001BF458
 		public void SetupDelivery()
 		{
 			if (this.deliveries.Count == 0)
@@ -372,7 +349,6 @@ public class FetchAreaChore : Chore<FetchAreaChore.StatesInstance>
 			this.GoTo(base.sm.delivering.deliverfail);
 		}
 
-		// Token: 0x06001EAE RID: 7854 RVA: 0x001C13F0 File Offset: 0x001BF5F0
 		public void SetupFetch()
 		{
 			if (this.reservations.Count <= 0)
@@ -401,7 +377,6 @@ public class FetchAreaChore : Chore<FetchAreaChore.StatesInstance>
 			this.GoTo(base.sm.fetching.fetchfail);
 		}
 
-		// Token: 0x06001EAF RID: 7855 RVA: 0x000B8B6F File Offset: 0x000B6D6F
 		public void SetFetchTarget(Pickupable fetching)
 		{
 			base.sm.fetchTarget.Set(fetching, base.smi);
@@ -411,7 +386,6 @@ public class FetchAreaChore : Chore<FetchAreaChore.StatesInstance>
 			}
 		}
 
-		// Token: 0x06001EB0 RID: 7856 RVA: 0x001C153C File Offset: 0x001BF73C
 		public void DeliverFail()
 		{
 			if (this.deliveries.Count > 0)
@@ -422,7 +396,6 @@ public class FetchAreaChore : Chore<FetchAreaChore.StatesInstance>
 			this.GoTo(base.sm.delivering.next);
 		}
 
-		// Token: 0x06001EB1 RID: 7857 RVA: 0x001C1590 File Offset: 0x001BF790
 		public void DeliverComplete()
 		{
 			Pickupable pickupable = base.sm.deliveryObject.Get<Pickupable>(base.smi);
@@ -458,7 +431,6 @@ public class FetchAreaChore : Chore<FetchAreaChore.StatesInstance>
 			base.smi.GoTo(base.sm.delivering.deliverfail);
 		}
 
-		// Token: 0x06001EB2 RID: 7858 RVA: 0x001C170C File Offset: 0x001BF90C
 		public void FetchFail()
 		{
 			if (base.smi.sm.fetchTarget.Get(base.smi) != null)
@@ -470,7 +442,6 @@ public class FetchAreaChore : Chore<FetchAreaChore.StatesInstance>
 			this.GoTo(base.sm.fetching.next);
 		}
 
-		// Token: 0x06001EB3 RID: 7859 RVA: 0x001C17A4 File Offset: 0x001BF9A4
 		public void FetchComplete()
 		{
 			this.reservations[0].Cleanup();
@@ -478,7 +449,6 @@ public class FetchAreaChore : Chore<FetchAreaChore.StatesInstance>
 			this.GoTo(base.sm.fetching.next);
 		}
 
-		// Token: 0x06001EB4 RID: 7860 RVA: 0x001C17E8 File Offset: 0x001BF9E8
 		public void SetupDeliverables()
 		{
 			foreach (GameObject gameObject in base.sm.fetcher.Get<Storage>(base.smi).items)
@@ -498,7 +468,6 @@ public class FetchAreaChore : Chore<FetchAreaChore.StatesInstance>
 			}
 		}
 
-		// Token: 0x06001EB5 RID: 7861 RVA: 0x001C188C File Offset: 0x001BFA8C
 		public void ReservePickupables()
 		{
 			ChoreConsumer consumer = base.sm.fetcher.Get<ChoreConsumer>(base.smi);
@@ -519,7 +488,6 @@ public class FetchAreaChore : Chore<FetchAreaChore.StatesInstance>
 			}
 		}
 
-		// Token: 0x06001EB6 RID: 7862 RVA: 0x001C1940 File Offset: 0x001BFB40
 		private void OnFetchChoreCancelled(FetchChore chore)
 		{
 			int i = 0;
@@ -548,7 +516,6 @@ public class FetchAreaChore : Chore<FetchAreaChore.StatesInstance>
 			}
 		}
 
-		// Token: 0x06001EB7 RID: 7863 RVA: 0x001C19CC File Offset: 0x001BFBCC
 		public void UnreservePickupables()
 		{
 			foreach (FetchAreaChore.StatesInstance.Reservation reservation in this.reservations)
@@ -558,7 +525,6 @@ public class FetchAreaChore : Chore<FetchAreaChore.StatesInstance>
 			this.reservations.Clear();
 		}
 
-		// Token: 0x06001EB8 RID: 7864 RVA: 0x001C1A2C File Offset: 0x001BFC2C
 		public bool SameDestination(FetchChore fetch)
 		{
 			using (List<FetchChore>.Enumerator enumerator = this.chores.GetEnumerator())
@@ -574,7 +540,6 @@ public class FetchAreaChore : Chore<FetchAreaChore.StatesInstance>
 			return false;
 		}
 
-		// Token: 0x06001EB9 RID: 7865 RVA: 0x001C1A90 File Offset: 0x001BFC90
 		public void OnMarkForMove(object data)
 		{
 			GameObject x = base.smi.sm.fetchTarget.Get(base.smi);
@@ -591,62 +556,40 @@ public class FetchAreaChore : Chore<FetchAreaChore.StatesInstance>
 			}
 		}
 
-		// Token: 0x040013FC RID: 5116
 		private List<FetchChore> chores = new List<FetchChore>();
 
-		// Token: 0x040013FD RID: 5117
 		private List<Pickupable> fetchables = new List<Pickupable>();
 
-		// Token: 0x040013FE RID: 5118
 		private List<FetchAreaChore.StatesInstance.Reservation> reservations = new List<FetchAreaChore.StatesInstance.Reservation>();
 
-		// Token: 0x040013FF RID: 5119
 		private List<Pickupable> deliverables = new List<Pickupable>();
 
-		// Token: 0x04001400 RID: 5120
 		public List<FetchAreaChore.StatesInstance.Delivery> deliveries = new List<FetchAreaChore.StatesInstance.Delivery>();
 
-		// Token: 0x04001401 RID: 5121
 		private FetchChore rootChore;
 
-		// Token: 0x04001402 RID: 5122
 		private Chore.Precondition.Context rootContext;
 
-		// Token: 0x04001403 RID: 5123
 		private float fetchAmountRequested;
 
-		// Token: 0x04001404 RID: 5124
 		public bool delivering;
 
-		// Token: 0x04001405 RID: 5125
 		public bool pickingup;
 
-		// Token: 0x04001406 RID: 5126
 		private static Tag[] s_transientDeliveryTags = new Tag[]
 		{
 			GameTags.Garbage,
 			GameTags.Creatures.Deliverable
 		};
 
-		// Token: 0x020006C1 RID: 1729
 		public struct Delivery
 		{
-			// Token: 0x170000C7 RID: 199
-			// (get) Token: 0x06001EBB RID: 7867 RVA: 0x000B8BCE File Offset: 0x000B6DCE
-			// (set) Token: 0x06001EBC RID: 7868 RVA: 0x000B8BD6 File Offset: 0x000B6DD6
 			public Storage destination { readonly get; private set; }
 
-			// Token: 0x170000C8 RID: 200
-			// (get) Token: 0x06001EBD RID: 7869 RVA: 0x000B8BDF File Offset: 0x000B6DDF
-			// (set) Token: 0x06001EBE RID: 7870 RVA: 0x000B8BE7 File Offset: 0x000B6DE7
 			public float amount { readonly get; private set; }
 
-			// Token: 0x170000C9 RID: 201
-			// (get) Token: 0x06001EBF RID: 7871 RVA: 0x000B8BF0 File Offset: 0x000B6DF0
-			// (set) Token: 0x06001EC0 RID: 7872 RVA: 0x000B8BF8 File Offset: 0x000B6DF8
 			public FetchChore chore { readonly get; private set; }
 
-			// Token: 0x06001EC1 RID: 7873 RVA: 0x001C1B10 File Offset: 0x001BFD10
 			public Delivery(Chore.Precondition.Context context, float amount_to_be_fetched, Action<FetchChore> on_cancelled)
 			{
 				this = default(FetchAreaChore.StatesInstance.Delivery);
@@ -661,7 +604,6 @@ public class FetchAreaChore : Chore<FetchAreaChore.StatesInstance>
 				chore.onCleanup = (Action<Chore>)Delegate.Combine(chore.onCleanup, this.onFetchChoreCleanup);
 			}
 
-			// Token: 0x06001EC2 RID: 7874 RVA: 0x001C1BC0 File Offset: 0x001BFDC0
 			public void Complete(List<Pickupable> deliverables)
 			{
 				using (new KProfiler.Region("FAC.Delivery.Complete", null))
@@ -711,7 +653,6 @@ public class FetchAreaChore : Chore<FetchAreaChore.StatesInstance>
 				}
 			}
 
-			// Token: 0x06001EC3 RID: 7875 RVA: 0x000B8C01 File Offset: 0x000B6E01
 			private void OnFetchChoreCleanup(Chore chore)
 			{
 				if (this.onCancelled != null)
@@ -720,7 +661,6 @@ public class FetchAreaChore : Chore<FetchAreaChore.StatesInstance>
 				}
 			}
 
-			// Token: 0x06001EC4 RID: 7876 RVA: 0x000B8C1C File Offset: 0x000B6E1C
 			public void Cleanup()
 			{
 				if (this.chore != null)
@@ -731,27 +671,17 @@ public class FetchAreaChore : Chore<FetchAreaChore.StatesInstance>
 				}
 			}
 
-			// Token: 0x0400140A RID: 5130
 			private Action<FetchChore> onCancelled;
 
-			// Token: 0x0400140B RID: 5131
 			private Action<Chore> onFetchChoreCleanup;
 		}
 
-		// Token: 0x020006C2 RID: 1730
 		public struct Reservation
 		{
-			// Token: 0x170000CA RID: 202
-			// (get) Token: 0x06001EC5 RID: 7877 RVA: 0x000B8C55 File Offset: 0x000B6E55
-			// (set) Token: 0x06001EC6 RID: 7878 RVA: 0x000B8C5D File Offset: 0x000B6E5D
 			public float amount { readonly get; private set; }
 
-			// Token: 0x170000CB RID: 203
-			// (get) Token: 0x06001EC7 RID: 7879 RVA: 0x000B8C66 File Offset: 0x000B6E66
-			// (set) Token: 0x06001EC8 RID: 7880 RVA: 0x000B8C6E File Offset: 0x000B6E6E
 			public Pickupable pickupable { readonly get; private set; }
 
-			// Token: 0x06001EC9 RID: 7881 RVA: 0x001C1D78 File Offset: 0x001BFF78
 			public Reservation(ChoreConsumer consumer, Pickupable pickupable, float reservation_amount)
 			{
 				this = default(FetchAreaChore.StatesInstance.Reservation);
@@ -764,7 +694,6 @@ public class FetchAreaChore : Chore<FetchAreaChore.StatesInstance>
 				this.handle = pickupable.Reserve("FetchAreaChore", consumer.GetComponent<KPrefabID>().InstanceID, reservation_amount);
 			}
 
-			// Token: 0x06001ECA RID: 7882 RVA: 0x000B8C77 File Offset: 0x000B6E77
 			public void Cleanup()
 			{
 				if (this.pickupable != null)
@@ -773,15 +702,12 @@ public class FetchAreaChore : Chore<FetchAreaChore.StatesInstance>
 				}
 			}
 
-			// Token: 0x0400140E RID: 5134
 			private int handle;
 		}
 	}
 
-	// Token: 0x020006C5 RID: 1733
 	public class States : GameStateMachine<FetchAreaChore.States, FetchAreaChore.StatesInstance, FetchAreaChore>
 	{
-		// Token: 0x06001ECF RID: 7887 RVA: 0x001C2044 File Offset: 0x001C0244
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.fetching;
@@ -855,7 +781,6 @@ public class FetchAreaChore : Chore<FetchAreaChore.StatesInstance>
 			});
 		}
 
-		// Token: 0x06001ED0 RID: 7888 RVA: 0x001C244C File Offset: 0x001C064C
 		private NavTactic GetNavTactic(FetchAreaChore.StatesInstance smi)
 		{
 			WorkerBase component = this.fetcher.Get(smi).GetComponent<WorkerBase>();
@@ -866,71 +791,49 @@ public class FetchAreaChore : Chore<FetchAreaChore.StatesInstance>
 			return NavigationTactics.ReduceTravelDistance;
 		}
 
-		// Token: 0x04001417 RID: 5143
 		public FetchAreaChore.States.FetchStates fetching;
 
-		// Token: 0x04001418 RID: 5144
 		public FetchAreaChore.States.DeliverStates delivering;
 
-		// Token: 0x04001419 RID: 5145
 		public StateMachine<FetchAreaChore.States, FetchAreaChore.StatesInstance, FetchAreaChore, object>.TargetParameter fetcher;
 
-		// Token: 0x0400141A RID: 5146
 		public StateMachine<FetchAreaChore.States, FetchAreaChore.StatesInstance, FetchAreaChore, object>.TargetParameter fetchTarget;
 
-		// Token: 0x0400141B RID: 5147
 		public StateMachine<FetchAreaChore.States, FetchAreaChore.StatesInstance, FetchAreaChore, object>.TargetParameter fetchResultTarget;
 
-		// Token: 0x0400141C RID: 5148
 		public StateMachine<FetchAreaChore.States, FetchAreaChore.StatesInstance, FetchAreaChore, object>.FloatParameter fetchAmount;
 
-		// Token: 0x0400141D RID: 5149
 		public StateMachine<FetchAreaChore.States, FetchAreaChore.StatesInstance, FetchAreaChore, object>.TargetParameter deliveryDestination;
 
-		// Token: 0x0400141E RID: 5150
 		public StateMachine<FetchAreaChore.States, FetchAreaChore.StatesInstance, FetchAreaChore, object>.TargetParameter deliveryObject;
 
-		// Token: 0x0400141F RID: 5151
 		public StateMachine<FetchAreaChore.States, FetchAreaChore.StatesInstance, FetchAreaChore, object>.FloatParameter deliveryAmount;
 
-		// Token: 0x04001420 RID: 5152
 		public StateMachine<FetchAreaChore.States, FetchAreaChore.StatesInstance, FetchAreaChore, object>.Signal currentdeliverycancelled;
 
-		// Token: 0x020006C6 RID: 1734
 		public class FetchStates : GameStateMachine<FetchAreaChore.States, FetchAreaChore.StatesInstance, FetchAreaChore, object>.State
 		{
-			// Token: 0x04001421 RID: 5153
 			public GameStateMachine<FetchAreaChore.States, FetchAreaChore.StatesInstance, FetchAreaChore, object>.State next;
 
-			// Token: 0x04001422 RID: 5154
 			public GameStateMachine<FetchAreaChore.States, FetchAreaChore.StatesInstance, FetchAreaChore, object>.ApproachSubState<Pickupable> movetopickupable;
 
-			// Token: 0x04001423 RID: 5155
 			public GameStateMachine<FetchAreaChore.States, FetchAreaChore.StatesInstance, FetchAreaChore, object>.State pickup;
 
-			// Token: 0x04001424 RID: 5156
 			public GameStateMachine<FetchAreaChore.States, FetchAreaChore.StatesInstance, FetchAreaChore, object>.State fetchfail;
 
-			// Token: 0x04001425 RID: 5157
 			public GameStateMachine<FetchAreaChore.States, FetchAreaChore.StatesInstance, FetchAreaChore, object>.State fetchcomplete;
 		}
 
-		// Token: 0x020006C7 RID: 1735
 		public class DeliverStates : GameStateMachine<FetchAreaChore.States, FetchAreaChore.StatesInstance, FetchAreaChore, object>.State
 		{
-			// Token: 0x04001426 RID: 5158
 			public GameStateMachine<FetchAreaChore.States, FetchAreaChore.StatesInstance, FetchAreaChore, object>.State next;
 
-			// Token: 0x04001427 RID: 5159
 			public GameStateMachine<FetchAreaChore.States, FetchAreaChore.StatesInstance, FetchAreaChore, object>.ApproachSubState<Storage> movetostorage;
 
-			// Token: 0x04001428 RID: 5160
 			public GameStateMachine<FetchAreaChore.States, FetchAreaChore.StatesInstance, FetchAreaChore, object>.State storing;
 
-			// Token: 0x04001429 RID: 5161
 			public GameStateMachine<FetchAreaChore.States, FetchAreaChore.StatesInstance, FetchAreaChore, object>.State deliverfail;
 
-			// Token: 0x0400142A RID: 5162
 			public GameStateMachine<FetchAreaChore.States, FetchAreaChore.StatesInstance, FetchAreaChore, object>.State delivercomplete;
 		}
 	}

@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003EC RID: 1004
 public class LogicMemoryConfig : IBuildingConfig
 {
-	// Token: 0x0600107D RID: 4221 RVA: 0x0018A9D8 File Offset: 0x00188BD8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = LogicMemoryConfig.ID;
@@ -49,13 +47,11 @@ public class LogicMemoryConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600107E RID: 4222 RVA: 0x000B1A18 File Offset: 0x000AFC18
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicMemory>();
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayBehindConduits, false);
 	}
 
-	// Token: 0x04000B96 RID: 2966
 	public static string ID = "LogicMemory";
 }

@@ -1,15 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000955 RID: 2389
 public class LadderSoundEvent : SoundEvent
 {
-	// Token: 0x06002AAF RID: 10927 RVA: 0x000C03A1 File Offset: 0x000BE5A1
 	public LadderSoundEvent(string file_name, string sound_name, int frame) : base(file_name, sound_name, frame, false, false, (float)SoundEvent.IGNORE_INTERVAL, true)
 	{
 	}
 
-	// Token: 0x06002AB0 RID: 10928 RVA: 0x001E83B4 File Offset: 0x001E65B4
 	public override void PlaySound(AnimEventManager.EventPlayerData behaviour)
 	{
 		GameObject gameObject = behaviour.controller.gameObject;

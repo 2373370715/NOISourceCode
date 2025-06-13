@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200040E RID: 1038
 public class MedicalCotConfig : IBuildingConfig
 {
-	// Token: 0x06001137 RID: 4407 RVA: 0x0018D5B4 File Offset: 0x0018B7B4
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "MedicalCot";
@@ -27,14 +25,12 @@ public class MedicalCotConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001138 RID: 4408 RVA: 0x000AA16E File Offset: 0x000A836E
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<LoopingSounds>();
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.Clinic, false);
 	}
 
-	// Token: 0x06001139 RID: 4409 RVA: 0x0018D61C File Offset: 0x0018B81C
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.GetComponent<KAnimControllerBase>().initialAnim = "off";
@@ -76,6 +72,5 @@ public class MedicalCotConfig : IBuildingConfig
 		go.AddOrGet<Ownable>().slotID = Db.Get().AssignableSlots.Clinic.Id;
 	}
 
-	// Token: 0x04000BF6 RID: 3062
 	public const string ID = "MedicalCot";
 }

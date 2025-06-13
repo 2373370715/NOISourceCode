@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001B8A RID: 7050
 public class PrioritizeToolHoverTextCard : HoverTextConfiguration
 {
-	// Token: 0x060093EB RID: 37867 RVA: 0x0039BCBC File Offset: 0x00399EBC
 	public override void UpdateHoverElements(List<KSelectable> selected)
 	{
 		if (ToolMenu.Instance.PriorityScreen == null)
@@ -35,7 +33,6 @@ public class PrioritizeToolHoverTextCard : HoverTextConfiguration
 		hoverTextDrawer.EndDrawing();
 	}
 
-	// Token: 0x060093EC RID: 37868 RVA: 0x0039BDB4 File Offset: 0x00399FB4
 	protected override void ConfigureTitle(HoverTextScreen screen)
 	{
 		string lastEnabledFilter = ToolMenu.Instance.toolParameterMenu.GetLastEnabledFilter();

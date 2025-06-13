@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000377 RID: 887
 public class GravitasDoorConfig : IBuildingConfig
 {
-	// Token: 0x06000E24 RID: 3620 RVA: 0x00181DB4 File Offset: 0x0017FFB4
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "GravitasDoor";
@@ -36,7 +34,6 @@ public class GravitasDoorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000E25 RID: 3621 RVA: 0x0015202C File Offset: 0x0015022C
 	public static List<LogicPorts.Port> CreateSingleInputPortList(CellOffset offset)
 	{
 		return new List<LogicPorts.Port>
@@ -45,7 +42,6 @@ public class GravitasDoorConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x06000E26 RID: 3622 RVA: 0x00181E88 File Offset: 0x00180088
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddTag(GameTags.Gravitas);
@@ -63,11 +59,9 @@ public class GravitasDoorConfig : IBuildingConfig
 		UnityEngine.Object.DestroyImmediate(go.GetComponent<BuildingEnabledButton>());
 	}
 
-	// Token: 0x06000E27 RID: 3623 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000A7B RID: 2683
 	public const string ID = "GravitasDoor";
 }

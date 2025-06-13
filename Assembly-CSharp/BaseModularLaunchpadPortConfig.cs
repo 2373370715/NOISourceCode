@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200002B RID: 43
 public class BaseModularLaunchpadPortConfig
 {
-	// Token: 0x060000B1 RID: 177 RVA: 0x00149514 File Offset: 0x00147714
 	public static BuildingDef CreateBaseLaunchpadPort(string id, string anim, ConduitType conduitType, bool isLoader, int width = 2, int height = 3)
 	{
 		int hitpoints = 1000;
@@ -53,7 +51,6 @@ public class BaseModularLaunchpadPortConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060000B2 RID: 178 RVA: 0x0014962C File Offset: 0x0014782C
 	public static void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag, ConduitType conduitType, float storageSize, bool isLoader)
 	{
 		go.AddOrGet<LoopingSounds>();
@@ -137,11 +134,9 @@ public class BaseModularLaunchpadPortConfig
 		go.AddOrGet<LogicOperationalController>();
 	}
 
-	// Token: 0x060000B3 RID: 179 RVA: 0x000AA038 File Offset: 0x000A8238
 	public static void DoPostConfigureComplete(GameObject go, bool isLoader)
 	{
 	}
 
-	// Token: 0x04000081 RID: 129
 	public static Tag LinkTag = new Tag("ModularLaunchpadPort");
 }

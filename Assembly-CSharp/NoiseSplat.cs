@@ -2,44 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000991 RID: 2449
 public class NoiseSplat : IUniformGridObject
 {
-	// Token: 0x1700016C RID: 364
-	// (get) Token: 0x06002B9C RID: 11164 RVA: 0x000C0D9D File Offset: 0x000BEF9D
-	// (set) Token: 0x06002B9D RID: 11165 RVA: 0x000C0DA5 File Offset: 0x000BEFA5
 	public int dB { get; private set; }
 
-	// Token: 0x1700016D RID: 365
-	// (get) Token: 0x06002B9E RID: 11166 RVA: 0x000C0DAE File Offset: 0x000BEFAE
-	// (set) Token: 0x06002B9F RID: 11167 RVA: 0x000C0DB6 File Offset: 0x000BEFB6
 	public float deathTime { get; private set; }
 
-	// Token: 0x06002BA0 RID: 11168 RVA: 0x000C0DBF File Offset: 0x000BEFBF
 	public string GetName()
 	{
 		return this.provider.GetName();
 	}
 
-	// Token: 0x06002BA1 RID: 11169 RVA: 0x000C0DCC File Offset: 0x000BEFCC
 	public IPolluter GetProvider()
 	{
 		return this.provider;
 	}
 
-	// Token: 0x06002BA2 RID: 11170 RVA: 0x000C0DD4 File Offset: 0x000BEFD4
 	public Vector2 PosMin()
 	{
 		return new Vector2(this.position.x - (float)this.radius, this.position.y - (float)this.radius);
 	}
 
-	// Token: 0x06002BA3 RID: 11171 RVA: 0x000C0E01 File Offset: 0x000BF001
 	public Vector2 PosMax()
 	{
 		return new Vector2(this.position.x + (float)this.radius, this.position.y + (float)this.radius);
 	}
 
-	// Token: 0x06002BA4 RID: 11172 RVA: 0x001ECF74 File Offset: 0x001EB174
 	public NoiseSplat(NoisePolluter setProvider, float death_time = 0f)
 	{
 		this.deathTime = death_time;
@@ -85,7 +73,6 @@ public class NoiseSplat : IUniformGridObject
 		this.solidChangedPartitionerEntry = GameScenePartitioner.Instance.Add("NoiseSplat.SplatSolidCheck", setProvider.gameObject, this.effectExtents, GameScenePartitioner.Instance.solidChangedLayer, setProvider.refreshPartionerCallback);
 	}
 
-	// Token: 0x06002BA5 RID: 11173 RVA: 0x001ED15C File Offset: 0x001EB35C
 	public NoiseSplat(IPolluter setProvider, float death_time = 0f)
 	{
 		this.deathTime = death_time;
@@ -119,7 +106,6 @@ public class NoiseSplat : IUniformGridObject
 		this.AddNoise();
 	}
 
-	// Token: 0x06002BA6 RID: 11174 RVA: 0x000C0E2E File Offset: 0x000BF02E
 	public void Clear()
 	{
 		GameScenePartitioner.Instance.Free(ref this.partitionerEntry);
@@ -127,7 +113,6 @@ public class NoiseSplat : IUniformGridObject
 		this.RemoveNoise();
 	}
 
-	// Token: 0x06002BA7 RID: 11175 RVA: 0x001ED2A8 File Offset: 0x001EB4A8
 	private void AddNoise()
 	{
 		int cell = Grid.PosToCell(this.position);
@@ -162,7 +147,6 @@ public class NoiseSplat : IUniformGridObject
 		}
 	}
 
-	// Token: 0x06002BA8 RID: 11176 RVA: 0x001ED3C0 File Offset: 0x001EB5C0
 	public float GetDBForCell(int cell)
 	{
 		Vector2 vector = Grid.CellToPos2D(cell);
@@ -174,7 +158,6 @@ public class NoiseSplat : IUniformGridObject
 		return Mathf.Round((float)this.dB - (float)this.dB * num * 0.05f);
 	}
 
-	// Token: 0x06002BA9 RID: 11177 RVA: 0x001ED478 File Offset: 0x001EB678
 	private void RemoveNoise()
 	{
 		for (int i = 0; i < this.decibels.Count; i++)
@@ -186,7 +169,6 @@ public class NoiseSplat : IUniformGridObject
 		this.decibels.Clear();
 	}
 
-	// Token: 0x06002BAA RID: 11178 RVA: 0x001ED4F0 File Offset: 0x001EB6F0
 	public float GetLoudness(int cell)
 	{
 		float result = 0f;
@@ -202,30 +184,21 @@ public class NoiseSplat : IUniformGridObject
 		return result;
 	}
 
-	// Token: 0x04001DDE RID: 7646
 	public const float noiseFalloff = 0.05f;
 
-	// Token: 0x04001DE1 RID: 7649
 	private IPolluter provider;
 
-	// Token: 0x04001DE2 RID: 7650
 	private Vector2 position;
 
-	// Token: 0x04001DE3 RID: 7651
 	private int radius;
 
-	// Token: 0x04001DE4 RID: 7652
 	private Extents effectExtents;
 
-	// Token: 0x04001DE5 RID: 7653
 	private Extents baseExtents;
 
-	// Token: 0x04001DE6 RID: 7654
 	private HandleVector<int>.Handle partitionerEntry;
 
-	// Token: 0x04001DE7 RID: 7655
 	private HandleVector<int>.Handle solidChangedPartitionerEntry;
 
-	// Token: 0x04001DE8 RID: 7656
 	private List<Pair<int, float>> decibels = new List<Pair<int, float>>();
 }

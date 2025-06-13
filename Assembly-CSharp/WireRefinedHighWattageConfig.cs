@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000604 RID: 1540
 public class WireRefinedHighWattageConfig : BaseWireConfig
 {
-	// Token: 0x06001B37 RID: 6967 RVA: 0x001B68EC File Offset: 0x001B4AEC
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "WireRefinedHighWattage";
@@ -20,19 +18,16 @@ public class WireRefinedHighWattageConfig : BaseWireConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001B38 RID: 6968 RVA: 0x000B630A File Offset: 0x000B450A
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		base.DoPostConfigureComplete(Wire.WattageRating.Max50000, go);
 	}
 
-	// Token: 0x06001B39 RID: 6969 RVA: 0x000B6314 File Offset: 0x000B4514
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		base.DoPostConfigureUnderConstruction(go);
 		go.GetComponent<Constructable>().requiredSkillPerk = Db.Get().SkillPerks.CanPowerTinker.Id;
 	}
 
-	// Token: 0x0400116E RID: 4462
 	public const string ID = "WireRefinedHighWattage";
 }

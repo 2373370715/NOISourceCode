@@ -2,10 +2,8 @@
 using Klei.AI;
 using UnityEngine;
 
-// Token: 0x02000569 RID: 1385
 public class SweepStates : GameStateMachine<SweepStates, SweepStates.Instance, IStateMachineTarget, SweepStates.Def>
 {
-	// Token: 0x060017CB RID: 6091 RVA: 0x001A7500 File Offset: 0x001A5700
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.beginPatrol;
@@ -92,7 +90,6 @@ public class SweepStates : GameStateMachine<SweepStates, SweepStates.Instance, I
 		}, UpdateRate.SIM_1000ms, false);
 	}
 
-	// Token: 0x060017CC RID: 6092 RVA: 0x000B471B File Offset: 0x000B291B
 	public void StopMoveSound(SweepStates.Instance smi)
 	{
 		LoopingSounds component = smi.gameObject.GetComponent<LoopingSounds>();
@@ -100,7 +97,6 @@ public class SweepStates : GameStateMachine<SweepStates, SweepStates.Instance, I
 		component.StopAllSounds();
 	}
 
-	// Token: 0x060017CD RID: 6093 RVA: 0x001A7674 File Offset: 0x001A5874
 	public void StartMoveSound(SweepStates.Instance smi)
 	{
 		LoopingSounds component = smi.gameObject.GetComponent<LoopingSounds>();
@@ -110,7 +106,6 @@ public class SweepStates : GameStateMachine<SweepStates, SweepStates.Instance, I
 		}
 	}
 
-	// Token: 0x060017CE RID: 6094 RVA: 0x001A76B4 File Offset: 0x001A58B4
 	public void TryMop(SweepStates.Instance smi, float dt)
 	{
 		int cell = Grid.PosToCell(smi);
@@ -132,7 +127,6 @@ public class SweepStates : GameStateMachine<SweepStates, SweepStates.Instance, I
 		}
 	}
 
-	// Token: 0x060017CF RID: 6095 RVA: 0x001A7728 File Offset: 0x001A5928
 	public bool TrySweep(SweepStates.Instance smi)
 	{
 		int cell = Grid.PosToCell(smi);
@@ -151,7 +145,6 @@ public class SweepStates : GameStateMachine<SweepStates, SweepStates.Instance, I
 		return false;
 	}
 
-	// Token: 0x060017D0 RID: 6096 RVA: 0x001A7784 File Offset: 0x001A5984
 	public bool TryStore(GameObject go, SweepStates.Instance smi)
 	{
 		Pickupable pickupable = go.GetComponent<Pickupable>();
@@ -194,7 +187,6 @@ public class SweepStates : GameStateMachine<SweepStates, SweepStates.Instance, I
 		return false;
 	}
 
-	// Token: 0x060017D1 RID: 6097 RVA: 0x001A78A0 File Offset: 0x001A5AA0
 	public int GetNextCell(SweepStates.Instance smi)
 	{
 		int i = 0;
@@ -225,63 +217,46 @@ public class SweepStates : GameStateMachine<SweepStates, SweepStates.Instance, I
 		return num;
 	}
 
-	// Token: 0x04000FB2 RID: 4018
 	public const float TIME_UNTIL_BORED = 30f;
 
-	// Token: 0x04000FB3 RID: 4019
 	public const string MOVE_LOOP_SOUND = "SweepBot_mvmt_lp";
 
-	// Token: 0x04000FB4 RID: 4020
 	public StateMachine<SweepStates, SweepStates.Instance, IStateMachineTarget, SweepStates.Def>.BoolParameter headingRight;
 
-	// Token: 0x04000FB5 RID: 4021
 	private StateMachine<SweepStates, SweepStates.Instance, IStateMachineTarget, SweepStates.Def>.FloatParameter timeUntilBored;
 
-	// Token: 0x04000FB6 RID: 4022
 	public StateMachine<SweepStates, SweepStates.Instance, IStateMachineTarget, SweepStates.Def>.BoolParameter bored;
 
-	// Token: 0x04000FB7 RID: 4023
 	private GameStateMachine<SweepStates, SweepStates.Instance, IStateMachineTarget, SweepStates.Def>.State beginPatrol;
 
-	// Token: 0x04000FB8 RID: 4024
 	private GameStateMachine<SweepStates, SweepStates.Instance, IStateMachineTarget, SweepStates.Def>.State moving;
 
-	// Token: 0x04000FB9 RID: 4025
 	private GameStateMachine<SweepStates, SweepStates.Instance, IStateMachineTarget, SweepStates.Def>.State pause;
 
-	// Token: 0x04000FBA RID: 4026
 	private GameStateMachine<SweepStates, SweepStates.Instance, IStateMachineTarget, SweepStates.Def>.State mopping;
 
-	// Token: 0x04000FBB RID: 4027
 	private GameStateMachine<SweepStates, SweepStates.Instance, IStateMachineTarget, SweepStates.Def>.State redirected;
 
-	// Token: 0x04000FBC RID: 4028
 	private GameStateMachine<SweepStates, SweepStates.Instance, IStateMachineTarget, SweepStates.Def>.State emoteRedirected;
 
-	// Token: 0x04000FBD RID: 4029
 	private GameStateMachine<SweepStates, SweepStates.Instance, IStateMachineTarget, SweepStates.Def>.State sweep;
 
-	// Token: 0x0200056A RID: 1386
 	public class Def : StateMachine.BaseDef
 	{
 	}
 
-	// Token: 0x0200056B RID: 1387
 	public new class Instance : GameStateMachine<SweepStates, SweepStates.Instance, IStateMachineTarget, SweepStates.Def>.GameInstance
 	{
-		// Token: 0x060017DB RID: 6107 RVA: 0x000B4828 File Offset: 0x000B2A28
 		public Instance(Chore<SweepStates.Instance> chore, SweepStates.Def def) : base(chore, def)
 		{
 		}
 
-		// Token: 0x060017DC RID: 6108 RVA: 0x000B4832 File Offset: 0x000B2A32
 		public override void StartSM()
 		{
 			base.StartSM();
 			base.GetComponent<KSelectable>().SetStatusItem(Db.Get().StatusItemCategories.Main, Db.Get().RobotStatusItems.Working, base.gameObject);
 		}
 
-		// Token: 0x060017DD RID: 6109 RVA: 0x000B486A File Offset: 0x000B2A6A
 		protected override void OnCleanUp()
 		{
 			base.OnCleanUp();

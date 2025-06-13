@@ -4,11 +4,9 @@ using Klei.AI;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x02001527 RID: 5415
 [SerializationConfig(MemberSerialization.OptIn)]
 public class MinionModifiers : Modifiers, ISaveLoadable
 {
-	// Token: 0x06007097 RID: 28823 RVA: 0x00306414 File Offset: 0x00304614
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -36,7 +34,6 @@ public class MinionModifiers : Modifiers, ISaveLoadable
 		}
 	}
 
-	// Token: 0x06007098 RID: 28824 RVA: 0x0030652C File Offset: 0x0030472C
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -60,14 +57,12 @@ public class MinionModifiers : Modifiers, ISaveLoadable
 		}
 	}
 
-	// Token: 0x06007099 RID: 28825 RVA: 0x0030662C File Offset: 0x0030482C
 	private AmountInstance AddAmount(Amount amount)
 	{
 		AmountInstance instance = new AmountInstance(amount, base.gameObject);
 		return this.amounts.Add(instance);
 	}
 
-	// Token: 0x0600709A RID: 28826 RVA: 0x00306654 File Offset: 0x00304854
 	private void SetupDependentAttribute(Klei.AI.Attribute targetAttribute, AttributeConverter attributeConverter)
 	{
 		Klei.AI.Attribute attribute = attributeConverter.attribute;
@@ -80,7 +75,6 @@ public class MinionModifiers : Modifiers, ISaveLoadable
 		}));
 	}
 
-	// Token: 0x0600709B RID: 28827 RVA: 0x003066E8 File Offset: 0x003048E8
 	private void OnDeath(object data)
 	{
 		global::Debug.LogFormat("OnDeath {0} -- {1} has died!", new object[]
@@ -94,13 +88,11 @@ public class MinionModifiers : Modifiers, ISaveLoadable
 		}
 	}
 
-	// Token: 0x0600709C RID: 28828 RVA: 0x000EE1EA File Offset: 0x000EC3EA
 	private void OnMaxCaloriesReached()
 	{
 		base.GetComponent<Effects>().Add("WellFed", true);
 	}
 
-	// Token: 0x0600709D RID: 28829 RVA: 0x002A3FE8 File Offset: 0x002A21E8
 	private void OnBeginChore(object data)
 	{
 		Storage component = base.GetComponent<Storage>();
@@ -110,52 +102,43 @@ public class MinionModifiers : Modifiers, ISaveLoadable
 		}
 	}
 
-	// Token: 0x0600709E RID: 28830 RVA: 0x000EE1FE File Offset: 0x000EC3FE
 	public override void OnSerialize(BinaryWriter writer)
 	{
 		base.OnSerialize(writer);
 	}
 
-	// Token: 0x0600709F RID: 28831 RVA: 0x000EE207 File Offset: 0x000EC407
 	public override void OnDeserialize(IReader reader)
 	{
 		base.OnDeserialize(reader);
 	}
 
-	// Token: 0x060070A0 RID: 28832 RVA: 0x000EE210 File Offset: 0x000EC410
 	private void OnAttachFollowCam(object data)
 	{
 		base.GetComponent<Effects>().Add("CenterOfAttention", false);
 	}
 
-	// Token: 0x060070A1 RID: 28833 RVA: 0x000EE224 File Offset: 0x000EC424
 	private void OnDetachFollowCam(object data)
 	{
 		base.GetComponent<Effects>().Remove("CenterOfAttention");
 	}
 
-	// Token: 0x040054A0 RID: 21664
 	public bool addBaseTraits = true;
 
-	// Token: 0x040054A1 RID: 21665
 	private static readonly EventSystem.IntraObjectHandler<MinionModifiers> OnDeathDelegate = new EventSystem.IntraObjectHandler<MinionModifiers>(delegate(MinionModifiers component, object data)
 	{
 		component.OnDeath(data);
 	});
 
-	// Token: 0x040054A2 RID: 21666
 	private static readonly EventSystem.IntraObjectHandler<MinionModifiers> OnAttachFollowCamDelegate = new EventSystem.IntraObjectHandler<MinionModifiers>(delegate(MinionModifiers component, object data)
 	{
 		component.OnAttachFollowCam(data);
 	});
 
-	// Token: 0x040054A3 RID: 21667
 	private static readonly EventSystem.IntraObjectHandler<MinionModifiers> OnDetachFollowCamDelegate = new EventSystem.IntraObjectHandler<MinionModifiers>(delegate(MinionModifiers component, object data)
 	{
 		component.OnDetachFollowCam(data);
 	});
 
-	// Token: 0x040054A4 RID: 21668
 	private static readonly EventSystem.IntraObjectHandler<MinionModifiers> OnBeginChoreDelegate = new EventSystem.IntraObjectHandler<MinionModifiers>(delegate(MinionModifiers component, object data)
 	{
 		component.OnBeginChore(data);

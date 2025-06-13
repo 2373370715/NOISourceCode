@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000596 RID: 1430
 public class ShearingStationConfig : IBuildingConfig
 {
-	// Token: 0x060018B1 RID: 6321 RVA: 0x001ABF0C File Offset: 0x001AA10C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "ShearingStation";
@@ -35,7 +33,6 @@ public class ShearingStationConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060018B2 RID: 6322 RVA: 0x001ABFCC File Offset: 0x001AA1CC
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<LoopingSounds>();
@@ -46,7 +43,6 @@ public class ShearingStationConfig : IBuildingConfig
 		roomTracker.requirement = RoomTracker.Requirement.Required;
 	}
 
-	// Token: 0x060018B3 RID: 6323 RVA: 0x001AC024 File Offset: 0x001AA224
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		RanchStation.Def def = go.AddOrGetDef<RanchStation.Def>();
@@ -68,6 +64,5 @@ public class ShearingStationConfig : IBuildingConfig
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x04001025 RID: 4133
 	public const string ID = "ShearingStation";
 }

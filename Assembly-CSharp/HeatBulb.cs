@@ -2,18 +2,15 @@
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x0200171E RID: 5918
 [AddComponentMenu("KMonoBehaviour/scripts/HeatBulb")]
 public class HeatBulb : KMonoBehaviour, ISim200ms
 {
-	// Token: 0x060079CF RID: 31183 RVA: 0x000F4988 File Offset: 0x000F2B88
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
 		this.kanim.Play("off", KAnim.PlayMode.Once, 1f, 0f);
 	}
 
-	// Token: 0x060079D0 RID: 31184 RVA: 0x00324334 File Offset: 0x00322534
 	public void Sim200ms(float dt)
 	{
 		float num = this.kjConsumptionRate * dt;
@@ -55,35 +52,27 @@ public class HeatBulb : KMonoBehaviour, ISim200ms
 		this.lightSource.enabled = false;
 	}
 
-	// Token: 0x04005B9B RID: 23451
 	[SerializeField]
 	private float minTemperature;
 
-	// Token: 0x04005B9C RID: 23452
 	[SerializeField]
 	private float kjConsumptionRate;
 
-	// Token: 0x04005B9D RID: 23453
 	[SerializeField]
 	private float lightKJConsumptionRate;
 
-	// Token: 0x04005B9E RID: 23454
 	[SerializeField]
 	private Vector2I minCheckOffset;
 
-	// Token: 0x04005B9F RID: 23455
 	[SerializeField]
 	private Vector2I maxCheckOffset;
 
-	// Token: 0x04005BA0 RID: 23456
 	[MyCmpGet]
 	private Light2D lightSource;
 
-	// Token: 0x04005BA1 RID: 23457
 	[MyCmpGet]
 	private KBatchedAnimController kanim;
 
-	// Token: 0x04005BA2 RID: 23458
 	[Serialize]
 	private float kjConsumed;
 }

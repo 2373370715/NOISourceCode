@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000383 RID: 899
 public class HandSanitizerConfig : IBuildingConfig
 {
-	// Token: 0x06000E6A RID: 3690 RVA: 0x00183170 File Offset: 0x00181370
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "HandSanitizer";
@@ -35,7 +33,6 @@ public class HandSanitizerConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000E6B RID: 3691 RVA: 0x00183228 File Offset: 0x00181428
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.WashStation, false);
@@ -64,26 +61,19 @@ public class HandSanitizerConfig : IBuildingConfig
 		go.AddOrGetDef<RocketUsageRestriction.Def>();
 	}
 
-	// Token: 0x06000E6C RID: 3692 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000AA0 RID: 2720
 	public const string ID = "HandSanitizer";
 
-	// Token: 0x04000AA1 RID: 2721
 	private const float STORAGE_SIZE = 15f;
 
-	// Token: 0x04000AA2 RID: 2722
 	private const float MASS_PER_USE = 0.07f;
 
-	// Token: 0x04000AA3 RID: 2723
 	private static readonly int DISEASE_REMOVAL_COUNT = WashBasinConfig.DISEASE_REMOVAL_COUNT * 4;
 
-	// Token: 0x04000AA4 RID: 2724
 	private const float WORK_TIME = 1.8f;
 
-	// Token: 0x04000AA5 RID: 2725
 	private const SimHashes CONSUMED_ELEMENT = SimHashes.BleachStone;
 }

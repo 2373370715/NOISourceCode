@@ -2,18 +2,15 @@
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x02000E38 RID: 3640
 [SerializationConfig(MemberSerialization.OptIn)]
 public class IceCooledFan : StateMachineComponent<IceCooledFan.StatesInstance>
 {
-	// Token: 0x06004720 RID: 18208 RVA: 0x000D281E File Offset: 0x000D0A1E
 	public bool HasMaterial()
 	{
 		this.UpdateMeter();
 		return this.iceStorage.MassStored() > 0f;
 	}
 
-	// Token: 0x06004721 RID: 18209 RVA: 0x000D2838 File Offset: 0x000D0A38
 	public void CheckWorking()
 	{
 		if (base.smi.master.workable.worker == null)
@@ -22,7 +19,6 @@ public class IceCooledFan : StateMachineComponent<IceCooledFan.StatesInstance>
 		}
 	}
 
-	// Token: 0x06004722 RID: 18210 RVA: 0x0025F4F0 File Offset: 0x0025D6F0
 	private void UpdateUnworkableStatusItems()
 	{
 		KSelectable component = base.GetComponent<KSelectable>();
@@ -51,7 +47,6 @@ public class IceCooledFan : StateMachineComponent<IceCooledFan.StatesInstance>
 		}
 	}
 
-	// Token: 0x06004723 RID: 18211 RVA: 0x0025F5F0 File Offset: 0x0025D7F0
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -65,7 +60,6 @@ public class IceCooledFan : StateMachineComponent<IceCooledFan.StatesInstance>
 		base.GetComponent<ManualDeliveryKG>().SetStorage(this.iceStorage);
 	}
 
-	// Token: 0x06004724 RID: 18212 RVA: 0x0025F65C File Offset: 0x0025D85C
 	private void UpdateMeter()
 	{
 		float num = 0f;
@@ -79,7 +73,6 @@ public class IceCooledFan : StateMachineComponent<IceCooledFan.StatesInstance>
 		this.meter.SetPositionPercent(1f - num2);
 	}
 
-	// Token: 0x06004725 RID: 18213 RVA: 0x0025F704 File Offset: 0x0025D904
 	private void DoCooling(float dt)
 	{
 		float kilowatts = this.coolingRate * dt;
@@ -112,69 +105,52 @@ public class IceCooledFan : StateMachineComponent<IceCooledFan.StatesInstance>
 		this.UpdateMeter();
 	}
 
-	// Token: 0x040031B4 RID: 12724
 	[SerializeField]
 	public float minCooledTemperature;
 
-	// Token: 0x040031B5 RID: 12725
 	[SerializeField]
 	public float minEnvironmentMass;
 
-	// Token: 0x040031B6 RID: 12726
 	[SerializeField]
 	public float coolingRate;
 
-	// Token: 0x040031B7 RID: 12727
 	[SerializeField]
 	public float targetTemperature;
 
-	// Token: 0x040031B8 RID: 12728
 	[SerializeField]
 	public Vector2I minCoolingRange;
 
-	// Token: 0x040031B9 RID: 12729
 	[SerializeField]
 	public Vector2I maxCoolingRange;
 
-	// Token: 0x040031BA RID: 12730
 	[SerializeField]
 	public Storage iceStorage;
 
-	// Token: 0x040031BB RID: 12731
 	[SerializeField]
 	public Storage liquidStorage;
 
-	// Token: 0x040031BC RID: 12732
 	[SerializeField]
 	public Tag consumptionTag;
 
-	// Token: 0x040031BD RID: 12733
 	[MyCmpAdd]
 	private ManuallySetRemoteWorkTargetComponent remoteChore;
 
-	// Token: 0x040031BE RID: 12734
 	private float LOW_ICE_TEMP = 173.15f;
 
-	// Token: 0x040031BF RID: 12735
 	[MyCmpAdd]
 	private IceCooledFanWorkable workable;
 
-	// Token: 0x040031C0 RID: 12736
 	[MyCmpGet]
 	private Operational operational;
 
-	// Token: 0x040031C1 RID: 12737
 	private MeterController meter;
 
-	// Token: 0x02000E39 RID: 3641
 	public class StatesInstance : GameStateMachine<IceCooledFan.States, IceCooledFan.StatesInstance, IceCooledFan, object>.GameInstance
 	{
-		// Token: 0x06004727 RID: 18215 RVA: 0x000D2885 File Offset: 0x000D0A85
 		public StatesInstance(IceCooledFan smi) : base(smi)
 		{
 		}
 
-		// Token: 0x06004728 RID: 18216 RVA: 0x0025F8C4 File Offset: 0x0025DAC4
 		public bool IsWorkable()
 		{
 			bool result = false;
@@ -185,7 +161,6 @@ public class IceCooledFan : StateMachineComponent<IceCooledFan.StatesInstance>
 			return result;
 		}
 
-		// Token: 0x06004729 RID: 18217 RVA: 0x0025F910 File Offset: 0x0025DB10
 		public bool EnvironmentNeedsCooling()
 		{
 			bool result = false;
@@ -206,7 +181,6 @@ public class IceCooledFan : StateMachineComponent<IceCooledFan.StatesInstance>
 			return result;
 		}
 
-		// Token: 0x0600472A RID: 18218 RVA: 0x0025F9B8 File Offset: 0x0025DBB8
 		public bool EnvironmentHighEnoughPressure()
 		{
 			int cell = Grid.PosToCell(base.transform.GetPosition());
@@ -226,10 +200,8 @@ public class IceCooledFan : StateMachineComponent<IceCooledFan.StatesInstance>
 		}
 	}
 
-	// Token: 0x02000E3A RID: 3642
 	public class States : GameStateMachine<IceCooledFan.States, IceCooledFan.StatesInstance, IceCooledFan>
 	{
-		// Token: 0x0600472B RID: 18219 RVA: 0x0025FA58 File Offset: 0x0025DC58
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.unworkable;
@@ -272,34 +244,26 @@ public class IceCooledFan : StateMachineComponent<IceCooledFan.StatesInstance>
 			});
 		}
 
-		// Token: 0x0600472C RID: 18220 RVA: 0x000D288E File Offset: 0x000D0A8E
 		private static void SetRemoteChore(IceCooledFan.StatesInstance smi, Chore chore)
 		{
 			smi.master.remoteChore.SetChore(chore);
 		}
 
-		// Token: 0x0600472D RID: 18221 RVA: 0x0025FCDC File Offset: 0x0025DEDC
 		private static Chore CreateUseChore(IceCooledFan.StatesInstance smi)
 		{
 			return new WorkChore<IceCooledFanWorkable>(Db.Get().ChoreTypes.IceCooledFan, smi.master.workable, null, true, null, null, null, true, null, false, true, null, false, true, true, PriorityScreen.PriorityClass.basic, 5, false, true);
 		}
 
-		// Token: 0x040031C2 RID: 12738
 		public IceCooledFan.States.Workable workable;
 
-		// Token: 0x040031C3 RID: 12739
 		public GameStateMachine<IceCooledFan.States, IceCooledFan.StatesInstance, IceCooledFan, object>.State unworkable;
 
-		// Token: 0x040031C4 RID: 12740
 		public GameStateMachine<IceCooledFan.States, IceCooledFan.StatesInstance, IceCooledFan, object>.State work_pst;
 
-		// Token: 0x02000E3B RID: 3643
 		public class Workable : GameStateMachine<IceCooledFan.States, IceCooledFan.StatesInstance, IceCooledFan, object>.State
 		{
-			// Token: 0x040031C5 RID: 12741
 			public GameStateMachine<IceCooledFan.States, IceCooledFan.StatesInstance, IceCooledFan, object>.State waiting;
 
-			// Token: 0x040031C6 RID: 12742
 			public GameStateMachine<IceCooledFan.States, IceCooledFan.StatesInstance, IceCooledFan, object>.State cooling;
 		}
 	}

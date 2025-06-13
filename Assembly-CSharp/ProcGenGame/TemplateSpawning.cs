@@ -6,10 +6,8 @@ using UnityEngine;
 
 namespace ProcGenGame
 {
-	// Token: 0x02002109 RID: 8457
 	public class TemplateSpawning
 	{
-		// Token: 0x0600B3F5 RID: 46069 RVA: 0x00447388 File Offset: 0x00445588
 		public static List<TemplateSpawning.TemplateSpawner> DetermineTemplatesForWorld(WorldGenSettings settings, List<TerrainCell> terrainCells, SeededRandom myRandom, ref List<RectInt> placedPOIBounds, bool isRunningDebugGen, ref List<WorldTrait> placedStoryTraits, WorldGen.OfflineCallbackFunction successCallbackFn)
 		{
 			successCallbackFn(UI.WORLDGEN.PLACINGTEMPLATES.key, 0f, WorldGenProgressStages.Stages.PlaceTemplates);
@@ -28,13 +26,11 @@ namespace ProcGenGame
 			return result;
 		}
 
-		// Token: 0x0600B3F6 RID: 46070 RVA: 0x001197E0 File Offset: 0x001179E0
 		private static float ProgressPercent(float stagePercent)
 		{
 			return MathUtil.ReRange(stagePercent, 0f, 1f, TemplateSpawning.s_minProgressPercent, TemplateSpawning.s_maxProgressPercent);
 		}
 
-		// Token: 0x0600B3F7 RID: 46071 RVA: 0x00447448 File Offset: 0x00445648
 		private static void SpawnStartingTemplate(WorldGenSettings settings, List<TerrainCell> terrainCells, ref List<TemplateSpawning.TemplateSpawner> templateSpawnTargets, ref List<RectInt> placedPOIBounds, bool isRunningDebugGen, WorldGen.OfflineCallbackFunction successCallbackFn)
 		{
 			TerrainCell terrainCell = terrainCells.Find((TerrainCell tc) => tc.node.tags.Contains(WorldGenTags.StartLocation));
@@ -60,7 +56,6 @@ namespace ProcGenGame
 			placedPOIBounds.Add(templateBounds);
 		}
 
-		// Token: 0x0600B3F8 RID: 46072 RVA: 0x00447548 File Offset: 0x00445748
 		private static void SpawnTemplatesFromTemplateRules(WorldGenSettings settings, List<TerrainCell> terrainCells, SeededRandom myRandom, ref List<TemplateSpawning.TemplateSpawner> templateSpawnTargets, ref List<RectInt> placedPOIBounds, bool isRunningDebugGen, WorldGen.OfflineCallbackFunction successCallbackFn)
 		{
 			List<ProcGen.World.TemplateSpawnRules> list = new List<ProcGen.World.TemplateSpawnRules>();
@@ -103,7 +98,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B3F9 RID: 46073 RVA: 0x004476C0 File Offset: 0x004458C0
 		private static void SpawnStoryTraitTemplates(WorldGenSettings settings, List<TerrainCell> terrainCells, SeededRandom myRandom, ref List<TemplateSpawning.TemplateSpawner> templateSpawnTargets, ref List<RectInt> placedPOIBounds, ref List<WorldTrait> placedStoryTraits, bool isRunningDebugGen, WorldGen.OfflineCallbackFunction successCallbackFn)
 		{
 			Queue<WorldTrait> queue = new Queue<WorldTrait>(settings.GetStoryTraitCandiates());
@@ -177,7 +171,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B3FA RID: 46074 RVA: 0x004478D8 File Offset: 0x00445AD8
 		private static void RemoveTemplate(TemplateSpawning.TemplateSpawner toRemove, WorldGenSettings settings, List<TerrainCell> terrainCells, ref List<TemplateSpawning.TemplateSpawner> templateSpawnTargets, ref List<RectInt> placedPOIBounds)
 		{
 			TemplateSpawning.UpdateNodeTags(toRemove.terrainCell.node, toRemove.container.name, true);
@@ -185,7 +178,6 @@ namespace ProcGenGame
 			placedPOIBounds.RemoveAll((RectInt bound) => bound.center == toRemove.position);
 		}
 
-		// Token: 0x0600B3FB RID: 46075 RVA: 0x0044793C File Offset: 0x00445B3C
 		private static bool ApplyTemplateRule(WorldGenSettings settings, List<TerrainCell> terrainCells, SeededRandom myRandom, ref List<TemplateSpawning.TemplateSpawner> templateSpawnTargets, ref List<RectInt> placedPOIBounds, ProcGen.World.TemplateSpawnRules rule, ref HashSet<string> usedTemplates, out string errorMessage, ref List<TemplateSpawning.TemplateSpawner> newTemplateSpawnTargets)
 		{
 			int i = 0;
@@ -369,7 +361,6 @@ namespace ProcGenGame
 			return true;
 		}
 
-		// Token: 0x0600B3FC RID: 46076 RVA: 0x00447E84 File Offset: 0x00446084
 		private static void UpdateNodeTags(Node node, string template, bool remove = false)
 		{
 			Tag tag = template.ToTag();
@@ -385,7 +376,6 @@ namespace ProcGenGame
 			node.tags.Add(WorldGenTags.POI);
 		}
 
-		// Token: 0x0600B3FD RID: 46077 RVA: 0x00447EF0 File Offset: 0x004460F0
 		private static TerrainCell FindTargetForTemplate(TemplateContainer template, ProcGen.World.TemplateSpawnRules rule, List<TerrainCell> terrainCells, SeededRandom myRandom, ref List<TemplateSpawning.TemplateSpawner> templateSpawnTargets, ref List<RectInt> placedPOIBounds, bool guarantee, WorldGenSettings settings)
 		{
 			List<TerrainCell> list;
@@ -451,7 +441,6 @@ namespace ProcGenGame
 			return list[list.Count - 1];
 		}
 
-		// Token: 0x0600B3FE RID: 46078 RVA: 0x004480F8 File Offset: 0x004462F8
 		private static bool IsPOIOverlappingBounds(List<RectInt> placedPOIBounds, RectInt templateBounds)
 		{
 			foreach (RectInt other in placedPOIBounds)
@@ -464,7 +453,6 @@ namespace ProcGenGame
 			return false;
 		}
 
-		// Token: 0x0600B3FF RID: 46079 RVA: 0x00448150 File Offset: 0x00446350
 		private static bool IsPOIOverlappingHighTemperatureDelta(RectInt paddedTemplateBounds, SubWorld subworld, ref List<TerrainCell> allCells, WorldGenSettings settings)
 		{
 			Vector2 b = 2f * Vector2.one * (float)TemplateSpawning.s_poiPadding;
@@ -490,7 +478,6 @@ namespace ProcGenGame
 			return false;
 		}
 
-		// Token: 0x0600B400 RID: 46080 RVA: 0x004482A0 File Offset: 0x004464A0
 		private static void RemoveOverlappingPOIs(ref List<TerrainCell> filteredTerrainCells, ref List<TerrainCell> allCells, ref List<RectInt> placedPOIBounds, TemplateContainer container, WorldGenSettings settings, bool allowExtremeTemperatureOverlap, Vector2 poiOffset)
 		{
 			for (int i = filteredTerrainCells.Count - 1; i >= 0; i--)
@@ -517,7 +504,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B401 RID: 46081 RVA: 0x00448364 File Offset: 0x00446564
 		private static bool DoesCellMatchFilters(TerrainCell cell, List<ProcGen.World.AllowedCellsFilter> filters)
 		{
 			bool flag = false;
@@ -559,7 +545,6 @@ namespace ProcGenGame
 			return flag;
 		}
 
-		// Token: 0x0600B402 RID: 46082 RVA: 0x0044846C File Offset: 0x0044666C
 		private static bool DoesCellMatchFilter(TerrainCell cell, ProcGen.World.AllowedCellsFilter filter, out bool applied)
 		{
 			applied = true;
@@ -636,7 +621,6 @@ namespace ProcGenGame
 			return true;
 		}
 
-		// Token: 0x0600B403 RID: 46083 RVA: 0x004486F8 File Offset: 0x004468F8
 		private static bool ValidateFilter(ProcGen.World.AllowedCellsFilter filter)
 		{
 			if (filter.command == ProcGen.World.AllowedCellsFilter.Command.All)
@@ -693,25 +677,18 @@ namespace ProcGenGame
 			return true;
 		}
 
-		// Token: 0x04008E7C RID: 36476
 		private static float s_minProgressPercent;
 
-		// Token: 0x04008E7D RID: 36477
 		private static float s_maxProgressPercent;
 
-		// Token: 0x04008E7E RID: 36478
 		private static int s_poiPadding;
 
-		// Token: 0x04008E7F RID: 36479
 		private const int TEMPERATURE_PADDING = 3;
 
-		// Token: 0x04008E80 RID: 36480
 		private const float EXTREME_POI_OVERLAP_TEMPERATURE_RANGE = 100f;
 
-		// Token: 0x0200210A RID: 8458
 		public class TemplateSpawner
 		{
-			// Token: 0x0600B405 RID: 46085 RVA: 0x001197FC File Offset: 0x001179FC
 			public TemplateSpawner(Vector2I position, RectInt bounds, TemplateContainer container, TerrainCell terrainCell)
 			{
 				this.position = position;
@@ -720,16 +697,12 @@ namespace ProcGenGame
 				this.bounds = bounds;
 			}
 
-			// Token: 0x04008E81 RID: 36481
 			public Vector2I position;
 
-			// Token: 0x04008E82 RID: 36482
 			public TemplateContainer container;
 
-			// Token: 0x04008E83 RID: 36483
 			public TerrainCell terrainCell;
 
-			// Token: 0x04008E84 RID: 36484
 			public RectInt bounds;
 		}
 	}

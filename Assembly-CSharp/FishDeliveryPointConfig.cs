@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000280 RID: 640
 public class FishDeliveryPointConfig : IBuildingConfig
 {
-	// Token: 0x0600094D RID: 2381 RVA: 0x0016E98C File Offset: 0x0016CB8C
 	public override BuildingDef CreateBuildingDef()
 	{
 		BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef("FishDeliveryPoint", 1, 3, "fishrelocator_kanim", 10, 10f, TUNING.BUILDINGS.CONSTRUCTION_MASS_KG.TIER1, MATERIALS.RAW_METALS, 1600f, BuildLocationRule.Anywhere, TUNING.BUILDINGS.DECOR.PENALTY.TIER2, NOISE_POLLUTION.NOISY.TIER0, 0.2f);
@@ -20,7 +18,6 @@ public class FishDeliveryPointConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600094E RID: 2382 RVA: 0x0016EA1C File Offset: 0x0016CC1C
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(GameTags.CodexCategories.CreatureRelocator, false);
@@ -54,8 +51,6 @@ public class FishDeliveryPointConfig : IBuildingConfig
 		go.AddOrGet<TreeFilterable>();
 	}
 
-	// Token: 0x0600094F RID: 2383 RVA: 0x000AEA8B File Offset: 0x000ACC8B
-	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGetDef<MakeBaseSolid.Def>().solidOffsets = new CellOffset[]
 		{
@@ -63,6 +58,4 @@ public class FishDeliveryPointConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x04000731 RID: 1841
-	public const string ID = "FishDeliveryPoint";
 }

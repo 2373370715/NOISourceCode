@@ -1,10 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020014C6 RID: 5318
 public class LaunchPadMaterialDistributor : GameStateMachine<LaunchPadMaterialDistributor, LaunchPadMaterialDistributor.Instance, IStateMachineTarget, LaunchPadMaterialDistributor.Def>
 {
-	// Token: 0x06006E1B RID: 28187 RVA: 0x002FC430 File Offset: 0x002FA630
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.inoperational;
@@ -44,7 +42,6 @@ public class LaunchPadMaterialDistributor : GameStateMachine<LaunchPadMaterialDi
 		}).GoTo(this.operational.noRocket);
 	}
 
-	// Token: 0x06006E1C RID: 28188 RVA: 0x002FC860 File Offset: 0x002FAA60
 	private void SetAttachedRocket(RocketModuleCluster attached, LaunchPadMaterialDistributor.Instance smi)
 	{
 		HashSetPool<ChainedBuilding.StatesInstance, ChainedBuilding.StatesInstance>.PooledHashSet pooledHashSet = HashSetPool<ChainedBuilding.StatesInstance, ChainedBuilding.StatesInstance>.Allocate();
@@ -61,77 +58,56 @@ public class LaunchPadMaterialDistributor : GameStateMachine<LaunchPadMaterialDi
 		pooledHashSet.Recycle();
 	}
 
-	// Token: 0x04005308 RID: 21256
 	public GameStateMachine<LaunchPadMaterialDistributor, LaunchPadMaterialDistributor.Instance, IStateMachineTarget, LaunchPadMaterialDistributor.Def>.State inoperational;
 
-	// Token: 0x04005309 RID: 21257
 	public LaunchPadMaterialDistributor.OperationalStates operational;
 
-	// Token: 0x0400530A RID: 21258
 	private StateMachine<LaunchPadMaterialDistributor, LaunchPadMaterialDistributor.Instance, IStateMachineTarget, LaunchPadMaterialDistributor.Def>.TargetParameter attachedRocket;
 
-	// Token: 0x0400530B RID: 21259
 	private StateMachine<LaunchPadMaterialDistributor, LaunchPadMaterialDistributor.Instance, IStateMachineTarget, LaunchPadMaterialDistributor.Def>.BoolParameter emptyComplete;
 
-	// Token: 0x0400530C RID: 21260
 	private StateMachine<LaunchPadMaterialDistributor, LaunchPadMaterialDistributor.Instance, IStateMachineTarget, LaunchPadMaterialDistributor.Def>.BoolParameter fillComplete;
 
-	// Token: 0x020014C7 RID: 5319
 	public class Def : StateMachine.BaseDef
 	{
 	}
 
-	// Token: 0x020014C8 RID: 5320
 	public class HasRocketStates : GameStateMachine<LaunchPadMaterialDistributor, LaunchPadMaterialDistributor.Instance, IStateMachineTarget, LaunchPadMaterialDistributor.Def>.State
 	{
-		// Token: 0x0400530D RID: 21261
 		public LaunchPadMaterialDistributor.HasRocketStates.TransferringStates transferring;
 
-		// Token: 0x0400530E RID: 21262
 		public GameStateMachine<LaunchPadMaterialDistributor, LaunchPadMaterialDistributor.Instance, IStateMachineTarget, LaunchPadMaterialDistributor.Def>.State transferComplete;
 
-		// Token: 0x020014C9 RID: 5321
 		public class TransferringStates : GameStateMachine<LaunchPadMaterialDistributor, LaunchPadMaterialDistributor.Instance, IStateMachineTarget, LaunchPadMaterialDistributor.Def>.State
 		{
-			// Token: 0x0400530F RID: 21263
 			public GameStateMachine<LaunchPadMaterialDistributor, LaunchPadMaterialDistributor.Instance, IStateMachineTarget, LaunchPadMaterialDistributor.Def>.State actual;
 
-			// Token: 0x04005310 RID: 21264
 			public GameStateMachine<LaunchPadMaterialDistributor, LaunchPadMaterialDistributor.Instance, IStateMachineTarget, LaunchPadMaterialDistributor.Def>.State delay;
 		}
 	}
 
-	// Token: 0x020014CA RID: 5322
 	public class OperationalStates : GameStateMachine<LaunchPadMaterialDistributor, LaunchPadMaterialDistributor.Instance, IStateMachineTarget, LaunchPadMaterialDistributor.Def>.State
 	{
-		// Token: 0x04005311 RID: 21265
 		public GameStateMachine<LaunchPadMaterialDistributor, LaunchPadMaterialDistributor.Instance, IStateMachineTarget, LaunchPadMaterialDistributor.Def>.State noRocket;
 
-		// Token: 0x04005312 RID: 21266
 		public GameStateMachine<LaunchPadMaterialDistributor, LaunchPadMaterialDistributor.Instance, IStateMachineTarget, LaunchPadMaterialDistributor.Def>.State rocketLanding;
 
-		// Token: 0x04005313 RID: 21267
 		public LaunchPadMaterialDistributor.HasRocketStates hasRocket;
 
-		// Token: 0x04005314 RID: 21268
 		public GameStateMachine<LaunchPadMaterialDistributor, LaunchPadMaterialDistributor.Instance, IStateMachineTarget, LaunchPadMaterialDistributor.Def>.State rocketLost;
 	}
 
-	// Token: 0x020014CB RID: 5323
 	public new class Instance : GameStateMachine<LaunchPadMaterialDistributor, LaunchPadMaterialDistributor.Instance, IStateMachineTarget, LaunchPadMaterialDistributor.Def>.GameInstance
 	{
-		// Token: 0x06006E29 RID: 28201 RVA: 0x000ECB9F File Offset: 0x000EAD9F
 		public Instance(IStateMachineTarget master, LaunchPadMaterialDistributor.Def def) : base(master, def)
 		{
 		}
 
-		// Token: 0x06006E2A RID: 28202 RVA: 0x000ECBA9 File Offset: 0x000EADA9
 		public RocketModuleCluster GetLandedRocketFromPad()
 		{
 			return base.GetComponent<LaunchPad>().LandedRocket;
 		}
 
-		// Token: 0x06006E2B RID: 28203 RVA: 0x002FC8E4 File Offset: 0x002FAAE4
 		public void EmptyRocket(float dt)
 		{
 			CraftModuleInterface craftInterface = base.sm.attachedRocket.Get<RocketModuleCluster>(base.smi).CraftInterface;
@@ -200,7 +176,6 @@ public class LaunchPadMaterialDistributor : GameStateMachine<LaunchPadMaterialDi
 			base.sm.emptyComplete.Set(!flag, this, false);
 		}
 
-		// Token: 0x06006E2C RID: 28204 RVA: 0x002FCC04 File Offset: 0x002FAE04
 		public void FillRocket(float dt)
 		{
 			CraftModuleInterface craftInterface = base.sm.attachedRocket.Get<RocketModuleCluster>(base.smi).CraftInterface;

@@ -1,12 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000C4E RID: 3150
 [SkipSaveFileSerialization]
 [AddComponentMenu("KMonoBehaviour/scripts/AnimTileableController")]
 public class AnimTileableController : KMonoBehaviour
 {
-	// Token: 0x06003B7C RID: 15228 RVA: 0x000CADB8 File Offset: 0x000C8FB8
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -19,7 +17,6 @@ public class AnimTileableController : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06003B7D RID: 15229 RVA: 0x00238AF0 File Offset: 0x00236CF0
 	protected override void OnSpawn()
 	{
 		OccupyArea component = base.GetComponent<OccupyArea>();
@@ -42,14 +39,12 @@ public class AnimTileableController : KMonoBehaviour
 		this.UpdateEndCaps();
 	}
 
-	// Token: 0x06003B7E RID: 15230 RVA: 0x000CADEF File Offset: 0x000C8FEF
 	protected override void OnCleanUp()
 	{
 		GameScenePartitioner.Instance.Free(ref this.partitionerEntry);
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06003B7F RID: 15231 RVA: 0x00238C10 File Offset: 0x00236E10
 	private void UpdateEndCaps()
 	{
 		int cell = Grid.PosToCell(this);
@@ -98,7 +93,6 @@ public class AnimTileableController : KMonoBehaviour
 		this.bottom.Enable(enable4);
 	}
 
-	// Token: 0x06003B80 RID: 15232 RVA: 0x00238D94 File Offset: 0x00236F94
 	private bool HasTileableNeighbour(int neighbour_cell)
 	{
 		bool result = false;
@@ -114,7 +108,6 @@ public class AnimTileableController : KMonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06003B81 RID: 15233 RVA: 0x000CAE07 File Offset: 0x000C9007
 	private void OnNeighbourCellsUpdated(object data)
 	{
 		if (this == null || base.gameObject == null)
@@ -127,39 +120,27 @@ public class AnimTileableController : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x04002933 RID: 10547
 	private HandleVector<int>.Handle partitionerEntry;
 
-	// Token: 0x04002934 RID: 10548
 	public ObjectLayer objectLayer = ObjectLayer.Building;
 
-	// Token: 0x04002935 RID: 10549
 	public Tag[] tags;
 
-	// Token: 0x04002936 RID: 10550
 	private Extents extents;
 
-	// Token: 0x04002937 RID: 10551
 	public string leftName = "#cap_left";
 
-	// Token: 0x04002938 RID: 10552
 	public string rightName = "#cap_right";
 
-	// Token: 0x04002939 RID: 10553
 	public string topName = "#cap_top";
 
-	// Token: 0x0400293A RID: 10554
 	public string bottomName = "#cap_bottom";
 
-	// Token: 0x0400293B RID: 10555
 	private KAnimSynchronizedController left;
 
-	// Token: 0x0400293C RID: 10556
 	private KAnimSynchronizedController right;
 
-	// Token: 0x0400293D RID: 10557
 	private KAnimSynchronizedController top;
 
-	// Token: 0x0400293E RID: 10558
 	private KAnimSynchronizedController bottom;
 }

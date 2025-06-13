@@ -4,17 +4,14 @@ using Klei.AI;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000AEF RID: 2799
 [SkipSaveFileSerialization]
 public class Overheatable : StateMachineComponent<Overheatable.StatesInstance>, IGameObjectEffectDescriptor
 {
-	// Token: 0x06003389 RID: 13193 RVA: 0x000C61E4 File Offset: 0x000C43E4
 	public void ResetTemperature()
 	{
 		base.GetComponent<PrimaryElement>().Temperature = 293.15f;
 	}
 
-	// Token: 0x0600338A RID: 13194 RVA: 0x00213DD4 File Offset: 0x00211FD4
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -22,7 +19,6 @@ public class Overheatable : StateMachineComponent<Overheatable.StatesInstance>, 
 		this.fatalTemp = this.GetAttributes().Add(Db.Get().BuildingAttributes.FatalTemperature);
 	}
 
-	// Token: 0x0600338B RID: 13195 RVA: 0x00213E28 File Offset: 0x00212028
 	private void InitializeModifiers()
 	{
 		if (this.modifiersInitialized)
@@ -39,7 +35,6 @@ public class Overheatable : StateMachineComponent<Overheatable.StatesInstance>, 
 		this.GetAttributes().Add(modifier2);
 	}
 
-	// Token: 0x0600338C RID: 13196 RVA: 0x00213EB4 File Offset: 0x002120B4
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -53,8 +48,6 @@ public class Overheatable : StateMachineComponent<Overheatable.StatesInstance>, 
 		base.smi.StartSM();
 	}
 
-	// Token: 0x17000226 RID: 550
-	// (get) Token: 0x0600338D RID: 13197 RVA: 0x000C61F6 File Offset: 0x000C43F6
 	public float OverheatTemperature
 	{
 		get
@@ -68,14 +61,12 @@ public class Overheatable : StateMachineComponent<Overheatable.StatesInstance>, 
 		}
 	}
 
-	// Token: 0x0600338E RID: 13198 RVA: 0x00213F18 File Offset: 0x00212118
 	public Notification CreateOverheatedNotification()
 	{
 		KSelectable component = base.GetComponent<KSelectable>();
 		return new Notification(MISC.NOTIFICATIONS.BUILDINGOVERHEATED.NAME, NotificationType.BadMinor, (List<Notification> notificationList, object data) => MISC.NOTIFICATIONS.BUILDINGOVERHEATED.TOOLTIP + notificationList.ReduceMessages(false), "/t• " + component.GetProperName(), false, 0f, null, null, null, true, false, false);
 	}
 
-	// Token: 0x0600338F RID: 13199 RVA: 0x00213F78 File Offset: 0x00212178
 	private static string ToolTipResolver(List<Notification> notificationList, object data)
 	{
 		string text = "";
@@ -91,7 +82,6 @@ public class Overheatable : StateMachineComponent<Overheatable.StatesInstance>, 
 		return string.Format(MISC.NOTIFICATIONS.BUILDINGOVERHEATED.TOOLTIP, text);
 	}
 
-	// Token: 0x06003390 RID: 13200 RVA: 0x00213FE0 File Offset: 0x002121E0
 	public List<Descriptor> GetDescriptors(GameObject go)
 	{
 		List<Descriptor> list = new List<Descriptor>();
@@ -115,30 +105,22 @@ public class Overheatable : StateMachineComponent<Overheatable.StatesInstance>, 
 		return list;
 	}
 
-	// Token: 0x04002353 RID: 9043
 	private bool modifiersInitialized;
 
-	// Token: 0x04002354 RID: 9044
 	private AttributeInstance overheatTemp;
 
-	// Token: 0x04002355 RID: 9045
 	private AttributeInstance fatalTemp;
 
-	// Token: 0x04002356 RID: 9046
 	public float baseOverheatTemp;
 
-	// Token: 0x04002357 RID: 9047
 	public float baseFatalTemp;
 
-	// Token: 0x02000AF0 RID: 2800
 	public class StatesInstance : GameStateMachine<Overheatable.States, Overheatable.StatesInstance, Overheatable, object>.GameInstance
 	{
-		// Token: 0x06003392 RID: 13202 RVA: 0x000C621F File Offset: 0x000C441F
 		public StatesInstance(Overheatable smi) : base(smi)
 		{
 		}
 
-		// Token: 0x06003393 RID: 13203 RVA: 0x002140D4 File Offset: 0x002122D4
 		public void TryDoOverheatDamage()
 		{
 			if (Time.time - this.lastOverheatDamageTime < 7.5f)
@@ -155,14 +137,11 @@ public class Overheatable : StateMachineComponent<Overheatable.StatesInstance>, 
 			});
 		}
 
-		// Token: 0x04002358 RID: 9048
 		public float lastOverheatDamageTime;
 	}
 
-	// Token: 0x02000AF1 RID: 2801
 	public class States : GameStateMachine<Overheatable.States, Overheatable.StatesInstance, Overheatable>
 	{
-		// Token: 0x06003394 RID: 13204 RVA: 0x0021415C File Offset: 0x0021235C
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.safeTemperature;
@@ -184,13 +163,10 @@ public class Overheatable : StateMachineComponent<Overheatable.StatesInstance>, 
 			}, UpdateRate.SIM_4000ms, false);
 		}
 
-		// Token: 0x04002359 RID: 9049
 		public GameStateMachine<Overheatable.States, Overheatable.StatesInstance, Overheatable, object>.State invulnerable;
 
-		// Token: 0x0400235A RID: 9050
 		public GameStateMachine<Overheatable.States, Overheatable.StatesInstance, Overheatable, object>.State safeTemperature;
 
-		// Token: 0x0400235B RID: 9051
 		public GameStateMachine<Overheatable.States, Overheatable.StatesInstance, Overheatable, object>.State overheated;
 	}
 }

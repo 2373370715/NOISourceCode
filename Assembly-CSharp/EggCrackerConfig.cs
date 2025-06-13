@@ -3,11 +3,9 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000A9 RID: 169
 [EntityConfigOrder(2)]
 public class EggCrackerConfig : IBuildingConfig
 {
-	// Token: 0x060002B8 RID: 696 RVA: 0x00152338 File Offset: 0x00150538
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "EggCracker";
@@ -30,7 +28,6 @@ public class EggCrackerConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060002B9 RID: 697 RVA: 0x001523BC File Offset: 0x001505BC
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<DropAllWorkable>();
@@ -53,12 +50,10 @@ public class EggCrackerConfig : IBuildingConfig
 		go.AddOrGet<EggCracker>();
 	}
 
-	// Token: 0x060002BA RID: 698 RVA: 0x000AAF59 File Offset: 0x000A9159
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
 	}
 
-	// Token: 0x040001C2 RID: 450
 	public const string ID = "EggCracker";
 }

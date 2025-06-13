@@ -4,11 +4,8 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001924 RID: 6436
 public class ClusterTraveler : KMonoBehaviour, ISim200ms
 {
-	// Token: 0x17000897 RID: 2199
-	// (get) Token: 0x06008562 RID: 34146 RVA: 0x0035544C File Offset: 0x0035364C
 	public List<AxialI> CurrentPath
 	{
 		get
@@ -22,14 +19,12 @@ public class ClusterTraveler : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x06008563 RID: 34147 RVA: 0x000FC1D4 File Offset: 0x000FA3D4
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 		Components.ClusterTravelers.Add(this);
 	}
 
-	// Token: 0x06008564 RID: 34148 RVA: 0x000FC1E7 File Offset: 0x000FA3E7
 	protected override void OnCleanUp()
 	{
 		Components.ClusterTravelers.Remove(this);
@@ -37,7 +32,6 @@ public class ClusterTraveler : KMonoBehaviour, ISim200ms
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06008565 RID: 34149 RVA: 0x000FC215 File Offset: 0x000FA415
 	private void ForceRevealLocation(AxialI location)
 	{
 		if (!ClusterGrid.Instance.IsCellVisible(location))
@@ -46,7 +40,6 @@ public class ClusterTraveler : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x06008566 RID: 34150 RVA: 0x003554B8 File Offset: 0x003536B8
 	protected override void OnSpawn()
 	{
 		base.Subscribe<ClusterTraveler>(543433792, ClusterTraveler.ClusterDestinationChangedHandler);
@@ -60,19 +53,16 @@ public class ClusterTraveler : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x06008567 RID: 34151 RVA: 0x000FC235 File Offset: 0x000FA435
 	private void MarkPathDirty()
 	{
 		this.m_isPathDirty = true;
 	}
 
-	// Token: 0x06008568 RID: 34152 RVA: 0x000FC23E File Offset: 0x000FA43E
 	private void OnClusterFogOfWarRevealed(object data)
 	{
 		this.MarkPathDirty();
 	}
 
-	// Token: 0x06008569 RID: 34153 RVA: 0x000FC246 File Offset: 0x000FA446
 	private void OnClusterDestinationChanged(object data)
 	{
 		if (this.m_destinationSelector.IsAtDestination())
@@ -86,13 +76,11 @@ public class ClusterTraveler : KMonoBehaviour, ISim200ms
 		this.MarkPathDirty();
 	}
 
-	// Token: 0x0600856A RID: 34154 RVA: 0x000FC279 File Offset: 0x000FA479
 	public int GetDestinationWorldID()
 	{
 		return this.m_destinationSelector.GetDestinationWorld();
 	}
 
-	// Token: 0x0600856B RID: 34155 RVA: 0x000FC286 File Offset: 0x000FA486
 	public float TravelETA()
 	{
 		if (!this.IsTraveling() || this.getSpeedCB == null)
@@ -102,7 +90,6 @@ public class ClusterTraveler : KMonoBehaviour, ISim200ms
 		return this.RemainingTravelDistance() / this.getSpeedCB();
 	}
 
-	// Token: 0x0600856C RID: 34156 RVA: 0x00355520 File Offset: 0x00353720
 	public float RemainingTravelDistance()
 	{
 		int num = this.RemainingTravelNodes();
@@ -114,7 +101,6 @@ public class ClusterTraveler : KMonoBehaviour, ISim200ms
 		return (float)num * 600f - this.m_movePotential;
 	}
 
-	// Token: 0x0600856D RID: 34157 RVA: 0x00355558 File Offset: 0x00353758
 	public int RemainingTravelNodes()
 	{
 		if (this.CurrentPath == null)
@@ -125,19 +111,16 @@ public class ClusterTraveler : KMonoBehaviour, ISim200ms
 		return Mathf.Max(0, count);
 	}
 
-	// Token: 0x0600856E RID: 34158 RVA: 0x000FC2B0 File Offset: 0x000FA4B0
 	public float GetMoveProgress()
 	{
 		return this.m_movePotential / 600f;
 	}
 
-	// Token: 0x0600856F RID: 34159 RVA: 0x000FC2BE File Offset: 0x000FA4BE
 	public bool IsTraveling()
 	{
 		return !this.m_destinationSelector.IsAtDestination();
 	}
 
-	// Token: 0x06008570 RID: 34160 RVA: 0x00355584 File Offset: 0x00353784
 	public void Sim200ms(float dt)
 	{
 		if (!this.IsTraveling())
@@ -184,7 +167,6 @@ public class ClusterTraveler : KMonoBehaviour, ISim200ms
 		this.RevalidatePath(true);
 	}
 
-	// Token: 0x06008571 RID: 34161 RVA: 0x003556FC File Offset: 0x003538FC
 	public bool AdvancePathOneStep()
 	{
 		if (this.validateTravelCB != null && !this.validateTravelCB(this.CurrentPath[0]))
@@ -202,7 +184,6 @@ public class ClusterTraveler : KMonoBehaviour, ISim200ms
 		return true;
 	}
 
-	// Token: 0x06008572 RID: 34162 RVA: 0x00355768 File Offset: 0x00353968
 	private void UpdateAnimationTags()
 	{
 		if (this.CurrentPath == null)
@@ -231,7 +212,6 @@ public class ClusterTraveler : KMonoBehaviour, ISim200ms
 		this.m_clusterGridEntity.RemoveTag(GameTags.BallisticEntityMoving);
 	}
 
-	// Token: 0x06008573 RID: 34163 RVA: 0x00355898 File Offset: 0x00353A98
 	public void RevalidatePath(bool react_to_change = true)
 	{
 		string reason;
@@ -250,7 +230,6 @@ public class ClusterTraveler : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x06008574 RID: 34164 RVA: 0x00355930 File Offset: 0x00353B30
 	private bool HasCurrentPathChanged(out string reason, out List<AxialI> updatedPath)
 	{
 		if (!this.m_isPathDirty)
@@ -279,56 +258,41 @@ public class ClusterTraveler : KMonoBehaviour, ISim200ms
 		return false;
 	}
 
-	// Token: 0x06008575 RID: 34165 RVA: 0x000FC2CE File Offset: 0x000FA4CE
 	[ContextMenu("Fill Move Potential")]
 	public void FillMovePotential()
 	{
 		this.m_movePotential = 600f;
 	}
 
-	// Token: 0x0400657C RID: 25980
 	[MyCmpReq]
 	private ClusterDestinationSelector m_destinationSelector;
 
-	// Token: 0x0400657D RID: 25981
 	[MyCmpReq]
 	private ClusterGridEntity m_clusterGridEntity;
 
-	// Token: 0x0400657E RID: 25982
 	[Serialize]
 	private float m_movePotential;
 
-	// Token: 0x0400657F RID: 25983
 	public Func<float> getSpeedCB;
 
-	// Token: 0x04006580 RID: 25984
 	public Func<bool, bool> getCanTravelCB;
 
-	// Token: 0x04006581 RID: 25985
 	public Func<AxialI, bool> validateTravelCB;
 
-	// Token: 0x04006582 RID: 25986
 	public System.Action onTravelCB;
 
-	// Token: 0x04006583 RID: 25987
 	private AxialI m_cachedPathDestination;
 
-	// Token: 0x04006584 RID: 25988
 	private List<AxialI> m_cachedPath;
 
-	// Token: 0x04006585 RID: 25989
 	private bool m_isPathDirty;
 
-	// Token: 0x04006586 RID: 25990
 	public bool revealsFogOfWarAsItTravels = true;
 
-	// Token: 0x04006587 RID: 25991
 	public bool quickTravelToAsteroidIfInOrbit = true;
 
-	// Token: 0x04006588 RID: 25992
 	public bool stopAndNotifyWhenPathChanges;
 
-	// Token: 0x04006589 RID: 25993
 	private static EventSystem.IntraObjectHandler<ClusterTraveler> ClusterDestinationChangedHandler = new EventSystem.IntraObjectHandler<ClusterTraveler>(delegate(ClusterTraveler cmp, object data)
 	{
 		cmp.OnClusterDestinationChanged(data);

@@ -6,11 +6,9 @@ using TemplateClasses;
 
 namespace ProcGenGame
 {
-	// Token: 0x020020FF RID: 8447
 	[SerializationConfig(MemberSerialization.OptOut)]
 	public class GameSpawnData
 	{
-		// Token: 0x0600B3D6 RID: 46038 RVA: 0x0044591C File Offset: 0x00443B1C
 		public void AddRange(IEnumerable<KeyValuePair<int, string>> newItems)
 		{
 			foreach (KeyValuePair<int, string> keyValuePair in newItems)
@@ -21,7 +19,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B3D7 RID: 46039 RVA: 0x004459A4 File Offset: 0x00443BA4
 		public void AddTemplate(TemplateContainer template, Vector2I position, ref Dictionary<int, int> claimedCells)
 		{
 			int cell = Grid.XYToCell(position.x, position.y);
@@ -97,31 +94,23 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B3D8 RID: 46040 RVA: 0x00445D20 File Offset: 0x00443F20
 		private bool IsWarpTeleporter(Prefab prefab)
 		{
 			return prefab.id == "WarpPortal" || prefab.id == WarpReceiverConfig.ID || prefab.id == "WarpConduitSender" || prefab.id == "WarpConduitReceiver";
 		}
 
-		// Token: 0x04008E65 RID: 36453
 		public Vector2I baseStartPos;
 
-		// Token: 0x04008E66 RID: 36454
 		public List<Prefab> buildings = new List<Prefab>();
 
-		// Token: 0x04008E67 RID: 36455
 		public List<Prefab> pickupables = new List<Prefab>();
 
-		// Token: 0x04008E68 RID: 36456
 		public List<Prefab> elementalOres = new List<Prefab>();
 
-		// Token: 0x04008E69 RID: 36457
 		public List<Prefab> otherEntities = new List<Prefab>();
 
-		// Token: 0x04008E6A RID: 36458
 		public List<Tag> discoveredResources = new List<Tag>();
 
-		// Token: 0x04008E6B RID: 36459
 		public List<KeyValuePair<Vector2I, bool>> preventFoWReveal = new List<KeyValuePair<Vector2I, bool>>();
 	}
 }

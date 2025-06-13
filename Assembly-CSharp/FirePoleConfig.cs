@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200027F RID: 639
 public class FirePoleConfig : IBuildingConfig
 {
-	// Token: 0x06000949 RID: 2377 RVA: 0x0016E900 File Offset: 0x0016CB00
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "FirePole";
@@ -31,7 +29,6 @@ public class FirePoleConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600094A RID: 2378 RVA: 0x000AEA5A File Offset: 0x000ACC5A
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
@@ -42,11 +39,9 @@ public class FirePoleConfig : IBuildingConfig
 		go.AddOrGet<AnimTileable>();
 	}
 
-	// Token: 0x0600094B RID: 2379 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000730 RID: 1840
 	public const string ID = "FirePole";
 }

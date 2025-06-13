@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020004F7 RID: 1271
 public class POIDlc2ShowroomDoorConfig : IBuildingConfig
 {
-	// Token: 0x060015D9 RID: 5593 RVA: 0x001A0D0C File Offset: 0x0019EF0C
 	public override BuildingDef CreateBuildingDef()
 	{
 		BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef("POIDlc2ShowroomDoor", 2, 3, "door_facility_kanim", 30, 60f, BUILDINGS.CONSTRUCTION_MASS_KG.TIER3, MATERIALS.ALL_METALS, 1600f, BuildLocationRule.Anywhere, BUILDINGS.DECOR.PENALTY.TIER2, NOISE_POLLUTION.NONE, 0.2f);
@@ -26,7 +24,6 @@ public class POIDlc2ShowroomDoorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060015DA RID: 5594 RVA: 0x001A0DF0 File Offset: 0x0019EFF0
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		Door door = go.AddOrGet<Door>();
@@ -45,7 +42,6 @@ public class POIDlc2ShowroomDoorConfig : IBuildingConfig
 		component.Temperature = 273f;
 	}
 
-	// Token: 0x060015DB RID: 5595 RVA: 0x000B4133 File Offset: 0x000B2333
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.GetComponent<AccessControl>().controlEnabled = false;
@@ -53,6 +49,5 @@ public class POIDlc2ShowroomDoorConfig : IBuildingConfig
 		go.GetComponent<KBatchedAnimController>().initialAnim = "closed";
 	}
 
-	// Token: 0x04000F0C RID: 3852
 	public const string ID = "POIDlc2ShowroomDoor";
 }

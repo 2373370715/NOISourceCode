@@ -3,22 +3,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005F8 RID: 1528
 public class WarpReceiverConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x06001AF4 RID: 6900 RVA: 0x000AA117 File Offset: 0x000A8317
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06001AF5 RID: 6901 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x06001AF6 RID: 6902 RVA: 0x001B59EC File Offset: 0x001B3BEC
 	public GameObject CreatePrefab()
 	{
 		string id = WarpReceiverConfig.ID;
@@ -46,7 +42,6 @@ public class WarpReceiverConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x06001AF7 RID: 6903 RVA: 0x000B60A1 File Offset: 0x000B42A1
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.GetComponent<WarpReceiver>().workLayer = Grid.SceneLayer.Building;
@@ -57,11 +52,9 @@ public class WarpReceiverConfig : IEntityConfig, IHasDlcRestrictions
 		inst.GetComponent<Deconstructable>();
 	}
 
-	// Token: 0x06001AF8 RID: 6904 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x04001152 RID: 4434
 	public static string ID = "WarpReceiver";
 }

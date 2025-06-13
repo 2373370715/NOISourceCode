@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000104 RID: 260
 public class BaseStaterpillarConfig
 {
-	// Token: 0x06000400 RID: 1024 RVA: 0x0015D99C File Offset: 0x0015BB9C
 	public static GameObject BaseStaterpillar(string id, string name, string desc, string anim_file, string trait_id, bool is_baby, ObjectLayer conduitLayer, string connectorDefId, Tag inhaleTag, string symbolOverridePrefix = null, float warningLowTemperature = 283.15f, float warningHighTemperature = 293.15f, float lethalLowTemperature = 243.15f, float lethalHighTemperature = 343.15f, InhaleStates.Def inhaleDef = null)
 	{
 		float mass = 200f;
@@ -49,7 +47,6 @@ public class BaseStaterpillarConfig
 		return gameObject;
 	}
 
-	// Token: 0x06000401 RID: 1025 RVA: 0x0015DC6C File Offset: 0x0015BE6C
 	public static GameObject SetupDiet(GameObject prefab, List<Diet.Info> diet_infos)
 	{
 		Diet diet = new Diet(diet_infos.ToArray());
@@ -58,7 +55,6 @@ public class BaseStaterpillarConfig
 		return prefab;
 	}
 
-	// Token: 0x06000402 RID: 1026 RVA: 0x0015DCA0 File Offset: 0x0015BEA0
 	public static List<Diet.Info> RawMetalDiet(Tag poopTag, float caloriesPerKg, float producedConversionRate, string diseaseId, float diseasePerKgProduced)
 	{
 		List<SimHashes> list = new List<SimHashes>
@@ -79,7 +75,6 @@ public class BaseStaterpillarConfig
 		return list2;
 	}
 
-	// Token: 0x06000403 RID: 1027 RVA: 0x0015DD70 File Offset: 0x0015BF70
 	public static List<Diet.Info> RefinedMetalDiet(Tag poopTag, float caloriesPerKg, float producedConversionRate, string diseaseId, float diseasePerKgProduced)
 	{
 		List<Diet.Info> list = new List<Diet.Info>();
@@ -96,7 +91,6 @@ public class BaseStaterpillarConfig
 		return list;
 	}
 
-	// Token: 0x06000404 RID: 1028 RVA: 0x001594B4 File Offset: 0x001576B4
 	private static HashedString CustomIdleAnim(IdleStates.Instance smi, ref HashedString pre_anim)
 	{
 		CellOffset offset = new CellOffset(0, -1);

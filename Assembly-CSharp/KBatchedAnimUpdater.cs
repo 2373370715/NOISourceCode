@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000950 RID: 2384
 public class KBatchedAnimUpdater : Singleton<KBatchedAnimUpdater>
 {
-	// Token: 0x06002A97 RID: 10903 RVA: 0x001E74E8 File Offset: 0x001E56E8
 	public void InitializeGrid()
 	{
 		this.Clear();
@@ -28,7 +26,6 @@ public class KBatchedAnimUpdater : Singleton<KBatchedAnimUpdater>
 		this.movingControllerInfos.Clear();
 	}
 
-	// Token: 0x06002A98 RID: 10904 RVA: 0x001E759C File Offset: 0x001E579C
 	public Vector2I GetVisibleSize()
 	{
 		if (CameraController.Instance != null)
@@ -41,12 +38,10 @@ public class KBatchedAnimUpdater : Singleton<KBatchedAnimUpdater>
 		return new Vector2I((int)((float)Grid.WidthInCells * KBatchedAnimUpdater.VISIBLE_RANGE_SCALE.x), (int)((float)Grid.HeightInCells * KBatchedAnimUpdater.VISIBLE_RANGE_SCALE.y));
 	}
 
-	// Token: 0x14000009 RID: 9
-	// (add) Token: 0x06002A99 RID: 10905 RVA: 0x001E7628 File Offset: 0x001E5828
-	// (remove) Token: 0x06002A9A RID: 10906 RVA: 0x001E7660 File Offset: 0x001E5860
+add) Token: 0x06002A99 RID: 10905 RVA: 0x001E7628 File Offset: 0x001E5828
+remove) Token: 0x06002A9A RID: 10906 RVA: 0x001E7660 File Offset: 0x001E5860
 	public event System.Action OnClear;
 
-	// Token: 0x06002A9B RID: 10907 RVA: 0x001E7698 File Offset: 0x001E5898
 	public void Clear()
 	{
 		foreach (KBatchedAnimController kbatchedAnimController in this.updateList)
@@ -79,7 +74,6 @@ public class KBatchedAnimUpdater : Singleton<KBatchedAnimUpdater>
 		onClear();
 	}
 
-	// Token: 0x06002A9C RID: 10908 RVA: 0x001E779C File Offset: 0x001E599C
 	public void UpdateRegister(KBatchedAnimController controller)
 	{
 		switch (controller.updateRegistrationState)
@@ -98,7 +92,6 @@ public class KBatchedAnimUpdater : Singleton<KBatchedAnimUpdater>
 		}
 	}
 
-	// Token: 0x06002A9D RID: 10909 RVA: 0x001E77F0 File Offset: 0x001E59F0
 	public void UpdateUnregister(KBatchedAnimController controller)
 	{
 		switch (controller.updateRegistrationState)
@@ -114,7 +107,6 @@ public class KBatchedAnimUpdater : Singleton<KBatchedAnimUpdater>
 		}
 	}
 
-	// Token: 0x06002A9E RID: 10910 RVA: 0x001E7820 File Offset: 0x001E5A20
 	public void VisibilityRegister(KBatchedAnimController controller)
 	{
 		this.queuedRegistrations.Add(new KBatchedAnimUpdater.RegistrationInfo
@@ -126,7 +118,6 @@ public class KBatchedAnimUpdater : Singleton<KBatchedAnimUpdater>
 		});
 	}
 
-	// Token: 0x06002A9F RID: 10911 RVA: 0x001E7870 File Offset: 0x001E5A70
 	public void VisibilityUnregister(KBatchedAnimController controller)
 	{
 		if (App.IsExiting)
@@ -142,7 +133,6 @@ public class KBatchedAnimUpdater : Singleton<KBatchedAnimUpdater>
 		});
 	}
 
-	// Token: 0x06002AA0 RID: 10912 RVA: 0x001E78C8 File Offset: 0x001E5AC8
 	private Dictionary<int, KBatchedAnimController> GetControllerMap(Vector2I chunk_xy)
 	{
 		Dictionary<int, KBatchedAnimController> result = null;
@@ -153,7 +143,6 @@ public class KBatchedAnimUpdater : Singleton<KBatchedAnimUpdater>
 		return result;
 	}
 
-	// Token: 0x06002AA1 RID: 10913 RVA: 0x001E7934 File Offset: 0x001E5B34
 	public void LateUpdate()
 	{
 		this.ProcessMovingAnims();
@@ -174,7 +163,6 @@ public class KBatchedAnimUpdater : Singleton<KBatchedAnimUpdater>
 		}
 	}
 
-	// Token: 0x06002AA2 RID: 10914 RVA: 0x001E79A8 File Offset: 0x001E5BA8
 	private static void UpdateRegisteredAnims(LinkedList<KBatchedAnimController> list, float dt)
 	{
 		LinkedListNode<KBatchedAnimController> next;
@@ -202,26 +190,22 @@ public class KBatchedAnimUpdater : Singleton<KBatchedAnimUpdater>
 		}
 	}
 
-	// Token: 0x06002AA3 RID: 10915 RVA: 0x000C032A File Offset: 0x000BE52A
 	public bool IsChunkVisible(Vector2I chunk_xy)
 	{
 		return this.visibleChunkGrid[chunk_xy.x, chunk_xy.y];
 	}
 
-	// Token: 0x06002AA4 RID: 10916 RVA: 0x000C0343 File Offset: 0x000BE543
 	public void GetVisibleArea(out Vector2I vis_chunk_min, out Vector2I vis_chunk_max)
 	{
 		vis_chunk_min = this.vis_chunk_min;
 		vis_chunk_max = this.vis_chunk_max;
 	}
 
-	// Token: 0x06002AA5 RID: 10917 RVA: 0x000C035D File Offset: 0x000BE55D
 	public static Vector2I PosToChunkXY(Vector3 pos)
 	{
 		return KAnimBatchManager.CellXYToChunkXY(Grid.PosToXY(pos));
 	}
 
-	// Token: 0x06002AA6 RID: 10918 RVA: 0x001E7A18 File Offset: 0x001E5C18
 	private void UpdateVisibility()
 	{
 		if (!this.DoGridProcessing())
@@ -279,7 +263,6 @@ public class KBatchedAnimUpdater : Singleton<KBatchedAnimUpdater>
 		}
 	}
 
-	// Token: 0x06002AA7 RID: 10919 RVA: 0x001E7CC4 File Offset: 0x001E5EC4
 	private void ProcessMovingAnims()
 	{
 		foreach (KBatchedAnimUpdater.MovingControllerInfo movingControllerInfo in this.movingControllerInfos.Values)
@@ -321,7 +304,6 @@ public class KBatchedAnimUpdater : Singleton<KBatchedAnimUpdater>
 		}
 	}
 
-	// Token: 0x06002AA8 RID: 10920 RVA: 0x001E7E64 File Offset: 0x001E6064
 	private void ProcessRegistrations()
 	{
 		for (int i = 0; i < this.queuedRegistrations.Count; i++)
@@ -397,7 +379,6 @@ public class KBatchedAnimUpdater : Singleton<KBatchedAnimUpdater>
 		this.queuedRegistrations.Clear();
 	}
 
-	// Token: 0x06002AA9 RID: 10921 RVA: 0x001E8120 File Offset: 0x001E6320
 	public void OnMovementStateChanged(Transform transform, bool is_moving)
 	{
 		if (transform == null)
@@ -432,7 +413,6 @@ public class KBatchedAnimUpdater : Singleton<KBatchedAnimUpdater>
 		this.movingControllerInfos.Remove(instanceID);
 	}
 
-	// Token: 0x06002AAA RID: 10922 RVA: 0x001E8214 File Offset: 0x001E6414
 	private void CleanUp()
 	{
 		if (!this.DoGridProcessing())
@@ -463,110 +443,76 @@ public class KBatchedAnimUpdater : Singleton<KBatchedAnimUpdater>
 		this.cleanUpChunkIndex = (this.cleanUpChunkIndex + 16) % this.controllerGrid.Length;
 	}
 
-	// Token: 0x06002AAB RID: 10923 RVA: 0x000C036A File Offset: 0x000BE56A
 	private bool DoGridProcessing()
 	{
 		return this.controllerGrid != null && Camera.main != null;
 	}
 
-	// Token: 0x04001CDA RID: 7386
 	private const int VISIBLE_BORDER = 4;
 
-	// Token: 0x04001CDB RID: 7387
 	public static readonly Vector2I INVALID_CHUNK_ID = Vector2I.minusone;
 
-	// Token: 0x04001CDC RID: 7388
 	private Dictionary<int, KBatchedAnimController>[,] controllerGrid;
 
-	// Token: 0x04001CDD RID: 7389
 	private LinkedList<KBatchedAnimController> updateList = new LinkedList<KBatchedAnimController>();
 
-	// Token: 0x04001CDE RID: 7390
 	private LinkedList<KBatchedAnimController> alwaysUpdateList = new LinkedList<KBatchedAnimController>();
 
-	// Token: 0x04001CDF RID: 7391
 	private bool[,] visibleChunkGrid;
 
-	// Token: 0x04001CE0 RID: 7392
 	private bool[,] previouslyVisibleChunkGrid;
 
-	// Token: 0x04001CE1 RID: 7393
 	private List<Vector2I> visibleChunks = new List<Vector2I>();
 
-	// Token: 0x04001CE2 RID: 7394
 	private List<Vector2I> previouslyVisibleChunks = new List<Vector2I>();
 
-	// Token: 0x04001CE3 RID: 7395
 	private Vector2I vis_chunk_min = Vector2I.zero;
 
-	// Token: 0x04001CE4 RID: 7396
 	private Vector2I vis_chunk_max = Vector2I.zero;
 
-	// Token: 0x04001CE5 RID: 7397
 	private List<KBatchedAnimUpdater.RegistrationInfo> queuedRegistrations = new List<KBatchedAnimUpdater.RegistrationInfo>();
 
-	// Token: 0x04001CE6 RID: 7398
 	private Dictionary<int, KBatchedAnimUpdater.ControllerChunkInfo> controllerChunkInfos = new Dictionary<int, KBatchedAnimUpdater.ControllerChunkInfo>();
 
-	// Token: 0x04001CE7 RID: 7399
 	private Dictionary<int, KBatchedAnimUpdater.MovingControllerInfo> movingControllerInfos = new Dictionary<int, KBatchedAnimUpdater.MovingControllerInfo>();
 
-	// Token: 0x04001CE8 RID: 7400
 	private const int CHUNKS_TO_CLEAN_PER_TICK = 16;
 
-	// Token: 0x04001CE9 RID: 7401
 	private int cleanUpChunkIndex;
 
-	// Token: 0x04001CEA RID: 7402
 	private static readonly Vector2 VISIBLE_RANGE_SCALE = new Vector2(1.5f, 1.5f);
 
-	// Token: 0x02000951 RID: 2385
 	public enum RegistrationState
 	{
-		// Token: 0x04001CED RID: 7405
 		Registered,
-		// Token: 0x04001CEE RID: 7406
 		PendingRemoval,
-		// Token: 0x04001CEF RID: 7407
 		Unregistered
 	}
 
-	// Token: 0x02000952 RID: 2386
 	private struct RegistrationInfo
 	{
-		// Token: 0x04001CF0 RID: 7408
 		public bool register;
 
-		// Token: 0x04001CF1 RID: 7409
 		public int transformId;
 
-		// Token: 0x04001CF2 RID: 7410
 		public int controllerInstanceId;
 
-		// Token: 0x04001CF3 RID: 7411
 		public KBatchedAnimController controller;
 	}
 
-	// Token: 0x02000953 RID: 2387
 	private struct ControllerChunkInfo
 	{
-		// Token: 0x04001CF4 RID: 7412
 		public KBatchedAnimController controller;
 
-		// Token: 0x04001CF5 RID: 7413
 		public Vector2I chunkXY;
 	}
 
-	// Token: 0x02000954 RID: 2388
 	private class MovingControllerInfo
 	{
-		// Token: 0x04001CF6 RID: 7414
 		public int controllerInstanceId;
 
-		// Token: 0x04001CF7 RID: 7415
 		public KBatchedAnimController controller;
 
-		// Token: 0x04001CF8 RID: 7416
 		public Vector2I chunkXY;
 	}
 }

@@ -1,16 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02001068 RID: 4200
 public class WarpConduitReceiver : StateMachineComponent<WarpConduitReceiver.StatesInstance>, ISecondaryOutput
 {
-	// Token: 0x0600555C RID: 21852 RVA: 0x0028C5A8 File Offset: 0x0028A7A8
 	private bool IsReceiving()
 	{
 		return base.smi.master.gasPort.IsOn() || base.smi.master.liquidPort.IsOn() || base.smi.master.solidPort.IsOn();
 	}
 
-	// Token: 0x0600555D RID: 21853 RVA: 0x000DC07A File Offset: 0x000DA27A
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -18,7 +15,6 @@ public class WarpConduitReceiver : StateMachineComponent<WarpConduitReceiver.Sta
 		base.smi.StartSM();
 	}
 
-	// Token: 0x0600555E RID: 21854 RVA: 0x0028C5FC File Offset: 0x0028A7FC
 	private void FindPartner()
 	{
 		if (this.senderGasStorage != null)
@@ -44,7 +40,6 @@ public class WarpConduitReceiver : StateMachineComponent<WarpConduitReceiver.Sta
 		WarpConduitStatus.UpdateWarpConduitsOperational(warpConduitSender.gameObject, base.gameObject);
 	}
 
-	// Token: 0x0600555F RID: 21855 RVA: 0x0028C698 File Offset: 0x0028A898
 	protected override void OnCleanUp()
 	{
 		Conduit.GetNetworkManager(this.liquidPortInfo.conduitType).RemoveFromNetworks(this.liquidPort.outputCell, this.liquidPort.networkItem, true);
@@ -60,7 +55,6 @@ public class WarpConduitReceiver : StateMachineComponent<WarpConduitReceiver.Sta
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06005560 RID: 21856 RVA: 0x000DC093 File Offset: 0x000DA293
 	public void OnActivatedChanged(object data)
 	{
 		if (this.senderGasStorage == null)
@@ -70,7 +64,6 @@ public class WarpConduitReceiver : StateMachineComponent<WarpConduitReceiver.Sta
 		WarpConduitStatus.UpdateWarpConduitsOperational((this.senderGasStorage != null) ? this.senderGasStorage.gameObject : null, base.gameObject);
 	}
 
-	// Token: 0x06005561 RID: 21857 RVA: 0x0028C748 File Offset: 0x0028A948
 	public void SetStorage(Storage gasStorage, Storage liquidStorage, Storage solidStorage)
 	{
 		this.senderGasStorage = gasStorage;
@@ -85,13 +78,11 @@ public class WarpConduitReceiver : StateMachineComponent<WarpConduitReceiver.Sta
 		this.liquidPort.airlock.gameObject.GetComponent<KBatchedAnimController>().enabled = true;
 	}
 
-	// Token: 0x06005562 RID: 21858 RVA: 0x000DC0D0 File Offset: 0x000DA2D0
 	public bool HasSecondaryConduitType(ConduitType type)
 	{
 		return type == this.gasPortInfo.conduitType || type == this.liquidPortInfo.conduitType || type == this.solidPortInfo.conduitType;
 	}
 
-	// Token: 0x06005563 RID: 21859 RVA: 0x0028C840 File Offset: 0x0028AA40
 	public CellOffset GetSecondaryConduitOffset(ConduitType type)
 	{
 		if (type == this.gasPortInfo.conduitType)
@@ -109,40 +100,29 @@ public class WarpConduitReceiver : StateMachineComponent<WarpConduitReceiver.Sta
 		return CellOffset.none;
 	}
 
-	// Token: 0x04003C53 RID: 15443
 	[SerializeField]
 	public ConduitPortInfo liquidPortInfo;
 
-	// Token: 0x04003C54 RID: 15444
 	private WarpConduitReceiver.ConduitPort liquidPort;
 
-	// Token: 0x04003C55 RID: 15445
 	[SerializeField]
 	public ConduitPortInfo solidPortInfo;
 
-	// Token: 0x04003C56 RID: 15446
 	private WarpConduitReceiver.ConduitPort solidPort;
 
-	// Token: 0x04003C57 RID: 15447
 	[SerializeField]
 	public ConduitPortInfo gasPortInfo;
 
-	// Token: 0x04003C58 RID: 15448
 	private WarpConduitReceiver.ConduitPort gasPort;
 
-	// Token: 0x04003C59 RID: 15449
 	public Storage senderGasStorage;
 
-	// Token: 0x04003C5A RID: 15450
 	public Storage senderLiquidStorage;
 
-	// Token: 0x04003C5B RID: 15451
 	public Storage senderSolidStorage;
 
-	// Token: 0x02001069 RID: 4201
 	public struct ConduitPort
 	{
-		// Token: 0x06005565 RID: 21861 RVA: 0x0028C8A0 File Offset: 0x0028AAA0
 		public void SetPortInfo(GameObject parent, ConduitPortInfo info, Storage senderStorage, int number)
 		{
 			this.portInfo = info;
@@ -181,7 +161,6 @@ public class WarpConduitReceiver : StateMachineComponent<WarpConduitReceiver.Sta
 			});
 		}
 
-		// Token: 0x06005566 RID: 21862 RVA: 0x0028CA48 File Offset: 0x0028AC48
 		public bool IsOn()
 		{
 			if (this.solidDispenser != null)
@@ -191,7 +170,6 @@ public class WarpConduitReceiver : StateMachineComponent<WarpConduitReceiver.Sta
 			return this.dispenser != null && !this.dispenser.blocked && !this.dispenser.empty;
 		}
 
-		// Token: 0x06005567 RID: 21863 RVA: 0x0028CA9C File Offset: 0x0028AC9C
 		public void UpdatePortAnim()
 		{
 			bool flag = this.IsOn();
@@ -208,50 +186,36 @@ public class WarpConduitReceiver : StateMachineComponent<WarpConduitReceiver.Sta
 			}
 		}
 
-		// Token: 0x04003C5C RID: 15452
 		public ConduitPortInfo portInfo;
 
-		// Token: 0x04003C5D RID: 15453
 		public int outputCell;
 
-		// Token: 0x04003C5E RID: 15454
 		public FlowUtilityNetwork.NetworkItem networkItem;
 
-		// Token: 0x04003C5F RID: 15455
 		public ConduitDispenser dispenser;
 
-		// Token: 0x04003C60 RID: 15456
 		public SolidConduitDispenser solidDispenser;
 
-		// Token: 0x04003C61 RID: 15457
 		public MeterController airlock;
 
-		// Token: 0x04003C62 RID: 15458
 		private bool open;
 
-		// Token: 0x04003C63 RID: 15459
 		private string pre;
 
-		// Token: 0x04003C64 RID: 15460
 		private string loop;
 
-		// Token: 0x04003C65 RID: 15461
 		private string pst;
 	}
 
-	// Token: 0x0200106A RID: 4202
 	public class StatesInstance : GameStateMachine<WarpConduitReceiver.States, WarpConduitReceiver.StatesInstance, WarpConduitReceiver, object>.GameInstance
 	{
-		// Token: 0x06005568 RID: 21864 RVA: 0x000DC106 File Offset: 0x000DA306
 		public StatesInstance(WarpConduitReceiver master) : base(master)
 		{
 		}
 	}
 
-	// Token: 0x0200106B RID: 4203
 	public class States : GameStateMachine<WarpConduitReceiver.States, WarpConduitReceiver.StatesInstance, WarpConduitReceiver>
 	{
-		// Token: 0x06005569 RID: 21865 RVA: 0x0028CB40 File Offset: 0x0028AD40
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.off;
@@ -291,19 +255,14 @@ public class WarpConduitReceiver : StateMachineComponent<WarpConduitReceiver.Sta
 			});
 		}
 
-		// Token: 0x04003C66 RID: 15462
 		public GameStateMachine<WarpConduitReceiver.States, WarpConduitReceiver.StatesInstance, WarpConduitReceiver, object>.State off;
 
-		// Token: 0x04003C67 RID: 15463
 		public WarpConduitReceiver.States.onStates on;
 
-		// Token: 0x0200106C RID: 4204
 		public class onStates : GameStateMachine<WarpConduitReceiver.States, WarpConduitReceiver.StatesInstance, WarpConduitReceiver, object>.State
 		{
-			// Token: 0x04003C68 RID: 15464
 			public GameStateMachine<WarpConduitReceiver.States, WarpConduitReceiver.StatesInstance, WarpConduitReceiver, object>.State working;
 
-			// Token: 0x04003C69 RID: 15465
 			public GameStateMachine<WarpConduitReceiver.States, WarpConduitReceiver.StatesInstance, WarpConduitReceiver, object>.State idle;
 		}
 	}

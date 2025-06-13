@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020004FC RID: 1276
 public class PhonoboxConfig : IBuildingConfig
 {
-	// Token: 0x060015ED RID: 5613 RVA: 0x001A1388 File Offset: 0x0019F588
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "Phonobox";
@@ -32,7 +30,6 @@ public class PhonoboxConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060015EE RID: 5614 RVA: 0x001A1420 File Offset: 0x0019F620
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<LoopingSounds>();
@@ -44,11 +41,9 @@ public class PhonoboxConfig : IBuildingConfig
 		go.AddOrGetDef<RocketUsageRestriction.Def>();
 	}
 
-	// Token: 0x060015EF RID: 5615 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000F1A RID: 3866
 	public const string ID = "Phonobox";
 }

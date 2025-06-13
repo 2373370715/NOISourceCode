@@ -5,16 +5,13 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000DF5 RID: 3573
 public class GeothermalVent : StateMachineComponent<GeothermalVent.StatesInstance>, ISim200ms, ISaveLoadable
 {
-	// Token: 0x060045C5 RID: 17861 RVA: 0x000D185F File Offset: 0x000CFA5F
 	public bool IsQuestEntombed()
 	{
 		return this.progress == GeothermalVent.QuestProgress.Entombed;
 	}
 
-	// Token: 0x060045C6 RID: 17862 RVA: 0x0025AD20 File Offset: 0x00258F20
 	public void SetQuestComplete()
 	{
 		this.progress = GeothermalVent.QuestProgress.Complete;
@@ -23,7 +20,6 @@ public class GeothermalVent : StateMachineComponent<GeothermalVent.StatesInstanc
 		base.Trigger(-1514841199, null);
 	}
 
-	// Token: 0x060045C7 RID: 17863 RVA: 0x0025AD78 File Offset: 0x00258F78
 	public static string GenerateName()
 	{
 		string text = "";
@@ -34,7 +30,6 @@ public class GeothermalVent : StateMachineComponent<GeothermalVent.StatesInstanc
 		return BUILDINGS.PREFABS.GEOTHERMALVENT.NAME_FMT.Replace("{ID}", text);
 	}
 
-	// Token: 0x060045C8 RID: 17864 RVA: 0x0025ADD0 File Offset: 0x00258FD0
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -75,7 +70,6 @@ public class GeothermalVent : StateMachineComponent<GeothermalVent.StatesInstanc
 		base.smi.StartSM();
 	}
 
-	// Token: 0x060045C9 RID: 17865 RVA: 0x0025AF5C File Offset: 0x0025915C
 	[OnDeserialized]
 	internal void OnDeserializedMethod()
 	{
@@ -99,7 +93,6 @@ public class GeothermalVent : StateMachineComponent<GeothermalVent.StatesInstanc
 		}
 	}
 
-	// Token: 0x060045CA RID: 17866 RVA: 0x0025AFE4 File Offset: 0x002591E4
 	protected void SimRegister()
 	{
 		this.onBlockedHandle = Game.Instance.callbackManager.Add(new Game.CallbackInfo(new System.Action(this.OnSimBlockedCallback), true));
@@ -107,32 +100,27 @@ public class GeothermalVent : StateMachineComponent<GeothermalVent.StatesInstanc
 		SimMessages.AddElementEmitter(float.MaxValue, Game.Instance.simComponentCallbackManager.Add(new Action<int, object>(GeothermalVent.OnSimRegisteredCallback), this, "GeothermalVentElementEmitter").index, this.onBlockedHandle.index, this.onUnblockedHandle.index);
 	}
 
-	// Token: 0x060045CB RID: 17867 RVA: 0x000D186A File Offset: 0x000CFA6A
 	protected void OnSimBlockedCallback()
 	{
 		this.overpressure = true;
 	}
 
-	// Token: 0x060045CC RID: 17868 RVA: 0x000D1873 File Offset: 0x000CFA73
 	protected void OnSimUnblockedCallback()
 	{
 		this.overpressure = false;
 	}
 
-	// Token: 0x060045CD RID: 17869 RVA: 0x000D187C File Offset: 0x000CFA7C
 	protected static void OnSimRegisteredCallback(int handle, object data)
 	{
 		((GeothermalVent)data).OnSimRegisteredImpl(handle);
 	}
 
-	// Token: 0x060045CE RID: 17870 RVA: 0x000D188A File Offset: 0x000CFA8A
 	protected void OnSimRegisteredImpl(int handle)
 	{
 		global::Debug.Assert(this.emitterInfo.simHandle == -1, "?! too many handles registered");
 		this.emitterInfo.simHandle = handle;
 	}
 
-	// Token: 0x060045CF RID: 17871 RVA: 0x000D18B0 File Offset: 0x000CFAB0
 	protected void SimUnregister()
 	{
 		if (Sim.IsValidHandle(this.emitterInfo.simHandle))
@@ -142,7 +130,6 @@ public class GeothermalVent : StateMachineComponent<GeothermalVent.StatesInstanc
 		this.emitterInfo.simHandle = -1;
 	}
 
-	// Token: 0x060045D0 RID: 17872 RVA: 0x000D18E1 File Offset: 0x000CFAE1
 	protected override void OnCleanUp()
 	{
 		Game.Instance.ManualReleaseHandle(this.onBlockedHandle);
@@ -151,7 +138,6 @@ public class GeothermalVent : StateMachineComponent<GeothermalVent.StatesInstanc
 		base.OnCleanUp();
 	}
 
-	// Token: 0x060045D1 RID: 17873 RVA: 0x0025B088 File Offset: 0x00259288
 	protected void OnMassEmitted(ushort element, float mass)
 	{
 		bool flag = false;
@@ -172,7 +158,6 @@ public class GeothermalVent : StateMachineComponent<GeothermalVent.StatesInstanc
 		}
 	}
 
-	// Token: 0x060045D2 RID: 17874 RVA: 0x0025B108 File Offset: 0x00259308
 	public void SpawnKeepsake()
 	{
 		GameObject keepsakePrefab = Assets.GetPrefab("keepsake_geothermalplant");
@@ -198,13 +183,11 @@ public class GeothermalVent : StateMachineComponent<GeothermalVent.StatesInstanc
 		}
 	}
 
-	// Token: 0x060045D3 RID: 17875 RVA: 0x000D191F File Offset: 0x000CFB1F
 	public bool IsOverPressure()
 	{
 		return this.overpressure;
 	}
 
-	// Token: 0x060045D4 RID: 17876 RVA: 0x0025B1D4 File Offset: 0x002593D4
 	protected void RecomputeEmissions()
 	{
 		this.availableMaterial.Sort();
@@ -241,14 +224,12 @@ public class GeothermalVent : StateMachineComponent<GeothermalVent.StatesInstanc
 		this.emitterInfo.dirty = true;
 	}
 
-	// Token: 0x060045D5 RID: 17877 RVA: 0x000D1927 File Offset: 0x000CFB27
 	public void addMaterial(GeothermalVent.ElementInfo info)
 	{
 		this.availableMaterial.Add(info);
 		this.recentMass = this.MaterialAvailable();
 	}
 
-	// Token: 0x060045D6 RID: 17878 RVA: 0x0025B354 File Offset: 0x00259554
 	public bool HasMaterial()
 	{
 		bool flag = this.availableMaterial.Count != 0;
@@ -259,7 +240,6 @@ public class GeothermalVent : StateMachineComponent<GeothermalVent.StatesInstanc
 		return flag;
 	}
 
-	// Token: 0x060045D7 RID: 17879 RVA: 0x0025B3A8 File Offset: 0x002595A8
 	public float MaterialAvailable()
 	{
 		float num = 0f;
@@ -270,25 +250,21 @@ public class GeothermalVent : StateMachineComponent<GeothermalVent.StatesInstanc
 		return num;
 	}
 
-	// Token: 0x060045D8 RID: 17880 RVA: 0x000D1941 File Offset: 0x000CFB41
 	public bool IsEntombed()
 	{
 		return this.entombVulnerable.GetEntombed;
 	}
 
-	// Token: 0x060045D9 RID: 17881 RVA: 0x000D194E File Offset: 0x000CFB4E
 	public bool CanVent()
 	{
 		return !this.HasMaterial() && !this.IsEntombed();
 	}
 
-	// Token: 0x060045DA RID: 17882 RVA: 0x000D1963 File Offset: 0x000CFB63
 	public bool IsVentConnected()
 	{
 		return !(this.connectedToggler == null) && this.connectedToggler.IsConnected;
 	}
 
-	// Token: 0x060045DB RID: 17883 RVA: 0x0025B404 File Offset: 0x00259604
 	public void EmitSolidChunk()
 	{
 		int num = 0;
@@ -350,7 +326,6 @@ public class GeothermalVent : StateMachineComponent<GeothermalVent.StatesInstanc
 		this.availableMaterial[num2] = elementInfo2;
 	}
 
-	// Token: 0x060045DC RID: 17884 RVA: 0x000D1980 File Offset: 0x000CFB80
 	public void Sim200ms(float dt)
 	{
 		if (dt > 0f)
@@ -359,7 +334,6 @@ public class GeothermalVent : StateMachineComponent<GeothermalVent.StatesInstanc
 		}
 	}
 
-	// Token: 0x060045DD RID: 17885 RVA: 0x0025B66C File Offset: 0x0025986C
 	private unsafe void unsafeSim200ms(float dt)
 	{
 		if (Sim.IsValidHandle(this.emitterInfo.simHandle))
@@ -379,120 +353,86 @@ public class GeothermalVent : StateMachineComponent<GeothermalVent.StatesInstanc
 		this.massMeter.SetPositionPercent(this.MaterialAvailable() / this.recentMass);
 	}
 
-	// Token: 0x060045DE RID: 17886 RVA: 0x000D1991 File Offset: 0x000CFB91
 	protected static bool HasProblem(GeothermalVent.StatesInstance smi)
 	{
 		return smi.master.IsEntombed() || smi.master.IsOverPressure();
 	}
 
-	// Token: 0x04003094 RID: 12436
 	[MyCmpGet]
 	private Operational operational;
 
-	// Token: 0x04003095 RID: 12437
 	[MyCmpAdd]
 	private ConnectionManager connectedToggler;
 
-	// Token: 0x04003096 RID: 12438
 	[MyCmpAdd]
 	private EntombVulnerable entombVulnerable;
 
-	// Token: 0x04003097 RID: 12439
 	[MyCmpReq]
 	private LogicPorts logicPorts;
 
-	// Token: 0x04003098 RID: 12440
 	[Serialize]
 	private float recentMass = 1f;
 
-	// Token: 0x04003099 RID: 12441
 	private MeterController massMeter;
 
-	// Token: 0x0400309A RID: 12442
 	[Serialize]
 	private GeothermalVent.QuestProgress progress;
 
-	// Token: 0x0400309B RID: 12443
 	protected GeothermalVent.EmitterInfo emitterInfo;
 
-	// Token: 0x0400309C RID: 12444
 	[Serialize]
 	protected List<GeothermalVent.ElementInfo> availableMaterial = new List<GeothermalVent.ElementInfo>();
 
-	// Token: 0x0400309D RID: 12445
 	protected bool overpressure;
 
-	// Token: 0x0400309E RID: 12446
 	protected int debrisEmissionCell;
 
-	// Token: 0x0400309F RID: 12447
 	private HandleVector<Game.CallbackInfo>.Handle onBlockedHandle = HandleVector<Game.CallbackInfo>.InvalidHandle;
 
-	// Token: 0x040030A0 RID: 12448
 	private HandleVector<Game.CallbackInfo>.Handle onUnblockedHandle = HandleVector<Game.CallbackInfo>.InvalidHandle;
 
-	// Token: 0x02000DF6 RID: 3574
 	private enum QuestProgress
 	{
-		// Token: 0x040030A2 RID: 12450
 		Uninitialized,
-		// Token: 0x040030A3 RID: 12451
 		Entombed,
-		// Token: 0x040030A4 RID: 12452
 		Complete
 	}
 
-	// Token: 0x02000DF7 RID: 3575
 	public struct ElementInfo : IComparable
 	{
-		// Token: 0x060045E0 RID: 17888 RVA: 0x000D19E1 File Offset: 0x000CFBE1
 		public int CompareTo(object obj)
 		{
 			return -this.mass.CompareTo(((GeothermalVent.ElementInfo)obj).mass);
 		}
 
-		// Token: 0x040030A5 RID: 12453
 		public bool isSolid;
 
-		// Token: 0x040030A6 RID: 12454
 		public SimHashes elementHash;
 
-		// Token: 0x040030A7 RID: 12455
 		public ushort elementIdx;
 
-		// Token: 0x040030A8 RID: 12456
 		public float mass;
 
-		// Token: 0x040030A9 RID: 12457
 		public float temperature;
 
-		// Token: 0x040030AA RID: 12458
 		public byte diseaseIdx;
 
-		// Token: 0x040030AB RID: 12459
 		public int diseaseCount;
 	}
 
-	// Token: 0x02000DF8 RID: 3576
 	public struct EmitterInfo
 	{
-		// Token: 0x040030AC RID: 12460
 		public int simHandle;
 
-		// Token: 0x040030AD RID: 12461
 		public int cell;
 
-		// Token: 0x040030AE RID: 12462
 		public GeothermalVent.ElementInfo element;
 
-		// Token: 0x040030AF RID: 12463
 		public bool dirty;
 	}
 
-	// Token: 0x02000DF9 RID: 3577
 	public class States : GameStateMachine<GeothermalVent.States, GeothermalVent.StatesInstance, GeothermalVent>
 	{
-		// Token: 0x060045E1 RID: 17889 RVA: 0x0025B7A0 File Offset: 0x002599A0
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.root;
@@ -529,72 +469,51 @@ public class GeothermalVent : StateMachineComponent<GeothermalVent.StatesInstanc
 			this.online.inactive.overpressure.ToggleMainStatusItem(Db.Get().BuildingStatusItems.GeoVentsOverpressure, null).EnterTransition(this.online.inactive.identify, (GeothermalVent.StatesInstance smi) => !smi.master.IsOverPressure());
 		}
 
-		// Token: 0x040030B0 RID: 12464
 		public GameStateMachine<GeothermalVent.States, GeothermalVent.StatesInstance, GeothermalVent, object>.State questEntombed;
 
-		// Token: 0x040030B1 RID: 12465
 		public GeothermalVent.States.OnlineStates online;
 
-		// Token: 0x02000DFA RID: 3578
 		public class ActiveStates : GameStateMachine<GeothermalVent.States, GeothermalVent.StatesInstance, GeothermalVent, object>.State
 		{
-			// Token: 0x040030B2 RID: 12466
 			public GeothermalVent.States.ActiveStates.LoopStates loopVent;
 
-			// Token: 0x040030B3 RID: 12467
 			public GameStateMachine<GeothermalVent.States, GeothermalVent.StatesInstance, GeothermalVent, object>.State preVent;
 
-			// Token: 0x040030B4 RID: 12468
 			public GameStateMachine<GeothermalVent.States, GeothermalVent.StatesInstance, GeothermalVent, object>.State postVent;
 
-			// Token: 0x02000DFB RID: 3579
 			public class LoopStates : GameStateMachine<GeothermalVent.States, GeothermalVent.StatesInstance, GeothermalVent, object>.State
 			{
-				// Token: 0x040030B5 RID: 12469
 				public GameStateMachine<GeothermalVent.States, GeothermalVent.StatesInstance, GeothermalVent, object>.State start;
 
-				// Token: 0x040030B6 RID: 12470
 				public GameStateMachine<GeothermalVent.States, GeothermalVent.StatesInstance, GeothermalVent, object>.State finish;
 			}
 		}
 
-		// Token: 0x02000DFC RID: 3580
 		public class ProblemStates : GameStateMachine<GeothermalVent.States, GeothermalVent.StatesInstance, GeothermalVent, object>.State
 		{
-			// Token: 0x040030B7 RID: 12471
 			public GameStateMachine<GeothermalVent.States, GeothermalVent.StatesInstance, GeothermalVent, object>.State identify;
 
-			// Token: 0x040030B8 RID: 12472
 			public GameStateMachine<GeothermalVent.States, GeothermalVent.StatesInstance, GeothermalVent, object>.State entombed;
 
-			// Token: 0x040030B9 RID: 12473
 			public GameStateMachine<GeothermalVent.States, GeothermalVent.StatesInstance, GeothermalVent, object>.State overpressure;
 		}
 
-		// Token: 0x02000DFD RID: 3581
 		public class OnlineStates : GameStateMachine<GeothermalVent.States, GeothermalVent.StatesInstance, GeothermalVent, object>.State
 		{
-			// Token: 0x040030BA RID: 12474
 			public GameStateMachine<GeothermalVent.States, GeothermalVent.StatesInstance, GeothermalVent, object>.State identify;
 
-			// Token: 0x040030BB RID: 12475
 			public GameStateMachine<GeothermalVent.States, GeothermalVent.StatesInstance, GeothermalVent, object>.State ready;
 
-			// Token: 0x040030BC RID: 12476
 			public GameStateMachine<GeothermalVent.States, GeothermalVent.StatesInstance, GeothermalVent, object>.State disconnected;
 
-			// Token: 0x040030BD RID: 12477
 			public GeothermalVent.States.ActiveStates active;
 
-			// Token: 0x040030BE RID: 12478
 			public GeothermalVent.States.ProblemStates inactive;
 		}
 	}
 
-	// Token: 0x02000DFF RID: 3583
 	public class StatesInstance : GameStateMachine<GeothermalVent.States, GeothermalVent.StatesInstance, GeothermalVent, object>.GameInstance
 	{
-		// Token: 0x06004601 RID: 17921 RVA: 0x000D1B5B File Offset: 0x000CFD5B
 		public StatesInstance(GeothermalVent smi) : base(smi)
 		{
 		}

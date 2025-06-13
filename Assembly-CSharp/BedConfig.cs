@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000032 RID: 50
 public class BedConfig : IBuildingConfig
 {
-	// Token: 0x060000D3 RID: 211 RVA: 0x00149D98 File Offset: 0x00147F98
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "Bed";
@@ -27,14 +25,12 @@ public class BedConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060000D4 RID: 212 RVA: 0x000AA3FE File Offset: 0x000A85FE
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<LoopingSounds>();
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.BedType, false);
 	}
 
-	// Token: 0x060000D5 RID: 213 RVA: 0x00149E00 File Offset: 0x00148000
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.GetComponent<KAnimControllerBase>().initialAnim = "off";
@@ -64,6 +60,5 @@ public class BedConfig : IBuildingConfig
 		go.AddOrGetDef<RocketUsageRestriction.Def>();
 	}
 
-	// Token: 0x0400008C RID: 140
 	public const string ID = "Bed";
 }

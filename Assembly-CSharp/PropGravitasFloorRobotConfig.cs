@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000531 RID: 1329
 public class PropGravitasFloorRobotConfig : IEntityConfig
 {
-	// Token: 0x060016D2 RID: 5842 RVA: 0x001A3F14 File Offset: 0x001A2114
 	public GameObject CreatePrefab()
 	{
 		string id = "PropGravitasFloorRobot";
@@ -28,7 +26,6 @@ public class PropGravitasFloorRobotConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x060016D3 RID: 5843 RVA: 0x000AA768 File Offset: 0x000A8968
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.GetComponent<OccupyArea>().objectLayers = new ObjectLayer[]
@@ -37,7 +34,6 @@ public class PropGravitasFloorRobotConfig : IEntityConfig
 		};
 	}
 
-	// Token: 0x060016D4 RID: 5844 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}

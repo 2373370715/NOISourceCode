@@ -1,10 +1,8 @@
 ﻿using System;
 
-// Token: 0x020009D7 RID: 2519
 [SkipSaveFileSerialization]
 public class CancellableDig : Cancellable
 {
-	// Token: 0x06002D95 RID: 11669 RVA: 0x001FE930 File Offset: 0x001FCB30
 	protected override void OnCancel(object data)
 	{
 		if (data != null && (bool)data)
@@ -25,7 +23,6 @@ public class CancellableDig : Cancellable
 		componentInChildren.PlayAnimation("ScaleDown", 0.1f);
 	}
 
-	// Token: 0x06002D96 RID: 11670 RVA: 0x001FE9D8 File Offset: 0x001FCBD8
 	private void DoCancelAnim(string animName)
 	{
 		EasingAnimations componentInChildren = base.GetComponentInChildren<EasingAnimations>();
@@ -34,7 +31,6 @@ public class CancellableDig : Cancellable
 		componentInChildren.PlayAnimation("ScaleDown", 0.1f);
 	}
 
-	// Token: 0x06002D97 RID: 11671 RVA: 0x000C1FE7 File Offset: 0x000C01E7
 	private void OnAnimationDone(string animationName)
 	{
 		if (animationName != "ScaleDown")

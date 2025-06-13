@@ -5,10 +5,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000EB0 RID: 3760
 public class LonelyMinionHouse : StoryTraitStateMachine<LonelyMinionHouse, LonelyMinionHouse.Instance, LonelyMinionHouse.Def>
 {
-	// Token: 0x06004B17 RID: 19223 RVA: 0x0026AAF8 File Offset: 0x00268CF8
 	private bool ValidateOperationalTransition(LonelyMinionHouse.Instance smi)
 	{
 		Operational component = smi.GetComponent<Operational>();
@@ -16,13 +14,11 @@ public class LonelyMinionHouse : StoryTraitStateMachine<LonelyMinionHouse, Lonel
 		return component != null && flag != component.IsOperational;
 	}
 
-	// Token: 0x06004B18 RID: 19224 RVA: 0x000D4FE5 File Offset: 0x000D31E5
 	private static bool AllQuestsComplete(LonelyMinionHouse.Instance smi)
 	{
 		return 1f - smi.sm.QuestProgress.Get(smi) <= Mathf.Epsilon;
 	}
 
-	// Token: 0x06004B19 RID: 19225 RVA: 0x0026AB38 File Offset: 0x00268D38
 	public static void EvaluateLights(LonelyMinionHouse.Instance smi, float dt)
 	{
 		bool flag = smi.IsInsideState(smi.sm.Active);
@@ -40,7 +36,6 @@ public class LonelyMinionHouse : StoryTraitStateMachine<LonelyMinionHouse, Lonel
 		}, out flag2, out flag3);
 	}
 
-	// Token: 0x06004B1A RID: 19226 RVA: 0x0026ABC0 File Offset: 0x00268DC0
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.Inactive;
@@ -57,7 +52,6 @@ public class LonelyMinionHouse : StoryTraitStateMachine<LonelyMinionHouse, Lonel
 		this.Active.StoryComplete.Enter(new StateMachine<LonelyMinionHouse, LonelyMinionHouse.Instance, StateMachineController, LonelyMinionHouse.Def>.State.Callback(LonelyMinionHouse.ActiveStates.OnEnterStoryComplete));
 	}
 
-	// Token: 0x06004B1B RID: 19227 RVA: 0x0026ACC4 File Offset: 0x00268EC4
 	public static float CalculateAverageDecor(Extents area)
 	{
 		float num = 0f;
@@ -70,31 +64,22 @@ public class LonelyMinionHouse : StoryTraitStateMachine<LonelyMinionHouse, Lonel
 		return num / (float)(area.width * area.height);
 	}
 
-	// Token: 0x04003498 RID: 13464
 	public GameStateMachine<LonelyMinionHouse, LonelyMinionHouse.Instance, StateMachineController, LonelyMinionHouse.Def>.State Inactive;
 
-	// Token: 0x04003499 RID: 13465
 	public LonelyMinionHouse.ActiveStates Active;
 
-	// Token: 0x0400349A RID: 13466
 	public StateMachine<LonelyMinionHouse, LonelyMinionHouse.Instance, StateMachineController, LonelyMinionHouse.Def>.Signal MailDelivered;
 
-	// Token: 0x0400349B RID: 13467
 	public StateMachine<LonelyMinionHouse, LonelyMinionHouse.Instance, StateMachineController, LonelyMinionHouse.Def>.Signal CompleteStory;
 
-	// Token: 0x0400349C RID: 13468
 	public StateMachine<LonelyMinionHouse, LonelyMinionHouse.Instance, StateMachineController, LonelyMinionHouse.Def>.FloatParameter QuestProgress;
 
-	// Token: 0x02000EB1 RID: 3761
 	public class Def : StoryTraitStateMachine<LonelyMinionHouse, LonelyMinionHouse.Instance, LonelyMinionHouse.Def>.TraitDef
 	{
 	}
 
-	// Token: 0x02000EB2 RID: 3762
 	public new class Instance : StoryTraitStateMachine<LonelyMinionHouse, LonelyMinionHouse.Instance, LonelyMinionHouse.Def>.TraitInstance, ICheckboxListGroupControl
 	{
-		// Token: 0x1700040E RID: 1038
-		// (get) Token: 0x06004B1E RID: 19230 RVA: 0x000D5018 File Offset: 0x000D3218
 		public HashedString QuestOwnerId
 		{
 			get
@@ -103,8 +88,6 @@ public class LonelyMinionHouse : StoryTraitStateMachine<LonelyMinionHouse, Lonel
 			}
 		}
 
-		// Token: 0x1700040F RID: 1039
-		// (get) Token: 0x06004B1F RID: 19231 RVA: 0x000D5020 File Offset: 0x000D3220
 		public KBatchedAnimController AnimController
 		{
 			get
@@ -113,8 +96,6 @@ public class LonelyMinionHouse : StoryTraitStateMachine<LonelyMinionHouse, Lonel
 			}
 		}
 
-		// Token: 0x17000410 RID: 1040
-		// (get) Token: 0x06004B20 RID: 19232 RVA: 0x000D502A File Offset: 0x000D322A
 		public KBatchedAnimController LightsController
 		{
 			get
@@ -123,8 +104,6 @@ public class LonelyMinionHouse : StoryTraitStateMachine<LonelyMinionHouse, Lonel
 			}
 		}
 
-		// Token: 0x17000411 RID: 1041
-		// (get) Token: 0x06004B21 RID: 19233 RVA: 0x000D5034 File Offset: 0x000D3234
 		public KBatchedAnimController BlindsController
 		{
 			get
@@ -133,8 +112,6 @@ public class LonelyMinionHouse : StoryTraitStateMachine<LonelyMinionHouse, Lonel
 			}
 		}
 
-		// Token: 0x17000412 RID: 1042
-		// (get) Token: 0x06004B22 RID: 19234 RVA: 0x000D5041 File Offset: 0x000D3241
 		public Light2D Light
 		{
 			get
@@ -143,12 +120,10 @@ public class LonelyMinionHouse : StoryTraitStateMachine<LonelyMinionHouse, Lonel
 			}
 		}
 
-		// Token: 0x06004B23 RID: 19235 RVA: 0x000D5049 File Offset: 0x000D3249
 		public Instance(StateMachineController master, LonelyMinionHouse.Def def) : base(master, def)
 		{
 		}
 
-		// Token: 0x06004B24 RID: 19236 RVA: 0x0026AD34 File Offset: 0x00268F34
 		public override void StartSM()
 		{
 			this.animControllers = base.gameObject.GetComponentsInChildren<KBatchedAnimController>(true);
@@ -212,7 +187,6 @@ public class LonelyMinionHouse : StoryTraitStateMachine<LonelyMinionHouse, Lonel
 			this.blinds.meterController.Play(array, KAnim.PlayMode.Once);
 		}
 
-		// Token: 0x06004B25 RID: 19237 RVA: 0x0026B0A0 File Offset: 0x002692A0
 		public override void StopSM(string reason)
 		{
 			base.StopSM(reason);
@@ -222,7 +196,6 @@ public class LonelyMinionHouse : StoryTraitStateMachine<LonelyMinionHouse, Lonel
 			base.Unsubscribe(-592767678, new Action<object>(this.OnBuildingActivated));
 		}
 
-		// Token: 0x06004B26 RID: 19238 RVA: 0x0026B118 File Offset: 0x00269318
 		private void OnQuestProgressChanged(QuestInstance quest, Quest.State prevState, float delta)
 		{
 			float num = base.sm.QuestProgress.Get(this);
@@ -248,13 +221,11 @@ public class LonelyMinionHouse : StoryTraitStateMachine<LonelyMinionHouse, Lonel
 			this.blinds.meterController.Queue(string.Format("{0}_{1}", "meter_blinds", num3 - 1), KAnim.PlayMode.Once, 1f, 0f);
 		}
 
-		// Token: 0x06004B27 RID: 19239 RVA: 0x000D505A File Offset: 0x000D325A
 		public void MailboxContentChanged(GameObject item)
 		{
 			this.lonelyMinion.sm.Mail.Set(item, this.lonelyMinion, false);
 		}
 
-		// Token: 0x06004B28 RID: 19240 RVA: 0x0026B220 File Offset: 0x00269420
 		public override void CompleteEvent()
 		{
 			if (this.lonelyMinion == null)
@@ -292,7 +263,6 @@ public class LonelyMinionHouse : StoryTraitStateMachine<LonelyMinionHouse, Lonel
 			base.CompleteEvent();
 		}
 
-		// Token: 0x06004B29 RID: 19241 RVA: 0x0026B3D0 File Offset: 0x002695D0
 		public override void OnCompleteStorySequence()
 		{
 			this.SpawnMinion();
@@ -322,7 +292,6 @@ public class LonelyMinionHouse : StoryTraitStateMachine<LonelyMinionHouse, Lonel
 			RootMenu.Instance.Refresh();
 		}
 
-		// Token: 0x06004B2A RID: 19242 RVA: 0x0026B5E8 File Offset: 0x002697E8
 		private void SpawnMinion()
 		{
 			if (StoryManager.Instance.IsStoryComplete(Db.Get().Stories.LonelyMinion))
@@ -372,7 +341,6 @@ public class LonelyMinionHouse : StoryTraitStateMachine<LonelyMinionHouse, Lonel
 			minionIdentity.transform.SetPosition(position);
 		}
 
-		// Token: 0x06004B2B RID: 19243 RVA: 0x0026B87C File Offset: 0x00269A7C
 		private bool TryFindMailbox()
 		{
 			if (base.sm.QuestProgress.Get(this) == 1f)
@@ -397,7 +365,6 @@ public class LonelyMinionHouse : StoryTraitStateMachine<LonelyMinionHouse, Lonel
 			return flag;
 		}
 
-		// Token: 0x06004B2C RID: 19244 RVA: 0x0026B938 File Offset: 0x00269B38
 		private void OnBuildingLayerChanged(int cell, object data)
 		{
 			GameObject gameObject = data as GameObject;
@@ -413,20 +380,17 @@ public class LonelyMinionHouse : StoryTraitStateMachine<LonelyMinionHouse, Lonel
 			}
 		}
 
-		// Token: 0x06004B2D RID: 19245 RVA: 0x0026B9A8 File Offset: 0x00269BA8
 		public void OnPoweredStateChanged(bool isPowered)
 		{
 			this.light.enabled = (isPowered && base.GetComponent<Operational>().IsOperational);
 			this.LightsController.Play(this.light.enabled ? LonelyMinionHouseConfig.LIGHTS_ON : LonelyMinionHouseConfig.LIGHTS_OFF, KAnim.PlayMode.Loop, 1f, 0f);
 		}
 
-		// Token: 0x06004B2E RID: 19246 RVA: 0x000D507A File Offset: 0x000D327A
 		private void StartStoryTrait()
 		{
 			base.TriggerStoryEvent(StoryInstance.State.IN_PROGRESS);
 		}
 
-		// Token: 0x06004B2F RID: 19247 RVA: 0x0026BA00 File Offset: 0x00269C00
 		protected override void OnBuildingActivated(object data)
 		{
 			if (!this.IsIntroSequenceComplete())
@@ -444,7 +408,6 @@ public class LonelyMinionHouse : StoryTraitStateMachine<LonelyMinionHouse, Lonel
 			}
 		}
 
-		// Token: 0x06004B30 RID: 19248 RVA: 0x0026BA80 File Offset: 0x00269C80
 		protected override void OnObjectSelect(object clicked)
 		{
 			if (!(bool)clicked)
@@ -472,7 +435,6 @@ public class LonelyMinionHouse : StoryTraitStateMachine<LonelyMinionHouse, Lonel
 			base.OnObjectSelect(clicked);
 		}
 
-		// Token: 0x06004B31 RID: 19249 RVA: 0x0026BB50 File Offset: 0x00269D50
 		private void OnWorkStateChanged(Workable w, Workable.WorkableEvent state)
 		{
 			Activatable activatable = w as Activatable;
@@ -524,7 +486,6 @@ public class LonelyMinionHouse : StoryTraitStateMachine<LonelyMinionHouse, Lonel
 			}
 		}
 
-		// Token: 0x06004B32 RID: 19250 RVA: 0x0026BD74 File Offset: 0x00269F74
 		private void ReleaseKnocker(object _)
 		{
 			Navigator component = this.knocker.GetComponent<Navigator>();
@@ -538,7 +499,6 @@ public class LonelyMinionHouse : StoryTraitStateMachine<LonelyMinionHouse, Lonel
 			this.knocker = null;
 		}
 
-		// Token: 0x06004B33 RID: 19251 RVA: 0x0026BE90 File Offset: 0x0026A090
 		private void PlayIntroSequence(object _ = null)
 		{
 			base.GetComponent<KSelectable>().RemoveStatusItem(Db.Get().MiscStatusItems.AttentionRequired, false);
@@ -557,7 +517,6 @@ public class LonelyMinionHouse : StoryTraitStateMachine<LonelyMinionHouse, Lonel
 			this.knockNotification = null;
 		}
 
-		// Token: 0x06004B34 RID: 19252 RVA: 0x0026BF68 File Offset: 0x0026A168
 		private void OnIntroSequenceComplete()
 		{
 			this.OnBuildingActivated(null);
@@ -569,7 +528,6 @@ public class LonelyMinionHouse : StoryTraitStateMachine<LonelyMinionHouse, Lonel
 			}, out flag, out flag2);
 		}
 
-		// Token: 0x06004B35 RID: 19253 RVA: 0x0026BFB8 File Offset: 0x0026A1B8
 		private bool IsIntroSequenceComplete()
 		{
 			if (this.currentWorkState == Workable.WorkableEvent.WorkStarted)
@@ -588,7 +546,6 @@ public class LonelyMinionHouse : StoryTraitStateMachine<LonelyMinionHouse, Lonel
 			return this.currentWorkState == Workable.WorkableEvent.WorkStopped && this.knocker == null;
 		}
 
-		// Token: 0x06004B36 RID: 19254 RVA: 0x0026C0CC File Offset: 0x0026A2CC
 		public Vector3 GetParcelPosition()
 		{
 			int index = -1;
@@ -626,8 +583,6 @@ public class LonelyMinionHouse : StoryTraitStateMachine<LonelyMinionHouse, Lonel
 			return result;
 		}
 
-		// Token: 0x17000413 RID: 1043
-		// (get) Token: 0x06004B37 RID: 19255 RVA: 0x000D5083 File Offset: 0x000D3283
 		public string Title
 		{
 			get
@@ -636,8 +591,6 @@ public class LonelyMinionHouse : StoryTraitStateMachine<LonelyMinionHouse, Lonel
 			}
 		}
 
-		// Token: 0x17000414 RID: 1044
-		// (get) Token: 0x06004B38 RID: 19256 RVA: 0x000D508F File Offset: 0x000D328F
 		public string Description
 		{
 			get
@@ -646,7 +599,6 @@ public class LonelyMinionHouse : StoryTraitStateMachine<LonelyMinionHouse, Lonel
 			}
 		}
 
-		// Token: 0x06004B39 RID: 19257 RVA: 0x0026C214 File Offset: 0x0026A414
 		public ICheckboxListGroupControl.ListGroup[] GetData()
 		{
 			QuestInstance greetingQuest = QuestManager.GetInstance(this.questOwnerId, Db.Get().Quests.LonelyMinionGreetingQuest);
@@ -669,14 +621,12 @@ public class LonelyMinionHouse : StoryTraitStateMachine<LonelyMinionHouse, Lonel
 			};
 		}
 
-		// Token: 0x06004B3A RID: 19258 RVA: 0x0026C408 File Offset: 0x0026A608
 		private string ResolveQuestTitle(string title, QuestInstance quest)
 		{
 			string str = GameUtil.FloatToString(quest.CurrentProgress * 100f, "##0") + UI.UNITSUFFIXES.PERCENT;
 			return title + " - " + str;
 		}
 
-		// Token: 0x06004B3B RID: 19259 RVA: 0x0026C448 File Offset: 0x0026A648
 		private string ResolveQuestToolTips(int criteriaId, string toolTip, QuestInstance quest)
 		{
 			if (criteriaId == LonelyMinionConfig.FoodCriteriaId.HashValue)
@@ -713,62 +663,46 @@ public class LonelyMinionHouse : StoryTraitStateMachine<LonelyMinionHouse, Lonel
 			return string.Format(toolTip, Mathf.CeilToInt(f));
 		}
 
-		// Token: 0x06004B3C RID: 19260 RVA: 0x000D509B File Offset: 0x000D329B
 		public bool SidescreenEnabled()
 		{
 			return StoryManager.Instance.HasDisplayedPopup(Db.Get().Stories.LonelyMinion, EventInfoDataHelper.PopupType.BEGIN) && !StoryManager.Instance.CheckState(StoryInstance.State.COMPLETE, Db.Get().Stories.LonelyMinion);
 		}
 
-		// Token: 0x06004B3D RID: 19261 RVA: 0x000AFED1 File Offset: 0x000AE0D1
 		public int CheckboxSideScreenSortOrder()
 		{
 			return 20;
 		}
 
-		// Token: 0x0400349D RID: 13469
 		private KAnimLink lightsLink;
 
-		// Token: 0x0400349E RID: 13470
 		private HashedString questOwnerId;
 
-		// Token: 0x0400349F RID: 13471
 		private LonelyMinion.Instance lonelyMinion;
 
-		// Token: 0x040034A0 RID: 13472
 		private KBatchedAnimController[] animControllers;
 
-		// Token: 0x040034A1 RID: 13473
 		private Light2D light;
 
-		// Token: 0x040034A2 RID: 13474
 		private FilteredStorage storageFilter;
 
-		// Token: 0x040034A3 RID: 13475
 		private MeterController meter;
 
-		// Token: 0x040034A4 RID: 13476
 		private MeterController blinds;
 
-		// Token: 0x040034A5 RID: 13477
 		private Workable.WorkableEvent currentWorkState = Workable.WorkableEvent.WorkStopped;
 
-		// Token: 0x040034A6 RID: 13478
 		private Notification knockNotification;
 
-		// Token: 0x040034A7 RID: 13479
 		private KBatchedAnimController knocker;
 	}
 
-	// Token: 0x02000EB4 RID: 3764
 	public class ActiveStates : GameStateMachine<LonelyMinionHouse, LonelyMinionHouse.Instance, StateMachineController, LonelyMinionHouse.Def>.State
 	{
-		// Token: 0x06004B44 RID: 19268 RVA: 0x000D5128 File Offset: 0x000D3328
 		public static void OnEnterStoryComplete(LonelyMinionHouse.Instance smi)
 		{
 			smi.CompleteEvent();
 		}
 
-		// Token: 0x040034AD RID: 13485
 		public GameStateMachine<LonelyMinionHouse, LonelyMinionHouse.Instance, StateMachineController, LonelyMinionHouse.Def>.State StoryComplete;
 	}
 }

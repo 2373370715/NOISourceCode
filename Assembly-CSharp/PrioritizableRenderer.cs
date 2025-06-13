@@ -2,12 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000AFF RID: 2815
 public class PrioritizableRenderer
 {
-	// Token: 0x17000236 RID: 566
-	// (get) Token: 0x0600342C RID: 13356 RVA: 0x000C67B2 File Offset: 0x000C49B2
-	// (set) Token: 0x0600342D RID: 13357 RVA: 0x000C67BA File Offset: 0x000C49BA
 	public PrioritizeTool currentTool
 	{
 		get
@@ -20,7 +16,6 @@ public class PrioritizableRenderer
 		}
 	}
 
-	// Token: 0x0600342E RID: 13358 RVA: 0x002164DC File Offset: 0x002146DC
 	public PrioritizableRenderer()
 	{
 		this.layer = LayerMask.NameToLayer("UI");
@@ -34,7 +29,6 @@ public class PrioritizableRenderer
 		this.mesh.MarkDynamic();
 	}
 
-	// Token: 0x0600342F RID: 13359 RVA: 0x000C67C3 File Offset: 0x000C49C3
 	public void Cleanup()
 	{
 		this.material = null;
@@ -46,7 +40,6 @@ public class PrioritizableRenderer
 		this.mesh = null;
 	}
 
-	// Token: 0x06003430 RID: 13360 RVA: 0x00216568 File Offset: 0x00214768
 	public void RenderEveryTick()
 	{
 		using (new KProfiler.Region("PrioritizableRenderer", null))
@@ -143,30 +136,21 @@ public class PrioritizableRenderer
 		}
 	}
 
-	// Token: 0x040023B3 RID: 9139
 	private Mesh mesh;
 
-	// Token: 0x040023B4 RID: 9140
 	private int layer;
 
-	// Token: 0x040023B5 RID: 9141
 	private Material material;
 
-	// Token: 0x040023B6 RID: 9142
 	private int prioritizableCount;
 
-	// Token: 0x040023B7 RID: 9143
 	private Vector3[] vertices;
 
-	// Token: 0x040023B8 RID: 9144
 	private Vector2[] uvs;
 
-	// Token: 0x040023B9 RID: 9145
 	private int[] triangles;
 
-	// Token: 0x040023BA RID: 9146
 	private List<Prioritizable> prioritizables;
 
-	// Token: 0x040023BB RID: 9147
 	private PrioritizeTool tool;
 }

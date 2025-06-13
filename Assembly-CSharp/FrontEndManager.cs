@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001D2F RID: 7471
 [AddComponentMenu("KMonoBehaviour/scripts/FrontEndManager")]
 public class FrontEndManager : KMonoBehaviour
 {
-	// Token: 0x06009BFD RID: 39933 RVA: 0x003CEDF8 File Offset: 0x003CCFF8
 	protected override void OnPrefabInit()
 	{
 		FrontEndManager.<>c__DisplayClass2_0 CS$<>8__locals1 = new FrontEndManager.<>c__DisplayClass2_0();
@@ -46,14 +44,12 @@ public class FrontEndManager : KMonoBehaviour
 		Singleton<KBatchedAnimUpdater>.Instance.OnClear += CS$<>8__locals2.<OnPrefabInit>g__RecreateCanvases|1;
 	}
 
-	// Token: 0x06009BFE RID: 39934 RVA: 0x00109FC8 File Offset: 0x001081C8
 	protected override void OnForcedCleanUp()
 	{
 		FrontEndManager.Instance = null;
 		base.OnForcedCleanUp();
 	}
 
-	// Token: 0x06009BFF RID: 39935 RVA: 0x003CEF28 File Offset: 0x003CD128
 	private void LateUpdate()
 	{
 		if (global::Debug.developerConsoleVisible)
@@ -65,7 +61,6 @@ public class FrontEndManager : KMonoBehaviour
 		KAnimBatchManager.Instance().Render();
 	}
 
-	// Token: 0x06009C00 RID: 39936 RVA: 0x003CEF7C File Offset: 0x003CD17C
 	public GameObject MakeKleiCanvas(string gameObjectName = "Canvas")
 	{
 		GameObject gameObject = new GameObject(gameObjectName, new Type[]
@@ -76,7 +71,6 @@ public class FrontEndManager : KMonoBehaviour
 		return gameObject;
 	}
 
-	// Token: 0x06009C01 RID: 39937 RVA: 0x003CEFAC File Offset: 0x003CD1AC
 	public void ConfigureAsKleiCanvas(GameObject gameObject)
 	{
 		Canvas canvas = gameObject.AddOrGet<Canvas>();
@@ -94,9 +88,7 @@ public class FrontEndManager : KMonoBehaviour
 		gameObject.AddOrGet<KCanvasScaler>();
 	}
 
-	// Token: 0x04007A09 RID: 31241
 	public static FrontEndManager Instance;
 
-	// Token: 0x04007A0A RID: 31242
 	public static bool firstInit = true;
 }

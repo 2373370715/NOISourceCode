@@ -5,13 +5,10 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000EBB RID: 3771
 [SerializationConfig(MemberSerialization.OptIn)]
 [AddComponentMenu("KMonoBehaviour/Workable/ManualGenerator")]
 public class ManualGenerator : RemoteWorkable, ISingleSliderControl, ISliderControl
 {
-	// Token: 0x17000415 RID: 1045
-	// (get) Token: 0x06004B58 RID: 19288 RVA: 0x000D51ED File Offset: 0x000D33ED
 	public string SliderTitleKey
 	{
 		get
@@ -20,8 +17,6 @@ public class ManualGenerator : RemoteWorkable, ISingleSliderControl, ISliderCont
 		}
 	}
 
-	// Token: 0x17000416 RID: 1046
-	// (get) Token: 0x06004B59 RID: 19289 RVA: 0x000CF907 File Offset: 0x000CDB07
 	public string SliderUnits
 	{
 		get
@@ -30,50 +25,41 @@ public class ManualGenerator : RemoteWorkable, ISingleSliderControl, ISliderCont
 		}
 	}
 
-	// Token: 0x06004B5A RID: 19290 RVA: 0x000B1628 File Offset: 0x000AF828
 	public int SliderDecimalPlaces(int index)
 	{
 		return 0;
 	}
 
-	// Token: 0x06004B5B RID: 19291 RVA: 0x000C18F8 File Offset: 0x000BFAF8
 	public float GetSliderMin(int index)
 	{
 		return 0f;
 	}
 
-	// Token: 0x06004B5C RID: 19292 RVA: 0x000CD7B4 File Offset: 0x000CB9B4
 	public float GetSliderMax(int index)
 	{
 		return 100f;
 	}
 
-	// Token: 0x06004B5D RID: 19293 RVA: 0x000D51F4 File Offset: 0x000D33F4
 	public float GetSliderValue(int index)
 	{
 		return this.batteryRefillPercent * 100f;
 	}
 
-	// Token: 0x06004B5E RID: 19294 RVA: 0x000D5202 File Offset: 0x000D3402
 	public void SetSliderValue(float value, int index)
 	{
 		this.batteryRefillPercent = value / 100f;
 	}
 
-	// Token: 0x06004B5F RID: 19295 RVA: 0x000D5211 File Offset: 0x000D3411
 	public string GetSliderTooltipKey(int index)
 	{
 		return "STRINGS.UI.UISIDESCREENS.MANUALGENERATORSIDESCREEN.TOOLTIP";
 	}
 
-	// Token: 0x06004B60 RID: 19296 RVA: 0x000D5218 File Offset: 0x000D3418
 	string ISliderControl.GetSliderTooltip(int index)
 	{
 		return string.Format(Strings.Get("STRINGS.UI.UISIDESCREENS.MANUALGENERATORSIDESCREEN.TOOLTIP"), this.batteryRefillPercent * 100f);
 	}
 
-	// Token: 0x17000417 RID: 1047
-	// (get) Token: 0x06004B61 RID: 19297 RVA: 0x000D523F File Offset: 0x000D343F
 	public bool IsPowered
 	{
 		get
@@ -82,8 +68,6 @@ public class ManualGenerator : RemoteWorkable, ISingleSliderControl, ISliderCont
 		}
 	}
 
-	// Token: 0x17000418 RID: 1048
-	// (get) Token: 0x06004B62 RID: 19298 RVA: 0x000D524C File Offset: 0x000D344C
 	public override Chore RemoteDockChore
 	{
 		get
@@ -92,13 +76,11 @@ public class ManualGenerator : RemoteWorkable, ISingleSliderControl, ISliderCont
 		}
 	}
 
-	// Token: 0x06004B63 RID: 19299 RVA: 0x000D5254 File Offset: 0x000D3454
 	private ManualGenerator()
 	{
 		this.showProgressBar = false;
 	}
 
-	// Token: 0x06004B64 RID: 19300 RVA: 0x0026C9CC File Offset: 0x0026ABCC
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -113,7 +95,6 @@ public class ManualGenerator : RemoteWorkable, ISingleSliderControl, ISliderCont
 		EnergyGenerator.EnsureStatusItemAvailable();
 	}
 
-	// Token: 0x06004B65 RID: 19301 RVA: 0x0026CA74 File Offset: 0x0026AC74
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -135,7 +116,6 @@ public class ManualGenerator : RemoteWorkable, ISingleSliderControl, ISliderCont
 		Game.Instance.energySim.AddManualGenerator(this);
 	}
 
-	// Token: 0x06004B66 RID: 19302 RVA: 0x000D526E File Offset: 0x000D346E
 	protected override void OnCleanUp()
 	{
 		Game.Instance.energySim.RemoveManualGenerator(this);
@@ -143,7 +123,6 @@ public class ManualGenerator : RemoteWorkable, ISingleSliderControl, ISliderCont
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06004B67 RID: 19303 RVA: 0x000D5296 File Offset: 0x000D3496
 	protected void OnActiveChanged(object is_active)
 	{
 		if (this.operational.IsActive)
@@ -152,7 +131,6 @@ public class ManualGenerator : RemoteWorkable, ISingleSliderControl, ISliderCont
 		}
 	}
 
-	// Token: 0x06004B68 RID: 19304 RVA: 0x0026CB20 File Offset: 0x0026AD20
 	private void OnCopySettings(object data)
 	{
 		GameObject gameObject = data as GameObject;
@@ -166,7 +144,6 @@ public class ManualGenerator : RemoteWorkable, ISingleSliderControl, ISliderCont
 		}
 	}
 
-	// Token: 0x06004B69 RID: 19305 RVA: 0x0026CB54 File Offset: 0x0026AD54
 	public void EnergySim200ms(float dt)
 	{
 		KSelectable component = base.GetComponent<KSelectable>();
@@ -219,14 +196,12 @@ public class ManualGenerator : RemoteWorkable, ISingleSliderControl, ISliderCont
 		}
 	}
 
-	// Token: 0x06004B6A RID: 19306 RVA: 0x000D52D0 File Offset: 0x000D34D0
 	protected override void OnStartWork(WorkerBase worker)
 	{
 		base.OnStartWork(worker);
 		this.operational.SetActive(true, false);
 	}
 
-	// Token: 0x06004B6B RID: 19307 RVA: 0x0026CCF0 File Offset: 0x0026AEF0
 	protected override bool OnWorkTick(WorkerBase worker, float dt)
 	{
 		CircuitManager circuitManager = Game.Instance.circuitManager;
@@ -245,14 +220,12 @@ public class ManualGenerator : RemoteWorkable, ISingleSliderControl, ISliderCont
 		return !flag;
 	}
 
-	// Token: 0x06004B6C RID: 19308 RVA: 0x000D52E6 File Offset: 0x000D34E6
 	protected override void OnStopWork(WorkerBase worker)
 	{
 		base.OnStopWork(worker);
 		this.operational.SetActive(false, false);
 	}
 
-	// Token: 0x06004B6D RID: 19309 RVA: 0x000D52FC File Offset: 0x000D34FC
 	protected override void OnCompleteWork(WorkerBase worker)
 	{
 		this.operational.SetActive(false, false);
@@ -263,13 +236,11 @@ public class ManualGenerator : RemoteWorkable, ISingleSliderControl, ISliderCont
 		}
 	}
 
-	// Token: 0x06004B6E RID: 19310 RVA: 0x000B1628 File Offset: 0x000AF828
 	public override bool InstantlyFinish(WorkerBase worker)
 	{
 		return false;
 	}
 
-	// Token: 0x06004B6F RID: 19311 RVA: 0x000D532A File Offset: 0x000D352A
 	private void OnOperationalChanged(object data)
 	{
 		if (!this.buildingEnabledButton.IsEnabled)
@@ -278,40 +249,30 @@ public class ManualGenerator : RemoteWorkable, ISingleSliderControl, ISliderCont
 		}
 	}
 
-	// Token: 0x040034B7 RID: 13495
 	[Serialize]
 	[SerializeField]
 	private float batteryRefillPercent = 0.5f;
 
-	// Token: 0x040034B8 RID: 13496
 	private const float batteryStopRunningPercent = 1f;
 
-	// Token: 0x040034B9 RID: 13497
 	[MyCmpReq]
 	private Generator generator;
 
-	// Token: 0x040034BA RID: 13498
 	[MyCmpReq]
 	private Operational operational;
 
-	// Token: 0x040034BB RID: 13499
 	[MyCmpGet]
 	private BuildingEnabledButton buildingEnabledButton;
 
-	// Token: 0x040034BC RID: 13500
 	[MyCmpAdd]
 	private CopyBuildingSettings copyBuildingSettings;
 
-	// Token: 0x040034BD RID: 13501
 	private Chore chore;
 
-	// Token: 0x040034BE RID: 13502
 	private int powerCell;
 
-	// Token: 0x040034BF RID: 13503
 	private ManualGenerator.GeneratePowerSM.Instance smi;
 
-	// Token: 0x040034C0 RID: 13504
 	private static readonly KAnimHashedString[] symbol_names = new KAnimHashedString[]
 	{
 		"meter",
@@ -322,28 +283,23 @@ public class ManualGenerator : RemoteWorkable, ISingleSliderControl, ISliderCont
 		"meter_tubing"
 	};
 
-	// Token: 0x040034C1 RID: 13505
 	private static readonly EventSystem.IntraObjectHandler<ManualGenerator> OnOperationalChangedDelegate = new EventSystem.IntraObjectHandler<ManualGenerator>(delegate(ManualGenerator component, object data)
 	{
 		component.OnOperationalChanged(data);
 	});
 
-	// Token: 0x040034C2 RID: 13506
 	private static readonly EventSystem.IntraObjectHandler<ManualGenerator> OnActiveChangedDelegate = new EventSystem.IntraObjectHandler<ManualGenerator>(delegate(ManualGenerator component, object data)
 	{
 		component.OnActiveChanged(data);
 	});
 
-	// Token: 0x040034C3 RID: 13507
 	private static readonly EventSystem.IntraObjectHandler<ManualGenerator> OnCopySettingsDelegate = new EventSystem.IntraObjectHandler<ManualGenerator>(delegate(ManualGenerator component, object data)
 	{
 		component.OnCopySettings(data);
 	});
 
-	// Token: 0x02000EBC RID: 3772
 	public class GeneratePowerSM : GameStateMachine<ManualGenerator.GeneratePowerSM, ManualGenerator.GeneratePowerSM.Instance>
 	{
-		// Token: 0x06004B71 RID: 19313 RVA: 0x0026CE48 File Offset: 0x0026B048
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.off;
@@ -355,32 +311,23 @@ public class ManualGenerator : RemoteWorkable, ISingleSliderControl, ISliderCont
 			this.working.loop.PlayAnim("working_loop", KAnim.PlayMode.Loop).EventTransition(GameHashes.ActiveChanged, this.off, (ManualGenerator.GeneratePowerSM.Instance smi) => this.masterTarget.Get(smi) != null && !smi.master.GetComponent<Operational>().IsActive);
 		}
 
-		// Token: 0x040034C4 RID: 13508
 		public GameStateMachine<ManualGenerator.GeneratePowerSM, ManualGenerator.GeneratePowerSM.Instance, IStateMachineTarget, object>.State off;
 
-		// Token: 0x040034C5 RID: 13509
 		public GameStateMachine<ManualGenerator.GeneratePowerSM, ManualGenerator.GeneratePowerSM.Instance, IStateMachineTarget, object>.State on;
 
-		// Token: 0x040034C6 RID: 13510
 		public ManualGenerator.GeneratePowerSM.WorkingStates working;
 
-		// Token: 0x02000EBD RID: 3773
 		public class WorkingStates : GameStateMachine<ManualGenerator.GeneratePowerSM, ManualGenerator.GeneratePowerSM.Instance, IStateMachineTarget, object>.State
 		{
-			// Token: 0x040034C7 RID: 13511
 			public GameStateMachine<ManualGenerator.GeneratePowerSM, ManualGenerator.GeneratePowerSM.Instance, IStateMachineTarget, object>.State pre;
 
-			// Token: 0x040034C8 RID: 13512
 			public GameStateMachine<ManualGenerator.GeneratePowerSM, ManualGenerator.GeneratePowerSM.Instance, IStateMachineTarget, object>.State loop;
 
-			// Token: 0x040034C9 RID: 13513
 			public GameStateMachine<ManualGenerator.GeneratePowerSM, ManualGenerator.GeneratePowerSM.Instance, IStateMachineTarget, object>.State pst;
 		}
 
-		// Token: 0x02000EBE RID: 3774
 		public new class Instance : GameStateMachine<ManualGenerator.GeneratePowerSM, ManualGenerator.GeneratePowerSM.Instance, IStateMachineTarget, object>.GameInstance
 		{
-			// Token: 0x06004B75 RID: 19317 RVA: 0x000D537F File Offset: 0x000D357F
 			public Instance(IStateMachineTarget master) : base(master)
 			{
 			}

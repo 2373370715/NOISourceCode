@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020002B1 RID: 689
 public class MethaneGeyserConfig : IEntityConfig
 {
-	// Token: 0x06000A14 RID: 2580 RVA: 0x00173160 File Offset: 0x00171360
 	public GameObject CreatePrefab()
 	{
 		string id = "MethaneGeyser";
@@ -34,16 +32,13 @@ public class MethaneGeyserConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06000A15 RID: 2581 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x06000A16 RID: 2582 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x040007F3 RID: 2035
 	public const string ID = "MethaneGeyser";
 }

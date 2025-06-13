@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200058C RID: 1420
 public class ProExoSetLockerConfig : IEntityConfig
 {
-	// Token: 0x06001881 RID: 6273 RVA: 0x001AB720 File Offset: 0x001A9920
 	public GameObject CreatePrefab()
 	{
 		string id = "PropExoSetLocker";
@@ -43,7 +41,6 @@ public class ProExoSetLockerConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06001882 RID: 6274 RVA: 0x001AB814 File Offset: 0x001A9A14
 	public void OnPrefabInit(GameObject inst)
 	{
 		SetLocker component = inst.GetComponent<SetLocker>();
@@ -61,7 +58,6 @@ public class ProExoSetLockerConfig : IEntityConfig
 		component.ChooseContents();
 	}
 
-	// Token: 0x06001883 RID: 6275 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}

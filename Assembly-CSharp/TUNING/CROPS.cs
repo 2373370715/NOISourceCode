@@ -4,40 +4,28 @@ using UnityEngine;
 
 namespace TUNING
 {
-	// Token: 0x020022D9 RID: 8921
 	public class CROPS
 	{
-		// Token: 0x04009C9E RID: 40094
 		public const float WILD_GROWTH_RATE_MODIFIER = 0.25f;
 
-		// Token: 0x04009C9F RID: 40095
 		public const float GROWTH_RATE = 0.0016666667f;
 
-		// Token: 0x04009CA0 RID: 40096
 		public const float WILD_GROWTH_RATE = 0.00041666668f;
 
-		// Token: 0x04009CA1 RID: 40097
 		public const float PLANTERPLOT_GROWTH_PENTALY = -0.5f;
 
-		// Token: 0x04009CA2 RID: 40098
 		public const float BASE_BONUS_SEED_PROBABILITY = 0.1f;
 
-		// Token: 0x04009CA3 RID: 40099
 		public const float SELF_HARVEST_TIME = 2400f;
 
-		// Token: 0x04009CA4 RID: 40100
 		public const float SELF_PLANT_TIME = 2400f;
 
-		// Token: 0x04009CA5 RID: 40101
 		public const float TREE_BRANCH_SELF_HARVEST_TIME = 12000f;
 
-		// Token: 0x04009CA6 RID: 40102
 		public const float FERTILIZATION_GAIN_RATE = 1.6666666f;
 
-		// Token: 0x04009CA7 RID: 40103
 		public const float FERTILIZATION_LOSS_RATE = -0.16666667f;
 
-		// Token: 0x04009CA8 RID: 40104
 		public static List<Crop.CropVal> CROP_TYPES = new List<Crop.CropVal>
 		{
 			new Crop.CropVal("BasicPlantFood", 1800f, 1, true),

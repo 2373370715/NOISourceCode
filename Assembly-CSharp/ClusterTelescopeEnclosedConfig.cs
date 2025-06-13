@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200004D RID: 77
 public class ClusterTelescopeEnclosedConfig : IBuildingConfig
 {
-	// Token: 0x06000160 RID: 352 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06000161 RID: 353 RVA: 0x0014C824 File Offset: 0x0014AA24
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "ClusterTelescopeEnclosed";
@@ -39,7 +36,6 @@ public class ClusterTelescopeEnclosedConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000162 RID: 354 RVA: 0x0014C8E4 File Offset: 0x0014AAE4
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.ScienceBuilding, false);
@@ -67,25 +63,21 @@ public class ClusterTelescopeEnclosedConfig : IBuildingConfig
 		conduitConsumer.forceAlwaysSatisfied = true;
 	}
 
-	// Token: 0x06000163 RID: 355 RVA: 0x000AA708 File Offset: 0x000A8908
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		ClusterTelescopeEnclosedConfig.AddVisualizer(go);
 	}
 
-	// Token: 0x06000164 RID: 356 RVA: 0x000AA710 File Offset: 0x000A8910
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 		ClusterTelescopeEnclosedConfig.AddVisualizer(go);
 	}
 
-	// Token: 0x06000165 RID: 357 RVA: 0x000AA708 File Offset: 0x000A8908
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		ClusterTelescopeEnclosedConfig.AddVisualizer(go);
 	}
 
-	// Token: 0x06000166 RID: 358 RVA: 0x000AA718 File Offset: 0x000A8918
 	private static void AddVisualizer(GameObject prefab)
 	{
 		SkyVisibilityVisualizer skyVisibilityVisualizer = prefab.AddOrGet<SkyVisibilityVisualizer>();
@@ -96,15 +88,11 @@ public class ClusterTelescopeEnclosedConfig : IBuildingConfig
 		skyVisibilityVisualizer.SkipOnModuleInteriors = true;
 	}
 
-	// Token: 0x040000D6 RID: 214
 	public const string ID = "ClusterTelescopeEnclosed";
 
-	// Token: 0x040000D7 RID: 215
 	public const int SCAN_RADIUS = 4;
 
-	// Token: 0x040000D8 RID: 216
 	public const int VERTICAL_SCAN_OFFSET = 3;
 
-	// Token: 0x040000D9 RID: 217
 	public static readonly SkyVisibilityInfo SKY_VISIBILITY_INFO = new SkyVisibilityInfo(new CellOffset(0, 3), 4, new CellOffset(1, 3), 4, 0);
 }

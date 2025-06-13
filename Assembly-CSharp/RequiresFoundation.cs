@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-// Token: 0x020017ED RID: 6125
 public class RequiresFoundation : KGameObjectComponentManager<RequiresFoundation.Data>, IKComponentManager
 {
-	// Token: 0x06007E04 RID: 32260 RVA: 0x003351AC File Offset: 0x003333AC
 	public HandleVector<int>.Handle Add(GameObject go)
 	{
 		BuildingDef def = go.GetComponent<Building>().Def;
@@ -74,7 +72,6 @@ public class RequiresFoundation : KGameObjectComponentManager<RequiresFoundation
 		return h;
 	}
 
-	// Token: 0x06007E05 RID: 32261 RVA: 0x003354D0 File Offset: 0x003336D0
 	protected override void OnCleanUp(HandleVector<int>.Handle h)
 	{
 		RequiresFoundation.Data data = base.GetData(h);
@@ -89,7 +86,6 @@ public class RequiresFoundation : KGameObjectComponentManager<RequiresFoundation
 		base.SetData(h, data);
 	}
 
-	// Token: 0x06007E06 RID: 32262 RVA: 0x00335540 File Offset: 0x00333740
 	private void OnSolidChanged(HandleVector<int>.Handle h)
 	{
 		RequiresFoundation.Data data = base.GetData(h);
@@ -117,7 +113,6 @@ public class RequiresFoundation : KGameObjectComponentManager<RequiresFoundation
 		}
 	}
 
-	// Token: 0x06007E07 RID: 32263 RVA: 0x00335638 File Offset: 0x00333838
 	private void UpdateSolidState(bool is_solid, ref RequiresFoundation.Data data, bool forceUpdate = false)
 	{
 		if (data.solid != is_solid || forceUpdate)
@@ -139,37 +134,26 @@ public class RequiresFoundation : KGameObjectComponentManager<RequiresFoundation
 		}
 	}
 
-	// Token: 0x04005FC7 RID: 24519
 	public static readonly Operational.Flag solidFoundation = new Operational.Flag("solid_foundation", Operational.Flag.Type.Functional);
 
-	// Token: 0x020017EE RID: 6126
 	public struct Data
 	{
-		// Token: 0x04005FC8 RID: 24520
 		public int cell;
 
-		// Token: 0x04005FC9 RID: 24521
 		public int width;
 
-		// Token: 0x04005FCA RID: 24522
 		public int height;
 
-		// Token: 0x04005FCB RID: 24523
 		public BuildLocationRule buildRule;
 
-		// Token: 0x04005FCC RID: 24524
 		public HandleVector<int>.Handle solidPartitionerEntry;
 
-		// Token: 0x04005FCD RID: 24525
 		public HandleVector<int>.Handle buildingPartitionerEntry;
 
-		// Token: 0x04005FCE RID: 24526
 		public bool solid;
 
-		// Token: 0x04005FCF RID: 24527
 		public GameObject go;
 
-		// Token: 0x04005FD0 RID: 24528
 		public Action<object> changeCallback;
 	}
 }

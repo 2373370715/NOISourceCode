@@ -4,11 +4,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI.Extensions;
 
-// Token: 0x02001D3F RID: 7487
 [AddComponentMenu("KMonoBehaviour/scripts/GraphBase")]
 public class GraphBase : KMonoBehaviour
 {
-	// Token: 0x06009C69 RID: 40041 RVA: 0x003D0F48 File Offset: 0x003CF148
 	public Vector2 GetRelativePosition(Vector2 absolute_point)
 	{
 		Vector2 zero = Vector2.zero;
@@ -21,20 +19,17 @@ public class GraphBase : KMonoBehaviour
 		return zero;
 	}
 
-	// Token: 0x06009C6A RID: 40042 RVA: 0x0010A302 File Offset: 0x00108502
 	public Vector2 GetRelativeSize(Vector2 absolute_size)
 	{
 		return this.GetRelativePosition(absolute_size);
 	}
 
-	// Token: 0x06009C6B RID: 40043 RVA: 0x0010A30B File Offset: 0x0010850B
 	public void ClearGuides()
 	{
 		this.ClearVerticalGuides();
 		this.ClearHorizontalGuides();
 	}
 
-	// Token: 0x06009C6C RID: 40044 RVA: 0x003D0FDC File Offset: 0x003CF1DC
 	public void ClearHorizontalGuides()
 	{
 		foreach (GameObject gameObject in this.horizontalGuides)
@@ -47,7 +42,6 @@ public class GraphBase : KMonoBehaviour
 		this.horizontalGuides.Clear();
 	}
 
-	// Token: 0x06009C6D RID: 40045 RVA: 0x003D1044 File Offset: 0x003CF244
 	public void ClearVerticalGuides()
 	{
 		foreach (GameObject gameObject in this.verticalGuides)
@@ -60,7 +54,6 @@ public class GraphBase : KMonoBehaviour
 		this.verticalGuides.Clear();
 	}
 
-	// Token: 0x06009C6E RID: 40046 RVA: 0x0010A319 File Offset: 0x00108519
 	public void RefreshGuides()
 	{
 		this.ClearGuides();
@@ -68,7 +61,6 @@ public class GraphBase : KMonoBehaviour
 		this.RefreshVerticalGuides();
 	}
 
-	// Token: 0x06009C6F RID: 40047 RVA: 0x003D10AC File Offset: 0x003CF2AC
 	public void RefreshHorizontalGuides()
 	{
 		if (this.prefab_guide_x != null)
@@ -95,7 +87,6 @@ public class GraphBase : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06009C70 RID: 40048 RVA: 0x003D1254 File Offset: 0x003CF454
 	public void RefreshVerticalGuides()
 	{
 		if (this.prefab_guide_y != null)
@@ -122,50 +113,35 @@ public class GraphBase : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x04007A67 RID: 31335
 	[Header("Axis")]
 	public GraphAxis axis_x;
 
-	// Token: 0x04007A68 RID: 31336
 	public GraphAxis axis_y;
 
-	// Token: 0x04007A69 RID: 31337
 	[Header("References")]
 	public GameObject prefab_guide_x;
 
-	// Token: 0x04007A6A RID: 31338
 	public GameObject prefab_guide_y;
 
-	// Token: 0x04007A6B RID: 31339
 	public GameObject prefab_guide_horizontal_label;
 
-	// Token: 0x04007A6C RID: 31340
 	public GameObject prefab_guide_vertical_label;
 
-	// Token: 0x04007A6D RID: 31341
 	public GameObject guides_x;
 
-	// Token: 0x04007A6E RID: 31342
 	public GameObject guides_y;
 
-	// Token: 0x04007A6F RID: 31343
 	public LocText label_title;
 
-	// Token: 0x04007A70 RID: 31344
 	public LocText label_x;
 
-	// Token: 0x04007A71 RID: 31345
 	public LocText label_y;
 
-	// Token: 0x04007A72 RID: 31346
 	public string graphName;
 
-	// Token: 0x04007A73 RID: 31347
 	protected List<GameObject> horizontalGuides = new List<GameObject>();
 
-	// Token: 0x04007A74 RID: 31348
 	protected List<GameObject> verticalGuides = new List<GameObject>();
 
-	// Token: 0x04007A75 RID: 31349
 	private const int points_per_guide_line = 2;
 }

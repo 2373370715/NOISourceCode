@@ -7,22 +7,18 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// Token: 0x02001F4E RID: 8014
 public class SandboxToolParameterMenu : KScreen
 {
-	// Token: 0x0600A8F7 RID: 43255 RVA: 0x001120E1 File Offset: 0x001102E1
 	public static void DestroyInstance()
 	{
 		SandboxToolParameterMenu.instance = null;
 	}
 
-	// Token: 0x0600A8F8 RID: 43256 RVA: 0x00102E82 File Offset: 0x00101082
 	public override float GetSortKey()
 	{
 		return 50f;
 	}
 
-	// Token: 0x0600A8F9 RID: 43257 RVA: 0x001120E9 File Offset: 0x001102E9
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -31,7 +27,6 @@ public class SandboxToolParameterMenu : KScreen
 		base.ConsumeMouseScroll = true;
 	}
 
-	// Token: 0x0600A8FA RID: 43258 RVA: 0x0040E5E4 File Offset: 0x0040C7E4
 	private void ConfigureSettings()
 	{
 		this.massSlider.clampValueLow = 0.001f;
@@ -174,7 +169,6 @@ public class SandboxToolParameterMenu : KScreen
 		}));
 	}
 
-	// Token: 0x0600A8FB RID: 43259 RVA: 0x0040E8B4 File Offset: 0x0040CAB4
 	public void DisableParameters()
 	{
 		this.elementSelector.row.SetActive(false);
@@ -192,7 +186,6 @@ public class SandboxToolParameterMenu : KScreen
 		this.storySelector.row.SetActive(false);
 	}
 
-	// Token: 0x0600A8FC RID: 43260 RVA: 0x0040E9A0 File Offset: 0x0040CBA0
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -221,7 +214,6 @@ public class SandboxToolParameterMenu : KScreen
 		}
 	}
 
-	// Token: 0x0600A8FD RID: 43261 RVA: 0x0040EAA0 File Offset: 0x0040CCA0
 	private void ConfigureElementSelector()
 	{
 		Func<object, bool> condition = (object element) => (element as Element).IsSolid;
@@ -277,7 +269,6 @@ public class SandboxToolParameterMenu : KScreen
 		});
 	}
 
-	// Token: 0x0600A8FE RID: 43262 RVA: 0x0040EE30 File Offset: 0x0040D030
 	private void ConfigureEntitySelector()
 	{
 		List<SandboxToolParameterMenu.SelectorValue.SearchFilter> list = new List<SandboxToolParameterMenu.SelectorValue.SearchFilter>();
@@ -404,7 +395,6 @@ public class SandboxToolParameterMenu : KScreen
 		}, UI.SANDBOXTOOLS.SETTINGS.SPAWN_ENTITY.NAME, list.ToArray());
 	}
 
-	// Token: 0x0600A8FF RID: 43263 RVA: 0x0040F42C File Offset: 0x0040D62C
 	private void ConfigureStoryTraitSelector()
 	{
 		object[] options = Db.Get().Stories.resources.ToArray();
@@ -414,7 +404,6 @@ public class SandboxToolParameterMenu : KScreen
 		}, (object story) => Strings.Get((story as Story).StoryTrait.name), null, (object story) => new global::Tuple<Sprite, Color>(Assets.GetSprite(((Story)story).StoryTrait.icon), Color.white), UI.SANDBOXTOOLS.SETTINGS.SPAWN_STORY_TRAIT.NAME, null);
 	}
 
-	// Token: 0x0600A900 RID: 43264 RVA: 0x0040F4B0 File Offset: 0x0040D6B0
 	private void ConfigureDiseaseSelector()
 	{
 		object[] options = Db.Get().Diseases.resources.ToArray();
@@ -424,7 +413,6 @@ public class SandboxToolParameterMenu : KScreen
 		}, (object disease) => (disease as Disease).Name, null, (object disease) => new global::Tuple<Sprite, Color>(Assets.GetSprite("germ"), GlobalAssets.Instance.colorSet.GetColorByName((disease as Disease).overlayColourName)), UI.SANDBOXTOOLS.SETTINGS.DISEASE.NAME, null);
 	}
 
-	// Token: 0x0600A901 RID: 43265 RVA: 0x00112105 File Offset: 0x00110305
 	protected override void OnCmpEnable()
 	{
 		base.OnCmpEnable();
@@ -434,7 +422,6 @@ public class SandboxToolParameterMenu : KScreen
 		}
 	}
 
-	// Token: 0x0600A902 RID: 43266 RVA: 0x0040F534 File Offset: 0x0040D734
 	public void RefreshDisplay()
 	{
 		this.brushRadiusSlider.row.SetActive(PlayerController.Instance.ActiveTool is BrushTool);
@@ -451,7 +438,6 @@ public class SandboxToolParameterMenu : KScreen
 		this.moraleSlider.SetValue((float)this.settings.GetIntSetting("SandbosTools.MoraleAdjustment"), true);
 	}
 
-	// Token: 0x0600A903 RID: 43267 RVA: 0x0040F650 File Offset: 0x0040D850
 	private void OnTemperatureUnitChanged(object unit)
 	{
 		int num = this.settings.GetIntSetting("SandboxTools.SelectedElement");
@@ -464,7 +450,6 @@ public class SandboxToolParameterMenu : KScreen
 		this.temperatureAdditiveSlider.SetValue(5f, true);
 	}
 
-	// Token: 0x0600A904 RID: 43268 RVA: 0x0040F6A4 File Offset: 0x0040D8A4
 	private void SetAbsoluteTemperatureSliderRange(Element element)
 	{
 		float num = Mathf.Max(element.lowTemp - 10f, 1f);
@@ -487,7 +472,6 @@ public class SandboxToolParameterMenu : KScreen
 		this.temperatureSlider.SetRange(num, num2, false);
 	}
 
-	// Token: 0x0600A905 RID: 43269 RVA: 0x0040F740 File Offset: 0x0040D940
 	private void RefreshTemperatureUnitDisplays()
 	{
 		this.temperatureSlider.unitString = GameUtil.GetTemperatureUnitSuffix();
@@ -496,7 +480,6 @@ public class SandboxToolParameterMenu : KScreen
 		this.temperatureAdditiveSlider.row.GetComponent<HierarchyReferences>().GetReference<LocText>("UnitLabel").text = this.temperatureSlider.unitString;
 	}
 
-	// Token: 0x0600A906 RID: 43270 RVA: 0x0040F7C4 File Offset: 0x0040D9C4
 	private GameObject SpawnSelector(SandboxToolParameterMenu.SelectorValue selector)
 	{
 		GameObject gameObject = Util.KInstantiateUI(this.selectorPropertyPrefab, base.gameObject, true);
@@ -683,7 +666,6 @@ public class SandboxToolParameterMenu : KScreen
 		return gameObject;
 	}
 
-	// Token: 0x0600A907 RID: 43271 RVA: 0x0040FB9C File Offset: 0x0040DD9C
 	private GameObject SpawnSlider(SandboxToolParameterMenu.SliderValue value)
 	{
 		GameObject gameObject = Util.KInstantiateUI(this.sliderPropertyPrefab, base.gameObject, true);
@@ -751,7 +733,6 @@ public class SandboxToolParameterMenu : KScreen
 		return gameObject;
 	}
 
-	// Token: 0x0600A908 RID: 43272 RVA: 0x00112132 File Offset: 0x00110332
 	public override void OnKeyDown(KButtonEvent e)
 	{
 		if (this.CheckBlockedInput())
@@ -768,7 +749,6 @@ public class SandboxToolParameterMenu : KScreen
 		}
 	}
 
-	// Token: 0x0600A909 RID: 43273 RVA: 0x0040FD98 File Offset: 0x0040DF98
 	private bool CheckBlockedInput()
 	{
 		bool result = false;
@@ -790,93 +770,73 @@ public class SandboxToolParameterMenu : KScreen
 		return result;
 	}
 
-	// Token: 0x04008506 RID: 34054
 	public static SandboxToolParameterMenu instance;
 
-	// Token: 0x04008507 RID: 34055
 	public SandboxSettings settings;
 
-	// Token: 0x04008508 RID: 34056
 	[SerializeField]
 	private GameObject sliderPropertyPrefab;
 
-	// Token: 0x04008509 RID: 34057
 	[SerializeField]
 	private GameObject selectorPropertyPrefab;
 
-	// Token: 0x0400850A RID: 34058
 	private List<GameObject> inputFields = new List<GameObject>();
 
-	// Token: 0x0400850B RID: 34059
 	public SandboxToolParameterMenu.SelectorValue elementSelector;
 
-	// Token: 0x0400850C RID: 34060
 	public SandboxToolParameterMenu.SliderValue brushRadiusSlider = new SandboxToolParameterMenu.SliderValue(1f, 10f, "dash", "circle_hard", "", UI.SANDBOXTOOLS.SETTINGS.BRUSH_SIZE.TOOLTIP, UI.SANDBOXTOOLS.SETTINGS.BRUSH_SIZE.NAME, delegate(float value)
 	{
 		SandboxToolParameterMenu.instance.settings.SetIntSetting("SandboxTools.BrushSize", Mathf.Clamp(Mathf.RoundToInt(value), 1, 50));
 	}, 0);
 
-	// Token: 0x0400850D RID: 34061
 	public SandboxToolParameterMenu.SliderValue noiseScaleSlider = new SandboxToolParameterMenu.SliderValue(0f, 1f, "little", "lots", "", UI.SANDBOXTOOLS.SETTINGS.BRUSH_NOISE_SCALE.TOOLTIP, UI.SANDBOXTOOLS.SETTINGS.BRUSH_NOISE_SCALE.NAME, delegate(float value)
 	{
 		SandboxToolParameterMenu.instance.settings.SetFloatSetting("SandboxTools.NoiseScale", value);
 	}, 2);
 
-	// Token: 0x0400850E RID: 34062
 	public SandboxToolParameterMenu.SliderValue noiseDensitySlider = new SandboxToolParameterMenu.SliderValue(1f, 20f, "little", "lots", "", UI.SANDBOXTOOLS.SETTINGS.BRUSH_NOISE_SCALE.TOOLTIP, UI.SANDBOXTOOLS.SETTINGS.BRUSH_NOISE_DENSITY.NAME, delegate(float value)
 	{
 		SandboxToolParameterMenu.instance.settings.SetFloatSetting("SandboxTools.NoiseDensity", value);
 	}, 2);
 
-	// Token: 0x0400850F RID: 34063
 	public SandboxToolParameterMenu.SliderValue massSlider = new SandboxToolParameterMenu.SliderValue(0.1f, 1000f, "action_pacify", "status_item_plant_solid", UI.UNITSUFFIXES.MASS.KILOGRAM, UI.SANDBOXTOOLS.SETTINGS.MASS.TOOLTIP, UI.SANDBOXTOOLS.SETTINGS.MASS.NAME, delegate(float value)
 	{
 		SandboxToolParameterMenu.instance.settings.SetFloatSetting("SandboxTools.Mass", Mathf.Clamp(value, 0.001f, 9999f));
 	}, 2);
 
-	// Token: 0x04008510 RID: 34064
 	public SandboxToolParameterMenu.SliderValue temperatureSlider = new SandboxToolParameterMenu.SliderValue(150f, 500f, "cold", "hot", GameUtil.GetTemperatureUnitSuffix(), UI.SANDBOXTOOLS.SETTINGS.TEMPERATURE.TOOLTIP, UI.SANDBOXTOOLS.SETTINGS.TEMPERATURE.NAME, delegate(float value)
 	{
 		SandboxToolParameterMenu.instance.settings.SetFloatSetting("SandbosTools.Temperature", Mathf.Clamp(GameUtil.GetTemperatureConvertedToKelvin(value), 1f, 9999f));
 	}, 0);
 
-	// Token: 0x04008511 RID: 34065
 	public SandboxToolParameterMenu.SliderValue temperatureAdditiveSlider = new SandboxToolParameterMenu.SliderValue(-15f, 15f, "cold", "hot", GameUtil.GetTemperatureUnitSuffix(), UI.SANDBOXTOOLS.SETTINGS.TEMPERATURE_ADDITIVE.TOOLTIP, UI.SANDBOXTOOLS.SETTINGS.TEMPERATURE_ADDITIVE.NAME, delegate(float value)
 	{
 		SandboxToolParameterMenu.instance.settings.SetFloatSetting("SandbosTools.TemperatureAdditive", GameUtil.GetTemperatureConvertedToKelvin(value));
 	}, 0);
 
-	// Token: 0x04008512 RID: 34066
 	public SandboxToolParameterMenu.SliderValue stressAdditiveSlider = new SandboxToolParameterMenu.SliderValue(-10f, 10f, "little", "lots", UI.UNITSUFFIXES.PERCENT, UI.SANDBOXTOOLS.SETTINGS.STRESS_ADDITIVE.TOOLTIP, UI.SANDBOXTOOLS.SETTINGS.STRESS_ADDITIVE.NAME, delegate(float value)
 	{
 		SandboxToolParameterMenu.instance.settings.SetFloatSetting("SandbosTools.StressAdditive", value);
 	}, 0);
 
-	// Token: 0x04008513 RID: 34067
 	public SandboxToolParameterMenu.SliderValue moraleSlider = new SandboxToolParameterMenu.SliderValue(-25f, 25f, "little", "lots", UI.UNITSUFFIXES.UNITS, UI.SANDBOXTOOLS.SETTINGS.MORALE.TOOLTIP, UI.SANDBOXTOOLS.SETTINGS.MORALE.NAME, delegate(float value)
 	{
 		SandboxToolParameterMenu.instance.settings.SetIntSetting("SandbosTools.MoraleAdjustment", Mathf.RoundToInt(value));
 	}, 0);
 
-	// Token: 0x04008514 RID: 34068
 	public SandboxToolParameterMenu.SelectorValue diseaseSelector;
 
-	// Token: 0x04008515 RID: 34069
 	public SandboxToolParameterMenu.SliderValue diseaseCountSlider = new SandboxToolParameterMenu.SliderValue(0f, 10000f, "status_item_barren", "germ", UI.UNITSUFFIXES.DISEASE.UNITS, UI.SANDBOXTOOLS.SETTINGS.DISEASE_COUNT.TOOLTIP, UI.SANDBOXTOOLS.SETTINGS.DISEASE_COUNT.NAME, delegate(float value)
 	{
 		SandboxToolParameterMenu.instance.settings.SetIntSetting("SandboxTools.DiseaseCount", Mathf.RoundToInt(value));
 	}, 0);
 
-	// Token: 0x04008516 RID: 34070
 	public SandboxToolParameterMenu.SelectorValue entitySelector;
 
-	// Token: 0x04008517 RID: 34071
 	public SandboxToolParameterMenu.SelectorValue storySelector;
 
-	// Token: 0x02001F4F RID: 8015
 	public class SelectorValue
 	{
-		// Token: 0x0600A91B RID: 43291 RVA: 0x004104D4 File Offset: 0x0040E6D4
 		public SelectorValue(object[] options, Action<object> onValueChanged, Func<object, string> getOptionName, Func<string, object, bool> filterOptionFunction, Func<object, global::Tuple<Sprite, Color>> getOptionSprite, string labelText, SandboxToolParameterMenu.SelectorValue.SearchFilter[] filters = null)
 		{
 			this.options = options;
@@ -888,52 +848,37 @@ public class SandboxToolParameterMenu : KScreen
 			this.labelText = labelText;
 		}
 
-		// Token: 0x0600A91C RID: 43292 RVA: 0x001122BD File Offset: 0x001104BD
 		public bool runCurrentFilter(object obj)
 		{
 			return this.currentFilter == null || this.currentFilter.condition(obj);
 		}
 
-		// Token: 0x04008518 RID: 34072
 		public GameObject row;
 
-		// Token: 0x04008519 RID: 34073
 		public List<KeyValuePair<object, GameObject>> optionButtons;
 
-		// Token: 0x0400851A RID: 34074
 		public KButton button;
 
-		// Token: 0x0400851B RID: 34075
 		public object[] options;
 
-		// Token: 0x0400851C RID: 34076
 		public Action<object> onValueChanged;
 
-		// Token: 0x0400851D RID: 34077
 		public Func<object, string> getOptionName;
 
-		// Token: 0x0400851E RID: 34078
 		public Func<string, object, bool> filterOptionFunction;
 
-		// Token: 0x0400851F RID: 34079
 		public Func<object, global::Tuple<Sprite, Color>> getOptionSprite;
 
-		// Token: 0x04008520 RID: 34080
 		public SandboxToolParameterMenu.SelectorValue.SearchFilter[] filters;
 
-		// Token: 0x04008521 RID: 34081
 		public List<SandboxToolParameterMenu.SelectorValue.SearchFilter> activeFilters = new List<SandboxToolParameterMenu.SelectorValue.SearchFilter>();
 
-		// Token: 0x04008522 RID: 34082
 		public SandboxToolParameterMenu.SelectorValue.SearchFilter currentFilter;
 
-		// Token: 0x04008523 RID: 34083
 		public string labelText;
 
-		// Token: 0x02001F50 RID: 8016
 		public class SearchFilter
 		{
-			// Token: 0x0600A91D RID: 43293 RVA: 0x001122DF File Offset: 0x001104DF
 			public SearchFilter(string Name, Func<object, bool> condition, SandboxToolParameterMenu.SelectorValue.SearchFilter parentFilter = null, global::Tuple<Sprite, Color> icon = null)
 			{
 				this.Name = Name;
@@ -942,24 +887,18 @@ public class SandboxToolParameterMenu : KScreen
 				this.icon = icon;
 			}
 
-			// Token: 0x04008524 RID: 34084
 			public string Name;
 
-			// Token: 0x04008525 RID: 34085
 			public Func<object, bool> condition;
 
-			// Token: 0x04008526 RID: 34086
 			public SandboxToolParameterMenu.SelectorValue.SearchFilter parentFilter;
 
-			// Token: 0x04008527 RID: 34087
 			public global::Tuple<Sprite, Color> icon;
 		}
 	}
 
-	// Token: 0x02001F51 RID: 8017
 	public class SliderValue
 	{
-		// Token: 0x0600A91E RID: 43294 RVA: 0x00410528 File Offset: 0x0040E728
 		public SliderValue(float slideMinValue, float slideMaxValue, string bottomSprite, string topSprite, string unitString, string tooltip, string labelText, Action<float> onValueChanged, int decimalPlaces = 0)
 		{
 			this.slideMinValue = slideMinValue;
@@ -975,7 +914,6 @@ public class SandboxToolParameterMenu : KScreen
 			this.clampValueHigh = slideMaxValue;
 		}
 
-		// Token: 0x0600A91F RID: 43295 RVA: 0x00410590 File Offset: 0x0040E790
 		public void SetRange(float min, float max, bool resetCurrentValue = true)
 		{
 			this.slideMinValue = min;
@@ -991,7 +929,6 @@ public class SandboxToolParameterMenu : KScreen
 			}
 		}
 
-		// Token: 0x0600A920 RID: 43296 RVA: 0x0041065C File Offset: 0x0040E85C
 		public void SetValue(float value, bool runOnValueChanged = true)
 		{
 			value = Mathf.Clamp(value, this.clampValueLow, this.clampValueHigh);
@@ -1004,52 +941,37 @@ public class SandboxToolParameterMenu : KScreen
 			this.RefreshDisplay();
 		}
 
-		// Token: 0x0600A921 RID: 43297 RVA: 0x004106AC File Offset: 0x0040E8AC
 		public void RefreshDisplay()
 		{
 			this.inputField.SetDisplayValue(((this.roundToDecimalPlaces == 0) ? ((float)Mathf.RoundToInt(this.inputField.currentValue)) : this.inputField.currentValue).ToString());
 		}
 
-		// Token: 0x04008528 RID: 34088
 		public GameObject row;
 
-		// Token: 0x04008529 RID: 34089
 		public string bottomSprite;
 
-		// Token: 0x0400852A RID: 34090
 		public string topSprite;
 
-		// Token: 0x0400852B RID: 34091
 		public float slideMinValue;
 
-		// Token: 0x0400852C RID: 34092
 		public float slideMaxValue;
 
-		// Token: 0x0400852D RID: 34093
 		public float clampValueLow;
 
-		// Token: 0x0400852E RID: 34094
 		public float clampValueHigh;
 
-		// Token: 0x0400852F RID: 34095
 		public string unitString;
 
-		// Token: 0x04008530 RID: 34096
 		public Action<float> onValueChanged;
 
-		// Token: 0x04008531 RID: 34097
 		public string tooltip;
 
-		// Token: 0x04008532 RID: 34098
 		public int roundToDecimalPlaces;
 
-		// Token: 0x04008533 RID: 34099
 		public string labelText;
 
-		// Token: 0x04008534 RID: 34100
 		public KSlider slider;
 
-		// Token: 0x04008535 RID: 34101
 		public KNumberInputField inputField;
 	}
 }

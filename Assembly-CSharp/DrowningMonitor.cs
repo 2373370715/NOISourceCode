@@ -4,12 +4,9 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x020011A3 RID: 4515
 [AddComponentMenu("KMonoBehaviour/scripts/DrowningMonitor")]
 public class DrowningMonitor : KMonoBehaviour, IWiltCause, ISlicedSim1000ms
 {
-	// Token: 0x17000572 RID: 1394
-	// (get) Token: 0x06005BD0 RID: 23504 RVA: 0x000E0359 File Offset: 0x000DE559
 	private OccupyArea occupyArea
 	{
 		get
@@ -22,8 +19,6 @@ public class DrowningMonitor : KMonoBehaviour, IWiltCause, ISlicedSim1000ms
 		}
 	}
 
-	// Token: 0x17000573 RID: 1395
-	// (get) Token: 0x06005BD1 RID: 23505 RVA: 0x000E037B File Offset: 0x000DE57B
 	public bool Drowning
 	{
 		get
@@ -32,7 +27,6 @@ public class DrowningMonitor : KMonoBehaviour, IWiltCause, ISlicedSim1000ms
 		}
 	}
 
-	// Token: 0x06005BD2 RID: 23506 RVA: 0x002A6FD4 File Offset: 0x002A51D4
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -49,7 +43,6 @@ public class DrowningMonitor : KMonoBehaviour, IWiltCause, ISlicedSim1000ms
 		}
 	}
 
-	// Token: 0x06005BD3 RID: 23507 RVA: 0x002A70E4 File Offset: 0x002A52E4
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -59,7 +52,6 @@ public class DrowningMonitor : KMonoBehaviour, IWiltCause, ISlicedSim1000ms
 		Singleton<CellChangeMonitor>.Instance.RegisterCellChangedHandler(base.transform, new System.Action(this.OnMove), "DrowningMonitor.OnSpawn");
 	}
 
-	// Token: 0x06005BD4 RID: 23508 RVA: 0x002A7134 File Offset: 0x002A5334
 	private void OnMove()
 	{
 		if (this.partitionerEntry.IsValid())
@@ -74,7 +66,6 @@ public class DrowningMonitor : KMonoBehaviour, IWiltCause, ISlicedSim1000ms
 		this.CheckDrowning(null);
 	}
 
-	// Token: 0x06005BD5 RID: 23509 RVA: 0x000E0383 File Offset: 0x000DE583
 	protected override void OnCleanUp()
 	{
 		Singleton<CellChangeMonitor>.Instance.UnregisterCellChangedHandler(base.transform, new System.Action(this.OnMove));
@@ -83,7 +74,6 @@ public class DrowningMonitor : KMonoBehaviour, IWiltCause, ISlicedSim1000ms
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06005BD6 RID: 23510 RVA: 0x002A71B0 File Offset: 0x002A53B0
 	private void CheckDrowning(object data = null)
 	{
 		if (this.drowned)
@@ -148,20 +138,16 @@ public class DrowningMonitor : KMonoBehaviour, IWiltCause, ISlicedSim1000ms
 		}
 	}
 
-	// Token: 0x06005BD7 RID: 23511 RVA: 0x000E03C2 File Offset: 0x000DE5C2
 	private static bool CellSafeTest(int testCell, object data)
 	{
 		return !Grid.IsNavigatableLiquid(testCell);
 	}
 
-	// Token: 0x06005BD8 RID: 23512 RVA: 0x000E03CD File Offset: 0x000DE5CD
 	public bool IsCellSafe(int cell)
 	{
 		return this.occupyArea.TestArea(cell, this, DrowningMonitor.CellSafeTestDelegate);
 	}
 
-	// Token: 0x17000574 RID: 1396
-	// (get) Token: 0x06005BD9 RID: 23513 RVA: 0x000E03E1 File Offset: 0x000DE5E1
 	WiltCondition.Condition[] IWiltCause.Conditions
 	{
 		get
@@ -173,8 +159,6 @@ public class DrowningMonitor : KMonoBehaviour, IWiltCause, ISlicedSim1000ms
 		}
 	}
 
-	// Token: 0x17000575 RID: 1397
-	// (get) Token: 0x06005BDA RID: 23514 RVA: 0x000E03ED File Offset: 0x000DE5ED
 	public string WiltStateString
 	{
 		get
@@ -187,13 +171,11 @@ public class DrowningMonitor : KMonoBehaviour, IWiltCause, ISlicedSim1000ms
 		}
 	}
 
-	// Token: 0x06005BDB RID: 23515 RVA: 0x000E0420 File Offset: 0x000DE620
 	private void OnLiquidChanged(object data)
 	{
 		this.CheckDrowning(null);
 	}
 
-	// Token: 0x06005BDC RID: 23516 RVA: 0x002A7358 File Offset: 0x002A5558
 	public void SlicedSim1000ms(float dt)
 	{
 		this.CheckDrowning(null);
@@ -216,62 +198,44 @@ public class DrowningMonitor : KMonoBehaviour, IWiltCause, ISlicedSim1000ms
 		}
 	}
 
-	// Token: 0x0400414F RID: 16719
 	[MyCmpReq]
 	private KSelectable selectable;
 
-	// Token: 0x04004150 RID: 16720
 	[MyCmpGet]
 	private Effects effects;
 
-	// Token: 0x04004151 RID: 16721
 	private OccupyArea _occupyArea;
 
-	// Token: 0x04004152 RID: 16722
 	[Serialize]
 	[SerializeField]
 	private float timeToDrown;
 
-	// Token: 0x04004153 RID: 16723
 	[Serialize]
 	private bool drowned;
 
-	// Token: 0x04004154 RID: 16724
 	private bool drowning;
 
-	// Token: 0x04004155 RID: 16725
 	protected const float MaxDrownTime = 75f;
 
-	// Token: 0x04004156 RID: 16726
 	protected const float RegenRate = 5f;
 
-	// Token: 0x04004157 RID: 16727
 	protected const float CellLiquidThreshold = 0.95f;
 
-	// Token: 0x04004158 RID: 16728
 	public bool canDrownToDeath = true;
 
-	// Token: 0x04004159 RID: 16729
 	public bool livesUnderWater;
 
-	// Token: 0x0400415A RID: 16730
 	private Guid drowningStatusGuid;
 
-	// Token: 0x0400415B RID: 16731
 	private Guid saturatedStatusGuid;
 
-	// Token: 0x0400415C RID: 16732
 	private Extents extents;
 
-	// Token: 0x0400415D RID: 16733
 	private HandleVector<int>.Handle partitionerEntry;
 
-	// Token: 0x0400415E RID: 16734
 	public static Effect drowningEffect;
 
-	// Token: 0x0400415F RID: 16735
 	public static Effect saturatedEffect;
 
-	// Token: 0x04004160 RID: 16736
 	private static readonly Func<int, object, bool> CellSafeTestDelegate = (int testCell, object data) => DrowningMonitor.CellSafeTest(testCell, data);
 }

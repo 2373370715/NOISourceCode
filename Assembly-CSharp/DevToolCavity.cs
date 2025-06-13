@@ -5,21 +5,17 @@ using ImGuiNET;
 using ImGuiObjectDrawer;
 using UnityEngine;
 
-// Token: 0x02000BD1 RID: 3025
 public class DevToolCavity : DevTool
 {
-	// Token: 0x0600395C RID: 14684 RVA: 0x000C9965 File Offset: 0x000C7B65
 	public DevToolCavity() : this(Option.None)
 	{
 	}
 
-	// Token: 0x0600395D RID: 14685 RVA: 0x000C9977 File Offset: 0x000C7B77
 	public DevToolCavity(Option<DevToolEntityTarget.ForSimCell> target)
 	{
 		this.targetOpt = target;
 	}
 
-	// Token: 0x0600395E RID: 14686 RVA: 0x0022B53C File Offset: 0x0022973C
 	protected override void RenderTo(DevPanel panel)
 	{
 		if (ImGui.BeginMenuBar())
@@ -90,7 +86,6 @@ public class DevToolCavity : DevTool
 		}
 	}
 
-	// Token: 0x0600395F RID: 14687 RVA: 0x0022B82C File Offset: 0x00229A2C
 	public static void DrawKPrefabIdCollection(string name, IEnumerable<KPrefabID> kprefabIds)
 	{
 		name += (kprefabIds.IsNullOrDestroyed() ? " (0)" : string.Format(" ({0})", kprefabIds.Count<KPrefabID>()));
@@ -118,7 +113,6 @@ public class DevToolCavity : DevTool
 		}
 	}
 
-	// Token: 0x06003960 RID: 14688 RVA: 0x0022B8FC File Offset: 0x00229AFC
 	public static Option<string> GetErrorForCandidateTarget(DevToolEntityTarget uncastTarget)
 	{
 		if (!(uncastTarget is DevToolEntityTarget.ForSimCell))
@@ -141,9 +135,7 @@ public class DevToolCavity : DevTool
 		return Option.None;
 	}
 
-	// Token: 0x040027A5 RID: 10149
 	private Option<DevToolEntityTarget.ForSimCell> targetOpt;
 
-	// Token: 0x040027A6 RID: 10150
 	private bool shouldDrawBoundingBox = true;
 }

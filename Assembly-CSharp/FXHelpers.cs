@@ -3,10 +3,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-// Token: 0x02000C2A RID: 3114
 public static class FXHelpers
 {
-	// Token: 0x06003AF8 RID: 15096 RVA: 0x00236D1C File Offset: 0x00234F1C
 	public static KBatchedAnimController CreateEffect(string anim_file_name, Vector3 position, Transform parent = null, bool update_looping_sounds_position = false, Grid.SceneLayer layer = Grid.SceneLayer.Front, bool set_inactive = false)
 	{
 		KBatchedAnimController component = GameUtil.KInstantiate(Assets.GetPrefab(EffectConfigs.EffectTemplateId), position, layer, null, 0).GetComponent<KBatchedAnimController>();
@@ -40,7 +38,6 @@ public static class FXHelpers
 		return component;
 	}
 
-	// Token: 0x06003AF9 RID: 15097 RVA: 0x00236DDC File Offset: 0x00234FDC
 	public static KBatchedAnimController CreateEffect(string[] anim_file_names, Vector3 position, Transform parent = null, bool update_looping_sounds_position = false, Grid.SceneLayer layer = Grid.SceneLayer.Front, bool set_inactive = false)
 	{
 		KBatchedAnimController component = GameUtil.KInstantiate(Assets.GetPrefab(EffectConfigs.EffectTemplateId), position, layer, null, 0).GetComponent<KBatchedAnimController>();
@@ -77,7 +74,6 @@ public static class FXHelpers
 		return component;
 	}
 
-	// Token: 0x06003AFA RID: 15098 RVA: 0x00236EE0 File Offset: 0x002350E0
 	public static KBatchedAnimController CreateEffectOverride(string[] anim_file_names, Vector3 position, Transform parent = null, bool update_looping_sounds_position = false, Grid.SceneLayer layer = Grid.SceneLayer.Front, bool set_inactive = false)
 	{
 		KBatchedAnimController component = GameUtil.KInstantiate(Assets.GetPrefab(EffectConfigs.EffectTemplateOverrideId), position, layer, null, 0).GetComponent<KBatchedAnimController>();

@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005A9 RID: 1449
 public class SolidConduitConfig : IBuildingConfig
 {
-	// Token: 0x06001913 RID: 6419 RVA: 0x001AD814 File Offset: 0x001ABA14
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "SolidConduit";
@@ -40,7 +38,6 @@ public class SolidConduitConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001914 RID: 6420 RVA: 0x000B4E28 File Offset: 0x000B3028
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
@@ -48,7 +45,6 @@ public class SolidConduitConfig : IBuildingConfig
 		go.AddOrGet<SolidConduit>();
 	}
 
-	// Token: 0x06001915 RID: 6421 RVA: 0x000B4E4C File Offset: 0x000B304C
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		KAnimGraphTileVisualizer kanimGraphTileVisualizer = go.AddComponent<KAnimGraphTileVisualizer>();
@@ -57,7 +53,6 @@ public class SolidConduitConfig : IBuildingConfig
 		go.GetComponent<Constructable>().requiredSkillPerk = Db.Get().SkillPerks.ConveyorBuild.Id;
 	}
 
-	// Token: 0x06001916 RID: 6422 RVA: 0x000B4E80 File Offset: 0x000B3080
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.GetComponent<Building>().Def.BuildingUnderConstruction.GetComponent<Constructable>().isDiggingRequired = false;
@@ -68,6 +63,5 @@ public class SolidConduitConfig : IBuildingConfig
 		go.AddComponent<EmptySolidConduitWorkable>();
 	}
 
-	// Token: 0x04001052 RID: 4178
 	public const string ID = "SolidConduit";
 }

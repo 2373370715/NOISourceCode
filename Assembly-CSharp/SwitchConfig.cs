@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005DF RID: 1503
 public class SwitchConfig : IBuildingConfig
 {
-	// Token: 0x06001A4B RID: 6731 RVA: 0x001B34D0 File Offset: 0x001B16D0
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = SwitchConfig.ID;
@@ -30,7 +28,6 @@ public class SwitchConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001A4C RID: 6732 RVA: 0x000B58E6 File Offset: 0x000B3AE6
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<BuildingComplete>().isManuallyOperated = false;
@@ -40,12 +37,10 @@ public class SwitchConfig : IBuildingConfig
 		circuitSwitch.manuallyControlled = false;
 	}
 
-	// Token: 0x06001A4D RID: 6733 RVA: 0x000B428C File Offset: 0x000B248C
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddComponent<BuildingCellVisualizer>();
 	}
 
-	// Token: 0x04001102 RID: 4354
 	public static string ID = "Switch";
 }

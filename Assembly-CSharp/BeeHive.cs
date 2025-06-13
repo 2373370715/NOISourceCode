@@ -2,10 +2,8 @@
 using Klei.AI;
 using UnityEngine;
 
-// Token: 0x02000CE1 RID: 3297
 public class BeeHive : GameStateMachine<BeeHive, BeeHive.StatesInstance, IStateMachineTarget, BeeHive.Def>
 {
-	// Token: 0x06003F2B RID: 16171 RVA: 0x00244AA4 File Offset: 0x00242CA4
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		base.serializable = StateMachine.SerializeType.ParamsOnly;
@@ -43,82 +41,62 @@ public class BeeHive : GameStateMachine<BeeHive, BeeHive.StatesInstance, IStateM
 		});
 	}
 
-	// Token: 0x04002BAF RID: 11183
 	public GameStateMachine<BeeHive, BeeHive.StatesInstance, IStateMachineTarget, BeeHive.Def>.State disabled;
 
-	// Token: 0x04002BB0 RID: 11184
 	public BeeHive.EnabledStates enabled;
 
-	// Token: 0x04002BB1 RID: 11185
 	public StateMachine<BeeHive, BeeHive.StatesInstance, IStateMachineTarget, BeeHive.Def>.FloatParameter hiveGrowth = new StateMachine<BeeHive, BeeHive.StatesInstance, IStateMachineTarget, BeeHive.Def>.FloatParameter(1f);
 
-	// Token: 0x02000CE2 RID: 3298
 	public class Def : StateMachine.BaseDef
 	{
-		// Token: 0x04002BB2 RID: 11186
 		public string beePrefabID;
 
-		// Token: 0x04002BB3 RID: 11187
 		public string larvaPrefabID;
 	}
 
-	// Token: 0x02000CE3 RID: 3299
 	public class GrowingStates : GameStateMachine<BeeHive, BeeHive.StatesInstance, IStateMachineTarget, BeeHive.Def>.State
 	{
-		// Token: 0x04002BB4 RID: 11188
 		public GameStateMachine<BeeHive, BeeHive.StatesInstance, IStateMachineTarget, BeeHive.Def>.State idle;
 	}
 
-	// Token: 0x02000CE4 RID: 3300
 	public class GrownStates : GameStateMachine<BeeHive, BeeHive.StatesInstance, IStateMachineTarget, BeeHive.Def>.State
 	{
-		// Token: 0x04002BB5 RID: 11189
 		public GameStateMachine<BeeHive, BeeHive.StatesInstance, IStateMachineTarget, BeeHive.Def>.State dayTime;
 
-		// Token: 0x04002BB6 RID: 11190
 		public GameStateMachine<BeeHive, BeeHive.StatesInstance, IStateMachineTarget, BeeHive.Def>.State nightTime;
 	}
 
-	// Token: 0x02000CE5 RID: 3301
 	public class EnabledStates : GameStateMachine<BeeHive, BeeHive.StatesInstance, IStateMachineTarget, BeeHive.Def>.State
 	{
-		// Token: 0x04002BB7 RID: 11191
 		public BeeHive.GrowingStates growingStates;
 
-		// Token: 0x04002BB8 RID: 11192
 		public BeeHive.GrownStates grownStates;
 	}
 
-	// Token: 0x02000CE6 RID: 3302
 	public class StatesInstance : GameStateMachine<BeeHive, BeeHive.StatesInstance, IStateMachineTarget, BeeHive.Def>.GameInstance
 	{
-		// Token: 0x06003F31 RID: 16177 RVA: 0x000CD8AF File Offset: 0x000CBAAF
 		public StatesInstance(IStateMachineTarget master, BeeHive.Def def) : base(master, def)
 		{
 			base.Subscribe(1119167081, new Action<object>(this.OnNewGameSpawn));
 			Components.BeeHives.Add(this);
 		}
 
-		// Token: 0x06003F32 RID: 16178 RVA: 0x000CD8DB File Offset: 0x000CBADB
 		public void SetUpNewHive()
 		{
 			base.sm.hiveGrowth.Set(0f, this, false);
 		}
 
-		// Token: 0x06003F33 RID: 16179 RVA: 0x000CD8F5 File Offset: 0x000CBAF5
 		protected override void OnCleanUp()
 		{
 			Components.BeeHives.Remove(this);
 			base.OnCleanUp();
 		}
 
-		// Token: 0x06003F34 RID: 16180 RVA: 0x000CD908 File Offset: 0x000CBB08
 		private void OnNewGameSpawn(object data)
 		{
 			this.NewGamePopulateHive();
 		}
 
-		// Token: 0x06003F35 RID: 16181 RVA: 0x00244E3C File Offset: 0x0024303C
 		private void NewGamePopulateHive()
 		{
 			int num = 1;
@@ -133,13 +111,11 @@ public class BeeHive : GameStateMachine<BeeHive, BeeHive.StatesInstance, IStateM
 			}
 		}
 
-		// Token: 0x06003F36 RID: 16182 RVA: 0x000CD910 File Offset: 0x000CBB10
 		public bool IsFullyGrown()
 		{
 			return base.sm.hiveGrowth.Get(this) >= 1f;
 		}
 
-		// Token: 0x06003F37 RID: 16183 RVA: 0x00244E74 File Offset: 0x00243074
 		public void DeltaGrowth(float delta)
 		{
 			float num = base.sm.hiveGrowth.Get(this);
@@ -148,19 +124,16 @@ public class BeeHive : GameStateMachine<BeeHive, BeeHive.StatesInstance, IStateM
 			base.sm.hiveGrowth.Set(num, this, false);
 		}
 
-		// Token: 0x06003F38 RID: 16184 RVA: 0x000CD92D File Offset: 0x000CBB2D
 		public void SpawnNewLarvaFromHive()
 		{
 			Util.KInstantiate(Assets.GetPrefab(base.def.larvaPrefabID), base.transform.GetPosition()).SetActive(true);
 		}
 
-		// Token: 0x06003F39 RID: 16185 RVA: 0x000CD95A File Offset: 0x000CBB5A
 		public void SpawnNewBeeFromHive()
 		{
 			Util.KInstantiate(Assets.GetPrefab(base.def.beePrefabID), base.transform.GetPosition()).SetActive(true);
 		}
 
-		// Token: 0x06003F3A RID: 16186 RVA: 0x00244EB4 File Offset: 0x002430B4
 		public bool IsDisabled()
 		{
 			KPrefabID component = base.GetComponent<KPrefabID>();

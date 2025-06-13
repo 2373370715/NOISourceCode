@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003F6 RID: 1014
 public class LogicTemperatureSensorConfig : IBuildingConfig
 {
-	// Token: 0x060010AA RID: 4266 RVA: 0x0018B608 File Offset: 0x00189808
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = LogicTemperatureSensorConfig.ID;
@@ -38,7 +36,6 @@ public class LogicTemperatureSensorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060010AB RID: 4267 RVA: 0x000B1BE8 File Offset: 0x000AFDE8
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		LogicTemperatureSensor logicTemperatureSensor = go.AddOrGet<LogicTemperatureSensor>();
@@ -48,6 +45,5 @@ public class LogicTemperatureSensorConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayInFrontOfConduits, false);
 	}
 
-	// Token: 0x04000BA1 RID: 2977
 	public static string ID = "LogicTemperatureSensor";
 }

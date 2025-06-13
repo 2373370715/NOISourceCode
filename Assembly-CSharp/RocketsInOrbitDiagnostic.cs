@@ -1,23 +1,19 @@
 ﻿using System;
 using STRINGS;
 
-// Token: 0x02001272 RID: 4722
 public class RocketsInOrbitDiagnostic : ColonyDiagnostic
 {
-	// Token: 0x0600605E RID: 24670 RVA: 0x002BB0E0 File Offset: 0x002B92E0
 	public RocketsInOrbitDiagnostic(int worldID) : base(worldID, UI.COLONY_DIAGNOSTICS.ROCKETINORBITDIAGNOSTIC.ALL_NAME)
 	{
 		this.icon = "icon_errand_rocketry";
 		base.AddCriterion("RocketsOrbiting", new DiagnosticCriterion(UI.COLONY_DIAGNOSTICS.ROCKETINORBITDIAGNOSTIC.CRITERIA.CHECKORBIT, new Func<ColonyDiagnostic.DiagnosticResult>(this.CheckOrbit)));
 	}
 
-	// Token: 0x0600605F RID: 24671 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06006060 RID: 24672 RVA: 0x002BB130 File Offset: 0x002B9330
 	public ColonyDiagnostic.DiagnosticResult CheckOrbit()
 	{
 		AxialI myWorldLocation = ClusterManager.Instance.GetWorld(base.worldID).GetMyWorldLocation();
@@ -60,6 +56,5 @@ public class RocketsInOrbitDiagnostic : ColonyDiagnostic
 		return result;
 	}
 
-	// Token: 0x040044F3 RID: 17651
 	private int numRocketsInOrbit;
 }

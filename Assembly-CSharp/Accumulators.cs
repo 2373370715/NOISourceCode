@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x02000C3F RID: 3135
 public class Accumulators
 {
-	// Token: 0x06003B40 RID: 15168 RVA: 0x000CAAFD File Offset: 0x000C8CFD
 	public Accumulators()
 	{
 		this.elapsedTime = 0f;
@@ -12,7 +10,6 @@ public class Accumulators
 		this.average = new KCompactedVector<float>(0);
 	}
 
-	// Token: 0x06003B41 RID: 15169 RVA: 0x000CAB28 File Offset: 0x000C8D28
 	public HandleVector<int>.Handle Add(string name, KMonoBehaviour owner)
 	{
 		HandleVector<int>.Handle result = this.accumulated.Allocate(0f);
@@ -20,7 +17,6 @@ public class Accumulators
 		return result;
 	}
 
-	// Token: 0x06003B42 RID: 15170 RVA: 0x000CAB4B File Offset: 0x000C8D4B
 	public HandleVector<int>.Handle Remove(HandleVector<int>.Handle handle)
 	{
 		if (!handle.IsValid())
@@ -32,7 +28,6 @@ public class Accumulators
 		return HandleVector<int>.InvalidHandle;
 	}
 
-	// Token: 0x06003B43 RID: 15171 RVA: 0x00237F84 File Offset: 0x00236184
 	public void Sim200ms(float dt)
 	{
 		this.elapsedTime += dt;
@@ -52,7 +47,6 @@ public class Accumulators
 		}
 	}
 
-	// Token: 0x06003B44 RID: 15172 RVA: 0x000CAB7B File Offset: 0x000C8D7B
 	public float GetAverageRate(HandleVector<int>.Handle handle)
 	{
 		if (!handle.IsValid())
@@ -62,22 +56,17 @@ public class Accumulators
 		return this.average.GetData(handle);
 	}
 
-	// Token: 0x06003B45 RID: 15173 RVA: 0x00238014 File Offset: 0x00236214
 	public void Accumulate(HandleVector<int>.Handle handle, float amount)
 	{
 		float data = this.accumulated.GetData(handle);
 		this.accumulated.SetData(handle, data + amount);
 	}
 
-	// Token: 0x04002900 RID: 10496
 	private const float TIME_WINDOW = 3f;
 
-	// Token: 0x04002901 RID: 10497
 	private float elapsedTime;
 
-	// Token: 0x04002902 RID: 10498
 	private KCompactedVector<float> accumulated;
 
-	// Token: 0x04002903 RID: 10499
 	private KCompactedVector<float> average;
 }

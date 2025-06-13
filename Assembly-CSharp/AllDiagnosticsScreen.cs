@@ -4,10 +4,8 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001C20 RID: 7200
 public class AllDiagnosticsScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 {
-	// Token: 0x060095BD RID: 38333 RVA: 0x00106015 File Offset: 0x00104215
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -15,14 +13,12 @@ public class AllDiagnosticsScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		this.ConfigureDebugToggle();
 	}
 
-	// Token: 0x060095BE RID: 38334 RVA: 0x00106029 File Offset: 0x00104229
 	protected override void OnForcedCleanUp()
 	{
 		AllDiagnosticsScreen.Instance = null;
 		base.OnForcedCleanUp();
 	}
 
-	// Token: 0x060095BF RID: 38335 RVA: 0x003A8968 File Offset: 0x003A6B68
 	private void ConfigureDebugToggle()
 	{
 		Game.Instance.Subscribe(1557339983, new Action<object>(this.DebugToggleRefresh));
@@ -37,13 +33,11 @@ public class AllDiagnosticsScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		toggle.ChangeState(DebugHandler.NotificationsDisabled ? 1 : 0);
 	}
 
-	// Token: 0x060095C0 RID: 38336 RVA: 0x00106037 File Offset: 0x00104237
 	private void DebugToggleRefresh(object data = null)
 	{
 		this.debugNotificationToggleCotainer.gameObject.SetActive(DebugHandler.InstantBuildMode);
 	}
 
-	// Token: 0x060095C1 RID: 38337 RVA: 0x003A89EC File Offset: 0x003A6BEC
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -75,7 +69,6 @@ public class AllDiagnosticsScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		this.Show(false);
 	}
 
-	// Token: 0x060095C2 RID: 38338 RVA: 0x0010604E File Offset: 0x0010424E
 	protected override void OnShow(bool show)
 	{
 		base.OnShow(show);
@@ -87,7 +80,6 @@ public class AllDiagnosticsScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		}
 	}
 
-	// Token: 0x060095C3 RID: 38339 RVA: 0x003A8ADC File Offset: 0x003A6CDC
 	public override void OnKeyDown(KButtonEvent e)
 	{
 		if (this.isHiddenButActive)
@@ -108,13 +100,11 @@ public class AllDiagnosticsScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		base.OnKeyDown(e);
 	}
 
-	// Token: 0x060095C4 RID: 38340 RVA: 0x00106075 File Offset: 0x00104275
 	public int GetRowCount()
 	{
 		return this.diagnosticRows.Count;
 	}
 
-	// Token: 0x060095C5 RID: 38341 RVA: 0x003A8B30 File Offset: 0x003A6D30
 	public override void OnKeyUp(KButtonEvent e)
 	{
 		if (this.isHiddenButActive)
@@ -133,13 +123,11 @@ public class AllDiagnosticsScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		}
 	}
 
-	// Token: 0x060095C6 RID: 38342 RVA: 0x00102E82 File Offset: 0x00101082
 	public override float GetSortKey()
 	{
 		return 50f;
 	}
 
-	// Token: 0x060095C7 RID: 38343 RVA: 0x003A8B84 File Offset: 0x003A6D84
 	public void Populate(object data = null)
 	{
 		this.SpawnRows();
@@ -152,7 +140,6 @@ public class AllDiagnosticsScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		this.RefreshRows();
 	}
 
-	// Token: 0x060095C8 RID: 38344 RVA: 0x003A8C04 File Offset: 0x003A6E04
 	private void SpawnRows()
 	{
 		foreach (KeyValuePair<int, Dictionary<string, ColonyDiagnosticUtility.DisplaySetting>> keyValuePair in ColonyDiagnosticUtility.Instance.diagnosticDisplaySettings)
@@ -181,7 +168,6 @@ public class AllDiagnosticsScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		}
 	}
 
-	// Token: 0x060095C9 RID: 38345 RVA: 0x003A8DB8 File Offset: 0x003A6FB8
 	private void SpawnRow(ColonyDiagnostic diagnostic, GameObject container)
 	{
 		if (diagnostic == null)
@@ -256,13 +242,11 @@ public class AllDiagnosticsScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		}
 	}
 
-	// Token: 0x060095CA RID: 38346 RVA: 0x00106082 File Offset: 0x00104282
 	private void FilterRowBySearch(Tag tag, string filter)
 	{
 		this.currentlyDisplayedRows[tag] = this.PassesSearchFilter(tag, filter);
 	}
 
-	// Token: 0x060095CB RID: 38347 RVA: 0x003A90D4 File Offset: 0x003A72D4
 	private void SearchFilter(string search)
 	{
 		foreach (KeyValuePair<string, GameObject> keyValuePair in this.diagnosticRows)
@@ -276,7 +260,6 @@ public class AllDiagnosticsScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		this.SetRowsActive();
 	}
 
-	// Token: 0x060095CC RID: 38348 RVA: 0x003A91A0 File Offset: 0x003A73A0
 	private bool PassesSearchFilter(Tag tag, string filter)
 	{
 		if (string.IsNullOrEmpty(filter))
@@ -310,7 +293,6 @@ public class AllDiagnosticsScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		return false;
 	}
 
-	// Token: 0x060095CD RID: 38349 RVA: 0x003A9250 File Offset: 0x003A7450
 	private void RefreshPinnedState(string diagnosticID)
 	{
 		if (!ColonyDiagnosticUtility.Instance.diagnosticDisplaySettings[ClusterManager.Instance.activeWorldId].ContainsKey(diagnosticID))
@@ -360,7 +342,6 @@ public class AllDiagnosticsScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		reference.GetComponent<ToolTip>().SetSimpleTooltip(simpleTooltip);
 	}
 
-	// Token: 0x060095CE RID: 38350 RVA: 0x003A9384 File Offset: 0x003A7584
 	public void RefreshRows()
 	{
 		WorldInventory worldInventory = ClusterManager.Instance.GetWorld(ClusterManager.Instance.activeWorldId).worldInventory;
@@ -387,7 +368,6 @@ public class AllDiagnosticsScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		this.RefreshSubrows();
 	}
 
-	// Token: 0x060095CF RID: 38351 RVA: 0x003A9514 File Offset: 0x003A7714
 	private void RefreshSubrows()
 	{
 		foreach (KeyValuePair<string, GameObject> keyValuePair in this.diagnosticRows)
@@ -413,7 +393,6 @@ public class AllDiagnosticsScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		}
 	}
 
-	// Token: 0x060095D0 RID: 38352 RVA: 0x003A96CC File Offset: 0x003A78CC
 	private void RefreshCharts()
 	{
 		foreach (KeyValuePair<string, GameObject> keyValuePair in this.diagnosticRows)
@@ -436,7 +415,6 @@ public class AllDiagnosticsScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		}
 	}
 
-	// Token: 0x060095D1 RID: 38353 RVA: 0x003A97C8 File Offset: 0x003A79C8
 	private void SetRowsActive()
 	{
 		foreach (KeyValuePair<string, GameObject> keyValuePair in this.diagnosticRows)
@@ -455,7 +433,6 @@ public class AllDiagnosticsScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		}
 	}
 
-	// Token: 0x060095D2 RID: 38354 RVA: 0x00106098 File Offset: 0x00104298
 	public void Sim4000ms(float dt)
 	{
 		if (this.isHiddenButActive)
@@ -465,7 +442,6 @@ public class AllDiagnosticsScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		this.RefreshCharts();
 	}
 
-	// Token: 0x060095D3 RID: 38355 RVA: 0x001060A9 File Offset: 0x001042A9
 	public void Sim1000ms(float dt)
 	{
 		if (this.isHiddenButActive)
@@ -475,45 +451,32 @@ public class AllDiagnosticsScreen : ShowOptimizedKScreen, ISim4000ms, ISim1000ms
 		this.RefreshRows();
 	}
 
-	// Token: 0x04007485 RID: 29829
 	private Dictionary<string, GameObject> diagnosticRows = new Dictionary<string, GameObject>();
 
-	// Token: 0x04007486 RID: 29830
 	private Dictionary<string, Dictionary<string, GameObject>> criteriaRows = new Dictionary<string, Dictionary<string, GameObject>>();
 
-	// Token: 0x04007487 RID: 29831
 	public GameObject rootListContainer;
 
-	// Token: 0x04007488 RID: 29832
 	public GameObject diagnosticLinePrefab;
 
-	// Token: 0x04007489 RID: 29833
 	public GameObject subDiagnosticLinePrefab;
 
-	// Token: 0x0400748A RID: 29834
 	public KButton closeButton;
 
-	// Token: 0x0400748B RID: 29835
 	public bool allowRefresh = true;
 
-	// Token: 0x0400748C RID: 29836
 	[SerializeField]
 	private KInputTextField searchInputField;
 
-	// Token: 0x0400748D RID: 29837
 	[SerializeField]
 	private KButton clearSearchButton;
 
-	// Token: 0x0400748E RID: 29838
 	public static AllDiagnosticsScreen Instance;
 
-	// Token: 0x0400748F RID: 29839
 	public Dictionary<Tag, bool> currentlyDisplayedRows = new Dictionary<Tag, bool>();
 
-	// Token: 0x04007490 RID: 29840
 	public Dictionary<Tag, bool> subrowContainerOpen = new Dictionary<Tag, bool>();
 
-	// Token: 0x04007491 RID: 29841
 	[SerializeField]
 	private RectTransform debugNotificationToggleCotainer;
 }

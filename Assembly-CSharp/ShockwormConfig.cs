@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200026F RID: 623
 public class ShockwormConfig : IEntityConfig
 {
-	// Token: 0x060008EF RID: 2287 RVA: 0x0016D784 File Offset: 0x0016B984
 	public GameObject CreatePrefab()
 	{
 		string id = "ShockWorm";
@@ -33,16 +31,13 @@ public class ShockwormConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x060008F0 RID: 2288 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject prefab)
 	{
 	}
 
-	// Token: 0x060008F1 RID: 2289 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x040006DB RID: 1755
 	public const string ID = "ShockWorm";
 }

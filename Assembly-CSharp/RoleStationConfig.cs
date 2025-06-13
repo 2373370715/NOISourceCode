@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000583 RID: 1411
 public class RoleStationConfig : IBuildingConfig
 {
-	// Token: 0x06001855 RID: 6229 RVA: 0x001AAA48 File Offset: 0x001A8C48
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "RoleStation";
@@ -27,18 +25,15 @@ public class RoleStationConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001856 RID: 6230 RVA: 0x000B4BE0 File Offset: 0x000B2DE0
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<BuildingComplete>().isManuallyOperated = true;
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x06001857 RID: 6231 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x0400100E RID: 4110
 	public const string ID = "RoleStation";
 }

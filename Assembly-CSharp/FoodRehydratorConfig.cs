@@ -5,10 +5,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000335 RID: 821
 public class FoodRehydratorConfig : IBuildingConfig
 {
-	// Token: 0x06000CDA RID: 3290 RVA: 0x0017B630 File Offset: 0x00179830
 	private static Effect ConstructRehydrationEffect()
 	{
 		Effect effect = new Effect("RehydratedFoodConsumed", "RehydratedFoodConsumed", STRINGS.ITEMS.DEHYDRATEDFOODPACKAGE.CONSUMED, 600f, false, false, true, null, -1f, 0f, null, "");
@@ -16,7 +14,6 @@ public class FoodRehydratorConfig : IBuildingConfig
 		return effect;
 	}
 
-	// Token: 0x06000CDB RID: 3291 RVA: 0x0017B6A0 File Offset: 0x001798A0
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "FoodRehydrator";
@@ -53,7 +50,6 @@ public class FoodRehydratorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000CDC RID: 3292 RVA: 0x0017B77C File Offset: 0x0017997C
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		Storage storage = go.AddComponent<Storage>();
@@ -90,38 +86,27 @@ public class FoodRehydratorConfig : IBuildingConfig
 		go.AddOrGetDef<RocketUsageRestriction.Def>();
 	}
 
-	// Token: 0x06000CDD RID: 3293 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x040009A3 RID: 2467
 	public const string ID = "FoodRehydrator";
 
-	// Token: 0x040009A4 RID: 2468
 	public static Tag REHYDRATION_TAG = GameTags.Water;
 
-	// Token: 0x040009A5 RID: 2469
 	public const float REHYDRATION_COST = 1f;
 
-	// Token: 0x040009A6 RID: 2470
 	public const float REHYDRATOR_PACKAGES_CAPACITY = 5f;
 
-	// Token: 0x040009A7 RID: 2471
 	public const float REHYDRATION_WORK_TIME = 5f;
 
-	// Token: 0x040009A8 RID: 2472
 	public static Effect RehydrationEffect = FoodRehydratorConfig.ConstructRehydrationEffect();
 
-	// Token: 0x040009A9 RID: 2473
 	public const string REHYDRATION_DEBUFF_ID = "RehydratedFoodConsumed";
 
-	// Token: 0x040009AA RID: 2474
 	public const string REHDYRATION_DEBUFF_NAME = "RehydratedFoodConsumed";
 
-	// Token: 0x040009AB RID: 2475
 	public const float REHYDRATION_DEBUFF_DURATION = 600f;
 
-	// Token: 0x040009AC RID: 2476
 	public const float REHYDRATION_DEBUFF_EFFECT = -1f;
 }

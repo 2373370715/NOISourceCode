@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000B43 RID: 2883
 public class SpriteSheetAnimator
 {
-	// Token: 0x06003575 RID: 13685 RVA: 0x0021B8EC File Offset: 0x00219AEC
 	public SpriteSheetAnimator(SpriteSheet sheet)
 	{
 		this.sheet = sheet;
@@ -16,7 +14,6 @@ public class SpriteSheetAnimator
 		this.materialProperties.SetTexture("_MainTex", sheet.texture);
 	}
 
-	// Token: 0x06003576 RID: 13686 RVA: 0x0021B964 File Offset: 0x00219B64
 	public void Play(Vector3 pos, Quaternion rotation, Vector2 size, Color colour)
 	{
 		if (rotation == Quaternion.identity)
@@ -41,7 +38,6 @@ public class SpriteSheetAnimator
 		});
 	}
 
-	// Token: 0x06003577 RID: 13687 RVA: 0x0021BA0C File Offset: 0x00219C0C
 	private void GetUVs(int frame, out Vector2 uv_bl, out Vector2 uv_br, out Vector2 uv_tl, out Vector2 uv_tr)
 	{
 		int num = frame / this.sheet.numXFrames;
@@ -56,13 +52,11 @@ public class SpriteSheetAnimator
 		uv_tr = new Vector2(x2, y2);
 	}
 
-	// Token: 0x06003578 RID: 13688 RVA: 0x000C7521 File Offset: 0x000C5721
 	public int GetFrameFromElapsedTime(float elapsed_time)
 	{
 		return Mathf.Min(this.sheet.numFrames, (int)(elapsed_time / 0.033333335f));
 	}
 
-	// Token: 0x06003579 RID: 13689 RVA: 0x0021BACC File Offset: 0x00219CCC
 	public int GetFrameFromElapsedTimeLooping(float elapsed_time)
 	{
 		int num = (int)(elapsed_time / 0.033333335f);
@@ -73,14 +67,12 @@ public class SpriteSheetAnimator
 		return num;
 	}
 
-	// Token: 0x0600357A RID: 13690 RVA: 0x000C753B File Offset: 0x000C573B
 	public void UpdateAnims(float dt)
 	{
 		this.UpdateAnims(dt, this.anims);
 		this.UpdateAnims(dt, this.rotatedAnims);
 	}
 
-	// Token: 0x0600357B RID: 13691 RVA: 0x0021BB00 File Offset: 0x00219D00
 	private void UpdateAnims(float dt, IList<SpriteSheetAnimator.AnimInfo> anims)
 	{
 		int num = anims.Count;
@@ -104,7 +96,6 @@ public class SpriteSheetAnimator
 		}
 	}
 
-	// Token: 0x0600357C RID: 13692 RVA: 0x0021BB90 File Offset: 0x00219D90
 	public void Render(List<SpriteSheetAnimator.AnimInfo> anim_infos, bool apply_rotation)
 	{
 		ListPool<Vector3, SpriteSheetAnimManager>.PooledList pooledList = ListPool<Vector3, SpriteSheetAnimManager>.Allocate();
@@ -197,47 +188,34 @@ public class SpriteSheetAnimator
 		pooledList.Recycle();
 	}
 
-	// Token: 0x0600357D RID: 13693 RVA: 0x000C7557 File Offset: 0x000C5757
 	public void Render()
 	{
 		this.Render(this.anims, false);
 		this.Render(this.rotatedAnims, true);
 	}
 
-	// Token: 0x040024F5 RID: 9461
 	private SpriteSheet sheet;
 
-	// Token: 0x040024F6 RID: 9462
 	private Mesh mesh;
 
-	// Token: 0x040024F7 RID: 9463
 	private MaterialPropertyBlock materialProperties;
 
-	// Token: 0x040024F8 RID: 9464
 	private List<SpriteSheetAnimator.AnimInfo> anims = new List<SpriteSheetAnimator.AnimInfo>();
 
-	// Token: 0x040024F9 RID: 9465
 	private List<SpriteSheetAnimator.AnimInfo> rotatedAnims = new List<SpriteSheetAnimator.AnimInfo>();
 
-	// Token: 0x02000B44 RID: 2884
 	public struct AnimInfo
 	{
-		// Token: 0x040024FA RID: 9466
 		public int frame;
 
-		// Token: 0x040024FB RID: 9467
 		public float elapsedTime;
 
-		// Token: 0x040024FC RID: 9468
 		public Vector3 pos;
 
-		// Token: 0x040024FD RID: 9469
 		public Quaternion rotation;
 
-		// Token: 0x040024FE RID: 9470
 		public Vector2 size;
 
-		// Token: 0x040024FF RID: 9471
 		public Color32 colour;
 	}
 }

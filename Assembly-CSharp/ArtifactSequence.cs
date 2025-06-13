@@ -4,16 +4,13 @@ using System.Collections.Generic;
 using FMOD.Studio;
 using UnityEngine;
 
-// Token: 0x020010DF RID: 4319
 public static class ArtifactSequence
 {
-	// Token: 0x0600583E RID: 22590 RVA: 0x000DDFC3 File Offset: 0x000DC1C3
 	public static void Start(KMonoBehaviour controller)
 	{
 		controller.StartCoroutine(ArtifactSequence.Sequence());
 	}
 
-	// Token: 0x0600583F RID: 22591 RVA: 0x000DDFD1 File Offset: 0x000DC1D1
 	private static IEnumerator Sequence()
 	{
 		if (!SpeedControlScreen.Instance.IsPaused)

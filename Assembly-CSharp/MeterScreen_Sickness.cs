@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using Klei.AI;
 using STRINGS;
 
-// Token: 0x02001E69 RID: 7785
 public class MeterScreen_Sickness : MeterScreen_VTD_DuplicantIterator
 {
-	// Token: 0x0600A318 RID: 41752 RVA: 0x003EEF0C File Offset: 0x003ED10C
 	protected override void InternalRefresh()
 	{
 		List<MinionIdentity> worldMinionIdentities = this.GetWorldMinionIdentities();
@@ -14,7 +12,6 @@ public class MeterScreen_Sickness : MeterScreen_VTD_DuplicantIterator
 		this.Label.text = num.ToString();
 	}
 
-	// Token: 0x0600A319 RID: 41753 RVA: 0x003EEF3C File Offset: 0x003ED13C
 	protected override string OnTooltip()
 	{
 		List<MinionIdentity> worldMinionIdentities = this.GetWorldMinionIdentities();
@@ -46,7 +43,6 @@ public class MeterScreen_Sickness : MeterScreen_VTD_DuplicantIterator
 		return "";
 	}
 
-	// Token: 0x0600A31A RID: 41754 RVA: 0x003EF078 File Offset: 0x003ED278
 	private int CountSickDupes(List<MinionIdentity> minions)
 	{
 		int num = 0;

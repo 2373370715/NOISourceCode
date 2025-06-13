@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000D46 RID: 3398
 public class CookingStation : ComplexFabricator, IGameObjectEffectDescriptor
 {
-	// Token: 0x060041E6 RID: 16870 RVA: 0x000CF0A6 File Offset: 0x000CD2A6
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -15,7 +13,6 @@ public class CookingStation : ComplexFabricator, IGameObjectEffectDescriptor
 		this.fetchChoreTypeIdHash = Db.Get().ChoreTypes.CookFetch.IdHash;
 	}
 
-	// Token: 0x060041E7 RID: 16871 RVA: 0x0024D7BC File Offset: 0x0024B9BC
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -43,7 +40,6 @@ public class CookingStation : ComplexFabricator, IGameObjectEffectDescriptor
 		base.GetComponent<ComplexFabricator>().workingStatusItem = Db.Get().BuildingStatusItems.ComplexFabricatorCooking;
 	}
 
-	// Token: 0x060041E8 RID: 16872 RVA: 0x0024D8C8 File Offset: 0x0024BAC8
 	protected override List<GameObject> SpawnOrderProduct(ComplexRecipe recipe)
 	{
 		List<GameObject> list = base.SpawnOrderProduct(recipe);
@@ -56,7 +52,6 @@ public class CookingStation : ComplexFabricator, IGameObjectEffectDescriptor
 		return list;
 	}
 
-	// Token: 0x060041E9 RID: 16873 RVA: 0x000CF0DD File Offset: 0x000CD2DD
 	public override List<Descriptor> GetDescriptors(GameObject go)
 	{
 		List<Descriptor> descriptors = base.GetDescriptors(go);
@@ -64,7 +59,6 @@ public class CookingStation : ComplexFabricator, IGameObjectEffectDescriptor
 		return descriptors;
 	}
 
-	// Token: 0x04002D73 RID: 11635
 	[SerializeField]
 	private int diseaseCountKillRate = 100;
 }

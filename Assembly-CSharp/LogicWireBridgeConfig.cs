@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003FA RID: 1018
 public class LogicWireBridgeConfig : IBuildingConfig
 {
-	// Token: 0x060010BA RID: 4282 RVA: 0x0018BA5C File Offset: 0x00189C5C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "LogicWireBridge";
@@ -45,13 +43,11 @@ public class LogicWireBridgeConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060010BB RID: 4283 RVA: 0x000B01B2 File Offset: 0x000AE3B2
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
 	}
 
-	// Token: 0x060010BC RID: 4284 RVA: 0x000B1CBB File Offset: 0x000AFEBB
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 		base.DoPostConfigurePreview(def, go);
@@ -59,7 +55,6 @@ public class LogicWireBridgeConfig : IBuildingConfig
 		go.AddOrGet<BuildingCellVisualizer>();
 	}
 
-	// Token: 0x060010BD RID: 4285 RVA: 0x000B1CD9 File Offset: 0x000AFED9
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		base.DoPostConfigureUnderConstruction(go);
@@ -67,14 +62,12 @@ public class LogicWireBridgeConfig : IBuildingConfig
 		go.AddOrGet<BuildingCellVisualizer>();
 	}
 
-	// Token: 0x060010BE RID: 4286 RVA: 0x000B1CF6 File Offset: 0x000AFEF6
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		this.AddNetworkLink(go).visualizeOnly = false;
 		go.AddOrGet<BuildingCellVisualizer>();
 	}
 
-	// Token: 0x060010BF RID: 4287 RVA: 0x000B1D0C File Offset: 0x000AFF0C
 	private LogicUtilityNetworkLink AddNetworkLink(GameObject go)
 	{
 		LogicUtilityNetworkLink logicUtilityNetworkLink = go.AddOrGet<LogicUtilityNetworkLink>();
@@ -84,9 +77,7 @@ public class LogicWireBridgeConfig : IBuildingConfig
 		return logicUtilityNetworkLink;
 	}
 
-	// Token: 0x04000BA6 RID: 2982
 	public const string ID = "LogicWireBridge";
 
-	// Token: 0x04000BA7 RID: 2983
 	public static readonly HashedString BRIDGE_LOGIC_IO_ID = new HashedString("BRIDGE_LOGIC_IO");
 }

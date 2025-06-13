@@ -3,10 +3,8 @@ using Klei.AI;
 using STRINGS;
 using TUNING;
 
-// Token: 0x020015E5 RID: 5605
 public class LightMonitor : GameStateMachine<LightMonitor, LightMonitor.Instance>
 {
-	// Token: 0x06007446 RID: 29766 RVA: 0x003120A0 File Offset: 0x003102A0
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.unburnt;
@@ -33,7 +31,6 @@ public class LightMonitor : GameStateMachine<LightMonitor, LightMonitor.Instance
 		});
 	}
 
-	// Token: 0x06007447 RID: 29767 RVA: 0x003123A0 File Offset: 0x003105A0
 	private static void CheckLightLevel(LightMonitor.Instance smi, float dt)
 	{
 		KPrefabID component = smi.GetComponent<KPrefabID>();
@@ -49,57 +46,41 @@ public class LightMonitor : GameStateMachine<LightMonitor, LightMonitor.Instance
 		}
 	}
 
-	// Token: 0x04005751 RID: 22353
 	public const float BURN_RESIST_RECOVERY_FACTOR = 0.25f;
 
-	// Token: 0x04005752 RID: 22354
 	public StateMachine<LightMonitor, LightMonitor.Instance, IStateMachineTarget, object>.FloatParameter lightLevel;
 
-	// Token: 0x04005753 RID: 22355
 	public StateMachine<LightMonitor, LightMonitor.Instance, IStateMachineTarget, object>.FloatParameter burnResistance = new StateMachine<LightMonitor, LightMonitor.Instance, IStateMachineTarget, object>.FloatParameter(DUPLICANTSTATS.STANDARD.Light.SUNBURN_DELAY_TIME);
 
-	// Token: 0x04005754 RID: 22356
 	public LightMonitor.UnburntStates unburnt;
 
-	// Token: 0x04005755 RID: 22357
 	public GameStateMachine<LightMonitor, LightMonitor.Instance, IStateMachineTarget, object>.State get_burnt;
 
-	// Token: 0x04005756 RID: 22358
 	public GameStateMachine<LightMonitor, LightMonitor.Instance, IStateMachineTarget, object>.State burnt;
 
-	// Token: 0x020015E6 RID: 5606
 	public class UnburntStates : GameStateMachine<LightMonitor, LightMonitor.Instance, IStateMachineTarget, object>.State
 	{
-		// Token: 0x04005757 RID: 22359
 		public LightMonitor.SafeStates safe;
 
-		// Token: 0x04005758 RID: 22360
 		public GameStateMachine<LightMonitor, LightMonitor.Instance, IStateMachineTarget, object>.State burning;
 	}
 
-	// Token: 0x020015E7 RID: 5607
 	public class SafeStates : GameStateMachine<LightMonitor, LightMonitor.Instance, IStateMachineTarget, object>.State
 	{
-		// Token: 0x04005759 RID: 22361
 		public GameStateMachine<LightMonitor, LightMonitor.Instance, IStateMachineTarget, object>.State unlit;
 
-		// Token: 0x0400575A RID: 22362
 		public GameStateMachine<LightMonitor, LightMonitor.Instance, IStateMachineTarget, object>.State normal_light;
 
-		// Token: 0x0400575B RID: 22363
 		public GameStateMachine<LightMonitor, LightMonitor.Instance, IStateMachineTarget, object>.State sunlight;
 	}
 
-	// Token: 0x020015E8 RID: 5608
 	public new class Instance : GameStateMachine<LightMonitor, LightMonitor.Instance, IStateMachineTarget, object>.GameInstance
 	{
-		// Token: 0x0600744B RID: 29771 RVA: 0x000F0BB2 File Offset: 0x000EEDB2
 		public Instance(IStateMachineTarget master) : base(master)
 		{
 			this.effects = base.GetComponent<Effects>();
 		}
 
-		// Token: 0x0400575C RID: 22364
 		public Effects effects;
 	}
 }

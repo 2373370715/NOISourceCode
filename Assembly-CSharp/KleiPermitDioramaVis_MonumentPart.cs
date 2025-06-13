@@ -2,21 +2,17 @@
 using Database;
 using UnityEngine;
 
-// Token: 0x02001DBC RID: 7612
 public class KleiPermitDioramaVis_MonumentPart : KMonoBehaviour, IKleiPermitDioramaVisTarget
 {
-	// Token: 0x06009EFF RID: 40703 RVA: 0x000CEC86 File Offset: 0x000CCE86
 	public GameObject GetGameObject()
 	{
 		return base.gameObject;
 	}
 
-	// Token: 0x06009F00 RID: 40704 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void ConfigureSetup()
 	{
 	}
 
-	// Token: 0x06009F01 RID: 40705 RVA: 0x003DE25C File Offset: 0x003DC45C
 	public void ConfigureWith(PermitResource permit)
 	{
 		MonumentPartResource monumentPermit = (MonumentPartResource)permit;
@@ -28,10 +24,8 @@ public class KleiPermitDioramaVis_MonumentPart : KMonoBehaviour, IKleiPermitDior
 		KleiPermitVisUtil.AnimateIn(this.buildingKAnim, default(Updater));
 	}
 
-	// Token: 0x04007CE4 RID: 31972
 	[SerializeField]
 	private KBatchedAnimController buildingKAnim;
 
-	// Token: 0x04007CE5 RID: 31973
 	private PrefabDefinedUIPosition buildingKAnimPosition = new PrefabDefinedUIPosition();
 }

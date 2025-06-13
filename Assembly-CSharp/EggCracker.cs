@@ -2,11 +2,9 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000D82 RID: 3458
 [AddComponentMenu("KMonoBehaviour/scripts/EggCracker")]
 public class EggCracker : KMonoBehaviour
 {
-	// Token: 0x0600432E RID: 17198 RVA: 0x00251F04 File Offset: 0x00250104
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -21,7 +19,6 @@ public class EggCracker : KMonoBehaviour
 		complexFabricatorWorkable.OnWorkableEventCB = (Action<Workable, Workable.WorkableEvent>)Delegate.Combine(complexFabricatorWorkable.OnWorkableEventCB, new Action<Workable, Workable.WorkableEvent>(this.OnWorkableEvent));
 	}
 
-	// Token: 0x0600432F RID: 17199 RVA: 0x000CFD96 File Offset: 0x000CDF96
 	protected override void OnCleanUp()
 	{
 		base.OnCleanUp();
@@ -29,7 +26,6 @@ public class EggCracker : KMonoBehaviour
 		this.tracker = null;
 	}
 
-	// Token: 0x06004330 RID: 17200 RVA: 0x00251FEC File Offset: 0x002501EC
 	private void OnWorkableEvent(Workable workable, Workable.WorkableEvent e)
 	{
 		if (e == Workable.WorkableEvent.WorkStarted)
@@ -63,7 +59,6 @@ public class EggCracker : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06004331 RID: 17201 RVA: 0x00252094 File Offset: 0x00250294
 	private void PositionActiveEgg()
 	{
 		if (!this.display_egg)
@@ -82,17 +77,13 @@ public class EggCracker : KMonoBehaviour
 		this.tracker.symbol = "snapto_egg";
 	}
 
-	// Token: 0x04002E78 RID: 11896
 	[MyCmpReq]
 	private ComplexFabricator refinery;
 
-	// Token: 0x04002E79 RID: 11897
 	[MyCmpReq]
 	private ComplexFabricatorWorkable workable;
 
-	// Token: 0x04002E7A RID: 11898
 	private KBatchedAnimTracker tracker;
 
-	// Token: 0x04002E7B RID: 11899
 	private GameObject display_egg;
 }

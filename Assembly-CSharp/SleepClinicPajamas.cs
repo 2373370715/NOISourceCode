@@ -5,10 +5,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000C2 RID: 194
 public class SleepClinicPajamas : IEquipmentConfig
 {
-	// Token: 0x06000338 RID: 824 RVA: 0x00155EA8 File Offset: 0x001540A8
 	public EquipmentDef CreateEquipmentDef()
 	{
 		ClothingWearer.ClothingInfo clothingInfo = ClothingWearer.ClothingInfo.FANCY_CLOTHING;
@@ -33,7 +31,6 @@ public class SleepClinicPajamas : IEquipmentConfig
 		return equipmentDef;
 	}
 
-	// Token: 0x06000339 RID: 825 RVA: 0x0015601C File Offset: 0x0015421C
 	public void DoPostConfigure(GameObject go)
 	{
 		KPrefabID component = go.GetComponent<KPrefabID>();
@@ -44,9 +41,7 @@ public class SleepClinicPajamas : IEquipmentConfig
 		go.GetComponent<KBatchedAnimController>().sceneLayer = Grid.SceneLayer.BuildingFront;
 	}
 
-	// Token: 0x040001FA RID: 506
 	public const string ID = "SleepClinicPajamas";
 
-	// Token: 0x040001FB RID: 507
 	public const string EFFECT_ID = "SleepClinic";
 }

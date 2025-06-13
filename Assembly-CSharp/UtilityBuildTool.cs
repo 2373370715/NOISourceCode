@@ -1,15 +1,12 @@
 ﻿using System;
 
-// Token: 0x020014A9 RID: 5289
 public class UtilityBuildTool : BaseUtilityBuildTool
 {
-	// Token: 0x06006D81 RID: 28033 RVA: 0x000EC5B3 File Offset: 0x000EA7B3
 	public static void DestroyInstance()
 	{
 		UtilityBuildTool.Instance = null;
 	}
 
-	// Token: 0x06006D82 RID: 28034 RVA: 0x000EC5BB File Offset: 0x000EA7BB
 	protected override void OnPrefabInit()
 	{
 		UtilityBuildTool.Instance = this;
@@ -18,7 +15,6 @@ public class UtilityBuildTool : BaseUtilityBuildTool
 		this.canChangeDragAxis = false;
 	}
 
-	// Token: 0x06006D83 RID: 28035 RVA: 0x002FA18C File Offset: 0x002F838C
 	protected override void ApplyPathToConduitSystem()
 	{
 		if (this.path.Count < 2)
@@ -51,9 +47,7 @@ public class UtilityBuildTool : BaseUtilityBuildTool
 		this.lastPathHead = this.path.Count - 1;
 	}
 
-	// Token: 0x0400528A RID: 21130
 	public static UtilityBuildTool Instance;
 
-	// Token: 0x0400528B RID: 21131
 	private int lastPathHead = -1;
 }

@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000542 RID: 1346
 public class PropSkeletonConfig : IEntityConfig
 {
-	// Token: 0x06001721 RID: 5921 RVA: 0x001A49EC File Offset: 0x001A2BEC
 	public GameObject CreatePrefab()
 	{
 		string id = "PropSkeleton";
@@ -27,7 +25,6 @@ public class PropSkeletonConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06001722 RID: 5922 RVA: 0x000AA768 File Offset: 0x000A8968
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.GetComponent<OccupyArea>().objectLayers = new ObjectLayer[]
@@ -36,7 +33,6 @@ public class PropSkeletonConfig : IEntityConfig
 		};
 	}
 
-	// Token: 0x06001723 RID: 5923 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}

@@ -7,10 +7,8 @@ using STRINGS;
 using TemplateClasses;
 using UnityEngine;
 
-// Token: 0x02001487 RID: 5255
 public class SandboxStoryTraitTool : InterfaceTool
 {
-	// Token: 0x06006CE5 RID: 27877 RVA: 0x002F6354 File Offset: 0x002F4554
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -33,7 +31,6 @@ public class SandboxStoryTraitTool : InterfaceTool
 		};
 	}
 
-	// Token: 0x06006CE6 RID: 27878 RVA: 0x002F63A4 File Offset: 0x002F45A4
 	protected override void OnActivateTool()
 	{
 		base.OnActivateTool();
@@ -47,7 +44,6 @@ public class SandboxStoryTraitTool : InterfaceTool
 		settings2.OnChangeStory = (System.Action)Delegate.Combine(settings2.OnChangeStory, this.setupPreviewFn);
 	}
 
-	// Token: 0x06006CE7 RID: 27879 RVA: 0x002F643C File Offset: 0x002F463C
 	public void Update()
 	{
 		Vector3 cursorPos = PlayerController.GetCursorPos(KInputManager.GetMousePos());
@@ -68,7 +64,6 @@ public class SandboxStoryTraitTool : InterfaceTool
 		}
 	}
 
-	// Token: 0x06006CE8 RID: 27880 RVA: 0x002F64C0 File Offset: 0x002F46C0
 	protected override void OnDeactivateTool(InterfaceTool new_tool)
 	{
 		base.OnDeactivateTool(new_tool);
@@ -78,7 +73,6 @@ public class SandboxStoryTraitTool : InterfaceTool
 		this.preview.Cleanup();
 	}
 
-	// Token: 0x06006CE9 RID: 27881 RVA: 0x002F6514 File Offset: 0x002F4714
 	public override void OnLeftClickDown(Vector3 cursor_pos)
 	{
 		base.OnLeftClickDown(cursor_pos);
@@ -103,7 +97,6 @@ public class SandboxStoryTraitTool : InterfaceTool
 		});
 	}
 
-	// Token: 0x06006CEA RID: 27882 RVA: 0x002F6570 File Offset: 0x002F4770
 	public static void Stamp(Vector2 pos, TemplateContainer stampTemplate, System.Action onCompleteFn)
 	{
 		bool shouldPauseOnComplete = SpeedControlScreen.Instance.IsPaused;
@@ -145,7 +138,6 @@ public class SandboxStoryTraitTool : InterfaceTool
 		KFMOD.PlayUISound(GlobalAssets.GetSound("SandboxTool_Stamp", false));
 	}
 
-	// Token: 0x06006CEB RID: 27883 RVA: 0x002F66C0 File Offset: 0x002F48C0
 	public static bool TryGetStoryAndTemplate(out Story story, out TemplateContainer stampTemplate)
 	{
 		stampTemplate = null;
@@ -163,7 +155,6 @@ public class SandboxStoryTraitTool : InterfaceTool
 		return stampTemplate != null;
 	}
 
-	// Token: 0x06006CEC RID: 27884 RVA: 0x002F6720 File Offset: 0x002F4920
 	public string GetError(Vector3 stampPos, out Story story, out TemplateContainer stampTemplate)
 	{
 		SandboxStoryTraitTool.<>c__DisplayClass13_0 CS$<>8__locals1;
@@ -267,7 +258,6 @@ public class SandboxStoryTraitTool : InterfaceTool
 		return null;
 	}
 
-	// Token: 0x06006CEF RID: 27887 RVA: 0x002F6A34 File Offset: 0x002F4C34
 	[CompilerGenerated]
 	internal static bool <GetError>g__IsTrueForAnyStampCell|13_0(Func<Cell, int, bool> isTrueFn, ref SandboxStoryTraitTool.<>c__DisplayClass13_0 A_1)
 	{
@@ -282,21 +272,15 @@ public class SandboxStoryTraitTool : InterfaceTool
 		return false;
 	}
 
-	// Token: 0x04005227 RID: 21031
 	private System.Action setupPreviewFn;
 
-	// Token: 0x04005228 RID: 21032
 	private StampToolPreview preview;
 
-	// Token: 0x04005229 RID: 21033
 	private bool isPlacingTemplate;
 
-	// Token: 0x0400522A RID: 21034
 	private string prevError;
 
-	// Token: 0x0400522B RID: 21035
 	private const float ERROR_UPDATE_FREQUENCY = 0.1f;
 
-	// Token: 0x0400522C RID: 21036
 	private float timeUntilNextErrorUpdate = -1f;
 }

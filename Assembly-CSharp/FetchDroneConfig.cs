@@ -5,22 +5,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200056F RID: 1391
 public class FetchDroneConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x060017E6 RID: 6118 RVA: 0x000AA12F File Offset: 0x000A832F
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.DLC3;
 	}
 
-	// Token: 0x060017E7 RID: 6119 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x060017E8 RID: 6120 RVA: 0x001A7C60 File Offset: 0x001A5E60
 	public GameObject CreatePrefab()
 	{
 		GameObject gameObject = EntityTemplates.CreateBasicEntity("FetchDrone", this.name, this.desc, 200f, true, Assets.GetAnim("swoopy_bot_kanim"), "idle_loop", Grid.SceneLayer.Move, SimHashes.Creature, new List<Tag>
@@ -146,7 +142,6 @@ public class FetchDroneConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x060017E9 RID: 6121 RVA: 0x001A81DC File Offset: 0x001A63DC
 	private static void SetupLaserEffects(GameObject prefab)
 	{
 		GameObject gameObject = new GameObject("LaserEffect");
@@ -284,7 +279,6 @@ public class FetchDroneConfig : IEntityConfig, IHasDlcRestrictions
 		}
 	}
 
-	// Token: 0x060017EA RID: 6122 RVA: 0x001A871C File Offset: 0x001A691C
 	public void OnPrefabInit(GameObject inst)
 	{
 		ChoreConsumer component = inst.GetComponent<ChoreConsumer>();
@@ -294,7 +288,6 @@ public class FetchDroneConfig : IEntityConfig, IHasDlcRestrictions
 		}
 	}
 
-	// Token: 0x060017EB RID: 6123 RVA: 0x001A8744 File Offset: 0x001A6944
 	public void OnSpawn(GameObject inst)
 	{
 		Sensors component = inst.GetComponent<Sensors>();
@@ -318,46 +311,32 @@ public class FetchDroneConfig : IEntityConfig, IHasDlcRestrictions
 		};
 	}
 
-	// Token: 0x04000FC6 RID: 4038
 	public const string ID = "FetchDrone";
 
-	// Token: 0x04000FC7 RID: 4039
 	public const SimHashes MATERIAL = SimHashes.Steel;
 
-	// Token: 0x04000FC8 RID: 4040
 	public const float MASS = 200f;
 
-	// Token: 0x04000FC9 RID: 4041
 	private const float WIDTH = 1f;
 
-	// Token: 0x04000FCA RID: 4042
 	private const float HEIGHT = 1f;
 
-	// Token: 0x04000FCB RID: 4043
 	private const float CARRY_AMOUNT = 200f;
 
-	// Token: 0x04000FCC RID: 4044
 	private const float HIT_POINTS = 50f;
 
-	// Token: 0x04000FCD RID: 4045
 	private string name = STRINGS.ROBOTS.MODELS.FLYDO.NAME;
 
-	// Token: 0x04000FCE RID: 4046
 	private string desc = STRINGS.ROBOTS.MODELS.FLYDO.DESC;
 
-	// Token: 0x02000570 RID: 1392
 	public struct LaserEffect
 	{
-		// Token: 0x04000FCF RID: 4047
 		public string id;
 
-		// Token: 0x04000FD0 RID: 4048
 		public string animFile;
 
-		// Token: 0x04000FD1 RID: 4049
 		public string anim;
 
-		// Token: 0x04000FD2 RID: 4050
 		public HashedString context;
 	}
 }

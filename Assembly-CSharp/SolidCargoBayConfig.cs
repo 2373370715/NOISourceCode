@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005A6 RID: 1446
 public class SolidCargoBayConfig : IBuildingConfig
 {
-	// Token: 0x06001904 RID: 6404 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetForbiddenDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06001905 RID: 6405 RVA: 0x001AD558 File Offset: 0x001AB758
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "CargoBay";
@@ -49,7 +46,6 @@ public class SolidCargoBayConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001906 RID: 6406 RVA: 0x0017D1D0 File Offset: 0x0017B3D0
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -61,7 +57,6 @@ public class SolidCargoBayConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x06001907 RID: 6407 RVA: 0x001AD63C File Offset: 0x001AB83C
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		CargoBay cargoBay = go.AddOrGet<CargoBay>();
@@ -73,6 +68,5 @@ public class SolidCargoBayConfig : IBuildingConfig
 		go.AddOrGet<SolidConduitDispenser>();
 	}
 
-	// Token: 0x0400104D RID: 4173
 	public const string ID = "CargoBay";
 }

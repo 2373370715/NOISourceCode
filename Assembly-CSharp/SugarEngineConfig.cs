@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005D6 RID: 1494
 public class SugarEngineConfig : IBuildingConfig
 {
-	// Token: 0x06001A20 RID: 6688 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06001A21 RID: 6689 RVA: 0x001B1BC0 File Offset: 0x001AFDC0
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "SugarEngine";
@@ -44,7 +41,6 @@ public class SugarEngineConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001A22 RID: 6690 RVA: 0x0017D3FC File Offset: 0x0017B5FC
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -56,17 +52,14 @@ public class SugarEngineConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x06001A23 RID: 6691 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 	}
 
-	// Token: 0x06001A24 RID: 6692 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 	}
 
-	// Token: 0x06001A25 RID: 6693 RVA: 0x001B1C84 File Offset: 0x001AFE84
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		RocketEngineCluster rocketEngineCluster = go.AddOrGet<RocketEngineCluster>();
@@ -106,15 +99,11 @@ public class SugarEngineConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x040010EE RID: 4334
 	public const string ID = "SugarEngine";
 
-	// Token: 0x040010EF RID: 4335
 	public const SimHashes FUEL = SimHashes.Sucrose;
 
-	// Token: 0x040010F0 RID: 4336
 	public const float FUEL_CAPACITY = 450f;
 
-	// Token: 0x040010F1 RID: 4337
 	public static float FUEL_EFFICIENCY = 0.125f;
 }

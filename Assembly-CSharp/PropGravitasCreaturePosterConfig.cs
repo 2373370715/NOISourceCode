@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200052A RID: 1322
 public class PropGravitasCreaturePosterConfig : IEntityConfig
 {
-	// Token: 0x060016AF RID: 5807 RVA: 0x001A3A20 File Offset: 0x001A1C20
 	public GameObject CreatePrefab()
 	{
 		string id = "PropGravitasCreaturePoster";
@@ -28,7 +26,6 @@ public class PropGravitasCreaturePosterConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x060016B0 RID: 5808 RVA: 0x000AA768 File Offset: 0x000A8968
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.GetComponent<OccupyArea>().objectLayers = new ObjectLayer[]
@@ -37,7 +34,6 @@ public class PropGravitasCreaturePosterConfig : IEntityConfig
 		};
 	}
 
-	// Token: 0x060016B1 RID: 5809 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}

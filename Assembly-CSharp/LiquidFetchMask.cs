@@ -1,9 +1,7 @@
 ﻿using System;
 
-// Token: 0x020014D4 RID: 5332
 public class LiquidFetchMask
 {
-	// Token: 0x06006E4E RID: 28238 RVA: 0x002FD384 File Offset: 0x002FB584
 	public LiquidFetchMask(CellOffset[][] offset_table)
 	{
 		for (int i = 0; i < offset_table.Length; i++)
@@ -21,7 +19,6 @@ public class LiquidFetchMask
 		}
 	}
 
-	// Token: 0x06006E4F RID: 28239 RVA: 0x002FD438 File Offset: 0x002FB638
 	private void RefreshCell(int cell)
 	{
 		CellOffset offset = Grid.GetOffset(cell);
@@ -43,27 +40,22 @@ public class LiquidFetchMask
 		this.isLiquidAvailable[cell] = false;
 	}
 
-	// Token: 0x06006E50 RID: 28240 RVA: 0x000ECCEB File Offset: 0x000EAEEB
 	public void MarkDirty(int cell)
 	{
 		this.RefreshCell(cell);
 	}
 
-	// Token: 0x06006E51 RID: 28241 RVA: 0x000ECCF4 File Offset: 0x000EAEF4
 	public bool IsLiquidAvailable(int cell)
 	{
 		return this.isLiquidAvailable[cell];
 	}
 
-	// Token: 0x06006E52 RID: 28242 RVA: 0x000ECCFE File Offset: 0x000EAEFE
 	public void Destroy()
 	{
 		this.isLiquidAvailable = null;
 	}
 
-	// Token: 0x04005335 RID: 21301
 	private bool[] isLiquidAvailable;
 
-	// Token: 0x04005336 RID: 21302
 	private CellOffset maxOffset;
 }

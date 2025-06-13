@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x02000BCB RID: 3019
 public class DevPanelList
 {
-	// Token: 0x06003939 RID: 14649 RVA: 0x000C97A4 File Offset: 0x000C79A4
 	public DevPanel AddPanelFor<T>() where T : DevTool, new()
 	{
 		return this.AddPanelFor(Activator.CreateInstance<T>());
 	}
 
-	// Token: 0x0600393A RID: 14650 RVA: 0x0022A664 File Offset: 0x00228864
 	public DevPanel AddPanelFor(DevTool devTool)
 	{
 		DevPanel devPanel = new DevPanel(devTool, this);
@@ -18,7 +15,6 @@ public class DevPanelList
 		return devPanel;
 	}
 
-	// Token: 0x0600393B RID: 14651 RVA: 0x0022A688 File Offset: 0x00228888
 	public Option<T> GetDevTool<T>() where T : DevTool
 	{
 		foreach (DevPanel devPanel in this.activePanels)
@@ -32,7 +28,6 @@ public class DevPanelList
 		return Option.None;
 	}
 
-	// Token: 0x0600393C RID: 14652 RVA: 0x0022A700 File Offset: 0x00228900
 	public T AddOrGetDevTool<T>() where T : DevTool, new()
 	{
 		bool flag;
@@ -48,7 +43,6 @@ public class DevPanelList
 		return t2;
 	}
 
-	// Token: 0x0600393D RID: 14653 RVA: 0x000C97B6 File Offset: 0x000C79B6
 	public void ClosePanel(DevPanel panel)
 	{
 		if (this.activePanels.Remove(panel))
@@ -57,7 +51,6 @@ public class DevPanelList
 		}
 	}
 
-	// Token: 0x0600393E RID: 14654 RVA: 0x0022A738 File Offset: 0x00228938
 	public void Render()
 	{
 		if (this.activePanels.Count == 0)
@@ -82,14 +75,12 @@ public class DevPanelList
 		}
 	}
 
-	// Token: 0x0600393F RID: 14655 RVA: 0x000C97CC File Offset: 0x000C79CC
 	public void Internal_InitPanelId(Type initialDevToolType, out string panelId, out uint idPostfixNumber)
 	{
 		idPostfixNumber = this.Internal_GetUniqueIdPostfix(initialDevToolType);
 		panelId = initialDevToolType.Name + idPostfixNumber.ToString();
 	}
 
-	// Token: 0x06003940 RID: 14656 RVA: 0x0022A7EC File Offset: 0x002289EC
 	public uint Internal_GetUniqueIdPostfix(Type initialDevToolType)
 	{
 		uint result;
@@ -117,9 +108,7 @@ public class DevPanelList
 		return result;
 	}
 
-	// Token: 0x04002796 RID: 10134
 	private List<DevPanel> activePanels = new List<DevPanel>();
 
-	// Token: 0x04002797 RID: 10135
 	private uint fallbackUniqueIdPostfixNumber = 300U;
 }

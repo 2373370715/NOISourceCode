@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000374 RID: 884
 public class GravitasCreatureManipulatorConfig : IBuildingConfig
 {
-	// Token: 0x06000E18 RID: 3608 RVA: 0x001817A8 File Offset: 0x0017F9A8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "GravitasCreatureManipulator";
@@ -33,7 +31,6 @@ public class GravitasCreatureManipulatorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000E19 RID: 3609 RVA: 0x00181844 File Offset: 0x0017FA44
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
@@ -67,7 +64,6 @@ public class GravitasCreatureManipulatorConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x06000E1A RID: 3610 RVA: 0x0018195C File Offset: 0x0017FB5C
 	public static Option<string> GetBodyContentForSpeciesTag(Tag species)
 	{
 		Option<string> nameForSpeciesTag = GravitasCreatureManipulatorConfig.GetNameForSpeciesTag(species);
@@ -79,19 +75,16 @@ public class GravitasCreatureManipulatorConfig : IBuildingConfig
 		return Option.None;
 	}
 
-	// Token: 0x06000E1B RID: 3611 RVA: 0x000B091B File Offset: 0x000AEB1B
 	public static string GetBodyContentForUnknownSpecies()
 	{
 		return GravitasCreatureManipulatorConfig.GetBodyContent(CODEX.STORY_TRAITS.CRITTER_MANIPULATOR.SPECIES_ENTRIES.UNKNOWN_TITLE, CODEX.STORY_TRAITS.CRITTER_MANIPULATOR.SPECIES_ENTRIES.UNKNOWN);
 	}
 
-	// Token: 0x06000E1C RID: 3612 RVA: 0x000B0936 File Offset: 0x000AEB36
 	public static string GetBodyContent(string name, string desc)
 	{
 		return "<size=125%><b>" + name + "</b></size><line-height=150%>\n</line-height>" + desc;
 	}
 
-	// Token: 0x06000E1D RID: 3613 RVA: 0x001819AC File Offset: 0x0017FBAC
 	public static Option<string> GetNameForSpeciesTag(Tag species)
 	{
 		if (species == GameTags.Creatures.Species.HatchSpecies)
@@ -165,7 +158,6 @@ public class GravitasCreatureManipulatorConfig : IBuildingConfig
 		return Option.None;
 	}
 
-	// Token: 0x06000E1E RID: 3614 RVA: 0x00181BB0 File Offset: 0x0017FDB0
 	public static Option<string> GetDescriptionForSpeciesTag(Tag species)
 	{
 		if (species == GameTags.Creatures.Species.HatchSpecies)
@@ -239,28 +231,20 @@ public class GravitasCreatureManipulatorConfig : IBuildingConfig
 		return Option.None;
 	}
 
-	// Token: 0x04000A73 RID: 2675
 	public const string ID = "GravitasCreatureManipulator";
 
-	// Token: 0x04000A74 RID: 2676
 	public const string CODEX_ENTRY_ID = "STORYTRAITCRITTERMANIPULATOR";
 
-	// Token: 0x04000A75 RID: 2677
 	public const string INITIAL_LORE_UNLOCK_ID = "story_trait_critter_manipulator_initial";
 
-	// Token: 0x04000A76 RID: 2678
 	public const string PARKING_LORE_UNLOCK_ID = "story_trait_critter_manipulator_parking";
 
-	// Token: 0x04000A77 RID: 2679
 	public const string COMPLETED_LORE_UNLOCK_ID = "story_trait_critter_manipulator_complete";
 
-	// Token: 0x04000A78 RID: 2680
 	private const int HEIGHT = 4;
 
-	// Token: 0x02000375 RID: 885
 	public static class CRITTER_LORE_UNLOCK_ID
 	{
-		// Token: 0x06000E20 RID: 3616 RVA: 0x000B0949 File Offset: 0x000AEB49
 		public static string For(Tag species)
 		{
 			return "story_trait_critter_manipulator_" + species.ToString().ToLower();

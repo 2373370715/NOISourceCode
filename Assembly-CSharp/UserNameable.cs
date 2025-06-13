@@ -2,11 +2,9 @@
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x02001A5D RID: 6749
 [AddComponentMenu("KMonoBehaviour/scripts/UserNameable")]
 public class UserNameable : KMonoBehaviour
 {
-	// Token: 0x06008CA1 RID: 36001 RVA: 0x001007A7 File Offset: 0x000FE9A7
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -18,7 +16,6 @@ public class UserNameable : KMonoBehaviour
 		this.SetName(this.savedName);
 	}
 
-	// Token: 0x06008CA2 RID: 36002 RVA: 0x00373334 File Offset: 0x00371534
 	public void SetName(string name)
 	{
 		KSelectable component = base.GetComponent<KSelectable>();
@@ -41,7 +38,6 @@ public class UserNameable : KMonoBehaviour
 		base.Trigger(1102426921, name);
 	}
 
-	// Token: 0x04006A31 RID: 27185
 	[Serialize]
 	public string savedName = "";
 }

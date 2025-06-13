@@ -3,29 +3,24 @@ using System.Collections.Generic;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001FE1 RID: 8161
 public class LaunchButtonSideScreen : SideScreenContent
 {
-	// Token: 0x0600AC65 RID: 44133 RVA: 0x0011483F File Offset: 0x00112A3F
 	protected override void OnSpawn()
 	{
 		this.Refresh();
 		this.launchButton.onClick += this.TriggerLaunch;
 	}
 
-	// Token: 0x0600AC66 RID: 44134 RVA: 0x0011485E File Offset: 0x00112A5E
 	public override int GetSideScreenSortOrder()
 	{
 		return -100;
 	}
 
-	// Token: 0x0600AC67 RID: 44135 RVA: 0x00114862 File Offset: 0x00112A62
 	public override bool IsValidForTarget(GameObject target)
 	{
 		return (target.GetComponent<RocketModule>() != null && target.HasTag(GameTags.LaunchButtonRocketModule)) || (target.GetComponent<LaunchPad>() && target.GetComponent<LaunchPad>().HasRocketWithCommandModule());
 	}
 
-	// Token: 0x0600AC68 RID: 44136 RVA: 0x0041D7C8 File Offset: 0x0041B9C8
 	public override void SetTarget(GameObject target)
 	{
 		bool flag = this.rocketModule == null || this.rocketModule.gameObject != target;
@@ -60,7 +55,6 @@ public class LaunchButtonSideScreen : SideScreenContent
 		this.Refresh();
 	}
 
-	// Token: 0x0600AC69 RID: 44137 RVA: 0x0041D90C File Offset: 0x0041BB0C
 	public override void ClearTarget()
 	{
 		if (this.rocketModule != null)
@@ -71,7 +65,6 @@ public class LaunchButtonSideScreen : SideScreenContent
 		}
 	}
 
-	// Token: 0x0600AC6A RID: 44138 RVA: 0x0041D964 File Offset: 0x0041BB64
 	private void TriggerLaunch()
 	{
 		bool flag = !this.acknowledgeWarnings && this.rocketModule.CraftInterface.HasLaunchWarnings();
@@ -92,7 +85,6 @@ public class LaunchButtonSideScreen : SideScreenContent
 		this.Refresh();
 	}
 
-	// Token: 0x0600AC6B RID: 44139 RVA: 0x0011489B File Offset: 0x00112A9B
 	public void Update()
 	{
 		if (Time.unscaledTime > this.lastRefreshTime + 1f)
@@ -102,7 +94,6 @@ public class LaunchButtonSideScreen : SideScreenContent
 		}
 	}
 
-	// Token: 0x0600AC6C RID: 44140 RVA: 0x0041D9DC File Offset: 0x0041BBDC
 	private void Refresh()
 	{
 		if (this.rocketModule == null || this.selectedPad == null)
@@ -226,28 +217,20 @@ public class LaunchButtonSideScreen : SideScreenContent
 		this.statusText.text = UI.UISIDESCREENS.LAUNCHPADSIDESCREEN.STATUS.TAKING_OFF;
 	}
 
-	// Token: 0x040087BB RID: 34747
 	public KButton launchButton;
 
-	// Token: 0x040087BC RID: 34748
 	public LocText statusText;
 
-	// Token: 0x040087BD RID: 34749
 	private RocketModuleCluster rocketModule;
 
-	// Token: 0x040087BE RID: 34750
 	private LaunchPad selectedPad;
 
-	// Token: 0x040087BF RID: 34751
 	private bool acknowledgeWarnings;
 
-	// Token: 0x040087C0 RID: 34752
 	private float lastRefreshTime;
 
-	// Token: 0x040087C1 RID: 34753
 	private const float UPDATE_FREQUENCY = 1f;
 
-	// Token: 0x040087C2 RID: 34754
 	private static readonly EventSystem.IntraObjectHandler<LaunchButtonSideScreen> RefreshDelegate = new EventSystem.IntraObjectHandler<LaunchButtonSideScreen>(delegate(LaunchButtonSideScreen cmp, object data)
 	{
 		cmp.Refresh();

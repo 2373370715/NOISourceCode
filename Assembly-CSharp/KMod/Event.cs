@@ -3,10 +3,8 @@ using STRINGS;
 
 namespace KMod
 {
-	// Token: 0x02002260 RID: 8800
 	public struct Event
 	{
-		// Token: 0x0600BB0C RID: 47884 RVA: 0x00482648 File Offset: 0x00480848
 		public static void GetUIStrings(EventType err_type, out string title, out string title_tooltip)
 		{
 			title = string.Empty;
@@ -86,13 +84,10 @@ namespace KMod
 			}
 		}
 
-		// Token: 0x0400994C RID: 39244
 		public EventType event_type;
 
-		// Token: 0x0400994D RID: 39245
 		public Label mod;
 
-		// Token: 0x0400994E RID: 39246
 		public string details;
 	}
 }

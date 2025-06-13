@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000C65 RID: 3173
 [AddComponentMenu("KMonoBehaviour/scripts/Assignables")]
 public class Assignables : KMonoBehaviour
 {
-	// Token: 0x170002B7 RID: 695
-	// (get) Token: 0x06003C28 RID: 15400 RVA: 0x000CB487 File Offset: 0x000C9687
 	public List<AssignableSlotInstance> Slots
 	{
 		get
@@ -16,7 +13,6 @@ public class Assignables : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06003C29 RID: 15401 RVA: 0x0023B0C4 File Offset: 0x002392C4
 	protected IAssignableIdentity GetAssignableIdentity()
 	{
 		MinionIdentity component = base.GetComponent<MinionIdentity>();
@@ -27,14 +23,12 @@ public class Assignables : KMonoBehaviour
 		return base.GetComponent<MinionAssignablesProxy>();
 	}
 
-	// Token: 0x06003C2A RID: 15402 RVA: 0x000CB48F File Offset: 0x000C968F
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
 		GameUtil.SubscribeToTags<Assignables>(this, Assignables.OnDeadTagAddedDelegate, true);
 	}
 
-	// Token: 0x06003C2B RID: 15403 RVA: 0x0023B0F4 File Offset: 0x002392F4
 	private void OnDeath(object data)
 	{
 		foreach (AssignableSlotInstance assignableSlotInstance in this.slots)
@@ -43,13 +37,11 @@ public class Assignables : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06003C2C RID: 15404 RVA: 0x000CB4A3 File Offset: 0x000C96A3
 	public void Add(AssignableSlotInstance slot_instance)
 	{
 		this.slots.Add(slot_instance);
 	}
 
-	// Token: 0x06003C2D RID: 15405 RVA: 0x0023B148 File Offset: 0x00239348
 	public Assignable GetAssignable(AssignableSlot slot)
 	{
 		AssignableSlotInstance slot2 = this.GetSlot(slot);
@@ -60,7 +52,6 @@ public class Assignables : KMonoBehaviour
 		return slot2.assignable;
 	}
 
-	// Token: 0x06003C2E RID: 15406 RVA: 0x0023B168 File Offset: 0x00239368
 	public AssignableSlotInstance GetSlot(AssignableSlot slot)
 	{
 		global::Debug.Assert(this.slots.Count > 0, "GetSlot called with no slots configured");
@@ -78,7 +69,6 @@ public class Assignables : KMonoBehaviour
 		return null;
 	}
 
-	// Token: 0x06003C2F RID: 15407 RVA: 0x0023B1E4 File Offset: 0x002393E4
 	public AssignableSlotInstance[] GetSlots(AssignableSlot slot)
 	{
 		global::Debug.Assert(this.slots.Count > 0, "GetSlot called with no slots configured");
@@ -94,7 +84,6 @@ public class Assignables : KMonoBehaviour
 		return null;
 	}
 
-	// Token: 0x06003C30 RID: 15408 RVA: 0x0023B24C File Offset: 0x0023944C
 	public Assignable AutoAssignSlot(AssignableSlot slot)
 	{
 		Assignable assignable = this.GetAssignable(slot);
@@ -130,7 +119,6 @@ public class Assignables : KMonoBehaviour
 		return assignable;
 	}
 
-	// Token: 0x06003C31 RID: 15409 RVA: 0x0023B33C File Offset: 0x0023953C
 	protected override void OnCleanUp()
 	{
 		base.OnCleanUp();
@@ -140,10 +128,8 @@ public class Assignables : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x040029DE RID: 10718
 	protected List<AssignableSlotInstance> slots = new List<AssignableSlotInstance>();
 
-	// Token: 0x040029DF RID: 10719
 	private static readonly EventSystem.IntraObjectHandler<Assignables> OnDeadTagAddedDelegate = GameUtil.CreateHasTagHandler<Assignables>(GameTags.Dead, delegate(Assignables component, object data)
 	{
 		component.OnDeath(data);

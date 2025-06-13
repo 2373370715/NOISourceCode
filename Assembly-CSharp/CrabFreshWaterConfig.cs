@@ -5,11 +5,9 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000225 RID: 549
 [EntityConfigOrder(1)]
 public class CrabFreshWaterConfig : IEntityConfig
 {
-	// Token: 0x0600076F RID: 1903 RVA: 0x001683C0 File Offset: 0x001665C0
 	public static GameObject CreateCrabFreshWater(string id, string name, string desc, string anim_file, bool is_baby, string deathDropID = null)
 	{
 		GameObject gameObject = BaseCrabConfig.BaseCrab(id, name, desc, anim_file, "CrabFreshWaterBaseTrait", is_baby, CrabFreshWaterConfig.animPrefix, deathDropID, 1);
@@ -36,7 +34,6 @@ public class CrabFreshWaterConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06000770 RID: 1904 RVA: 0x0016853C File Offset: 0x0016673C
 	public GameObject CreatePrefab()
 	{
 		GameObject gameObject = CrabFreshWaterConfig.CreateCrabFreshWater("CrabFreshWater", STRINGS.CREATURES.SPECIES.CRAB.VARIANT_FRESH_WATER.NAME, STRINGS.CREATURES.SPECIES.CRAB.VARIANT_FRESH_WATER.DESC, "pincher_kanim", false, null);
@@ -76,40 +73,29 @@ public class CrabFreshWaterConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06000771 RID: 1905 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject prefab)
 	{
 	}
 
-	// Token: 0x06000772 RID: 1906 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x04000585 RID: 1413
 	public const string ID = "CrabFreshWater";
 
-	// Token: 0x04000586 RID: 1414
 	public const string BASE_TRAIT_ID = "CrabFreshWaterBaseTrait";
 
-	// Token: 0x04000587 RID: 1415
 	public const string EGG_ID = "CrabFreshWaterEgg";
 
-	// Token: 0x04000588 RID: 1416
 	private const SimHashes EMIT_ELEMENT = SimHashes.Sand;
 
-	// Token: 0x04000589 RID: 1417
 	private static float KG_ORE_EATEN_PER_CYCLE = 70f;
 
-	// Token: 0x0400058A RID: 1418
 	private static float CALORIES_PER_KG_OF_ORE = CrabTuning.STANDARD_CALORIES_PER_CYCLE / CrabFreshWaterConfig.KG_ORE_EATEN_PER_CYCLE;
 
-	// Token: 0x0400058B RID: 1419
 	private static float MIN_POOP_SIZE_IN_KG = 25f;
 
-	// Token: 0x0400058C RID: 1420
 	public static int EGG_SORT_ORDER = 0;
 
-	// Token: 0x0400058D RID: 1421
 	private static string animPrefix = "fresh_";
 }

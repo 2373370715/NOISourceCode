@@ -2,16 +2,13 @@
 using Unity.Collections;
 using UnityEngine;
 
-// Token: 0x02001AD4 RID: 6868
 public class RocketLaunchConditionVisualizerEffect : VisualizerEffect
 {
-	// Token: 0x06008FA0 RID: 36768 RVA: 0x0010242B File Offset: 0x0010062B
 	protected override void SetupMaterial()
 	{
 		this.material = new Material(Shader.Find("Klei/PostFX/RocketLaunchCondition"));
 	}
 
-	// Token: 0x06008FA1 RID: 36769 RVA: 0x00102442 File Offset: 0x00100642
 	protected override void SetupOcclusionTex()
 	{
 		this.OcclusionTex = new Texture2D(512, 1, TextureFormat.RGFloat, false);
@@ -19,7 +16,6 @@ public class RocketLaunchConditionVisualizerEffect : VisualizerEffect
 		this.OcclusionTex.wrapMode = TextureWrapMode.Clamp;
 	}
 
-	// Token: 0x06008FA2 RID: 36770 RVA: 0x00383C48 File Offset: 0x00381E48
 	protected override void OnPostRender()
 	{
 		RocketLaunchConditionVisualizer rocketLaunchConditionVisualizer = null;
@@ -120,7 +116,6 @@ public class RocketLaunchConditionVisualizerEffect : VisualizerEffect
 		}
 	}
 
-	// Token: 0x06008FA3 RID: 36771 RVA: 0x00384054 File Offset: 0x00382254
 	private static void ComputeVisibility(RocketLaunchConditionVisualizer.RocketModuleVisualizeData moduleData, NativeArray<float> pixels, Vector2I world_min, Vector2I world_max)
 	{
 		Vector2I u = Grid.PosToXY(moduleData.Module.transform.GetPosition());
@@ -145,7 +140,6 @@ public class RocketLaunchConditionVisualizerEffect : VisualizerEffect
 		}
 	}
 
-	// Token: 0x06008FA4 RID: 36772 RVA: 0x0038412C File Offset: 0x0038232C
 	private static void ComputeVisibility(int x_abs, int y_abs, NativeArray<float> pixels, Vector2I world_min, Vector2I world_max, ref RocketLaunchConditionVisualizerEffect.EvaluationState clearPathEvaluation)
 	{
 		int num = x_abs - world_min.x;
@@ -176,7 +170,6 @@ public class RocketLaunchConditionVisualizerEffect : VisualizerEffect
 		pixels[2 * num + 1] = (float)y_abs;
 	}
 
-	// Token: 0x06008FA5 RID: 36773 RVA: 0x00384228 File Offset: 0x00382428
 	private static void FindWorldBounds(out Vector2I world_min, out Vector2I world_max)
 	{
 		if (ClusterManager.Instance != null)
@@ -192,7 +185,6 @@ public class RocketLaunchConditionVisualizerEffect : VisualizerEffect
 		world_max.y = Grid.HeightInCells;
 	}
 
-	// Token: 0x06008FA6 RID: 36774 RVA: 0x00384298 File Offset: 0x00382498
 	private static bool HasClearPathToSpace(int cell, Vector2I worldMax)
 	{
 		if (!Grid.IsValidCell(cell))
@@ -207,26 +199,18 @@ public class RocketLaunchConditionVisualizerEffect : VisualizerEffect
 		return !Grid.IsSolidCell(cell2) && Grid.CellToXY(cell2).y == worldMax.y;
 	}
 
-	// Token: 0x04006C35 RID: 27701
 	public Color highlightColor = new Color(0f, 1f, 0.8f, 1f);
 
-	// Token: 0x04006C36 RID: 27702
 	public Color highlightColor2 = new Color(1f, 0.32f, 0f, 1f);
 
-	// Token: 0x04006C37 RID: 27703
 	private static RocketLaunchConditionVisualizerEffect.EvaluationState[] clearPathToSpaceColumn = new RocketLaunchConditionVisualizerEffect.EvaluationState[7];
 
-	// Token: 0x04006C38 RID: 27704
 	private static int clearPathToSpaceColumn_middleIndex = Mathf.FloorToInt(3.5f);
 
-	// Token: 0x02001AD5 RID: 6869
 	public enum EvaluationState : byte
 	{
-		// Token: 0x04006C3A RID: 27706
 		NotEvaluated,
-		// Token: 0x04006C3B RID: 27707
 		Clear,
-		// Token: 0x04006C3C RID: 27708
 		Obstructed
 	}
 }

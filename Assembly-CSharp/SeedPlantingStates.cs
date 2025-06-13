@@ -2,10 +2,8 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000201 RID: 513
 public class SeedPlantingStates : GameStateMachine<SeedPlantingStates, SeedPlantingStates.Instance, IStateMachineTarget, SeedPlantingStates.Def>
 {
-	// Token: 0x060006EB RID: 1771 RVA: 0x00165F2C File Offset: 0x0016412C
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.findSeed;
@@ -77,7 +75,6 @@ public class SeedPlantingStates : GameStateMachine<SeedPlantingStates, SeedPlant
 		this.behaviourcomplete.BehaviourComplete(GameTags.Creatures.WantsToPlantSeed, false);
 	}
 
-	// Token: 0x060006EC RID: 1772 RVA: 0x00166118 File Offset: 0x00164318
 	private static void AddMouthOverride(SeedPlantingStates.Instance smi)
 	{
 		SymbolOverrideController component = smi.GetComponent<SymbolOverrideController>();
@@ -88,13 +85,11 @@ public class SeedPlantingStates : GameStateMachine<SeedPlantingStates, SeedPlant
 		}
 	}
 
-	// Token: 0x060006ED RID: 1773 RVA: 0x000AD633 File Offset: 0x000AB833
 	private static void RemoveMouthOverride(SeedPlantingStates.Instance smi)
 	{
 		smi.GetComponent<SymbolOverrideController>().TryRemoveSymbolOverride("sq_mouth", 1);
 	}
 
-	// Token: 0x060006EE RID: 1774 RVA: 0x0016617C File Offset: 0x0016437C
 	private static void PickupComplete(SeedPlantingStates.Instance smi)
 	{
 		if (!smi.targetSeed)
@@ -133,7 +128,6 @@ public class SeedPlantingStates : GameStateMachine<SeedPlantingStates, SeedPlant
 		SeedPlantingStates.AddMouthOverride(smi);
 	}
 
-	// Token: 0x060006EF RID: 1775 RVA: 0x0016627C File Offset: 0x0016447C
 	private static void PlantComplete(SeedPlantingStates.Instance smi)
 	{
 		PlantableSeed plantableSeed = smi.targetSeed ? smi.targetSeed.GetComponent<PlantableSeed>() : null;
@@ -157,13 +151,11 @@ public class SeedPlantingStates : GameStateMachine<SeedPlantingStates, SeedPlant
 		smi.targetPlot = null;
 	}
 
-	// Token: 0x060006F0 RID: 1776 RVA: 0x0015EC9C File Offset: 0x0015CE9C
 	private static void DropAll(SeedPlantingStates.Instance smi)
 	{
 		smi.GetComponent<Storage>().DropAll(false, false, default(Vector3), true, null);
 	}
 
-	// Token: 0x060006F1 RID: 1777 RVA: 0x00166308 File Offset: 0x00164508
 	private static int GetPlantableCell(SeedPlantingStates.Instance smi)
 	{
 		int num = Grid.PosToCell(smi.targetPlot);
@@ -174,7 +166,6 @@ public class SeedPlantingStates : GameStateMachine<SeedPlantingStates, SeedPlant
 		return num;
 	}
 
-	// Token: 0x060006F2 RID: 1778 RVA: 0x00166334 File Offset: 0x00164534
 	private static void FindDirtPlot(SeedPlantingStates.Instance smi)
 	{
 		smi.targetDirtPlotCell = Grid.InvalidCell;
@@ -187,7 +178,6 @@ public class SeedPlantingStates : GameStateMachine<SeedPlantingStates, SeedPlant
 		}
 	}
 
-	// Token: 0x060006F3 RID: 1779 RVA: 0x001663A4 File Offset: 0x001645A4
 	private static bool CheckValidPlotCell(SeedPlantingStates.Instance smi, PlantableSeed seed, int cell, out PlantablePlot plot)
 	{
 		plot = null;
@@ -221,7 +211,6 @@ public class SeedPlantingStates : GameStateMachine<SeedPlantingStates, SeedPlant
 		return seed.TestSuitableGround(cell);
 	}
 
-	// Token: 0x060006F4 RID: 1780 RVA: 0x000AD64C File Offset: 0x000AB84C
 	private static int GetSeedCell(SeedPlantingStates.Instance smi)
 	{
 		global::Debug.Assert(smi.targetSeed);
@@ -229,7 +218,6 @@ public class SeedPlantingStates : GameStateMachine<SeedPlantingStates, SeedPlant
 		return smi.seed_cell;
 	}
 
-	// Token: 0x060006F5 RID: 1781 RVA: 0x00166420 File Offset: 0x00164620
 	private static void FindSeed(SeedPlantingStates.Instance smi)
 	{
 		Navigator component = smi.GetComponent<Navigator>();
@@ -252,7 +240,6 @@ public class SeedPlantingStates : GameStateMachine<SeedPlantingStates, SeedPlant
 		smi.seed_cell = (smi.targetSeed ? Grid.PosToCell(smi.targetSeed) : Grid.InvalidCell);
 	}
 
-	// Token: 0x060006F6 RID: 1782 RVA: 0x00166530 File Offset: 0x00164730
 	private static void ReserveSeed(SeedPlantingStates.Instance smi)
 	{
 		GameObject gameObject = smi.targetSeed ? smi.targetSeed.gameObject : null;
@@ -263,7 +250,6 @@ public class SeedPlantingStates : GameStateMachine<SeedPlantingStates, SeedPlant
 		}
 	}
 
-	// Token: 0x060006F7 RID: 1783 RVA: 0x00166580 File Offset: 0x00164780
 	private static void UnreserveSeed(SeedPlantingStates.Instance smi)
 	{
 		GameObject go = smi.targetSeed ? smi.targetSeed.gameObject : null;
@@ -273,71 +259,51 @@ public class SeedPlantingStates : GameStateMachine<SeedPlantingStates, SeedPlant
 		}
 	}
 
-	// Token: 0x04000519 RID: 1305
 	private const int MAX_NAVIGATE_DISTANCE = 100;
 
-	// Token: 0x0400051A RID: 1306
 	public GameStateMachine<SeedPlantingStates, SeedPlantingStates.Instance, IStateMachineTarget, SeedPlantingStates.Def>.State findSeed;
 
-	// Token: 0x0400051B RID: 1307
 	public GameStateMachine<SeedPlantingStates, SeedPlantingStates.Instance, IStateMachineTarget, SeedPlantingStates.Def>.State moveToSeed;
 
-	// Token: 0x0400051C RID: 1308
 	public GameStateMachine<SeedPlantingStates, SeedPlantingStates.Instance, IStateMachineTarget, SeedPlantingStates.Def>.State pickupSeed;
 
-	// Token: 0x0400051D RID: 1309
 	public GameStateMachine<SeedPlantingStates, SeedPlantingStates.Instance, IStateMachineTarget, SeedPlantingStates.Def>.State findPlantLocation;
 
-	// Token: 0x0400051E RID: 1310
 	public GameStateMachine<SeedPlantingStates, SeedPlantingStates.Instance, IStateMachineTarget, SeedPlantingStates.Def>.State moveToPlantLocation;
 
-	// Token: 0x0400051F RID: 1311
 	public GameStateMachine<SeedPlantingStates, SeedPlantingStates.Instance, IStateMachineTarget, SeedPlantingStates.Def>.State moveToPlot;
 
-	// Token: 0x04000520 RID: 1312
 	public GameStateMachine<SeedPlantingStates, SeedPlantingStates.Instance, IStateMachineTarget, SeedPlantingStates.Def>.State moveToDirt;
 
-	// Token: 0x04000521 RID: 1313
 	public GameStateMachine<SeedPlantingStates, SeedPlantingStates.Instance, IStateMachineTarget, SeedPlantingStates.Def>.State planting;
 
-	// Token: 0x04000522 RID: 1314
 	public GameStateMachine<SeedPlantingStates, SeedPlantingStates.Instance, IStateMachineTarget, SeedPlantingStates.Def>.State behaviourcomplete;
 
-	// Token: 0x02000202 RID: 514
 	public class Def : StateMachine.BaseDef
 	{
-		// Token: 0x060006FD RID: 1789 RVA: 0x000AD6E0 File Offset: 0x000AB8E0
 		public Def(string prefix)
 		{
 			this.prefix = prefix;
 		}
 
-		// Token: 0x04000523 RID: 1315
 		public string prefix;
 	}
 
-	// Token: 0x02000203 RID: 515
 	public new class Instance : GameStateMachine<SeedPlantingStates, SeedPlantingStates.Instance, IStateMachineTarget, SeedPlantingStates.Def>.GameInstance
 	{
-		// Token: 0x060006FE RID: 1790 RVA: 0x00166694 File Offset: 0x00164894
 		public Instance(Chore<SeedPlantingStates.Instance> chore, SeedPlantingStates.Def def) : base(chore, def)
 		{
 			chore.AddPrecondition(ChorePreconditions.instance.CheckBehaviourPrecondition, GameTags.Creatures.WantsToPlantSeed);
 		}
 
-		// Token: 0x04000524 RID: 1316
 		public PlantablePlot targetPlot;
 
-		// Token: 0x04000525 RID: 1317
 		public int targetDirtPlotCell = Grid.InvalidCell;
 
-		// Token: 0x04000526 RID: 1318
 		public Element plantElement = ElementLoader.FindElementByHash(SimHashes.Dirt);
 
-		// Token: 0x04000527 RID: 1319
 		public Pickupable targetSeed;
 
-		// Token: 0x04000528 RID: 1320
 		public int seed_cell = Grid.InvalidCell;
 	}
 }

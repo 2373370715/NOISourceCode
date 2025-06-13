@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000384 RID: 900
 public class HeadquartersConfig : IBuildingConfig
 {
-	// Token: 0x06000E6F RID: 3695 RVA: 0x00183328 File Offset: 0x00181528
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "Headquarters";
@@ -33,7 +31,6 @@ public class HeadquartersConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000E70 RID: 3696 RVA: 0x001833F4 File Offset: 0x001815F4
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		LoreBearerUtil.AddLoreTo(go, LoreBearerUtil.UnlockSpecificEntry("pod_evacuation", UI.USERMENUACTIONS.READLORE.SEARCH_POD));
@@ -74,11 +71,9 @@ public class HeadquartersConfig : IBuildingConfig
 		roleStation.workingPstFailed = null;
 	}
 
-	// Token: 0x06000E71 RID: 3697 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000AA6 RID: 2726
 	public const string ID = "Headquarters";
 }

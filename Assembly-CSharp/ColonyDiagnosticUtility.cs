@@ -4,16 +4,13 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x020009E1 RID: 2529
 public class ColonyDiagnosticUtility : KMonoBehaviour, ISim1000ms
 {
-	// Token: 0x06002DD8 RID: 11736 RVA: 0x000C2217 File Offset: 0x000C0417
 	public static void DestroyInstance()
 	{
 		ColonyDiagnosticUtility.Instance = null;
 	}
 
-	// Token: 0x06002DD9 RID: 11737 RVA: 0x001FFA90 File Offset: 0x001FDC90
 	public ColonyDiagnostic.DiagnosticResult.Opinion GetWorldDiagnosticResult(int worldID)
 	{
 		ColonyDiagnostic.DiagnosticResult.Opinion opinion = ColonyDiagnostic.DiagnosticResult.Opinion.Good;
@@ -37,7 +34,6 @@ public class ColonyDiagnosticUtility : KMonoBehaviour, ISim1000ms
 		return opinion;
 	}
 
-	// Token: 0x06002DDA RID: 11738 RVA: 0x001FFB4C File Offset: 0x001FDD4C
 	public string GetWorldDiagnosticResultStatus(int worldID)
 	{
 		ColonyDiagnostic colonyDiagnostic = null;
@@ -65,7 +61,6 @@ public class ColonyDiagnosticUtility : KMonoBehaviour, ISim1000ms
 		return colonyDiagnostic.name;
 	}
 
-	// Token: 0x06002DDB RID: 11739 RVA: 0x001FFC2C File Offset: 0x001FDE2C
 	public string GetWorldDiagnosticResultTooltip(int worldID)
 	{
 		string text = "";
@@ -89,13 +84,11 @@ public class ColonyDiagnosticUtility : KMonoBehaviour, ISim1000ms
 		return text;
 	}
 
-	// Token: 0x06002DDC RID: 11740 RVA: 0x000C221F File Offset: 0x000C041F
 	public bool IsDiagnosticTutorialDisabled(string id)
 	{
 		return ColonyDiagnosticUtility.Instance.diagnosticTutorialStatus.ContainsKey(id) && GameClock.Instance.GetTime() < ColonyDiagnosticUtility.Instance.diagnosticTutorialStatus[id];
 	}
 
-	// Token: 0x06002DDD RID: 11741 RVA: 0x000C2252 File Offset: 0x000C0452
 	public void ClearDiagnosticTutorialSetting(string id)
 	{
 		if (ColonyDiagnosticUtility.Instance.diagnosticTutorialStatus.ContainsKey(id))
@@ -104,14 +97,12 @@ public class ColonyDiagnosticUtility : KMonoBehaviour, ISim1000ms
 		}
 	}
 
-	// Token: 0x06002DDE RID: 11742 RVA: 0x001FFD08 File Offset: 0x001FDF08
 	public bool IsCriteriaEnabled(int worldID, string diagnosticID, string criteriaID)
 	{
 		Dictionary<string, List<string>> dictionary = this.diagnosticCriteriaDisabled[worldID];
 		return dictionary.ContainsKey(diagnosticID) && !dictionary[diagnosticID].Contains(criteriaID);
 	}
 
-	// Token: 0x06002DDF RID: 11743 RVA: 0x001FFD40 File Offset: 0x001FDF40
 	public void SetCriteriaEnabled(int worldID, string diagnosticID, string criteriaID, bool enabled)
 	{
 		Dictionary<string, List<string>> dictionary = this.diagnosticCriteriaDisabled[worldID];
@@ -127,14 +118,12 @@ public class ColonyDiagnosticUtility : KMonoBehaviour, ISim1000ms
 		}
 	}
 
-	// Token: 0x06002DE0 RID: 11744 RVA: 0x000C227B File Offset: 0x000C047B
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 		ColonyDiagnosticUtility.Instance = this;
 	}
 
-	// Token: 0x06002DE1 RID: 11745 RVA: 0x001FFDA8 File Offset: 0x001FDFA8
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -158,14 +147,12 @@ public class ColonyDiagnosticUtility : KMonoBehaviour, ISim1000ms
 		ClusterManager.Instance.Subscribe(-1078710002, new Action<object>(this.RemoveWorld));
 	}
 
-	// Token: 0x06002DE2 RID: 11746 RVA: 0x001FFEF4 File Offset: 0x001FE0F4
 	private void Refresh(object data)
 	{
 		int worldID = (int)data;
 		this.AddWorld(worldID);
 	}
 
-	// Token: 0x06002DE3 RID: 11747 RVA: 0x001FFF10 File Offset: 0x001FE110
 	private void RemoveWorld(object data)
 	{
 		int key = (int)data;
@@ -183,19 +170,16 @@ public class ColonyDiagnosticUtility : KMonoBehaviour, ISim1000ms
 		}
 	}
 
-	// Token: 0x06002DE4 RID: 11748 RVA: 0x001FFF90 File Offset: 0x001FE190
 	public ColonyDiagnostic GetDiagnostic(string id, int worldID)
 	{
 		return this.worldDiagnostics[worldID].Find((ColonyDiagnostic match) => match.id == id);
 	}
 
-	// Token: 0x06002DE5 RID: 11749 RVA: 0x000C2289 File Offset: 0x000C0489
 	public T GetDiagnostic<T>(int worldID) where T : ColonyDiagnostic
 	{
 		return (T)((object)this.worldDiagnostics[worldID].Find((ColonyDiagnostic match) => match is T));
 	}
 
-	// Token: 0x06002DE6 RID: 11750 RVA: 0x001FFFC8 File Offset: 0x001FE1C8
 	public string GetDiagnosticName(string id)
 	{
 		foreach (KeyValuePair<int, List<ColonyDiagnostic>> keyValuePair in this.worldDiagnostics)
@@ -212,19 +196,16 @@ public class ColonyDiagnosticUtility : KMonoBehaviour, ISim1000ms
 		return "";
 	}
 
-	// Token: 0x06002DE7 RID: 11751 RVA: 0x00200088 File Offset: 0x001FE288
 	public ChoreGroupDiagnostic GetChoreGroupDiagnostic(int worldID, ChoreGroup choreGroup)
 	{
 		return (ChoreGroupDiagnostic)this.worldDiagnostics[worldID].Find((ColonyDiagnostic match) => match is ChoreGroupDiagnostic && ((ChoreGroupDiagnostic)match).choreGroup == choreGroup);
 	}
 
-	// Token: 0x06002DE8 RID: 11752 RVA: 0x002000C4 File Offset: 0x001FE2C4
 	public WorkTimeDiagnostic GetWorkTimeDiagnostic(int worldID, ChoreGroup choreGroup)
 	{
 		return (WorkTimeDiagnostic)this.worldDiagnostics[worldID].Find((ColonyDiagnostic match) => match is WorkTimeDiagnostic && ((WorkTimeDiagnostic)match).choreGroup == choreGroup);
 	}
 
-	// Token: 0x06002DE9 RID: 11753 RVA: 0x000C22C0 File Offset: 0x000C04C0
 	private void TryAddDiagnosticToWorldCollection(ref List<ColonyDiagnostic> newWorldDiagnostics, ColonyDiagnostic newDiagnostic)
 	{
 		if (!Game.IsCorrectDlcActiveForCurrentSave(newDiagnostic))
@@ -235,7 +216,6 @@ public class ColonyDiagnosticUtility : KMonoBehaviour, ISim1000ms
 		newWorldDiagnostics.Add(newDiagnostic);
 	}
 
-	// Token: 0x06002DEA RID: 11754 RVA: 0x00200100 File Offset: 0x001FE300
 	public void AddWorld(int worldID)
 	{
 		bool flag = false;
@@ -304,7 +284,6 @@ public class ColonyDiagnosticUtility : KMonoBehaviour, ISim1000ms
 		}
 	}
 
-	// Token: 0x06002DEB RID: 11755 RVA: 0x000C22D9 File Offset: 0x000C04D9
 	public void Sim1000ms(float dt)
 	{
 		if (ColonyDiagnosticUtility.IgnoreFirstUpdate)
@@ -313,14 +292,12 @@ public class ColonyDiagnosticUtility : KMonoBehaviour, ISim1000ms
 		}
 	}
 
-	// Token: 0x06002DEC RID: 11756 RVA: 0x00200400 File Offset: 0x001FE600
 	public static bool PastNewBuildingGracePeriod(Transform building)
 	{
 		BuildingComplete component = building.GetComponent<BuildingComplete>();
 		return !(component != null) || GameClock.Instance.GetTime() - component.creationTime >= 600f;
 	}
 
-	// Token: 0x06002DED RID: 11757 RVA: 0x00200438 File Offset: 0x001FE638
 	public static bool IgnoreRocketsWithNoCrewRequested(int worldID, out ColonyDiagnostic.DiagnosticResult result)
 	{
 		WorldContainer world = ClusterManager.Instance.GetWorld(worldID);
@@ -347,21 +324,16 @@ public class ColonyDiagnosticUtility : KMonoBehaviour, ISim1000ms
 		return false;
 	}
 
-	// Token: 0x04001F64 RID: 8036
 	public static ColonyDiagnosticUtility Instance;
 
-	// Token: 0x04001F65 RID: 8037
 	private Dictionary<int, List<ColonyDiagnostic>> worldDiagnostics = new Dictionary<int, List<ColonyDiagnostic>>();
 
-	// Token: 0x04001F66 RID: 8038
 	[Serialize]
 	public Dictionary<int, Dictionary<string, ColonyDiagnosticUtility.DisplaySetting>> diagnosticDisplaySettings = new Dictionary<int, Dictionary<string, ColonyDiagnosticUtility.DisplaySetting>>();
 
-	// Token: 0x04001F67 RID: 8039
 	[Serialize]
 	public Dictionary<int, Dictionary<string, List<string>>> diagnosticCriteriaDisabled = new Dictionary<int, Dictionary<string, List<string>>>();
 
-	// Token: 0x04001F68 RID: 8040
 	[Serialize]
 	private Dictionary<string, float> diagnosticTutorialStatus = new Dictionary<string, float>
 	{
@@ -403,22 +375,15 @@ public class ColonyDiagnosticUtility : KMonoBehaviour, ISim1000ms
 		}
 	};
 
-	// Token: 0x04001F69 RID: 8041
 	public static bool IgnoreFirstUpdate = true;
 
-	// Token: 0x04001F6A RID: 8042
 	public static ColonyDiagnostic.DiagnosticResult NoDataResult = new ColonyDiagnostic.DiagnosticResult(ColonyDiagnostic.DiagnosticResult.Opinion.Normal, UI.COLONY_DIAGNOSTICS.NO_DATA, null);
 
-	// Token: 0x020009E2 RID: 2530
 	public enum DisplaySetting
 	{
-		// Token: 0x04001F6C RID: 8044
 		Always,
-		// Token: 0x04001F6D RID: 8045
 		AlertOnly,
-		// Token: 0x04001F6E RID: 8046
 		Never,
-		// Token: 0x04001F6F RID: 8047
 		LENGTH
 	}
 }

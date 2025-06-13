@@ -2,10 +2,8 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000491 RID: 1169
 public class MiniCometConfig : IEntityConfig
 {
-	// Token: 0x060013EB RID: 5099 RVA: 0x0019A564 File Offset: 0x00198764
 	public GameObject CreatePrefab()
 	{
 		GameObject gameObject = EntityTemplates.CreateEntity(MiniCometConfig.ID, UI.SPACEDESTINATIONS.COMETS.MINICOMET.NAME, true);
@@ -32,22 +30,17 @@ public class MiniCometConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x060013EC RID: 5100 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject go)
 	{
 	}
 
-	// Token: 0x060013ED RID: 5101 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject go)
 	{
 	}
 
-	// Token: 0x04000DB6 RID: 3510
 	public static readonly string ID = "MiniComet";
 
-	// Token: 0x04000DB7 RID: 3511
 	private const SimHashes element = SimHashes.Regolith;
 
-	// Token: 0x04000DB8 RID: 3512
 	private const int ADDED_CELLS = 6;
 }

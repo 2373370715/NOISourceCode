@@ -5,15 +5,10 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001DE6 RID: 7654
 public class CrewJobsEntry : CrewListEntry
 {
-	// Token: 0x17000A6D RID: 2669
-	// (get) Token: 0x0600A007 RID: 40967 RVA: 0x0010CAAB File Offset: 0x0010ACAB
-	// (set) Token: 0x0600A008 RID: 40968 RVA: 0x0010CAB3 File Offset: 0x0010ACB3
 	public ChoreConsumer consumer { get; private set; }
 
-	// Token: 0x0600A009 RID: 40969 RVA: 0x003E1BF0 File Offset: 0x003DFDF0
 	public override void Populate(MinionIdentity _identity)
 	{
 		base.Populate(_identity);
@@ -28,7 +23,6 @@ public class CrewJobsEntry : CrewListEntry
 		this.dirty = true;
 	}
 
-	// Token: 0x0600A00A RID: 40970 RVA: 0x003E1C94 File Offset: 0x003DFE94
 	private void CreateChoreButton(ChoreGroup chore_group)
 	{
 		GameObject gameObject = Util.KInstantiateUI(this.Prefab_JobPriorityButton, base.transform.gameObject, false);
@@ -51,7 +45,6 @@ public class CrewJobsEntry : CrewListEntry
 		this.PriorityButtons.Add(priorityButton);
 	}
 
-	// Token: 0x0600A00B RID: 40971 RVA: 0x003E1E10 File Offset: 0x003E0010
 	private void CreateAllTaskButton()
 	{
 		GameObject gameObject = Util.KInstantiateUI(this.Prefab_JobPriorityButtonAllTasks, base.transform.gameObject, false);
@@ -73,7 +66,6 @@ public class CrewJobsEntry : CrewListEntry
 		this.AllTasksButton = priorityButton;
 	}
 
-	// Token: 0x0600A00C RID: 40972 RVA: 0x003E1F20 File Offset: 0x003E0120
 	private void ToggleTasksAll(Button button)
 	{
 		bool flag = this.rowToggleState != CrewJobsScreen.everyoneToggleState.on;
@@ -89,7 +81,6 @@ public class CrewJobsEntry : CrewListEntry
 		}
 	}
 
-	// Token: 0x0600A00D RID: 40973 RVA: 0x003E1FAC File Offset: 0x003E01AC
 	private void OnPriorityPress(ChoreGroup chore_group)
 	{
 		bool flag = this.consumer.IsPermittedByUser(chore_group);
@@ -102,7 +93,6 @@ public class CrewJobsEntry : CrewListEntry
 		this.consumer.SetPermittedByUser(chore_group, !this.consumer.IsPermittedByUser(chore_group));
 	}
 
-	// Token: 0x0600A00E RID: 40974 RVA: 0x003E2000 File Offset: 0x003E0200
 	private void Refresh(object data = null)
 	{
 		if (this.identity == null)
@@ -186,7 +176,6 @@ public class CrewJobsEntry : CrewListEntry
 		}
 	}
 
-	// Token: 0x0600A00F RID: 40975 RVA: 0x003E22F0 File Offset: 0x003E04F0
 	private string OnPriorityButtonTooltip(CrewJobsEntry.PriorityButton b)
 	{
 		b.tooltip.ClearMultiStringTooltip();
@@ -220,26 +209,22 @@ public class CrewJobsEntry : CrewListEntry
 		return "";
 	}
 
-	// Token: 0x0600A010 RID: 40976 RVA: 0x0010CABC File Offset: 0x0010ACBC
 	private void LateUpdate()
 	{
 		this.Refresh(null);
 	}
 
-	// Token: 0x0600A011 RID: 40977 RVA: 0x0010CAC5 File Offset: 0x0010ACC5
 	private void OnLevelUp(object data)
 	{
 		this.Dirty();
 	}
 
-	// Token: 0x0600A012 RID: 40978 RVA: 0x0010CACD File Offset: 0x0010ACCD
 	private void Dirty()
 	{
 		this.dirty = true;
 		CrewJobsScreen.Instance.Dirty(null);
 	}
 
-	// Token: 0x0600A013 RID: 40979 RVA: 0x0010CAE1 File Offset: 0x0010ACE1
 	protected override void OnCleanUp()
 	{
 		base.OnCleanUp();
@@ -250,62 +235,43 @@ public class CrewJobsEntry : CrewListEntry
 		}
 	}
 
-	// Token: 0x04007DAE RID: 32174
 	public GameObject Prefab_JobPriorityButton;
 
-	// Token: 0x04007DAF RID: 32175
 	public GameObject Prefab_JobPriorityButtonAllTasks;
 
-	// Token: 0x04007DB0 RID: 32176
 	private List<CrewJobsEntry.PriorityButton> PriorityButtons = new List<CrewJobsEntry.PriorityButton>();
 
-	// Token: 0x04007DB1 RID: 32177
 	private CrewJobsEntry.PriorityButton AllTasksButton;
 
-	// Token: 0x04007DB2 RID: 32178
 	public TextStyleSetting TooltipTextStyle_Title;
 
-	// Token: 0x04007DB3 RID: 32179
 	public TextStyleSetting TooltipTextStyle_Ability;
 
-	// Token: 0x04007DB4 RID: 32180
 	public TextStyleSetting TooltipTextStyle_AbilityPositiveModifier;
 
-	// Token: 0x04007DB5 RID: 32181
 	public TextStyleSetting TooltipTextStyle_AbilityNegativeModifier;
 
-	// Token: 0x04007DB6 RID: 32182
 	private bool dirty;
 
-	// Token: 0x04007DB8 RID: 32184
 	private CrewJobsScreen.everyoneToggleState rowToggleState;
 
-	// Token: 0x02001DE7 RID: 7655
 	[Serializable]
 	public struct PriorityButton
 	{
-		// Token: 0x04007DB9 RID: 32185
 		public Button button;
 
-		// Token: 0x04007DBA RID: 32186
 		public GameObject ToggleIcon;
 
-		// Token: 0x04007DBB RID: 32187
 		public ChoreGroup choreGroup;
 
-		// Token: 0x04007DBC RID: 32188
 		public ToolTip tooltip;
 
-		// Token: 0x04007DBD RID: 32189
 		public Image border;
 
-		// Token: 0x04007DBE RID: 32190
 		public Image background;
 
-		// Token: 0x04007DBF RID: 32191
 		public Color baseBorderColor;
 
-		// Token: 0x04007DC0 RID: 32192
 		public Color baseBackgroundColor;
 	}
 }

@@ -4,22 +4,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000590 RID: 1424
 public class PropHumanChesterfieldChairConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x06001895 RID: 6293 RVA: 0x000AA536 File Offset: 0x000A8736
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.DLC2;
 	}
 
-	// Token: 0x06001896 RID: 6294 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x06001897 RID: 6295 RVA: 0x001ABB2C File Offset: 0x001A9D2C
 	public GameObject CreatePrefab()
 	{
 		string id = "PropHumanChesterfieldChair";
@@ -39,7 +35,6 @@ public class PropHumanChesterfieldChairConfig : IEntityConfig, IHasDlcRestrictio
 		return gameObject;
 	}
 
-	// Token: 0x06001898 RID: 6296 RVA: 0x000AA768 File Offset: 0x000A8968
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.GetComponent<OccupyArea>().objectLayers = new ObjectLayer[]
@@ -48,7 +43,6 @@ public class PropHumanChesterfieldChairConfig : IEntityConfig, IHasDlcRestrictio
 		};
 	}
 
-	// Token: 0x06001899 RID: 6297 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}

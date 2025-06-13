@@ -4,10 +4,8 @@ using System.Linq;
 using Database;
 using STRINGS;
 
-// Token: 0x02001AB6 RID: 6838
 public class PermitItems
 {
-	// Token: 0x06008F0A RID: 36618 RVA: 0x00101DD6 File Offset: 0x000FFFD6
 	public static IEnumerable<KleiItems.ItemData> IterateInventory()
 	{
 		foreach (KleiItems.ItemData itemData in KleiItems.IterateInventory(PermitItems.ItemToPermit, PermitItems.BoxSet))
@@ -19,19 +17,16 @@ public class PermitItems
 		yield break;
 	}
 
-	// Token: 0x06008F0B RID: 36619 RVA: 0x00101DDF File Offset: 0x000FFFDF
 	public static bool HasUnopenedItem()
 	{
 		return KleiItems.HasUnopenedItem(PermitItems.ItemToPermit, PermitItems.BoxSet);
 	}
 
-	// Token: 0x06008F0C RID: 36620 RVA: 0x00101DF0 File Offset: 0x000FFFF0
 	public static bool IsPermitUnlocked(PermitResource permit)
 	{
 		return PermitItems.GetOwnedCount(permit) > 0;
 	}
 
-	// Token: 0x06008F0D RID: 36621 RVA: 0x0037CA4C File Offset: 0x0037AC4C
 	public static int GetOwnedCount(PermitResource permit)
 	{
 		int result = 0;
@@ -43,7 +38,6 @@ public class PermitItems
 		return result;
 	}
 
-	// Token: 0x06008F0E RID: 36622 RVA: 0x0037CA7C File Offset: 0x0037AC7C
 	public static bool TryGetBoxInfo(KleiItems.ItemData item, out string name, out string desc, out string icon_name)
 	{
 		PermitItems.BoxInfo boxInfo;
@@ -60,7 +54,6 @@ public class PermitItems
 		return false;
 	}
 
-	// Token: 0x06008F0F RID: 36623 RVA: 0x0037CAC4 File Offset: 0x0037ACC4
 	public static bool TryGetBarterPrice(string permit_id, out ulong buy_price, out ulong sell_price)
 	{
 		buy_price = (sell_price = 0UL);
@@ -68,7 +61,6 @@ public class PermitItems
 		return PermitItems.Mappings.TryGetValue(permit_id, out itemInfo) && KleiItems.TryGetBarterPrice(itemInfo.ItemType, out buy_price, out sell_price);
 	}
 
-	// Token: 0x06008F10 RID: 36624 RVA: 0x0037CAFC File Offset: 0x0037ACFC
 	public static void QueueRequestOpenOrUnboxItem(KleiItems.ItemData item, KleiItems.ResponseCallback cb)
 	{
 		DebugUtil.DevAssert(!item.IsOpened, "Can't open already opened item.", null);
@@ -84,7 +76,6 @@ public class PermitItems
 		KleiItems.AddRequestItemOpened(item.ItemId, cb);
 	}
 
-	// Token: 0x06008F11 RID: 36625 RVA: 0x0037CB54 File Offset: 0x0037AD54
 	public static string GetServerTypeFromPermit(PermitResource resource)
 	{
 		foreach (PermitItems.ItemInfo itemInfo in PermitItems.ItemInfos)
@@ -98,7 +89,6 @@ public class PermitItems
 		return null;
 	}
 
-	// Token: 0x04006BC4 RID: 27588
 	private static PermitItems.ItemInfo[] ItemInfos = new PermitItems.ItemInfo[]
 	{
 		new PermitItems.ItemInfo("top_basic_black", 1U, "TopBasicBlack"),
@@ -639,13 +629,10 @@ public class PermitItems
 		new PermitItems.ItemInfo("item_elegantbed_pipsqueak", 550U, "permit_elegantbed_pipsqueak")
 	};
 
-	// Token: 0x04006BC5 RID: 27589
 	private static Dictionary<string, PermitItems.ItemInfo> Mappings = PermitItems.ItemInfos.ToDictionary((PermitItems.ItemInfo x) => x.PermitId);
 
-	// Token: 0x04006BC6 RID: 27590
 	private static Dictionary<string, string> ItemToPermit = PermitItems.ItemInfos.ToDictionary((PermitItems.ItemInfo x) => x.ItemType, (PermitItems.ItemInfo x) => x.PermitId);
 
-	// Token: 0x04006BC7 RID: 27591
 	private static PermitItems.BoxInfo[] BoxInfos = new PermitItems.BoxInfo[]
 	{
 		new PermitItems.BoxInfo("MYSTERYBOX_u44_box_a", "Shipment X", "Unaddressed packages have been discovered near the Printing Pod. They bear Gravitas logos, and trace amounts of Neutronium have been detected.", 80U, "ONI_giftbox_u44_box_a", true),
@@ -658,26 +645,19 @@ public class PermitItems
 		new PermitItems.BoxInfo("MYSTERYBOX_u50_winter_holiday", EQUIPMENT.PREFABS.HOLIDAY_2023_CRATE.NAME, EQUIPMENT.PREFABS.HOLIDAY_2023_CRATE.DESC, 414U, "Holiday_2023_gift_box", false)
 	};
 
-	// Token: 0x04006BC8 RID: 27592
 	private const string MYSTERYBOX_U44_DESC = "Unaddressed packages have been discovered near the Printing Pod. They bear Gravitas logos, and trace amounts of Neutronium have been detected.";
 
-	// Token: 0x04006BC9 RID: 27593
 	private const string MYSTERYBOX_U45_DESC = "Unaddressed packages have been discovered near the Printing Pod. They bear Gravitas logos, and trace amounts of Neutronium have been detected.";
 
-	// Token: 0x04006BCA RID: 27594
 	private const string MYSTERYBOX_U46_DESC = "Unaddressed packages have been discovered near the Printing Pod. They bear Gravitas logos, and trace amounts of Neutronium have been detected.";
 
-	// Token: 0x04006BCB RID: 27595
 	private static Dictionary<string, PermitItems.BoxInfo> BoxMappings = PermitItems.BoxInfos.ToDictionary((PermitItems.BoxInfo x) => x.ItemType);
 
-	// Token: 0x04006BCC RID: 27596
 	private static HashSet<string> BoxSet = new HashSet<string>(from x in PermitItems.BoxInfos
 	select x.ItemType);
 
-	// Token: 0x02001AB7 RID: 6839
 	private struct ItemInfo
 	{
-		// Token: 0x06008F14 RID: 36628 RVA: 0x00101DFB File Offset: 0x000FFFFB
 		public ItemInfo(string itemType, uint typeId, string permitId)
 		{
 			this.ItemType = itemType;
@@ -685,20 +665,15 @@ public class PermitItems
 			this.TypeId = typeId;
 		}
 
-		// Token: 0x04006BCD RID: 27597
 		public string ItemType;
 
-		// Token: 0x04006BCE RID: 27598
 		public uint TypeId;
 
-		// Token: 0x04006BCF RID: 27599
 		public string PermitId;
 	}
 
-	// Token: 0x02001AB8 RID: 6840
 	private struct BoxInfo
 	{
-		// Token: 0x06008F15 RID: 36629 RVA: 0x00101E12 File Offset: 0x00100012
 		public BoxInfo(string type, string name, string desc, uint id, string icon, bool account_reward)
 		{
 			this.ItemType = type;
@@ -709,22 +684,16 @@ public class PermitItems
 			this.AccountReward = account_reward;
 		}
 
-		// Token: 0x04006BD0 RID: 27600
 		public string ItemType;
 
-		// Token: 0x04006BD1 RID: 27601
 		public string Name;
 
-		// Token: 0x04006BD2 RID: 27602
 		public string Description;
 
-		// Token: 0x04006BD3 RID: 27603
 		public uint TypeId;
 
-		// Token: 0x04006BD4 RID: 27604
 		public string IconName;
 
-		// Token: 0x04006BD5 RID: 27605
 		public bool AccountReward;
 	}
 }

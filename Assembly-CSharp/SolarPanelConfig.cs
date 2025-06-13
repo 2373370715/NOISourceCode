@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005A2 RID: 1442
 public class SolarPanelConfig : IBuildingConfig
 {
-	// Token: 0x060018EE RID: 6382 RVA: 0x001ACFC0 File Offset: 0x001AB1C0
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "SolarPanel";
@@ -36,7 +34,6 @@ public class SolarPanelConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060018EF RID: 6383 RVA: 0x001AD088 File Offset: 0x001AB288
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
@@ -47,7 +44,6 @@ public class SolarPanelConfig : IBuildingConfig
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x060018F0 RID: 6384 RVA: 0x001AD0E8 File Offset: 0x001AB2E8
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<Repairable>().expectedRepairTime = 52.5f;
@@ -62,15 +58,11 @@ public class SolarPanelConfig : IBuildingConfig
 		}
 	}
 
-	// Token: 0x04001041 RID: 4161
 	public const string ID = "SolarPanel";
 
-	// Token: 0x04001042 RID: 4162
 	public const float WATTS_PER_LUX = 0.00053f;
 
-	// Token: 0x04001043 RID: 4163
 	public const float MAX_WATTS = 380f;
 
-	// Token: 0x04001044 RID: 4164
 	private const int WIDTH = 7;
 }

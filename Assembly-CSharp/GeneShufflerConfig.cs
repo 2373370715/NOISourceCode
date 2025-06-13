@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200035F RID: 863
 public class GeneShufflerConfig : IEntityConfig
 {
-	// Token: 0x06000DAE RID: 3502 RVA: 0x0017E6F8 File Offset: 0x0017C8F8
 	public GameObject CreatePrefab()
 	{
 		string id = "GeneShuffler";
@@ -47,7 +45,6 @@ public class GeneShufflerConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06000DAF RID: 3503 RVA: 0x0017E84C File Offset: 0x0017CA4C
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.GetComponent<GeneShuffler>().workLayer = Grid.SceneLayer.Building;
@@ -59,7 +56,6 @@ public class GeneShufflerConfig : IEntityConfig
 		inst.GetComponent<Deconstructable>();
 	}
 
-	// Token: 0x06000DB0 RID: 3504 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}

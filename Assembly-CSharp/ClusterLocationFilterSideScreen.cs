@@ -4,16 +4,13 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001FA9 RID: 8105
 public class ClusterLocationFilterSideScreen : SideScreenContent
 {
-	// Token: 0x0600AB5B RID: 43867 RVA: 0x00113D1E File Offset: 0x00111F1E
 	public override bool IsValidForTarget(GameObject target)
 	{
 		return target.GetComponent<LogicClusterLocationSensor>() != null;
 	}
 
-	// Token: 0x0600AB5C RID: 43868 RVA: 0x00113D2C File Offset: 0x00111F2C
 	public override void SetTarget(GameObject target)
 	{
 		base.SetTarget(target);
@@ -21,7 +18,6 @@ public class ClusterLocationFilterSideScreen : SideScreenContent
 		this.Build();
 	}
 
-	// Token: 0x0600AB5D RID: 43869 RVA: 0x00418BCC File Offset: 0x00416DCC
 	private void ClearRows()
 	{
 		if (this.emptySpaceRow != null)
@@ -35,7 +31,6 @@ public class ClusterLocationFilterSideScreen : SideScreenContent
 		this.worldRows.Clear();
 	}
 
-	// Token: 0x0600AB5E RID: 43870 RVA: 0x00418C48 File Offset: 0x00416E48
 	private void Build()
 	{
 		this.headerLabel.SetText(UI.UISIDESCREENS.CLUSTERLOCATIONFILTERSIDESCREEN.HEADER);
@@ -56,7 +51,6 @@ public class ClusterLocationFilterSideScreen : SideScreenContent
 		this.Refresh();
 	}
 
-	// Token: 0x0600AB5F RID: 43871 RVA: 0x00418D44 File Offset: 0x00416F44
 	private void Refresh()
 	{
 		this.emptySpaceRow.GetComponent<HierarchyReferences>().GetReference<LocText>("Label").SetText(UI.UISIDESCREENS.CLUSTERLOCATIONFILTERSIDESCREEN.EMPTY_SPACE_ROW);
@@ -88,24 +82,18 @@ public class ClusterLocationFilterSideScreen : SideScreenContent
 		}
 	}
 
-	// Token: 0x040086DF RID: 34527
 	private LogicClusterLocationSensor sensor;
 
-	// Token: 0x040086E0 RID: 34528
 	[SerializeField]
 	private GameObject rowPrefab;
 
-	// Token: 0x040086E1 RID: 34529
 	[SerializeField]
 	private GameObject listContainer;
 
-	// Token: 0x040086E2 RID: 34530
 	[SerializeField]
 	private LocText headerLabel;
 
-	// Token: 0x040086E3 RID: 34531
 	private Dictionary<AxialI, GameObject> worldRows = new Dictionary<AxialI, GameObject>();
 
-	// Token: 0x040086E4 RID: 34532
 	private GameObject emptySpaceRow;
 }

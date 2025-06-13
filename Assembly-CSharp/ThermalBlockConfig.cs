@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005E5 RID: 1509
 public class ThermalBlockConfig : IBuildingConfig
 {
-	// Token: 0x06001A6C RID: 6764 RVA: 0x001B3C68 File Offset: 0x001B1E68
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "ThermalBlock";
@@ -44,7 +42,6 @@ public class ThermalBlockConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001A6D RID: 6765 RVA: 0x000B59BE File Offset: 0x000B3BBE
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<AnimTileable>().objectLayer = ObjectLayer.Backwall;
@@ -52,7 +49,6 @@ public class ThermalBlockConfig : IBuildingConfig
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
 	}
 
-	// Token: 0x06001A6E RID: 6766 RVA: 0x000B59E8 File Offset: 0x000B3BE8
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		KPrefabID component = go.GetComponent<KPrefabID>();
@@ -67,10 +63,8 @@ public class ThermalBlockConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x04001119 RID: 4377
 	public const string ID = "ThermalBlock";
 
-	// Token: 0x0400111A RID: 4378
 	private static readonly CellOffset[] overrideOffsets = new CellOffset[]
 	{
 		new CellOffset(-1, -1),

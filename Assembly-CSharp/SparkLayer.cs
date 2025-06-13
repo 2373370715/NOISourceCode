@@ -2,10 +2,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001D49 RID: 7497
 public class SparkLayer : LineLayer
 {
-	// Token: 0x06009C90 RID: 40080 RVA: 0x003D2664 File Offset: 0x003D0864
 	public void SetColor(ColonyDiagnostic.DiagnosticResult result)
 	{
 		switch (result.opinion)
@@ -32,13 +30,11 @@ public class SparkLayer : LineLayer
 		}
 	}
 
-	// Token: 0x06009C91 RID: 40081 RVA: 0x0010A43C File Offset: 0x0010863C
 	public void SetColor(Color color)
 	{
 		this.line_formatting[0].color = color;
 	}
 
-	// Token: 0x06009C92 RID: 40082 RVA: 0x003D26E0 File Offset: 0x003D08E0
 	public override GraphedLine NewLine(global::Tuple<float, float>[] points, string ID = "")
 	{
 		Color positive_COLOR = Constants.POSITIVE_COLOR;
@@ -78,7 +74,6 @@ public class SparkLayer : LineLayer
 		return base.NewLine(points, ID);
 	}
 
-	// Token: 0x06009C93 RID: 40083 RVA: 0x0010A450 File Offset: 0x00108650
 	public override void RefreshLine(global::Tuple<float, float>[] points, string ID)
 	{
 		this.SetColor(points);
@@ -86,7 +81,6 @@ public class SparkLayer : LineLayer
 		base.RefreshLine(points, ID);
 	}
 
-	// Token: 0x06009C94 RID: 40084 RVA: 0x003D2868 File Offset: 0x003D0A68
 	private void SetColor(global::Tuple<float, float>[] points)
 	{
 		Color positive_COLOR = Constants.POSITIVE_COLOR;
@@ -124,7 +118,6 @@ public class SparkLayer : LineLayer
 		}
 	}
 
-	// Token: 0x06009C95 RID: 40085 RVA: 0x003D29E0 File Offset: 0x003D0BE0
 	private void ScaleToData(global::Tuple<float, float>[] points)
 	{
 		if (this.scaleWidthToData || this.scaleHeightToData)
@@ -148,32 +141,23 @@ public class SparkLayer : LineLayer
 		}
 	}
 
-	// Token: 0x04007A9A RID: 31386
 	public Image subZeroAreaFill;
 
-	// Token: 0x04007A9B RID: 31387
 	public SparkLayer.ColorRules colorRules;
 
-	// Token: 0x04007A9C RID: 31388
 	public bool debugMark;
 
-	// Token: 0x04007A9D RID: 31389
 	public bool scaleHeightToData = true;
 
-	// Token: 0x04007A9E RID: 31390
 	public bool scaleWidthToData = true;
 
-	// Token: 0x02001D4A RID: 7498
 	[Serializable]
 	public struct ColorRules
 	{
-		// Token: 0x04007A9F RID: 31391
 		public bool setOwnColor;
 
-		// Token: 0x04007AA0 RID: 31392
 		public bool positiveIsGood;
 
-		// Token: 0x04007AA1 RID: 31393
 		public bool zeroIsBad;
 	}
 }

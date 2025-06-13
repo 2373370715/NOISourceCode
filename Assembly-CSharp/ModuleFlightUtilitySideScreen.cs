@@ -4,11 +4,8 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001FEF RID: 8175
 public class ModuleFlightUtilitySideScreen : SideScreenContent
 {
-	// Token: 0x17000B08 RID: 2824
-	// (get) Token: 0x0600ACC8 RID: 44232 RVA: 0x00114C0A File Offset: 0x00112E0A
 	private CraftModuleInterface craftModuleInterface
 	{
 		get
@@ -17,20 +14,17 @@ public class ModuleFlightUtilitySideScreen : SideScreenContent
 		}
 	}
 
-	// Token: 0x0600ACC9 RID: 44233 RVA: 0x00114713 File Offset: 0x00112913
 	protected override void OnShow(bool show)
 	{
 		base.OnShow(show);
 		base.ConsumeMouseScroll = true;
 	}
 
-	// Token: 0x0600ACCA RID: 44234 RVA: 0x00104020 File Offset: 0x00102220
 	public override float GetSortKey()
 	{
 		return 21f;
 	}
 
-	// Token: 0x0600ACCB RID: 44235 RVA: 0x0041F824 File Offset: 0x0041DA24
 	public override bool IsValidForTarget(GameObject target)
 	{
 		if (target.GetComponent<Clustercraft>() != null && this.HasFlightUtilityModule(target.GetComponent<CraftModuleInterface>()))
@@ -41,7 +35,6 @@ public class ModuleFlightUtilitySideScreen : SideScreenContent
 		return component != null && this.HasFlightUtilityModule(component.GetMyWorld().GetComponent<Clustercraft>().ModuleInterface);
 	}
 
-	// Token: 0x0600ACCC RID: 44236 RVA: 0x0041F878 File Offset: 0x0041DA78
 	private bool HasFlightUtilityModule(CraftModuleInterface craftModuleInterface)
 	{
 		using (IEnumerator<Ref<RocketModuleCluster>> enumerator = craftModuleInterface.ClusterModules.GetEnumerator())
@@ -57,7 +50,6 @@ public class ModuleFlightUtilitySideScreen : SideScreenContent
 		return false;
 	}
 
-	// Token: 0x0600ACCD RID: 44237 RVA: 0x0041F8D0 File Offset: 0x0041DAD0
 	public override void SetTarget(GameObject target)
 	{
 		if (target != null)
@@ -79,7 +71,6 @@ public class ModuleFlightUtilitySideScreen : SideScreenContent
 		this.BuildModules();
 	}
 
-	// Token: 0x0600ACCE RID: 44238 RVA: 0x0041F9D8 File Offset: 0x0041DBD8
 	private void ClearModules()
 	{
 		foreach (KeyValuePair<IEmptyableCargo, HierarchyReferences> keyValuePair in this.modulePanels)
@@ -89,7 +80,6 @@ public class ModuleFlightUtilitySideScreen : SideScreenContent
 		this.modulePanels.Clear();
 	}
 
-	// Token: 0x0600ACCF RID: 44239 RVA: 0x0041FA40 File Offset: 0x0041DC40
 	private void BuildModules()
 	{
 		this.ClearModules();
@@ -105,13 +95,11 @@ public class ModuleFlightUtilitySideScreen : SideScreenContent
 		}
 	}
 
-	// Token: 0x0600ACD0 RID: 44240 RVA: 0x00114C17 File Offset: 0x00112E17
 	private void RefreshAll(object data = null)
 	{
 		this.BuildModules();
 	}
 
-	// Token: 0x0600ACD1 RID: 44241 RVA: 0x0041FAC8 File Offset: 0x0041DCC8
 	private void RefreshModulePanel(IEmptyableCargo module)
 	{
 		HierarchyReferences hierarchyReferences = this.modulePanels[module];
@@ -162,7 +150,6 @@ public class ModuleFlightUtilitySideScreen : SideScreenContent
 		hierarchyReferences.GetReference<LocText>("label").SetText(module.master.gameObject.GetProperName());
 	}
 
-	// Token: 0x0600ACD2 RID: 44242 RVA: 0x0041FD54 File Offset: 0x0041DF54
 	private string GetDuplicantRowName(MinionIdentity minion)
 	{
 		MinionResume component = minion.GetComponent<MinionResume>();
@@ -173,14 +160,12 @@ public class ModuleFlightUtilitySideScreen : SideScreenContent
 		return minion.GetProperName();
 	}
 
-	// Token: 0x0600ACD3 RID: 44243 RVA: 0x00114C1F File Offset: 0x00112E1F
 	private void OnRepeatClicked(IEmptyableCargo module)
 	{
 		module.AutoDeploy = !module.AutoDeploy;
 		this.StyleRepeatButton(module);
 	}
 
-	// Token: 0x0600ACD4 RID: 44244 RVA: 0x0041FDA4 File Offset: 0x0041DFA4
 	private void OnDuplicantEntryClick(IListableOption option, object data)
 	{
 		MinionIdentity chosenDuplicant = (MinionIdentity)option;
@@ -192,7 +177,6 @@ public class ModuleFlightUtilitySideScreen : SideScreenContent
 		this.RefreshAll(null);
 	}
 
-	// Token: 0x0600ACD5 RID: 44245 RVA: 0x0041FE2C File Offset: 0x0041E02C
 	private void DropDownEntryRefreshAction(DropDownEntry entry, object targetData)
 	{
 		MinionIdentity minionIdentity = (MinionIdentity)entry.entryData;
@@ -214,7 +198,6 @@ public class ModuleFlightUtilitySideScreen : SideScreenContent
 		entry.button.isInteractable = !flag;
 	}
 
-	// Token: 0x0600ACD6 RID: 44246 RVA: 0x0041FEFC File Offset: 0x0041E0FC
 	private void StyleRepeatButton(IEmptyableCargo module)
 	{
 		KButton reference = this.modulePanels[module].GetReference<KButton>("repeatButton");
@@ -222,24 +205,17 @@ public class ModuleFlightUtilitySideScreen : SideScreenContent
 		reference.bgImage.ApplyColorStyleSetting();
 	}
 
-	// Token: 0x0400880A RID: 34826
 	private Clustercraft targetCraft;
 
-	// Token: 0x0400880B RID: 34827
 	public GameObject moduleContentContainer;
 
-	// Token: 0x0400880C RID: 34828
 	public GameObject modulePanelPrefab;
 
-	// Token: 0x0400880D RID: 34829
 	public ColorStyleSetting repeatOff;
 
-	// Token: 0x0400880E RID: 34830
 	public ColorStyleSetting repeatOn;
 
-	// Token: 0x0400880F RID: 34831
 	private Dictionary<IEmptyableCargo, HierarchyReferences> modulePanels = new Dictionary<IEmptyableCargo, HierarchyReferences>();
 
-	// Token: 0x04008810 RID: 34832
 	private List<int> refreshHandle = new List<int>();
 }

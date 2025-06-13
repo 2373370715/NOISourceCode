@@ -6,16 +6,13 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001CCE RID: 7374
 public class CosmeticsPanel : TargetPanel
 {
-	// Token: 0x060099D8 RID: 39384 RVA: 0x000AA7E7 File Offset: 0x000A89E7
 	public override bool IsValidForTarget(GameObject target)
 	{
 		return true;
 	}
 
-	// Token: 0x060099D9 RID: 39385 RVA: 0x003C53C8 File Offset: 0x003C35C8
 	protected override void OnSelectTarget(GameObject target)
 	{
 		base.OnSelectTarget(target);
@@ -62,13 +59,11 @@ public class CosmeticsPanel : TargetPanel
 		this.Refresh();
 	}
 
-	// Token: 0x060099DA RID: 39386 RVA: 0x00106D9B File Offset: 0x00104F9B
 	public override void OnDeselectTarget(GameObject target)
 	{
 		base.OnDeselectTarget(target);
 	}
 
-	// Token: 0x060099DB RID: 39387 RVA: 0x003C5508 File Offset: 0x003C3708
 	public void Refresh()
 	{
 		UnityEngine.Object component = this.selectedTarget.GetComponent<MinionIdentity>();
@@ -135,7 +130,6 @@ public class CosmeticsPanel : TargetPanel
 		this.selectionPanel.Refresh();
 	}
 
-	// Token: 0x060099DC RID: 39388 RVA: 0x003C57FC File Offset: 0x003C39FC
 	public void OnClickEditOutfit()
 	{
 		AudioMixer.instance.Start(AudioMixerSnapshots.Get().FrontEndSupplyClosetSnapshot);
@@ -145,7 +139,6 @@ public class CosmeticsPanel : TargetPanel
 		});
 	}
 
-	// Token: 0x060099DD RID: 39389 RVA: 0x003C5858 File Offset: 0x003C3A58
 	private void RefreshOutfitCategories()
 	{
 		foreach (KeyValuePair<ClothingOutfitUtility.OutfitType, GameObject> keyValuePair in this.outfitCategories)
@@ -181,46 +174,35 @@ public class CosmeticsPanel : TargetPanel
 		}
 	}
 
-	// Token: 0x04007806 RID: 30726
 	[SerializeField]
 	private GameObject cosmeticSlotContainer;
 
-	// Token: 0x04007807 RID: 30727
 	[SerializeField]
 	private FacadeSelectionPanel selectionPanel;
 
-	// Token: 0x04007808 RID: 30728
 	[SerializeField]
 	private LocText nameLabel;
 
-	// Token: 0x04007809 RID: 30729
 	[SerializeField]
 	private LocText descriptionLabel;
 
-	// Token: 0x0400780A RID: 30730
 	[SerializeField]
 	private KButton editButton;
 
-	// Token: 0x0400780B RID: 30731
 	[SerializeField]
 	private UIMannequin mannequin;
 
-	// Token: 0x0400780C RID: 30732
 	[SerializeField]
 	private Image buildingIcon;
 
-	// Token: 0x0400780D RID: 30733
 	[SerializeField]
 	private Dictionary<ClothingOutfitUtility.OutfitType, GameObject> outfitCategories = new Dictionary<ClothingOutfitUtility.OutfitType, GameObject>();
 
-	// Token: 0x0400780E RID: 30734
 	[SerializeField]
 	private GameObject outfitCategoryButtonPrefab;
 
-	// Token: 0x0400780F RID: 30735
 	[SerializeField]
 	private GameObject outfitCategoryButtonContainer;
 
-	// Token: 0x04007810 RID: 30736
 	private ClothingOutfitUtility.OutfitType selectedOutfitCategory;
 }

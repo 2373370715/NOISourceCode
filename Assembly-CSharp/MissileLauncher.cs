@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000EF6 RID: 3830
 public class MissileLauncher : GameStateMachine<MissileLauncher, MissileLauncher.Instance, IStateMachineTarget, MissileLauncher.Def>
 {
-	// Token: 0x06004CB1 RID: 19633 RVA: 0x00270C38 File Offset: 0x0026EE38
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.Off;
@@ -103,81 +101,55 @@ public class MissileLauncher : GameStateMachine<MissileLauncher, MissileLauncher
 		}).Target(this.cannonTarget).PlayAnim("Cannon_working_pst");
 	}
 
-	// Token: 0x040035AF RID: 13743
 	private static StatusItem NoSurfaceSight = new StatusItem("MissileLauncher_NoSurfaceSight", "BUILDING", "status_item_no_sky", StatusItem.IconType.Info, NotificationType.Neutral, false, OverlayModes.None.ID, true, 129022, null);
 
-	// Token: 0x040035B0 RID: 13744
 	private static StatusItem PartiallyBlockedStatus = new StatusItem("MissileLauncher_PartiallyBlocked", "BUILDING", "", StatusItem.IconType.Info, NotificationType.Neutral, false, OverlayModes.None.ID, false, 129022, null);
 
-	// Token: 0x040035B1 RID: 13745
 	public float shutdownDuration = 50f;
 
-	// Token: 0x040035B2 RID: 13746
 	public float shootDelayDuration = 0.25f;
 
-	// Token: 0x040035B3 RID: 13747
 	public static float SHELL_MASS = MissileBasicConfig.recipe.ingredients[0].amount / 5f / 2f;
 
-	// Token: 0x040035B4 RID: 13748
 	public static float SHELL_TEMPERATURE = 353.15f;
 
-	// Token: 0x040035B5 RID: 13749
 	public StateMachine<MissileLauncher, MissileLauncher.Instance, IStateMachineTarget, MissileLauncher.Def>.BoolParameter rotationComplete;
 
-	// Token: 0x040035B6 RID: 13750
 	public StateMachine<MissileLauncher, MissileLauncher.Instance, IStateMachineTarget, MissileLauncher.Def>.ObjectParameter<GameObject> meteorTarget = new StateMachine<MissileLauncher, MissileLauncher.Instance, IStateMachineTarget, MissileLauncher.Def>.ObjectParameter<GameObject>();
 
-	// Token: 0x040035B7 RID: 13751
 	public StateMachine<MissileLauncher, MissileLauncher.Instance, IStateMachineTarget, MissileLauncher.Def>.TargetParameter cannonTarget;
 
-	// Token: 0x040035B8 RID: 13752
 	public StateMachine<MissileLauncher, MissileLauncher.Instance, IStateMachineTarget, MissileLauncher.Def>.BoolParameter fullyBlocked;
 
-	// Token: 0x040035B9 RID: 13753
 	public GameStateMachine<MissileLauncher, MissileLauncher.Instance, IStateMachineTarget, MissileLauncher.Def>.State Off;
 
-	// Token: 0x040035BA RID: 13754
 	public MissileLauncher.OnState On;
 
-	// Token: 0x040035BB RID: 13755
 	public MissileLauncher.LaunchState Launch;
 
-	// Token: 0x040035BC RID: 13756
 	public MissileLauncher.CooldownState Cooldown;
 
-	// Token: 0x040035BD RID: 13757
 	public GameStateMachine<MissileLauncher, MissileLauncher.Instance, IStateMachineTarget, MissileLauncher.Def>.State Nosurfacesight;
 
-	// Token: 0x040035BE RID: 13758
 	public GameStateMachine<MissileLauncher, MissileLauncher.Instance, IStateMachineTarget, MissileLauncher.Def>.State NoAmmo;
 
-	// Token: 0x02000EF7 RID: 3831
 	public class Def : StateMachine.BaseDef
 	{
-		// Token: 0x040035BF RID: 13759
 		public static readonly CellOffset LaunchOffset = new CellOffset(0, 4);
 
-		// Token: 0x040035C0 RID: 13760
 		public float launchSpeed = 30f;
 
-		// Token: 0x040035C1 RID: 13761
 		public float rotationSpeed = 100f;
 
-		// Token: 0x040035C2 RID: 13762
 		public static readonly Vector2I launchRange = new Vector2I(16, 32);
 
-		// Token: 0x040035C3 RID: 13763
 		public float scanningAngle = 50f;
 
-		// Token: 0x040035C4 RID: 13764
 		public float maxAngle = 80f;
 	}
 
-	// Token: 0x02000EF8 RID: 3832
 	public new class Instance : GameStateMachine<MissileLauncher, MissileLauncher.Instance, IStateMachineTarget, MissileLauncher.Def>.GameInstance
 	{
-		// Token: 0x1700043C RID: 1084
-		// (get) Token: 0x06004CB8 RID: 19640 RVA: 0x000D612D File Offset: 0x000D432D
 		public WorldContainer myWorld
 		{
 			get
@@ -190,7 +162,6 @@ public class MissileLauncher : GameStateMachine<MissileLauncher, MissileLauncher
 			}
 		}
 
-		// Token: 0x06004CB9 RID: 19641 RVA: 0x00271330 File Offset: 0x0026F530
 		public Instance(IStateMachineTarget master, MissileLauncher.Def def) : base(master, def)
 		{
 			KBatchedAnimController component = base.GetComponent<KBatchedAnimController>();
@@ -244,34 +215,29 @@ public class MissileLauncher : GameStateMachine<MissileLauncher, MissileLauncher
 			}
 		}
 
-		// Token: 0x06004CBA RID: 19642 RVA: 0x000D614F File Offset: 0x000D434F
 		public override void StartSM()
 		{
 			base.StartSM();
 			this.OnStorage(null);
 		}
 
-		// Token: 0x06004CBB RID: 19643 RVA: 0x000D615E File Offset: 0x000D435E
 		protected override void OnCleanUp()
 		{
 			base.Unsubscribe(-1201923725, new Action<object>(this.OnHighlight));
 			base.OnCleanUp();
 		}
 
-		// Token: 0x06004CBC RID: 19644 RVA: 0x0027162C File Offset: 0x0026F82C
 		private void OnHighlight(object data)
 		{
 			KBatchedAnimController component = base.GetComponent<KBatchedAnimController>();
 			base.smi.cannonAnimController.HighlightColour = component.HighlightColour;
 		}
 
-		// Token: 0x06004CBD RID: 19645 RVA: 0x000D617D File Offset: 0x000D437D
 		private void OnStorage(object data)
 		{
 			this.meter.SetPositionPercent(Mathf.Clamp01(this.MissileStorage.MassStored() / this.MissileStorage.capacityKg));
 		}
 
-		// Token: 0x06004CBE RID: 19646 RVA: 0x00271658 File Offset: 0x0026F858
 		public void Searching(float dt)
 		{
 			this.FindMeteor();
@@ -283,7 +249,6 @@ public class MissileLauncher : GameStateMachine<MissileLauncher, MissileLauncher
 			}
 		}
 
-		// Token: 0x06004CBF RID: 19647 RVA: 0x002716D0 File Offset: 0x0026F8D0
 		public void FindMeteor()
 		{
 			GameObject gameObject = this.ChooseClosestInterceptionPoint(this.myWorld.id);
@@ -295,14 +260,12 @@ public class MissileLauncher : GameStateMachine<MissileLauncher, MissileLauncher
 			}
 		}
 
-		// Token: 0x06004CC0 RID: 19648 RVA: 0x00271740 File Offset: 0x0026F940
 		private float CalculateLaunchAngle(Vector3 targetPosition)
 		{
 			Vector3 v = Vector3.Normalize(targetPosition - this.launchPosition);
 			return MathUtil.AngleSigned(Vector3.up, v, Vector3.forward);
 		}
 
-		// Token: 0x06004CC1 RID: 19649 RVA: 0x00271770 File Offset: 0x0026F970
 		public void LaunchMissile()
 		{
 			GameObject gameObject = this.MissileStorage.FindFirst("MissileBasic");
@@ -326,7 +289,6 @@ public class MissileLauncher : GameStateMachine<MissileLauncher, MissileLauncher
 			}
 		}
 
-		// Token: 0x06004CC2 RID: 19650 RVA: 0x00271830 File Offset: 0x0026FA30
 		private void SetMissileElement(GameObject missile)
 		{
 			this.missileElement = missile.GetComponent<PrimaryElement>().Element.tag;
@@ -337,7 +299,6 @@ public class MissileLauncher : GameStateMachine<MissileLauncher, MissileLauncher
 			}
 		}
 
-		// Token: 0x06004CC3 RID: 19651 RVA: 0x0027188C File Offset: 0x0026FA8C
 		public GameObject ChooseClosestInterceptionPoint(int world_id)
 		{
 			GameObject result = null;
@@ -362,7 +323,6 @@ public class MissileLauncher : GameStateMachine<MissileLauncher, MissileLauncher
 			return result;
 		}
 
-		// Token: 0x06004CC4 RID: 19652 RVA: 0x00271990 File Offset: 0x0026FB90
 		private bool IsMeteorInRange(Vector3 interception_point)
 		{
 			Vector2I vector2I;
@@ -370,7 +330,6 @@ public class MissileLauncher : GameStateMachine<MissileLauncher, MissileLauncher
 			return Math.Abs(vector2I.X - this.launchXY.X) <= MissileLauncher.Def.launchRange.X && vector2I.Y - this.launchXY.Y > 0 && vector2I.Y - this.launchXY.Y <= MissileLauncher.Def.launchRange.Y;
 		}
 
-		// Token: 0x06004CC5 RID: 19653 RVA: 0x00271A0C File Offset: 0x0026FC0C
 		public bool IsPathClear(Vector3 startPoint, Vector3 endPoint)
 		{
 			Vector2I vector2I = Grid.PosToXY(startPoint);
@@ -378,7 +337,6 @@ public class MissileLauncher : GameStateMachine<MissileLauncher, MissileLauncher
 			return Grid.TestLineOfSight(vector2I.x, vector2I.y, vector2I2.x, vector2I2.y, new Func<int, bool>(this.IsCellBlockedFromSky), false, true);
 		}
 
-		// Token: 0x06004CC6 RID: 19654 RVA: 0x00271A54 File Offset: 0x0026FC54
 		public bool IsCellBlockedFromSky(int cell)
 		{
 			if (Grid.IsValidCell(cell) && (int)Grid.WorldIdx[cell] == this.myWorld.id)
@@ -391,7 +349,6 @@ public class MissileLauncher : GameStateMachine<MissileLauncher, MissileLauncher
 			return num2 <= this.launchXY.Y;
 		}
 
-		// Token: 0x06004CC7 RID: 19655 RVA: 0x00271AA4 File Offset: 0x0026FCA4
 		public Vector3 CalculateCollisionPoint(Vector3 targetPosition, Vector3 targetVelocity, out float timeToCollision)
 		{
 			Vector3 vector = targetVelocity - base.smi.def.launchSpeed * (targetPosition - this.launchPosition).normalized;
@@ -399,7 +356,6 @@ public class MissileLauncher : GameStateMachine<MissileLauncher, MissileLauncher
 			return targetPosition + targetVelocity * timeToCollision;
 		}
 
-		// Token: 0x06004CC8 RID: 19656 RVA: 0x00271B10 File Offset: 0x0026FD10
 		public void HasLineOfSight()
 		{
 			bool flag = false;
@@ -420,13 +376,11 @@ public class MissileLauncher : GameStateMachine<MissileLauncher, MissileLauncher
 			base.smi.sm.fullyBlocked.Set(flag2, base.smi, false);
 		}
 
-		// Token: 0x06004CC9 RID: 19657 RVA: 0x000D61A6 File Offset: 0x000D43A6
 		public bool MeteorDetected()
 		{
 			return Components.Meteors.GetItems(this.myWorld.id).Count > 0;
 		}
 
-		// Token: 0x06004CCA RID: 19658 RVA: 0x00271C44 File Offset: 0x0026FE44
 		public void SetOreChunk()
 		{
 			if (!this.missileElement.IsValid)
@@ -438,7 +392,6 @@ public class MissileLauncher : GameStateMachine<MissileLauncher, MissileLauncher
 			base.gameObject.GetComponent<SymbolOverrideController>().AddSymbolOverride("Shell", symbolByIndex, 0);
 		}
 
-		// Token: 0x06004CCB RID: 19659 RVA: 0x00271CC8 File Offset: 0x0026FEC8
 		public void SpawnOre()
 		{
 			bool flag;
@@ -447,7 +400,6 @@ public class MissileLauncher : GameStateMachine<MissileLauncher, MissileLauncher
 			Assets.GetPrefab(this.missileElement).GetComponent<PrimaryElement>().Element.substance.SpawnResource(position, MissileLauncher.SHELL_MASS, MissileLauncher.SHELL_TEMPERATURE, byte.MaxValue, 0, false, false, false);
 		}
 
-		// Token: 0x06004CCC RID: 19660 RVA: 0x00271D40 File Offset: 0x0026FF40
 		public void RotateCannon(float dt, float rotation_speed)
 		{
 			float num = this.cannonRotation - this.simpleAngle;
@@ -477,7 +429,6 @@ public class MissileLauncher : GameStateMachine<MissileLauncher, MissileLauncher
 			base.smi.sm.rotationComplete.Set(true, base.smi, false);
 		}
 
-		// Token: 0x06004CCD RID: 19661 RVA: 0x00271E18 File Offset: 0x00270018
 		public void RotateToMeteor(float dt)
 		{
 			GameObject gameObject = base.sm.meteorTarget.Get(this);
@@ -510,92 +461,65 @@ public class MissileLauncher : GameStateMachine<MissileLauncher, MissileLauncher
 			base.smi.sm.rotationComplete.Set(true, base.smi, false);
 		}
 
-		// Token: 0x040035C5 RID: 13765
 		[MyCmpReq]
 		public Operational Operational;
 
-		// Token: 0x040035C6 RID: 13766
 		[MyCmpReq]
 		public Storage MissileStorage;
 
-		// Token: 0x040035C7 RID: 13767
 		[MyCmpReq]
 		public KSelectable Selectable;
 
-		// Token: 0x040035C8 RID: 13768
 		[MyCmpReq]
 		public FlatTagFilterable TargetFilter;
 
-		// Token: 0x040035C9 RID: 13769
 		private Vector3 launchPosition;
 
-		// Token: 0x040035CA RID: 13770
 		private Vector2I launchXY;
 
-		// Token: 0x040035CB RID: 13771
 		private float launchAnimTime;
 
-		// Token: 0x040035CC RID: 13772
 		public KBatchedAnimController cannonAnimController;
 
-		// Token: 0x040035CD RID: 13773
 		public GameObject cannonGameObject;
 
-		// Token: 0x040035CE RID: 13774
 		public float cannonRotation;
 
-		// Token: 0x040035CF RID: 13775
 		public float simpleAngle;
 
-		// Token: 0x040035D0 RID: 13776
 		private Tag missileElement;
 
-		// Token: 0x040035D1 RID: 13777
 		private MeterController meter;
 
-		// Token: 0x040035D2 RID: 13778
 		private WorldContainer worldContainer;
 	}
 
-	// Token: 0x02000EF9 RID: 3833
 	public class OnState : GameStateMachine<MissileLauncher, MissileLauncher.Instance, IStateMachineTarget, MissileLauncher.Def>.State
 	{
-		// Token: 0x040035D3 RID: 13779
 		public GameStateMachine<MissileLauncher, MissileLauncher.Instance, IStateMachineTarget, MissileLauncher.Def>.State searching;
 
-		// Token: 0x040035D4 RID: 13780
 		public GameStateMachine<MissileLauncher, MissileLauncher.Instance, IStateMachineTarget, MissileLauncher.Def>.State opening;
 
-		// Token: 0x040035D5 RID: 13781
 		public GameStateMachine<MissileLauncher, MissileLauncher.Instance, IStateMachineTarget, MissileLauncher.Def>.State shutdown;
 
-		// Token: 0x040035D6 RID: 13782
 		public GameStateMachine<MissileLauncher, MissileLauncher.Instance, IStateMachineTarget, MissileLauncher.Def>.State idle;
 	}
 
-	// Token: 0x02000EFA RID: 3834
 	public class LaunchState : GameStateMachine<MissileLauncher, MissileLauncher.Instance, IStateMachineTarget, MissileLauncher.Def>.State
 	{
-		// Token: 0x040035D7 RID: 13783
 		public GameStateMachine<MissileLauncher, MissileLauncher.Instance, IStateMachineTarget, MissileLauncher.Def>.State targeting;
 
-		// Token: 0x040035D8 RID: 13784
 		public GameStateMachine<MissileLauncher, MissileLauncher.Instance, IStateMachineTarget, MissileLauncher.Def>.State shoot;
 
-		// Token: 0x040035D9 RID: 13785
 		public GameStateMachine<MissileLauncher, MissileLauncher.Instance, IStateMachineTarget, MissileLauncher.Def>.State pst;
 	}
 
-	// Token: 0x02000EFB RID: 3835
 	public class CooldownState : GameStateMachine<MissileLauncher, MissileLauncher.Instance, IStateMachineTarget, MissileLauncher.Def>.State
 	{
-		// Token: 0x040035DA RID: 13786
 		public GameStateMachine<MissileLauncher, MissileLauncher.Instance, IStateMachineTarget, MissileLauncher.Def>.State cooling;
 
-		// Token: 0x040035DB RID: 13787
 		public GameStateMachine<MissileLauncher, MissileLauncher.Instance, IStateMachineTarget, MissileLauncher.Def>.State exit;
 
-		// Token: 0x040035DC RID: 13788
 		public GameStateMachine<MissileLauncher, MissileLauncher.Instance, IStateMachineTarget, MissileLauncher.Def>.State exitNoAmmo;
 	}
 }

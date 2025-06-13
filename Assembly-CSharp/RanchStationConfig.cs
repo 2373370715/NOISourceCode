@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200054F RID: 1359
 public class RanchStationConfig : IBuildingConfig
 {
-	// Token: 0x06001760 RID: 5984 RVA: 0x001A5958 File Offset: 0x001A3B58
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "RanchStation";
@@ -33,14 +31,12 @@ public class RanchStationConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001761 RID: 5985 RVA: 0x000B4454 File Offset: 0x000B2654
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<LoopingSounds>();
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.RanchStationType, false);
 	}
 
-	// Token: 0x06001762 RID: 5986 RVA: 0x001A5A14 File Offset: 0x001A3C14
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
@@ -79,6 +75,5 @@ public class RanchStationConfig : IBuildingConfig
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x04000F6F RID: 3951
 	public const string ID = "RanchStation";
 }

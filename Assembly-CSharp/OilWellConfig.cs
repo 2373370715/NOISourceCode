@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020002B4 RID: 692
 public class OilWellConfig : IEntityConfig
 {
-	// Token: 0x06000A22 RID: 2594 RVA: 0x00173500 File Offset: 0x00171700
 	public GameObject CreatePrefab()
 	{
 		string id = "OilWell";
@@ -32,16 +30,13 @@ public class OilWellConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06000A23 RID: 2595 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x06000A24 RID: 2596 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x040007F8 RID: 2040
 	public const string ID = "OilWell";
 }

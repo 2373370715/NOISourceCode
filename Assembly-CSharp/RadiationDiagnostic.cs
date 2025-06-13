@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x0200126E RID: 4718
 public class RadiationDiagnostic : ColonyDiagnostic
 {
-	// Token: 0x0600604E RID: 24654 RVA: 0x002BAA74 File Offset: 0x002B8C74
 	public RadiationDiagnostic(int worldID) : base(worldID, UI.COLONY_DIAGNOSTICS.RADIATIONDIAGNOSTIC.ALL_NAME)
 	{
 		this.tracker = TrackerTool.Instance.GetWorldTracker<RadiationTracker>(worldID);
@@ -17,25 +15,21 @@ public class RadiationDiagnostic : ColonyDiagnostic
 		base.AddCriterion("CheckExposed", new DiagnosticCriterion(UI.COLONY_DIAGNOSTICS.RADIATIONDIAGNOSTIC.CRITERIA.CHECKEXPOSED, new Func<ColonyDiagnostic.DiagnosticResult>(this.CheckExposure)));
 	}
 
-	// Token: 0x0600604F RID: 24655 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06006050 RID: 24656 RVA: 0x000E3379 File Offset: 0x000E1579
 	public override string GetCurrentValueString()
 	{
 		return string.Format(UI.COLONY_DIAGNOSTICS.RADIATIONDIAGNOSTIC.AVERAGE_RADS, GameUtil.GetFormattedRads(TrackerTool.Instance.GetWorldTracker<RadiationTracker>(base.worldID).GetCurrentValue(), GameUtil.TimeSlice.None));
 	}
 
-	// Token: 0x06006051 RID: 24657 RVA: 0x000E3379 File Offset: 0x000E1579
 	public override string GetAverageValueString()
 	{
 		return string.Format(UI.COLONY_DIAGNOSTICS.RADIATIONDIAGNOSTIC.AVERAGE_RADS, GameUtil.GetFormattedRads(TrackerTool.Instance.GetWorldTracker<RadiationTracker>(base.worldID).GetCurrentValue(), GameUtil.TimeSlice.None));
 	}
 
-	// Token: 0x06006052 RID: 24658 RVA: 0x002BAB0C File Offset: 0x002B8D0C
 	private ColonyDiagnostic.DiagnosticResult CheckSick()
 	{
 		List<MinionIdentity> worldItems = Components.LiveMinionIdentities.GetWorldItems(base.worldID, false);
@@ -63,7 +57,6 @@ public class RadiationDiagnostic : ColonyDiagnostic
 		return result;
 	}
 
-	// Token: 0x06006053 RID: 24659 RVA: 0x002BAC10 File Offset: 0x002B8E10
 	private ColonyDiagnostic.DiagnosticResult CheckExposure()
 	{
 		List<MinionIdentity> worldItems = Components.LiveMinionIdentities.GetWorldItems(base.worldID, false);

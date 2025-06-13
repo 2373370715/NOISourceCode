@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x020018CC RID: 6348
 public class SimulatedTemperatureAdjuster
 {
-	// Token: 0x06008348 RID: 33608 RVA: 0x0034E774 File Offset: 0x0034C974
 	public SimulatedTemperatureAdjuster(float simulated_temperature, float heat_capacity, float thermal_conductivity, Storage storage)
 	{
 		this.temperature = simulated_temperature;
@@ -19,13 +17,11 @@ public class SimulatedTemperatureAdjuster
 		this.OnActivechanged(component);
 	}
 
-	// Token: 0x06008349 RID: 33609 RVA: 0x000FAD4D File Offset: 0x000F8F4D
 	public List<Descriptor> GetDescriptors()
 	{
 		return SimulatedTemperatureAdjuster.GetDescriptors(this.temperature);
 	}
 
-	// Token: 0x0600834A RID: 33610 RVA: 0x0034E7F4 File Offset: 0x0034C9F4
 	public static List<Descriptor> GetDescriptors(float temperature)
 	{
 		List<Descriptor> list = new List<Descriptor>();
@@ -35,7 +31,6 @@ public class SimulatedTemperatureAdjuster
 		return list;
 	}
 
-	// Token: 0x0600834B RID: 33611 RVA: 0x0034E844 File Offset: 0x0034CA44
 	private void Register(SimTemperatureTransfer stt)
 	{
 		stt.onSimRegistered = (Action<SimTemperatureTransfer>)Delegate.Remove(stt.onSimRegistered, new Action<SimTemperatureTransfer>(this.OnItemSimRegistered));
@@ -46,7 +41,6 @@ public class SimulatedTemperatureAdjuster
 		}
 	}
 
-	// Token: 0x0600834C RID: 33612 RVA: 0x0034E8AC File Offset: 0x0034CAAC
 	private void Unregister(SimTemperatureTransfer stt)
 	{
 		stt.onSimRegistered = (Action<SimTemperatureTransfer>)Delegate.Remove(stt.onSimRegistered, new Action<SimTemperatureTransfer>(this.OnItemSimRegistered));
@@ -56,7 +50,6 @@ public class SimulatedTemperatureAdjuster
 		}
 	}
 
-	// Token: 0x0600834D RID: 33613 RVA: 0x0034E904 File Offset: 0x0034CB04
 	private void OnItemSimRegistered(SimTemperatureTransfer stt)
 	{
 		if (stt == null)
@@ -78,7 +71,6 @@ public class SimulatedTemperatureAdjuster
 		}
 	}
 
-	// Token: 0x0600834E RID: 33614 RVA: 0x0034E968 File Offset: 0x0034CB68
 	private void OnActivechanged(object data)
 	{
 		Operational operational = (Operational)data;
@@ -109,7 +101,6 @@ public class SimulatedTemperatureAdjuster
 		}
 	}
 
-	// Token: 0x0600834F RID: 33615 RVA: 0x0034EA48 File Offset: 0x0034CC48
 	public void CleanUp()
 	{
 		this.storage.gameObject.Unsubscribe(-1697596308, new Action<object>(this.OnStorageChanged));
@@ -123,7 +114,6 @@ public class SimulatedTemperatureAdjuster
 		}
 	}
 
-	// Token: 0x06008350 RID: 33616 RVA: 0x0034EAD4 File Offset: 0x0034CCD4
 	private void OnStorageChanged(object data)
 	{
 		GameObject gameObject = (GameObject)data;
@@ -145,18 +135,13 @@ public class SimulatedTemperatureAdjuster
 		this.Unregister(component);
 	}
 
-	// Token: 0x040063FC RID: 25596
 	private float temperature;
 
-	// Token: 0x040063FD RID: 25597
 	private float heatCapacity;
 
-	// Token: 0x040063FE RID: 25598
 	private float thermalConductivity;
 
-	// Token: 0x040063FF RID: 25599
 	private bool active;
 
-	// Token: 0x04006400 RID: 25600
 	private Storage storage;
 }

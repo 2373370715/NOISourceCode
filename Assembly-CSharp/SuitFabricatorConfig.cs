@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005D8 RID: 1496
 public class SuitFabricatorConfig : IBuildingConfig
 {
-	// Token: 0x06001A2B RID: 6699 RVA: 0x001B1DF8 File Offset: 0x001AFFF8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "SuitFabricator";
@@ -30,8 +28,6 @@ public class SuitFabricatorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001A2C RID: 6700 RVA: 0x001B1E74 File Offset: 0x001B0074
-	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
 		go.AddOrGet<DropAllWorkable>();
@@ -50,8 +46,6 @@ public class SuitFabricatorConfig : IBuildingConfig
 		this.ConfigureRecipes();
 	}
 
-	// Token: 0x06001A2D RID: 6701 RVA: 0x001B1F00 File Offset: 0x001B0100
-	private void ConfigureRecipes()
 	{
 		ComplexRecipe.RecipeElement[] array = new ComplexRecipe.RecipeElement[]
 		{
@@ -191,7 +185,6 @@ public class SuitFabricatorConfig : IBuildingConfig
 		ComplexRecipe.RecipeElement[] array13 = new ComplexRecipe.RecipeElement[]
 		{
 			new ComplexRecipe.RecipeElement("Worn_Jet_Suit".ToTag(), 1f),
-			new ComplexRecipe.RecipeElement("BasicFabric".ToTag(), 1f)
 		};
 		ComplexRecipe.RecipeElement[] array14 = new ComplexRecipe.RecipeElement[]
 		{
@@ -209,7 +202,6 @@ public class SuitFabricatorConfig : IBuildingConfig
 			requiredTech = Db.Get().TechItems.jetSuit.parentTechId,
 			sortOrder = 4
 		};
-		if (DlcManager.FeatureRadiationEnabled())
 		{
 			ComplexRecipe.RecipeElement[] array15 = new ComplexRecipe.RecipeElement[]
 			{
@@ -259,7 +251,6 @@ public class SuitFabricatorConfig : IBuildingConfig
 		}
 	}
 
-	// Token: 0x06001A2E RID: 6702 RVA: 0x001B2724 File Offset: 0x001B0924
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.GetComponent<KPrefabID>().prefabInitFn += delegate(GameObject game_object)
@@ -277,6 +268,5 @@ public class SuitFabricatorConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x040010F4 RID: 4340
 	public const string ID = "SuitFabricator";
 }

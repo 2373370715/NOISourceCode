@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003EE RID: 1006
 public class LogicPressureSensorGasConfig : IBuildingConfig
 {
-	// Token: 0x06001085 RID: 4229 RVA: 0x0018AC90 File Offset: 0x00188E90
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = LogicPressureSensorGasConfig.ID;
@@ -40,7 +38,6 @@ public class LogicPressureSensorGasConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001086 RID: 4230 RVA: 0x0018ADA4 File Offset: 0x00188FA4
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		LogicPressureSensor logicPressureSensor = go.AddOrGet<LogicPressureSensor>();
@@ -53,6 +50,5 @@ public class LogicPressureSensorGasConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayInFrontOfConduits, false);
 	}
 
-	// Token: 0x04000B98 RID: 2968
 	public static string ID = "LogicPressureSensorGas";
 }

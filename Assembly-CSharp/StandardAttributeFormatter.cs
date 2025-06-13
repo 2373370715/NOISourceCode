@@ -4,34 +4,26 @@ using Klei.AI;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001C40 RID: 7232
 public class StandardAttributeFormatter : IAttributeFormatter
 {
-	// Token: 0x170009C4 RID: 2500
-	// (get) Token: 0x06009656 RID: 38486 RVA: 0x00106603 File Offset: 0x00104803
-	// (set) Token: 0x06009657 RID: 38487 RVA: 0x0010660B File Offset: 0x0010480B
 	public GameUtil.TimeSlice DeltaTimeSlice { get; set; }
 
-	// Token: 0x06009658 RID: 38488 RVA: 0x00106614 File Offset: 0x00104814
 	public StandardAttributeFormatter(GameUtil.UnitClass unitClass, GameUtil.TimeSlice deltaTimeSlice)
 	{
 		this.unitClass = unitClass;
 		this.DeltaTimeSlice = deltaTimeSlice;
 	}
 
-	// Token: 0x06009659 RID: 38489 RVA: 0x0010662A File Offset: 0x0010482A
 	public virtual string GetFormattedAttribute(AttributeInstance instance)
 	{
 		return this.GetFormattedValue(instance.GetTotalDisplayValue(), GameUtil.TimeSlice.None);
 	}
 
-	// Token: 0x0600965A RID: 38490 RVA: 0x003AC228 File Offset: 0x003AA428
 	public virtual string GetFormattedModifier(AttributeModifier modifier)
 	{
 		return this.GetFormattedValue(modifier.Value, (modifier.OverrideTimeSlice != null) ? modifier.OverrideTimeSlice.Value : this.DeltaTimeSlice);
 	}
 
-	// Token: 0x0600965B RID: 38491 RVA: 0x003AC268 File Offset: 0x003AA468
 	public virtual string GetFormattedValue(float value, GameUtil.TimeSlice timeSlice = GameUtil.TimeSlice.None)
 	{
 		switch (this.unitClass)
@@ -68,13 +60,11 @@ public class StandardAttributeFormatter : IAttributeFormatter
 		return GameUtil.GetFormattedSimple(value, timeSlice, null);
 	}
 
-	// Token: 0x0600965C RID: 38492 RVA: 0x00106639 File Offset: 0x00104839
 	public virtual string GetTooltipDescription(Klei.AI.Attribute master)
 	{
 		return master.Description;
 	}
 
-	// Token: 0x0600965D RID: 38493 RVA: 0x003AC370 File Offset: 0x003AA570
 	public virtual string GetTooltip(Klei.AI.Attribute master, AttributeInstance instance)
 	{
 		List<AttributeModifier> list = new List<AttributeModifier>();
@@ -85,7 +75,6 @@ public class StandardAttributeFormatter : IAttributeFormatter
 		return this.GetTooltip(master, list, instance.GetComponent<AttributeConverters>());
 	}
 
-	// Token: 0x0600965E RID: 38494 RVA: 0x003AC3BC File Offset: 0x003AA5BC
 	public string GetTooltip(Klei.AI.Attribute master, List<AttributeModifier> modifiers, AttributeConverters converters)
 	{
 		string text = this.GetTooltipDescription(master);
@@ -127,6 +116,5 @@ public class StandardAttributeFormatter : IAttributeFormatter
 		return text;
 	}
 
-	// Token: 0x040074C9 RID: 29897
 	public GameUtil.UnitClass unitClass;
 }

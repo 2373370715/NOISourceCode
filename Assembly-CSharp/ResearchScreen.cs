@@ -5,16 +5,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// Token: 0x02001F25 RID: 7973
 public class ResearchScreen : KModalScreen
 {
-	// Token: 0x0600A7BF RID: 42943 RVA: 0x00111544 File Offset: 0x0010F744
 	public bool IsBeingResearched(Tech tech)
 	{
 		return Research.Instance.IsBeingResearched(tech);
 	}
 
-	// Token: 0x0600A7C0 RID: 42944 RVA: 0x00107159 File Offset: 0x00105359
 	public override float GetSortKey()
 	{
 		if (base.isEditing)
@@ -24,7 +21,6 @@ public class ResearchScreen : KModalScreen
 		return 20f;
 	}
 
-	// Token: 0x0600A7C1 RID: 42945 RVA: 0x00406B24 File Offset: 0x00404D24
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -40,21 +36,18 @@ public class ResearchScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600A7C2 RID: 42946 RVA: 0x00111551 File Offset: 0x0010F751
 	private void ZoomOut()
 	{
 		this.targetZoom = Mathf.Clamp(this.targetZoom - this.zoomAmountPerButton, this.minZoom, this.maxZoom);
 		this.zoomCenterLock = true;
 	}
 
-	// Token: 0x0600A7C3 RID: 42947 RVA: 0x0011157E File Offset: 0x0010F77E
 	private void ZoomIn()
 	{
 		this.targetZoom = Mathf.Clamp(this.targetZoom + this.zoomAmountPerButton, this.minZoom, this.maxZoom);
 		this.zoomCenterLock = true;
 	}
 
-	// Token: 0x0600A7C4 RID: 42948 RVA: 0x00406B78 File Offset: 0x00404D78
 	public void ZoomToTech(string techID, bool highlight = false)
 	{
 		Vector2 a = this.entryMap[Db.Get().Techs.Get(techID)].rectTransform().GetLocalPosition() + new Vector2(-this.foreground.rectTransform().rect.size.x / 2f, this.foreground.rectTransform().rect.size.y / 2f);
@@ -67,7 +60,6 @@ public class ResearchScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600A7C5 RID: 42949 RVA: 0x00406C44 File Offset: 0x00404E44
 	private void Update()
 	{
 		if (!base.canvas.enabled)
@@ -166,7 +158,6 @@ public class ResearchScreen : KModalScreen
 		component.anchoredPosition = vector2;
 	}
 
-	// Token: 0x0600A7C6 RID: 42950 RVA: 0x00407240 File Offset: 0x00405440
 	protected override void OnSpawn()
 	{
 		base.Subscribe(Research.Instance.gameObject, -1914338957, new Action<object>(this.OnActiveResearchChanged));
@@ -287,21 +278,18 @@ public class ResearchScreen : KModalScreen
 		this.Show(false);
 	}
 
-	// Token: 0x0600A7C7 RID: 42951 RVA: 0x001115AB File Offset: 0x0010F7AB
 	public override void OnBeginDrag(PointerEventData eventData)
 	{
 		base.OnBeginDrag(eventData);
 		this.isDragging = true;
 	}
 
-	// Token: 0x0600A7C8 RID: 42952 RVA: 0x001115BB File Offset: 0x0010F7BB
 	public override void OnEndDrag(PointerEventData eventData)
 	{
 		base.OnEndDrag(eventData);
 		this.AbortDragging();
 	}
 
-	// Token: 0x0600A7C9 RID: 42953 RVA: 0x001115CA File Offset: 0x0010F7CA
 	protected override void OnCleanUp()
 	{
 		base.OnCleanUp();
@@ -311,7 +299,6 @@ public class ResearchScreen : KModalScreen
 		});
 	}
 
-	// Token: 0x0600A7CA RID: 42954 RVA: 0x001115F3 File Offset: 0x0010F7F3
 	private IEnumerator WaitAndSetActiveResearch()
 	{
 		yield return SequenceUtil.WaitForEndOfFrame;
@@ -323,7 +310,6 @@ public class ResearchScreen : KModalScreen
 		yield break;
 	}
 
-	// Token: 0x0600A7CB RID: 42955 RVA: 0x00111602 File Offset: 0x0010F802
 	public Vector3 GetEntryPosition(Tech tech)
 	{
 		if (!this.entryMap.ContainsKey(tech))
@@ -334,7 +320,6 @@ public class ResearchScreen : KModalScreen
 		return this.entryMap[tech].transform.GetPosition();
 	}
 
-	// Token: 0x0600A7CC RID: 42956 RVA: 0x00111638 File Offset: 0x0010F838
 	public ResearchEntry GetEntry(Tech tech)
 	{
 		if (this.entryMap == null)
@@ -349,7 +334,6 @@ public class ResearchScreen : KModalScreen
 		return this.entryMap[tech];
 	}
 
-	// Token: 0x0600A7CD RID: 42957 RVA: 0x004078E8 File Offset: 0x00405AE8
 	public void SetEntryPercentage(Tech tech, float percent)
 	{
 		ResearchEntry entry = this.GetEntry(tech);
@@ -359,7 +343,6 @@ public class ResearchScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600A7CE RID: 42958 RVA: 0x00407910 File Offset: 0x00405B10
 	public void TurnEverythingOff()
 	{
 		foreach (KeyValuePair<Tech, ResearchEntry> keyValuePair in this.entryMap)
@@ -368,7 +351,6 @@ public class ResearchScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600A7CF RID: 42959 RVA: 0x00407968 File Offset: 0x00405B68
 	public void TurnEverythingOn()
 	{
 		foreach (KeyValuePair<Tech, ResearchEntry> keyValuePair in this.entryMap)
@@ -377,7 +359,6 @@ public class ResearchScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600A7D0 RID: 42960 RVA: 0x004079C0 File Offset: 0x00405BC0
 	private void SelectAllEntries(Tech tech, bool isSelected)
 	{
 		ResearchEntry entry = this.GetEntry(tech);
@@ -391,7 +372,6 @@ public class ResearchScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600A7D1 RID: 42961 RVA: 0x00407A2C File Offset: 0x00405C2C
 	private void OnResearchComplete(object data)
 	{
 		if (data is Tech)
@@ -407,7 +387,6 @@ public class ResearchScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600A7D2 RID: 42962 RVA: 0x00407A6C File Offset: 0x00405C6C
 	private void UpdatePointDisplay()
 	{
 		foreach (ResearchType researchType in Research.Instance.researchTypes.Types)
@@ -416,7 +395,6 @@ public class ResearchScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600A7D3 RID: 42963 RVA: 0x00407B20 File Offset: 0x00405D20
 	private void OnActiveResearchChanged(object data)
 	{
 		List<TechInstance> list = (List<TechInstance>)data;
@@ -436,7 +414,6 @@ public class ResearchScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600A7D4 RID: 42964 RVA: 0x00407BBC File Offset: 0x00405DBC
 	private void UpdateProgressBars()
 	{
 		foreach (KeyValuePair<Tech, ResearchEntry> keyValuePair in this.entryMap)
@@ -445,7 +422,6 @@ public class ResearchScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600A7D5 RID: 42965 RVA: 0x00407C14 File Offset: 0x00405E14
 	public void CancelResearch()
 	{
 		List<TechInstance> researchQueue = Research.Instance.GetResearchQueue();
@@ -460,7 +436,6 @@ public class ResearchScreen : KModalScreen
 		researchQueue.Clear();
 	}
 
-	// Token: 0x0600A7D6 RID: 42966 RVA: 0x0011166A File Offset: 0x0010F86A
 	private void SetActiveResearch(Tech newResearch)
 	{
 		if (newResearch != this.currentResearch && this.currentResearch != null)
@@ -474,7 +449,6 @@ public class ResearchScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600A7D7 RID: 42967 RVA: 0x00407C8C File Offset: 0x00405E8C
 	public override void Show(bool show = true)
 	{
 		this.mouseOver = false;
@@ -496,7 +470,6 @@ public class ResearchScreen : KModalScreen
 		this.OnShow(show);
 	}
 
-	// Token: 0x0600A7D8 RID: 42968 RVA: 0x00407D04 File Offset: 0x00405F04
 	protected override void OnShow(bool show)
 	{
 		base.OnShow(show);
@@ -525,20 +498,17 @@ public class ResearchScreen : KModalScreen
 		this.UpdatePointDisplay();
 	}
 
-	// Token: 0x0600A7D9 RID: 42969 RVA: 0x001116A6 File Offset: 0x0010F8A6
 	private void AbortDragging()
 	{
 		this.isDragging = false;
 		this.draggingJustEnded = true;
 	}
 
-	// Token: 0x0600A7DA RID: 42970 RVA: 0x001116B6 File Offset: 0x0010F8B6
 	private void LateUpdate()
 	{
 		this.draggingJustEnded = false;
 	}
 
-	// Token: 0x0600A7DB RID: 42971 RVA: 0x00407DB8 File Offset: 0x00405FB8
 	public override void OnKeyUp(KButtonEvent e)
 	{
 		if (!base.canvas.enabled)
@@ -579,7 +549,6 @@ public class ResearchScreen : KModalScreen
 		base.OnKeyUp(e);
 	}
 
-	// Token: 0x0600A7DC RID: 42972 RVA: 0x00407EA0 File Offset: 0x004060A0
 	public override void OnKeyDown(KButtonEvent e)
 	{
 		if (!base.canvas.enabled)
@@ -644,160 +613,111 @@ public class ResearchScreen : KModalScreen
 		base.OnKeyDown(e);
 	}
 
-	// Token: 0x040083C5 RID: 33733
 	private const float SCROLL_BUFFER = 250f;
 
-	// Token: 0x040083C6 RID: 33734
 	[SerializeField]
 	private Image BG;
 
-	// Token: 0x040083C7 RID: 33735
 	public ResearchEntry entryPrefab;
 
-	// Token: 0x040083C8 RID: 33736
 	public ResearchTreeTitle researchTreeTitlePrefab;
 
-	// Token: 0x040083C9 RID: 33737
 	public GameObject foreground;
 
-	// Token: 0x040083CA RID: 33738
 	public GameObject scrollContent;
 
-	// Token: 0x040083CB RID: 33739
 	public GameObject treeTitles;
 
-	// Token: 0x040083CC RID: 33740
 	public GameObject pointDisplayCountPrefab;
 
-	// Token: 0x040083CD RID: 33741
 	public GameObject pointDisplayContainer;
 
-	// Token: 0x040083CE RID: 33742
 	private Dictionary<string, LocText> pointDisplayMap;
 
-	// Token: 0x040083CF RID: 33743
 	private Dictionary<Tech, ResearchEntry> entryMap;
 
-	// Token: 0x040083D0 RID: 33744
 	[SerializeField]
 	private KButton zoomOutButton;
 
-	// Token: 0x040083D1 RID: 33745
 	[SerializeField]
 	private KButton zoomInButton;
 
-	// Token: 0x040083D2 RID: 33746
 	[SerializeField]
 	private ResearchScreenSideBar sideBar;
 
-	// Token: 0x040083D3 RID: 33747
 	private Tech currentResearch;
 
-	// Token: 0x040083D4 RID: 33748
 	public KButton CloseButton;
 
-	// Token: 0x040083D5 RID: 33749
 	private GraphicRaycaster m_Raycaster;
 
-	// Token: 0x040083D6 RID: 33750
 	private PointerEventData m_PointerEventData;
 
-	// Token: 0x040083D7 RID: 33751
 	private Vector3 currentScrollPosition;
 
-	// Token: 0x040083D8 RID: 33752
 	private bool panUp;
 
-	// Token: 0x040083D9 RID: 33753
 	private bool panDown;
 
-	// Token: 0x040083DA RID: 33754
 	private bool panLeft;
 
-	// Token: 0x040083DB RID: 33755
 	private bool panRight;
 
-	// Token: 0x040083DC RID: 33756
 	[SerializeField]
 	private KChildFitter scrollContentChildFitter;
 
-	// Token: 0x040083DD RID: 33757
 	private bool isDragging;
 
-	// Token: 0x040083DE RID: 33758
 	private Vector3 dragStartPosition;
 
-	// Token: 0x040083DF RID: 33759
 	private Vector3 dragLastPosition;
 
-	// Token: 0x040083E0 RID: 33760
 	private Vector2 dragInteria;
 
-	// Token: 0x040083E1 RID: 33761
 	private Vector2 forceTargetPosition;
 
-	// Token: 0x040083E2 RID: 33762
 	private bool zoomingToTarget;
 
-	// Token: 0x040083E3 RID: 33763
 	private bool draggingJustEnded;
 
-	// Token: 0x040083E4 RID: 33764
 	private float targetZoom = 1f;
 
-	// Token: 0x040083E5 RID: 33765
 	private float currentZoom = 1f;
 
-	// Token: 0x040083E6 RID: 33766
 	private bool zoomCenterLock;
 
-	// Token: 0x040083E7 RID: 33767
 	private Vector2 keyPanDelta = Vector3.zero;
 
-	// Token: 0x040083E8 RID: 33768
 	[SerializeField]
 	private float effectiveZoomSpeed = 5f;
 
-	// Token: 0x040083E9 RID: 33769
 	[SerializeField]
 	private float zoomAmountPerScroll = 0.05f;
 
-	// Token: 0x040083EA RID: 33770
 	[SerializeField]
 	private float zoomAmountPerButton = 0.5f;
 
-	// Token: 0x040083EB RID: 33771
 	[SerializeField]
 	private float minZoom = 0.15f;
 
-	// Token: 0x040083EC RID: 33772
 	[SerializeField]
 	private float maxZoom = 1f;
 
-	// Token: 0x040083ED RID: 33773
 	[SerializeField]
 	private float keyboardScrollSpeed = 200f;
 
-	// Token: 0x040083EE RID: 33774
 	[SerializeField]
 	private float keyPanEasing = 1f;
 
-	// Token: 0x040083EF RID: 33775
 	[SerializeField]
 	private float edgeClampFactor = 0.5f;
 
-	// Token: 0x02001F26 RID: 7974
 	public enum ResearchState
 	{
-		// Token: 0x040083F1 RID: 33777
 		Available,
-		// Token: 0x040083F2 RID: 33778
 		ActiveResearch,
-		// Token: 0x040083F3 RID: 33779
 		ResearchComplete,
-		// Token: 0x040083F4 RID: 33780
 		MissingPrerequisites,
-		// Token: 0x040083F5 RID: 33781
 		StateCount
 	}
 }

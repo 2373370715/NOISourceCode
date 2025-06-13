@@ -4,11 +4,9 @@ using Klei.AI;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001D4C RID: 7500
 [AddComponentMenu("KMonoBehaviour/scripts/HarvestableOverlayWidget")]
 public class HarvestableOverlayWidget : KMonoBehaviour
 {
-	// Token: 0x06009C9F RID: 40095 RVA: 0x003D2D14 File Offset: 0x003D0F14
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -38,7 +36,6 @@ public class HarvestableOverlayWidget : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06009CA0 RID: 40096 RVA: 0x003D2E60 File Offset: 0x003D1060
 	public void Refresh(HarvestDesignatable target_harvestable)
 	{
 		Image image = this.bar.GetComponent<HierarchyReferences>().GetReference("Fill") as Image;
@@ -99,71 +96,52 @@ public class HarvestableOverlayWidget : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x04007AAA RID: 31402
 	[SerializeField]
 	private GameObject vertical_container;
 
-	// Token: 0x04007AAB RID: 31403
 	[SerializeField]
 	private GameObject bar;
 
-	// Token: 0x04007AAC RID: 31404
 	private const int icons_per_row = 2;
 
-	// Token: 0x04007AAD RID: 31405
 	private const float bar_fill_range = 19f;
 
-	// Token: 0x04007AAE RID: 31406
 	private const float bar_fill_offset = 3f;
 
-	// Token: 0x04007AAF RID: 31407
 	private static Color growing_color = new Color(0.9843137f, 0.6901961f, 0.23137255f, 1f);
 
-	// Token: 0x04007AB0 RID: 31408
 	private static Color wilting_color = new Color(0.5647059f, 0.5647059f, 0.5647059f, 1f);
 
-	// Token: 0x04007AB1 RID: 31409
 	[SerializeField]
 	private Sprite sprite_liquid;
 
-	// Token: 0x04007AB2 RID: 31410
 	[SerializeField]
 	private Sprite sprite_atmosphere;
 
-	// Token: 0x04007AB3 RID: 31411
 	[SerializeField]
 	private Sprite sprite_pressure;
 
-	// Token: 0x04007AB4 RID: 31412
 	[SerializeField]
 	private Sprite sprite_temperature;
 
-	// Token: 0x04007AB5 RID: 31413
 	[SerializeField]
 	private Sprite sprite_resource;
 
-	// Token: 0x04007AB6 RID: 31414
 	[SerializeField]
 	private Sprite sprite_light;
 
-	// Token: 0x04007AB7 RID: 31415
 	[SerializeField]
 	private Sprite sprite_receptacle;
 
-	// Token: 0x04007AB8 RID: 31416
 	[SerializeField]
 	private GameObject horizontal_container_prefab;
 
-	// Token: 0x04007AB9 RID: 31417
 	private GameObject[] horizontal_containers = new GameObject[6];
 
-	// Token: 0x04007ABA RID: 31418
 	[SerializeField]
 	private GameObject icon_gameobject_prefab;
 
-	// Token: 0x04007ABB RID: 31419
 	private Dictionary<WiltCondition.Condition, GameObject> condition_icons = new Dictionary<WiltCondition.Condition, GameObject>();
 
-	// Token: 0x04007ABC RID: 31420
 	private Dictionary<WiltCondition.Condition, Sprite> condition_sprites = new Dictionary<WiltCondition.Condition, Sprite>();
 }

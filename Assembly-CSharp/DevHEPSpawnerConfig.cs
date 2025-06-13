@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200009A RID: 154
 public class DevHEPSpawnerConfig : IBuildingConfig
 {
-	// Token: 0x06000279 RID: 633 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x0600027A RID: 634 RVA: 0x00151058 File Offset: 0x0014F258
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "DevHEPSpawner";
@@ -44,7 +41,6 @@ public class DevHEPSpawnerConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600027B RID: 635 RVA: 0x00151130 File Offset: 0x0014F330
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddTag(GameTags.DevBuilding);
@@ -55,11 +51,9 @@ public class DevHEPSpawnerConfig : IBuildingConfig
 		go.AddOrGet<LogicOperationalController>();
 	}
 
-	// Token: 0x0600027C RID: 636 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x0400019D RID: 413
 	public const string ID = "DevHEPSpawner";
 }

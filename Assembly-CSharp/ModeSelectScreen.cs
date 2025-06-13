@@ -3,17 +3,14 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001E93 RID: 7827
 public class ModeSelectScreen : NewGameFlowScreen
 {
-	// Token: 0x0600A417 RID: 42007 RVA: 0x0010EF02 File Offset: 0x0010D102
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 		this.LoadWorldAndClusterData();
 	}
 
-	// Token: 0x0600A418 RID: 42008 RVA: 0x003F40FC File Offset: 0x003F22FC
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -38,7 +35,6 @@ public class ModeSelectScreen : NewGameFlowScreen
 		this.closeButton.onClick += base.NavigateBackward;
 	}
 
-	// Token: 0x0600A419 RID: 42009 RVA: 0x003F4280 File Offset: 0x003F2480
 	private void OnHoverEnterSurvival()
 	{
 		KMonoBehaviour.PlaySound(GlobalAssets.GetSound("HUD_Mouseover", false));
@@ -47,7 +43,6 @@ public class ModeSelectScreen : NewGameFlowScreen
 		this.descriptionArea.text = UI.FRONTEND.MODESELECTSCREEN.SURVIVAL_DESC;
 	}
 
-	// Token: 0x0600A41A RID: 42010 RVA: 0x003F42E8 File Offset: 0x003F24E8
 	private void OnHoverExitSurvival()
 	{
 		KMonoBehaviour.PlaySound(GlobalAssets.GetSound("HUD_Mouseover", false));
@@ -56,7 +51,6 @@ public class ModeSelectScreen : NewGameFlowScreen
 		this.descriptionArea.text = UI.FRONTEND.MODESELECTSCREEN.BLANK_DESC;
 	}
 
-	// Token: 0x0600A41B RID: 42011 RVA: 0x0010EF10 File Offset: 0x0010D110
 	private void OnClickSurvival()
 	{
 		this.Deactivate();
@@ -64,7 +58,6 @@ public class ModeSelectScreen : NewGameFlowScreen
 		base.NavigateForward();
 	}
 
-	// Token: 0x0600A41C RID: 42012 RVA: 0x0010EF28 File Offset: 0x0010D128
 	private void LoadWorldAndClusterData()
 	{
 		if (ModeSelectScreen.dataLoaded)
@@ -76,7 +69,6 @@ public class ModeSelectScreen : NewGameFlowScreen
 		ModeSelectScreen.dataLoaded = true;
 	}
 
-	// Token: 0x0600A41D RID: 42013 RVA: 0x003F4350 File Offset: 0x003F2550
 	private void OnHoverEnterNosweat()
 	{
 		KMonoBehaviour.PlaySound(GlobalAssets.GetSound("HUD_Mouseover", false));
@@ -85,7 +77,6 @@ public class ModeSelectScreen : NewGameFlowScreen
 		this.descriptionArea.text = UI.FRONTEND.MODESELECTSCREEN.NOSWEAT_DESC;
 	}
 
-	// Token: 0x0600A41E RID: 42014 RVA: 0x003F43B8 File Offset: 0x003F25B8
 	private void OnHoverExitNosweat()
 	{
 		KMonoBehaviour.PlaySound(GlobalAssets.GetSound("HUD_Mouseover", false));
@@ -94,7 +85,6 @@ public class ModeSelectScreen : NewGameFlowScreen
 		this.descriptionArea.text = UI.FRONTEND.MODESELECTSCREEN.BLANK_DESC;
 	}
 
-	// Token: 0x0600A41F RID: 42015 RVA: 0x0010EF57 File Offset: 0x0010D157
 	private void OnClickNosweat()
 	{
 		this.Deactivate();
@@ -102,42 +92,31 @@ public class ModeSelectScreen : NewGameFlowScreen
 		base.NavigateForward();
 	}
 
-	// Token: 0x0400803F RID: 32831
 	[SerializeField]
 	private MultiToggle nosweatButton;
 
-	// Token: 0x04008040 RID: 32832
 	private Image nosweatButtonHeader;
 
-	// Token: 0x04008041 RID: 32833
 	private Image nosweatButtonSelectionFrame;
 
-	// Token: 0x04008042 RID: 32834
 	[SerializeField]
 	private MultiToggle survivalButton;
 
-	// Token: 0x04008043 RID: 32835
 	private Image survivalButtonHeader;
 
-	// Token: 0x04008044 RID: 32836
 	private Image survivalButtonSelectionFrame;
 
-	// Token: 0x04008045 RID: 32837
 	[SerializeField]
 	private LocText descriptionArea;
 
-	// Token: 0x04008046 RID: 32838
 	[SerializeField]
 	private KButton closeButton;
 
-	// Token: 0x04008047 RID: 32839
 	[SerializeField]
 	private KBatchedAnimController nosweatAnim;
 
-	// Token: 0x04008048 RID: 32840
 	[SerializeField]
 	private KBatchedAnimController survivalAnim;
 
-	// Token: 0x04008049 RID: 32841
 	private static bool dataLoaded;
 }

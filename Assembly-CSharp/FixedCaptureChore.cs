@@ -1,10 +1,8 @@
 ﻿using System;
 using STRINGS;
 
-// Token: 0x020006D4 RID: 1748
 public class FixedCaptureChore : Chore<FixedCaptureChore.FixedCaptureChoreStates.Instance>
 {
-	// Token: 0x06001F20 RID: 7968 RVA: 0x001C3790 File Offset: 0x001C1990
 	public FixedCaptureChore(KPrefabID capture_point)
 	{
 		Chore.Precondition isCreatureAvailableForFixedCapture = default(Chore.Precondition);
@@ -30,7 +28,6 @@ public class FixedCaptureChore : Chore<FixedCaptureChore.FixedCaptureChoreStates
 		base.SetPrioritizable(capture_point.GetComponent<Prioritizable>());
 	}
 
-	// Token: 0x06001F21 RID: 7969 RVA: 0x001C38E0 File Offset: 0x001C1AE0
 	public override void Begin(Chore.Precondition.Context context)
 	{
 		base.smi.sm.rancher.Set(context.consumerState.gameObject, base.smi, false);
@@ -38,13 +35,10 @@ public class FixedCaptureChore : Chore<FixedCaptureChore.FixedCaptureChoreStates
 		base.Begin(context);
 	}
 
-	// Token: 0x0400146B RID: 5227
 	public Chore.Precondition IsCreatureAvailableForFixedCapture;
 
-	// Token: 0x020006D5 RID: 1749
 	public class FixedCaptureChoreStates : GameStateMachine<FixedCaptureChore.FixedCaptureChoreStates, FixedCaptureChore.FixedCaptureChoreStates.Instance>
 	{
-		// Token: 0x06001F22 RID: 7970 RVA: 0x001C3950 File Offset: 0x001C1B50
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.movetopoint;
@@ -67,46 +61,34 @@ public class FixedCaptureChore : Chore<FixedCaptureChore.FixedCaptureChoreStates
 			this.success.ReturnSuccess();
 		}
 
-		// Token: 0x06001F23 RID: 7971 RVA: 0x000B8F94 File Offset: 0x000B7194
 		private static bool HasCreatureLeft(FixedCaptureChore.FixedCaptureChoreStates.Instance smi)
 		{
 			return smi.fixedCapturePoint.targetCapturable.IsNullOrStopped() || !smi.fixedCapturePoint.targetCapturable.GetComponent<ChoreConsumer>().IsChoreEqualOrAboveCurrentChorePriority<FixedCaptureStates>();
 		}
 
-		// Token: 0x0400146C RID: 5228
 		public StateMachine<FixedCaptureChore.FixedCaptureChoreStates, FixedCaptureChore.FixedCaptureChoreStates.Instance, IStateMachineTarget, object>.TargetParameter rancher;
 
-		// Token: 0x0400146D RID: 5229
 		public StateMachine<FixedCaptureChore.FixedCaptureChoreStates, FixedCaptureChore.FixedCaptureChoreStates.Instance, IStateMachineTarget, object>.TargetParameter creature;
 
-		// Token: 0x0400146E RID: 5230
 		private GameStateMachine<FixedCaptureChore.FixedCaptureChoreStates, FixedCaptureChore.FixedCaptureChoreStates.Instance, IStateMachineTarget, object>.State movetopoint;
 
-		// Token: 0x0400146F RID: 5231
 		private GameStateMachine<FixedCaptureChore.FixedCaptureChoreStates, FixedCaptureChore.FixedCaptureChoreStates.Instance, IStateMachineTarget, object>.State waitforcreature_pre;
 
-		// Token: 0x04001470 RID: 5232
 		private GameStateMachine<FixedCaptureChore.FixedCaptureChoreStates, FixedCaptureChore.FixedCaptureChoreStates.Instance, IStateMachineTarget, object>.State waitforcreature;
 
-		// Token: 0x04001471 RID: 5233
 		private GameStateMachine<FixedCaptureChore.FixedCaptureChoreStates, FixedCaptureChore.FixedCaptureChoreStates.Instance, IStateMachineTarget, object>.State capturecreature;
 
-		// Token: 0x04001472 RID: 5234
 		private GameStateMachine<FixedCaptureChore.FixedCaptureChoreStates, FixedCaptureChore.FixedCaptureChoreStates.Instance, IStateMachineTarget, object>.State failed;
 
-		// Token: 0x04001473 RID: 5235
 		private GameStateMachine<FixedCaptureChore.FixedCaptureChoreStates, FixedCaptureChore.FixedCaptureChoreStates.Instance, IStateMachineTarget, object>.State success;
 
-		// Token: 0x020006D6 RID: 1750
 		public new class Instance : GameStateMachine<FixedCaptureChore.FixedCaptureChoreStates, FixedCaptureChore.FixedCaptureChoreStates.Instance, IStateMachineTarget, object>.GameInstance
 		{
-			// Token: 0x06001F25 RID: 7973 RVA: 0x000B8FCA File Offset: 0x000B71CA
 			public Instance(KPrefabID capture_point) : base(capture_point)
 			{
 				this.fixedCapturePoint = capture_point.GetSMI<FixedCapturePoint.Instance>();
 			}
 
-			// Token: 0x04001474 RID: 5236
 			public FixedCapturePoint.Instance fixedCapturePoint;
 		}
 	}

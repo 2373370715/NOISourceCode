@@ -4,10 +4,8 @@ using System.Runtime.CompilerServices;
 using ImGuiNET;
 using UnityEngine;
 
-// Token: 0x02000C10 RID: 3088
 public class DevToolStringsTable : DevTool
 {
-	// Token: 0x06003A8E RID: 14990 RVA: 0x002356CC File Offset: 0x002338CC
 	protected override void RenderTo(DevPanel panel)
 	{
 		if (this.m_cached_entries == null)
@@ -59,7 +57,6 @@ public class DevToolStringsTable : DevTool
 		}
 	}
 
-	// Token: 0x06003A8F RID: 14991 RVA: 0x0023588C File Offset: 0x00233A8C
 	public static void RegenerateCacheWithFilter([TupleElementNames(new string[]
 	{
 		"id",
@@ -86,7 +83,6 @@ public class DevToolStringsTable : DevTool
 		});
 	}
 
-	// Token: 0x0400288A RID: 10378
 	[TupleElementNames(new string[]
 	{
 		"id",
@@ -94,9 +90,7 @@ public class DevToolStringsTable : DevTool
 	})]
 	private List<ValueTuple<string, string>> m_cached_entries;
 
-	// Token: 0x0400288B RID: 10379
 	private const int MAX_ENTRIES_TO_DRAW = 3000;
 
-	// Token: 0x0400288C RID: 10380
 	private string m_search_filter = "";
 }

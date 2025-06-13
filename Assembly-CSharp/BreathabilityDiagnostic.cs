@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x0200125C RID: 4700
 public class BreathabilityDiagnostic : ColonyDiagnostic
 {
-	// Token: 0x06006002 RID: 24578 RVA: 0x002B91D0 File Offset: 0x002B73D0
 	public BreathabilityDiagnostic(int worldID) : base(worldID, UI.COLONY_DIAGNOSTICS.BREATHABILITYDIAGNOSTIC.ALL_NAME)
 	{
 		this.tracker = TrackerTool.Instance.GetWorldTracker<BreathabilityTracker>(worldID);
@@ -17,7 +15,6 @@ public class BreathabilityDiagnostic : ColonyDiagnostic
 		base.AddCriterion("CheckBionicOxygen", new DiagnosticCriterion(UI.COLONY_DIAGNOSTICS.BREATHABILITYDIAGNOSTIC.CRITERIA.CHECKLOWBIONICOXYGEN, new Func<ColonyDiagnostic.DiagnosticResult>(this.CheckLowBionicOxygen)));
 	}
 
-	// Token: 0x06006003 RID: 24579 RVA: 0x002B9288 File Offset: 0x002B7488
 	private ColonyDiagnostic.DiagnosticResult CheckSuffocation()
 	{
 		List<MinionIdentity> worldItems = Components.LiveMinionIdentities.GetWorldItems(base.worldID, false);
@@ -44,7 +41,6 @@ public class BreathabilityDiagnostic : ColonyDiagnostic
 		return new ColonyDiagnostic.DiagnosticResult(ColonyDiagnostic.DiagnosticResult.Opinion.Normal, base.NO_MINIONS, null);
 	}
 
-	// Token: 0x06006004 RID: 24580 RVA: 0x002B9354 File Offset: 0x002B7554
 	private ColonyDiagnostic.DiagnosticResult CheckLowBreathability()
 	{
 		if (Components.LiveMinionIdentities.GetWorldItems(base.worldID, false).Count != 0 && this.tracker.GetAverageValue(this.trackerSampleCountSeconds) < 60f)
@@ -54,7 +50,6 @@ public class BreathabilityDiagnostic : ColonyDiagnostic
 		return new ColonyDiagnostic.DiagnosticResult(ColonyDiagnostic.DiagnosticResult.Opinion.Normal, UI.COLONY_DIAGNOSTICS.BREATHABILITYDIAGNOSTIC.NORMAL, null);
 	}
 
-	// Token: 0x06006005 RID: 24581 RVA: 0x002B93B4 File Offset: 0x002B75B4
 	private ColonyDiagnostic.DiagnosticResult CheckLowBionicOxygen()
 	{
 		List<MinionIdentity> worldItems = Components.LiveMinionIdentities.GetWorldItems(base.worldID, false);
@@ -79,7 +74,6 @@ public class BreathabilityDiagnostic : ColonyDiagnostic
 		return new ColonyDiagnostic.DiagnosticResult(ColonyDiagnostic.DiagnosticResult.Opinion.Normal, UI.COLONY_DIAGNOSTICS.BREATHABILITYDIAGNOSTIC.NORMAL, null);
 	}
 
-	// Token: 0x06006006 RID: 24582 RVA: 0x002B8978 File Offset: 0x002B6B78
 	public override ColonyDiagnostic.DiagnosticResult Evaluate()
 	{
 		ColonyDiagnostic.DiagnosticResult result;

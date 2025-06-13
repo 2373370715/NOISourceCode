@@ -6,11 +6,9 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02001A3F RID: 6719
 [AddComponentMenu("KMonoBehaviour/Workable/Tinkerable")]
 public class Tinkerable : Workable
 {
-	// Token: 0x06008BFB RID: 35835 RVA: 0x00370134 File Offset: 0x0036E334
 	public static Tinkerable MakePowerTinkerable(GameObject prefab)
 	{
 		RoomTracker roomTracker = prefab.AddOrGet<RoomTracker>();
@@ -47,8 +45,6 @@ public class Tinkerable : Workable
 		return tinkerable;
 	}
 
-	// Token: 0x06008BFC RID: 35836 RVA: 0x003702BC File Offset: 0x0036E4BC
-	public static Tinkerable MakeFarmTinkerable(GameObject prefab)
 	{
 		RoomTracker roomTracker = prefab.AddOrGet<RoomTracker>();
 		roomTracker.requiredRoomType = Db.Get().RoomTypes.Farm.Id;
@@ -78,9 +74,7 @@ public class Tinkerable : Workable
 		return tinkerable;
 	}
 
-	// Token: 0x06008BFD RID: 35837 RVA: 0x00370428 File Offset: 0x0036E628
 	protected override void OnPrefabInit()
-	{
 		base.OnPrefabInit();
 		this.overrideAnims = new KAnimFile[]
 		{
@@ -96,9 +90,7 @@ public class Tinkerable : Workable
 		base.Subscribe<Tinkerable>(-592767678, Tinkerable.OnOperationalChangedDelegate);
 	}
 
-	// Token: 0x06008BFE RID: 35838 RVA: 0x00100169 File Offset: 0x000FE369
 	protected override void OnSpawn()
-	{
 		base.OnSpawn();
 		Prioritizable.AddRef(base.gameObject);
 		this.prioritizableAdded = true;
@@ -106,9 +98,7 @@ public class Tinkerable : Workable
 		this.UpdateVisual();
 	}
 
-	// Token: 0x06008BFF RID: 35839 RVA: 0x0010019A File Offset: 0x000FE39A
 	protected override void OnCleanUp()
-	{
 		this.UpdateMaterialReservation(false);
 		if (this.updateHandle.IsValid)
 		{
@@ -121,36 +111,26 @@ public class Tinkerable : Workable
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06008C00 RID: 35840 RVA: 0x001001D4 File Offset: 0x000FE3D4
 	private void OnOperationalChanged(object data)
-	{
 		this.QueueUpdateChore();
 	}
 
-	// Token: 0x06008C01 RID: 35841 RVA: 0x001001D4 File Offset: 0x000FE3D4
 	private void OnEffectRemoved(object data)
-	{
 		this.QueueUpdateChore();
 	}
 
-	// Token: 0x06008C02 RID: 35842 RVA: 0x001001D4 File Offset: 0x000FE3D4
 	private void OnUpdateRoom(object data)
-	{
 		this.QueueUpdateChore();
 	}
 
-	// Token: 0x06008C03 RID: 35843 RVA: 0x001001DC File Offset: 0x000FE3DC
 	private void OnStorageChange(object data)
-	{
 		if (((GameObject)data).IsPrefabID(this.tinkerMaterialTag))
 		{
 			this.QueueUpdateChore();
 		}
 	}
 
-	// Token: 0x06008C04 RID: 35844 RVA: 0x003704D8 File Offset: 0x0036E6D8
 	private void QueueUpdateChore()
-	{
 		if (this.updateHandle.IsValid)
 		{
 			this.updateHandle.ClearScheduler();
@@ -158,15 +138,11 @@ public class Tinkerable : Workable
 		this.updateHandle = GameScheduler.Instance.Schedule("UpdateTinkerChore", 1.2f, new Action<object>(this.UpdateChoreCallback), null, null);
 	}
 
-	// Token: 0x06008C05 RID: 35845 RVA: 0x001001F7 File Offset: 0x000FE3F7
 	private void UpdateChoreCallback(object obj)
-	{
 		this.UpdateChore();
 	}
 
-	// Token: 0x06008C06 RID: 35846 RVA: 0x00370528 File Offset: 0x0036E728
 	private void UpdateChore()
-	{
 		Operational component = base.GetComponent<Operational>();
 		bool flag = component == null || component.IsFunctional;
 		bool flag2 = this.HasEffect();
@@ -206,15 +182,11 @@ public class Tinkerable : Workable
 		}
 	}
 
-	// Token: 0x06008C07 RID: 35847 RVA: 0x001001FF File Offset: 0x000FE3FF
 	private bool HasCorrectRoom()
-	{
 		return this.roomTracker.IsInCorrectRoom();
 	}
 
-	// Token: 0x06008C08 RID: 35848 RVA: 0x003706D0 File Offset: 0x0036E8D0
 	private bool RoomHasTinkerstation()
-	{
 		if (!this.roomTracker.IsInCorrectRoom())
 		{
 			return false;
@@ -237,9 +209,7 @@ public class Tinkerable : Workable
 		return false;
 	}
 
-	// Token: 0x06008C09 RID: 35849 RVA: 0x00370778 File Offset: 0x0036E978
 	private void UpdateMaterialReservation(bool shouldReserve)
-	{
 		if (shouldReserve && !this.hasReservedMaterial)
 		{
 			MaterialNeeds.UpdateNeed(this.tinkerMaterialTag, this.tinkerMaterialAmount, base.gameObject.GetMyWorldId());
@@ -253,17 +223,13 @@ public class Tinkerable : Workable
 		}
 	}
 
-	// Token: 0x06008C0A RID: 35850 RVA: 0x0010020C File Offset: 0x000FE40C
 	private void OnFetchComplete(Chore data)
-	{
 		this.UpdateMaterialReservation(false);
 		this.chore = null;
 		this.UpdateChore();
 	}
 
-	// Token: 0x06008C0B RID: 35851 RVA: 0x003707E4 File Offset: 0x0036E9E4
 	protected override void OnCompleteWork(WorkerBase worker)
-	{
 		base.OnCompleteWork(worker);
 		this.storage.ConsumeIgnoringDisease(this.tinkerMaterialTag, this.tinkerMaterialAmount);
 		float totalValue = worker.GetAttributes().Get(Db.Get().Attributes.Get(this.effectAttributeId)).GetTotalValue();
@@ -279,9 +245,7 @@ public class Tinkerable : Workable
 		}
 	}
 
-	// Token: 0x06008C0C RID: 35852 RVA: 0x003708A8 File Offset: 0x0036EAA8
 	private void UpdateVisual()
-	{
 		if (this.boostSymbolNames == null)
 		{
 			return;
@@ -294,21 +258,15 @@ public class Tinkerable : Workable
 		}
 	}
 
-	// Token: 0x06008C0D RID: 35853 RVA: 0x00100222 File Offset: 0x000FE422
 	private bool HasMaterial()
-	{
 		return this.storage.GetAmountAvailable(this.tinkerMaterialTag) >= this.tinkerMaterialAmount;
 	}
 
-	// Token: 0x06008C0E RID: 35854 RVA: 0x00100240 File Offset: 0x000FE440
 	private bool HasEffect()
-	{
 		return this.effects.HasEffect(this.addedEffect);
 	}
 
-	// Token: 0x06008C0F RID: 35855 RVA: 0x00370900 File Offset: 0x0036EB00
 	private void OnRefreshUserMenu(object data)
-	{
 		if (this.roomTracker.IsInCorrectRoom())
 		{
 			string name = Db.Get().effects.Get(this.addedEffect).Name;
@@ -318,95 +276,49 @@ public class Tinkerable : Workable
 		}
 	}
 
-	// Token: 0x06008C10 RID: 35856 RVA: 0x00100253 File Offset: 0x000FE453
 	private void OnClickToggleTinker()
-	{
 		this.userMenuAllowed = !this.userMenuAllowed;
 		this.UpdateChore();
 	}
 
-	// Token: 0x040069AE RID: 27054
 	private Chore chore;
-
-	// Token: 0x040069AF RID: 27055
 	[MyCmpGet]
-	private Storage storage;
 
-	// Token: 0x040069B0 RID: 27056
 	[MyCmpGet]
-	private Effects effects;
 
-	// Token: 0x040069B1 RID: 27057
 	[MyCmpGet]
-	private RoomTracker roomTracker;
 
-	// Token: 0x040069B2 RID: 27058
 	public Tag tinkerMaterialTag;
-
-	// Token: 0x040069B3 RID: 27059
 	public float tinkerMaterialAmount;
-
-	// Token: 0x040069B4 RID: 27060
 	public string addedEffect;
-
-	// Token: 0x040069B5 RID: 27061
 	public string effectAttributeId;
-
-	// Token: 0x040069B6 RID: 27062
 	public float effectMultiplier;
-
-	// Token: 0x040069B7 RID: 27063
 	public string[] boostSymbolNames;
-
-	// Token: 0x040069B8 RID: 27064
 	public string onCompleteSFX;
-
-	// Token: 0x040069B9 RID: 27065
 	public HashedString choreTypeTinker = Db.Get().ChoreTypes.PowerTinker.IdHash;
-
-	// Token: 0x040069BA RID: 27066
 	public HashedString choreTypeFetch = Db.Get().ChoreTypes.PowerFetch.IdHash;
-
-	// Token: 0x040069BB RID: 27067
 	[Serialize]
-	private bool userMenuAllowed = true;
 
-	// Token: 0x040069BC RID: 27068
-	private static readonly EventSystem.IntraObjectHandler<Tinkerable> OnEffectRemovedDelegate = new EventSystem.IntraObjectHandler<Tinkerable>(delegate(Tinkerable component, object data)
 	{
 		component.OnEffectRemoved(data);
 	});
-
-	// Token: 0x040069BD RID: 27069
 	private static readonly EventSystem.IntraObjectHandler<Tinkerable> OnStorageChangeDelegate = new EventSystem.IntraObjectHandler<Tinkerable>(delegate(Tinkerable component, object data)
 	{
 		component.OnStorageChange(data);
 	});
-
-	// Token: 0x040069BE RID: 27070
 	private static readonly EventSystem.IntraObjectHandler<Tinkerable> OnUpdateRoomDelegate = new EventSystem.IntraObjectHandler<Tinkerable>(delegate(Tinkerable component, object data)
 	{
 		component.OnUpdateRoom(data);
 	});
-
-	// Token: 0x040069BF RID: 27071
 	private static readonly EventSystem.IntraObjectHandler<Tinkerable> OnOperationalChangedDelegate = new EventSystem.IntraObjectHandler<Tinkerable>(delegate(Tinkerable component, object data)
 	{
 		component.OnOperationalChanged(data);
 	});
-
-	// Token: 0x040069C0 RID: 27072
 	private static readonly EventSystem.IntraObjectHandler<Tinkerable> OnRefreshUserMenuDelegate = new EventSystem.IntraObjectHandler<Tinkerable>(delegate(Tinkerable component, object data)
 	{
 		component.OnRefreshUserMenu(data);
 	});
-
-	// Token: 0x040069C1 RID: 27073
 	private bool prioritizableAdded;
 
-	// Token: 0x040069C2 RID: 27074
 	private SchedulerHandle updateHandle;
-
-	// Token: 0x040069C3 RID: 27075
 	private bool hasReservedMaterial;
-}

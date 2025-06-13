@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x020007A8 RID: 1960
 internal class ClearableManager
 {
-	// Token: 0x060022C9 RID: 8905 RVA: 0x001D0E58 File Offset: 0x001CF058
 	public HandleVector<int>.Handle RegisterClearable(Clearable clearable)
 	{
 		return this.markedClearables.Allocate(new ClearableManager.MarkedClearable
@@ -15,13 +13,11 @@ internal class ClearableManager
 		});
 	}
 
-	// Token: 0x060022CA RID: 8906 RVA: 0x000BB10C File Offset: 0x000B930C
 	public void UnregisterClearable(HandleVector<int>.Handle handle)
 	{
 		this.markedClearables.Free(handle);
 	}
 
-	// Token: 0x060022CB RID: 8907 RVA: 0x001D0E9C File Offset: 0x001CF09C
 	public void CollectAndSortClearables(Navigator navigator)
 	{
 		this.sortedClearables.Clear();
@@ -41,7 +37,6 @@ internal class ClearableManager
 		this.sortedClearables.Sort(ClearableManager.SortedClearable.comparer);
 	}
 
-	// Token: 0x060022CC RID: 8908 RVA: 0x001D0F60 File Offset: 0x001CF160
 	public void CollectChores(List<GlobalChoreProvider.Fetch> fetches, ChoreConsumerState consumer_state, List<Chore.Precondition.Context> succeeded, List<Chore.Precondition.Context> failed_contexts)
 	{
 		ChoreType transport = Db.Get().ChoreTypes.Transport;
@@ -84,44 +79,31 @@ internal class ClearableManager
 		}
 	}
 
-	// Token: 0x04001754 RID: 5972
 	private KCompactedVector<ClearableManager.MarkedClearable> markedClearables = new KCompactedVector<ClearableManager.MarkedClearable>(0);
 
-	// Token: 0x04001755 RID: 5973
 	private List<ClearableManager.SortedClearable> sortedClearables = new List<ClearableManager.SortedClearable>();
 
-	// Token: 0x020007A9 RID: 1961
 	private struct MarkedClearable
 	{
-		// Token: 0x04001756 RID: 5974
 		public Clearable clearable;
 
-		// Token: 0x04001757 RID: 5975
 		public Pickupable pickupable;
 
-		// Token: 0x04001758 RID: 5976
 		public Prioritizable prioritizable;
 	}
 
-	// Token: 0x020007AA RID: 1962
 	private struct SortedClearable
 	{
-		// Token: 0x04001759 RID: 5977
 		public Pickupable pickupable;
 
-		// Token: 0x0400175A RID: 5978
 		public PrioritySetting masterPriority;
 
-		// Token: 0x0400175B RID: 5979
 		public int cost;
 
-		// Token: 0x0400175C RID: 5980
 		public static ClearableManager.SortedClearable.Comparer comparer = new ClearableManager.SortedClearable.Comparer();
 
-		// Token: 0x020007AB RID: 1963
 		public class Comparer : IComparer<ClearableManager.SortedClearable>
 		{
-			// Token: 0x060022CF RID: 8911 RVA: 0x001D10D0 File Offset: 0x001CF2D0
 			public int Compare(ClearableManager.SortedClearable a, ClearableManager.SortedClearable b)
 			{
 				int num = b.masterPriority.priority_value - a.masterPriority.priority_value;

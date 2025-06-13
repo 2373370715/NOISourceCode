@@ -4,10 +4,8 @@ using Klei;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020002A0 RID: 672
 public class GeyserGenericConfig : IMultiEntityConfig
 {
-	// Token: 0x060009DE RID: 2526 RVA: 0x00171B98 File Offset: 0x0016FD98
 	public List<GameObject> CreatePrefabs()
 	{
 		List<GameObject> list = new List<GameObject>();
@@ -40,13 +38,11 @@ public class GeyserGenericConfig : IMultiEntityConfig
 		return list;
 	}
 
-	// Token: 0x060009DF RID: 2527 RVA: 0x00171CE0 File Offset: 0x0016FEE0
 	public static GameObject CreateGeyser(string id, string anim, int width, int height, string name, string desc, HashedString presetType, float geyserTemperature)
 	{
 		return GeyserGenericConfig.CreateGeyser(id, anim, width, height, name, desc, presetType, geyserTemperature, null, null);
 	}
 
-	// Token: 0x060009E0 RID: 2528 RVA: 0x00171D00 File Offset: 0x0016FF00
 	public static GameObject CreateGeyser(string id, string anim, int width, int height, string name, string desc, HashedString presetType, float geyserTemperature, string[] requiredDlcIds, string[] forbiddenDlcIds)
 	{
 		float mass = 2000f;
@@ -79,17 +75,14 @@ public class GeyserGenericConfig : IMultiEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x060009E1 RID: 2529 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x060009E2 RID: 2530 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x060009E3 RID: 2531 RVA: 0x00171E24 File Offset: 0x00170024
 	private List<GeyserGenericConfig.GeyserPrefabParams> GenerateConfigs()
 	{
 		List<GeyserGenericConfig.GeyserPrefabParams> list = new List<GeyserGenericConfig.GeyserPrefabParams>();
@@ -130,88 +123,60 @@ public class GeyserGenericConfig : IMultiEntityConfig
 		return list;
 	}
 
-	// Token: 0x04000791 RID: 1937
 	public const string ID = "GeyserGeneric";
 
-	// Token: 0x04000792 RID: 1938
 	public const string Steam = "steam";
 
-	// Token: 0x04000793 RID: 1939
 	public const string HotSteam = "hot_steam";
 
-	// Token: 0x04000794 RID: 1940
 	public const string HotWater = "hot_water";
 
-	// Token: 0x04000795 RID: 1941
 	public const string SlushWater = "slush_water";
 
-	// Token: 0x04000796 RID: 1942
 	public const string FilthyWater = "filthy_water";
 
-	// Token: 0x04000797 RID: 1943
 	public const string SlushSaltWater = "slush_salt_water";
 
-	// Token: 0x04000798 RID: 1944
 	public const string SaltWater = "salt_water";
 
-	// Token: 0x04000799 RID: 1945
 	public const string SmallVolcano = "small_volcano";
 
-	// Token: 0x0400079A RID: 1946
 	public const string BigVolcano = "big_volcano";
 
-	// Token: 0x0400079B RID: 1947
 	public const string LiquidCO2 = "liquid_co2";
 
-	// Token: 0x0400079C RID: 1948
 	public const string HotCO2 = "hot_co2";
 
-	// Token: 0x0400079D RID: 1949
 	public const string HotHydrogen = "hot_hydrogen";
 
-	// Token: 0x0400079E RID: 1950
 	public const string HotPO2 = "hot_po2";
 
-	// Token: 0x0400079F RID: 1951
 	public const string SlimyPO2 = "slimy_po2";
 
-	// Token: 0x040007A0 RID: 1952
 	public const string ChlorineGas = "chlorine_gas";
 
-	// Token: 0x040007A1 RID: 1953
 	public const string Methane = "methane";
 
-	// Token: 0x040007A2 RID: 1954
 	public const string MoltenCopper = "molten_copper";
 
-	// Token: 0x040007A3 RID: 1955
 	public const string MoltenIron = "molten_iron";
 
-	// Token: 0x040007A4 RID: 1956
 	public const string MoltenGold = "molten_gold";
 
-	// Token: 0x040007A5 RID: 1957
 	public const string MoltenAluminum = "molten_aluminum";
 
-	// Token: 0x040007A6 RID: 1958
 	public const string MoltenTungsten = "molten_tungsten";
 
-	// Token: 0x040007A7 RID: 1959
 	public const string MoltenNiobium = "molten_niobium";
 
-	// Token: 0x040007A8 RID: 1960
 	public const string MoltenCobalt = "molten_cobalt";
 
-	// Token: 0x040007A9 RID: 1961
 	public const string OilDrip = "oil_drip";
 
-	// Token: 0x040007AA RID: 1962
 	public const string LiquidSulfur = "liquid_sulfur";
 
-	// Token: 0x020002A1 RID: 673
 	public struct GeyserPrefabParams
 	{
-		// Token: 0x060009E5 RID: 2533 RVA: 0x001728DC File Offset: 0x00170ADC
 		public GeyserPrefabParams(string anim, int width, int height, GeyserConfigurator.GeyserType geyserType, bool isGenericGeyser)
 		{
 			this.id = "GeyserGeneric_" + geyserType.id;
@@ -224,168 +189,115 @@ public class GeyserGenericConfig : IMultiEntityConfig
 			this.isGenericGeyser = isGenericGeyser;
 		}
 
-		// Token: 0x040007AB RID: 1963
 		public string id;
 
-		// Token: 0x040007AC RID: 1964
 		public string anim;
 
-		// Token: 0x040007AD RID: 1965
 		public int width;
 
-		// Token: 0x040007AE RID: 1966
 		public int height;
 
-		// Token: 0x040007AF RID: 1967
 		public StringKey nameStringKey;
 
-		// Token: 0x040007B0 RID: 1968
 		public StringKey descStringKey;
 
-		// Token: 0x040007B1 RID: 1969
 		public GeyserConfigurator.GeyserType geyserType;
 
-		// Token: 0x040007B2 RID: 1970
 		public bool isGenericGeyser;
 	}
 
-	// Token: 0x020002A2 RID: 674
 	private static class TEMPERATURES
 	{
-		// Token: 0x040007B3 RID: 1971
 		public const float BELOW_FREEZING = 263.15f;
 
-		// Token: 0x040007B4 RID: 1972
 		public const float DUPE_NORMAL = 303.15f;
 
-		// Token: 0x040007B5 RID: 1973
 		public const float DUPE_HOT = 333.15f;
 
-		// Token: 0x040007B6 RID: 1974
 		public const float BELOW_BOILING = 368.15f;
 
-		// Token: 0x040007B7 RID: 1975
 		public const float ABOVE_BOILING = 383.15f;
 
-		// Token: 0x040007B8 RID: 1976
 		public const float HOT1 = 423.15f;
 
-		// Token: 0x040007B9 RID: 1977
 		public const float HOT2 = 773.15f;
 
-		// Token: 0x040007BA RID: 1978
 		public const float MOLTEN_MAGMA = 2000f;
 	}
 
-	// Token: 0x020002A3 RID: 675
 	public static class RATES
 	{
-		// Token: 0x040007BB RID: 1979
 		public const float GAS_SMALL_MIN = 40f;
 
-		// Token: 0x040007BC RID: 1980
 		public const float GAS_SMALL_MAX = 80f;
 
-		// Token: 0x040007BD RID: 1981
 		public const float GAS_NORMAL_MIN = 70f;
 
-		// Token: 0x040007BE RID: 1982
 		public const float GAS_NORMAL_MAX = 140f;
 
-		// Token: 0x040007BF RID: 1983
 		public const float GAS_BIG_MIN = 100f;
 
-		// Token: 0x040007C0 RID: 1984
 		public const float GAS_BIG_MAX = 200f;
 
-		// Token: 0x040007C1 RID: 1985
 		public const float LIQUID_SMALL_MIN = 500f;
 
-		// Token: 0x040007C2 RID: 1986
 		public const float LIQUID_SMALL_MAX = 1000f;
 
-		// Token: 0x040007C3 RID: 1987
 		public const float LIQUID_NORMAL_MIN = 1000f;
 
-		// Token: 0x040007C4 RID: 1988
 		public const float LIQUID_NORMAL_MAX = 2000f;
 
-		// Token: 0x040007C5 RID: 1989
 		public const float LIQUID_BIG_MIN = 2000f;
 
-		// Token: 0x040007C6 RID: 1990
 		public const float LIQUID_BIG_MAX = 4000f;
 
-		// Token: 0x040007C7 RID: 1991
 		public const float MOLTEN_NORMAL_MIN = 200f;
 
-		// Token: 0x040007C8 RID: 1992
 		public const float MOLTEN_NORMAL_MAX = 400f;
 
-		// Token: 0x040007C9 RID: 1993
 		public const float MOLTEN_BIG_MIN = 400f;
 
-		// Token: 0x040007CA RID: 1994
 		public const float MOLTEN_BIG_MAX = 800f;
 
-		// Token: 0x040007CB RID: 1995
 		public const float MOLTEN_HUGE_MIN = 800f;
 
-		// Token: 0x040007CC RID: 1996
 		public const float MOLTEN_HUGE_MAX = 1600f;
 	}
 
-	// Token: 0x020002A4 RID: 676
 	public static class MAX_PRESSURES
 	{
-		// Token: 0x040007CD RID: 1997
 		public const float GAS = 5f;
 
-		// Token: 0x040007CE RID: 1998
 		public const float GAS_HIGH = 15f;
 
-		// Token: 0x040007CF RID: 1999
 		public const float MOLTEN = 150f;
 
-		// Token: 0x040007D0 RID: 2000
 		public const float LIQUID_SMALL = 50f;
 
-		// Token: 0x040007D1 RID: 2001
 		public const float LIQUID = 500f;
 	}
 
-	// Token: 0x020002A5 RID: 677
 	public static class ITERATIONS
 	{
-		// Token: 0x020002A6 RID: 678
 		public static class INFREQUENT_MOLTEN
 		{
-			// Token: 0x040007D2 RID: 2002
 			public const float PCT_MIN = 0.005f;
 
-			// Token: 0x040007D3 RID: 2003
 			public const float PCT_MAX = 0.01f;
 
-			// Token: 0x040007D4 RID: 2004
 			public const float LEN_MIN = 6000f;
 
-			// Token: 0x040007D5 RID: 2005
 			public const float LEN_MAX = 12000f;
 		}
 
-		// Token: 0x020002A7 RID: 679
 		public static class FREQUENT_MOLTEN
 		{
-			// Token: 0x040007D6 RID: 2006
 			public const float PCT_MIN = 0.016666668f;
 
-			// Token: 0x040007D7 RID: 2007
 			public const float PCT_MAX = 0.1f;
 
-			// Token: 0x040007D8 RID: 2008
 			public const float LEN_MIN = 480f;
 
-			// Token: 0x040007D9 RID: 2009
 			public const float LEN_MAX = 1080f;
 		}
 	}

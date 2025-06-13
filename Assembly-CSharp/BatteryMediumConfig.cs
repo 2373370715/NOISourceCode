@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200002E RID: 46
 public class BatteryMediumConfig : BaseBatteryConfig
 {
-	// Token: 0x060000C0 RID: 192 RVA: 0x001499C8 File Offset: 0x00147BC8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "BatteryMedium";
@@ -27,7 +25,6 @@ public class BatteryMediumConfig : BaseBatteryConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060000C1 RID: 193 RVA: 0x000AA387 File Offset: 0x000A8587
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		Battery battery = go.AddOrGet<Battery>();
@@ -36,13 +33,11 @@ public class BatteryMediumConfig : BaseBatteryConfig
 		base.DoPostConfigureComplete(go);
 	}
 
-	// Token: 0x060000C2 RID: 194 RVA: 0x000AA364 File Offset: 0x000A8564
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		base.ConfigureBuildingTemplate(go, prefab_tag);
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.PowerBuilding, false);
 	}
 
-	// Token: 0x04000083 RID: 131
 	public const string ID = "BatteryMedium";
 }

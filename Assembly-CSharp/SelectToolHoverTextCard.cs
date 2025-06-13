@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02001B96 RID: 7062
 public class SelectToolHoverTextCard : HoverTextConfiguration
 {
-	// Token: 0x0600943D RID: 37949 RVA: 0x0039CD50 File Offset: 0x0039AF50
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -49,7 +47,6 @@ public class SelectToolHoverTextCard : HoverTextConfiguration
 		});
 	}
 
-	// Token: 0x0600943E RID: 37950 RVA: 0x0039CEDC File Offset: 0x0039B0DC
 	public override void ConfigureHoverScreen()
 	{
 		base.ConfigureHoverScreen();
@@ -65,13 +62,11 @@ public class SelectToolHoverTextCard : HoverTextConfiguration
 		});
 	}
 
-	// Token: 0x0600943F RID: 37951 RVA: 0x001033B1 File Offset: 0x001015B1
 	private bool IsStatusItemWarning(StatusItemGroup.Entry item)
 	{
 		return item.item.notificationType == NotificationType.Bad || item.item.notificationType == NotificationType.BadMinor || item.item.notificationType == NotificationType.DuplicantThreatening;
 	}
 
-	// Token: 0x06009440 RID: 37952 RVA: 0x0039CF5C File Offset: 0x0039B15C
 	public override void UpdateHoverElements(List<KSelectable> hoverObjects)
 	{
 		if (this.iconWarning == null)
@@ -721,19 +716,16 @@ public class SelectToolHoverTextCard : HoverTextConfiguration
 		hoverTextDrawer.EndDrawing();
 	}
 
-	// Token: 0x06009441 RID: 37953 RVA: 0x00105454 File Offset: 0x00103654
 	public void DrawLogicIcon(HoverTextDrawer drawer, Sprite icon, TextStyleSetting style)
 	{
 		drawer.DrawIcon(icon, this.GetLogicColorFromStyle(style), 18, 2);
 	}
 
-	// Token: 0x06009442 RID: 37954 RVA: 0x00105467 File Offset: 0x00103667
 	public void DrawLogicText(HoverTextDrawer drawer, string text, TextStyleSetting style)
 	{
 		drawer.DrawText(text, style, this.GetLogicColorFromStyle(style), true);
 	}
 
-	// Token: 0x06009443 RID: 37955 RVA: 0x0039EA10 File Offset: 0x0039CC10
 	private Color GetLogicColorFromStyle(TextStyleSetting style)
 	{
 		ColorSet colorSet = GlobalAssets.Instance.colorSet;
@@ -748,13 +740,11 @@ public class SelectToolHoverTextCard : HoverTextConfiguration
 		return style.textColor;
 	}
 
-	// Token: 0x06009444 RID: 37956 RVA: 0x00105479 File Offset: 0x00103679
 	private bool ShowStatusItemInCurrentOverlay(StatusItem status)
 	{
 		return !(OverlayScreen.Instance == null) && (status.status_overlays & (int)StatusItem.GetStatusItemOverlayBySimViewMode(OverlayScreen.Instance.GetMode())) == (int)StatusItem.GetStatusItemOverlayBySimViewMode(OverlayScreen.Instance.GetMode());
 	}
 
-	// Token: 0x06009445 RID: 37957 RVA: 0x0039EA6C File Offset: 0x0039CC6C
 	private bool ShouldShowSelectableInCurrentOverlay(KSelectable selectable)
 	{
 		bool result = true;
@@ -779,44 +769,37 @@ public class SelectToolHoverTextCard : HoverTextConfiguration
 		return result;
 	}
 
-	// Token: 0x06009446 RID: 37958 RVA: 0x001054B1 File Offset: 0x001036B1
 	private static bool ShouldShowOxygenOverlay(KSelectable selectable)
 	{
 		return selectable.GetComponent<AlgaeHabitat>() != null || selectable.GetComponent<Electrolyzer>() != null || selectable.GetComponent<AirFilter>() != null;
 	}
 
-	// Token: 0x06009447 RID: 37959 RVA: 0x001054E0 File Offset: 0x001036E0
 	private static bool ShouldShowLightOverlay(KSelectable selectable)
 	{
 		return selectable.GetComponent<Light2D>() != null;
 	}
 
-	// Token: 0x06009448 RID: 37960 RVA: 0x001054EE File Offset: 0x001036EE
 	private static bool ShouldShowRadiationOverlay(KSelectable selectable)
 	{
 		return selectable.GetComponent<HighEnergyParticle>() != null || selectable.GetComponent<HighEnergyParticlePort>();
 	}
 
-	// Token: 0x06009449 RID: 37961 RVA: 0x0039EACC File Offset: 0x0039CCCC
 	private static bool ShouldShowGasConduitOverlay(KSelectable selectable)
 	{
 		return (selectable.GetComponent<Conduit>() != null && selectable.GetComponent<Conduit>().type == ConduitType.Gas) || (selectable.GetComponent<Filterable>() != null && selectable.GetComponent<Filterable>().filterElementState == Filterable.ElementState.Gas) || (selectable.GetComponent<Vent>() != null && selectable.GetComponent<Vent>().conduitType == ConduitType.Gas) || (selectable.GetComponent<Pump>() != null && selectable.GetComponent<Pump>().conduitType == ConduitType.Gas) || (selectable.GetComponent<ValveBase>() != null && selectable.GetComponent<ValveBase>().conduitType == ConduitType.Gas);
 	}
 
-	// Token: 0x0600944A RID: 37962 RVA: 0x0039EB88 File Offset: 0x0039CD88
 	private static bool ShouldShowLiquidConduitOverlay(KSelectable selectable)
 	{
 		return (selectable.GetComponent<Conduit>() != null && selectable.GetComponent<Conduit>().type == ConduitType.Liquid) || (selectable.GetComponent<Filterable>() != null && selectable.GetComponent<Filterable>().filterElementState == Filterable.ElementState.Liquid) || (selectable.GetComponent<Vent>() != null && selectable.GetComponent<Vent>().conduitType == ConduitType.Liquid) || (selectable.GetComponent<Pump>() != null && selectable.GetComponent<Pump>().conduitType == ConduitType.Liquid) || (selectable.GetComponent<ValveBase>() != null && selectable.GetComponent<ValveBase>().conduitType == ConduitType.Liquid);
 	}
 
-	// Token: 0x0600944B RID: 37963 RVA: 0x0039EC44 File Offset: 0x0039CE44
 	private static bool ShouldShowPowerOverlay(KSelectable selectable)
 	{
 		Tag prefabTag = selectable.GetComponent<KPrefabID>().PrefabTag;
 		return OverlayScreen.WireIDs.Contains(prefabTag) || selectable.GetComponent<Battery>() != null || selectable.GetComponent<PowerTransformer>() != null || selectable.GetComponent<EnergyConsumer>() != null || selectable.GetComponent<EnergyGenerator>() != null;
 	}
 
-	// Token: 0x0600944C RID: 37964 RVA: 0x0039ECAC File Offset: 0x0039CEAC
 	private static bool ShouldShowTileOverlay(KSelectable selectable)
 	{
 		bool result = false;
@@ -836,103 +819,79 @@ public class SelectToolHoverTextCard : HoverTextConfiguration
 		return result;
 	}
 
-	// Token: 0x0600944D RID: 37965 RVA: 0x0010550B File Offset: 0x0010370B
 	private static bool ShouldShowTemperatureOverlay(KSelectable selectable)
 	{
 		return selectable.GetComponent<PrimaryElement>() != null;
 	}
 
-	// Token: 0x0600944E RID: 37966 RVA: 0x0039ED28 File Offset: 0x0039CF28
 	private static bool ShouldShowLogicOverlay(KSelectable selectable)
 	{
 		Tag prefabTag = selectable.GetComponent<KPrefabID>().PrefabTag;
 		return OverlayModes.Logic.HighlightItemIDs.Contains(prefabTag) || selectable.GetComponent<LogicPorts>() != null;
 	}
 
-	// Token: 0x0600944F RID: 37967 RVA: 0x0039ED5C File Offset: 0x0039CF5C
 	private static bool ShouldShowSolidConveyorOverlay(KSelectable selectable)
 	{
 		Tag prefabTag = selectable.GetComponent<KPrefabID>().PrefabTag;
 		return OverlayScreen.SolidConveyorIDs.Contains(prefabTag);
 	}
 
-	// Token: 0x06009450 RID: 37968 RVA: 0x000B1628 File Offset: 0x000AF828
 	private static bool HideInOverlay(KSelectable selectable)
 	{
 		return false;
 	}
 
-	// Token: 0x06009451 RID: 37969 RVA: 0x00105519 File Offset: 0x00103719
 	private static bool ShowOverlayIfHasComponent<T>(KSelectable selectable)
 	{
 		return selectable.GetComponent<T>() != null;
 	}
 
-	// Token: 0x06009452 RID: 37970 RVA: 0x00105529 File Offset: 0x00103729
 	private static bool ShouldShowCropOverlay(KSelectable selectable)
 	{
 		return selectable.GetComponent<Uprootable>() != null || selectable.GetComponent<PlanterBox>() != null;
 	}
 
-	// Token: 0x04007063 RID: 28771
 	public static int maxNumberOfDisplayedSelectableWarnings = 10;
 
-	// Token: 0x04007064 RID: 28772
 	private Dictionary<HashedString, Func<bool>> overlayFilterMap = new Dictionary<HashedString, Func<bool>>();
 
-	// Token: 0x04007065 RID: 28773
 	public int recentNumberOfDisplayedSelectables;
 
-	// Token: 0x04007066 RID: 28774
 	public int currentSelectedSelectableIndex = -1;
 
-	// Token: 0x04007067 RID: 28775
 	[NonSerialized]
 	public Sprite iconWarning;
 
-	// Token: 0x04007068 RID: 28776
 	[NonSerialized]
 	public Sprite iconDash;
 
-	// Token: 0x04007069 RID: 28777
 	[NonSerialized]
 	public Sprite iconHighlighted;
 
-	// Token: 0x0400706A RID: 28778
 	[NonSerialized]
 	public Sprite iconActiveAutomationPort;
 
-	// Token: 0x0400706B RID: 28779
 	public HoverTextConfiguration.TextStylePair Styles_LogicActive;
 
-	// Token: 0x0400706C RID: 28780
 	public HoverTextConfiguration.TextStylePair Styles_LogicStandby;
 
-	// Token: 0x0400706D RID: 28781
 	public TextStyleSetting Styles_LogicSignalInactive;
 
-	// Token: 0x0400706E RID: 28782
 	public static List<GameObject> highlightedObjects = new List<GameObject>();
 
-	// Token: 0x0400706F RID: 28783
 	private static readonly List<Type> hiddenChoreConsumerTypes = new List<Type>
 	{
 		typeof(KSelectableHealthBar)
 	};
 
-	// Token: 0x04007070 RID: 28784
 	private int maskOverlay;
 
-	// Token: 0x04007071 RID: 28785
 	private string cachedTemperatureString;
 
-	// Token: 0x04007072 RID: 28786
 	private float cachedTemperature = float.MinValue;
 
-	// Token: 0x04007073 RID: 28787
 	private List<KSelectable> overlayValidHoverObjects = new List<KSelectable>();
 
-	// Token: 0x04007074 RID: 28788
 	private Dictionary<HashedString, Func<KSelectable, bool>> modeFilters = new Dictionary<HashedString, Func<KSelectable, bool>>
 	{
 		{

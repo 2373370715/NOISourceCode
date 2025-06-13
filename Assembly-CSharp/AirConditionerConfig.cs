@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200001C RID: 28
 public class AirConditionerConfig : IBuildingConfig
 {
-	// Token: 0x0600006E RID: 110 RVA: 0x00147D40 File Offset: 0x00145F40
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "AirConditioner";
@@ -34,7 +32,6 @@ public class AirConditionerConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600006F RID: 111 RVA: 0x00147DEC File Offset: 0x00145FEC
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<LoopingSounds>();
@@ -55,13 +52,11 @@ public class AirConditionerConfig : IBuildingConfig
 		conduitConsumer.consumptionRate = 1f;
 	}
 
-	// Token: 0x06000070 RID: 112 RVA: 0x000AA1AD File Offset: 0x000A83AD
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
 		go.AddOrGetDef<PoweredActiveController.Def>();
 	}
 
-	// Token: 0x04000051 RID: 81
 	public const string ID = "AirConditioner";
 }

@@ -4,16 +4,13 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005E4 RID: 1508
 public class TemporalTearOpenerConfig : IBuildingConfig
 {
-	// Token: 0x06001A67 RID: 6759 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06001A68 RID: 6760 RVA: 0x001B3B20 File Offset: 0x001B1D20
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "TemporalTearOpener";
@@ -41,7 +38,6 @@ public class TemporalTearOpenerConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001A69 RID: 6761 RVA: 0x001B3BE4 File Offset: 0x001B1DE4
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -58,24 +54,18 @@ public class TemporalTearOpenerConfig : IBuildingConfig
 		def.consumeRate = 5f;
 	}
 
-	// Token: 0x06001A6A RID: 6762 RVA: 0x000B59B0 File Offset: 0x000B3BB0
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.GetComponent<Deconstructable>().allowDeconstruction = false;
 	}
 
-	// Token: 0x04001114 RID: 4372
 	public const string ID = "TemporalTearOpener";
 
-	// Token: 0x04001115 RID: 4373
 	public const string PORT_ID = "HEP_STORAGE";
 
-	// Token: 0x04001116 RID: 4374
 	public const float PARTICLES_CAPACITY = 1000f;
 
-	// Token: 0x04001117 RID: 4375
 	public const float NUM_PARTICLES_TO_OPEN_TEAR = 10000f;
 
-	// Token: 0x04001118 RID: 4376
 	public const float PARTICLE_CONSUME_RATE = 5f;
 }

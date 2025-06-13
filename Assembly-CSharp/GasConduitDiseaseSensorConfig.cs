@@ -4,11 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000053 RID: 83
 public class GasConduitDiseaseSensorConfig : ConduitSensorConfig
 {
-	// Token: 0x1700000A RID: 10
-	// (get) Token: 0x06000185 RID: 389 RVA: 0x000AA7E7 File Offset: 0x000A89E7
 	protected override ConduitType ConduitType
 	{
 		get
@@ -17,7 +14,6 @@ public class GasConduitDiseaseSensorConfig : ConduitSensorConfig
 		}
 	}
 
-	// Token: 0x06000186 RID: 390 RVA: 0x0014D20C File Offset: 0x0014B40C
 	public override BuildingDef CreateBuildingDef()
 	{
 		BuildingDef result = base.CreateBuildingDef(GasConduitDiseaseSensorConfig.ID, "gas_germs_sensor_kanim", new float[]
@@ -36,7 +32,6 @@ public class GasConduitDiseaseSensorConfig : ConduitSensorConfig
 		return result;
 	}
 
-	// Token: 0x06000187 RID: 391 RVA: 0x0014D2A4 File Offset: 0x0014B4A4
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		base.DoPostConfigureComplete(go);
@@ -49,6 +44,5 @@ public class GasConduitDiseaseSensorConfig : ConduitSensorConfig
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayInFrontOfConduits, false);
 	}
 
-	// Token: 0x040000EC RID: 236
 	public static string ID = "GasConduitDiseaseSensor";
 }

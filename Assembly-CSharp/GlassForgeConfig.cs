@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200036C RID: 876
 public class GlassForgeConfig : IBuildingConfig
 {
-	// Token: 0x06000DE5 RID: 3557 RVA: 0x001804EC File Offset: 0x0017E6EC
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "GlassForge";
@@ -34,7 +32,6 @@ public class GlassForgeConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000DE6 RID: 3558 RVA: 0x00180594 File Offset: 0x0017E794
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<DropAllWorkable>();
@@ -83,7 +80,6 @@ public class GlassForgeConfig : IBuildingConfig
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x06000DE7 RID: 3559 RVA: 0x000B0733 File Offset: 0x000AE933
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		SymbolOverrideControllerUtil.AddToPrefab(go);
@@ -99,23 +95,18 @@ public class GlassForgeConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x04000A55 RID: 2645
 	public const string ID = "GlassForge";
 
-	// Token: 0x04000A56 RID: 2646
 	private const float INPUT_KG = 100f;
 
-	// Token: 0x04000A57 RID: 2647
 	public static readonly CellOffset outPipeOffset = new CellOffset(1, 3);
 
-	// Token: 0x04000A58 RID: 2648
 	private static readonly List<Storage.StoredItemModifier> RefineryStoredItemModifiers = new List<Storage.StoredItemModifier>
 	{
 		Storage.StoredItemModifier.Hide,
 		Storage.StoredItemModifier.Preserve
 	};
 
-	// Token: 0x04000A59 RID: 2649
 	public static readonly List<Storage.StoredItemModifier> OutputItemModifiers = new List<Storage.StoredItemModifier>
 	{
 		Storage.StoredItemModifier.Hide,

@@ -7,17 +7,14 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x020012C0 RID: 4800
 [SerializationConfig(MemberSerialization.OptIn)]
 public class ElementConverter : StateMachineComponent<ElementConverter.StatesInstance>, IGameObjectEffectDescriptor
 {
-	// Token: 0x06006238 RID: 25144 RVA: 0x000E48A8 File Offset: 0x000E2AA8
 	public void SetWorkSpeedMultiplier(float speed)
 	{
 		this.workSpeedMultiplier = speed;
 	}
 
-	// Token: 0x06006239 RID: 25145 RVA: 0x002C3D04 File Offset: 0x002C1F04
 	public void SetConsumedElementActive(Tag elementId, bool active)
 	{
 		int i = 0;
@@ -46,7 +43,6 @@ public class ElementConverter : StateMachineComponent<ElementConverter.StatesIns
 		}
 	}
 
-	// Token: 0x0600623A RID: 25146 RVA: 0x002C3DA0 File Offset: 0x002C1FA0
 	public void SetOutputElementActive(SimHashes element, bool active)
 	{
 		int i = 0;
@@ -71,15 +67,11 @@ public class ElementConverter : StateMachineComponent<ElementConverter.StatesIns
 		}
 	}
 
-	// Token: 0x0600623B RID: 25147 RVA: 0x000E48B1 File Offset: 0x000E2AB1
 	public void SetStorage(Storage storage)
 	{
 		this.storage = storage;
 	}
 
-	// Token: 0x17000603 RID: 1539
-	// (get) Token: 0x0600623C RID: 25148 RVA: 0x000E48BA File Offset: 0x000E2ABA
-	// (set) Token: 0x0600623D RID: 25149 RVA: 0x000E48C2 File Offset: 0x000E2AC2
 	public float OutputMultiplier
 	{
 		get
@@ -92,8 +84,6 @@ public class ElementConverter : StateMachineComponent<ElementConverter.StatesIns
 		}
 	}
 
-	// Token: 0x17000604 RID: 1540
-	// (get) Token: 0x0600623E RID: 25150 RVA: 0x000E48CB File Offset: 0x000E2ACB
 	public float AverageConvertRate
 	{
 		get
@@ -102,7 +92,6 @@ public class ElementConverter : StateMachineComponent<ElementConverter.StatesIns
 		}
 	}
 
-	// Token: 0x0600623F RID: 25151 RVA: 0x002C3E2C File Offset: 0x002C202C
 	public bool HasEnoughMass(Tag tag, bool includeInactive = false)
 	{
 		bool result = false;
@@ -127,7 +116,6 @@ public class ElementConverter : StateMachineComponent<ElementConverter.StatesIns
 		return result;
 	}
 
-	// Token: 0x06006240 RID: 25152 RVA: 0x002C3EE4 File Offset: 0x002C20E4
 	public bool HasEnoughMassToStartConverting(bool includeInactive = false)
 	{
 		float speedMultiplier = this.GetSpeedMultiplier();
@@ -160,7 +148,6 @@ public class ElementConverter : StateMachineComponent<ElementConverter.StatesIns
 		return flag && flag2;
 	}
 
-	// Token: 0x06006241 RID: 25153 RVA: 0x002C3FCC File Offset: 0x002C21CC
 	public bool CanConvertAtAll()
 	{
 		bool flag = this.consumedElements.Length == 0;
@@ -192,13 +179,11 @@ public class ElementConverter : StateMachineComponent<ElementConverter.StatesIns
 		return flag && flag2;
 	}
 
-	// Token: 0x06006242 RID: 25154 RVA: 0x000E48ED File Offset: 0x000E2AED
 	private float GetSpeedMultiplier()
 	{
 		return this.machinerySpeedAttribute.GetTotalValue() * this.workSpeedMultiplier;
 	}
 
-	// Token: 0x06006243 RID: 25155 RVA: 0x002C408C File Offset: 0x002C228C
 	private void ConvertMass()
 	{
 		float speedMultiplier = this.GetSpeedMultiplier();
@@ -371,7 +356,6 @@ public class ElementConverter : StateMachineComponent<ElementConverter.StatesIns
 		this.storage.Trigger(-1697596308, base.gameObject);
 	}
 
-	// Token: 0x06006244 RID: 25156 RVA: 0x002C46F8 File Offset: 0x002C28F8
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -399,7 +383,6 @@ public class ElementConverter : StateMachineComponent<ElementConverter.StatesIns
 		}
 	}
 
-	// Token: 0x06006245 RID: 25157 RVA: 0x002C47D8 File Offset: 0x002C29D8
 	public void SetAllConsumedActive(bool active)
 	{
 		for (int i = 0; i < this.consumedElements.Length; i++)
@@ -409,7 +392,6 @@ public class ElementConverter : StateMachineComponent<ElementConverter.StatesIns
 		base.smi.sm.canConvert.Set(active, base.smi, false);
 	}
 
-	// Token: 0x06006246 RID: 25158 RVA: 0x002C4828 File Offset: 0x002C2A28
 	public void SetConsumedActive(Tag id, bool active)
 	{
 		bool flag = this.consumedElements.Length == 0;
@@ -430,7 +412,6 @@ public class ElementConverter : StateMachineComponent<ElementConverter.StatesIns
 		base.smi.sm.canConvert.Set(flag, base.smi, false);
 	}
 
-	// Token: 0x06006247 RID: 25159 RVA: 0x002C48A4 File Offset: 0x002C2AA4
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -447,7 +428,6 @@ public class ElementConverter : StateMachineComponent<ElementConverter.StatesIns
 		base.smi.StartSM();
 	}
 
-	// Token: 0x06006248 RID: 25160 RVA: 0x002C4960 File Offset: 0x002C2B60
 	protected override void OnCleanUp()
 	{
 		for (int i = 0; i < this.consumedElements.Length; i++)
@@ -461,7 +441,6 @@ public class ElementConverter : StateMachineComponent<ElementConverter.StatesIns
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06006249 RID: 25161 RVA: 0x002C49DC File Offset: 0x002C2BDC
 	public List<Descriptor> GetDescriptors(GameObject go)
 	{
 		List<Descriptor> list = new List<Descriptor>();
@@ -507,65 +486,46 @@ public class ElementConverter : StateMachineComponent<ElementConverter.StatesIns
 		return list;
 	}
 
-	// Token: 0x04004674 RID: 18036
 	[MyCmpGet]
 	private Operational operational;
 
-	// Token: 0x04004675 RID: 18037
 	[MyCmpReq]
 	private Storage storage;
 
-	// Token: 0x04004676 RID: 18038
 	public Action<float> onConvertMass;
 
-	// Token: 0x04004677 RID: 18039
 	private float totalDiseaseWeight = float.MaxValue;
 
-	// Token: 0x04004678 RID: 18040
 	public Operational.State OperationalRequirement = Operational.State.Active;
 
-	// Token: 0x04004679 RID: 18041
 	private AttributeInstance machinerySpeedAttribute;
 
-	// Token: 0x0400467A RID: 18042
 	private float workSpeedMultiplier = 1f;
 
-	// Token: 0x0400467B RID: 18043
 	public bool showDescriptors = true;
 
-	// Token: 0x0400467C RID: 18044
 	private const float BASE_INTERVAL = 1f;
 
-	// Token: 0x0400467D RID: 18045
 	public ElementConverter.ConsumedElement[] consumedElements;
 
-	// Token: 0x0400467E RID: 18046
 	public ElementConverter.OutputElement[] outputElements;
 
-	// Token: 0x0400467F RID: 18047
 	public bool ShowInUI = true;
 
-	// Token: 0x04004680 RID: 18048
 	private float outputMultiplier = 1f;
 
-	// Token: 0x04004681 RID: 18049
 	private Dictionary<Tag, Guid> consumedElementStatusHandles = new Dictionary<Tag, Guid>();
 
-	// Token: 0x04004682 RID: 18050
 	private Dictionary<SimHashes, Guid> outputElementStatusHandles = new Dictionary<SimHashes, Guid>();
 
-	// Token: 0x04004683 RID: 18051
 	private static StatusItem ElementConverterInput;
 
-	// Token: 0x04004684 RID: 18052
 	private static StatusItem ElementConverterOutput;
 
-	// Token: 0x020012C1 RID: 4801
 	[DebuggerDisplay("{tag} {massConsumptionRate}")]
 	[Serializable]
 	public struct ConsumedElement
 	{
-		// Token: 0x0600624B RID: 25163 RVA: 0x000E4901 File Offset: 0x000E2B01
 		public ConsumedElement(Tag tag, float kgPerSecond, bool isActive = true)
 		{
 			this.Tag = tag;
@@ -574,8 +534,6 @@ public class ElementConverter : StateMachineComponent<ElementConverter.StatesIns
 			this.Accumulator = HandleVector<int>.InvalidHandle;
 		}
 
-		// Token: 0x17000605 RID: 1541
-		// (get) Token: 0x0600624C RID: 25164 RVA: 0x000E4923 File Offset: 0x000E2B23
 		public string Name
 		{
 			get
@@ -584,8 +542,6 @@ public class ElementConverter : StateMachineComponent<ElementConverter.StatesIns
 			}
 		}
 
-		// Token: 0x17000606 RID: 1542
-		// (get) Token: 0x0600624D RID: 25165 RVA: 0x000E4930 File Offset: 0x000E2B30
 		public float Rate
 		{
 			get
@@ -594,24 +550,18 @@ public class ElementConverter : StateMachineComponent<ElementConverter.StatesIns
 			}
 		}
 
-		// Token: 0x04004685 RID: 18053
 		public Tag Tag;
 
-		// Token: 0x04004686 RID: 18054
 		public float MassConsumptionRate;
 
-		// Token: 0x04004687 RID: 18055
 		public bool IsActive;
 
-		// Token: 0x04004688 RID: 18056
 		public HandleVector<int>.Handle Accumulator;
 	}
 
-	// Token: 0x020012C2 RID: 4802
 	[Serializable]
 	public struct OutputElement
 	{
-		// Token: 0x0600624E RID: 25166 RVA: 0x002C4BF8 File Offset: 0x002C2DF8
 		public OutputElement(float kgPerSecond, SimHashes element, float minOutputTemperature, bool useEntityTemperature = false, bool storeOutput = false, float outputElementOffsetx = 0f, float outputElementOffsety = 0.5f, float diseaseWeight = 1f, byte addedDiseaseIdx = 255, int addedDiseaseCount = 0, bool isActive = true)
 		{
 			this.elementHash = element;
@@ -627,8 +577,6 @@ public class ElementConverter : StateMachineComponent<ElementConverter.StatesIns
 			this.IsActive = isActive;
 		}
 
-		// Token: 0x17000607 RID: 1543
-		// (get) Token: 0x0600624F RID: 25167 RVA: 0x000E4947 File Offset: 0x000E2B47
 		public string Name
 		{
 			get
@@ -637,8 +585,6 @@ public class ElementConverter : StateMachineComponent<ElementConverter.StatesIns
 			}
 		}
 
-		// Token: 0x17000608 RID: 1544
-		// (get) Token: 0x06006250 RID: 25168 RVA: 0x000E495E File Offset: 0x000E2B5E
 		public float Rate
 		{
 			get
@@ -647,50 +593,36 @@ public class ElementConverter : StateMachineComponent<ElementConverter.StatesIns
 			}
 		}
 
-		// Token: 0x04004689 RID: 18057
 		public bool IsActive;
 
-		// Token: 0x0400468A RID: 18058
 		public SimHashes elementHash;
 
-		// Token: 0x0400468B RID: 18059
 		public float minOutputTemperature;
 
-		// Token: 0x0400468C RID: 18060
 		public bool useEntityTemperature;
 
-		// Token: 0x0400468D RID: 18061
 		public float massGenerationRate;
 
-		// Token: 0x0400468E RID: 18062
 		public bool storeOutput;
 
-		// Token: 0x0400468F RID: 18063
 		public Vector2 outputElementOffset;
 
-		// Token: 0x04004690 RID: 18064
 		public HandleVector<int>.Handle accumulator;
 
-		// Token: 0x04004691 RID: 18065
 		public float diseaseWeight;
 
-		// Token: 0x04004692 RID: 18066
 		public byte addedDiseaseIdx;
 
-		// Token: 0x04004693 RID: 18067
 		public int addedDiseaseCount;
 	}
 
-	// Token: 0x020012C3 RID: 4803
 	public class StatesInstance : GameStateMachine<ElementConverter.States, ElementConverter.StatesInstance, ElementConverter, object>.GameInstance
 	{
-		// Token: 0x06006251 RID: 25169 RVA: 0x000E4975 File Offset: 0x000E2B75
 		public StatesInstance(ElementConverter smi) : base(smi)
 		{
 			this.selectable = base.GetComponent<KSelectable>();
 		}
 
-		// Token: 0x06006252 RID: 25170 RVA: 0x002C4C64 File Offset: 0x002C2E64
 		public void AddStatusItems()
 		{
 			if (!base.master.ShowInUI)
@@ -713,7 +645,6 @@ public class ElementConverter : StateMachineComponent<ElementConverter.StatesIns
 			}
 		}
 
-		// Token: 0x06006253 RID: 25171 RVA: 0x002C4D14 File Offset: 0x002C2F14
 		public void RemoveStatusItems()
 		{
 			if (!base.master.ShowInUI)
@@ -734,14 +665,12 @@ public class ElementConverter : StateMachineComponent<ElementConverter.StatesIns
 			base.master.outputElementStatusHandles.Clear();
 		}
 
-		// Token: 0x06006254 RID: 25172 RVA: 0x002C4DD4 File Offset: 0x002C2FD4
 		public void AddStatusItem<ElementType, IDType>(ElementType element, IDType id, StatusItem status, Dictionary<IDType, Guid> collection)
 		{
 			Guid value = this.selectable.AddStatusItem(status, element);
 			collection[id] = value;
 		}
 
-		// Token: 0x06006255 RID: 25173 RVA: 0x002C4E00 File Offset: 0x002C3000
 		public void RemoveStatusItem<IDType>(IDType id, Dictionary<IDType, Guid> collection)
 		{
 			Guid guid;
@@ -752,7 +681,6 @@ public class ElementConverter : StateMachineComponent<ElementConverter.StatesIns
 			this.selectable.RemoveStatusItem(guid, false);
 		}
 
-		// Token: 0x06006256 RID: 25174 RVA: 0x002C4E28 File Offset: 0x002C3028
 		public void OnOperationalRequirementChanged(object data)
 		{
 			Operational operational = data as Operational;
@@ -760,14 +688,11 @@ public class ElementConverter : StateMachineComponent<ElementConverter.StatesIns
 			base.sm.canConvert.Set(value, this, false);
 		}
 
-		// Token: 0x04004694 RID: 18068
 		private KSelectable selectable;
 	}
 
-	// Token: 0x020012C4 RID: 4804
 	public class States : GameStateMachine<ElementConverter.States, ElementConverter.StatesInstance, ElementConverter>
 	{
-		// Token: 0x06006257 RID: 25175 RVA: 0x002C4E68 File Offset: 0x002C3068
 		private bool ValidateStateTransition(ElementConverter.StatesInstance smi, bool _)
 		{
 			bool flag = smi.GetCurrentState() == smi.sm.disabled;
@@ -791,21 +716,18 @@ public class ElementConverter : StateMachineComponent<ElementConverter.StatesIns
 			return smi.master.operational.MeetsRequirements(smi.master.OperationalRequirement) == flag;
 		}
 
-		// Token: 0x06006258 RID: 25176 RVA: 0x002C4F24 File Offset: 0x002C3124
 		private void OnEnterRoot(ElementConverter.StatesInstance smi)
 		{
 			int eventForState = (int)Operational.GetEventForState(smi.master.OperationalRequirement);
 			smi.Subscribe(eventForState, new Action<object>(smi.OnOperationalRequirementChanged));
 		}
 
-		// Token: 0x06006259 RID: 25177 RVA: 0x002C4F58 File Offset: 0x002C3158
 		private void OnExitRoot(ElementConverter.StatesInstance smi)
 		{
 			int eventForState = (int)Operational.GetEventForState(smi.master.OperationalRequirement);
 			smi.Unsubscribe(eventForState, new Action<object>(smi.OnOperationalRequirementChanged));
 		}
 
-		// Token: 0x0600625A RID: 25178 RVA: 0x002C4F8C File Offset: 0x002C318C
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.disabled;
@@ -823,13 +745,10 @@ public class ElementConverter : StateMachineComponent<ElementConverter.StatesIns
 			}, UpdateRate.SIM_1000ms, true);
 		}
 
-		// Token: 0x04004695 RID: 18069
 		public GameStateMachine<ElementConverter.States, ElementConverter.StatesInstance, ElementConverter, object>.State disabled;
 
-		// Token: 0x04004696 RID: 18070
 		public GameStateMachine<ElementConverter.States, ElementConverter.StatesInstance, ElementConverter, object>.State converting;
 
-		// Token: 0x04004697 RID: 18071
 		public StateMachine<ElementConverter.States, ElementConverter.StatesInstance, ElementConverter, object>.BoolParameter canConvert;
 	}
 }

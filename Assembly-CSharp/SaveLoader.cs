@@ -14,33 +14,20 @@ using ProcGenGame;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001863 RID: 6243
 [AddComponentMenu("KMonoBehaviour/scripts/SaveLoader")]
 public class SaveLoader : KMonoBehaviour
 {
-	// Token: 0x17000833 RID: 2099
-	// (get) Token: 0x060080B4 RID: 32948 RVA: 0x000F94B6 File Offset: 0x000F76B6
-	// (set) Token: 0x060080B5 RID: 32949 RVA: 0x000F94BE File Offset: 0x000F76BE
 	public bool loadedFromSave { get; private set; }
 
-	// Token: 0x060080B6 RID: 32950 RVA: 0x000F94C7 File Offset: 0x000F76C7
 	public static void DestroyInstance()
 	{
 		SaveLoader.Instance = null;
 	}
 
-	// Token: 0x17000834 RID: 2100
-	// (get) Token: 0x060080B7 RID: 32951 RVA: 0x000F94CF File Offset: 0x000F76CF
-	// (set) Token: 0x060080B8 RID: 32952 RVA: 0x000F94D6 File Offset: 0x000F76D6
 	public static SaveLoader Instance { get; private set; }
 
-	// Token: 0x17000835 RID: 2101
-	// (get) Token: 0x060080B9 RID: 32953 RVA: 0x000F94DE File Offset: 0x000F76DE
-	// (set) Token: 0x060080BA RID: 32954 RVA: 0x000F94E6 File Offset: 0x000F76E6
 	public Action<Cluster> OnWorldGenComplete { get; set; }
 
-	// Token: 0x17000836 RID: 2102
-	// (get) Token: 0x060080BB RID: 32955 RVA: 0x000F94EF File Offset: 0x000F76EF
 	public Cluster Cluster
 	{
 		get
@@ -49,8 +36,6 @@ public class SaveLoader : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x17000837 RID: 2103
-	// (get) Token: 0x060080BC RID: 32956 RVA: 0x000F94F7 File Offset: 0x000F76F7
 	public ClusterLayout ClusterLayout
 	{
 		get
@@ -63,24 +48,18 @@ public class SaveLoader : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x17000838 RID: 2104
-	// (get) Token: 0x060080BD RID: 32957 RVA: 0x000F9517 File Offset: 0x000F7717
-	// (set) Token: 0x060080BE RID: 32958 RVA: 0x000F951F File Offset: 0x000F771F
 	public SaveGame.GameInfo GameInfo { get; private set; }
 
-	// Token: 0x060080BF RID: 32959 RVA: 0x000F9528 File Offset: 0x000F7728
 	protected override void OnPrefabInit()
 	{
 		SaveLoader.Instance = this;
 		this.saveManager = base.GetComponent<SaveManager>();
 	}
 
-	// Token: 0x060080C0 RID: 32960 RVA: 0x000AA038 File Offset: 0x000A8238
 	private void MoveCorruptFile(string filename)
 	{
 	}
 
-	// Token: 0x060080C1 RID: 32961 RVA: 0x00341E7C File Offset: 0x0034007C
 	protected override void OnSpawn()
 	{
 		string activeSaveFilePath = SaveLoader.GetActiveSaveFilePath();
@@ -131,7 +110,6 @@ public class SaveLoader : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060080C2 RID: 32962 RVA: 0x00341F8C File Offset: 0x0034018C
 	private static void CompressContents(BinaryWriter fileWriter, byte[] uncompressed, int length)
 	{
 		using (ZlibStream zlibStream = new ZlibStream(fileWriter.BaseStream, CompressionMode.Compress, Ionic.Zlib.CompressionLevel.BestSpeed))
@@ -141,7 +119,6 @@ public class SaveLoader : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060080C3 RID: 32963 RVA: 0x00341FD4 File Offset: 0x003401D4
 	private byte[] FloatToBytes(float[] floats)
 	{
 		byte[] array = new byte[floats.Length * 4];
@@ -149,13 +126,11 @@ public class SaveLoader : KMonoBehaviour
 		return array;
 	}
 
-	// Token: 0x060080C4 RID: 32964 RVA: 0x000F953C File Offset: 0x000F773C
 	private static byte[] DecompressContents(byte[] compressed)
 	{
 		return ZlibStream.UncompressBuffer(compressed);
 	}
 
-	// Token: 0x060080C5 RID: 32965 RVA: 0x00341FFC File Offset: 0x003401FC
 	private float[] BytesToFloat(byte[] bytes)
 	{
 		float[] array = new float[bytes.Length / 4];
@@ -163,7 +138,6 @@ public class SaveLoader : KMonoBehaviour
 		return array;
 	}
 
-	// Token: 0x060080C6 RID: 32966 RVA: 0x00342024 File Offset: 0x00340224
 	private SaveFileRoot PrepSaveFile()
 	{
 		SaveFileRoot saveFileRoot = new SaveFileRoot();
@@ -192,7 +166,6 @@ public class SaveLoader : KMonoBehaviour
 		return saveFileRoot;
 	}
 
-	// Token: 0x060080C7 RID: 32967 RVA: 0x000F9544 File Offset: 0x000F7744
 	private void Save(BinaryWriter writer)
 	{
 		writer.WriteKleiString("world");
@@ -203,7 +176,6 @@ public class SaveLoader : KMonoBehaviour
 		Game.Instance.Save(writer);
 	}
 
-	// Token: 0x060080C8 RID: 32968 RVA: 0x00342180 File Offset: 0x00340380
 	private bool Load(IReader reader)
 	{
 		global::Debug.Assert(reader.ReadKleiString() == "world");
@@ -328,7 +300,6 @@ public class SaveLoader : KMonoBehaviour
 		return true;
 	}
 
-	// Token: 0x060080C9 RID: 32969 RVA: 0x003425A4 File Offset: 0x003407A4
 	private void LogActiveMods()
 	{
 		string text = string.Format("Active Mods ({0}):", Global.Instance.modManager.mods.Count((Mod x) => x.IsEnabledForActiveDlc()));
@@ -342,13 +313,11 @@ public class SaveLoader : KMonoBehaviour
 		global::Debug.Log(text);
 	}
 
-	// Token: 0x060080CA RID: 32970 RVA: 0x000F9582 File Offset: 0x000F7782
 	public static string GetSavePrefix()
 	{
 		return System.IO.Path.Combine(global::Util.RootFolder(), string.Format("{0}{1}", "save_files", System.IO.Path.DirectorySeparatorChar));
 	}
 
-	// Token: 0x060080CB RID: 32971 RVA: 0x0034265C File Offset: 0x0034085C
 	public static string GetCloudSavePrefix()
 	{
 		string text = System.IO.Path.Combine(global::Util.RootFolder(), string.Format("{0}{1}", "cloud_save_files", System.IO.Path.DirectorySeparatorChar));
@@ -365,7 +334,6 @@ public class SaveLoader : KMonoBehaviour
 		return text;
 	}
 
-	// Token: 0x060080CC RID: 32972 RVA: 0x003426B8 File Offset: 0x003408B8
 	public static string GetSavePrefixAndCreateFolder()
 	{
 		string savePrefix = SaveLoader.GetSavePrefix();
@@ -376,7 +344,6 @@ public class SaveLoader : KMonoBehaviour
 		return savePrefix;
 	}
 
-	// Token: 0x060080CD RID: 32973 RVA: 0x003426DC File Offset: 0x003408DC
 	public static string GetUserID()
 	{
 		DistributionPlatform.User localUser = DistributionPlatform.Inst.LocalUser;
@@ -387,7 +354,6 @@ public class SaveLoader : KMonoBehaviour
 		return localUser.Id.ToString();
 	}
 
-	// Token: 0x060080CE RID: 32974 RVA: 0x00342704 File Offset: 0x00340904
 	public static string GetNextUsableSavePath(string filename)
 	{
 		int num = 0;
@@ -400,7 +366,6 @@ public class SaveLoader : KMonoBehaviour
 		return filename;
 	}
 
-	// Token: 0x060080CF RID: 32975 RVA: 0x000F95A7 File Offset: 0x000F77A7
 	public static string GetOriginalSaveFileName(string filename)
 	{
 		if (!filename.Contains("/") && !filename.Contains("\\"))
@@ -411,28 +376,24 @@ public class SaveLoader : KMonoBehaviour
 		return System.IO.Path.GetFileName(filename);
 	}
 
-	// Token: 0x060080D0 RID: 32976 RVA: 0x000F95D6 File Offset: 0x000F77D6
 	public static bool IsSaveAuto(string filename)
 	{
 		filename = filename.Replace('\\', '/');
 		return filename.Contains("/auto_save/");
 	}
 
-	// Token: 0x060080D1 RID: 32977 RVA: 0x000F95EF File Offset: 0x000F77EF
 	public static bool IsSaveLocal(string filename)
 	{
 		filename = filename.Replace('\\', '/');
 		return filename.Contains("/save_files/");
 	}
 
-	// Token: 0x060080D2 RID: 32978 RVA: 0x000F9608 File Offset: 0x000F7808
 	public static bool IsSaveCloud(string filename)
 	{
 		filename = filename.Replace('\\', '/');
 		return filename.Contains("/cloud_save_files/");
 	}
 
-	// Token: 0x060080D3 RID: 32979 RVA: 0x00342744 File Offset: 0x00340944
 	public static string GetAutoSavePrefix()
 	{
 		string text = System.IO.Path.Combine(SaveLoader.GetSavePrefixAndCreateFolder(), string.Format("{0}{1}", "auto_save", System.IO.Path.DirectorySeparatorChar));
@@ -443,19 +404,16 @@ public class SaveLoader : KMonoBehaviour
 		return text;
 	}
 
-	// Token: 0x060080D4 RID: 32980 RVA: 0x000F9621 File Offset: 0x000F7821
 	public static void SetActiveSaveFilePath(string path)
 	{
 		KPlayerPrefs.SetString("SaveFilenameKey/", path);
 	}
 
-	// Token: 0x060080D5 RID: 32981 RVA: 0x000F962E File Offset: 0x000F782E
 	public static string GetActiveSaveFilePath()
 	{
 		return KPlayerPrefs.GetString("SaveFilenameKey/");
 	}
 
-	// Token: 0x060080D6 RID: 32982 RVA: 0x00342788 File Offset: 0x00340988
 	public static string GetActiveAutoSavePath()
 	{
 		string activeSaveFilePath = SaveLoader.GetActiveSaveFilePath();
@@ -466,13 +424,11 @@ public class SaveLoader : KMonoBehaviour
 		return System.IO.Path.Combine(System.IO.Path.GetDirectoryName(activeSaveFilePath), "auto_save");
 	}
 
-	// Token: 0x060080D7 RID: 32983 RVA: 0x000F963A File Offset: 0x000F783A
 	public static string GetAutosaveFilePath()
 	{
 		return SaveLoader.GetAutoSavePrefix() + "AutoSave Cycle 1.sav";
 	}
 
-	// Token: 0x060080D8 RID: 32984 RVA: 0x003427B4 File Offset: 0x003409B4
 	public static string GetActiveSaveColonyFolder()
 	{
 		string text = SaveLoader.GetActiveSaveFolder();
@@ -483,7 +439,6 @@ public class SaveLoader : KMonoBehaviour
 		return text;
 	}
 
-	// Token: 0x060080D9 RID: 32985 RVA: 0x003427E8 File Offset: 0x003409E8
 	public static string GetActiveSaveFolder()
 	{
 		string activeSaveFilePath = SaveLoader.GetActiveSaveFilePath();
@@ -494,7 +449,6 @@ public class SaveLoader : KMonoBehaviour
 		return null;
 	}
 
-	// Token: 0x060080DA RID: 32986 RVA: 0x0034280C File Offset: 0x00340A0C
 	public static List<SaveLoader.SaveFileEntry> GetSaveFiles(string save_dir, bool sort, SearchOption search = SearchOption.AllDirectories)
 	{
 		List<SaveLoader.SaveFileEntry> list = new List<SaveLoader.SaveFileEntry>();
@@ -551,7 +505,6 @@ public class SaveLoader : KMonoBehaviour
 		return list;
 	}
 
-	// Token: 0x060080DB RID: 32987 RVA: 0x0034298C File Offset: 0x00340B8C
 	public static List<SaveLoader.SaveFileEntry> GetAllFiles(bool sort, SaveLoader.SaveType type = SaveLoader.SaveType.both)
 	{
 		switch (type)
@@ -576,19 +529,16 @@ public class SaveLoader : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060080DC RID: 32988 RVA: 0x000F964B File Offset: 0x000F784B
 	public static List<SaveLoader.SaveFileEntry> GetAllColonyFiles(bool sort, SearchOption search = SearchOption.TopDirectoryOnly)
 	{
 		return SaveLoader.GetSaveFiles(SaveLoader.GetActiveSaveColonyFolder(), sort, search);
 	}
 
-	// Token: 0x060080DD RID: 32989 RVA: 0x000F9659 File Offset: 0x000F7859
 	public static bool GetCloudSavesDefault()
 	{
 		return !(SaveLoader.GetCloudSavesDefaultPref() == "Disabled");
 	}
 
-	// Token: 0x060080DE RID: 32990 RVA: 0x00342A18 File Offset: 0x00340C18
 	public static string GetCloudSavesDefaultPref()
 	{
 		string text = KPlayerPrefs.GetString("SavesDefaultToCloud", "Enabled");
@@ -599,13 +549,11 @@ public class SaveLoader : KMonoBehaviour
 		return text;
 	}
 
-	// Token: 0x060080DF RID: 32991 RVA: 0x000F966F File Offset: 0x000F786F
 	public static void SetCloudSavesDefault(bool value)
 	{
 		SaveLoader.SetCloudSavesDefaultPref(value ? "Enabled" : "Disabled");
 	}
 
-	// Token: 0x060080E0 RID: 32992 RVA: 0x000F9685 File Offset: 0x000F7885
 	public static void SetCloudSavesDefaultPref(string pref)
 	{
 		if (pref != "Enabled" && pref != "Disabled")
@@ -616,13 +564,11 @@ public class SaveLoader : KMonoBehaviour
 		KPlayerPrefs.SetString("SavesDefaultToCloud", pref);
 	}
 
-	// Token: 0x060080E1 RID: 32993 RVA: 0x000F96C2 File Offset: 0x000F78C2
 	public static bool GetCloudSavesAvailable()
 	{
 		return !string.IsNullOrEmpty(SaveLoader.GetUserID()) && SaveLoader.GetCloudSavePrefix() != null;
 	}
 
-	// Token: 0x060080E2 RID: 32994 RVA: 0x00342A58 File Offset: 0x00340C58
 	public static string GetLatestSaveForCurrentDLC()
 	{
 		List<SaveLoader.SaveFileEntry> allFiles = SaveLoader.GetAllFiles(true, SaveLoader.SaveType.both);
@@ -644,7 +590,6 @@ public class SaveLoader : KMonoBehaviour
 		return null;
 	}
 
-	// Token: 0x060080E3 RID: 32995 RVA: 0x00342ACC File Offset: 0x00340CCC
 	public void InitialSave()
 	{
 		string text = SaveLoader.GetActiveSaveFilePath();
@@ -660,7 +605,6 @@ public class SaveLoader : KMonoBehaviour
 		this.Save(text, false, true);
 	}
 
-	// Token: 0x060080E4 RID: 32996 RVA: 0x00342B18 File Offset: 0x00340D18
 	public string Save(string filename, bool isAutoSave = false, bool updateSavePointer = true)
 	{
 		KSerialization.Manager.Clear();
@@ -784,7 +728,6 @@ public class SaveLoader : KMonoBehaviour
 		return filename;
 	}
 
-	// Token: 0x060080E5 RID: 32997 RVA: 0x00342FC0 File Offset: 0x003411C0
 	public static SaveGame.GameInfo LoadHeader(string filename, out SaveGame.Header header)
 	{
 		byte[] array = new byte[512];
@@ -797,7 +740,6 @@ public class SaveLoader : KMonoBehaviour
 		return header2;
 	}
 
-	// Token: 0x060080E6 RID: 32998 RVA: 0x00343018 File Offset: 0x00341218
 	public bool Load(string filename)
 	{
 		SaveLoader.SetActiveSaveFilePath(filename);
@@ -935,7 +877,6 @@ public class SaveLoader : KMonoBehaviour
 		return true;
 	}
 
-	// Token: 0x060080E7 RID: 32999 RVA: 0x003434AC File Offset: 0x003416AC
 	public bool LoadFromWorldGen()
 	{
 		DebugUtil.LogArgs(new object[]
@@ -1043,23 +984,15 @@ public class SaveLoader : KMonoBehaviour
 		return true;
 	}
 
-	// Token: 0x17000839 RID: 2105
-	// (get) Token: 0x060080E8 RID: 33000 RVA: 0x000F96DC File Offset: 0x000F78DC
-	// (set) Token: 0x060080E9 RID: 33001 RVA: 0x000F96E4 File Offset: 0x000F78E4
 	public GameSpawnData cachedGSD { get; private set; }
 
-	// Token: 0x1700083A RID: 2106
-	// (get) Token: 0x060080EA RID: 33002 RVA: 0x000F96ED File Offset: 0x000F78ED
-	// (set) Token: 0x060080EB RID: 33003 RVA: 0x000F96F5 File Offset: 0x000F78F5
 	public WorldDetailSave clusterDetailSave { get; private set; }
 
-	// Token: 0x060080EC RID: 33004 RVA: 0x000F96FE File Offset: 0x000F78FE
 	public void SetWorldDetail(WorldDetailSave worldDetail)
 	{
 		this.clusterDetailSave = worldDetail;
 	}
 
-	// Token: 0x060080ED RID: 33005 RVA: 0x003439B0 File Offset: 0x00341BB0
 	private void ReportSaveMetrics(bool is_auto_save)
 	{
 		if (ThreadedHttps<KleiMetrics>.Instance == null || !ThreadedHttps<KleiMetrics>.Instance.enabled || this.saveManager == null)
@@ -1084,7 +1017,6 @@ public class SaveLoader : KMonoBehaviour
 		ThreadedHttps<KleiMetrics>.Instance.SendEvent(dictionary, "ReportSaveMetrics");
 	}
 
-	// Token: 0x060080EE RID: 33006 RVA: 0x00343ACC File Offset: 0x00341CCC
 	private List<SaveLoader.MinionMetricsData> GetMinionMetrics()
 	{
 		List<SaveLoader.MinionMetricsData> list = new List<SaveLoader.MinionMetricsData>();
@@ -1128,7 +1060,6 @@ public class SaveLoader : KMonoBehaviour
 		return list;
 	}
 
-	// Token: 0x060080EF RID: 33007 RVA: 0x00343C9C File Offset: 0x00341E9C
 	private List<SaveLoader.SavedPrefabMetricsData> GetSavedPrefabMetrics()
 	{
 		Dictionary<Tag, List<SaveLoadRoot>> lists = this.saveManager.GetLists();
@@ -1149,7 +1080,6 @@ public class SaveLoader : KMonoBehaviour
 		return list;
 	}
 
-	// Token: 0x060080F0 RID: 33008 RVA: 0x00343D48 File Offset: 0x00341F48
 	private List<SaveLoader.WorldInventoryMetricsData> GetWorldInventoryMetrics()
 	{
 		Dictionary<Tag, float> allWorldsAccessibleAmounts = ClusterManager.Instance.GetAllWorldsAccessibleAmounts();
@@ -1169,7 +1099,6 @@ public class SaveLoader : KMonoBehaviour
 		return list;
 	}
 
-	// Token: 0x060080F1 RID: 33009 RVA: 0x00343DF4 File Offset: 0x00341FF4
 	private List<SaveLoader.DailyReportMetricsData> GetDailyReportMetrics()
 	{
 		List<SaveLoader.DailyReportMetricsData> list = new List<SaveLoader.DailyReportMetricsData>();
@@ -1210,7 +1139,6 @@ public class SaveLoader : KMonoBehaviour
 		return list;
 	}
 
-	// Token: 0x060080F2 RID: 33010 RVA: 0x00343F8C File Offset: 0x0034218C
 	private List<SaveLoader.PerformanceMeasurement> GetPerformanceMeasurements()
 	{
 		List<SaveLoader.PerformanceMeasurement> list = new List<SaveLoader.PerformanceMeasurement>();
@@ -1232,7 +1160,6 @@ public class SaveLoader : KMonoBehaviour
 		return list;
 	}
 
-	// Token: 0x060080F3 RID: 33011 RVA: 0x00344014 File Offset: 0x00342214
 	private float GetFrameTime()
 	{
 		PerformanceMonitor component = Global.Instance.GetComponent<PerformanceMonitor>();
@@ -1244,7 +1171,6 @@ public class SaveLoader : KMonoBehaviour
 		return 1f / component.FPS;
 	}
 
-	// Token: 0x060080F4 RID: 33012 RVA: 0x00344060 File Offset: 0x00342260
 	private List<SaveLoader.WorldMetricsData> GetWorldMetrics()
 	{
 		List<SaveLoader.WorldMetricsData> list = new List<SaveLoader.WorldMetricsData>();
@@ -1268,14 +1194,12 @@ public class SaveLoader : KMonoBehaviour
 		return list;
 	}
 
-	// Token: 0x060080F5 RID: 33013 RVA: 0x000F9707 File Offset: 0x000F7907
 	[Obsolete("Use Game.IsDlcActiveForCurrentSave instead")]
 	public bool IsDLCActiveForCurrentSave(string dlcid)
 	{
 		return DlcManager.IsContentSubscribed(dlcid) && (dlcid == "" || dlcid == "" || this.GameInfo.dlcIds.Contains(dlcid));
 	}
 
-	// Token: 0x060080F6 RID: 33014 RVA: 0x0034412C File Offset: 0x0034232C
 	[Obsolete("Use Game methods instead")]
 	public bool IsDlcListActiveForCurrentSave(string[] dlcIds)
 	{
@@ -1297,7 +1221,6 @@ public class SaveLoader : KMonoBehaviour
 		return false;
 	}
 
-	// Token: 0x060080F7 RID: 33015 RVA: 0x00344170 File Offset: 0x00342370
 	[Obsolete("Use Game methods instead")]
 	public bool IsAllDlcActiveForCurrentSave(string[] dlcIds)
 	{
@@ -1315,7 +1238,6 @@ public class SaveLoader : KMonoBehaviour
 		return true;
 	}
 
-	// Token: 0x060080F8 RID: 33016 RVA: 0x003441B4 File Offset: 0x003423B4
 	[Obsolete("Use Game methods instead")]
 	public bool IsAnyDlcActiveForCurrentSave(string[] dlcIds)
 	{
@@ -1333,14 +1255,12 @@ public class SaveLoader : KMonoBehaviour
 		return false;
 	}
 
-	// Token: 0x060080F9 RID: 33017 RVA: 0x000F9740 File Offset: 0x000F7940
 	[Obsolete("Use Game's version")]
 	public bool IsCorrectDlcActiveForCurrentSave(string[] required, string[] forbidden)
 	{
 		return this.IsAllDlcActiveForCurrentSave(required) && !this.IsAnyDlcActiveForCurrentSave(forbidden);
 	}
 
-	// Token: 0x060080FA RID: 33018 RVA: 0x003441F8 File Offset: 0x003423F8
 	public string GetSaveLoadContentLetters()
 	{
 		if (this.GameInfo.dlcIds.Count <= 0)
@@ -1355,7 +1275,6 @@ public class SaveLoader : KMonoBehaviour
 		return text;
 	}
 
-	// Token: 0x060080FB RID: 33019 RVA: 0x00344278 File Offset: 0x00342478
 	public void UpgradeActiveSaveDLCInfo(string dlcId, bool trigger_load = false)
 	{
 		string activeSaveFolder = SaveLoader.GetActiveSaveFolder();
@@ -1377,244 +1296,170 @@ public class SaveLoader : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x040061F5 RID: 25077
 	[MyCmpGet]
 	private GridSettings gridSettings;
 
-	// Token: 0x040061F7 RID: 25079
 	private bool saveFileCorrupt;
 
-	// Token: 0x040061F8 RID: 25080
 	private bool compressSaveData = true;
 
-	// Token: 0x040061F9 RID: 25081
 	private int lastUncompressedSize;
 
-	// Token: 0x040061FA RID: 25082
 	public bool saveAsText;
 
-	// Token: 0x040061FB RID: 25083
 	public const string MAINMENU_LEVELNAME = "launchscene";
 
-	// Token: 0x040061FC RID: 25084
 	public const string FRONTEND_LEVELNAME = "frontend";
 
-	// Token: 0x040061FD RID: 25085
 	public const string BACKEND_LEVELNAME = "backend";
 
-	// Token: 0x040061FE RID: 25086
 	public const string SAVE_EXTENSION = ".sav";
 
-	// Token: 0x040061FF RID: 25087
 	public const string AUTOSAVE_FOLDER = "auto_save";
 
-	// Token: 0x04006200 RID: 25088
 	public const string CLOUDSAVE_FOLDER = "cloud_save_files";
 
-	// Token: 0x04006201 RID: 25089
 	public const string SAVE_FOLDER = "save_files";
 
-	// Token: 0x04006202 RID: 25090
 	public const int MAX_AUTOSAVE_FILES = 10;
 
-	// Token: 0x04006204 RID: 25092
 	[NonSerialized]
 	public SaveManager saveManager;
 
-	// Token: 0x04006206 RID: 25094
 	private Cluster m_cluster;
 
-	// Token: 0x04006207 RID: 25095
 	private ClusterLayout m_clusterLayout;
 
-	// Token: 0x04006209 RID: 25097
 	private const string CorruptFileSuffix = "_";
 
-	// Token: 0x0400620A RID: 25098
 	private const float SAVE_BUFFER_HEAD_ROOM = 0.1f;
 
-	// Token: 0x0400620B RID: 25099
 	private bool mustRestartOnFail;
 
-	// Token: 0x0400620E RID: 25102
 	public const string METRIC_SAVED_PREFAB_KEY = "SavedPrefabs";
 
-	// Token: 0x0400620F RID: 25103
 	public const string METRIC_IS_AUTO_SAVE_KEY = "IsAutoSave";
 
-	// Token: 0x04006210 RID: 25104
 	public const string METRIC_WAS_DEBUG_EVER_USED = "WasDebugEverUsed";
 
-	// Token: 0x04006211 RID: 25105
 	public const string METRIC_IS_SANDBOX_ENABLED = "IsSandboxEnabled";
 
-	// Token: 0x04006212 RID: 25106
 	public const string METRIC_RESOURCES_ACCESSIBLE_KEY = "ResourcesAccessible";
 
-	// Token: 0x04006213 RID: 25107
 	public const string METRIC_DAILY_REPORT_KEY = "DailyReport";
 
-	// Token: 0x04006214 RID: 25108
 	public const string METRIC_WORLD_METRICS_KEY = "WorldMetrics";
 
-	// Token: 0x04006215 RID: 25109
 	public const string METRIC_MINION_METRICS_KEY = "MinionMetrics";
 
-	// Token: 0x04006216 RID: 25110
 	public const string METRIC_CUSTOM_GAME_SETTINGS = "CustomGameSettings";
 
-	// Token: 0x04006217 RID: 25111
 	public const string METRIC_CUSTOM_MIXING_SETTINGS = "CustomMixingSettings";
 
-	// Token: 0x04006218 RID: 25112
 	public const string METRIC_PERFORMANCE_MEASUREMENTS = "PerformanceMeasurements";
 
-	// Token: 0x04006219 RID: 25113
 	public const string METRIC_FRAME_TIME = "AverageFrameTime";
 
-	// Token: 0x0400621A RID: 25114
 	private static bool force_infinity;
 
-	// Token: 0x02001864 RID: 6244
 	public class FlowUtilityNetworkInstance
 	{
-		// Token: 0x0400621B RID: 25115
 		public int id = -1;
 
-		// Token: 0x0400621C RID: 25116
 		public SimHashes containedElement = SimHashes.Vacuum;
 
-		// Token: 0x0400621D RID: 25117
 		public float containedMass;
 
-		// Token: 0x0400621E RID: 25118
 		public float containedTemperature;
 	}
 
-	// Token: 0x02001865 RID: 6245
 	[SerializationConfig(KSerialization.MemberSerialization.OptOut)]
 	public class FlowUtilityNetworkSaver : ISaveLoadable
 	{
-		// Token: 0x060080FE RID: 33022 RVA: 0x000F9780 File Offset: 0x000F7980
 		public FlowUtilityNetworkSaver()
 		{
 			this.gas = new List<SaveLoader.FlowUtilityNetworkInstance>();
 			this.liquid = new List<SaveLoader.FlowUtilityNetworkInstance>();
 		}
 
-		// Token: 0x0400621F RID: 25119
 		public List<SaveLoader.FlowUtilityNetworkInstance> gas;
 
-		// Token: 0x04006220 RID: 25120
 		public List<SaveLoader.FlowUtilityNetworkInstance> liquid;
 	}
 
-	// Token: 0x02001866 RID: 6246
 	public struct SaveFileEntry
 	{
-		// Token: 0x04006221 RID: 25121
 		public string path;
 
-		// Token: 0x04006222 RID: 25122
 		public System.DateTime timeStamp;
 	}
 
-	// Token: 0x02001867 RID: 6247
 	public enum SaveType
 	{
-		// Token: 0x04006224 RID: 25124
 		local,
-		// Token: 0x04006225 RID: 25125
 		cloud,
-		// Token: 0x04006226 RID: 25126
 		both
 	}
 
-	// Token: 0x02001868 RID: 6248
 	private struct MinionAttrFloatData
 	{
-		// Token: 0x04006227 RID: 25127
 		public string Name;
 
-		// Token: 0x04006228 RID: 25128
 		public float Value;
 	}
 
-	// Token: 0x02001869 RID: 6249
 	private struct MinionMetricsData
 	{
-		// Token: 0x04006229 RID: 25129
 		public string Name;
 
-		// Token: 0x0400622A RID: 25130
 		public List<SaveLoader.MinionAttrFloatData> Modifiers;
 
-		// Token: 0x0400622B RID: 25131
 		public float TotalExperienceGained;
 
-		// Token: 0x0400622C RID: 25132
 		public List<string> Skills;
 	}
 
-	// Token: 0x0200186A RID: 6250
 	private struct SavedPrefabMetricsData
 	{
-		// Token: 0x0400622D RID: 25133
 		public string PrefabName;
 
-		// Token: 0x0400622E RID: 25134
 		public int Count;
 	}
 
-	// Token: 0x0200186B RID: 6251
 	private struct WorldInventoryMetricsData
 	{
-		// Token: 0x0400622F RID: 25135
 		public string Name;
 
-		// Token: 0x04006230 RID: 25136
 		public float Amount;
 	}
 
-	// Token: 0x0200186C RID: 6252
 	private struct DailyReportMetricsData
 	{
-		// Token: 0x04006231 RID: 25137
 		public string Name;
 
-		// Token: 0x04006232 RID: 25138
 		[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
 		public float? Net;
 
-		// Token: 0x04006233 RID: 25139
 		[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
 		public float? Positive;
 
-		// Token: 0x04006234 RID: 25140
 		[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
 		public float? Negative;
 	}
 
-	// Token: 0x0200186D RID: 6253
 	private struct PerformanceMeasurement
 	{
-		// Token: 0x04006235 RID: 25141
 		public string name;
 
-		// Token: 0x04006236 RID: 25142
 		public float value;
 	}
 
-	// Token: 0x0200186E RID: 6254
 	private struct WorldMetricsData
 	{
-		// Token: 0x04006237 RID: 25143
 		public string Name;
 
-		// Token: 0x04006238 RID: 25144
 		public float DiscoveryTimestamp;
 
-		// Token: 0x04006239 RID: 25145
 		public float DupeVisitedTimestamp;
 	}
 }

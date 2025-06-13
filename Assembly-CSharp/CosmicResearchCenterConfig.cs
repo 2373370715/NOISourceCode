@@ -3,16 +3,13 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000086 RID: 134
 public class CosmicResearchCenterConfig : IBuildingConfig
 {
-	// Token: 0x0600021A RID: 538 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetForbiddenDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x0600021B RID: 539 RVA: 0x0014EE84 File Offset: 0x0014D084
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "CosmicResearchCenter";
@@ -39,7 +36,6 @@ public class CosmicResearchCenterConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600021C RID: 540 RVA: 0x0014EF40 File Offset: 0x0014D140
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.ScienceBuilding, false);
@@ -73,26 +69,19 @@ public class CosmicResearchCenterConfig : IBuildingConfig
 		go.AddOrGetDef<PoweredController.Def>();
 	}
 
-	// Token: 0x0600021D RID: 541 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x0400015F RID: 351
 	public const string ID = "CosmicResearchCenter";
 
-	// Token: 0x04000160 RID: 352
 	public const float BASE_SECONDS_PER_POINT = 50f;
 
-	// Token: 0x04000161 RID: 353
 	public const float MASS_PER_POINT = 1f;
 
-	// Token: 0x04000162 RID: 354
 	public const float BASE_MASS_PER_SECOND = 0.02f;
 
-	// Token: 0x04000163 RID: 355
 	public const float CAPACITY = 300f;
 
-	// Token: 0x04000164 RID: 356
 	public static readonly Tag INPUT_MATERIAL = ResearchDatabankConfig.TAG;
 }

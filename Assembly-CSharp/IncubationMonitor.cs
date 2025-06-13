@@ -5,10 +5,8 @@ using Klei.AI;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x020011DE RID: 4574
 public class IncubationMonitor : GameStateMachine<IncubationMonitor, IncubationMonitor.Instance, IStateMachineTarget, IncubationMonitor.Def>
 {
-	// Token: 0x06005CFA RID: 23802 RVA: 0x002AAD00 File Offset: 0x002A8F00
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.incubating;
@@ -32,13 +30,11 @@ public class IncubationMonitor : GameStateMachine<IncubationMonitor, IncubationM
 		this.suppressedEffect.Add(new AttributeModifier(Db.Get().Amounts.Viability.deltaAttribute.Id, -0.016666668f, CREATURES.MODIFIERS.INCUBATING_SUPPRESSED.NAME, false, false, true));
 	}
 
-	// Token: 0x06005CFB RID: 23803 RVA: 0x000E11D0 File Offset: 0x000DF3D0
 	private static bool IsReadyToHatch(IncubationMonitor.Instance smi)
 	{
 		return !smi.gameObject.HasTag(GameTags.Entombed) && smi.incubation.value >= smi.incubation.GetMax();
 	}
 
-	// Token: 0x06005CFC RID: 23804 RVA: 0x002AAF7C File Offset: 0x002A917C
 	private static void SpawnBaby(IncubationMonitor.Instance smi)
 	{
 		Vector3 position = smi.transform.GetPosition();
@@ -60,13 +56,11 @@ public class IncubationMonitor : GameStateMachine<IncubationMonitor, IncubationM
 		SaveLoader.Instance.saveManager.Unregister(smi.GetComponent<SaveLoadRoot>());
 	}
 
-	// Token: 0x06005CFD RID: 23805 RVA: 0x000E1201 File Offset: 0x000DF401
 	private static bool NoLongerViable(IncubationMonitor.Instance smi)
 	{
 		return !smi.gameObject.HasTag(GameTags.Entombed) && smi.viability.value <= smi.viability.GetMin();
 	}
 
-	// Token: 0x06005CFE RID: 23806 RVA: 0x002AB074 File Offset: 0x002A9274
 	private static GameObject SpawnShell(IncubationMonitor.Instance smi)
 	{
 		Vector3 position = smi.transform.GetPosition();
@@ -78,7 +72,6 @@ public class IncubationMonitor : GameStateMachine<IncubationMonitor, IncubationM
 		return gameObject;
 	}
 
-	// Token: 0x06005CFF RID: 23807 RVA: 0x002AB0C8 File Offset: 0x002A92C8
 	private static GameObject SpawnEggInnards(IncubationMonitor.Instance smi)
 	{
 		Vector3 position = smi.transform.GetPosition();
@@ -90,7 +83,6 @@ public class IncubationMonitor : GameStateMachine<IncubationMonitor, IncubationM
 		return gameObject;
 	}
 
-	// Token: 0x06005D00 RID: 23808 RVA: 0x002AB11C File Offset: 0x002A931C
 	private static void SpawnGenericEgg(IncubationMonitor.Instance smi)
 	{
 		IncubationMonitor.SpawnShell(smi);
@@ -102,13 +94,11 @@ public class IncubationMonitor : GameStateMachine<IncubationMonitor, IncubationM
 		}
 	}
 
-	// Token: 0x06005D01 RID: 23809 RVA: 0x000E1232 File Offset: 0x000DF432
 	private static void DeleteSelf(IncubationMonitor.Instance smi)
 	{
 		smi.gameObject.DeleteObject();
 	}
 
-	// Token: 0x06005D02 RID: 23810 RVA: 0x002AB188 File Offset: 0x002A9388
 	private static void DropSelfFromStorage(IncubationMonitor.Instance smi)
 	{
 		if (!smi.sm.inIncubator.Get(smi))
@@ -122,40 +112,28 @@ public class IncubationMonitor : GameStateMachine<IncubationMonitor, IncubationM
 		}
 	}
 
-	// Token: 0x0400423A RID: 16954
 	public StateMachine<IncubationMonitor, IncubationMonitor.Instance, IStateMachineTarget, IncubationMonitor.Def>.BoolParameter incubatorIsActive;
 
-	// Token: 0x0400423B RID: 16955
 	public StateMachine<IncubationMonitor, IncubationMonitor.Instance, IStateMachineTarget, IncubationMonitor.Def>.BoolParameter inIncubator;
 
-	// Token: 0x0400423C RID: 16956
 	public StateMachine<IncubationMonitor, IncubationMonitor.Instance, IStateMachineTarget, IncubationMonitor.Def>.BoolParameter isSuppressed;
 
-	// Token: 0x0400423D RID: 16957
 	public GameStateMachine<IncubationMonitor, IncubationMonitor.Instance, IStateMachineTarget, IncubationMonitor.Def>.State incubating;
 
-	// Token: 0x0400423E RID: 16958
 	public GameStateMachine<IncubationMonitor, IncubationMonitor.Instance, IStateMachineTarget, IncubationMonitor.Def>.State entombed;
 
-	// Token: 0x0400423F RID: 16959
 	public GameStateMachine<IncubationMonitor, IncubationMonitor.Instance, IStateMachineTarget, IncubationMonitor.Def>.State suppressed;
 
-	// Token: 0x04004240 RID: 16960
 	public GameStateMachine<IncubationMonitor, IncubationMonitor.Instance, IStateMachineTarget, IncubationMonitor.Def>.State hatching_pre;
 
-	// Token: 0x04004241 RID: 16961
 	public GameStateMachine<IncubationMonitor, IncubationMonitor.Instance, IStateMachineTarget, IncubationMonitor.Def>.State hatching_pst;
 
-	// Token: 0x04004242 RID: 16962
 	public GameStateMachine<IncubationMonitor, IncubationMonitor.Instance, IStateMachineTarget, IncubationMonitor.Def>.State not_viable;
 
-	// Token: 0x04004243 RID: 16963
 	private Effect suppressedEffect;
 
-	// Token: 0x020011DF RID: 4575
 	public class Def : StateMachine.BaseDef
 	{
-		// Token: 0x06005D05 RID: 23813 RVA: 0x002AB1D8 File Offset: 0x002A93D8
 		public override void Configure(GameObject prefab)
 		{
 			List<string> initialAmounts = prefab.GetComponent<Modifiers>().initialAmounts;
@@ -164,17 +142,13 @@ public class IncubationMonitor : GameStateMachine<IncubationMonitor, IncubationM
 			initialAmounts.Add(Db.Get().Amounts.Viability.Id);
 		}
 
-		// Token: 0x04004244 RID: 16964
 		public float baseIncubationRate;
 
-		// Token: 0x04004245 RID: 16965
 		public Tag spawnedCreature;
 	}
 
-	// Token: 0x020011E0 RID: 4576
 	public new class Instance : GameStateMachine<IncubationMonitor, IncubationMonitor.Instance, IStateMachineTarget, IncubationMonitor.Def>.GameInstance
 	{
-		// Token: 0x06005D07 RID: 23815 RVA: 0x002AB240 File Offset: 0x002A9440
 		public Instance(IStateMachineTarget master, IncubationMonitor.Def def) : base(master, def)
 		{
 			this.incubation = Db.Get().Amounts.Incubation.Lookup(base.gameObject);
@@ -198,7 +172,6 @@ public class IncubationMonitor : GameStateMachine<IncubationMonitor, IncubationM
 			this.incubatingEffect.Add(modifier);
 		}
 
-		// Token: 0x06005D08 RID: 23816 RVA: 0x000E124F File Offset: 0x000DF44F
 		public Storage GetStorage()
 		{
 			if (!(base.transform.parent != null))
@@ -208,7 +181,6 @@ public class IncubationMonitor : GameStateMachine<IncubationMonitor, IncubationM
 			return base.transform.parent.GetComponent<Storage>();
 		}
 
-		// Token: 0x06005D09 RID: 23817 RVA: 0x002AB3C0 File Offset: 0x002A95C0
 		public void OnStore(object data)
 		{
 			Storage storage = data as Storage;
@@ -217,7 +189,6 @@ public class IncubationMonitor : GameStateMachine<IncubationMonitor, IncubationM
 			this.UpdateIncubationState(stored, eggIncubator);
 		}
 
-		// Token: 0x06005D0A RID: 23818 RVA: 0x002AB408 File Offset: 0x002A9608
 		public void OnOperationalChanged(object data = null)
 		{
 			bool stored = base.gameObject.HasTag(GameTags.Stored);
@@ -226,7 +197,6 @@ public class IncubationMonitor : GameStateMachine<IncubationMonitor, IncubationM
 			this.UpdateIncubationState(stored, eggIncubator);
 		}
 
-		// Token: 0x06005D0B RID: 23819 RVA: 0x002AB448 File Offset: 0x002A9648
 		private void UpdateIncubationState(bool stored, EggIncubator incubator)
 		{
 			this.incubator = incubator;
@@ -238,31 +208,24 @@ public class IncubationMonitor : GameStateMachine<IncubationMonitor, IncubationM
 			base.smi.sm.incubatorIsActive.Set(value2, base.smi, false);
 		}
 
-		// Token: 0x06005D0C RID: 23820 RVA: 0x000E1276 File Offset: 0x000DF476
 		public void ApplySongBuff()
 		{
 			base.GetComponent<Effects>().Add("EggSong", true);
 		}
 
-		// Token: 0x06005D0D RID: 23821 RVA: 0x000E128A File Offset: 0x000DF48A
 		public bool HasSongBuff()
 		{
 			return base.GetComponent<Effects>().HasEffect("EggSong");
 		}
 
-		// Token: 0x04004246 RID: 16966
 		public AmountInstance incubation;
 
-		// Token: 0x04004247 RID: 16967
 		public AmountInstance wildness;
 
-		// Token: 0x04004248 RID: 16968
 		public AmountInstance viability;
 
-		// Token: 0x04004249 RID: 16969
 		public EggIncubator incubator;
 
-		// Token: 0x0400424A RID: 16970
 		public Effect incubatingEffect;
 	}
 }

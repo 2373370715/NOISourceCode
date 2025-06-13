@@ -4,16 +4,13 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003F0 RID: 1008
 public class LogicRadiationSensorConfig : IBuildingConfig
 {
-	// Token: 0x0600108D RID: 4237 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x0600108E RID: 4238 RVA: 0x0018AF70 File Offset: 0x00189170
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = LogicRadiationSensorConfig.ID;
@@ -44,13 +41,11 @@ public class LogicRadiationSensorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600108F RID: 4239 RVA: 0x000B1A94 File Offset: 0x000AFC94
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicRadiationSensor>().manuallyControlled = false;
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayInFrontOfConduits, false);
 	}
 
-	// Token: 0x04000B9A RID: 2970
 	public static string ID = "LogicRadiationSensor";
 }

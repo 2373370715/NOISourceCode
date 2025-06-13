@@ -6,12 +6,8 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000FA6 RID: 4006
 public class RocketControlStation : StateMachineComponent<RocketControlStation.StatesInstance>, IGameObjectEffectDescriptor
 {
-	// Token: 0x17000480 RID: 1152
-	// (get) Token: 0x06005095 RID: 20629 RVA: 0x000D8F3A File Offset: 0x000D713A
-	// (set) Token: 0x06005096 RID: 20630 RVA: 0x000D8F42 File Offset: 0x000D7142
 	public bool RestrictWhenGrounded
 	{
 		get
@@ -25,7 +21,6 @@ public class RocketControlStation : StateMachineComponent<RocketControlStation.S
 		}
 	}
 
-	// Token: 0x06005097 RID: 20631 RVA: 0x0027DCD4 File Offset: 0x0027BED4
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -36,15 +31,12 @@ public class RocketControlStation : StateMachineComponent<RocketControlStation.S
 		this.UpdateRestrictionAnimSymbol(null);
 	}
 
-	// Token: 0x06005098 RID: 20632 RVA: 0x000D8F57 File Offset: 0x000D7157
 	protected override void OnCleanUp()
 	{
 		base.OnCleanUp();
 		Components.RocketControlStations.Remove(this);
 	}
 
-	// Token: 0x17000481 RID: 1153
-	// (get) Token: 0x06005099 RID: 20633 RVA: 0x0027DD28 File Offset: 0x0027BF28
 	public bool BuildingRestrictionsActive
 	{
 		get
@@ -59,13 +51,11 @@ public class RocketControlStation : StateMachineComponent<RocketControlStation.S
 		}
 	}
 
-	// Token: 0x0600509A RID: 20634 RVA: 0x000D8F6A File Offset: 0x000D716A
 	public bool IsLogicInputConnected()
 	{
 		return this.GetNetwork() != null;
 	}
 
-	// Token: 0x0600509B RID: 20635 RVA: 0x0027DD9C File Offset: 0x0027BF9C
 	public void OnLogicValueChanged(object data)
 	{
 		if (((LogicValueChanged)data).portID == RocketControlStation.PORT_ID)
@@ -78,7 +68,6 @@ public class RocketControlStation : StateMachineComponent<RocketControlStation.S
 		}
 	}
 
-	// Token: 0x0600509C RID: 20636 RVA: 0x000D8F75 File Offset: 0x000D7175
 	public void OnTagsChanged(object obj)
 	{
 		if (((TagChangedEventData)obj).tag == GameTags.RocketOnGround)
@@ -87,20 +76,17 @@ public class RocketControlStation : StateMachineComponent<RocketControlStation.S
 		}
 	}
 
-	// Token: 0x0600509D RID: 20637 RVA: 0x0027DDF0 File Offset: 0x0027BFF0
 	private LogicCircuitNetwork GetNetwork()
 	{
 		int portCell = base.GetComponent<LogicPorts>().GetPortCell(RocketControlStation.PORT_ID);
 		return Game.Instance.logicCircuitManager.GetNetworkForCell(portCell);
 	}
 
-	// Token: 0x0600509E RID: 20638 RVA: 0x000D8F9A File Offset: 0x000D719A
 	private void UpdateRestrictionAnimSymbol(object o = null)
 	{
 		base.GetComponent<KAnimControllerBase>().SetSymbolVisiblity("restriction_sign", this.BuildingRestrictionsActive);
 	}
 
-	// Token: 0x0600509F RID: 20639 RVA: 0x0027DE20 File Offset: 0x0027C020
 	public List<Descriptor> GetDescriptors(GameObject go)
 	{
 		List<Descriptor> list = new List<Descriptor>();
@@ -111,42 +97,32 @@ public class RocketControlStation : StateMachineComponent<RocketControlStation.S
 		return list;
 	}
 
-	// Token: 0x040038C3 RID: 14531
 	public static List<Tag> CONTROLLED_BUILDINGS = new List<Tag>();
 
-	// Token: 0x040038C4 RID: 14532
 	private const int UNNETWORKED_VALUE = 1;
 
-	// Token: 0x040038C5 RID: 14533
 	[Serialize]
 	public float TimeRemaining;
 
-	// Token: 0x040038C6 RID: 14534
 	private bool m_logicUsageRestrictionState;
 
-	// Token: 0x040038C7 RID: 14535
 	[Serialize]
 	private bool m_restrictWhenGrounded;
 
-	// Token: 0x040038C8 RID: 14536
 	public static readonly HashedString PORT_ID = "LogicUsageRestriction";
 
-	// Token: 0x040038C9 RID: 14537
 	private static readonly EventSystem.IntraObjectHandler<RocketControlStation> OnLogicValueChangedDelegate = new EventSystem.IntraObjectHandler<RocketControlStation>(delegate(RocketControlStation component, object data)
 	{
 		component.OnLogicValueChanged(data);
 	});
 
-	// Token: 0x040038CA RID: 14538
 	private static readonly EventSystem.IntraObjectHandler<RocketControlStation> OnRocketRestrictionChanged = new EventSystem.IntraObjectHandler<RocketControlStation>(delegate(RocketControlStation component, object data)
 	{
 		component.UpdateRestrictionAnimSymbol(data);
 	});
 
-	// Token: 0x02000FA7 RID: 4007
 	public class States : GameStateMachine<RocketControlStation.States, RocketControlStation.StatesInstance, RocketControlStation>
 	{
-		// Token: 0x060050A2 RID: 20642 RVA: 0x0027DF20 File Offset: 0x0027C120
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			base.serializable = StateMachine.SerializeType.ParamsOnly;
@@ -201,7 +177,6 @@ public class RocketControlStation : StateMachineComponent<RocketControlStation.S
 			});
 		}
 
-		// Token: 0x060050A3 RID: 20643 RVA: 0x0027E44C File Offset: 0x0027C64C
 		public void AquireClustercraft(RocketControlStation.StatesInstance smi, bool force = false)
 		{
 			if (force || this.clusterCraft.IsNull(smi))
@@ -215,20 +190,17 @@ public class RocketControlStation : StateMachineComponent<RocketControlStation.S
 			}
 		}
 
-		// Token: 0x060050A4 RID: 20644 RVA: 0x000D8FBF File Offset: 0x000D71BF
 		private void DecrementTime(RocketControlStation.StatesInstance smi, float dt)
 		{
 			this.timeRemaining.Delta(-dt, smi);
 		}
 
-		// Token: 0x060050A5 RID: 20645 RVA: 0x0027E4A8 File Offset: 0x0027C6A8
 		private bool RocketReadyForLaunch(RocketControlStation.StatesInstance smi)
 		{
 			Clustercraft component = this.clusterCraft.Get(smi).GetComponent<Clustercraft>();
 			return component.LaunchRequested && component.CheckReadyToLaunch();
 		}
 
-		// Token: 0x060050A6 RID: 20646 RVA: 0x0027E4D8 File Offset: 0x0027C6D8
 		private GameObject GetRocket(RocketControlStation.StatesInstance smi)
 		{
 			WorldContainer world = ClusterManager.Instance.GetWorld(smi.GetMyWorldId());
@@ -239,14 +211,12 @@ public class RocketControlStation : StateMachineComponent<RocketControlStation.S
 			return world.gameObject.GetComponent<Clustercraft>().gameObject;
 		}
 
-		// Token: 0x060050A7 RID: 20647 RVA: 0x000D8FD0 File Offset: 0x000D71D0
 		private void SetRocketSpeedModifiers(RocketControlStation.StatesInstance smi, float autoPilotSpeedMultiplier, float pilotSkillMultiplier = 1f)
 		{
 			this.clusterCraft.Get(smi).GetComponent<Clustercraft>().AutoPilotMultiplier = autoPilotSpeedMultiplier;
 			this.clusterCraft.Get(smi).GetComponent<Clustercraft>().PilotSkillMultiplier = pilotSkillMultiplier;
 		}
 
-		// Token: 0x060050A8 RID: 20648 RVA: 0x0027E514 File Offset: 0x0027C714
 		private Chore CreateChore(RocketControlStation.StatesInstance smi)
 		{
 			Workable component = smi.master.GetComponent<RocketControlStationIdleWorkable>();
@@ -256,7 +226,6 @@ public class RocketControlStation : StateMachineComponent<RocketControlStation.S
 			return workChore;
 		}
 
-		// Token: 0x060050A9 RID: 20649 RVA: 0x0027E594 File Offset: 0x0027C794
 		private Chore CreateLaunchChore(RocketControlStation.StatesInstance smi)
 		{
 			Workable component = smi.master.GetComponent<RocketControlStationLaunchWorkable>();
@@ -265,93 +234,69 @@ public class RocketControlStation : StateMachineComponent<RocketControlStation.S
 			return workChore;
 		}
 
-		// Token: 0x060050AA RID: 20650 RVA: 0x000D9000 File Offset: 0x000D7200
 		public void LaunchRocket(RocketControlStation.StatesInstance smi)
 		{
 			this.clusterCraft.Get(smi).GetComponent<Clustercraft>().Launch(false);
 		}
 
-		// Token: 0x060050AB RID: 20651 RVA: 0x000D9019 File Offset: 0x000D7219
 		public bool IsInFlight(RocketControlStation.StatesInstance smi)
 		{
 			return this.clusterCraft.Get(smi).GetComponent<Clustercraft>().Status == Clustercraft.CraftStatus.InFlight;
 		}
 
-		// Token: 0x060050AC RID: 20652 RVA: 0x000D9034 File Offset: 0x000D7234
 		public bool IsLaunching(RocketControlStation.StatesInstance smi)
 		{
 			return this.clusterCraft.Get(smi).GetComponent<Clustercraft>().Status == Clustercraft.CraftStatus.Launching;
 		}
 
-		// Token: 0x040038CB RID: 14539
 		public StateMachine<RocketControlStation.States, RocketControlStation.StatesInstance, RocketControlStation, object>.TargetParameter clusterCraft;
 
-		// Token: 0x040038CC RID: 14540
 		private GameStateMachine<RocketControlStation.States, RocketControlStation.StatesInstance, RocketControlStation, object>.State unoperational;
 
-		// Token: 0x040038CD RID: 14541
 		private GameStateMachine<RocketControlStation.States, RocketControlStation.StatesInstance, RocketControlStation, object>.State operational;
 
-		// Token: 0x040038CE RID: 14542
 		private GameStateMachine<RocketControlStation.States, RocketControlStation.StatesInstance, RocketControlStation, object>.State running;
 
-		// Token: 0x040038CF RID: 14543
 		private RocketControlStation.States.ReadyStates ready;
 
-		// Token: 0x040038D0 RID: 14544
 		private RocketControlStation.States.LaunchStates launch;
 
-		// Token: 0x040038D1 RID: 14545
 		public StateMachine<RocketControlStation.States, RocketControlStation.StatesInstance, RocketControlStation, object>.Signal pilotSuccessful;
 
-		// Token: 0x040038D2 RID: 14546
 		public StateMachine<RocketControlStation.States, RocketControlStation.StatesInstance, RocketControlStation, object>.FloatParameter timeRemaining;
 
-		// Token: 0x02000FA8 RID: 4008
 		public class ReadyStates : GameStateMachine<RocketControlStation.States, RocketControlStation.StatesInstance, RocketControlStation, object>.State
 		{
-			// Token: 0x040038D3 RID: 14547
 			public GameStateMachine<RocketControlStation.States, RocketControlStation.StatesInstance, RocketControlStation, object>.State idle;
 
-			// Token: 0x040038D4 RID: 14548
 			public GameStateMachine<RocketControlStation.States, RocketControlStation.StatesInstance, RocketControlStation, object>.State working;
 
-			// Token: 0x040038D5 RID: 14549
 			public GameStateMachine<RocketControlStation.States, RocketControlStation.StatesInstance, RocketControlStation, object>.State post;
 
-			// Token: 0x040038D6 RID: 14550
 			public GameStateMachine<RocketControlStation.States, RocketControlStation.StatesInstance, RocketControlStation, object>.State warning;
 
-			// Token: 0x040038D7 RID: 14551
 			public GameStateMachine<RocketControlStation.States, RocketControlStation.StatesInstance, RocketControlStation, object>.State autopilot;
 		}
 
-		// Token: 0x02000FA9 RID: 4009
 		public class LaunchStates : GameStateMachine<RocketControlStation.States, RocketControlStation.StatesInstance, RocketControlStation, object>.State
 		{
-			// Token: 0x040038D8 RID: 14552
 			public GameStateMachine<RocketControlStation.States, RocketControlStation.StatesInstance, RocketControlStation, object>.State launch;
 
-			// Token: 0x040038D9 RID: 14553
 			public GameStateMachine<RocketControlStation.States, RocketControlStation.StatesInstance, RocketControlStation, object>.State fadein;
 		}
 	}
 
-	// Token: 0x02000FAB RID: 4011
 	public class StatesInstance : GameStateMachine<RocketControlStation.States, RocketControlStation.StatesInstance, RocketControlStation, object>.GameInstance
 	{
-		// Token: 0x060050C4 RID: 20676 RVA: 0x000D912D File Offset: 0x000D732D
 		public StatesInstance(RocketControlStation smi) : base(smi)
 		{
 		}
 
-		// Token: 0x060050C5 RID: 20677 RVA: 0x000D9141 File Offset: 0x000D7341
 		public void LaunchRocket()
 		{
 			base.sm.LaunchRocket(this);
 		}
 
-		// Token: 0x060050C6 RID: 20678 RVA: 0x0027E5F4 File Offset: 0x0027C7F4
 		public void SetPilotSpeedMult(WorkerBase pilot)
 		{
 			AttributeConverter pilotingSpeed = Db.Get().AttributeConverters.PilotingSpeed;
@@ -360,7 +305,6 @@ public class RocketControlStation : StateMachineComponent<RocketControlStation.S
 			this.pilotSpeedMult = Mathf.Max(a, 0.1f);
 		}
 
-		// Token: 0x040038E2 RID: 14562
 		public float pilotSpeedMult = 1f;
 	}
 }

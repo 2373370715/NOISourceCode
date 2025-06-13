@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000C6E RID: 3182
 [AddComponentMenu("KMonoBehaviour/scripts/AttachableBuilding")]
 public class AttachableBuilding : KMonoBehaviour
 {
-	// Token: 0x06003C71 RID: 15473 RVA: 0x0023BDCC File Offset: 0x00239FCC
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -22,13 +20,11 @@ public class AttachableBuilding : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06003C72 RID: 15474 RVA: 0x000C474E File Offset: 0x000C294E
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
 	}
 
-	// Token: 0x06003C73 RID: 15475 RVA: 0x0023BE54 File Offset: 0x0023A054
 	public void RegisterWithAttachPoint(bool register)
 	{
 		BuildingDef buildingDef = null;
@@ -67,7 +63,6 @@ public class AttachableBuilding : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06003C74 RID: 15476 RVA: 0x0023BF9C File Offset: 0x0023A19C
 	public static void GetAttachedBelow(AttachableBuilding searchStart, ref List<GameObject> buildings)
 	{
 		AttachableBuilding attachableBuilding = searchStart;
@@ -83,7 +78,6 @@ public class AttachableBuilding : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06003C75 RID: 15477 RVA: 0x0023BFDC File Offset: 0x0023A1DC
 	public static int CountAttachedBelow(AttachableBuilding searchStart)
 	{
 		int num = 0;
@@ -101,7 +95,6 @@ public class AttachableBuilding : KMonoBehaviour
 		return num;
 	}
 
-	// Token: 0x06003C76 RID: 15478 RVA: 0x0023C018 File Offset: 0x0023A218
 	public static void GetAttachedAbove(AttachableBuilding searchStart, ref List<GameObject> buildings)
 	{
 		BuildingAttachPoint buildingAttachPoint = searchStart.GetComponent<BuildingAttachPoint>();
@@ -135,7 +128,6 @@ public class AttachableBuilding : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06003C77 RID: 15479 RVA: 0x0023C0F4 File Offset: 0x0023A2F4
 	public static void NotifyBuildingsNetworkChanged(List<GameObject> buildings, AttachableBuilding attachable = null)
 	{
 		foreach (GameObject gameObject in buildings)
@@ -148,7 +140,6 @@ public class AttachableBuilding : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06003C78 RID: 15480 RVA: 0x0023C160 File Offset: 0x0023A360
 	public static List<GameObject> GetAttachedNetwork(AttachableBuilding searchStart)
 	{
 		List<GameObject> list = new List<GameObject>();
@@ -158,7 +149,6 @@ public class AttachableBuilding : KMonoBehaviour
 		return list;
 	}
 
-	// Token: 0x06003C79 RID: 15481 RVA: 0x0023C190 File Offset: 0x0023A390
 	public BuildingAttachPoint GetAttachedTo()
 	{
 		for (int i = 0; i < Components.BuildingAttachPoints.Count; i++)
@@ -174,7 +164,6 @@ public class AttachableBuilding : KMonoBehaviour
 		return null;
 	}
 
-	// Token: 0x06003C7A RID: 15482 RVA: 0x000CB806 File Offset: 0x000C9A06
 	protected override void OnCleanUp()
 	{
 		base.OnCleanUp();
@@ -183,9 +172,7 @@ public class AttachableBuilding : KMonoBehaviour
 		Components.AttachableBuildings.Remove(this);
 	}
 
-	// Token: 0x040029F1 RID: 10737
 	public Tag attachableToTag;
 
-	// Token: 0x040029F2 RID: 10738
 	public Action<object> onAttachmentNetworkChanged;
 }

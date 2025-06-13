@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020002BA RID: 698
 public class SeaLettuceConfig : IEntityConfig
 {
-	// Token: 0x06000A3E RID: 2622 RVA: 0x001740F8 File Offset: 0x001722F8
 	public GameObject CreatePrefab()
 	{
 		string id = SeaLettuceConfig.ID;
@@ -61,25 +59,19 @@ public class SeaLettuceConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06000A3F RID: 2623 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x06000A40 RID: 2624 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x04000812 RID: 2066
 	public static string ID = "SeaLettuce";
 
-	// Token: 0x04000813 RID: 2067
 	public const string SEED_ID = "SeaLettuceSeed";
 
-	// Token: 0x04000814 RID: 2068
 	public const float WATER_RATE = 0.008333334f;
 
-	// Token: 0x04000815 RID: 2069
 	public const float FERTILIZATION_RATE = 0.00083333335f;
 }

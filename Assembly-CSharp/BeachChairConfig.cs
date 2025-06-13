@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000031 RID: 49
 public class BeachChairConfig : IBuildingConfig
 {
-	// Token: 0x060000CE RID: 206 RVA: 0x00149C7C File Offset: 0x00147E7C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "BeachChair";
@@ -36,7 +34,6 @@ public class BeachChairConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060000CF RID: 207 RVA: 0x00149D10 File Offset: 0x00147F10
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.RecBuilding, false);
@@ -52,20 +49,15 @@ public class BeachChairConfig : IBuildingConfig
 		go.AddOrGetDef<RocketUsageRestriction.Def>();
 	}
 
-	// Token: 0x060000D0 RID: 208 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000088 RID: 136
 	public const string ID = "BeachChair";
 
-	// Token: 0x04000089 RID: 137
 	public static readonly int TAN_LUX = DUPLICANTSTATS.STANDARD.Light.HIGH_LIGHT;
 
-	// Token: 0x0400008A RID: 138
 	private const float TANK_SIZE_KG = 20f;
 
-	// Token: 0x0400008B RID: 139
 	private const float SPILL_RATE_KG = 0.05f;
 }

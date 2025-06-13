@@ -4,17 +4,14 @@ using Klei.AI;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x0200150F RID: 5391
 [AddComponentMenu("KMonoBehaviour/game/MedicinalPill")]
 public class MedicinalPill : KMonoBehaviour, IGameObjectEffectDescriptor
 {
-	// Token: 0x06007020 RID: 28704 RVA: 0x000C474E File Offset: 0x000C294E
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
 	}
 
-	// Token: 0x06007021 RID: 28705 RVA: 0x00303240 File Offset: 0x00301440
 	public List<Descriptor> EffectDescriptors(GameObject go)
 	{
 		List<Descriptor> list = new List<Descriptor>();
@@ -66,12 +63,10 @@ public class MedicinalPill : KMonoBehaviour, IGameObjectEffectDescriptor
 		return list;
 	}
 
-	// Token: 0x06007022 RID: 28706 RVA: 0x000EDE77 File Offset: 0x000EC077
 	public List<Descriptor> GetDescriptors(GameObject go)
 	{
 		return this.EffectDescriptors(go);
 	}
 
-	// Token: 0x04005434 RID: 21556
 	public MedicineInfo info;
 }

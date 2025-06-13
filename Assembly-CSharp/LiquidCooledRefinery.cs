@@ -3,17 +3,14 @@ using System.Collections.Generic;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000E64 RID: 3684
 public class LiquidCooledRefinery : ComplexFabricator
 {
-	// Token: 0x06004811 RID: 18449 RVA: 0x000D3273 File Offset: 0x000D1473
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 		base.Subscribe<LiquidCooledRefinery>(-1697596308, LiquidCooledRefinery.OnStorageChangeDelegate);
 	}
 
-	// Token: 0x06004812 RID: 18450 RVA: 0x0026297C File Offset: 0x00260B7C
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -33,14 +30,12 @@ public class LiquidCooledRefinery : ComplexFabricator
 		};
 	}
 
-	// Token: 0x06004813 RID: 18451 RVA: 0x000D328C File Offset: 0x000D148C
 	protected override void OnCleanUp()
 	{
 		Game.Instance.liquidConduitFlow.RemoveConduitUpdater(new Action<float>(this.OnConduitUpdate));
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06004814 RID: 18452 RVA: 0x00262A44 File Offset: 0x00260C44
 	private void OnConduitUpdate(float dt)
 	{
 		bool flag = Game.Instance.liquidConduitFlow.GetContents(this.outputCell).mass > 0f;
@@ -48,13 +43,11 @@ public class LiquidCooledRefinery : ComplexFabricator
 		this.operational.SetFlag(LiquidCooledRefinery.coolantOutputPipeEmpty, !flag);
 	}
 
-	// Token: 0x06004815 RID: 18453 RVA: 0x000D32AF File Offset: 0x000D14AF
 	public bool HasEnoughCoolant()
 	{
 		return this.inStorage.GetAmountAvailable(this.coolantTag) + this.buildStorage.GetAmountAvailable(this.coolantTag) >= this.minCoolantMass;
 	}
 
-	// Token: 0x06004816 RID: 18454 RVA: 0x00262AA8 File Offset: 0x00260CA8
 	private void OnStorageChange(object data)
 	{
 		float amountAvailable = this.inStorage.GetAmountAvailable(this.coolantTag);
@@ -66,13 +59,11 @@ public class LiquidCooledRefinery : ComplexFabricator
 		}
 	}
 
-	// Token: 0x06004817 RID: 18455 RVA: 0x000D32DF File Offset: 0x000D14DF
 	protected override bool HasIngredients(ComplexRecipe recipe, Storage storage)
 	{
 		return storage.GetAmountAvailable(this.coolantTag) >= this.minCoolantMass && base.HasIngredients(recipe, storage);
 	}
 
-	// Token: 0x06004818 RID: 18456 RVA: 0x00262AF0 File Offset: 0x00260CF0
 	protected override void TransferCurrentRecipeIngredientsForBuild()
 	{
 		base.TransferCurrentRecipeIngredientsForBuild();
@@ -84,7 +75,6 @@ public class LiquidCooledRefinery : ComplexFabricator
 		}
 	}
 
-	// Token: 0x06004819 RID: 18457 RVA: 0x00262B64 File Offset: 0x00260D64
 	protected override List<GameObject> SpawnOrderProduct(ComplexRecipe recipe)
 	{
 		List<GameObject> list = base.SpawnOrderProduct(recipe);
@@ -119,7 +109,6 @@ public class LiquidCooledRefinery : ComplexFabricator
 		return list;
 	}
 
-	// Token: 0x0600481A RID: 18458 RVA: 0x00262D10 File Offset: 0x00260F10
 	public override List<Descriptor> GetDescriptors(GameObject go)
 	{
 		List<Descriptor> descriptors = base.GetDescriptors(go);
@@ -127,7 +116,6 @@ public class LiquidCooledRefinery : ComplexFabricator
 		return descriptors;
 	}
 
-	// Token: 0x0600481B RID: 18459 RVA: 0x00262D8C File Offset: 0x00260F8C
 	public override List<Descriptor> AdditionalEffectsForRecipe(ComplexRecipe recipe)
 	{
 		List<Descriptor> list = base.AdditionalEffectsForRecipe(recipe);
@@ -145,56 +133,41 @@ public class LiquidCooledRefinery : ComplexFabricator
 		return list;
 	}
 
-	// Token: 0x04003293 RID: 12947
 	[MyCmpReq]
 	private ConduitConsumer conduitConsumer;
 
-	// Token: 0x04003294 RID: 12948
 	public static readonly Operational.Flag coolantOutputPipeEmpty = new Operational.Flag("coolantOutputPipeEmpty", Operational.Flag.Type.Requirement);
 
-	// Token: 0x04003295 RID: 12949
 	private int outputCell;
 
-	// Token: 0x04003296 RID: 12950
 	public Tag coolantTag;
 
-	// Token: 0x04003297 RID: 12951
 	public float minCoolantMass = 100f;
 
-	// Token: 0x04003298 RID: 12952
 	public float thermalFudge = 0.8f;
 
-	// Token: 0x04003299 RID: 12953
 	public float outputTemperature = 313.15f;
 
-	// Token: 0x0400329A RID: 12954
 	private MeterController meter_coolant;
 
-	// Token: 0x0400329B RID: 12955
 	private MeterController meter_metal;
 
-	// Token: 0x0400329C RID: 12956
 	private LiquidCooledRefinery.StatesInstance smi;
 
-	// Token: 0x0400329D RID: 12957
 	private static readonly EventSystem.IntraObjectHandler<LiquidCooledRefinery> OnStorageChangeDelegate = new EventSystem.IntraObjectHandler<LiquidCooledRefinery>(delegate(LiquidCooledRefinery component, object data)
 	{
 		component.OnStorageChange(data);
 	});
 
-	// Token: 0x02000E65 RID: 3685
 	public class StatesInstance : GameStateMachine<LiquidCooledRefinery.States, LiquidCooledRefinery.StatesInstance, LiquidCooledRefinery, object>.GameInstance
 	{
-		// Token: 0x0600481F RID: 18463 RVA: 0x000D3354 File Offset: 0x000D1554
 		public StatesInstance(LiquidCooledRefinery master) : base(master)
 		{
 		}
 	}
 
-	// Token: 0x02000E66 RID: 3686
 	public class States : GameStateMachine<LiquidCooledRefinery.States, LiquidCooledRefinery.StatesInstance, LiquidCooledRefinery>
 	{
-		// Token: 0x06004820 RID: 18464 RVA: 0x00262EC4 File Offset: 0x002610C4
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			if (LiquidCooledRefinery.States.waitingForCoolantStatus == null)
@@ -215,19 +188,14 @@ public class LiquidCooledRefinery : ComplexFabricator
 			this.output_blocked.ToggleStatusItem(Db.Get().BuildingStatusItems.OutputPipeFull, null).ParamTransition<bool>(this.outputBlocked, this.waiting_for_coolant, GameStateMachine<LiquidCooledRefinery.States, LiquidCooledRefinery.StatesInstance, LiquidCooledRefinery, object>.IsFalse);
 		}
 
-		// Token: 0x0400329E RID: 12958
 		public static StatusItem waitingForCoolantStatus;
 
-		// Token: 0x0400329F RID: 12959
 		public StateMachine<LiquidCooledRefinery.States, LiquidCooledRefinery.StatesInstance, LiquidCooledRefinery, object>.BoolParameter outputBlocked;
 
-		// Token: 0x040032A0 RID: 12960
 		public GameStateMachine<LiquidCooledRefinery.States, LiquidCooledRefinery.StatesInstance, LiquidCooledRefinery, object>.State waiting_for_coolant;
 
-		// Token: 0x040032A1 RID: 12961
 		public GameStateMachine<LiquidCooledRefinery.States, LiquidCooledRefinery.StatesInstance, LiquidCooledRefinery, object>.State ready;
 
-		// Token: 0x040032A2 RID: 12962
 		public GameStateMachine<LiquidCooledRefinery.States, LiquidCooledRefinery.StatesInstance, LiquidCooledRefinery, object>.State output_blocked;
 	}
 }

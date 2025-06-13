@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000363 RID: 867
 public class GeneratorConfig : IBuildingConfig
 {
-	// Token: 0x06000DC0 RID: 3520 RVA: 0x0017ECF4 File Offset: 0x0017CEF4
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "Generator";
@@ -35,7 +33,6 @@ public class GeneratorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000DC1 RID: 3521 RVA: 0x0017EDC0 File Offset: 0x0017CFC0
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
@@ -60,22 +57,17 @@ public class GeneratorConfig : IBuildingConfig
 		Tinkerable.MakePowerTinkerable(go);
 	}
 
-	// Token: 0x06000DC2 RID: 3522 RVA: 0x000AA1AD File Offset: 0x000A83AD
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
 		go.AddOrGetDef<PoweredActiveController.Def>();
 	}
 
-	// Token: 0x04000A04 RID: 2564
 	public const string ID = "Generator";
 
-	// Token: 0x04000A05 RID: 2565
 	private const float COAL_BURN_RATE = 1f;
 
-	// Token: 0x04000A06 RID: 2566
 	private const float COAL_CAPACITY = 600f;
 
-	// Token: 0x04000A07 RID: 2567
 	public const float CO2_OUTPUT_TEMPERATURE = 383.15f;
 }

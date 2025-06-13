@@ -4,16 +4,13 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000408 RID: 1032
 public class ManualHighEnergyParticleSpawnerConfig : IBuildingConfig
 {
-	// Token: 0x0600111E RID: 4382 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x0600111F RID: 4383 RVA: 0x0018CC38 File Offset: 0x0018AE38
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "ManualHighEnergyParticleSpawner";
@@ -42,7 +39,6 @@ public class ManualHighEnergyParticleSpawnerConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001120 RID: 4384 RVA: 0x0018CCFC File Offset: 0x0018AEFC
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<LogicOperationalController>();
@@ -104,44 +100,31 @@ public class ManualHighEnergyParticleSpawnerConfig : IBuildingConfig
 		radiationEmitter.emitRads = 120f;
 	}
 
-	// Token: 0x06001121 RID: 4385 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000BE1 RID: 3041
 	public const string ID = "ManualHighEnergyParticleSpawner";
 
-	// Token: 0x04000BE2 RID: 3042
 	public const float MIN_LAUNCH_INTERVAL = 2f;
 
-	// Token: 0x04000BE3 RID: 3043
 	public const int MIN_SLIDER = 1;
 
-	// Token: 0x04000BE4 RID: 3044
 	public const int MAX_SLIDER = 100;
 
-	// Token: 0x04000BE5 RID: 3045
 	public const float RADBOLTS_PER_KG = 5f;
 
-	// Token: 0x04000BE6 RID: 3046
 	public const float MASS_PER_CRAFT = 1f;
 
-	// Token: 0x04000BE7 RID: 3047
 	public const float REFINED_BONUS = 5f;
 
-	// Token: 0x04000BE8 RID: 3048
 	public const int RADBOLTS_PER_CRAFT = 5;
 
-	// Token: 0x04000BE9 RID: 3049
 	public static readonly Tag WASTE_MATERIAL = SimHashes.DepletedUranium.CreateTag();
 
-	// Token: 0x04000BEA RID: 3050
 	private const float ORE_FUEL_TO_WASTE_RATIO = 0.5f;
 
-	// Token: 0x04000BEB RID: 3051
 	private const float REFINED_FUEL_TO_WASTE_RATIO = 0.8f;
 
-	// Token: 0x04000BEC RID: 3052
 	private short RAD_LIGHT_SIZE = 3;
 }

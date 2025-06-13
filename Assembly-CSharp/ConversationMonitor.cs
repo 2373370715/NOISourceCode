@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x02001585 RID: 5509
 public class ConversationMonitor : GameStateMachine<ConversationMonitor, ConversationMonitor.Instance, IStateMachineTarget, ConversationMonitor.Def>
 {
-	// Token: 0x060072BC RID: 29372 RVA: 0x0030D7A0 File Offset: 0x0030B9A0
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.root;
@@ -19,28 +17,21 @@ public class ConversationMonitor : GameStateMachine<ConversationMonitor, Convers
 		});
 	}
 
-	// Token: 0x04005607 RID: 22023
 	private const int MAX_RECENT_TOPICS = 5;
 
-	// Token: 0x04005608 RID: 22024
 	private const int MAX_FAVOURITE_TOPICS = 5;
 
-	// Token: 0x04005609 RID: 22025
 	private const float FAVOURITE_CHANCE = 0.033333335f;
 
-	// Token: 0x0400560A RID: 22026
 	private const float LEARN_CHANCE = 0.33333334f;
 
-	// Token: 0x02001586 RID: 5510
 	public class Def : StateMachine.BaseDef
 	{
 	}
 
-	// Token: 0x02001587 RID: 5511
 	[SerializationConfig(MemberSerialization.OptIn)]
 	public new class Instance : GameStateMachine<ConversationMonitor, ConversationMonitor.Instance, IStateMachineTarget, ConversationMonitor.Def>.GameInstance
 	{
-		// Token: 0x060072BF RID: 29375 RVA: 0x0030D810 File Offset: 0x0030BA10
 		public Instance(IStateMachineTarget master, ConversationMonitor.Def def) : base(master, def)
 		{
 			this.recentTopics = new Queue<string>();
@@ -51,7 +42,6 @@ public class ConversationMonitor : GameStateMachine<ConversationMonitor, Convers
 			this.personalTopics = new List<string>();
 		}
 
-		// Token: 0x060072C0 RID: 29376 RVA: 0x0030D868 File Offset: 0x0030BA68
 		public string GetATopic()
 		{
 			int maxExclusive = this.recentTopics.Count + this.favouriteTopics.Count * 2 + this.personalTopics.Count;
@@ -78,7 +68,6 @@ public class ConversationMonitor : GameStateMachine<ConversationMonitor, Convers
 			return "";
 		}
 
-		// Token: 0x060072C1 RID: 29377 RVA: 0x0030D940 File Offset: 0x0030BB40
 		public void OnTopicDiscovered(object data)
 		{
 			string item = (string)data;
@@ -93,7 +82,6 @@ public class ConversationMonitor : GameStateMachine<ConversationMonitor, Convers
 			}
 		}
 
-		// Token: 0x060072C2 RID: 29378 RVA: 0x0030D990 File Offset: 0x0030BB90
 		public void OnTopicDiscussed(object data)
 		{
 			string data2 = (string)data;
@@ -103,7 +91,6 @@ public class ConversationMonitor : GameStateMachine<ConversationMonitor, Convers
 			}
 		}
 
-		// Token: 0x060072C3 RID: 29379 RVA: 0x0030D9B8 File Offset: 0x0030BBB8
 		private void TryMakeFavouriteTopic(string topic)
 		{
 			if (UnityEngine.Random.value < 0.033333335f)
@@ -117,18 +104,14 @@ public class ConversationMonitor : GameStateMachine<ConversationMonitor, Convers
 			}
 		}
 
-		// Token: 0x0400560B RID: 22027
 		[Serialize]
 		private Queue<string> recentTopics;
 
-		// Token: 0x0400560C RID: 22028
 		[Serialize]
 		private List<string> favouriteTopics;
 
-		// Token: 0x0400560D RID: 22029
 		private List<string> personalTopics;
 
-		// Token: 0x0400560E RID: 22030
 		private static readonly List<string> randomTopics = new List<string>
 		{
 			"Headquarters"

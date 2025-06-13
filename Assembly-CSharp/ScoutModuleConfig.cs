@@ -4,16 +4,13 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000588 RID: 1416
 public class ScoutModuleConfig : IBuildingConfig
 {
-	// Token: 0x0600186C RID: 6252 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x0600186D RID: 6253 RVA: 0x001AB200 File Offset: 0x001A9400
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "ScoutModule";
@@ -42,7 +39,6 @@ public class ScoutModuleConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600186E RID: 6254 RVA: 0x001AB2AC File Offset: 0x001A94AC
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -72,13 +68,11 @@ public class ScoutModuleConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x0600186F RID: 6255 RVA: 0x000B4C0D File Offset: 0x000B2E0D
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		Prioritizable.AddRef(go);
 		BuildingTemplates.ExtendBuildingToRocketModuleCluster(go, null, ROCKETRY.BURDEN.MODERATE, 0f, 0f);
 	}
 
-	// Token: 0x04001022 RID: 4130
 	public const string ID = "ScoutModule";
 }

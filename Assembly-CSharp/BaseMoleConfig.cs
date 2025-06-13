@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000EE RID: 238
 public static class BaseMoleConfig
 {
-	// Token: 0x060003C5 RID: 965 RVA: 0x0015A888 File Offset: 0x00158A88
 	public static GameObject BaseMole(string id, string name, string desc, string traitId, string anim_file, bool is_baby, float warningLowTemperature, float warningHighTemperature, float lethalLowTemperature, float lethalHighTemperature, string symbolOverridePrefix = null, int on_death_drop_count = 10)
 	{
 		float mass = 25f;
@@ -37,7 +35,6 @@ public static class BaseMoleConfig
 		return gameObject;
 	}
 
-	// Token: 0x060003C6 RID: 966 RVA: 0x0015AB10 File Offset: 0x00158D10
 	public static List<Diet.Info> SimpleOreDiet(List<Tag> elementTags, float caloriesPerKg, float producedConversionRate)
 	{
 		List<Diet.Info> list = new List<Diet.Info>();
@@ -51,7 +48,6 @@ public static class BaseMoleConfig
 		return list;
 	}
 
-	// Token: 0x060003C7 RID: 967 RVA: 0x0015AB84 File Offset: 0x00158D84
 	private static HashedString CustomIdleAnim(IdleStates.Instance smi, ref HashedString pre_anim)
 	{
 		if (smi.gameObject.GetComponent<Navigator>().CurrentNavType == NavType.Solid)
@@ -66,7 +62,6 @@ public static class BaseMoleConfig
 		return "idle_loop";
 	}
 
-	// Token: 0x04000291 RID: 657
 	private static readonly string[] SolidIdleAnims = new string[]
 	{
 		"idle1",

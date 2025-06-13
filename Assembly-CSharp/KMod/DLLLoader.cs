@@ -8,10 +8,8 @@ using UnityEngine;
 
 namespace KMod
 {
-	// Token: 0x0200223C RID: 8764
 	internal static class DLLLoader
 	{
-		// Token: 0x0600BA2E RID: 47662 RVA: 0x0047DF50 File Offset: 0x0047C150
 		public static bool LoadUserModLoaderDLL()
 		{
 			try
@@ -47,7 +45,6 @@ namespace KMod
 			return false;
 		}
 
-		// Token: 0x0600BA2F RID: 47663 RVA: 0x0047E008 File Offset: 0x0047C208
 		public static LoadedModData LoadDLLs(Mod ownerMod, string harmonyId, string path, bool isDev)
 		{
 			LoadedModData loadedModData = new LoadedModData();
@@ -152,7 +149,6 @@ namespace KMod
 			return result;
 		}
 
-		// Token: 0x0600BA30 RID: 47664 RVA: 0x0047E314 File Offset: 0x0047C514
 		public static void PostLoadDLLs(string harmonyId, LoadedModData modData, IReadOnlyList<Mod> mods)
 		{
 			try
@@ -168,7 +164,6 @@ namespace KMod
 			}
 		}
 
-		// Token: 0x040098BC RID: 39100
 		private const string managed_path = "Managed";
 	}
 }

@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000023 RID: 35
 public class ArtifactAnalysisStationConfig : IBuildingConfig
 {
-	// Token: 0x0600008B RID: 139 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x0600008C RID: 140 RVA: 0x00148AE4 File Offset: 0x00146CE4
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "ArtifactAnalysisStation";
@@ -36,7 +33,6 @@ public class ArtifactAnalysisStationConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600008D RID: 141 RVA: 0x00148B84 File Offset: 0x00146D84
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<DropAllWorkable>();
@@ -54,14 +50,11 @@ public class ArtifactAnalysisStationConfig : IBuildingConfig
 		manualDeliveryKG.capacity = 1f;
 	}
 
-	// Token: 0x0600008E RID: 142 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x0400006C RID: 108
 	public const string ID = "ArtifactAnalysisStation";
 
-	// Token: 0x0400006D RID: 109
 	public const float WORK_TIME = 150f;
 }

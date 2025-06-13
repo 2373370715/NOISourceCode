@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003B8 RID: 952
 public class LeadSuitMarkerConfig : IBuildingConfig
 {
-	// Token: 0x06000F6F RID: 3951 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06000F70 RID: 3952 RVA: 0x00186F58 File Offset: 0x00185158
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "LeadSuitMarker";
@@ -35,7 +32,6 @@ public class LeadSuitMarkerConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000F71 RID: 3953 RVA: 0x00186FE0 File Offset: 0x001851E0
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		SuitMarker suitMarker = go.AddOrGet<SuitMarker>();
@@ -52,12 +48,10 @@ public class LeadSuitMarkerConfig : IBuildingConfig
 		go.AddTag(GameTags.JetSuitBlocker);
 	}
 
-	// Token: 0x06000F72 RID: 3954 RVA: 0x000AAF59 File Offset: 0x000A9159
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
 	}
 
-	// Token: 0x04000B3E RID: 2878
 	public const string ID = "LeadSuitMarker";
 }

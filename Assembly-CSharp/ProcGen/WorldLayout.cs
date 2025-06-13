@@ -12,38 +12,21 @@ using VoronoiTree;
 
 namespace ProcGen
 {
-	// Token: 0x020020EB RID: 8427
 	[SerializationConfig(MemberSerialization.OptIn)]
 	public class WorldLayout
 	{
-		// Token: 0x17000B7A RID: 2938
-		// (get) Token: 0x0600B37D RID: 45949 RVA: 0x00119333 File Offset: 0x00117533
-		// (set) Token: 0x0600B37E RID: 45950 RVA: 0x0011933B File Offset: 0x0011753B
 		[Serialize]
 		public int mapWidth { get; private set; }
 
-		// Token: 0x17000B7B RID: 2939
-		// (get) Token: 0x0600B37F RID: 45951 RVA: 0x00119344 File Offset: 0x00117544
-		// (set) Token: 0x0600B380 RID: 45952 RVA: 0x0011934C File Offset: 0x0011754C
 		[Serialize]
 		public int mapHeight { get; private set; }
 
-		// Token: 0x17000B7C RID: 2940
-		// (get) Token: 0x0600B381 RID: 45953 RVA: 0x00119355 File Offset: 0x00117555
-		// (set) Token: 0x0600B382 RID: 45954 RVA: 0x0011935D File Offset: 0x0011755D
 		public bool layoutOK { get; private set; }
 
-		// Token: 0x17000B7D RID: 2941
-		// (get) Token: 0x0600B383 RID: 45955 RVA: 0x00119366 File Offset: 0x00117566
-		// (set) Token: 0x0600B384 RID: 45956 RVA: 0x0011936D File Offset: 0x0011756D
 		public static LevelLayer levelLayerGradient { get; private set; }
 
-		// Token: 0x17000B7E RID: 2942
-		// (get) Token: 0x0600B385 RID: 45957 RVA: 0x00119375 File Offset: 0x00117575
-		// (set) Token: 0x0600B386 RID: 45958 RVA: 0x0011937D File Offset: 0x0011757D
 		public WorldGen worldGen { get; private set; }
 
-		// Token: 0x0600B387 RID: 45959 RVA: 0x00119386 File Offset: 0x00117586
 		public WorldLayout(WorldGen worldGen, int seed)
 		{
 			this.worldGen = worldGen;
@@ -52,14 +35,12 @@ namespace ProcGen
 			this.SetSeed(seed);
 		}
 
-		// Token: 0x0600B388 RID: 45960 RVA: 0x001193B4 File Offset: 0x001175B4
 		public WorldLayout(WorldGen worldGen, int width, int height, int seed) : this(worldGen, seed)
 		{
 			this.mapWidth = width;
 			this.mapHeight = height;
 		}
 
-		// Token: 0x0600B389 RID: 45961 RVA: 0x001193CD File Offset: 0x001175CD
 		public void SetSeed(int seed)
 		{
 			this.myRandom = new SeededRandom(seed);
@@ -67,19 +48,16 @@ namespace ProcGen
 			this.overworldGraph.SetSeed(seed);
 		}
 
-		// Token: 0x0600B38A RID: 45962 RVA: 0x001193F3 File Offset: 0x001175F3
 		public Tree GetVoronoiTree()
 		{
 			return this.voronoiTree;
 		}
 
-		// Token: 0x0600B38B RID: 45963 RVA: 0x001193FB File Offset: 0x001175FB
 		public static void SetLayerGradient(LevelLayer newGradient)
 		{
 			WorldLayout.levelLayerGradient = newGradient;
 		}
 
-		// Token: 0x0600B38C RID: 45964 RVA: 0x00442A8C File Offset: 0x00440C8C
 		public static string GetNodeTypeFromLayers(Vector2 point, float mapHeight, SeededRandom rnd)
 		{
 			string result = WorldGenTags.TheVoid.Name;
@@ -97,7 +75,6 @@ namespace ProcGen
 			return result;
 		}
 
-		// Token: 0x0600B38D RID: 45965 RVA: 0x00442B5C File Offset: 0x00440D5C
 		public Tree GenerateOverworld(bool usePD, bool isRunningDebugGen)
 		{
 			global::Debug.Assert(this.mapWidth != 0 && this.mapHeight != 0, "Map size has not been set");
@@ -196,7 +173,6 @@ namespace ProcGen
 			return this.voronoiTree;
 		}
 
-		// Token: 0x0600B38E RID: 45966 RVA: 0x004431D8 File Offset: 0x004413D8
 		public static void ResetMapGraphFromVoronoiTree(List<Node> nodes, MapGraph graph, bool clear)
 		{
 			if (clear)
@@ -227,7 +203,6 @@ namespace ProcGen
 			}
 		}
 
-		// Token: 0x0600B38F RID: 45967 RVA: 0x00119403 File Offset: 0x00117603
 		public void PopulateSubworlds()
 		{
 			this.AddSubworldChildren();
@@ -235,7 +210,6 @@ namespace ProcGen
 			this.PropagateStartTag();
 		}
 
-		// Token: 0x0600B390 RID: 45968 RVA: 0x00443304 File Offset: 0x00441504
 		private void PropagateDistanceTags(Tree tree, TagSet tags)
 		{
 			foreach (Tag tag in tags)
@@ -262,7 +236,6 @@ namespace ProcGen
 			}
 		}
 
-		// Token: 0x0600B391 RID: 45969 RVA: 0x004433EC File Offset: 0x004415EC
 		private HashSet<WeightedSubWorld> GetNameFilterSet(Node vn, World.AllowedCellsFilter filter, List<WeightedSubWorld> subworlds)
 		{
 			HashSet<WeightedSubWorld> hashSet = new HashSet<WeightedSubWorld>();
@@ -331,7 +304,6 @@ namespace ProcGen
 			return hashSet;
 		}
 
-		// Token: 0x0600B392 RID: 45970 RVA: 0x004436CC File Offset: 0x004418CC
 		private HashSet<WeightedSubWorld> GetZoneTypeFilterSet(Node vn, World.AllowedCellsFilter filter, Dictionary<string, List<WeightedSubWorld>> subworldsByZoneType)
 		{
 			HashSet<WeightedSubWorld> hashSet = new HashSet<WeightedSubWorld>();
@@ -375,7 +347,6 @@ namespace ProcGen
 			return hashSet;
 		}
 
-		// Token: 0x0600B393 RID: 45971 RVA: 0x004438A4 File Offset: 0x00441AA4
 		private HashSet<WeightedSubWorld> GetTemperatureFilterSet(Node vn, World.AllowedCellsFilter filter, Dictionary<string, List<WeightedSubWorld>> subworldsByTemperature)
 		{
 			HashSet<WeightedSubWorld> hashSet = new HashSet<WeightedSubWorld>();
@@ -419,7 +390,6 @@ namespace ProcGen
 			return hashSet;
 		}
 
-		// Token: 0x0600B394 RID: 45972 RVA: 0x00443A7C File Offset: 0x00441C7C
 		private void RunFilterClearCommand(Node vn, World.AllowedCellsFilter filter, HashSet<WeightedSubWorld> allowedSubworldsSet)
 		{
 			switch (filter.tagcommand)
@@ -453,7 +423,6 @@ namespace ProcGen
 			}
 		}
 
-		// Token: 0x0600B395 RID: 45973 RVA: 0x00443B54 File Offset: 0x00441D54
 		private HashSet<WeightedSubWorld> Filter(Node vn, List<WeightedSubWorld> allSubWorlds, Dictionary<string, List<WeightedSubWorld>> subworldsByTemperature, Dictionary<string, List<WeightedSubWorld>> subworldsByZoneType)
 		{
 			HashSet<WeightedSubWorld> hashSet = new HashSet<WeightedSubWorld>();
@@ -517,7 +486,6 @@ namespace ProcGen
 			return hashSet;
 		}
 
-		// Token: 0x0600B396 RID: 45974 RVA: 0x00443D6C File Offset: 0x00441F6C
 		private void ConvertUnknownCells(SeededRandom myRandom, bool isRunningDebugGen)
 		{
 			List<Node> list = new List<Node>();
@@ -619,7 +587,6 @@ namespace ProcGen
 			}
 		}
 
-		// Token: 0x0600B397 RID: 45975 RVA: 0x00444270 File Offset: 0x00442470
 		private Node ApplySubworldToNode(Node vn, SubWorld subWorld, float overridePower = -1f)
 		{
 			Node node = this.overworldGraph.FindNodeByID(vn.site.id);
@@ -633,7 +600,6 @@ namespace ProcGen
 			return node;
 		}
 
-		// Token: 0x0600B398 RID: 45976 RVA: 0x00444328 File Offset: 0x00442528
 		private void FlattenOverworld()
 		{
 			try
@@ -670,7 +636,6 @@ namespace ProcGen
 			}
 		}
 
-		// Token: 0x0600B399 RID: 45977 RVA: 0x004444E4 File Offset: 0x004426E4
 		public static bool TestEdgeConsistency(MapGraph graph, Cell cell, out Edge problemEdge)
 		{
 			List<Edge> arcs = graph.GetArcs(cell);
@@ -699,7 +664,6 @@ namespace ProcGen
 			return true;
 		}
 
-		// Token: 0x0600B39A RID: 45978 RVA: 0x004445D4 File Offset: 0x004427D4
 		private void AddSubworldChildren()
 		{
 			new TagSet().Add(WorldGenTags.Overworld);
@@ -764,7 +728,6 @@ namespace ProcGen
 			Node.maxDepth = this.voronoiTree.MaxDepth(0);
 		}
 
-		// Token: 0x0600B39B RID: 45979 RVA: 0x00444908 File Offset: 0x00442B08
 		private List<Vector2> GetPoints(string name, LoggerSSF log, int minPointCount, int maxPointCount, Polygon boundingArea, float density, float avoidRadius, List<Vector2> avoidPoints, PointGenerator.SampleBehaviour sampleBehaviour, bool testInsideBounds, SeededRandom rnd, bool doShuffle = true, bool testAvoidPoints = true)
 		{
 			int num = 0;
@@ -788,7 +751,6 @@ namespace ProcGen
 			return randomPoints;
 		}
 
-		// Token: 0x0600B39C RID: 45980 RVA: 0x00444994 File Offset: 0x00442B94
 		public void GenerateChildren(SubWorld sw, Tree node, MapGraph graph, float worldHeight, int seed)
 		{
 			SeededRandom seededRandom = new SeededRandom(seed);
@@ -886,7 +848,6 @@ namespace ProcGen
 			}
 		}
 
-		// Token: 0x0600B39D RID: 45981 RVA: 0x00444E9C File Offset: 0x0044309C
 		private Node CreateTreeNodeWithFeatureAndBiome(WorldGenSettings settings, SubWorld sw, Tree node, MapGraph graph, Feature feature, Vector2 pos, TagSet newTags, int i)
 		{
 			string text = null;
@@ -948,7 +909,6 @@ namespace ProcGen
 			return node2;
 		}
 
-		// Token: 0x0600B39E RID: 45982 RVA: 0x004450A0 File Offset: 0x004432A0
 		private void TagTopAndBottomSites(Tag topTag, Tag bottomTag)
 		{
 			List<Diagram.Site> list = new List<Diagram.Site>();
@@ -965,7 +925,6 @@ namespace ProcGen
 			}
 		}
 
-		// Token: 0x0600B39F RID: 45983 RVA: 0x00445130 File Offset: 0x00443330
 		private void TagEdgeSites(Tag leftTag, Tag rightTag)
 		{
 			List<Diagram.Site> list = new List<Diagram.Site>();
@@ -982,13 +941,11 @@ namespace ProcGen
 			}
 		}
 
-		// Token: 0x0600B3A0 RID: 45984 RVA: 0x00119418 File Offset: 0x00117618
 		private bool StartAreaTooLarge(Node node)
 		{
 			return node.tags.Contains(WorldGenTags.AtStart) && node.site.poly.Area() > 2000f;
 		}
 
-		// Token: 0x0600B3A1 RID: 45985 RVA: 0x004451C0 File Offset: 0x004433C0
 		private void PropagateStartTag()
 		{
 			foreach (Node node in this.GetStartNodes())
@@ -998,13 +955,11 @@ namespace ProcGen
 			}
 		}
 
-		// Token: 0x0600B3A2 RID: 45986 RVA: 0x00119445 File Offset: 0x00117645
 		public List<Node> GetStartNodes()
 		{
 			return this.GetLeafNodesWithTag(WorldGenTags.StartLocation);
 		}
 
-		// Token: 0x0600B3A3 RID: 45987 RVA: 0x00445220 File Offset: 0x00443420
 		public List<Node> GetLeafNodesWithTag(Tag tag)
 		{
 			List<Node> list = new List<Node>();
@@ -1012,7 +967,6 @@ namespace ProcGen
 			return list;
 		}
 
-		// Token: 0x0600B3A4 RID: 45988 RVA: 0x0044525C File Offset: 0x0044345C
 		public List<Node> GetInternalNonLeafNodesWithTag(Tag tag)
 		{
 			List<Node> list = new List<Node>();
@@ -1020,7 +974,6 @@ namespace ProcGen
 			return list;
 		}
 
-		// Token: 0x0600B3A5 RID: 45989 RVA: 0x00445298 File Offset: 0x00443498
 		public List<Node> GetTerrainNodesForTag(Tag tag)
 		{
 			List<Node> list = new List<Node>();
@@ -1035,19 +988,16 @@ namespace ProcGen
 			return list;
 		}
 
-		// Token: 0x0600B3A6 RID: 45990 RVA: 0x00445310 File Offset: 0x00443510
 		private Node FindFirstNode(string nodeType)
 		{
 			return this.localGraph.FindNode((Cell node) => node.type == nodeType);
 		}
 
-		// Token: 0x0600B3A7 RID: 45991 RVA: 0x00445344 File Offset: 0x00443544
 		private Node FindFirstNodeWithTag(Tag tag)
 		{
 			return this.localGraph.FindNode((Cell node) => node.tags != null && node.tags.Contains(tag));
 		}
 
-		// Token: 0x0600B3A8 RID: 45992 RVA: 0x00445378 File Offset: 0x00443578
 		public Vector2I GetStartLocation()
 		{
 			if (string.IsNullOrEmpty(this.worldGen.Settings.world.startSubworldName))
@@ -1074,7 +1024,6 @@ namespace ProcGen
 			return new Vector2I((int)node2.position.x, (int)node2.position.y);
 		}
 
-		// Token: 0x0600B3A9 RID: 45993 RVA: 0x00445478 File Offset: 0x00443678
 		private List<Diagram.Site> GetIntersectingSites(Node intersectingSiteSource, Tree sitesSource)
 		{
 			List<Diagram.Site> list = new List<Diagram.Site>();
@@ -1090,7 +1039,6 @@ namespace ProcGen
 			return list;
 		}
 
-		// Token: 0x0600B3AA RID: 45994 RVA: 0x00119452 File Offset: 0x00117652
 		public void GetEdgeOfMapSites(Tree vt, List<Diagram.Site> topSites, List<Diagram.Site> bottomSites, List<Diagram.Site> leftSites, List<Diagram.Site> rightSites)
 		{
 			vt.GetIntersectingLeafSites(this.topEdge, topSites);
@@ -1099,7 +1047,6 @@ namespace ProcGen
 			vt.GetIntersectingLeafSites(this.rightEdge, rightSites);
 		}
 
-		// Token: 0x0600B3AB RID: 45995 RVA: 0x00445554 File Offset: 0x00443754
 		[OnSerializing]
 		internal void OnSerializingMethod()
 		{
@@ -1147,21 +1094,18 @@ namespace ProcGen
 			}
 		}
 
-		// Token: 0x0600B3AC RID: 45996 RVA: 0x0011948A File Offset: 0x0011768A
 		[OnSerialized]
 		internal void OnSerializedMethod()
 		{
 			this.extra = null;
 		}
 
-		// Token: 0x0600B3AD RID: 45997 RVA: 0x00119493 File Offset: 0x00117693
 		[OnDeserializing]
 		internal void OnDeserializingMethod()
 		{
 			this.extra = new WorldLayout.ExtraIO();
 		}
 
-		// Token: 0x0600B3AE RID: 45998 RVA: 0x00445744 File Offset: 0x00443944
 		[OnDeserialized]
 		internal void OnDeserializedMethod()
 		{
@@ -1191,59 +1135,42 @@ namespace ProcGen
 			this.extra = null;
 		}
 
-		// Token: 0x04008E37 RID: 36407
 		private Tree voronoiTree;
 
-		// Token: 0x04008E38 RID: 36408
 		[Serialize]
 		public MapGraph localGraph;
 
-		// Token: 0x04008E39 RID: 36409
 		[Serialize]
 		public MapGraph overworldGraph;
 
-		// Token: 0x04008E3A RID: 36410
 		[EnumFlags]
 		public static WorldLayout.DebugFlags drawOptions;
 
-		// Token: 0x04008E3C RID: 36412
 		private LineSegment topEdge;
 
-		// Token: 0x04008E3D RID: 36413
 		private LineSegment bottomEdge;
 
-		// Token: 0x04008E3E RID: 36414
 		private LineSegment leftEdge;
 
-		// Token: 0x04008E3F RID: 36415
 		private LineSegment rightEdge;
 
-		// Token: 0x04008E41 RID: 36417
 		private SeededRandom myRandom;
 
-		// Token: 0x04008E43 RID: 36419
 		[Serialize]
 		private WorldLayout.ExtraIO extra;
 
-		// Token: 0x020020EC RID: 8428
 		[Flags]
 		public enum DebugFlags
 		{
-			// Token: 0x04008E45 RID: 36421
 			LocalGraph = 1,
-			// Token: 0x04008E46 RID: 36422
 			OverworldGraph = 2,
-			// Token: 0x04008E47 RID: 36423
 			VoronoiTree = 4,
-			// Token: 0x04008E48 RID: 36424
 			PowerDiagram = 8
 		}
 
-		// Token: 0x020020ED RID: 8429
 		[SerializationConfig(MemberSerialization.OptOut)]
 		private class ExtraIO
 		{
-			// Token: 0x0600B3B0 RID: 46000 RVA: 0x001194C2 File Offset: 0x001176C2
 			[OnDeserializing]
 			internal void OnDeserializingMethod()
 			{
@@ -1253,16 +1180,12 @@ namespace ProcGen
 				this.internalInternalParent = new List<KeyValuePair<int, int>>();
 			}
 
-			// Token: 0x04008E49 RID: 36425
 			public List<Leaf> leafs = new List<Leaf>();
 
-			// Token: 0x04008E4A RID: 36426
 			public List<Tree> internals = new List<Tree>();
 
-			// Token: 0x04008E4B RID: 36427
 			public List<KeyValuePair<int, int>> leafInternalParent = new List<KeyValuePair<int, int>>();
 
-			// Token: 0x04008E4C RID: 36428
 			public List<KeyValuePair<int, int>> internalInternalParent = new List<KeyValuePair<int, int>>();
 		}
 	}

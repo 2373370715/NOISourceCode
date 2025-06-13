@@ -6,11 +6,8 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-// Token: 0x02001F0F RID: 7951
 public class ProductInfoScreen : KScreen
 {
-	// Token: 0x17000AB9 RID: 2745
-	// (get) Token: 0x0600A720 RID: 42784 RVA: 0x00110E13 File Offset: 0x0010F013
 	public FacadeSelectionPanel FacadeSelectionPanel
 	{
 		get
@@ -19,7 +16,6 @@ public class ProductInfoScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600A721 RID: 42785 RVA: 0x00110E1B File Offset: 0x0010F01B
 	private void RefreshScreen()
 	{
 		if (this.currentDef != null)
@@ -30,7 +26,6 @@ public class ProductInfoScreen : KScreen
 		this.ClearProduct(true);
 	}
 
-	// Token: 0x0600A722 RID: 42786 RVA: 0x00403360 File Offset: 0x00401560
 	public void ClearProduct(bool deactivateTool = true)
 	{
 		if (this.materialSelectionPanel == null)
@@ -51,7 +46,6 @@ public class ProductInfoScreen : KScreen
 		this.Show(false);
 	}
 
-	// Token: 0x0600A723 RID: 42787 RVA: 0x004033F4 File Offset: 0x004015F4
 	public new void Awake()
 	{
 		base.Awake();
@@ -61,7 +55,6 @@ public class ProductInfoScreen : KScreen
 		this.materialSelectionPanel = Util.KInstantiateUI<MaterialSelectionPanel>(this.materialSelectionPanelPrefab.gameObject, base.gameObject, false);
 	}
 
-	// Token: 0x0600A724 RID: 42788 RVA: 0x00403468 File Offset: 0x00401668
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -103,13 +96,11 @@ public class ProductInfoScreen : KScreen
 		});
 	}
 
-	// Token: 0x0600A725 RID: 42789 RVA: 0x00110E3F File Offset: 0x0010F03F
 	public void ConfigureScreen(BuildingDef def)
 	{
 		this.ConfigureScreen(def, this.FacadeSelectionPanel.SelectedFacade);
 	}
 
-	// Token: 0x0600A726 RID: 42790 RVA: 0x00403650 File Offset: 0x00401850
 	public void ConfigureScreen(BuildingDef def, string facadeID)
 	{
 		this.configuring = true;
@@ -135,19 +126,16 @@ public class ProductInfoScreen : KScreen
 		this.configuring = false;
 	}
 
-	// Token: 0x0600A727 RID: 42791 RVA: 0x00110E53 File Offset: 0x0010F053
 	private void ExpandInfo(PointerEventData data)
 	{
 		this.ToggleExpandedInfo(true);
 	}
 
-	// Token: 0x0600A728 RID: 42792 RVA: 0x00110E5C File Offset: 0x0010F05C
 	private void CollapseInfo(PointerEventData data)
 	{
 		this.ToggleExpandedInfo(false);
 	}
 
-	// Token: 0x0600A729 RID: 42793 RVA: 0x004036F8 File Offset: 0x004018F8
 	public void ToggleExpandedInfo(bool state)
 	{
 		this.expandedInfo = state;
@@ -177,14 +165,12 @@ public class ProductInfoScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600A72A RID: 42794 RVA: 0x00403820 File Offset: 0x00401A20
 	private void CheckMouseOver(PointerEventData data)
 	{
 		bool state = base.GetMouseOver || (PlanScreen.Instance != null && ((PlanScreen.Instance.isActiveAndEnabled && PlanScreen.Instance.GetMouseOver) || BuildingGroupScreen.Instance.GetMouseOver)) || (BuildMenu.Instance != null && BuildMenu.Instance.isActiveAndEnabled && BuildMenu.Instance.GetMouseOver);
 		this.ToggleExpandedInfo(state);
 	}
 
-	// Token: 0x0600A72B RID: 42795 RVA: 0x00403898 File Offset: 0x00401A98
 	private void Update()
 	{
 		if (!DebugHandler.InstantBuildMode && !Game.Instance.SandboxModeActive && this.currentDef != null && this.materialSelectionPanel.CurrentSelectedElement != null && !MaterialSelector.AllowInsufficientMaterialBuild() && this.currentDef.Mass[0] > ClusterManager.Instance.activeWorld.worldInventory.GetAmount(this.materialSelectionPanel.CurrentSelectedElement, true))
@@ -193,7 +179,6 @@ public class ProductInfoScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600A72C RID: 42796 RVA: 0x00403920 File Offset: 0x00401B20
 	private void SetTitle(BuildingDef def)
 	{
 		this.titleBar.SetTitle(def.Name);
@@ -201,7 +186,6 @@ public class ProductInfoScreen : KScreen
 		this.titleBar.GetComponentInChildren<KImage>().ColorState = (flag ? KImage.ColorSelector.Active : KImage.ColorSelector.Disabled);
 	}
 
-	// Token: 0x0600A72D RID: 42797 RVA: 0x004039AC File Offset: 0x00401BAC
 	private void SetDescription(BuildingDef def)
 	{
 		if (def == null)
@@ -292,7 +276,6 @@ public class ProductInfoScreen : KScreen
 		this.productFlavourText.text = text;
 	}
 
-	// Token: 0x0600A72E RID: 42798 RVA: 0x00403D18 File Offset: 0x00401F18
 	private void SetEffects(BuildingDef def)
 	{
 		if (this.productDescriptionText.text != null)
@@ -351,7 +334,6 @@ public class ProductInfoScreen : KScreen
 		this.RoomConstrainsPanel.SetDescriptors(list);
 	}
 
-	// Token: 0x0600A72F RID: 42799 RVA: 0x00403F2C File Offset: 0x0040212C
 	public void ClearLabels()
 	{
 		List<string> list = new List<string>(this.descLabels.Keys);
@@ -369,7 +351,6 @@ public class ProductInfoScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600A730 RID: 42800 RVA: 0x00403FB8 File Offset: 0x004021B8
 	public void SetMaterials(BuildingDef def)
 	{
 		this.materialSelectionPanel.gameObject.SetActive(true);
@@ -383,7 +364,6 @@ public class ProductInfoScreen : KScreen
 		this.ActivateAppropriateTool(def);
 	}
 
-	// Token: 0x0600A731 RID: 42801 RVA: 0x00110E65 File Offset: 0x0010F065
 	private void OnFacadeSelectionChanged()
 	{
 		if (this.currentDef == null)
@@ -393,7 +373,6 @@ public class ProductInfoScreen : KScreen
 		this.ActivateAppropriateTool(this.currentDef);
 	}
 
-	// Token: 0x0600A732 RID: 42802 RVA: 0x00110E82 File Offset: 0x0010F082
 	private void onMenuMaterialChanged()
 	{
 		if (this.currentDef == null)
@@ -404,7 +383,6 @@ public class ProductInfoScreen : KScreen
 		this.SetDescription(this.currentDef);
 	}
 
-	// Token: 0x0600A733 RID: 42803 RVA: 0x00404064 File Offset: 0x00402264
 	private void ActivateAppropriateTool(BuildingDef def)
 	{
 		global::Debug.Assert(def != null, "def was null");
@@ -423,7 +401,6 @@ public class ProductInfoScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600A734 RID: 42804 RVA: 0x00404128 File Offset: 0x00402328
 	public static bool MaterialsMet(Recipe recipe)
 	{
 		if (recipe == null)
@@ -448,7 +425,6 @@ public class ProductInfoScreen : KScreen
 		return result;
 	}
 
-	// Token: 0x0600A735 RID: 42805 RVA: 0x00110EAB File Offset: 0x0010F0AB
 	public void Close()
 	{
 		if (this.configuring)
@@ -459,46 +435,32 @@ public class ProductInfoScreen : KScreen
 		this.Show(false);
 	}
 
-	// Token: 0x0400831B RID: 33563
 	public TitleBar titleBar;
 
-	// Token: 0x0400831C RID: 33564
 	public GameObject ProductDescriptionPane;
 
-	// Token: 0x0400831D RID: 33565
 	public LocText productDescriptionText;
 
-	// Token: 0x0400831E RID: 33566
 	public DescriptorPanel ProductRequirementsPane;
 
-	// Token: 0x0400831F RID: 33567
 	public DescriptorPanel ProductEffectsPane;
 
-	// Token: 0x04008320 RID: 33568
 	public DescriptorPanel RoomConstrainsPanel;
 
-	// Token: 0x04008321 RID: 33569
 	public GameObject ProductFlavourPane;
 
-	// Token: 0x04008322 RID: 33570
 	public LocText productFlavourText;
 
-	// Token: 0x04008323 RID: 33571
 	public RectTransform BGPanel;
 
-	// Token: 0x04008324 RID: 33572
 	public MaterialSelectionPanel materialSelectionPanelPrefab;
 
-	// Token: 0x04008325 RID: 33573
 	public FacadeSelectionPanel facadeSelectionPanelPrefab;
 
-	// Token: 0x04008326 RID: 33574
 	private Dictionary<string, GameObject> descLabels = new Dictionary<string, GameObject>();
 
-	// Token: 0x04008327 RID: 33575
 	public MultiToggle sandboxInstantBuildToggle;
 
-	// Token: 0x04008328 RID: 33576
 	private List<Tag> HiddenRoomConstrainTags = new List<Tag>
 	{
 		RoomConstraints.ConstraintTags.Refrigerator,
@@ -514,24 +476,18 @@ public class ProductInfoScreen : KScreen
 		RoomConstraints.ConstraintTags.MachineShopType
 	};
 
-	// Token: 0x04008329 RID: 33577
 	[NonSerialized]
 	public MaterialSelectionPanel materialSelectionPanel;
 
-	// Token: 0x0400832A RID: 33578
 	[SerializeField]
 	private FacadeSelectionPanel facadeSelectionPanel;
 
-	// Token: 0x0400832B RID: 33579
 	[NonSerialized]
 	public BuildingDef currentDef;
 
-	// Token: 0x0400832C RID: 33580
 	public System.Action onElementsFullySelected;
 
-	// Token: 0x0400832D RID: 33581
 	private bool expandedInfo = true;
 
-	// Token: 0x0400832E RID: 33582
 	private bool configuring;
 }

@@ -3,16 +3,13 @@ using Klei.AI;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005C7 RID: 1479
 public class StaterpillarGeneratorConfig : IBuildingConfig
 {
-	// Token: 0x060019D1 RID: 6609 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x060019D2 RID: 6610 RVA: 0x001B07F4 File Offset: 0x001AE9F4
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = StaterpillarGeneratorConfig.ID;
@@ -45,23 +42,19 @@ public class StaterpillarGeneratorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060019D3 RID: 6611 RVA: 0x000B01B2 File Offset: 0x000AE3B2
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
 	}
 
-	// Token: 0x060019D4 RID: 6612 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 	}
 
-	// Token: 0x060019D5 RID: 6613 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 	}
 
-	// Token: 0x060019D6 RID: 6614 RVA: 0x000B56F0 File Offset: 0x000B38F0
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<StaterpillarGenerator>().powerDistributionOrder = 9;
@@ -71,12 +64,9 @@ public class StaterpillarGeneratorConfig : IBuildingConfig
 		go.GetComponent<KSelectable>().IsSelectable = false;
 	}
 
-	// Token: 0x040010C7 RID: 4295
 	public static readonly string ID = "StaterpillarGenerator";
 
-	// Token: 0x040010C8 RID: 4296
 	private const int WIDTH = 1;
 
-	// Token: 0x040010C9 RID: 4297
 	private const int HEIGHT = 2;
 }

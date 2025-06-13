@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200058F RID: 1423
 public class PropGravitasSmallSeedLockerConfig : IEntityConfig
 {
-	// Token: 0x06001891 RID: 6289 RVA: 0x001AB984 File Offset: 0x001A9B84
 	public GameObject CreatePrefab()
 	{
 		string id = "PropGravitasSmallSeedLocker";
@@ -56,7 +54,6 @@ public class PropGravitasSmallSeedLockerConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06001892 RID: 6290 RVA: 0x000B4C2C File Offset: 0x000B2E2C
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.AddOrGet<Workable>().SetOffsets(new CellOffset[]
@@ -66,7 +63,6 @@ public class PropGravitasSmallSeedLockerConfig : IEntityConfig
 		});
 	}
 
-	// Token: 0x06001893 RID: 6291 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}

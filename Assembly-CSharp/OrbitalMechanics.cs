@@ -3,25 +3,21 @@ using System.Collections.Generic;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x020016D3 RID: 5843
 [SerializationConfig(MemberSerialization.OptIn)]
 [AddComponentMenu("KMonoBehaviour/scripts/OrbitalMechanics")]
 public class OrbitalMechanics : KMonoBehaviour
 {
-	// Token: 0x0600788F RID: 30863 RVA: 0x000F3C69 File Offset: 0x000F1E69
 	protected override void OnPrefabInit()
 	{
 		base.Subscribe<OrbitalMechanics>(-1298331547, this.OnClusterLocationChangedDelegate);
 	}
 
-	// Token: 0x06007890 RID: 30864 RVA: 0x0031FDB4 File Offset: 0x0031DFB4
 	private void OnClusterLocationChanged(object data)
 	{
 		ClusterLocationChangedEvent clusterLocationChangedEvent = (ClusterLocationChangedEvent)data;
 		this.UpdateLocation(clusterLocationChangedEvent.newLocation);
 	}
 
-	// Token: 0x06007891 RID: 30865 RVA: 0x0031FDD4 File Offset: 0x0031DFD4
 	protected override void OnCleanUp()
 	{
 		if (this.orbitingObjects != null)
@@ -36,7 +32,6 @@ public class OrbitalMechanics : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06007892 RID: 30866 RVA: 0x0031FE40 File Offset: 0x0031E040
 	[ContextMenu("Rebuild")]
 	private void Rebuild()
 	{
@@ -62,7 +57,6 @@ public class OrbitalMechanics : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06007893 RID: 30867 RVA: 0x0031FEF8 File Offset: 0x0031E0F8
 	private void UpdateLocation(AxialI location)
 	{
 		if (this.orbitingObjects.Count > 0)
@@ -129,7 +123,6 @@ public class OrbitalMechanics : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06007894 RID: 30868 RVA: 0x00320128 File Offset: 0x0031E328
 	public void CreateOrbitalObject(string orbit_db_name)
 	{
 		WorldContainer component = base.GetComponent<WorldContainer>();
@@ -140,11 +133,9 @@ public class OrbitalMechanics : KMonoBehaviour
 		this.orbitingObjects.Add(new Ref<OrbitalObject>(component2));
 	}
 
-	// Token: 0x04005A90 RID: 23184
 	[Serialize]
 	private List<Ref<OrbitalObject>> orbitingObjects = new List<Ref<OrbitalObject>>();
 
-	// Token: 0x04005A91 RID: 23185
 	private EventSystem.IntraObjectHandler<OrbitalMechanics> OnClusterLocationChangedDelegate = new EventSystem.IntraObjectHandler<OrbitalMechanics>(delegate(OrbitalMechanics cmp, object data)
 	{
 		cmp.OnClusterLocationChanged(data);

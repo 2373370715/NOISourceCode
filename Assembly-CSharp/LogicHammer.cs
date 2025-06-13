@@ -3,11 +3,9 @@ using FMOD.Studio;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x02000E8D RID: 3725
 [SerializationConfig(MemberSerialization.OptIn)]
 public class LogicHammer : Switch
 {
-	// Token: 0x060049A1 RID: 18849 RVA: 0x0026821C File Offset: 0x0026641C
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -23,7 +21,6 @@ public class LogicHammer : Switch
 		base.OnToggle += this.OnSwitchToggled;
 	}
 
-	// Token: 0x060049A2 RID: 18850 RVA: 0x002682BC File Offset: 0x002664BC
 	private void OnSwitchToggled(bool toggled_on)
 	{
 		bool connected = false;
@@ -39,7 +36,6 @@ public class LogicHammer : Switch
 		this.UpdateVisualState(connected, false);
 	}
 
-	// Token: 0x060049A3 RID: 18851 RVA: 0x000D433D File Offset: 0x000D253D
 	private void OnOperationalChanged(object data)
 	{
 		if (this.operational.IsOperational)
@@ -50,7 +46,6 @@ public class LogicHammer : Switch
 		this.UpdateVisualState(false, false);
 	}
 
-	// Token: 0x060049A4 RID: 18852 RVA: 0x00268308 File Offset: 0x00266508
 	private bool TriggerAudio()
 	{
 		if (this.wasOn || !this.switchedOn)
@@ -159,7 +154,6 @@ public class LogicHammer : Switch
 		return false;
 	}
 
-	// Token: 0x060049A5 RID: 18853 RVA: 0x00268590 File Offset: 0x00266790
 	private void UpdateVisualState(bool connected, bool force = false)
 	{
 		if (this.wasOn != this.switchedOn || force)
@@ -182,7 +176,6 @@ public class LogicHammer : Switch
 		}
 	}
 
-	// Token: 0x060049A6 RID: 18854 RVA: 0x00268600 File Offset: 0x00266800
 	private void OnLogicValueChanged(object data)
 	{
 		LogicValueChanged logicValueChanged = (LogicValueChanged)data;
@@ -193,65 +186,49 @@ public class LogicHammer : Switch
 		}
 	}
 
-	// Token: 0x040033DF RID: 13279
 	protected KBatchedAnimController animController;
 
-	// Token: 0x040033E0 RID: 13280
 	private static readonly EventSystem.IntraObjectHandler<LogicHammer> OnLogicValueChangedDelegate = new EventSystem.IntraObjectHandler<LogicHammer>(delegate(LogicHammer component, object data)
 	{
 		component.OnLogicValueChanged(data);
 	});
 
-	// Token: 0x040033E1 RID: 13281
 	private static readonly EventSystem.IntraObjectHandler<LogicHammer> OnOperationalChangedDelegate = new EventSystem.IntraObjectHandler<LogicHammer>(delegate(LogicHammer component, object data)
 	{
 		component.OnOperationalChanged(data);
 	});
 
-	// Token: 0x040033E2 RID: 13282
 	public static readonly HashedString PORT_ID = new HashedString("LogicHammerInput");
 
-	// Token: 0x040033E3 RID: 13283
 	private static string PARAMETER_NAME = "hammerObjectCount";
 
-	// Token: 0x040033E4 RID: 13284
 	private static string SOUND_EVENT_PREFIX = "Hammer_strike_";
 
-	// Token: 0x040033E5 RID: 13285
 	private static string DEFAULT_NO_SOUND_EVENT = "Hammer_strike_default";
 
-	// Token: 0x040033E6 RID: 13286
 	[MyCmpGet]
 	private Operational operational;
 
-	// Token: 0x040033E7 RID: 13287
 	private int resonator_cell;
 
-	// Token: 0x040033E8 RID: 13288
 	private CellOffset target_offset = new CellOffset(-1, 0);
 
-	// Token: 0x040033E9 RID: 13289
 	private Rotatable rotatable;
 
-	// Token: 0x040033EA RID: 13290
 	private int logic_value;
 
-	// Token: 0x040033EB RID: 13291
 	private bool wasOn;
 
-	// Token: 0x040033EC RID: 13292
 	protected static readonly HashedString[] ON_HIT_ANIMS = new HashedString[]
 	{
 		"on_hit"
 	};
 
-	// Token: 0x040033ED RID: 13293
 	protected static readonly HashedString[] ON_MISS_ANIMS = new HashedString[]
 	{
 		"on_miss"
 	};
 
-	// Token: 0x040033EE RID: 13294
 	protected static readonly HashedString[] OFF_ANIMS = new HashedString[]
 	{
 		"off_pre",

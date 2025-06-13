@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x020010B7 RID: 4279
 public class CustomClothingOutfits
 {
-	// Token: 0x17000504 RID: 1284
-	// (get) Token: 0x0600571B RID: 22299 RVA: 0x000DD473 File Offset: 0x000DB673
 	public static CustomClothingOutfits Instance
 	{
 		get
@@ -18,19 +15,16 @@ public class CustomClothingOutfits
 		}
 	}
 
-	// Token: 0x0600571C RID: 22300 RVA: 0x000DD48B File Offset: 0x000DB68B
 	public SerializableOutfitData.Version2 Internal_GetOutfitData()
 	{
 		return this.serializableOutfitData;
 	}
 
-	// Token: 0x0600571D RID: 22301 RVA: 0x000DD493 File Offset: 0x000DB693
 	public void Internal_SetOutfitData(SerializableOutfitData.Version2 data)
 	{
 		this.serializableOutfitData = data;
 	}
 
-	// Token: 0x0600571E RID: 22302 RVA: 0x00292E6C File Offset: 0x0029106C
 	public void Internal_EditOutfit(ClothingOutfitUtility.OutfitType outfit_type, string outfit_name, string[] outfit_items)
 	{
 		SerializableOutfitData.Version2.CustomTemplateOutfitEntry customTemplateOutfitEntry;
@@ -64,7 +58,6 @@ public class CustomClothingOutfits
 		ClothingOutfitUtility.SaveClothingOutfitData();
 	}
 
-	// Token: 0x0600571F RID: 22303 RVA: 0x00292F40 File Offset: 0x00291140
 	public void Internal_RenameOutfit(ClothingOutfitUtility.OutfitType outfit_type, string old_outfit_name, string new_outfit_name)
 	{
 		if (!this.serializableOutfitData.OutfitIdToUserAuthoredTemplateOutfit.ContainsKey(old_outfit_name))
@@ -125,7 +118,6 @@ public class CustomClothingOutfits
 		ClothingOutfitUtility.SaveClothingOutfitData();
 	}
 
-	// Token: 0x06005720 RID: 22304 RVA: 0x00293140 File Offset: 0x00291340
 	public void Internal_RemoveOutfit(ClothingOutfitUtility.OutfitType outfit_type, string outfit_name)
 	{
 		if (this.serializableOutfitData.OutfitIdToUserAuthoredTemplateOutfit.Remove(outfit_name))
@@ -161,7 +153,6 @@ public class CustomClothingOutfits
 		}
 	}
 
-	// Token: 0x06005721 RID: 22305 RVA: 0x00293284 File Offset: 0x00291484
 	public bool Internal_TryGetDuplicantPersonalityOutfit(ClothingOutfitUtility.OutfitType outfit_type, string personalityId, out string outfitId)
 	{
 		if (this.serializableOutfitData.PersonalityIdToAssignedOutfits.ContainsKey(personalityId))
@@ -177,7 +168,6 @@ public class CustomClothingOutfits
 		return false;
 	}
 
-	// Token: 0x06005722 RID: 22306 RVA: 0x002932F4 File Offset: 0x002914F4
 	public void Internal_SetDuplicantPersonalityOutfit(ClothingOutfitUtility.OutfitType outfit_type, string personalityId, Option<string> outfit_id)
 	{
 		string name = Enum.GetName(typeof(ClothingOutfitUtility.OutfitType), outfit_type);
@@ -201,9 +191,7 @@ public class CustomClothingOutfits
 		ClothingOutfitUtility.SaveClothingOutfitData();
 	}
 
-	// Token: 0x04003DAC RID: 15788
 	private static CustomClothingOutfits _instance;
 
-	// Token: 0x04003DAD RID: 15789
 	private SerializableOutfitData.Version2 serializableOutfitData = new SerializableOutfitData.Version2();
 }

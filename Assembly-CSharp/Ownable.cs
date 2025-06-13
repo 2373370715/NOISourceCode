@@ -4,11 +4,9 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x020016DA RID: 5850
 [SerializationConfig(MemberSerialization.OptIn)]
 public class Ownable : Assignable, ISaveLoadable, IGameObjectEffectDescriptor
 {
-	// Token: 0x060078AD RID: 30893 RVA: 0x00320A40 File Offset: 0x0031EC40
 	public override void Assign(IAssignableIdentity new_assignee)
 	{
 		if (new_assignee == this.assignee)
@@ -38,7 +36,6 @@ public class Ownable : Assignable, ISaveLoadable, IGameObjectEffectDescriptor
 		base.Assign(new_assignee);
 	}
 
-	// Token: 0x060078AE RID: 30894 RVA: 0x00320ADC File Offset: 0x0031ECDC
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -65,14 +62,12 @@ public class Ownable : Assignable, ISaveLoadable, IGameObjectEffectDescriptor
 		}
 	}
 
-	// Token: 0x060078AF RID: 30895 RVA: 0x000F3D0D File Offset: 0x000F1F0D
 	private void OnNewAssignment(IAssignableIdentity assignables)
 	{
 		this.UpdateTint();
 		this.UpdateStatusString();
 	}
 
-	// Token: 0x060078B0 RID: 30896 RVA: 0x00320B68 File Offset: 0x0031ED68
 	private void UpdateTint()
 	{
 		if (this.tintWhenUnassigned)
@@ -91,7 +86,6 @@ public class Ownable : Assignable, ISaveLoadable, IGameObjectEffectDescriptor
 		}
 	}
 
-	// Token: 0x060078B1 RID: 30897 RVA: 0x00320BF0 File Offset: 0x0031EDF0
 	private void UpdateStatusString()
 	{
 		KSelectable component = base.GetComponent<KSelectable>();
@@ -122,7 +116,6 @@ public class Ownable : Assignable, ISaveLoadable, IGameObjectEffectDescriptor
 		component.SetStatusItem(Db.Get().StatusItemCategories.Ownable, status_item, this);
 	}
 
-	// Token: 0x060078B2 RID: 30898 RVA: 0x00320C90 File Offset: 0x0031EE90
 	public List<Descriptor> GetDescriptors(GameObject go)
 	{
 		List<Descriptor> list = new List<Descriptor>();
@@ -132,12 +125,9 @@ public class Ownable : Assignable, ISaveLoadable, IGameObjectEffectDescriptor
 		return list;
 	}
 
-	// Token: 0x04005AA5 RID: 23205
 	public bool tintWhenUnassigned = true;
 
-	// Token: 0x04005AA6 RID: 23206
 	private Color unownedTint = Color.gray;
 
-	// Token: 0x04005AA7 RID: 23207
 	private Color ownedTint = Color.white;
 }

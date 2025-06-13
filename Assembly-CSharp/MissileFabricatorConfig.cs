@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020004A6 RID: 1190
 public class MissileFabricatorConfig : IBuildingConfig
 {
-	// Token: 0x06001462 RID: 5218 RVA: 0x0019B580 File Offset: 0x00199780
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "MissileFabricator";
@@ -36,7 +34,6 @@ public class MissileFabricatorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001463 RID: 5219 RVA: 0x0019B654 File Offset: 0x00199854
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
@@ -165,7 +162,6 @@ public class MissileFabricatorConfig : IBuildingConfig
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x06001464 RID: 5220 RVA: 0x000B345B File Offset: 0x000B165B
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.GetComponent<KPrefabID>().prefabSpawnFn += delegate(GameObject game_object)
@@ -180,16 +176,12 @@ public class MissileFabricatorConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x04000DE1 RID: 3553
 	public const string ID = "MissileFabricator";
 
-	// Token: 0x04000DE2 RID: 3554
 	public const float MISSILE_FABRICATION_TIME = 80f;
 
-	// Token: 0x04000DE3 RID: 3555
 	public const float CO2_PRODUCTION_RATE = 0.0125f;
 
-	// Token: 0x04000DE4 RID: 3556
 	private static readonly List<Storage.StoredItemModifier> RefineryStoredItemModifiers = new List<Storage.StoredItemModifier>
 	{
 		Storage.StoredItemModifier.Hide,

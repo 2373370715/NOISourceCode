@@ -4,10 +4,8 @@ using Klei.AI;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000158 RID: 344
 public class CropTendingStates : GameStateMachine<CropTendingStates, CropTendingStates.Instance, IStateMachineTarget, CropTendingStates.Def>
 {
-	// Token: 0x06000504 RID: 1284 RVA: 0x00160B4C File Offset: 0x0015ED4C
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.findCrop;
@@ -79,7 +77,6 @@ public class CropTendingStates : GameStateMachine<CropTendingStates, CropTending
 		this.behaviourcomplete.BehaviourComplete(GameTags.Creatures.WantsToTendCrops, false);
 	}
 
-	// Token: 0x06000505 RID: 1285 RVA: 0x00160DC8 File Offset: 0x0015EFC8
 	private CropTendingStates.AnimSet GetCropTendingAnimSet(CropTendingStates.Instance smi)
 	{
 		CropTendingStates.AnimSet result;
@@ -90,7 +87,6 @@ public class CropTendingStates : GameStateMachine<CropTendingStates, CropTending
 		return CropTendingStates.defaultAnimSet;
 	}
 
-	// Token: 0x06000506 RID: 1286 RVA: 0x00160E04 File Offset: 0x0015F004
 	private void FindCrop(CropTendingStates.Instance smi)
 	{
 		Navigator component = smi.GetComponent<Navigator>();
@@ -180,7 +176,6 @@ public class CropTendingStates : GameStateMachine<CropTendingStates, CropTending
 		smi.moveCell = moveCell;
 	}
 
-	// Token: 0x06000507 RID: 1287 RVA: 0x00161080 File Offset: 0x0015F280
 	private void ReserverCrop(CropTendingStates.Instance smi)
 	{
 		GameObject gameObject = smi.sm.targetCrop.Get(smi);
@@ -191,7 +186,6 @@ public class CropTendingStates : GameStateMachine<CropTendingStates, CropTending
 		}
 	}
 
-	// Token: 0x06000508 RID: 1288 RVA: 0x001610C8 File Offset: 0x0015F2C8
 	private void UnreserveCrop(CropTendingStates.Instance smi)
 	{
 		GameObject gameObject = smi.sm.targetCrop.Get(smi);
@@ -201,7 +195,6 @@ public class CropTendingStates : GameStateMachine<CropTendingStates, CropTending
 		}
 	}
 
-	// Token: 0x06000509 RID: 1289 RVA: 0x001610FC File Offset: 0x0015F2FC
 	private void SetSymbolsVisibility(CropTendingStates.Instance smi, bool isVisible)
 	{
 		if (this.targetCrop.Get(smi) != null)
@@ -221,7 +214,6 @@ public class CropTendingStates : GameStateMachine<CropTendingStates, CropTending
 		}
 	}
 
-	// Token: 0x0600050A RID: 1290 RVA: 0x0016116C File Offset: 0x0015F36C
 	private void StoreSymbolsVisibility(CropTendingStates.Instance smi)
 	{
 		if (this.targetCrop.Get(smi) != null)
@@ -242,7 +234,6 @@ public class CropTendingStates : GameStateMachine<CropTendingStates, CropTending
 		}
 	}
 
-	// Token: 0x0600050B RID: 1291 RVA: 0x001611EC File Offset: 0x0015F3EC
 	private void RestoreSymbolsVisibility(CropTendingStates.Instance smi)
 	{
 		if (this.targetCrop.Get(smi) != null && smi.symbolStates != null)
@@ -262,13 +253,10 @@ public class CropTendingStates : GameStateMachine<CropTendingStates, CropTending
 		}
 	}
 
-	// Token: 0x040003AA RID: 938
 	private const int MAX_NAVIGATE_DISTANCE = 100;
 
-	// Token: 0x040003AB RID: 939
 	private const int MAX_SQR_EUCLIDEAN_DISTANCE = 625;
 
-	// Token: 0x040003AC RID: 940
 	private static CropTendingStates.AnimSet defaultAnimSet = new CropTendingStates.AnimSet
 	{
 		crop_tending_pre = "crop_tending_pre",
@@ -276,99 +264,70 @@ public class CropTendingStates : GameStateMachine<CropTendingStates, CropTending
 		crop_tending_pst = "crop_tending_pst"
 	};
 
-	// Token: 0x040003AD RID: 941
 	public StateMachine<CropTendingStates, CropTendingStates.Instance, IStateMachineTarget, CropTendingStates.Def>.TargetParameter targetCrop;
 
-	// Token: 0x040003AE RID: 942
 	private GameStateMachine<CropTendingStates, CropTendingStates.Instance, IStateMachineTarget, CropTendingStates.Def>.State findCrop;
 
-	// Token: 0x040003AF RID: 943
 	private GameStateMachine<CropTendingStates, CropTendingStates.Instance, IStateMachineTarget, CropTendingStates.Def>.State moveToCrop;
 
-	// Token: 0x040003B0 RID: 944
 	private CropTendingStates.TendingStates tendCrop;
 
-	// Token: 0x040003B1 RID: 945
 	private GameStateMachine<CropTendingStates, CropTendingStates.Instance, IStateMachineTarget, CropTendingStates.Def>.State behaviourcomplete;
 
-	// Token: 0x02000159 RID: 345
 	public class AnimSet
 	{
-		// Token: 0x040003B2 RID: 946
 		public string crop_tending_pre;
 
-		// Token: 0x040003B3 RID: 947
 		public string crop_tending;
 
-		// Token: 0x040003B4 RID: 948
 		public string crop_tending_pst;
 
-		// Token: 0x040003B5 RID: 949
 		public string[] hide_symbols_after_pre;
 	}
 
-	// Token: 0x0200015A RID: 346
 	public class CropTendingEventData
 	{
-		// Token: 0x040003B6 RID: 950
 		public GameObject source;
 
-		// Token: 0x040003B7 RID: 951
 		public Tag cropId;
 	}
 
-	// Token: 0x0200015B RID: 347
 	public class Def : StateMachine.BaseDef
 	{
-		// Token: 0x040003B8 RID: 952
 		public string effectId;
 
-		// Token: 0x040003B9 RID: 953
 		public string[] ignoreEffectGroup;
 
-		// Token: 0x040003BA RID: 954
 		public Dictionary<Tag, int> interests = new Dictionary<Tag, int>();
 
-		// Token: 0x040003BB RID: 955
 		public Dictionary<Tag, CropTendingStates.AnimSet> animSetOverrides = new Dictionary<Tag, CropTendingStates.AnimSet>();
 	}
 
-	// Token: 0x0200015C RID: 348
 	public new class Instance : GameStateMachine<CropTendingStates, CropTendingStates.Instance, IStateMachineTarget, CropTendingStates.Def>.GameInstance
 	{
-		// Token: 0x06000517 RID: 1303 RVA: 0x001612B4 File Offset: 0x0015F4B4
 		public Instance(Chore<CropTendingStates.Instance> chore, CropTendingStates.Def def) : base(chore, def)
 		{
 			chore.AddPrecondition(ChorePreconditions.instance.CheckBehaviourPrecondition, GameTags.Creatures.WantsToTendCrops);
 			this.effect = Db.Get().effects.TryGet(base.smi.def.effectId);
 		}
 
-		// Token: 0x040003BC RID: 956
 		public Effect effect;
 
-		// Token: 0x040003BD RID: 957
 		public int moveCell;
 
-		// Token: 0x040003BE RID: 958
 		public CropTendingStates.AnimSet animSet;
 
-		// Token: 0x040003BF RID: 959
 		public bool tendedSucceeded;
 
-		// Token: 0x040003C0 RID: 960
 		public bool[] symbolStates;
 	}
 
-	// Token: 0x0200015D RID: 349
 	public class TendingStates : GameStateMachine<CropTendingStates, CropTendingStates.Instance, IStateMachineTarget, CropTendingStates.Def>.State
 	{
-		// Token: 0x040003C1 RID: 961
 		public GameStateMachine<CropTendingStates, CropTendingStates.Instance, IStateMachineTarget, CropTendingStates.Def>.State pre;
 
-		// Token: 0x040003C2 RID: 962
 		public GameStateMachine<CropTendingStates, CropTendingStates.Instance, IStateMachineTarget, CropTendingStates.Def>.State tend;
 
-		// Token: 0x040003C3 RID: 963
 		public GameStateMachine<CropTendingStates, CropTendingStates.Instance, IStateMachineTarget, CropTendingStates.Def>.State pst;
 	}
 }

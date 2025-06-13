@@ -10,22 +10,15 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// Token: 0x02001EFE RID: 7934
 public class PlanScreen : KIconToggleMenu
 {
-	// Token: 0x17000AB0 RID: 2736
-	// (get) Token: 0x0600A693 RID: 42643 RVA: 0x001108CC File Offset: 0x0010EACC
-	// (set) Token: 0x0600A694 RID: 42644 RVA: 0x001108D3 File Offset: 0x0010EAD3
 	public static PlanScreen Instance { get; private set; }
 
-	// Token: 0x0600A695 RID: 42645 RVA: 0x001108DB File Offset: 0x0010EADB
 	public static void DestroyInstance()
 	{
 		PlanScreen.Instance = null;
 	}
 
-	// Token: 0x17000AB1 RID: 2737
-	// (get) Token: 0x0600A696 RID: 42646 RVA: 0x001108E3 File Offset: 0x0010EAE3
 	public static Dictionary<HashedString, string> IconNameMap
 	{
 		get
@@ -34,19 +27,13 @@ public class PlanScreen : KIconToggleMenu
 		}
 	}
 
-	// Token: 0x0600A697 RID: 42647 RVA: 0x00106BCE File Offset: 0x00104DCE
 	private static HashedString CacheHashedString(string str)
 	{
 		return HashCache.Get().Add(str);
 	}
 
-	// Token: 0x17000AB2 RID: 2738
-	// (get) Token: 0x0600A698 RID: 42648 RVA: 0x001108EA File Offset: 0x0010EAEA
-	// (set) Token: 0x0600A699 RID: 42649 RVA: 0x001108F2 File Offset: 0x0010EAF2
 	public ProductInfoScreen ProductInfoScreen { get; private set; }
 
-	// Token: 0x17000AB3 RID: 2739
-	// (get) Token: 0x0600A69A RID: 42650 RVA: 0x001108FB File Offset: 0x0010EAFB
 	public KIconToggleMenu.ToggleInfo ActiveCategoryToggleInfo
 	{
 		get
@@ -55,18 +42,13 @@ public class PlanScreen : KIconToggleMenu
 		}
 	}
 
-	// Token: 0x17000AB4 RID: 2740
-	// (get) Token: 0x0600A69B RID: 42651 RVA: 0x00110903 File Offset: 0x0010EB03
-	// (set) Token: 0x0600A69C RID: 42652 RVA: 0x0011090B File Offset: 0x0010EB0B
 	public GameObject SelectedBuildingGameObject { get; private set; }
 
-	// Token: 0x0600A69D RID: 42653 RVA: 0x000D9BC8 File Offset: 0x000D7DC8
 	public override float GetSortKey()
 	{
 		return 2f;
 	}
 
-	// Token: 0x0600A69E RID: 42654 RVA: 0x00110914 File Offset: 0x0010EB14
 	public PlanScreen.RequirementsState GetBuildableState(BuildingDef def)
 	{
 		if (def == null)
@@ -76,7 +58,6 @@ public class PlanScreen : KIconToggleMenu
 		return this._buildableStatesByID[def.PrefabID];
 	}
 
-	// Token: 0x0600A69F RID: 42655 RVA: 0x003FF5E8 File Offset: 0x003FD7E8
 	private bool IsDefResearched(BuildingDef def)
 	{
 		bool result = false;
@@ -87,13 +68,11 @@ public class PlanScreen : KIconToggleMenu
 		return result;
 	}
 
-	// Token: 0x0600A6A0 RID: 42656 RVA: 0x003FF610 File Offset: 0x003FD810
 	private bool UpdateDefResearched(BuildingDef def)
 	{
 		return this._researchedDefs[def] = Db.Get().TechItems.IsTechItemComplete(def.PrefabID);
 	}
 
-	// Token: 0x0600A6A1 RID: 42657 RVA: 0x003FF644 File Offset: 0x003FD844
 	protected override void OnPrefabInit()
 	{
 		if (BuildMenu.UseHotkeyBuildMenu())
@@ -117,7 +96,6 @@ public class PlanScreen : KIconToggleMenu
 		this.buildingGroupsRoot.gameObject.SetActive(false);
 	}
 
-	// Token: 0x0600A6A2 RID: 42658 RVA: 0x003FF77C File Offset: 0x003FD97C
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -164,7 +142,6 @@ public class PlanScreen : KIconToggleMenu
 		this.listViewButton.onClick += this.OnClickListView;
 	}
 
-	// Token: 0x0600A6A3 RID: 42659 RVA: 0x003FF9C4 File Offset: 0x003FDBC4
 	private void RefreshScale(object data = null)
 	{
 		base.GetComponent<GridLayoutGroup>().cellSize = (ScreenResolutionMonitor.UsingGamepadUIMode() ? new Vector2(54f, 50f) : new Vector2(45f, 45f));
@@ -197,14 +174,12 @@ public class PlanScreen : KIconToggleMenu
 		this.ProductInfoScreen.rectTransform().anchoredPosition = new Vector2(vector.x + 8f, this.ProductInfoScreen.rectTransform().anchoredPosition.y);
 	}
 
-	// Token: 0x0600A6A4 RID: 42660 RVA: 0x00110932 File Offset: 0x0010EB32
 	protected override void OnForcedCleanUp()
 	{
 		KInputManager.InputChange.RemoveListener(new UnityAction(this.RefreshToolTip));
 		base.OnForcedCleanUp();
 	}
 
-	// Token: 0x0600A6A5 RID: 42661 RVA: 0x00110950 File Offset: 0x0010EB50
 	protected override void OnCleanUp()
 	{
 		if (Game.Instance != null)
@@ -214,7 +189,6 @@ public class PlanScreen : KIconToggleMenu
 		base.OnCleanUp();
 	}
 
-	// Token: 0x0600A6A6 RID: 42662 RVA: 0x003FFBCC File Offset: 0x003FDDCC
 	private void OnClickCopyBuilding()
 	{
 		if (!this.LastSelectedBuilding.IsNullOrDestroyed() && this.LastSelectedBuilding.gameObject.activeInHierarchy && (!this.lastSelectedBuilding.Def.DebugOnly || DebugHandler.InstantBuildMode))
@@ -228,7 +202,6 @@ public class PlanScreen : KIconToggleMenu
 		}
 	}
 
-	// Token: 0x0600A6A7 RID: 42663 RVA: 0x00110975 File Offset: 0x0010EB75
 	private void OnClickListView()
 	{
 		this.useSubCategoryLayout = true;
@@ -238,7 +211,6 @@ public class PlanScreen : KIconToggleMenu
 		KPlayerPrefs.SetInt("usePlanScreenListView", 1);
 	}
 
-	// Token: 0x0600A6A8 RID: 42664 RVA: 0x0011099D File Offset: 0x0010EB9D
 	private void OnClickGridView()
 	{
 		this.useSubCategoryLayout = false;
@@ -248,9 +220,6 @@ public class PlanScreen : KIconToggleMenu
 		KPlayerPrefs.SetInt("usePlanScreenListView", 0);
 	}
 
-	// Token: 0x17000AB5 RID: 2741
-	// (get) Token: 0x0600A6A9 RID: 42665 RVA: 0x001109C5 File Offset: 0x0010EBC5
-	// (set) Token: 0x0600A6AA RID: 42666 RVA: 0x003FFC5C File Offset: 0x003FDE5C
 	private Building LastSelectedBuilding
 	{
 		get
@@ -271,9 +240,6 @@ public class PlanScreen : KIconToggleMenu
 		}
 	}
 
-	// Token: 0x17000AB6 RID: 2742
-	// (get) Token: 0x0600A6AB RID: 42667 RVA: 0x001109CD File Offset: 0x0010EBCD
-	// (set) Token: 0x0600A6AC RID: 42668 RVA: 0x001109D5 File Offset: 0x0010EBD5
 	public string LastSelectedBuildingFacade
 	{
 		get
@@ -286,7 +252,6 @@ public class PlanScreen : KIconToggleMenu
 		}
 	}
 
-	// Token: 0x0600A6AD RID: 42669 RVA: 0x003FFCB8 File Offset: 0x003FDEB8
 	public void RefreshCopyBuildingButton(object data = null)
 	{
 		this.adjacentPinnedButtons.rectTransform().anchoredPosition = new Vector2(Mathf.Min(base.gameObject.rectTransform().sizeDelta.x, base.transform.parent.rectTransform().rect.width), 0f);
@@ -316,7 +281,6 @@ public class PlanScreen : KIconToggleMenu
 		component.ChangeState(0);
 	}
 
-	// Token: 0x0600A6AE RID: 42670 RVA: 0x003FFE50 File Offset: 0x003FE050
 	public void RefreshToolTip()
 	{
 		for (int i = 0; i < TUNING.BUILDINGS.PLANORDER.Count; i++)
@@ -332,7 +296,6 @@ public class PlanScreen : KIconToggleMenu
 		this.copyBuildingButton.GetComponent<ToolTip>().SetSimpleTooltip(GameUtil.ReplaceHotkeyString(UI.COPY_BUILDING_TOOLTIP, global::Action.CopyBuilding));
 	}
 
-	// Token: 0x0600A6AF RID: 42671 RVA: 0x003FFF08 File Offset: 0x003FE108
 	public void Refresh()
 	{
 		List<KIconToggleMenu.ToggleInfo> list = new List<KIconToggleMenu.ToggleInfo>();
@@ -398,19 +361,16 @@ public class PlanScreen : KIconToggleMenu
 		}
 	}
 
-	// Token: 0x0600A6B0 RID: 42672 RVA: 0x001109DE File Offset: 0x0010EBDE
 	private void ForceUpdateAllCategoryToggles(object data = null)
 	{
 		this.forceUpdateAllCategoryToggles = true;
 	}
 
-	// Token: 0x0600A6B1 RID: 42673 RVA: 0x001109E7 File Offset: 0x0010EBE7
 	public void ForceRefreshAllBuildingToggles()
 	{
 		this.forceRefreshAllBuildings = true;
 	}
 
-	// Token: 0x0600A6B2 RID: 42674 RVA: 0x00400198 File Offset: 0x003FE398
 	public void CopyBuildingOrder(BuildingDef buildingDef, string facadeID)
 	{
 		foreach (PlanScreen.PlanInfo planInfo in TUNING.BUILDINGS.PLANORDER)
@@ -428,7 +388,6 @@ public class PlanScreen : KIconToggleMenu
 		}
 	}
 
-	// Token: 0x0600A6B3 RID: 42675 RVA: 0x00400278 File Offset: 0x003FE478
 	public void CopyBuildingOrder(Building building)
 	{
 		this.CopyBuildingOrder(building.Def, building.GetComponent<BuildingFacade>().CurrentFacade);
@@ -445,7 +404,6 @@ public class PlanScreen : KIconToggleMenu
 		}
 	}
 
-	// Token: 0x0600A6B4 RID: 42676 RVA: 0x004002FC File Offset: 0x003FE4FC
 	private static void PopulateOrderInfo(HashedString category, object data, Dictionary<Tag, HashedString> category_map, Dictionary<Tag, int> order_map, ref int building_index)
 	{
 		if (data.GetType() == typeof(PlanScreen.PlanInfo))
@@ -463,20 +421,17 @@ public class PlanScreen : KIconToggleMenu
 		}
 	}
 
-	// Token: 0x0600A6B5 RID: 42677 RVA: 0x001109F0 File Offset: 0x0010EBF0
 	protected override void OnCmpEnable()
 	{
 		this.Refresh();
 		this.RefreshCopyBuildingButton(null);
 	}
 
-	// Token: 0x0600A6B6 RID: 42678 RVA: 0x001109FF File Offset: 0x0010EBFF
 	protected override void OnCmpDisable()
 	{
 		this.ClearButtons();
 	}
 
-	// Token: 0x0600A6B7 RID: 42679 RVA: 0x004003A4 File Offset: 0x003FE5A4
 	private void ClearButtons()
 	{
 		foreach (KeyValuePair<string, GameObject> keyValuePair in this.allSubCategoryObjects)
@@ -491,7 +446,6 @@ public class PlanScreen : KIconToggleMenu
 		this.copyBuildingButton.GetComponent<MultiToggle>().ChangeState(0);
 	}
 
-	// Token: 0x0600A6B8 RID: 42680 RVA: 0x0040046C File Offset: 0x003FE66C
 	public void OnSelectBuilding(GameObject button_go, BuildingDef def, string facadeID = null)
 	{
 		if (button_go == null)
@@ -538,7 +492,6 @@ public class PlanScreen : KIconToggleMenu
 		this.ignoreToolChangeMessages--;
 	}
 
-	// Token: 0x0600A6B9 RID: 42681 RVA: 0x0040060C File Offset: 0x003FE80C
 	private void RefreshBuildableStates(bool force_update)
 	{
 		if (Assets.BuildingDefs == null || Assets.BuildingDefs.Count == 0)
@@ -617,7 +570,6 @@ public class PlanScreen : KIconToggleMenu
 		pooledList.Recycle();
 	}
 
-	// Token: 0x0600A6BA RID: 42682 RVA: 0x004008DC File Offset: 0x003FEADC
 	private PlanScreen.RequirementsState GetBuildableStateForDef(BuildingDef def)
 	{
 		if (!def.IsAvailable())
@@ -653,7 +605,6 @@ public class PlanScreen : KIconToggleMenu
 		return result;
 	}
 
-	// Token: 0x0600A6BB RID: 42683 RVA: 0x004009C0 File Offset: 0x003FEBC0
 	private void SetCategoryButtonState()
 	{
 		this.nextCategoryToUpdateIDX = (this.nextCategoryToUpdateIDX + 1) % this.toggleEntries.Count;
@@ -729,7 +680,6 @@ public class PlanScreen : KIconToggleMenu
 		this.forceUpdateAllCategoryToggles = false;
 	}
 
-	// Token: 0x0600A6BC RID: 42684 RVA: 0x00400C2C File Offset: 0x003FEE2C
 	private void DeactivateBuildTools()
 	{
 		InterfaceTool activeTool = PlayerController.Instance.ActiveTool;
@@ -744,7 +694,6 @@ public class PlanScreen : KIconToggleMenu
 		}
 	}
 
-	// Token: 0x0600A6BD RID: 42685 RVA: 0x00400CA0 File Offset: 0x003FEEA0
 	public void CloseRecipe(bool playSound = false)
 	{
 		if (playSound)
@@ -767,7 +716,6 @@ public class PlanScreen : KIconToggleMenu
 		this.SelectedBuildingGameObject = null;
 	}
 
-	// Token: 0x0600A6BE RID: 42686 RVA: 0x00400D28 File Offset: 0x003FEF28
 	public void SoftCloseRecipe()
 	{
 		this.ignoreToolChangeMessages++;
@@ -785,7 +733,6 @@ public class PlanScreen : KIconToggleMenu
 		this.ignoreToolChangeMessages--;
 	}
 
-	// Token: 0x0600A6BF RID: 42687 RVA: 0x00400DAC File Offset: 0x003FEFAC
 	public void CloseCategoryPanel(bool playSound = true)
 	{
 		this.activeCategoryInfo = null;
@@ -803,7 +750,6 @@ public class PlanScreen : KIconToggleMenu
 		this.ForceUpdateAllCategoryToggles(null);
 	}
 
-	// Token: 0x0600A6C0 RID: 42688 RVA: 0x00400E08 File Offset: 0x003FF008
 	private void OnClickCategory(KIconToggleMenu.ToggleInfo toggle_info)
 	{
 		this.CloseRecipe(false);
@@ -825,7 +771,6 @@ public class PlanScreen : KIconToggleMenu
 		this.SetScrollPoint(0f);
 	}
 
-	// Token: 0x0600A6C1 RID: 42689 RVA: 0x00400E7C File Offset: 0x003FF07C
 	private void OpenCategoryPanel(KIconToggleMenu.ToggleInfo toggle_info, bool play_sound = true)
 	{
 		HashedString hashedString = (HashedString)toggle_info.userData;
@@ -847,7 +792,6 @@ public class PlanScreen : KIconToggleMenu
 		this.buildingGroupsRoot.GetComponent<ExpandRevealUIContent>().Expand(null);
 	}
 
-	// Token: 0x0600A6C2 RID: 42690 RVA: 0x00400F04 File Offset: 0x003FF104
 	public void RefreshCategoryPanelTitle()
 	{
 		if (this.activeCategoryInfo != null)
@@ -860,7 +804,6 @@ public class PlanScreen : KIconToggleMenu
 		}
 	}
 
-	// Token: 0x0600A6C3 RID: 42691 RVA: 0x00400F50 File Offset: 0x003FF150
 	public void RefreshSearch()
 	{
 		if (BuildingGroupScreen.SearchIsEmpty)
@@ -886,7 +829,6 @@ public class PlanScreen : KIconToggleMenu
 		this.ForceRefreshAllBuildingToggles();
 	}
 
-	// Token: 0x0600A6C4 RID: 42692 RVA: 0x00401024 File Offset: 0x003FF224
 	public void OpenCategoryByName(string category)
 	{
 		PlanScreen.ToggleEntry toggleEntry;
@@ -897,7 +839,6 @@ public class PlanScreen : KIconToggleMenu
 		}
 	}
 
-	// Token: 0x0600A6C5 RID: 42693 RVA: 0x00401058 File Offset: 0x003FF258
 	private void UpdateBuildingButton(int i, bool checkScore)
 	{
 		KeyValuePair<string, PlanBuildingToggle> keyValuePair = this.allBuildingToggles.ElementAt(i);
@@ -909,7 +850,6 @@ public class PlanScreen : KIconToggleMenu
 		keyValuePair.Value.SwitchViewMode(this.useSubCategoryLayout);
 	}
 
-	// Token: 0x0600A6C6 RID: 42694 RVA: 0x004010C8 File Offset: 0x003FF2C8
 	private void UpdateBuildingButtonList(KIconToggleMenu.ToggleInfo toggle_info)
 	{
 		KToggle toggle = toggle_info.toggle;
@@ -975,7 +915,6 @@ public class PlanScreen : KIconToggleMenu
 		}
 	}
 
-	// Token: 0x0600A6C7 RID: 42695 RVA: 0x00110A07 File Offset: 0x0010EC07
 	public override void ScreenUpdate(bool topLevel)
 	{
 		base.ScreenUpdate(topLevel);
@@ -987,7 +926,6 @@ public class PlanScreen : KIconToggleMenu
 		}
 	}
 
-	// Token: 0x0600A6C8 RID: 42696 RVA: 0x004012C0 File Offset: 0x003FF4C0
 	private void CacheSearchCaches()
 	{
 		this.<CacheSearchCaches>g__ManifestSubcategoryCache|128_0("default", string.Empty);
@@ -1011,7 +949,6 @@ public class PlanScreen : KIconToggleMenu
 		}
 	}
 
-	// Token: 0x0600A6C9 RID: 42697 RVA: 0x004013DC File Offset: 0x003FF5DC
 	private void CollectRequiredBuildingDefs(List<BuildingDef> defs)
 	{
 		foreach (PlanScreen.PlanInfo planInfo in TUNING.BUILDINGS.PLANORDER)
@@ -1027,14 +964,11 @@ public class PlanScreen : KIconToggleMenu
 		}
 	}
 
-	// Token: 0x0600A6CA RID: 42698 RVA: 0x00110A31 File Offset: 0x0010EC31
 	private int CompareScores(global::Tuple<PlanBuildingToggle, string> a, global::Tuple<PlanBuildingToggle, string> b)
 	{
 		return this.buildingDefSearchCaches[a.second].CompareTo(this.buildingDefSearchCaches[b.second]);
 	}
 
-	// Token: 0x17000AB7 RID: 2743
-	// (get) Token: 0x0600A6CB RID: 42699 RVA: 0x00110A5A File Offset: 0x0010EC5A
 	private Comparer<global::Tuple<PlanBuildingToggle, string>> BuildingDefComparer
 	{
 		get
@@ -1047,7 +981,6 @@ public class PlanScreen : KIconToggleMenu
 		}
 	}
 
-	// Token: 0x0600A6CC RID: 42700 RVA: 0x0040148C File Offset: 0x003FF68C
 	private void SortButtons()
 	{
 		ListPool<BuildingDef, PlanScreen>.PooledList pooledList = ListPool<BuildingDef, PlanScreen>.Allocate();
@@ -1075,7 +1008,6 @@ public class PlanScreen : KIconToggleMenu
 		pooledList2.Recycle();
 	}
 
-	// Token: 0x0600A6CD RID: 42701 RVA: 0x004015A0 File Offset: 0x003FF7A0
 	private void SortSubcategories()
 	{
 		Comparer<global::Tuple<GameObject, string>> comparer = Comparer<global::Tuple<GameObject, string>>.Create(new Comparison<global::Tuple<GameObject, string>>(this.<SortSubcategories>g__CompareScores|135_0));
@@ -1101,7 +1033,6 @@ public class PlanScreen : KIconToggleMenu
 		pooledList.Recycle();
 	}
 
-	// Token: 0x0600A6CE RID: 42702 RVA: 0x004016A8 File Offset: 0x003FF8A8
 	private void BuildButtonList()
 	{
 		this.activeCategoryBuildingToggles.Clear();
@@ -1190,7 +1121,6 @@ public class PlanScreen : KIconToggleMenu
 		this.RefreshScale(null);
 	}
 
-	// Token: 0x0600A6CF RID: 42703 RVA: 0x00401ACC File Offset: 0x003FFCCC
 	public void ConfigurePanelSize(object data = null)
 	{
 		if (this.useSubCategoryLayout)
@@ -1252,13 +1182,11 @@ public class PlanScreen : KIconToggleMenu
 		this.RefreshScale(null);
 	}
 
-	// Token: 0x0600A6D0 RID: 42704 RVA: 0x00110A81 File Offset: 0x0010EC81
 	private void SetScrollPoint(float targetY)
 	{
 		this.BuildingGroupContentsRect.anchoredPosition = new Vector2(this.BuildingGroupContentsRect.anchoredPosition.x, targetY);
 	}
 
-	// Token: 0x0600A6D1 RID: 42705 RVA: 0x00401CF4 File Offset: 0x003FFEF4
 	private GameObject CreateButton(BuildingDef def, GameObject parent, HashedString plan_category, bool checkScore)
 	{
 		bool? passesSearchFilter = checkScore ? new bool?(this.buildingDefSearchCaches[def.PrefabID].IsPassingScore()) : null;
@@ -1287,19 +1215,16 @@ public class PlanScreen : KIconToggleMenu
 		return gameObject;
 	}
 
-	// Token: 0x0600A6D2 RID: 42706 RVA: 0x00110AA4 File Offset: 0x0010ECA4
 	public static bool TechRequirementsMet(TechItem techItem)
 	{
 		return DebugHandler.InstantBuildMode || Game.Instance.SandboxModeActive || techItem == null || techItem.IsComplete();
 	}
 
-	// Token: 0x0600A6D3 RID: 42707 RVA: 0x00110AC4 File Offset: 0x0010ECC4
 	private static bool TechRequirementsUpcoming(TechItem techItem)
 	{
 		return PlanScreen.TechRequirementsMet(techItem);
 	}
 
-	// Token: 0x0600A6D4 RID: 42708 RVA: 0x00401DF8 File Offset: 0x003FFFF8
 	private bool GetToggleEntryForCategory(HashedString category, out PlanScreen.ToggleEntry toggleEntry)
 	{
 		toggleEntry = null;
@@ -1314,20 +1239,17 @@ public class PlanScreen : KIconToggleMenu
 		return false;
 	}
 
-	// Token: 0x0600A6D5 RID: 42709 RVA: 0x00110ACC File Offset: 0x0010ECCC
 	public bool IsDefBuildable(BuildingDef def)
 	{
 		return this.GetBuildableState(def) == PlanScreen.RequirementsState.Complete;
 	}
 
-	// Token: 0x0600A6D6 RID: 42710 RVA: 0x00401E60 File Offset: 0x00400060
 	public string GetTooltipForBuildable(BuildingDef def)
 	{
 		PlanScreen.RequirementsState buildableState = this.GetBuildableState(def);
 		return PlanScreen.GetTooltipForRequirementsState(def, buildableState);
 	}
 
-	// Token: 0x0600A6D7 RID: 42711 RVA: 0x00401E7C File Offset: 0x0040007C
 	public static string GetTooltipForRequirementsState(BuildingDef def, PlanScreen.RequirementsState state)
 	{
 		TechItem techItem = Db.Get().TechItems.TryGet(def.PrefabID);
@@ -1372,19 +1294,16 @@ public class PlanScreen : KIconToggleMenu
 		return text;
 	}
 
-	// Token: 0x0600A6D8 RID: 42712 RVA: 0x00110AD8 File Offset: 0x0010ECD8
 	private void PointerEnter(PointerEventData data)
 	{
 		this.planScreenScrollRect.mouseIsOver = true;
 	}
 
-	// Token: 0x0600A6D9 RID: 42713 RVA: 0x00110AE6 File Offset: 0x0010ECE6
 	private void PointerExit(PointerEventData data)
 	{
 		this.planScreenScrollRect.mouseIsOver = false;
 	}
 
-	// Token: 0x0600A6DA RID: 42714 RVA: 0x00402008 File Offset: 0x00400208
 	public override void OnKeyDown(KButtonEvent e)
 	{
 		if (e.Consumed)
@@ -1426,7 +1345,6 @@ public class PlanScreen : KIconToggleMenu
 		}
 	}
 
-	// Token: 0x0600A6DB RID: 42715 RVA: 0x004020D0 File Offset: 0x004002D0
 	public override void OnKeyUp(KButtonEvent e)
 	{
 		if (this.mouseOver && base.ConsumeMouseScroll)
@@ -1462,7 +1380,6 @@ public class PlanScreen : KIconToggleMenu
 		}
 	}
 
-	// Token: 0x0600A6DC RID: 42716 RVA: 0x00402190 File Offset: 0x00400390
 	private void OnRecipeElementsFullySelected()
 	{
 		BuildingDef buildingDef = null;
@@ -1487,7 +1404,6 @@ public class PlanScreen : KIconToggleMenu
 		}
 	}
 
-	// Token: 0x0600A6DD RID: 42717 RVA: 0x004022A0 File Offset: 0x004004A0
 	public void OnResearchComplete(object tech)
 	{
 		if (tech is Tech)
@@ -1510,7 +1426,6 @@ public class PlanScreen : KIconToggleMenu
 		}
 	}
 
-	// Token: 0x0600A6DE RID: 42718 RVA: 0x00402320 File Offset: 0x00400520
 	private void AddResearchedBuildingCategory(BuildingDef def)
 	{
 		if (def != null && Game.IsCorrectDlcActiveForCurrentSave(def))
@@ -1530,7 +1445,6 @@ public class PlanScreen : KIconToggleMenu
 		}
 	}
 
-	// Token: 0x0600A6DF RID: 42719 RVA: 0x004023A4 File Offset: 0x004005A4
 	private void OnUIClear(object data)
 	{
 		if (this.activeCategoryInfo != null)
@@ -1543,7 +1457,6 @@ public class PlanScreen : KIconToggleMenu
 		}
 	}
 
-	// Token: 0x0600A6E0 RID: 42720 RVA: 0x004023F4 File Offset: 0x004005F4
 	private void OnActiveToolChanged(object data)
 	{
 		if (data == null)
@@ -1562,13 +1475,11 @@ public class PlanScreen : KIconToggleMenu
 		}
 	}
 
-	// Token: 0x0600A6E1 RID: 42721 RVA: 0x00110AF4 File Offset: 0x0010ECF4
 	public PrioritySetting GetBuildingPriority()
 	{
 		return this.ProductInfoScreen.materialSelectionPanel.PriorityScreen.GetLastSelectedPriority();
 	}
 
-	// Token: 0x0600A6E8 RID: 42728 RVA: 0x004027CC File Offset: 0x004009CC
 	[CompilerGenerated]
 	private SearchUtil.SubcategoryCache <CacheSearchCaches>g__ManifestSubcategoryCache|128_0(string subcategory, string _text = null)
 	{
@@ -1588,14 +1499,12 @@ public class PlanScreen : KIconToggleMenu
 		return subcategoryCache;
 	}
 
-	// Token: 0x0600A6E9 RID: 42729 RVA: 0x00110B3C File Offset: 0x0010ED3C
 	[CompilerGenerated]
 	private int <SortSubcategories>g__CompareScores|135_0(global::Tuple<GameObject, string> a, global::Tuple<GameObject, string> b)
 	{
 		return this.subcategorySearchCaches[a.second].CompareTo(this.subcategorySearchCaches[b.second]);
 	}
 
-	// Token: 0x0600A6EA RID: 42730 RVA: 0x00402824 File Offset: 0x00400A24
 	[CompilerGenerated]
 	private void <BuildButtonList>g__RegisterSubcategory|136_0(string subcategory)
 	{
@@ -1609,41 +1518,31 @@ public class PlanScreen : KIconToggleMenu
 		gameObject.SetActive(false);
 	}
 
-	// Token: 0x04008270 RID: 33392
 	[SerializeField]
 	private GameObject planButtonPrefab;
 
-	// Token: 0x04008271 RID: 33393
 	[SerializeField]
 	private GameObject recipeInfoScreenParent;
 
-	// Token: 0x04008272 RID: 33394
 	[SerializeField]
 	private GameObject productInfoScreenPrefab;
 
-	// Token: 0x04008273 RID: 33395
 	[SerializeField]
 	private GameObject copyBuildingButton;
 
-	// Token: 0x04008274 RID: 33396
 	[SerializeField]
 	private KButton gridViewButton;
 
-	// Token: 0x04008275 RID: 33397
 	[SerializeField]
 	private KButton listViewButton;
 
-	// Token: 0x04008276 RID: 33398
 	private bool useSubCategoryLayout;
 
-	// Token: 0x04008277 RID: 33399
 	private int refreshScaleHandle = -1;
 
-	// Token: 0x04008278 RID: 33400
 	[SerializeField]
 	private GameObject adjacentPinnedButtons;
 
-	// Token: 0x04008279 RID: 33401
 	private static Dictionary<HashedString, string> iconNameMap = new Dictionary<HashedString, string>
 	{
 		{
@@ -1708,181 +1607,123 @@ public class PlanScreen : KIconToggleMenu
 		}
 	};
 
-	// Token: 0x0400827A RID: 33402
 	private Dictionary<KIconToggleMenu.ToggleInfo, bool> CategoryInteractive = new Dictionary<KIconToggleMenu.ToggleInfo, bool>();
 
-	// Token: 0x0400827C RID: 33404
 	[SerializeField]
 	public PlanScreen.BuildingToolTipSettings buildingToolTipSettings;
 
-	// Token: 0x0400827D RID: 33405
 	public PlanScreen.BuildingNameTextSetting buildingNameTextSettings;
 
-	// Token: 0x0400827E RID: 33406
 	private KIconToggleMenu.ToggleInfo activeCategoryInfo;
 
-	// Token: 0x0400827F RID: 33407
 	public Dictionary<BuildingDef, PlanBuildingToggle> activeCategoryBuildingToggles = new Dictionary<BuildingDef, PlanBuildingToggle>();
 
-	// Token: 0x04008280 RID: 33408
 	private float timeSinceNotificationPing;
 
-	// Token: 0x04008281 RID: 33409
 	private float notificationPingExpire = 0.5f;
 
-	// Token: 0x04008282 RID: 33410
 	private float specialNotificationEmbellishDelay = 8f;
 
-	// Token: 0x04008283 RID: 33411
 	private int notificationPingCount;
 
-	// Token: 0x04008284 RID: 33412
 	private Dictionary<KToggle, Bouncer> toggleBouncers = new Dictionary<KToggle, Bouncer>();
 
-	// Token: 0x04008285 RID: 33413
 	public const string DEFAULT_SUBCATEGORY_KEY = "default";
 
-	// Token: 0x04008286 RID: 33414
 	private Dictionary<string, GameObject> allSubCategoryObjects = new Dictionary<string, GameObject>();
 
-	// Token: 0x04008287 RID: 33415
 	private Dictionary<string, PlanBuildingToggle> allBuildingToggles = new Dictionary<string, PlanBuildingToggle>();
 
-	// Token: 0x04008288 RID: 33416
 	private readonly Dictionary<string, SearchUtil.BuildingDefCache> buildingDefSearchCaches = new Dictionary<string, SearchUtil.BuildingDefCache>();
 
-	// Token: 0x04008289 RID: 33417
 	private readonly Dictionary<string, SearchUtil.SubcategoryCache> subcategorySearchCaches = new Dictionary<string, SearchUtil.SubcategoryCache>();
 
-	// Token: 0x0400828A RID: 33418
 	private readonly List<string> stableSubcategoryOrder = new List<string>();
 
-	// Token: 0x0400828B RID: 33419
 	private static Vector2 bigBuildingButtonSize = new Vector2(98f, 123f);
 
-	// Token: 0x0400828C RID: 33420
 	private static Vector2 standarduildingButtonSize = PlanScreen.bigBuildingButtonSize * 0.8f;
 
-	// Token: 0x0400828D RID: 33421
 	public static int fontSizeBigMode = 16;
 
-	// Token: 0x0400828E RID: 33422
 	public static int fontSizeStandardMode = 14;
 
-	// Token: 0x04008290 RID: 33424
 	[SerializeField]
 	private GameObject subgroupPrefab;
 
-	// Token: 0x04008291 RID: 33425
 	public Transform GroupsTransform;
 
-	// Token: 0x04008292 RID: 33426
 	public Sprite Overlay_NeedTech;
 
-	// Token: 0x04008293 RID: 33427
 	public RectTransform buildingGroupsRoot;
 
-	// Token: 0x04008294 RID: 33428
 	public RectTransform BuildButtonBGPanel;
 
-	// Token: 0x04008295 RID: 33429
 	public RectTransform BuildingGroupContentsRect;
 
-	// Token: 0x04008296 RID: 33430
 	public Sprite defaultBuildingIconSprite;
 
-	// Token: 0x04008297 RID: 33431
 	private KScrollRect planScreenScrollRect;
 
-	// Token: 0x04008298 RID: 33432
 	public Material defaultUIMaterial;
 
-	// Token: 0x04008299 RID: 33433
 	public Material desaturatedUIMaterial;
 
-	// Token: 0x0400829A RID: 33434
 	public LocText PlanCategoryLabel;
 
-	// Token: 0x0400829B RID: 33435
 	public GameObject noResultMessage;
 
-	// Token: 0x0400829C RID: 33436
 	private int nextCategoryToUpdateIDX = -1;
 
-	// Token: 0x0400829D RID: 33437
 	private bool forceUpdateAllCategoryToggles;
 
-	// Token: 0x0400829E RID: 33438
 	private bool forceRefreshAllBuildings = true;
 
-	// Token: 0x0400829F RID: 33439
 	private List<PlanScreen.ToggleEntry> toggleEntries = new List<PlanScreen.ToggleEntry>();
 
-	// Token: 0x040082A0 RID: 33440
 	private int ignoreToolChangeMessages;
 
-	// Token: 0x040082A1 RID: 33441
 	private Dictionary<string, PlanScreen.RequirementsState> _buildableStatesByID = new Dictionary<string, PlanScreen.RequirementsState>();
 
-	// Token: 0x040082A2 RID: 33442
 	private Dictionary<Def, bool> _researchedDefs = new Dictionary<Def, bool>();
 
-	// Token: 0x040082A3 RID: 33443
 	[SerializeField]
 	private TextStyleSetting[] CategoryLabelTextStyles;
 
-	// Token: 0x040082A4 RID: 33444
 	private float initTime;
 
-	// Token: 0x040082A5 RID: 33445
 	private Dictionary<Tag, HashedString> tagCategoryMap;
 
-	// Token: 0x040082A6 RID: 33446
 	private Dictionary<Tag, int> tagOrderMap;
 
-	// Token: 0x040082A7 RID: 33447
 	private BuildingDef lastSelectedBuildingDef;
 
-	// Token: 0x040082A8 RID: 33448
 	private Building lastSelectedBuilding;
 
-	// Token: 0x040082A9 RID: 33449
 	private string lastSelectedBuildingFacade = "DEFAULT_FACADE";
 
-	// Token: 0x040082AA RID: 33450
 	private int buildable_state_update_idx;
 
-	// Token: 0x040082AB RID: 33451
 	private int building_button_refresh_idx;
 
-	// Token: 0x040082AC RID: 33452
 	private readonly int maxToggleRefreshPerFrame = 10;
 
-	// Token: 0x040082AD RID: 33453
 	private bool categoryPanelSizeNeedsRefresh;
 
-	// Token: 0x040082AE RID: 33454
 	private Comparer<global::Tuple<PlanBuildingToggle, string>> buildingDefComparer;
 
-	// Token: 0x040082AF RID: 33455
 	private float buildGrid_bg_width = 320f;
 
-	// Token: 0x040082B0 RID: 33456
 	private float buildGrid_bg_borderHeight = 48f;
 
-	// Token: 0x040082B1 RID: 33457
 	private const float BUILDGRID_SEARCHBAR_HEIGHT = 36f;
 
-	// Token: 0x040082B2 RID: 33458
 	private const int SUBCATEGORY_HEADER_HEIGHT = 24;
 
-	// Token: 0x040082B3 RID: 33459
 	private float buildGrid_bg_rowHeight;
 
-	// Token: 0x02001EFF RID: 7935
 	public struct PlanInfo : IHasDlcRestrictions
 	{
-		// Token: 0x0600A6EB RID: 42731 RVA: 0x00402878 File Offset: 0x00400A78
 		public PlanInfo(HashedString category, bool hideIfNotResearched, List<string> listData, string[] requiredDlcIds = null, string[] forbiddenDlcIds = null)
 		{
 			List<KeyValuePair<string, string>> list = new List<KeyValuePair<string, string>>();
@@ -1898,76 +1739,56 @@ public class PlanScreen : KIconToggleMenu
 			this.forbiddenDlcIds = forbiddenDlcIds;
 		}
 
-		// Token: 0x0600A6EC RID: 42732 RVA: 0x00110B65 File Offset: 0x0010ED65
 		public string[] GetRequiredDlcIds()
 		{
 			return this.requiredDlcIds;
 		}
 
-		// Token: 0x0600A6ED RID: 42733 RVA: 0x00110B6D File Offset: 0x0010ED6D
 		public string[] GetForbiddenDlcIds()
 		{
 			return this.forbiddenDlcIds;
 		}
 
-		// Token: 0x040082B4 RID: 33460
 		public HashedString category;
 
-		// Token: 0x040082B5 RID: 33461
 		public bool hideIfNotResearched;
 
-		// Token: 0x040082B6 RID: 33462
 		[Obsolete("Modders: Use ModUtil.AddBuildingToPlanScreen")]
 		public List<string> data;
 
-		// Token: 0x040082B7 RID: 33463
 		public List<KeyValuePair<string, string>> buildingAndSubcategoryData;
 
-		// Token: 0x040082B8 RID: 33464
 		private string[] requiredDlcIds;
 
-		// Token: 0x040082B9 RID: 33465
 		private string[] forbiddenDlcIds;
 	}
 
-	// Token: 0x02001F00 RID: 7936
 	[Serializable]
 	public struct BuildingToolTipSettings
 	{
-		// Token: 0x040082BA RID: 33466
 		public TextStyleSetting BuildButtonName;
 
-		// Token: 0x040082BB RID: 33467
 		public TextStyleSetting BuildButtonDescription;
 
-		// Token: 0x040082BC RID: 33468
 		public TextStyleSetting MaterialRequirement;
 
-		// Token: 0x040082BD RID: 33469
 		public TextStyleSetting ResearchRequirement;
 	}
 
-	// Token: 0x02001F01 RID: 7937
 	[Serializable]
 	public struct BuildingNameTextSetting
 	{
-		// Token: 0x040082BE RID: 33470
 		public TextStyleSetting ActiveSelected;
 
-		// Token: 0x040082BF RID: 33471
 		public TextStyleSetting ActiveDeselected;
 
-		// Token: 0x040082C0 RID: 33472
 		public TextStyleSetting InactiveSelected;
 
-		// Token: 0x040082C1 RID: 33473
 		public TextStyleSetting InactiveDeselected;
 	}
 
-	// Token: 0x02001F02 RID: 7938
 	private class ToggleEntry
 	{
-		// Token: 0x0600A6EE RID: 42734 RVA: 0x0040291C File Offset: 0x00400B1C
 		public ToggleEntry(KIconToggleMenu.ToggleInfo toggle_info, HashedString plan_category, List<BuildingDef> building_defs, bool hideIfNotResearched)
 		{
 			this.toggleInfo = toggle_info;
@@ -1995,13 +1816,11 @@ public class PlanScreen : KIconToggleMenu
 			this.Refresh();
 		}
 
-		// Token: 0x0600A6EF RID: 42735 RVA: 0x00110B75 File Offset: 0x0010ED75
 		public bool AreAnyRequiredTechItemsAvailable()
 		{
 			return this._areAnyRequiredTechItemsAvailable;
 		}
 
-		// Token: 0x0600A6F0 RID: 42736 RVA: 0x00402A18 File Offset: 0x00400C18
 		public void Refresh()
 		{
 			if (this._areAnyRequiredTechItemsAvailable)
@@ -2026,55 +1845,37 @@ public class PlanScreen : KIconToggleMenu
 			}
 		}
 
-		// Token: 0x0600A6F1 RID: 42737 RVA: 0x00110B7D File Offset: 0x0010ED7D
 		public void CollectToggleImages()
 		{
 			this.toggleImages = this.toggleInfo.toggle.gameObject.GetComponents<ImageToggleState>();
 		}
 
-		// Token: 0x040082C2 RID: 33474
 		public KIconToggleMenu.ToggleInfo toggleInfo;
 
-		// Token: 0x040082C3 RID: 33475
 		public HashedString planCategory;
 
-		// Token: 0x040082C4 RID: 33476
 		public List<BuildingDef> buildingDefs;
 
-		// Token: 0x040082C5 RID: 33477
 		public List<Tag> pendingResearchAttentions;
 
-		// Token: 0x040082C6 RID: 33478
 		private List<TechItem> requiredTechItems;
 
-		// Token: 0x040082C7 RID: 33479
 		public ImageToggleState[] toggleImages;
 
-		// Token: 0x040082C8 RID: 33480
 		public bool hideIfNotResearched;
 
-		// Token: 0x040082C9 RID: 33481
 		private bool _areAnyRequiredTechItemsAvailable;
 	}
 
-	// Token: 0x02001F04 RID: 7940
 	public enum RequirementsState
 	{
-		// Token: 0x040082CD RID: 33485
 		Invalid,
-		// Token: 0x040082CE RID: 33486
 		Tech,
-		// Token: 0x040082CF RID: 33487
 		Materials,
-		// Token: 0x040082D0 RID: 33488
 		Complete,
-		// Token: 0x040082D1 RID: 33489
 		TelepadBuilt,
-		// Token: 0x040082D2 RID: 33490
 		UniquePerWorld,
-		// Token: 0x040082D3 RID: 33491
 		RocketInteriorOnly,
-		// Token: 0x040082D4 RID: 33492
 		RocketInteriorForbidden
 	}
 }

@@ -2,13 +2,10 @@
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x02000B28 RID: 2856
 [SerializationConfig(MemberSerialization.OptIn)]
 [AddComponentMenu("KMonoBehaviour/scripts/Rotatable")]
 public class Rotatable : KMonoBehaviour, ISaveLoadable
 {
-	// Token: 0x17000243 RID: 579
-	// (get) Token: 0x060034EA RID: 13546 RVA: 0x000C6F32 File Offset: 0x000C5132
 	public Orientation Orientation
 	{
 		get
@@ -17,7 +14,6 @@ public class Rotatable : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x060034EB RID: 13547 RVA: 0x00218F60 File Offset: 0x00217160
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -30,7 +26,6 @@ public class Rotatable : KMonoBehaviour, ISaveLoadable
 		this.OrientCollider(this.orientation);
 	}
 
-	// Token: 0x060034EC RID: 13548 RVA: 0x00218FB8 File Offset: 0x002171B8
 	public void SetSize(int width, int height)
 	{
 		this.width = width;
@@ -45,7 +40,6 @@ public class Rotatable : KMonoBehaviour, ISaveLoadable
 		this.visualizerOffset = Vector3.zero;
 	}
 
-	// Token: 0x060034ED RID: 13549 RVA: 0x00219038 File Offset: 0x00217238
 	public Orientation Rotate()
 	{
 		switch (this.permittedRotations)
@@ -67,7 +61,6 @@ public class Rotatable : KMonoBehaviour, ISaveLoadable
 		return this.orientation;
 	}
 
-	// Token: 0x060034EE RID: 13550 RVA: 0x000C6F3A File Offset: 0x000C513A
 	public void SetOrientation(Orientation new_orientation)
 	{
 		this.orientation = new_orientation;
@@ -75,7 +68,6 @@ public class Rotatable : KMonoBehaviour, ISaveLoadable
 		this.OrientCollider(new_orientation);
 	}
 
-	// Token: 0x060034EF RID: 13551 RVA: 0x002190C4 File Offset: 0x002172C4
 	public void Match(Rotatable other)
 	{
 		this.pivot = other.pivot;
@@ -86,7 +78,6 @@ public class Rotatable : KMonoBehaviour, ISaveLoadable
 		this.OrientCollider(this.orientation);
 	}
 
-	// Token: 0x060034F0 RID: 13552 RVA: 0x0021911C File Offset: 0x0021731C
 	public float GetVisualizerRotation()
 	{
 		PermittedRotations permittedRotations = this.permittedRotations;
@@ -97,19 +88,16 @@ public class Rotatable : KMonoBehaviour, ISaveLoadable
 		return 0f;
 	}
 
-	// Token: 0x060034F1 RID: 13553 RVA: 0x000C6F51 File Offset: 0x000C5151
 	public bool GetVisualizerFlipX()
 	{
 		return this.orientation == Orientation.FlipH;
 	}
 
-	// Token: 0x060034F2 RID: 13554 RVA: 0x000C6F5C File Offset: 0x000C515C
 	public bool GetVisualizerFlipY()
 	{
 		return this.orientation == Orientation.FlipV;
 	}
 
-	// Token: 0x060034F3 RID: 13555 RVA: 0x0021914C File Offset: 0x0021734C
 	public Vector3 GetVisualizerPivot()
 	{
 		Vector3 result = this.pivot;
@@ -127,7 +115,6 @@ public class Rotatable : KMonoBehaviour, ISaveLoadable
 		return result;
 	}
 
-	// Token: 0x060034F4 RID: 13556 RVA: 0x00219188 File Offset: 0x00217388
 	private Vector3 GetVisualizerOffset()
 	{
 		Orientation orientation = this.orientation;
@@ -150,7 +137,6 @@ public class Rotatable : KMonoBehaviour, ISaveLoadable
 		return result;
 	}
 
-	// Token: 0x060034F5 RID: 13557 RVA: 0x002191FC File Offset: 0x002173FC
 	private void OrientVisualizer(Orientation orientation)
 	{
 		float visualizerRotation = this.GetVisualizerRotation();
@@ -163,7 +149,6 @@ public class Rotatable : KMonoBehaviour, ISaveLoadable
 		base.Trigger(-1643076535, this);
 	}
 
-	// Token: 0x060034F6 RID: 13558 RVA: 0x00219258 File Offset: 0x00217458
 	private void OrientCollider(Orientation orientation)
 	{
 		KBoxCollider2D component = base.GetComponent<KBoxCollider2D>();
@@ -216,13 +201,11 @@ public class Rotatable : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x060034F7 RID: 13559 RVA: 0x000C6F67 File Offset: 0x000C5167
 	public CellOffset GetRotatedCellOffset(CellOffset offset)
 	{
 		return Rotatable.GetRotatedCellOffset(offset, this.orientation);
 	}
 
-	// Token: 0x060034F8 RID: 13560 RVA: 0x002194E0 File Offset: 0x002176E0
 	public static CellOffset GetRotatedCellOffset(CellOffset offset, Orientation orientation)
 	{
 		switch (orientation)
@@ -242,19 +225,16 @@ public class Rotatable : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x060034F9 RID: 13561 RVA: 0x000C6F75 File Offset: 0x000C5175
 	public static CellOffset GetRotatedCellOffset(int x, int y, Orientation orientation)
 	{
 		return Rotatable.GetRotatedCellOffset(new CellOffset(x, y), orientation);
 	}
 
-	// Token: 0x060034FA RID: 13562 RVA: 0x000C6F84 File Offset: 0x000C5184
 	public Vector3 GetRotatedOffset(Vector3 offset)
 	{
 		return Rotatable.GetRotatedOffset(offset, this.orientation);
 	}
 
-	// Token: 0x060034FB RID: 13563 RVA: 0x00219570 File Offset: 0x00217770
 	public static Vector3 GetRotatedOffset(Vector3 offset, Orientation orientation)
 	{
 		switch (orientation)
@@ -274,7 +254,6 @@ public class Rotatable : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x060034FC RID: 13564 RVA: 0x00219600 File Offset: 0x00217800
 	public Vector2I GetRotatedOffset(Vector2I offset)
 	{
 		switch (this.orientation)
@@ -294,14 +273,11 @@ public class Rotatable : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x060034FD RID: 13565 RVA: 0x000C6F32 File Offset: 0x000C5132
 	public Orientation GetOrientation()
 	{
 		return this.orientation;
 	}
 
-	// Token: 0x17000244 RID: 580
-	// (get) Token: 0x060034FE RID: 13566 RVA: 0x000C6F92 File Offset: 0x000C5192
 	public bool IsRotated
 	{
 		get
@@ -310,27 +286,21 @@ public class Rotatable : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x04002470 RID: 9328
 	[Serialize]
 	[SerializeField]
 	private Orientation orientation;
 
-	// Token: 0x04002471 RID: 9329
 	[SerializeField]
 	private Vector3 pivot = Vector3.zero;
 
-	// Token: 0x04002472 RID: 9330
 	[SerializeField]
 	private Vector3 visualizerOffset = Vector3.zero;
 
-	// Token: 0x04002473 RID: 9331
 	public PermittedRotations permittedRotations;
 
-	// Token: 0x04002474 RID: 9332
 	[SerializeField]
 	private int width;
 
-	// Token: 0x04002475 RID: 9333
 	[SerializeField]
 	private int height;
 }

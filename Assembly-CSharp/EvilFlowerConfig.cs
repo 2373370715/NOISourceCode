@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000296 RID: 662
 public class EvilFlowerConfig : IEntityConfig
 {
-	// Token: 0x060009B3 RID: 2483 RVA: 0x00170A6C File Offset: 0x0016EC6C
 	public GameObject CreatePrefab()
 	{
 		string id = "EvilFlower";
@@ -46,28 +44,21 @@ public class EvilFlowerConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x060009B4 RID: 2484 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x060009B5 RID: 2485 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x04000770 RID: 1904
 	public const string ID = "EvilFlower";
 
-	// Token: 0x04000771 RID: 1905
 	public const string SEED_ID = "EvilFlowerSeed";
 
-	// Token: 0x04000772 RID: 1906
 	public readonly EffectorValues POSITIVE_DECOR_EFFECT = DECOR.BONUS.TIER7;
 
-	// Token: 0x04000773 RID: 1907
 	public readonly EffectorValues NEGATIVE_DECOR_EFFECT = DECOR.PENALTY.TIER5;
 
-	// Token: 0x04000774 RID: 1908
 	public const int GERMS_PER_SECOND = 1000;
 }

@@ -6,10 +6,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000B7 RID: 183
 public class CustomClothingConfig : IEquipmentConfig
 {
-	// Token: 0x0600030F RID: 783 RVA: 0x001549D0 File Offset: 0x00152BD0
 	public EquipmentDef CreateEquipmentDef()
 	{
 		Dictionary<string, float> dictionary = new Dictionary<string, float>();
@@ -38,7 +36,6 @@ public class CustomClothingConfig : IEquipmentConfig
 		return equipmentDef;
 	}
 
-	// Token: 0x06000310 RID: 784 RVA: 0x00154BA8 File Offset: 0x00152DA8
 	public static void SetupVest(GameObject go)
 	{
 		go.GetComponent<KPrefabID>().AddTag(GameTags.Clothes, false);
@@ -51,16 +48,13 @@ public class CustomClothingConfig : IEquipmentConfig
 		go.GetComponent<KBatchedAnimController>().sceneLayer = Grid.SceneLayer.BuildingBack;
 	}
 
-	// Token: 0x06000311 RID: 785 RVA: 0x000AB144 File Offset: 0x000A9344
 	public void DoPostConfigure(GameObject go)
 	{
 		CustomClothingConfig.SetupVest(go);
 		go.GetComponent<KPrefabID>().AddTag(GameTags.PedestalDisplayable, false);
 	}
 
-	// Token: 0x040001E5 RID: 485
 	public const string ID = "CustomClothing";
 
-	// Token: 0x040001E6 RID: 486
 	public static ComplexRecipe recipe;
 }

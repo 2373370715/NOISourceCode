@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000410 RID: 1040
 public class AntihistamineConfig : IEntityConfig
 {
-	// Token: 0x0600113F RID: 4415 RVA: 0x0018D8B8 File Offset: 0x0018BAB8
 	public GameObject CreatePrefab()
 	{
 		GameObject gameObject = EntityTemplates.CreateLooseEntity("Antihistamine", STRINGS.ITEMS.PILLS.ANTIHISTAMINE.NAME, STRINGS.ITEMS.PILLS.ANTIHISTAMINE.DESC, 1f, true, Assets.GetAnim("pill_allergies_kanim"), "object", Grid.SceneLayer.Front, EntityTemplates.CollisionShape.RECTANGLE, 0.8f, 0.4f, true, 0, SimHashes.Creature, null);
@@ -35,19 +33,15 @@ public class AntihistamineConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06001140 RID: 4416 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x06001141 RID: 4417 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x04000BF9 RID: 3065
 	public const string ID = "Antihistamine";
 
-	// Token: 0x04000BFA RID: 3066
 	public static ComplexRecipe recipe;
 }

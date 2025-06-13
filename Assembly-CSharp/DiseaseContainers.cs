@@ -6,10 +6,8 @@ using Klei.AI;
 using Klei.AI.DiseaseGrowthRules;
 using UnityEngine;
 
-// Token: 0x0200127D RID: 4733
 public class DiseaseContainers : KGameObjectSplitComponentManager<DiseaseHeader, DiseaseContainer>
 {
-	// Token: 0x06006095 RID: 24725 RVA: 0x002BC7B0 File Offset: 0x002BA9B0
 	public HandleVector<int>.Handle Add(GameObject go, byte disease_idx, int disease_count)
 	{
 		DiseaseHeader diseaseHeader = new DiseaseHeader
@@ -26,7 +24,6 @@ public class DiseaseContainers : KGameObjectSplitComponentManager<DiseaseHeader,
 		return base.Add(go, diseaseHeader, ref diseaseContainer);
 	}
 
-	// Token: 0x06006096 RID: 24726 RVA: 0x002BC818 File Offset: 0x002BAA18
 	protected override void OnCleanUp(HandleVector<int>.Handle h)
 	{
 		AutoDisinfectable autoDisinfectable = base.GetPayload(h).autoDisinfectable;
@@ -37,7 +34,6 @@ public class DiseaseContainers : KGameObjectSplitComponentManager<DiseaseHeader,
 		base.OnCleanUp(h);
 	}
 
-	// Token: 0x06006097 RID: 24727 RVA: 0x002BC850 File Offset: 0x002BAA50
 	public override void Sim200ms(float dt)
 	{
 		ListPool<int, DiseaseContainers>.PooledList pooledList = ListPool<int, DiseaseContainers>.Allocate();
@@ -79,13 +75,11 @@ public class DiseaseContainers : KGameObjectSplitComponentManager<DiseaseHeader,
 		pooledList.Recycle();
 	}
 
-	// Token: 0x06006098 RID: 24728 RVA: 0x002BCA10 File Offset: 0x002BAC10
 	private static float CalculateDelta(DiseaseHeader header, ref DiseaseContainer container, Disease disease, float dt, bool radiation_enabled)
 	{
 		return DiseaseContainers.CalculateDelta(header.diseaseCount, container.elemIdx, header.primaryElement.Mass, Grid.PosToCell(header.primaryElement.transform.GetPosition()), header.primaryElement.Temperature, container.instanceGrowthRate, disease, dt, radiation_enabled);
 	}
 
-	// Token: 0x06006099 RID: 24729 RVA: 0x002BCA64 File Offset: 0x002BAC64
 	public static float CalculateDelta(int disease_count, ushort element_idx, float mass, int environment_cell, float temperature, float tags_multiplier_base, Disease disease, float dt, bool radiation_enabled)
 	{
 		float num = 0f;
@@ -112,7 +106,6 @@ public class DiseaseContainers : KGameObjectSplitComponentManager<DiseaseHeader,
 		return num;
 	}
 
-	// Token: 0x0600609A RID: 24730 RVA: 0x002BCB28 File Offset: 0x002BAD28
 	public int ModifyDiseaseCount(HandleVector<int>.Handle h, int disease_count_delta)
 	{
 		DiseaseHeader header = base.GetHeader(h);
@@ -128,7 +121,6 @@ public class DiseaseContainers : KGameObjectSplitComponentManager<DiseaseHeader,
 		return header.diseaseCount;
 	}
 
-	// Token: 0x0600609B RID: 24731 RVA: 0x002BCB94 File Offset: 0x002BAD94
 	public int AddDisease(HandleVector<int>.Handle h, byte disease_idx, int disease_count)
 	{
 		DiseaseHeader diseaseHeader;
@@ -154,7 +146,6 @@ public class DiseaseContainers : KGameObjectSplitComponentManager<DiseaseHeader,
 		return diseaseHeader.diseaseCount;
 	}
 
-	// Token: 0x0600609C RID: 24732 RVA: 0x002BCC34 File Offset: 0x002BAE34
 	private void GetVisualDiseaseIdxAndCount(DiseaseHeader header, ref DiseaseContainer payload, out int disease_idx, out int disease_count)
 	{
 		if (payload.visualDiseaseProvider == null)
@@ -174,7 +165,6 @@ public class DiseaseContainers : KGameObjectSplitComponentManager<DiseaseHeader,
 		}
 	}
 
-	// Token: 0x0600609D RID: 24733 RVA: 0x002BCCA8 File Offset: 0x002BAEA8
 	public void UpdateOverlayColours()
 	{
 		GridArea visibleArea = GridVisibleArea.GetVisibleArea();
@@ -240,7 +230,6 @@ public class DiseaseContainers : KGameObjectSplitComponentManager<DiseaseHeader,
 		}
 	}
 
-	// Token: 0x0600609E RID: 24734 RVA: 0x002BCEF0 File Offset: 0x002BB0F0
 	private void EvaluateGrowthConstants(DiseaseHeader header, ref DiseaseContainer container)
 	{
 		Disease disease = Db.Get().Diseases[(int)header.diseaseIdx];
@@ -250,7 +239,6 @@ public class DiseaseContainers : KGameObjectSplitComponentManager<DiseaseHeader,
 		container.instanceGrowthRate = disease.GetGrowthRateForTags(component.Tags, header.diseaseCount > container.overpopulationCount);
 	}
 
-	// Token: 0x0600609F RID: 24735 RVA: 0x002BCF6C File Offset: 0x002BB16C
 	public override void Clear()
 	{
 		base.Clear();

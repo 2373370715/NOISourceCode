@@ -4,17 +4,14 @@ using Klei.AI;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200185F RID: 6239
 [AddComponentMenu("KMonoBehaviour/Workable/SaunaWorkable")]
 public class SaunaWorkable : Workable, IWorkerPrioritizable
 {
-	// Token: 0x06008095 RID: 32917 RVA: 0x000B09A4 File Offset: 0x000AEBA4
 	private SaunaWorkable()
 	{
 		base.SetReportType(ReportManager.ReportType.PersonalTime);
 	}
 
-	// Token: 0x06008096 RID: 32918 RVA: 0x003415AC File Offset: 0x0033F7AC
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -30,7 +27,6 @@ public class SaunaWorkable : Workable, IWorkerPrioritizable
 		this.sauna = base.GetComponent<Sauna>();
 	}
 
-	// Token: 0x06008097 RID: 32919 RVA: 0x000F933F File Offset: 0x000F753F
 	protected override void OnStartWork(WorkerBase worker)
 	{
 		base.OnStartWork(worker);
@@ -38,7 +34,6 @@ public class SaunaWorkable : Workable, IWorkerPrioritizable
 		worker.GetComponent<Effects>().Add("SaunaRelaxing", false);
 	}
 
-	// Token: 0x06008098 RID: 32920 RVA: 0x00341614 File Offset: 0x0033F814
 	protected override void OnCompleteWork(WorkerBase worker)
 	{
 		Effects component = worker.GetComponent<Effects>();
@@ -54,7 +49,6 @@ public class SaunaWorkable : Workable, IWorkerPrioritizable
 		this.operational.SetActive(false, false);
 	}
 
-	// Token: 0x06008099 RID: 32921 RVA: 0x00341698 File Offset: 0x0033F898
 	protected override void OnStopWork(WorkerBase worker)
 	{
 		this.operational.SetActive(false, false);
@@ -67,7 +61,6 @@ public class SaunaWorkable : Workable, IWorkerPrioritizable
 		component.AddLiquid(SimHashes.Water, this.sauna.steamPerUseKG, this.sauna.waterOutputTemp, diseaseInfo.idx, diseaseInfo.count, true, false);
 	}
 
-	// Token: 0x0600809A RID: 32922 RVA: 0x00341718 File Offset: 0x0033F918
 	public bool GetWorkerPriority(WorkerBase worker, out int priority)
 	{
 		priority = this.basePriority;
@@ -84,13 +77,10 @@ public class SaunaWorkable : Workable, IWorkerPrioritizable
 		return true;
 	}
 
-	// Token: 0x040061D2 RID: 25042
 	[MyCmpReq]
 	private Operational operational;
 
-	// Token: 0x040061D3 RID: 25043
 	public int basePriority;
 
-	// Token: 0x040061D4 RID: 25044
 	private Sauna sauna;
 }

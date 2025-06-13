@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005B4 RID: 1460
 public class SpaceHeaterConfig : IBuildingConfig
 {
-	// Token: 0x0600194B RID: 6475 RVA: 0x001AE2AC File Offset: 0x001AC4AC
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "SpaceHeater";
@@ -31,7 +29,6 @@ public class SpaceHeaterConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600194C RID: 6476 RVA: 0x001AE350 File Offset: 0x001AC550
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<LoopingSounds>();
@@ -59,26 +56,22 @@ public class SpaceHeaterConfig : IBuildingConfig
 		this.AddVisualizer(go);
 	}
 
-	// Token: 0x0600194D RID: 6477 RVA: 0x000B510A File Offset: 0x000B330A
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		this.AddVisualizer(go);
 	}
 
-	// Token: 0x0600194E RID: 6478 RVA: 0x000B5113 File Offset: 0x000B3313
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 		this.AddVisualizer(go);
 	}
 
-	// Token: 0x0600194F RID: 6479 RVA: 0x000AA1AD File Offset: 0x000A83AD
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
 		go.AddOrGetDef<PoweredActiveController.Def>();
 	}
 
-	// Token: 0x06001950 RID: 6480 RVA: 0x001AE410 File Offset: 0x001AC610
 	private void AddVisualizer(GameObject go)
 	{
 		RangeVisualizer rangeVisualizer = go.AddOrGet<RangeVisualizer>();
@@ -88,24 +81,17 @@ public class SpaceHeaterConfig : IBuildingConfig
 		go.AddOrGet<EntityCellVisualizer>().AddPort(EntityCellVisualizer.Ports.HeatSource, default(CellOffset));
 	}
 
-	// Token: 0x04001063 RID: 4195
 	public const string ID = "SpaceHeater";
 
-	// Token: 0x04001064 RID: 4196
 	public const float MAX_SELF_HEAT = 32f;
 
-	// Token: 0x04001065 RID: 4197
 	public const float MAX_EXHAUST_HEAT = 4f;
 
-	// Token: 0x04001066 RID: 4198
 	public const float MIN_POWER_USAGE = 120f;
 
-	// Token: 0x04001067 RID: 4199
 	public const float MAX_POWER_USAGE = 240f;
 
-	// Token: 0x04001068 RID: 4200
 	public static Vector2I MAX_RANGE = new Vector2I(5, 5);
 
-	// Token: 0x04001069 RID: 4201
 	public static Vector2I MIN_RANGE = new Vector2I(-4, -4);
 }

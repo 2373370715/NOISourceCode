@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001258 RID: 4696
 public class BatteryDiagnostic : ColonyDiagnostic
 {
-	// Token: 0x06005FEC RID: 24556 RVA: 0x002B853C File Offset: 0x002B673C
 	public BatteryDiagnostic(int worldID) : base(worldID, UI.COLONY_DIAGNOSTICS.BATTERYDIAGNOSTIC.ALL_NAME)
 	{
 		this.tracker = TrackerTool.Instance.GetWorldTracker<BatteryTracker>(worldID);
@@ -16,7 +14,6 @@ public class BatteryDiagnostic : ColonyDiagnostic
 		base.AddCriterion("CheckDead", new DiagnosticCriterion(UI.COLONY_DIAGNOSTICS.BATTERYDIAGNOSTIC.CRITERIA.CHECKDEAD, new Func<ColonyDiagnostic.DiagnosticResult>(this.CheckDead)));
 	}
 
-	// Token: 0x06005FED RID: 24557 RVA: 0x002B85D0 File Offset: 0x002B67D0
 	public ColonyDiagnostic.DiagnosticResult CheckCapacity()
 	{
 		ColonyDiagnostic.DiagnosticResult result = new ColonyDiagnostic.DiagnosticResult(ColonyDiagnostic.DiagnosticResult.Opinion.Normal, UI.COLONY_DIAGNOSTICS.GENERIC_CRITERIA_PASS, null);
@@ -58,7 +55,6 @@ public class BatteryDiagnostic : ColonyDiagnostic
 		return result;
 	}
 
-	// Token: 0x06005FEE RID: 24558 RVA: 0x002B87CC File Offset: 0x002B69CC
 	public ColonyDiagnostic.DiagnosticResult CheckDead()
 	{
 		ColonyDiagnostic.DiagnosticResult result = new ColonyDiagnostic.DiagnosticResult(ColonyDiagnostic.DiagnosticResult.Opinion.Normal, UI.COLONY_DIAGNOSTICS.GENERIC_CRITERIA_PASS, null);
@@ -91,7 +87,6 @@ public class BatteryDiagnostic : ColonyDiagnostic
 		return result;
 	}
 
-	// Token: 0x06005FEF RID: 24559 RVA: 0x002B8978 File Offset: 0x002B6B78
 	public override ColonyDiagnostic.DiagnosticResult Evaluate()
 	{
 		ColonyDiagnostic.DiagnosticResult result;

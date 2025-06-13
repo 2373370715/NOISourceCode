@@ -1,17 +1,14 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000846 RID: 2118
 public class BalloonStandCellSensor : Sensor
 {
-	// Token: 0x06002566 RID: 9574 RVA: 0x000BCDFC File Offset: 0x000BAFFC
 	public BalloonStandCellSensor(Sensors sensors) : base(sensors)
 	{
 		this.navigator = base.GetComponent<Navigator>();
 		this.brain = base.GetComponent<MinionBrain>();
 	}
 
-	// Token: 0x06002567 RID: 9575 RVA: 0x001D91B4 File Offset: 0x001D73B4
 	public override void Update()
 	{
 		this.cell = Grid.InvalidCell;
@@ -90,27 +87,21 @@ public class BalloonStandCellSensor : Sensor
 		pooledList.Recycle();
 	}
 
-	// Token: 0x06002568 RID: 9576 RVA: 0x000BCE1D File Offset: 0x000BB01D
 	public int GetCell()
 	{
 		return this.cell;
 	}
 
-	// Token: 0x06002569 RID: 9577 RVA: 0x000BCE25 File Offset: 0x000BB025
 	public int GetStandCell()
 	{
 		return this.standCell;
 	}
 
-	// Token: 0x040019C1 RID: 6593
 	private MinionBrain brain;
 
-	// Token: 0x040019C2 RID: 6594
 	private Navigator navigator;
 
-	// Token: 0x040019C3 RID: 6595
 	private int cell;
 
-	// Token: 0x040019C4 RID: 6596
 	private int standCell;
 }

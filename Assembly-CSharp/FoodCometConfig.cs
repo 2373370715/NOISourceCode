@@ -2,10 +2,8 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000466 RID: 1126
 public class FoodCometConfig : IEntityConfig
 {
-	// Token: 0x06001304 RID: 4868 RVA: 0x001976D0 File Offset: 0x001958D0
 	public GameObject CreatePrefab()
 	{
 		GameObject gameObject = EntityTemplates.CreateEntity(FoodCometConfig.ID, UI.SPACEDESTINATIONS.COMETS.FOODCOMET.NAME, true);
@@ -41,7 +39,6 @@ public class FoodCometConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06001305 RID: 4869 RVA: 0x0019783C File Offset: 0x00195A3C
 	public void OnPrefabInit(GameObject go)
 	{
 		Comet component = go.GetComponent<Comet>();
@@ -63,11 +60,9 @@ public class FoodCometConfig : IEntityConfig
 		}));
 	}
 
-	// Token: 0x06001306 RID: 4870 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject go)
 	{
 	}
 
-	// Token: 0x04000D40 RID: 3392
 	public static string ID = "FoodComet";
 }

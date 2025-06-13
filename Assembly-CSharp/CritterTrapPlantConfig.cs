@@ -4,22 +4,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000294 RID: 660
 public class CritterTrapPlantConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x060009A6 RID: 2470 RVA: 0x000AA117 File Offset: 0x000A8317
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x060009A7 RID: 2471 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x060009A8 RID: 2472 RVA: 0x001706EC File Offset: 0x0016E8EC
 	public GameObject CreatePrefab()
 	{
 		string id = "CritterTrapPlant";
@@ -76,25 +72,19 @@ public class CritterTrapPlantConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x060009A9 RID: 2473 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x060009AA RID: 2474 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x04000768 RID: 1896
 	public const string ID = "CritterTrapPlant";
 
-	// Token: 0x04000769 RID: 1897
 	public const float WATER_RATE = 0.016666668f;
 
-	// Token: 0x0400076A RID: 1898
 	public const float GAS_RATE = 0.041666668f;
 
-	// Token: 0x0400076B RID: 1899
 	public const float GAS_VENT_THRESHOLD = 33.25f;
 }

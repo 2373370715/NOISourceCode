@@ -6,12 +6,9 @@ using UnityEngine;
 
 namespace Klei.AI
 {
-	// Token: 0x02003CDC RID: 15580
 	[SerializationConfig(MemberSerialization.OptIn)]
 	public class Modifications<ModifierType, InstanceType> : ISaveLoadableDetails where ModifierType : Resource where InstanceType : ModifierInstance<ModifierType>
 	{
-		// Token: 0x17000C61 RID: 3169
-		// (get) Token: 0x0600EF0F RID: 61199 RVA: 0x00144E11 File Offset: 0x00143011
 		public int Count
 		{
 			get
@@ -20,18 +17,13 @@ namespace Klei.AI
 			}
 		}
 
-		// Token: 0x0600EF10 RID: 61200 RVA: 0x00144E1E File Offset: 0x0014301E
 		public IEnumerator<InstanceType> GetEnumerator()
 		{
 			return this.ModifierList.GetEnumerator();
 		}
 
-		// Token: 0x17000C62 RID: 3170
-		// (get) Token: 0x0600EF11 RID: 61201 RVA: 0x00144E30 File Offset: 0x00143030
-		// (set) Token: 0x0600EF12 RID: 61202 RVA: 0x00144E38 File Offset: 0x00143038
 		public GameObject gameObject { get; private set; }
 
-		// Token: 0x17000C63 RID: 3171
 		public InstanceType this[int idx]
 		{
 			get
@@ -40,39 +32,33 @@ namespace Klei.AI
 			}
 		}
 
-		// Token: 0x0600EF14 RID: 61204 RVA: 0x00144E4F File Offset: 0x0014304F
 		public ComponentType GetComponent<ComponentType>()
 		{
 			return this.gameObject.GetComponent<ComponentType>();
 		}
 
-		// Token: 0x0600EF15 RID: 61205 RVA: 0x00144E5C File Offset: 0x0014305C
 		public void Trigger(GameHashes hash, object data = null)
 		{
 			this.gameObject.GetComponent<KPrefabID>().Trigger((int)hash, data);
 		}
 
-		// Token: 0x0600EF16 RID: 61206 RVA: 0x004E8BDC File Offset: 0x004E6DDC
 		public virtual InstanceType CreateInstance(ModifierType modifier)
 		{
 			return default(InstanceType);
 		}
 
-		// Token: 0x0600EF17 RID: 61207 RVA: 0x00144E70 File Offset: 0x00143070
 		public Modifications(GameObject go, ResourceSet<ModifierType> resources = null)
 		{
 			this.resources = resources;
 			this.gameObject = go;
 		}
 
-		// Token: 0x0600EF18 RID: 61208 RVA: 0x00144E91 File Offset: 0x00143091
 		public virtual InstanceType Add(InstanceType instance)
 		{
 			this.ModifierList.Add(instance);
 			return instance;
 		}
 
-		// Token: 0x0600EF19 RID: 61209 RVA: 0x004E8BF4 File Offset: 0x004E6DF4
 		public virtual void Remove(InstanceType instance)
 		{
 			for (int i = 0; i < this.ModifierList.Count; i++)
@@ -86,13 +72,11 @@ namespace Klei.AI
 			}
 		}
 
-		// Token: 0x0600EF1A RID: 61210 RVA: 0x00144EA0 File Offset: 0x001430A0
 		public bool Has(ModifierType modifier)
 		{
 			return this.Get(modifier) != null;
 		}
 
-		// Token: 0x0600EF1B RID: 61211 RVA: 0x004E8C48 File Offset: 0x004E6E48
 		public InstanceType Get(ModifierType modifier)
 		{
 			foreach (InstanceType instanceType in this.ModifierList)
@@ -105,7 +89,6 @@ namespace Klei.AI
 			return default(InstanceType);
 		}
 
-		// Token: 0x0600EF1C RID: 61212 RVA: 0x004E8CBC File Offset: 0x004E6EBC
 		public InstanceType Get(string id)
 		{
 			foreach (InstanceType instanceType in this.ModifierList)
@@ -118,7 +101,6 @@ namespace Klei.AI
 			return default(InstanceType);
 		}
 
-		// Token: 0x0600EF1D RID: 61213 RVA: 0x004E8D34 File Offset: 0x004E6F34
 		public void Serialize(BinaryWriter writer)
 		{
 			writer.Write(this.ModifierList.Count);
@@ -137,7 +119,6 @@ namespace Klei.AI
 			}
 		}
 
-		// Token: 0x0600EF1E RID: 61214 RVA: 0x004E8E14 File Offset: 0x004E7014
 		public void Deserialize(IReader reader)
 		{
 			int num = reader.ReadInt32();
@@ -190,10 +171,8 @@ namespace Klei.AI
 			}
 		}
 
-		// Token: 0x0400EACB RID: 60107
 		public List<InstanceType> ModifierList = new List<InstanceType>();
 
-		// Token: 0x0400EACD RID: 60109
 		private ResourceSet<ModifierType> resources;
 	}
 }

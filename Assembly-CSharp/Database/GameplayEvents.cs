@@ -5,10 +5,8 @@ using TUNING;
 
 namespace Database
 {
-	// Token: 0x020021AA RID: 8618
 	public class GameplayEvents : ResourceSet<GameplayEvent>
 	{
-		// Token: 0x0600B7FF RID: 47103 RVA: 0x0046A9C0 File Offset: 0x00468BC0
 		public GameplayEvents(ResourceSet parent) : base("GameplayEvents", parent)
 		{
 			this.HatchSpawnEvent = base.Add(new CreatureSpawnEvent());
@@ -25,7 +23,6 @@ namespace Database
 			this.ArtifactReveal = base.Add(new SimpleEvent("ArtifactReveal", GAMEPLAY_EVENTS.EVENT_TYPES.ARTIFACT_REVEAL.NAME, GAMEPLAY_EVENTS.EVENT_TYPES.ARTIFACT_REVEAL.DESCRIPTION, "analyzeartifact_kanim", GAMEPLAY_EVENTS.EVENT_TYPES.ARTIFACT_REVEAL.BUTTON, null));
 		}
 
-		// Token: 0x0600B800 RID: 47104 RVA: 0x0046AB14 File Offset: 0x00468D14
 		private void BaseGameMeteorEvents()
 		{
 			string id = "MeteorShowerGoldEvent";
@@ -45,7 +42,6 @@ namespace Database
 			this.MeteorShowerIronEvent = base.Add(new MeteorShowerEvent(id3, duration3, secondsPerMeteor3, new MathUtil.MinMax(300f, 1200f), secondsBombardmentOn, null, true).AddMeteor(IronCometConfig.ID, 1f).AddMeteor(RockCometConfig.ID, 2f).AddMeteor(DustCometConfig.ID, 5f));
 		}
 
-		// Token: 0x0600B801 RID: 47105 RVA: 0x0046AC64 File Offset: 0x00468E64
 		private void Expansion1MeteorEvents()
 		{
 			string id = "MeteorShowerDustEvent";
@@ -133,7 +129,6 @@ namespace Database
 			this.ClusterUraniumShower = base.Add(new MeteorShowerEvent(id14, duration14, secondsPerMeteor14, METEORS.BOMBARDMENT_OFF.NONE, unlimited, fullID, true).AddMeteor(UraniumCometConfig.ID, 2.5f).AddMeteor(DustCometConfig.ID, 1f).AddMeteor(LightDustCometConfig.ID, 2f));
 		}
 
-		// Token: 0x0600B802 RID: 47106 RVA: 0x0046B190 File Offset: 0x00469390
 		private void DLCMeteorEvents()
 		{
 			string id = "ClusterIceAndTreesShower";
@@ -144,7 +139,6 @@ namespace Database
 			this.ClusterIceAndTreesShower = base.Add(new MeteorShowerEvent(id, duration, secondsPerMeteor, METEORS.BOMBARDMENT_OFF.NONE, unlimited, fullID, true).AddMeteor(SpaceTreeSeedCometConfig.ID, 1f).AddMeteor(HardIceCometConfig.ID, 2f).AddMeteor(SnowballCometConfig.ID, 22f));
 		}
 
-		// Token: 0x0600B803 RID: 47107 RVA: 0x0046B204 File Offset: 0x00469404
 		private void BonusEvents()
 		{
 			GameplayEventMinionFilters instance = GameplayEventMinionFilters.Instance;
@@ -235,7 +229,6 @@ namespace Database
 			}).SetExtraCondition((BonusEvent.GameplayEventData data) => (data.workable as SocialGatheringPointWorkable).timesConversed > 0).AddPrecondition(instance2.CycleRestriction(10f, float.PositiveInfinity)));
 		}
 
-		// Token: 0x0600B804 RID: 47108 RVA: 0x0046BA54 File Offset: 0x00469C54
 		private void VerifyEvents()
 		{
 			foreach (GameplayEvent gameplayEvent in this.resources)
@@ -254,7 +247,6 @@ namespace Database
 			}
 		}
 
-		// Token: 0x0600B805 RID: 47109 RVA: 0x0046BAE8 File Offset: 0x00469CE8
 		private void VerifyBonusEvent(BonusEvent e)
 		{
 			StringEntry stringEntry;
@@ -310,142 +302,96 @@ namespace Database
 			}
 		}
 
-		// Token: 0x04009524 RID: 38180
 		public GameplayEvent HatchSpawnEvent;
 
-		// Token: 0x04009525 RID: 38181
 		public GameplayEvent PartyEvent;
 
-		// Token: 0x04009526 RID: 38182
 		public GameplayEvent EclipseEvent;
 
-		// Token: 0x04009527 RID: 38183
 		public GameplayEvent SatelliteCrashEvent;
 
-		// Token: 0x04009528 RID: 38184
 		public GameplayEvent FoodFightEvent;
 
-		// Token: 0x04009529 RID: 38185
 		public GameplayEvent PrickleFlowerBlightEvent;
 
-		// Token: 0x0400952A RID: 38186
 		public GameplayEvent MeteorShowerIronEvent;
 
-		// Token: 0x0400952B RID: 38187
 		public GameplayEvent MeteorShowerGoldEvent;
 
-		// Token: 0x0400952C RID: 38188
 		public GameplayEvent MeteorShowerCopperEvent;
 
-		// Token: 0x0400952D RID: 38189
 		public GameplayEvent MeteorShowerDustEvent;
 
-		// Token: 0x0400952E RID: 38190
 		public GameplayEvent MeteorShowerFullereneEvent;
 
-		// Token: 0x0400952F RID: 38191
 		public GameplayEvent GassyMooteorEvent;
 
-		// Token: 0x04009530 RID: 38192
 		public GameplayEvent ClusterSnowShower;
 
-		// Token: 0x04009531 RID: 38193
 		public GameplayEvent ClusterIceShower;
 
-		// Token: 0x04009532 RID: 38194
 		public GameplayEvent ClusterBiologicalShower;
 
-		// Token: 0x04009533 RID: 38195
 		public GameplayEvent ClusterLightRegolithShower;
 
-		// Token: 0x04009534 RID: 38196
 		public GameplayEvent ClusterRegolithShower;
 
-		// Token: 0x04009535 RID: 38197
 		public GameplayEvent ClusterGoldShower;
 
-		// Token: 0x04009536 RID: 38198
 		public GameplayEvent ClusterCopperShower;
 
-		// Token: 0x04009537 RID: 38199
 		public GameplayEvent ClusterIronShower;
 
-		// Token: 0x04009538 RID: 38200
 		public GameplayEvent ClusterUraniumShower;
 
-		// Token: 0x04009539 RID: 38201
 		public GameplayEvent ClusterOxyliteShower;
 
-		// Token: 0x0400953A RID: 38202
 		public GameplayEvent ClusterBleachStoneShower;
 
-		// Token: 0x0400953B RID: 38203
 		public GameplayEvent ClusterIceAndTreesShower;
 
-		// Token: 0x0400953C RID: 38204
 		public GameplayEvent BonusDream1;
 
-		// Token: 0x0400953D RID: 38205
 		public GameplayEvent BonusDream2;
 
-		// Token: 0x0400953E RID: 38206
 		public GameplayEvent BonusDream3;
 
-		// Token: 0x0400953F RID: 38207
 		public GameplayEvent BonusDream4;
 
-		// Token: 0x04009540 RID: 38208
 		public GameplayEvent BonusToilet1;
 
-		// Token: 0x04009541 RID: 38209
 		public GameplayEvent BonusToilet2;
 
-		// Token: 0x04009542 RID: 38210
 		public GameplayEvent BonusToilet3;
 
-		// Token: 0x04009543 RID: 38211
 		public GameplayEvent BonusToilet4;
 
-		// Token: 0x04009544 RID: 38212
 		public GameplayEvent BonusResearch;
 
-		// Token: 0x04009545 RID: 38213
 		public GameplayEvent BonusDigging1;
 
-		// Token: 0x04009546 RID: 38214
 		public GameplayEvent BonusStorage;
 
-		// Token: 0x04009547 RID: 38215
 		public GameplayEvent BonusBuilder;
 
-		// Token: 0x04009548 RID: 38216
 		public GameplayEvent BonusOxygen;
 
-		// Token: 0x04009549 RID: 38217
 		public GameplayEvent BonusAlgae;
 
-		// Token: 0x0400954A RID: 38218
 		public GameplayEvent BonusGenerator;
 
-		// Token: 0x0400954B RID: 38219
 		public GameplayEvent BonusDoor;
 
-		// Token: 0x0400954C RID: 38220
 		public GameplayEvent BonusHitTheBooks;
 
-		// Token: 0x0400954D RID: 38221
 		public GameplayEvent BonusLitWorkspace;
 
-		// Token: 0x0400954E RID: 38222
 		public GameplayEvent BonusTalker;
 
-		// Token: 0x0400954F RID: 38223
 		public GameplayEvent CryoFriend;
 
-		// Token: 0x04009550 RID: 38224
 		public GameplayEvent WarpWorldReveal;
 
-		// Token: 0x04009551 RID: 38225
 		public GameplayEvent ArtifactReveal;
 	}
 }

@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000DC RID: 220
 public static class BaseCrabConfig
 {
-	// Token: 0x06000394 RID: 916 RVA: 0x00158384 File Offset: 0x00156584
 	public static GameObject BaseCrab(string id, string name, string desc, string anim_file, string traitId, bool is_baby, string symbolOverridePrefix = null, string onDeathDropID = "CrabShell", int onDeathDropCount = 1)
 	{
 		float mass = 100f;
@@ -66,7 +64,6 @@ public static class BaseCrabConfig
 		return gameObject;
 	}
 
-	// Token: 0x06000395 RID: 917 RVA: 0x00158754 File Offset: 0x00156954
 	public static List<Diet.Info> BasicDiet(Tag poopTag, float caloriesPerKg, float producedConversionRate, string diseaseId, float diseasePerKgProduced)
 	{
 		HashSet<Tag> hashSet = new HashSet<Tag>();
@@ -78,7 +75,6 @@ public static class BaseCrabConfig
 		};
 	}
 
-	// Token: 0x06000396 RID: 918 RVA: 0x001587A4 File Offset: 0x001569A4
 	public static List<Diet.Info> DietWithSlime(Tag poopTag, float caloriesPerKg, float producedConversionRate, string diseaseId, float diseasePerKgProduced)
 	{
 		HashSet<Tag> hashSet = new HashSet<Tag>();
@@ -91,7 +87,6 @@ public static class BaseCrabConfig
 		};
 	}
 
-	// Token: 0x06000397 RID: 919 RVA: 0x001580FC File Offset: 0x001562FC
 	public static GameObject SetupDiet(GameObject prefab, List<Diet.Info> diet_infos, float referenceCaloriesPerKg, float minPoopSizeInKg)
 	{
 		Diet diet = new Diet(diet_infos.ToArray());
@@ -102,7 +97,6 @@ public static class BaseCrabConfig
 		return prefab;
 	}
 
-	// Token: 0x06000398 RID: 920 RVA: 0x00158808 File Offset: 0x00156A08
 	private static int AdjustSpawnLocationCB(int cell)
 	{
 		while (!Grid.Solid[cell])

@@ -2,10 +2,8 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000747 RID: 1863
 public class SeekAndInstallBionicUpgradeChore : Chore<SeekAndInstallBionicUpgradeChore.Instance>
 {
-	// Token: 0x060020BA RID: 8378 RVA: 0x001C95EC File Offset: 0x001C77EC
 	public SeekAndInstallBionicUpgradeChore(IStateMachineTarget target)
 	{
 		Chore.Precondition canPickupAnyAssignedUpgrade = default(Chore.Precondition);
@@ -24,7 +22,6 @@ public class SeekAndInstallBionicUpgradeChore : Chore<SeekAndInstallBionicUpgrad
 		this.AddPrecondition(this.CanPickupAnyAssignedUpgrade, smi);
 	}
 
-	// Token: 0x060020BB RID: 8379 RVA: 0x001C96B8 File Offset: 0x001C78B8
 	public override void Begin(Chore.Precondition.Context context)
 	{
 		if (context.consumerState.consumer == null)
@@ -50,7 +47,6 @@ public class SeekAndInstallBionicUpgradeChore : Chore<SeekAndInstallBionicUpgrad
 		base.Begin(context);
 	}
 
-	// Token: 0x060020BC RID: 8380 RVA: 0x001C977C File Offset: 0x001C797C
 	public static void SetOverrideAnimSymbol(SeekAndInstallBionicUpgradeChore.Instance smi, bool overriding)
 	{
 		string text = "booster";
@@ -74,7 +70,6 @@ public class SeekAndInstallBionicUpgradeChore : Chore<SeekAndInstallBionicUpgrad
 		component.SetSymbolVisiblity(text, true);
 	}
 
-	// Token: 0x060020BD RID: 8381 RVA: 0x001C984C File Offset: 0x001C7A4C
 	public static bool IsBionicUpgradeAssignedTo(GameObject bionicUpgradeGameObject, GameObject ownerInQuestion)
 	{
 		if (bionicUpgradeGameObject == null)
@@ -86,7 +81,6 @@ public class SeekAndInstallBionicUpgradeChore : Chore<SeekAndInstallBionicUpgrad
 		return component.IsAssignedTo(component2);
 	}
 
-	// Token: 0x060020BE RID: 8382 RVA: 0x001C9878 File Offset: 0x001C7A78
 	public static void InstallUpgrade(SeekAndInstallBionicUpgradeChore.Instance smi)
 	{
 		Storage storage = smi.gameObject.GetComponents<Storage>().FindFirst((Storage s) => s.storageID == GameTags.StoragesIds.DefaultStorage);
@@ -103,13 +97,10 @@ public class SeekAndInstallBionicUpgradeChore : Chore<SeekAndInstallBionicUpgrad
 		}
 	}
 
-	// Token: 0x040015CB RID: 5579
 	private Chore.Precondition CanPickupAnyAssignedUpgrade;
 
-	// Token: 0x02000748 RID: 1864
 	public class States : GameStateMachine<SeekAndInstallBionicUpgradeChore.States, SeekAndInstallBionicUpgradeChore.Instance, SeekAndInstallBionicUpgradeChore>
 	{
-		// Token: 0x060020BF RID: 8383 RVA: 0x001C992C File Offset: 0x001C7B2C
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.fetch;
@@ -125,36 +116,25 @@ public class SeekAndInstallBionicUpgradeChore : Chore<SeekAndInstallBionicUpgrad
 			this.complete.Target(this.dupe).Enter(new StateMachine<SeekAndInstallBionicUpgradeChore.States, SeekAndInstallBionicUpgradeChore.Instance, SeekAndInstallBionicUpgradeChore, object>.State.Callback(SeekAndInstallBionicUpgradeChore.InstallUpgrade)).ReturnSuccess();
 		}
 
-		// Token: 0x040015CC RID: 5580
 		public GameStateMachine<SeekAndInstallBionicUpgradeChore.States, SeekAndInstallBionicUpgradeChore.Instance, SeekAndInstallBionicUpgradeChore, object>.FetchSubState fetch;
 
-		// Token: 0x040015CD RID: 5581
 		public GameStateMachine<SeekAndInstallBionicUpgradeChore.States, SeekAndInstallBionicUpgradeChore.Instance, SeekAndInstallBionicUpgradeChore, object>.State install;
 
-		// Token: 0x040015CE RID: 5582
 		public GameStateMachine<SeekAndInstallBionicUpgradeChore.States, SeekAndInstallBionicUpgradeChore.Instance, SeekAndInstallBionicUpgradeChore, object>.State complete;
 
-		// Token: 0x040015CF RID: 5583
 		public StateMachine<SeekAndInstallBionicUpgradeChore.States, SeekAndInstallBionicUpgradeChore.Instance, SeekAndInstallBionicUpgradeChore, object>.TargetParameter dupe;
 
-		// Token: 0x040015D0 RID: 5584
 		public StateMachine<SeekAndInstallBionicUpgradeChore.States, SeekAndInstallBionicUpgradeChore.Instance, SeekAndInstallBionicUpgradeChore, object>.TargetParameter initialUpgradeComponent;
 
-		// Token: 0x040015D1 RID: 5585
 		public StateMachine<SeekAndInstallBionicUpgradeChore.States, SeekAndInstallBionicUpgradeChore.Instance, SeekAndInstallBionicUpgradeChore, object>.TargetParameter pickedUpgrade;
 
-		// Token: 0x040015D2 RID: 5586
 		public StateMachine<SeekAndInstallBionicUpgradeChore.States, SeekAndInstallBionicUpgradeChore.Instance, SeekAndInstallBionicUpgradeChore, object>.FloatParameter actualunits;
 
-		// Token: 0x040015D3 RID: 5587
 		public StateMachine<SeekAndInstallBionicUpgradeChore.States, SeekAndInstallBionicUpgradeChore.Instance, SeekAndInstallBionicUpgradeChore, object>.FloatParameter amountRequested = new StateMachine<SeekAndInstallBionicUpgradeChore.States, SeekAndInstallBionicUpgradeChore.Instance, SeekAndInstallBionicUpgradeChore, object>.FloatParameter(1f);
 	}
 
-	// Token: 0x0200074A RID: 1866
 	public class Instance : GameStateMachine<SeekAndInstallBionicUpgradeChore.States, SeekAndInstallBionicUpgradeChore.Instance, SeekAndInstallBionicUpgradeChore, object>.GameInstance
 	{
-		// Token: 0x170000D7 RID: 215
-		// (get) Token: 0x060020C7 RID: 8391 RVA: 0x000B9EE0 File Offset: 0x000B80E0
 		public BionicUpgradesMonitor.Instance upgradeMonitor
 		{
 			get
@@ -163,7 +143,6 @@ public class SeekAndInstallBionicUpgradeChore : Chore<SeekAndInstallBionicUpgrad
 			}
 		}
 
-		// Token: 0x060020C8 RID: 8392 RVA: 0x000B9EF8 File Offset: 0x000B80F8
 		public Instance(SeekAndInstallBionicUpgradeChore master, GameObject duplicant) : base(master)
 		{
 		}

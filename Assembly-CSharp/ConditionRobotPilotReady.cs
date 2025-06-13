@@ -2,10 +2,8 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x020019E2 RID: 6626
 public class ConditionRobotPilotReady : ProcessCondition
 {
-	// Token: 0x06008A19 RID: 35353 RVA: 0x000FEBAC File Offset: 0x000FCDAC
 	public ConditionRobotPilotReady(RoboPilotModule module)
 	{
 		this.module = module;
@@ -16,7 +14,6 @@ public class ConditionRobotPilotReady : ProcessCondition
 		}
 	}
 
-	// Token: 0x06008A1A RID: 35354 RVA: 0x00369068 File Offset: 0x00367268
 	public override ProcessCondition.Status EvaluateCondition()
 	{
 		ProcessCondition.Status result = ProcessCondition.Status.Failure;
@@ -64,7 +61,6 @@ public class ConditionRobotPilotReady : ProcessCondition
 		return result;
 	}
 
-	// Token: 0x06008A1B RID: 35355 RVA: 0x00369150 File Offset: 0x00367350
 	private bool HasDestination()
 	{
 		if (this.craftRegisterType == LaunchableRocketRegisterType.Clustercraft)
@@ -79,7 +75,6 @@ public class ConditionRobotPilotReady : ProcessCondition
 		return false;
 	}
 
-	// Token: 0x06008A1C RID: 35356 RVA: 0x003691BC File Offset: 0x003673BC
 	private bool RocketHasDupeControlStation()
 	{
 		if (this.craftInterface != null)
@@ -93,7 +88,6 @@ public class ConditionRobotPilotReady : ProcessCondition
 		return false;
 	}
 
-	// Token: 0x06008A1D RID: 35357 RVA: 0x000FEBE6 File Offset: 0x000FCDE6
 	public override string GetStatusMessage(ProcessCondition.Status status)
 	{
 		if (status == ProcessCondition.Status.Ready)
@@ -111,7 +105,6 @@ public class ConditionRobotPilotReady : ProcessCondition
 		return UI.STARMAP.LAUNCHCHECKLIST.ROBOT_PILOT_DATA_REQUIREMENTS.STATUS.WARNING;
 	}
 
-	// Token: 0x06008A1E RID: 35358 RVA: 0x003691F4 File Offset: 0x003673F4
 	public override string GetStatusTooltip(ProcessCondition.Status status)
 	{
 		LaunchableRocketRegisterType launchableRocketRegisterType = this.craftRegisterType;
@@ -191,18 +184,14 @@ public class ConditionRobotPilotReady : ProcessCondition
 		return UI.STARMAP.LAUNCHCHECKLIST.ROBOT_PILOT_DATA_REQUIREMENTS.TOOLTIP.FAILURE_NO_DESTINATION;
 	}
 
-	// Token: 0x06008A1F RID: 35359 RVA: 0x000AA7E7 File Offset: 0x000A89E7
 	public override bool ShowInUI()
 	{
 		return true;
 	}
 
-	// Token: 0x0400684C RID: 26700
 	private LaunchableRocketRegisterType craftRegisterType;
 
-	// Token: 0x0400684D RID: 26701
 	private RoboPilotModule module;
 
-	// Token: 0x0400684E RID: 26702
 	private CraftModuleInterface craftInterface;
 }

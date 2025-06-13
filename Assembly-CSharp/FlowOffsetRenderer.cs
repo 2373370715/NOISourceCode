@@ -1,11 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200133E RID: 4926
 [AddComponentMenu("KMonoBehaviour/scripts/FlowOffsetRenderer")]
 public class FlowOffsetRenderer : KMonoBehaviour
 {
-	// Token: 0x060064E0 RID: 25824 RVA: 0x002CF044 File Offset: 0x002CD244
 	protected override void OnSpawn()
 	{
 		this.FlowMaterial = new Material(Shader.Find("Klei/Flow"));
@@ -15,7 +13,6 @@ public class FlowOffsetRenderer : KMonoBehaviour
 		this.DoUpdate(0.1f);
 	}
 
-	// Token: 0x060064E1 RID: 25825 RVA: 0x002CF0A0 File Offset: 0x002CD2A0
 	private void OnResize()
 	{
 		for (int i = 0; i < this.OffsetTextures.Length; i++)
@@ -30,7 +27,6 @@ public class FlowOffsetRenderer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060064E2 RID: 25826 RVA: 0x002CF11C File Offset: 0x002CD31C
 	private void LateUpdate()
 	{
 		if ((Time.deltaTime > 0f && Time.timeScale > 0f) || this.forceUpdate)
@@ -40,7 +36,6 @@ public class FlowOffsetRenderer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060064E3 RID: 25827 RVA: 0x002CF170 File Offset: 0x002CD370
 	private void DoUpdate(float dt)
 	{
 		this.CurrentTime += dt;
@@ -75,56 +70,39 @@ public class FlowOffsetRenderer : KMonoBehaviour
 		Shader.SetGlobalTexture(this.OffsetTextureName, renderTexture2);
 	}
 
-	// Token: 0x04004896 RID: 18582
 	private float GasPhase0;
 
-	// Token: 0x04004897 RID: 18583
 	private float GasPhase1;
 
-	// Token: 0x04004898 RID: 18584
 	public float PhaseMultiplier;
 
-	// Token: 0x04004899 RID: 18585
 	public float NoiseInfluence;
 
-	// Token: 0x0400489A RID: 18586
 	public float NoiseScale;
 
-	// Token: 0x0400489B RID: 18587
 	public float OffsetSpeed;
 
-	// Token: 0x0400489C RID: 18588
 	public string OffsetTextureName;
 
-	// Token: 0x0400489D RID: 18589
 	public string ParametersName;
 
-	// Token: 0x0400489E RID: 18590
 	public Vector2 MinFlow0;
 
-	// Token: 0x0400489F RID: 18591
 	public Vector2 MinFlow1;
 
-	// Token: 0x040048A0 RID: 18592
 	public Vector2 LiquidGasMask;
 
-	// Token: 0x040048A1 RID: 18593
 	[SerializeField]
 	private Material FlowMaterial;
 
-	// Token: 0x040048A2 RID: 18594
 	[SerializeField]
 	private bool forceUpdate;
 
-	// Token: 0x040048A3 RID: 18595
 	private TextureLerper FlowLerper;
 
-	// Token: 0x040048A4 RID: 18596
 	public RenderTexture[] OffsetTextures = new RenderTexture[2];
 
-	// Token: 0x040048A5 RID: 18597
 	private int OffsetIdx;
 
-	// Token: 0x040048A6 RID: 18598
 	private float CurrentTime;
 }

@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003C1 RID: 961
 public class LiquidConditionerConfig : IBuildingConfig
 {
-	// Token: 0x06000F97 RID: 3991 RVA: 0x00187C90 File Offset: 0x00185E90
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "LiquidConditioner";
@@ -37,7 +35,6 @@ public class LiquidConditionerConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000F98 RID: 3992 RVA: 0x00187D60 File Offset: 0x00185F60
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<LoopingSounds>();
@@ -55,7 +52,6 @@ public class LiquidConditionerConfig : IBuildingConfig
 		storage.SetDefaultStoredItemModifiers(LiquidConditionerConfig.StoredItemModifiers);
 	}
 
-	// Token: 0x06000F99 RID: 3993 RVA: 0x000B1164 File Offset: 0x000AF364
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
@@ -63,10 +59,8 @@ public class LiquidConditionerConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayBehindConduits, false);
 	}
 
-	// Token: 0x04000B52 RID: 2898
 	public const string ID = "LiquidConditioner";
 
-	// Token: 0x04000B53 RID: 2899
 	private static readonly List<Storage.StoredItemModifier> StoredItemModifiers = new List<Storage.StoredItemModifier>
 	{
 		Storage.StoredItemModifier.Hide,

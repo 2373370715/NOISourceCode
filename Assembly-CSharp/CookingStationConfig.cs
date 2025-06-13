@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000084 RID: 132
 public class CookingStationConfig : IBuildingConfig
 {
-	// Token: 0x06000211 RID: 529 RVA: 0x0014E370 File Offset: 0x0014C570
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "CookingStation";
@@ -33,7 +31,6 @@ public class CookingStationConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000212 RID: 530 RVA: 0x0014E420 File Offset: 0x0014C620
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<BuildingComplete>().isManuallyOperated = true;
@@ -54,7 +51,6 @@ public class CookingStationConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.CookTop, false);
 	}
 
-	// Token: 0x06000213 RID: 531 RVA: 0x0014E4B8 File Offset: 0x0014C6B8
 	private void ConfigureRecipes()
 	{
 		ComplexRecipe.RecipeElement[] array = new ComplexRecipe.RecipeElement[]
@@ -336,11 +332,9 @@ public class CookingStationConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x06000214 RID: 532 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x0400015D RID: 349
 	public const string ID = "CookingStation";
 }

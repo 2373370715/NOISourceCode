@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001B1B RID: 6939
 public class EmptyPipeToolHoverTextCard : HoverTextConfiguration
 {
-	// Token: 0x0600915F RID: 37215 RVA: 0x0038D238 File Offset: 0x0038B438
 	public override void UpdateHoverElements(List<KSelectable> selected)
 	{
 		string lastEnabledFilter = ToolMenu.Instance.toolParameterMenu.GetLastEnabledFilter();
@@ -29,7 +27,6 @@ public class EmptyPipeToolHoverTextCard : HoverTextConfiguration
 		hoverTextDrawer.EndDrawing();
 	}
 
-	// Token: 0x06009160 RID: 37216 RVA: 0x0038D2D8 File Offset: 0x0038B4D8
 	protected override void ConfigureTitle(HoverTextScreen screen)
 	{
 		string lastEnabledFilter = ToolMenu.Instance.toolParameterMenu.GetLastEnabledFilter();

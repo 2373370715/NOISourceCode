@@ -3,10 +3,8 @@ using Klei;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x020001DB RID: 475
 public class LayEggStates : GameStateMachine<LayEggStates, LayEggStates.Instance, IStateMachineTarget, LayEggStates.Def>
 {
-	// Token: 0x0600067A RID: 1658 RVA: 0x001649D0 File Offset: 0x00162BD0
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.layeggpre;
@@ -26,14 +24,12 @@ public class LayEggStates : GameStateMachine<LayEggStates, LayEggStates.Instance
 		this.behaviourcomplete.QueueAnim("idle_loop", true, null).BehaviourComplete(GameTags.Creatures.Fertile, false);
 	}
 
-	// Token: 0x0600067B RID: 1659 RVA: 0x000AD191 File Offset: 0x000AB391
 	private static void LayEgg(LayEggStates.Instance smi)
 	{
 		smi.eggPos = smi.transform.GetPosition();
 		smi.GetSMI<FertilityMonitor.Instance>().LayEgg();
 	}
 
-	// Token: 0x0600067C RID: 1660 RVA: 0x00164AF0 File Offset: 0x00162CF0
 	private static void ShowEgg(LayEggStates.Instance smi)
 	{
 		FertilityMonitor.Instance smi2 = smi.GetSMI<FertilityMonitor.Instance>();
@@ -43,13 +39,11 @@ public class LayEggStates : GameStateMachine<LayEggStates, LayEggStates.Instance
 		}
 	}
 
-	// Token: 0x0600067D RID: 1661 RVA: 0x000AD1AF File Offset: 0x000AB3AF
 	private static void FaceEgg(LayEggStates.Instance smi)
 	{
 		smi.Get<Facing>().Face(smi.eggPos);
 	}
 
-	// Token: 0x0600067E RID: 1662 RVA: 0x00164B10 File Offset: 0x00162D10
 	private static int GetMoveAsideCell(LayEggStates.Instance smi)
 	{
 		int num = 1;
@@ -74,36 +68,27 @@ public class LayEggStates : GameStateMachine<LayEggStates, LayEggStates.Instance
 		return Grid.InvalidCell;
 	}
 
-	// Token: 0x040004BE RID: 1214
 	public GameStateMachine<LayEggStates, LayEggStates.Instance, IStateMachineTarget, LayEggStates.Def>.State layeggpre;
 
-	// Token: 0x040004BF RID: 1215
 	public GameStateMachine<LayEggStates, LayEggStates.Instance, IStateMachineTarget, LayEggStates.Def>.State layeggpst;
 
-	// Token: 0x040004C0 RID: 1216
 	public GameStateMachine<LayEggStates, LayEggStates.Instance, IStateMachineTarget, LayEggStates.Def>.State moveaside;
 
-	// Token: 0x040004C1 RID: 1217
 	public GameStateMachine<LayEggStates, LayEggStates.Instance, IStateMachineTarget, LayEggStates.Def>.State lookategg;
 
-	// Token: 0x040004C2 RID: 1218
 	public GameStateMachine<LayEggStates, LayEggStates.Instance, IStateMachineTarget, LayEggStates.Def>.State behaviourcomplete;
 
-	// Token: 0x020001DC RID: 476
 	public class Def : StateMachine.BaseDef
 	{
 	}
 
-	// Token: 0x020001DD RID: 477
 	public new class Instance : GameStateMachine<LayEggStates, LayEggStates.Instance, IStateMachineTarget, LayEggStates.Def>.GameInstance
 	{
-		// Token: 0x06000681 RID: 1665 RVA: 0x000AD1CA File Offset: 0x000AB3CA
 		public Instance(Chore<LayEggStates.Instance> chore, LayEggStates.Def def) : base(chore, def)
 		{
 			chore.AddPrecondition(ChorePreconditions.instance.CheckBehaviourPrecondition, GameTags.Creatures.Fertile);
 		}
 
-		// Token: 0x040004C3 RID: 1219
 		public Vector3 eggPos;
 	}
 }

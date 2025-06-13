@@ -7,10 +7,8 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001D97 RID: 7575
 public class KleiItemDropScreen : KModalScreen
 {
-	// Token: 0x06009E35 RID: 40501 RVA: 0x0010B6F3 File Offset: 0x001098F3
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -25,14 +23,12 @@ public class KleiItemDropScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x06009E36 RID: 40502 RVA: 0x0010B72B File Offset: 0x0010992B
 	protected override void OnActivate()
 	{
 		KleiItemDropScreen.Instance = this;
 		this.Show(false);
 	}
 
-	// Token: 0x06009E37 RID: 40503 RVA: 0x003DB3A0 File Offset: 0x003D95A0
 	public override void Show(bool show = true)
 	{
 		this.serverRequestState.Reset();
@@ -63,7 +59,6 @@ public class KleiItemDropScreen : KModalScreen
 		base.Show(true);
 	}
 
-	// Token: 0x06009E38 RID: 40504 RVA: 0x0010B39B File Offset: 0x0010959B
 	public override void OnKeyDown(KButtonEvent e)
 	{
 		if (e.TryConsume(global::Action.Escape) || e.TryConsume(global::Action.MouseRight))
@@ -73,7 +68,6 @@ public class KleiItemDropScreen : KModalScreen
 		base.OnKeyDown(e);
 	}
 
-	// Token: 0x06009E39 RID: 40505 RVA: 0x003DB460 File Offset: 0x003D9660
 	protected override void OnShow(bool show)
 	{
 		base.OnShow(show);
@@ -92,7 +86,6 @@ public class KleiItemDropScreen : KModalScreen
 		this.shouldDoCloseRoutine = true;
 	}
 
-	// Token: 0x06009E3A RID: 40506 RVA: 0x003DB4B4 File Offset: 0x003D96B4
 	public void PresentNextUnopenedItem(bool firstItemPresentation = true)
 	{
 		int num = 0;
@@ -118,7 +111,6 @@ public class KleiItemDropScreen : KModalScreen
 		this.PresentNoItemAvailablePrompt(false);
 	}
 
-	// Token: 0x06009E3B RID: 40507 RVA: 0x003DB560 File Offset: 0x003D9760
 	private void RefreshUnopenedItemsLabel()
 	{
 		int num = 0;
@@ -147,7 +139,6 @@ public class KleiItemDropScreen : KModalScreen
 		this.unopenedItemCountLabel.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06009E3C RID: 40508 RVA: 0x003DB61C File Offset: 0x003D981C
 	public void PresentItem(KleiItems.ItemData item, bool firstItemPresentation, bool lastItemPresentation)
 	{
 		this.userMessageLabel.SetText(UI.ITEM_DROP_SCREEN.THANKS_FOR_PLAYING);
@@ -175,14 +166,12 @@ public class KleiItemDropScreen : KModalScreen
 		};
 	}
 
-	// Token: 0x06009E3D RID: 40509 RVA: 0x0010B73A File Offset: 0x0010993A
 	private void RequestReveal(KleiItems.ItemData item)
 	{
 		this.serverRequestState.revealRequested = true;
 		PermitItems.QueueRequestOpenOrUnboxItem(item, new KleiItems.ResponseCallback(this.OnOpenItemRequestResponse));
 	}
 
-	// Token: 0x06009E3E RID: 40510 RVA: 0x003DB700 File Offset: 0x003D9900
 	public void OnOpenItemRequestResponse(KleiItems.Result result)
 	{
 		if (!this.serverRequestState.revealRequested)
@@ -200,7 +189,6 @@ public class KleiItemDropScreen : KModalScreen
 		this.serverRequestState.revealConfirmedByServer = false;
 	}
 
-	// Token: 0x06009E3F RID: 40511 RVA: 0x003DB760 File Offset: 0x003D9960
 	public void PresentNoItemAvailablePrompt(bool firstItemPresentation)
 	{
 		this.userMessageLabel.SetText(UI.ITEM_DROP_SCREEN.NOTHING_AVAILABLE);
@@ -219,7 +207,6 @@ public class KleiItemDropScreen : KModalScreen
 		this.activePresentationRoutine = base.StartCoroutine(this.PresentNoItemAvailableRoutine(firstItemPresentation));
 	}
 
-	// Token: 0x06009E40 RID: 40512 RVA: 0x0010B75A File Offset: 0x0010995A
 	private IEnumerator AnimateScreenInRoutine()
 	{
 		float scaleFactor = base.transform.parent.GetComponent<CanvasScaler>().scaleFactor;
@@ -239,7 +226,6 @@ public class KleiItemDropScreen : KModalScreen
 		yield break;
 	}
 
-	// Token: 0x06009E41 RID: 40513 RVA: 0x0010B769 File Offset: 0x00109969
 	private IEnumerator AnimateScreenOutRoutine()
 	{
 		KFMOD.PlayUISound(GlobalAssets.GetSound("GiftItemDrop_Screen_Close", false));
@@ -255,7 +241,6 @@ public class KleiItemDropScreen : KModalScreen
 		yield break;
 	}
 
-	// Token: 0x06009E42 RID: 40514 RVA: 0x0010B778 File Offset: 0x00109978
 	private IEnumerator PresentNoItemAvailableRoutine(bool firstItem)
 	{
 		yield return null;
@@ -294,7 +279,6 @@ public class KleiItemDropScreen : KModalScreen
 		yield break;
 	}
 
-	// Token: 0x06009E43 RID: 40515 RVA: 0x0010B78E File Offset: 0x0010998E
 	private IEnumerator PresentItemRoutine(KleiItems.ItemData item, bool firstItem, bool lastItem)
 	{
 		yield return null;
@@ -473,110 +457,82 @@ public class KleiItemDropScreen : KModalScreen
 		yield break;
 	}
 
-	// Token: 0x06009E44 RID: 40516 RVA: 0x0010B7B2 File Offset: 0x001099B2
 	public static bool HasItemsToShow()
 	{
 		return PermitItems.HasUnopenedItem();
 	}
 
-	// Token: 0x04007C4E RID: 31822
 	[SerializeField]
 	private RectTransform shieldMaskRect;
 
-	// Token: 0x04007C4F RID: 31823
 	[SerializeField]
 	private KButton closeButton;
 
-	// Token: 0x04007C50 RID: 31824
 	[Header("Animated Item")]
 	[SerializeField]
 	private KleiItemDropScreen_PermitVis permitVisualizer;
 
-	// Token: 0x04007C51 RID: 31825
 	[SerializeField]
 	private KBatchedAnimController animatedPod;
 
-	// Token: 0x04007C52 RID: 31826
 	[SerializeField]
 	private LocText userMessageLabel;
 
-	// Token: 0x04007C53 RID: 31827
 	[SerializeField]
 	private LocText unopenedItemCountLabel;
 
-	// Token: 0x04007C54 RID: 31828
 	[Header("Item Info")]
 	[SerializeField]
 	private RectTransform itemTextContainer;
 
-	// Token: 0x04007C55 RID: 31829
 	[SerializeField]
 	private LocText itemNameLabel;
 
-	// Token: 0x04007C56 RID: 31830
 	[SerializeField]
 	private LocText itemDescriptionLabel;
 
-	// Token: 0x04007C57 RID: 31831
 	[SerializeField]
 	private LocText itemRarityLabel;
 
-	// Token: 0x04007C58 RID: 31832
 	[SerializeField]
 	private LocText itemCategoryLabel;
 
-	// Token: 0x04007C59 RID: 31833
 	[Header("Accept Button")]
 	[SerializeField]
 	private RectTransform acceptButtonRect;
 
-	// Token: 0x04007C5A RID: 31834
 	[SerializeField]
 	private KButton acceptButton;
 
-	// Token: 0x04007C5B RID: 31835
 	[SerializeField]
 	private KBatchedAnimController animatedLoadingIcon;
 
-	// Token: 0x04007C5C RID: 31836
 	[SerializeField]
 	private KButton acknowledgeButton;
 
-	// Token: 0x04007C5D RID: 31837
 	[SerializeField]
 	private LocText errorMessage;
 
-	// Token: 0x04007C5E RID: 31838
 	private Coroutine activePresentationRoutine;
 
-	// Token: 0x04007C5F RID: 31839
 	private KleiItemDropScreen.ServerRequestState serverRequestState;
 
-	// Token: 0x04007C60 RID: 31840
 	private bool giftAcknowledged;
 
-	// Token: 0x04007C61 RID: 31841
 	private bool noItemAvailableAcknowledged;
 
-	// Token: 0x04007C62 RID: 31842
 	public static KleiItemDropScreen Instance;
 
-	// Token: 0x04007C63 RID: 31843
 	private bool shouldDoCloseRoutine;
 
-	// Token: 0x04007C64 RID: 31844
 	private const float TEXT_AND_BUTTON_ANIMATE_OFFSET_Y = -30f;
 
-	// Token: 0x04007C65 RID: 31845
 	private PrefabDefinedUIPosition acceptButtonPosition = new PrefabDefinedUIPosition();
 
-	// Token: 0x04007C66 RID: 31846
 	private PrefabDefinedUIPosition itemTextContainerPosition = new PrefabDefinedUIPosition();
 
-	// Token: 0x02001D98 RID: 7576
 	private struct ServerRequestState
 	{
-		// Token: 0x06009E51 RID: 40529 RVA: 0x0010B835 File Offset: 0x00109A35
 		public void Reset()
 		{
 			this.revealRequested = false;
@@ -584,13 +540,10 @@ public class KleiItemDropScreen : KModalScreen
 			this.revealRejectedByServer = false;
 		}
 
-		// Token: 0x04007C67 RID: 31847
 		public bool revealRequested;
 
-		// Token: 0x04007C68 RID: 31848
 		public bool revealConfirmedByServer;
 
-		// Token: 0x04007C69 RID: 31849
 		public bool revealRejectedByServer;
 	}
 }

@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200003B RID: 59
 public class CO2EngineConfig : IBuildingConfig
 {
-	// Token: 0x060000FF RID: 255 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06000100 RID: 256 RVA: 0x0014AB6C File Offset: 0x00148D6C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "CO2Engine";
@@ -43,7 +40,6 @@ public class CO2EngineConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000101 RID: 257 RVA: 0x0014AC24 File Offset: 0x00148E24
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -55,17 +51,14 @@ public class CO2EngineConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x06000102 RID: 258 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 	}
 
-	// Token: 0x06000103 RID: 259 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 	}
 
-	// Token: 0x06000104 RID: 260 RVA: 0x0014AC88 File Offset: 0x00148E88
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		RocketEngineCluster rocketEngineCluster = go.AddOrGet<RocketEngineCluster>();
@@ -105,9 +98,7 @@ public class CO2EngineConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x0400009A RID: 154
 	public const string ID = "CO2Engine";
 
-	// Token: 0x0400009B RID: 155
 	public const SimHashes FUEL = SimHashes.CarbonDioxide;
 }

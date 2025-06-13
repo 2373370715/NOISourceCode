@@ -1,10 +1,8 @@
 ﻿using System;
 using STRINGS;
 
-// Token: 0x02000166 RID: 358
 public class DefendStates : GameStateMachine<DefendStates, DefendStates.Instance, IStateMachineTarget, DefendStates.Def>
 {
-	// Token: 0x06000534 RID: 1332 RVA: 0x00161638 File Offset: 0x0015F838
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.protectEntity.moveToThreat;
@@ -34,37 +32,28 @@ public class DefendStates : GameStateMachine<DefendStates, DefendStates.Instance
 		this.behaviourcomplete.BehaviourComplete(GameTags.Creatures.Defend, false);
 	}
 
-	// Token: 0x040003D5 RID: 981
 	public StateMachine<DefendStates, DefendStates.Instance, IStateMachineTarget, DefendStates.Def>.TargetParameter target;
 
-	// Token: 0x040003D6 RID: 982
 	public DefendStates.ProtectStates protectEntity;
 
-	// Token: 0x040003D7 RID: 983
 	public GameStateMachine<DefendStates, DefendStates.Instance, IStateMachineTarget, DefendStates.Def>.State behaviourcomplete;
 
-	// Token: 0x02000167 RID: 359
 	public class Def : StateMachine.BaseDef
 	{
 	}
 
-	// Token: 0x02000168 RID: 360
 	public new class Instance : GameStateMachine<DefendStates, DefendStates.Instance, IStateMachineTarget, DefendStates.Def>.GameInstance
 	{
-		// Token: 0x06000539 RID: 1337 RVA: 0x000AC30F File Offset: 0x000AA50F
 		public Instance(Chore<DefendStates.Instance> chore, DefendStates.Def def) : base(chore, def)
 		{
 			chore.AddPrecondition(ChorePreconditions.instance.CheckBehaviourPrecondition, GameTags.Creatures.Defend);
 		}
 	}
 
-	// Token: 0x02000169 RID: 361
 	public class ProtectStates : GameStateMachine<DefendStates, DefendStates.Instance, IStateMachineTarget, DefendStates.Def>.State
 	{
-		// Token: 0x040003D8 RID: 984
 		public GameStateMachine<DefendStates, DefendStates.Instance, IStateMachineTarget, DefendStates.Def>.ApproachSubState<AttackableBase> moveToThreat;
 
-		// Token: 0x040003D9 RID: 985
 		public GameStateMachine<DefendStates, DefendStates.Instance, IStateMachineTarget, DefendStates.Def>.State attackThreat;
 	}
 }

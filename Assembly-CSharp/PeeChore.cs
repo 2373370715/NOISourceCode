@@ -5,19 +5,15 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000708 RID: 1800
 public class PeeChore : Chore<PeeChore.StatesInstance>
 {
-	// Token: 0x06001FCC RID: 8140 RVA: 0x001C624C File Offset: 0x001C444C
 	public PeeChore(IStateMachineTarget target) : base(Db.Get().ChoreTypes.Pee, target, target.GetComponent<ChoreProvider>(), false, null, null, null, PriorityScreen.PriorityClass.compulsory, 5, false, true, 0, false, ReportManager.ReportType.WorkTime)
 	{
 		base.smi = new PeeChore.StatesInstance(this, target.gameObject);
 	}
 
-	// Token: 0x02000709 RID: 1801
 	public class StatesInstance : GameStateMachine<PeeChore.States, PeeChore.StatesInstance, PeeChore, object>.GameInstance
 	{
-		// Token: 0x06001FCD RID: 8141 RVA: 0x001C6294 File Offset: 0x001C4494
 		public StatesInstance(PeeChore master, GameObject worker) : base(master)
 		{
 			this.bladder = Db.Get().Amounts.Bladder.Lookup(worker);
@@ -25,13 +21,11 @@ public class PeeChore : Chore<PeeChore.StatesInstance>
 			base.sm.worker.Set(worker, base.smi, false);
 		}
 
-		// Token: 0x06001FCE RID: 8142 RVA: 0x000B9537 File Offset: 0x000B7737
 		public bool IsDonePeeing()
 		{
 			return this.bladder.value <= 0f;
 		}
 
-		// Token: 0x06001FCF RID: 8143 RVA: 0x001C633C File Offset: 0x001C453C
 		public void SpawnDirtyWater(float dt)
 		{
 			int gameCell = Grid.PosToCell(base.sm.worker.Get<KMonoBehaviour>(base.smi));
@@ -50,20 +44,15 @@ public class PeeChore : Chore<PeeChore.StatesInstance>
 			}
 		}
 
-		// Token: 0x0400150E RID: 5390
 		public Notification stressfullyEmptyingBladder = new Notification(DUPLICANTS.STATUSITEMS.STRESSFULLYEMPTYINGBLADDER.NOTIFICATION_NAME, NotificationType.Bad, (List<Notification> notificationList, object data) => DUPLICANTS.STATUSITEMS.STRESSFULLYEMPTYINGBLADDER.NOTIFICATION_TOOLTIP + notificationList.ReduceMessages(false), null, true, 0f, null, null, null, true, false, false);
 
-		// Token: 0x0400150F RID: 5391
 		public AmountInstance bladder;
 
-		// Token: 0x04001510 RID: 5392
 		private AmountInstance bodyTemperature;
 	}
 
-	// Token: 0x0200070B RID: 1803
 	public class States : GameStateMachine<PeeChore.States, PeeChore.StatesInstance, PeeChore>
 	{
-		// Token: 0x06001FD3 RID: 8147 RVA: 0x001C644C File Offset: 0x001C464C
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.running;
@@ -97,10 +86,8 @@ public class PeeChore : Chore<PeeChore.StatesInstance>
 			});
 		}
 
-		// Token: 0x04001513 RID: 5395
 		public StateMachine<PeeChore.States, PeeChore.StatesInstance, PeeChore, object>.TargetParameter worker;
 
-		// Token: 0x04001514 RID: 5396
 		public GameStateMachine<PeeChore.States, PeeChore.StatesInstance, PeeChore, object>.State running;
 	}
 }

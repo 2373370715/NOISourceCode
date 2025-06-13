@@ -3,17 +3,14 @@ using System.Collections.Generic;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x0200144A RID: 5194
 [AddComponentMenu("KMonoBehaviour/scripts/Immigration")]
 public class Immigration : KMonoBehaviour, ISaveLoadable, ISim200ms, IPersonalPriorityManager
 {
-	// Token: 0x06006A7B RID: 27259 RVA: 0x000EA3B4 File Offset: 0x000E85B4
 	public static void DestroyInstance()
 	{
 		Immigration.Instance = null;
 	}
 
-	// Token: 0x06006A7C RID: 27260 RVA: 0x002EC31C File Offset: 0x002EA51C
 	protected override void OnPrefabInit()
 	{
 		this.bImmigrantAvailable = false;
@@ -25,7 +22,6 @@ public class Immigration : KMonoBehaviour, ISaveLoadable, ISim200ms, IPersonalPr
 		this.ConfigureCarePackages();
 	}
 
-	// Token: 0x06006A7D RID: 27261 RVA: 0x002EC36C File Offset: 0x002EA56C
 	private void SetupDLCCarePackages()
 	{
 		Dictionary<string, List<CarePackageInfo>> dictionary = new Dictionary<string, List<CarePackageInfo>>();
@@ -58,7 +54,6 @@ public class Immigration : KMonoBehaviour, ISaveLoadable, ISim200ms, IPersonalPr
 		}
 	}
 
-	// Token: 0x06006A7E RID: 27262 RVA: 0x002EC694 File Offset: 0x002EA894
 	private void ConfigureCarePackages()
 	{
 		if (DlcManager.FeatureClusterSpaceEnabled())
@@ -78,7 +73,6 @@ public class Immigration : KMonoBehaviour, ISaveLoadable, ISim200ms, IPersonalPr
 		}
 	}
 
-	// Token: 0x06006A7F RID: 27263 RVA: 0x002EC724 File Offset: 0x002EA924
 	private void ConfigureBaseGameCarePackages()
 	{
 		List<CarePackageInfo> list = new List<CarePackageInfo>();
@@ -144,7 +138,6 @@ public class Immigration : KMonoBehaviour, ISaveLoadable, ISim200ms, IPersonalPr
 		this.carePackages = list;
 	}
 
-	// Token: 0x06006A80 RID: 27264 RVA: 0x002ED14C File Offset: 0x002EB34C
 	private void ConfigureMultiWorldCarePackages()
 	{
 		List<CarePackageInfo> list = new List<CarePackageInfo>();
@@ -220,27 +213,22 @@ public class Immigration : KMonoBehaviour, ISaveLoadable, ISim200ms, IPersonalPr
 		this.carePackages = list;
 	}
 
-	// Token: 0x06006A81 RID: 27265 RVA: 0x000EA3BC File Offset: 0x000E85BC
 	private static bool CycleCondition(int cycle)
 	{
 		return GameClock.Instance.GetCycle() >= cycle;
 	}
 
-	// Token: 0x06006A82 RID: 27266 RVA: 0x000EA3CE File Offset: 0x000E85CE
 	private static bool DiscoveredCondition(Tag tag)
 	{
 		return DiscoveredResources.Instance.IsDiscovered(tag);
 	}
 
-	// Token: 0x06006A83 RID: 27267 RVA: 0x002EDEA8 File Offset: 0x002EC0A8
 	private static bool HasMinionModelCondition(Tag model)
 	{
 		Components.Cmps<MinionIdentity> cmps;
 		return Components.LiveMinionIdentitiesByModel.TryGetValue(model, out cmps) && cmps.Count > 0;
 	}
 
-	// Token: 0x170006C8 RID: 1736
-	// (get) Token: 0x06006A84 RID: 27268 RVA: 0x000EA3DB File Offset: 0x000E85DB
 	public bool ImmigrantsAvailable
 	{
 		get
@@ -249,7 +237,6 @@ public class Immigration : KMonoBehaviour, ISaveLoadable, ISim200ms, IPersonalPr
 		}
 	}
 
-	// Token: 0x06006A85 RID: 27269 RVA: 0x002EDED0 File Offset: 0x002EC0D0
 	public int EndImmigration()
 	{
 		this.bImmigrantAvailable = false;
@@ -259,20 +246,17 @@ public class Immigration : KMonoBehaviour, ISaveLoadable, ISim200ms, IPersonalPr
 		return this.spawnTable[num];
 	}
 
-	// Token: 0x06006A86 RID: 27270 RVA: 0x000EA3E3 File Offset: 0x000E85E3
 	public float GetTimeRemaining()
 	{
 		return this.timeBeforeSpawn;
 	}
 
-	// Token: 0x06006A87 RID: 27271 RVA: 0x002EDF20 File Offset: 0x002EC120
 	public float GetTotalWaitTime()
 	{
 		int num = Math.Min(this.spawnIdx, this.spawnInterval.Length - 1);
 		return this.spawnInterval[num];
 	}
 
-	// Token: 0x06006A88 RID: 27272 RVA: 0x002EDF4C File Offset: 0x002EC14C
 	public void Sim200ms(float dt)
 	{
 		if (this.IsHalted() || this.bImmigrantAvailable)
@@ -287,7 +271,6 @@ public class Immigration : KMonoBehaviour, ISaveLoadable, ISim200ms, IPersonalPr
 		}
 	}
 
-	// Token: 0x06006A89 RID: 27273 RVA: 0x002EDFA4 File Offset: 0x002EC1A4
 	private bool IsHalted()
 	{
 		foreach (Telepad telepad in Components.Telepads.Items)
@@ -301,7 +284,6 @@ public class Immigration : KMonoBehaviour, ISaveLoadable, ISim200ms, IPersonalPr
 		return true;
 	}
 
-	// Token: 0x06006A8A RID: 27274 RVA: 0x002EE014 File Offset: 0x002EC214
 	public int GetPersonalPriority(ChoreGroup group)
 	{
 		int result;
@@ -312,7 +294,6 @@ public class Immigration : KMonoBehaviour, ISaveLoadable, ISim200ms, IPersonalPr
 		return result;
 	}
 
-	// Token: 0x06006A8B RID: 27275 RVA: 0x002EE03C File Offset: 0x002EC23C
 	public CarePackageInfo RandomCarePackage()
 	{
 		List<CarePackageInfo> list = new List<CarePackageInfo>();
@@ -326,19 +307,16 @@ public class Immigration : KMonoBehaviour, ISaveLoadable, ISim200ms, IPersonalPr
 		return list[UnityEngine.Random.Range(0, list.Count)];
 	}
 
-	// Token: 0x06006A8C RID: 27276 RVA: 0x000EA3EB File Offset: 0x000E85EB
 	public void SetPersonalPriority(ChoreGroup group, int value)
 	{
 		this.defaultPersonalPriorities[group.IdHash] = value;
 	}
 
-	// Token: 0x06006A8D RID: 27277 RVA: 0x000B1628 File Offset: 0x000AF828
 	public int GetAssociatedSkillLevel(ChoreGroup group)
 	{
 		return 0;
 	}
 
-	// Token: 0x06006A8E RID: 27278 RVA: 0x002EE0BC File Offset: 0x002EC2BC
 	public void ApplyDefaultPersonalPriorities(GameObject minion)
 	{
 		IPersonalPriorityManager instance = Immigration.Instance;
@@ -350,7 +328,6 @@ public class Immigration : KMonoBehaviour, ISaveLoadable, ISim200ms, IPersonalPr
 		}
 	}
 
-	// Token: 0x06006A8F RID: 27279 RVA: 0x002EE130 File Offset: 0x002EC330
 	public void ResetPersonalPriorities()
 	{
 		bool advancedPersonalPriorities = Game.Instance.advancedPersonalPriorities;
@@ -360,61 +337,44 @@ public class Immigration : KMonoBehaviour, ISaveLoadable, ISim200ms, IPersonalPr
 		}
 	}
 
-	// Token: 0x06006A90 RID: 27280 RVA: 0x000B1628 File Offset: 0x000AF828
 	public bool IsChoreGroupDisabled(ChoreGroup g)
 	{
 		return false;
 	}
 
-	// Token: 0x040050C6 RID: 20678
 	public float[] spawnInterval;
 
-	// Token: 0x040050C7 RID: 20679
 	public int[] spawnTable;
 
-	// Token: 0x040050C8 RID: 20680
 	[Serialize]
 	private Dictionary<HashedString, int> defaultPersonalPriorities = new Dictionary<HashedString, int>();
 
-	// Token: 0x040050C9 RID: 20681
 	[Serialize]
 	public float timeBeforeSpawn = float.PositiveInfinity;
 
-	// Token: 0x040050CA RID: 20682
 	[Serialize]
 	private bool bImmigrantAvailable;
 
-	// Token: 0x040050CB RID: 20683
 	[Serialize]
 	private int spawnIdx;
 
-	// Token: 0x040050CC RID: 20684
 	private List<CarePackageInfo> carePackages;
 
-	// Token: 0x040050CD RID: 20685
 	private Dictionary<string, List<CarePackageInfo>> carePackagesByDlc;
 
-	// Token: 0x040050CE RID: 20686
 	public static Immigration Instance;
 
-	// Token: 0x040050CF RID: 20687
 	private const int CYCLE_THRESHOLD_A = 6;
 
-	// Token: 0x040050D0 RID: 20688
 	private const int CYCLE_THRESHOLD_B = 12;
 
-	// Token: 0x040050D1 RID: 20689
 	private const int CYCLE_THRESHOLD_C = 24;
 
-	// Token: 0x040050D2 RID: 20690
 	private const int CYCLE_THRESHOLD_D = 48;
 
-	// Token: 0x040050D3 RID: 20691
 	private const int CYCLE_THRESHOLD_E = 100;
 
-	// Token: 0x040050D4 RID: 20692
 	private const int CYCLE_THRESHOLD_UNLOCK_EVERYTHING = 500;
 
-	// Token: 0x040050D5 RID: 20693
 	public const string FACADE_SELECT_RANDOM = "SELECTRANDOM";
 }

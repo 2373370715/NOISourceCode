@@ -1,12 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000C4D RID: 3149
 [SkipSaveFileSerialization]
 [AddComponentMenu("KMonoBehaviour/scripts/AnimTileable")]
 public class AnimTileable : KMonoBehaviour
 {
-	// Token: 0x06003B74 RID: 15220 RVA: 0x000CAD2D File Offset: 0x000C8F2D
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -19,7 +17,6 @@ public class AnimTileable : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06003B75 RID: 15221 RVA: 0x002386AC File Offset: 0x002368AC
 	protected override void OnSpawn()
 	{
 		OccupyArea component = base.GetComponent<OccupyArea>();
@@ -37,14 +34,12 @@ public class AnimTileable : KMonoBehaviour
 		this.UpdateEndCaps();
 	}
 
-	// Token: 0x06003B76 RID: 15222 RVA: 0x000CAD64 File Offset: 0x000C8F64
 	protected override void OnCleanUp()
 	{
 		GameScenePartitioner.Instance.Free(ref this.partitionerEntry);
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06003B77 RID: 15223 RVA: 0x00238764 File Offset: 0x00236964
 	private void UpdateEndCaps()
 	{
 		int cell = Grid.PosToCell(this);
@@ -108,7 +103,6 @@ public class AnimTileable : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06003B78 RID: 15224 RVA: 0x0023899C File Offset: 0x00236B9C
 	private bool HasTileableNeighbour(int neighbour_cell)
 	{
 		bool result = false;
@@ -124,7 +118,6 @@ public class AnimTileable : KMonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06003B79 RID: 15225 RVA: 0x000CAD7C File Offset: 0x000C8F7C
 	private void OnNeighbourCellsUpdated(object data)
 	{
 		if (this == null || base.gameObject == null)
@@ -137,19 +130,14 @@ public class AnimTileable : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0400292B RID: 10539
 	private HandleVector<int>.Handle partitionerEntry;
 
-	// Token: 0x0400292C RID: 10540
 	public ObjectLayer objectLayer = ObjectLayer.Building;
 
-	// Token: 0x0400292D RID: 10541
 	public Tag[] tags;
 
-	// Token: 0x0400292E RID: 10542
 	private Extents extents;
 
-	// Token: 0x0400292F RID: 10543
 	private static readonly KAnimHashedString[] leftSymbols = new KAnimHashedString[]
 	{
 		new KAnimHashedString("cap_left"),
@@ -157,7 +145,6 @@ public class AnimTileable : KMonoBehaviour
 		new KAnimHashedString("cap_left_place")
 	};
 
-	// Token: 0x04002930 RID: 10544
 	private static readonly KAnimHashedString[] rightSymbols = new KAnimHashedString[]
 	{
 		new KAnimHashedString("cap_right"),
@@ -165,7 +152,6 @@ public class AnimTileable : KMonoBehaviour
 		new KAnimHashedString("cap_right_place")
 	};
 
-	// Token: 0x04002931 RID: 10545
 	private static readonly KAnimHashedString[] topSymbols = new KAnimHashedString[]
 	{
 		new KAnimHashedString("cap_top"),
@@ -173,7 +159,6 @@ public class AnimTileable : KMonoBehaviour
 		new KAnimHashedString("cap_top_place")
 	};
 
-	// Token: 0x04002932 RID: 10546
 	private static readonly KAnimHashedString[] bottomSymbols = new KAnimHashedString[]
 	{
 		new KAnimHashedString("cap_bottom"),

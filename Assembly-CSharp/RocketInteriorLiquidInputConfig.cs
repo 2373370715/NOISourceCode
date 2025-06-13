@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200057B RID: 1403
 public class RocketInteriorLiquidInputConfig : IBuildingConfig
 {
-	// Token: 0x06001825 RID: 6181 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06001826 RID: 6182 RVA: 0x001AA064 File Offset: 0x001A8264
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "RocketInteriorLiquidInput";
@@ -43,7 +40,6 @@ public class RocketInteriorLiquidInputConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001827 RID: 6183 RVA: 0x000B4A1E File Offset: 0x000B2C1E
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		base.ConfigureBuildingTemplate(go, prefab_tag);
@@ -51,7 +47,6 @@ public class RocketInteriorLiquidInputConfig : IBuildingConfig
 		go.AddComponent<RequireInputs>();
 	}
 
-	// Token: 0x06001828 RID: 6184 RVA: 0x001AA12C File Offset: 0x001A832C
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGetDef<ActiveController.Def>();
@@ -70,12 +65,9 @@ public class RocketInteriorLiquidInputConfig : IBuildingConfig
 		conduitConsumer.capacityKG = storage.capacityKg;
 	}
 
-	// Token: 0x04000FFB RID: 4091
 	private const ConduitType CONDUIT_TYPE = ConduitType.Liquid;
 
-	// Token: 0x04000FFC RID: 4092
 	private const CargoBay.CargoType CARGO_TYPE = CargoBay.CargoType.Liquids;
 
-	// Token: 0x04000FFD RID: 4093
 	public const string ID = "RocketInteriorLiquidInput";
 }

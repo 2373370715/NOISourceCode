@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003DC RID: 988
 public class LogicElementSensorGasConfig : IBuildingConfig
 {
-	// Token: 0x06001011 RID: 4113 RVA: 0x00189E04 File Offset: 0x00188004
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = LogicElementSensorGasConfig.ID;
@@ -39,7 +37,6 @@ public class LogicElementSensorGasConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001012 RID: 4114 RVA: 0x000B15BD File Offset: 0x000AF7BD
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<Filterable>().filterElementState = Filterable.ElementState.Gas;
@@ -48,6 +45,5 @@ public class LogicElementSensorGasConfig : IBuildingConfig
 		logicElementSensor.desiredState = Element.State.Gas;
 	}
 
-	// Token: 0x04000B84 RID: 2948
 	public static string ID = "LogicElementSensorGas";
 }

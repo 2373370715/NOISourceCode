@@ -4,11 +4,8 @@ using System.Linq;
 using Database;
 using Klei.AI;
 
-// Token: 0x020007C5 RID: 1989
 public class GameplayEventPreconditions
 {
-	// Token: 0x17000106 RID: 262
-	// (get) Token: 0x0600233A RID: 9018 RVA: 0x000BB595 File Offset: 0x000B9795
 	public static GameplayEventPreconditions Instance
 	{
 		get
@@ -21,7 +18,6 @@ public class GameplayEventPreconditions
 		}
 	}
 
-	// Token: 0x0600233B RID: 9019 RVA: 0x001D1B78 File Offset: 0x001CFD78
 	public GameplayEventPrecondition LiveMinions(int count = 1)
 	{
 		return new GameplayEventPrecondition
@@ -31,7 +27,6 @@ public class GameplayEventPreconditions
 		};
 	}
 
-	// Token: 0x0600233C RID: 9020 RVA: 0x001D1BC4 File Offset: 0x001CFDC4
 	public GameplayEventPrecondition BuildingExists(string buildingId, int count = 1)
 	{
 		return new GameplayEventPrecondition
@@ -41,7 +36,6 @@ public class GameplayEventPreconditions
 		};
 	}
 
-	// Token: 0x0600233D RID: 9021 RVA: 0x001D1C20 File Offset: 0x001CFE20
 	public GameplayEventPrecondition ResearchCompleted(string techName)
 	{
 		return new GameplayEventPrecondition
@@ -51,7 +45,6 @@ public class GameplayEventPreconditions
 		};
 	}
 
-	// Token: 0x0600233E RID: 9022 RVA: 0x001D1C6C File Offset: 0x001CFE6C
 	public GameplayEventPrecondition AchievementUnlocked(ColonyAchievement achievement)
 	{
 		return new GameplayEventPrecondition
@@ -61,7 +54,6 @@ public class GameplayEventPreconditions
 		};
 	}
 
-	// Token: 0x0600233F RID: 9023 RVA: 0x001D1CC0 File Offset: 0x001CFEC0
 	public GameplayEventPrecondition RoomBuilt(RoomType roomType)
 	{
 		Predicate<Room> <>9__1;
@@ -81,7 +73,6 @@ public class GameplayEventPreconditions
 		};
 	}
 
-	// Token: 0x06002340 RID: 9024 RVA: 0x001D1D14 File Offset: 0x001CFF14
 	public GameplayEventPrecondition CycleRestriction(float min = 0f, float max = float.PositiveInfinity)
 	{
 		return new GameplayEventPrecondition
@@ -91,7 +82,6 @@ public class GameplayEventPreconditions
 		};
 	}
 
-	// Token: 0x06002341 RID: 9025 RVA: 0x001D1D74 File Offset: 0x001CFF74
 	public GameplayEventPrecondition MinionsWithEffect(string effectId, int count = 1)
 	{
 		Func<MinionIdentity, bool> <>9__1;
@@ -111,7 +101,6 @@ public class GameplayEventPreconditions
 		};
 	}
 
-	// Token: 0x06002342 RID: 9026 RVA: 0x001D1DD0 File Offset: 0x001CFFD0
 	public GameplayEventPrecondition MinionsWithStatusItem(StatusItem statusItem, int count = 1)
 	{
 		Func<MinionIdentity, bool> <>9__1;
@@ -131,7 +120,6 @@ public class GameplayEventPreconditions
 		};
 	}
 
-	// Token: 0x06002343 RID: 9027 RVA: 0x001D1E2C File Offset: 0x001D002C
 	public GameplayEventPrecondition MinionsWithChoreGroupPriorityOrGreater(ChoreGroup choreGroup, int count, int priority)
 	{
 		Func<MinionIdentity, bool> <>9__1;
@@ -155,7 +143,6 @@ public class GameplayEventPreconditions
 		};
 	}
 
-	// Token: 0x06002344 RID: 9028 RVA: 0x001D1E9C File Offset: 0x001D009C
 	public GameplayEventPrecondition PastEventCount(string evtId, int count = 1)
 	{
 		return new GameplayEventPrecondition
@@ -165,7 +152,6 @@ public class GameplayEventPreconditions
 		};
 	}
 
-	// Token: 0x06002345 RID: 9029 RVA: 0x001D1EF8 File Offset: 0x001D00F8
 	public GameplayEventPrecondition PastEventCountAndNotActive(GameplayEvent evt, int count = 1)
 	{
 		return new GameplayEventPrecondition
@@ -175,7 +161,6 @@ public class GameplayEventPreconditions
 		};
 	}
 
-	// Token: 0x06002346 RID: 9030 RVA: 0x001D1F58 File Offset: 0x001D0158
 	public GameplayEventPrecondition Not(GameplayEventPrecondition precondition)
 	{
 		return new GameplayEventPrecondition
@@ -185,7 +170,6 @@ public class GameplayEventPreconditions
 		};
 	}
 
-	// Token: 0x06002347 RID: 9031 RVA: 0x001D1FAC File Offset: 0x001D01AC
 	public GameplayEventPrecondition Or(GameplayEventPrecondition precondition1, GameplayEventPrecondition precondition2)
 	{
 		return new GameplayEventPrecondition
@@ -202,6 +186,5 @@ public class GameplayEventPreconditions
 		};
 	}
 
-	// Token: 0x040017A6 RID: 6054
 	private static GameplayEventPreconditions _instance;
 }

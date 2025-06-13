@@ -4,22 +4,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000297 RID: 663
 public class FilterPlantConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x060009B7 RID: 2487 RVA: 0x000AA117 File Offset: 0x000A8317
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x060009B8 RID: 2488 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x060009B9 RID: 2489 RVA: 0x00170C34 File Offset: 0x0016EE34
 	public GameObject CreatePrefab()
 	{
 		string id = "FilterPlant";
@@ -83,28 +79,21 @@ public class FilterPlantConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x060009BA RID: 2490 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject prefab)
 	{
 	}
 
-	// Token: 0x060009BB RID: 2491 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x04000775 RID: 1909
 	public const string ID = "FilterPlant";
 
-	// Token: 0x04000776 RID: 1910
 	public const string SEED_ID = "FilterPlantSeed";
 
-	// Token: 0x04000777 RID: 1911
 	public const float SAND_CONSUMPTION_RATE = 0.008333334f;
 
-	// Token: 0x04000778 RID: 1912
 	public const float WATER_CONSUMPTION_RATE = 0.108333334f;
 
-	// Token: 0x04000779 RID: 1913
 	public const float OXYGEN_CONSUMPTION_RATE = 0.008333334f;
 }

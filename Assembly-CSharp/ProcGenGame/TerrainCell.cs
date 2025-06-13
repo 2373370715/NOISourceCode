@@ -9,12 +9,9 @@ using VoronoiTree;
 
 namespace ProcGenGame
 {
-	// Token: 0x0200210F RID: 8463
 	[SerializationConfig(MemberSerialization.OptIn)]
 	public class TerrainCell
 	{
-		// Token: 0x17000B7F RID: 2943
-		// (get) Token: 0x0600B415 RID: 46101 RVA: 0x001199BA File Offset: 0x00117BBA
 		public Polygon poly
 		{
 			get
@@ -23,23 +20,12 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x17000B80 RID: 2944
-		// (get) Token: 0x0600B416 RID: 46102 RVA: 0x001199C7 File Offset: 0x00117BC7
-		// (set) Token: 0x0600B417 RID: 46103 RVA: 0x001199CF File Offset: 0x00117BCF
 		public Cell node { get; private set; }
 
-		// Token: 0x17000B81 RID: 2945
-		// (get) Token: 0x0600B418 RID: 46104 RVA: 0x001199D8 File Offset: 0x00117BD8
-		// (set) Token: 0x0600B419 RID: 46105 RVA: 0x001199E0 File Offset: 0x00117BE0
 		public Diagram.Site site { get; private set; }
 
-		// Token: 0x17000B82 RID: 2946
-		// (get) Token: 0x0600B41A RID: 46106 RVA: 0x001199E9 File Offset: 0x00117BE9
-		// (set) Token: 0x0600B41B RID: 46107 RVA: 0x001199F1 File Offset: 0x00117BF1
 		public Dictionary<Tag, int> distancesToTags { get; private set; }
 
-		// Token: 0x17000B83 RID: 2947
-		// (get) Token: 0x0600B41C RID: 46108 RVA: 0x001199FA File Offset: 0x00117BFA
 		public bool HasMobs
 		{
 			get
@@ -48,17 +34,12 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x17000B84 RID: 2948
-		// (get) Token: 0x0600B41D RID: 46109 RVA: 0x00119A14 File Offset: 0x00117C14
-		// (set) Token: 0x0600B41E RID: 46110 RVA: 0x00119A1C File Offset: 0x00117C1C
 		public List<KeyValuePair<int, Tag>> mobs { get; private set; }
 
-		// Token: 0x0600B41F RID: 46111 RVA: 0x00119A25 File Offset: 0x00117C25
 		protected TerrainCell()
 		{
 		}
 
-		// Token: 0x0600B420 RID: 46112 RVA: 0x00119A38 File Offset: 0x00117C38
 		protected TerrainCell(Cell node, Diagram.Site site, Dictionary<Tag, int> distancesToTags)
 		{
 			this.node = node;
@@ -66,7 +47,6 @@ namespace ProcGenGame
 			this.distancesToTags = distancesToTags;
 		}
 
-		// Token: 0x0600B421 RID: 46113 RVA: 0x00119A60 File Offset: 0x00117C60
 		public virtual void LogInfo(string evt, string param, float value)
 		{
 			global::Debug.Log(string.Concat(new string[]
@@ -79,7 +59,6 @@ namespace ProcGenGame
 			}));
 		}
 
-		// Token: 0x0600B422 RID: 46114 RVA: 0x004488B4 File Offset: 0x00446AB4
 		public void InitializeCells(HashSet<int> claimedCells)
 		{
 			if (this.allCells != null)
@@ -112,13 +91,11 @@ namespace ProcGenGame
 			this.LogInfo("Initialise cells", "", (float)this.allCells.Count);
 		}
 
-		// Token: 0x0600B423 RID: 46115 RVA: 0x00119A94 File Offset: 0x00117C94
 		public List<int> GetAllCells()
 		{
 			return new List<int>(this.allCells);
 		}
 
-		// Token: 0x0600B424 RID: 46116 RVA: 0x004489E8 File Offset: 0x00446BE8
 		public List<int> GetAvailableSpawnCellsAll()
 		{
 			List<int> list = new List<int>();
@@ -129,7 +106,6 @@ namespace ProcGenGame
 			return list;
 		}
 
-		// Token: 0x0600B425 RID: 46117 RVA: 0x00448A44 File Offset: 0x00446C44
 		public List<int> GetAvailableSpawnCellsFeature()
 		{
 			List<int> list = new List<int>();
@@ -142,7 +118,6 @@ namespace ProcGenGame
 			return list;
 		}
 
-		// Token: 0x0600B426 RID: 46118 RVA: 0x00448AB0 File Offset: 0x00446CB0
 		public List<int> GetAvailableSpawnCellsBiome()
 		{
 			List<int> list = new List<int>();
@@ -155,13 +130,11 @@ namespace ProcGenGame
 			return list;
 		}
 
-		// Token: 0x0600B427 RID: 46119 RVA: 0x00119AA1 File Offset: 0x00117CA1
 		private bool RemoveFromAvailableSpawnCells(int cell)
 		{
 			return this.availableSpawnPoints.Remove(cell);
 		}
 
-		// Token: 0x0600B428 RID: 46120 RVA: 0x00448B1C File Offset: 0x00446D1C
 		public void AddMobs(IEnumerable<KeyValuePair<int, Tag>> newMobs)
 		{
 			foreach (KeyValuePair<int, Tag> mob in newMobs)
@@ -170,13 +143,11 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B429 RID: 46121 RVA: 0x00119AAF File Offset: 0x00117CAF
 		private void AddMob(int cellIdx, string tag)
 		{
 			this.AddMob(new KeyValuePair<int, Tag>(cellIdx, new Tag(tag)));
 		}
 
-		// Token: 0x0600B42A RID: 46122 RVA: 0x00448B64 File Offset: 0x00446D64
 		public void AddMob(KeyValuePair<int, Tag> mob)
 		{
 			if (this.mobs == null)
@@ -211,14 +182,12 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B42B RID: 46123 RVA: 0x00448C90 File Offset: 0x00446E90
 		protected string GetSubWorldType(WorldGen worldGen)
 		{
 			Vector2I pos = new Vector2I((int)this.site.poly.Centroid().x, (int)this.site.poly.Centroid().y);
 			return worldGen.GetSubWorldType(pos);
 		}
 
-		// Token: 0x0600B42C RID: 46124 RVA: 0x00448CD8 File Offset: 0x00446ED8
 		protected Temperature.Range GetTemperatureRange(WorldGen worldGen)
 		{
 			string subWorldType = this.GetSubWorldType(worldGen);
@@ -233,7 +202,6 @@ namespace ProcGenGame
 			return worldGen.Settings.GetSubWorld(subWorldType).temperatureRange;
 		}
 
-		// Token: 0x0600B42D RID: 46125 RVA: 0x00448D14 File Offset: 0x00446F14
 		protected void GetTemperatureRange(WorldGen worldGen, ref float min, ref float range)
 		{
 			Temperature.Range temperatureRange = this.GetTemperatureRange(worldGen);
@@ -241,7 +209,6 @@ namespace ProcGenGame
 			range = SettingsCache.temperatures[temperatureRange].max - min;
 		}
 
-		// Token: 0x0600B42E RID: 46126 RVA: 0x00448D50 File Offset: 0x00446F50
 		protected float GetDensityMassForCell(Chunk world, int cellIdx, float mass)
 		{
 			if (!Grid.IsValidCell(cellIdx))
@@ -258,7 +225,6 @@ namespace ProcGenGame
 			return num2;
 		}
 
-		// Token: 0x0600B42F RID: 46127 RVA: 0x00448DE0 File Offset: 0x00446FE0
 		private void HandleSprinkleOfElement(WorldGenSettings settings, Tag targetTag, Chunk world, TerrainCell.SetValuesFunction SetValues, float temperatureMin, float temperatureRange, SeededRandom rnd)
 		{
 			Element element = ElementLoader.FindElementByName(settings.GetFeature(targetTag.Name).GetOneWeightedSimHash("SprinkleOfElementChoices", rnd).element);
@@ -287,7 +253,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B430 RID: 46128 RVA: 0x00448F48 File Offset: 0x00447148
 		private HashSet<Vector2I> DigFeature(ProcGen.Room.Shape shape, float size, List<int> bordersWidths, SeededRandom rnd, out List<Vector2I> featureCenterPoints, out List<List<Vector2I>> featureBorders)
 		{
 			HashSet<Vector2I> hashSet = new HashSet<Vector2I>();
@@ -334,7 +299,6 @@ namespace ProcGenGame
 			return hashSet;
 		}
 
-		// Token: 0x0600B431 RID: 46129 RVA: 0x004490E4 File Offset: 0x004472E4
 		public static TerrainCell.ElementOverride GetElementOverride(string element, SampleDescriber.Override overrides)
 		{
 			global::Debug.Assert(element != null && element.Length > 0);
@@ -404,7 +368,6 @@ namespace ProcGenGame
 			return elementOverride;
 		}
 
-		// Token: 0x0600B432 RID: 46130 RVA: 0x00449328 File Offset: 0x00447528
 		private bool IsFeaturePointContainedInBorder(Vector2 point, WorldGen worldGen)
 		{
 			if (!this.node.tags.Contains(WorldGenTags.AllowExceedNodeBorders))
@@ -427,7 +390,6 @@ namespace ProcGenGame
 			return true;
 		}
 
-		// Token: 0x0600B433 RID: 46131 RVA: 0x004493C8 File Offset: 0x004475C8
 		private void ApplyPlaceElementForRoom(FeatureSettings feature, string group, List<Vector2I> cells, WorldGen worldGen, Chunk world, TerrainCell.SetValuesFunction SetValues, float temperatureMin, float temperatureRange, SeededRandom rnd, HashSet<int> highPriorityClaims)
 		{
 			if (cells == null || cells.Count == 0)
@@ -513,7 +475,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B434 RID: 46132 RVA: 0x00449770 File Offset: 0x00447970
 		private int GetIndexForLocation(List<Vector2I> points, Mob.Location location, SeededRandom rnd)
 		{
 			int num = -1;
@@ -549,7 +510,6 @@ namespace ProcGenGame
 			return num;
 		}
 
-		// Token: 0x0600B435 RID: 46133 RVA: 0x00449824 File Offset: 0x00447A24
 		private void PlaceMobsInRoom(WorldGenSettings settings, List<MobReference> mobTags, List<Vector2I> points, SeededRandom rnd)
 		{
 			if (points == null)
@@ -589,7 +549,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B436 RID: 46134 RVA: 0x00449938 File Offset: 0x00447B38
 		private int[] ConvertNoiseToPoints(float[] basenoise, float minThreshold = 0.9f, float maxThreshold = 1f)
 		{
 			if (basenoise == null)
@@ -617,7 +576,6 @@ namespace ProcGenGame
 			return list.ToArray();
 		}
 
-		// Token: 0x0600B437 RID: 46135 RVA: 0x00449A70 File Offset: 0x00447C70
 		private void ApplyForeground(WorldGen worldGen, Chunk world, TerrainCell.SetValuesFunction SetValues, float temperatureMin, float temperatureRange, SeededRandom rnd)
 		{
 			this.LogInfo("Apply foregreound", (this.node.tags != null).ToString(), (float)((this.node.tags != null) ? this.node.tags.Count : 0));
@@ -695,7 +653,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B438 RID: 46136 RVA: 0x00449E08 File Offset: 0x00448008
 		private void ApplyBackground(WorldGen worldGen, Chunk world, TerrainCell.SetValuesFunction SetValues, float temperatureMin, float temperatureRange, SeededRandom rnd)
 		{
 			this.LogInfo("Apply Background", this.node.type, 0f);
@@ -905,7 +862,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B439 RID: 46137 RVA: 0x0044A624 File Offset: 0x00448824
 		private void GenerateActionCells(WorldGenSettings settings, Tag tag, HashSet<int> possiblePoints, SeededRandom rnd)
 		{
 			ProcGen.Room room = null;
@@ -959,7 +915,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B43A RID: 46138 RVA: 0x0044A7AC File Offset: 0x004489AC
 		private void DoProcess(WorldGen worldGen, Chunk world, TerrainCell.SetValuesFunction SetValues, SeededRandom rnd)
 		{
 			float temperatureMin = 265f;
@@ -974,7 +929,6 @@ namespace ProcGenGame
 			this.ApplyBackground(worldGen, world, SetValues, temperatureMin, temperatureRange, rnd);
 		}
 
-		// Token: 0x0600B43B RID: 46139 RVA: 0x0044A838 File Offset: 0x00448A38
 		public void Process(WorldGen worldGen, Sim.Cell[] cells, float[] bgTemp, Sim.DiseaseCell[] dcs, Chunk world, SeededRandom rnd)
 		{
 			TerrainCell.SetValuesFunction setValues = delegate(int index, object elem, Sim.PhysicsData pd, Sim.DiseaseCell dc)
@@ -1001,7 +955,6 @@ namespace ProcGenGame
 			this.DoProcess(worldGen, world, setValues, rnd);
 		}
 
-		// Token: 0x0600B43C RID: 46140 RVA: 0x0044A878 File Offset: 0x00448A78
 		public void Process(WorldGen worldGen, Chunk world, SeededRandom rnd)
 		{
 			TerrainCell.SetValuesFunction setValues = delegate(int index, object elem, Sim.PhysicsData pd, Sim.DiseaseCell dc)
@@ -1011,7 +964,6 @@ namespace ProcGenGame
 			this.DoProcess(worldGen, world, setValues, rnd);
 		}
 
-		// Token: 0x0600B43D RID: 46141 RVA: 0x0044A8B0 File Offset: 0x00448AB0
 		public int DistanceToTag(Tag tag)
 		{
 			int result;
@@ -1022,70 +974,53 @@ namespace ProcGenGame
 			return result;
 		}
 
-		// Token: 0x0600B43E RID: 46142 RVA: 0x00119AC3 File Offset: 0x00117CC3
 		public bool IsSafeToSpawnPOI(List<TerrainCell> allCells, bool log = true)
 		{
 			return this.IsSafeToSpawnPOI(allCells, TerrainCell.noPOISpawnTags, TerrainCell.noPOISpawnTagSet, log);
 		}
 
-		// Token: 0x0600B43F RID: 46143 RVA: 0x00119AD7 File Offset: 0x00117CD7
 		public bool IsSafeToSpawnPOIRelaxed(List<TerrainCell> allCells, bool log = true)
 		{
 			return this.IsSafeToSpawnPOI(allCells, TerrainCell.relaxedNoPOISpawnTags, TerrainCell.relaxedNoPOISpawnTagSet, log);
 		}
 
-		// Token: 0x0600B440 RID: 46144 RVA: 0x00119AEB File Offset: 0x00117CEB
 		public bool IsSafeToSpawnPOINearStart(List<TerrainCell> allCells, bool log = true)
 		{
 			return this.IsSafeToSpawnPOI(allCells, TerrainCell.noPOISpawnTagsNearStart, TerrainCell.noPOISpawnNearStartTagSet, log);
 		}
 
-		// Token: 0x0600B441 RID: 46145 RVA: 0x00119AFF File Offset: 0x00117CFF
 		public bool IsSafeToSpawnPOINearStartRelaxed(List<TerrainCell> allCells, bool log = true)
 		{
 			return this.IsSafeToSpawnPOI(allCells, TerrainCell.relaxedNoPOISpawnTagsAllowNearStart, TerrainCell.relaxedNoPOISpawnAllowNearStartTagSet, log);
 		}
 
-		// Token: 0x0600B442 RID: 46146 RVA: 0x00119B13 File Offset: 0x00117D13
 		private bool IsSafeToSpawnPOI(List<TerrainCell> allCells, Tag[] noSpawnTags, TagSet noSpawnTagSet, bool log)
 		{
 			return !this.node.tags.ContainsOne(noSpawnTagSet);
 		}
 
-		// Token: 0x04008E8F RID: 36495
 		private const float MASS_VARIATION = 0.2f;
 
-		// Token: 0x04008E94 RID: 36500
 		public List<KeyValuePair<int, Tag>> terrainPositions;
 
-		// Token: 0x04008E95 RID: 36501
 		public List<KeyValuePair<int, Tag>> poi;
 
-		// Token: 0x04008E96 RID: 36502
 		public List<int> neighbourTerrainCells = new List<int>();
 
-		// Token: 0x04008E97 RID: 36503
 		private float finalSize;
 
-		// Token: 0x04008E98 RID: 36504
 		private bool debugMode;
 
-		// Token: 0x04008E99 RID: 36505
 		private List<int> allCells;
 
-		// Token: 0x04008E9A RID: 36506
 		private HashSet<int> availableTerrainPoints;
 
-		// Token: 0x04008E9B RID: 36507
 		private HashSet<int> featureSpawnPoints;
 
-		// Token: 0x04008E9C RID: 36508
 		private HashSet<int> availableSpawnPoints;
 
-		// Token: 0x04008E9D RID: 36509
 		public const int DONT_SET_TEMPERATURE_DEFAULTS = -1;
 
-		// Token: 0x04008E9E RID: 36510
 		private static readonly Tag[] noPOISpawnTags = new Tag[]
 		{
 			WorldGenTags.StartLocation,
@@ -1095,10 +1030,8 @@ namespace ProcGenGame
 			WorldGenTags.Feature
 		};
 
-		// Token: 0x04008E9F RID: 36511
 		private static readonly TagSet noPOISpawnTagSet = new TagSet(TerrainCell.noPOISpawnTags);
 
-		// Token: 0x04008EA0 RID: 36512
 		private static readonly Tag[] relaxedNoPOISpawnTags = new Tag[]
 		{
 			WorldGenTags.StartLocation,
@@ -1107,66 +1040,48 @@ namespace ProcGenGame
 			WorldGenTags.POI
 		};
 
-		// Token: 0x04008EA1 RID: 36513
 		private static readonly TagSet relaxedNoPOISpawnTagSet = new TagSet(TerrainCell.relaxedNoPOISpawnTags);
 
-		// Token: 0x04008EA2 RID: 36514
 		private static readonly Tag[] noPOISpawnTagsNearStart = new Tag[]
 		{
 			WorldGenTags.POI,
 			WorldGenTags.Feature
 		};
 
-		// Token: 0x04008EA3 RID: 36515
 		private static readonly TagSet noPOISpawnNearStartTagSet = new TagSet(TerrainCell.noPOISpawnTagsNearStart);
 
-		// Token: 0x04008EA4 RID: 36516
 		private static readonly Tag[] relaxedNoPOISpawnTagsAllowNearStart = new Tag[]
 		{
 			WorldGenTags.POI
 		};
 
-		// Token: 0x04008EA5 RID: 36517
 		private static readonly TagSet relaxedNoPOISpawnAllowNearStartTagSet = new TagSet(TerrainCell.relaxedNoPOISpawnTagsAllowNearStart);
 
-		// Token: 0x02002110 RID: 8464
-		// (Invoke) Token: 0x0600B445 RID: 46149
+Invoke) Token: 0x0600B445 RID: 46149
 		public delegate void SetValuesFunction(int index, object elem, Sim.PhysicsData pd, Sim.DiseaseCell dc);
 
-		// Token: 0x02002111 RID: 8465
 		public struct ElementOverride
 		{
-			// Token: 0x04008EA6 RID: 36518
 			public Element element;
 
-			// Token: 0x04008EA7 RID: 36519
 			public Sim.PhysicsData pdelement;
 
-			// Token: 0x04008EA8 RID: 36520
 			public Sim.DiseaseCell dc;
 
-			// Token: 0x04008EA9 RID: 36521
 			public float mass;
 
-			// Token: 0x04008EAA RID: 36522
 			public float temperature;
 
-			// Token: 0x04008EAB RID: 36523
 			public byte diseaseIdx;
 
-			// Token: 0x04008EAC RID: 36524
 			public int diseaseAmount;
 
-			// Token: 0x04008EAD RID: 36525
 			public bool overrideMass;
 
-			// Token: 0x04008EAE RID: 36526
 			public bool overrideTemperature;
 
-			// Token: 0x04008EAF RID: 36527
 			public bool overrideDiseaseIdx;
 
-			// Token: 0x04008EB0 RID: 36528
 			public bool overrideDiseaseAmount;
 		}
 	}

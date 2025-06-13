@@ -1,9 +1,7 @@
 ﻿using System;
 
-// Token: 0x02000B51 RID: 2897
 public class Storable : KMonoBehaviour
 {
-	// Token: 0x0600360B RID: 13835 RVA: 0x000C7B2F File Offset: 0x000C5D2F
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -11,13 +9,11 @@ public class Storable : KMonoBehaviour
 		base.Subscribe<Storable>(-778359855, Storable.RefreshStorageTagsDelegate);
 	}
 
-	// Token: 0x0600360C RID: 13836 RVA: 0x000C7B59 File Offset: 0x000C5D59
 	public void OnStore(object data)
 	{
 		this.RefreshStorageTags(data);
 	}
 
-	// Token: 0x0600360D RID: 13837 RVA: 0x0021EA70 File Offset: 0x0021CC70
 	private void RefreshStorageTags(object data = null)
 	{
 		bool flag = data is Storage || (data != null && (bool)data);
@@ -61,13 +57,11 @@ public class Storable : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0400255F RID: 9567
 	private static readonly EventSystem.IntraObjectHandler<Storable> OnStoreDelegate = new EventSystem.IntraObjectHandler<Storable>(delegate(Storable component, object data)
 	{
 		component.OnStore(data);
 	});
 
-	// Token: 0x04002560 RID: 9568
 	private static readonly EventSystem.IntraObjectHandler<Storable> RefreshStorageTagsDelegate = new EventSystem.IntraObjectHandler<Storable>(delegate(Storable component, object data)
 	{
 		component.RefreshStorageTags(data);

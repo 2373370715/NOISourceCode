@@ -5,11 +5,8 @@ using System.Runtime.Serialization;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x0200194D RID: 6477
 public class LaunchPad : KMonoBehaviour, ISim1000ms, IListableOption, IProcessConditionSet
 {
-	// Token: 0x170008CC RID: 2252
-	// (get) Token: 0x060086C9 RID: 34505 RVA: 0x0035B2C8 File Offset: 0x003594C8
 	public RocketModuleCluster LandedRocket
 	{
 		get
@@ -29,8 +26,6 @@ public class LaunchPad : KMonoBehaviour, ISim1000ms, IListableOption, IProcessCo
 		}
 	}
 
-	// Token: 0x170008CD RID: 2253
-	// (get) Token: 0x060086CA RID: 34506 RVA: 0x000FCF17 File Offset: 0x000FB117
 	public int RocketBottomPosition
 	{
 		get
@@ -39,7 +34,6 @@ public class LaunchPad : KMonoBehaviour, ISim1000ms, IListableOption, IProcessCo
 		}
 	}
 
-	// Token: 0x060086CB RID: 34507 RVA: 0x0035B340 File Offset: 0x00359540
 	[OnDeserialized]
 	private void OnDeserialzed()
 	{
@@ -59,7 +53,6 @@ public class LaunchPad : KMonoBehaviour, ISim1000ms, IListableOption, IProcessCo
 		}
 	}
 
-	// Token: 0x060086CC RID: 34508 RVA: 0x0035B39C File Offset: 0x0035959C
 	protected override void OnPrefabInit()
 	{
 		UserNameable component = base.GetComponent<UserNameable>();
@@ -69,7 +62,6 @@ public class LaunchPad : KMonoBehaviour, ISim1000ms, IListableOption, IProcessCo
 		}
 	}
 
-	// Token: 0x060086CD RID: 34509 RVA: 0x0035B3C4 File Offset: 0x003595C4
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -85,7 +77,6 @@ public class LaunchPad : KMonoBehaviour, ISim1000ms, IListableOption, IProcessCo
 		}
 	}
 
-	// Token: 0x060086CE RID: 34510 RVA: 0x0035B478 File Offset: 0x00359678
 	protected override void OnCleanUp()
 	{
 		Components.LaunchPads.Remove(this);
@@ -100,7 +91,6 @@ public class LaunchPad : KMonoBehaviour, ISim1000ms, IListableOption, IProcessCo
 		base.OnCleanUp();
 	}
 
-	// Token: 0x060086CF RID: 34511 RVA: 0x0035B4F0 File Offset: 0x003596F0
 	private void CheckLandedRocketPassengerModuleStatus()
 	{
 		if (this.LandedRocket == null)
@@ -124,14 +114,12 @@ public class LaunchPad : KMonoBehaviour, ISim1000ms, IListableOption, IProcessCo
 		}
 	}
 
-	// Token: 0x060086D0 RID: 34512 RVA: 0x0035B5A8 File Offset: 0x003597A8
 	public bool IsLogicInputConnected()
 	{
 		int portCell = base.GetComponent<LogicPorts>().GetPortCell(this.triggerPort);
 		return Game.Instance.logicCircuitManager.GetNetworkForCell(portCell) != null;
 	}
 
-	// Token: 0x060086D1 RID: 34513 RVA: 0x0035B5DC File Offset: 0x003597DC
 	public void Sim1000ms(float dt)
 	{
 		LogicPorts component = base.gameObject.GetComponent<LogicPorts>();
@@ -164,7 +152,6 @@ public class LaunchPad : KMonoBehaviour, ISim1000ms, IListableOption, IProcessCo
 		component.SendSignal(this.statusPort, 0);
 	}
 
-	// Token: 0x060086D2 RID: 34514 RVA: 0x0035B6B4 File Offset: 0x003598B4
 	public GameObject AddBaseModule(BuildingDef moduleDefID, IList<Tag> elements)
 	{
 		int cell = Grid.OffsetCell(Grid.PosToCell(base.gameObject), this.baseModulePosition);
@@ -190,7 +177,6 @@ public class LaunchPad : KMonoBehaviour, ISim1000ms, IListableOption, IProcessCo
 		return gameObject;
 	}
 
-	// Token: 0x060086D3 RID: 34515 RVA: 0x0035B784 File Offset: 0x00359984
 	private void OnRocketBuildingChanged(object data)
 	{
 		GameObject gameObject = (GameObject)data;
@@ -213,7 +199,6 @@ public class LaunchPad : KMonoBehaviour, ISim1000ms, IListableOption, IProcessCo
 		this.OnRocketLayoutChanged(null);
 	}
 
-	// Token: 0x060086D4 RID: 34516 RVA: 0x0035B868 File Offset: 0x00359A68
 	private void OnRocketLayoutChanged(object data)
 	{
 		if (this.lastBaseAttachable != null)
@@ -232,19 +217,16 @@ public class LaunchPad : KMonoBehaviour, ISim1000ms, IListableOption, IProcessCo
 		this.DirtyTowerHeight();
 	}
 
-	// Token: 0x060086D5 RID: 34517 RVA: 0x000FCF2A File Offset: 0x000FB12A
 	public bool HasRocket()
 	{
 		return this.LandedRocket != null;
 	}
 
-	// Token: 0x060086D6 RID: 34518 RVA: 0x000FCF38 File Offset: 0x000FB138
 	public bool HasRocketWithCommandModule()
 	{
 		return this.HasRocket() && this.LandedRocket.CraftInterface.FindLaunchableRocket() != null;
 	}
 
-	// Token: 0x060086D7 RID: 34519 RVA: 0x0035B8FC File Offset: 0x00359AFC
 	private GameObject GetRocketBaseModule()
 	{
 		GameObject gameObject = Grid.Objects[Grid.OffsetCell(Grid.PosToCell(base.gameObject), this.baseModulePosition), 1];
@@ -255,7 +237,6 @@ public class LaunchPad : KMonoBehaviour, ISim1000ms, IListableOption, IProcessCo
 		return gameObject;
 	}
 
-	// Token: 0x060086D8 RID: 34520 RVA: 0x0035B948 File Offset: 0x00359B48
 	public void DirtyTowerHeight()
 	{
 		if (!this.dirtyTowerHeight)
@@ -268,7 +249,6 @@ public class LaunchPad : KMonoBehaviour, ISim1000ms, IListableOption, IProcessCo
 		}
 	}
 
-	// Token: 0x060086D9 RID: 34521 RVA: 0x0035B994 File Offset: 0x00359B94
 	private void RebuildLaunchTowerHeight(object obj)
 	{
 		RocketModuleCluster landedRocket = this.LandedRocket;
@@ -280,13 +260,11 @@ public class LaunchPad : KMonoBehaviour, ISim1000ms, IListableOption, IProcessCo
 		this.RebuildLaunchTowerHeightHandler.ClearScheduler();
 	}
 
-	// Token: 0x060086DA RID: 34522 RVA: 0x000C52B2 File Offset: 0x000C34B2
 	public string GetProperName()
 	{
 		return base.gameObject.GetProperName();
 	}
 
-	// Token: 0x060086DB RID: 34523 RVA: 0x0035B9DC File Offset: 0x00359BDC
 	public List<ProcessCondition> GetConditionSet(ProcessCondition.ProcessConditionType conditionType)
 	{
 		RocketProcessConditionDisplayTarget rocketProcessConditionDisplayTarget = null;
@@ -310,7 +288,6 @@ public class LaunchPad : KMonoBehaviour, ISim1000ms, IListableOption, IProcessCo
 		return new List<ProcessCondition>();
 	}
 
-	// Token: 0x060086DC RID: 34524 RVA: 0x0035BA58 File Offset: 0x00359C58
 	public static List<LaunchPad> GetLaunchPadsForDestination(AxialI destination)
 	{
 		List<LaunchPad> list = new List<LaunchPad>();
@@ -325,51 +302,37 @@ public class LaunchPad : KMonoBehaviour, ISim1000ms, IListableOption, IProcessCo
 		return list;
 	}
 
-	// Token: 0x0400662A RID: 26154
 	public HashedString triggerPort;
 
-	// Token: 0x0400662B RID: 26155
 	public HashedString statusPort;
 
-	// Token: 0x0400662C RID: 26156
 	public HashedString landedRocketPort;
 
-	// Token: 0x0400662D RID: 26157
 	private CellOffset baseModulePosition = new CellOffset(0, 2);
 
-	// Token: 0x0400662E RID: 26158
 	private SchedulerHandle RebuildLaunchTowerHeightHandler;
 
-	// Token: 0x0400662F RID: 26159
 	private AttachableBuilding lastBaseAttachable;
 
-	// Token: 0x04006630 RID: 26160
 	private LaunchPad.LaunchPadTower tower;
 
-	// Token: 0x04006631 RID: 26161
 	[Serialize]
 	public int maxTowerHeight;
 
-	// Token: 0x04006632 RID: 26162
 	private bool dirtyTowerHeight;
 
-	// Token: 0x04006633 RID: 26163
 	private HandleVector<int>.Handle partitionerEntry;
 
-	// Token: 0x04006634 RID: 26164
 	private Guid landedRocketPassengerModuleStatusItem = Guid.Empty;
 
-	// Token: 0x0200194E RID: 6478
 	public class LaunchPadTower
 	{
-		// Token: 0x060086DE RID: 34526 RVA: 0x0035BAC8 File Offset: 0x00359CC8
 		public LaunchPadTower(LaunchPad pad, int startHeight)
 		{
 			this.pad = pad;
 			this.SetTowerHeight(startHeight);
 		}
 
-		// Token: 0x060086DF RID: 34527 RVA: 0x0035BB80 File Offset: 0x00359D80
 		public void AddTowerRow()
 		{
 			GameObject gameObject = new GameObject("LaunchPadTowerRow");
@@ -388,12 +351,10 @@ public class LaunchPad : KMonoBehaviour, ISim1000ms, IListableOption, IProcessCo
 			this.animLink = new KAnimLink(this.pad.GetComponent<KAnimControllerBase>(), kbatchedAnimController);
 		}
 
-		// Token: 0x060086E0 RID: 34528 RVA: 0x000AA038 File Offset: 0x000A8238
 		public void RemoveTowerRow()
 		{
 		}
 
-		// Token: 0x060086E1 RID: 34529 RVA: 0x0035BCA4 File Offset: 0x00359EA4
 		public void SetTowerHeight(int height)
 		{
 			if (height < 8)
@@ -413,7 +374,6 @@ public class LaunchPad : KMonoBehaviour, ISim1000ms, IListableOption, IProcessCo
 			this.activeAnimationRoutine = this.pad.StartCoroutine(this.TowerRoutine());
 		}
 
-		// Token: 0x060086E2 RID: 34530 RVA: 0x000FCF7A File Offset: 0x000FB17A
 		private IEnumerator TowerRoutine()
 		{
 			while (this.currentHeight < this.targetHeight)
@@ -458,16 +418,12 @@ public class LaunchPad : KMonoBehaviour, ISim1000ms, IListableOption, IProcessCo
 			yield break;
 		}
 
-		// Token: 0x04006635 RID: 26165
 		private LaunchPad pad;
 
-		// Token: 0x04006636 RID: 26166
 		private KAnimLink animLink;
 
-		// Token: 0x04006637 RID: 26167
 		private Coroutine activeAnimationRoutine;
 
-		// Token: 0x04006638 RID: 26168
 		private string[] towerBGAnimNames = new string[]
 		{
 			"A1",
@@ -482,25 +438,18 @@ public class LaunchPad : KMonoBehaviour, ISim1000ms, IListableOption, IProcessCo
 			"F2"
 		};
 
-		// Token: 0x04006639 RID: 26169
 		private string towerBGAnimSuffix_on = "_on";
 
-		// Token: 0x0400663A RID: 26170
 		private string towerBGAnimSuffix_on_pre = "_on_pre";
 
-		// Token: 0x0400663B RID: 26171
 		private string towerBGAnimSuffix_off_pre = "_off_pre";
 
-		// Token: 0x0400663C RID: 26172
 		private string towerBGAnimSuffix_off = "_off";
 
-		// Token: 0x0400663D RID: 26173
 		private List<KBatchedAnimController> towerAnimControllers = new List<KBatchedAnimController>();
 
-		// Token: 0x0400663E RID: 26174
 		private int targetHeight;
 
-		// Token: 0x0400663F RID: 26175
 		private int currentHeight;
 	}
 }

@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200035C RID: 860
 public class GasValveConfig : IBuildingConfig
 {
-	// Token: 0x06000DA2 RID: 3490 RVA: 0x0017E318 File Offset: 0x0017C518
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "GasValve";
@@ -32,7 +30,6 @@ public class GasValveConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000DA3 RID: 3491 RVA: 0x0017E3BC File Offset: 0x0017C5BC
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
@@ -50,7 +47,6 @@ public class GasValveConfig : IBuildingConfig
 		go.AddOrGet<Workable>().workTime = 5f;
 	}
 
-	// Token: 0x06000DA4 RID: 3492 RVA: 0x000B05D4 File Offset: 0x000AE7D4
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		UnityEngine.Object.DestroyImmediate(go.GetComponent<RequireInputs>());
@@ -60,9 +56,7 @@ public class GasValveConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayInFrontOfConduits, false);
 	}
 
-	// Token: 0x040009FA RID: 2554
 	public const string ID = "GasValve";
 
-	// Token: 0x040009FB RID: 2555
 	private const ConduitType CONDUIT_TYPE = ConduitType.Gas;
 }

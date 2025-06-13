@@ -4,16 +4,13 @@ using System.Linq;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200054E RID: 1358
 public class RailGunPayloadOpenerConfig : IBuildingConfig
 {
-	// Token: 0x06001758 RID: 5976 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06001759 RID: 5977 RVA: 0x001A56C0 File Offset: 0x001A38C0
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "RailGunPayloadOpener";
@@ -39,7 +36,6 @@ public class RailGunPayloadOpenerConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600175A RID: 5978 RVA: 0x000B43F0 File Offset: 0x000B25F0
 	private void AttachPorts(GameObject go)
 	{
 		go.AddComponent<ConduitSecondaryOutput>().portInfo = this.liquidOutputPort;
@@ -47,7 +43,6 @@ public class RailGunPayloadOpenerConfig : IBuildingConfig
 		go.AddComponent<ConduitSecondaryOutput>().portInfo = this.solidOutputPort;
 	}
 
-	// Token: 0x0600175B RID: 5979 RVA: 0x001A5758 File Offset: 0x001A3958
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		RailGunPayloadOpener railGunPayloadOpener = go.AddOrGet<RailGunPayloadOpener>();
@@ -78,7 +73,6 @@ public class RailGunPayloadOpenerConfig : IBuildingConfig
 		manualDeliveryKG.operationalRequirement = Operational.State.None;
 	}
 
-	// Token: 0x0600175C RID: 5980 RVA: 0x001A58A0 File Offset: 0x001A3AA0
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<BuildingCellVisualizer>();
@@ -91,7 +85,6 @@ public class RailGunPayloadOpenerConfig : IBuildingConfig
 		component.requireConduitHasMass = false;
 	}
 
-	// Token: 0x0600175D RID: 5981 RVA: 0x000B4425 File Offset: 0x000B2625
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 		base.DoPostConfigurePreview(def, go);
@@ -99,7 +92,6 @@ public class RailGunPayloadOpenerConfig : IBuildingConfig
 		go.AddOrGet<BuildingCellVisualizer>();
 	}
 
-	// Token: 0x0600175E RID: 5982 RVA: 0x000B443D File Offset: 0x000B263D
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		base.DoPostConfigureUnderConstruction(go);
@@ -107,15 +99,11 @@ public class RailGunPayloadOpenerConfig : IBuildingConfig
 		go.AddOrGet<BuildingCellVisualizer>();
 	}
 
-	// Token: 0x04000F6B RID: 3947
 	public const string ID = "RailGunPayloadOpener";
 
-	// Token: 0x04000F6C RID: 3948
 	private ConduitPortInfo liquidOutputPort = new ConduitPortInfo(ConduitType.Liquid, new CellOffset(0, 0));
 
-	// Token: 0x04000F6D RID: 3949
 	private ConduitPortInfo gasOutputPort = new ConduitPortInfo(ConduitType.Gas, new CellOffset(1, 0));
 
-	// Token: 0x04000F6E RID: 3950
 	private ConduitPortInfo solidOutputPort = new ConduitPortInfo(ConduitType.Solid, new CellOffset(-1, 0));
 }

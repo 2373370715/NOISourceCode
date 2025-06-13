@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003FD RID: 1021
 public class LonelyMinionMailboxConfig : IBuildingConfig
 {
-	// Token: 0x060010CB RID: 4299 RVA: 0x0018C100 File Offset: 0x0018A300
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "LonelyMailBox";
@@ -32,7 +30,6 @@ public class LonelyMinionMailboxConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060010CC RID: 4300 RVA: 0x0018C190 File Offset: 0x0018A390
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		SingleEntityReceptacle singleEntityReceptacle = go.AddComponent<SingleEntityReceptacle>();
@@ -50,14 +47,11 @@ public class LonelyMinionMailboxConfig : IBuildingConfig
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x060010CD RID: 4301 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000BBC RID: 3004
 	public const string ID = "LonelyMailBox";
 
-	// Token: 0x04000BBD RID: 3005
 	public static readonly HashedString IdHash = "LonelyMailBox";
 }

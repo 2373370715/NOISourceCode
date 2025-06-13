@@ -5,10 +5,8 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
-// Token: 0x020018AF RID: 6319
 public static class SerializableOutfitData
 {
-	// Token: 0x0600828A RID: 33418 RVA: 0x0034AB88 File Offset: 0x00348D88
 	public static int GetVersionFrom(JObject jsonData)
 	{
 		int result;
@@ -24,7 +22,6 @@ public static class SerializableOutfitData
 		return result;
 	}
 
-	// Token: 0x0600828B RID: 33419 RVA: 0x0034ABC0 File Offset: 0x00348DC0
 	public static SerializableOutfitData.Version2 FromJson(JObject jsonData)
 	{
 		int versionFrom = SerializableOutfitData.GetVersionFrom(jsonData);
@@ -40,13 +37,11 @@ public static class SerializableOutfitData
 		return SerializableOutfitData.Version2.FromJson(jsonData);
 	}
 
-	// Token: 0x0600828C RID: 33420 RVA: 0x000FA5B2 File Offset: 0x000F87B2
 	public static JObject ToJson(SerializableOutfitData.Version2 data)
 	{
 		return SerializableOutfitData.Version2.ToJson(data);
 	}
 
-	// Token: 0x0600828D RID: 33421 RVA: 0x0034AC10 File Offset: 0x00348E10
 	public static string ToJsonString(JObject data)
 	{
 		string result;
@@ -61,7 +56,6 @@ public static class SerializableOutfitData
 		return result;
 	}
 
-	// Token: 0x0600828E RID: 33422 RVA: 0x0034AC70 File Offset: 0x00348E70
 	public static void ToJsonString(JObject data, TextWriter textWriter)
 	{
 		using (JsonTextWriter jsonTextWriter = new JsonTextWriter(textWriter))
@@ -70,13 +64,10 @@ public static class SerializableOutfitData
 		}
 	}
 
-	// Token: 0x04006358 RID: 25432
 	public const string VERSION_KEY = "Version";
 
-	// Token: 0x020018B0 RID: 6320
 	public class Version2
 	{
-		// Token: 0x0600828F RID: 33423 RVA: 0x0034ACAC File Offset: 0x00348EAC
 		public static SerializableOutfitData.Version2 FromVersion1(SerializableOutfitData.Version1 data)
 		{
 			Dictionary<string, SerializableOutfitData.Version2.CustomTemplateOutfitEntry> dictionary = new Dictionary<string, SerializableOutfitData.Version2.CustomTemplateOutfitEntry>();
@@ -119,13 +110,11 @@ public static class SerializableOutfitData
 			};
 		}
 
-		// Token: 0x06008290 RID: 33424 RVA: 0x000FA5BA File Offset: 0x000F87BA
 		public static SerializableOutfitData.Version2 FromJson(JObject jsonData)
 		{
 			return jsonData.ToObject<SerializableOutfitData.Version2>(SerializableOutfitData.Version2.GetSerializer());
 		}
 
-		// Token: 0x06008291 RID: 33425 RVA: 0x000FA5C7 File Offset: 0x000F87C7
 		public static JObject ToJson(SerializableOutfitData.Version2 data)
 		{
 			JObject jobject = JObject.FromObject(data, SerializableOutfitData.Version2.GetSerializer());
@@ -133,7 +122,6 @@ public static class SerializableOutfitData
 			return jobject;
 		}
 
-		// Token: 0x06008292 RID: 33426 RVA: 0x000FA5EA File Offset: 0x000F87EA
 		public static JsonSerializer GetSerializer()
 		{
 			if (SerializableOutfitData.Version2.s_serializer != null)
@@ -145,36 +133,27 @@ public static class SerializableOutfitData
 			return SerializableOutfitData.Version2.s_serializer;
 		}
 
-		// Token: 0x04006359 RID: 25433
 		public Dictionary<string, Dictionary<string, string>> PersonalityIdToAssignedOutfits = new Dictionary<string, Dictionary<string, string>>();
 
-		// Token: 0x0400635A RID: 25434
 		public Dictionary<string, SerializableOutfitData.Version2.CustomTemplateOutfitEntry> OutfitIdToUserAuthoredTemplateOutfit = new Dictionary<string, SerializableOutfitData.Version2.CustomTemplateOutfitEntry>();
 
-		// Token: 0x0400635B RID: 25435
 		private static JsonSerializer s_serializer;
 
-		// Token: 0x020018B1 RID: 6321
 		public class CustomTemplateOutfitEntry
 		{
-			// Token: 0x0400635C RID: 25436
 			public string outfitType;
 
-			// Token: 0x0400635D RID: 25437
 			public string[] itemIds;
 		}
 	}
 
-	// Token: 0x020018B2 RID: 6322
 	public class Version1
 	{
-		// Token: 0x06008295 RID: 33429 RVA: 0x000FA63A File Offset: 0x000F883A
 		public static JObject ToJson(SerializableOutfitData.Version1 data)
 		{
 			return JObject.FromObject(data);
 		}
 
-		// Token: 0x06008296 RID: 33430 RVA: 0x0034AE18 File Offset: 0x00349018
 		public static SerializableOutfitData.Version1 FromJson(JObject jsonData)
 		{
 			SerializableOutfitData.Version1 version = new SerializableOutfitData.Version1();
@@ -275,10 +254,8 @@ public static class SerializableOutfitData
 			return result;
 		}
 
-		// Token: 0x0400635E RID: 25438
 		public Dictionary<string, Dictionary<ClothingOutfitUtility.OutfitType, string>> DuplicantOutfits = new Dictionary<string, Dictionary<ClothingOutfitUtility.OutfitType, string>>();
 
-		// Token: 0x0400635F RID: 25439
 		public Dictionary<string, string[]> CustomOutfits = new Dictionary<string, string[]>();
 	}
 }

@@ -3,10 +3,8 @@ using System.Runtime.CompilerServices;
 using Database;
 using STRINGS;
 
-// Token: 0x020009AA RID: 2474
 public class Blueprints_U51AndBefore : BlueprintProvider
 {
-	// Token: 0x06002C3F RID: 11327 RVA: 0x000C1226 File Offset: 0x000BF426
 	public override void SetupBlueprints()
 	{
 		this.SetupBuildingFacades();
@@ -16,7 +14,6 @@ public class Blueprints_U51AndBefore : BlueprintProvider
 		this.SetupBalloonArtistFacades();
 	}
 
-	// Token: 0x06002C40 RID: 11328 RVA: 0x001F1184 File Offset: 0x001EF384
 	public void SetupBuildingFacades()
 	{
 		this.blueprintCollection.buildingFacades.AddRange(new BuildingFacadeInfo[]
@@ -227,7 +224,6 @@ public class Blueprints_U51AndBefore : BlueprintProvider
 		});
 	}
 
-	// Token: 0x06002C41 RID: 11329 RVA: 0x001F3894 File Offset: 0x001F1A94
 	private void SetupArtables()
 	{
 		this.blueprintCollection.artables.AddRange(new ArtableInfo[]
@@ -273,7 +269,6 @@ public class Blueprints_U51AndBefore : BlueprintProvider
 		});
 	}
 
-	// Token: 0x06002C42 RID: 11330 RVA: 0x001F4258 File Offset: 0x001F2458
 	private void SetupClothingItems()
 	{
 		this.blueprintCollection.clothingItems.AddRange(new ClothingItemInfo[]
@@ -566,7 +561,6 @@ public class Blueprints_U51AndBefore : BlueprintProvider
 		});
 	}
 
-	// Token: 0x06002C43 RID: 11331 RVA: 0x001F7450 File Offset: 0x001F5650
 	private void SetupClothingOutfits()
 	{
 		this.<SetupClothingOutfits>g__Add|4_0("BasicBlack", new string[]
@@ -1073,7 +1067,6 @@ public class Blueprints_U51AndBefore : BlueprintProvider
 		}, UI.OUTFITS.DOWNTIME.NAME, BlueprintProvider.OutfitType.Clothing);
 	}
 
-	// Token: 0x06002C44 RID: 11332 RVA: 0x001F8548 File Offset: 0x001F6748
 	private void SetupBalloonArtistFacades()
 	{
 		this.blueprintCollection.balloonArtistFacades.AddRange(new BalloonArtistFacadeInfo[]
@@ -1102,7 +1095,6 @@ public class Blueprints_U51AndBefore : BlueprintProvider
 		});
 	}
 
-	// Token: 0x06002C46 RID: 11334 RVA: 0x000C1246 File Offset: 0x000BF446
 	[CompilerGenerated]
 	private void <SetupClothingOutfits>g__Add|4_0(string outfitId, string[] itemIds, string name, BlueprintProvider.OutfitType outfitType)
 	{

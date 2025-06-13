@@ -2,10 +2,8 @@
 using System.Text.RegularExpressions;
 using UnityEngine.UI;
 
-// Token: 0x02001F7E RID: 8062
 public class ShadowText : ShadowRect
 {
-	// Token: 0x0600AA35 RID: 43573 RVA: 0x004144EC File Offset: 0x004126EC
 	protected override void MatchRect()
 	{
 		if (this.RectMain == null || this.RectShadow == null)
@@ -61,9 +59,7 @@ public class ShadowText : ShadowRect
 		base.MatchRect();
 	}
 
-	// Token: 0x040085FF RID: 34303
 	private Text shadowText;
 
-	// Token: 0x04008600 RID: 34304
 	private Text mainText;
 }

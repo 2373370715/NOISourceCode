@@ -5,17 +5,14 @@ using STRINGS;
 
 namespace Database
 {
-	// Token: 0x02002209 RID: 8713
 	public class EatXKCalProducedByY : ColonyAchievementRequirement, AchievementRequirementSerialization_Deprecated
 	{
-		// Token: 0x0600B980 RID: 47488 RVA: 0x0011C11A File Offset: 0x0011A31A
 		public EatXKCalProducedByY(int numCalories, List<Tag> foodProducers)
 		{
 			this.numCalories = numCalories;
 			this.foodProducers = foodProducers;
 		}
 
-		// Token: 0x0600B981 RID: 47489 RVA: 0x00476F78 File Offset: 0x00475178
 		public override bool Success()
 		{
 			List<string> list = new List<string>();
@@ -38,7 +35,6 @@ namespace Database
 			return WorldResourceAmountTracker<RationTracker>.Get().GetAmountConsumedForIDs(list.Distinct<string>().ToList<string>()) / 1000f > (float)this.numCalories;
 		}
 
-		// Token: 0x0600B982 RID: 47490 RVA: 0x00477094 File Offset: 0x00475294
 		public void Deserialize(IReader reader)
 		{
 			int num = reader.ReadInt32();
@@ -51,7 +47,6 @@ namespace Database
 			this.numCalories = reader.ReadInt32();
 		}
 
-		// Token: 0x0600B983 RID: 47491 RVA: 0x004770E4 File Offset: 0x004752E4
 		public override string GetProgress(bool complete)
 		{
 			string text = "";
@@ -70,10 +65,8 @@ namespace Database
 			return string.Format(COLONY_ACHIEVEMENTS.MISC_REQUIREMENTS.STATUS.CONSUME_ITEM, text);
 		}
 
-		// Token: 0x04009787 RID: 38791
 		private int numCalories;
 
-		// Token: 0x04009788 RID: 38792
 		private List<Tag> foodProducers;
 	}
 }

@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000CC RID: 204
 public class FacilityBackWallWindowConfig : IBuildingConfig
 {
-	// Token: 0x06000360 RID: 864 RVA: 0x00156B64 File Offset: 0x00154D64
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "FacilityBackWallWindow";
@@ -32,7 +30,6 @@ public class FacilityBackWallWindowConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000361 RID: 865 RVA: 0x00156BF8 File Offset: 0x00154DF8
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<AnimTileable>().objectLayer = ObjectLayer.Backwall;
@@ -43,11 +40,9 @@ public class FacilityBackWallWindowConfig : IBuildingConfig
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
 	}
 
-	// Token: 0x06000362 RID: 866 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x0400020F RID: 527
 	public const string ID = "FacilityBackWallWindow";
 }

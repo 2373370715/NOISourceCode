@@ -1,10 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200144F RID: 5199
 internal class InputInit : MonoBehaviour
 {
-	// Token: 0x06006AF5 RID: 27381 RVA: 0x002EE50C File Offset: 0x002EC70C
 	private void Awake()
 	{
 		GameInputManager inputManager = Global.GetInputManager();

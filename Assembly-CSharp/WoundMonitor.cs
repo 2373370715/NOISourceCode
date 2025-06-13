@@ -1,9 +1,7 @@
 ﻿using System;
 
-// Token: 0x02001673 RID: 5747
 public class WoundMonitor : GameStateMachine<WoundMonitor, WoundMonitor.Instance>
 {
-	// Token: 0x060076CF RID: 30415 RVA: 0x00319568 File Offset: 0x00317768
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.healthy;
@@ -39,36 +37,27 @@ public class WoundMonitor : GameStateMachine<WoundMonitor, WoundMonitor.Instance
 		}, UpdateRate.SIM_1000ms, false);
 	}
 
-	// Token: 0x0400595A RID: 22874
 	public GameStateMachine<WoundMonitor, WoundMonitor.Instance, IStateMachineTarget, object>.State healthy;
 
-	// Token: 0x0400595B RID: 22875
 	public WoundMonitor.Wounded wounded;
 
-	// Token: 0x02001674 RID: 5748
 	public class Wounded : GameStateMachine<WoundMonitor, WoundMonitor.Instance, IStateMachineTarget, object>.State
 	{
-		// Token: 0x0400595C RID: 22876
 		public GameStateMachine<WoundMonitor, WoundMonitor.Instance, IStateMachineTarget, object>.State light;
 
-		// Token: 0x0400595D RID: 22877
 		public GameStateMachine<WoundMonitor, WoundMonitor.Instance, IStateMachineTarget, object>.State medium;
 
-		// Token: 0x0400595E RID: 22878
 		public GameStateMachine<WoundMonitor, WoundMonitor.Instance, IStateMachineTarget, object>.State heavy;
 	}
 
-	// Token: 0x02001675 RID: 5749
 	public new class Instance : GameStateMachine<WoundMonitor, WoundMonitor.Instance, IStateMachineTarget, object>.GameInstance
 	{
-		// Token: 0x060076D3 RID: 30419 RVA: 0x000F2A59 File Offset: 0x000F0C59
 		public Instance(IStateMachineTarget master) : base(master)
 		{
 			this.health = master.GetComponent<Health>();
 			this.worker = master.GetComponent<WorkerBase>();
 		}
 
-		// Token: 0x060076D4 RID: 30420 RVA: 0x0031970C File Offset: 0x0031790C
 		public void OnHealthChanged(object data)
 		{
 			float num = (float)data;
@@ -78,7 +67,6 @@ public class WoundMonitor : GameStateMachine<WoundMonitor, WoundMonitor.Instance
 			}
 		}
 
-		// Token: 0x060076D5 RID: 30421 RVA: 0x00319740 File Offset: 0x00317940
 		private void PlayHitAnimation()
 		{
 			string text = null;
@@ -160,7 +148,6 @@ public class WoundMonitor : GameStateMachine<WoundMonitor, WoundMonitor.Instance
 			}
 		}
 
-		// Token: 0x060076D6 RID: 30422 RVA: 0x003198C4 File Offset: 0x00317AC4
 		public void PlayKnockedOverImpactAnimation()
 		{
 			string text = null;
@@ -225,7 +212,6 @@ public class WoundMonitor : GameStateMachine<WoundMonitor, WoundMonitor.Instance
 			}
 		}
 
-		// Token: 0x060076D7 RID: 30423 RVA: 0x003199D4 File Offset: 0x00317BD4
 		public void GoToProperHeathState()
 		{
 			switch (base.smi.health.State)
@@ -249,13 +235,11 @@ public class WoundMonitor : GameStateMachine<WoundMonitor, WoundMonitor.Instance
 			}
 		}
 
-		// Token: 0x060076D8 RID: 30424 RVA: 0x000F2A7A File Offset: 0x000F0C7A
 		public bool ShouldExitInfirmary()
 		{
 			return this.health.State == Health.HealthState.Perfect;
 		}
 
-		// Token: 0x060076D9 RID: 30425 RVA: 0x00319A78 File Offset: 0x00317C78
 		public void FindAvailableMedicalBed()
 		{
 			AssignableSlot clinic = Db.Get().AssignableSlots.Clinic;
@@ -266,10 +250,8 @@ public class WoundMonitor : GameStateMachine<WoundMonitor, WoundMonitor.Instance
 			}
 		}
 
-		// Token: 0x0400595F RID: 22879
 		public Health health;
 
-		// Token: 0x04005960 RID: 22880
 		private WorkerBase worker;
 	}
 }

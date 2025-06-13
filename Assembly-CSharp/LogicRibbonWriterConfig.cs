@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003F4 RID: 1012
 public class LogicRibbonWriterConfig : IBuildingConfig
 {
-	// Token: 0x060010A1 RID: 4257 RVA: 0x0018B390 File Offset: 0x00189590
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = LogicRibbonWriterConfig.ID;
@@ -46,13 +44,11 @@ public class LogicRibbonWriterConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060010A2 RID: 4258 RVA: 0x000B1B89 File Offset: 0x000AFD89
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicRibbonWriter>();
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayInFrontOfConduits, false);
 	}
 
-	// Token: 0x04000B9F RID: 2975
 	public static string ID = "LogicRibbonWriter";
 }

@@ -8,16 +8,11 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.UI.Extensions;
 
-// Token: 0x02002065 RID: 8293
 [AddComponentMenu("KMonoBehaviour/scripts/SkillWidget")]
 public class SkillWidget : KMonoBehaviour, IPointerEnterHandler, IEventSystemHandler, IPointerExitHandler, IPointerClickHandler, IPointerDownHandler
 {
-	// Token: 0x17000B4E RID: 2894
-	// (get) Token: 0x0600B05B RID: 45147 RVA: 0x001174BA File Offset: 0x001156BA
-	// (set) Token: 0x0600B05C RID: 45148 RVA: 0x001174C2 File Offset: 0x001156C2
 	public string skillID { get; private set; }
 
-	// Token: 0x0600B05D RID: 45149 RVA: 0x0042FB48 File Offset: 0x0042DD48
 	public void Refresh(string skillID)
 	{
 		Skill skill = Db.Get().Skills.Get(skillID);
@@ -122,7 +117,6 @@ public class SkillWidget : KMonoBehaviour, IPointerEnterHandler, IEventSystemHan
 		this.masteryCount.GetComponentInChildren<LocText>().text = list.Count.ToString();
 	}
 
-	// Token: 0x0600B05E RID: 45150 RVA: 0x0042FFB8 File Offset: 0x0042E1B8
 	public void RefreshLines()
 	{
 		this.prerequisiteSkillWidgets.Clear();
@@ -171,7 +165,6 @@ public class SkillWidget : KMonoBehaviour, IPointerEnterHandler, IEventSystemHan
 		}
 	}
 
-	// Token: 0x0600B05F RID: 45151 RVA: 0x004302CC File Offset: 0x0042E4CC
 	public void ToggleBorderHighlight(bool on)
 	{
 		this.borderHighlight.SetActive(on);
@@ -190,13 +183,11 @@ public class SkillWidget : KMonoBehaviour, IPointerEnterHandler, IEventSystemHan
 		}
 	}
 
-	// Token: 0x0600B060 RID: 45152 RVA: 0x001174CB File Offset: 0x001156CB
 	public string SkillTooltip(Skill skill)
 	{
 		return "" + SkillWidget.SkillPerksString(skill) + "\n" + this.DuplicantSkillString(skill);
 	}
 
-	// Token: 0x0600B061 RID: 45153 RVA: 0x00430358 File Offset: 0x0042E558
 	public static string SkillPerksString(Skill skill)
 	{
 		string text = "";
@@ -215,7 +206,6 @@ public class SkillWidget : KMonoBehaviour, IPointerEnterHandler, IEventSystemHan
 		return text;
 	}
 
-	// Token: 0x0600B062 RID: 45154 RVA: 0x004303F0 File Offset: 0x0042E5F0
 	public string CriteriaString(Skill skill)
 	{
 		bool flag = false;
@@ -253,7 +243,6 @@ public class SkillWidget : KMonoBehaviour, IPointerEnterHandler, IEventSystemHan
 		return text;
 	}
 
-	// Token: 0x0600B063 RID: 45155 RVA: 0x00430560 File Offset: 0x0042E760
 	public string DuplicantSkillString(Skill skill)
 	{
 		string text = "";
@@ -335,7 +324,6 @@ public class SkillWidget : KMonoBehaviour, IPointerEnterHandler, IEventSystemHan
 		return text;
 	}
 
-	// Token: 0x0600B064 RID: 45156 RVA: 0x001174EE File Offset: 0x001156EE
 	public void OnPointerEnter(PointerEventData eventData)
 	{
 		this.ToggleBorderHighlight(true);
@@ -343,14 +331,12 @@ public class SkillWidget : KMonoBehaviour, IPointerEnterHandler, IEventSystemHan
 		this.soundPlayer.Play(1);
 	}
 
-	// Token: 0x0600B065 RID: 45157 RVA: 0x00117514 File Offset: 0x00115714
 	public void OnPointerExit(PointerEventData eventData)
 	{
 		this.ToggleBorderHighlight(false);
 		this.skillsScreen.HoverSkill(null);
 	}
 
-	// Token: 0x0600B066 RID: 45158 RVA: 0x00430850 File Offset: 0x0042EA50
 	public void OnPointerClick(PointerEventData eventData)
 	{
 		MinionIdentity minionIdentity;
@@ -373,7 +359,6 @@ public class SkillWidget : KMonoBehaviour, IPointerEnterHandler, IEventSystemHan
 		}
 	}
 
-	// Token: 0x0600B067 RID: 45159 RVA: 0x004308EC File Offset: 0x0042EAEC
 	public void OnPointerDown(PointerEventData eventData)
 	{
 		MinionIdentity minionIdentity;
@@ -395,103 +380,76 @@ public class SkillWidget : KMonoBehaviour, IPointerEnterHandler, IEventSystemHan
 		KFMOD.PlayUISound(GlobalAssets.GetSound("Negative", false));
 	}
 
-	// Token: 0x04008AB5 RID: 35509
 	[SerializeField]
 	private LocText Name;
 
-	// Token: 0x04008AB6 RID: 35510
 	[SerializeField]
 	private LocText Description;
 
-	// Token: 0x04008AB7 RID: 35511
 	[SerializeField]
 	private Image TitleBarBG;
 
-	// Token: 0x04008AB8 RID: 35512
 	[SerializeField]
 	private SkillsScreen skillsScreen;
 
-	// Token: 0x04008AB9 RID: 35513
 	[SerializeField]
 	private ToolTip tooltip;
 
-	// Token: 0x04008ABA RID: 35514
 	[SerializeField]
 	private RectTransform lines_left;
 
-	// Token: 0x04008ABB RID: 35515
 	[SerializeField]
 	public RectTransform lines_right;
 
-	// Token: 0x04008ABC RID: 35516
 	[SerializeField]
 	private Color header_color_has_skill;
 
-	// Token: 0x04008ABD RID: 35517
 	[SerializeField]
 	private Color header_color_can_assign;
 
-	// Token: 0x04008ABE RID: 35518
 	[SerializeField]
 	private Color header_color_disabled;
 
-	// Token: 0x04008ABF RID: 35519
 	[SerializeField]
 	private Color line_color_default;
 
-	// Token: 0x04008AC0 RID: 35520
 	[SerializeField]
 	private Color line_color_active;
 
-	// Token: 0x04008AC1 RID: 35521
 	[SerializeField]
 	private Image hatImage;
 
-	// Token: 0x04008AC2 RID: 35522
 	[SerializeField]
 	private GameObject borderHighlight;
 
-	// Token: 0x04008AC3 RID: 35523
 	[SerializeField]
 	private ToolTip masteryCount;
 
-	// Token: 0x04008AC4 RID: 35524
 	[SerializeField]
 	private GameObject aptitudeBox;
 
-	// Token: 0x04008AC5 RID: 35525
 	[SerializeField]
 	private GameObject grantedBox;
 
-	// Token: 0x04008AC6 RID: 35526
 	[SerializeField]
 	private Image grantedIcon;
 
-	// Token: 0x04008AC7 RID: 35527
 	[SerializeField]
 	private GameObject traitDisabledIcon;
 
-	// Token: 0x04008AC8 RID: 35528
 	public TextStyleSetting TooltipTextStyle_Header;
 
-	// Token: 0x04008AC9 RID: 35529
 	public TextStyleSetting TooltipTextStyle_AbilityNegativeModifier;
 
-	// Token: 0x04008ACA RID: 35530
 	private List<SkillWidget> prerequisiteSkillWidgets = new List<SkillWidget>();
 
-	// Token: 0x04008ACB RID: 35531
 	private UILineRenderer[] lines;
 
-	// Token: 0x04008ACC RID: 35532
 	private List<Vector2> linePoints = new List<Vector2>();
 
-	// Token: 0x04008ACD RID: 35533
 	public Material defaultMaterial;
 
-	// Token: 0x04008ACE RID: 35534
 	public Material desaturatedMaterial;
 
-	// Token: 0x04008ACF RID: 35535
 	public ButtonSoundPlayer soundPlayer;
 }

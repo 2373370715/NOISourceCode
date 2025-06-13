@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000409 RID: 1033
 public class ManualPressureDoorConfig : IBuildingConfig
 {
-	// Token: 0x06001124 RID: 4388 RVA: 0x0018CF30 File Offset: 0x0018B130
 	public override BuildingDef CreateBuildingDef()
 	{
 		BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef("ManualPressureDoor", 1, 2, "door_manual_kanim", 30, 60f, BUILDINGS.CONSTRUCTION_MASS_KG.TIER3, MATERIALS.ALL_METALS, 1600f, BuildLocationRule.Tile, BUILDINGS.DECOR.PENALTY.TIER2, NOISE_POLLUTION.NONE, 1f);
@@ -24,7 +22,6 @@ public class ManualPressureDoorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001125 RID: 4389 RVA: 0x0018D008 File Offset: 0x0018B208
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		Door door = go.AddOrGet<Door>();
@@ -40,13 +37,11 @@ public class ManualPressureDoorConfig : IBuildingConfig
 		UnityEngine.Object.DestroyImmediate(go.GetComponent<BuildingEnabledButton>());
 	}
 
-	// Token: 0x06001126 RID: 4390 RVA: 0x000B2127 File Offset: 0x000B0327
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.GetComponent<AccessControl>().controlEnabled = true;
 		go.GetComponent<KBatchedAnimController>().initialAnim = "closed";
 	}
 
-	// Token: 0x04000BED RID: 3053
 	public const string ID = "ManualPressureDoor";
 }

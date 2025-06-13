@@ -7,10 +7,8 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x020005C1 RID: 1473
 public class SpiceGrinder : GameStateMachine<SpiceGrinder, SpiceGrinder.StatesInstance, IStateMachineTarget, SpiceGrinder.Def>
 {
-	// Token: 0x0600199A RID: 6554 RVA: 0x001AF564 File Offset: 0x001AD764
 	public static void InitializeSpices()
 	{
 		Spices spices = Db.Get().Spices;
@@ -25,7 +23,6 @@ public class SpiceGrinder : GameStateMachine<SpiceGrinder, SpiceGrinder.StatesIn
 		}
 	}
 
-	// Token: 0x0600199B RID: 6555 RVA: 0x001AF5C4 File Offset: 0x001AD7C4
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.inoperational;
@@ -53,25 +50,21 @@ public class SpiceGrinder : GameStateMachine<SpiceGrinder, SpiceGrinder.StatesIn
 		this.ready.EventTransition(GameHashes.OperationalChanged, this.inoperational, GameStateMachine<SpiceGrinder, SpiceGrinder.StatesInstance, IStateMachineTarget, SpiceGrinder.Def>.Not(new StateMachine<SpiceGrinder, SpiceGrinder.StatesInstance, IStateMachineTarget, SpiceGrinder.Def>.Transition.ConditionCallback(this.IsOperational))).EventHandler(GameHashes.UpdateRoom, new StateMachine<SpiceGrinder, SpiceGrinder.StatesInstance, IStateMachineTarget, SpiceGrinder.Def>.State.Callback(this.UpdateInKitchen)).ParamTransition<bool>(this.isReady, this.operational, GameStateMachine<SpiceGrinder, SpiceGrinder.StatesInstance, IStateMachineTarget, SpiceGrinder.Def>.IsFalse).ToggleRecurringChore(new Func<SpiceGrinder.StatesInstance, Chore>(this.CreateChore), null);
 	}
 
-	// Token: 0x0600199C RID: 6556 RVA: 0x000B54E3 File Offset: 0x000B36E3
 	private void UpdateInKitchen(SpiceGrinder.StatesInstance smi)
 	{
 		smi.GetComponent<Operational>().SetFlag(SpiceGrinder.inKitchen, smi.roomTracker.IsInCorrectRoom());
 	}
 
-	// Token: 0x0600199D RID: 6557 RVA: 0x000B5500 File Offset: 0x000B3700
 	private void OnEnterRoot(SpiceGrinder.StatesInstance smi)
 	{
 		smi.Initialize();
 	}
 
-	// Token: 0x0600199E RID: 6558 RVA: 0x000B5508 File Offset: 0x000B3708
 	private bool IsOperational(SpiceGrinder.StatesInstance smi)
 	{
 		return smi.IsOperational;
 	}
 
-	// Token: 0x0600199F RID: 6559 RVA: 0x001AF760 File Offset: 0x001AD960
 	private void OnStorageChanged(SpiceGrinder.StatesInstance smi, object data)
 	{
 		smi.UpdateMeter();
@@ -84,38 +77,27 @@ public class SpiceGrinder : GameStateMachine<SpiceGrinder, SpiceGrinder.StatesIn
 		smi.sm.isReady.Set(value, smi, false);
 	}
 
-	// Token: 0x060019A0 RID: 6560 RVA: 0x001AF7B8 File Offset: 0x001AD9B8
 	private Chore CreateChore(SpiceGrinder.StatesInstance smi)
 	{
 		return new WorkChore<SpiceGrinderWorkable>(Db.Get().ChoreTypes.Cook, smi.workable, null, true, null, null, null, true, null, false, true, null, false, true, true, PriorityScreen.PriorityClass.basic, 5, false, true);
 	}
 
-	// Token: 0x040010A2 RID: 4258
 	public static Dictionary<Tag, SpiceGrinder.Option> SettingOptions = null;
 
-	// Token: 0x040010A3 RID: 4259
 	public static readonly Operational.Flag spiceSet = new Operational.Flag("spiceSet", Operational.Flag.Type.Functional);
 
-	// Token: 0x040010A4 RID: 4260
 	public static Operational.Flag inKitchen = new Operational.Flag("inKitchen", Operational.Flag.Type.Functional);
 
-	// Token: 0x040010A5 RID: 4261
 	public GameStateMachine<SpiceGrinder, SpiceGrinder.StatesInstance, IStateMachineTarget, SpiceGrinder.Def>.State inoperational;
 
-	// Token: 0x040010A6 RID: 4262
 	public GameStateMachine<SpiceGrinder, SpiceGrinder.StatesInstance, IStateMachineTarget, SpiceGrinder.Def>.State operational;
 
-	// Token: 0x040010A7 RID: 4263
 	public GameStateMachine<SpiceGrinder, SpiceGrinder.StatesInstance, IStateMachineTarget, SpiceGrinder.Def>.State ready;
 
-	// Token: 0x040010A8 RID: 4264
 	public StateMachine<SpiceGrinder, SpiceGrinder.StatesInstance, IStateMachineTarget, SpiceGrinder.Def>.BoolParameter isReady;
 
-	// Token: 0x020005C2 RID: 1474
 	public class Option : IConfigurableConsumerOption
 	{
-		// Token: 0x17000096 RID: 150
-		// (get) Token: 0x060019A4 RID: 6564 RVA: 0x001AF834 File Offset: 0x001ADA34
 		public Effect StatBonus
 		{
 			get
@@ -135,7 +117,6 @@ public class SpiceGrinder : GameStateMachine<SpiceGrinder, SpiceGrinder.StatesIn
 			}
 		}
 
-		// Token: 0x060019A5 RID: 6565 RVA: 0x001AF890 File Offset: 0x001ADA90
 		public Option(Spice spice)
 		{
 			this.Id = new Tag(spice.Id);
@@ -148,13 +129,11 @@ public class SpiceGrinder : GameStateMachine<SpiceGrinder, SpiceGrinder.StatesIn
 			}
 		}
 
-		// Token: 0x060019A6 RID: 6566 RVA: 0x000B5540 File Offset: 0x000B3740
 		public Tag GetID()
 		{
 			return this.Spice.Id;
 		}
 
-		// Token: 0x060019A7 RID: 6567 RVA: 0x001AF920 File Offset: 0x001ADB20
 		public string GetName()
 		{
 			if (string.IsNullOrEmpty(this.name))
@@ -171,7 +150,6 @@ public class SpiceGrinder : GameStateMachine<SpiceGrinder, SpiceGrinder.StatesIn
 			return this.name;
 		}
 
-		// Token: 0x060019A8 RID: 6568 RVA: 0x000B5552 File Offset: 0x000B3752
 		public string GetDetailedDescription()
 		{
 			if (string.IsNullOrEmpty(this.fullDescription))
@@ -181,7 +159,6 @@ public class SpiceGrinder : GameStateMachine<SpiceGrinder, SpiceGrinder.StatesIn
 			return this.fullDescription;
 		}
 
-		// Token: 0x060019A9 RID: 6569 RVA: 0x001AF98C File Offset: 0x001ADB8C
 		public string GetDescription()
 		{
 			if (!string.IsNullOrEmpty(this.spiceDescription))
@@ -199,7 +176,6 @@ public class SpiceGrinder : GameStateMachine<SpiceGrinder, SpiceGrinder.StatesIn
 			return this.spiceDescription;
 		}
 
-		// Token: 0x060019AA RID: 6570 RVA: 0x001AF9FC File Offset: 0x001ADBFC
 		private void CreateDescription()
 		{
 			string text = "STRINGS.ITEMS.SPICES." + this.Spice.Id.ToUpper() + ".DESC";
@@ -226,50 +202,37 @@ public class SpiceGrinder : GameStateMachine<SpiceGrinder, SpiceGrinder.StatesIn
 			this.fullDescription = this.spiceDescription + this.ingredientDescriptions;
 		}
 
-		// Token: 0x060019AB RID: 6571 RVA: 0x000B556D File Offset: 0x000B376D
 		public Sprite GetIcon()
 		{
 			return Assets.GetSprite(this.Spice.Image);
 		}
 
-		// Token: 0x060019AC RID: 6572 RVA: 0x001AFB24 File Offset: 0x001ADD24
 		public IConfigurableConsumerIngredient[] GetIngredients()
 		{
 			return this.Spice.Ingredients;
 		}
 
-		// Token: 0x040010A9 RID: 4265
 		public readonly Tag Id;
 
-		// Token: 0x040010AA RID: 4266
 		public readonly Spice Spice;
 
-		// Token: 0x040010AB RID: 4267
 		private string name;
 
-		// Token: 0x040010AC RID: 4268
 		private string fullDescription;
 
-		// Token: 0x040010AD RID: 4269
 		private string spiceDescription;
 
-		// Token: 0x040010AE RID: 4270
 		private string ingredientDescriptions;
 
-		// Token: 0x040010AF RID: 4271
 		private Effect statBonus;
 	}
 
-	// Token: 0x020005C3 RID: 1475
 	public class Def : StateMachine.BaseDef
 	{
 	}
 
-	// Token: 0x020005C4 RID: 1476
 	public class StatesInstance : GameStateMachine<SpiceGrinder, SpiceGrinder.StatesInstance, IStateMachineTarget, SpiceGrinder.Def>.GameInstance
 	{
-		// Token: 0x17000097 RID: 151
-		// (get) Token: 0x060019AE RID: 6574 RVA: 0x000B5584 File Offset: 0x000B3784
 		public bool IsOperational
 		{
 			get
@@ -278,8 +241,6 @@ public class SpiceGrinder : GameStateMachine<SpiceGrinder, SpiceGrinder.StatesIn
 			}
 		}
 
-		// Token: 0x17000098 RID: 152
-		// (get) Token: 0x060019AF RID: 6575 RVA: 0x000B55A1 File Offset: 0x000B37A1
 		public float AvailableFood
 		{
 			get
@@ -292,8 +253,6 @@ public class SpiceGrinder : GameStateMachine<SpiceGrinder, SpiceGrinder.StatesIn
 			}
 		}
 
-		// Token: 0x17000099 RID: 153
-		// (get) Token: 0x060019B0 RID: 6576 RVA: 0x000B55C2 File Offset: 0x000B37C2
 		public SpiceGrinder.Option SelectedOption
 		{
 			get
@@ -306,8 +265,6 @@ public class SpiceGrinder : GameStateMachine<SpiceGrinder, SpiceGrinder.StatesIn
 			}
 		}
 
-		// Token: 0x1700009A RID: 154
-		// (get) Token: 0x060019B1 RID: 6577 RVA: 0x001AFB40 File Offset: 0x001ADD40
 		public Edible CurrentFood
 		{
 			get
@@ -318,8 +275,6 @@ public class SpiceGrinder : GameStateMachine<SpiceGrinder, SpiceGrinder.StatesIn
 			}
 		}
 
-		// Token: 0x1700009B RID: 155
-		// (get) Token: 0x060019B2 RID: 6578 RVA: 0x000B55F2 File Offset: 0x000B37F2
 		public bool HasOpenFetches
 		{
 			get
@@ -328,9 +283,6 @@ public class SpiceGrinder : GameStateMachine<SpiceGrinder, SpiceGrinder.StatesIn
 			}
 		}
 
-		// Token: 0x1700009C RID: 156
-		// (get) Token: 0x060019B3 RID: 6579 RVA: 0x000B561E File Offset: 0x000B381E
-		// (set) Token: 0x060019B4 RID: 6580 RVA: 0x000B5626 File Offset: 0x000B3826
 		public bool AllowMutantSeeds
 		{
 			get
@@ -344,7 +296,6 @@ public class SpiceGrinder : GameStateMachine<SpiceGrinder, SpiceGrinder.StatesIn
 			}
 		}
 
-		// Token: 0x060019B5 RID: 6581 RVA: 0x001AFB7C File Offset: 0x001ADD7C
 		public StatesInstance(IStateMachineTarget master, SpiceGrinder.Def def) : base(master, def)
 		{
 			this.workable.Grinder = this;
@@ -368,14 +319,12 @@ public class SpiceGrinder : GameStateMachine<SpiceGrinder, SpiceGrinder.StatesIn
 			base.Subscribe(493375141, new Action<object>(this.OnRefreshUserMenu));
 		}
 
-		// Token: 0x060019B6 RID: 6582 RVA: 0x000B563B File Offset: 0x000B383B
 		protected override void OnCleanUp()
 		{
 			base.OnCleanUp();
 			Prioritizable.RemoveRef(base.gameObject);
 		}
 
-		// Token: 0x060019B7 RID: 6583 RVA: 0x001AFCAC File Offset: 0x001ADEAC
 		public void Initialize()
 		{
 			if (DlcManager.IsExpansion1Active())
@@ -397,7 +346,6 @@ public class SpiceGrinder : GameStateMachine<SpiceGrinder, SpiceGrinder.StatesIn
 			this.UpdateMeter();
 		}
 
-		// Token: 0x060019B8 RID: 6584 RVA: 0x001AFD44 File Offset: 0x001ADF44
 		private void OnRefreshUserMenu(object data)
 		{
 			if (DlcManager.FeatureRadiationEnabled())
@@ -410,7 +358,6 @@ public class SpiceGrinder : GameStateMachine<SpiceGrinder, SpiceGrinder.StatesIn
 			}
 		}
 
-		// Token: 0x060019B9 RID: 6585 RVA: 0x001AFDC0 File Offset: 0x001ADFC0
 		public void ToggleMutantSeedFetches(bool allow)
 		{
 			if (DlcManager.IsExpansion1Active())
@@ -442,7 +389,6 @@ public class SpiceGrinder : GameStateMachine<SpiceGrinder, SpiceGrinder.StatesIn
 			}
 		}
 
-		// Token: 0x060019BA RID: 6586 RVA: 0x001AFE70 File Offset: 0x001AE070
 		private void UpdateMutantSeedFetches()
 		{
 			if (this.SpiceFetches != null)
@@ -473,7 +419,6 @@ public class SpiceGrinder : GameStateMachine<SpiceGrinder, SpiceGrinder.StatesIn
 			}
 		}
 
-		// Token: 0x060019BB RID: 6587 RVA: 0x001AFF40 File Offset: 0x001AE140
 		private void OnCopySettings(object data)
 		{
 			SpiceGrinderWorkable component = ((GameObject)data).GetComponent<SpiceGrinderWorkable>();
@@ -487,7 +432,6 @@ public class SpiceGrinder : GameStateMachine<SpiceGrinder, SpiceGrinder.StatesIn
 			}
 		}
 
-		// Token: 0x060019BC RID: 6588 RVA: 0x001AFFA8 File Offset: 0x001AE1A8
 		public void SetupFoodSymbol()
 		{
 			GameObject gameObject = Util.NewGameObject(base.gameObject, "foodSymbol");
@@ -505,7 +449,6 @@ public class SpiceGrinder : GameStateMachine<SpiceGrinder, SpiceGrinder.StatesIn
 			this.kbac.SetSymbolVisiblity(SpiceGrinder.StatesInstance.HASH_FOOD, false);
 		}
 
-		// Token: 0x060019BD RID: 6589 RVA: 0x001B0064 File Offset: 0x001AE264
 		public void UpdateFoodSymbol()
 		{
 			bool flag = this.AvailableFood > 0f && this.CurrentFood != null;
@@ -517,13 +460,11 @@ public class SpiceGrinder : GameStateMachine<SpiceGrinder, SpiceGrinder.StatesIn
 			}
 		}
 
-		// Token: 0x060019BE RID: 6590 RVA: 0x000B564E File Offset: 0x000B384E
 		public void UpdateMeter()
 		{
 			this.meter.SetPositionPercent(this.seedStorage.MassStored() / this.seedStorage.capacityKg);
 		}
 
-		// Token: 0x060019BF RID: 6591 RVA: 0x001B00E0 File Offset: 0x001AE2E0
 		public void SpiceFood()
 		{
 			float num = this.CurrentFood.Calories / 1000f;
@@ -549,7 +490,6 @@ public class SpiceGrinder : GameStateMachine<SpiceGrinder, SpiceGrinder.StatesIn
 			base.sm.isReady.Set(false, this, false);
 		}
 
-		// Token: 0x060019C0 RID: 6592 RVA: 0x001B01E0 File Offset: 0x001AE3E0
 		public bool CanSpice(float kcalToSpice)
 		{
 			bool flag = true;
@@ -581,13 +521,11 @@ public class SpiceGrinder : GameStateMachine<SpiceGrinder, SpiceGrinder.StatesIn
 			return flag;
 		}
 
-		// Token: 0x060019C1 RID: 6593 RVA: 0x000B5672 File Offset: 0x000B3872
 		private FetchChore CreateFetchChore(Tag[] ingredientIngredientSet, float amount)
 		{
 			return this.CreateFetchChore(new HashSet<Tag>(ingredientIngredientSet), amount);
 		}
 
-		// Token: 0x060019C2 RID: 6594 RVA: 0x001B02FC File Offset: 0x001AE4FC
 		private FetchChore CreateFetchChore(HashSet<Tag> ingredients, float amount)
 		{
 			float num = Mathf.Max(amount, 1f);
@@ -609,7 +547,6 @@ public class SpiceGrinder : GameStateMachine<SpiceGrinder, SpiceGrinder.StatesIn
 			return new FetchChore(cookFetch, destination, amount2, ingredients, criteria, invalid, forbidden_tags, null, true, on_complete, null, null, Operational.State.Operational, 0);
 		}
 
-		// Token: 0x060019C3 RID: 6595 RVA: 0x001B0368 File Offset: 0x001AE568
 		private void ClearFetchChore(Chore obj)
 		{
 			FetchChore fetchChore = obj as FetchChore;
@@ -638,7 +575,6 @@ public class SpiceGrinder : GameStateMachine<SpiceGrinder, SpiceGrinder.StatesIn
 			}
 		}
 
-		// Token: 0x060019C4 RID: 6596 RVA: 0x001B03E8 File Offset: 0x001AE5E8
 		private void UpdateSpiceIngredientStatus(bool can_spice, Dictionary<Tag, float> missing_spices)
 		{
 			KSelectable component = base.GetComponent<KSelectable>();
@@ -655,7 +591,6 @@ public class SpiceGrinder : GameStateMachine<SpiceGrinder, SpiceGrinder.StatesIn
 			this.missingResourceStatusItem = component.AddStatusItem(Db.Get().BuildingStatusItems.MaterialsUnavailable, missing_spices);
 		}
 
-		// Token: 0x060019C5 RID: 6597 RVA: 0x001B0464 File Offset: 0x001AE664
 		public void OnOptionSelected(SpiceGrinder.Option spiceOption)
 		{
 			base.smi.GetComponent<Operational>().SetFlag(SpiceGrinder.spiceSet, spiceOption != null);
@@ -714,7 +649,6 @@ public class SpiceGrinder : GameStateMachine<SpiceGrinder, SpiceGrinder.StatesIn
 			}
 		}
 
-		// Token: 0x060019C6 RID: 6598 RVA: 0x001B06F0 File Offset: 0x001AE8F0
 		public void CancelFetches(string reason)
 		{
 			if (this.SpiceFetches != null)
@@ -730,7 +664,6 @@ public class SpiceGrinder : GameStateMachine<SpiceGrinder, SpiceGrinder.StatesIn
 			}
 		}
 
-		// Token: 0x060019C7 RID: 6599 RVA: 0x001B073C File Offset: 0x001AE93C
 		private void SetSpiceSymbolColours(Spice spice)
 		{
 			this.kbac.SetSymbolTint("stripe_anim2", spice.PrimaryColor);
@@ -738,61 +671,43 @@ public class SpiceGrinder : GameStateMachine<SpiceGrinder, SpiceGrinder.StatesIn
 			this.kbac.SetSymbolTint("grinder", spice.PrimaryColor);
 		}
 
-		// Token: 0x040010B0 RID: 4272
 		private static string HASH_FOOD = "food";
 
-		// Token: 0x040010B1 RID: 4273
 		private KBatchedAnimController kbac;
 
-		// Token: 0x040010B2 RID: 4274
 		private KBatchedAnimController foodKBAC;
 
-		// Token: 0x040010B3 RID: 4275
 		[MyCmpReq]
 		public RoomTracker roomTracker;
 
-		// Token: 0x040010B4 RID: 4276
 		[MyCmpReq]
 		public SpiceGrinderWorkable workable;
 
-		// Token: 0x040010B5 RID: 4277
 		[Serialize]
 		private int spiceHash;
 
-		// Token: 0x040010B6 RID: 4278
 		private SpiceInstance currentSpice;
 
-		// Token: 0x040010B7 RID: 4279
 		private Edible currentFood;
 
-		// Token: 0x040010B8 RID: 4280
 		private Storage seedStorage;
 
-		// Token: 0x040010B9 RID: 4281
 		private Storage foodStorage;
 
-		// Token: 0x040010BA RID: 4282
 		private MeterController meter;
 
-		// Token: 0x040010BB RID: 4283
 		private Tag[] foodFilter = new Tag[1];
 
-		// Token: 0x040010BC RID: 4284
 		private FilteredStorage foodStorageFilter;
 
-		// Token: 0x040010BD RID: 4285
 		private Operational operational;
 
-		// Token: 0x040010BE RID: 4286
 		private Guid missingResourceStatusItem = Guid.Empty;
 
-		// Token: 0x040010BF RID: 4287
 		private StatusItem mutantSeedStatusItem;
 
-		// Token: 0x040010C0 RID: 4288
 		private FetchChore[] SpiceFetches;
 
-		// Token: 0x040010C1 RID: 4289
 		[Serialize]
 		private bool allowMutantSeeds = true;
 	}

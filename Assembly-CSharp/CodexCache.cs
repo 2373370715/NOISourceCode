@@ -5,10 +5,8 @@ using Klei;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001C79 RID: 7289
 public static class CodexCache
 {
-	// Token: 0x060097A2 RID: 38818 RVA: 0x001073B0 File Offset: 0x001055B0
 	public static string FormatLinkID(string linkID)
 	{
 		linkID = linkID.ToUpper();
@@ -16,7 +14,6 @@ public static class CodexCache
 		return linkID;
 	}
 
-	// Token: 0x060097A3 RID: 38819 RVA: 0x003B4930 File Offset: 0x003B2B30
 	public static void CodexCacheInit()
 	{
 		CodexCache.entries = new Dictionary<string, CodexEntry>();
@@ -164,7 +161,6 @@ public static class CodexCache
 		});
 	}
 
-	// Token: 0x060097A4 RID: 38820 RVA: 0x001073CD File Offset: 0x001055CD
 	public static CodexEntry FindEntry(string id)
 	{
 		if (CodexCache.entries == null)
@@ -180,7 +176,6 @@ public static class CodexCache
 		return null;
 	}
 
-	// Token: 0x060097A5 RID: 38821 RVA: 0x003B5304 File Offset: 0x003B3504
 	public static SubEntry FindSubEntry(string id)
 	{
 		foreach (KeyValuePair<string, CodexEntry> keyValuePair in CodexCache.entries)
@@ -196,7 +191,6 @@ public static class CodexCache
 		return null;
 	}
 
-	// Token: 0x060097A6 RID: 38822 RVA: 0x003B53B4 File Offset: 0x003B35B4
 	private static void CheckUnlockableContent()
 	{
 		foreach (KeyValuePair<string, CodexEntry> keyValuePair in CodexCache.entries)
@@ -212,7 +206,6 @@ public static class CodexCache
 		}
 	}
 
-	// Token: 0x060097A7 RID: 38823 RVA: 0x003B546C File Offset: 0x003B366C
 	private static void CollectYAMLEntries(List<CategoryEntry> categories)
 	{
 		CodexCache.baseEntryPath = Application.streamingAssetsPath + "/codex";
@@ -252,7 +245,6 @@ public static class CodexCache
 		}
 	}
 
-	// Token: 0x060097A8 RID: 38824 RVA: 0x003B55FC File Offset: 0x003B37FC
 	private static void CollectYAMLSubEntries(List<CategoryEntry> categories)
 	{
 		CodexCache.baseEntryPath = Application.streamingAssetsPath + "/codex";
@@ -326,7 +318,6 @@ public static class CodexCache
 		}
 	}
 
-	// Token: 0x060097A9 RID: 38825 RVA: 0x0010740C File Offset: 0x0010560C
 	private static void AddLockLookup(string lockId, string articleId)
 	{
 		if (!CodexCache.unlockedEntryLookup.ContainsKey(lockId))
@@ -336,7 +327,6 @@ public static class CodexCache
 		CodexCache.unlockedEntryLookup[lockId].Add(articleId);
 	}
 
-	// Token: 0x060097AA RID: 38826 RVA: 0x003B5960 File Offset: 0x003B3B60
 	public static string GetEntryForLock(string lockId)
 	{
 		if (CodexCache.unlockedEntryLookup == null)
@@ -358,7 +348,6 @@ public static class CodexCache
 		return null;
 	}
 
-	// Token: 0x060097AB RID: 38827 RVA: 0x003B59D4 File Offset: 0x003B3BD4
 	public static void AddEntry(string id, CodexEntry entry, List<CategoryEntry> categoryEntries = null)
 	{
 		id = CodexCache.FormatLinkID(id);
@@ -425,17 +414,14 @@ public static class CodexCache
 		entry.contentContainers.RemoveAll((ContentContainer x) => !Game.IsCorrectDlcActiveForCurrentSave(x));
 	}
 
-	// Token: 0x060097AC RID: 38828 RVA: 0x000AA038 File Offset: 0x000A8238
 	public static void AddSubEntry(string id, SubEntry entry)
 	{
 	}
 
-	// Token: 0x060097AD RID: 38829 RVA: 0x000AA038 File Offset: 0x000A8238
 	public static void MergeSubEntry(string id, SubEntry entry)
 	{
 	}
 
-	// Token: 0x060097AE RID: 38830 RVA: 0x003B5C2C File Offset: 0x003B3E2C
 	public static void MergeEntry(string id, CodexEntry entry)
 	{
 		id = CodexCache.FormatLinkID(entry.id);
@@ -479,20 +465,17 @@ public static class CodexCache
 		}
 	}
 
-	// Token: 0x060097AF RID: 38831 RVA: 0x0010743C File Offset: 0x0010563C
 	public static void Clear()
 	{
 		CodexCache.entries = null;
 		CodexCache.baseEntryPath = null;
 	}
 
-	// Token: 0x060097B0 RID: 38832 RVA: 0x0010744A File Offset: 0x0010564A
 	public static string GetEntryPath()
 	{
 		return CodexCache.baseEntryPath;
 	}
 
-	// Token: 0x060097B1 RID: 38833 RVA: 0x003B5DA0 File Offset: 0x003B3FA0
 	public static CodexEntry GetTemplate(string templatePath)
 	{
 		if (!CodexCache.entries.ContainsKey(templatePath))
@@ -512,13 +495,11 @@ public static class CodexCache
 		return CodexCache.entries[templatePath];
 	}
 
-	// Token: 0x060097B2 RID: 38834 RVA: 0x00107451 File Offset: 0x00105651
 	private static void YamlParseErrorCB(YamlIO.Error error, bool force_log_as_warning)
 	{
 		throw new Exception(string.Format("{0} parse error in {1}\n{2}", error.severity, error.file.full_path, error.message), error.inner_exception);
 	}
 
-	// Token: 0x060097B3 RID: 38835 RVA: 0x003B5E28 File Offset: 0x003B4028
 	public static List<CodexEntry> CollectEntries(string folder)
 	{
 		List<CodexEntry> list = new List<CodexEntry>();
@@ -567,7 +548,6 @@ public static class CodexCache
 		return list;
 	}
 
-	// Token: 0x060097B4 RID: 38836 RVA: 0x003B5F9C File Offset: 0x003B419C
 	public static List<SubEntry> CollectSubEntries(string folder)
 	{
 		List<SubEntry> list = new List<SubEntry>();
@@ -607,24 +587,18 @@ public static class CodexCache
 		return list;
 	}
 
-	// Token: 0x060097B5 RID: 38837 RVA: 0x00107484 File Offset: 0x00105684
 	public static bool IsSubEntryAtPath(string path)
 	{
 		return Path.GetFileName(path).Contains("SubEntry");
 	}
 
-	// Token: 0x04007621 RID: 30241
 	private static string baseEntryPath;
 
-	// Token: 0x04007622 RID: 30242
 	public static Dictionary<string, CodexEntry> entries;
 
-	// Token: 0x04007623 RID: 30243
 	public static Dictionary<string, SubEntry> subEntries;
 
-	// Token: 0x04007624 RID: 30244
 	private static Dictionary<string, List<string>> unlockedEntryLookup;
 
-	// Token: 0x04007625 RID: 30245
 	private static List<global::Tuple<string, Type>> widgetTagMappings;
 }

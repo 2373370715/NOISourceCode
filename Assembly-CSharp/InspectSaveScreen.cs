@@ -6,10 +6,8 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001B2A RID: 6954
 public class InspectSaveScreen : KModalScreen
 {
-	// Token: 0x060091AC RID: 37292 RVA: 0x00103ABC File Offset: 0x00101CBC
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -17,14 +15,12 @@ public class InspectSaveScreen : KModalScreen
 		this.deleteSaveBtn.onClick += this.DeleteSave;
 	}
 
-	// Token: 0x060091AD RID: 37293 RVA: 0x00103AF2 File Offset: 0x00101CF2
 	private void CloseScreen()
 	{
 		LoadScreen.Instance.Show(true);
 		this.Show(false);
 	}
 
-	// Token: 0x060091AE RID: 37294 RVA: 0x00103B06 File Offset: 0x00101D06
 	protected override void OnShow(bool show)
 	{
 		base.OnShow(show);
@@ -35,7 +31,6 @@ public class InspectSaveScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x060091AF RID: 37295 RVA: 0x0038E3BC File Offset: 0x0038C5BC
 	public void SetTarget(string path)
 	{
 		if (string.IsNullOrEmpty(path))
@@ -79,7 +74,6 @@ public class InspectSaveScreen : KModalScreen
 		this.Show(true);
 	}
 
-	// Token: 0x060091B0 RID: 37296 RVA: 0x0038E4F4 File Offset: 0x0038C6F4
 	private void ConfirmDoAction(string message, System.Action action)
 	{
 		if (this.confirmScreen == null)
@@ -93,7 +87,6 @@ public class InspectSaveScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x060091B1 RID: 37297 RVA: 0x00103B28 File Offset: 0x00101D28
 	private void DeleteSave()
 	{
 		if (string.IsNullOrEmpty(this.currentPath))
@@ -113,12 +106,10 @@ public class InspectSaveScreen : KModalScreen
 		});
 	}
 
-	// Token: 0x060091B2 RID: 37298 RVA: 0x000AA038 File Offset: 0x000A8238
 	private void AddNewSave(KButton btn, string file)
 	{
 	}
 
-	// Token: 0x060091B3 RID: 37299 RVA: 0x00103B5E File Offset: 0x00101D5E
 	private void ButtonClicked(KButton btn)
 	{
 		LoadingOverlay.Load(delegate
@@ -127,7 +118,6 @@ public class InspectSaveScreen : KModalScreen
 		});
 	}
 
-	// Token: 0x060091B4 RID: 37300 RVA: 0x00103B83 File Offset: 0x00101D83
 	private void Load(string filename)
 	{
 		if (Game.Instance != null)
@@ -139,7 +129,6 @@ public class InspectSaveScreen : KModalScreen
 		this.Deactivate();
 	}
 
-	// Token: 0x060091B5 RID: 37301 RVA: 0x00103BAD File Offset: 0x00101DAD
 	public override void OnKeyDown(KButtonEvent e)
 	{
 		if (e.TryConsume(global::Action.Escape) || e.TryConsume(global::Action.MouseRight))
@@ -150,35 +139,26 @@ public class InspectSaveScreen : KModalScreen
 		base.OnKeyDown(e);
 	}
 
-	// Token: 0x04006E51 RID: 28241
 	[SerializeField]
 	private KButton closeButton;
 
-	// Token: 0x04006E52 RID: 28242
 	[SerializeField]
 	private KButton mainSaveBtn;
 
-	// Token: 0x04006E53 RID: 28243
 	[SerializeField]
 	private KButton backupBtnPrefab;
 
-	// Token: 0x04006E54 RID: 28244
 	[SerializeField]
 	private KButton deleteSaveBtn;
 
-	// Token: 0x04006E55 RID: 28245
 	[SerializeField]
 	private GameObject buttonGroup;
 
-	// Token: 0x04006E56 RID: 28246
 	private UIPool<KButton> buttonPool;
 
-	// Token: 0x04006E57 RID: 28247
 	private Dictionary<KButton, string> buttonFileMap = new Dictionary<KButton, string>();
 
-	// Token: 0x04006E58 RID: 28248
 	private ConfirmDialogScreen confirmScreen;
 
-	// Token: 0x04006E59 RID: 28249
 	private string currentPath = "";
 }

@@ -5,11 +5,9 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001A78 RID: 6776
 [SerializationConfig(MemberSerialization.OptIn)]
 public class VerticalWindTunnel : StateMachineComponent<VerticalWindTunnel.StatesInstance>, IGameObjectEffectDescriptor, ISim200ms
 {
-	// Token: 0x06008D4E RID: 36174 RVA: 0x003759A8 File Offset: 0x00373BA8
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -29,7 +27,6 @@ public class VerticalWindTunnel : StateMachineComponent<VerticalWindTunnel.State
 		this.operational = base.GetComponent<Operational>();
 	}
 
-	// Token: 0x06008D4F RID: 36175 RVA: 0x00375A28 File Offset: 0x00373C28
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -66,7 +63,6 @@ public class VerticalWindTunnel : StateMachineComponent<VerticalWindTunnel.State
 		base.smi.StartSM();
 	}
 
-	// Token: 0x06008D50 RID: 36176 RVA: 0x00375BD4 File Offset: 0x00373DD4
 	protected override void OnCleanUp()
 	{
 		this.UpdateChores(false);
@@ -81,7 +77,6 @@ public class VerticalWindTunnel : StateMachineComponent<VerticalWindTunnel.State
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06008D51 RID: 36177 RVA: 0x00375C28 File Offset: 0x00373E28
 	private Chore CreateChore(int i)
 	{
 		Workable workable = this.workables[i];
@@ -97,7 +92,6 @@ public class VerticalWindTunnel : StateMachineComponent<VerticalWindTunnel.State
 		return workChore;
 	}
 
-	// Token: 0x06008D52 RID: 36178 RVA: 0x00100D7A File Offset: 0x000FEF7A
 	private void OnSocialChoreEnd(Chore chore)
 	{
 		if (base.gameObject.HasTag(GameTags.Operational))
@@ -106,7 +100,6 @@ public class VerticalWindTunnel : StateMachineComponent<VerticalWindTunnel.State
 		}
 	}
 
-	// Token: 0x06008D53 RID: 36179 RVA: 0x00375C90 File Offset: 0x00373E90
 	public void UpdateChores(bool update = true)
 	{
 		for (int i = 0; i < this.choreOffsets.Length; i++)
@@ -127,7 +120,6 @@ public class VerticalWindTunnel : StateMachineComponent<VerticalWindTunnel.State
 		}
 	}
 
-	// Token: 0x06008D54 RID: 36180 RVA: 0x00375CF0 File Offset: 0x00373EF0
 	public void Sim200ms(float dt)
 	{
 		bool flag = this.HasInvalidIntake();
@@ -139,7 +131,6 @@ public class VerticalWindTunnel : StateMachineComponent<VerticalWindTunnel.State
 		}
 	}
 
-	// Token: 0x06008D55 RID: 36181 RVA: 0x00375D50 File Offset: 0x00373F50
 	private float GetIntakeRatio(int fromCell, int radius)
 	{
 		float num = 0f;
@@ -162,7 +153,6 @@ public class VerticalWindTunnel : StateMachineComponent<VerticalWindTunnel.State
 		return num2 / num;
 	}
 
-	// Token: 0x06008D56 RID: 36182 RVA: 0x00375DB4 File Offset: 0x00373FB4
 	private bool HasInvalidIntake()
 	{
 		Vector3 position = base.transform.GetPosition();
@@ -184,7 +174,6 @@ public class VerticalWindTunnel : StateMachineComponent<VerticalWindTunnel.State
 		return this.invalidIntake;
 	}
 
-	// Token: 0x06008D57 RID: 36183 RVA: 0x00375ED8 File Offset: 0x003740D8
 	public void SetGasWalls(bool set)
 	{
 		Building component = base.GetComponent<Building>();
@@ -207,7 +196,6 @@ public class VerticalWindTunnel : StateMachineComponent<VerticalWindTunnel.State
 		}
 	}
 
-	// Token: 0x06008D58 RID: 36184 RVA: 0x00375F7C File Offset: 0x0037417C
 	private void OnElementConsumed(bool isTop, Sim.ConsumedMassInfo info)
 	{
 		Building component = base.GetComponent<Building>();
@@ -216,7 +204,6 @@ public class VerticalWindTunnel : StateMachineComponent<VerticalWindTunnel.State
 		SimMessages.AddRemoveSubstance(Grid.OffsetCell(Grid.XYToCell((int)position.x, (int)position.y), offset), info.removedElemIdx, CellEventLogger.Instance.ElementEmitted, info.mass, info.temperature, info.diseaseIdx, info.diseaseCount, true, -1);
 	}
 
-	// Token: 0x06008D59 RID: 36185 RVA: 0x00376004 File Offset: 0x00374204
 	public void OnWorkableEvent(int player, Workable.WorkableEvent ev)
 	{
 		if (ev == Workable.WorkableEvent.WorkStarted)
@@ -230,7 +217,6 @@ public class VerticalWindTunnel : StateMachineComponent<VerticalWindTunnel.State
 		base.smi.sm.playerCount.Set(this.players.Count, base.smi, false);
 	}
 
-	// Token: 0x06008D5A RID: 36186 RVA: 0x0037605C File Offset: 0x0037425C
 	List<Descriptor> IGameObjectEffectDescriptor.GetDescriptors(GameObject go)
 	{
 		List<Descriptor> list = new List<Descriptor>();
@@ -240,34 +226,24 @@ public class VerticalWindTunnel : StateMachineComponent<VerticalWindTunnel.State
 		return list;
 	}
 
-	// Token: 0x04006A91 RID: 27281
 	public string specificEffect;
 
-	// Token: 0x04006A92 RID: 27282
 	public string trackingEffect;
 
-	// Token: 0x04006A93 RID: 27283
 	public int basePriority;
 
-	// Token: 0x04006A94 RID: 27284
 	public float displacementAmount_DescriptorOnly;
 
-	// Token: 0x04006A95 RID: 27285
 	public static readonly Operational.Flag validIntakeFlag = new Operational.Flag("valid_intake", Operational.Flag.Type.Requirement);
 
-	// Token: 0x04006A96 RID: 27286
 	private bool invalidIntake;
 
-	// Token: 0x04006A97 RID: 27287
 	private float avgGasAccumTop;
 
-	// Token: 0x04006A98 RID: 27288
 	private float avgGasAccumBottom;
 
-	// Token: 0x04006A99 RID: 27289
 	private int avgGasCounter;
 
-	// Token: 0x04006A9A RID: 27290
 	public CellOffset[] choreOffsets = new CellOffset[]
 	{
 		new CellOffset(0, 0),
@@ -275,25 +251,18 @@ public class VerticalWindTunnel : StateMachineComponent<VerticalWindTunnel.State
 		new CellOffset(1, 0)
 	};
 
-	// Token: 0x04006A9B RID: 27291
 	private VerticalWindTunnelWorkable[] workables;
 
-	// Token: 0x04006A9C RID: 27292
 	private Chore[] chores;
 
-	// Token: 0x04006A9D RID: 27293
 	private ElementConsumer bottomConsumer;
 
-	// Token: 0x04006A9E RID: 27294
 	private ElementConsumer topConsumer;
 
-	// Token: 0x04006A9F RID: 27295
 	private Operational operational;
 
-	// Token: 0x04006AA0 RID: 27296
 	public HashSet<int> players = new HashSet<int>();
 
-	// Token: 0x04006AA1 RID: 27297
 	public HashedString[] overrideAnims = new HashedString[]
 	{
 		"anim_interacts_windtunnel_center_kanim",
@@ -301,7 +270,6 @@ public class VerticalWindTunnel : StateMachineComponent<VerticalWindTunnel.State
 		"anim_interacts_windtunnel_right_kanim"
 	};
 
-	// Token: 0x04006AA2 RID: 27298
 	public string[][] workPreAnims = new string[][]
 	{
 		new string[]
@@ -321,7 +289,6 @@ public class VerticalWindTunnel : StateMachineComponent<VerticalWindTunnel.State
 		}
 	};
 
-	// Token: 0x04006AA3 RID: 27299
 	public string[] workAnims = new string[]
 	{
 		"weak_working_loop",
@@ -329,7 +296,6 @@ public class VerticalWindTunnel : StateMachineComponent<VerticalWindTunnel.State
 		"strong_working_loop"
 	};
 
-	// Token: 0x04006AA4 RID: 27300
 	public string[][] workPstAnims = new string[][]
 	{
 		new string[]
@@ -349,10 +315,8 @@ public class VerticalWindTunnel : StateMachineComponent<VerticalWindTunnel.State
 		}
 	};
 
-	// Token: 0x02001A79 RID: 6777
 	public class States : GameStateMachine<VerticalWindTunnel.States, VerticalWindTunnel.StatesInstance, VerticalWindTunnel>
 	{
-		// Token: 0x06008D5F RID: 36191 RVA: 0x00376260 File Offset: 0x00374460
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.unoperational;
@@ -385,48 +349,36 @@ public class VerticalWindTunnel : StateMachineComponent<VerticalWindTunnel.State
 			this.operational.post.PlayAnim("working_pst").QueueAnim("off_pre", false, null).OnAnimQueueComplete(this.operational.stopped);
 		}
 
-		// Token: 0x04006AA5 RID: 27301
 		public StateMachine<VerticalWindTunnel.States, VerticalWindTunnel.StatesInstance, VerticalWindTunnel, object>.IntParameter playerCount;
 
-		// Token: 0x04006AA6 RID: 27302
 		public GameStateMachine<VerticalWindTunnel.States, VerticalWindTunnel.StatesInstance, VerticalWindTunnel, object>.State unoperational;
 
-		// Token: 0x04006AA7 RID: 27303
 		public VerticalWindTunnel.States.OperationalStates operational;
 
-		// Token: 0x02001A7A RID: 6778
 		public class OperationalStates : GameStateMachine<VerticalWindTunnel.States, VerticalWindTunnel.StatesInstance, VerticalWindTunnel, object>.State
 		{
-			// Token: 0x04006AA8 RID: 27304
 			public GameStateMachine<VerticalWindTunnel.States, VerticalWindTunnel.StatesInstance, VerticalWindTunnel, object>.State stopped;
 
-			// Token: 0x04006AA9 RID: 27305
 			public GameStateMachine<VerticalWindTunnel.States, VerticalWindTunnel.StatesInstance, VerticalWindTunnel, object>.State pre;
 
-			// Token: 0x04006AAA RID: 27306
 			public GameStateMachine<VerticalWindTunnel.States, VerticalWindTunnel.StatesInstance, VerticalWindTunnel, object>.State playing;
 
-			// Token: 0x04006AAB RID: 27307
 			public GameStateMachine<VerticalWindTunnel.States, VerticalWindTunnel.StatesInstance, VerticalWindTunnel, object>.State post;
 		}
 	}
 
-	// Token: 0x02001A7C RID: 6780
 	public class StatesInstance : GameStateMachine<VerticalWindTunnel.States, VerticalWindTunnel.StatesInstance, VerticalWindTunnel, object>.GameInstance
 	{
-		// Token: 0x06008D6D RID: 36205 RVA: 0x00100E21 File Offset: 0x000FF021
 		public StatesInstance(VerticalWindTunnel smi) : base(smi)
 		{
 			this.operational = base.master.GetComponent<Operational>();
 		}
 
-		// Token: 0x06008D6E RID: 36206 RVA: 0x00100E3B File Offset: 0x000FF03B
 		public void SetActive(bool active)
 		{
 			this.operational.SetActive(this.operational.IsOperational && active, false);
 		}
 
-		// Token: 0x04006AB6 RID: 27318
 		private Operational operational;
 	}
 }

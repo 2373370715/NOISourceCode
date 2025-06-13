@@ -2,22 +2,18 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x0200026A RID: 618
 public class RemoteWorkerConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x060008D1 RID: 2257 RVA: 0x000AA12F File Offset: 0x000A832F
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.DLC3;
 	}
 
-	// Token: 0x060008D2 RID: 2258 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x060008D3 RID: 2259 RVA: 0x0016CF54 File Offset: 0x0016B154
 	public GameObject CreatePrefab()
 	{
 		string name = DUPLICANTS.MODEL.REMOTEWORKER.NAME;
@@ -77,19 +73,16 @@ public class RemoteWorkerConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x060008D4 RID: 2260 RVA: 0x000AE73E File Offset: 0x000AC93E
 	public void OnPrefabInit(GameObject go)
 	{
 		Navigator navigator = go.AddOrGet<Navigator>();
 		navigator.SetAbilities(new CreaturePathFinderAbilities(navigator));
 	}
 
-	// Token: 0x060008D5 RID: 2261 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject go)
 	{
 	}
 
-	// Token: 0x060008D6 RID: 2262 RVA: 0x0016D1B0 File Offset: 0x0016B3B0
 	public static KCompBuilder.BodyData CreateBodyData()
 	{
 		return new KCompBuilder.BodyData
@@ -117,24 +110,17 @@ public class RemoteWorkerConfig : IEntityConfig, IHasDlcRestrictions
 		};
 	}
 
-	// Token: 0x040006C4 RID: 1732
 	public static readonly string ID = "RemoteWorker";
 
-	// Token: 0x040006C5 RID: 1733
 	public const float MASS_KG = 200f;
 
-	// Token: 0x040006C6 RID: 1734
 	public const float DEBRIS_MASS_KG = 42f;
 
-	// Token: 0x040006C7 RID: 1735
 	public static readonly string DOCK_ANIM_OVERRIDES = "anim_interacts_remote_work_dock_kanim";
 
-	// Token: 0x040006C8 RID: 1736
 	public static readonly string IDLE_IN_DOCK_ANIM = "in_dock_idle";
 
-	// Token: 0x040006C9 RID: 1737
 	public static readonly string BUILD_MATERIAL = "Steel";
 
-	// Token: 0x040006CA RID: 1738
 	public static readonly Tag BUILD_MATERIAL_TAG = new Tag(RemoteWorkerConfig.BUILD_MATERIAL);
 }

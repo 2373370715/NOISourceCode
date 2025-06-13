@@ -5,12 +5,9 @@ using UnityEngine.UI;
 
 namespace UnityEngine.EventSystems
 {
-	// Token: 0x02002146 RID: 8518
 	[AddComponentMenu("Event/Virtual Input Module")]
 	public class VirtualInputModule : PointerInputModule, IInputHandler
 	{
-		// Token: 0x17000BAD RID: 2989
-		// (get) Token: 0x0600B573 RID: 46451 RVA: 0x0011A58A File Offset: 0x0011878A
 		public string handlerName
 		{
 			get
@@ -19,18 +16,12 @@ namespace UnityEngine.EventSystems
 			}
 		}
 
-		// Token: 0x17000BAE RID: 2990
-		// (get) Token: 0x0600B574 RID: 46452 RVA: 0x0011A591 File Offset: 0x00118791
-		// (set) Token: 0x0600B575 RID: 46453 RVA: 0x0011A599 File Offset: 0x00118799
 		public KInputHandler inputHandler { get; set; }
 
-		// Token: 0x0600B576 RID: 46454 RVA: 0x0045402C File Offset: 0x0045222C
 		protected VirtualInputModule()
 		{
 		}
 
-		// Token: 0x17000BAF RID: 2991
-		// (get) Token: 0x0600B577 RID: 46455 RVA: 0x000B1628 File Offset: 0x000AF828
 		[Obsolete("Mode is no longer needed on input module as it handles both mouse and keyboard simultaneously.", false)]
 		public VirtualInputModule.InputMode inputMode
 		{
@@ -40,9 +31,6 @@ namespace UnityEngine.EventSystems
 			}
 		}
 
-		// Token: 0x17000BB0 RID: 2992
-		// (get) Token: 0x0600B578 RID: 46456 RVA: 0x0011A5A2 File Offset: 0x001187A2
-		// (set) Token: 0x0600B579 RID: 46457 RVA: 0x0011A5AA File Offset: 0x001187AA
 		[Obsolete("allowActivationOnMobileDevice has been deprecated. Use forceModuleActive instead (UnityUpgradable) -> forceModuleActive")]
 		public bool allowActivationOnMobileDevice
 		{
@@ -56,9 +44,6 @@ namespace UnityEngine.EventSystems
 			}
 		}
 
-		// Token: 0x17000BB1 RID: 2993
-		// (get) Token: 0x0600B57A RID: 46458 RVA: 0x0011A5A2 File Offset: 0x001187A2
-		// (set) Token: 0x0600B57B RID: 46459 RVA: 0x0011A5AA File Offset: 0x001187AA
 		public bool forceModuleActive
 		{
 			get
@@ -71,9 +56,6 @@ namespace UnityEngine.EventSystems
 			}
 		}
 
-		// Token: 0x17000BB2 RID: 2994
-		// (get) Token: 0x0600B57C RID: 46460 RVA: 0x0011A5B3 File Offset: 0x001187B3
-		// (set) Token: 0x0600B57D RID: 46461 RVA: 0x0011A5BB File Offset: 0x001187BB
 		public float inputActionsPerSecond
 		{
 			get
@@ -86,9 +68,6 @@ namespace UnityEngine.EventSystems
 			}
 		}
 
-		// Token: 0x17000BB3 RID: 2995
-		// (get) Token: 0x0600B57E RID: 46462 RVA: 0x0011A5C4 File Offset: 0x001187C4
-		// (set) Token: 0x0600B57F RID: 46463 RVA: 0x0011A5CC File Offset: 0x001187CC
 		public float repeatDelay
 		{
 			get
@@ -101,9 +80,6 @@ namespace UnityEngine.EventSystems
 			}
 		}
 
-		// Token: 0x17000BB4 RID: 2996
-		// (get) Token: 0x0600B580 RID: 46464 RVA: 0x0011A5D5 File Offset: 0x001187D5
-		// (set) Token: 0x0600B581 RID: 46465 RVA: 0x0011A5DD File Offset: 0x001187DD
 		public string horizontalAxis
 		{
 			get
@@ -116,9 +92,6 @@ namespace UnityEngine.EventSystems
 			}
 		}
 
-		// Token: 0x17000BB5 RID: 2997
-		// (get) Token: 0x0600B582 RID: 46466 RVA: 0x0011A5E6 File Offset: 0x001187E6
-		// (set) Token: 0x0600B583 RID: 46467 RVA: 0x0011A5EE File Offset: 0x001187EE
 		public string verticalAxis
 		{
 			get
@@ -131,9 +104,6 @@ namespace UnityEngine.EventSystems
 			}
 		}
 
-		// Token: 0x17000BB6 RID: 2998
-		// (get) Token: 0x0600B584 RID: 46468 RVA: 0x0011A5F7 File Offset: 0x001187F7
-		// (set) Token: 0x0600B585 RID: 46469 RVA: 0x0011A5FF File Offset: 0x001187FF
 		public string submitButton
 		{
 			get
@@ -146,9 +116,6 @@ namespace UnityEngine.EventSystems
 			}
 		}
 
-		// Token: 0x17000BB7 RID: 2999
-		// (get) Token: 0x0600B586 RID: 46470 RVA: 0x0011A608 File Offset: 0x00118808
-		// (set) Token: 0x0600B587 RID: 46471 RVA: 0x0011A610 File Offset: 0x00118810
 		public string cancelButton
 		{
 			get
@@ -161,7 +128,6 @@ namespace UnityEngine.EventSystems
 			}
 		}
 
-		// Token: 0x0600B588 RID: 46472 RVA: 0x0011A619 File Offset: 0x00118819
 		public void SetCursor(Texture2D tex)
 		{
 			this.UpdateModule();
@@ -171,7 +137,6 @@ namespace UnityEngine.EventSystems
 			}
 		}
 
-		// Token: 0x0600B589 RID: 46473 RVA: 0x004540A4 File Offset: 0x004522A4
 		public override void UpdateModule()
 		{
 			GameInputManager inputManager = Global.GetInputManager();
@@ -256,13 +221,11 @@ namespace UnityEngine.EventSystems
 			this.m_MousePosition = this.m_VirtualCursor.anchoredPosition;
 		}
 
-		// Token: 0x0600B58A RID: 46474 RVA: 0x0011A63F File Offset: 0x0011883F
 		public override bool IsModuleSupported()
 		{
 			return this.m_ForceModuleActive || Input.mousePresent;
 		}
 
-		// Token: 0x0600B58B RID: 46475 RVA: 0x004544A4 File Offset: 0x004526A4
 		public override bool ShouldActivateModule()
 		{
 			if (!base.ShouldActivateModule())
@@ -278,7 +241,6 @@ namespace UnityEngine.EventSystems
 			return forceModuleActive | Input.GetButtonDown(this.m_CancelButton) | !Mathf.Approximately(Input.GetAxisRaw(this.m_HorizontalAxis), 0f) | !Mathf.Approximately(Input.GetAxisRaw(this.m_VerticalAxis), 0f) | (this.m_MousePosition - this.m_LastMousePosition).sqrMagnitude > 0f | Input.GetMouseButtonDown(0);
 		}
 
-		// Token: 0x0600B58C RID: 46476 RVA: 0x0045453C File Offset: 0x0045273C
 		public override void ActivateModule()
 		{
 			base.ActivateModule();
@@ -315,7 +277,6 @@ namespace UnityEngine.EventSystems
 			base.eventSystem.SetSelectedGameObject(gameObject, this.GetBaseEventData());
 		}
 
-		// Token: 0x0600B58D RID: 46477 RVA: 0x004546F8 File Offset: 0x004528F8
 		public override void DeactivateModule()
 		{
 			base.DeactivateModule();
@@ -326,7 +287,6 @@ namespace UnityEngine.EventSystems
 			this.conButtonStates.negativeHoldTime = 0f;
 		}
 
-		// Token: 0x0600B58E RID: 46478 RVA: 0x0045474C File Offset: 0x0045294C
 		public override void Process()
 		{
 			bool flag = this.SendUpdateEventToSelectedObject();
@@ -344,7 +304,6 @@ namespace UnityEngine.EventSystems
 			this.ProcessMouseEvent();
 		}
 
-		// Token: 0x0600B58F RID: 46479 RVA: 0x0045478C File Offset: 0x0045298C
 		protected bool SendSubmitEventToSelectedObject()
 		{
 			if (base.eventSystem.currentSelectedGameObject == null)
@@ -363,7 +322,6 @@ namespace UnityEngine.EventSystems
 			return baseEventData.used;
 		}
 
-		// Token: 0x0600B590 RID: 46480 RVA: 0x00454804 File Offset: 0x00452A04
 		private Vector2 GetRawMoveVector()
 		{
 			Vector2 zero = Vector2.zero;
@@ -394,7 +352,6 @@ namespace UnityEngine.EventSystems
 			return zero;
 		}
 
-		// Token: 0x0600B591 RID: 46481 RVA: 0x004548BC File Offset: 0x00452ABC
 		protected bool SendMoveEventToSelectedObject()
 		{
 			float unscaledTime = Time.unscaledTime;
@@ -433,13 +390,11 @@ namespace UnityEngine.EventSystems
 			return axisEventData.used;
 		}
 
-		// Token: 0x0600B592 RID: 46482 RVA: 0x0011A650 File Offset: 0x00118850
 		protected void ProcessMouseEvent()
 		{
 			this.ProcessMouseEvent(0);
 		}
 
-		// Token: 0x0600B593 RID: 46483 RVA: 0x004549D0 File Offset: 0x00452BD0
 		protected void ProcessMouseEvent(int id)
 		{
 			if (this.mouseMovementOnly)
@@ -461,7 +416,6 @@ namespace UnityEngine.EventSystems
 			}
 		}
 
-		// Token: 0x0600B594 RID: 46484 RVA: 0x00454AC0 File Offset: 0x00452CC0
 		protected bool SendUpdateEventToSelectedObject()
 		{
 			if (base.eventSystem.currentSelectedGameObject == null)
@@ -473,7 +427,6 @@ namespace UnityEngine.EventSystems
 			return baseEventData.used;
 		}
 
-		// Token: 0x0600B595 RID: 46485 RVA: 0x00454B08 File Offset: 0x00452D08
 		protected void ProcessMousePress(PointerInputModule.MouseButtonEventData data)
 		{
 			PointerEventData buttonData = data.buttonData;
@@ -550,7 +503,6 @@ namespace UnityEngine.EventSystems
 			}
 		}
 
-		// Token: 0x0600B596 RID: 46486 RVA: 0x00454D14 File Offset: 0x00452F14
 		public void OnKeyDown(KButtonEvent e)
 		{
 			if (KInputManager.currentControllerIsGamepad)
@@ -585,7 +537,6 @@ namespace UnityEngine.EventSystems
 			}
 		}
 
-		// Token: 0x0600B597 RID: 46487 RVA: 0x00454DD8 File Offset: 0x00452FD8
 		public void OnKeyUp(KButtonEvent e)
 		{
 			if (KInputManager.currentControllerIsGamepad)
@@ -608,7 +559,6 @@ namespace UnityEngine.EventSystems
 			}
 		}
 
-		// Token: 0x0600B598 RID: 46488 RVA: 0x00454E5C File Offset: 0x0045305C
 		protected void ProcessControllerPress(PointerInputModule.MouseButtonEventData data, bool leftClick)
 		{
 			if (this.leftClickData == null)
@@ -784,7 +734,6 @@ namespace UnityEngine.EventSystems
 			}
 		}
 
-		// Token: 0x0600B599 RID: 46489 RVA: 0x00455338 File Offset: 0x00453538
 		protected override PointerInputModule.MouseState GetMousePointerEventData(int id)
 		{
 			PointerEventData pointerEventData;
@@ -818,134 +767,95 @@ namespace UnityEngine.EventSystems
 			return this.m_MouseState;
 		}
 
-		// Token: 0x04008FB5 RID: 36789
 		private float m_PrevActionTime;
 
-		// Token: 0x04008FB6 RID: 36790
 		private Vector2 m_LastMoveVector;
 
-		// Token: 0x04008FB7 RID: 36791
 		private int m_ConsecutiveMoveCount;
 
-		// Token: 0x04008FB8 RID: 36792
 		private string debugName;
 
-		// Token: 0x04008FB9 RID: 36793
 		private Vector2 m_LastMousePosition;
 
-		// Token: 0x04008FBA RID: 36794
 		private Vector2 m_MousePosition;
 
-		// Token: 0x04008FBB RID: 36795
 		public bool mouseMovementOnly;
 
-		// Token: 0x04008FBC RID: 36796
 		[SerializeField]
 		private RectTransform m_VirtualCursor;
 
-		// Token: 0x04008FBD RID: 36797
 		[SerializeField]
 		private float m_VirtualCursorSpeed = 1f;
 
-		// Token: 0x04008FBE RID: 36798
 		[SerializeField]
 		private Vector2 m_VirtualCursorOffset = Vector2.zero;
 
-		// Token: 0x04008FBF RID: 36799
 		[SerializeField]
 		private Camera m_canvasCamera;
 
-		// Token: 0x04008FC0 RID: 36800
 		private Camera VCcam;
 
-		// Token: 0x04008FC1 RID: 36801
 		public bool CursorCanvasShouldBeOverlay;
 
-		// Token: 0x04008FC2 RID: 36802
 		private Canvas m_virtualCursorCanvas;
 
-		// Token: 0x04008FC3 RID: 36803
 		private CanvasScaler m_virtualCursorScaler;
 
-		// Token: 0x04008FC4 RID: 36804
 		private PointerEventData leftClickData;
 
-		// Token: 0x04008FC5 RID: 36805
 		private PointerEventData rightClickData;
 
-		// Token: 0x04008FC6 RID: 36806
 		private VirtualInputModule.ControllerButtonStates conButtonStates;
 
-		// Token: 0x04008FC7 RID: 36807
 		private GameObject m_CurrentFocusedGameObject;
 
-		// Token: 0x04008FC8 RID: 36808
 		private bool leftReleased;
 
-		// Token: 0x04008FC9 RID: 36809
 		private bool rightReleased;
 
-		// Token: 0x04008FCA RID: 36810
 		private bool leftFirstClick;
 
-		// Token: 0x04008FCB RID: 36811
 		private bool rightFirstClick;
 
-		// Token: 0x04008FCC RID: 36812
 		[SerializeField]
 		private string m_HorizontalAxis = "Horizontal";
 
-		// Token: 0x04008FCD RID: 36813
 		[SerializeField]
 		private string m_VerticalAxis = "Vertical";
 
-		// Token: 0x04008FCE RID: 36814
 		[SerializeField]
 		private string m_SubmitButton = "Submit";
 
-		// Token: 0x04008FCF RID: 36815
 		[SerializeField]
 		private string m_CancelButton = "Cancel";
 
-		// Token: 0x04008FD0 RID: 36816
 		[SerializeField]
 		private float m_InputActionsPerSecond = 10f;
 
-		// Token: 0x04008FD1 RID: 36817
 		[SerializeField]
 		private float m_RepeatDelay = 0.5f;
 
-		// Token: 0x04008FD2 RID: 36818
 		[SerializeField]
 		[FormerlySerializedAs("m_AllowActivationOnMobileDevice")]
 		private bool m_ForceModuleActive;
 
-		// Token: 0x04008FD3 RID: 36819
 		private readonly PointerInputModule.MouseState m_MouseState = new PointerInputModule.MouseState();
 
-		// Token: 0x02002147 RID: 8519
 		[Obsolete("Mode is no longer needed on input module as it handles both mouse and keyboard simultaneously.", false)]
 		public enum InputMode
 		{
-			// Token: 0x04008FD5 RID: 36821
 			Mouse,
-			// Token: 0x04008FD6 RID: 36822
 			Buttons
 		}
 
-		// Token: 0x02002148 RID: 8520
 		private struct ControllerButtonStates
 		{
-			// Token: 0x04008FD7 RID: 36823
 			public bool affirmativeDown;
 
-			// Token: 0x04008FD8 RID: 36824
 			public float affirmativeHoldTime;
 
-			// Token: 0x04008FD9 RID: 36825
 			public bool negativeDown;
 
-			// Token: 0x04008FDA RID: 36826
 			public float negativeHoldTime;
 		}
 	}

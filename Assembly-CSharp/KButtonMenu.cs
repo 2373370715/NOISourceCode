@@ -4,17 +4,14 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x02001D71 RID: 7537
 public class KButtonMenu : KScreen
 {
-	// Token: 0x06009D66 RID: 40294 RVA: 0x0010AE8B File Offset: 0x0010908B
 	protected override void OnActivate()
 	{
 		base.ConsumeMouseScroll = this.ShouldConsumeMouseScroll;
 		this.RefreshButtons();
 	}
 
-	// Token: 0x06009D67 RID: 40295 RVA: 0x0010AE9F File Offset: 0x0010909F
 	public void SetButtons(IList<KButtonMenu.ButtonInfo> buttons)
 	{
 		this.buttons = buttons;
@@ -24,7 +21,6 @@ public class KButtonMenu : KScreen
 		}
 	}
 
-	// Token: 0x06009D68 RID: 40296 RVA: 0x003D76C8 File Offset: 0x003D58C8
 	public virtual void RefreshButtons()
 	{
 		if (this.buttonObjects != null)
@@ -92,7 +88,6 @@ public class KButtonMenu : KScreen
 		this.Update();
 	}
 
-	// Token: 0x06009D69 RID: 40297 RVA: 0x003D797C File Offset: 0x003D5B7C
 	protected Button.ButtonClickedEvent SetupPopupMenu(KButtonMenu.ButtonInfo binfo, KButton button)
 	{
 		Button.ButtonClickedEvent buttonClickedEvent = new Button.ButtonClickedEvent();
@@ -137,7 +132,6 @@ public class KButtonMenu : KScreen
 		return buttonClickedEvent;
 	}
 
-	// Token: 0x06009D6A RID: 40298 RVA: 0x003D79CC File Offset: 0x003D5BCC
 	public override void OnKeyDown(KButtonEvent e)
 	{
 		if (this.buttons == null)
@@ -157,25 +151,21 @@ public class KButtonMenu : KScreen
 		base.OnKeyDown(e);
 	}
 
-	// Token: 0x06009D6B RID: 40299 RVA: 0x0010AEB6 File Offset: 0x001090B6
 	protected override void OnPrefabInit()
 	{
 		base.Subscribe<KButtonMenu>(315865555, KButtonMenu.OnSetActivatorDelegate);
 	}
 
-	// Token: 0x06009D6C RID: 40300 RVA: 0x0010AEC9 File Offset: 0x001090C9
 	private void OnSetActivator(object data)
 	{
 		this.go = (GameObject)data;
 		this.Update();
 	}
 
-	// Token: 0x06009D6D RID: 40301 RVA: 0x000AA038 File Offset: 0x000A8238
 	protected override void OnDeactivate()
 	{
 	}
 
-	// Token: 0x06009D6E RID: 40302 RVA: 0x003D7A48 File Offset: 0x003D5C48
 	private void Update()
 	{
 		if (!this.followGameObject || this.go == null || base.canvas == null)
@@ -191,44 +181,33 @@ public class KButtonMenu : KScreen
 		}
 	}
 
-	// Token: 0x04007B8D RID: 31629
 	[SerializeField]
 	protected bool followGameObject;
 
-	// Token: 0x04007B8E RID: 31630
 	[SerializeField]
 	protected bool keepMenuOpen;
 
-	// Token: 0x04007B8F RID: 31631
 	[SerializeField]
 	protected Transform buttonParent;
 
-	// Token: 0x04007B90 RID: 31632
 	public GameObject buttonPrefab;
 
-	// Token: 0x04007B91 RID: 31633
 	public bool ShouldConsumeMouseScroll;
 
-	// Token: 0x04007B92 RID: 31634
 	[NonSerialized]
 	public GameObject[] buttonObjects;
 
-	// Token: 0x04007B93 RID: 31635
 	protected GameObject go;
 
-	// Token: 0x04007B94 RID: 31636
 	protected IList<KButtonMenu.ButtonInfo> buttons;
 
-	// Token: 0x04007B95 RID: 31637
 	private static readonly EventSystem.IntraObjectHandler<KButtonMenu> OnSetActivatorDelegate = new EventSystem.IntraObjectHandler<KButtonMenu>(delegate(KButtonMenu component, object data)
 	{
 		component.OnSetActivator(data);
 	});
 
-	// Token: 0x02001D72 RID: 7538
 	public class ButtonInfo
 	{
-		// Token: 0x06009D71 RID: 40305 RVA: 0x003D7B04 File Offset: 0x003D5D04
 		public ButtonInfo(string text = null, UnityAction on_click = null, global::Action shortcut_key = global::Action.NumActions, KButtonMenu.ButtonInfo.HoverCallback on_hover = null, string tool_tip = null, GameObject visualizer = null, bool is_enabled = true, string[] popup_options = null, Action<string> on_popup_click = null, Func<string[]> on_populate_popup = null)
 		{
 			this.text = text;
@@ -244,7 +223,6 @@ public class KButtonMenu : KScreen
 			this.onPopulatePopup = on_populate_popup;
 		}
 
-		// Token: 0x06009D72 RID: 40306 RVA: 0x003D7B74 File Offset: 0x003D5D74
 		public ButtonInfo(string text, global::Action shortcutKey, UnityAction onClick, KButtonMenu.ButtonInfo.HoverCallback onHover = null, object userData = null)
 		{
 			this.text = text;
@@ -256,7 +234,6 @@ public class KButtonMenu : KScreen
 			this.uibutton = null;
 		}
 
-		// Token: 0x06009D73 RID: 40307 RVA: 0x003D7BC4 File Offset: 0x003D5DC4
 		public ButtonInfo(string text, GameObject visualizer, global::Action shortcutKey, UnityAction onClick, KButtonMenu.ButtonInfo.HoverCallback onHover = null, object userData = null)
 		{
 			this.text = text;
@@ -268,51 +245,36 @@ public class KButtonMenu : KScreen
 			this.uibutton = null;
 		}
 
-		// Token: 0x04007B96 RID: 31638
 		public string text;
 
-		// Token: 0x04007B97 RID: 31639
 		public global::Action shortcutKey;
 
-		// Token: 0x04007B98 RID: 31640
 		public GameObject visualizer;
 
-		// Token: 0x04007B99 RID: 31641
 		public UnityAction onClick;
 
-		// Token: 0x04007B9A RID: 31642
 		public KButtonMenu.ButtonInfo.HoverCallback onHover;
 
-		// Token: 0x04007B9B RID: 31643
 		public FMODAsset clickSound;
 
-		// Token: 0x04007B9C RID: 31644
 		public KButton uibutton;
 
-		// Token: 0x04007B9D RID: 31645
 		public string toolTip;
 
-		// Token: 0x04007B9E RID: 31646
 		public bool isEnabled = true;
 
-		// Token: 0x04007B9F RID: 31647
 		public string[] popupOptions;
 
-		// Token: 0x04007BA0 RID: 31648
 		public Action<string> onPopupClick;
 
-		// Token: 0x04007BA1 RID: 31649
 		public Func<string[]> onPopulatePopup;
 
-		// Token: 0x04007BA2 RID: 31650
 		public object userData;
 
-		// Token: 0x02001D73 RID: 7539
-		// (Invoke) Token: 0x06009D75 RID: 40309
+Invoke) Token: 0x06009D75 RID: 40309
 		public delegate void HoverCallback(GameObject hoverTarget);
 
-		// Token: 0x02001D74 RID: 7540
-		// (Invoke) Token: 0x06009D79 RID: 40313
+Invoke) Token: 0x06009D79 RID: 40313
 		public delegate void Callback();
 	}
 }

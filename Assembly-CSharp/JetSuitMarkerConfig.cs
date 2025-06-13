@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003A5 RID: 933
 public class JetSuitMarkerConfig : IBuildingConfig
 {
-	// Token: 0x06000F16 RID: 3862 RVA: 0x00185750 File Offset: 0x00183950
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "JetSuitMarker";
@@ -33,7 +31,6 @@ public class JetSuitMarkerConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000F17 RID: 3863 RVA: 0x001857E4 File Offset: 0x001839E4
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		SuitMarker suitMarker = go.AddOrGet<SuitMarker>();
@@ -51,12 +48,10 @@ public class JetSuitMarkerConfig : IBuildingConfig
 		go.AddTag(GameTags.JetSuitBlocker);
 	}
 
-	// Token: 0x06000F18 RID: 3864 RVA: 0x000AAF59 File Offset: 0x000A9159
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
 	}
 
-	// Token: 0x04000B16 RID: 2838
 	public const string ID = "JetSuitMarker";
 }

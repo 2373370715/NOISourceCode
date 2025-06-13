@@ -2,11 +2,9 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001F8F RID: 8079
 [AddComponentMenu("KMonoBehaviour/scripts/AssignableSideScreenRow")]
 public class AssignableSideScreenRow : KMonoBehaviour
 {
-	// Token: 0x0600AABC RID: 43708 RVA: 0x00416704 File Offset: 0x00414904
 	public void Refresh(object data = null)
 	{
 		if (!this.sideScreen.targetAssignable.CanAssignTo(this.targetIdentity))
@@ -73,7 +71,6 @@ public class AssignableSideScreenRow : KMonoBehaviour
 		this.toggle.ChangeState((int)this.currentState);
 	}
 
-	// Token: 0x0600AABD RID: 43709 RVA: 0x001136E6 File Offset: 0x001118E6
 	protected override void OnCleanUp()
 	{
 		if (this.refreshHandle == -1)
@@ -83,7 +80,6 @@ public class AssignableSideScreenRow : KMonoBehaviour
 		base.OnCleanUp();
 	}
 
-	// Token: 0x0600AABE RID: 43710 RVA: 0x004168F0 File Offset: 0x00414AF0
 	public void SetContent(IAssignableIdentity identity_object, Action<IAssignableIdentity> selectionCallback, AssignableSideScreen assignableSideScreen)
 	{
 		if (this.refreshHandle == -1)
@@ -115,7 +111,6 @@ public class AssignableSideScreenRow : KMonoBehaviour
 		this.Refresh(null);
 	}
 
-	// Token: 0x0600AABF RID: 43711 RVA: 0x004169F4 File Offset: 0x00414BF4
 	private string GetTooltip()
 	{
 		ToolTip component = base.GetComponent<ToolTip>();
@@ -146,43 +141,30 @@ public class AssignableSideScreenRow : KMonoBehaviour
 		return "";
 	}
 
-	// Token: 0x0400865A RID: 34394
 	[SerializeField]
 	private CrewPortrait crewPortraitPrefab;
 
-	// Token: 0x0400865B RID: 34395
 	[SerializeField]
 	private LocText assignmentText;
 
-	// Token: 0x0400865C RID: 34396
 	public AssignableSideScreen sideScreen;
 
-	// Token: 0x0400865D RID: 34397
 	private CrewPortrait portraitInstance;
 
-	// Token: 0x0400865E RID: 34398
 	[MyCmpReq]
 	private MultiToggle toggle;
 
-	// Token: 0x0400865F RID: 34399
 	public IAssignableIdentity targetIdentity;
 
-	// Token: 0x04008660 RID: 34400
 	public AssignableSideScreenRow.AssignableState currentState;
 
-	// Token: 0x04008661 RID: 34401
 	private int refreshHandle = -1;
 
-	// Token: 0x02001F90 RID: 8080
 	public enum AssignableState
 	{
-		// Token: 0x04008663 RID: 34403
 		Selected,
-		// Token: 0x04008664 RID: 34404
 		AssignedToOther,
-		// Token: 0x04008665 RID: 34405
 		Unassigned,
-		// Token: 0x04008666 RID: 34406
 		Disabled
 	}
 }

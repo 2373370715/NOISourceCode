@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000285 RID: 645
 public class FloorSwitchConfig : IBuildingConfig
 {
-	// Token: 0x06000965 RID: 2405 RVA: 0x0016F0C4 File Offset: 0x0016D2C4
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "FloorSwitch";
@@ -43,7 +41,6 @@ public class FloorSwitchConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000966 RID: 2406 RVA: 0x000AEAEE File Offset: 0x000ACCEE
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -53,7 +50,6 @@ public class FloorSwitchConfig : IBuildingConfig
 		simCellOccupier.notifyOnMelt = true;
 	}
 
-	// Token: 0x06000967 RID: 2407 RVA: 0x0016F1D0 File Offset: 0x0016D3D0
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		LogicMassSensor logicMassSensor = go.AddOrGet<LogicMassSensor>();
@@ -65,6 +61,5 @@ public class FloorSwitchConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayInFrontOfConduits, false);
 	}
 
-	// Token: 0x04000737 RID: 1847
 	public const string ID = "FloorSwitch";
 }

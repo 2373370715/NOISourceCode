@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003ED RID: 1005
 public class LogicPowerRelayConfig : IBuildingConfig
 {
-	// Token: 0x06001081 RID: 4225 RVA: 0x0018AB84 File Offset: 0x00188D84
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = LogicPowerRelayConfig.ID;
@@ -39,7 +37,6 @@ public class LogicPowerRelayConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001082 RID: 4226 RVA: 0x000B1A3E File Offset: 0x000AFC3E
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		UnityEngine.Object.DestroyImmediate(go.GetComponent<BuildingEnabledButton>());
@@ -48,6 +45,5 @@ public class LogicPowerRelayConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayInFrontOfConduits, false);
 	}
 
-	// Token: 0x04000B97 RID: 2967
 	public static string ID = "LogicPowerRelay";
 }

@@ -1,10 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02001451 RID: 5201
 public class AttackTool : DragTool
 {
-	// Token: 0x06006AFA RID: 27386 RVA: 0x002EE5F8 File Offset: 0x002EC7F8
 	protected override void OnDragComplete(Vector3 downPos, Vector3 upPos)
 	{
 		Vector2 regularizedPos = base.GetRegularizedPos(Vector2.Min(downPos, upPos), true);
@@ -12,7 +10,6 @@ public class AttackTool : DragTool
 		AttackTool.MarkForAttack(regularizedPos, regularizedPos2, true);
 	}
 
-	// Token: 0x06006AFB RID: 27387 RVA: 0x002EE640 File Offset: 0x002EC840
 	public static void MarkForAttack(Vector2 min, Vector2 max, bool mark)
 	{
 		foreach (FactionAlignment factionAlignment in Components.FactionAlignments.Items)
@@ -43,14 +40,12 @@ public class AttackTool : DragTool
 		}
 	}
 
-	// Token: 0x06006AFC RID: 27388 RVA: 0x000EAA64 File Offset: 0x000E8C64
 	protected override void OnActivateTool()
 	{
 		base.OnActivateTool();
 		ToolMenu.Instance.PriorityScreen.Show(true);
 	}
 
-	// Token: 0x06006AFD RID: 27389 RVA: 0x000EAA7C File Offset: 0x000E8C7C
 	protected override void OnDeactivateTool(InterfaceTool new_tool)
 	{
 		base.OnDeactivateTool(new_tool);

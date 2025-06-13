@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003D3 RID: 979
 public class LiquidReservoirConfig : IBuildingConfig
 {
-	// Token: 0x06000FEA RID: 4074 RVA: 0x0018929C File Offset: 0x0018749C
 	public override BuildingDef CreateBuildingDef()
 	{
 		BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef("LiquidReservoir", 2, 3, "liquidreservoir_kanim", 100, 120f, TUNING.BUILDINGS.CONSTRUCTION_MASS_KG.TIER4, MATERIALS.ALL_METALS, 800f, BuildLocationRule.OnFloor, TUNING.BUILDINGS.DECOR.PENALTY.TIER1, NOISE_POLLUTION.NOISY.TIER0, 0.2f);
@@ -27,7 +25,6 @@ public class LiquidReservoirConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000FEB RID: 4075 RVA: 0x00189388 File Offset: 0x00187588
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<Reservoir>();
@@ -51,22 +48,17 @@ public class LiquidReservoirConfig : IBuildingConfig
 		conduitDispenser.elementFilter = null;
 	}
 
-	// Token: 0x06000FEC RID: 4076 RVA: 0x000B05A0 File Offset: 0x000AE7A0
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGetDef<StorageController.Def>();
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayBehindConduits, false);
 	}
 
-	// Token: 0x04000B74 RID: 2932
 	public const string ID = "LiquidReservoir";
 
-	// Token: 0x04000B75 RID: 2933
 	private const ConduitType CONDUIT_TYPE = ConduitType.Liquid;
 
-	// Token: 0x04000B76 RID: 2934
 	private const int WIDTH = 2;
 
-	// Token: 0x04000B77 RID: 2935
 	private const int HEIGHT = 3;
 }

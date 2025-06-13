@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x020016C8 RID: 5832
 public static class OffsetGroups
 {
-	// Token: 0x06007861 RID: 30817 RVA: 0x0031E330 File Offset: 0x0031C530
 	public static CellOffset[] InitGrid(int x0, int x1, int y0, int y1)
 	{
 		List<CellOffset> list = new List<CellOffset>();
@@ -20,7 +18,6 @@ public static class OffsetGroups
 		return array;
 	}
 
-	// Token: 0x06007862 RID: 30818 RVA: 0x0031E380 File Offset: 0x0031C580
 	public static CellOffset[][] BuildReachabilityTable(CellOffset[] area_offsets, CellOffset[][] table, CellOffset[] filter)
 	{
 		Dictionary<CellOffset[][], Dictionary<CellOffset[], CellOffset[][]>> dictionary = null;
@@ -82,10 +79,8 @@ public static class OffsetGroups
 		return array;
 	}
 
-	// Token: 0x04005A6E RID: 23150
 	public static CellOffset[] Use = new CellOffset[1];
 
-	// Token: 0x04005A6F RID: 23151
 	public static CellOffset[] Chat = new CellOffset[]
 	{
 		new CellOffset(1, 0),
@@ -96,29 +91,24 @@ public static class OffsetGroups
 		new CellOffset(-1, -1)
 	};
 
-	// Token: 0x04005A70 RID: 23152
 	public static CellOffset[] LeftOnly = new CellOffset[]
 	{
 		new CellOffset(-1, 0)
 	};
 
-	// Token: 0x04005A71 RID: 23153
 	public static CellOffset[] RightOnly = new CellOffset[]
 	{
 		new CellOffset(1, 0)
 	};
 
-	// Token: 0x04005A72 RID: 23154
 	public static CellOffset[] LeftOrRight = new CellOffset[]
 	{
 		new CellOffset(-1, 0),
 		new CellOffset(1, 0)
 	};
 
-	// Token: 0x04005A73 RID: 23155
 	public static CellOffset[] Standard = OffsetGroups.InitGrid(-2, 2, -3, 3);
 
-	// Token: 0x04005A74 RID: 23156
 	public static CellOffset[] LiquidSource = new CellOffset[]
 	{
 		new CellOffset(0, 0),
@@ -134,7 +124,6 @@ public static class OffsetGroups
 		new CellOffset(-2, 0)
 	};
 
-	// Token: 0x04005A75 RID: 23157
 	public static CellOffset[][] InvertedStandardTable = OffsetTable.Mirror(new CellOffset[][]
 	{
 		new CellOffset[]
@@ -301,7 +290,6 @@ public static class OffsetGroups
 		}
 	});
 
-	// Token: 0x04005A76 RID: 23158
 	public static CellOffset[][] InvertedStandardTableWithCorners = OffsetTable.Mirror(new CellOffset[][]
 	{
 		new CellOffset[]
@@ -434,7 +422,6 @@ public static class OffsetGroups
 		}
 	});
 
-	// Token: 0x04005A77 RID: 23159
 	public static CellOffset[][] InvertedWideTable = OffsetTable.Mirror(new CellOffset[][]
 	{
 		new CellOffset[]
@@ -635,16 +622,12 @@ public static class OffsetGroups
 		}
 	});
 
-	// Token: 0x04005A78 RID: 23160
 	private static Dictionary<CellOffset[], Dictionary<CellOffset[][], Dictionary<CellOffset[], CellOffset[][]>>> reachabilityTableCache = new Dictionary<CellOffset[], Dictionary<CellOffset[][], Dictionary<CellOffset[], CellOffset[][]>>>();
 
-	// Token: 0x04005A79 RID: 23161
 	private static readonly CellOffset[] nullFilter = new CellOffset[0];
 
-	// Token: 0x020016C9 RID: 5833
 	private class CellOffsetComparer : IComparer<CellOffset>
 	{
-		// Token: 0x06007864 RID: 30820 RVA: 0x0031F798 File Offset: 0x0031D998
 		public int Compare(CellOffset a, CellOffset b)
 		{
 			int num = Math.Abs(a.x) + Math.Abs(a.y);

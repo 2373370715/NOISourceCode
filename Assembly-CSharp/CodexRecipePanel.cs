@@ -4,33 +4,25 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001CB2 RID: 7346
 public class CodexRecipePanel : CodexWidget<CodexRecipePanel>
 {
-	// Token: 0x17000A17 RID: 2583
-	// (get) Token: 0x0600992D RID: 39213 RVA: 0x0010806F File Offset: 0x0010626F
-	// (set) Token: 0x0600992E RID: 39214 RVA: 0x00108077 File Offset: 0x00106277
 	public string linkID { get; set; }
 
-	// Token: 0x0600992F RID: 39215 RVA: 0x00108080 File Offset: 0x00106280
 	public CodexRecipePanel()
 	{
 	}
 
-	// Token: 0x06009930 RID: 39216 RVA: 0x00108088 File Offset: 0x00106288
 	public CodexRecipePanel(ComplexRecipe recipe, bool shouldUseFabricatorForTitle = false)
 	{
 		this.complexRecipe = recipe;
 		this.useFabricatorForTitle = shouldUseFabricatorForTitle;
 	}
 
-	// Token: 0x06009931 RID: 39217 RVA: 0x0010809E File Offset: 0x0010629E
 	public CodexRecipePanel(Recipe rec)
 	{
 		this.recipe = rec;
 	}
 
-	// Token: 0x06009932 RID: 39218 RVA: 0x003C1B30 File Offset: 0x003BFD30
 	public override void Configure(GameObject contentGameObject, Transform displayPane, Dictionary<CodexTextStyle, TextStyleSetting> textStyles)
 	{
 		HierarchyReferences component = contentGameObject.GetComponent<HierarchyReferences>();
@@ -52,7 +44,6 @@ public class CodexRecipePanel : CodexWidget<CodexRecipePanel>
 		}
 	}
 
-	// Token: 0x06009933 RID: 39219 RVA: 0x003C1BF4 File Offset: 0x003BFDF4
 	private void ConfigureRecipe()
 	{
 		this.title.text = this.recipe.Result.ProperName();
@@ -89,7 +80,6 @@ public class CodexRecipePanel : CodexWidget<CodexRecipePanel>
 		gameObject2.GetComponent<ToolTip>().toolTip = text2;
 	}
 
-	// Token: 0x06009934 RID: 39220 RVA: 0x003C1E78 File Offset: 0x003C0078
 	private void ConfigureComplexRecipe()
 	{
 		ComplexRecipe.RecipeElement[] array = this.complexRecipe.ingredients;
@@ -158,7 +148,6 @@ public class CodexRecipePanel : CodexWidget<CodexRecipePanel>
 		this.title.text = this.complexRecipe.results[0].material.ProperName();
 	}
 
-	// Token: 0x06009935 RID: 39221 RVA: 0x003C22B0 File Offset: 0x003C04B0
 	private void ClearPanel()
 	{
 		foreach (object obj in this.ingredientsContainer.transform)
@@ -175,30 +164,21 @@ public class CodexRecipePanel : CodexWidget<CodexRecipePanel>
 		}
 	}
 
-	// Token: 0x04007722 RID: 30498
 	private LocText title;
 
-	// Token: 0x04007723 RID: 30499
 	private GameObject materialPrefab;
 
-	// Token: 0x04007724 RID: 30500
 	private GameObject fabricatorPrefab;
 
-	// Token: 0x04007725 RID: 30501
 	private GameObject ingredientsContainer;
 
-	// Token: 0x04007726 RID: 30502
 	private GameObject resultsContainer;
 
-	// Token: 0x04007727 RID: 30503
 	private GameObject fabricatorContainer;
 
-	// Token: 0x04007728 RID: 30504
 	private ComplexRecipe complexRecipe;
 
-	// Token: 0x04007729 RID: 30505
 	private Recipe recipe;
 
-	// Token: 0x0400772A RID: 30506
 	private bool useFabricatorForTitle;
 }

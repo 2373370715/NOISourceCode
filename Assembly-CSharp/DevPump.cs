@@ -1,10 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000D71 RID: 3441
 public class DevPump : Filterable, ISim1000ms
 {
-	// Token: 0x060042BE RID: 17086 RVA: 0x002500B8 File Offset: 0x0024E2B8
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -19,14 +17,12 @@ public class DevPump : Filterable, ISim1000ms
 		}
 	}
 
-	// Token: 0x060042BF RID: 17087 RVA: 0x000CF968 File Offset: 0x000CDB68
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
 		this.filterElementState = this.elementState;
 	}
 
-	// Token: 0x060042C0 RID: 17088 RVA: 0x00250108 File Offset: 0x0024E308
 	public void Sim1000ms(float dt)
 	{
 		if (!base.SelectedTag.IsValid)
@@ -55,10 +51,8 @@ public class DevPump : Filterable, ISim1000ms
 		}
 	}
 
-	// Token: 0x04002E01 RID: 11777
 	public Filterable.ElementState elementState = Filterable.ElementState.Liquid;
 
-	// Token: 0x04002E02 RID: 11778
 	[MyCmpReq]
 	private Storage storage;
 }

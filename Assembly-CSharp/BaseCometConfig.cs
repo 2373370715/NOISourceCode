@@ -1,10 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200045D RID: 1117
 public static class BaseCometConfig
 {
-	// Token: 0x060012D7 RID: 4823 RVA: 0x00196B24 File Offset: 0x00194D24
 	public static GameObject BaseComet(string id, string name, string animName, SimHashes primaryElement, Vector2 massRange, Vector2 temperatureRange, string impactSound = "Meteor_Large_Impact", int flyingSoundID = 1, SimHashes exhaustElement = SimHashes.CarbonDioxide, SpawnFXHashes explosionEffect = SpawnFXHashes.None, float size = 1f)
 	{
 		GameObject gameObject = EntityTemplates.CreateEntity(id, name, true);

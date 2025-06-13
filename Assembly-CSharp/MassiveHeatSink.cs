@@ -1,28 +1,22 @@
 ﻿using System;
 using STRINGS;
 
-// Token: 0x02000ED2 RID: 3794
 public class MassiveHeatSink : StateMachineComponent<MassiveHeatSink.StatesInstance>
 {
-	// Token: 0x06004BE8 RID: 19432 RVA: 0x000D575B File Offset: 0x000D395B
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
 		base.smi.StartSM();
 	}
 
-	// Token: 0x0400351D RID: 13597
 	[MyCmpReq]
 	private Operational operational;
 
-	// Token: 0x0400351E RID: 13598
 	[MyCmpReq]
 	private ElementConverter elementConverter;
 
-	// Token: 0x02000ED3 RID: 3795
 	public class States : GameStateMachine<MassiveHeatSink.States, MassiveHeatSink.StatesInstance, MassiveHeatSink>
 	{
-		// Token: 0x06004BEA RID: 19434 RVA: 0x0026E240 File Offset: 0x0026C440
 		private string AwaitingFuelResolveString(string str, object obj)
 		{
 			ElementConverter elementConverter = ((MassiveHeatSink.StatesInstance)obj).master.elementConverter;
@@ -32,7 +26,6 @@ public class MassiveHeatSink : StateMachineComponent<MassiveHeatSink.StatesInsta
 			return str;
 		}
 
-		// Token: 0x06004BEB RID: 19435 RVA: 0x0026E2A0 File Offset: 0x0026C4A0
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.disabled;
@@ -55,20 +48,15 @@ public class MassiveHeatSink : StateMachineComponent<MassiveHeatSink.StatesInsta
 			});
 		}
 
-		// Token: 0x0400351F RID: 13599
 		public GameStateMachine<MassiveHeatSink.States, MassiveHeatSink.StatesInstance, MassiveHeatSink, object>.State disabled;
 
-		// Token: 0x04003520 RID: 13600
 		public GameStateMachine<MassiveHeatSink.States, MassiveHeatSink.StatesInstance, MassiveHeatSink, object>.State idle;
 
-		// Token: 0x04003521 RID: 13601
 		public GameStateMachine<MassiveHeatSink.States, MassiveHeatSink.StatesInstance, MassiveHeatSink, object>.State active;
 	}
 
-	// Token: 0x02000ED5 RID: 3797
 	public class StatesInstance : GameStateMachine<MassiveHeatSink.States, MassiveHeatSink.StatesInstance, MassiveHeatSink, object>.GameInstance
 	{
-		// Token: 0x06004BF6 RID: 19446 RVA: 0x000D5802 File Offset: 0x000D3A02
 		public StatesInstance(MassiveHeatSink master) : base(master)
 		{
 		}

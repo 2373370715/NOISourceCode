@@ -2,10 +2,8 @@
 using UnityEngine;
 using UnityEngine.Rendering;
 
-// Token: 0x02000500 RID: 1280
 public class CommonPlacerConfig
 {
-	// Token: 0x06001601 RID: 5633 RVA: 0x001A1898 File Offset: 0x0019FA98
 	public GameObject CreatePrefab(string id, string name, Material default_material)
 	{
 		GameObject gameObject = EntityTemplates.CreateEntity(id, name, true);
@@ -51,11 +49,9 @@ public class CommonPlacerConfig
 		return gameObject;
 	}
 
-	// Token: 0x02000501 RID: 1281
 	[Serializable]
 	public class CommonPlacerAssets
 	{
-		// Token: 0x04000F20 RID: 3872
 		public Mesh mesh;
 	}
 }

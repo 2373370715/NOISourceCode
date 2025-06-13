@@ -4,10 +4,8 @@ using Klei;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x020006CE RID: 1742
 public class FindAndConsumeOxygenSourceChore : Chore<FindAndConsumeOxygenSourceChore.Instance>
 {
-	// Token: 0x06001F07 RID: 7943 RVA: 0x001C2E08 File Offset: 0x001C1008
 	public FindAndConsumeOxygenSourceChore(IStateMachineTarget target, bool critical) : base(critical ? Db.Get().ChoreTypes.FindOxygenSourceItem_Critical : Db.Get().ChoreTypes.FindOxygenSourceItem, target, target.GetComponent<ChoreProvider>(), false, null, null, null, critical ? PriorityScreen.PriorityClass.compulsory : PriorityScreen.PriorityClass.personalNeeds, 5, false, true, 0, false, ReportManager.ReportType.WorkTime)
 	{
 		base.smi = new FindAndConsumeOxygenSourceChore.Instance(this, target.gameObject);
@@ -15,7 +13,6 @@ public class FindAndConsumeOxygenSourceChore : Chore<FindAndConsumeOxygenSourceC
 		this.AddPrecondition(FindAndConsumeOxygenSourceChore.OxygenSourceItemIsNotNull, null);
 	}
 
-	// Token: 0x06001F08 RID: 7944 RVA: 0x001C2E88 File Offset: 0x001C1088
 	public override void Begin(Chore.Precondition.Context context)
 	{
 		if (context.consumerState.consumer == null)
@@ -41,25 +38,21 @@ public class FindAndConsumeOxygenSourceChore : Chore<FindAndConsumeOxygenSourceC
 		base.Begin(context);
 	}
 
-	// Token: 0x06001F09 RID: 7945 RVA: 0x000B8EC6 File Offset: 0x000B70C6
 	public static bool IsNotAllowedByScheduleAndChoreIsNotCritical(FindAndConsumeOxygenSourceChore.Instance smi)
 	{
 		return !FindAndConsumeOxygenSourceChore.IsCriticalChore(smi) && !FindAndConsumeOxygenSourceChore.IsAllowedBySchedule(smi);
 	}
 
-	// Token: 0x06001F0A RID: 7946 RVA: 0x000B8EDB File Offset: 0x000B70DB
 	public static bool IsAllowedBySchedule(FindAndConsumeOxygenSourceChore.Instance smi)
 	{
 		return BionicOxygenTankMonitor.IsAllowedToSeekOxygenBySchedule(smi.oxygenTankMonitor);
 	}
 
-	// Token: 0x06001F0B RID: 7947 RVA: 0x000B8EE8 File Offset: 0x000B70E8
 	public static bool IsCriticalChore(FindAndConsumeOxygenSourceChore.Instance smi)
 	{
 		return smi.master.choreType == Db.Get().ChoreTypes.FindOxygenSourceItem_Critical;
 	}
 
-	// Token: 0x06001F0C RID: 7948 RVA: 0x001C2F6C File Offset: 0x001C116C
 	public static void ExtractOxygenFromItem(FindAndConsumeOxygenSourceChore.Instance smi)
 	{
 		GameObject gameObject = smi.sm.pickedUpItem.Get(smi);
@@ -101,7 +94,6 @@ public class FindAndConsumeOxygenSourceChore : Chore<FindAndConsumeOxygenSourceC
 		Util.KDestroyGameObject(gameObject);
 	}
 
-	// Token: 0x06001F0D RID: 7949 RVA: 0x001C30F0 File Offset: 0x001C12F0
 	public static void SetOverrideAnimSymbol(FindAndConsumeOxygenSourceChore.Instance smi, bool overriding)
 	{
 		GameObject gameObject = smi.sm.pickedUpItem.Get(smi);
@@ -126,7 +118,6 @@ public class FindAndConsumeOxygenSourceChore : Chore<FindAndConsumeOxygenSourceC
 		}
 	}
 
-	// Token: 0x06001F0E RID: 7950 RVA: 0x000B8F06 File Offset: 0x000B7106
 	public static void TriggerOxygenItemLostSignal(FindAndConsumeOxygenSourceChore.Instance smi)
 	{
 		if (smi.oxygenTankMonitor != null)
@@ -135,32 +126,24 @@ public class FindAndConsumeOxygenSourceChore : Chore<FindAndConsumeOxygenSourceC
 		}
 	}
 
-	// Token: 0x06001F0F RID: 7951 RVA: 0x001C3160 File Offset: 0x001C1360
 	public static float GetConsumeDuration(FindAndConsumeOxygenSourceChore.Instance smi)
 	{
 		float num = smi.sm.actualunits.Get(smi) / BionicOxygenTankMonitor.OXYGEN_TANK_CAPACITY_KG;
 		return Mathf.Max(24f * num, 4.333f);
 	}
 
-	// Token: 0x04001451 RID: 5201
 	public const string CANISTER_BODY_SYMBOL_NAME = "canister";
 
-	// Token: 0x04001452 RID: 5202
 	public const string CANISTER_CAP_SYMBOL_NAME = "cap";
 
-	// Token: 0x04001453 RID: 5203
 	public const string CANISTER_CAP_COLOR_SYMBOL_NAME = "substance_tinter_cap";
 
-	// Token: 0x04001454 RID: 5204
 	public const string CANISTER_BODY_COLOR_SYMBOL_NAME = "substance_tinter";
 
-	// Token: 0x04001455 RID: 5205
 	public const float MAX_LOOP_DURATION = 24f;
 
-	// Token: 0x04001456 RID: 5206
 	public const float MIN_LOOP_DURATION = 4.333f;
 
-	// Token: 0x04001457 RID: 5207
 	public static readonly Chore.Precondition OxygenSourceItemIsNotNull = new Chore.Precondition
 	{
 		id = "OxygenSourceIsNotNull",
@@ -172,10 +155,8 @@ public class FindAndConsumeOxygenSourceChore : Chore<FindAndConsumeOxygenSourceC
 		}
 	};
 
-	// Token: 0x020006CF RID: 1743
 	public class States : GameStateMachine<FindAndConsumeOxygenSourceChore.States, FindAndConsumeOxygenSourceChore.Instance, FindAndConsumeOxygenSourceChore>
 	{
-		// Token: 0x06001F11 RID: 7953 RVA: 0x001C31E8 File Offset: 0x001C13E8
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.fetch;
@@ -196,55 +177,38 @@ public class FindAndConsumeOxygenSourceChore : Chore<FindAndConsumeOxygenSourceC
 			this.oxygenSourceLost.Target(this.dupe).Enter(new StateMachine<FindAndConsumeOxygenSourceChore.States, FindAndConsumeOxygenSourceChore.Instance, FindAndConsumeOxygenSourceChore, object>.State.Callback(FindAndConsumeOxygenSourceChore.TriggerOxygenItemLostSignal)).ReturnFailure();
 		}
 
-		// Token: 0x04001458 RID: 5208
 		public GameStateMachine<FindAndConsumeOxygenSourceChore.States, FindAndConsumeOxygenSourceChore.Instance, FindAndConsumeOxygenSourceChore, object>.FetchSubState fetch;
 
-		// Token: 0x04001459 RID: 5209
 		public FindAndConsumeOxygenSourceChore.States.InstallState consume;
 
-		// Token: 0x0400145A RID: 5210
 		public GameStateMachine<FindAndConsumeOxygenSourceChore.States, FindAndConsumeOxygenSourceChore.Instance, FindAndConsumeOxygenSourceChore, object>.State complete;
 
-		// Token: 0x0400145B RID: 5211
 		public GameStateMachine<FindAndConsumeOxygenSourceChore.States, FindAndConsumeOxygenSourceChore.Instance, FindAndConsumeOxygenSourceChore, object>.State oxygenSourceLost;
 
-		// Token: 0x0400145C RID: 5212
 		public GameStateMachine<FindAndConsumeOxygenSourceChore.States, FindAndConsumeOxygenSourceChore.Instance, FindAndConsumeOxygenSourceChore, object>.State scheduleFailure;
 
-		// Token: 0x0400145D RID: 5213
 		public StateMachine<FindAndConsumeOxygenSourceChore.States, FindAndConsumeOxygenSourceChore.Instance, FindAndConsumeOxygenSourceChore, object>.TargetParameter dupe;
 
-		// Token: 0x0400145E RID: 5214
 		public StateMachine<FindAndConsumeOxygenSourceChore.States, FindAndConsumeOxygenSourceChore.Instance, FindAndConsumeOxygenSourceChore, object>.TargetParameter oxygenSourceItem;
 
-		// Token: 0x0400145F RID: 5215
 		public StateMachine<FindAndConsumeOxygenSourceChore.States, FindAndConsumeOxygenSourceChore.Instance, FindAndConsumeOxygenSourceChore, object>.TargetParameter pickedUpItem;
 
-		// Token: 0x04001460 RID: 5216
 		public StateMachine<FindAndConsumeOxygenSourceChore.States, FindAndConsumeOxygenSourceChore.Instance, FindAndConsumeOxygenSourceChore, object>.FloatParameter actualunits;
 
-		// Token: 0x04001461 RID: 5217
 		public StateMachine<FindAndConsumeOxygenSourceChore.States, FindAndConsumeOxygenSourceChore.Instance, FindAndConsumeOxygenSourceChore, object>.FloatParameter amountRequested;
 
-		// Token: 0x020006D0 RID: 1744
 		public class InstallState : GameStateMachine<FindAndConsumeOxygenSourceChore.States, FindAndConsumeOxygenSourceChore.Instance, FindAndConsumeOxygenSourceChore, object>.State
 		{
-			// Token: 0x04001462 RID: 5218
 			public GameStateMachine<FindAndConsumeOxygenSourceChore.States, FindAndConsumeOxygenSourceChore.Instance, FindAndConsumeOxygenSourceChore, object>.State pre;
 
-			// Token: 0x04001463 RID: 5219
 			public GameStateMachine<FindAndConsumeOxygenSourceChore.States, FindAndConsumeOxygenSourceChore.Instance, FindAndConsumeOxygenSourceChore, object>.State loop;
 
-			// Token: 0x04001464 RID: 5220
 			public GameStateMachine<FindAndConsumeOxygenSourceChore.States, FindAndConsumeOxygenSourceChore.Instance, FindAndConsumeOxygenSourceChore, object>.State pst;
 		}
 	}
 
-	// Token: 0x020006D2 RID: 1746
 	public class Instance : GameStateMachine<FindAndConsumeOxygenSourceChore.States, FindAndConsumeOxygenSourceChore.Instance, FindAndConsumeOxygenSourceChore, object>.GameInstance
 	{
-		// Token: 0x170000D1 RID: 209
-		// (get) Token: 0x06001F18 RID: 7960 RVA: 0x000B8F59 File Offset: 0x000B7159
 		public BionicOxygenTankMonitor.Instance oxygenTankMonitor
 		{
 			get
@@ -253,18 +217,15 @@ public class FindAndConsumeOxygenSourceChore : Chore<FindAndConsumeOxygenSourceC
 			}
 		}
 
-		// Token: 0x06001F19 RID: 7961 RVA: 0x000B8F71 File Offset: 0x000B7171
 		public Instance(FindAndConsumeOxygenSourceChore master, GameObject duplicant) : base(master)
 		{
 		}
 
-		// Token: 0x06001F1A RID: 7962 RVA: 0x001C3420 File Offset: 0x001C1620
 		public void ShowBottleSymbolOverrideObject(Element elementOfCanister)
 		{
 			if (this.canisterBodySymbolOverrideObject == null)
 			{
 				KAnimFile[] anims = elementOfCanister.substance.anims;
-				GameObject gameObject = Util.NewGameObject(base.gameObject, "canister_symbol");
 				gameObject.transform.SetParent(base.gameObject.transform, false);
 				gameObject.SetActive(false);
 				this.canisterBodySymbolOverrideObject = gameObject.AddComponent<KBatchedAnimController>();
@@ -316,13 +277,11 @@ public class FindAndConsumeOxygenSourceChore : Chore<FindAndConsumeOxygenSourceC
 			component.SetSymbolVisiblity("cap", false);
 		}
 
-		// Token: 0x06001F1B RID: 7963 RVA: 0x001C36FC File Offset: 0x001C18FC
 		public void RemoveSymbolOverrideObject()
 		{
 			if (this.canisterBodySymbolOverrideObject != null)
 			{
 				this.canisterBodySymbolOverrideObject.gameObject.DeleteObject();
-				this.canisterBodySymbolOverrideObject = null;
 			}
 			if (this.canisterCapSymbolOverrideObject != null)
 			{
@@ -331,17 +290,12 @@ public class FindAndConsumeOxygenSourceChore : Chore<FindAndConsumeOxygenSourceC
 			}
 		}
 
-		// Token: 0x06001F1C RID: 7964 RVA: 0x000B8F7A File Offset: 0x000B717A
 		protected override void OnCleanUp()
 		{
 			this.RemoveSymbolOverrideObject();
 			base.OnCleanUp();
 		}
-
-		// Token: 0x04001468 RID: 5224
 		public KBatchedAnimController canisterBodySymbolOverrideObject;
 
-		// Token: 0x04001469 RID: 5225
 		public KBatchedAnimController canisterCapSymbolOverrideObject;
 	}
-}

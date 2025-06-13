@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000508 RID: 1288
 public class PlanterBoxConfig : IBuildingConfig
 {
-	// Token: 0x06001616 RID: 5654 RVA: 0x001A1BCC File Offset: 0x0019FDCC
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "PlanterBox";
@@ -31,7 +29,6 @@ public class PlanterBoxConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001617 RID: 5655 RVA: 0x001A1C60 File Offset: 0x0019FE60
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		Storage storage = go.AddOrGet<Storage>();
@@ -48,11 +45,9 @@ public class PlanterBoxConfig : IBuildingConfig
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x06001618 RID: 5656 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000F27 RID: 3879
 	public const string ID = "PlanterBox";
 }

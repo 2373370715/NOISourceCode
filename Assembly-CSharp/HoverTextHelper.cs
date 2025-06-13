@@ -2,17 +2,14 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001B21 RID: 6945
 public class HoverTextHelper
 {
-	// Token: 0x06009178 RID: 37240 RVA: 0x001038A5 File Offset: 0x00101AA5
 	public static void DestroyStatics()
 	{
 		HoverTextHelper.cachedElement = null;
 		HoverTextHelper.cachedMass = -1f;
 	}
 
-	// Token: 0x06009179 RID: 37241 RVA: 0x0038D5F0 File Offset: 0x0038B7F0
 	public static string[] MassStringsReadOnly(int cell)
 	{
 		if (!Grid.IsValidCell(cell))
@@ -72,10 +69,8 @@ public class HoverTextHelper
 		return HoverTextHelper.massStrings;
 	}
 
-	// Token: 0x04006E1C RID: 28188
 	private static readonly string[] massStrings = new string[4];
 
-	// Token: 0x04006E1D RID: 28189
 	private static readonly string[] invalidCellMassStrings = new string[]
 	{
 		"",
@@ -84,9 +79,7 @@ public class HoverTextHelper
 		""
 	};
 
-	// Token: 0x04006E1E RID: 28190
 	private static float cachedMass = -1f;
 
-	// Token: 0x04006E1F RID: 28191
 	private static Element cachedElement;
 }

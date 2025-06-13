@@ -4,10 +4,8 @@ using ImGuiNET;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000BDC RID: 3036
 public class DevToolEntity : DevTool
 {
-	// Token: 0x06003991 RID: 14737 RVA: 0x0022C658 File Offset: 0x0022A858
 	protected override void RenderTo(DevPanel panel)
 	{
 		if (ImGui.BeginMenuBar())
@@ -159,7 +157,6 @@ public class DevToolEntity : DevTool
 		}
 	}
 
-	// Token: 0x06003992 RID: 14738 RVA: 0x0022CAA8 File Offset: 0x0022ACA8
 	public Option<GameObject> GetInGameSelectedEntity()
 	{
 		if (SelectTool.Instance == null)
@@ -174,7 +171,6 @@ public class DevToolEntity : DevTool
 		return selected.gameObject;
 	}
 
-	// Token: 0x06003993 RID: 14739 RVA: 0x0022CAF8 File Offset: 0x0022ACF8
 	public static string GetNameFor(GameObject gameObject)
 	{
 		if (gameObject.IsNullOrDestroyed())
@@ -191,7 +187,6 @@ public class DevToolEntity : DevTool
 		});
 	}
 
-	// Token: 0x06003994 RID: 14740 RVA: 0x0022CB5C File Offset: 0x0022AD5C
 	public static Vector2 GetPositionFor(GameObject gameObject)
 	{
 		if (Camera.main != null)
@@ -204,7 +199,6 @@ public class DevToolEntity : DevTool
 		return Vector2.zero;
 	}
 
-	// Token: 0x06003995 RID: 14741 RVA: 0x0022CBB0 File Offset: 0x0022ADB0
 	public static Vector2 GetScreenPosition(Vector3 pos)
 	{
 		if (Camera.main != null)
@@ -217,7 +211,6 @@ public class DevToolEntity : DevTool
 		return Vector2.zero;
 	}
 
-	// Token: 0x06003996 RID: 14742 RVA: 0x0022CBFC File Offset: 0x0022ADFC
 	public static void DrawBoundingBox([TupleElementNames(new string[]
 	{
 		"cornerA",
@@ -232,7 +225,6 @@ public class DevToolEntity : DevTool
 		DevToolEntity.DrawScreenRect(screenRect, Option.None, new Color(0.9f, 0f, 0f, 0.6f), default(Option<Color>), default(Option<DevToolUtil.TextAlignment>));
 	}
 
-	// Token: 0x06003997 RID: 14743 RVA: 0x0022CCA0 File Offset: 0x0022AEA0
 	public unsafe static void DrawScreenRect([TupleElementNames(new string[]
 	{
 		"cornerA",
@@ -262,9 +254,7 @@ public class DevToolEntity : DevTool
 		}
 	}
 
-	// Token: 0x040027C0 RID: 10176
 	private Option<DevToolEntityTarget> currentTargetOpt;
 
-	// Token: 0x040027C1 RID: 10177
 	private bool shouldDrawBoundingBox = true;
 }

@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200055B RID: 1371
 public class RoboPilotModuleConfig : IBuildingConfig
 {
-	// Token: 0x0600179B RID: 6043 RVA: 0x000B454F File Offset: 0x000B274F
 	public override string[] GetRequiredDlcIds()
 	{
 		return new string[]
@@ -16,7 +14,6 @@ public class RoboPilotModuleConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x0600179C RID: 6044 RVA: 0x001A6A9C File Offset: 0x001A4C9C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "RoboPilotModule";
@@ -48,7 +45,6 @@ public class RoboPilotModuleConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600179D RID: 6045 RVA: 0x00185E80 File Offset: 0x00184080
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -60,7 +56,6 @@ public class RoboPilotModuleConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x0600179E RID: 6046 RVA: 0x001A6B60 File Offset: 0x001A4D60
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		Prioritizable.AddRef(go);
@@ -85,6 +80,5 @@ public class RoboPilotModuleConfig : IBuildingConfig
 		go.GetComponent<ReorderableBuilding>().buildConditions.Add(new LimitOneRoboPilotModule());
 	}
 
-	// Token: 0x04000F94 RID: 3988
 	public const string ID = "RoboPilotModule";
 }

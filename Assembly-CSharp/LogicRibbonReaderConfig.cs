@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003F3 RID: 1011
 public class LogicRibbonReaderConfig : IBuildingConfig
 {
-	// Token: 0x0600109D RID: 4253 RVA: 0x0018B224 File Offset: 0x00189424
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = LogicRibbonReaderConfig.ID;
@@ -47,13 +45,11 @@ public class LogicRibbonReaderConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600109E RID: 4254 RVA: 0x000B1B63 File Offset: 0x000AFD63
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicRibbonReader>();
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayInFrontOfConduits, false);
 	}
 
-	// Token: 0x04000B9E RID: 2974
 	public static string ID = "LogicRibbonReader";
 }

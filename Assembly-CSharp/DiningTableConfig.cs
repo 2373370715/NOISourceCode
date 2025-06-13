@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000A5 RID: 165
 public class DiningTableConfig : IBuildingConfig
 {
-	// Token: 0x060002A6 RID: 678 RVA: 0x00151CA8 File Offset: 0x0014FEA8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "DiningTable";
@@ -26,7 +24,6 @@ public class DiningTableConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060002A7 RID: 679 RVA: 0x000AAF1D File Offset: 0x000A911D
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<LoopingSounds>();
@@ -36,7 +33,6 @@ public class DiningTableConfig : IBuildingConfig
 		go.AddOrGetDef<RocketUsageRestriction.Def>();
 	}
 
-	// Token: 0x060002A8 RID: 680 RVA: 0x00151D0C File Offset: 0x0014FF0C
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.GetComponent<KAnimControllerBase>().initialAnim = "off";
@@ -53,6 +49,5 @@ public class DiningTableConfig : IBuildingConfig
 		manualDeliveryKG.ShowStatusItem = false;
 	}
 
-	// Token: 0x040001B8 RID: 440
 	public const string ID = "DiningTable";
 }

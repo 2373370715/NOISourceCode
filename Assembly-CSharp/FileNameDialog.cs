@@ -2,16 +2,13 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-// Token: 0x02001B1C RID: 6940
 public class FileNameDialog : KModalScreen
 {
-	// Token: 0x06009162 RID: 37218 RVA: 0x0010374B File Offset: 0x0010194B
 	public override float GetSortKey()
 	{
 		return 150f;
 	}
 
-	// Token: 0x06009163 RID: 37219 RVA: 0x00103752 File Offset: 0x00101952
 	public void SetTextAndSelect(string text)
 	{
 		if (this.inputField == null)
@@ -22,7 +19,6 @@ public class FileNameDialog : KModalScreen
 		this.inputField.Select();
 	}
 
-	// Token: 0x06009164 RID: 37220 RVA: 0x0038D390 File Offset: 0x0038B590
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -36,7 +32,6 @@ public class FileNameDialog : KModalScreen
 		this.inputField.onEndEdit.AddListener(new UnityAction<string>(this.OnEndEdit));
 	}
 
-	// Token: 0x06009165 RID: 37221 RVA: 0x0010377A File Offset: 0x0010197A
 	protected override void OnActivate()
 	{
 		base.OnActivate();
@@ -45,14 +40,12 @@ public class FileNameDialog : KModalScreen
 		CameraController.Instance.DisableUserCameraControl = true;
 	}
 
-	// Token: 0x06009166 RID: 37222 RVA: 0x001037A3 File Offset: 0x001019A3
 	protected override void OnDeactivate()
 	{
 		CameraController.Instance.DisableUserCameraControl = false;
 		base.OnDeactivate();
 	}
 
-	// Token: 0x06009167 RID: 37223 RVA: 0x0038D420 File Offset: 0x0038B620
 	public void OnConfirm()
 	{
 		if (this.onConfirm != null && !string.IsNullOrEmpty(this.inputField.text))
@@ -67,7 +60,6 @@ public class FileNameDialog : KModalScreen
 		}
 	}
 
-	// Token: 0x06009168 RID: 37224 RVA: 0x001037B6 File Offset: 0x001019B6
 	private void OnEndEdit(string str)
 	{
 		if (Localization.HasDirtyWords(str))
@@ -76,7 +68,6 @@ public class FileNameDialog : KModalScreen
 		}
 	}
 
-	// Token: 0x06009169 RID: 37225 RVA: 0x001037D0 File Offset: 0x001019D0
 	public void OnCancel()
 	{
 		if (this.onCancel != null)
@@ -86,7 +77,6 @@ public class FileNameDialog : KModalScreen
 		this.Deactivate();
 	}
 
-	// Token: 0x0600916A RID: 37226 RVA: 0x001037EB File Offset: 0x001019EB
 	public override void OnKeyUp(KButtonEvent e)
 	{
 		if (e.TryConsume(global::Action.Escape))
@@ -100,31 +90,24 @@ public class FileNameDialog : KModalScreen
 		e.Consumed = true;
 	}
 
-	// Token: 0x0600916B RID: 37227 RVA: 0x00103818 File Offset: 0x00101A18
 	public override void OnKeyDown(KButtonEvent e)
 	{
 		e.Consumed = true;
 	}
 
-	// Token: 0x04006E05 RID: 28165
 	public Action<string> onConfirm;
 
-	// Token: 0x04006E06 RID: 28166
 	public System.Action onCancel;
 
-	// Token: 0x04006E07 RID: 28167
 	[SerializeField]
 	private KInputTextField inputField;
 
-	// Token: 0x04006E08 RID: 28168
 	[SerializeField]
 	private KButton confirmButton;
 
-	// Token: 0x04006E09 RID: 28169
 	[SerializeField]
 	private KButton cancelButton;
 
-	// Token: 0x04006E0A RID: 28170
 	[SerializeField]
 	private KButton closeButton;
 }

@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020004A8 RID: 1192
 public class MissionControlClusterConfig : IBuildingConfig
 {
-	// Token: 0x0600146A RID: 5226 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x0600146B RID: 5227 RVA: 0x0019BC70 File Offset: 0x00199E70
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "MissionControlCluster";
@@ -38,7 +35,6 @@ public class MissionControlClusterConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600146C RID: 5228 RVA: 0x0019BD24 File Offset: 0x00199F24
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.ScienceBuilding, false);
@@ -53,7 +49,6 @@ public class MissionControlClusterConfig : IBuildingConfig
 		missionControlClusterWorkable.workLayer = Grid.SceneLayer.BuildingUse;
 	}
 
-	// Token: 0x0600146D RID: 5229 RVA: 0x000B34B4 File Offset: 0x000B16B4
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		RoomTracker roomTracker = go.AddOrGet<RoomTracker>();
@@ -62,19 +57,16 @@ public class MissionControlClusterConfig : IBuildingConfig
 		MissionControlClusterConfig.AddVisualizer(go);
 	}
 
-	// Token: 0x0600146E RID: 5230 RVA: 0x000B34E2 File Offset: 0x000B16E2
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 		MissionControlClusterConfig.AddVisualizer(go);
 	}
 
-	// Token: 0x0600146F RID: 5231 RVA: 0x000B34EA File Offset: 0x000B16EA
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		MissionControlClusterConfig.AddVisualizer(go);
 	}
 
-	// Token: 0x06001470 RID: 5232 RVA: 0x000B34F2 File Offset: 0x000B16F2
 	private static void AddVisualizer(GameObject prefab)
 	{
 		SkyVisibilityVisualizer skyVisibilityVisualizer = prefab.AddOrGet<SkyVisibilityVisualizer>();
@@ -84,24 +76,17 @@ public class MissionControlClusterConfig : IBuildingConfig
 		skyVisibilityVisualizer.SkipOnModuleInteriors = true;
 	}
 
-	// Token: 0x04000DE7 RID: 3559
 	public const string ID = "MissionControlCluster";
 
-	// Token: 0x04000DE8 RID: 3560
 	public const int WORK_RANGE_RADIUS = 2;
 
-	// Token: 0x04000DE9 RID: 3561
 	public const float EFFECT_DURATION = 600f;
 
-	// Token: 0x04000DEA RID: 3562
 	public const float SPEED_MULTIPLIER = 1.2f;
 
-	// Token: 0x04000DEB RID: 3563
 	public const int SCAN_RADIUS = 1;
 
-	// Token: 0x04000DEC RID: 3564
 	public const int VERTICAL_SCAN_OFFSET = 2;
 
-	// Token: 0x04000DED RID: 3565
 	public static readonly SkyVisibilityInfo SKY_VISIBILITY_INFO = new SkyVisibilityInfo(new CellOffset(0, 2), 1, new CellOffset(0, 2), 1, 0);
 }

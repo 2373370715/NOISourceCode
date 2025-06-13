@@ -1,12 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000FC5 RID: 4037
 [AddComponentMenu("KMonoBehaviour/scripts/SolidConduitBridge")]
 public class SolidConduitBridge : ConduitBridgeBase
 {
-	// Token: 0x1700048D RID: 1165
-	// (get) Token: 0x06005152 RID: 20818 RVA: 0x000D9726 File Offset: 0x000D7926
 	public bool IsDispensing
 	{
 		get
@@ -15,7 +12,6 @@ public class SolidConduitBridge : ConduitBridgeBase
 		}
 	}
 
-	// Token: 0x06005153 RID: 20819 RVA: 0x0027FC60 File Offset: 0x0027DE60
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -25,14 +21,12 @@ public class SolidConduitBridge : ConduitBridgeBase
 		SolidConduit.GetFlowManager().AddConduitUpdater(new Action<float>(this.ConduitUpdate), ConduitFlowPriority.Default);
 	}
 
-	// Token: 0x06005154 RID: 20820 RVA: 0x000D972E File Offset: 0x000D792E
 	protected override void OnCleanUp()
 	{
 		SolidConduit.GetFlowManager().RemoveConduitUpdater(new Action<float>(this.ConduitUpdate));
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06005155 RID: 20821 RVA: 0x0027FCAC File Offset: 0x0027DEAC
 	private void ConduitUpdate(float dt)
 	{
 		this.dispensing = false;
@@ -99,16 +93,12 @@ public class SolidConduitBridge : ConduitBridgeBase
 		}
 	}
 
-	// Token: 0x0400393A RID: 14650
 	[MyCmpGet]
 	private Operational operational;
 
-	// Token: 0x0400393B RID: 14651
 	private int inputCell;
 
-	// Token: 0x0400393C RID: 14652
 	private int outputCell;
 
-	// Token: 0x0400393D RID: 14653
 	private bool dispensing;
 }

@@ -9,10 +9,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02002068 RID: 8296
 public class SkillsScreen : KModalScreen
 {
-	// Token: 0x0600B076 RID: 45174 RVA: 0x00107159 File Offset: 0x00105359
 	public override float GetSortKey()
 	{
 		if (base.isEditing)
@@ -22,9 +20,6 @@ public class SkillsScreen : KModalScreen
 		return 20f;
 	}
 
-	// Token: 0x17000B51 RID: 2897
-	// (get) Token: 0x0600B077 RID: 45175 RVA: 0x001175AB File Offset: 0x001157AB
-	// (set) Token: 0x0600B078 RID: 45176 RVA: 0x001175CA File Offset: 0x001157CA
 	public IAssignableIdentity CurrentlySelectedMinion
 	{
 		get
@@ -47,13 +42,11 @@ public class SkillsScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600B079 RID: 45177 RVA: 0x001175ED File Offset: 0x001157ED
 	protected override void OnSpawn()
 	{
 		ClusterManager.Instance.Subscribe(-1078710002, new Action<object>(this.WorldRemoved));
 	}
 
-	// Token: 0x0600B07A RID: 45178 RVA: 0x00430980 File Offset: 0x0042EB80
 	protected override void OnActivate()
 	{
 		base.ConsumeMouseScroll = true;
@@ -84,7 +77,6 @@ public class SkillsScreen : KModalScreen
 		}));
 	}
 
-	// Token: 0x0600B07B RID: 45179 RVA: 0x00430A90 File Offset: 0x0042EC90
 	protected override void OnShow(bool show)
 	{
 		if (show)
@@ -104,7 +96,6 @@ public class SkillsScreen : KModalScreen
 		base.OnShow(show);
 	}
 
-	// Token: 0x0600B07C RID: 45180 RVA: 0x0011760B File Offset: 0x0011580B
 	public void RefreshAll()
 	{
 		this.dirty = false;
@@ -114,7 +105,6 @@ public class SkillsScreen : KModalScreen
 		this.linesPending = true;
 	}
 
-	// Token: 0x0600B07D RID: 45181 RVA: 0x0011762D File Offset: 0x0011582D
 	private void RefreshSelectedMinion()
 	{
 		this.minionAnimWidget.SetPortraitAnimator(this.currentlySelectedMinion);
@@ -122,7 +112,6 @@ public class SkillsScreen : KModalScreen
 		this.RefreshHat();
 	}
 
-	// Token: 0x0600B07E RID: 45182 RVA: 0x0010A01E File Offset: 0x0010821E
 	public void GetMinionIdentity(IAssignableIdentity assignableIdentity, out MinionIdentity minionIdentity, out StoredMinionIdentity storedMinionIdentity)
 	{
 		if (assignableIdentity is MinionAssignablesProxy)
@@ -135,7 +124,6 @@ public class SkillsScreen : KModalScreen
 		storedMinionIdentity = (assignableIdentity as StoredMinionIdentity);
 	}
 
-	// Token: 0x0600B07F RID: 45183 RVA: 0x00430B10 File Offset: 0x0042ED10
 	private void RefreshProgressBars()
 	{
 		if (this.currentlySelectedMinion == null || this.currentlySelectedMinion.IsNull())
@@ -331,7 +319,6 @@ public class SkillsScreen : KModalScreen
 		this.expectationsTooltip.SetSimpleTooltip(text);
 	}
 
-	// Token: 0x0600B080 RID: 45184 RVA: 0x004314C8 File Offset: 0x0042F6C8
 	private Tag SelectedMinionModel()
 	{
 		MinionIdentity minionIdentity;
@@ -348,7 +335,6 @@ public class SkillsScreen : KModalScreen
 		return null;
 	}
 
-	// Token: 0x0600B081 RID: 45185 RVA: 0x00431534 File Offset: 0x0042F734
 	private void RefreshHat()
 	{
 		if (this.currentlySelectedMinion == null || this.currentlySelectedMinion.IsNull())
@@ -379,7 +365,6 @@ public class SkillsScreen : KModalScreen
 		this.selectedHat.sprite = Assets.GetSprite(string.IsNullOrEmpty(text) ? "hat_role_none" : text);
 	}
 
-	// Token: 0x0600B082 RID: 45186 RVA: 0x004316B8 File Offset: 0x0042F8B8
 	private void OnHatDropEntryClick(IListableOption skill, object data)
 	{
 		MinionIdentity minionIdentity;
@@ -423,7 +408,6 @@ public class SkillsScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600B083 RID: 45187 RVA: 0x0042FB0C File Offset: 0x0042DD0C
 	private void hatDropEntryRefreshAction(DropDownEntry entry, object targetData)
 	{
 		if (entry.entryData != null)
@@ -433,13 +417,11 @@ public class SkillsScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600B084 RID: 45188 RVA: 0x000B1628 File Offset: 0x000AF828
 	private int hatDropDownSort(IListableOption a, IListableOption b, object targetData)
 	{
 		return 0;
 	}
 
-	// Token: 0x0600B085 RID: 45189 RVA: 0x004317EC File Offset: 0x0042F9EC
 	private void Update()
 	{
 		if (this.dirty)
@@ -460,7 +442,6 @@ public class SkillsScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600B086 RID: 45190 RVA: 0x0043188C File Offset: 0x0042FA8C
 	private void PopulateBoosters()
 	{
 		foreach (GameObject gameObject in Assets.GetPrefabsWithTag(GameTags.BionicUpgrade))
@@ -511,7 +492,6 @@ public class SkillsScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600B087 RID: 45191 RVA: 0x00431A9C File Offset: 0x0042FC9C
 	private void IncrementBoosterAssignment(Tag boosterType)
 	{
 		BionicUpgradeComponent bionicUpgradeComponent = this.FindAvailableBoosterOfType(boosterType);
@@ -522,7 +502,6 @@ public class SkillsScreen : KModalScreen
 		this.RefreshBoosters();
 	}
 
-	// Token: 0x0600B088 RID: 45192 RVA: 0x00431ACC File Offset: 0x0042FCCC
 	private void DecrementBoosterAssignment(Tag boosterType)
 	{
 		MinionIdentity cmp;
@@ -558,7 +537,6 @@ public class SkillsScreen : KModalScreen
 		this.RefreshBoosters();
 	}
 
-	// Token: 0x0600B089 RID: 45193 RVA: 0x00431BC4 File Offset: 0x0042FDC4
 	private BionicUpgradeComponent FindAvailableBoosterOfType(Tag boosterType)
 	{
 		MinionIdentity minionIdentity;
@@ -588,7 +566,6 @@ public class SkillsScreen : KModalScreen
 		return null;
 	}
 
-	// Token: 0x0600B08A RID: 45194 RVA: 0x00431C90 File Offset: 0x0042FE90
 	private void RefreshBoosters()
 	{
 		BionicUpgradesMonitor.Instance instance = null;
@@ -728,7 +705,6 @@ public class SkillsScreen : KModalScreen
 		this.skillsContainer.rectTransform().sizeDelta = new Vector2(0f, 0f);
 	}
 
-	// Token: 0x0600B08B RID: 45195 RVA: 0x00432448 File Offset: 0x00430648
 	private void RefreshSkillWidgets()
 	{
 		int num = 1;
@@ -790,7 +766,6 @@ public class SkillsScreen : KModalScreen
 		this.RefreshWidgetPositions();
 	}
 
-	// Token: 0x0600B08C RID: 45196 RVA: 0x0043277C File Offset: 0x0043097C
 	public void HoverSkill(string skillID)
 	{
 		this.hoveredSkillID = skillID;
@@ -807,7 +782,6 @@ public class SkillsScreen : KModalScreen
 		this.RefreshProgressBars();
 	}
 
-	// Token: 0x0600B08D RID: 45197 RVA: 0x0011764C File Offset: 0x0011584C
 	private IEnumerator DelayRefreshProgressBars()
 	{
 		yield return SequenceUtil.WaitForSecondsRealtime(0.1f);
@@ -815,7 +789,6 @@ public class SkillsScreen : KModalScreen
 		yield break;
 	}
 
-	// Token: 0x0600B08E RID: 45198 RVA: 0x004327D4 File Offset: 0x004309D4
 	public void RefreshWidgetPositions()
 	{
 		float num = 0f;
@@ -837,7 +810,6 @@ public class SkillsScreen : KModalScreen
 		this.linesPending = true;
 	}
 
-	// Token: 0x0600B08F RID: 45199 RVA: 0x004328F0 File Offset: 0x00430AF0
 	public float GetRowPosition(string skillID)
 	{
 		Skill skill = Db.Get().Skills.Get(skillID);
@@ -867,14 +839,12 @@ public class SkillsScreen : KModalScreen
 		return (float)(this.layoutRowHeight * (num3 + num - 1));
 	}
 
-	// Token: 0x0600B090 RID: 45200 RVA: 0x0011765B File Offset: 0x0011585B
 	private void OnAddMinionIdentity(MinionIdentity add)
 	{
 		this.BuildMinions();
 		this.RefreshAll();
 	}
 
-	// Token: 0x0600B091 RID: 45201 RVA: 0x00432A0C File Offset: 0x00430C0C
 	private void OnRemoveMinionIdentity(MinionIdentity remove)
 	{
 		if (remove != null)
@@ -892,7 +862,6 @@ public class SkillsScreen : KModalScreen
 		this.RefreshAll();
 	}
 
-	// Token: 0x0600B092 RID: 45202 RVA: 0x00432A5C File Offset: 0x00430C5C
 	private void BuildMinions()
 	{
 		for (int i = this.sortableRows.Count - 1; i >= 0; i--)
@@ -949,7 +918,6 @@ public class SkillsScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600B093 RID: 45203 RVA: 0x00432D80 File Offset: 0x00430F80
 	protected void AddWorldDivider(int worldId)
 	{
 		if (!this.worldDividers.ContainsKey(worldId))
@@ -963,7 +931,6 @@ public class SkillsScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600B094 RID: 45204 RVA: 0x00432E18 File Offset: 0x00431018
 	private void WorldRemoved(object worldId)
 	{
 		int key = (int)worldId;
@@ -975,19 +942,16 @@ public class SkillsScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600B095 RID: 45205 RVA: 0x00117669 File Offset: 0x00115869
 	public Vector2 GetSkillWidgetLineTargetPosition(string skillID)
 	{
 		return this.skillWidgets[skillID].GetComponent<SkillWidget>().lines_right.GetPosition();
 	}
 
-	// Token: 0x0600B096 RID: 45206 RVA: 0x0011768B File Offset: 0x0011588B
 	public SkillWidget GetSkillWidget(string skill)
 	{
 		return this.skillWidgets[skill].GetComponent<SkillWidget>();
 	}
 
-	// Token: 0x0600B097 RID: 45207 RVA: 0x00432E50 File Offset: 0x00431050
 	public List<Skill> GetSkillsBySkillGroup(string skillGrp)
 	{
 		List<Skill> list = new List<Skill>();
@@ -1001,7 +965,6 @@ public class SkillsScreen : KModalScreen
 		return list;
 	}
 
-	// Token: 0x0600B098 RID: 45208 RVA: 0x00432ECC File Offset: 0x004310CC
 	private void SelectSortToggle(MultiToggle toggle)
 	{
 		this.dupeSortingToggle.ChangeState(0);
@@ -1018,7 +981,6 @@ public class SkillsScreen : KModalScreen
 		this.activeSortToggle.ChangeState(this.sortReversed ? 2 : 1);
 	}
 
-	// Token: 0x0600B099 RID: 45209 RVA: 0x00432F44 File Offset: 0x00431144
 	private void SortRows(Comparison<IAssignableIdentity> comparison)
 	{
 		this.active_sort_method = comparison;
@@ -1068,216 +1030,159 @@ public class SkillsScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x04008AD9 RID: 35545
 	[SerializeField]
 	private KButton CloseButton;
 
-	// Token: 0x04008ADA RID: 35546
 	[Header("Prefabs")]
 	[SerializeField]
 	private GameObject Prefab_skillWidget;
 
-	// Token: 0x04008ADB RID: 35547
 	[SerializeField]
 	private GameObject Prefab_skillColumn;
 
-	// Token: 0x04008ADC RID: 35548
 	[SerializeField]
 	private GameObject Prefab_minion;
 
-	// Token: 0x04008ADD RID: 35549
 	[SerializeField]
 	private GameObject Prefab_minionLayout;
 
-	// Token: 0x04008ADE RID: 35550
 	[SerializeField]
 	private GameObject Prefab_tableLayout;
 
-	// Token: 0x04008ADF RID: 35551
 	[SerializeField]
 	private GameObject Prefab_worldDivider;
 
-	// Token: 0x04008AE0 RID: 35552
 	[Header("Sort Toggles")]
 	[SerializeField]
 	private MultiToggle dupeSortingToggle;
 
-	// Token: 0x04008AE1 RID: 35553
 	[SerializeField]
 	private MultiToggle experienceSortingToggle;
 
-	// Token: 0x04008AE2 RID: 35554
 	[SerializeField]
 	private MultiToggle moraleSortingToggle;
 
-	// Token: 0x04008AE3 RID: 35555
 	private MultiToggle activeSortToggle;
 
-	// Token: 0x04008AE4 RID: 35556
 	private bool sortReversed;
 
-	// Token: 0x04008AE5 RID: 35557
 	private Comparison<IAssignableIdentity> active_sort_method;
 
-	// Token: 0x04008AE6 RID: 35558
 	[Header("Duplicant Animation")]
 	[SerializeField]
 	private FullBodyUIMinionWidget minionAnimWidget;
 
-	// Token: 0x04008AE7 RID: 35559
 	[Header("Progress Bars")]
 	[SerializeField]
 	private ToolTip expectationsTooltip;
 
-	// Token: 0x04008AE8 RID: 35560
 	[SerializeField]
 	private LocText moraleProgressLabel;
 
-	// Token: 0x04008AE9 RID: 35561
 	[SerializeField]
 	private GameObject moraleWarning;
 
-	// Token: 0x04008AEA RID: 35562
 	[SerializeField]
 	private GameObject moraleNotch;
 
-	// Token: 0x04008AEB RID: 35563
 	[SerializeField]
 	private Color moraleNotchColor;
 
-	// Token: 0x04008AEC RID: 35564
 	private List<GameObject> moraleNotches = new List<GameObject>();
 
-	// Token: 0x04008AED RID: 35565
 	[SerializeField]
 	private LocText expectationsProgressLabel;
 
-	// Token: 0x04008AEE RID: 35566
 	[SerializeField]
 	private GameObject expectationWarning;
 
-	// Token: 0x04008AEF RID: 35567
 	[SerializeField]
 	private GameObject expectationNotch;
 
-	// Token: 0x04008AF0 RID: 35568
 	[SerializeField]
 	private Color expectationNotchColor;
 
-	// Token: 0x04008AF1 RID: 35569
 	[SerializeField]
 	private Color expectationNotchProspectColor;
 
-	// Token: 0x04008AF2 RID: 35570
 	private List<GameObject> expectationNotches = new List<GameObject>();
 
-	// Token: 0x04008AF3 RID: 35571
 	[SerializeField]
 	private ToolTip experienceBarTooltip;
 
-	// Token: 0x04008AF4 RID: 35572
 	[SerializeField]
 	private Image experienceProgressFill;
 
-	// Token: 0x04008AF5 RID: 35573
 	[SerializeField]
 	private LocText EXPCount;
 
-	// Token: 0x04008AF6 RID: 35574
 	[SerializeField]
 	private LocText duplicantLevelIndicator;
 
-	// Token: 0x04008AF7 RID: 35575
 	[SerializeField]
 	private KScrollRect scrollRect;
 
-	// Token: 0x04008AF8 RID: 35576
 	[SerializeField]
 	private float scrollSpeed = 7f;
 
-	// Token: 0x04008AF9 RID: 35577
 	[SerializeField]
 	private DropDown hatDropDown;
 
-	// Token: 0x04008AFA RID: 35578
 	[SerializeField]
 	public Image selectedHat;
 
-	// Token: 0x04008AFB RID: 35579
 	[SerializeField]
 	private GameObject skillsContainer;
 
-	// Token: 0x04008AFC RID: 35580
 	[SerializeField]
 	private GameObject boosterPanel;
 
-	// Token: 0x04008AFD RID: 35581
 	[SerializeField]
 	private GameObject boosterHeader;
 
-	// Token: 0x04008AFE RID: 35582
 	[SerializeField]
 	private GameObject boosterContentGrid;
 
-	// Token: 0x04008AFF RID: 35583
 	[SerializeField]
 	private GameObject boosterPrefab;
 
-	// Token: 0x04008B00 RID: 35584
 	private Dictionary<Tag, HierarchyReferences> boosterWidgets = new Dictionary<Tag, HierarchyReferences>();
 
-	// Token: 0x04008B01 RID: 35585
 	[SerializeField]
 	private LocText equippedBoostersHeaderLabel;
 
-	// Token: 0x04008B02 RID: 35586
 	[SerializeField]
 	private LocText assignedBoostersCountLabel;
 
-	// Token: 0x04008B03 RID: 35587
 	[SerializeField]
 	private GameObject boosterSlotIconPrefab;
 
-	// Token: 0x04008B04 RID: 35588
 	private List<GameObject> boosterSlotIcons = new List<GameObject>();
 
-	// Token: 0x04008B05 RID: 35589
 	private IAssignableIdentity currentlySelectedMinion;
 
-	// Token: 0x04008B06 RID: 35590
 	private List<GameObject> rows = new List<GameObject>();
 
-	// Token: 0x04008B07 RID: 35591
 	private List<SkillMinionWidget> sortableRows = new List<SkillMinionWidget>();
 
-	// Token: 0x04008B08 RID: 35592
 	private Dictionary<int, GameObject> worldDividers = new Dictionary<int, GameObject>();
 
-	// Token: 0x04008B09 RID: 35593
 	private string hoveredSkillID = "";
 
-	// Token: 0x04008B0A RID: 35594
 	private Dictionary<string, GameObject> skillWidgets = new Dictionary<string, GameObject>();
 
-	// Token: 0x04008B0B RID: 35595
 	private Dictionary<string, int> skillGroupRow = new Dictionary<string, int>();
 
-	// Token: 0x04008B0C RID: 35596
 	private List<GameObject> skillColumns = new List<GameObject>();
 
-	// Token: 0x04008B0D RID: 35597
 	private bool dirty;
 
-	// Token: 0x04008B0E RID: 35598
 	private bool linesPending;
 
-	// Token: 0x04008B0F RID: 35599
 	private int layoutRowHeight = 80;
 
-	// Token: 0x04008B10 RID: 35600
 	private Coroutine delayRefreshRoutine;
 
-	// Token: 0x04008B11 RID: 35601
 	protected Comparison<IAssignableIdentity> compareByExperience = delegate(IAssignableIdentity a, IAssignableIdentity b)
 	{
 		GameObject targetGameObject = ((MinionAssignablesProxy)a).GetTargetGameObject();
@@ -1313,10 +1218,8 @@ public class SkillsScreen : KModalScreen
 		return num.CompareTo(value);
 	};
 
-	// Token: 0x04008B12 RID: 35602
 	protected Comparison<IAssignableIdentity> compareByMinion = (IAssignableIdentity a, IAssignableIdentity b) => a.GetProperName().CompareTo(b.GetProperName());
 
-	// Token: 0x04008B13 RID: 35603
 	protected Comparison<IAssignableIdentity> compareByMorale = delegate(IAssignableIdentity a, IAssignableIdentity b)
 	{
 		GameObject targetGameObject = ((MinionAssignablesProxy)a).GetTargetGameObject();

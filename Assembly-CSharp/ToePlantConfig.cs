@@ -4,22 +4,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020002DF RID: 735
 public class ToePlantConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x06000B49 RID: 2889 RVA: 0x000AA117 File Offset: 0x000A8317
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06000B4A RID: 2890 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x06000B4B RID: 2891 RVA: 0x00177F9C File Offset: 0x0017619C
 	public GameObject CreatePrefab()
 	{
 		string id = "ToePlant";
@@ -62,25 +58,19 @@ public class ToePlantConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x06000B4C RID: 2892 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x06000B4D RID: 2893 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x040008DA RID: 2266
 	public const string ID = "ToePlant";
 
-	// Token: 0x040008DB RID: 2267
 	public const string SEED_ID = "ToePlantSeed";
 
-	// Token: 0x040008DC RID: 2268
 	public static readonly EffectorValues POSITIVE_DECOR_EFFECT = DECOR.BONUS.TIER3;
 
-	// Token: 0x040008DD RID: 2269
 	public static readonly EffectorValues NEGATIVE_DECOR_EFFECT = DECOR.PENALTY.TIER3;
 }

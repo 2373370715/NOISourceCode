@@ -3,22 +3,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003B4 RID: 948
 public class LandingPodConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x06000F5A RID: 3930 RVA: 0x000AA117 File Offset: 0x000A8317
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06000F5B RID: 3931 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x06000F5C RID: 3932 RVA: 0x001869B4 File Offset: 0x00184BB4
 	public GameObject CreatePrefab()
 	{
 		string id = "LandingPod";
@@ -33,7 +29,6 @@ public class LandingPodConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x06000F5D RID: 3933 RVA: 0x000AA768 File Offset: 0x000A8968
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.GetComponent<OccupyArea>().objectLayers = new ObjectLayer[]
@@ -42,11 +37,9 @@ public class LandingPodConfig : IEntityConfig, IHasDlcRestrictions
 		};
 	}
 
-	// Token: 0x06000F5E RID: 3934 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x04000B35 RID: 2869
 	public const string ID = "LandingPod";
 }

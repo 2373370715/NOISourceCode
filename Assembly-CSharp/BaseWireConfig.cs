@@ -4,13 +4,10 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200002C RID: 44
 public abstract class BaseWireConfig : IBuildingConfig
 {
-	// Token: 0x060000B6 RID: 182
 	public abstract override BuildingDef CreateBuildingDef();
 
-	// Token: 0x060000B7 RID: 183 RVA: 0x001497E8 File Offset: 0x001479E8
 	public BuildingDef CreateBuildingDef(string id, string anim, float construction_time, float[] construction_mass, float insulation, EffectorValues decor, EffectorValues noise)
 	{
 		BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(id, 1, 1, anim, 10, construction_time, construction_mass, MATERIALS.ALL_METALS, 1600f, BuildLocationRule.Anywhere, decor, noise, 0.2f);
@@ -37,7 +34,6 @@ public abstract class BaseWireConfig : IBuildingConfig
 		return buildingDef3;
 	}
 
-	// Token: 0x060000B8 RID: 184 RVA: 0x000AA2E1 File Offset: 0x000A84E1
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
@@ -48,7 +44,6 @@ public abstract class BaseWireConfig : IBuildingConfig
 		kanimGraphTileVisualizer.connectionSource = KAnimGraphTileVisualizer.ConnectionSource.Electrical;
 	}
 
-	// Token: 0x060000B9 RID: 185 RVA: 0x000AA318 File Offset: 0x000A8518
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		base.DoPostConfigureUnderConstruction(go);
@@ -58,7 +53,6 @@ public abstract class BaseWireConfig : IBuildingConfig
 		kanimGraphTileVisualizer.connectionSource = KAnimGraphTileVisualizer.ConnectionSource.Electrical;
 	}
 
-	// Token: 0x060000BA RID: 186 RVA: 0x001498C4 File Offset: 0x00147AC4
 	protected void DoPostConfigureComplete(Wire.WattageRating rating, GameObject go)
 	{
 		go.GetComponent<Wire>().MaxWattageRating = rating;

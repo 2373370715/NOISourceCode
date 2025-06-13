@@ -2,15 +2,10 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001F9A RID: 8090
 public class BionicSideScreenUpgradeSlot : KMonoBehaviour
 {
-	// Token: 0x17000AED RID: 2797
-	// (get) Token: 0x0600AAFA RID: 43770 RVA: 0x001138A0 File Offset: 0x00111AA0
-	// (set) Token: 0x0600AAF9 RID: 43769 RVA: 0x00113897 File Offset: 0x00111A97
 	public BionicUpgradesMonitor.UpgradeComponentSlot upgradeSlot { get; private set; }
 
-	// Token: 0x0600AAFB RID: 43771 RVA: 0x001138A8 File Offset: 0x00111AA8
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -18,7 +13,6 @@ public class BionicSideScreenUpgradeSlot : KMonoBehaviour
 		multiToggle.onClick = (System.Action)Delegate.Combine(multiToggle.onClick, new System.Action(this.OnSlotClicked));
 	}
 
-	// Token: 0x0600AAFC RID: 43772 RVA: 0x004176A8 File Offset: 0x004158A8
 	public void Setup(BionicUpgradesMonitor.UpgradeComponentSlot upgradeSlot)
 	{
 		if (this.upgradeSlot != null)
@@ -34,13 +28,11 @@ public class BionicSideScreenUpgradeSlot : KMonoBehaviour
 		this.Refresh();
 	}
 
-	// Token: 0x0600AAFD RID: 43773 RVA: 0x001138D7 File Offset: 0x00111AD7
 	private void OnAssignedUpgradeChanged(BionicUpgradesMonitor.UpgradeComponentSlot slot)
 	{
 		this.Refresh();
 	}
 
-	// Token: 0x0600AAFE RID: 43774 RVA: 0x00417718 File Offset: 0x00415918
 	public void Refresh()
 	{
 		this.label.color = this.standardColor;
@@ -91,7 +83,6 @@ public class BionicSideScreenUpgradeSlot : KMonoBehaviour
 		this.SetSelected(this._isSelected);
 	}
 
-	// Token: 0x0600AAFF RID: 43775 RVA: 0x001138DF File Offset: 0x00111ADF
 	private void OnSlotClicked()
 	{
 		Action<BionicSideScreenUpgradeSlot> onClick = this.OnClick;
@@ -102,7 +93,6 @@ public class BionicSideScreenUpgradeSlot : KMonoBehaviour
 		onClick(this);
 	}
 
-	// Token: 0x0600AB00 RID: 43776 RVA: 0x0041798C File Offset: 0x00415B8C
 	public void SetSelected(bool isSelected)
 	{
 		this._isSelected = isSelected;
@@ -112,71 +102,48 @@ public class BionicSideScreenUpgradeSlot : KMonoBehaviour
 		this.toggle.ChangeState((flag ? 0 : 2) + (flag2 ? 2 : 0) + ((flag2 && flag3) ? 2 : 0) + (isSelected ? 1 : 0));
 	}
 
-	// Token: 0x0400868E RID: 34446
 	public static string TEXT_BLOCKED_SLOT = UI.UISIDESCREENS.BIONIC_SIDE_SCREEN.UPGRADE_SLOT_LOCKED;
 
-	// Token: 0x0400868F RID: 34447
 	public static string TEXT_NO_UPGRADE_INSTALLED = UI.UISIDESCREENS.BIONIC_SIDE_SCREEN.UPGRADE_SLOT_EMPTY;
 
-	// Token: 0x04008690 RID: 34448
 	public static string TEXT_UPGRADE_ASSIGNED_NOT_INSTALLED = UI.UISIDESCREENS.BIONIC_SIDE_SCREEN.UPGRADE_SLOT_ASSIGNED;
 
-	// Token: 0x04008691 RID: 34449
 	public static string TEXT_UPGRADE_INSTALLED = UI.UISIDESCREENS.BIONIC_SIDE_SCREEN.UPGRADE_SLOT_INSTALLED;
 
-	// Token: 0x04008692 RID: 34450
 	public static string TEXT_TOOLTIP_BLOCKED = UI.UISIDESCREENS.BIONIC_SIDE_SCREEN.TOOLTIP.SLOT_LOCKED;
 
-	// Token: 0x04008693 RID: 34451
 	public static string TEXT_TOOLTIP_EMPTY = UI.UISIDESCREENS.BIONIC_SIDE_SCREEN.TOOLTIP.SLOT_EMPTY;
 
-	// Token: 0x04008694 RID: 34452
 	public static string TEXT_TOOLTIP_ASSIGNED = UI.UISIDESCREENS.BIONIC_SIDE_SCREEN.TOOLTIP.SLOT_ASSIGNED;
 
-	// Token: 0x04008695 RID: 34453
 	public static string TEXT_TOOLTIP_INSTALLED = UI.UISIDESCREENS.BIONIC_SIDE_SCREEN.TOOLTIP.SLOT_INSTALLED;
 
-	// Token: 0x04008696 RID: 34454
 	public MultiToggle toggle;
 
-	// Token: 0x04008697 RID: 34455
 	public KImage icon;
 
-	// Token: 0x04008698 RID: 34456
 	public LocText label;
 
-	// Token: 0x04008699 RID: 34457
 	public ToolTip tooltip;
 
-	// Token: 0x0400869A RID: 34458
 	[Header("Effects settings")]
 	public float inUseAnimationDuration = 0.5f;
 
-	// Token: 0x0400869B RID: 34459
 	public Color standardColor = Color.black;
 
-	// Token: 0x0400869C RID: 34460
 	public Color activeColor = Color.blue;
 
-	// Token: 0x0400869D RID: 34461
 	public Color activeColorTooltip = Color.blue;
 
-	// Token: 0x0400869E RID: 34462
 	public Action<BionicSideScreenUpgradeSlot> OnClick;
 
-	// Token: 0x040086A0 RID: 34464
 	private bool _isSelected;
 
-	// Token: 0x02001F9B RID: 8091
 	public enum State
 	{
-		// Token: 0x040086A2 RID: 34466
 		Locked,
-		// Token: 0x040086A3 RID: 34467
 		Empty,
-		// Token: 0x040086A4 RID: 34468
 		Assigned,
-		// Token: 0x040086A5 RID: 34469
 		Installed
 	}
 }

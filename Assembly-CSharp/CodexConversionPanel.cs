@@ -4,15 +4,12 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001CB7 RID: 7351
 public class CodexConversionPanel : CodexWidget<CodexConversionPanel>
 {
-	// Token: 0x0600993E RID: 39230 RVA: 0x003C2470 File Offset: 0x003C0670
 	public CodexConversionPanel(string title, Tag ctag, float inputAmount, bool inputContinuous, Tag ptag, float outputAmount, bool outputContinuous, GameObject converter) : this(title, ctag, inputAmount, inputContinuous, null, ptag, outputAmount, outputContinuous, null, converter)
 	{
 	}
 
-	// Token: 0x0600993F RID: 39231 RVA: 0x003C2494 File Offset: 0x003C0694
 	public CodexConversionPanel(string title, Tag ctag, float inputAmount, bool inputContinuous, Func<Tag, float, bool, string> input_customFormating, Tag ptag, float outputAmount, bool outputContinuous, Func<Tag, float, bool, string> output_customFormating, GameObject converter)
 	{
 		this.title = title;
@@ -27,7 +24,6 @@ public class CodexConversionPanel : CodexWidget<CodexConversionPanel>
 		this.Converter = converter;
 	}
 
-	// Token: 0x06009940 RID: 39232 RVA: 0x001080DE File Offset: 0x001062DE
 	public CodexConversionPanel(string title, ElementUsage[] ins, ElementUsage[] outs, GameObject converter)
 	{
 		this.title = title;
@@ -36,7 +32,6 @@ public class CodexConversionPanel : CodexWidget<CodexConversionPanel>
 		this.Converter = converter;
 	}
 
-	// Token: 0x06009941 RID: 39233 RVA: 0x003C24EC File Offset: 0x003C06EC
 	public override void Configure(GameObject contentGameObject, Transform displayPane, Dictionary<CodexTextStyle, TextStyleSetting> textStyles)
 	{
 		HierarchyReferences component = contentGameObject.GetComponent<HierarchyReferences>();
@@ -52,7 +47,6 @@ public class CodexConversionPanel : CodexWidget<CodexConversionPanel>
 		this.ConfigureConversion();
 	}
 
-	// Token: 0x06009942 RID: 39234 RVA: 0x003C25B8 File Offset: 0x003C07B8
 	private global::Tuple<Sprite, Color> GetUISprite(Tag tag)
 	{
 		if (ElementLoader.GetElement(tag) != null)
@@ -70,7 +64,6 @@ public class CodexConversionPanel : CodexWidget<CodexConversionPanel>
 		return null;
 	}
 
-	// Token: 0x06009943 RID: 39235 RVA: 0x003C2638 File Offset: 0x003C0838
 	private void ConfigureConversion()
 	{
 		this.label.text = this.title;
@@ -154,7 +147,6 @@ public class CodexConversionPanel : CodexWidget<CodexConversionPanel>
 		this.arrow2.SetActive(active2);
 	}
 
-	// Token: 0x06009944 RID: 39236 RVA: 0x003C2A84 File Offset: 0x003C0C84
 	private void ClearPanel()
 	{
 		foreach (object obj in this.ingredientsContainer.transform)
@@ -171,39 +163,27 @@ public class CodexConversionPanel : CodexWidget<CodexConversionPanel>
 		}
 	}
 
-	// Token: 0x04007733 RID: 30515
 	private LocText label;
 
-	// Token: 0x04007734 RID: 30516
 	private GameObject materialPrefab;
 
-	// Token: 0x04007735 RID: 30517
 	private GameObject fabricatorPrefab;
 
-	// Token: 0x04007736 RID: 30518
 	private GameObject ingredientsContainer;
 
-	// Token: 0x04007737 RID: 30519
 	private GameObject resultsContainer;
 
-	// Token: 0x04007738 RID: 30520
 	private GameObject fabricatorContainer;
 
-	// Token: 0x04007739 RID: 30521
 	private GameObject arrow1;
 
-	// Token: 0x0400773A RID: 30522
 	private GameObject arrow2;
 
-	// Token: 0x0400773B RID: 30523
 	private string title;
 
-	// Token: 0x0400773C RID: 30524
 	private ElementUsage[] ins;
 
-	// Token: 0x0400773D RID: 30525
 	private ElementUsage[] outs;
 
-	// Token: 0x0400773E RID: 30526
 	private GameObject Converter;
 }

@@ -5,10 +5,8 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001612 RID: 5650
 public class RecreationTimeMonitor : GameStateMachine<RecreationTimeMonitor, RecreationTimeMonitor.Instance, IStateMachineTarget, RecreationTimeMonitor.Def>
 {
-	// Token: 0x06007507 RID: 29959 RVA: 0x003140D0 File Offset: 0x003122D0
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		base.serializable = StateMachine.SerializeType.ParamsOnly;
@@ -29,30 +27,22 @@ public class RecreationTimeMonitor : GameStateMachine<RecreationTimeMonitor, Rec
 		}, UpdateRate.SIM_200ms, false);
 	}
 
-	// Token: 0x040057E7 RID: 22503
 	public const int MAX_BONUS = 5;
 
-	// Token: 0x040057E8 RID: 22504
 	public const float BONUS_DURATION_STANDARD = 600f;
 
-	// Token: 0x040057E9 RID: 22505
 	public const float BONUS_DURATION_BIONICS = 1800f;
 
-	// Token: 0x040057EA RID: 22506
 	public GameStateMachine<RecreationTimeMonitor, RecreationTimeMonitor.Instance, IStateMachineTarget, RecreationTimeMonitor.Def>.State idle;
 
-	// Token: 0x040057EB RID: 22507
 	public GameStateMachine<RecreationTimeMonitor, RecreationTimeMonitor.Instance, IStateMachineTarget, RecreationTimeMonitor.Def>.State bonusActive;
 
-	// Token: 0x02001613 RID: 5651
 	public class Def : StateMachine.BaseDef
 	{
 	}
 
-	// Token: 0x02001614 RID: 5652
 	public new class Instance : GameStateMachine<RecreationTimeMonitor, RecreationTimeMonitor.Instance, IStateMachineTarget, RecreationTimeMonitor.Def>.GameInstance
 	{
-		// Token: 0x0600750A RID: 29962 RVA: 0x003141BC File Offset: 0x003123BC
 		public Instance(IStateMachineTarget master, RecreationTimeMonitor.Def def) : base(master, def)
 		{
 			this.bonus_duration = ((base.gameObject.PrefabID() == BionicMinionConfig.ID) ? 1800f : 600f);
@@ -72,14 +62,12 @@ public class RecreationTimeMonitor : GameStateMachine<RecreationTimeMonitor, Rec
 			}
 		}
 
-		// Token: 0x0600750B RID: 29963 RVA: 0x000F160B File Offset: 0x000EF80B
 		public override void StartSM()
 		{
 			base.StartSM();
 			this.RefreshTimes();
 		}
 
-		// Token: 0x0600750C RID: 29964 RVA: 0x003142D4 File Offset: 0x003124D4
 		public void RefreshTimes()
 		{
 			for (int i = this.moraleAddedTimes.Count - 1; i >= 0; i--)
@@ -105,7 +93,6 @@ public class RecreationTimeMonitor : GameStateMachine<RecreationTimeMonitor, Rec
 			}
 		}
 
-		// Token: 0x0600750D RID: 29965 RVA: 0x003143BC File Offset: 0x003125BC
 		public void OnScheduleBlocksTick()
 		{
 			if (ScheduleManager.Instance.GetSchedule(this.schedulable).GetPreviousScheduleBlock().GroupId == Db.Get().ScheduleGroups.Recreation.Id)
@@ -114,7 +101,6 @@ public class RecreationTimeMonitor : GameStateMachine<RecreationTimeMonitor, Rec
 			}
 		}
 
-		// Token: 0x0600750E RID: 29966 RVA: 0x00314414 File Offset: 0x00312614
 		private void RestoreFromSchedule()
 		{
 			Effects component = base.GetComponent<Effects>();
@@ -167,23 +153,17 @@ public class RecreationTimeMonitor : GameStateMachine<RecreationTimeMonitor, Rec
 			}
 		}
 
-		// Token: 0x040057EC RID: 22508
 		[Serialize]
 		public List<float> moraleAddedTimes = new List<float>();
 
-		// Token: 0x040057ED RID: 22509
 		public Effect moraleEffect = new Effect("RecTimeEffect", "Rec Time Effect", "Rec Time Effect Description", 0f, false, false, false, null, -1f, 0f, null, "");
 
-		// Token: 0x040057EE RID: 22510
 		private Schedulable schedulable;
 
-		// Token: 0x040057EF RID: 22511
 		private AttributeModifier moraleModifier;
 
-		// Token: 0x040057F0 RID: 22512
 		private int shiftValue;
 
-		// Token: 0x040057F1 RID: 22513
 		private float bonus_duration;
 	}
 }

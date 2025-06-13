@@ -5,22 +5,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020002CA RID: 714
 public class SpaceTreeConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x06000AB0 RID: 2736 RVA: 0x000AA536 File Offset: 0x000A8736
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.DLC2;
 	}
 
-	// Token: 0x06000AB1 RID: 2737 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x06000AB2 RID: 2738 RVA: 0x00176238 File Offset: 0x00174438
 	public GameObject CreatePrefab()
 	{
 		string id = "SpaceTree";
@@ -135,76 +131,54 @@ public class SpaceTreeConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x06000AB3 RID: 2739 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject prefab)
 	{
 	}
 
-	// Token: 0x06000AB4 RID: 2740 RVA: 0x001766E8 File Offset: 0x001748E8
 	public void OnSpawn(GameObject inst)
 	{
 		EntityCellVisualizer entityCellVisualizer = inst.AddOrGet<EntityCellVisualizer>();
 		entityCellVisualizer.AddPort(EntityCellVisualizer.Ports.LiquidOut, SpaceTreeConfig.OUTPUT_CONDUIT_CELL_OFFSET, entityCellVisualizer.Resources.liquidIOColours.output.connected);
 	}
 
-	// Token: 0x0400086F RID: 2159
 	public const string ID = "SpaceTree";
 
-	// Token: 0x04000870 RID: 2160
 	public const string SEED_ID = "SpaceTreeSeed";
 
-	// Token: 0x04000871 RID: 2161
 	public const float Temperature_lethal_low = 173.15f;
 
-	// Token: 0x04000872 RID: 2162
 	public const float Temperature_warning_low = 198.15f;
 
-	// Token: 0x04000873 RID: 2163
 	public const float Temperature_warning_high = 258.15f;
 
-	// Token: 0x04000874 RID: 2164
 	public const float Temperature_lethal_high = 293.15f;
 
-	// Token: 0x04000875 RID: 2165
 	public const float SNOW_RATE = 0.16666667f;
 
-	// Token: 0x04000876 RID: 2166
 	public const float ENTOMB_DEFENSE_COOLDOWN = 5f;
 
-	// Token: 0x04000877 RID: 2167
 	public static CellOffset OUTPUT_CONDUIT_CELL_OFFSET = new CellOffset(0, 1);
 
-	// Token: 0x04000878 RID: 2168
 	public const float TRUNK_GROWTH_DURATION = 2700f;
 
-	// Token: 0x04000879 RID: 2169
 	public const int MAX_BRANCH_NUMBER = 5;
 
-	// Token: 0x0400087A RID: 2170
 	public const int OPTIMAL_LUX = 10000;
 
-	// Token: 0x0400087B RID: 2171
 	public const float MIN_REQUIRED_LIGHT_TO_GROW_BRANCHES = 300f;
 
-	// Token: 0x0400087C RID: 2172
 	public const float SUGAR_WATER_PRODUCTION_DURATION = 150f;
 
-	// Token: 0x0400087D RID: 2173
 	public const float SUGAR_WATER_CAPACITY = 20f;
 
-	// Token: 0x0400087E RID: 2174
 	public const string MANUAL_HARVEST_PRE_ANIM_NAME = "syrup_harvest_trunk_pre";
 
-	// Token: 0x0400087F RID: 2175
 	public const string MANUAL_HARVEST_LOOP_ANIM_NAME = "syrup_harvest_trunk_loop";
 
-	// Token: 0x04000880 RID: 2176
 	public const string MANUAL_HARVEST_PST_ANIM_NAME = "syrup_harvest_trunk_pst";
 
-	// Token: 0x04000881 RID: 2177
 	public const string MANUAL_HARVEST_INTERRUPT_ANIM_NAME = "syrup_harvest_trunk_loop";
 
-	// Token: 0x04000882 RID: 2178
 	private static readonly List<Storage.StoredItemModifier> storedItemModifiers = new List<Storage.StoredItemModifier>
 	{
 		Storage.StoredItemModifier.Hide,

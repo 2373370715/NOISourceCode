@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000608 RID: 1544
 public class WoodTileConfig : IBuildingConfig
 {
-	// Token: 0x06001B48 RID: 6984 RVA: 0x001B6D70 File Offset: 0x001B4F70
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "WoodTile";
@@ -47,7 +45,6 @@ public class WoodTileConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001B49 RID: 6985 RVA: 0x001B6EB0 File Offset: 0x001B50B0
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
@@ -62,29 +59,24 @@ public class WoodTileConfig : IBuildingConfig
 		go.AddOrGet<BuildingHP>().destroyOnDamaged = true;
 	}
 
-	// Token: 0x06001B4A RID: 6986 RVA: 0x000AA536 File Offset: 0x000A8736
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.DLC2;
 	}
 
-	// Token: 0x06001B4B RID: 6987 RVA: 0x000B0779 File Offset: 0x000AE979
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		GeneratedBuildings.RemoveLoopingSounds(go);
 		go.GetComponent<KPrefabID>().AddTag(GameTags.FloorTiles, false);
 	}
 
-	// Token: 0x06001B4C RID: 6988 RVA: 0x000AA509 File Offset: 0x000A8709
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		base.DoPostConfigureUnderConstruction(go);
 		go.AddOrGet<KAnimGridTileVisualizer>();
 	}
 
-	// Token: 0x0400117A RID: 4474
 	public const string ID = "WoodTile";
 
-	// Token: 0x0400117B RID: 4475
 	public static readonly int BlockTileConnectorID = Hash.SDBMLower("tiles_wood_tops");
 }

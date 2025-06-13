@@ -3,13 +3,9 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000D67 RID: 3431
 [SerializationConfig(MemberSerialization.OptIn)]
 public class DevHEPSpawner : StateMachineComponent<DevHEPSpawner.StatesInstance>, IHighEnergyParticleDirection, ISingleSliderControl, ISliderControl
 {
-	// Token: 0x17000341 RID: 833
-	// (get) Token: 0x0600427F RID: 17023 RVA: 0x000CF6DE File Offset: 0x000CD8DE
-	// (set) Token: 0x06004280 RID: 17024 RVA: 0x0024FC98 File Offset: 0x0024DE98
 	public EightDirection Direction
 	{
 		get
@@ -28,7 +24,6 @@ public class DevHEPSpawner : StateMachineComponent<DevHEPSpawner.StatesInstance>
 		}
 	}
 
-	// Token: 0x06004281 RID: 17025 RVA: 0x0024FCF0 File Offset: 0x0024DEF0
 	private void OnCopySettings(object data)
 	{
 		DevHEPSpawner component = ((GameObject)data).GetComponent<DevHEPSpawner>();
@@ -39,14 +34,12 @@ public class DevHEPSpawner : StateMachineComponent<DevHEPSpawner.StatesInstance>
 		}
 	}
 
-	// Token: 0x06004282 RID: 17026 RVA: 0x000CF6E6 File Offset: 0x000CD8E6
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 		base.Subscribe<DevHEPSpawner>(-905833192, DevHEPSpawner.OnCopySettingsDelegate);
 	}
 
-	// Token: 0x06004283 RID: 17027 RVA: 0x0024FD2C File Offset: 0x0024DF2C
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -58,7 +51,6 @@ public class DevHEPSpawner : StateMachineComponent<DevHEPSpawner.StatesInstance>
 		this.progressMeterController = new MeterController(base.GetComponent<KBatchedAnimController>(), "meter_target", "meter", Meter.Offset.Infront, Grid.SceneLayer.NoLayer, Array.Empty<string>());
 	}
 
-	// Token: 0x06004284 RID: 17028 RVA: 0x0024FDCC File Offset: 0x0024DFCC
 	public void LauncherUpdate(float dt)
 	{
 		if (this.boltAmount <= 0f)
@@ -86,8 +78,6 @@ public class DevHEPSpawner : StateMachineComponent<DevHEPSpawner.StatesInstance>
 		}
 	}
 
-	// Token: 0x17000342 RID: 834
-	// (get) Token: 0x06004285 RID: 17029 RVA: 0x000CBEB9 File Offset: 0x000CA0B9
 	public string SliderTitleKey
 	{
 		get
@@ -96,8 +86,6 @@ public class DevHEPSpawner : StateMachineComponent<DevHEPSpawner.StatesInstance>
 		}
 	}
 
-	// Token: 0x17000343 RID: 835
-	// (get) Token: 0x06004286 RID: 17030 RVA: 0x000CF6FF File Offset: 0x000CD8FF
 	public string SliderUnits
 	{
 		get
@@ -106,98 +94,77 @@ public class DevHEPSpawner : StateMachineComponent<DevHEPSpawner.StatesInstance>
 		}
 	}
 
-	// Token: 0x06004287 RID: 17031 RVA: 0x000B1628 File Offset: 0x000AF828
 	public int SliderDecimalPlaces(int index)
 	{
 		return 0;
 	}
 
-	// Token: 0x06004288 RID: 17032 RVA: 0x000C18F8 File Offset: 0x000BFAF8
 	public float GetSliderMin(int index)
 	{
 		return 0f;
 	}
 
-	// Token: 0x06004289 RID: 17033 RVA: 0x000CF70B File Offset: 0x000CD90B
 	public float GetSliderMax(int index)
 	{
 		return 500f;
 	}
 
-	// Token: 0x0600428A RID: 17034 RVA: 0x000CF712 File Offset: 0x000CD912
 	public float GetSliderValue(int index)
 	{
 		return this.boltAmount;
 	}
 
-	// Token: 0x0600428B RID: 17035 RVA: 0x000CF71A File Offset: 0x000CD91A
 	public void SetSliderValue(float value, int index)
 	{
 		this.boltAmount = value;
 	}
 
-	// Token: 0x0600428C RID: 17036 RVA: 0x000CBEB9 File Offset: 0x000CA0B9
 	public string GetSliderTooltipKey(int index)
 	{
 		return "";
 	}
 
-	// Token: 0x0600428D RID: 17037 RVA: 0x000CBEB9 File Offset: 0x000CA0B9
 	string ISliderControl.GetSliderTooltip(int index)
 	{
 		return "";
 	}
 
-	// Token: 0x04002DE9 RID: 11753
 	[MyCmpGet]
 	private Operational operational;
 
-	// Token: 0x04002DEA RID: 11754
 	[Serialize]
 	private EightDirection _direction;
 
-	// Token: 0x04002DEB RID: 11755
 	public float boltAmount;
 
-	// Token: 0x04002DEC RID: 11756
 	private EightDirectionController directionController;
 
-	// Token: 0x04002DED RID: 11757
 	private float launcherTimer;
 
-	// Token: 0x04002DEE RID: 11758
 	private MeterController particleController;
 
-	// Token: 0x04002DEF RID: 11759
 	private MeterController progressMeterController;
 
-	// Token: 0x04002DF0 RID: 11760
 	[Serialize]
 	public Ref<HighEnergyParticlePort> capturedByRef = new Ref<HighEnergyParticlePort>();
 
-	// Token: 0x04002DF1 RID: 11761
 	[MyCmpAdd]
 	private CopyBuildingSettings copyBuildingSettings;
 
-	// Token: 0x04002DF2 RID: 11762
 	private static readonly EventSystem.IntraObjectHandler<DevHEPSpawner> OnCopySettingsDelegate = new EventSystem.IntraObjectHandler<DevHEPSpawner>(delegate(DevHEPSpawner component, object data)
 	{
 		component.OnCopySettings(data);
 	});
 
-	// Token: 0x02000D68 RID: 3432
 	public class StatesInstance : GameStateMachine<DevHEPSpawner.States, DevHEPSpawner.StatesInstance, DevHEPSpawner, object>.GameInstance
 	{
-		// Token: 0x06004290 RID: 17040 RVA: 0x000CF752 File Offset: 0x000CD952
 		public StatesInstance(DevHEPSpawner smi) : base(smi)
 		{
 		}
 	}
 
-	// Token: 0x02000D69 RID: 3433
 	public class States : GameStateMachine<DevHEPSpawner.States, DevHEPSpawner.StatesInstance, DevHEPSpawner>
 	{
-		// Token: 0x06004291 RID: 17041 RVA: 0x0024FF0C File Offset: 0x0024E10C
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.inoperational;
@@ -208,13 +175,10 @@ public class DevHEPSpawner : StateMachineComponent<DevHEPSpawner.StatesInstance>
 			}, UpdateRate.SIM_EVERY_TICK, false);
 		}
 
-		// Token: 0x04002DF3 RID: 11763
 		public StateMachine<DevHEPSpawner.States, DevHEPSpawner.StatesInstance, DevHEPSpawner, object>.BoolParameter isAbsorbingRadiation;
 
-		// Token: 0x04002DF4 RID: 11764
 		public GameStateMachine<DevHEPSpawner.States, DevHEPSpawner.StatesInstance, DevHEPSpawner, object>.State ready;
 
-		// Token: 0x04002DF5 RID: 11765
 		public GameStateMachine<DevHEPSpawner.States, DevHEPSpawner.StatesInstance, DevHEPSpawner, object>.State inoperational;
 	}
 }

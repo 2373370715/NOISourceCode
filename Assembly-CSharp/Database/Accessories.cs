@@ -2,15 +2,12 @@
 
 namespace Database
 {
-	// Token: 0x02002174 RID: 8564
 	public class Accessories : ResourceSet<Accessory>
 	{
-		// Token: 0x0600B672 RID: 46706 RVA: 0x0011AE4C File Offset: 0x0011904C
 		public Accessories(ResourceSet parent) : base("Accessories", parent)
 		{
 		}
 
-		// Token: 0x0600B673 RID: 46707 RVA: 0x00456180 File Offset: 0x00454380
 		public void AddAccessories(string id, KAnimFile anim_file)
 		{
 			if (anim_file != null)
@@ -30,7 +27,6 @@ namespace Database
 			}
 		}
 
-		// Token: 0x0600B674 RID: 46708 RVA: 0x00456238 File Offset: 0x00454438
 		public void AddCustomAccessories(KAnimFile anim_file, ResourceSet parent, AccessorySlots slots)
 		{
 			if (anim_file != null)

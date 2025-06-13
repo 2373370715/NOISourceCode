@@ -1,11 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020012FA RID: 4858
 [AddComponentMenu("KMonoBehaviour/scripts/HelmetController")]
 public class HelmetController : KMonoBehaviour
 {
-	// Token: 0x0600639F RID: 25503 RVA: 0x000E5834 File Offset: 0x000E3A34
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -13,7 +11,6 @@ public class HelmetController : KMonoBehaviour
 		base.Subscribe<HelmetController>(-170173755, HelmetController.OnUnequippedDelegate);
 	}
 
-	// Token: 0x060063A0 RID: 25504 RVA: 0x002C8F10 File Offset: 0x002C7110
 	private KBatchedAnimController GetAssigneeController()
 	{
 		Equippable component = base.GetComponent<Equippable>();
@@ -28,7 +25,6 @@ public class HelmetController : KMonoBehaviour
 		return null;
 	}
 
-	// Token: 0x060063A1 RID: 25505 RVA: 0x002C8F4C File Offset: 0x002C714C
 	private GameObject GetAssigneeGameObject(IAssignableIdentity ass_id)
 	{
 		GameObject result = null;
@@ -48,7 +44,6 @@ public class HelmetController : KMonoBehaviour
 		return result;
 	}
 
-	// Token: 0x060063A2 RID: 25506 RVA: 0x002C8F8C File Offset: 0x002C718C
 	private void OnEquipped(object data)
 	{
 		Equippable component = base.GetComponent<Equippable>();
@@ -62,7 +57,6 @@ public class HelmetController : KMonoBehaviour
 		this.owner_navigator = assigneeGameObject.GetComponent<Navigator>();
 	}
 
-	// Token: 0x060063A3 RID: 25507 RVA: 0x002C9018 File Offset: 0x002C7218
 	private void OnUnequipped(object data)
 	{
 		this.owner_navigator = null;
@@ -83,7 +77,6 @@ public class HelmetController : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060063A4 RID: 25508 RVA: 0x002C90A4 File Offset: 0x002C72A4
 	private void ShowHelmet()
 	{
 		KBatchedAnimController assigneeController = this.GetAssigneeController();
@@ -102,7 +95,6 @@ public class HelmetController : KMonoBehaviour
 		this.UpdateJets();
 	}
 
-	// Token: 0x060063A5 RID: 25509 RVA: 0x002C9128 File Offset: 0x002C7328
 	private void HideHelmet()
 	{
 		this.is_shown = false;
@@ -125,7 +117,6 @@ public class HelmetController : KMonoBehaviour
 		this.UpdateJets();
 	}
 
-	// Token: 0x060063A6 RID: 25510 RVA: 0x000E585E File Offset: 0x000E3A5E
 	private void UpdateJets()
 	{
 		if (this.is_shown && this.is_flying)
@@ -136,7 +127,6 @@ public class HelmetController : KMonoBehaviour
 		this.DisableJets();
 	}
 
-	// Token: 0x060063A7 RID: 25511 RVA: 0x002C9194 File Offset: 0x002C7394
 	private void EnableJets()
 	{
 		if (!this.has_jets)
@@ -151,7 +141,6 @@ public class HelmetController : KMonoBehaviour
 		this.glow_go = this.AddTrackedAnim("glow", Assets.GetAnim("jetsuit_thruster_glow_fx_kanim"), "loop", Grid.SceneLayer.Front, "snapTo_neck");
 	}
 
-	// Token: 0x060063A8 RID: 25512 RVA: 0x000E587D File Offset: 0x000E3A7D
 	private void DisableJets()
 	{
 		if (!this.has_jets)
@@ -164,7 +153,6 @@ public class HelmetController : KMonoBehaviour
 		this.glow_go = null;
 	}
 
-	// Token: 0x060063A9 RID: 25513 RVA: 0x002C9210 File Offset: 0x002C7410
 	private GameObject AddTrackedAnim(string name, KAnimFile tracked_anim_file, string anim_clip, Grid.SceneLayer layer, string symbol_name)
 	{
 		KBatchedAnimController assigneeController = this.GetAssigneeController();
@@ -195,19 +183,16 @@ public class HelmetController : KMonoBehaviour
 		return gameObject;
 	}
 
-	// Token: 0x060063AA RID: 25514 RVA: 0x000E58AC File Offset: 0x000E3AAC
 	private void OnBeginRecoverBreath(object data)
 	{
 		this.HideHelmet();
 	}
 
-	// Token: 0x060063AB RID: 25515 RVA: 0x000E58B4 File Offset: 0x000E3AB4
 	private void OnEndRecoverBreath(object data)
 	{
 		this.ShowHelmet();
 	}
 
-	// Token: 0x060063AC RID: 25516 RVA: 0x002C930C File Offset: 0x002C750C
 	private void OnPathAdvanced(object data)
 	{
 		if (this.owner_navigator == null)
@@ -235,37 +220,27 @@ public class HelmetController : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x04004766 RID: 18278
 	public string anim_file;
 
-	// Token: 0x04004767 RID: 18279
 	public bool has_jets;
 
-	// Token: 0x04004768 RID: 18280
 	private bool is_shown;
 
-	// Token: 0x04004769 RID: 18281
 	private bool in_tube;
 
-	// Token: 0x0400476A RID: 18282
 	private bool is_flying;
 
-	// Token: 0x0400476B RID: 18283
 	private Navigator owner_navigator;
 
-	// Token: 0x0400476C RID: 18284
 	private GameObject jet_go;
 
-	// Token: 0x0400476D RID: 18285
 	private GameObject glow_go;
 
-	// Token: 0x0400476E RID: 18286
 	private static readonly EventSystem.IntraObjectHandler<HelmetController> OnEquippedDelegate = new EventSystem.IntraObjectHandler<HelmetController>(delegate(HelmetController component, object data)
 	{
 		component.OnEquipped(data);
 	});
 
-	// Token: 0x0400476F RID: 18287
 	private static readonly EventSystem.IntraObjectHandler<HelmetController> OnUnequippedDelegate = new EventSystem.IntraObjectHandler<HelmetController>(delegate(HelmetController component, object data)
 	{
 		component.OnUnequipped(data);

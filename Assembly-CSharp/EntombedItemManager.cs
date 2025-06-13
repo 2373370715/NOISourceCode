@@ -4,11 +4,9 @@ using System.Runtime.Serialization;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x020012E3 RID: 4835
 [AddComponentMenu("KMonoBehaviour/scripts/EntombedItemManager")]
 public class EntombedItemManager : KMonoBehaviour, ISim33ms
 {
-	// Token: 0x0600632E RID: 25390 RVA: 0x000E5202 File Offset: 0x000E3402
 	[OnDeserialized]
 	private void OnDeserialized()
 	{
@@ -17,7 +15,6 @@ public class EntombedItemManager : KMonoBehaviour, ISim33ms
 		this.PopulateEntombedItemVisualizers();
 	}
 
-	// Token: 0x0600632F RID: 25391 RVA: 0x002C7460 File Offset: 0x002C5660
 	public static bool CanEntomb(Pickupable pickupable)
 	{
 		if (pickupable == null)
@@ -32,13 +29,11 @@ public class EntombedItemManager : KMonoBehaviour, ISim33ms
 		return Grid.IsValidCell(num) && Grid.Solid[num] && !(Grid.Objects[num, 9] != null) && (pickupable.PrimaryElement.Element.IsSolid && pickupable.GetComponent<ElementChunk>() != null);
 	}
 
-	// Token: 0x06006330 RID: 25392 RVA: 0x000E5216 File Offset: 0x000E3416
 	public void Add(Pickupable pickupable)
 	{
 		this.pickupables.Add(pickupable);
 	}
 
-	// Token: 0x06006331 RID: 25393 RVA: 0x002C74E4 File Offset: 0x002C56E4
 	public void Sim33ms(float dt)
 	{
 		EntombedItemVisualizer component = Game.Instance.GetComponent<EntombedItemVisualizer>();
@@ -80,7 +75,6 @@ public class EntombedItemManager : KMonoBehaviour, ISim33ms
 		pooledHashSet.Recycle();
 	}
 
-	// Token: 0x06006332 RID: 25394 RVA: 0x002C76AC File Offset: 0x002C58AC
 	public void OnSolidChanged(List<int> solid_changed_cells)
 	{
 		ListPool<int, EntombedItemManager>.PooledList pooledList = ListPool<int, EntombedItemManager>.Allocate();
@@ -109,7 +103,6 @@ public class EntombedItemManager : KMonoBehaviour, ISim33ms
 		pooledList2.Recycle();
 	}
 
-	// Token: 0x06006333 RID: 25395 RVA: 0x002C7798 File Offset: 0x002C5998
 	private void SpawnUncoveredObjects()
 	{
 		ListPool<int, EntombedItemManager>.PooledList pooledList = ListPool<int, EntombedItemManager>.Allocate();
@@ -125,7 +118,6 @@ public class EntombedItemManager : KMonoBehaviour, ISim33ms
 		pooledList.Recycle();
 	}
 
-	// Token: 0x06006334 RID: 25396 RVA: 0x002C77F0 File Offset: 0x002C59F0
 	private void AddMassToWorldIfPossible()
 	{
 		ListPool<int, EntombedItemManager>.PooledList pooledList = ListPool<int, EntombedItemManager>.Allocate();
@@ -151,7 +143,6 @@ public class EntombedItemManager : KMonoBehaviour, ISim33ms
 		pooledList.Recycle();
 	}
 
-	// Token: 0x06006335 RID: 25397 RVA: 0x002C7908 File Offset: 0x002C5B08
 	private void RemoveItem(int item_idx)
 	{
 		this.cells.RemoveAt(item_idx);
@@ -162,7 +153,6 @@ public class EntombedItemManager : KMonoBehaviour, ISim33ms
 		this.diseaseCounts.RemoveAt(item_idx);
 	}
 
-	// Token: 0x06006336 RID: 25398 RVA: 0x002C7960 File Offset: 0x002C5B60
 	private EntombedItemManager.Item GetItem(int item_idx)
 	{
 		return new EntombedItemManager.Item
@@ -176,7 +166,6 @@ public class EntombedItemManager : KMonoBehaviour, ISim33ms
 		};
 	}
 
-	// Token: 0x06006337 RID: 25399 RVA: 0x002C79E8 File Offset: 0x002C5BE8
 	private void SpawnObjects(List<int> uncovered_item_indices)
 	{
 		uncovered_item_indices.Sort();
@@ -195,7 +184,6 @@ public class EntombedItemManager : KMonoBehaviour, ISim33ms
 		}
 	}
 
-	// Token: 0x06006338 RID: 25400 RVA: 0x002C7AA8 File Offset: 0x002C5CA8
 	private void PopulateEntombedItemVisualizers()
 	{
 		EntombedItemVisualizer component = Game.Instance.GetComponent<EntombedItemVisualizer>();
@@ -205,52 +193,38 @@ public class EntombedItemManager : KMonoBehaviour, ISim33ms
 		}
 	}
 
-	// Token: 0x04004718 RID: 18200
 	[Serialize]
 	private List<int> cells = new List<int>();
 
-	// Token: 0x04004719 RID: 18201
 	[Serialize]
 	private List<int> elementIds = new List<int>();
 
-	// Token: 0x0400471A RID: 18202
 	[Serialize]
 	private List<float> masses = new List<float>();
 
-	// Token: 0x0400471B RID: 18203
 	[Serialize]
 	private List<float> temperatures = new List<float>();
 
-	// Token: 0x0400471C RID: 18204
 	[Serialize]
 	private List<byte> diseaseIndices = new List<byte>();
 
-	// Token: 0x0400471D RID: 18205
 	[Serialize]
 	private List<int> diseaseCounts = new List<int>();
 
-	// Token: 0x0400471E RID: 18206
 	private List<Pickupable> pickupables = new List<Pickupable>();
 
-	// Token: 0x020012E4 RID: 4836
 	private struct Item
 	{
-		// Token: 0x0400471F RID: 18207
 		public int cell;
 
-		// Token: 0x04004720 RID: 18208
 		public int elementId;
 
-		// Token: 0x04004721 RID: 18209
 		public float mass;
 
-		// Token: 0x04004722 RID: 18210
 		public float temperature;
 
-		// Token: 0x04004723 RID: 18211
 		public byte diseaseIdx;
 
-		// Token: 0x04004724 RID: 18212
 		public int diseaseCount;
 	}
 }

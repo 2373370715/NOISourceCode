@@ -1,10 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02002097 RID: 8343
 public class TimeOfDayPositioner : KMonoBehaviour
 {
-	// Token: 0x0600B1F2 RID: 45554 RVA: 0x0043B2CC File Offset: 0x004394CC
 	public void SetTargetTimetable(GameObject TimetableRow)
 	{
 		if (TimetableRow == null)
@@ -18,7 +16,6 @@ public class TimeOfDayPositioner : KMonoBehaviour
 		base.transform.SetParent(this.targetRect.transform);
 	}
 
-	// Token: 0x0600B1F3 RID: 45555 RVA: 0x0043B32C File Offset: 0x0043952C
 	private void Update()
 	{
 		if (this.targetRect == null)
@@ -33,6 +30,5 @@ public class TimeOfDayPositioner : KMonoBehaviour
 		(base.transform as RectTransform).anchoredPosition = new Vector2(Mathf.Round(f), 0f);
 	}
 
-	// Token: 0x04008C55 RID: 35925
 	private RectTransform targetRect;
 }

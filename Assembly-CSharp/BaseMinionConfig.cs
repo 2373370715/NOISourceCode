@@ -6,34 +6,28 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200043D RID: 1085
 public static class BaseMinionConfig
 {
-	// Token: 0x0600122C RID: 4652 RVA: 0x000B26ED File Offset: 0x000B08ED
 	public static string GetMinionIDForModel(Tag model)
 	{
 		return model.ToString();
 	}
 
-	// Token: 0x0600122D RID: 4653 RVA: 0x000B26FC File Offset: 0x000B08FC
 	public static string GetMinionNameForModel(Tag model)
 	{
 		return model.ProperName();
 	}
 
-	// Token: 0x0600122E RID: 4654 RVA: 0x000B2704 File Offset: 0x000B0904
 	public static string GetMinionBaseTraitIDForModel(Tag model)
 	{
 		return BaseMinionConfig.GetMinionIDForModel(model) + "BaseTrait";
 	}
 
-	// Token: 0x0600122F RID: 4655 RVA: 0x000B2716 File Offset: 0x000B0916
 	public static Sprite GetSpriteForMinionModel(Tag model)
 	{
 		return Assets.GetSprite(string.Format("ui_duplicant_{0}_selection", model.ToString().ToLower()));
 	}
 
-	// Token: 0x06001230 RID: 4656 RVA: 0x00192360 File Offset: 0x00190560
 	public static GameObject BaseMinion(Tag model, string[] minionAttributes, string[] minionAmounts, AttributeModifier[] minionTraits)
 	{
 		string minionIDForModel = BaseMinionConfig.GetMinionIDForModel(model);
@@ -327,7 +321,6 @@ public static class BaseMinionConfig
 		return gameObject;
 	}
 
-	// Token: 0x06001231 RID: 4657 RVA: 0x00192E5C File Offset: 0x0019105C
 	public static void BasePrefabInit(GameObject go, Tag duplicantModel)
 	{
 		DUPLICANTSTATS statsFor = DUPLICANTSTATS.GetStatsFor(duplicantModel);
@@ -339,7 +332,6 @@ public static class BaseMinionConfig
 		amountInstance2.value = amountInstance2.GetMax();
 	}
 
-	// Token: 0x06001232 RID: 4658 RVA: 0x00192EFC File Offset: 0x001910FC
 	public static void BaseOnSpawn(GameObject go, Tag duplicantModel, Func<RationalAi.Instance, StateMachine.Instance>[] rationalAiSM)
 	{
 		Sensors component = go.GetComponent<Sensors>();
@@ -365,7 +357,6 @@ public static class BaseMinionConfig
 		component2.transitionDriver.overrideLayers.Add(new SplashTransitionLayer(component2));
 	}
 
-	// Token: 0x06001233 RID: 4659 RVA: 0x00193034 File Offset: 0x00191234
 	public static AttributeModifier[] BaseMinionTraits(Tag minionModel)
 	{
 		string minionNameForModel = BaseMinionConfig.GetMinionNameForModel(minionModel);
@@ -392,7 +383,6 @@ public static class BaseMinionConfig
 		return array;
 	}
 
-	// Token: 0x06001234 RID: 4660 RVA: 0x00193288 File Offset: 0x00191488
 	public static string[] BaseMinionAttributes()
 	{
 		return new string[]
@@ -412,7 +402,6 @@ public static class BaseMinionConfig
 		};
 	}
 
-	// Token: 0x06001235 RID: 4661 RVA: 0x001933B4 File Offset: 0x001915B4
 	public static string[] BaseMinionAmounts()
 	{
 		return new string[]
@@ -428,7 +417,6 @@ public static class BaseMinionConfig
 		};
 	}
 
-	// Token: 0x06001236 RID: 4662 RVA: 0x00193480 File Offset: 0x00191680
 	public static Func<RationalAi.Instance, StateMachine.Instance>[] BaseRationalAiStateMachines()
 	{
 		Func<RationalAi.Instance, StateMachine.Instance>[] array = new Func<RationalAi.Instance, StateMachine.Instance>[42];
@@ -484,7 +472,6 @@ public static class BaseMinionConfig
 		return array;
 	}
 
-	// Token: 0x06001237 RID: 4663 RVA: 0x00193A4C File Offset: 0x00191C4C
 	private static CellOffset[] CreateAttackCellOffsets(CellOffset[][] table)
 	{
 		CellOffset[] array = new CellOffset[table.Sum((CellOffset[] row) => row.Length)];
@@ -500,7 +487,6 @@ public static class BaseMinionConfig
 		return array;
 	}
 
-	// Token: 0x06001238 RID: 4664 RVA: 0x00193AC8 File Offset: 0x00191CC8
 	public static void SetupDreams(GameObject prefab)
 	{
 		GameObject gameObject = new GameObject("Dreams");
@@ -547,7 +533,6 @@ public static class BaseMinionConfig
 		}
 	}
 
-	// Token: 0x06001239 RID: 4665 RVA: 0x00193C80 File Offset: 0x00191E80
 	public static void SetupLaserEffects(GameObject prefab)
 	{
 		GameObject gameObject = new GameObject("LaserEffect");
@@ -685,7 +670,6 @@ public static class BaseMinionConfig
 		}
 	}
 
-	// Token: 0x0600123A RID: 4666 RVA: 0x001941C0 File Offset: 0x001923C0
 	public static void ConfigureSymbols(GameObject go, bool show_defaults = true)
 	{
 		KBatchedAnimController component = go.GetComponent<KBatchedAnimController>();
@@ -711,7 +695,6 @@ public static class BaseMinionConfig
 		component.SetSymbolVisiblity("skirt", false);
 	}
 
-	// Token: 0x0600123B RID: 4667 RVA: 0x00194328 File Offset: 0x00192528
 	public static void CopyVisibleSymbols(GameObject go, GameObject copy)
 	{
 		KBatchedAnimController component = go.GetComponent<KBatchedAnimController>();
@@ -739,7 +722,6 @@ public static class BaseMinionConfig
 		component.SetSymbolVisiblity("skirt", component2.GetSymbolVisiblity("skirt"));
 	}
 
-	// Token: 0x0600123C RID: 4668 RVA: 0x001945E4 File Offset: 0x001927E4
 	public static void AddMinionTraits(string name, string baseTraitID, Modifiers modifiers, AttributeModifier[] traits)
 	{
 		Trait trait = Db.Get().CreateTrait(baseTraitID, name, name, null, false, null, true, true);
@@ -750,7 +732,6 @@ public static class BaseMinionConfig
 		modifiers.initialTraits.Add(baseTraitID);
 	}
 
-	// Token: 0x0600123D RID: 4669 RVA: 0x00194628 File Offset: 0x00192828
 	public static void AddMinionAttributes(Modifiers modifiers, string[] attributes)
 	{
 		for (int i = 0; i < attributes.Length; i++)
@@ -759,7 +740,6 @@ public static class BaseMinionConfig
 		}
 	}
 
-	// Token: 0x0600123E RID: 4670 RVA: 0x00194654 File Offset: 0x00192854
 	public static void AddMinionAmounts(Modifiers modifiers, string[] amounts)
 	{
 		for (int i = 0; i < amounts.Length; i++)
@@ -768,59 +748,41 @@ public static class BaseMinionConfig
 		}
 	}
 
-	// Token: 0x04000CA7 RID: 3239
 	public const int MINION_BASE_SYMBOL_LAYER = 0;
 
-	// Token: 0x04000CA8 RID: 3240
 	public const int MINION_HAIR_ALWAYS_HACK_LAYER = 1;
 
-	// Token: 0x04000CA9 RID: 3241
 	public const int MINION_EXPRESSION_SYMBOL_LAYER = 2;
 
-	// Token: 0x04000CAA RID: 3242
 	public const int MINION_MOUTH_FLAP_LAYER = 3;
 
-	// Token: 0x04000CAB RID: 3243
 	public const int MINION_CLOTHING_SYMBOL_LAYER = 4;
 
-	// Token: 0x04000CAC RID: 3244
 	public const int MINION_PICKUP_SYMBOL_LAYER = 5;
 
-	// Token: 0x04000CAD RID: 3245
 	public const int MINION_SUIT_SYMBOL_LAYER = 6;
 
-	// Token: 0x04000CAE RID: 3246
 	public static CellOffset[] ATTACK_OFFSETS = BaseMinionConfig.CreateAttackCellOffsets(OffsetGroups.InvertedStandardTable);
 
-	// Token: 0x0200043E RID: 1086
 	public struct LaserEffect
 	{
-		// Token: 0x04000CAF RID: 3247
 		public string id;
 
-		// Token: 0x04000CB0 RID: 3248
 		public string animFile;
 
-		// Token: 0x04000CB1 RID: 3249
 		public string anim;
 
-		// Token: 0x04000CB2 RID: 3250
 		public HashedString context;
 	}
 
-	// Token: 0x0200043F RID: 1087
 	public struct Dream
 	{
-		// Token: 0x04000CB3 RID: 3251
 		public string id;
 
-		// Token: 0x04000CB4 RID: 3252
 		public string animFile;
 
-		// Token: 0x04000CB5 RID: 3253
 		public string anim;
 
-		// Token: 0x04000CB6 RID: 3254
 		public HashedString context;
 	}
 }

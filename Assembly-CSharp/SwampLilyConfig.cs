@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020002DE RID: 734
 public class SwampLilyConfig : IEntityConfig
 {
-	// Token: 0x06000B44 RID: 2884 RVA: 0x00177DB0 File Offset: 0x00175FB0
 	public GameObject CreatePrefab()
 	{
 		string id = "SwampLily";
@@ -44,19 +42,15 @@ public class SwampLilyConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06000B45 RID: 2885 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x06000B46 RID: 2886 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x040008D8 RID: 2264
 	public static string ID = "SwampLily";
 
-	// Token: 0x040008D9 RID: 2265
 	public const string SEED_ID = "SwampLilySeed";
 }

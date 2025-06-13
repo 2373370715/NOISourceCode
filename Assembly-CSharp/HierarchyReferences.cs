@@ -1,11 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02001D50 RID: 7504
 [AddComponentMenu("KMonoBehaviour/scripts/HierarchyReferences")]
 public class HierarchyReferences : KMonoBehaviour
 {
-	// Token: 0x06009CB3 RID: 40115 RVA: 0x003D3340 File Offset: 0x003D1540
 	public bool HasReference(string name)
 	{
 		ElementReference[] array = this.references;
@@ -19,7 +17,6 @@ public class HierarchyReferences : KMonoBehaviour
 		return false;
 	}
 
-	// Token: 0x06009CB4 RID: 40116 RVA: 0x003D337C File Offset: 0x003D157C
 	public SpecifiedType GetReference<SpecifiedType>(string name) where SpecifiedType : Component
 	{
 		foreach (ElementReference elementReference in this.references)
@@ -37,7 +34,6 @@ public class HierarchyReferences : KMonoBehaviour
 		return default(SpecifiedType);
 	}
 
-	// Token: 0x06009CB5 RID: 40117 RVA: 0x003D33FC File Offset: 0x003D15FC
 	public Component GetReference(string name)
 	{
 		foreach (ElementReference elementReference in this.references)
@@ -51,6 +47,5 @@ public class HierarchyReferences : KMonoBehaviour
 		return null;
 	}
 
-	// Token: 0x04007AC6 RID: 31430
 	public ElementReference[] references;
 }

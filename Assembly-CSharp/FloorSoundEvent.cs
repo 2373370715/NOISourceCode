@@ -3,17 +3,14 @@ using System.Diagnostics;
 using FMOD.Studio;
 using UnityEngine;
 
-// Token: 0x0200093C RID: 2364
 [DebuggerDisplay("{Name}")]
 public class FloorSoundEvent : SoundEvent
 {
-	// Token: 0x0600297F RID: 10623 RVA: 0x000BF71F File Offset: 0x000BD91F
 	public FloorSoundEvent(string file_name, string sound_name, int frame) : base(file_name, sound_name, frame, false, false, (float)SoundEvent.IGNORE_INTERVAL, true)
 	{
 		base.noiseValues = SoundEventVolumeCache.instance.GetVolume("FloorSoundEvent", sound_name);
 	}
 
-	// Token: 0x06002980 RID: 10624 RVA: 0x001E3030 File Offset: 0x001E1230
 	public override void PlaySound(AnimEventManager.EventPlayerData behaviour)
 	{
 		Vector3 vector = behaviour.position;
@@ -96,7 +93,6 @@ public class FloorSoundEvent : SoundEvent
 		}
 	}
 
-	// Token: 0x06002981 RID: 10625 RVA: 0x001E32A0 File Offset: 0x001E14A0
 	private static string GetAudioCategory(int cell)
 	{
 		if (!Grid.IsValidCell(cell))
@@ -171,6 +167,5 @@ public class FloorSoundEvent : SoundEvent
 		return "Rock";
 	}
 
-	// Token: 0x04001C3E RID: 7230
 	public static float IDLE_WALKING_VOLUME_REDUCTION = 0.55f;
 }

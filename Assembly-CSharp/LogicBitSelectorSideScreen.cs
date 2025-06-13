@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001FE6 RID: 8166
 public class LogicBitSelectorSideScreen : SideScreenContent, IRenderEveryTick
 {
-	// Token: 0x0600AC8D RID: 44173 RVA: 0x00114A40 File Offset: 0x00112C40
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -14,7 +12,6 @@ public class LogicBitSelectorSideScreen : SideScreenContent, IRenderEveryTick
 		this.inactiveColor = GlobalAssets.Instance.colorSet.logicOffText;
 	}
 
-	// Token: 0x0600AC8E RID: 44174 RVA: 0x00114A7C File Offset: 0x00112C7C
 	public void SelectToggle(int bit)
 	{
 		this.target.SetBitSelection(bit);
@@ -22,7 +19,6 @@ public class LogicBitSelectorSideScreen : SideScreenContent, IRenderEveryTick
 		this.RefreshToggles();
 	}
 
-	// Token: 0x0600AC8F RID: 44175 RVA: 0x0041E5A4 File Offset: 0x0041C7A4
 	private void RefreshToggles()
 	{
 		for (int i = 0; i < this.target.GetBitDepth(); i++)
@@ -55,13 +51,11 @@ public class LogicBitSelectorSideScreen : SideScreenContent, IRenderEveryTick
 		}
 	}
 
-	// Token: 0x0600AC90 RID: 44176 RVA: 0x00114A9B File Offset: 0x00112C9B
 	public override bool IsValidForTarget(GameObject target)
 	{
 		return target.GetComponent<ILogicRibbonBitSelector>() != null;
 	}
 
-	// Token: 0x0600AC91 RID: 44177 RVA: 0x0041E744 File Offset: 0x0041C944
 	public override void SetTarget(GameObject new_target)
 	{
 		if (new_target == null)
@@ -86,7 +80,6 @@ public class LogicBitSelectorSideScreen : SideScreenContent, IRenderEveryTick
 		}
 	}
 
-	// Token: 0x0600AC92 RID: 44178 RVA: 0x0041E81C File Offset: 0x0041CA1C
 	public void RenderEveryTick(float dt)
 	{
 		if (this.target.Equals(null))
@@ -100,7 +93,6 @@ public class LogicBitSelectorSideScreen : SideScreenContent, IRenderEveryTick
 		this.UpdateInputOutputDisplay();
 	}
 
-	// Token: 0x0600AC93 RID: 44179 RVA: 0x0041E88C File Offset: 0x0041CA8C
 	private void UpdateInputOutputDisplay()
 	{
 		if (this.target.SideScreenDisplayReaderDescription())
@@ -113,7 +105,6 @@ public class LogicBitSelectorSideScreen : SideScreenContent, IRenderEveryTick
 		}
 	}
 
-	// Token: 0x0600AC94 RID: 44180 RVA: 0x0041E904 File Offset: 0x0041CB04
 	private void UpdateStateVisuals(int bit)
 	{
 		MultiToggle multiToggle = this.toggles_by_int[bit];
@@ -121,31 +112,22 @@ public class LogicBitSelectorSideScreen : SideScreenContent, IRenderEveryTick
 		multiToggle.gameObject.GetComponent<HierarchyReferences>().GetReference<LocText>("stateText").SetText(this.target.IsBitActive(bit) ? UI.UISIDESCREENS.LOGICBITSELECTORSIDESCREEN.STATE_ACTIVE : UI.UISIDESCREENS.LOGICBITSELECTORSIDESCREEN.STATE_INACTIVE);
 	}
 
-	// Token: 0x040087DE RID: 34782
 	private ILogicRibbonBitSelector target;
 
-	// Token: 0x040087DF RID: 34783
 	public GameObject rowPrefab;
 
-	// Token: 0x040087E0 RID: 34784
 	public KImage inputDisplayIcon;
 
-	// Token: 0x040087E1 RID: 34785
 	public KImage outputDisplayIcon;
 
-	// Token: 0x040087E2 RID: 34786
 	public GameObject readerDescriptionContainer;
 
-	// Token: 0x040087E3 RID: 34787
 	public GameObject writerDescriptionContainer;
 
-	// Token: 0x040087E4 RID: 34788
 	[NonSerialized]
 	public Dictionary<int, MultiToggle> toggles_by_int = new Dictionary<int, MultiToggle>();
 
-	// Token: 0x040087E5 RID: 34789
 	private Color activeColor;
 
-	// Token: 0x040087E6 RID: 34790
 	private Color inactiveColor;
 }

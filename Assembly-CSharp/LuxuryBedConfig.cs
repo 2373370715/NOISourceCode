@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003FE RID: 1022
 public class LuxuryBedConfig : IBuildingConfig
 {
-	// Token: 0x060010D0 RID: 4304 RVA: 0x0018C1F4 File Offset: 0x0018A3F4
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "LuxuryBed";
@@ -28,7 +26,6 @@ public class LuxuryBedConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060010D1 RID: 4305 RVA: 0x000B1D81 File Offset: 0x000AFF81
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<LoopingSounds>();
@@ -36,7 +33,6 @@ public class LuxuryBedConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.LuxuryBedType, false);
 	}
 
-	// Token: 0x060010D2 RID: 4306 RVA: 0x0018C26C File Offset: 0x0018A46C
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.GetComponent<KAnimControllerBase>().initialAnim = "off";
@@ -66,6 +62,5 @@ public class LuxuryBedConfig : IBuildingConfig
 		go.AddOrGetDef<RocketUsageRestriction.Def>();
 	}
 
-	// Token: 0x04000BBE RID: 3006
 	public const string ID = "LuxuryBed";
 }

@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001A13 RID: 6675
 public class StructureTemperatureComponents : KGameObjectSplitComponentManager<StructureTemperatureHeader, StructureTemperaturePayload>
 {
-	// Token: 0x06008AF8 RID: 35576 RVA: 0x0036BBC4 File Offset: 0x00369DC4
 	public HandleVector<int>.Handle Add(GameObject go)
 	{
 		StructureTemperaturePayload structureTemperaturePayload = new StructureTemperaturePayload(go);
@@ -18,13 +16,11 @@ public class StructureTemperatureComponents : KGameObjectSplitComponentManager<S
 		}, ref structureTemperaturePayload);
 	}
 
-	// Token: 0x06008AF9 RID: 35577 RVA: 0x000FF723 File Offset: 0x000FD923
 	public static void ClearInstanceMap()
 	{
 		StructureTemperatureComponents.handleInstanceMap.Clear();
 	}
 
-	// Token: 0x06008AFB RID: 35579 RVA: 0x0036BC04 File Offset: 0x00369E04
 	protected override void OnPrefabInit(HandleVector<int>.Handle handle)
 	{
 		this.InitializeStatusItem();
@@ -38,7 +34,6 @@ public class StructureTemperatureComponents : KGameObjectSplitComponentManager<S
 		base.SetHeader(handle, new_data);
 	}
 
-	// Token: 0x06008AFC RID: 35580 RVA: 0x0036BC94 File Offset: 0x00369E94
 	private void InitializeStatusItem()
 	{
 		if (this.operatingEnergyStatusItem != null)
@@ -75,7 +70,6 @@ public class StructureTemperatureComponents : KGameObjectSplitComponentManager<S
 		};
 	}
 
-	// Token: 0x06008AFD RID: 35581 RVA: 0x0036BCEC File Offset: 0x00369EEC
 	protected override void OnSpawn(HandleVector<int>.Handle handle)
 	{
 		StructureTemperatureHeader structureTemperatureHeader;
@@ -97,7 +91,6 @@ public class StructureTemperatureComponents : KGameObjectSplitComponentManager<S
 		this.SimRegister(handle, ref structureTemperatureHeader, ref structureTemperaturePayload);
 	}
 
-	// Token: 0x06008AFE RID: 35582 RVA: 0x0036BDA8 File Offset: 0x00369FA8
 	private static void OnActiveChanged(HandleVector<int>.Handle handle)
 	{
 		StructureTemperatureHeader new_data;
@@ -108,14 +101,12 @@ public class StructureTemperatureComponents : KGameObjectSplitComponentManager<S
 		GameComps.StructureTemperatures.SetHeader(handle, new_data);
 	}
 
-	// Token: 0x06008AFF RID: 35583 RVA: 0x000FF737 File Offset: 0x000FD937
 	protected override void OnCleanUp(HandleVector<int>.Handle handle)
 	{
 		this.SimUnregister(handle);
 		base.OnCleanUp(handle);
 	}
 
-	// Token: 0x06008B00 RID: 35584 RVA: 0x0036BDEC File Offset: 0x00369FEC
 	public override void Sim200ms(float dt)
 	{
 		int num = 0;
@@ -196,7 +187,6 @@ public class StructureTemperatureComponents : KGameObjectSplitComponentManager<S
 		pooledList.Recycle();
 	}
 
-	// Token: 0x06008B01 RID: 35585 RVA: 0x0036C15C File Offset: 0x0036A35C
 	public static void ExhaustHeat(Extents extents, float kw, float maxTemperature, float dt)
 	{
 		int num = extents.width * extents.height;
@@ -215,7 +205,6 @@ public class StructureTemperatureComponents : KGameObjectSplitComponentManager<S
 		}
 	}
 
-	// Token: 0x06008B02 RID: 35586 RVA: 0x0036C1F8 File Offset: 0x0036A3F8
 	private static void UpdateSimState(ref StructureTemperaturePayload payload)
 	{
 		DebugUtil.Assert(Sim.IsValidHandle(payload.simHandleCopy));
@@ -238,7 +227,6 @@ public class StructureTemperatureComponents : KGameObjectSplitComponentManager<S
 		SimMessages.ModifyBuildingHeatExchange(payload.simHandleCopy, extents, mass, internalTemperature, def.ThermalConductivity, overheat_temperature, operatingKilowatts, idx);
 	}
 
-	// Token: 0x06008B03 RID: 35587 RVA: 0x0036C300 File Offset: 0x0036A500
 	private unsafe static float OnGetTemperature(PrimaryElement primary_element)
 	{
 		HandleVector<int>.Handle handle = GameComps.StructureTemperatures.GetHandle(primary_element.gameObject);
@@ -264,7 +252,6 @@ public class StructureTemperatureComponents : KGameObjectSplitComponentManager<S
 		return result;
 	}
 
-	// Token: 0x06008B04 RID: 35588 RVA: 0x0036C3AC File Offset: 0x0036A5AC
 	private static void OnSetTemperature(PrimaryElement primary_element, float temperature)
 	{
 		HandleVector<int>.Handle handle = GameComps.StructureTemperatures.GetHandle(primary_element.gameObject);
@@ -286,7 +273,6 @@ public class StructureTemperatureComponents : KGameObjectSplitComponentManager<S
 		}
 	}
 
-	// Token: 0x06008B05 RID: 35589 RVA: 0x0036C458 File Offset: 0x0036A658
 	public void ProduceEnergy(HandleVector<int>.Handle handle, float delta_kilojoules, string source, float display_dt)
 	{
 		StructureTemperaturePayload payload = base.GetPayload(handle);
@@ -305,7 +291,6 @@ public class StructureTemperatureComponents : KGameObjectSplitComponentManager<S
 		base.SetPayload(handle, ref payload);
 	}
 
-	// Token: 0x06008B06 RID: 35590 RVA: 0x0036C4D8 File Offset: 0x0036A6D8
 	private List<StructureTemperaturePayload.EnergySource> AccumulateProducedEnergyKW(List<StructureTemperaturePayload.EnergySource> sources, float kw, string source)
 	{
 		if (sources == null)
@@ -329,7 +314,6 @@ public class StructureTemperatureComponents : KGameObjectSplitComponentManager<S
 		return sources;
 	}
 
-	// Token: 0x06008B07 RID: 35591 RVA: 0x0036C538 File Offset: 0x0036A738
 	public static void DoStateTransition(int sim_handle)
 	{
 		HandleVector<int>.Handle invalidHandle = HandleVector<int>.InvalidHandle;
@@ -339,7 +323,6 @@ public class StructureTemperatureComponents : KGameObjectSplitComponentManager<S
 		}
 	}
 
-	// Token: 0x06008B08 RID: 35592 RVA: 0x0036C574 File Offset: 0x0036A774
 	public static void DoMelt(PrimaryElement primary_element)
 	{
 		Element element = primary_element.Element;
@@ -351,7 +334,6 @@ public class StructureTemperatureComponents : KGameObjectSplitComponentManager<S
 		}
 	}
 
-	// Token: 0x06008B09 RID: 35593 RVA: 0x0036C5F0 File Offset: 0x0036A7F0
 	public static void DoOverheat(int sim_handle)
 	{
 		HandleVector<int>.Handle invalidHandle = HandleVector<int>.InvalidHandle;
@@ -361,7 +343,6 @@ public class StructureTemperatureComponents : KGameObjectSplitComponentManager<S
 		}
 	}
 
-	// Token: 0x06008B0A RID: 35594 RVA: 0x0036C638 File Offset: 0x0036A838
 	public static void DoNoLongerOverheated(int sim_handle)
 	{
 		HandleVector<int>.Handle invalidHandle = HandleVector<int>.InvalidHandle;
@@ -371,13 +352,11 @@ public class StructureTemperatureComponents : KGameObjectSplitComponentManager<S
 		}
 	}
 
-	// Token: 0x06008B0B RID: 35595 RVA: 0x000FF747 File Offset: 0x000FD947
 	public bool IsEnabled(HandleVector<int>.Handle handle)
 	{
 		return base.GetPayload(handle).enabled;
 	}
 
-	// Token: 0x06008B0C RID: 35596 RVA: 0x0036C680 File Offset: 0x0036A880
 	private void Enable(HandleVector<int>.Handle handle, bool isEnabled)
 	{
 		StructureTemperatureHeader new_data;
@@ -388,25 +367,21 @@ public class StructureTemperatureComponents : KGameObjectSplitComponentManager<S
 		base.SetData(handle, new_data, ref structureTemperaturePayload);
 	}
 
-	// Token: 0x06008B0D RID: 35597 RVA: 0x000FF755 File Offset: 0x000FD955
 	public void Enable(HandleVector<int>.Handle handle)
 	{
 		this.Enable(handle, true);
 	}
 
-	// Token: 0x06008B0E RID: 35598 RVA: 0x000FF75F File Offset: 0x000FD95F
 	public void Disable(HandleVector<int>.Handle handle)
 	{
 		this.Enable(handle, false);
 	}
 
-	// Token: 0x06008B0F RID: 35599 RVA: 0x000FF769 File Offset: 0x000FD969
 	public bool IsBypassed(HandleVector<int>.Handle handle)
 	{
 		return base.GetPayload(handle).bypass;
 	}
 
-	// Token: 0x06008B10 RID: 35600 RVA: 0x0036C6B4 File Offset: 0x0036A8B4
 	private void Bypass(HandleVector<int>.Handle handle, bool bypass)
 	{
 		StructureTemperatureHeader new_data;
@@ -417,19 +392,16 @@ public class StructureTemperatureComponents : KGameObjectSplitComponentManager<S
 		base.SetData(handle, new_data, ref structureTemperaturePayload);
 	}
 
-	// Token: 0x06008B11 RID: 35601 RVA: 0x000FF777 File Offset: 0x000FD977
 	public void Bypass(HandleVector<int>.Handle handle)
 	{
 		this.Bypass(handle, true);
 	}
 
-	// Token: 0x06008B12 RID: 35602 RVA: 0x000FF781 File Offset: 0x000FD981
 	public void UnBypass(HandleVector<int>.Handle handle)
 	{
 		this.Bypass(handle, false);
 	}
 
-	// Token: 0x06008B13 RID: 35603 RVA: 0x0036C6E8 File Offset: 0x0036A8E8
 	protected void SimRegister(HandleVector<int>.Handle handle, ref StructureTemperatureHeader header, ref StructureTemperaturePayload payload)
 	{
 		if (payload.simHandleCopy != -1)
@@ -462,11 +434,9 @@ public class StructureTemperatureComponents : KGameObjectSplitComponentManager<S
 		base.SetData(handle, header, ref payload);
 	}
 
-	// Token: 0x06008B14 RID: 35604 RVA: 0x0036C7D8 File Offset: 0x0036A9D8
 	private static void OnSimRegistered(HandleVector<int>.Handle handle, int sim_handle, string dbg_name)
 	{
 		if (!GameComps.StructureTemperatures.IsValid(handle))
-		{
 			return;
 		}
 		if (!GameComps.StructureTemperatures.IsVersionValid(handle))
@@ -490,11 +460,9 @@ public class StructureTemperatureComponents : KGameObjectSplitComponentManager<S
 		SimMessages.RemoveBuildingHeatExchange(sim_handle, -1);
 	}
 
-	// Token: 0x06008B15 RID: 35605 RVA: 0x0036C8A0 File Offset: 0x0036AAA0
 	protected unsafe void SimUnregister(HandleVector<int>.Handle handle)
 	{
 		if (!GameComps.StructureTemperatures.IsVersionValid(handle))
-		{
 			KCrashReporter.Assert(false, "Handle version mismatch in StructureTemperature.SimUnregister", null);
 			return;
 		}
@@ -522,12 +490,7 @@ public class StructureTemperatureComponents : KGameObjectSplitComponentManager<S
 		}
 	}
 
-	// Token: 0x040068FE RID: 26878
 	private const float MAX_PRESSURE = 1.5f;
 
-	// Token: 0x040068FF RID: 26879
-	private static Dictionary<int, HandleVector<int>.Handle> handleInstanceMap = new Dictionary<int, HandleVector<int>.Handle>();
 
-	// Token: 0x04006900 RID: 26880
-	private StatusItem operatingEnergyStatusItem;
 }

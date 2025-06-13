@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200053E RID: 1342
 public class PropGravitasWallPurpleConfig : IBuildingConfig
 {
-	// Token: 0x06001711 RID: 5905 RVA: 0x001A4748 File Offset: 0x001A2948
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "PropGravitasWallPurple";
@@ -33,7 +31,6 @@ public class PropGravitasWallPurpleConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001712 RID: 5906 RVA: 0x001A46E0 File Offset: 0x001A28E0
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<AnimTileable>().objectLayer = ObjectLayer.Backwall;
@@ -44,11 +41,9 @@ public class PropGravitasWallPurpleConfig : IBuildingConfig
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
 	}
 
-	// Token: 0x06001713 RID: 5907 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000F46 RID: 3910
 	public const string ID = "PropGravitasWallPurple";
 }

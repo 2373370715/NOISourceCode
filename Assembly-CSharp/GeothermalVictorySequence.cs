@@ -3,16 +3,13 @@ using System.Collections;
 using FMOD.Studio;
 using UnityEngine;
 
-// Token: 0x020010EB RID: 4331
 public static class GeothermalVictorySequence
 {
-	// Token: 0x06005888 RID: 22664 RVA: 0x000DE2B5 File Offset: 0x000DC4B5
 	public static void Start(KMonoBehaviour controller)
 	{
 		controller.StartCoroutine(GeothermalVictorySequence.Sequence());
 	}
 
-	// Token: 0x06005889 RID: 22665 RVA: 0x000DE2C3 File Offset: 0x000DC4C3
 	private static IEnumerator Sequence()
 	{
 		if (GeothermalVictorySequence.VictoryVent == null)
@@ -85,6 +82,5 @@ public static class GeothermalVictorySequence
 		yield break;
 	}
 
-	// Token: 0x04003E5D RID: 15965
 	public static GeothermalVent VictoryVent;
 }

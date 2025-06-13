@@ -4,21 +4,15 @@ using Klei.AI;
 using TemplateClasses;
 using UnityEngine;
 
-// Token: 0x02001CEA RID: 7402
 public class DebugBaseTemplateButton : KScreen
 {
-	// Token: 0x17000A2D RID: 2605
-	// (get) Token: 0x06009A5A RID: 39514 RVA: 0x00108E5B File Offset: 0x0010705B
-	// (set) Token: 0x06009A5B RID: 39515 RVA: 0x00108E62 File Offset: 0x00107062
 	public static DebugBaseTemplateButton Instance { get; private set; }
 
-	// Token: 0x06009A5C RID: 39516 RVA: 0x00108E6A File Offset: 0x0010706A
 	public static void DestroyInstance()
 	{
 		DebugBaseTemplateButton.Instance = null;
 	}
 
-	// Token: 0x06009A5D RID: 39517 RVA: 0x003C6AD8 File Offset: 0x003C4CD8
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -41,14 +35,12 @@ public class DebugBaseTemplateButton : KScreen
 		});
 	}
 
-	// Token: 0x06009A5E RID: 39518 RVA: 0x00106E76 File Offset: 0x00105076
 	protected override void OnActivate()
 	{
 		base.OnActivate();
 		base.ConsumeMouseScroll = true;
 	}
 
-	// Token: 0x06009A5F RID: 39519 RVA: 0x003C6B6C File Offset: 0x003C4D6C
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -94,24 +86,20 @@ public class DebugBaseTemplateButton : KScreen
 		}
 	}
 
-	// Token: 0x06009A60 RID: 39520 RVA: 0x000AA038 File Offset: 0x000A8238
 	private void SetupLocText()
 	{
 	}
 
-	// Token: 0x06009A61 RID: 39521 RVA: 0x00108E72 File Offset: 0x00107072
 	private void OnClickDestroySelection()
 	{
 		DebugTool.Instance.Activate(DebugTool.Type.Destroy);
 	}
 
-	// Token: 0x06009A62 RID: 39522 RVA: 0x00108E7F File Offset: 0x0010707F
 	private void OnClickDeconstructSelection()
 	{
 		DebugTool.Instance.Activate(DebugTool.Type.Deconstruct);
 	}
 
-	// Token: 0x06009A63 RID: 39523 RVA: 0x00108E8C File Offset: 0x0010708C
 	private void OnClickMove()
 	{
 		DebugTool.Instance.DeactivateTool(null);
@@ -119,32 +107,27 @@ public class DebugBaseTemplateButton : KScreen
 		StampTool.Instance.Activate(this.moveAsset, false, false);
 	}
 
-	// Token: 0x06009A64 RID: 39524 RVA: 0x00108EB7 File Offset: 0x001070B7
 	private void OnClickAddSelection()
 	{
 		DebugTool.Instance.Activate(DebugTool.Type.AddSelection);
 	}
 
-	// Token: 0x06009A65 RID: 39525 RVA: 0x00108EC4 File Offset: 0x001070C4
 	private void OnClickRemoveSelection()
 	{
 		DebugTool.Instance.Activate(DebugTool.Type.RemoveSelection);
 	}
 
-	// Token: 0x06009A66 RID: 39526 RVA: 0x00108ED1 File Offset: 0x001070D1
 	private void OnClickClearSelection()
 	{
 		this.ClearSelection();
 		this.nameField.text = "";
 	}
 
-	// Token: 0x06009A67 RID: 39527 RVA: 0x00108EE9 File Offset: 0x001070E9
 	private void OnClickClear()
 	{
 		DebugTool.Instance.Activate(DebugTool.Type.Clear);
 	}
 
-	// Token: 0x06009A68 RID: 39528 RVA: 0x00108EF6 File Offset: 0x001070F6
 	protected override void OnDeactivate()
 	{
 		if (DebugTool.Instance != null)
@@ -154,7 +137,6 @@ public class DebugBaseTemplateButton : KScreen
 		base.OnDeactivate();
 	}
 
-	// Token: 0x06009A69 RID: 39529 RVA: 0x00108F16 File Offset: 0x00107116
 	protected override void OnDisable()
 	{
 		if (DebugTool.Instance != null)
@@ -163,7 +145,6 @@ public class DebugBaseTemplateButton : KScreen
 		}
 	}
 
-	// Token: 0x06009A6A RID: 39530 RVA: 0x003C6D60 File Offset: 0x003C4F60
 	private TemplateContainer GetSelectionAsAsset()
 	{
 		List<Cell> list = new List<Cell>();
@@ -391,7 +372,6 @@ public class DebugBaseTemplateButton : KScreen
 		return templateContainer;
 	}
 
-	// Token: 0x06009A6B RID: 39531 RVA: 0x003C7798 File Offset: 0x003C5998
 	private void GetEntities<T>(int rootX, int rootY, ref List<Prefab> _primaryElementOres, ref List<Prefab> _otherEntities, ref HashSet<GameObject> _excludeEntities)
 	{
 		object[] array = UnityEngine.Object.FindObjectsOfType(typeof(T));
@@ -399,7 +379,6 @@ public class DebugBaseTemplateButton : KScreen
 		this.GetEntities<object>(component_collection, rootX, rootY, ref _primaryElementOres, ref _otherEntities, ref _excludeEntities);
 	}
 
-	// Token: 0x06009A6C RID: 39532 RVA: 0x003C77C8 File Offset: 0x003C59C8
 	private void GetEntities<T>(IEnumerable<T> component_collection, int rootX, int rootY, ref List<Prefab> _primaryElementOres, ref List<Prefab> _otherEntities, ref HashSet<GameObject> _excludeEntities)
 	{
 		foreach (T t in component_collection)
@@ -479,7 +458,6 @@ public class DebugBaseTemplateButton : KScreen
 		}
 	}
 
-	// Token: 0x06009A6D RID: 39533 RVA: 0x003C7AD0 File Offset: 0x003C5CD0
 	private void OnClickSaveBase()
 	{
 		TemplateContainer selectionAsAsset = this.GetSelectionAsAsset();
@@ -500,7 +478,6 @@ public class DebugBaseTemplateButton : KScreen
 		PasteBaseTemplateScreen.Instance.RefreshStampButtons();
 	}
 
-	// Token: 0x06009A6E RID: 39534 RVA: 0x003C7B54 File Offset: 0x003C5D54
 	public void ClearSelection()
 	{
 		for (int i = this.SelectedCells.Count - 1; i >= 0; i--)
@@ -509,17 +486,14 @@ public class DebugBaseTemplateButton : KScreen
 		}
 	}
 
-	// Token: 0x06009A6F RID: 39535 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void DestroySelection()
 	{
 	}
 
-	// Token: 0x06009A70 RID: 39536 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void DeconstructSelection()
 	{
 	}
 
-	// Token: 0x06009A71 RID: 39537 RVA: 0x003C7B8C File Offset: 0x003C5D8C
 	public void AddToSelection(int cell)
 	{
 		if (!this.SelectedCells.Contains(cell))
@@ -534,7 +508,6 @@ public class DebugBaseTemplateButton : KScreen
 		}
 	}
 
-	// Token: 0x06009A72 RID: 39538 RVA: 0x003C7C00 File Offset: 0x003C5E00
 	public void RemoveFromSelection(int cell)
 	{
 		if (this.SelectedCells.Contains(cell))
@@ -548,54 +521,37 @@ public class DebugBaseTemplateButton : KScreen
 		}
 	}
 
-	// Token: 0x0400787A RID: 30842
 	private bool SaveAllBuildings;
 
-	// Token: 0x0400787B RID: 30843
 	private bool SaveAllPickups;
 
-	// Token: 0x0400787C RID: 30844
 	public KButton saveBaseButton;
 
-	// Token: 0x0400787D RID: 30845
 	public KButton clearButton;
 
-	// Token: 0x0400787E RID: 30846
 	private TemplateContainer pasteAndSelectAsset;
 
-	// Token: 0x0400787F RID: 30847
 	public KButton AddSelectionButton;
 
-	// Token: 0x04007880 RID: 30848
 	public KButton RemoveSelectionButton;
 
-	// Token: 0x04007881 RID: 30849
 	public KButton clearSelectionButton;
 
-	// Token: 0x04007882 RID: 30850
 	public KButton DestroyButton;
 
-	// Token: 0x04007883 RID: 30851
 	public KButton DeconstructButton;
 
-	// Token: 0x04007884 RID: 30852
 	public KButton MoveButton;
 
-	// Token: 0x04007885 RID: 30853
 	public TemplateContainer moveAsset;
 
-	// Token: 0x04007886 RID: 30854
 	public KInputTextField nameField;
 
-	// Token: 0x04007887 RID: 30855
 	private string SaveName = "enter_template_name";
 
-	// Token: 0x04007888 RID: 30856
 	public GameObject Placer;
 
-	// Token: 0x04007889 RID: 30857
 	public Grid.SceneLayer visualizerLayer = Grid.SceneLayer.Move;
 
-	// Token: 0x0400788A RID: 30858
 	public List<int> SelectedCells = new List<int>();
 }

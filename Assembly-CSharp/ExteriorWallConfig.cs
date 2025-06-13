@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000CB RID: 203
 public class ExteriorWallConfig : IBuildingConfig
 {
-	// Token: 0x0600035C RID: 860 RVA: 0x00156A60 File Offset: 0x00154C60
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "ExteriorWall";
@@ -51,7 +49,6 @@ public class ExteriorWallConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600035D RID: 861 RVA: 0x000AB25B File Offset: 0x000A945B
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
@@ -60,13 +57,11 @@ public class ExteriorWallConfig : IBuildingConfig
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
 	}
 
-	// Token: 0x0600035E RID: 862 RVA: 0x000AB28B File Offset: 0x000A948B
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.GetComponent<KPrefabID>().AddTag(GameTags.Backwall, false);
 		GeneratedBuildings.RemoveLoopingSounds(go);
 	}
 
-	// Token: 0x0400020E RID: 526
 	public const string ID = "ExteriorWall";
 }

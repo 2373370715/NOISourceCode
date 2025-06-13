@@ -5,20 +5,12 @@ using Klei;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001244 RID: 4676
 public class DebugHandler : IInputHandler
 {
-	// Token: 0x170005AD RID: 1453
-	// (get) Token: 0x06005F19 RID: 24345 RVA: 0x000E294C File Offset: 0x000E0B4C
-	// (set) Token: 0x06005F1A RID: 24346 RVA: 0x000E2953 File Offset: 0x000E0B53
 	public static bool NotificationsDisabled { get; private set; }
 
-	// Token: 0x170005AE RID: 1454
-	// (get) Token: 0x06005F1B RID: 24347 RVA: 0x000E295B File Offset: 0x000E0B5B
-	// (set) Token: 0x06005F1C RID: 24348 RVA: 0x000E2962 File Offset: 0x000E0B62
 	public static bool enabled { get; private set; }
 
-	// Token: 0x06005F1D RID: 24349 RVA: 0x002B2FD4 File Offset: 0x002B11D4
 	public DebugHandler()
 	{
 		DebugHandler.enabled = File.Exists(Path.Combine(Application.dataPath, "debug_enable.txt"));
@@ -26,8 +18,6 @@ public class DebugHandler : IInputHandler
 		DebugHandler.enabled = (DebugHandler.enabled || GenericGameSettings.instance.debugEnable);
 	}
 
-	// Token: 0x170005AF RID: 1455
-	// (get) Token: 0x06005F1E RID: 24350 RVA: 0x000E296A File Offset: 0x000E0B6A
 	public string handlerName
 	{
 		get
@@ -36,12 +26,8 @@ public class DebugHandler : IInputHandler
 		}
 	}
 
-	// Token: 0x170005B0 RID: 1456
-	// (get) Token: 0x06005F1F RID: 24351 RVA: 0x000E2971 File Offset: 0x000E0B71
-	// (set) Token: 0x06005F20 RID: 24352 RVA: 0x000E2979 File Offset: 0x000E0B79
 	public KInputHandler inputHandler { get; set; }
 
-	// Token: 0x06005F21 RID: 24353 RVA: 0x002B303C File Offset: 0x002B123C
 	public static int GetMouseCell()
 	{
 		Vector3 mousePos = KInputManager.GetMousePos();
@@ -49,7 +35,6 @@ public class DebugHandler : IInputHandler
 		return Grid.PosToCell(Camera.main.ScreenToWorldPoint(mousePos));
 	}
 
-	// Token: 0x06005F22 RID: 24354 RVA: 0x002B3084 File Offset: 0x002B1284
 	public static Vector3 GetMousePos()
 	{
 		Vector3 mousePos = KInputManager.GetMousePos();
@@ -57,7 +42,6 @@ public class DebugHandler : IInputHandler
 		return Camera.main.ScreenToWorldPoint(mousePos);
 	}
 
-	// Token: 0x06005F23 RID: 24355 RVA: 0x002B30C4 File Offset: 0x002B12C4
 	private void SpawnMinion(bool addAtmoSuit = false)
 	{
 		if (Immigration.Instance == null)
@@ -85,7 +69,6 @@ public class DebugHandler : IInputHandler
 		gameObject.GetMyWorld().SetDupeVisited();
 	}
 
-	// Token: 0x06005F24 RID: 24356 RVA: 0x002B31AC File Offset: 0x002B13AC
 	private void AddAtmosuitAfterSpawn(object o)
 	{
 		GameObject gameObject = (GameObject)o;
@@ -106,19 +89,16 @@ public class DebugHandler : IInputHandler
 		gameObject.Unsubscribe(1589886948, new Action<object>(this.AddAtmosuitAfterSpawn));
 	}
 
-	// Token: 0x06005F25 RID: 24357 RVA: 0x000E2982 File Offset: 0x000E0B82
 	public static void SetDebugEnabled(bool debugEnabled)
 	{
 		DebugHandler.enabled = debugEnabled;
 	}
 
-	// Token: 0x06005F26 RID: 24358 RVA: 0x000E298A File Offset: 0x000E0B8A
 	public static void ToggleDisableNotifications()
 	{
 		DebugHandler.NotificationsDisabled = !DebugHandler.NotificationsDisabled;
 	}
 
-	// Token: 0x06005F27 RID: 24359 RVA: 0x002B3294 File Offset: 0x002B1494
 	private string GetScreenshotFileName()
 	{
 		string activeSaveFilePath = SaveLoader.GetActiveSaveFilePath();
@@ -137,7 +117,6 @@ public class DebugHandler : IInputHandler
 		return Path.Combine(text, path);
 	}
 
-	// Token: 0x06005F28 RID: 24360 RVA: 0x002B3324 File Offset: 0x002B1524
 	public void OnKeyDown(KButtonEvent e)
 	{
 		if (!DebugHandler.enabled)
@@ -569,12 +548,10 @@ public class DebugHandler : IInputHandler
 		}
 	}
 
-	// Token: 0x06005F29 RID: 24361 RVA: 0x000AA038 File Offset: 0x000A8238
 	public static void SetSelectInEditor(bool select_in_editor)
 	{
 	}
 
-	// Token: 0x06005F2A RID: 24362 RVA: 0x002B402C File Offset: 0x002B222C
 	public static void ToggleScreenshotMode()
 	{
 		DebugHandler.ScreenshotMode = !DebugHandler.ScreenshotMode;
@@ -589,7 +566,6 @@ public class DebugHandler : IInputHandler
 		}
 	}
 
-	// Token: 0x06005F2B RID: 24363 RVA: 0x002B4084 File Offset: 0x002B2284
 	public static void SetTimelapseMode(bool enabled, int world_id = 0)
 	{
 		DebugHandler.TimelapseMode = enabled;
@@ -606,7 +582,6 @@ public class DebugHandler : IInputHandler
 		DebugHandler.UpdateUI();
 	}
 
-	// Token: 0x06005F2C RID: 24364 RVA: 0x002B40DC File Offset: 0x002B22DC
 	private static void UpdateUI()
 	{
 		if (GameScreenManager.Instance == null)
@@ -622,58 +597,39 @@ public class DebugHandler : IInputHandler
 		GameScreenManager.Instance.screenshotModeCanvas.GetComponent<CanvasGroup>().alpha = 1f - num;
 	}
 
-	// Token: 0x040043DF RID: 17375
 	public static bool InstantBuildMode;
 
-	// Token: 0x040043E0 RID: 17376
 	public static bool InvincibleMode;
 
-	// Token: 0x040043E1 RID: 17377
 	public static bool SelectInEditor;
 
-	// Token: 0x040043E2 RID: 17378
 	public static bool DebugPathFinding;
 
-	// Token: 0x040043E3 RID: 17379
 	public static bool ScreenshotMode;
 
-	// Token: 0x040043E4 RID: 17380
 	public static bool TimelapseMode;
 
-	// Token: 0x040043E5 RID: 17381
 	public static bool HideUI;
 
-	// Token: 0x040043E6 RID: 17382
 	public static bool DebugCellInfo;
 
-	// Token: 0x040043E7 RID: 17383
 	public static bool DebugNextCall;
 
-	// Token: 0x040043E8 RID: 17384
 	public static bool RevealFogOfWar;
 
-	// Token: 0x040043EC RID: 17388
 	private bool superTestMode;
 
-	// Token: 0x040043ED RID: 17389
 	private bool ultraTestMode;
 
-	// Token: 0x040043EE RID: 17390
 	private bool slowTestMode;
 
-	// Token: 0x040043EF RID: 17391
 	private static int activeWorldBeforeOverride = -1;
 
-	// Token: 0x02001245 RID: 4677
 	public enum PaintMode
 	{
-		// Token: 0x040043F1 RID: 17393
 		None,
-		// Token: 0x040043F2 RID: 17394
 		Element,
-		// Token: 0x040043F3 RID: 17395
 		Hot,
-		// Token: 0x040043F4 RID: 17396
 		Cold
 	}
 }

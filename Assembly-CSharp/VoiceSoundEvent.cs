@@ -3,22 +3,18 @@ using FMOD.Studio;
 using Klei.AI;
 using UnityEngine;
 
-// Token: 0x0200096D RID: 2413
 public class VoiceSoundEvent : SoundEvent
 {
-	// Token: 0x06002B18 RID: 11032 RVA: 0x000C06DF File Offset: 0x000BE8DF
 	public VoiceSoundEvent(string file_name, string sound_name, int frame, bool is_looping) : base(file_name, sound_name, frame, false, is_looping, (float)SoundEvent.IGNORE_INTERVAL, true)
 	{
 		base.noiseValues = SoundEventVolumeCache.instance.GetVolume("VoiceSoundEvent", sound_name);
 	}
 
-	// Token: 0x06002B19 RID: 11033 RVA: 0x000C0715 File Offset: 0x000BE915
 	public override void OnPlay(AnimEventManager.EventPlayerData behaviour)
 	{
 		VoiceSoundEvent.PlayVoice(base.name, behaviour.controller, this.intervalBetweenSpeaking, base.looping, false);
 	}
 
-	// Token: 0x06002B1A RID: 11034 RVA: 0x001E9F7C File Offset: 0x001E817C
 	public static EventInstance PlayVoice(string name, KBatchedAnimController controller, float interval_between_speaking, bool looping, bool objectIsSelectedAndVisible = false)
 	{
 		EventInstance eventInstance = default(EventInstance);
@@ -94,7 +90,6 @@ public class VoiceSoundEvent : SoundEvent
 		return eventInstance;
 	}
 
-	// Token: 0x06002B1B RID: 11035 RVA: 0x001EA18C File Offset: 0x001E838C
 	private static string GetAssetName(string name, Component cmp)
 	{
 		string b = "F01";
@@ -114,7 +109,6 @@ public class VoiceSoundEvent : SoundEvent
 		return StringFormatter.Combine("DupVoc_", b, "_", d);
 	}
 
-	// Token: 0x06002B1C RID: 11036 RVA: 0x001EA1EC File Offset: 0x001E83EC
 	public override void Stop(AnimEventManager.EventPlayerData behaviour)
 	{
 		if (base.looping)
@@ -128,12 +122,9 @@ public class VoiceSoundEvent : SoundEvent
 		}
 	}
 
-	// Token: 0x04001D36 RID: 7478
 	public static float locomotionSoundProb = 50f;
 
-	// Token: 0x04001D37 RID: 7479
 	public float timeLastSpoke;
 
-	// Token: 0x04001D38 RID: 7480
 	public float intervalBetweenSpeaking = 10f;
 }

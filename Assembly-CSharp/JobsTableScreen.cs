@@ -9,17 +9,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// Token: 0x02001E21 RID: 7713
 public class JobsTableScreen : TableScreen
 {
-	// Token: 0x0600A11B RID: 41243 RVA: 0x0010D615 File Offset: 0x0010B815
 	public override float GetSortKey()
 	{
 		return 22f;
 	}
 
-	// Token: 0x17000A7C RID: 2684
-	// (get) Token: 0x0600A11C RID: 41244 RVA: 0x003E6A4C File Offset: 0x003E4C4C
 	public static List<JobsTableScreen.PriorityInfo> priorityInfo
 	{
 		get
@@ -41,7 +37,6 @@ public class JobsTableScreen : TableScreen
 		}
 	}
 
-	// Token: 0x0600A11D RID: 41245 RVA: 0x003E6B54 File Offset: 0x003E4D54
 	protected override void OnActivate()
 	{
 		this.title = UI.JOBSSCREEN.TITLE;
@@ -80,7 +75,6 @@ public class JobsTableScreen : TableScreen
 		this.RefreshEffectListeners();
 	}
 
-	// Token: 0x0600A11E RID: 41246 RVA: 0x003E6DE4 File Offset: 0x003E4FE4
 	private string HoverPersonalPriority(object widget_go_obj)
 	{
 		GameObject gameObject = widget_go_obj as GameObject;
@@ -171,7 +165,6 @@ public class JobsTableScreen : TableScreen
 		return "";
 	}
 
-	// Token: 0x0600A11F RID: 41247 RVA: 0x003E7184 File Offset: 0x003E5384
 	private string HoverChangeColumnPriorityButton(object widget_go_obj)
 	{
 		GameObject widget_go = widget_go_obj as GameObject;
@@ -179,13 +172,11 @@ public class JobsTableScreen : TableScreen
 		return UI.JOBSSCREEN.HEADER_CHANGE_TOOLTIP.ToString().Replace("{Job}", choreGroup.Name);
 	}
 
-	// Token: 0x0600A120 RID: 41248 RVA: 0x0010D61C File Offset: 0x0010B81C
 	private string GetUsageString()
 	{
 		return GameUtil.ReplaceHotkeyString(UI.JOBSSCREEN.INCREASE_PRIORITY_TUTORIAL, global::Action.MouseLeft) + "\n" + GameUtil.ReplaceHotkeyString(UI.JOBSSCREEN.DECREASE_PRIORITY_TUTORIAL, global::Action.MouseRight);
 	}
 
-	// Token: 0x0600A121 RID: 41249 RVA: 0x003E71CC File Offset: 0x003E53CC
 	private string HoverChangeRowPriorityButton(object widget_go_obj, int delta)
 	{
 		GameObject widget_go = widget_go_obj as GameObject;
@@ -225,7 +216,6 @@ public class JobsTableScreen : TableScreen
 		return text2;
 	}
 
-	// Token: 0x0600A122 RID: 41250 RVA: 0x003E729C File Offset: 0x003E549C
 	private void OnSortClicked(object widget_go_obj)
 	{
 		GameObject widget_go = widget_go_obj as GameObject;
@@ -273,7 +263,6 @@ public class JobsTableScreen : TableScreen
 		base.SortRows();
 	}
 
-	// Token: 0x0600A123 RID: 41251 RVA: 0x003E730C File Offset: 0x003E550C
 	private string OnSortHovered(object widget_go_obj)
 	{
 		GameObject widget_go = widget_go_obj as GameObject;
@@ -281,7 +270,6 @@ public class JobsTableScreen : TableScreen
 		return UI.JOBSSCREEN.SORT_TOOLTIP.ToString().Replace("{Job}", choreGroup.Name);
 	}
 
-	// Token: 0x0600A124 RID: 41252 RVA: 0x003E7354 File Offset: 0x003E5554
 	private IPersonalPriorityManager GetPriorityManager(TableRow row)
 	{
 		IPersonalPriorityManager result = null;
@@ -306,7 +294,6 @@ public class JobsTableScreen : TableScreen
 		return result;
 	}
 
-	// Token: 0x0600A125 RID: 41253 RVA: 0x003E73B4 File Offset: 0x003E55B4
 	private LocString GetPriorityStr(int priority)
 	{
 		priority = Mathf.Clamp(priority, 0, 5);
@@ -321,13 +308,11 @@ public class JobsTableScreen : TableScreen
 		return result;
 	}
 
-	// Token: 0x0600A126 RID: 41254 RVA: 0x003E741C File Offset: 0x003E561C
 	private string GetPriorityValue(int priority)
 	{
 		return (priority * 10).ToString();
 	}
 
-	// Token: 0x0600A127 RID: 41255 RVA: 0x003E7438 File Offset: 0x003E5638
 	private void LoadValue(IAssignableIdentity minion, GameObject widget_go)
 	{
 		if (widget_go == null)
@@ -358,7 +343,6 @@ public class JobsTableScreen : TableScreen
 		}
 	}
 
-	// Token: 0x0600A128 RID: 41256 RVA: 0x003E74E0 File Offset: 0x003E56E0
 	private JobsTableScreen.PriorityInfo GetPriorityInfo(int priority)
 	{
 		JobsTableScreen.PriorityInfo result = default(JobsTableScreen.PriorityInfo);
@@ -373,7 +357,6 @@ public class JobsTableScreen : TableScreen
 		return result;
 	}
 
-	// Token: 0x0600A129 RID: 41257 RVA: 0x003E752C File Offset: 0x003E572C
 	private void ChangePersonalPriority(object widget_go_obj, int delta)
 	{
 		GameObject widget_go = widget_go_obj as GameObject;
@@ -392,7 +375,6 @@ public class JobsTableScreen : TableScreen
 		this.UpdateWidget(widget_go, chore_group, priorityManager);
 	}
 
-	// Token: 0x0600A12A RID: 41258 RVA: 0x003E758C File Offset: 0x003E578C
 	private void ChangeColumnPriority(object widget_go_obj, int new_priority)
 	{
 		GameObject widget_go = widget_go_obj as GameObject;
@@ -418,7 +400,6 @@ public class JobsTableScreen : TableScreen
 		}
 	}
 
-	// Token: 0x0600A12B RID: 41259 RVA: 0x003E7640 File Offset: 0x003E5840
 	private void ChangeRowPriority(object widget_go_obj, int delta)
 	{
 		GameObject widget_go = widget_go_obj as GameObject;
@@ -446,7 +427,6 @@ public class JobsTableScreen : TableScreen
 		}
 	}
 
-	// Token: 0x0600A12C RID: 41260 RVA: 0x003E76F4 File Offset: 0x003E58F4
 	private void ChangePersonalPriority(IPersonalPriorityManager priority_mgr, ChoreGroup chore_group, int delta, bool wrap_around)
 	{
 		if (priority_mgr.IsChoreGroupDisabled(chore_group))
@@ -474,7 +454,6 @@ public class JobsTableScreen : TableScreen
 		KMonoBehaviour.PlaySound(GlobalAssets.GetSound("HUD_Click_Deselect", false));
 	}
 
-	// Token: 0x0600A12D RID: 41261 RVA: 0x003E7770 File Offset: 0x003E5970
 	private void UpdateWidget(GameObject widget_go, ChoreGroup chore_group, IPersonalPriorityManager priority_mgr)
 	{
 		int fgIndex = 0;
@@ -518,7 +497,6 @@ public class JobsTableScreen : TableScreen
 		}
 	}
 
-	// Token: 0x0600A12E RID: 41262 RVA: 0x003E78A0 File Offset: 0x003E5AA0
 	public void ToggleColumnSortWidgets(bool show)
 	{
 		foreach (KeyValuePair<string, TableColumn> keyValuePair in this.columns)
@@ -530,7 +508,6 @@ public class JobsTableScreen : TableScreen
 		}
 	}
 
-	// Token: 0x0600A12F RID: 41263 RVA: 0x003E7918 File Offset: 0x003E5B18
 	public void Refresh(MinionResume minion_resume)
 	{
 		if (this == null)
@@ -555,7 +532,6 @@ public class JobsTableScreen : TableScreen
 		}
 	}
 
-	// Token: 0x0600A130 RID: 41264 RVA: 0x0010D648 File Offset: 0x0010B848
 	protected override void RefreshRows()
 	{
 		base.RefreshRows();
@@ -567,7 +543,6 @@ public class JobsTableScreen : TableScreen
 		this.ConfigureOptionsPanel();
 	}
 
-	// Token: 0x0600A131 RID: 41265 RVA: 0x003E7A14 File Offset: 0x003E5C14
 	private void ConfigureOptionsPanel()
 	{
 		HierarchyReferences component = this.header_row.GetComponent<HierarchyReferences>();
@@ -576,7 +551,6 @@ public class JobsTableScreen : TableScreen
 		this.settingsButton.onClick += this.OnSettingsButtonClicked;
 	}
 
-	// Token: 0x0600A132 RID: 41266 RVA: 0x003E7A60 File Offset: 0x003E5C60
 	private void SizeRows()
 	{
 		float num = 0f;
@@ -612,7 +586,6 @@ public class JobsTableScreen : TableScreen
 		}
 	}
 
-	// Token: 0x0600A133 RID: 41267 RVA: 0x003E7B90 File Offset: 0x003E5D90
 	private void RefreshEffectListeners()
 	{
 		for (int i = 0; i < this.EffectListeners.Count; i++)
@@ -648,7 +621,6 @@ public class JobsTableScreen : TableScreen
 		}
 	}
 
-	// Token: 0x0600A134 RID: 41268 RVA: 0x003E7E20 File Offset: 0x003E6020
 	public override void ScreenUpdate(bool topLevel)
 	{
 		base.ScreenUpdate(topLevel);
@@ -665,13 +637,11 @@ public class JobsTableScreen : TableScreen
 		}
 	}
 
-	// Token: 0x0600A135 RID: 41269 RVA: 0x0010D66A File Offset: 0x0010B86A
 	protected void MarkSingleMinionRowDirty(MinionIdentity id)
 	{
 		this.dirty_single_minion_rows.Add(id);
 	}
 
-	// Token: 0x0600A136 RID: 41270 RVA: 0x003E7E9C File Offset: 0x003E609C
 	private void RefreshSingleMinionRow(IAssignableIdentity id)
 	{
 		foreach (KeyValuePair<string, TableColumn> keyValuePair in this.columns)
@@ -689,7 +659,6 @@ public class JobsTableScreen : TableScreen
 		}
 	}
 
-	// Token: 0x0600A137 RID: 41271 RVA: 0x003E7F80 File Offset: 0x003E6180
 	protected override void OnCmpDisable()
 	{
 		UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
@@ -734,7 +703,6 @@ public class JobsTableScreen : TableScreen
 		this.optionsPanel.gameObject.SetActive(false);
 	}
 
-	// Token: 0x0600A138 RID: 41272 RVA: 0x003E80DC File Offset: 0x003E62DC
 	private void GetMouseHoverInfo(out bool is_hovering_screen, out bool is_hovering_button)
 	{
 		UnityEngine.EventSystems.EventSystem current = UnityEngine.EventSystems.EventSystem.current;
@@ -768,7 +736,6 @@ public class JobsTableScreen : TableScreen
 		is_hovering_button = flag;
 	}
 
-	// Token: 0x0600A139 RID: 41273 RVA: 0x003E81D8 File Offset: 0x003E63D8
 	public override void OnKeyDown(KButtonEvent e)
 	{
 		bool flag = false;
@@ -792,7 +759,6 @@ public class JobsTableScreen : TableScreen
 		}
 	}
 
-	// Token: 0x0600A13A RID: 41274 RVA: 0x003E821C File Offset: 0x003E641C
 	public override void OnKeyUp(KButtonEvent e)
 	{
 		bool flag = false;
@@ -813,7 +779,6 @@ public class JobsTableScreen : TableScreen
 		}
 	}
 
-	// Token: 0x0600A13B RID: 41275 RVA: 0x003E8258 File Offset: 0x003E6458
 	private bool HasParent(GameObject obj, GameObject parent)
 	{
 		bool result = false;
@@ -831,7 +796,6 @@ public class JobsTableScreen : TableScreen
 		return result;
 	}
 
-	// Token: 0x0600A13C RID: 41276 RVA: 0x003E8298 File Offset: 0x003E6498
 	private void ConfigureNameLabel(IAssignableIdentity identity, GameObject widget_go)
 	{
 		base.on_load_name_label(identity, widget_go);
@@ -886,7 +850,6 @@ public class JobsTableScreen : TableScreen
 		}
 	}
 
-	// Token: 0x0600A13D RID: 41277 RVA: 0x003E8308 File Offset: 0x003E6508
 	private void InitializeHeader(ChoreGroup chore_group, GameObject widget_go)
 	{
 		HierarchyReferences component = widget_go.GetComponent<HierarchyReferences>();
@@ -928,14 +891,12 @@ public class JobsTableScreen : TableScreen
 		}
 	}
 
-	// Token: 0x0600A13E RID: 41278 RVA: 0x0010D679 File Offset: 0x0010B879
 	private void OnSettingsButtonClicked()
 	{
 		this.optionsPanel.gameObject.SetActive(true);
 		this.optionsPanel.GetComponent<Selectable>().Select();
 	}
 
-	// Token: 0x0600A13F RID: 41279 RVA: 0x003E8490 File Offset: 0x003E6690
 	private void OnResetSettingsClicked()
 	{
 		if (Game.Instance.advancedPersonalPriorities)
@@ -975,65 +936,48 @@ public class JobsTableScreen : TableScreen
 		base.MarkRowsDirty();
 	}
 
-	// Token: 0x0600A140 RID: 41280 RVA: 0x0010D69C File Offset: 0x0010B89C
 	private void OnAdvancedModeToggleClicked()
 	{
 		Game.Instance.advancedPersonalPriorities = !Game.Instance.advancedPersonalPriorities;
 		this.toggleAdvancedModeButton.fgImage.gameObject.SetActive(Game.Instance.advancedPersonalPriorities);
 	}
 
-	// Token: 0x04007E7A RID: 32378
 	[SerializeField]
 	private int skillLevelLow = 1;
 
-	// Token: 0x04007E7B RID: 32379
 	[SerializeField]
 	private int skillLevelHigh = 10;
 
-	// Token: 0x04007E7C RID: 32380
 	private KButton settingsButton;
 
-	// Token: 0x04007E7D RID: 32381
 	[SerializeField]
 	private KButton resetSettingsButton;
 
-	// Token: 0x04007E7E RID: 32382
 	[SerializeField]
 	private KButton toggleAdvancedModeButton;
 
-	// Token: 0x04007E7F RID: 32383
 	[SerializeField]
 	private KImage optionsPanel;
 
-	// Token: 0x04007E80 RID: 32384
 	[SerializeField]
 	private bool dynamicRowSpacing = true;
 
-	// Token: 0x04007E81 RID: 32385
 	public TextStyleSetting TooltipTextStyle_Ability;
 
-	// Token: 0x04007E82 RID: 32386
 	public TextStyleSetting TooltipTextStyle_AbilityPositiveModifier;
 
-	// Token: 0x04007E83 RID: 32387
 	public TextStyleSetting TooltipTextStyle_AbilityNegativeModifier;
 
-	// Token: 0x04007E84 RID: 32388
 	private HashSet<MinionIdentity> dirty_single_minion_rows = new HashSet<MinionIdentity>();
 
-	// Token: 0x04007E85 RID: 32389
 	private static List<JobsTableScreen.PriorityInfo> _priorityInfo;
 
-	// Token: 0x04007E86 RID: 32390
 	private List<Sprite> prioritySprites;
 
-	// Token: 0x04007E87 RID: 32391
 	private List<KeyValuePair<GameObject, JobsTableScreen.SkillEventHandlerID>> EffectListeners = new List<KeyValuePair<GameObject, JobsTableScreen.SkillEventHandlerID>>();
 
-	// Token: 0x02001E22 RID: 7714
 	public struct PriorityInfo
 	{
-		// Token: 0x0600A144 RID: 41284 RVA: 0x0010D708 File Offset: 0x0010B908
 		public PriorityInfo(int priority, Sprite sprite, LocString name)
 		{
 			this.priority = priority;
@@ -1041,32 +985,23 @@ public class JobsTableScreen : TableScreen
 			this.name = name;
 		}
 
-		// Token: 0x04007E88 RID: 32392
 		public int priority;
 
-		// Token: 0x04007E89 RID: 32393
 		public Sprite sprite;
 
-		// Token: 0x04007E8A RID: 32394
 		public LocString name;
 	}
 
-	// Token: 0x02001E23 RID: 7715
 	private struct SkillEventHandlerID
 	{
-		// Token: 0x04007E8B RID: 32395
 		public int level_up;
 
-		// Token: 0x04007E8C RID: 32396
 		public int effect_added;
 
-		// Token: 0x04007E8D RID: 32397
 		public int effect_removed;
 
-		// Token: 0x04007E8E RID: 32398
 		public int disease_added;
 
-		// Token: 0x04007E8F RID: 32399
 		public int disease_cured;
 	}
 }

@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200002F RID: 47
 public class BatteryModuleConfig : IBuildingConfig
 {
-	// Token: 0x060000C4 RID: 196 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x060000C5 RID: 197 RVA: 0x00149A3C File Offset: 0x00147C3C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "BatteryModule";
@@ -43,7 +40,6 @@ public class BatteryModuleConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060000C6 RID: 198 RVA: 0x00149AFC File Offset: 0x00147CFC
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -56,7 +52,6 @@ public class BatteryModuleConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x060000C7 RID: 199 RVA: 0x00149B68 File Offset: 0x00147D68
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		Prioritizable.AddRef(go);
@@ -69,12 +64,9 @@ public class BatteryModuleConfig : IBuildingConfig
 		BuildingTemplates.ExtendBuildingToRocketModuleCluster(go, null, ROCKETRY.BURDEN.MINOR, 0f, 0f);
 	}
 
-	// Token: 0x04000084 RID: 132
 	public const string ID = "BatteryModule";
 
-	// Token: 0x04000085 RID: 133
 	public const float NUM_CAPSULES = 3f;
 
-	// Token: 0x04000086 RID: 134
 	private static readonly CellOffset PLUG_OFFSET = new CellOffset(-1, 0);
 }

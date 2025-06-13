@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200038B RID: 907
 public class HydrogenEngineConfig : IBuildingConfig
 {
-	// Token: 0x06000E8F RID: 3727 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetForbiddenDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06000E90 RID: 3728 RVA: 0x00183E40 File Offset: 0x00182040
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "HydrogenEngine";
@@ -41,7 +38,6 @@ public class HydrogenEngineConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000E91 RID: 3729 RVA: 0x0017D1D0 File Offset: 0x0017B3D0
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -53,17 +49,14 @@ public class HydrogenEngineConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x06000E92 RID: 3730 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 	}
 
-	// Token: 0x06000E93 RID: 3731 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 	}
 
-	// Token: 0x06000E94 RID: 3732 RVA: 0x00183EF0 File Offset: 0x001820F0
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		RocketEngine rocketEngine = go.AddOrGet<RocketEngine>();
@@ -75,6 +68,5 @@ public class HydrogenEngineConfig : IBuildingConfig
 		BuildingTemplates.ExtendBuildingToRocketModule(go, "rocket_hydrogen_engine_bg_kanim", false);
 	}
 
-	// Token: 0x04000ABD RID: 2749
 	public const string ID = "HydrogenEngine";
 }

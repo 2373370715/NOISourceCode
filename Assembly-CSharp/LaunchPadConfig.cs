@@ -4,16 +4,13 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003B6 RID: 950
 public class LaunchPadConfig : IBuildingConfig
 {
-	// Token: 0x06000F65 RID: 3941 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06000F66 RID: 3942 RVA: 0x00186B64 File Offset: 0x00184D64
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "LaunchPad";
@@ -50,7 +47,6 @@ public class LaunchPadConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000F67 RID: 3943 RVA: 0x00186CD0 File Offset: 0x00184ED0
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -87,23 +83,17 @@ public class LaunchPadConfig : IBuildingConfig
 		modularConduitPortTiler.leftCapDefaultSceneLayerAdjust = 1;
 	}
 
-	// Token: 0x06000F68 RID: 3944 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000B38 RID: 2872
 	public const string ID = "LaunchPad";
 
-	// Token: 0x04000B39 RID: 2873
 	public const int WIDTH = 7;
 
-	// Token: 0x04000B3A RID: 2874
 	private const string TRIGGER_LAUNCH_PORT_ID = "TriggerLaunch";
 
-	// Token: 0x04000B3B RID: 2875
 	private const string LAUNCH_READY_PORT_ID = "LaunchReady";
 
-	// Token: 0x04000B3C RID: 2876
 	private const string LANDED_ROCKET_ID = "LandedRocket";
 }

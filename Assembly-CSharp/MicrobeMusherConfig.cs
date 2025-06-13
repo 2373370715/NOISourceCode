@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000420 RID: 1056
 public class MicrobeMusherConfig : IBuildingConfig
 {
-	// Token: 0x0600118D RID: 4493 RVA: 0x0018F56C File Offset: 0x0018D76C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "MicrobeMusher";
@@ -33,7 +31,6 @@ public class MicrobeMusherConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600118E RID: 4494 RVA: 0x0018F60C File Offset: 0x0018D80C
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<DropAllWorkable>();
@@ -54,7 +51,6 @@ public class MicrobeMusherConfig : IBuildingConfig
 		go.AddOrGetDef<PoweredController.Def>();
 	}
 
-	// Token: 0x0600118F RID: 4495 RVA: 0x0018F6AC File Offset: 0x0018D8AC
 	private void ConfigureRecipes()
 	{
 		ComplexRecipe.RecipeElement[] array = new ComplexRecipe.RecipeElement[]
@@ -159,14 +155,11 @@ public class MicrobeMusherConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x06001190 RID: 4496 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000C40 RID: 3136
 	public const string ID = "MicrobeMusher";
 
-	// Token: 0x04000C41 RID: 3137
 	public static EffectorValues DECOR = TUNING.BUILDINGS.DECOR.PENALTY.TIER2;
 }

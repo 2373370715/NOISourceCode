@@ -2,10 +2,8 @@
 
 namespace Database
 {
-	// Token: 0x02002176 RID: 8566
 	public class AccessorySlots : ResourceSet<AccessorySlot>
 	{
-		// Token: 0x0600B677 RID: 46711 RVA: 0x00456300 File Offset: 0x00454500
 		public AccessorySlots(ResourceSet parent) : base("AccessorySlots", parent)
 		{
 			parent = Db.Get().Accessories;
@@ -43,7 +41,6 @@ namespace Database
 			Db.Get().Accessories.AddCustomAccessories(Assets.GetAnim("body_lonelyminion_kanim"), parent, this);
 		}
 
-		// Token: 0x0600B678 RID: 46712 RVA: 0x00456638 File Offset: 0x00454838
 		public AccessorySlot Find(KAnimHashedString symbol_name)
 		{
 			foreach (AccessorySlot accessorySlot in Db.Get().AccessorySlots.resources)
@@ -56,70 +53,48 @@ namespace Database
 			return null;
 		}
 
-		// Token: 0x04009023 RID: 36899
 		public AccessorySlot Eyes;
 
-		// Token: 0x04009024 RID: 36900
 		public AccessorySlot Hair;
 
-		// Token: 0x04009025 RID: 36901
 		public AccessorySlot HeadShape;
 
-		// Token: 0x04009026 RID: 36902
 		public AccessorySlot Mouth;
 
-		// Token: 0x04009027 RID: 36903
 		public AccessorySlot Body;
 
-		// Token: 0x04009028 RID: 36904
 		public AccessorySlot Arm;
 
-		// Token: 0x04009029 RID: 36905
 		public AccessorySlot ArmLower;
 
-		// Token: 0x0400902A RID: 36906
 		public AccessorySlot Hat;
 
-		// Token: 0x0400902B RID: 36907
 		public AccessorySlot HatHair;
 
-		// Token: 0x0400902C RID: 36908
 		public AccessorySlot HeadEffects;
 
-		// Token: 0x0400902D RID: 36909
 		public AccessorySlot Belt;
 
-		// Token: 0x0400902E RID: 36910
 		public AccessorySlot Neck;
 
-		// Token: 0x0400902F RID: 36911
 		public AccessorySlot Pelvis;
 
-		// Token: 0x04009030 RID: 36912
 		public AccessorySlot Leg;
 
-		// Token: 0x04009031 RID: 36913
 		public AccessorySlot Foot;
 
-		// Token: 0x04009032 RID: 36914
 		public AccessorySlot Skirt;
 
-		// Token: 0x04009033 RID: 36915
 		public AccessorySlot Necklace;
 
-		// Token: 0x04009034 RID: 36916
 		public AccessorySlot Cuff;
 
-		// Token: 0x04009035 RID: 36917
 		public AccessorySlot Hand;
 
-		// Token: 0x04009036 RID: 36918
 		public AccessorySlot ArmLowerSkin;
 
-		// Token: 0x04009037 RID: 36919
 		public AccessorySlot ArmUpperSkin;
 
-		// Token: 0x04009038 RID: 36920
 		public AccessorySlot LegSkin;
 	}
 }

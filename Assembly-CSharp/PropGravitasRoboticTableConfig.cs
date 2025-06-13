@@ -4,22 +4,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000539 RID: 1337
 public class PropGravitasRoboticTableConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x060016F9 RID: 5881 RVA: 0x000AA117 File Offset: 0x000A8317
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x060016FA RID: 5882 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x060016FB RID: 5883 RVA: 0x001A43F0 File Offset: 0x001A25F0
 	public GameObject CreatePrefab()
 	{
 		string id = "PropGravitasRobitcTable";
@@ -40,7 +36,6 @@ public class PropGravitasRoboticTableConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x060016FC RID: 5884 RVA: 0x000AA768 File Offset: 0x000A8968
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.GetComponent<OccupyArea>().objectLayers = new ObjectLayer[]
@@ -49,7 +44,6 @@ public class PropGravitasRoboticTableConfig : IEntityConfig, IHasDlcRestrictions
 		};
 	}
 
-	// Token: 0x060016FD RID: 5885 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}

@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000475 RID: 1141
 public class DisposableElectrobankConfig : IMultiEntityConfig
 {
-	// Token: 0x06001362 RID: 4962 RVA: 0x0019849C File Offset: 0x0019669C
 	public List<GameObject> CreatePrefabs()
 	{
 		List<GameObject> list = new List<GameObject>();
@@ -33,7 +31,6 @@ public class DisposableElectrobankConfig : IMultiEntityConfig
 		return list;
 	}
 
-	// Token: 0x06001363 RID: 4963 RVA: 0x001985C4 File Offset: 0x001967C4
 	private GameObject CreateDisposableElectrobank(string id, LocString name, LocString description, float mass, SimHashes element, string animName, string[] requiredDlcIDs = null, string[] forbiddenDlcIds = null, string initialAnim = "object")
 	{
 		GameObject gameObject = EntityTemplates.CreateLooseEntity(id, name, description, mass, true, Assets.GetAnim(animName), initialAnim, Grid.SceneLayer.Ore, EntityTemplates.CollisionShape.RECTANGLE, 0.5f, 0.8f, true, 0, SimHashes.Creature, new List<Tag>
@@ -55,29 +52,15 @@ public class DisposableElectrobankConfig : IMultiEntityConfig
 		component.forbiddenDlcIds = forbiddenDlcIds;
 		return gameObject;
 	}
-
-	// Token: 0x06001364 RID: 4964 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
-
-	// Token: 0x06001365 RID: 4965 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
-
-	// Token: 0x04000D57 RID: 3415
 	public const string ID = "DisposableElectrobank_";
-
-	// Token: 0x04000D58 RID: 3416
 	public const float MASS = 20f;
-
-	// Token: 0x04000D59 RID: 3417
 	public static Dictionary<Tag, ComplexRecipe> recipes = new Dictionary<Tag, ComplexRecipe>();
-
-	// Token: 0x04000D5A RID: 3418
 	public const string ID_METAL_ORE = "DisposableElectrobank_RawMetal";
-
-	// Token: 0x04000D5B RID: 3419
 	public const string ID_URANIUM_ORE = "DisposableElectrobank_UraniumOre";
 }

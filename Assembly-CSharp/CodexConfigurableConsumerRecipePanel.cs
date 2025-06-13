@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001CAE RID: 7342
 public class CodexConfigurableConsumerRecipePanel : CodexWidget<CodexConfigurableConsumerRecipePanel>
 {
-	// Token: 0x0600991F RID: 39199 RVA: 0x0010804A File Offset: 0x0010624A
 	public CodexConfigurableConsumerRecipePanel(IConfigurableConsumerOption data)
 	{
 		this.data = data;
 	}
 
-	// Token: 0x06009920 RID: 39200 RVA: 0x003C1224 File Offset: 0x003BF424
 	public override void Configure(GameObject contentGameObject, Transform displayPane, Dictionary<CodexTextStyle, TextStyleSetting> textStyles)
 	{
 		HierarchyReferences component = contentGameObject.GetComponent<HierarchyReferences>();
@@ -40,7 +37,6 @@ public class CodexConfigurableConsumerRecipePanel : CodexWidget<CodexConfigurabl
 		}
 	}
 
-	// Token: 0x06009921 RID: 39201 RVA: 0x003C1350 File Offset: 0x003BF550
 	public GameObject CreateIngredientRow(IConfigurableConsumerIngredient ingredient)
 	{
 		Tag[] idsets = ingredient.GetIDSets();
@@ -59,7 +55,6 @@ public class CodexConfigurableConsumerRecipePanel : CodexWidget<CodexConfigurabl
 		return null;
 	}
 
-	// Token: 0x06009922 RID: 39202 RVA: 0x003C143C File Offset: 0x003BF63C
 	public void Clear()
 	{
 		if (this._ingredientRows != null)
@@ -72,21 +67,15 @@ public class CodexConfigurableConsumerRecipePanel : CodexWidget<CodexConfigurabl
 		}
 	}
 
-	// Token: 0x04007710 RID: 30480
 	private LocText title;
 
-	// Token: 0x04007711 RID: 30481
 	private LocText result_description;
 
-	// Token: 0x04007712 RID: 30482
 	private Image resultIcon;
 
-	// Token: 0x04007713 RID: 30483
 	private GameObject ingredient_original;
 
-	// Token: 0x04007714 RID: 30484
 	private IConfigurableConsumerOption data;
 
-	// Token: 0x04007715 RID: 30485
 	private GameObject[] _ingredientRows;
 }

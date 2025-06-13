@@ -2,28 +2,21 @@
 using UnityEngine;
 using UnityEngine.Rendering;
 
-// Token: 0x02001A92 RID: 6802
 [AddComponentMenu("KMonoBehaviour/scripts/WaterCubes")]
 public class WaterCubes : KMonoBehaviour
 {
-	// Token: 0x17000941 RID: 2369
-	// (get) Token: 0x06008DDB RID: 36315 RVA: 0x001012A4 File Offset: 0x000FF4A4
-	// (set) Token: 0x06008DDC RID: 36316 RVA: 0x001012AB File Offset: 0x000FF4AB
 	public static WaterCubes Instance { get; private set; }
 
-	// Token: 0x06008DDD RID: 36317 RVA: 0x001012B3 File Offset: 0x000FF4B3
 	public static void DestroyInstance()
 	{
 		WaterCubes.Instance = null;
 	}
 
-	// Token: 0x06008DDE RID: 36318 RVA: 0x001012BB File Offset: 0x000FF4BB
 	protected override void OnPrefabInit()
 	{
 		WaterCubes.Instance = this;
 	}
 
-	// Token: 0x06008DDF RID: 36319 RVA: 0x0037771C File Offset: 0x0037591C
 	public void Init()
 	{
 		this.cubes = Util.NewGameObject(base.gameObject, "WaterCubes");
@@ -45,7 +38,6 @@ public class WaterCubes : KMonoBehaviour
 		meshRenderer.gameObject.transform.SetPosition(new Vector3(0f, 0f, Grid.GetLayerZ(Grid.SceneLayer.Liquid)));
 	}
 
-	// Token: 0x06008DE0 RID: 36320 RVA: 0x00377814 File Offset: 0x00375A14
 	private Mesh CreateNewMesh()
 	{
 		Mesh mesh = new Mesh();
@@ -104,12 +96,9 @@ public class WaterCubes : KMonoBehaviour
 		return mesh;
 	}
 
-	// Token: 0x04006B1F RID: 27423
 	public Material material;
 
-	// Token: 0x04006B20 RID: 27424
 	public Texture2D waveTexture;
 
-	// Token: 0x04006B21 RID: 27425
 	private GameObject cubes;
 }

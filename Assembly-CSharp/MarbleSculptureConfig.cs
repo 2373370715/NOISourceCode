@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200040A RID: 1034
 public class MarbleSculptureConfig : IBuildingConfig
 {
-	// Token: 0x06001128 RID: 4392 RVA: 0x0018D07C File Offset: 0x0018B27C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "MarbleSculpture";
@@ -39,19 +37,16 @@ public class MarbleSculptureConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001129 RID: 4393 RVA: 0x000AA54F File Offset: 0x000A874F
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<BuildingComplete>().isArtable = true;
 		go.GetComponent<KPrefabID>().AddTag(GameTags.Decoration, false);
 	}
 
-	// Token: 0x0600112A RID: 4394 RVA: 0x000B0C21 File Offset: 0x000AEE21
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddComponent<Sculpture>().defaultAnimName = "slab";
 	}
 
-	// Token: 0x04000BEE RID: 3054
 	public const string ID = "MarbleSculpture";
 }

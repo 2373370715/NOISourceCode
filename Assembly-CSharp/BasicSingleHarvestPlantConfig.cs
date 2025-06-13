@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200028B RID: 651
 public class BasicSingleHarvestPlantConfig : IEntityConfig
 {
-	// Token: 0x0600097D RID: 2429 RVA: 0x0016F5E8 File Offset: 0x0016D7E8
 	public GameObject CreatePrefab()
 	{
 		string id = "BasicSingleHarvestPlant";
@@ -53,22 +51,17 @@ public class BasicSingleHarvestPlantConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x0600097E RID: 2430 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject prefab)
 	{
 	}
 
-	// Token: 0x0600097F RID: 2431 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x04000740 RID: 1856
 	public const string ID = "BasicSingleHarvestPlant";
 
-	// Token: 0x04000741 RID: 1857
 	public const string SEED_ID = "BasicSingleHarvestPlantSeed";
 
-	// Token: 0x04000742 RID: 1858
 	public const float DIRT_RATE = 0.016666668f;
 }

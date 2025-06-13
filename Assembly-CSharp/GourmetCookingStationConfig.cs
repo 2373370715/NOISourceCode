@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200036F RID: 879
 public class GourmetCookingStationConfig : IBuildingConfig
 {
-	// Token: 0x06000DF3 RID: 3571 RVA: 0x001809B8 File Offset: 0x0017EBB8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "GourmetCookingStation";
@@ -36,7 +34,6 @@ public class GourmetCookingStationConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000DF4 RID: 3572 RVA: 0x00180A88 File Offset: 0x0017EC88
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<DropAllWorkable>();
@@ -74,7 +71,6 @@ public class GourmetCookingStationConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.CookTop, false);
 	}
 
-	// Token: 0x06000DF5 RID: 3573 RVA: 0x000B07A3 File Offset: 0x000AE9A3
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGetDef<PoweredActiveStoppableController.Def>();
@@ -88,7 +84,6 @@ public class GourmetCookingStationConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x06000DF6 RID: 3574 RVA: 0x00180BF0 File Offset: 0x0017EDF0
 	private void ConfigureRecipes()
 	{
 		ComplexRecipe.RecipeElement[] array = new ComplexRecipe.RecipeElement[]
@@ -279,22 +274,16 @@ public class GourmetCookingStationConfig : IBuildingConfig
 		}
 	}
 
-	// Token: 0x04000A5E RID: 2654
 	public const string ID = "GourmetCookingStation";
 
-	// Token: 0x04000A5F RID: 2655
 	private const float FUEL_STORE_CAPACITY = 10f;
 
-	// Token: 0x04000A60 RID: 2656
 	private const float FUEL_CONSUME_RATE = 0.1f;
 
-	// Token: 0x04000A61 RID: 2657
 	private const float CO2_EMIT_RATE = 0.025f;
 
-	// Token: 0x04000A62 RID: 2658
 	private Tag FUEL_TAG = new Tag("Methane");
 
-	// Token: 0x04000A63 RID: 2659
 	private static readonly List<Storage.StoredItemModifier> GourmetCookingStationStoredItemModifiers = new List<Storage.StoredItemModifier>
 	{
 		Storage.StoredItemModifier.Hide,

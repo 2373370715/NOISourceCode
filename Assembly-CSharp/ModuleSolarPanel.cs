@@ -2,18 +2,15 @@
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x02000F17 RID: 3863
 [SerializationConfig(MemberSerialization.OptIn)]
 public class ModuleSolarPanel : Generator
 {
-	// Token: 0x06004D60 RID: 19808 RVA: 0x000D6950 File Offset: 0x000D4B50
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 		base.IsVirtual = true;
 	}
 
-	// Token: 0x06004D61 RID: 19809 RVA: 0x00273B68 File Offset: 0x00271D68
 	protected override void OnSpawn()
 	{
 		CraftModuleInterface craftInterface = base.GetComponent<RocketModuleCluster>().CraftInterface;
@@ -35,7 +32,6 @@ public class ModuleSolarPanel : Generator
 		this.meter.gameObject.GetComponent<KBatchedAnimTracker>().matchParentOffset = true;
 	}
 
-	// Token: 0x06004D62 RID: 19810 RVA: 0x000D695F File Offset: 0x000D4B5F
 	protected override void OnCleanUp()
 	{
 		this.smi.StopSM("cleanup");
@@ -43,14 +39,12 @@ public class ModuleSolarPanel : Generator
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06004D63 RID: 19811 RVA: 0x00273C40 File Offset: 0x00271E40
 	protected void OnActiveChanged(object data)
 	{
 		StatusItem status_item = ((Operational)data).IsActive ? Db.Get().BuildingStatusItems.Wattage : Db.Get().BuildingStatusItems.GeneratorOffline;
 		base.GetComponent<KSelectable>().SetStatusItem(Db.Get().StatusItemCategories.Power, status_item, this);
 	}
 
-	// Token: 0x06004D64 RID: 19812 RVA: 0x00273C98 File Offset: 0x00271E98
 	private void UpdateStatusItem()
 	{
 		this.selectable.RemoveStatusItem(Db.Get().BuildingStatusItems.Wattage, false);
@@ -65,7 +59,6 @@ public class ModuleSolarPanel : Generator
 		}
 	}
 
-	// Token: 0x06004D65 RID: 19813 RVA: 0x00273D2C File Offset: 0x00271F2C
 	public override void EnergySim200ms(float dt)
 	{
 		ushort circuitID = base.CircuitID;
@@ -101,8 +94,6 @@ public class ModuleSolarPanel : Generator
 		this.UpdateStatusItem();
 	}
 
-	// Token: 0x17000441 RID: 1089
-	// (get) Token: 0x06004D66 RID: 19814 RVA: 0x000D698D File Offset: 0x000D4B8D
 	public float CurrentWattage
 	{
 		get
@@ -111,19 +102,14 @@ public class ModuleSolarPanel : Generator
 		}
 	}
 
-	// Token: 0x04003659 RID: 13913
 	private MeterController meter;
 
-	// Token: 0x0400365A RID: 13914
 	private HandleVector<int>.Handle accumulator = HandleVector<int>.InvalidHandle;
 
-	// Token: 0x0400365B RID: 13915
 	private ModuleSolarPanel.StatesInstance smi;
 
-	// Token: 0x0400365C RID: 13916
 	private Guid statusHandle;
 
-	// Token: 0x0400365D RID: 13917
 	private CellOffset[] solarCellOffsets = new CellOffset[]
 	{
 		new CellOffset(-1, 0),
@@ -131,25 +117,20 @@ public class ModuleSolarPanel : Generator
 		new CellOffset(1, 0)
 	};
 
-	// Token: 0x0400365E RID: 13918
 	private static readonly EventSystem.IntraObjectHandler<ModuleSolarPanel> OnActiveChangedDelegate = new EventSystem.IntraObjectHandler<ModuleSolarPanel>(delegate(ModuleSolarPanel component, object data)
 	{
 		component.OnActiveChanged(data);
 	});
 
-	// Token: 0x02000F18 RID: 3864
 	public class StatesInstance : GameStateMachine<ModuleSolarPanel.States, ModuleSolarPanel.StatesInstance, ModuleSolarPanel, object>.GameInstance
 	{
-		// Token: 0x06004D69 RID: 19817 RVA: 0x000D69C0 File Offset: 0x000D4BC0
 		public StatesInstance(ModuleSolarPanel master) : base(master)
 		{
 		}
 	}
 
-	// Token: 0x02000F19 RID: 3865
 	public class States : GameStateMachine<ModuleSolarPanel.States, ModuleSolarPanel.StatesInstance, ModuleSolarPanel>
 	{
-		// Token: 0x06004D6A RID: 19818 RVA: 0x000D69C9 File Offset: 0x000D4BC9
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.idle;
@@ -157,10 +138,8 @@ public class ModuleSolarPanel : Generator
 			this.launch.EventTransition(GameHashes.RocketLanded, this.idle, null);
 		}
 
-		// Token: 0x0400365F RID: 13919
 		public GameStateMachine<ModuleSolarPanel.States, ModuleSolarPanel.StatesInstance, ModuleSolarPanel, object>.State idle;
 
-		// Token: 0x04003660 RID: 13920
 		public GameStateMachine<ModuleSolarPanel.States, ModuleSolarPanel.StatesInstance, ModuleSolarPanel, object>.State launch;
 	}
 }

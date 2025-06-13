@@ -3,22 +3,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020002DC RID: 732
 public class SwampForagePlantPlantedConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x06000B38 RID: 2872 RVA: 0x000AA117 File Offset: 0x000A8317
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06000B39 RID: 2873 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x06000B3A RID: 2874 RVA: 0x00177B34 File Offset: 0x00175D34
 	public GameObject CreatePrefab()
 	{
 		string id = "SwampForagePlantPlanted";
@@ -44,16 +40,13 @@ public class SwampForagePlantPlantedConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x06000B3B RID: 2875 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x06000B3C RID: 2876 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x040008D4 RID: 2260
 	public const string ID = "SwampForagePlantPlanted";
 }

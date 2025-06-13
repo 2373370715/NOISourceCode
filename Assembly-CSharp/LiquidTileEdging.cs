@@ -1,10 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020017DA RID: 6106
 public class LiquidTileEdging
 {
-	// Token: 0x06007D7E RID: 32126 RVA: 0x003326E4 File Offset: 0x003308E4
 	private void Update()
 	{
 		int num;

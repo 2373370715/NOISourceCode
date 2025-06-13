@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200041F RID: 1055
 public class MethaneGeneratorConfig : IBuildingConfig
 {
-	// Token: 0x0600118A RID: 4490 RVA: 0x0018F2FC File Offset: 0x0018D4FC
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "MethaneGenerator";
@@ -38,7 +36,6 @@ public class MethaneGeneratorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600118B RID: 4491 RVA: 0x0018F3E4 File Offset: 0x0018D5E4
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
@@ -82,21 +79,15 @@ public class MethaneGeneratorConfig : IBuildingConfig
 		go.AddOrGetDef<PoweredActiveController.Def>();
 	}
 
-	// Token: 0x04000C3A RID: 3130
 	public const string ID = "MethaneGenerator";
 
-	// Token: 0x04000C3B RID: 3131
 	public const float FUEL_CONSUMPTION_RATE = 0.09f;
 
-	// Token: 0x04000C3C RID: 3132
 	private const float CO2_RATIO = 0.25f;
 
-	// Token: 0x04000C3D RID: 3133
 	public const float WATER_OUTPUT_TEMPERATURE = 313.15f;
 
-	// Token: 0x04000C3E RID: 3134
 	private const int WIDTH = 4;
 
-	// Token: 0x04000C3F RID: 3135
 	private const int HEIGHT = 3;
 }

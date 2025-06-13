@@ -1,15 +1,12 @@
 ﻿using System;
 
-// Token: 0x020014AA RID: 5290
 public class WireBuildTool : BaseUtilityBuildTool
 {
-	// Token: 0x06006D85 RID: 28037 RVA: 0x000EC5E6 File Offset: 0x000EA7E6
 	public static void DestroyInstance()
 	{
 		WireBuildTool.Instance = null;
 	}
 
-	// Token: 0x06006D86 RID: 28038 RVA: 0x000EC5EE File Offset: 0x000EA7EE
 	protected override void OnPrefabInit()
 	{
 		WireBuildTool.Instance = this;
@@ -17,7 +14,6 @@ public class WireBuildTool : BaseUtilityBuildTool
 		this.viewMode = OverlayModes.Power.ID;
 	}
 
-	// Token: 0x06006D87 RID: 28039 RVA: 0x002FA2C8 File Offset: 0x002F84C8
 	protected override void ApplyPathToConduitSystem()
 	{
 		if (this.path.Count < 2)
@@ -41,6 +37,5 @@ public class WireBuildTool : BaseUtilityBuildTool
 		}
 	}
 
-	// Token: 0x0400528C RID: 21132
 	public static WireBuildTool Instance;
 }

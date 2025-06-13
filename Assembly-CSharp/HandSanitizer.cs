@@ -5,17 +5,14 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000E1C RID: 3612
 public class HandSanitizer : StateMachineComponent<HandSanitizer.SMInstance>, IGameObjectEffectDescriptor, IBasicBuilding
 {
-	// Token: 0x0600468C RID: 18060 RVA: 0x000D21F6 File Offset: 0x000D03F6
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 		base.gameObject.FindOrAddComponent<Workable>();
 	}
 
-	// Token: 0x0600468D RID: 18061 RVA: 0x0025DA70 File Offset: 0x0025BC70
 	private void RefreshMeters()
 	{
 		float positionPercent = 0f;
@@ -40,7 +37,6 @@ public class HandSanitizer : StateMachineComponent<HandSanitizer.SMInstance>, IG
 		this.dirtyMeter.SetPositionPercent(positionPercent2);
 	}
 
-	// Token: 0x0600468E RID: 18062 RVA: 0x0025DB2C File Offset: 0x0025BD2C
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -62,7 +58,6 @@ public class HandSanitizer : StateMachineComponent<HandSanitizer.SMInstance>, IG
 		this.OnDirectionChanged(base.GetComponent<DirectionControl>().allowedDirection);
 	}
 
-	// Token: 0x0600468F RID: 18063 RVA: 0x000D220A File Offset: 0x000D040A
 	protected override void OnCleanUp()
 	{
 		Components.BasicBuildings.Remove(this);
@@ -70,7 +65,6 @@ public class HandSanitizer : StateMachineComponent<HandSanitizer.SMInstance>, IG
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06004690 RID: 18064 RVA: 0x000D2228 File Offset: 0x000D0428
 	private void OnDirectionChanged(WorkableReactable.AllowedDirection allowed_direction)
 	{
 		if (this.reactable != null)
@@ -79,7 +73,6 @@ public class HandSanitizer : StateMachineComponent<HandSanitizer.SMInstance>, IG
 		}
 	}
 
-	// Token: 0x06004691 RID: 18065 RVA: 0x0025DC14 File Offset: 0x0025BE14
 	public List<Descriptor> RequirementDescriptors()
 	{
 		return new List<Descriptor>
@@ -88,7 +81,6 @@ public class HandSanitizer : StateMachineComponent<HandSanitizer.SMInstance>, IG
 		};
 	}
 
-	// Token: 0x06004692 RID: 18066 RVA: 0x0025DC98 File Offset: 0x0025BE98
 	public List<Descriptor> EffectDescriptors()
 	{
 		List<Descriptor> list = new List<Descriptor>();
@@ -100,7 +92,6 @@ public class HandSanitizer : StateMachineComponent<HandSanitizer.SMInstance>, IG
 		return list;
 	}
 
-	// Token: 0x06004693 RID: 18067 RVA: 0x000D223E File Offset: 0x000D043E
 	public List<Descriptor> GetDescriptors(GameObject go)
 	{
 		List<Descriptor> list = new List<Descriptor>();
@@ -109,7 +100,6 @@ public class HandSanitizer : StateMachineComponent<HandSanitizer.SMInstance>, IG
 		return list;
 	}
 
-	// Token: 0x06004694 RID: 18068 RVA: 0x000D225D File Offset: 0x000D045D
 	private void OnStorageChange(object data)
 	{
 		if (this.dumpWhenFull && base.smi.OutputFull())
@@ -119,67 +109,48 @@ public class HandSanitizer : StateMachineComponent<HandSanitizer.SMInstance>, IG
 		this.RefreshMeters();
 	}
 
-	// Token: 0x04003139 RID: 12601
 	public float massConsumedPerUse = 1f;
 
-	// Token: 0x0400313A RID: 12602
 	public SimHashes consumedElement = SimHashes.BleachStone;
 
-	// Token: 0x0400313B RID: 12603
 	public int diseaseRemovalCount = 10000;
 
-	// Token: 0x0400313C RID: 12604
 	public int maxUses = 10;
 
-	// Token: 0x0400313D RID: 12605
 	public SimHashes outputElement = SimHashes.Vacuum;
 
-	// Token: 0x0400313E RID: 12606
 	public bool dumpWhenFull;
 
-	// Token: 0x0400313F RID: 12607
 	public bool alwaysUse;
 
-	// Token: 0x04003140 RID: 12608
 	public bool canSanitizeSuit;
 
-	// Token: 0x04003141 RID: 12609
 	public bool canSanitizeStorage;
 
-	// Token: 0x04003142 RID: 12610
 	private WorkableReactable reactable;
 
-	// Token: 0x04003143 RID: 12611
 	private MeterController cleanMeter;
 
-	// Token: 0x04003144 RID: 12612
 	private MeterController dirtyMeter;
 
-	// Token: 0x04003145 RID: 12613
 	public Meter.Offset cleanMeterOffset;
 
-	// Token: 0x04003146 RID: 12614
 	public Meter.Offset dirtyMeterOffset;
 
-	// Token: 0x04003147 RID: 12615
 	[Serialize]
 	public int maxPossiblyRemoved;
 
-	// Token: 0x04003148 RID: 12616
 	private static readonly EventSystem.IntraObjectHandler<HandSanitizer> OnStorageChangeDelegate = new EventSystem.IntraObjectHandler<HandSanitizer>(delegate(HandSanitizer component, object data)
 	{
 		component.OnStorageChange(data);
 	});
 
-	// Token: 0x02000E1D RID: 3613
 	private class WashHandsReactable : WorkableReactable
 	{
-		// Token: 0x06004697 RID: 18071 RVA: 0x000D22DD File Offset: 0x000D04DD
 		public WashHandsReactable(Workable workable, ChoreType chore_type, WorkableReactable.AllowedDirection allowed_direction = WorkableReactable.AllowedDirection.Any) : base(workable, "WashHands", chore_type, allowed_direction)
 		{
 		}
 
-		// Token: 0x06004698 RID: 18072 RVA: 0x0025DD70 File Offset: 0x0025BF70
 		public override bool InternalCanBegin(GameObject new_reactor, Navigator.ActiveTransition transition)
 		{
 			if (base.InternalCanBegin(new_reactor, transition))
@@ -203,15 +174,12 @@ public class HandSanitizer : StateMachineComponent<HandSanitizer.SMInstance>, IG
 		}
 	}
 
-	// Token: 0x02000E1E RID: 3614
 	public class SMInstance : GameStateMachine<HandSanitizer.States, HandSanitizer.SMInstance, HandSanitizer, object>.GameInstance
 	{
-		// Token: 0x06004699 RID: 18073 RVA: 0x000D22F2 File Offset: 0x000D04F2
 		public SMInstance(HandSanitizer master) : base(master)
 		{
 		}
 
-		// Token: 0x0600469A RID: 18074 RVA: 0x0025DDD0 File Offset: 0x0025BFD0
 		private bool HasSufficientMass()
 		{
 			bool result = false;
@@ -223,20 +191,17 @@ public class HandSanitizer : StateMachineComponent<HandSanitizer.SMInstance>, IG
 			return result;
 		}
 
-		// Token: 0x0600469B RID: 18075 RVA: 0x0025DE18 File Offset: 0x0025C018
 		public bool OutputFull()
 		{
 			PrimaryElement primaryElement = base.GetComponent<Storage>().FindPrimaryElement(base.master.outputElement);
 			return primaryElement != null && primaryElement.Mass >= (float)base.master.maxUses * base.master.massConsumedPerUse;
 		}
 
-		// Token: 0x0600469C RID: 18076 RVA: 0x000D22FB File Offset: 0x000D04FB
 		public bool IsReady()
 		{
 			return this.HasSufficientMass() && !this.OutputFull();
 		}
 
-		// Token: 0x0600469D RID: 18077 RVA: 0x0025DE6C File Offset: 0x0025C06C
 		public void DumpOutput()
 		{
 			Storage component = base.master.GetComponent<Storage>();
@@ -247,10 +212,8 @@ public class HandSanitizer : StateMachineComponent<HandSanitizer.SMInstance>, IG
 		}
 	}
 
-	// Token: 0x02000E1F RID: 3615
 	public class States : GameStateMachine<HandSanitizer.States, HandSanitizer.SMInstance, HandSanitizer>
 	{
-		// Token: 0x0600469E RID: 18078 RVA: 0x0025DEB4 File Offset: 0x0025C0B4
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.notready;
@@ -276,7 +239,6 @@ public class HandSanitizer : StateMachineComponent<HandSanitizer.SMInstance>, IG
 			}).WorkableStopTransition((HandSanitizer.SMInstance smi) => smi.GetComponent<HandSanitizer.Work>(), this.notready);
 		}
 
-		// Token: 0x0600469F RID: 18079 RVA: 0x0025E07C File Offset: 0x0025C27C
 		private void UpdateStatusItems(HandSanitizer.SMInstance smi, float dt)
 		{
 			if (smi.OutputFull())
@@ -287,37 +249,27 @@ public class HandSanitizer : StateMachineComponent<HandSanitizer.SMInstance>, IG
 			smi.master.GetComponent<KSelectable>().RemoveStatusItem(Db.Get().BuildingStatusItems.OutputPipeFull, false);
 		}
 
-		// Token: 0x04003149 RID: 12617
 		public GameStateMachine<HandSanitizer.States, HandSanitizer.SMInstance, HandSanitizer, object>.State notready;
 
-		// Token: 0x0400314A RID: 12618
 		public HandSanitizer.States.ReadyStates ready;
 
-		// Token: 0x0400314B RID: 12619
 		public GameStateMachine<HandSanitizer.States, HandSanitizer.SMInstance, HandSanitizer, object>.State notoperational;
 
-		// Token: 0x0400314C RID: 12620
 		public GameStateMachine<HandSanitizer.States, HandSanitizer.SMInstance, HandSanitizer, object>.State full;
 
-		// Token: 0x0400314D RID: 12621
 		public GameStateMachine<HandSanitizer.States, HandSanitizer.SMInstance, HandSanitizer, object>.State empty;
 
-		// Token: 0x02000E20 RID: 3616
 		public class ReadyStates : GameStateMachine<HandSanitizer.States, HandSanitizer.SMInstance, HandSanitizer, object>.State
 		{
-			// Token: 0x0400314E RID: 12622
 			public GameStateMachine<HandSanitizer.States, HandSanitizer.SMInstance, HandSanitizer, object>.State free;
 
-			// Token: 0x0400314F RID: 12623
 			public GameStateMachine<HandSanitizer.States, HandSanitizer.SMInstance, HandSanitizer, object>.State occupied;
 		}
 	}
 
-	// Token: 0x02000E22 RID: 3618
 	[AddComponentMenu("KMonoBehaviour/Workable/Work")]
 	public class Work : Workable, IGameObjectEffectDescriptor
 	{
-		// Token: 0x060046AA RID: 18090 RVA: 0x0025E168 File Offset: 0x0025C368
 		protected override void OnPrefabInit()
 		{
 			base.OnPrefabInit();
@@ -329,7 +281,6 @@ public class HandSanitizer : StateMachineComponent<HandSanitizer.SMInstance>, IG
 			}, null, null);
 		}
 
-		// Token: 0x060046AB RID: 18091 RVA: 0x0025E1C0 File Offset: 0x0025C3C0
 		public override Workable.AnimInfo GetAnim(WorkerBase worker)
 		{
 			KAnimFile[] overrideAnims = null;
@@ -340,14 +291,12 @@ public class HandSanitizer : StateMachineComponent<HandSanitizer.SMInstance>, IG
 			return base.GetAnim(worker);
 		}
 
-		// Token: 0x060046AC RID: 18092 RVA: 0x000D233E File Offset: 0x000D053E
 		protected override void OnStartWork(WorkerBase worker)
 		{
 			base.OnStartWork(worker);
 			this.diseaseRemoved = 0;
 		}
 
-		// Token: 0x060046AD RID: 18093 RVA: 0x0025E1F4 File Offset: 0x0025C3F4
 		protected override bool OnWorkTick(WorkerBase worker, float dt)
 		{
 			base.OnWorkTick(worker, dt);
@@ -392,7 +341,6 @@ public class HandSanitizer : StateMachineComponent<HandSanitizer.SMInstance>, IG
 			return false;
 		}
 
-		// Token: 0x060046AE RID: 18094 RVA: 0x0025E3C0 File Offset: 0x0025C5C0
 		protected override void OnCompleteWork(WorkerBase worker)
 		{
 			base.OnCompleteWork(worker);
@@ -406,13 +354,10 @@ public class HandSanitizer : StateMachineComponent<HandSanitizer.SMInstance>, IG
 			}
 		}
 
-		// Token: 0x04003157 RID: 12631
 		public Dictionary<Tag, KAnimFile[]> workerTypeOverrideAnims = new Dictionary<Tag, KAnimFile[]>();
 
-		// Token: 0x04003158 RID: 12632
 		public bool removeIrritation;
 
-		// Token: 0x04003159 RID: 12633
 		private int diseaseRemoved;
 	}
 }

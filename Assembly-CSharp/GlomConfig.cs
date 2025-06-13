@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000231 RID: 561
 public class GlomConfig : IEntityConfig
 {
-	// Token: 0x060007B3 RID: 1971 RVA: 0x00169468 File Offset: 0x00167668
 	public GameObject CreatePrefab()
 	{
 		string text = STRINGS.CREATURES.SPECIES.GLOM.NAME;
@@ -55,40 +53,29 @@ public class GlomConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x060007B4 RID: 1972 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject prefab)
 	{
 	}
 
-	// Token: 0x060007B5 RID: 1973 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x040005CE RID: 1486
 	public const string ID = "Glom";
 
-	// Token: 0x040005CF RID: 1487
 	public const string BASE_TRAIT_ID = "GlomBaseTrait";
 
-	// Token: 0x040005D0 RID: 1488
 	public const SimHashes dirtyEmitElement = SimHashes.ContaminatedOxygen;
 
-	// Token: 0x040005D1 RID: 1489
 	public const float dirtyProbabilityPercent = 25f;
 
-	// Token: 0x040005D2 RID: 1490
 	public const float dirtyCellToTargetMass = 1f;
 
-	// Token: 0x040005D3 RID: 1491
 	public const float dirtyMassPerDirty = 0.2f;
 
-	// Token: 0x040005D4 RID: 1492
 	public const float dirtyMassReleaseOnDeath = 3f;
 
-	// Token: 0x040005D5 RID: 1493
 	public const string emitDisease = "SlimeLung";
 
-	// Token: 0x040005D6 RID: 1494
 	public const int emitDiseasePerKg = 1000;
 }

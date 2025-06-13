@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000E4 RID: 228
 public static class BaseDreckoConfig
 {
-	// Token: 0x060003A9 RID: 937 RVA: 0x001591F0 File Offset: 0x001573F0
 	public static GameObject BaseDrecko(string id, string name, string desc, string anim_file, string trait_id, bool is_baby, string symbol_override_prefix, float warnLowTemp, float warnHighTemp, float lethalLowTemp, float lethalHighTemp)
 	{
 		float mass = 200f;
@@ -56,7 +54,6 @@ public static class BaseDreckoConfig
 		return gameObject;
 	}
 
-	// Token: 0x060003AA RID: 938 RVA: 0x001594B4 File Offset: 0x001576B4
 	private static HashedString CustomIdleAnim(IdleStates.Instance smi, ref HashedString pre_anim)
 	{
 		CellOffset offset = new CellOffset(0, -1);

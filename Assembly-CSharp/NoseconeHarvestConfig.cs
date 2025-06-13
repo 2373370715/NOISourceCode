@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020004D7 RID: 1239
 public class NoseconeHarvestConfig : IBuildingConfig
 {
-	// Token: 0x0600154F RID: 5455 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06001550 RID: 5456 RVA: 0x0019E268 File Offset: 0x0019C468
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "NoseconeHarvest";
@@ -45,7 +42,6 @@ public class NoseconeHarvestConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001551 RID: 5457 RVA: 0x0019E328 File Offset: 0x0019C528
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -65,25 +61,19 @@ public class NoseconeHarvestConfig : IBuildingConfig
 		manualDeliveryKG.choreTypeIDHash = Db.Get().ChoreTypes.MachineFetch.IdHash;
 	}
 
-	// Token: 0x06001552 RID: 5458 RVA: 0x000B3F61 File Offset: 0x000B2161
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		BuildingTemplates.ExtendBuildingToRocketModuleCluster(go, null, ROCKETRY.BURDEN.MINOR, 0f, 0f);
 		go.GetComponent<ReorderableBuilding>().buildConditions.Add(new TopOnly());
 	}
 
-	// Token: 0x04000EA7 RID: 3751
 	public const string ID = "NoseconeHarvest";
 
-	// Token: 0x04000EA8 RID: 3752
 	private float timeToFill = 3600f;
 
-	// Token: 0x04000EA9 RID: 3753
 	private float solidCapacity = ROCKETRY.SOLID_CARGO_BAY_CLUSTER_CAPACITY * ROCKETRY.CARGO_CAPACITY_SCALE;
 
-	// Token: 0x04000EAA RID: 3754
 	public const float DIAMOND_CONSUMED_PER_HARVEST_KG = 0.05f;
 
-	// Token: 0x04000EAB RID: 3755
 	public const float DIAMOND_STORAGE_CAPACITY_KG = 1000f;
 }

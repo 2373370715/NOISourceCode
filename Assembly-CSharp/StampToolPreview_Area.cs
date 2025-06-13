@@ -2,10 +2,8 @@
 using TemplateClasses;
 using UnityEngine;
 
-// Token: 0x02001499 RID: 5273
 public class StampToolPreview_Area : IStampToolPreviewPlugin
 {
-	// Token: 0x06006D3E RID: 27966 RVA: 0x002F7AC4 File Offset: 0x002F5CC4
 	public void Setup(StampToolPreviewContext context)
 	{
 		if (StampToolPreview_Area.material == null)
@@ -39,6 +37,5 @@ public class StampToolPreview_Area : IStampToolPreviewPlugin
 		}
 	}
 
-	// Token: 0x04005269 RID: 21097
 	public static Material material;
 }

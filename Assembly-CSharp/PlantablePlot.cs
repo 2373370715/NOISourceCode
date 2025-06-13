@@ -5,13 +5,9 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000F53 RID: 3923
 [SerializationConfig(MemberSerialization.OptIn)]
 public class PlantablePlot : SingleEntityReceptacle, ISaveLoadable, IGameObjectEffectDescriptor
 {
-	// Token: 0x17000451 RID: 1105
-	// (get) Token: 0x06004E93 RID: 20115 RVA: 0x000D76E1 File Offset: 0x000D58E1
-	// (set) Token: 0x06004E94 RID: 20116 RVA: 0x000D76EE File Offset: 0x000D58EE
 	public KPrefabID plant
 	{
 		get
@@ -24,8 +20,6 @@ public class PlantablePlot : SingleEntityReceptacle, ISaveLoadable, IGameObjectE
 		}
 	}
 
-	// Token: 0x17000452 RID: 1106
-	// (get) Token: 0x06004E95 RID: 20117 RVA: 0x000D76FC File Offset: 0x000D58FC
 	public bool ValidPlant
 	{
 		get
@@ -34,8 +28,6 @@ public class PlantablePlot : SingleEntityReceptacle, ISaveLoadable, IGameObjectE
 		}
 	}
 
-	// Token: 0x17000453 RID: 1107
-	// (get) Token: 0x06004E96 RID: 20118 RVA: 0x000D7719 File Offset: 0x000D5919
 	public bool AcceptsFertilizer
 	{
 		get
@@ -44,8 +36,6 @@ public class PlantablePlot : SingleEntityReceptacle, ISaveLoadable, IGameObjectE
 		}
 	}
 
-	// Token: 0x17000454 RID: 1108
-	// (get) Token: 0x06004E97 RID: 20119 RVA: 0x000D7721 File Offset: 0x000D5921
 	public bool AcceptsIrrigation
 	{
 		get
@@ -54,7 +44,6 @@ public class PlantablePlot : SingleEntityReceptacle, ISaveLoadable, IGameObjectE
 		}
 	}
 
-	// Token: 0x06004E98 RID: 20120 RVA: 0x00276D90 File Offset: 0x00274F90
 	[OnDeserialized]
 	private void OnDeserialized()
 	{
@@ -69,7 +58,6 @@ public class PlantablePlot : SingleEntityReceptacle, ISaveLoadable, IGameObjectE
 		}
 	}
 
-	// Token: 0x06004E99 RID: 20121 RVA: 0x00276DF0 File Offset: 0x00274FF0
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -96,7 +84,6 @@ public class PlantablePlot : SingleEntityReceptacle, ISaveLoadable, IGameObjectE
 		}
 	}
 
-	// Token: 0x06004E9A RID: 20122 RVA: 0x00276ED8 File Offset: 0x002750D8
 	private void OnCopySettings(object data)
 	{
 		PlantablePlot component = ((GameObject)data).GetComponent<PlantablePlot>();
@@ -134,7 +121,6 @@ public class PlantablePlot : SingleEntityReceptacle, ISaveLoadable, IGameObjectE
 		}
 	}
 
-	// Token: 0x06004E9B RID: 20123 RVA: 0x000D7729 File Offset: 0x000D5929
 	public override void CreateOrder(Tag entityTag, Tag additionalFilterTag)
 	{
 		this.SetPreview(entityTag, false);
@@ -146,7 +132,6 @@ public class PlantablePlot : SingleEntityReceptacle, ISaveLoadable, IGameObjectE
 		this.SetPreview(Tag.Invalid, false);
 	}
 
-	// Token: 0x06004E9C RID: 20124 RVA: 0x00276FFC File Offset: 0x002751FC
 	private void SyncPriority(PrioritySetting priority)
 	{
 		Prioritizable component = base.GetComponent<Prioritizable>();
@@ -164,7 +149,6 @@ public class PlantablePlot : SingleEntityReceptacle, ISaveLoadable, IGameObjectE
 		}
 	}
 
-	// Token: 0x06004E9D RID: 20125 RVA: 0x00277078 File Offset: 0x00275278
 	protected override void OnSpawn()
 	{
 		if (this.plant != null)
@@ -178,14 +162,12 @@ public class PlantablePlot : SingleEntityReceptacle, ISaveLoadable, IGameObjectE
 		component.onPriorityChanged = (Action<PrioritySetting>)Delegate.Combine(component.onPriorityChanged, new Action<PrioritySetting>(this.SyncPriority));
 	}
 
-	// Token: 0x06004E9E RID: 20126 RVA: 0x000D7750 File Offset: 0x000D5950
 	public void SetFertilizationFlags(bool fertilizer, bool liquid_piping)
 	{
 		this.accepts_fertilizer = fertilizer;
 		this.has_liquid_pipe_input = liquid_piping;
 	}
 
-	// Token: 0x06004E9F RID: 20127 RVA: 0x002770F0 File Offset: 0x002752F0
 	protected override void OnCleanUp()
 	{
 		base.OnCleanUp();
@@ -200,7 +182,6 @@ public class PlantablePlot : SingleEntityReceptacle, ISaveLoadable, IGameObjectE
 		Components.PlantablePlots.Remove(base.gameObject.GetMyWorldId(), this);
 	}
 
-	// Token: 0x06004EA0 RID: 20128 RVA: 0x00277158 File Offset: 0x00275358
 	protected override GameObject SpawnOccupyingObject(GameObject depositedEntity)
 	{
 		PlantableSeed component = depositedEntity.GetComponent<PlantableSeed>();
@@ -221,7 +202,6 @@ public class PlantablePlot : SingleEntityReceptacle, ISaveLoadable, IGameObjectE
 		return depositedEntity;
 	}
 
-	// Token: 0x06004EA1 RID: 20129 RVA: 0x002771D4 File Offset: 0x002753D4
 	protected override void ConfigureOccupyingObject(GameObject newPlant)
 	{
 		KPrefabID component = newPlant.GetComponent<KPrefabID>();
@@ -246,7 +226,6 @@ public class PlantablePlot : SingleEntityReceptacle, ISaveLoadable, IGameObjectE
 		}
 	}
 
-	// Token: 0x06004EA2 RID: 20130 RVA: 0x000D7760 File Offset: 0x000D5960
 	public void ReplacePlant(GameObject plant, bool keepStorage)
 	{
 		if (keepStorage)
@@ -257,7 +236,6 @@ public class PlantablePlot : SingleEntityReceptacle, ISaveLoadable, IGameObjectE
 		base.ForceDeposit(plant);
 	}
 
-	// Token: 0x06004EA3 RID: 20131 RVA: 0x00277268 File Offset: 0x00275468
 	protected override void PositionOccupyingObject()
 	{
 		base.PositionOccupyingObject();
@@ -266,7 +244,6 @@ public class PlantablePlot : SingleEntityReceptacle, ISaveLoadable, IGameObjectE
 		this.OffsetAnim(component, this.occupyingObjectVisualOffset);
 	}
 
-	// Token: 0x06004EA4 RID: 20132 RVA: 0x002772A0 File Offset: 0x002754A0
 	private void RegisterWithPlant(GameObject plant)
 	{
 		base.occupyingObject = plant;
@@ -282,7 +259,6 @@ public class PlantablePlot : SingleEntityReceptacle, ISaveLoadable, IGameObjectE
 		plant.Trigger(1309017699, this.storage);
 	}
 
-	// Token: 0x06004EA5 RID: 20133 RVA: 0x000D7779 File Offset: 0x000D5979
 	protected override void SubscribeToOccupant()
 	{
 		base.SubscribeToOccupant();
@@ -292,7 +268,6 @@ public class PlantablePlot : SingleEntityReceptacle, ISaveLoadable, IGameObjectE
 		}
 	}
 
-	// Token: 0x06004EA6 RID: 20134 RVA: 0x000D77AD File Offset: 0x000D59AD
 	protected override void UnsubscribeFromOccupant()
 	{
 		base.UnsubscribeFromOccupant();
@@ -302,7 +277,6 @@ public class PlantablePlot : SingleEntityReceptacle, ISaveLoadable, IGameObjectE
 		}
 	}
 
-	// Token: 0x06004EA7 RID: 20135 RVA: 0x000D77E0 File Offset: 0x000D59E0
 	private void OnOccupantUprooted(object data)
 	{
 		this.autoReplaceEntity = false;
@@ -310,7 +284,6 @@ public class PlantablePlot : SingleEntityReceptacle, ISaveLoadable, IGameObjectE
 		this.requestedEntityAdditionalFilterTag = Tag.Invalid;
 	}
 
-	// Token: 0x06004EA8 RID: 20136 RVA: 0x002772FC File Offset: 0x002754FC
 	public override void OrderRemoveOccupant()
 	{
 		if (base.Occupant == null)
@@ -325,7 +298,6 @@ public class PlantablePlot : SingleEntityReceptacle, ISaveLoadable, IGameObjectE
 		component.MarkForUproot(true);
 	}
 
-	// Token: 0x06004EA9 RID: 20137 RVA: 0x00277338 File Offset: 0x00275538
 	public override void SetPreview(Tag entityTag, bool solid = false)
 	{
 		PlantableSeed plantableSeed = null;
@@ -391,7 +363,6 @@ public class PlantablePlot : SingleEntityReceptacle, ISaveLoadable, IGameObjectE
 		}
 	}
 
-	// Token: 0x06004EAA RID: 20138 RVA: 0x000D77FF File Offset: 0x000D59FF
 	private void OffsetAnim(KBatchedAnimController kanim, Vector3 offset)
 	{
 		if (this.rotatable != null)
@@ -401,7 +372,6 @@ public class PlantablePlot : SingleEntityReceptacle, ISaveLoadable, IGameObjectE
 		kanim.Offset = offset;
 	}
 
-	// Token: 0x06004EAB RID: 20139 RVA: 0x000D7824 File Offset: 0x000D5A24
 	private void OnValidChanged(object obj)
 	{
 		base.Trigger(-1820564715, obj);
@@ -411,7 +381,6 @@ public class PlantablePlot : SingleEntityReceptacle, ISaveLoadable, IGameObjectE
 		}
 	}
 
-	// Token: 0x06004EAC RID: 20140 RVA: 0x00277528 File Offset: 0x00275728
 	public override List<Descriptor> GetDescriptors(GameObject go)
 	{
 		List<Descriptor> list = new List<Descriptor>();
@@ -421,45 +390,34 @@ public class PlantablePlot : SingleEntityReceptacle, ISaveLoadable, IGameObjectE
 		return list;
 	}
 
-	// Token: 0x0400372D RID: 14125
 	[MyCmpAdd]
 	private CopyBuildingSettings copyBuildingSettings;
 
-	// Token: 0x0400372E RID: 14126
 	public Tag tagOnPlanted = Tag.Invalid;
 
-	// Token: 0x0400372F RID: 14127
 	[Serialize]
 	private Ref<KPrefabID> plantRef;
 
-	// Token: 0x04003730 RID: 14128
 	public Vector3 occupyingObjectVisualOffset = Vector3.zero;
 
-	// Token: 0x04003731 RID: 14129
 	public Grid.SceneLayer plantLayer = Grid.SceneLayer.BuildingBack;
 
-	// Token: 0x04003732 RID: 14130
 	private EntityPreview plantPreview;
 
-	// Token: 0x04003733 RID: 14131
 	[SerializeField]
 	private bool accepts_fertilizer;
 
-	// Token: 0x04003734 RID: 14132
 	[SerializeField]
 	private bool accepts_irrigation = true;
 
-	// Token: 0x04003735 RID: 14133
 	[SerializeField]
 	public bool has_liquid_pipe_input;
 
-	// Token: 0x04003736 RID: 14134
 	private static readonly EventSystem.IntraObjectHandler<PlantablePlot> OnCopySettingsDelegate = new EventSystem.IntraObjectHandler<PlantablePlot>(delegate(PlantablePlot component, object data)
 	{
 		component.OnCopySettings(data);
 	});
 
-	// Token: 0x04003737 RID: 14135
 	private static readonly EventSystem.IntraObjectHandler<PlantablePlot> OnUpdateRoomDelegate = new EventSystem.IntraObjectHandler<PlantablePlot>(delegate(PlantablePlot component, object data)
 	{
 		if (component.plantRef.Get() != null)

@@ -3,10 +3,8 @@ using Klei.AI;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020020B1 RID: 8369
 public class ValueTrendImageToggle : MonoBehaviour
 {
-	// Token: 0x0600B27A RID: 45690 RVA: 0x0043D664 File Offset: 0x0043B864
 	public void SetValue(AmountInstance ainstance)
 	{
 		float delta = ainstance.GetDelta();
@@ -46,27 +44,19 @@ public class ValueTrendImageToggle : MonoBehaviour
 		this.targetImage.sprite = sprite;
 	}
 
-	// Token: 0x04008CDE RID: 36062
 	public Image targetImage;
 
-	// Token: 0x04008CDF RID: 36063
 	public Sprite Up_One;
 
-	// Token: 0x04008CE0 RID: 36064
 	public Sprite Up_Two;
 
-	// Token: 0x04008CE1 RID: 36065
 	public Sprite Up_Three;
 
-	// Token: 0x04008CE2 RID: 36066
 	public Sprite Down_One;
 
-	// Token: 0x04008CE3 RID: 36067
 	public Sprite Down_Two;
 
-	// Token: 0x04008CE4 RID: 36068
 	public Sprite Down_Three;
 
-	// Token: 0x04008CE5 RID: 36069
 	public Sprite Zero;
 }

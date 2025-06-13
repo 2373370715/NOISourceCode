@@ -4,10 +4,8 @@ using Klei.AI;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001A2E RID: 6702
 public class Telephone : StateMachineComponent<Telephone.StatesInstance>, IGameObjectEffectDescriptor
 {
-	// Token: 0x06008BA2 RID: 35746 RVA: 0x0036E158 File Offset: 0x0036C358
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -19,14 +17,12 @@ public class Telephone : StateMachineComponent<Telephone.StatesInstance>, IGameO
 		}, null, null);
 	}
 
-	// Token: 0x06008BA3 RID: 35747 RVA: 0x000FFED1 File Offset: 0x000FE0D1
 	protected override void OnCleanUp()
 	{
 		Components.Telephones.Remove(this);
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06008BA4 RID: 35748 RVA: 0x0036E1B8 File Offset: 0x0036C3B8
 	public void AddModifierDescriptions(List<Descriptor> descs, string effect_id)
 	{
 		Effect effect = Db.Get().effects.Get(effect_id);
@@ -55,7 +51,6 @@ public class Telephone : StateMachineComponent<Telephone.StatesInstance>, IGameO
 		}
 	}
 
-	// Token: 0x06008BA5 RID: 35749 RVA: 0x0036E324 File Offset: 0x0036C524
 	List<Descriptor> IGameObjectEffectDescriptor.GetDescriptors(GameObject go)
 	{
 		List<Descriptor> list = new List<Descriptor>();
@@ -68,7 +63,6 @@ public class Telephone : StateMachineComponent<Telephone.StatesInstance>, IGameO
 		return list;
 	}
 
-	// Token: 0x06008BA6 RID: 35750 RVA: 0x000FFEE4 File Offset: 0x000FE0E4
 	public void HangUp()
 	{
 		this.isInUse = false;
@@ -76,28 +70,20 @@ public class Telephone : StateMachineComponent<Telephone.StatesInstance>, IGameO
 		this.RemoveTag(GameTags.LongDistanceCall);
 	}
 
-	// Token: 0x04006956 RID: 26966
 	public string babbleEffect;
 
-	// Token: 0x04006957 RID: 26967
 	public string chatEffect;
 
-	// Token: 0x04006958 RID: 26968
 	public string longDistanceEffect;
 
-	// Token: 0x04006959 RID: 26969
 	public string trackingEffect;
 
-	// Token: 0x0400695A RID: 26970
 	public bool isInUse;
 
-	// Token: 0x0400695B RID: 26971
 	public bool wasAnswered;
 
-	// Token: 0x02001A2F RID: 6703
 	public class States : GameStateMachine<Telephone.States, Telephone.StatesInstance, Telephone>
 	{
-		// Token: 0x06008BA8 RID: 35752 RVA: 0x0036E38C File Offset: 0x0036C58C
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			Telephone.States.CreateStatusItems();
@@ -143,7 +129,6 @@ public class Telephone : StateMachineComponent<Telephone.StatesInstance>, IGameO
 			this.ready.hangup.OnAnimQueueComplete(this.ready);
 		}
 
-		// Token: 0x06008BA9 RID: 35753 RVA: 0x0036E7C4 File Offset: 0x0036C9C4
 		private Chore CreateChore(Telephone.StatesInstance smi)
 		{
 			Workable component = smi.master.GetComponent<TelephoneCallerWorkable>();
@@ -152,7 +137,6 @@ public class Telephone : StateMachineComponent<Telephone.StatesInstance>, IGameO
 			return workChore;
 		}
 
-		// Token: 0x06008BAA RID: 35754 RVA: 0x0036E824 File Offset: 0x0036CA24
 		public void UpdatePartyLine(Telephone.StatesInstance smi)
 		{
 			int myWorldId = smi.GetMyWorldId();
@@ -174,7 +158,6 @@ public class Telephone : StateMachineComponent<Telephone.StatesInstance>, IGameO
 			}
 		}
 
-		// Token: 0x06008BAB RID: 35755 RVA: 0x0036E8CC File Offset: 0x0036CACC
 		public void RingAllTelephones(Telephone.StatesInstance smi)
 		{
 			Telephone component = smi.master.GetComponent<Telephone>();
@@ -191,7 +174,6 @@ public class Telephone : StateMachineComponent<Telephone.StatesInstance>, IGameO
 			}
 		}
 
-		// Token: 0x06008BAC RID: 35756 RVA: 0x0036E968 File Offset: 0x0036CB68
 		private static void CreateStatusItems()
 		{
 			if (Telephone.States.partyLine == null)
@@ -247,79 +229,56 @@ public class Telephone : StateMachineComponent<Telephone.StatesInstance>, IGameO
 			}
 		}
 
-		// Token: 0x0400695C RID: 26972
 		private GameStateMachine<Telephone.States, Telephone.StatesInstance, Telephone, object>.State unoperational;
 
-		// Token: 0x0400695D RID: 26973
 		private Telephone.States.ReadyStates ready;
 
-		// Token: 0x0400695E RID: 26974
 		private static StatusItem partyLine;
 
-		// Token: 0x0400695F RID: 26975
 		private static StatusItem babbling;
 
-		// Token: 0x02001A30 RID: 6704
 		public class ReadyStates : GameStateMachine<Telephone.States, Telephone.StatesInstance, Telephone, object>.State
 		{
-			// Token: 0x04006960 RID: 26976
 			public GameStateMachine<Telephone.States, Telephone.StatesInstance, Telephone, object>.State idle;
 
-			// Token: 0x04006961 RID: 26977
 			public GameStateMachine<Telephone.States, Telephone.StatesInstance, Telephone, object>.State ringing;
 
-			// Token: 0x04006962 RID: 26978
 			public GameStateMachine<Telephone.States, Telephone.StatesInstance, Telephone, object>.State answer;
 
-			// Token: 0x04006963 RID: 26979
 			public GameStateMachine<Telephone.States, Telephone.StatesInstance, Telephone, object>.State speaker;
 
-			// Token: 0x04006964 RID: 26980
 			public GameStateMachine<Telephone.States, Telephone.StatesInstance, Telephone, object>.State hangup;
 
-			// Token: 0x04006965 RID: 26981
 			public Telephone.States.ReadyStates.CallingStates calling;
 
-			// Token: 0x04006966 RID: 26982
 			public Telephone.States.ReadyStates.TalkingStates talking;
 
-			// Token: 0x02001A31 RID: 6705
 			public class CallingStates : GameStateMachine<Telephone.States, Telephone.StatesInstance, Telephone, object>.State
 			{
-				// Token: 0x04006967 RID: 26983
 				public GameStateMachine<Telephone.States, Telephone.StatesInstance, Telephone, object>.State dial;
 
-				// Token: 0x04006968 RID: 26984
 				public GameStateMachine<Telephone.States, Telephone.StatesInstance, Telephone, object>.State animHack;
 
-				// Token: 0x04006969 RID: 26985
 				public GameStateMachine<Telephone.States, Telephone.StatesInstance, Telephone, object>.State pre;
 
-				// Token: 0x0400696A RID: 26986
 				public GameStateMachine<Telephone.States, Telephone.StatesInstance, Telephone, object>.State wait;
 			}
 
-			// Token: 0x02001A32 RID: 6706
 			public class TalkingStates : GameStateMachine<Telephone.States, Telephone.StatesInstance, Telephone, object>.State
 			{
-				// Token: 0x0400696B RID: 26987
 				public GameStateMachine<Telephone.States, Telephone.StatesInstance, Telephone, object>.State babbling;
 
-				// Token: 0x0400696C RID: 26988
 				public GameStateMachine<Telephone.States, Telephone.StatesInstance, Telephone, object>.State chatting;
 			}
 		}
 	}
 
-	// Token: 0x02001A34 RID: 6708
 	public class StatesInstance : GameStateMachine<Telephone.States, Telephone.StatesInstance, Telephone, object>.GameInstance
 	{
-		// Token: 0x06008BC2 RID: 35778 RVA: 0x000FFF8C File Offset: 0x000FE18C
 		public StatesInstance(Telephone smi) : base(smi)
 		{
 		}
 
-		// Token: 0x06008BC3 RID: 35779 RVA: 0x0036EC8C File Offset: 0x0036CE8C
 		public bool CallAnswered()
 		{
 			foreach (Telephone telephone in Components.Telephones.Items)
@@ -333,7 +292,6 @@ public class Telephone : StateMachineComponent<Telephone.StatesInstance>, IGameO
 			return false;
 		}
 
-		// Token: 0x06008BC4 RID: 35780 RVA: 0x0036ED08 File Offset: 0x0036CF08
 		public bool CallEnded()
 		{
 			using (List<Telephone>.Enumerator enumerator = Components.Telephones.Items.GetEnumerator())

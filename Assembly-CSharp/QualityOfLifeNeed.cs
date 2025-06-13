@@ -4,11 +4,9 @@ using Klei.CustomSettings;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x020016AE RID: 5806
 [SkipSaveFileSerialization]
 public class QualityOfLifeNeed : Need, ISim4000ms
 {
-	// Token: 0x060077B5 RID: 30645 RVA: 0x0031C1B8 File Offset: 0x0031A3B8
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -32,7 +30,6 @@ public class QualityOfLifeNeed : Need, ISim4000ms
 		this.qolAttribute = Db.Get().Attributes.QualityOfLife.Lookup(base.gameObject);
 	}
 
-	// Token: 0x060077B6 RID: 30646 RVA: 0x0031C330 File Offset: 0x0031A530
 	public void Sim4000ms(float dt)
 	{
 		if (this.skipUpdate)
@@ -80,9 +77,7 @@ public class QualityOfLifeNeed : Need, ISim4000ms
 		base.SetModifier(this.stressNeutral);
 	}
 
-	// Token: 0x04005A12 RID: 23058
 	private AttributeInstance qolAttribute;
 
-	// Token: 0x04005A13 RID: 23059
 	public bool skipUpdate;
 }

@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200052C RID: 1324
 public class PropGravitasDeskPodiumConfig : IEntityConfig
 {
-	// Token: 0x060016B9 RID: 5817 RVA: 0x001A3B64 File Offset: 0x001A1D64
 	public GameObject CreatePrefab()
 	{
 		string id = "PropGravitasDeskPodium";
@@ -28,7 +26,6 @@ public class PropGravitasDeskPodiumConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x060016BA RID: 5818 RVA: 0x000AA768 File Offset: 0x000A8968
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.GetComponent<OccupyArea>().objectLayers = new ObjectLayer[]
@@ -37,7 +34,6 @@ public class PropGravitasDeskPodiumConfig : IEntityConfig
 		};
 	}
 
-	// Token: 0x060016BB RID: 5819 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}

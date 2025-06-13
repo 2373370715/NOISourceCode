@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000419 RID: 1049
 public class MercuryCeilingLightConfig : IBuildingConfig
 {
-	// Token: 0x0600116B RID: 4459 RVA: 0x000AA536 File Offset: 0x000A8736
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.DLC2;
 	}
 
-	// Token: 0x0600116C RID: 4460 RVA: 0x0018E8DC File Offset: 0x0018CADC
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "MercuryCeilingLight";
@@ -38,7 +35,6 @@ public class MercuryCeilingLightConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600116D RID: 4461 RVA: 0x000B2171 File Offset: 0x000B0371
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 		LightShapePreview lightShapePreview = go.AddComponent<LightShapePreview>();
@@ -49,7 +45,6 @@ public class MercuryCeilingLightConfig : IBuildingConfig
 		lightShapePreview.direction = DiscreteShadowCaster.Direction.South;
 	}
 
-	// Token: 0x0600116E RID: 4462 RVA: 0x0018E97C File Offset: 0x0018CB7C
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.LightSource, false);
@@ -66,7 +61,6 @@ public class MercuryCeilingLightConfig : IBuildingConfig
 		def.TURN_ON_DELAY = 60f;
 	}
 
-	// Token: 0x0600116F RID: 4463 RVA: 0x0018EA04 File Offset: 0x0018CC04
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LoopingSounds>();
@@ -86,12 +80,9 @@ public class MercuryCeilingLightConfig : IBuildingConfig
 		light2D.FalloffRate = 0.4f;
 	}
 
-	// Token: 0x04000C29 RID: 3113
 	public const string ID = "MercuryCeilingLight";
 
-	// Token: 0x04000C2A RID: 3114
 	public const float MERCURY_CONSUMED_PER_SECOOND = 0.13000001f;
 
-	// Token: 0x04000C2B RID: 3115
 	public const float CHARGING_DELAY = 60f;
 }

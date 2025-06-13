@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200040D RID: 1037
 public class MechanicalSurfboardConfig : IBuildingConfig
 {
-	// Token: 0x06001133 RID: 4403 RVA: 0x0018D42C File Offset: 0x0018B62C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "MechanicalSurfboard";
@@ -35,7 +33,6 @@ public class MechanicalSurfboardConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001134 RID: 4404 RVA: 0x0018D4E4 File Offset: 0x0018B6E4
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.RecBuilding, false);
@@ -57,17 +54,13 @@ public class MechanicalSurfboardConfig : IBuildingConfig
 		go.AddOrGetDef<RocketUsageRestriction.Def>();
 	}
 
-	// Token: 0x06001135 RID: 4405 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000BF3 RID: 3059
 	public const string ID = "MechanicalSurfboard";
 
-	// Token: 0x04000BF4 RID: 3060
 	private const float TANK_SIZE_KG = 20f;
 
-	// Token: 0x04000BF5 RID: 3061
 	private const float SPILL_RATE_KG = 0.05f;
 }

@@ -4,10 +4,8 @@ using FMOD.Studio;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000DD3 RID: 3539
 public class GeoTuner : GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMachineTarget, GeoTuner.Def>
 {
-	// Token: 0x060044F7 RID: 17655 RVA: 0x00257CF8 File Offset: 0x00255EF8
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.operational;
@@ -64,7 +62,6 @@ public class GeoTuner : GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMach
 		});
 	}
 
-	// Token: 0x060044F8 RID: 17656 RVA: 0x00258644 File Offset: 0x00256844
 	private static void TriggerSoundsForGeyserChange(GeoTuner.Instance smi)
 	{
 		Geyser assignedGeyser = smi.GetAssignedGeyser();
@@ -87,7 +84,6 @@ public class GeoTuner : GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMach
 		}
 	}
 
-	// Token: 0x060044F9 RID: 17657 RVA: 0x002586F0 File Offset: 0x002568F0
 	private static void RefreshStorageRequirements(GeoTuner.Instance smi)
 	{
 		Geyser assignedGeyser = smi.GetAssignedGeyser();
@@ -114,13 +110,11 @@ public class GeoTuner : GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMach
 		smi.manualDelivery.RequestedItemTag = settingsForGeyser.material;
 	}
 
-	// Token: 0x060044FA RID: 17658 RVA: 0x002587FC File Offset: 0x002569FC
 	private static void DropStorage(GeoTuner.Instance smi)
 	{
 		smi.storage.DropAll(false, false, default(Vector3), true, null);
 	}
 
-	// Token: 0x060044FB RID: 17659 RVA: 0x00258824 File Offset: 0x00256A24
 	private static void DropStorageIfNotMatching(GeoTuner.Instance smi)
 	{
 		Geyser assignedGeyser = smi.GetAssignedGeyser();
@@ -151,45 +145,38 @@ public class GeoTuner : GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMach
 		}
 	}
 
-	// Token: 0x060044FC RID: 17660 RVA: 0x0025890C File Offset: 0x00256B0C
 	private static bool GeyserExitEruptionTransition(GeoTuner.Instance smi, float dt)
 	{
 		Geyser assignedGeyser = smi.GetAssignedGeyser();
 		return assignedGeyser != null && assignedGeyser.smi.GetCurrentState() != null && assignedGeyser.smi.GetCurrentState().parent != assignedGeyser.smi.sm.erupt;
 	}
 
-	// Token: 0x060044FD RID: 17661 RVA: 0x000D10E6 File Offset: 0x000CF2E6
 	public static void OnResearchCompleted(GeoTuner.Instance smi)
 	{
 		smi.storage.ConsumeAllIgnoringDisease();
 		smi.sm.hasBeenWorkedByResearcher.Set(true, smi, false);
 	}
 
-	// Token: 0x060044FE RID: 17662 RVA: 0x000D1107 File Offset: 0x000CF307
 	public static void PlayBroadcastingAnimation(GeoTuner.Instance smi)
 	{
 		smi.animController.Play("broadcasting", KAnim.PlayMode.Loop, 1f, 0f);
 	}
 
-	// Token: 0x060044FF RID: 17663 RVA: 0x000D1129 File Offset: 0x000CF329
 	public static void StopPlayingBroadcastingAnimation(GeoTuner.Instance smi)
 	{
 		smi.animController.Play("broadcasting", KAnim.PlayMode.Once, 1f, 0f);
 	}
 
-	// Token: 0x06004500 RID: 17664 RVA: 0x000D114B File Offset: 0x000CF34B
 	public static void RefreshAnimationGeyserSymbolType(GeoTuner.Instance smi)
 	{
 		smi.RefreshGeyserSymbol();
 	}
 
-	// Token: 0x06004501 RID: 17665 RVA: 0x000D1153 File Offset: 0x000CF353
 	public static float GetRemainingExpiraionTime(GeoTuner.Instance smi)
 	{
 		return smi.sm.expirationTimer.Get(smi);
 	}
 
-	// Token: 0x06004502 RID: 17666 RVA: 0x00258960 File Offset: 0x00256B60
 	private static void ExpirationTimerUpdate(GeoTuner.Instance smi, float dt)
 	{
 		float num = GeoTuner.GetRemainingExpiraionTime(smi);
@@ -197,7 +184,6 @@ public class GeoTuner : GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMach
 		smi.sm.expirationTimer.Set(num, smi, false);
 	}
 
-	// Token: 0x06004503 RID: 17667 RVA: 0x0025898C File Offset: 0x00256B8C
 	private static void ResetExpirationTimer(GeoTuner.Instance smi)
 	{
 		Geyser assignedGeyser = smi.GetAssignedGeyser();
@@ -209,26 +195,22 @@ public class GeoTuner : GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMach
 		smi.sm.expirationTimer.Set(0f, smi, false);
 	}
 
-	// Token: 0x06004504 RID: 17668 RVA: 0x000D1166 File Offset: 0x000CF366
 	private static void ForgetWorkDoneByDupe(GeoTuner.Instance smi)
 	{
 		smi.sm.hasBeenWorkedByResearcher.Set(false, smi, false);
 		smi.workable.WorkTimeRemaining = smi.workable.GetWorkTime();
 	}
 
-	// Token: 0x06004505 RID: 17669 RVA: 0x002589E8 File Offset: 0x00256BE8
 	private Chore CreateResearchChore(GeoTuner.Instance smi)
 	{
 		return new WorkChore<GeoTunerWorkable>(Db.Get().ChoreTypes.Research, smi.workable, null, true, null, null, null, true, null, false, true, null, false, true, true, PriorityScreen.PriorityClass.basic, 5, false, true);
 	}
 
-	// Token: 0x06004506 RID: 17670 RVA: 0x000D1192 File Offset: 0x000CF392
 	private static void ApplyTuning(GeoTuner.Instance smi)
 	{
 		smi.GetAssignedGeyser().AddModification(smi.currentGeyserModification);
 	}
 
-	// Token: 0x06004507 RID: 17671 RVA: 0x00258A20 File Offset: 0x00256C20
 	private static void RemoveTuning(GeoTuner.Instance smi)
 	{
 		Geyser assignedGeyser = smi.GetAssignedGeyser();
@@ -238,70 +220,50 @@ public class GeoTuner : GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMach
 		}
 	}
 
-	// Token: 0x06004508 RID: 17672 RVA: 0x000D11A5 File Offset: 0x000CF3A5
 	public static bool WorkRequirementsMet(GeoTuner.Instance smi)
 	{
 		return GeoTuner.IsInLabRoom(smi) && smi.storage.MassStored() == smi.storage.capacityKg;
 	}
 
-	// Token: 0x06004509 RID: 17673 RVA: 0x000D11C9 File Offset: 0x000CF3C9
 	public static bool IsInLabRoom(GeoTuner.Instance smi)
 	{
 		return smi.roomTracker.IsInCorrectRoom();
 	}
 
-	// Token: 0x04002FDE RID: 12254
 	private StateMachine<GeoTuner, GeoTuner.Instance, IStateMachineTarget, GeoTuner.Def>.Signal geyserSwitchSignal;
 
-	// Token: 0x04002FDF RID: 12255
 	private GeoTuner.NonOperationalState nonOperational;
 
-	// Token: 0x04002FE0 RID: 12256
 	private GeoTuner.OperationalState operational;
 
-	// Token: 0x04002FE1 RID: 12257
 	private StateMachine<GeoTuner, GeoTuner.Instance, IStateMachineTarget, GeoTuner.Def>.TargetParameter FutureGeyser;
 
-	// Token: 0x04002FE2 RID: 12258
 	private StateMachine<GeoTuner, GeoTuner.Instance, IStateMachineTarget, GeoTuner.Def>.TargetParameter AssignedGeyser;
 
-	// Token: 0x04002FE3 RID: 12259
 	public StateMachine<GeoTuner, GeoTuner.Instance, IStateMachineTarget, GeoTuner.Def>.BoolParameter hasBeenWorkedByResearcher;
 
-	// Token: 0x04002FE4 RID: 12260
 	public StateMachine<GeoTuner, GeoTuner.Instance, IStateMachineTarget, GeoTuner.Def>.FloatParameter expirationTimer;
 
-	// Token: 0x04002FE5 RID: 12261
 	public static string liquidGeyserTuningSoundPath = GlobalAssets.GetSound("GeoTuner_Tuning_Geyser", false);
 
-	// Token: 0x04002FE6 RID: 12262
 	public static string gasGeyserTuningSoundPath = GlobalAssets.GetSound("GeoTuner_Tuning_Vent", false);
 
-	// Token: 0x04002FE7 RID: 12263
 	public static string metalGeyserTuningSoundPath = GlobalAssets.GetSound("GeoTuner_Tuning_Volcano", false);
 
-	// Token: 0x04002FE8 RID: 12264
 	public const string anim_switchGeyser_down = "geyser_down";
 
-	// Token: 0x04002FE9 RID: 12265
 	public const string anim_switchGeyser_up = "geyser_up";
 
-	// Token: 0x04002FEA RID: 12266
 	private const string BroadcastingOnHoldAnimationName = "on";
 
-	// Token: 0x04002FEB RID: 12267
 	private const string OnAnimName = "on";
 
-	// Token: 0x04002FEC RID: 12268
 	private const string OffAnimName = "off";
 
-	// Token: 0x04002FED RID: 12269
 	private const string BroadcastingAnimationName = "broadcasting";
 
-	// Token: 0x02000DD4 RID: 3540
 	public class Def : StateMachine.BaseDef
 	{
-		// Token: 0x0600450E RID: 17678 RVA: 0x00258A4C File Offset: 0x00256C4C
 		public GeoTunerConfig.GeotunedGeyserSettings GetSettingsForGeyser(Geyser geyser)
 		{
 			GeoTunerConfig.GeotunedGeyserSettings result;
@@ -313,135 +275,95 @@ public class GeoTuner : GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMach
 			return result;
 		}
 
-		// Token: 0x04002FEE RID: 12270
 		public string OUTPUT_LOGIC_PORT_ID;
 
-		// Token: 0x04002FEF RID: 12271
 		public Dictionary<HashedString, GeoTunerConfig.GeotunedGeyserSettings> geotunedGeyserSettings;
 
-		// Token: 0x04002FF0 RID: 12272
 		public GeoTunerConfig.GeotunedGeyserSettings defaultSetting;
 	}
 
-	// Token: 0x02000DD5 RID: 3541
 	public class BroadcastingState : GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMachineTarget, GeoTuner.Def>.State
 	{
-		// Token: 0x04002FF1 RID: 12273
 		public GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMachineTarget, GeoTuner.Def>.State active;
 
-		// Token: 0x04002FF2 RID: 12274
 		public GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMachineTarget, GeoTuner.Def>.State onHold;
 
-		// Token: 0x04002FF3 RID: 12275
 		public GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMachineTarget, GeoTuner.Def>.State expired;
 	}
 
-	// Token: 0x02000DD6 RID: 3542
 	public class ResearchProgress : GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMachineTarget, GeoTuner.Def>.State
 	{
-		// Token: 0x04002FF4 RID: 12276
 		public GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMachineTarget, GeoTuner.Def>.State waitingForDupe;
 
-		// Token: 0x04002FF5 RID: 12277
 		public GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMachineTarget, GeoTuner.Def>.State inProgress;
 	}
 
-	// Token: 0x02000DD7 RID: 3543
 	public class ResearchState : GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMachineTarget, GeoTuner.Def>.State
 	{
-		// Token: 0x04002FF6 RID: 12278
 		public GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMachineTarget, GeoTuner.Def>.State blocked;
 
-		// Token: 0x04002FF7 RID: 12279
 		public GeoTuner.ResearchProgress available;
 
-		// Token: 0x04002FF8 RID: 12280
 		public GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMachineTarget, GeoTuner.Def>.State completed;
 	}
 
-	// Token: 0x02000DD8 RID: 3544
 	public class SwitchingGeyser : GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMachineTarget, GeoTuner.Def>.State
 	{
-		// Token: 0x04002FF9 RID: 12281
 		public GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMachineTarget, GeoTuner.Def>.State down;
 	}
 
-	// Token: 0x02000DD9 RID: 3545
 	public class GeyserSelectedState : GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMachineTarget, GeoTuner.Def>.State
 	{
-		// Token: 0x04002FFA RID: 12282
 		public GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMachineTarget, GeoTuner.Def>.State idle;
 
-		// Token: 0x04002FFB RID: 12283
 		public GeoTuner.SwitchingGeyser switchingGeyser;
 
-		// Token: 0x04002FFC RID: 12284
 		public GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMachineTarget, GeoTuner.Def>.State resourceNeeded;
 
-		// Token: 0x04002FFD RID: 12285
 		public GeoTuner.ResearchState researcherInteractionNeeded;
 
-		// Token: 0x04002FFE RID: 12286
 		public GeoTuner.BroadcastingState broadcasting;
 	}
 
-	// Token: 0x02000DDA RID: 3546
 	public class SimpleIdleState : GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMachineTarget, GeoTuner.Def>.State
 	{
-		// Token: 0x04002FFF RID: 12287
 		public GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMachineTarget, GeoTuner.Def>.State idle;
 	}
 
-	// Token: 0x02000DDB RID: 3547
 	public class NonOperationalState : GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMachineTarget, GeoTuner.Def>.State
 	{
-		// Token: 0x04003000 RID: 12288
 		public GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMachineTarget, GeoTuner.Def>.State off;
 
-		// Token: 0x04003001 RID: 12289
 		public GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMachineTarget, GeoTuner.Def>.State switchingGeyser;
 
-		// Token: 0x04003002 RID: 12290
 		public GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMachineTarget, GeoTuner.Def>.State down;
 	}
 
-	// Token: 0x02000DDC RID: 3548
 	public class OperationalState : GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMachineTarget, GeoTuner.Def>.State
 	{
-		// Token: 0x04003003 RID: 12291
 		public GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMachineTarget, GeoTuner.Def>.State idle;
 
-		// Token: 0x04003004 RID: 12292
 		public GeoTuner.SimpleIdleState noGeyserSelected;
 
-		// Token: 0x04003005 RID: 12293
 		public GeoTuner.GeyserSelectedState geyserSelected;
 	}
 
-	// Token: 0x02000DDD RID: 3549
 	public enum GeyserAnimTypeSymbols
 	{
-		// Token: 0x04003007 RID: 12295
 		meter_gas,
-		// Token: 0x04003008 RID: 12296
 		meter_metal,
-		// Token: 0x04003009 RID: 12297
 		meter_liquid,
-		// Token: 0x0400300A RID: 12298
 		meter_board
 	}
 
-	// Token: 0x02000DDE RID: 3550
 	public new class Instance : GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMachineTarget, GeoTuner.Def>.GameInstance
 	{
-		// Token: 0x06004518 RID: 17688 RVA: 0x00258A9C File Offset: 0x00256C9C
 		public Instance(IStateMachineTarget master, GeoTuner.Def def) : base(master, def)
 		{
 			this.originID = UI.StripLinkFormatting("GeoTuner") + " [" + base.gameObject.GetInstanceID().ToString() + "]";
 			this.switchGeyserMeter = new MeterController(this.animController, "geyser_target", this.GetAnimationSymbol().ToString(), Meter.Offset.Behind, Grid.SceneLayer.NoLayer, Array.Empty<string>());
 		}
 
-		// Token: 0x06004519 RID: 17689 RVA: 0x00258B18 File Offset: 0x00256D18
 		public override void StartSM()
 		{
 			base.StartSM();
@@ -457,7 +379,6 @@ public class GeoTuner : GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMach
 			base.gameObject.Subscribe(-905833192, new Action<object>(this.OnCopySettings));
 		}
 
-		// Token: 0x0600451A RID: 17690 RVA: 0x000D1248 File Offset: 0x000CF448
 		public Geyser GetFutureGeyser()
 		{
 			if (base.smi.sm.FutureGeyser.IsNull(this))
@@ -467,7 +388,6 @@ public class GeoTuner : GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMach
 			return base.sm.FutureGeyser.Get(this).GetComponent<Geyser>();
 		}
 
-		// Token: 0x0600451B RID: 17691 RVA: 0x000D127A File Offset: 0x000CF47A
 		public Geyser GetAssignedGeyser()
 		{
 			if (base.smi.sm.AssignedGeyser.IsNull(this))
@@ -477,7 +397,6 @@ public class GeoTuner : GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMach
 			return base.sm.AssignedGeyser.Get(this).GetComponent<Geyser>();
 		}
 
-		// Token: 0x0600451C RID: 17692 RVA: 0x00258BA0 File Offset: 0x00256DA0
 		public void AssignFutureGeyser(Geyser newFutureGeyser)
 		{
 			bool flag = newFutureGeyser != this.GetFutureGeyser();
@@ -502,7 +421,6 @@ public class GeoTuner : GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMach
 			}
 		}
 
-		// Token: 0x0600451D RID: 17693 RVA: 0x00258C10 File Offset: 0x00256E10
 		private void AbortSwitchGeyserChore(string reason = "Aborting Switch Geyser Chore")
 		{
 			if (this.switchGeyserChore != null)
@@ -515,7 +433,6 @@ public class GeoTuner : GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMach
 			this.switchGeyserChore = null;
 		}
 
-		// Token: 0x0600451E RID: 17694 RVA: 0x00258C68 File Offset: 0x00256E68
 		private Chore RecreateSwitchGeyserChore()
 		{
 			this.AbortSwitchGeyserChore("Recreating Chore");
@@ -525,19 +442,16 @@ public class GeoTuner : GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMach
 			return this.switchGeyserChore;
 		}
 
-		// Token: 0x0600451F RID: 17695 RVA: 0x000D12AC File Offset: 0x000CF4AC
 		private void ShowSwitchingGeyserStatusItem(Chore chore)
 		{
 			base.gameObject.GetComponent<KSelectable>().AddStatusItem(Db.Get().BuildingStatusItems.PendingSwitchToggle, null);
 		}
 
-		// Token: 0x06004520 RID: 17696 RVA: 0x000D12CF File Offset: 0x000CF4CF
 		private void HideSwitchingGeyserStatusItem(Chore chore)
 		{
 			base.gameObject.GetComponent<KSelectable>().RemoveStatusItem(Db.Get().BuildingStatusItems.PendingSwitchToggle, false);
 		}
 
-		// Token: 0x06004521 RID: 17697 RVA: 0x00258CF4 File Offset: 0x00256EF4
 		private void OnSwitchGeyserChoreCompleted(Chore chore)
 		{
 			this.GetCurrentState();
@@ -551,7 +465,6 @@ public class GeoTuner : GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMach
 			base.Trigger(1980521255, null);
 		}
 
-		// Token: 0x06004522 RID: 17698 RVA: 0x00258D48 File Offset: 0x00256F48
 		public void AssignGeyser(Geyser geyser)
 		{
 			Geyser assignedGeyser = this.GetAssignedGeyser();
@@ -578,7 +491,6 @@ public class GeoTuner : GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMach
 			}
 		}
 
-		// Token: 0x06004523 RID: 17699 RVA: 0x00258E0C File Offset: 0x0025700C
 		private void RefreshModification()
 		{
 			Geyser assignedGeyser = this.GetAssignedGeyser();
@@ -594,13 +506,11 @@ public class GeoTuner : GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMach
 			GeoTuner.DropStorageIfNotMatching(this);
 		}
 
-		// Token: 0x06004524 RID: 17700 RVA: 0x00258E78 File Offset: 0x00257078
 		public void RefreshGeyserSymbol()
 		{
 			this.switchGeyserMeter.meterController.Play(this.GetAnimationSymbol().ToString(), KAnim.PlayMode.Once, 1f, 0f);
 		}
 
-		// Token: 0x06004525 RID: 17701 RVA: 0x00258EBC File Offset: 0x002570BC
 		private GeoTuner.GeyserAnimTypeSymbols GetAnimationSymbol()
 		{
 			GeoTuner.GeyserAnimTypeSymbols result = GeoTuner.GeyserAnimTypeSymbols.meter_board;
@@ -623,14 +533,12 @@ public class GeoTuner : GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMach
 			return result;
 		}
 
-		// Token: 0x06004526 RID: 17702 RVA: 0x000D12F2 File Offset: 0x000CF4F2
 		public void OnEruptionStateChanged(object data)
 		{
 			bool flag = (bool)data;
 			this.RefreshLogicOutput();
 		}
 
-		// Token: 0x06004527 RID: 17703 RVA: 0x00258F10 File Offset: 0x00257110
 		public void RefreshLogicOutput()
 		{
 			Geyser assignedGeyser = this.GetAssignedGeyser();
@@ -642,7 +550,6 @@ public class GeoTuner : GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMach
 			this.switchGeyserMeter.meterController.SetSymbolVisiblity("light_bloom", flag4);
 		}
 
-		// Token: 0x06004528 RID: 17704 RVA: 0x0025900C File Offset: 0x0025720C
 		public void OnCopySettings(object data)
 		{
 			GameObject gameObject = (GameObject)data;
@@ -660,7 +567,6 @@ public class GeoTuner : GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMach
 			}
 		}
 
-		// Token: 0x06004529 RID: 17705 RVA: 0x0025906C File Offset: 0x0025726C
 		protected override void OnCleanUp()
 		{
 			Geyser assignedGeyser = this.GetAssignedGeyser();
@@ -672,51 +578,38 @@ public class GeoTuner : GameStateMachine<GeoTuner, GeoTuner.Instance, IStateMach
 			GeoTuner.RemoveTuning(this);
 		}
 
-		// Token: 0x0400300B RID: 12299
 		[MyCmpReq]
 		public Operational operational;
 
-		// Token: 0x0400300C RID: 12300
 		[MyCmpReq]
 		public Storage storage;
 
-		// Token: 0x0400300D RID: 12301
 		[MyCmpReq]
 		public ManualDeliveryKG manualDelivery;
 
-		// Token: 0x0400300E RID: 12302
 		[MyCmpReq]
 		public GeoTunerWorkable workable;
 
-		// Token: 0x0400300F RID: 12303
 		[MyCmpReq]
 		public GeoTunerSwitchGeyserWorkable switchGeyserWorkable;
 
-		// Token: 0x04003010 RID: 12304
 		[MyCmpReq]
 		public LogicPorts logicPorts;
 
-		// Token: 0x04003011 RID: 12305
 		[MyCmpReq]
 		public RoomTracker roomTracker;
 
-		// Token: 0x04003012 RID: 12306
 		[MyCmpReq]
 		public KBatchedAnimController animController;
 
-		// Token: 0x04003013 RID: 12307
 		public MeterController switchGeyserMeter;
 
-		// Token: 0x04003014 RID: 12308
 		public string originID;
 
-		// Token: 0x04003015 RID: 12309
 		public float enhancementDuration;
 
-		// Token: 0x04003016 RID: 12310
 		public Geyser.GeyserModification currentGeyserModification;
 
-		// Token: 0x04003017 RID: 12311
 		private Chore switchGeyserChore;
 	}
 }

@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000021 RID: 33
 public class ApothecaryConfig : IBuildingConfig
 {
-	// Token: 0x06000083 RID: 131 RVA: 0x001488D8 File Offset: 0x00146AD8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "Apothecary";
@@ -33,7 +31,6 @@ public class ApothecaryConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000084 RID: 132 RVA: 0x0014899C File Offset: 0x00146B9C
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		Prioritizable.AddRef(go);
@@ -47,13 +44,11 @@ public class ApothecaryConfig : IBuildingConfig
 		go.AddOrGet<CopyBuildingSettings>();
 	}
 
-	// Token: 0x06000085 RID: 133 RVA: 0x000AA1E0 File Offset: 0x000A83E0
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGetDef<PoweredActiveStoppableController.Def>();
 		go.AddOrGet<LogicOperationalController>();
 	}
 
-	// Token: 0x04000068 RID: 104
 	public const string ID = "Apothecary";
 }

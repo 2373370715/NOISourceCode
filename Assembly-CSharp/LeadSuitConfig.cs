@@ -5,22 +5,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000C0 RID: 192
 public class LeadSuitConfig : IEquipmentConfig, IHasDlcRestrictions
 {
-	// Token: 0x0600032C RID: 812 RVA: 0x000AA117 File Offset: 0x000A8317
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x0600032D RID: 813 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x0600032E RID: 814 RVA: 0x001556A8 File Offset: 0x001538A8
 	public EquipmentDef CreateEquipmentDef()
 	{
 		List<AttributeModifier> list = new List<AttributeModifier>();
@@ -101,7 +97,6 @@ public class LeadSuitConfig : IEquipmentConfig, IHasDlcRestrictions
 		return equipmentDef;
 	}
 
-	// Token: 0x0600032F RID: 815 RVA: 0x00155988 File Offset: 0x00153B88
 	public void DoPostConfigure(GameObject go)
 	{
 		SuitTank suitTank = go.AddComponent<SuitTank>();
@@ -125,18 +120,13 @@ public class LeadSuitConfig : IEquipmentConfig, IHasDlcRestrictions
 		go.AddComponent<SuitDiseaseHandler>();
 	}
 
-	// Token: 0x040001F1 RID: 497
 	public const string ID = "Lead_Suit";
 
-	// Token: 0x040001F2 RID: 498
 	public const string WORN_ID = "Worn_Lead_Suit";
 
-	// Token: 0x040001F3 RID: 499
 	public static ComplexRecipe recipe;
 
-	// Token: 0x040001F4 RID: 500
 	private const PathFinder.PotentialPath.Flags suit_flags = PathFinder.PotentialPath.Flags.HasLeadSuit;
 
-	// Token: 0x040001F5 RID: 501
 	private AttributeModifier expertAthleticsModifier;
 }

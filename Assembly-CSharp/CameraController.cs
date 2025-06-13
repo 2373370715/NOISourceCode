@@ -9,12 +9,9 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityStandardAssets.ImageEffects;
 
-// Token: 0x020009CE RID: 2510
 [AddComponentMenu("KMonoBehaviour/scripts/CameraController")]
 public class CameraController : KMonoBehaviour, IInputHandler
 {
-	// Token: 0x170001A7 RID: 423
-	// (get) Token: 0x06002D25 RID: 11557 RVA: 0x000C1B5E File Offset: 0x000BFD5E
 	public string handlerName
 	{
 		get
@@ -23,9 +20,6 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		}
 	}
 
-	// Token: 0x170001A8 RID: 424
-	// (get) Token: 0x06002D26 RID: 11558 RVA: 0x000C1B6B File Offset: 0x000BFD6B
-	// (set) Token: 0x06002D27 RID: 11559 RVA: 0x001FBE1C File Offset: 0x001FA01C
 	public float OrthographicSize
 	{
 		get
@@ -45,38 +39,21 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		}
 	}
 
-	// Token: 0x170001A9 RID: 425
-	// (get) Token: 0x06002D28 RID: 11560 RVA: 0x000C1B8C File Offset: 0x000BFD8C
-	// (set) Token: 0x06002D29 RID: 11561 RVA: 0x000C1B94 File Offset: 0x000BFD94
 	public KInputHandler inputHandler { get; set; }
 
-	// Token: 0x170001AA RID: 426
-	// (get) Token: 0x06002D2A RID: 11562 RVA: 0x000C1B9D File Offset: 0x000BFD9D
-	// (set) Token: 0x06002D2B RID: 11563 RVA: 0x000C1BA5 File Offset: 0x000BFDA5
 	public float targetOrthographicSize { get; private set; }
 
-	// Token: 0x170001AB RID: 427
-	// (get) Token: 0x06002D2C RID: 11564 RVA: 0x000C1BAE File Offset: 0x000BFDAE
-	// (set) Token: 0x06002D2D RID: 11565 RVA: 0x000C1BB6 File Offset: 0x000BFDB6
 	public bool isTargetPosSet { get; set; }
 
-	// Token: 0x170001AC RID: 428
-	// (get) Token: 0x06002D2E RID: 11566 RVA: 0x000C1BBF File Offset: 0x000BFDBF
-	// (set) Token: 0x06002D2F RID: 11567 RVA: 0x000C1BC7 File Offset: 0x000BFDC7
 	public Vector3 targetPos { get; private set; }
 
-	// Token: 0x170001AD RID: 429
-	// (get) Token: 0x06002D30 RID: 11568 RVA: 0x000C1BD0 File Offset: 0x000BFDD0
-	// (set) Token: 0x06002D31 RID: 11569 RVA: 0x000C1BD8 File Offset: 0x000BFDD8
 	public bool ignoreClusterFX { get; private set; }
 
-	// Token: 0x06002D32 RID: 11570 RVA: 0x000C1BE1 File Offset: 0x000BFDE1
 	public void ToggleClusterFX()
 	{
 		this.ignoreClusterFX = !this.ignoreClusterFX;
 	}
 
-	// Token: 0x06002D33 RID: 11571 RVA: 0x001FBE54 File Offset: 0x001FA054
 	protected override void OnForcedCleanUp()
 	{
 		GameInputManager inputManager = Global.GetInputManager();
@@ -87,8 +64,6 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		inputManager.usedMenus.Remove(this);
 	}
 
-	// Token: 0x170001AE RID: 430
-	// (get) Token: 0x06002D34 RID: 11572 RVA: 0x000C1BF2 File Offset: 0x000BFDF2
 	public int cameraActiveCluster
 	{
 		get
@@ -101,7 +76,6 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		}
 	}
 
-	// Token: 0x06002D35 RID: 11573 RVA: 0x001FBE78 File Offset: 0x001FA078
 	public void GetWorldCamera(out Vector2I worldOffset, out Vector2I worldSize)
 	{
 		WorldContainer worldContainer = null;
@@ -119,9 +93,6 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		worldSize = new Vector2I(Grid.WidthInCells, Grid.HeightInCells);
 	}
 
-	// Token: 0x170001AF RID: 431
-	// (get) Token: 0x06002D36 RID: 11574 RVA: 0x000C1C11 File Offset: 0x000BFE11
-	// (set) Token: 0x06002D37 RID: 11575 RVA: 0x000C1C19 File Offset: 0x000BFE19
 	public bool DisableUserCameraControl
 	{
 		get
@@ -142,24 +113,18 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		}
 	}
 
-	// Token: 0x170001B0 RID: 432
-	// (get) Token: 0x06002D38 RID: 11576 RVA: 0x000C1C4D File Offset: 0x000BFE4D
-	// (set) Token: 0x06002D39 RID: 11577 RVA: 0x000C1C54 File Offset: 0x000BFE54
 	public static CameraController Instance { get; private set; }
 
-	// Token: 0x06002D3A RID: 11578 RVA: 0x000C1C5C File Offset: 0x000BFE5C
 	public static void DestroyInstance()
 	{
 		CameraController.Instance = null;
 	}
 
-	// Token: 0x06002D3B RID: 11579 RVA: 0x000C1C64 File Offset: 0x000BFE64
 	public void ToggleColouredOverlayView(bool enabled)
 	{
 		this.mrt.ToggleColouredOverlayView(enabled);
 	}
 
-	// Token: 0x06002D3C RID: 11580 RVA: 0x001FBEEC File Offset: 0x001FA0EC
 	protected override void OnPrefabInit()
 	{
 		global::Util.Reset(base.transform);
@@ -291,13 +256,11 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		this.VisibleArea.Update();
 	}
 
-	// Token: 0x06002D3D RID: 11581 RVA: 0x000C1C72 File Offset: 0x000BFE72
 	private void SetSpeedFromPrefs(object data = null)
 	{
 		this.keyPanningSpeed = Mathf.Clamp(0.1f, KPlayerPrefs.GetFloat("CameraSpeed"), 2f);
 	}
 
-	// Token: 0x06002D3E RID: 11582 RVA: 0x001FC624 File Offset: 0x001FA824
 	public int GetCursorCell()
 	{
 		Vector3 rhs = Camera.main.ScreenToWorldPoint(KInputManager.GetMousePos());
@@ -306,7 +269,6 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		return Grid.PosToCell(vector);
 	}
 
-	// Token: 0x06002D3F RID: 11583 RVA: 0x000C1C93 File Offset: 0x000BFE93
 	public static Camera CloneCamera(Camera camera, string name)
 	{
 		Camera camera2 = new GameObject
@@ -317,7 +279,6 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		return camera2;
 	}
 
-	// Token: 0x06002D40 RID: 11584 RVA: 0x001FC680 File Offset: 0x001FA880
 	private Camera CopyCamera(Camera camera, string name)
 	{
 		Camera camera2 = CameraController.CloneCamera(camera, name);
@@ -325,25 +286,19 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		return camera2;
 	}
 
-	// Token: 0x06002D41 RID: 11585 RVA: 0x000C1CAD File Offset: 0x000BFEAD
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
 		this.Restore();
 	}
 
-	// Token: 0x06002D42 RID: 11586 RVA: 0x000C1CBB File Offset: 0x000BFEBB
 	public static void SetDefaultCameraSpeed()
 	{
 		KPlayerPrefs.SetFloat("CameraSpeed", 1f);
 	}
 
-	// Token: 0x170001B1 RID: 433
-	// (get) Token: 0x06002D43 RID: 11587 RVA: 0x000C1CCC File Offset: 0x000BFECC
-	// (set) Token: 0x06002D44 RID: 11588 RVA: 0x000C1CD4 File Offset: 0x000BFED4
 	public Coroutine activeFadeRoutine { get; private set; }
 
-	// Token: 0x06002D45 RID: 11589 RVA: 0x000C1CDD File Offset: 0x000BFEDD
 	public void FadeOut(float targetPercentage = 1f, float speed = 1f, System.Action callback = null)
 	{
 		if (this.activeFadeRoutine != null)
@@ -353,7 +308,6 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		this.activeFadeRoutine = base.StartCoroutine(this.FadeWithBlack(true, 0f, targetPercentage, speed, null));
 	}
 
-	// Token: 0x06002D46 RID: 11590 RVA: 0x000C1D0E File Offset: 0x000BFF0E
 	public void FadeIn(float targetPercentage = 0f, float speed = 1f, System.Action callback = null)
 	{
 		if (this.activeFadeRoutine != null)
@@ -363,19 +317,16 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		this.activeFadeRoutine = base.StartCoroutine(this.FadeWithBlack(true, 1f, targetPercentage, speed, callback));
 	}
 
-	// Token: 0x06002D47 RID: 11591 RVA: 0x001FC6A4 File Offset: 0x001FA8A4
 	public void ActiveWorldStarWipe(int id, System.Action callback = null)
 	{
 		this.ActiveWorldStarWipe(id, false, default(Vector3), 10f, callback);
 	}
 
-	// Token: 0x06002D48 RID: 11592 RVA: 0x000C1D3F File Offset: 0x000BFF3F
 	public void ActiveWorldStarWipe(int id, Vector3 position, float forceOrthgraphicSize = 10f, System.Action callback = null)
 	{
 		this.ActiveWorldStarWipe(id, true, position, forceOrthgraphicSize, callback);
 	}
 
-	// Token: 0x06002D49 RID: 11593 RVA: 0x001FC6C8 File Offset: 0x001FA8C8
 	private void ActiveWorldStarWipe(int id, bool useForcePosition, Vector3 forcePosition, float forceOrthgraphicSize, System.Action callback)
 	{
 		if (this.activeFadeRoutine != null)
@@ -402,7 +353,6 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		}
 	}
 
-	// Token: 0x06002D4A RID: 11594 RVA: 0x000C1D4D File Offset: 0x000BFF4D
 	private IEnumerator SwapToWorldFade(int worldId, bool useForcePosition, Vector3 forcePosition, float forceOrthgraphicSize, System.Action newWorldCallback)
 	{
 		AudioMixer.instance.Start(AudioMixerSnapshots.Get().ActiveBaseChangeSnapshot);
@@ -424,13 +374,11 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		yield break;
 	}
 
-	// Token: 0x06002D4B RID: 11595 RVA: 0x000C1D81 File Offset: 0x000BFF81
 	public void SetWorldInteractive(bool state)
 	{
 		GameScreenManager.Instance.fadePlaneFront.raycastTarget = !state;
 	}
 
-	// Token: 0x06002D4C RID: 11596 RVA: 0x000C1D96 File Offset: 0x000BFF96
 	private IEnumerator FadeWithBlack(bool fadeUI, float startBlackPercent, float targetBlackPercent, float speed = 1f, System.Action callback = null)
 	{
 		Image fadePlane = fadeUI ? GameScreenManager.Instance.fadePlaneFront : GameScreenManager.Instance.fadePlaneBack;
@@ -452,14 +400,12 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		yield break;
 	}
 
-	// Token: 0x06002D4D RID: 11597 RVA: 0x000C1DCA File Offset: 0x000BFFCA
 	public void EnableFreeCamera(bool enable)
 	{
 		this.FreeCameraEnabled = enable;
 		this.SetInfoText("Screenshot Mode (ESC to exit)");
 	}
 
-	// Token: 0x06002D4E RID: 11598 RVA: 0x001FC750 File Offset: 0x001FA950
 	private static bool WithinInputField()
 	{
 		UnityEngine.EventSystems.EventSystem current = UnityEngine.EventSystems.EventSystem.current;
@@ -475,8 +421,6 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		return result;
 	}
 
-	// Token: 0x170001B2 RID: 434
-	// (get) Token: 0x06002D4F RID: 11599 RVA: 0x001FC7A8 File Offset: 0x001FA9A8
 	public static bool IsMouseOverGameWindow
 	{
 		get
@@ -485,7 +429,6 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		}
 	}
 
-	// Token: 0x06002D50 RID: 11600 RVA: 0x001FC800 File Offset: 0x001FAA00
 	private void SetInfoText(string text)
 	{
 		this.infoText.text = text;
@@ -494,7 +437,6 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		this.infoText.color = color;
 	}
 
-	// Token: 0x06002D51 RID: 11601 RVA: 0x001FC840 File Offset: 0x001FAA40
 	public void OnKeyDown(KButtonEvent e)
 	{
 		if (e.Consumed)
@@ -661,7 +603,6 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		}
 	}
 
-	// Token: 0x06002D52 RID: 11602 RVA: 0x001FCD98 File Offset: 0x001FAF98
 	public bool ChangeWorldInput(KButtonEvent e)
 	{
 		if (e.Consumed)
@@ -727,7 +668,6 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		return false;
 	}
 
-	// Token: 0x06002D53 RID: 11603 RVA: 0x001FCED0 File Offset: 0x001FB0D0
 	public void OnKeyUp(KButtonEvent e)
 	{
 		if (this.DisableUserCameraControl)
@@ -805,13 +745,11 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		}
 	}
 
-	// Token: 0x06002D54 RID: 11604 RVA: 0x000C1DDE File Offset: 0x000BFFDE
 	public void ForcePanningState(bool state)
 	{
 		this.panning = false;
 	}
 
-	// Token: 0x06002D55 RID: 11605 RVA: 0x001FD06C File Offset: 0x001FB26C
 	public void CameraGoHome(float speed = 2f, bool showCameraReturnButton = false)
 	{
 		GameObject activeTelepad = GameUtil.GetActiveTelepad();
@@ -822,7 +760,6 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		}
 	}
 
-	// Token: 0x06002D56 RID: 11606 RVA: 0x000C1DE7 File Offset: 0x000BFFE7
 	public void CameraGoTo(Vector3 pos, float speed = 2f, bool playSound = true)
 	{
 		pos.z = base.transform.GetPosition().z;
@@ -830,7 +767,6 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		this.SetOverrideZoomSpeed(speed);
 	}
 
-	// Token: 0x06002D57 RID: 11607 RVA: 0x001FD0DC File Offset: 0x001FB2DC
 	public void SnapTo(Vector3 pos)
 	{
 		this.ClearFollowTarget();
@@ -842,20 +778,17 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		this.OrthographicSize = this.targetOrthographicSize;
 	}
 
-	// Token: 0x06002D58 RID: 11608 RVA: 0x000C1E14 File Offset: 0x000C0014
 	public void SnapTo(Vector3 pos, float orthographicSize)
 	{
 		this.targetOrthographicSize = orthographicSize;
 		this.SnapTo(pos);
 	}
 
-	// Token: 0x06002D59 RID: 11609 RVA: 0x000C1E24 File Offset: 0x000C0024
 	public void SetOverrideZoomSpeed(float tempZoomSpeed)
 	{
 		this.overrideZoomSpeed = tempZoomSpeed;
 	}
 
-	// Token: 0x06002D5A RID: 11610 RVA: 0x001FD134 File Offset: 0x001FB334
 	public void SetTargetPos(Vector3 pos, float orthographic_size, bool playSound)
 	{
 		int num = Grid.PosToCell(pos);
@@ -890,7 +823,6 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		this.CheckMoveUnpause();
 	}
 
-	// Token: 0x06002D5B RID: 11611 RVA: 0x001FD23C File Offset: 0x001FB43C
 	public void SetTargetPosForWorldChange(Vector3 pos, float orthographic_size, bool playSound)
 	{
 		int num = Grid.PosToCell(pos);
@@ -913,19 +845,16 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		this.OrthographicSize = orthographic_size;
 	}
 
-	// Token: 0x06002D5C RID: 11612 RVA: 0x000C1E2D File Offset: 0x000C002D
 	public void SetMaxOrthographicSize(float size)
 	{
 		this.maxOrthographicSize = size;
 	}
 
-	// Token: 0x06002D5D RID: 11613 RVA: 0x000C1E36 File Offset: 0x000C0036
 	public void SetPosition(Vector3 pos)
 	{
 		base.transform.SetPosition(pos);
 	}
 
-	// Token: 0x06002D5E RID: 11614 RVA: 0x000C1E45 File Offset: 0x000C0045
 	public IEnumerator DoCinematicZoom(float targetOrthographicSize)
 	{
 		this.cinemaCamEnabled = true;
@@ -941,7 +870,6 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		yield break;
 	}
 
-	// Token: 0x06002D5F RID: 11615 RVA: 0x001FD2E0 File Offset: 0x001FB4E0
 	private Vector3 PointUnderCursor(Vector3 mousePos, Camera cam)
 	{
 		Ray ray = cam.ScreenPointToRay(mousePos);
@@ -950,7 +878,6 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		return ray.origin + b;
 	}
 
-	// Token: 0x06002D60 RID: 11616 RVA: 0x001FD330 File Offset: 0x001FB530
 	private void CinemaCamUpdate()
 	{
 		float unscaledDeltaTime = Time.unscaledDeltaTime;
@@ -1113,7 +1040,6 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		}
 	}
 
-	// Token: 0x06002D61 RID: 11617 RVA: 0x001FD7F8 File Offset: 0x001FB9F8
 	private void NormalCamUpdate()
 	{
 		float unscaledDeltaTime = Time.unscaledDeltaTime;
@@ -1218,7 +1144,6 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		}
 	}
 
-	// Token: 0x06002D62 RID: 11618 RVA: 0x001FDC44 File Offset: 0x001FBE44
 	private void Update()
 	{
 		if (Game.Instance == null || !Game.Instance.timelapser.CapturingTimelapseScreenshot)
@@ -1246,7 +1171,6 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		this.soundCuller = SoundCuller.CreateCuller();
 	}
 
-	// Token: 0x06002D63 RID: 11619 RVA: 0x001FDD94 File Offset: 0x001FBF94
 	private Vector3 GetFollowPos()
 	{
 		if (this.followTarget != null)
@@ -1262,7 +1186,6 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		return Vector3.zero;
 	}
 
-	// Token: 0x06002D64 RID: 11620 RVA: 0x001FDDE4 File Offset: 0x001FBFE4
 	public static float GetHighestVisibleCell_Height(byte worldID = 255)
 	{
 		Vector2 zero = Vector2.zero;
@@ -1283,7 +1206,6 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		return vector.y * 1.1f + 20f + vector2.y;
 	}
 
-	// Token: 0x06002D65 RID: 11621 RVA: 0x001FDEEC File Offset: 0x001FC0EC
 	private void ConstrainToWorld()
 	{
 		if (Game.Instance != null && Game.Instance.IsLoading())
@@ -1335,7 +1257,6 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		base.transform.SetPosition(position);
 	}
 
-	// Token: 0x06002D66 RID: 11622 RVA: 0x001FE18C File Offset: 0x001FC38C
 	public void Save(BinaryWriter writer)
 	{
 		writer.Write(base.transform.GetPosition());
@@ -1347,7 +1268,6 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		CameraSaveData.rotation = base.transform.rotation;
 	}
 
-	// Token: 0x06002D67 RID: 11623 RVA: 0x001FE208 File Offset: 0x001FC408
 	private void Restore()
 	{
 		if (CameraSaveData.valid)
@@ -1367,56 +1287,47 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		}
 	}
 
-	// Token: 0x06002D68 RID: 11624 RVA: 0x000C1E5B File Offset: 0x000C005B
 	private void OnMRTSetupComplete(Camera cam)
 	{
 		this.cameras.Add(cam);
 	}
 
-	// Token: 0x06002D69 RID: 11625 RVA: 0x000C1E69 File Offset: 0x000C0069
 	public bool IsAudibleSound(Vector2 pos)
 	{
 		return this.soundCuller.IsAudible(pos);
 	}
 
-	// Token: 0x06002D6A RID: 11626 RVA: 0x001FE2C4 File Offset: 0x001FC4C4
 	public bool IsAudibleSound(Vector3 pos, EventReference event_ref)
 	{
 		string eventReferencePath = KFMOD.GetEventReferencePath(event_ref);
 		return this.soundCuller.IsAudible(pos, eventReferencePath);
 	}
 
-	// Token: 0x06002D6B RID: 11627 RVA: 0x000C1E77 File Offset: 0x000C0077
 	public bool IsAudibleSound(Vector3 pos, HashedString sound_path)
 	{
 		return this.soundCuller.IsAudible(pos, sound_path);
 	}
 
-	// Token: 0x06002D6C RID: 11628 RVA: 0x000C1E8B File Offset: 0x000C008B
 	public Vector3 GetVerticallyScaledPosition(Vector3 pos, bool objectIsSelectedAndVisible = false)
 	{
 		return this.soundCuller.GetVerticallyScaledPosition(pos, objectIsSelectedAndVisible);
 	}
 
-	// Token: 0x06002D6D RID: 11629 RVA: 0x001FE2F0 File Offset: 0x001FC4F0
 	public bool IsVisiblePos(Vector3 pos)
 	{
 		return this.VisibleArea.CurrentArea.Contains(pos);
 	}
 
-	// Token: 0x06002D6E RID: 11630 RVA: 0x001FE314 File Offset: 0x001FC514
 	public bool IsVisiblePosExtended(Vector3 pos)
 	{
 		return this.VisibleArea.CurrentAreaExtended.Contains(pos);
 	}
 
-	// Token: 0x06002D6F RID: 11631 RVA: 0x000C1C5C File Offset: 0x000BFE5C
 	protected override void OnCleanUp()
 	{
 		CameraController.Instance = null;
 	}
 
-	// Token: 0x06002D70 RID: 11632 RVA: 0x001FE338 File Offset: 0x001FC538
 	public void SetFollowTarget(Transform follow_target)
 	{
 		this.ClearFollowTarget();
@@ -1433,7 +1344,6 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		this.followTarget.GetComponent<KMonoBehaviour>().Trigger(-1506069671, null);
 	}
 
-	// Token: 0x06002D71 RID: 11633 RVA: 0x000C1E9A File Offset: 0x000C009A
 	public void ClearFollowTarget()
 	{
 		if (this.followTarget == null)
@@ -1444,7 +1354,6 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		this.followTarget = null;
 	}
 
-	// Token: 0x06002D72 RID: 11634 RVA: 0x001FE3C8 File Offset: 0x001FC5C8
 	public void UpdateFollowTarget()
 	{
 		if (this.followTarget != null)
@@ -1465,7 +1374,6 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		}
 	}
 
-	// Token: 0x06002D73 RID: 11635 RVA: 0x001FE494 File Offset: 0x001FC694
 	public void RenderForTimelapser(ref RenderTexture tex)
 	{
 		this.RenderCameraForTimelapse(this.baseCamera, ref tex, this.timelapseCameraCullingMask, -1f);
@@ -1475,7 +1383,6 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		this.overlayCamera.clearFlags = clearFlags;
 	}
 
-	// Token: 0x06002D74 RID: 11636 RVA: 0x001FE4F8 File Offset: 0x001FC6F8
 	private void RenderCameraForTimelapse(Camera cam, ref RenderTexture tex, LayerMask mask, float overrideAspect = -1f)
 	{
 		int cullingMask = cam.cullingMask;
@@ -1496,7 +1403,6 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		cam.targetTexture = targetTexture;
 	}
 
-	// Token: 0x06002D75 RID: 11637 RVA: 0x000C1EC8 File Offset: 0x000C00C8
 	private void CheckMoveUnpause()
 	{
 		if (this.cinemaCamEnabled && this.cinemaUnpauseNextMove)
@@ -1509,207 +1415,143 @@ public class CameraController : KMonoBehaviour, IInputHandler
 		}
 	}
 
-	// Token: 0x04001EE8 RID: 7912
 	public const float DEFAULT_MAX_ORTHO_SIZE = 20f;
 
-	// Token: 0x04001EE9 RID: 7913
 	public const float MAX_Y_SCALE = 1.1f;
 
-	// Token: 0x04001EEA RID: 7914
 	public LocText infoText;
 
-	// Token: 0x04001EEB RID: 7915
 	private const float FIXED_Z = -100f;
 
-	// Token: 0x04001EED RID: 7917
 	public bool FreeCameraEnabled;
 
-	// Token: 0x04001EEE RID: 7918
 	public float zoomSpeed;
 
-	// Token: 0x04001EEF RID: 7919
 	public float minOrthographicSize;
 
-	// Token: 0x04001EF0 RID: 7920
 	public float zoomFactor;
 
-	// Token: 0x04001EF1 RID: 7921
 	public float keyPanningSpeed;
 
-	// Token: 0x04001EF2 RID: 7922
 	public float keyPanningEasing;
 
-	// Token: 0x04001EF3 RID: 7923
 	public Texture2D dayColourCube;
 
-	// Token: 0x04001EF4 RID: 7924
 	public Texture2D nightColourCube;
 
-	// Token: 0x04001EF5 RID: 7925
 	public Material LightBufferMaterial;
 
-	// Token: 0x04001EF6 RID: 7926
 	public Material LightCircleOverlay;
 
-	// Token: 0x04001EF7 RID: 7927
 	public Material LightConeOverlay;
 
-	// Token: 0x04001EF8 RID: 7928
 	public Transform followTarget;
 
-	// Token: 0x04001EF9 RID: 7929
 	public Vector3 followTargetPos;
 
-	// Token: 0x04001EFA RID: 7930
 	public GridVisibleArea VisibleArea = new GridVisibleArea(8);
 
-	// Token: 0x04001EFC RID: 7932
 	private float maxOrthographicSize = 20f;
 
-	// Token: 0x04001EFD RID: 7933
 	private float overrideZoomSpeed;
 
-	// Token: 0x04001EFE RID: 7934
 	private bool panning;
 
-	// Token: 0x04001EFF RID: 7935
 	private const float MaxEdgePaddingPercent = 0.33f;
 
-	// Token: 0x04001F00 RID: 7936
 	private Vector3 keyPanDelta;
 
-	// Token: 0x04001F03 RID: 7939
 	[SerializeField]
 	private LayerMask timelapseCameraCullingMask;
 
-	// Token: 0x04001F04 RID: 7940
 	[SerializeField]
 	private LayerMask timelapseOverlayCameraCullingMask;
 
-	// Token: 0x04001F06 RID: 7942
 	private bool userCameraControlDisabled;
 
-	// Token: 0x04001F07 RID: 7943
 	private bool panLeft;
 
-	// Token: 0x04001F08 RID: 7944
 	private bool panRight;
 
-	// Token: 0x04001F09 RID: 7945
 	private bool panUp;
 
-	// Token: 0x04001F0A RID: 7946
 	private bool panDown;
 
-	// Token: 0x04001F0C RID: 7948
 	[NonSerialized]
 	public Camera baseCamera;
 
-	// Token: 0x04001F0D RID: 7949
 	[NonSerialized]
 	public Camera overlayCamera;
 
-	// Token: 0x04001F0E RID: 7950
 	[NonSerialized]
 	public Camera overlayNoDepthCamera;
 
-	// Token: 0x04001F0F RID: 7951
 	[NonSerialized]
 	public Camera uiCamera;
 
-	// Token: 0x04001F10 RID: 7952
 	[NonSerialized]
 	public Camera lightBufferCamera;
 
-	// Token: 0x04001F11 RID: 7953
 	[NonSerialized]
 	public Camera simOverlayCamera;
 
-	// Token: 0x04001F12 RID: 7954
 	[NonSerialized]
 	public Camera infraredCamera;
 
-	// Token: 0x04001F13 RID: 7955
 	[NonSerialized]
 	public Camera timelapseFreezeCamera;
 
-	// Token: 0x04001F14 RID: 7956
 	[SerializeField]
 	private List<GameScreenManager.UIRenderTarget> uiCameraTargets;
 
-	// Token: 0x04001F15 RID: 7957
 	public List<Camera> cameras = new List<Camera>();
 
-	// Token: 0x04001F16 RID: 7958
 	private MultipleRenderTarget mrt;
 
-	// Token: 0x04001F17 RID: 7959
 	public SoundCuller soundCuller;
 
-	// Token: 0x04001F18 RID: 7960
 	private bool cinemaCamEnabled;
 
-	// Token: 0x04001F19 RID: 7961
 	private bool cinemaToggleLock;
 
-	// Token: 0x04001F1A RID: 7962
 	private bool cinemaToggleEasing;
 
-	// Token: 0x04001F1B RID: 7963
 	private bool cinemaUnpauseNextMove;
 
-	// Token: 0x04001F1C RID: 7964
 	private bool cinemaPanLeft;
 
-	// Token: 0x04001F1D RID: 7965
 	private bool cinemaPanRight;
 
-	// Token: 0x04001F1E RID: 7966
 	private bool cinemaPanUp;
 
-	// Token: 0x04001F1F RID: 7967
 	private bool cinemaPanDown;
 
-	// Token: 0x04001F20 RID: 7968
 	private bool cinemaZoomIn;
 
-	// Token: 0x04001F21 RID: 7969
 	private bool cinemaZoomOut;
 
-	// Token: 0x04001F22 RID: 7970
 	private int cinemaZoomSpeed = 10;
 
-	// Token: 0x04001F23 RID: 7971
 	private float cinemaEasing = 0.05f;
 
-	// Token: 0x04001F24 RID: 7972
 	private float cinemaZoomVelocity;
 
-	// Token: 0x04001F26 RID: 7974
 	private float smoothDt;
 
-	// Token: 0x020009CF RID: 2511
 	public class Tuning : TuningData<CameraController.Tuning>
 	{
-		// Token: 0x04001F27 RID: 7975
 		public float maxOrthographicSizeDebug;
 
-		// Token: 0x04001F28 RID: 7976
 		public float cinemaZoomFactor = 100f;
 
-		// Token: 0x04001F29 RID: 7977
 		public float cinemaPanFactor = 50f;
 
-		// Token: 0x04001F2A RID: 7978
 		public float cinemaZoomToFactor = 100f;
 
-		// Token: 0x04001F2B RID: 7979
 		public float cinemaPanToFactor = 50f;
 
-		// Token: 0x04001F2C RID: 7980
 		public float targetZoomEasingFactor = 400f;
 
-		// Token: 0x04001F2D RID: 7981
 		public float targetPanEasingFactor = 100f;
 	}
 }

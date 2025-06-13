@@ -5,10 +5,8 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02002043 RID: 8259
 public class TelepadSideScreen : SideScreenContent
 {
-	// Token: 0x0600AF36 RID: 44854 RVA: 0x004296C0 File Offset: 0x004278C0
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -29,13 +27,11 @@ public class TelepadSideScreen : SideScreenContent
 		this.BuildVictoryConditions();
 	}
 
-	// Token: 0x0600AF37 RID: 44855 RVA: 0x00116708 File Offset: 0x00114908
 	public override bool IsValidForTarget(GameObject target)
 	{
 		return target.GetComponent<Telepad>() != null;
 	}
 
-	// Token: 0x0600AF38 RID: 44856 RVA: 0x00429734 File Offset: 0x00427934
 	public override void SetTarget(GameObject target)
 	{
 		Telepad component = target.GetComponent<Telepad>();
@@ -53,7 +49,6 @@ public class TelepadSideScreen : SideScreenContent
 		base.gameObject.SetActive(true);
 	}
 
-	// Token: 0x0600AF39 RID: 44857 RVA: 0x0042978C File Offset: 0x0042798C
 	private void Update()
 	{
 		if (this.targetTelepad != null)
@@ -82,7 +77,6 @@ public class TelepadSideScreen : SideScreenContent
 		}
 	}
 
-	// Token: 0x0600AF3A RID: 44858 RVA: 0x00429864 File Offset: 0x00427A64
 	private void SetContentState(bool isLabel)
 	{
 		if (this.timeLabel.gameObject.activeInHierarchy != isLabel)
@@ -95,7 +89,6 @@ public class TelepadSideScreen : SideScreenContent
 		}
 	}
 
-	// Token: 0x0600AF3B RID: 44859 RVA: 0x004298BC File Offset: 0x00427ABC
 	private void BuildVictoryConditions()
 	{
 		foreach (ColonyAchievement colonyAchievement in Db.Get().ColonyAchievements.resources)
@@ -126,7 +119,6 @@ public class TelepadSideScreen : SideScreenContent
 		}
 	}
 
-	// Token: 0x0600AF3C RID: 44860 RVA: 0x00429A60 File Offset: 0x00427C60
 	private void UpdateVictoryConditions()
 	{
 		foreach (ColonyAchievement colonyAchievement in Db.Get().ColonyAchievements.resources)
@@ -148,7 +140,6 @@ public class TelepadSideScreen : SideScreenContent
 		}
 	}
 
-	// Token: 0x0600AF3D RID: 44861 RVA: 0x00116716 File Offset: 0x00114916
 	private void UpdateAchievementsUnlocked()
 	{
 		if (SaveGame.Instance.ColonyAchievementTracker.achievementsToDisplay.Count > 0)
@@ -157,7 +148,6 @@ public class TelepadSideScreen : SideScreenContent
 		}
 	}
 
-	// Token: 0x0600AF3E RID: 44862 RVA: 0x00429BE4 File Offset: 0x00427DE4
 	private void UpdateSkills()
 	{
 		bool active = false;
@@ -173,49 +163,37 @@ public class TelepadSideScreen : SideScreenContent
 		this.skillPointsAvailable.gameObject.SetActive(active);
 	}
 
-	// Token: 0x040089B3 RID: 35251
 	[SerializeField]
 	private LocText timeLabel;
 
-	// Token: 0x040089B4 RID: 35252
 	[SerializeField]
 	private KButton viewImmigrantsBtn;
 
-	// Token: 0x040089B5 RID: 35253
 	[SerializeField]
 	private Telepad targetTelepad;
 
-	// Token: 0x040089B6 RID: 35254
 	[SerializeField]
 	private KButton viewColonySummaryBtn;
 
-	// Token: 0x040089B7 RID: 35255
 	[SerializeField]
 	private Image newAchievementsEarned;
 
-	// Token: 0x040089B8 RID: 35256
 	[SerializeField]
 	private KButton openRolesScreenButton;
 
-	// Token: 0x040089B9 RID: 35257
 	[SerializeField]
 	private Image skillPointsAvailable;
 
-	// Token: 0x040089BA RID: 35258
 	[SerializeField]
 	private GameObject victoryConditionsContainer;
 
-	// Token: 0x040089BB RID: 35259
 	[SerializeField]
 	private GameObject conditionContainerTemplate;
 
-	// Token: 0x040089BC RID: 35260
 	[SerializeField]
 	private GameObject checkboxLinePrefab;
 
-	// Token: 0x040089BD RID: 35261
 	private Dictionary<string, Dictionary<ColonyAchievementRequirement, GameObject>> entries = new Dictionary<string, Dictionary<ColonyAchievementRequirement, GameObject>>();
 
-	// Token: 0x040089BE RID: 35262
 	private Dictionary<ColonyAchievement, Dictionary<ColonyAchievementRequirement, GameObject>> victoryAchievementWidgets = new Dictionary<ColonyAchievement, Dictionary<ColonyAchievementRequirement, GameObject>>();
 }

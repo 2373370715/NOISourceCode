@@ -2,16 +2,13 @@
 using Unity.Collections;
 using UnityEngine;
 
-// Token: 0x02001AD2 RID: 6866
 public class RangeVisualizerEffect : MonoBehaviour
 {
-	// Token: 0x06008F9A RID: 36762 RVA: 0x001023E0 File Offset: 0x001005E0
 	private void Start()
 	{
 		this.material = new Material(Shader.Find("Klei/PostFX/Range"));
 	}
 
-	// Token: 0x06008F9B RID: 36763 RVA: 0x00383454 File Offset: 0x00381654
 	private void OnPostRender()
 	{
 		RangeVisualizer rangeVisualizer = null;
@@ -177,7 +174,6 @@ public class RangeVisualizerEffect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06008F9C RID: 36764 RVA: 0x00383BD8 File Offset: 0x00381DD8
 	private void FindWorldBounds(out Vector2I world_min, out Vector2I world_max)
 	{
 		if (ClusterManager.Instance != null)
@@ -193,18 +189,13 @@ public class RangeVisualizerEffect : MonoBehaviour
 		world_max.y = Grid.HeightInCells;
 	}
 
-	// Token: 0x04006C2E RID: 27694
 	private Material material;
 
-	// Token: 0x04006C2F RID: 27695
 	private Camera myCamera;
 
-	// Token: 0x04006C30 RID: 27696
 	public Color highlightColor = new Color(0f, 1f, 0.8f, 1f);
 
-	// Token: 0x04006C31 RID: 27697
 	private Texture2D OcclusionTex;
 
-	// Token: 0x04006C32 RID: 27698
 	private int LastVisibleTileCount;
 }

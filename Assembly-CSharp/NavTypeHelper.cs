@@ -1,10 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000805 RID: 2053
 public static class NavTypeHelper
 {
-	// Token: 0x06002435 RID: 9269 RVA: 0x001D5AE8 File Offset: 0x001D3CE8
 	public static Vector3 GetNavPos(int cell, NavType nav_type)
 	{
 		Vector3 zero = Vector3.zero;
@@ -30,7 +28,6 @@ public static class NavTypeHelper
 		return Grid.CellToPosCCC(cell, Grid.SceneLayer.Move);
 	}
 
-	// Token: 0x06002436 RID: 9270 RVA: 0x001D5B90 File Offset: 0x001D3D90
 	public static int GetAnchorCell(NavType nav_type, int cell)
 	{
 		int result = Grid.InvalidCell;

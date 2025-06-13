@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000D50 RID: 3408
 public class Deepfryer : ComplexFabricator, IGameObjectEffectDescriptor
 {
-	// Token: 0x06004216 RID: 16918 RVA: 0x000CF0A6 File Offset: 0x000CD2A6
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -15,7 +13,6 @@ public class Deepfryer : ComplexFabricator, IGameObjectEffectDescriptor
 		this.fetchChoreTypeIdHash = Db.Get().ChoreTypes.CookFetch.IdHash;
 	}
 
-	// Token: 0x06004217 RID: 16919 RVA: 0x0024E0F4 File Offset: 0x0024C2F4
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -43,7 +40,6 @@ public class Deepfryer : ComplexFabricator, IGameObjectEffectDescriptor
 		base.GetComponent<ComplexFabricator>().workingStatusItem = Db.Get().BuildingStatusItems.ComplexFabricatorCooking;
 	}
 
-	// Token: 0x06004218 RID: 16920 RVA: 0x0024E200 File Offset: 0x0024C400
 	protected override List<GameObject> SpawnOrderProduct(ComplexRecipe recipe)
 	{
 		List<GameObject> list = base.SpawnOrderProduct(recipe);
@@ -56,7 +52,6 @@ public class Deepfryer : ComplexFabricator, IGameObjectEffectDescriptor
 		return list;
 	}
 
-	// Token: 0x06004219 RID: 16921 RVA: 0x000CF0DD File Offset: 0x000CD2DD
 	public override List<Descriptor> GetDescriptors(GameObject go)
 	{
 		List<Descriptor> descriptors = base.GetDescriptors(go);
@@ -64,7 +59,6 @@ public class Deepfryer : ComplexFabricator, IGameObjectEffectDescriptor
 		return descriptors;
 	}
 
-	// Token: 0x04002D91 RID: 11665
 	[SerializeField]
 	private int diseaseCountKillRate = 100;
 }

@@ -5,10 +5,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020002B6 RID: 694
 public class PrickleFlowerConfig : IEntityConfig
 {
-	// Token: 0x06000A2A RID: 2602 RVA: 0x001738FC File Offset: 0x00171AFC
 	public GameObject CreatePrefab()
 	{
 		string id = "PrickleFlower";
@@ -61,23 +59,18 @@ public class PrickleFlowerConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06000A2B RID: 2603 RVA: 0x000AECE3 File Offset: 0x000ACEE3
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.GetComponent<PrimaryElement>().Temperature = 288.15f;
 	}
 
-	// Token: 0x06000A2C RID: 2604 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x04000800 RID: 2048
 	public const float WATER_RATE = 0.033333335f;
 
-	// Token: 0x04000801 RID: 2049
 	public const string ID = "PrickleFlower";
 
-	// Token: 0x04000802 RID: 2050
 	public const string SEED_ID = "PrickleFlowerSeed";
 }

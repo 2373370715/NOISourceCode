@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000288 RID: 648
 public class BasicFabricMaterialPlantConfig : IEntityConfig
 {
-	// Token: 0x06000970 RID: 2416 RVA: 0x0016F2BC File Offset: 0x0016D4BC
 	public GameObject CreatePrefab()
 	{
 		string id = BasicFabricMaterialPlantConfig.ID;
@@ -60,22 +58,17 @@ public class BasicFabricMaterialPlantConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06000971 RID: 2417 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x06000972 RID: 2418 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x0400073B RID: 1851
 	public static string ID = "BasicFabricPlant";
 
-	// Token: 0x0400073C RID: 1852
 	public static string SEED_ID = "BasicFabricMaterialPlantSeed";
 
-	// Token: 0x0400073D RID: 1853
 	public const float WATER_RATE = 0.26666668f;
 }

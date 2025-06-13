@@ -4,16 +4,13 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001FE9 RID: 8169
 public class LogicBroadcastChannelSideScreen : SideScreenContent
 {
-	// Token: 0x0600ACA3 RID: 44195 RVA: 0x00114ACC File Offset: 0x00112CCC
 	public override bool IsValidForTarget(GameObject target)
 	{
 		return target.GetComponent<LogicBroadcastReceiver>() != null;
 	}
 
-	// Token: 0x0600ACA4 RID: 44196 RVA: 0x00114ADA File Offset: 0x00112CDA
 	public override void SetTarget(GameObject target)
 	{
 		base.SetTarget(target);
@@ -21,7 +18,6 @@ public class LogicBroadcastChannelSideScreen : SideScreenContent
 		this.Build();
 	}
 
-	// Token: 0x0600ACA5 RID: 44197 RVA: 0x0041E98C File Offset: 0x0041CB8C
 	private void ClearRows()
 	{
 		if (this.emptySpaceRow != null)
@@ -35,7 +31,6 @@ public class LogicBroadcastChannelSideScreen : SideScreenContent
 		this.broadcasterRows.Clear();
 	}
 
-	// Token: 0x0600ACA6 RID: 44198 RVA: 0x0041EA08 File Offset: 0x0041CC08
 	private void Build()
 	{
 		this.headerLabel.SetText(UI.UISIDESCREENS.LOGICBROADCASTCHANNELSIDESCREEN.HEADER);
@@ -56,7 +51,6 @@ public class LogicBroadcastChannelSideScreen : SideScreenContent
 		this.Refresh();
 	}
 
-	// Token: 0x0600ACA7 RID: 44199 RVA: 0x0041EB04 File Offset: 0x0041CD04
 	private void Refresh()
 	{
 		using (Dictionary<LogicBroadcaster, GameObject>.Enumerator enumerator = this.broadcasterRows.GetEnumerator())
@@ -81,28 +75,21 @@ public class LogicBroadcastChannelSideScreen : SideScreenContent
 		}
 	}
 
-	// Token: 0x040087E9 RID: 34793
 	private LogicBroadcastReceiver sensor;
 
-	// Token: 0x040087EA RID: 34794
 	[SerializeField]
 	private GameObject rowPrefab;
 
-	// Token: 0x040087EB RID: 34795
 	[SerializeField]
 	private GameObject listContainer;
 
-	// Token: 0x040087EC RID: 34796
 	[SerializeField]
 	private LocText headerLabel;
 
-	// Token: 0x040087ED RID: 34797
 	[SerializeField]
 	private GameObject noChannelRow;
 
-	// Token: 0x040087EE RID: 34798
 	private Dictionary<LogicBroadcaster, GameObject> broadcasterRows = new Dictionary<LogicBroadcaster, GameObject>();
 
-	// Token: 0x040087EF RID: 34799
 	private GameObject emptySpaceRow;
 }

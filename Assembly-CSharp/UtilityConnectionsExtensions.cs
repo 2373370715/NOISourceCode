@@ -1,9 +1,7 @@
 ﻿using System;
 
-// Token: 0x02001A6C RID: 6764
 public static class UtilityConnectionsExtensions
 {
-	// Token: 0x06008CE9 RID: 36073 RVA: 0x00373F7C File Offset: 0x0037217C
 	public static UtilityConnections InverseDirection(this UtilityConnections direction)
 	{
 		switch (direction)
@@ -26,7 +24,6 @@ public static class UtilityConnectionsExtensions
 		throw new ArgumentException("Unexpected enum value: " + direction.ToString(), "direction");
 	}
 
-	// Token: 0x06008CEA RID: 36074 RVA: 0x00373FD0 File Offset: 0x003721D0
 	public static UtilityConnections LeftDirection(this UtilityConnections direction)
 	{
 		switch (direction)
@@ -49,7 +46,6 @@ public static class UtilityConnectionsExtensions
 		throw new ArgumentException("Unexpected enum value: " + direction.ToString(), "direction");
 	}
 
-	// Token: 0x06008CEB RID: 36075 RVA: 0x00374024 File Offset: 0x00372224
 	public static UtilityConnections RightDirection(this UtilityConnections direction)
 	{
 		switch (direction)
@@ -72,7 +68,6 @@ public static class UtilityConnectionsExtensions
 		throw new ArgumentException("Unexpected enum value: " + direction.ToString(), "direction");
 	}
 
-	// Token: 0x06008CEC RID: 36076 RVA: 0x00374078 File Offset: 0x00372278
 	public static int CellInDirection(this UtilityConnections direction, int from_cell)
 	{
 		switch (direction)
@@ -95,7 +90,6 @@ public static class UtilityConnectionsExtensions
 		throw new ArgumentException("Unexpected enum value: " + direction.ToString(), "direction");
 	}
 
-	// Token: 0x06008CED RID: 36077 RVA: 0x001009EC File Offset: 0x000FEBEC
 	public static UtilityConnections DirectionFromToCell(int from_cell, int to_cell)
 	{
 		if (to_cell == from_cell - 1)

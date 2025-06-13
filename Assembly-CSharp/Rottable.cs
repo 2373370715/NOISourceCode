@@ -5,10 +5,8 @@ using Klei.AI;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000B2A RID: 2858
 public class Rottable : GameStateMachine<Rottable, Rottable.Instance, IStateMachineTarget, Rottable.Def>
 {
-	// Token: 0x06003503 RID: 13571 RVA: 0x00219698 File Offset: 0x00217898
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.Fresh;
@@ -56,7 +54,6 @@ public class Rottable : GameStateMachine<Rottable, Rottable.Instance, IStateMach
 		});
 	}
 
-	// Token: 0x06003504 RID: 13572 RVA: 0x002198BC File Offset: 0x00217ABC
 	private static string OnStaleTooltip(List<Notification> notifications, object data)
 	{
 		string text = "\n";
@@ -74,7 +71,6 @@ public class Rottable : GameStateMachine<Rottable, Rottable.Instance, IStateMach
 		return string.Format(MISC.NOTIFICATIONS.FOODSTALE.TOOLTIP, text);
 	}
 
-	// Token: 0x06003505 RID: 13573 RVA: 0x00219948 File Offset: 0x00217B48
 	public static void SetStatusItems(IRottable rottable)
 	{
 		Grid.PosToCell(rottable.gameObject);
@@ -109,7 +105,6 @@ public class Rottable : GameStateMachine<Rottable, Rottable.Instance, IStateMach
 		component.SetStatusItem(Db.Get().StatusItemCategories.PreservationAtmosphere, null, null);
 	}
 
-	// Token: 0x06003506 RID: 13574 RVA: 0x00219A68 File Offset: 0x00217C68
 	public static bool IsInActiveFridge(IRottable rottable)
 	{
 		Pickupable component = rottable.gameObject.GetComponent<Pickupable>();
@@ -121,7 +116,6 @@ public class Rottable : GameStateMachine<Rottable, Rottable.Instance, IStateMach
 		return false;
 	}
 
-	// Token: 0x06003507 RID: 13575 RVA: 0x00219AB8 File Offset: 0x00217CB8
 	public static Rottable.RotRefrigerationLevel RefrigerationLevel(IRottable rottable)
 	{
 		int num = Grid.PosToCell(rottable.gameObject);
@@ -152,7 +146,6 @@ public class Rottable : GameStateMachine<Rottable, Rottable.Instance, IStateMach
 		return Rottable.RotRefrigerationLevel.Normal;
 	}
 
-	// Token: 0x06003508 RID: 13576 RVA: 0x00219B58 File Offset: 0x00217D58
 	public static Rottable.RotAtmosphereQuality AtmosphereQuality(IRottable rottable)
 	{
 		int num = Grid.PosToCell(rottable.gameObject);
@@ -199,25 +192,18 @@ public class Rottable : GameStateMachine<Rottable, Rottable.Instance, IStateMach
 		}
 	}
 
-	// Token: 0x04002476 RID: 9334
 	public StateMachine<Rottable, Rottable.Instance, IStateMachineTarget, Rottable.Def>.FloatParameter rotParameter;
 
-	// Token: 0x04002477 RID: 9335
 	public GameStateMachine<Rottable, Rottable.Instance, IStateMachineTarget, Rottable.Def>.State Preserved;
 
-	// Token: 0x04002478 RID: 9336
 	public GameStateMachine<Rottable, Rottable.Instance, IStateMachineTarget, Rottable.Def>.State Fresh;
 
-	// Token: 0x04002479 RID: 9337
 	public GameStateMachine<Rottable, Rottable.Instance, IStateMachineTarget, Rottable.Def>.State Stale_Pre;
 
-	// Token: 0x0400247A RID: 9338
 	public GameStateMachine<Rottable, Rottable.Instance, IStateMachineTarget, Rottable.Def>.State Stale;
 
-	// Token: 0x0400247B RID: 9339
 	public GameStateMachine<Rottable, Rottable.Instance, IStateMachineTarget, Rottable.Def>.State Spoiled;
 
-	// Token: 0x0400247C RID: 9340
 	private static readonly Tag[] PRESERVED_TAGS = new Tag[]
 	{
 		GameTags.Preserved,
@@ -225,10 +211,8 @@ public class Rottable : GameStateMachine<Rottable, Rottable.Instance, IStateMach
 		GameTags.Entombed
 	};
 
-	// Token: 0x0400247D RID: 9341
 	private static readonly Rottable.RotCB rotCB = new Rottable.RotCB();
 
-	// Token: 0x0400247E RID: 9342
 	public static Dictionary<int, Rottable.RotAtmosphereQuality> AtmosphereModifier = new Dictionary<int, Rottable.RotAtmosphereQuality>
 	{
 		{
@@ -293,38 +277,27 @@ public class Rottable : GameStateMachine<Rottable, Rottable.Instance, IStateMach
 		}
 	};
 
-	// Token: 0x02000B2B RID: 2859
 	public class Def : StateMachine.BaseDef
 	{
-		// Token: 0x0400247F RID: 9343
 		public float spoilTime;
 
-		// Token: 0x04002480 RID: 9344
 		public float staleTime;
 
-		// Token: 0x04002481 RID: 9345
 		public float preserveTemperature = 255.15f;
 
-		// Token: 0x04002482 RID: 9346
 		public float rotTemperature = 277.15f;
 	}
 
-	// Token: 0x02000B2C RID: 2860
 	private class RotCB : UpdateBucketWithUpdater<Rottable.Instance>.IUpdater
 	{
-		// Token: 0x0600350D RID: 13581 RVA: 0x000C6FEF File Offset: 0x000C51EF
 		public void Update(Rottable.Instance smi, float dt)
 		{
 			smi.Rot(smi, dt);
 		}
 	}
 
-	// Token: 0x02000B2D RID: 2861
 	public new class Instance : GameStateMachine<Rottable, Rottable.Instance, IStateMachineTarget, Rottable.Def>.GameInstance, IRottable
 	{
-		// Token: 0x17000248 RID: 584
-		// (get) Token: 0x0600350F RID: 13583 RVA: 0x000C6FF9 File Offset: 0x000C51F9
-		// (set) Token: 0x06003510 RID: 13584 RVA: 0x000C7006 File Offset: 0x000C5206
 		public float RotValue
 		{
 			get
@@ -338,8 +311,6 @@ public class Rottable : GameStateMachine<Rottable, Rottable.Instance, IStateMach
 			}
 		}
 
-		// Token: 0x17000249 RID: 585
-		// (get) Token: 0x06003511 RID: 13585 RVA: 0x000C7029 File Offset: 0x000C5229
 		public float RotConstitutionPercentage
 		{
 			get
@@ -348,8 +319,6 @@ public class Rottable : GameStateMachine<Rottable, Rottable.Instance, IStateMach
 			}
 		}
 
-		// Token: 0x1700024A RID: 586
-		// (get) Token: 0x06003512 RID: 13586 RVA: 0x000C703D File Offset: 0x000C523D
 		public float RotTemperature
 		{
 			get
@@ -358,8 +327,6 @@ public class Rottable : GameStateMachine<Rottable, Rottable.Instance, IStateMach
 			}
 		}
 
-		// Token: 0x1700024B RID: 587
-		// (get) Token: 0x06003513 RID: 13587 RVA: 0x000C704A File Offset: 0x000C524A
 		public float PreserveTemperature
 		{
 			get
@@ -368,7 +335,6 @@ public class Rottable : GameStateMachine<Rottable, Rottable.Instance, IStateMach
 			}
 		}
 
-		// Token: 0x06003514 RID: 13588 RVA: 0x00219D0C File Offset: 0x00217F0C
 		public Instance(IStateMachineTarget master, Rottable.Def def) : base(master, def)
 		{
 			this.pickupable = base.gameObject.RequireComponent<Pickupable>();
@@ -392,7 +358,6 @@ public class Rottable : GameStateMachine<Rottable, Rottable.Instance, IStateMach
 			this.RefreshModifiers(0f);
 		}
 
-		// Token: 0x06003515 RID: 13589 RVA: 0x00219F28 File Offset: 0x00218128
 		[OnDeserialized]
 		private void OnDeserialized()
 		{
@@ -402,7 +367,6 @@ public class Rottable : GameStateMachine<Rottable, Rottable.Instance, IStateMach
 			}
 		}
 
-		// Token: 0x06003516 RID: 13590 RVA: 0x00219F6C File Offset: 0x0021816C
 		public string StateString()
 		{
 			string result = "";
@@ -417,7 +381,6 @@ public class Rottable : GameStateMachine<Rottable, Rottable.Instance, IStateMach
 			return result;
 		}
 
-		// Token: 0x06003517 RID: 13591 RVA: 0x000C7057 File Offset: 0x000C5257
 		public void Rot(Rottable.Instance smi, float deltaTime)
 		{
 			this.RefreshModifiers(deltaTime);
@@ -427,7 +390,6 @@ public class Rottable : GameStateMachine<Rottable, Rottable.Instance, IStateMach
 			}
 		}
 
-		// Token: 0x06003518 RID: 13592 RVA: 0x00219FFC File Offset: 0x002181FC
 		public bool IsRottableInSpace()
 		{
 			if (base.gameObject.GetMyWorld() == null)
@@ -441,7 +403,6 @@ public class Rottable : GameStateMachine<Rottable, Rottable.Instance, IStateMach
 			return false;
 		}
 
-		// Token: 0x06003519 RID: 13593 RVA: 0x0021A060 File Offset: 0x00218260
 		public void RefreshModifiers(float dt)
 		{
 			if (this.GetMaster().isNull)
@@ -496,7 +457,6 @@ public class Rottable : GameStateMachine<Rottable, Rottable.Instance, IStateMach
 			Rottable.SetStatusItems(this);
 		}
 
-		// Token: 0x0600351A RID: 13594 RVA: 0x0021A1AC File Offset: 0x002183AC
 		private void OnAbsorb(object data)
 		{
 			Pickupable pickupable = (Pickupable)data;
@@ -515,19 +475,16 @@ public class Rottable : GameStateMachine<Rottable, Rottable.Instance, IStateMach
 			}
 		}
 
-		// Token: 0x0600351B RID: 13595 RVA: 0x000C7089 File Offset: 0x000C5289
 		public bool IsRotLevelStackable(Rottable.Instance other)
 		{
 			return Mathf.Abs(this.RotConstitutionPercentage - other.RotConstitutionPercentage) < 0.1f;
 		}
 
-		// Token: 0x0600351C RID: 13596 RVA: 0x000C70A4 File Offset: 0x000C52A4
 		public string GetToolTip()
 		{
 			return this.rotAmountInstance.GetTooltip();
 		}
 
-		// Token: 0x0600351D RID: 13597 RVA: 0x0021A264 File Offset: 0x00218464
 		private void OnSplitFromChunk(object data)
 		{
 			Pickupable pickupable = (Pickupable)data;
@@ -541,7 +498,6 @@ public class Rottable : GameStateMachine<Rottable, Rottable.Instance, IStateMach
 			}
 		}
 
-		// Token: 0x0600351E RID: 13598 RVA: 0x000C70B1 File Offset: 0x000C52B1
 		public void OnPreserved(object data)
 		{
 			if ((bool)data)
@@ -552,53 +508,36 @@ public class Rottable : GameStateMachine<Rottable, Rottable.Instance, IStateMach
 			base.smi.GoTo(base.sm.Fresh);
 		}
 
-		// Token: 0x04002483 RID: 9347
 		private AmountInstance rotAmountInstance;
 
-		// Token: 0x04002484 RID: 9348
 		private static AttributeModifier unrefrigeratedModifier;
 
-		// Token: 0x04002485 RID: 9349
 		private static AttributeModifier refrigeratedModifier;
 
-		// Token: 0x04002486 RID: 9350
 		private static AttributeModifier frozenModifier;
 
-		// Token: 0x04002487 RID: 9351
 		private static AttributeModifier contaminatedAtmosphereModifier;
 
-		// Token: 0x04002488 RID: 9352
 		private static AttributeModifier normalAtmosphereModifier;
 
-		// Token: 0x04002489 RID: 9353
 		private static AttributeModifier sterileAtmosphereModifier;
 
-		// Token: 0x0400248A RID: 9354
 		public PrimaryElement primaryElement;
 
-		// Token: 0x0400248B RID: 9355
 		public Pickupable pickupable;
 	}
 
-	// Token: 0x02000B2E RID: 2862
 	public enum RotAtmosphereQuality
 	{
-		// Token: 0x0400248D RID: 9357
 		Normal,
-		// Token: 0x0400248E RID: 9358
 		Sterilizing,
-		// Token: 0x0400248F RID: 9359
 		Contaminating
 	}
 
-	// Token: 0x02000B2F RID: 2863
 	public enum RotRefrigerationLevel
 	{
-		// Token: 0x04002491 RID: 9361
 		Normal,
-		// Token: 0x04002492 RID: 9362
 		Refrigerated,
-		// Token: 0x04002493 RID: 9363
 		Frozen
 	}
 }

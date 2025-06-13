@@ -5,12 +5,10 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02001249 RID: 4681
 [SkipSaveFileSerialization]
 [AddComponentMenu("KMonoBehaviour/scripts/DecorProvider")]
 public class DecorProvider : KMonoBehaviour, IGameObjectEffectDescriptor
 {
-	// Token: 0x06005F35 RID: 24373 RVA: 0x002B4360 File Offset: 0x002B2560
 	private void AddDecor()
 	{
 		this.currDecor = 0f;
@@ -84,7 +82,6 @@ public class DecorProvider : KMonoBehaviour, IGameObjectEffectDescriptor
 		}
 	}
 
-	// Token: 0x06005F36 RID: 24374 RVA: 0x000E29CF File Offset: 0x000E0BCF
 	public void Clear()
 	{
 		if (this.currDecor == 0f)
@@ -96,7 +93,6 @@ public class DecorProvider : KMonoBehaviour, IGameObjectEffectDescriptor
 		GameScenePartitioner.Instance.Free(ref this.solidChangedPartitionerEntry);
 	}
 
-	// Token: 0x06005F37 RID: 24375 RVA: 0x002B45F8 File Offset: 0x002B27F8
 	private void RemoveDecor()
 	{
 		if (this.currDecor == 0f)
@@ -113,7 +109,6 @@ public class DecorProvider : KMonoBehaviour, IGameObjectEffectDescriptor
 		}
 	}
 
-	// Token: 0x06005F38 RID: 24376 RVA: 0x002B464C File Offset: 0x002B284C
 	public void Refresh()
 	{
 		this.Clear();
@@ -138,7 +133,6 @@ public class DecorProvider : KMonoBehaviour, IGameObjectEffectDescriptor
 		}
 	}
 
-	// Token: 0x06005F39 RID: 24377 RVA: 0x002B46D4 File Offset: 0x002B28D4
 	public float GetDecorForCell(int cell)
 	{
 		for (int i = 0; i < this.cellCount; i++)
@@ -151,7 +145,6 @@ public class DecorProvider : KMonoBehaviour, IGameObjectEffectDescriptor
 		return 0f;
 	}
 
-	// Token: 0x06005F3A RID: 24378 RVA: 0x000E2A05 File Offset: 0x000E0C05
 	public void SetValues(EffectorValues values)
 	{
 		this.baseDecor = (float)values.amount;
@@ -162,7 +155,6 @@ public class DecorProvider : KMonoBehaviour, IGameObjectEffectDescriptor
 		}
 	}
 
-	// Token: 0x06005F3B RID: 24379 RVA: 0x002B470C File Offset: 0x002B290C
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -171,7 +163,6 @@ public class DecorProvider : KMonoBehaviour, IGameObjectEffectDescriptor
 		this.UpdateBaseDecorModifiers();
 	}
 
-	// Token: 0x06005F3C RID: 24380 RVA: 0x002B4768 File Offset: 0x002B2968
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -189,7 +180,6 @@ public class DecorProvider : KMonoBehaviour, IGameObjectEffectDescriptor
 		this.Refresh();
 	}
 
-	// Token: 0x06005F3D RID: 24381 RVA: 0x002B481C File Offset: 0x002B2A1C
 	private void UpdateBaseDecorModifiers()
 	{
 		Attributes attributes = this.GetAttributes();
@@ -209,19 +199,16 @@ public class DecorProvider : KMonoBehaviour, IGameObjectEffectDescriptor
 		}
 	}
 
-	// Token: 0x06005F3E RID: 24382 RVA: 0x000E2A2F File Offset: 0x000E0C2F
 	private void OnCellChange()
 	{
 		this.Refresh();
 	}
 
-	// Token: 0x06005F3F RID: 24383 RVA: 0x000E2A37 File Offset: 0x000E0C37
 	private void OnCollectDecorProviders(object data)
 	{
 		((List<DecorProvider>)data).Add(this);
 	}
 
-	// Token: 0x06005F40 RID: 24384 RVA: 0x000E2A45 File Offset: 0x000E0C45
 	public string GetName()
 	{
 		if (string.IsNullOrEmpty(this.overrideName))
@@ -231,7 +218,6 @@ public class DecorProvider : KMonoBehaviour, IGameObjectEffectDescriptor
 		return this.overrideName;
 	}
 
-	// Token: 0x06005F41 RID: 24385 RVA: 0x002B48E8 File Offset: 0x002B2AE8
 	protected override void OnCleanUp()
 	{
 		base.OnCleanUp();
@@ -246,7 +232,6 @@ public class DecorProvider : KMonoBehaviour, IGameObjectEffectDescriptor
 		this.Clear();
 	}
 
-	// Token: 0x06005F42 RID: 24386 RVA: 0x002B4968 File Offset: 0x002B2B68
 	public List<Descriptor> GetEffectDescriptions()
 	{
 		List<Descriptor> list = new List<Descriptor>();
@@ -272,7 +257,6 @@ public class DecorProvider : KMonoBehaviour, IGameObjectEffectDescriptor
 		return list;
 	}
 
-	// Token: 0x06005F43 RID: 24387 RVA: 0x000E2A66 File Offset: 0x000E0C66
 	public static int GetLightDecorBonus(int cell)
 	{
 		if (Grid.LightIntensity[cell] > 0)
@@ -282,69 +266,49 @@ public class DecorProvider : KMonoBehaviour, IGameObjectEffectDescriptor
 		return 0;
 	}
 
-	// Token: 0x06005F44 RID: 24388 RVA: 0x000E2A7D File Offset: 0x000E0C7D
 	public List<Descriptor> GetDescriptors(GameObject go)
 	{
 		return this.GetEffectDescriptions();
 	}
 
-	// Token: 0x040043FB RID: 17403
 	public const string ID = "DecorProvider";
 
-	// Token: 0x040043FC RID: 17404
 	public float baseRadius;
 
-	// Token: 0x040043FD RID: 17405
 	public float baseDecor;
 
-	// Token: 0x040043FE RID: 17406
 	public string overrideName;
 
-	// Token: 0x040043FF RID: 17407
 	public System.Action refreshCallback;
 
-	// Token: 0x04004400 RID: 17408
 	public Action<object> refreshPartionerCallback;
 
-	// Token: 0x04004401 RID: 17409
 	public Action<object> onCollectDecorProvidersCallback;
 
-	// Token: 0x04004402 RID: 17410
 	public AttributeInstance decor;
 
-	// Token: 0x04004403 RID: 17411
 	public AttributeInstance decorRadius;
 
-	// Token: 0x04004404 RID: 17412
 	private AttributeModifier baseDecorModifier;
 
-	// Token: 0x04004405 RID: 17413
 	private AttributeModifier baseDecorRadiusModifier;
 
-	// Token: 0x04004406 RID: 17414
 	[MyCmpReq]
 	private KPrefabID prefabId;
 
-	// Token: 0x04004407 RID: 17415
 	[MyCmpReq]
 	public OccupyArea occupyArea;
 
-	// Token: 0x04004408 RID: 17416
 	[MyCmpGet]
 	public SimCellOccupier simCellOccupier;
 
-	// Token: 0x04004409 RID: 17417
 	private int[] cells;
 
-	// Token: 0x0400440A RID: 17418
 	private int cellCount;
 
-	// Token: 0x0400440B RID: 17419
 	public float currDecor;
 
-	// Token: 0x0400440C RID: 17420
 	private HandleVector<int>.Handle partitionerEntry;
 
-	// Token: 0x0400440D RID: 17421
 	private HandleVector<int>.Handle solidChangedPartitionerEntry;
 }

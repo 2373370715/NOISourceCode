@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000607 RID: 1543
 public class WoodStorageConfig : IBuildingConfig
 {
-	// Token: 0x06001B43 RID: 6979 RVA: 0x000AA536 File Offset: 0x000A8736
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.DLC2;
 	}
 
-	// Token: 0x06001B44 RID: 6980 RVA: 0x001B6C20 File Offset: 0x001B4E20
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "WoodStorage";
@@ -34,7 +31,6 @@ public class WoodStorageConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001B45 RID: 6981 RVA: 0x001B6C88 File Offset: 0x001B4E88
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		SoundEventVolumeCache.instance.AddVolume("storagelocker_kanim", "StorageLocker_Hit_metallic_low", NOISE_POLLUTION.NOISY.TIER1);
@@ -62,12 +58,10 @@ public class WoodStorageConfig : IBuildingConfig
 		manualDeliveryKG.choreTypeIDHash = Db.Get().ChoreTypes.StorageFetch.IdHash;
 	}
 
-	// Token: 0x06001B46 RID: 6982 RVA: 0x000AAC8E File Offset: 0x000A8E8E
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGetDef<StorageController.Def>();
 	}
 
-	// Token: 0x04001179 RID: 4473
 	public const string ID = "WoodStorage";
 }

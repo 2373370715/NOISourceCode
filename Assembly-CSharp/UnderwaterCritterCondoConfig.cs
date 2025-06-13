@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005ED RID: 1517
 public class UnderwaterCritterCondoConfig : IBuildingConfig
 {
-	// Token: 0x06001A95 RID: 6805 RVA: 0x001B44A4 File Offset: 0x001B26A4
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "UnderwaterCritterCondo";
@@ -34,17 +32,14 @@ public class UnderwaterCritterCondoConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001A96 RID: 6806 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 	}
 
-	// Token: 0x06001A97 RID: 6807 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 	}
 
-	// Token: 0x06001A98 RID: 6808 RVA: 0x001B453C File Offset: 0x001B273C
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<Submergable>();
@@ -70,14 +65,11 @@ public class UnderwaterCritterCondoConfig : IBuildingConfig
 		def.effectId = effect.Id;
 	}
 
-	// Token: 0x06001A99 RID: 6809 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void ConfigurePost(BuildingDef def)
 	{
 	}
 
-	// Token: 0x04001128 RID: 4392
 	public const string ID = "UnderwaterCritterCondo";
 
-	// Token: 0x04001129 RID: 4393
 	public static readonly Operational.Flag Submerged = new Operational.Flag("Submerged", Operational.Flag.Type.Requirement);
 }

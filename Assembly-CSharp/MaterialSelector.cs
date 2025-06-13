@@ -6,17 +6,14 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001E44 RID: 7748
 public class MaterialSelector : KScreen
 {
-	// Token: 0x0600A213 RID: 41491 RVA: 0x0010DD0A File Offset: 0x0010BF0A
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 		this.toggleGroup = base.GetComponent<ToggleGroup>();
 	}
 
-	// Token: 0x0600A214 RID: 41492 RVA: 0x0010DD1E File Offset: 0x0010BF1E
 	public override void OnKeyDown(KButtonEvent e)
 	{
 		if (e.Consumed)
@@ -26,7 +23,6 @@ public class MaterialSelector : KScreen
 		base.OnKeyDown(e);
 	}
 
-	// Token: 0x0600A215 RID: 41493 RVA: 0x003EC8DC File Offset: 0x003EAADC
 	public void ClearMaterialToggles()
 	{
 		this.CurrentSelectedElement = null;
@@ -39,7 +35,6 @@ public class MaterialSelector : KScreen
 		this.ElementToggles.Clear();
 	}
 
-	// Token: 0x0600A216 RID: 41494 RVA: 0x003EC974 File Offset: 0x003EAB74
 	public static List<Tag> GetValidMaterials(Tag _materialTypeTag, bool omitDisabledElements = false)
 	{
 		string[] array = _materialTypeTag.ToString().Split('&', StringSplitOptions.None);
@@ -72,7 +67,6 @@ public class MaterialSelector : KScreen
 		return list;
 	}
 
-	// Token: 0x0600A217 RID: 41495 RVA: 0x003ECAE4 File Offset: 0x003EACE4
 	public void ConfigureScreen(Recipe.Ingredient ingredient, Recipe recipe)
 	{
 		this.activeIngredient = ingredient;
@@ -110,7 +104,6 @@ public class MaterialSelector : KScreen
 		this.RefreshToggleContents();
 	}
 
-	// Token: 0x0600A218 RID: 41496 RVA: 0x003ECCBC File Offset: 0x003EAEBC
 	private void SetToggleBGImage(KToggle toggle, Tag elem)
 	{
 		if (toggle == this.selectedToggle)
@@ -134,7 +127,6 @@ public class MaterialSelector : KScreen
 		}
 	}
 
-	// Token: 0x0600A219 RID: 41497 RVA: 0x003ECDB0 File Offset: 0x003EAFB0
 	public void OnSelectMaterial(Tag elem, Recipe recipe, bool focusScrollRect = false)
 	{
 		KToggle x = this.ElementToggles[elem];
@@ -181,7 +173,6 @@ public class MaterialSelector : KScreen
 		this.RefreshToggleContents();
 	}
 
-	// Token: 0x0600A21A RID: 41498 RVA: 0x003ECF54 File Offset: 0x003EB154
 	public void RefreshToggleContents()
 	{
 		foreach (KeyValuePair<Tag, KToggle> keyValuePair in this.ElementToggles)
@@ -224,13 +215,11 @@ public class MaterialSelector : KScreen
 		this.UpdateHeader();
 	}
 
-	// Token: 0x0600A21B RID: 41499 RVA: 0x0010DD30 File Offset: 0x0010BF30
 	private bool IsEnoughMass(Tag t)
 	{
 		return ClusterManager.Instance.activeWorld.worldInventory.GetAmount(t, true) >= this.activeMass || DebugHandler.InstantBuildMode || Game.Instance.SandboxModeActive || MaterialSelector.AllowInsufficientMaterialBuild();
 	}
 
-	// Token: 0x0600A21C RID: 41500 RVA: 0x003ED110 File Offset: 0x003EB310
 	public bool AutoSelectAvailableMaterial()
 	{
 		if (this.activeRecipe == null || this.ElementToggles.Count == 0)
@@ -295,7 +284,6 @@ public class MaterialSelector : KScreen
 		return false;
 	}
 
-	// Token: 0x0600A21D RID: 41501 RVA: 0x003ED390 File Offset: 0x003EB590
 	private void SortElementToggles()
 	{
 		bool flag = false;
@@ -329,7 +317,6 @@ public class MaterialSelector : KScreen
 		this.UpdateScrollBar();
 	}
 
-	// Token: 0x0600A21E RID: 41502 RVA: 0x003ED4D0 File Offset: 0x003EB6D0
 	private void ConfigureMaterialTooltips()
 	{
 		foreach (KeyValuePair<Tag, KToggle> keyValuePair in this.ElementToggles)
@@ -342,7 +329,6 @@ public class MaterialSelector : KScreen
 		}
 	}
 
-	// Token: 0x0600A21F RID: 41503 RVA: 0x003ED54C File Offset: 0x003EB74C
 	private void UpdateScrollBar()
 	{
 		if (this.Scrollbar == null)
@@ -364,7 +350,6 @@ public class MaterialSelector : KScreen
 		this.ScrollRect.GetComponent<LayoutElement>().minHeight = (float)(74 * ((num <= 5) ? 1 : 2));
 	}
 
-	// Token: 0x0600A220 RID: 41504 RVA: 0x003ED5FC File Offset: 0x003EB7FC
 	private void UpdateHeader()
 	{
 		if (this.activeIngredient == null)
@@ -408,7 +393,6 @@ public class MaterialSelector : KScreen
 		this.UpdateScrollBar();
 	}
 
-	// Token: 0x0600A221 RID: 41505 RVA: 0x0010DD6A File Offset: 0x0010BF6A
 	public void ToggleShowDescriptorsPanel(bool show)
 	{
 		if (this.DescriptorsPanel == null)
@@ -418,7 +402,6 @@ public class MaterialSelector : KScreen
 		this.DescriptorsPanel.gameObject.SetActive(show);
 	}
 
-	// Token: 0x0600A222 RID: 41506 RVA: 0x003ED7C0 File Offset: 0x003EB9C0
 	private void SetDescription(Tag element)
 	{
 		if (this.DescriptorsPanel == null)
@@ -435,7 +418,6 @@ public class MaterialSelector : KScreen
 		this.MaterialDescriptionPane.SetActive(false);
 	}
 
-	// Token: 0x0600A223 RID: 41507 RVA: 0x003ED838 File Offset: 0x003EBA38
 	private void SetEffects(Tag element)
 	{
 		if (this.MaterialDescriptionPane == null)
@@ -455,13 +437,11 @@ public class MaterialSelector : KScreen
 		this.MaterialEffectsPane.gameObject.SetActive(false);
 	}
 
-	// Token: 0x0600A224 RID: 41508 RVA: 0x0010DD8C File Offset: 0x0010BF8C
 	public static bool AllowInsufficientMaterialBuild()
 	{
 		return GenericGameSettings.instance.allowInsufficientMaterialBuild;
 	}
 
-	// Token: 0x0600A225 RID: 41509 RVA: 0x003ED8C0 File Offset: 0x003EBAC0
 	private int ElementSorter(Tag at, Tag bt)
 	{
 		GameObject gameObject = Assets.TryGetPrefab(at);
@@ -481,7 +461,6 @@ public class MaterialSelector : KScreen
 		return hasSortOrder.sortOrder.CompareTo(hasSortOrder2.sortOrder);
 	}
 
-	// Token: 0x04007F18 RID: 32536
 	public static List<Tag> DeprioritizeAutoSelectElementList = new List<Tag>
 	{
 		SimHashes.WoodLog.ToString().ToTag(),
@@ -489,73 +468,50 @@ public class MaterialSelector : KScreen
 		SimHashes.Lead.ToString().ToTag()
 	};
 
-	// Token: 0x04007F19 RID: 32537
 	public Tag CurrentSelectedElement;
 
-	// Token: 0x04007F1A RID: 32538
 	public Dictionary<Tag, KToggle> ElementToggles = new Dictionary<Tag, KToggle>();
 
-	// Token: 0x04007F1B RID: 32539
 	public int selectorIndex;
 
-	// Token: 0x04007F1C RID: 32540
 	public MaterialSelector.SelectMaterialActions selectMaterialActions;
 
-	// Token: 0x04007F1D RID: 32541
 	public MaterialSelector.SelectMaterialActions deselectMaterialActions;
 
-	// Token: 0x04007F1E RID: 32542
 	private ToggleGroup toggleGroup;
 
-	// Token: 0x04007F1F RID: 32543
 	public GameObject TogglePrefab;
 
-	// Token: 0x04007F20 RID: 32544
 	public GameObject LayoutContainer;
 
-	// Token: 0x04007F21 RID: 32545
 	public KScrollRect ScrollRect;
 
-	// Token: 0x04007F22 RID: 32546
 	public GameObject Scrollbar;
 
-	// Token: 0x04007F23 RID: 32547
 	public GameObject Headerbar;
 
-	// Token: 0x04007F24 RID: 32548
 	public GameObject BadBG;
 
-	// Token: 0x04007F25 RID: 32549
 	public LocText NoMaterialDiscovered;
 
-	// Token: 0x04007F26 RID: 32550
 	public GameObject MaterialDescriptionPane;
 
-	// Token: 0x04007F27 RID: 32551
 	public LocText MaterialDescriptionText;
 
-	// Token: 0x04007F28 RID: 32552
 	public DescriptorPanel MaterialEffectsPane;
 
-	// Token: 0x04007F29 RID: 32553
 	public GameObject DescriptorsPanel;
 
-	// Token: 0x04007F2A RID: 32554
 	private KToggle selectedToggle;
 
-	// Token: 0x04007F2B RID: 32555
 	private Recipe.Ingredient activeIngredient;
 
-	// Token: 0x04007F2C RID: 32556
 	private Recipe activeRecipe;
 
-	// Token: 0x04007F2D RID: 32557
 	private float activeMass;
 
-	// Token: 0x04007F2E RID: 32558
 	private List<Tag> elementsToSort = new List<Tag>();
 
-	// Token: 0x02001E45 RID: 7749
-	// (Invoke) Token: 0x0600A229 RID: 41513
+Invoke) Token: 0x0600A229 RID: 41513
 	public delegate void SelectMaterialActions();
 }

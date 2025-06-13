@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003F5 RID: 1013
 public class LogicSwitchConfig : IBuildingConfig
 {
-	// Token: 0x060010A5 RID: 4261 RVA: 0x0018B4F4 File Offset: 0x001896F4
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = LogicSwitchConfig.ID;
@@ -40,19 +38,16 @@ public class LogicSwitchConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060010A6 RID: 4262 RVA: 0x000B1BAF File Offset: 0x000AFDAF
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<BuildingComplete>().isManuallyOperated = false;
 	}
 
-	// Token: 0x060010A7 RID: 4263 RVA: 0x000B1BBD File Offset: 0x000AFDBD
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicSwitch>().manuallyControlled = false;
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayInFrontOfConduits, false);
 	}
 
-	// Token: 0x04000BA0 RID: 2976
 	public static string ID = "LogicSwitch";
 }

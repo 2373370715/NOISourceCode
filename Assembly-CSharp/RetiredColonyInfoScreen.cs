@@ -9,10 +9,8 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001F37 RID: 7991
 public class RetiredColonyInfoScreen : KModalScreen
 {
-	// Token: 0x0600A85B RID: 43099 RVA: 0x0040B010 File Offset: 0x00409210
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -48,13 +46,11 @@ public class RetiredColonyInfoScreen : KModalScreen
 		base.Subscribe(-810220474, new Action<object>(this.RefreshUIScale));
 	}
 
-	// Token: 0x0600A85C RID: 43100 RVA: 0x00111AFC File Offset: 0x0010FCFC
 	private void RefreshUIScale(object data = null)
 	{
 		base.StartCoroutine(this.DelayedRefreshScale());
 	}
 
-	// Token: 0x0600A85D RID: 43101 RVA: 0x00111B0B File Offset: 0x0010FD0B
 	private IEnumerator DelayedRefreshScale()
 	{
 		int num;
@@ -75,7 +71,6 @@ public class RetiredColonyInfoScreen : KModalScreen
 		yield break;
 	}
 
-	// Token: 0x0600A85E RID: 43102 RVA: 0x0040B0E8 File Offset: 0x004092E8
 	private void ConfigButtons()
 	{
 		this.closeButton.ClearOnClick();
@@ -111,20 +106,17 @@ public class RetiredColonyInfoScreen : KModalScreen
 		this.quitToMainMenuButton.gameObject.SetActive(false);
 	}
 
-	// Token: 0x0600A85F RID: 43103 RVA: 0x0040B214 File Offset: 0x00409414
 	private void ConfirmDecision(string text, System.Action onConfirm)
 	{
 		base.gameObject.SetActive(false);
 		((ConfirmDialogScreen)GameScreenManager.Instance.StartScreen(ScreenPrefabs.Instance.ConfirmDialogScreen.gameObject, base.transform.parent.gameObject, GameScreenManager.UIRenderTarget.ScreenSpaceOverlay)).PopupConfirmDialog(text, onConfirm, new System.Action(this.OnCancelPopup), null, null, null, null, null, null);
 	}
 
-	// Token: 0x0600A860 RID: 43104 RVA: 0x00105C09 File Offset: 0x00103E09
 	private void OnCancelPopup()
 	{
 		base.gameObject.SetActive(true);
 	}
 
-	// Token: 0x0600A861 RID: 43105 RVA: 0x00111B1A File Offset: 0x0010FD1A
 	private void OnQuitConfirm()
 	{
 		LoadingOverlay.Load(delegate
@@ -134,7 +126,6 @@ public class RetiredColonyInfoScreen : KModalScreen
 		});
 	}
 
-	// Token: 0x0600A862 RID: 43106 RVA: 0x00111B2D File Offset: 0x0010FD2D
 	protected override void OnCmpEnable()
 	{
 		base.OnCmpEnable();
@@ -143,7 +134,6 @@ public class RetiredColonyInfoScreen : KModalScreen
 		this.canvasRef.pixelPerfect = false;
 	}
 
-	// Token: 0x0600A863 RID: 43107 RVA: 0x00111B58 File Offset: 0x0010FD58
 	public override void OnKeyDown(KButtonEvent e)
 	{
 		if (e.Consumed)
@@ -161,7 +151,6 @@ public class RetiredColonyInfoScreen : KModalScreen
 		base.OnKeyDown(e);
 	}
 
-	// Token: 0x0600A864 RID: 43108 RVA: 0x0040B278 File Offset: 0x00409478
 	private void GetCanvasRef()
 	{
 		if (base.transform.parent.GetComponent<Canvas>() != null)
@@ -172,14 +161,12 @@ public class RetiredColonyInfoScreen : KModalScreen
 		this.canvasRef = base.transform.parent.parent.GetComponent<Canvas>();
 	}
 
-	// Token: 0x0600A865 RID: 43109 RVA: 0x00111B8C File Offset: 0x0010FD8C
 	protected override void OnCmpDisable()
 	{
 		this.canvasRef.pixelPerfect = this.wasPixelPerfect;
 		base.OnCmpDisable();
 	}
 
-	// Token: 0x0600A866 RID: 43110 RVA: 0x0040B2D0 File Offset: 0x004094D0
 	public RetiredColonyData GetColonyDataByBaseName(string name)
 	{
 		name = RetireColonyUtility.StripInvalidCharacters(name);
@@ -193,7 +180,6 @@ public class RetiredColonyInfoScreen : KModalScreen
 		return null;
 	}
 
-	// Token: 0x0600A867 RID: 43111 RVA: 0x0040B31C File Offset: 0x0040951C
 	protected override void OnShow(bool show)
 	{
 		base.OnShow(show);
@@ -237,7 +223,6 @@ public class RetiredColonyInfoScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600A868 RID: 43112 RVA: 0x0040B48C File Offset: 0x0040968C
 	public void LoadColony(RetiredColonyData data)
 	{
 		this.colonyName.text = data.colonyName.ToUpper();
@@ -265,7 +250,6 @@ public class RetiredColonyInfoScreen : KModalScreen
 		this.colonyDataRoot.transform.parent.rectTransform().SetPosition(new Vector3(this.colonyDataRoot.transform.parent.rectTransform().position.x, 0f, 0f));
 	}
 
-	// Token: 0x0600A869 RID: 43113 RVA: 0x0040B5A8 File Offset: 0x004097A8
 	private void PopulateAchievementProgress(ColonyAchievementTracker tracker)
 	{
 		if (tracker != null)
@@ -290,7 +274,6 @@ public class RetiredColonyInfoScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600A86A RID: 43114 RVA: 0x0040B640 File Offset: 0x00409840
 	private bool LoadSlideshow(RetiredColonyData data)
 	{
 		this.clearCurrentSlideshow();
@@ -299,13 +282,11 @@ public class RetiredColonyInfoScreen : KModalScreen
 		return this.currentSlideshowFiles != null && this.currentSlideshowFiles.Length != 0;
 	}
 
-	// Token: 0x0600A86B RID: 43115 RVA: 0x00111BA5 File Offset: 0x0010FDA5
 	private void clearCurrentSlideshow()
 	{
 		this.currentSlideshowFiles = new string[0];
 	}
 
-	// Token: 0x0600A86C RID: 43116 RVA: 0x0040B690 File Offset: 0x00409890
 	private bool LoadScreenshot(RetiredColonyData data, string world)
 	{
 		this.clearCurrentSlideshow();
@@ -318,7 +299,6 @@ public class RetiredColonyInfoScreen : KModalScreen
 		return sprite != null;
 	}
 
-	// Token: 0x0600A86D RID: 43117 RVA: 0x0040B6D4 File Offset: 0x004098D4
 	private void ClearColony()
 	{
 		foreach (GameObject obj in this.activeColonyWidgetContainers)
@@ -330,13 +310,11 @@ public class RetiredColonyInfoScreen : KModalScreen
 		this.UpdateAchievementData(null, null);
 	}
 
-	// Token: 0x0600A86E RID: 43118 RVA: 0x00111BB3 File Offset: 0x0010FDB3
 	private bool IsAchievementValidForDLCContext(IHasDlcRestrictions restrictions, string clusterTag)
 	{
 		return DlcManager.IsCorrectDlcSubscribed(restrictions) && (!(SaveLoader.Instance != null) || ((clusterTag == null || CustomGameSettings.Instance.GetCurrentClusterLayout().clusterTags.Contains(clusterTag)) && Game.IsCorrectDlcActiveForCurrentSave(restrictions)));
 	}
 
-	// Token: 0x0600A86F RID: 43119 RVA: 0x0040B744 File Offset: 0x00409944
 	private void PopulateAchievements()
 	{
 		foreach (ColonyAchievement colonyAchievement in Db.Get().ColonyAchievements.resources)
@@ -385,7 +363,6 @@ public class RetiredColonyInfoScreen : KModalScreen
 		this.UpdateAchievementData(null, null);
 	}
 
-	// Token: 0x0600A870 RID: 43120 RVA: 0x0040B95C File Offset: 0x00409B5C
 	private void InstantClearAchievementVeils()
 	{
 		GameObject[] array = this.achievementVeils;
@@ -406,7 +383,6 @@ public class RetiredColonyInfoScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600A871 RID: 43121 RVA: 0x00111BF0 File Offset: 0x0010FDF0
 	private IEnumerator ClearAchievementVeil(float delay = 0f)
 	{
 		yield return new WaitForSecondsRealtime(delay);
@@ -423,7 +399,6 @@ public class RetiredColonyInfoScreen : KModalScreen
 		yield break;
 	}
 
-	// Token: 0x0600A872 RID: 43122 RVA: 0x00111C06 File Offset: 0x0010FE06
 	private IEnumerator ShowAchievementVeil()
 	{
 		float targetAlpha = 0.7f;
@@ -452,7 +427,6 @@ public class RetiredColonyInfoScreen : KModalScreen
 		yield break;
 	}
 
-	// Token: 0x0600A873 RID: 43123 RVA: 0x0040BA18 File Offset: 0x00409C18
 	private void UpdateAchievementData(RetiredColonyData data, string[] newlyAchieved = null)
 	{
 		int num = 0;
@@ -550,14 +524,12 @@ public class RetiredColonyInfoScreen : KModalScreen
 		this.InstantClearAchievementVeils();
 	}
 
-	// Token: 0x0600A874 RID: 43124 RVA: 0x0040BC6C File Offset: 0x00409E6C
 	private void DisplayInfoBlock(RetiredColonyData data, GameObject container)
 	{
 		container.GetComponent<HierarchyReferences>().GetReference<LocText>("ColonyNameLabel").SetText(data.colonyName);
 		container.GetComponent<HierarchyReferences>().GetReference<LocText>("CycleCountLabel").SetText(string.Format(UI.RETIRED_COLONY_INFO_SCREEN.CYCLE_COUNT, data.cycleCount.ToString()));
 	}
 
-	// Token: 0x0600A875 RID: 43125 RVA: 0x0040BCC8 File Offset: 0x00409EC8
 	private void CorrectTimelapseImageSize(Sprite sprite)
 	{
 		Vector2 sizeDelta = this.slideshow.transform.parent.GetComponent<RectTransform>().sizeDelta;
@@ -573,7 +545,6 @@ public class RetiredColonyInfoScreen : KModalScreen
 		component.minHeight = (component.preferredHeight = fittedSize.y);
 	}
 
-	// Token: 0x0600A876 RID: 43126 RVA: 0x0040BD74 File Offset: 0x00409F74
 	private void DisplayTimelapse(RetiredColonyData data, GameObject container)
 	{
 		container.GetComponent<HierarchyReferences>().GetReference<LocText>("Title").SetText(UI.RETIRED_COLONY_INFO_SCREEN.TITLES.TIMELAPSE);
@@ -601,7 +572,6 @@ public class RetiredColonyInfoScreen : KModalScreen
 		reference2.gameObject.SetActive(true);
 	}
 
-	// Token: 0x0600A877 RID: 43127 RVA: 0x0040BE94 File Offset: 0x0040A094
 	private void DisplayDuplicants(RetiredColonyData data, GameObject container, int range_min = -1, int range_max = -1)
 	{
 		for (int i = container.transform.childCount - 1; i >= 0; i--)
@@ -646,7 +616,6 @@ public class RetiredColonyInfoScreen : KModalScreen
 		base.StartCoroutine(this.ActivatePortraitsWhenReady(container));
 	}
 
-	// Token: 0x0600A878 RID: 43128 RVA: 0x00111C15 File Offset: 0x0010FE15
 	private IEnumerator ActivatePortraitsWhenReady(GameObject container)
 	{
 		yield return 0;
@@ -668,7 +637,6 @@ public class RetiredColonyInfoScreen : KModalScreen
 		yield break;
 	}
 
-	// Token: 0x0600A879 RID: 43129 RVA: 0x0040C0E0 File Offset: 0x0040A2E0
 	private void DisplayBuildings(RetiredColonyData data, GameObject container)
 	{
 		for (int i = container.transform.childCount - 1; i >= 0; i--)
@@ -702,7 +670,6 @@ public class RetiredColonyInfoScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600A87A RID: 43130 RVA: 0x0040C22C File Offset: 0x0040A42C
 	private void DisplayWorlds(RetiredColonyData data, GameObject container)
 	{
 		container.SetActive(data.worldIdentities.Count > 0);
@@ -736,7 +703,6 @@ public class RetiredColonyInfoScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600A87B RID: 43131 RVA: 0x00111C24 File Offset: 0x0010FE24
 	private IEnumerator ComputeSizeStatGrid()
 	{
 		yield return SequenceUtil.WaitForEndOfFrame;
@@ -750,7 +716,6 @@ public class RetiredColonyInfoScreen : KModalScreen
 		yield break;
 	}
 
-	// Token: 0x0600A87C RID: 43132 RVA: 0x00111C33 File Offset: 0x0010FE33
 	private IEnumerator ComputeSizeExplorerGrid()
 	{
 		yield return SequenceUtil.WaitForEndOfFrame;
@@ -764,7 +729,6 @@ public class RetiredColonyInfoScreen : KModalScreen
 		yield break;
 	}
 
-	// Token: 0x0600A87D RID: 43133 RVA: 0x0040C378 File Offset: 0x0040A578
 	private void DisplayStatistics(RetiredColonyData data)
 	{
 		GameObject gameObject = global::Util.KInstantiateUI(this.specialMediaBlock, this.statsContainer, true);
@@ -803,7 +767,6 @@ public class RetiredColonyInfoScreen : KModalScreen
 		base.StartCoroutine(this.ComputeSizeStatGrid());
 	}
 
-	// Token: 0x0600A87E RID: 43134 RVA: 0x0040C59C File Offset: 0x0040A79C
 	private void ConfigureGraph(RetiredColonyData.RetiredColonyStatistic statistic, GameObject layoutBlockGameObject)
 	{
 		GameObject gameObject = global::Util.KInstantiateUI(this.lineGraphPrefab, layoutBlockGameObject, true);
@@ -836,7 +799,6 @@ public class RetiredColonyInfoScreen : KModalScreen
 		graphedLine.line_renderer.color = componentInChildren2.line_formatting[componentInChildren2.line_formatting.Length - 1].color;
 	}
 
-	// Token: 0x0600A87F RID: 43135 RVA: 0x0040C784 File Offset: 0x0040A984
 	private RetiredColonyData.RetiredColonyStatistic GetStatistic(string id, RetiredColonyData data)
 	{
 		foreach (RetiredColonyData.RetiredColonyStatistic retiredColonyStatistic in data.Stats)
@@ -849,7 +811,6 @@ public class RetiredColonyInfoScreen : KModalScreen
 		return null;
 	}
 
-	// Token: 0x0600A880 RID: 43136 RVA: 0x0040C7BC File Offset: 0x0040A9BC
 	private void ToggleExplorer(bool active)
 	{
 		if (active && Game.Instance == null)
@@ -874,7 +835,6 @@ public class RetiredColonyInfoScreen : KModalScreen
 		this.explorerSearch.text = "";
 	}
 
-	// Token: 0x0600A881 RID: 43137 RVA: 0x0040C89C File Offset: 0x0040AA9C
 	private void LoadExplorer()
 	{
 		if (SaveGame.Instance != null)
@@ -922,7 +882,6 @@ public class RetiredColonyInfoScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600A882 RID: 43138 RVA: 0x0040CA50 File Offset: 0x0040AC50
 	private void FilterExplorer(string search)
 	{
 		foreach (KeyValuePair<string, GameObject> keyValuePair in this.explorerColonyWidgets)
@@ -938,7 +897,6 @@ public class RetiredColonyInfoScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600A883 RID: 43139 RVA: 0x0040CADC File Offset: 0x0040ACDC
 	private void FilterColonyData(string search)
 	{
 		foreach (KeyValuePair<string, GameObject> keyValuePair in this.activeColonyWidgets)
@@ -954,7 +912,6 @@ public class RetiredColonyInfoScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600A884 RID: 43140 RVA: 0x0040CB68 File Offset: 0x0040AD68
 	private void FilterAchievements(string search)
 	{
 		foreach (KeyValuePair<string, GameObject> keyValuePair in this.achievementEntries)
@@ -970,182 +927,137 @@ public class RetiredColonyInfoScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0400847D RID: 33917
 	public static RetiredColonyInfoScreen Instance;
 
-	// Token: 0x0400847E RID: 33918
 	private bool wasPixelPerfect;
 
-	// Token: 0x0400847F RID: 33919
 	[Header("Screen")]
 	[SerializeField]
 	private KButton closeButton;
 
-	// Token: 0x04008480 RID: 33920
 	[Header("Header References")]
 	[SerializeField]
 	private GameObject explorerHeaderContainer;
 
-	// Token: 0x04008481 RID: 33921
 	[SerializeField]
 	private GameObject colonyHeaderContainer;
 
-	// Token: 0x04008482 RID: 33922
 	[SerializeField]
 	private LocText colonyName;
 
-	// Token: 0x04008483 RID: 33923
 	[SerializeField]
 	private LocText cycleCount;
 
-	// Token: 0x04008484 RID: 33924
 	[Header("Timelapse References")]
 	[SerializeField]
 	private Slideshow slideshow;
 
-	// Token: 0x04008485 RID: 33925
 	[SerializeField]
 	private GameObject worldPrefab;
 
-	// Token: 0x04008486 RID: 33926
 	private string focusedWorld;
 
-	// Token: 0x04008487 RID: 33927
 	private string[] currentSlideshowFiles = new string[0];
 
-	// Token: 0x04008488 RID: 33928
 	[Header("Main Layout")]
 	[SerializeField]
 	private GameObject coloniesSection;
 
-	// Token: 0x04008489 RID: 33929
 	[SerializeField]
 	private GameObject achievementsSection;
 
-	// Token: 0x0400848A RID: 33930
 	[Header("Achievement References")]
 	[SerializeField]
 	private GameObject achievementsContainer;
 
-	// Token: 0x0400848B RID: 33931
 	[SerializeField]
 	private GameObject achievementsPrefab;
 
-	// Token: 0x0400848C RID: 33932
 	[SerializeField]
 	private GameObject victoryAchievementsPrefab;
 
-	// Token: 0x0400848D RID: 33933
 	[SerializeField]
 	private KInputTextField achievementSearch;
 
-	// Token: 0x0400848E RID: 33934
 	[SerializeField]
 	private KButton clearAchievementSearchButton;
 
-	// Token: 0x0400848F RID: 33935
 	[SerializeField]
 	private GameObject[] achievementVeils;
 
-	// Token: 0x04008490 RID: 33936
 	[Header("Duplicant References")]
 	[SerializeField]
 	private GameObject duplicantPrefab;
 
-	// Token: 0x04008491 RID: 33937
 	[Header("Building References")]
 	[SerializeField]
 	private GameObject buildingPrefab;
 
-	// Token: 0x04008492 RID: 33938
 	[Header("Colony Stat References")]
 	[SerializeField]
 	private GameObject statsContainer;
 
-	// Token: 0x04008493 RID: 33939
 	[SerializeField]
 	private GameObject specialMediaBlock;
 
-	// Token: 0x04008494 RID: 33940
 	[SerializeField]
 	private GameObject tallFeatureBlock;
 
-	// Token: 0x04008495 RID: 33941
 	[SerializeField]
 	private GameObject standardStatBlock;
 
-	// Token: 0x04008496 RID: 33942
 	[SerializeField]
 	private GameObject lineGraphPrefab;
 
-	// Token: 0x04008497 RID: 33943
 	public RetiredColonyData[] retiredColonyData;
 
-	// Token: 0x04008498 RID: 33944
 	[Header("Explorer References")]
 	[SerializeField]
 	private GameObject colonyScroll;
 
-	// Token: 0x04008499 RID: 33945
 	[SerializeField]
 	private GameObject explorerRoot;
 
-	// Token: 0x0400849A RID: 33946
 	[SerializeField]
 	private GameObject explorerGrid;
 
-	// Token: 0x0400849B RID: 33947
 	[SerializeField]
 	private GameObject colonyDataRoot;
 
-	// Token: 0x0400849C RID: 33948
 	[SerializeField]
 	private GameObject colonyButtonPrefab;
 
-	// Token: 0x0400849D RID: 33949
 	[SerializeField]
 	private KInputTextField explorerSearch;
 
-	// Token: 0x0400849E RID: 33950
 	[SerializeField]
 	private KButton clearExplorerSearchButton;
 
-	// Token: 0x0400849F RID: 33951
 	[Header("Navigation Buttons")]
 	[SerializeField]
 	private KButton closeScreenButton;
 
-	// Token: 0x040084A0 RID: 33952
 	[SerializeField]
 	private KButton viewOtherColoniesButton;
 
-	// Token: 0x040084A1 RID: 33953
 	[SerializeField]
 	private KButton quitToMainMenuButton;
 
-	// Token: 0x040084A2 RID: 33954
 	[SerializeField]
 	private GameObject disabledPlatformUnlocks;
 
-	// Token: 0x040084A3 RID: 33955
 	private bool explorerGridConfigured;
 
-	// Token: 0x040084A4 RID: 33956
 	private Dictionary<string, GameObject> achievementEntries = new Dictionary<string, GameObject>();
 
-	// Token: 0x040084A5 RID: 33957
 	private List<GameObject> activeColonyWidgetContainers = new List<GameObject>();
 
-	// Token: 0x040084A6 RID: 33958
 	private Dictionary<string, GameObject> activeColonyWidgets = new Dictionary<string, GameObject>();
 
-	// Token: 0x040084A7 RID: 33959
 	private const float maxAchievementWidth = 830f;
 
-	// Token: 0x040084A8 RID: 33960
 	private Canvas canvasRef;
 
-	// Token: 0x040084A9 RID: 33961
 	private Dictionary<string, Color> statColors = new Dictionary<string, Color>
 	{
 		{
@@ -1218,6 +1130,5 @@ public class RetiredColonyInfoScreen : KModalScreen
 		}
 	};
 
-	// Token: 0x040084AA RID: 33962
 	private Dictionary<string, GameObject> explorerColonyWidgets = new Dictionary<string, GameObject>();
 }

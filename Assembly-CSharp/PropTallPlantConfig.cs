@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000548 RID: 1352
 public class PropTallPlantConfig : IEntityConfig
 {
-	// Token: 0x0600173B RID: 5947 RVA: 0x001A4F30 File Offset: 0x001A3130
 	public GameObject CreatePrefab()
 	{
 		string id = "PropTallPlant";
@@ -27,7 +25,6 @@ public class PropTallPlantConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x0600173C RID: 5948 RVA: 0x000AA768 File Offset: 0x000A8968
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.GetComponent<OccupyArea>().objectLayers = new ObjectLayer[]
@@ -36,7 +33,6 @@ public class PropTallPlantConfig : IEntityConfig
 		};
 	}
 
-	// Token: 0x0600173D RID: 5949 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}

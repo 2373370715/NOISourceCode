@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020002F0 RID: 752
 public class FlushToiletConfig : IBuildingConfig
 {
-	// Token: 0x06000B91 RID: 2961 RVA: 0x00179004 File Offset: 0x00177204
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "FlushToilet";
@@ -39,7 +37,6 @@ public class FlushToiletConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000B92 RID: 2962 RVA: 0x0017911C File Offset: 0x0017731C
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		KPrefabID component = go.GetComponent<KPrefabID>();
@@ -90,7 +87,6 @@ public class FlushToiletConfig : IBuildingConfig
 		component.prefabInitFn += this.OnInit;
 	}
 
-	// Token: 0x06000B93 RID: 2963 RVA: 0x00179300 File Offset: 0x00177500
 	private void OnInit(GameObject go)
 	{
 		ToiletWorkableUse component = go.GetComponent<ToiletWorkableUse>();
@@ -114,14 +110,11 @@ public class FlushToiletConfig : IBuildingConfig
 		});
 	}
 
-	// Token: 0x06000B94 RID: 2964 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x0400090A RID: 2314
 	private const float WATER_USAGE = 5f;
 
-	// Token: 0x0400090B RID: 2315
 	public const string ID = "FlushToilet";
 }

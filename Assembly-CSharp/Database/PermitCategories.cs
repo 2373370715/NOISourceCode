@@ -4,28 +4,23 @@ using STRINGS;
 
 namespace Database
 {
-	// Token: 0x020021B7 RID: 8631
 	public static class PermitCategories
 	{
-		// Token: 0x0600B843 RID: 47171 RVA: 0x0011B602 File Offset: 0x00119802
 		public static string GetDisplayName(PermitCategory category)
 		{
 			return PermitCategories.CategoryInfos[category].displayName;
 		}
 
-		// Token: 0x0600B844 RID: 47172 RVA: 0x0011B614 File Offset: 0x00119814
 		public static string GetUppercaseDisplayName(PermitCategory category)
 		{
 			return PermitCategories.CategoryInfos[category].displayName.ToUpper();
 		}
 
-		// Token: 0x0600B845 RID: 47173 RVA: 0x0011B62B File Offset: 0x0011982B
 		public static string GetIconName(PermitCategory category)
 		{
 			return PermitCategories.CategoryInfos[category].iconName;
 		}
 
-		// Token: 0x0600B846 RID: 47174 RVA: 0x0046DF90 File Offset: 0x0046C190
 		public static PermitCategory GetCategoryForId(string id)
 		{
 			try
@@ -39,13 +34,11 @@ namespace Database
 			return PermitCategory.Equipment;
 		}
 
-		// Token: 0x0600B847 RID: 47175 RVA: 0x0011B63D File Offset: 0x0011983D
 		public static Option<ClothingOutfitUtility.OutfitType> GetOutfitTypeFor(PermitCategory permitCategory)
 		{
 			return PermitCategories.CategoryInfos[permitCategory].outfitType;
 		}
 
-		// Token: 0x040095FE RID: 38398
 		private static Dictionary<PermitCategory, PermitCategories.CategoryInfo> CategoryInfos = new Dictionary<PermitCategory, PermitCategories.CategoryInfo>
 		{
 			{
@@ -122,10 +115,8 @@ namespace Database
 			}
 		};
 
-		// Token: 0x020021B8 RID: 8632
 		private class CategoryInfo
 		{
-			// Token: 0x0600B849 RID: 47177 RVA: 0x0011B64F File Offset: 0x0011984F
 			public CategoryInfo(string displayName, string iconName, Option<ClothingOutfitUtility.OutfitType> outfitType)
 			{
 				this.displayName = displayName;
@@ -133,13 +124,10 @@ namespace Database
 				this.outfitType = outfitType;
 			}
 
-			// Token: 0x040095FF RID: 38399
 			public string displayName;
 
-			// Token: 0x04009600 RID: 38400
 			public string iconName;
 
-			// Token: 0x04009601 RID: 38401
 			public Option<ClothingOutfitUtility.OutfitType> outfitType;
 		}
 	}

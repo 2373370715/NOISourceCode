@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000558 RID: 1368
 public class ResearchModuleConfig : IBuildingConfig
 {
-	// Token: 0x0600178B RID: 6027 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetForbiddenDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x0600178C RID: 6028 RVA: 0x001A6614 File Offset: 0x001A4814
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "ResearchModule";
@@ -41,7 +38,6 @@ public class ResearchModuleConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600178D RID: 6029 RVA: 0x001A66C4 File Offset: 0x001A48C4
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -54,12 +50,10 @@ public class ResearchModuleConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x0600178E RID: 6030 RVA: 0x000B4515 File Offset: 0x000B2715
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		BuildingTemplates.ExtendBuildingToRocketModule(go, "rocket_research_module_bg_kanim", false);
 	}
 
-	// Token: 0x04000F8D RID: 3981
 	public const string ID = "ResearchModule";
 }

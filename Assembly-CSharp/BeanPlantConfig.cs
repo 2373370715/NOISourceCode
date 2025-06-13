@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200028C RID: 652
 public class BeanPlantConfig : IEntityConfig
 {
-	// Token: 0x06000981 RID: 2433 RVA: 0x0016F7C4 File Offset: 0x0016D9C4
 	public GameObject CreatePrefab()
 	{
 		string id = "BeanPlant";
@@ -63,25 +61,19 @@ public class BeanPlantConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06000982 RID: 2434 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x06000983 RID: 2435 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x04000743 RID: 1859
 	public const string ID = "BeanPlant";
 
-	// Token: 0x04000744 RID: 1860
 	public const string SEED_ID = "BeanPlantSeed";
 
-	// Token: 0x04000745 RID: 1861
 	public const float FERTILIZATION_RATE = 0.008333334f;
 
-	// Token: 0x04000746 RID: 1862
 	public const float WATER_RATE = 0.033333335f;
 }

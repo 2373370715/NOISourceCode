@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005E7 RID: 1511
 public class TileConfig : IBuildingConfig
 {
-	// Token: 0x06001A74 RID: 6772 RVA: 0x001B3DE0 File Offset: 0x001B1FE0
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "Tile";
@@ -41,7 +39,6 @@ public class TileConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001A75 RID: 6773 RVA: 0x001B3EE0 File Offset: 0x001B20E0
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
@@ -56,23 +53,19 @@ public class TileConfig : IBuildingConfig
 		go.AddOrGet<BuildingHP>().destroyOnDamaged = true;
 	}
 
-	// Token: 0x06001A76 RID: 6774 RVA: 0x000B0779 File Offset: 0x000AE979
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		GeneratedBuildings.RemoveLoopingSounds(go);
 		go.GetComponent<KPrefabID>().AddTag(GameTags.FloorTiles, false);
 	}
 
-	// Token: 0x06001A77 RID: 6775 RVA: 0x000AA509 File Offset: 0x000A8709
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		base.DoPostConfigureUnderConstruction(go);
 		go.AddOrGet<KAnimGridTileVisualizer>();
 	}
 
-	// Token: 0x0400111D RID: 4381
 	public const string ID = "Tile";
 
-	// Token: 0x0400111E RID: 4382
 	public static readonly int BlockTileConnectorID = Hash.SDBMLower("tiles_solid_tops");
 }

@@ -4,22 +4,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020002E9 RID: 745
 public class WineCupsConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x06000B6F RID: 2927 RVA: 0x000AA117 File Offset: 0x000A8317
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06000B70 RID: 2928 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x06000B71 RID: 2929 RVA: 0x00178838 File Offset: 0x00176A38
 	public GameObject CreatePrefab()
 	{
 		string id = "WineCups";
@@ -53,25 +49,19 @@ public class WineCupsConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x06000B72 RID: 2930 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x06000B73 RID: 2931 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x040008FA RID: 2298
 	public const string ID = "WineCups";
 
-	// Token: 0x040008FB RID: 2299
 	public const string SEED_ID = "WineCupsSeed";
 
-	// Token: 0x040008FC RID: 2300
 	public static readonly EffectorValues POSITIVE_DECOR_EFFECT = DECOR.BONUS.TIER3;
 
-	// Token: 0x040008FD RID: 2301
 	public static readonly EffectorValues NEGATIVE_DECOR_EFFECT = DECOR.PENALTY.TIER3;
 }

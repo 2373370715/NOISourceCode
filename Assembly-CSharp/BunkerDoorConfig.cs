@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000039 RID: 57
 public class BunkerDoorConfig : IBuildingConfig
 {
-	// Token: 0x060000F6 RID: 246 RVA: 0x0014A838 File Offset: 0x00148A38
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "BunkerDoor";
@@ -42,7 +40,6 @@ public class BunkerDoorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060000F7 RID: 247 RVA: 0x0014A93C File Offset: 0x00148B3C
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		Door door = go.AddOrGet<Door>();
@@ -64,6 +61,5 @@ public class BunkerDoorConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(GameTags.Bunker, false);
 	}
 
-	// Token: 0x04000097 RID: 151
 	public const string ID = "BunkerDoor";
 }

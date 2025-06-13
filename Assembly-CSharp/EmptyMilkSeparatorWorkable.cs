@@ -1,10 +1,8 @@
 ﻿using System;
 using TUNING;
 
-// Token: 0x02000EF5 RID: 3829
 public class EmptyMilkSeparatorWorkable : Workable
 {
-	// Token: 0x06004CAE RID: 19630 RVA: 0x00270B98 File Offset: 0x0026ED98
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -22,7 +20,6 @@ public class EmptyMilkSeparatorWorkable : Workable
 		this.synchronizeAnims = true;
 	}
 
-	// Token: 0x06004CAF RID: 19631 RVA: 0x000D6067 File Offset: 0x000D4267
 	public override void OnPendingCompleteWork(WorkerBase worker)
 	{
 		System.Action onWork_PST_Begins = this.OnWork_PST_Begins;
@@ -33,6 +30,5 @@ public class EmptyMilkSeparatorWorkable : Workable
 		base.OnPendingCompleteWork(worker);
 	}
 
-	// Token: 0x040035AE RID: 13742
 	public System.Action OnWork_PST_Begins;
 }

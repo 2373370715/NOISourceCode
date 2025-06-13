@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003DD RID: 989
 public class LogicElementSensorLiquidConfig : IBuildingConfig
 {
-	// Token: 0x06001015 RID: 4117 RVA: 0x00189F10 File Offset: 0x00188110
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = LogicElementSensorLiquidConfig.ID;
@@ -39,7 +37,6 @@ public class LogicElementSensorLiquidConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001016 RID: 4118 RVA: 0x000B15EA File Offset: 0x000AF7EA
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<Filterable>().filterElementState = Filterable.ElementState.Liquid;
@@ -49,6 +46,5 @@ public class LogicElementSensorLiquidConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayInFrontOfConduits, false);
 	}
 
-	// Token: 0x04000B85 RID: 2949
 	public static string ID = "LogicElementSensorLiquid";
 }

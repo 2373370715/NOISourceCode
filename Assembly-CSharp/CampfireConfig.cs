@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200003E RID: 62
 public class CampfireConfig : IBuildingConfig
 {
-	// Token: 0x0600010D RID: 269 RVA: 0x000AA536 File Offset: 0x000A8736
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.DLC2;
 	}
 
-	// Token: 0x0600010E RID: 270 RVA: 0x0014B0AC File Offset: 0x001492AC
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "Campfire";
@@ -43,7 +40,6 @@ public class CampfireConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600010F RID: 271 RVA: 0x0014B17C File Offset: 0x0014937C
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<LoopingSounds>();
@@ -104,24 +100,20 @@ public class CampfireConfig : IBuildingConfig
 		directVolumeHeater.maximumExternalTemperature = 343.15f;
 	}
 
-	// Token: 0x06000110 RID: 272 RVA: 0x000AA53D File Offset: 0x000A873D
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 		this.AddVisualizer(go);
 	}
 
-	// Token: 0x06000111 RID: 273 RVA: 0x000AA546 File Offset: 0x000A8746
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		this.AddVisualizer(go);
 	}
 
-	// Token: 0x06000112 RID: 274 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x06000113 RID: 275 RVA: 0x0014B3A0 File Offset: 0x001495A0
 	private void AddVisualizer(GameObject go)
 	{
 		RangeVisualizer rangeVisualizer = go.AddOrGet<RangeVisualizer>();
@@ -131,39 +123,27 @@ public class CampfireConfig : IBuildingConfig
 		go.AddOrGet<EntityCellVisualizer>().AddPort(EntityCellVisualizer.Ports.HeatSource, default(CellOffset));
 	}
 
-	// Token: 0x040000A1 RID: 161
 	public const string ID = "Campfire";
 
-	// Token: 0x040000A2 RID: 162
 	public const int RANGE_X = 4;
 
-	// Token: 0x040000A3 RID: 163
 	public const int RANGE_Y = 3;
 
-	// Token: 0x040000A4 RID: 164
 	public static Tag FUEL_TAG = SimHashes.WoodLog.ToString();
 
-	// Token: 0x040000A5 RID: 165
 	public const float FUEL_CONSUMPTION_RATE = 0.025f;
 
-	// Token: 0x040000A6 RID: 166
 	public const float FUEL_CONSTRUCTION_MASS = 5f;
 
-	// Token: 0x040000A7 RID: 167
 	public const float FUEL_CAPACITY = 45f;
 
-	// Token: 0x040000A8 RID: 168
 	public const float EXHAUST_RATE = 0.004f;
 
-	// Token: 0x040000A9 RID: 169
 	public const SimHashes EXHAUST_TAG = SimHashes.CarbonDioxide;
 
-	// Token: 0x040000AA RID: 170
 	private const float EXHAUST_TEMPERATURE = 303.15f;
 
-	// Token: 0x040000AB RID: 171
 	public static readonly EffectorValues DECOR_ON = BUILDINGS.DECOR.BONUS.TIER3;
 
-	// Token: 0x040000AC RID: 172
 	public static readonly EffectorValues DECOR_OFF = BUILDINGS.DECOR.NONE;
 }

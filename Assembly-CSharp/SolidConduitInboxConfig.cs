@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005AA RID: 1450
 public class SolidConduitInboxConfig : IBuildingConfig
 {
-	// Token: 0x06001918 RID: 6424 RVA: 0x001AD8F8 File Offset: 0x001ABAF8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "SolidConduitInbox";
@@ -37,13 +35,11 @@ public class SolidConduitInboxConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001919 RID: 6425 RVA: 0x000B4EBD File Offset: 0x000B30BD
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		go.GetComponent<Constructable>().requiredSkillPerk = Db.Get().SkillPerks.ConveyorBuild.Id;
 	}
 
-	// Token: 0x0600191A RID: 6426 RVA: 0x001AD9CC File Offset: 0x001ABBCC
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
@@ -67,6 +63,5 @@ public class SolidConduitInboxConfig : IBuildingConfig
 		go.AddOrGet<SolidConduitDispenser>();
 	}
 
-	// Token: 0x04001053 RID: 4179
 	public const string ID = "SolidConduitInbox";
 }

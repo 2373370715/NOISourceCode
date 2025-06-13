@@ -3,16 +3,13 @@ using Klei;
 using Klei.AI;
 using UnityEngine;
 
-// Token: 0x02000F26 RID: 3878
 public class OilChangerWorkableUse : Workable, IGameObjectEffectDescriptor
 {
-	// Token: 0x06004DBF RID: 19903 RVA: 0x000B09A4 File Offset: 0x000AEBA4
 	private OilChangerWorkableUse()
 	{
 		base.SetReportType(ReportManager.ReportType.PersonalTime);
 	}
 
-	// Token: 0x06004DC0 RID: 19904 RVA: 0x00274AD8 File Offset: 0x00272CD8
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -23,7 +20,6 @@ public class OilChangerWorkableUse : Workable, IGameObjectEffectDescriptor
 		base.SetWorkTime(8.5f);
 	}
 
-	// Token: 0x06004DC1 RID: 19905 RVA: 0x00274B28 File Offset: 0x00272D28
 	protected override void OnStartWork(WorkerBase worker)
 	{
 		base.OnStartWork(worker);
@@ -41,7 +37,6 @@ public class OilChangerWorkableUse : Workable, IGameObjectEffectDescriptor
 		this.operational.SetActive(true, false);
 	}
 
-	// Token: 0x06004DC2 RID: 19906 RVA: 0x00274BAC File Offset: 0x00272DAC
 	protected override void OnStopWork(WorkerBase worker)
 	{
 		if (worker != null)
@@ -54,7 +49,6 @@ public class OilChangerWorkableUse : Workable, IGameObjectEffectDescriptor
 		base.OnStopWork(worker);
 	}
 
-	// Token: 0x06004DC3 RID: 19907 RVA: 0x00274C00 File Offset: 0x00272E00
 	protected override void OnCompleteWork(WorkerBase worker)
 	{
 		Storage component = base.GetComponent<Storage>();
@@ -99,6 +93,5 @@ public class OilChangerWorkableUse : Workable, IGameObjectEffectDescriptor
 		base.OnCompleteWork(worker);
 	}
 
-	// Token: 0x04003693 RID: 13971
 	private Operational operational;
 }

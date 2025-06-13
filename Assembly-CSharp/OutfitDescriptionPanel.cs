@@ -5,10 +5,8 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001ED2 RID: 7890
 public class OutfitDescriptionPanel : KMonoBehaviour
 {
-	// Token: 0x0600A585 RID: 42373 RVA: 0x0010FCED File Offset: 0x0010DEED
 	public void Refresh(PermitResource permitResource, ClothingOutfitUtility.OutfitType outfitType, Option<Personality> personality)
 	{
 		if (permitResource != null)
@@ -22,7 +20,6 @@ public class OutfitDescriptionPanel : KMonoBehaviour
 		this.Refresh(UI.OUTFIT_NAME.NONE, OutfitDescriptionPanel.NO_ITEMS, outfitType, personality);
 	}
 
-	// Token: 0x0600A586 RID: 42374 RVA: 0x003F9F00 File Offset: 0x003F8100
 	public void Refresh(Option<ClothingOutfitTarget> outfit, ClothingOutfitUtility.OutfitType outfitType, Option<Personality> personality)
 	{
 		if (outfit.IsSome())
@@ -51,13 +48,11 @@ public class OutfitDescriptionPanel : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600A587 RID: 42375 RVA: 0x0010FD27 File Offset: 0x0010DF27
 	public void Refresh(OutfitDesignerScreen_OutfitState outfitState, Option<Personality> personality)
 	{
 		this.Refresh(outfitState.name, outfitState.GetItems(), outfitState.outfitType, personality);
 	}
 
-	// Token: 0x0600A588 RID: 42376 RVA: 0x003F9FDC File Offset: 0x003F81DC
 	public void Refresh(string outfitName, string[] outfitItemIds, ClothingOutfitUtility.OutfitType outfitType, Option<Personality> personality)
 	{
 		this.ClearItemDescRows();
@@ -156,7 +151,6 @@ public class OutfitDescriptionPanel : KMonoBehaviour
 		});
 	}
 
-	// Token: 0x0600A589 RID: 42377 RVA: 0x003FA3BC File Offset: 0x003F85BC
 	private void ClearItemDescRows()
 	{
 		for (int i = 0; i < this.itemDescriptionRows.Count; i++)
@@ -166,7 +160,6 @@ public class OutfitDescriptionPanel : KMonoBehaviour
 		this.itemDescriptionRows.Clear();
 	}
 
-	// Token: 0x0600A58A RID: 42378 RVA: 0x003FA3FC File Offset: 0x003F85FC
 	private void AddItemDescRow(PermitResource permit)
 	{
 		PermitPresentationInfo permitPresentationInfo = permit.GetPermitPresentationInfo();
@@ -175,7 +168,6 @@ public class OutfitDescriptionPanel : KMonoBehaviour
 		this.AddItemDescRow(permitPresentationInfo.sprite, permit.Name, tooltip, flag ? 1f : 0.7f);
 	}
 
-	// Token: 0x0600A58B RID: 42379 RVA: 0x003FA44C File Offset: 0x003F864C
 	private void AddItemDescRow(Sprite icon, string text, string tooltip = null, float alpha = 1f)
 	{
 		GameObject gameObject = Util.KInstantiateUI(this.itemDescriptionRowPrefab, this.itemDescriptionContainer, true);
@@ -193,33 +185,25 @@ public class OutfitDescriptionPanel : KMonoBehaviour
 		gameObject.AddOrGet<ToolTip>().ClearMultiStringTooltip();
 	}
 
-	// Token: 0x04008187 RID: 33159
 	[SerializeField]
 	public LocText outfitNameLabel;
 
-	// Token: 0x04008188 RID: 33160
 	[SerializeField]
 	public LocText outfitDescriptionLabel;
 
-	// Token: 0x04008189 RID: 33161
 	[SerializeField]
 	private GameObject itemDescriptionRowPrefab;
 
-	// Token: 0x0400818A RID: 33162
 	[SerializeField]
 	private GameObject itemDescriptionContainer;
 
-	// Token: 0x0400818B RID: 33163
 	[SerializeField]
 	private LocText collectionLabel;
 
-	// Token: 0x0400818C RID: 33164
 	[SerializeField]
 	private LocText usesUnownedItemsLabel;
 
-	// Token: 0x0400818D RID: 33165
 	private List<GameObject> itemDescriptionRows = new List<GameObject>();
 
-	// Token: 0x0400818E RID: 33166
 	public static readonly string[] NO_ITEMS = new string[0];
 }

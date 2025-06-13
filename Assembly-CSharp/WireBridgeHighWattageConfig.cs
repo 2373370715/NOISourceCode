@@ -3,16 +3,13 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005FE RID: 1534
 public class WireBridgeHighWattageConfig : IBuildingConfig
 {
-	// Token: 0x06001B1C RID: 6940 RVA: 0x000B61E3 File Offset: 0x000B43E3
 	protected virtual string GetID()
 	{
 		return "WireBridgeHighWattage";
 	}
 
-	// Token: 0x06001B1D RID: 6941 RVA: 0x001B6594 File Offset: 0x001B4794
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = this.GetID();
@@ -48,7 +45,6 @@ public class WireBridgeHighWattageConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001B1E RID: 6942 RVA: 0x001B6694 File Offset: 0x001B4894
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -61,7 +57,6 @@ public class WireBridgeHighWattageConfig : IBuildingConfig
 		go.AddOrGet<TileTemperature>();
 	}
 
-	// Token: 0x06001B1F RID: 6943 RVA: 0x000B61EA File Offset: 0x000B43EA
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 		base.DoPostConfigurePreview(def, go);
@@ -69,7 +64,6 @@ public class WireBridgeHighWattageConfig : IBuildingConfig
 		go.AddOrGet<BuildingCellVisualizer>();
 	}
 
-	// Token: 0x06001B20 RID: 6944 RVA: 0x000B6208 File Offset: 0x000B4408
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		base.DoPostConfigureUnderConstruction(go);
@@ -77,7 +71,6 @@ public class WireBridgeHighWattageConfig : IBuildingConfig
 		go.AddOrGet<BuildingCellVisualizer>();
 	}
 
-	// Token: 0x06001B21 RID: 6945 RVA: 0x000B6225 File Offset: 0x000B4425
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		this.AddNetworkLink(go).visualizeOnly = false;
@@ -85,7 +78,6 @@ public class WireBridgeHighWattageConfig : IBuildingConfig
 		go.AddOrGet<BuildingCellVisualizer>();
 	}
 
-	// Token: 0x06001B22 RID: 6946 RVA: 0x000B624C File Offset: 0x000B444C
 	protected virtual WireUtilityNetworkLink AddNetworkLink(GameObject go)
 	{
 		WireUtilityNetworkLink wireUtilityNetworkLink = go.AddOrGet<WireUtilityNetworkLink>();
@@ -95,6 +87,5 @@ public class WireBridgeHighWattageConfig : IBuildingConfig
 		return wireUtilityNetworkLink;
 	}
 
-	// Token: 0x04001168 RID: 4456
 	public const string ID = "WireBridgeHighWattage";
 }

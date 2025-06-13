@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02001AC9 RID: 6857
 public class GroundMasks : ScriptableObject
 {
-	// Token: 0x06008F6A RID: 36714 RVA: 0x00381D58 File Offset: 0x0037FF58
 	public void Initialize()
 	{
 		if (this.maskAtlas == null || this.maskAtlas.items == null)
@@ -59,7 +57,6 @@ public class GroundMasks : ScriptableObject
 		}
 	}
 
-	// Token: 0x06008F6B RID: 36715 RVA: 0x00381FBC File Offset: 0x003801BC
 	[ContextMenu("Print Variations")]
 	private void Regenerate()
 	{
@@ -78,17 +75,13 @@ public class GroundMasks : ScriptableObject
 		global::Debug.Log(text);
 	}
 
-	// Token: 0x04006C0B RID: 27659
 	public TextureAtlas maskAtlas;
 
-	// Token: 0x04006C0C RID: 27660
 	[NonSerialized]
 	public Dictionary<string, GroundMasks.BiomeMaskData> biomeMasks;
 
-	// Token: 0x02001ACA RID: 6858
 	public struct UVData
 	{
-		// Token: 0x06008F6D RID: 36717 RVA: 0x001021A3 File Offset: 0x001003A3
 		public UVData(Vector2 bl, Vector2 br, Vector2 tl, Vector2 tr)
 		{
 			this.bl = bl;
@@ -97,40 +90,30 @@ public class GroundMasks : ScriptableObject
 			this.tr = tr;
 		}
 
-		// Token: 0x04006C0D RID: 27661
 		public Vector2 bl;
 
-		// Token: 0x04006C0E RID: 27662
 		public Vector2 br;
 
-		// Token: 0x04006C0F RID: 27663
 		public Vector2 tl;
 
-		// Token: 0x04006C10 RID: 27664
 		public Vector2 tr;
 	}
 
-	// Token: 0x02001ACB RID: 6859
 	public struct Tile
 	{
-		// Token: 0x04006C11 RID: 27665
 		public bool isSource;
 
-		// Token: 0x04006C12 RID: 27666
 		public GroundMasks.UVData[] variationUVs;
 	}
 
-	// Token: 0x02001ACC RID: 6860
 	public class BiomeMaskData
 	{
-		// Token: 0x06008F6E RID: 36718 RVA: 0x001021C2 File Offset: 0x001003C2
 		public BiomeMaskData(string name)
 		{
 			this.name = name;
 			this.tiles = new GroundMasks.Tile[16];
 		}
 
-		// Token: 0x06008F6F RID: 36719 RVA: 0x00382094 File Offset: 0x00380294
 		public void GenerateRotations()
 		{
 			for (int i = 1; i < 15; i++)
@@ -144,7 +127,6 @@ public class GroundMasks : ScriptableObject
 			}
 		}
 
-		// Token: 0x06008F70 RID: 36720 RVA: 0x003820EC File Offset: 0x003802EC
 		public GroundMasks.UVData[] GetNonNullRotationUVs(int dest_mask)
 		{
 			GroundMasks.UVData[] array = null;
@@ -186,7 +168,6 @@ public class GroundMasks : ScriptableObject
 			return array;
 		}
 
-		// Token: 0x06008F71 RID: 36721 RVA: 0x0038224C File Offset: 0x0038044C
 		public void Validate()
 		{
 			for (int i = 1; i < this.tiles.Length; i++)
@@ -203,10 +184,8 @@ public class GroundMasks : ScriptableObject
 			}
 		}
 
-		// Token: 0x04006C13 RID: 27667
 		public string name;
 
-		// Token: 0x04006C14 RID: 27668
 		public GroundMasks.Tile[] tiles;
 	}
 }

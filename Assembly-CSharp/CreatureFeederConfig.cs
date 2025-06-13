@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200008B RID: 139
 public class CreatureFeederConfig : IBuildingConfig
 {
-	// Token: 0x06000231 RID: 561 RVA: 0x0014FA68 File Offset: 0x0014DC68
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "CreatureFeeder";
@@ -25,12 +23,10 @@ public class CreatureFeederConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000232 RID: 562 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 	}
 
-	// Token: 0x06000233 RID: 563 RVA: 0x0014FABC File Offset: 0x0014DCBC
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		Prioritizable.AddRef(go);
@@ -48,13 +44,11 @@ public class CreatureFeederConfig : IBuildingConfig
 		go.AddOrGet<CreatureFeeder>();
 	}
 
-	// Token: 0x06000234 RID: 564 RVA: 0x000AAC8E File Offset: 0x000A8E8E
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGetDef<StorageController.Def>();
 	}
 
-	// Token: 0x06000235 RID: 565 RVA: 0x0014FB40 File Offset: 0x0014DD40
 	public override void ConfigurePost(BuildingDef def)
 	{
 		List<Tag> list = new List<Tag>();
@@ -76,6 +70,5 @@ public class CreatureFeederConfig : IBuildingConfig
 		def.BuildingComplete.GetComponent<Storage>().storageFilters = list;
 	}
 
-	// Token: 0x0400016C RID: 364
 	public const string ID = "CreatureFeeder";
 }

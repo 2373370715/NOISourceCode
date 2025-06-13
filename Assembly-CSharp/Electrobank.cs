@@ -4,16 +4,10 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x020012B4 RID: 4788
 public class Electrobank : KMonoBehaviour, ISim1000ms, ISim200ms, IConsumableUIItem, IGameObjectEffectDescriptor
 {
-	// Token: 0x170005EE RID: 1518
-	// (get) Token: 0x060061CE RID: 25038 RVA: 0x000E4334 File Offset: 0x000E2534
-	// (set) Token: 0x060061CD RID: 25037 RVA: 0x000E432B File Offset: 0x000E252B
 	public string ID { get; private set; }
 
-	// Token: 0x170005EF RID: 1519
-	// (get) Token: 0x060061CF RID: 25039 RVA: 0x000E433C File Offset: 0x000E253C
 	public bool IsFullyCharged
 	{
 		get
@@ -22,8 +16,6 @@ public class Electrobank : KMonoBehaviour, ISim1000ms, ISim200ms, IConsumableUII
 		}
 	}
 
-	// Token: 0x170005F0 RID: 1520
-	// (get) Token: 0x060061D0 RID: 25040 RVA: 0x000E434B File Offset: 0x000E254B
 	public float Charge
 	{
 		get
@@ -32,7 +24,6 @@ public class Electrobank : KMonoBehaviour, ISim1000ms, ISim200ms, IConsumableUII
 		}
 	}
 
-	// Token: 0x060061D1 RID: 25041 RVA: 0x002C2900 File Offset: 0x002C0B00
 	protected override void OnPrefabInit()
 	{
 		this.ID = base.gameObject.PrefabID().ToString();
@@ -40,7 +31,6 @@ public class Electrobank : KMonoBehaviour, ISim1000ms, ISim200ms, IConsumableUII
 		base.OnPrefabInit();
 	}
 
-	// Token: 0x060061D2 RID: 25042 RVA: 0x002C294C File Offset: 0x002C0B4C
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -50,13 +40,11 @@ public class Electrobank : KMonoBehaviour, ISim1000ms, ISim200ms, IConsumableUII
 		this.UpdateRadiationEmitter();
 	}
 
-	// Token: 0x060061D3 RID: 25043 RVA: 0x000E4353 File Offset: 0x000E2553
 	private void OnCraft(object data)
 	{
 		WorldResourceAmountTracker<ElectrobankTracker>.Get().RegisterAmountProduced(this.Charge);
 	}
 
-	// Token: 0x060061D4 RID: 25044 RVA: 0x002C29A0 File Offset: 0x002C0BA0
 	private void UpdateRadiationEmitter()
 	{
 		if (this.radiationEmitter == null)
@@ -68,7 +56,6 @@ public class Electrobank : KMonoBehaviour, ISim1000ms, ISim200ms, IConsumableUII
 		this.radiationEmitter.Refresh();
 	}
 
-	// Token: 0x060061D5 RID: 25045 RVA: 0x002C29F0 File Offset: 0x002C0BF0
 	public static GameObject ReplaceEmptyWithCharged(GameObject EmptyElectrobank, bool dropFromStorage = false)
 	{
 		Vector3 position = EmptyElectrobank.transform.GetPosition();
@@ -88,7 +75,6 @@ public class Electrobank : KMonoBehaviour, ISim1000ms, ISim200ms, IConsumableUII
 		return gameObject;
 	}
 
-	// Token: 0x060061D6 RID: 25046 RVA: 0x002C2A80 File Offset: 0x002C0C80
 	public static GameObject ReplaceChargedWithEmpty(GameObject ChargedElectrobank, bool dropFromStorage = false)
 	{
 		Vector3 position = ChargedElectrobank.transform.GetPosition();
@@ -108,7 +94,6 @@ public class Electrobank : KMonoBehaviour, ISim1000ms, ISim200ms, IConsumableUII
 		return gameObject;
 	}
 
-	// Token: 0x060061D7 RID: 25047 RVA: 0x002C2B10 File Offset: 0x002C0D10
 	public static GameObject ReplaceEmptyWithGarbage(GameObject ChargedElectrobank, bool dropFromStorage = false)
 	{
 		Vector3 position = ChargedElectrobank.transform.GetPosition();
@@ -128,7 +113,6 @@ public class Electrobank : KMonoBehaviour, ISim1000ms, ISim200ms, IConsumableUII
 		return gameObject;
 	}
 
-	// Token: 0x060061D8 RID: 25048 RVA: 0x002C2BA0 File Offset: 0x002C0DA0
 	public float AddPower(float joules)
 	{
 		if (joules < 0f)
@@ -140,7 +124,6 @@ public class Electrobank : KMonoBehaviour, ISim1000ms, ISim200ms, IConsumableUII
 		return num;
 	}
 
-	// Token: 0x060061D9 RID: 25049 RVA: 0x002C2BE0 File Offset: 0x002C0DE0
 	public float RemovePower(float joules, bool dropWhenEmpty)
 	{
 		float num = Mathf.Min(this.charge, joules);
@@ -156,7 +139,6 @@ public class Electrobank : KMonoBehaviour, ISim1000ms, ISim200ms, IConsumableUII
 		return num;
 	}
 
-	// Token: 0x060061DA RID: 25050 RVA: 0x002C2C30 File Offset: 0x002C0E30
 	protected virtual void OnEmpty(bool dropWhenEmpty)
 	{
 		if (this.rechargeable)
@@ -174,13 +156,11 @@ public class Electrobank : KMonoBehaviour, ISim1000ms, ISim200ms, IConsumableUII
 		}
 	}
 
-	// Token: 0x060061DB RID: 25051 RVA: 0x000E4365 File Offset: 0x000E2565
 	public void FullyCharge()
 	{
 		this.charge = Electrobank.capacity;
 	}
 
-	// Token: 0x060061DC RID: 25052 RVA: 0x002C2C90 File Offset: 0x002C0E90
 	public virtual void Explode()
 	{
 		int num = Grid.PosToCell(base.gameObject.transform.position);
@@ -198,7 +178,6 @@ public class Electrobank : KMonoBehaviour, ISim1000ms, ISim200ms, IConsumableUII
 		base.gameObject.DeleteObject();
 	}
 
-	// Token: 0x060061DD RID: 25053 RVA: 0x002C2D9C File Offset: 0x002C0F9C
 	protected void LaunchNearbyStuff()
 	{
 		ListPool<ScenePartitionerEntry, Comet>.PooledList pooledList = ListPool<ScenePartitionerEntry, Comet>.Allocate();
@@ -227,7 +206,6 @@ public class Electrobank : KMonoBehaviour, ISim1000ms, ISim200ms, IConsumableUII
 		pooledList.Recycle();
 	}
 
-	// Token: 0x060061DE RID: 25054 RVA: 0x000E4372 File Offset: 0x000E2572
 	public void Sim1000ms(float dt)
 	{
 		if (this.pickupable.KPrefabID.HasTag(GameTags.Stored))
@@ -238,14 +216,12 @@ public class Electrobank : KMonoBehaviour, ISim1000ms, ISim200ms, IConsumableUII
 		this.UpdateHealthBar();
 	}
 
-	// Token: 0x060061DF RID: 25055 RVA: 0x000E4399 File Offset: 0x000E2599
 	public virtual void Sim200ms(float dt)
 	{
 		this.UpdateRadiationEmitter();
 		this.timeSincePowerDrawn = Mathf.Min(this.timeSincePowerDrawn + dt, 10f);
 	}
 
-	// Token: 0x060061E0 RID: 25056 RVA: 0x002C2EEC File Offset: 0x002C10EC
 	private void EvaluateWaterDamage(float dt)
 	{
 		if (Grid.IsValidCell(this.pickupable.cachedCell) && Grid.Element[this.pickupable.cachedCell].HasTag(GameTags.AnyWater) && UnityEngine.Random.Range(1, 101) > 75)
@@ -255,7 +231,6 @@ public class Electrobank : KMonoBehaviour, ISim1000ms, ISim200ms, IConsumableUII
 		}
 	}
 
-	// Token: 0x060061E1 RID: 25057 RVA: 0x002C2F70 File Offset: 0x002C1170
 	public void Damage(float amount)
 	{
 		Game.Instance.SpawnFX(SpawnFXHashes.ElectrobankDamage, Grid.PosToCell(base.gameObject), 0f);
@@ -273,7 +248,6 @@ public class Electrobank : KMonoBehaviour, ISim1000ms, ISim200ms, IConsumableUII
 		}
 	}
 
-	// Token: 0x060061E2 RID: 25058 RVA: 0x000E43B9 File Offset: 0x000E25B9
 	protected override void OnCleanUp()
 	{
 		this.ClearHealthBar(null);
@@ -281,7 +255,6 @@ public class Electrobank : KMonoBehaviour, ISim1000ms, ISim200ms, IConsumableUII
 		base.OnCleanUp();
 	}
 
-	// Token: 0x060061E3 RID: 25059 RVA: 0x000E43DE File Offset: 0x000E25DE
 	public void CreateHealthBar()
 	{
 		this.healthBar = ProgressBar.CreateProgressBar(base.gameObject, () => this.currentHealth / 10f);
@@ -289,7 +262,6 @@ public class Electrobank : KMonoBehaviour, ISim1000ms, ISim200ms, IConsumableUII
 		this.healthBar.barColor = Util.ColorFromHex("CC3333");
 	}
 
-	// Token: 0x060061E4 RID: 25060 RVA: 0x000E441E File Offset: 0x000E261E
 	public void UpdateHealthBar()
 	{
 		if (this.healthBar != null && Time.time - this.lastDamageTime > 5f)
@@ -298,7 +270,6 @@ public class Electrobank : KMonoBehaviour, ISim1000ms, ISim200ms, IConsumableUII
 		}
 	}
 
-	// Token: 0x060061E5 RID: 25061 RVA: 0x000E4448 File Offset: 0x000E2648
 	public void ClearHealthBar(object data = null)
 	{
 		if (this.healthBar != null)
@@ -308,7 +279,6 @@ public class Electrobank : KMonoBehaviour, ISim1000ms, ISim200ms, IConsumableUII
 		}
 	}
 
-	// Token: 0x060061E6 RID: 25062 RVA: 0x002C300C File Offset: 0x002C120C
 	public List<Descriptor> GetDescriptors(GameObject go)
 	{
 		List<Descriptor> list = new List<Descriptor>();
@@ -318,8 +288,6 @@ public class Electrobank : KMonoBehaviour, ISim1000ms, ISim200ms, IConsumableUII
 		return list;
 	}
 
-	// Token: 0x170005F1 RID: 1521
-	// (get) Token: 0x060061E7 RID: 25063 RVA: 0x002C3078 File Offset: 0x002C1278
 	public string ConsumableId
 	{
 		get
@@ -328,8 +296,6 @@ public class Electrobank : KMonoBehaviour, ISim1000ms, ISim200ms, IConsumableUII
 		}
 	}
 
-	// Token: 0x170005F2 RID: 1522
-	// (get) Token: 0x060061E8 RID: 25064 RVA: 0x000E446A File Offset: 0x000E266A
 	public string ConsumableName
 	{
 		get
@@ -338,8 +304,6 @@ public class Electrobank : KMonoBehaviour, ISim1000ms, ISim200ms, IConsumableUII
 		}
 	}
 
-	// Token: 0x170005F3 RID: 1523
-	// (get) Token: 0x060061E9 RID: 25065 RVA: 0x000E4472 File Offset: 0x000E2672
 	public int MajorOrder
 	{
 		get
@@ -348,8 +312,6 @@ public class Electrobank : KMonoBehaviour, ISim1000ms, ISim200ms, IConsumableUII
 		}
 	}
 
-	// Token: 0x170005F4 RID: 1524
-	// (get) Token: 0x060061EA RID: 25066 RVA: 0x000B1628 File Offset: 0x000AF828
 	public int MinorOrder
 	{
 		get
@@ -358,8 +320,6 @@ public class Electrobank : KMonoBehaviour, ISim1000ms, ISim200ms, IConsumableUII
 		}
 	}
 
-	// Token: 0x170005F5 RID: 1525
-	// (get) Token: 0x060061EB RID: 25067 RVA: 0x000AA7E7 File Offset: 0x000A89E7
 	public bool Display
 	{
 		get
@@ -368,46 +328,33 @@ public class Electrobank : KMonoBehaviour, ISim1000ms, ISim200ms, IConsumableUII
 		}
 	}
 
-	// Token: 0x040045EC RID: 17900
 	private static float capacity = 120000f;
 
-	// Token: 0x040045ED RID: 17901
 	[Serialize]
 	private float charge = Electrobank.capacity;
 
-	// Token: 0x040045EE RID: 17902
 	private const float MAX_HEALTH = 10f;
 
-	// Token: 0x040045EF RID: 17903
 	[Serialize]
 	private float currentHealth = 10f;
 
-	// Token: 0x040045F0 RID: 17904
 	[Serialize]
 	private float timeSincePowerDrawn = 0.5f;
 
-	// Token: 0x040045F1 RID: 17905
 	private const float RADIATION_EMITTER_TIMEOUT = 0.5f;
 
-	// Token: 0x040045F2 RID: 17906
 	public float radioactivityTuning;
 
-	// Token: 0x040045F3 RID: 17907
 	private RadiationEmitter radiationEmitter;
 
-	// Token: 0x040045F4 RID: 17908
 	private float lastDamageTime;
 
-	// Token: 0x040045F5 RID: 17909
 	public ProgressBar healthBar;
 
-	// Token: 0x040045F6 RID: 17910
 	public bool rechargeable;
 
-	// Token: 0x040045F7 RID: 17911
 	public bool keepEmpty;
 
-	// Token: 0x040045F8 RID: 17912
 	[MyCmpGet]
 	private Pickupable pickupable;
 }

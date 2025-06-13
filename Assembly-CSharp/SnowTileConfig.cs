@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005A0 RID: 1440
 public class SnowTileConfig : IBuildingConfig
 {
-	// Token: 0x060018E0 RID: 6368 RVA: 0x001ACAEC File Offset: 0x001AACEC
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "SnowTile";
@@ -48,7 +46,6 @@ public class SnowTileConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060018E1 RID: 6369 RVA: 0x001ACC14 File Offset: 0x001AAE14
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
@@ -65,20 +62,17 @@ public class SnowTileConfig : IBuildingConfig
 		component.prefabSpawnFn += this.BuildingComplete_OnSpawn;
 	}
 
-	// Token: 0x060018E2 RID: 6370 RVA: 0x000AA536 File Offset: 0x000A8736
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.DLC2;
 	}
 
-	// Token: 0x060018E3 RID: 6371 RVA: 0x000B0779 File Offset: 0x000AE979
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		GeneratedBuildings.RemoveLoopingSounds(go);
 		go.GetComponent<KPrefabID>().AddTag(GameTags.FloorTiles, false);
 	}
 
-	// Token: 0x060018E4 RID: 6372 RVA: 0x001ACCA8 File Offset: 0x001AAEA8
 	private void BuildingComplete_OnInit(GameObject instance)
 	{
 		PrimaryElement component = instance.GetComponent<PrimaryElement>();
@@ -94,7 +88,6 @@ public class SnowTileConfig : IBuildingConfig
 		}
 	}
 
-	// Token: 0x060018E5 RID: 6373 RVA: 0x001ACCFC File Offset: 0x001AAEFC
 	private void BuildingComplete_OnSpawn(GameObject instance)
 	{
 		instance.GetComponent<PrimaryElement>().SetElement(this.STABLE_SNOW_ELEMENT, true);
@@ -108,22 +101,17 @@ public class SnowTileConfig : IBuildingConfig
 		}
 	}
 
-	// Token: 0x060018E6 RID: 6374 RVA: 0x000AA509 File Offset: 0x000A8709
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		base.DoPostConfigureUnderConstruction(go);
 		go.AddOrGet<KAnimGridTileVisualizer>();
 	}
 
-	// Token: 0x0400103C RID: 4156
 	public const string ID = "SnowTile";
 
-	// Token: 0x0400103D RID: 4157
 	public static readonly int BlockTileConnectorID = Hash.SDBMLower("tiles_snow_tops");
 
-	// Token: 0x0400103E RID: 4158
 	private SimHashes CONSTRUCTION_ELEMENT = SimHashes.Snow;
 
-	// Token: 0x0400103F RID: 4159
 	private SimHashes STABLE_SNOW_ELEMENT = SimHashes.StableSnow;
 }

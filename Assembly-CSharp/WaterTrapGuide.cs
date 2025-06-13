@@ -1,10 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02001A95 RID: 6805
 public class WaterTrapGuide : KMonoBehaviour, IRenderEveryTick
 {
-	// Token: 0x06008DEB RID: 36331 RVA: 0x001012E2 File Offset: 0x000FF4E2
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -14,13 +12,11 @@ public class WaterTrapGuide : KMonoBehaviour, IRenderEveryTick
 		this.RefreshDepthAvailable();
 	}
 
-	// Token: 0x06008DEC RID: 36332 RVA: 0x00101313 File Offset: 0x000FF513
 	private void RefreshTint()
 	{
 		this.guideController.TintColour = this.parentController.TintColour;
 	}
 
-	// Token: 0x06008DED RID: 36333 RVA: 0x0010132B File Offset: 0x000FF52B
 	public void RefreshPosition()
 	{
 		if (this.guideController != null && this.guideController.IsMoving)
@@ -29,7 +25,6 @@ public class WaterTrapGuide : KMonoBehaviour, IRenderEveryTick
 		}
 	}
 
-	// Token: 0x06008DEE RID: 36334 RVA: 0x00377DFC File Offset: 0x00375FFC
 	private void RefreshDepthAvailable()
 	{
 		int depthAvailable = WaterTrapGuide.GetDepthAvailable(Grid.PosToCell(this), this.parent);
@@ -53,7 +48,6 @@ public class WaterTrapGuide : KMonoBehaviour, IRenderEveryTick
 		}
 	}
 
-	// Token: 0x06008DEF RID: 36335 RVA: 0x00101353 File Offset: 0x000FF553
 	public void RenderEveryTick(float dt)
 	{
 		this.RefreshPosition();
@@ -61,7 +55,6 @@ public class WaterTrapGuide : KMonoBehaviour, IRenderEveryTick
 		this.RefreshDepthAvailable();
 	}
 
-	// Token: 0x06008DF0 RID: 36336 RVA: 0x00377E80 File Offset: 0x00376080
 	public static void OccupyArea(GameObject go, int depth_available)
 	{
 		int cell = Grid.PosToCell(go.transform.GetPosition());
@@ -79,7 +72,6 @@ public class WaterTrapGuide : KMonoBehaviour, IRenderEveryTick
 		}
 	}
 
-	// Token: 0x06008DF1 RID: 36337 RVA: 0x00377F00 File Offset: 0x00376100
 	public static int GetDepthAvailable(int root_cell, GameObject pump)
 	{
 		int num = 4;
@@ -96,18 +88,13 @@ public class WaterTrapGuide : KMonoBehaviour, IRenderEveryTick
 		return result;
 	}
 
-	// Token: 0x04006B28 RID: 27432
 	private int previousDepthAvailable = -1;
 
-	// Token: 0x04006B29 RID: 27433
 	public GameObject parent;
 
-	// Token: 0x04006B2A RID: 27434
 	public bool occupyTiles;
 
-	// Token: 0x04006B2B RID: 27435
 	private KBatchedAnimController parentController;
 
-	// Token: 0x04006B2C RID: 27436
 	private KBatchedAnimController guideController;
 }

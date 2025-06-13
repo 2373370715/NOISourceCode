@@ -2,10 +2,8 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000117 RID: 279
 public class BeeForageStates : GameStateMachine<BeeForageStates, BeeForageStates.Instance, IStateMachineTarget, BeeForageStates.Def>
 {
-	// Token: 0x0600043B RID: 1083 RVA: 0x0015E744 File Offset: 0x0015C944
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.collect.findTarget;
@@ -64,7 +62,6 @@ public class BeeForageStates : GameStateMachine<BeeForageStates, BeeForageStates
 		this.behaviourcomplete.pst.BehaviourComplete(GameTags.Creatures.WantsToForage, false);
 	}
 
-	// Token: 0x0600043C RID: 1084 RVA: 0x000AB82F File Offset: 0x000A9A2F
 	private static void FindTarget(BeeForageStates.Instance smi)
 	{
 		if (BeeForageStates.FindOre(smi))
@@ -74,7 +71,6 @@ public class BeeForageStates : GameStateMachine<BeeForageStates, BeeForageStates
 		BeeForageStates.FindMineableCell(smi);
 	}
 
-	// Token: 0x0600043D RID: 1085 RVA: 0x0015EA30 File Offset: 0x0015CC30
 	private void HoldOre(BeeForageStates.Instance smi)
 	{
 		GameObject gameObject = smi.GetComponent<Storage>().FindFirst(smi.def.oreTag);
@@ -90,7 +86,6 @@ public class BeeForageStates : GameStateMachine<BeeForageStates, BeeForageStates
 		component.SetSymbolVisiblity(smi.noOreLegSymbolHash, false);
 	}
 
-	// Token: 0x0600043E RID: 1086 RVA: 0x000AB841 File Offset: 0x000A9A41
 	private void DropOre(BeeForageStates.Instance smi)
 	{
 		KBatchedAnimController component = smi.GetComponent<KBatchedAnimController>();
@@ -99,7 +94,6 @@ public class BeeForageStates : GameStateMachine<BeeForageStates, BeeForageStates
 		component.SetSymbolVisiblity(smi.noOreLegSymbolHash, true);
 	}
 
-	// Token: 0x0600043F RID: 1087 RVA: 0x0015EAC0 File Offset: 0x0015CCC0
 	private static void PickupComplete(BeeForageStates.Instance smi)
 	{
 		if (!smi.forageTarget)
@@ -137,7 +131,6 @@ public class BeeForageStates : GameStateMachine<BeeForageStates, BeeForageStates
 		smi.GetComponent<Storage>().Store(smi.forageTarget.gameObject, false, false, true, false);
 	}
 
-	// Token: 0x06000440 RID: 1088 RVA: 0x0015EBBC File Offset: 0x0015CDBC
 	private static void MineTarget(BeeForageStates.Instance smi)
 	{
 		Storage storage = smi.master.GetComponent<Storage>();
@@ -151,7 +144,6 @@ public class BeeForageStates : GameStateMachine<BeeForageStates, BeeForageStates
 		SimMessages.ConsumeMass(smi.cellToMine, Grid.Element[smi.cellToMine].id, smi.def.amountToMine, 1, handle.index);
 	}
 
-	// Token: 0x06000441 RID: 1089 RVA: 0x0015EC34 File Offset: 0x0015CE34
 	private static void StoreOre(BeeForageStates.Instance smi)
 	{
 		if (smi.targetHive.IsNullOrDestroyed())
@@ -167,13 +159,11 @@ public class BeeForageStates : GameStateMachine<BeeForageStates, BeeForageStates
 		smi.targetHive = null;
 	}
 
-	// Token: 0x06000442 RID: 1090 RVA: 0x0015EC9C File Offset: 0x0015CE9C
 	private static void DropAll(BeeForageStates.Instance smi)
 	{
 		smi.GetComponent<Storage>().DropAll(false, false, default(Vector3), true, null);
 	}
 
-	// Token: 0x06000443 RID: 1091 RVA: 0x0015ECC4 File Offset: 0x0015CEC4
 	private static bool FindMineableCell(BeeForageStates.Instance smi)
 	{
 		smi.targetMiningCell = Grid.InvalidCell;
@@ -196,7 +186,6 @@ public class BeeForageStates : GameStateMachine<BeeForageStates, BeeForageStates
 		return false;
 	}
 
-	// Token: 0x06000444 RID: 1092 RVA: 0x0015EDBC File Offset: 0x0015CFBC
 	private static bool FindOre(BeeForageStates.Instance smi)
 	{
 		Navigator component = smi.GetComponent<Navigator>();
@@ -226,7 +215,6 @@ public class BeeForageStates : GameStateMachine<BeeForageStates, BeeForageStates
 		return smi.forageTarget != null;
 	}
 
-	// Token: 0x06000445 RID: 1093 RVA: 0x0015EF0C File Offset: 0x0015D10C
 	private static void ReserveTarget(BeeForageStates.Instance smi)
 	{
 		GameObject gameObject = smi.forageTarget ? smi.forageTarget.gameObject : null;
@@ -237,7 +225,6 @@ public class BeeForageStates : GameStateMachine<BeeForageStates, BeeForageStates
 		}
 	}
 
-	// Token: 0x06000446 RID: 1094 RVA: 0x0015EF5C File Offset: 0x0015D15C
 	private static void UnreserveTarget(BeeForageStates.Instance smi)
 	{
 		GameObject go = smi.forageTarget ? smi.forageTarget.gameObject : null;
@@ -247,7 +234,6 @@ public class BeeForageStates : GameStateMachine<BeeForageStates, BeeForageStates
 		}
 	}
 
-	// Token: 0x06000447 RID: 1095 RVA: 0x000AB86F File Offset: 0x000A9A6F
 	private static int GetOreCell(BeeForageStates.Instance smi)
 	{
 		global::Debug.Assert(smi.forageTarget);
@@ -255,48 +241,35 @@ public class BeeForageStates : GameStateMachine<BeeForageStates, BeeForageStates
 		return smi.forageTarget_cell;
 	}
 
-	// Token: 0x04000307 RID: 775
 	private const int MAX_NAVIGATE_DISTANCE = 100;
 
-	// Token: 0x04000308 RID: 776
 	private const string oreSymbol = "snapto_thing";
 
-	// Token: 0x04000309 RID: 777
 	private const string oreLegSymbol = "legBeeOre";
 
-	// Token: 0x0400030A RID: 778
 	private const string noOreLegSymbol = "legBeeNoOre";
 
-	// Token: 0x0400030B RID: 779
 	public BeeForageStates.CollectionBehaviourStates collect;
 
-	// Token: 0x0400030C RID: 780
 	public BeeForageStates.StorageBehaviourStates storage;
 
-	// Token: 0x0400030D RID: 781
 	public BeeForageStates.ExitStates behaviourcomplete;
 
-	// Token: 0x02000118 RID: 280
 	public class Def : StateMachine.BaseDef
 	{
-		// Token: 0x0600044C RID: 1100 RVA: 0x000AB8B2 File Offset: 0x000A9AB2
 		public Def(Tag tag, float amount_to_mine)
 		{
 			this.oreTag = tag;
 			this.amountToMine = amount_to_mine;
 		}
 
-		// Token: 0x0400030E RID: 782
 		public Tag oreTag;
 
-		// Token: 0x0400030F RID: 783
 		public float amountToMine;
 	}
 
-	// Token: 0x02000119 RID: 281
 	public new class Instance : GameStateMachine<BeeForageStates, BeeForageStates.Instance, IStateMachineTarget, BeeForageStates.Def>.GameInstance
 	{
-		// Token: 0x0600044D RID: 1101 RVA: 0x0015F084 File Offset: 0x0015D284
 		public Instance(Chore<BeeForageStates.Instance> chore, BeeForageStates.Def def) : base(chore, def)
 		{
 			this.oreSymbolHash = new KAnimHashedString("snapto_thing");
@@ -308,87 +281,61 @@ public class BeeForageStates : GameStateMachine<BeeForageStates, BeeForageStates
 			chore.AddPrecondition(ChorePreconditions.instance.CheckBehaviourPrecondition, GameTags.Creatures.WantsToForage);
 		}
 
-		// Token: 0x04000310 RID: 784
 		public int targetMiningCell = Grid.InvalidCell;
 
-		// Token: 0x04000311 RID: 785
 		public int cellToMine = Grid.InvalidCell;
 
-		// Token: 0x04000312 RID: 786
 		public Pickupable forageTarget;
 
-		// Token: 0x04000313 RID: 787
 		public int forageTarget_cell = Grid.InvalidCell;
 
-		// Token: 0x04000314 RID: 788
 		public KPrefabID targetHive;
 
-		// Token: 0x04000315 RID: 789
 		public KAnimHashedString oreSymbolHash;
 
-		// Token: 0x04000316 RID: 790
 		public KAnimHashedString oreLegSymbolHash;
 
-		// Token: 0x04000317 RID: 791
 		public KAnimHashedString noOreLegSymbolHash;
 
-		// Token: 0x04000318 RID: 792
 		public CellOffset hiveCellOffset = new CellOffset(1, 1);
 	}
 
-	// Token: 0x0200011A RID: 282
 	public class ForageBehaviourStates : GameStateMachine<BeeForageStates, BeeForageStates.Instance, IStateMachineTarget, BeeForageStates.Def>.State
 	{
-		// Token: 0x04000319 RID: 793
 		public GameStateMachine<BeeForageStates, BeeForageStates.Instance, IStateMachineTarget, BeeForageStates.Def>.State moveToTarget;
 
-		// Token: 0x0400031A RID: 794
 		public GameStateMachine<BeeForageStates, BeeForageStates.Instance, IStateMachineTarget, BeeForageStates.Def>.State pickupTarget;
 	}
 
-	// Token: 0x0200011B RID: 283
 	public class MiningBehaviourStates : GameStateMachine<BeeForageStates, BeeForageStates.Instance, IStateMachineTarget, BeeForageStates.Def>.State
 	{
-		// Token: 0x0400031B RID: 795
 		public GameStateMachine<BeeForageStates, BeeForageStates.Instance, IStateMachineTarget, BeeForageStates.Def>.State moveToTarget;
 
-		// Token: 0x0400031C RID: 796
 		public GameStateMachine<BeeForageStates, BeeForageStates.Instance, IStateMachineTarget, BeeForageStates.Def>.State mineTarget;
 	}
 
-	// Token: 0x0200011C RID: 284
 	public class CollectionBehaviourStates : GameStateMachine<BeeForageStates, BeeForageStates.Instance, IStateMachineTarget, BeeForageStates.Def>.State
 	{
-		// Token: 0x0400031D RID: 797
 		public GameStateMachine<BeeForageStates, BeeForageStates.Instance, IStateMachineTarget, BeeForageStates.Def>.State findTarget;
 
-		// Token: 0x0400031E RID: 798
 		public BeeForageStates.ForageBehaviourStates forage;
 
-		// Token: 0x0400031F RID: 799
 		public BeeForageStates.MiningBehaviourStates mine;
 	}
 
-	// Token: 0x0200011D RID: 285
 	public class StorageBehaviourStates : GameStateMachine<BeeForageStates, BeeForageStates.Instance, IStateMachineTarget, BeeForageStates.Def>.State
 	{
-		// Token: 0x04000320 RID: 800
 		public GameStateMachine<BeeForageStates, BeeForageStates.Instance, IStateMachineTarget, BeeForageStates.Def>.State moveToHive;
 
-		// Token: 0x04000321 RID: 801
 		public GameStateMachine<BeeForageStates, BeeForageStates.Instance, IStateMachineTarget, BeeForageStates.Def>.State storeMaterial;
 
-		// Token: 0x04000322 RID: 802
 		public GameStateMachine<BeeForageStates, BeeForageStates.Instance, IStateMachineTarget, BeeForageStates.Def>.State dropMaterial;
 	}
 
-	// Token: 0x0200011E RID: 286
 	public class ExitStates : GameStateMachine<BeeForageStates, BeeForageStates.Instance, IStateMachineTarget, BeeForageStates.Def>.State
 	{
-		// Token: 0x04000323 RID: 803
 		public GameStateMachine<BeeForageStates, BeeForageStates.Instance, IStateMachineTarget, BeeForageStates.Def>.State pre;
 
-		// Token: 0x04000324 RID: 804
 		public GameStateMachine<BeeForageStates, BeeForageStates.Instance, IStateMachineTarget, BeeForageStates.Def>.State pst;
 	}
 }

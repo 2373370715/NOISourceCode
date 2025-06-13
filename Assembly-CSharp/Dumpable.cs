@@ -3,11 +3,9 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x0200128F RID: 4751
 [AddComponentMenu("KMonoBehaviour/Workable/Dumpable")]
 public class Dumpable : Workable
 {
-	// Token: 0x0600610A RID: 24842 RVA: 0x000E3A10 File Offset: 0x000E1C10
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -15,7 +13,6 @@ public class Dumpable : Workable
 		this.workerStatusItem = Db.Get().DuplicantStatusItems.Emptying;
 	}
 
-	// Token: 0x0600610B RID: 24843 RVA: 0x002BE2B8 File Offset: 0x002BC4B8
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -35,7 +32,6 @@ public class Dumpable : Workable
 		base.SetWorkTime(1f);
 	}
 
-	// Token: 0x0600610C RID: 24844 RVA: 0x002BE328 File Offset: 0x002BC528
 	public void ToggleDumping()
 	{
 		if (DebugHandler.InstantBuildMode)
@@ -56,7 +52,6 @@ public class Dumpable : Workable
 		this.CreateChore();
 	}
 
-	// Token: 0x0600610D RID: 24845 RVA: 0x002BE38C File Offset: 0x002BC58C
 	private void CreateChore()
 	{
 		if (this.chore == null)
@@ -66,7 +61,6 @@ public class Dumpable : Workable
 		}
 	}
 
-	// Token: 0x0600610E RID: 24846 RVA: 0x000E3A3E File Offset: 0x000E1C3E
 	protected override void OnCompleteWork(WorkerBase worker)
 	{
 		this.isMarkedForDumping = false;
@@ -75,13 +69,11 @@ public class Dumpable : Workable
 		Prioritizable.RemoveRef(base.gameObject);
 	}
 
-	// Token: 0x0600610F RID: 24847 RVA: 0x000E3A5F File Offset: 0x000E1C5F
 	public void Dump()
 	{
 		this.Dump(base.transform.GetPosition());
 	}
 
-	// Token: 0x06006110 RID: 24848 RVA: 0x002BE3D8 File Offset: 0x002BC5D8
 	public void Dump(Vector3 pos)
 	{
 		PrimaryElement component = base.GetComponent<PrimaryElement>();
@@ -99,7 +91,6 @@ public class Dumpable : Workable
 		Util.KDestroyGameObject(base.gameObject);
 	}
 
-	// Token: 0x06006111 RID: 24849 RVA: 0x002BE480 File Offset: 0x002BC680
 	private void OnRefreshUserMenu(object data)
 	{
 		if (this.HasTag(GameTags.Stored))
@@ -110,14 +101,11 @@ public class Dumpable : Workable
 		Game.Instance.userMenu.AddButton(base.gameObject, button, 1f);
 	}
 
-	// Token: 0x0400455D RID: 17757
 	private Chore chore;
 
-	// Token: 0x0400455E RID: 17758
 	[Serialize]
 	private bool isMarkedForDumping;
 
-	// Token: 0x0400455F RID: 17759
 	private static readonly EventSystem.IntraObjectHandler<Dumpable> OnRefreshUserMenuDelegate = new EventSystem.IntraObjectHandler<Dumpable>(delegate(Dumpable component, object data)
 	{
 		component.OnRefreshUserMenu(data);

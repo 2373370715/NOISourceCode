@@ -1,9 +1,7 @@
 ﻿using System;
 
-// Token: 0x0200082B RID: 2091
 public class SafetyQuery : PathFinderQuery
 {
-	// Token: 0x060024DA RID: 9434 RVA: 0x000BC722 File Offset: 0x000BA922
 	public SafetyQuery(SafetyChecker checker, KMonoBehaviour cmp, int max_cost)
 	{
 		this.checker = checker;
@@ -11,7 +9,6 @@ public class SafetyQuery : PathFinderQuery
 		this.maxCost = max_cost;
 	}
 
-	// Token: 0x060024DB RID: 9435 RVA: 0x000BC73F File Offset: 0x000BA93F
 	public void Reset()
 	{
 		this.targetCell = PathFinder.InvalidCell;
@@ -20,7 +17,6 @@ public class SafetyQuery : PathFinderQuery
 		this.context = new SafetyChecker.Context(this.cmp);
 	}
 
-	// Token: 0x060024DC RID: 9436 RVA: 0x001D7760 File Offset: 0x001D5960
 	public override bool IsMatch(int cell, int parent_cell, int cost)
 	{
 		bool flag = false;
@@ -38,30 +34,22 @@ public class SafetyQuery : PathFinderQuery
 		return cost >= this.maxCost;
 	}
 
-	// Token: 0x060024DD RID: 9437 RVA: 0x000BC76F File Offset: 0x000BA96F
 	public override int GetResultCell()
 	{
 		return this.targetCell;
 	}
 
-	// Token: 0x0400194B RID: 6475
 	private int targetCell;
 
-	// Token: 0x0400194C RID: 6476
 	private int targetCost;
 
-	// Token: 0x0400194D RID: 6477
 	private int targetConditions;
 
-	// Token: 0x0400194E RID: 6478
 	private int maxCost;
 
-	// Token: 0x0400194F RID: 6479
 	private SafetyChecker checker;
 
-	// Token: 0x04001950 RID: 6480
 	private KMonoBehaviour cmp;
 
-	// Token: 0x04001951 RID: 6481
 	private SafetyChecker.Context context;
 }

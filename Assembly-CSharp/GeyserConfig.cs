@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200029E RID: 670
 public class GeyserConfig : IEntityConfig
 {
-	// Token: 0x060009DA RID: 2522 RVA: 0x00171A70 File Offset: 0x0016FC70
 	public GameObject CreatePrefab()
 	{
 		string id = "Geyser";
@@ -35,29 +33,21 @@ public class GeyserConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x060009DB RID: 2523 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x060009DC RID: 2524 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x0400078B RID: 1931
 	public const int GEOTUNERS_REQUIRED_FOR_MAJOR_TRACKER_ANIMATION = 5;
 
-	// Token: 0x0200029F RID: 671
 	public enum TrackerMeterAnimNames
 	{
-		// Token: 0x0400078D RID: 1933
 		tracker,
-		// Token: 0x0400078E RID: 1934
 		geotracker,
-		// Token: 0x0400078F RID: 1935
 		geotracker_minor,
-		// Token: 0x04000790 RID: 1936
 		geotracker_major
 	}
 }

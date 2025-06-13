@@ -1,10 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000CC9 RID: 3273
 public class AlgaeHabitat : StateMachineComponent<AlgaeHabitat.SMInstance>
 {
-	// Token: 0x06003E6F RID: 15983 RVA: 0x00242A94 File Offset: 0x00240C94
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -17,14 +15,12 @@ public class AlgaeHabitat : StateMachineComponent<AlgaeHabitat.SMInstance>
 		Tutorial.Instance.oxygenGenerators.Add(base.gameObject);
 	}
 
-	// Token: 0x06003E70 RID: 15984 RVA: 0x000CCF71 File Offset: 0x000CB171
 	protected override void OnCleanUp()
 	{
 		Tutorial.Instance.oxygenGenerators.Remove(base.gameObject);
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06003E71 RID: 15985 RVA: 0x00242B04 File Offset: 0x00240D04
 	private void ConfigurePollutedWaterOutput()
 	{
 		Storage storage = null;
@@ -52,42 +48,33 @@ public class AlgaeHabitat : StateMachineComponent<AlgaeHabitat.SMInstance>
 		this.pollutedWaterStorage = storage;
 	}
 
-	// Token: 0x04002B23 RID: 11043
 	[MyCmpGet]
 	private Operational operational;
 
-	// Token: 0x04002B24 RID: 11044
 	private Storage pollutedWaterStorage;
 
-	// Token: 0x04002B25 RID: 11045
 	[SerializeField]
 	public float lightBonusMultiplier = 1.1f;
 
-	// Token: 0x04002B26 RID: 11046
 	public CellOffset pressureSampleOffset = CellOffset.none;
 
-	// Token: 0x02000CCA RID: 3274
 	public class SMInstance : GameStateMachine<AlgaeHabitat.States, AlgaeHabitat.SMInstance, AlgaeHabitat, object>.GameInstance
 	{
-		// Token: 0x06003E73 RID: 15987 RVA: 0x000CCFAD File Offset: 0x000CB1AD
 		public SMInstance(AlgaeHabitat master) : base(master)
 		{
 			this.converter = master.GetComponent<ElementConverter>();
 		}
 
-		// Token: 0x06003E74 RID: 15988 RVA: 0x000CCFC2 File Offset: 0x000CB1C2
 		public bool HasEnoughMass(Tag tag)
 		{
 			return this.converter.HasEnoughMass(tag, false);
 		}
 
-		// Token: 0x06003E75 RID: 15989 RVA: 0x000CCFD1 File Offset: 0x000CB1D1
 		public bool NeedsEmptying()
 		{
 			return base.smi.master.pollutedWaterStorage.RemainingCapacity() <= 0f;
 		}
 
-		// Token: 0x06003E76 RID: 15990 RVA: 0x00242BB0 File Offset: 0x00240DB0
 		public void CreateEmptyChore()
 		{
 			if (this.emptyChore != null)
@@ -99,7 +86,6 @@ public class AlgaeHabitat : StateMachineComponent<AlgaeHabitat.SMInstance>
 			this.emptyChore.AddPrecondition(ChorePreconditions.instance.IsNotARobot, null);
 		}
 
-		// Token: 0x06003E77 RID: 15991 RVA: 0x000CCFF2 File Offset: 0x000CB1F2
 		public void CancelEmptyChore()
 		{
 			if (this.emptyChore != null)
@@ -109,24 +95,19 @@ public class AlgaeHabitat : StateMachineComponent<AlgaeHabitat.SMInstance>
 			}
 		}
 
-		// Token: 0x06003E78 RID: 15992 RVA: 0x00242C30 File Offset: 0x00240E30
 		private void OnEmptyComplete(Chore chore)
 		{
 			this.emptyChore = null;
 			base.master.pollutedWaterStorage.DropAll(true, false, default(Vector3), true, null);
 		}
 
-		// Token: 0x04002B27 RID: 11047
 		public ElementConverter converter;
 
-		// Token: 0x04002B28 RID: 11048
 		public Chore emptyChore;
 	}
 
-	// Token: 0x02000CCB RID: 3275
 	public class States : GameStateMachine<AlgaeHabitat.States, AlgaeHabitat.SMInstance, AlgaeHabitat>
 	{
-		// Token: 0x06003E79 RID: 15993 RVA: 0x00242C64 File Offset: 0x00240E64
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.noAlgae;
@@ -166,37 +147,26 @@ public class AlgaeHabitat : StateMachineComponent<AlgaeHabitat.SMInstance>
 			this.stoppedGeneratingOxygenTransition.EventTransition(GameHashes.OnStorageChange, this.needsEmptying, (AlgaeHabitat.SMInstance smi) => smi.NeedsEmptying()).EventTransition(GameHashes.OnStorageChange, this.noWater, (AlgaeHabitat.SMInstance smi) => !smi.HasEnoughMass(GameTags.Water)).EventTransition(GameHashes.OnStorageChange, this.lostAlgae, (AlgaeHabitat.SMInstance smi) => !smi.HasEnoughMass(GameTags.Algae)).EventTransition(GameHashes.OnStorageChange, this.gotWater, (AlgaeHabitat.SMInstance smi) => smi.HasEnoughMass(GameTags.Water) && smi.HasEnoughMass(GameTags.Algae));
 		}
 
-		// Token: 0x04002B29 RID: 11049
 		public GameStateMachine<AlgaeHabitat.States, AlgaeHabitat.SMInstance, AlgaeHabitat, object>.State generatingOxygen;
 
-		// Token: 0x04002B2A RID: 11050
 		public GameStateMachine<AlgaeHabitat.States, AlgaeHabitat.SMInstance, AlgaeHabitat, object>.State stoppedGeneratingOxygen;
 
-		// Token: 0x04002B2B RID: 11051
 		public GameStateMachine<AlgaeHabitat.States, AlgaeHabitat.SMInstance, AlgaeHabitat, object>.State stoppedGeneratingOxygenTransition;
 
-		// Token: 0x04002B2C RID: 11052
 		public GameStateMachine<AlgaeHabitat.States, AlgaeHabitat.SMInstance, AlgaeHabitat, object>.State noWater;
 
-		// Token: 0x04002B2D RID: 11053
 		public GameStateMachine<AlgaeHabitat.States, AlgaeHabitat.SMInstance, AlgaeHabitat, object>.State noAlgae;
 
-		// Token: 0x04002B2E RID: 11054
 		public GameStateMachine<AlgaeHabitat.States, AlgaeHabitat.SMInstance, AlgaeHabitat, object>.State needsEmptying;
 
-		// Token: 0x04002B2F RID: 11055
 		public GameStateMachine<AlgaeHabitat.States, AlgaeHabitat.SMInstance, AlgaeHabitat, object>.State gotAlgae;
 
-		// Token: 0x04002B30 RID: 11056
 		public GameStateMachine<AlgaeHabitat.States, AlgaeHabitat.SMInstance, AlgaeHabitat, object>.State gotWater;
 
-		// Token: 0x04002B31 RID: 11057
 		public GameStateMachine<AlgaeHabitat.States, AlgaeHabitat.SMInstance, AlgaeHabitat, object>.State gotEmptied;
 
-		// Token: 0x04002B32 RID: 11058
 		public GameStateMachine<AlgaeHabitat.States, AlgaeHabitat.SMInstance, AlgaeHabitat, object>.State lostAlgae;
 
-		// Token: 0x04002B33 RID: 11059
 		public GameStateMachine<AlgaeHabitat.States, AlgaeHabitat.SMInstance, AlgaeHabitat, object>.State notoperational;
 	}
 }

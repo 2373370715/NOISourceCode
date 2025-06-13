@@ -3,16 +3,13 @@ using TUNING;
 
 namespace Database
 {
-	// Token: 0x02002181 RID: 8577
 	public class ArtifactDropRates : ResourceSet<ArtifactDropRate>
 	{
-		// Token: 0x0600B693 RID: 46739 RVA: 0x0011AF28 File Offset: 0x00119128
 		public ArtifactDropRates(ResourceSet parent) : base("ArtifactDropRates", parent)
 		{
 			this.CreateDropRates();
 		}
 
-		// Token: 0x0600B694 RID: 46740 RVA: 0x00457764 File Offset: 0x00455964
 		private void CreateDropRates()
 		{
 			this.None = new ArtifactDropRate();
@@ -55,25 +52,18 @@ namespace Database
 			base.Add(this.Perfect);
 		}
 
-		// Token: 0x04009078 RID: 36984
 		public ArtifactDropRate None;
 
-		// Token: 0x04009079 RID: 36985
 		public ArtifactDropRate Bad;
 
-		// Token: 0x0400907A RID: 36986
 		public ArtifactDropRate Mediocre;
 
-		// Token: 0x0400907B RID: 36987
 		public ArtifactDropRate Good;
 
-		// Token: 0x0400907C RID: 36988
 		public ArtifactDropRate Great;
 
-		// Token: 0x0400907D RID: 36989
 		public ArtifactDropRate Amazing;
 
-		// Token: 0x0400907E RID: 36990
 		public ArtifactDropRate Perfect;
 	}
 }

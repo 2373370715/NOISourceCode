@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005E3 RID: 1507
 public class TemperatureControlledSwitchConfig : IBuildingConfig
 {
-	// Token: 0x06001A62 RID: 6754 RVA: 0x001B3A74 File Offset: 0x001B1C74
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = TemperatureControlledSwitchConfig.ID;
@@ -31,7 +29,6 @@ public class TemperatureControlledSwitchConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001A63 RID: 6755 RVA: 0x000B5972 File Offset: 0x000B3B72
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
@@ -42,12 +39,10 @@ public class TemperatureControlledSwitchConfig : IBuildingConfig
 		temperatureControlledSwitch.maxTemp = 573.15f;
 	}
 
-	// Token: 0x06001A64 RID: 6756 RVA: 0x000B428C File Offset: 0x000B248C
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddComponent<BuildingCellVisualizer>();
 	}
 
-	// Token: 0x04001113 RID: 4371
 	public static string ID = "TemperatureControlledSwitch";
 }

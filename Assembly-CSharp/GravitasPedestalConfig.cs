@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000379 RID: 889
 public class GravitasPedestalConfig : IBuildingConfig
 {
-	// Token: 0x06000E2D RID: 3629 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06000E2E RID: 3630 RVA: 0x00181F88 File Offset: 0x00180188
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "GravitasPedestal";
@@ -37,7 +34,6 @@ public class GravitasPedestalConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000E2F RID: 3631 RVA: 0x00182010 File Offset: 0x00180210
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<Storage>().SetDefaultStoredItemModifiers(new List<Storage.StoredItemModifier>(new Storage.StoredItemModifier[]
@@ -55,11 +51,9 @@ public class GravitasPedestalConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(GameTags.Decoration, false);
 	}
 
-	// Token: 0x06000E30 RID: 3632 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000A7D RID: 2685
 	public const string ID = "GravitasPedestal";
 }

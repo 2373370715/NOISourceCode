@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000392 RID: 914
 public class IceSculptureConfig : IBuildingConfig
 {
-	// Token: 0x06000EB0 RID: 3760 RVA: 0x00184954 File Offset: 0x00182B54
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "IceSculpture";
@@ -43,19 +41,16 @@ public class IceSculptureConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000EB1 RID: 3761 RVA: 0x000AA54F File Offset: 0x000A874F
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<BuildingComplete>().isArtable = true;
 		go.GetComponent<KPrefabID>().AddTag(GameTags.Decoration, false);
 	}
 
-	// Token: 0x06000EB2 RID: 3762 RVA: 0x000B0C21 File Offset: 0x000AEE21
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddComponent<Sculpture>().defaultAnimName = "slab";
 	}
 
-	// Token: 0x04000AE1 RID: 2785
 	public const string ID = "IceSculpture";
 }

@@ -5,37 +5,29 @@ using UnityEngine;
 
 namespace Klei.AI
 {
-	// Token: 0x02003CA9 RID: 15529
 	public class FoodFightEvent : GameplayEvent<FoodFightEvent.StatesInstance>
 	{
-		// Token: 0x0600EE59 RID: 61017 RVA: 0x00144601 File Offset: 0x00142801
 		public FoodFightEvent() : base("FoodFight", 0, 0)
 		{
 			this.title = GAMEPLAY_EVENTS.EVENT_TYPES.FOOD_FIGHT.NAME;
 			this.description = GAMEPLAY_EVENTS.EVENT_TYPES.FOOD_FIGHT.DESCRIPTION;
 		}
 
-		// Token: 0x0600EE5A RID: 61018 RVA: 0x00144630 File Offset: 0x00142830
 		public override StateMachine.Instance GetSMI(GameplayEventManager manager, GameplayEventInstance eventInstance)
 		{
 			return new FoodFightEvent.StatesInstance(manager, eventInstance, this);
 		}
 
-		// Token: 0x0400EA31 RID: 59953
 		public const float FUTURE_TIME = 60f;
 
-		// Token: 0x0400EA32 RID: 59954
 		public const float DURATION = 60f;
 
-		// Token: 0x02003CAA RID: 15530
 		public class StatesInstance : GameplayEventStateMachine<FoodFightEvent.States, FoodFightEvent.StatesInstance, GameplayEventManager, FoodFightEvent>.GameplayEventStateMachineInstance
 		{
-			// Token: 0x0600EE5B RID: 61019 RVA: 0x0014463A File Offset: 0x0014283A
 			public StatesInstance(GameplayEventManager master, GameplayEventInstance eventInstance, FoodFightEvent foodEvent) : base(master, eventInstance, foodEvent)
 			{
 			}
 
-			// Token: 0x0600EE5C RID: 61020 RVA: 0x004E66D4 File Offset: 0x004E48D4
 			public void CreateChores(FoodFightEvent.StatesInstance smi)
 			{
 				this.chores = new List<FoodFightChore>();
@@ -61,7 +53,6 @@ namespace Klei.AI
 				}
 			}
 
-			// Token: 0x0600EE5D RID: 61021 RVA: 0x004E67F4 File Offset: 0x004E49F4
 			public void ClearChores()
 			{
 				if (this.chores != null)
@@ -77,14 +68,11 @@ namespace Klei.AI
 				this.chores = null;
 			}
 
-			// Token: 0x0400EA33 RID: 59955
 			public List<FoodFightChore> chores;
 		}
 
-		// Token: 0x02003CAD RID: 15533
 		public class States : GameplayEventStateMachine<FoodFightEvent.States, FoodFightEvent.StatesInstance, GameplayEventManager, FoodFightEvent>
 		{
-			// Token: 0x0600EE63 RID: 61027 RVA: 0x004E684C File Offset: 0x004E4A4C
 			public override void InitializeStates(out StateMachine.BaseState default_state)
 			{
 				base.InitializeStates(out default_state);
@@ -130,7 +118,6 @@ namespace Klei.AI
 				}).ReturnFailure();
 			}
 
-			// Token: 0x0600EE64 RID: 61028 RVA: 0x004E69B8 File Offset: 0x004E4BB8
 			public override EventInfoData GenerateEventPopupData(FoodFightEvent.StatesInstance smi)
 			{
 				EventInfoData eventInfoData = new EventInfoData(smi.gameplayEvent.title, smi.gameplayEvent.description, smi.gameplayEvent.animFileName);
@@ -147,28 +134,20 @@ namespace Klei.AI
 				return eventInfoData;
 			}
 
-			// Token: 0x0400EA37 RID: 59959
 			public GameStateMachine<FoodFightEvent.States, FoodFightEvent.StatesInstance, GameplayEventManager, object>.State planning;
 
-			// Token: 0x0400EA38 RID: 59960
 			public FoodFightEvent.States.WarmupStates warmup;
 
-			// Token: 0x0400EA39 RID: 59961
 			public GameStateMachine<FoodFightEvent.States, FoodFightEvent.StatesInstance, GameplayEventManager, object>.State partying;
 
-			// Token: 0x0400EA3A RID: 59962
 			public GameStateMachine<FoodFightEvent.States, FoodFightEvent.StatesInstance, GameplayEventManager, object>.State ending;
 
-			// Token: 0x0400EA3B RID: 59963
 			public GameStateMachine<FoodFightEvent.States, FoodFightEvent.StatesInstance, GameplayEventManager, object>.State canceled;
 
-			// Token: 0x02003CAE RID: 15534
 			public class WarmupStates : GameStateMachine<FoodFightEvent.States, FoodFightEvent.StatesInstance, GameplayEventManager, object>.State
 			{
-				// Token: 0x0400EA3C RID: 59964
 				public GameStateMachine<FoodFightEvent.States, FoodFightEvent.StatesInstance, GameplayEventManager, object>.State wait;
 
-				// Token: 0x0400EA3D RID: 59965
 				public GameStateMachine<FoodFightEvent.States, FoodFightEvent.StatesInstance, GameplayEventManager, object>.State start;
 			}
 		}

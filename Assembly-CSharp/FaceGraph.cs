@@ -2,27 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02001523 RID: 5411
 [AddComponentMenu("KMonoBehaviour/scripts/FaceGraph")]
 public class FaceGraph : KMonoBehaviour
 {
-	// Token: 0x06007077 RID: 28791 RVA: 0x000EE0E7 File Offset: 0x000EC2E7
 	public IEnumerator<Expression> GetEnumerator()
 	{
 		return this.expressions.GetEnumerator();
 	}
 
-	// Token: 0x17000732 RID: 1842
-	// (get) Token: 0x06007078 RID: 28792 RVA: 0x000EE0F9 File Offset: 0x000EC2F9
-	// (set) Token: 0x06007079 RID: 28793 RVA: 0x000EE101 File Offset: 0x000EC301
 	public Expression overrideExpression { get; private set; }
 
-	// Token: 0x17000733 RID: 1843
-	// (get) Token: 0x0600707A RID: 28794 RVA: 0x000EE10A File Offset: 0x000EC30A
-	// (set) Token: 0x0600707B RID: 28795 RVA: 0x000EE112 File Offset: 0x000EC312
 	public Expression currentExpression { get; private set; }
 
-	// Token: 0x0600707C RID: 28796 RVA: 0x000EE11B File Offset: 0x000EC31B
 	public void AddExpression(Expression expression)
 	{
 		if (this.expressions.Contains(expression))
@@ -33,7 +24,6 @@ public class FaceGraph : KMonoBehaviour
 		this.UpdateFace();
 	}
 
-	// Token: 0x0600707D RID: 28797 RVA: 0x000EE13E File Offset: 0x000EC33E
 	public void RemoveExpression(Expression expression)
 	{
 		if (this.expressions.Remove(expression))
@@ -42,7 +32,6 @@ public class FaceGraph : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600707E RID: 28798 RVA: 0x000EE154 File Offset: 0x000EC354
 	public void SetOverrideExpression(Expression expression)
 	{
 		if (expression != this.overrideExpression)
@@ -52,7 +41,6 @@ public class FaceGraph : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600707F RID: 28799 RVA: 0x00305B04 File Offset: 0x00303D04
 	public void ApplyShape()
 	{
 		KAnimFile anim = Assets.GetAnim(FaceGraph.HASH_HEAD_MASTER_SWAP_KANIM);
@@ -84,7 +72,6 @@ public class FaceGraph : KMonoBehaviour
 		this.m_speechMonitor.DrawMouth();
 	}
 
-	// Token: 0x06007080 RID: 28800 RVA: 0x00305C3C File Offset: 0x00303E3C
 	private bool ShouldUseSidewaysSymbol(KBatchedAnimController controller)
 	{
 		KAnim.Anim currentAnim = controller.GetCurrentAnim();
@@ -111,7 +98,6 @@ public class FaceGraph : KMonoBehaviour
 		return false;
 	}
 
-	// Token: 0x06007081 RID: 28801 RVA: 0x00305CCC File Offset: 0x00303ECC
 	private void ApplyShape(KAnim.Build.Symbol variation_symbol, KBatchedAnimController controller, KAnimFile shapes_file, KAnimHashedString symbol_name_in_shape_file, bool should_use_sideways_symbol)
 	{
 		HashedString hashedString = FaceGraph.ANIM_HASH_NEUTRAL;
@@ -164,7 +150,6 @@ public class FaceGraph : KMonoBehaviour
 		controller.SetSymbolOverride(symbol.firstFrameIdx, ref symbolFrameInstance);
 	}
 
-	// Token: 0x06007082 RID: 28802 RVA: 0x00305E7C File Offset: 0x0030407C
 	private void UpdateFace()
 	{
 		Expression expression = null;
@@ -213,39 +198,28 @@ public class FaceGraph : KMonoBehaviour
 		this.m_controller.SetSymbolVisiblity(headEffects.targetSymbolId, false);
 	}
 
-	// Token: 0x0400548A RID: 21642
 	private List<Expression> expressions = new List<Expression>();
 
-	// Token: 0x0400548D RID: 21645
 	[MyCmpGet]
 	private KBatchedAnimController m_controller;
 
-	// Token: 0x0400548E RID: 21646
 	[MyCmpGet]
 	private Accessorizer m_accessorizer;
 
-	// Token: 0x0400548F RID: 21647
 	[MyCmpGet]
 	private SymbolOverrideController m_symbolOverrideController;
 
-	// Token: 0x04005490 RID: 21648
 	private BlinkMonitor.Instance m_blinkMonitor;
 
-	// Token: 0x04005491 RID: 21649
 	private SpeechMonitor.Instance m_speechMonitor;
 
-	// Token: 0x04005492 RID: 21650
 	private static HashedString HASH_HEAD_MASTER_SWAP_KANIM = "head_master_swap_kanim";
 
-	// Token: 0x04005493 RID: 21651
 	private static KAnimHashedString ANIM_HASH_SNAPTO_EYES = "snapto_eyes";
 
-	// Token: 0x04005494 RID: 21652
 	private static KAnimHashedString ANIM_HASH_SNAPTO_MOUTH = "snapto_mouth";
 
-	// Token: 0x04005495 RID: 21653
 	private static KAnimHashedString ANIM_HASH_NEUTRAL = "neutral";
 
-	// Token: 0x04005496 RID: 21654
 	private static int FIRST_SIDEWAYS_FRAME = 29;
 }

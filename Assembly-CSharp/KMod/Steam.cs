@@ -7,10 +7,8 @@ using STRINGS;
 
 namespace KMod
 {
-	// Token: 0x02002244 RID: 8772
 	public class Steam : IDistributionPlatform, SteamUGCService.IClient
 	{
-		// Token: 0x0600BA47 RID: 47687 RVA: 0x0047E5B0 File Offset: 0x0047C7B0
 		private Mod MakeMod(SteamUGCService.Mod subscribed)
 		{
 			if (subscribed == null)
@@ -63,7 +61,6 @@ namespace KMod
 			});
 		}
 
-		// Token: 0x0600BA48 RID: 47688 RVA: 0x0047E74C File Offset: 0x0047C94C
 		public void UpdateMods(IEnumerable<PublishedFileId_t> added, IEnumerable<PublishedFileId_t> updated, IEnumerable<PublishedFileId_t> removed, IEnumerable<SteamUGCService.Mod> loaded_previews)
 		{
 			foreach (PublishedFileId_t publishedFileId_t in added)

@@ -7,10 +7,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02001C8C RID: 7308
 public class CodexEntryGenerator_Elements
 {
-	// Token: 0x06009875 RID: 39029 RVA: 0x003BD788 File Offset: 0x003BB988
 	public static Dictionary<string, CodexEntry> GenerateEntries()
 	{
 		CodexEntryGenerator_Elements.<>c__DisplayClass8_0 CS$<>8__locals1;
@@ -125,7 +123,6 @@ public class CodexEntryGenerator_Elements
 		return CS$<>8__locals1.entriesElements;
 	}
 
-	// Token: 0x06009876 RID: 39030 RVA: 0x003BDB60 File Offset: 0x003BBD60
 	public static void GenerateElementDescriptionContainers(Element element, List<ContentContainer> containers)
 	{
 		List<ICodexWidget> list = new List<ICodexWidget>();
@@ -181,7 +178,6 @@ public class CodexEntryGenerator_Elements
 		}, ContentContainer.ContentLayout.Vertical));
 	}
 
-	// Token: 0x06009877 RID: 39031 RVA: 0x003BDD14 File Offset: 0x003BBF14
 	public static void GenerateMadeAndUsedContainers(Tag tag, List<ContentContainer> containers)
 	{
 		List<ICodexWidget> list = new List<ICodexWidget>();
@@ -252,7 +248,6 @@ public class CodexEntryGenerator_Elements
 		}
 	}
 
-	// Token: 0x06009878 RID: 39032 RVA: 0x003BDFB4 File Offset: 0x003BC1B4
 	public static CodexEntryGenerator_Elements.ElementEntryContext GetElementEntryContext()
 	{
 		if (CodexEntryGenerator_Elements.contextInstance == null)
@@ -340,7 +335,6 @@ public class CodexEntryGenerator_Elements
 		return CodexEntryGenerator_Elements.contextInstance;
 	}
 
-	// Token: 0x0600987B RID: 39035 RVA: 0x003BE4FC File Offset: 0x003BC6FC
 	[CompilerGenerated]
 	internal static void <GenerateEntries>g__AddCategoryEntry|8_0(string categoryId, string name, Sprite icon, Dictionary<string, CodexEntry> entries, ref CodexEntryGenerator_Elements.<>c__DisplayClass8_0 A_4)
 	{
@@ -350,7 +344,6 @@ public class CodexEntryGenerator_Elements
 		A_4.entriesElements.Add(categoryId, codexEntry);
 	}
 
-	// Token: 0x0600987C RID: 39036 RVA: 0x003BE53C File Offset: 0x003BC73C
 	[CompilerGenerated]
 	internal static void <GetElementEntryContext>g__CheckPrefab|12_0(GameObject prefab, CodexEntryGenerator_Elements.CodexElementMap usedMap, CodexEntryGenerator_Elements.CodexElementMap made, ref CodexEntryGenerator_Elements.<>c__DisplayClass12_0 A_3, ref CodexEntryGenerator_Elements.<>c__DisplayClass12_1 A_4)
 	{
@@ -529,44 +522,31 @@ public class CodexEntryGenerator_Elements
 		}
 	}
 
-	// Token: 0x04007679 RID: 30329
 	public static string ELEMENTS_ID = CodexCache.FormatLinkID("ELEMENTS");
 
-	// Token: 0x0400767A RID: 30330
 	public static string ELEMENTS_SOLIDS_ID = CodexCache.FormatLinkID("ELEMENTS_SOLID");
 
-	// Token: 0x0400767B RID: 30331
 	public static string ELEMENTS_LIQUIDS_ID = CodexCache.FormatLinkID("ELEMENTS_LIQUID");
 
-	// Token: 0x0400767C RID: 30332
 	public static string ELEMENTS_GASES_ID = CodexCache.FormatLinkID("ELEMENTS_GAS");
 
-	// Token: 0x0400767D RID: 30333
 	public static string ELEMENTS_OTHER_ID = CodexCache.FormatLinkID("ELEMENTS_OTHER");
 
-	// Token: 0x0400767E RID: 30334
 	private static CodexEntryGenerator_Elements.ElementEntryContext contextInstance;
 
-	// Token: 0x02001C8D RID: 7309
 	public class ConversionEntry
 	{
-		// Token: 0x0400767F RID: 30335
 		public string title;
 
-		// Token: 0x04007680 RID: 30336
 		public GameObject prefab;
 
-		// Token: 0x04007681 RID: 30337
 		public HashSet<ElementUsage> inSet = new HashSet<ElementUsage>();
 
-		// Token: 0x04007682 RID: 30338
 		public HashSet<ElementUsage> outSet = new HashSet<ElementUsage>();
 	}
 
-	// Token: 0x02001C8E RID: 7310
 	public class CodexElementMap
 	{
-		// Token: 0x0600987E RID: 39038 RVA: 0x003BEE54 File Offset: 0x003BD054
 		public void Add(Tag t, CodexEntryGenerator_Elements.ConversionEntry ce)
 		{
 			List<CodexEntryGenerator_Elements.ConversionEntry> list;
@@ -581,17 +561,13 @@ public class CodexEntryGenerator_Elements
 			};
 		}
 
-		// Token: 0x04007683 RID: 30339
 		public Dictionary<Tag, List<CodexEntryGenerator_Elements.ConversionEntry>> map = new Dictionary<Tag, List<CodexEntryGenerator_Elements.ConversionEntry>>();
 	}
 
-	// Token: 0x02001C8F RID: 7311
 	public class ElementEntryContext
 	{
-		// Token: 0x04007684 RID: 30340
 		public CodexEntryGenerator_Elements.CodexElementMap madeMap = new CodexEntryGenerator_Elements.CodexElementMap();
 
-		// Token: 0x04007685 RID: 30341
 		public CodexEntryGenerator_Elements.CodexElementMap usedMap = new CodexEntryGenerator_Elements.CodexElementMap();
 	}
 }

@@ -4,11 +4,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using Database;
 
-// Token: 0x020010E2 RID: 4322
 public class ColonyAchievementStatus
 {
-	// Token: 0x17000528 RID: 1320
-	// (get) Token: 0x0600584A RID: 22602 RVA: 0x000DE016 File Offset: 0x000DC216
 	public List<ColonyAchievementRequirement> Requirements
 	{
 		get
@@ -17,7 +14,6 @@ public class ColonyAchievementStatus
 		}
 	}
 
-	// Token: 0x0600584B RID: 22603 RVA: 0x000DE023 File Offset: 0x000DC223
 	public ColonyAchievementStatus(string achievementId)
 	{
 		this.m_achievement = Db.Get().ColonyAchievements.TryGet(achievementId);
@@ -27,7 +23,6 @@ public class ColonyAchievementStatus
 		}
 	}
 
-	// Token: 0x0600584C RID: 22604 RVA: 0x002973FC File Offset: 0x002955FC
 	public void UpdateAchievement()
 	{
 		if (this.Requirements.Count <= 0)
@@ -46,7 +41,6 @@ public class ColonyAchievementStatus
 		}
 	}
 
-	// Token: 0x0600584D RID: 22605 RVA: 0x00297494 File Offset: 0x00295694
 	public static ColonyAchievementStatus Deserialize(IReader reader, string achievementId)
 	{
 		bool flag = reader.ReadByte() > 0;
@@ -72,19 +66,15 @@ public class ColonyAchievementStatus
 		};
 	}
 
-	// Token: 0x0600584E RID: 22606 RVA: 0x000DE054 File Offset: 0x000DC254
 	public void Serialize(BinaryWriter writer)
 	{
 		writer.Write(this.success ? 1 : 0);
 		writer.Write(this.failed ? 1 : 0);
 	}
 
-	// Token: 0x04003E2F RID: 15919
 	public bool success;
 
-	// Token: 0x04003E30 RID: 15920
 	public bool failed;
 
-	// Token: 0x04003E31 RID: 15921
 	private ColonyAchievement m_achievement;
 }

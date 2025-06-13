@@ -2,17 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02001091 RID: 4241
 [AddComponentMenu("KMonoBehaviour/scripts/CO2Manager")]
 public class CO2Manager : KMonoBehaviour, ISim33ms
 {
-	// Token: 0x0600562B RID: 22059 RVA: 0x000DC9F5 File Offset: 0x000DABF5
 	public static void DestroyInstance()
 	{
 		CO2Manager.instance = null;
 	}
 
-	// Token: 0x0600562C RID: 22060 RVA: 0x0028EDC8 File Offset: 0x0028CFC8
 	protected override void OnPrefabInit()
 	{
 		CO2Manager.instance = this;
@@ -22,7 +19,6 @@ public class CO2Manager : KMonoBehaviour, ISim33ms
 		this.breathPool = new GameObjectPool(new Func<GameObject>(this.InstantiateBreath), 16);
 	}
 
-	// Token: 0x0600562D RID: 22061 RVA: 0x000DC9FD File Offset: 0x000DABFD
 	private GameObject InstantiateCO2()
 	{
 		GameObject gameObject = GameUtil.KInstantiate(this.prefab, Grid.SceneLayer.Front, null, 0);
@@ -30,7 +26,6 @@ public class CO2Manager : KMonoBehaviour, ISim33ms
 		return gameObject;
 	}
 
-	// Token: 0x0600562E RID: 22062 RVA: 0x000DCA15 File Offset: 0x000DAC15
 	private GameObject InstantiateBreath()
 	{
 		GameObject gameObject = GameUtil.KInstantiate(this.breathPrefab, Grid.SceneLayer.Front, null, 0);
@@ -38,7 +33,6 @@ public class CO2Manager : KMonoBehaviour, ISim33ms
 		return gameObject;
 	}
 
-	// Token: 0x0600562F RID: 22063 RVA: 0x0028EE2C File Offset: 0x0028D02C
 	public void Sim33ms(float dt)
 	{
 		Vector2I vector2I = default(Vector2I);
@@ -124,7 +118,6 @@ public class CO2Manager : KMonoBehaviour, ISim33ms
 		}
 	}
 
-	// Token: 0x06005630 RID: 22064 RVA: 0x0028F0AC File Offset: 0x0028D2AC
 	public void SpawnCO2(Vector3 position, float mass, float temperature, bool flip)
 	{
 		position.z = Grid.GetLayerZ(Grid.SceneLayer.Front);
@@ -144,7 +137,6 @@ public class CO2Manager : KMonoBehaviour, ISim33ms
 		this.co2Items.Add(component);
 	}
 
-	// Token: 0x06005631 RID: 22065 RVA: 0x0028F154 File Offset: 0x0028D354
 	public void SpawnBreath(Vector3 position, float mass, float temperature, bool flip)
 	{
 		position.z = Grid.GetLayerZ(Grid.SceneLayer.Front);
@@ -159,48 +151,37 @@ public class CO2Manager : KMonoBehaviour, ISim33ms
 		component.Play("breath", KAnim.PlayMode.Once, 1f, 0f);
 	}
 
-	// Token: 0x06005632 RID: 22066 RVA: 0x000DCA2D File Offset: 0x000DAC2D
 	private void OnDestroyCO2(GameObject co2_go)
 	{
 		co2_go.SetActive(false);
 		this.co2Pool.ReleaseInstance(co2_go);
 	}
 
-	// Token: 0x06005633 RID: 22067 RVA: 0x000DCA42 File Offset: 0x000DAC42
 	private void OnDestroyBreath(GameObject breath_go)
 	{
 		breath_go.SetActive(false);
 		this.breathPool.ReleaseInstance(breath_go);
 	}
 
-	// Token: 0x04003CF7 RID: 15607
 	private const float CO2Lifetime = 3f;
 
-	// Token: 0x04003CF8 RID: 15608
 	[SerializeField]
 	private Vector3 acceleration;
 
-	// Token: 0x04003CF9 RID: 15609
 	[SerializeField]
 	private CO2 prefab;
 
-	// Token: 0x04003CFA RID: 15610
 	[SerializeField]
 	private GameObject breathPrefab;
 
-	// Token: 0x04003CFB RID: 15611
 	[SerializeField]
 	private Color tintColour;
 
-	// Token: 0x04003CFC RID: 15612
 	private List<CO2> co2Items = new List<CO2>();
 
-	// Token: 0x04003CFD RID: 15613
 	private GameObjectPool breathPool;
 
-	// Token: 0x04003CFE RID: 15614
 	private GameObjectPool co2Pool;
 
-	// Token: 0x04003CFF RID: 15615
 	public static CO2Manager instance;
 }

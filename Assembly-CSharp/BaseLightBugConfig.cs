@@ -4,10 +4,8 @@ using Klei.AI;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000EA RID: 234
 public static class BaseLightBugConfig
 {
-	// Token: 0x060003BB RID: 955 RVA: 0x0015A2C4 File Offset: 0x001584C4
 	public static GameObject BaseLightBug(string id, string name, string desc, string anim_file, string traitId, Color lightColor, EffectorValues decor, bool is_baby, string symbolOverridePrefix = null)
 	{
 		GameObject gameObject = EntityTemplates.CreatePlacedEntity(id, name, desc, 5f, Assets.GetAnim(anim_file), "idle_loop", Grid.SceneLayer.Creatures, 1, 1, decor, default(EffectorValues), SimHashes.Creature, null, 293f);
@@ -82,7 +80,6 @@ public static class BaseLightBugConfig
 		return gameObject;
 	}
 
-	// Token: 0x060003BC RID: 956 RVA: 0x0015A658 File Offset: 0x00158858
 	public static GameObject SetupDiet(GameObject prefab, HashSet<Tag> consumed_tags, Tag producedTag, float caloriesPerKg)
 	{
 		Diet diet = new Diet(new Diet.Info[]
@@ -94,7 +91,6 @@ public static class BaseLightBugConfig
 		return prefab;
 	}
 
-	// Token: 0x060003BD RID: 957 RVA: 0x000AB493 File Offset: 0x000A9693
 	public static void SetupLoopingSounds(GameObject inst)
 	{
 		inst.GetComponent<LoopingSounds>().StartSound(GlobalAssets.GetSound("ShineBug_wings_LP", false));

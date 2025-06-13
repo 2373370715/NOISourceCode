@@ -6,11 +6,8 @@ using TUNING;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000A76 RID: 2678
 public class EntityCellVisualizer : KMonoBehaviour
 {
-	// Token: 0x170001EA RID: 490
-	// (get) Token: 0x060030A8 RID: 12456 RVA: 0x000C415D File Offset: 0x000C235D
 	public BuildingCellVisualizerResources Resources
 	{
 		get
@@ -19,8 +16,6 @@ public class EntityCellVisualizer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x170001EB RID: 491
-	// (get) Token: 0x060030A9 RID: 12457 RVA: 0x000C1501 File Offset: 0x000BF701
 	protected int CenterCell
 	{
 		get
@@ -29,25 +24,21 @@ public class EntityCellVisualizer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060030AA RID: 12458 RVA: 0x000AA038 File Offset: 0x000A8238
 	protected virtual void DefinePorts()
 	{
 	}
 
-	// Token: 0x060030AB RID: 12459 RVA: 0x000C4164 File Offset: 0x000C2364
 	protected override void OnPrefabInit()
 	{
 		this.LoadDiseaseIcon();
 		this.DefinePorts();
 	}
 
-	// Token: 0x060030AC RID: 12460 RVA: 0x000C4172 File Offset: 0x000C2372
 	public void ConnectedEventWithDelay(float delay, int connectionCount, int cell, string soundName)
 	{
 		base.StartCoroutine(this.ConnectedDelay(delay, connectionCount, cell, soundName));
 	}
 
-	// Token: 0x060030AD RID: 12461 RVA: 0x000C4186 File Offset: 0x000C2386
 	private IEnumerator ConnectedDelay(float delay, int connectionCount, int cell, string soundName)
 	{
 		float startTime = Time.realtimeSinceStartup;
@@ -70,7 +61,6 @@ public class EntityCellVisualizer : KMonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x060030AE RID: 12462 RVA: 0x0020A290 File Offset: 0x00208490
 	private int ComputeCell(CellOffset cellOffset)
 	{
 		CellOffset offset = cellOffset;
@@ -81,7 +71,6 @@ public class EntityCellVisualizer : KMonoBehaviour
 		return Grid.OffsetCell(Grid.PosToCell(base.gameObject), offset);
 	}
 
-	// Token: 0x060030AF RID: 12463 RVA: 0x0020A2CC File Offset: 0x002084CC
 	public void ConnectedEvent(int cell)
 	{
 		foreach (EntityCellVisualizer.PortEntry portEntry in this.ports)
@@ -101,26 +90,22 @@ public class EntityCellVisualizer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060030B0 RID: 12464 RVA: 0x000C41B2 File Offset: 0x000C23B2
 	public virtual void AddPort(EntityCellVisualizer.Ports type, CellOffset cell)
 	{
 		this.AddPort(type, cell, Color.white);
 	}
 
-	// Token: 0x060030B1 RID: 12465 RVA: 0x000C41C1 File Offset: 0x000C23C1
 	public virtual void AddPort(EntityCellVisualizer.Ports type, CellOffset cell, Color tint)
 	{
 		this.AddPort(type, cell, tint, tint, 1.5f, false);
 	}
 
-	// Token: 0x060030B2 RID: 12466 RVA: 0x000C41D3 File Offset: 0x000C23D3
 	public virtual void AddPort(EntityCellVisualizer.Ports type, CellOffset cell, Color connectedTint, Color disconnectedTint, float scale = 1.5f, bool hideBG = false)
 	{
 		this.ports.Add(new EntityCellVisualizer.PortEntry(type, cell, connectedTint, disconnectedTint, scale, hideBG));
 		this.addedPorts |= type;
 	}
 
-	// Token: 0x060030B3 RID: 12467 RVA: 0x0020A3A8 File Offset: 0x002085A8
 	protected override void OnCleanUp()
 	{
 		foreach (EntityCellVisualizer.PortEntry portEntry in this.ports)
@@ -143,7 +128,6 @@ public class EntityCellVisualizer : KMonoBehaviour
 		base.OnCleanUp();
 	}
 
-	// Token: 0x060030B4 RID: 12468 RVA: 0x000C41FC File Offset: 0x000C23FC
 	protected override void OnCmpEnable()
 	{
 		base.OnCmpEnable();
@@ -154,14 +138,12 @@ public class EntityCellVisualizer : KMonoBehaviour
 		Components.EntityCellVisualizers.Add(this);
 	}
 
-	// Token: 0x060030B5 RID: 12469 RVA: 0x000C4222 File Offset: 0x000C2422
 	protected override void OnCmpDisable()
 	{
 		base.OnCmpDisable();
 		Components.EntityCellVisualizers.Remove(this);
 	}
 
-	// Token: 0x060030B6 RID: 12470 RVA: 0x0020A44C File Offset: 0x0020864C
 	public void DrawIcons(HashedString mode)
 	{
 		EntityCellVisualizer.Ports ports = (EntityCellVisualizer.Ports)0;
@@ -251,7 +233,6 @@ public class EntityCellVisualizer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060030B7 RID: 12471 RVA: 0x0020A730 File Offset: 0x00208930
 	private Sprite GetSpriteForPortType(EntityCellVisualizer.Ports type, bool connected)
 	{
 		if (type <= EntityCellVisualizer.Ports.SolidOut)
@@ -337,7 +318,6 @@ public class EntityCellVisualizer : KMonoBehaviour
 		return null;
 	}
 
-	// Token: 0x060030B8 RID: 12472 RVA: 0x0020A8A4 File Offset: 0x00208AA4
 	protected virtual void DrawUtilityIcon(EntityCellVisualizer.PortEntry port)
 	{
 		int cell = this.ComputeCell(port.cellOffset);
@@ -375,7 +355,6 @@ public class EntityCellVisualizer : KMonoBehaviour
 		this.DrawUtilityIcon(cell, this.GetSpriteForPortType(port.type, connected), ref port.visualizer, flag ? port.connectedTint : port.disconnectedTint, port.scale, port.hideBG);
 	}
 
-	// Token: 0x060030B9 RID: 12473 RVA: 0x0020A9E0 File Offset: 0x00208BE0
 	protected virtual void LoadDiseaseIcon()
 	{
 		DiseaseVisualization.Info info = Assets.instance.DiseaseVisualization.GetInfo(this.DiseaseCellVisName);
@@ -386,7 +365,6 @@ public class EntityCellVisualizer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060030BA RID: 12474 RVA: 0x0020AA40 File Offset: 0x00208C40
 	protected virtual Sprite GetIconForHighEnergyOutput()
 	{
 		IHighEnergyParticleDirection component = base.GetComponent<IHighEnergyParticleDirection>();
@@ -399,7 +377,6 @@ public class EntityCellVisualizer : KMonoBehaviour
 		return result;
 	}
 
-	// Token: 0x060030BB RID: 12475 RVA: 0x0020AA80 File Offset: 0x00208C80
 	private void DrawUtilityIcon(int cell, Sprite icon_img, ref GameObject visualizerObj, Color tint, float scaleMultiplier = 1.5f, bool hideBG = false)
 	{
 		Vector3 position = Grid.CellToPosCCC(cell, Grid.SceneLayer.Building);
@@ -424,7 +401,6 @@ public class EntityCellVisualizer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060030BC RID: 12476 RVA: 0x0020AB94 File Offset: 0x00208D94
 	public Image GetPowerOutputIcon()
 	{
 		foreach (EntityCellVisualizer.PortEntry portEntry in this.ports)
@@ -437,7 +413,6 @@ public class EntityCellVisualizer : KMonoBehaviour
 		return null;
 	}
 
-	// Token: 0x060030BD RID: 12477 RVA: 0x0020AC18 File Offset: 0x00208E18
 	public Image GetPowerInputIcon()
 	{
 		foreach (EntityCellVisualizer.PortEntry portEntry in this.ports)
@@ -450,102 +425,66 @@ public class EntityCellVisualizer : KMonoBehaviour
 		return null;
 	}
 
-	// Token: 0x04002160 RID: 8544
 	protected List<EntityCellVisualizer.PortEntry> ports = new List<EntityCellVisualizer.PortEntry>();
 
-	// Token: 0x04002161 RID: 8545
 	public EntityCellVisualizer.Ports addedPorts;
 
-	// Token: 0x04002162 RID: 8546
 	private GameObject switchVisualizer;
 
-	// Token: 0x04002163 RID: 8547
 	private GameObject wireVisualizerAlpha;
 
-	// Token: 0x04002164 RID: 8548
 	private GameObject wireVisualizerBeta;
 
-	// Token: 0x04002165 RID: 8549
 	public const EntityCellVisualizer.Ports HEAT_PORTS = EntityCellVisualizer.Ports.HeatSource | EntityCellVisualizer.Ports.HeatSink;
 
-	// Token: 0x04002166 RID: 8550
 	public const EntityCellVisualizer.Ports POWER_PORTS = EntityCellVisualizer.Ports.PowerIn | EntityCellVisualizer.Ports.PowerOut;
 
-	// Token: 0x04002167 RID: 8551
 	public const EntityCellVisualizer.Ports GAS_PORTS = EntityCellVisualizer.Ports.GasIn | EntityCellVisualizer.Ports.GasOut;
 
-	// Token: 0x04002168 RID: 8552
 	public const EntityCellVisualizer.Ports LIQUID_PORTS = EntityCellVisualizer.Ports.LiquidIn | EntityCellVisualizer.Ports.LiquidOut;
 
-	// Token: 0x04002169 RID: 8553
 	public const EntityCellVisualizer.Ports SOLID_PORTS = EntityCellVisualizer.Ports.SolidIn | EntityCellVisualizer.Ports.SolidOut;
 
-	// Token: 0x0400216A RID: 8554
 	public const EntityCellVisualizer.Ports ENERGY_PARTICLES_PORTS = EntityCellVisualizer.Ports.HighEnergyParticleIn | EntityCellVisualizer.Ports.HighEnergyParticleOut;
 
-	// Token: 0x0400216B RID: 8555
 	public const EntityCellVisualizer.Ports DISEASE_PORTS = EntityCellVisualizer.Ports.DiseaseIn | EntityCellVisualizer.Ports.DiseaseOut;
 
-	// Token: 0x0400216C RID: 8556
 	public const EntityCellVisualizer.Ports MATTER_PORTS = EntityCellVisualizer.Ports.GasIn | EntityCellVisualizer.Ports.GasOut | EntityCellVisualizer.Ports.LiquidIn | EntityCellVisualizer.Ports.LiquidOut | EntityCellVisualizer.Ports.SolidIn | EntityCellVisualizer.Ports.SolidOut;
 
-	// Token: 0x0400216D RID: 8557
 	protected Sprite diseaseSourceSprite;
 
-	// Token: 0x0400216E RID: 8558
 	protected Color32 diseaseSourceColour;
 
-	// Token: 0x0400216F RID: 8559
 	[MyCmpGet]
 	private Rotatable rotatable;
 
-	// Token: 0x04002170 RID: 8560
 	protected bool enableRaycast = true;
 
-	// Token: 0x04002171 RID: 8561
 	protected Dictionary<GameObject, Image> icons;
 
-	// Token: 0x04002172 RID: 8562
 	public string DiseaseCellVisName = DUPLICANTSTATS.STANDARD.Secretions.PEE_DISEASE;
 
-	// Token: 0x02000A77 RID: 2679
 	[Flags]
 	public enum Ports
 	{
-		// Token: 0x04002174 RID: 8564
 		PowerIn = 1,
-		// Token: 0x04002175 RID: 8565
 		PowerOut = 2,
-		// Token: 0x04002176 RID: 8566
 		GasIn = 4,
-		// Token: 0x04002177 RID: 8567
 		GasOut = 8,
-		// Token: 0x04002178 RID: 8568
 		LiquidIn = 16,
-		// Token: 0x04002179 RID: 8569
 		LiquidOut = 32,
-		// Token: 0x0400217A RID: 8570
 		SolidIn = 64,
-		// Token: 0x0400217B RID: 8571
 		SolidOut = 128,
-		// Token: 0x0400217C RID: 8572
 		HighEnergyParticleIn = 256,
-		// Token: 0x0400217D RID: 8573
 		HighEnergyParticleOut = 512,
-		// Token: 0x0400217E RID: 8574
 		DiseaseIn = 1024,
-		// Token: 0x0400217F RID: 8575
 		DiseaseOut = 2048,
-		// Token: 0x04002180 RID: 8576
 		HeatSource = 4096,
-		// Token: 0x04002181 RID: 8577
 		HeatSink = 8192
 	}
 
-	// Token: 0x02000A78 RID: 2680
 	protected class PortEntry
 	{
-		// Token: 0x060030BF RID: 12479 RVA: 0x000C4264 File Offset: 0x000C2464
 		public PortEntry(EntityCellVisualizer.Ports type, CellOffset cellOffset, Color connectedTint, Color disconnectedTint, float scale, bool hideBG)
 		{
 			this.type = type;
@@ -557,25 +496,18 @@ public class EntityCellVisualizer : KMonoBehaviour
 			this.hideBG = hideBG;
 		}
 
-		// Token: 0x04002182 RID: 8578
 		public EntityCellVisualizer.Ports type;
 
-		// Token: 0x04002183 RID: 8579
 		public CellOffset cellOffset;
 
-		// Token: 0x04002184 RID: 8580
 		public GameObject visualizer;
 
-		// Token: 0x04002185 RID: 8581
 		public Color connectedTint;
 
-		// Token: 0x04002186 RID: 8582
 		public Color disconnectedTint;
 
-		// Token: 0x04002187 RID: 8583
 		public float scale;
 
-		// Token: 0x04002188 RID: 8584
 		public bool hideBG;
 	}
 }

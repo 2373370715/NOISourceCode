@@ -4,22 +4,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200053A RID: 1338
 public class PropGravitasShelfConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x060016FF RID: 5887 RVA: 0x000AA117 File Offset: 0x000A8317
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06001700 RID: 5888 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x06001701 RID: 5889 RVA: 0x001A448C File Offset: 0x001A268C
 	public GameObject CreatePrefab()
 	{
 		string id = "PropGravitasShelf";
@@ -39,7 +35,6 @@ public class PropGravitasShelfConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x06001702 RID: 5890 RVA: 0x000AA768 File Offset: 0x000A8968
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.GetComponent<OccupyArea>().objectLayers = new ObjectLayer[]
@@ -48,7 +43,6 @@ public class PropGravitasShelfConfig : IEntityConfig, IHasDlcRestrictions
 		};
 	}
 
-	// Token: 0x06001703 RID: 5891 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}

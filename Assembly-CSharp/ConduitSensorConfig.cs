@@ -3,14 +3,10 @@ using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000052 RID: 82
 public abstract class ConduitSensorConfig : IBuildingConfig
 {
-	// Token: 0x17000009 RID: 9
-	// (get) Token: 0x06000181 RID: 385
 	protected abstract ConduitType ConduitType { get; }
 
-	// Token: 0x06000182 RID: 386 RVA: 0x0014D15C File Offset: 0x0014B35C
 	protected BuildingDef CreateBuildingDef(string ID, string anim, float[] required_mass, string[] required_materials, List<LogicPorts.Port> output_ports)
 	{
 		int width = 1;
@@ -35,7 +31,6 @@ public abstract class ConduitSensorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000183 RID: 387 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}

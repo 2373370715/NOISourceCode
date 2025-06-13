@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x02001734 RID: 5940
 public class PlantBranchGrower : GameStateMachine<PlantBranchGrower, PlantBranchGrower.Instance, IStateMachineTarget, PlantBranchGrower.Def>
 {
-	// Token: 0x06007A24 RID: 31268 RVA: 0x003252B4 File Offset: 0x003234B4
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		base.serializable = StateMachine.SerializeType.ParamsOnly;
@@ -18,31 +16,26 @@ public class PlantBranchGrower : GameStateMachine<PlantBranchGrower, PlantBranch
 		this.fullyGrown.TagTransition(GameTags.Wilting, this.wilt, false).EventTransition(GameHashes.ConsumePlant, this.maturing, GameStateMachine<PlantBranchGrower, PlantBranchGrower.Instance, IStateMachineTarget, PlantBranchGrower.Def>.Not(new StateMachine<PlantBranchGrower, PlantBranchGrower.Instance, IStateMachineTarget, PlantBranchGrower.Def>.Transition.ConditionCallback(PlantBranchGrower.IsMature))).EventTransition(GameHashes.TreeBranchCountChanged, this.growingBranches, new StateMachine<PlantBranchGrower, PlantBranchGrower.Instance, IStateMachineTarget, PlantBranchGrower.Def>.Transition.ConditionCallback(PlantBranchGrower.NotAllBranchesCreated));
 	}
 
-	// Token: 0x06007A25 RID: 31269 RVA: 0x000F4E17 File Offset: 0x000F3017
 	public static bool NotAllBranchesCreated(PlantBranchGrower.Instance smi)
 	{
 		return smi.CurrentBranchCount < smi.MaxBranchesAllowedAtOnce;
 	}
 
-	// Token: 0x06007A26 RID: 31270 RVA: 0x000F4E27 File Offset: 0x000F3027
 	public static bool AllBranchesCreated(PlantBranchGrower.Instance smi)
 	{
 		return smi.CurrentBranchCount >= smi.MaxBranchesAllowedAtOnce;
 	}
 
-	// Token: 0x06007A27 RID: 31271 RVA: 0x000F4E3A File Offset: 0x000F303A
 	public static bool IsMature(PlantBranchGrower.Instance smi)
 	{
 		return smi.IsGrown;
 	}
 
-	// Token: 0x06007A28 RID: 31272 RVA: 0x000F4E42 File Offset: 0x000F3042
 	public static void GrowBranchUpdate(PlantBranchGrower.Instance smi, float dt)
 	{
 		smi.SpawnRandomBranch(0f);
 	}
 
-	// Token: 0x06007A29 RID: 31273 RVA: 0x00325424 File Offset: 0x00323624
 	public static void WorldGenUpdate(PlantBranchGrower.Instance smi, float dt)
 	{
 		float growth_percentage = UnityEngine.Random.Range(0f, 1f);
@@ -52,60 +45,41 @@ public class PlantBranchGrower : GameStateMachine<PlantBranchGrower, PlantBranch
 		}
 	}
 
-	// Token: 0x04005BEB RID: 23531
 	public GameStateMachine<PlantBranchGrower, PlantBranchGrower.Instance, IStateMachineTarget, PlantBranchGrower.Def>.State worldgen;
 
-	// Token: 0x04005BEC RID: 23532
 	public GameStateMachine<PlantBranchGrower, PlantBranchGrower.Instance, IStateMachineTarget, PlantBranchGrower.Def>.State wilt;
 
-	// Token: 0x04005BED RID: 23533
 	public GameStateMachine<PlantBranchGrower, PlantBranchGrower.Instance, IStateMachineTarget, PlantBranchGrower.Def>.State maturing;
 
-	// Token: 0x04005BEE RID: 23534
 	public GameStateMachine<PlantBranchGrower, PlantBranchGrower.Instance, IStateMachineTarget, PlantBranchGrower.Def>.State growingBranches;
 
-	// Token: 0x04005BEF RID: 23535
 	public GameStateMachine<PlantBranchGrower, PlantBranchGrower.Instance, IStateMachineTarget, PlantBranchGrower.Def>.State fullyGrown;
 
-	// Token: 0x02001735 RID: 5941
 	public class Def : StateMachine.BaseDef
 	{
-		// Token: 0x04005BF0 RID: 23536
 		public string BRANCH_PREFAB_NAME;
 
-		// Token: 0x04005BF1 RID: 23537
 		public int MAX_BRANCH_COUNT = -1;
 
-		// Token: 0x04005BF2 RID: 23538
 		public CellOffset[] BRANCH_OFFSETS;
 
-		// Token: 0x04005BF3 RID: 23539
 		public bool harvestOnDrown;
 
-		// Token: 0x04005BF4 RID: 23540
 		public bool propagateHarvestDesignation = true;
 
-		// Token: 0x04005BF5 RID: 23541
 		public Func<int, bool> additionalBranchGrowRequirements;
 
-		// Token: 0x04005BF6 RID: 23542
 		public Action<PlantBranch.Instance, PlantBranchGrower.Instance> onBranchHarvested;
 
-		// Token: 0x04005BF7 RID: 23543
 		public Action<PlantBranch.Instance, PlantBranchGrower.Instance> onBranchSpawned;
 
-		// Token: 0x04005BF8 RID: 23544
 		public StatusItem growingBranchesStatusItem = Db.Get().MiscStatusItems.GrowingBranches;
 
-		// Token: 0x04005BF9 RID: 23545
 		public Action<PlantBranchGrower.Instance> onEarlySpawn;
 	}
 
-	// Token: 0x02001736 RID: 5942
 	public new class Instance : GameStateMachine<PlantBranchGrower, PlantBranchGrower.Instance, IStateMachineTarget, PlantBranchGrower.Def>.GameInstance
 	{
-		// Token: 0x1700079F RID: 1951
-		// (get) Token: 0x06007A2C RID: 31276 RVA: 0x000F4E83 File Offset: 0x000F3083
 		public bool IsUprooted
 		{
 			get
@@ -114,8 +88,6 @@ public class PlantBranchGrower : GameStateMachine<PlantBranchGrower, PlantBranch
 			}
 		}
 
-		// Token: 0x170007A0 RID: 1952
-		// (get) Token: 0x06007A2D RID: 31277 RVA: 0x000F4EA0 File Offset: 0x000F30A0
 		public bool IsGrown
 		{
 			get
@@ -124,8 +96,6 @@ public class PlantBranchGrower : GameStateMachine<PlantBranchGrower, PlantBranch
 			}
 		}
 
-		// Token: 0x170007A1 RID: 1953
-		// (get) Token: 0x06007A2E RID: 31278 RVA: 0x000F4EC1 File Offset: 0x000F30C1
 		public int MaxBranchesAllowedAtOnce
 		{
 			get
@@ -138,8 +108,6 @@ public class PlantBranchGrower : GameStateMachine<PlantBranchGrower, PlantBranch
 			}
 		}
 
-		// Token: 0x170007A2 RID: 1954
-		// (get) Token: 0x06007A2F RID: 31279 RVA: 0x0032545C File Offset: 0x0032365C
 		public int CurrentBranchCount
 		{
 			get
@@ -157,7 +125,6 @@ public class PlantBranchGrower : GameStateMachine<PlantBranchGrower, PlantBranch
 			}
 		}
 
-		// Token: 0x06007A30 RID: 31280 RVA: 0x003254A0 File Offset: 0x003236A0
 		public GameObject GetBranch(int idx)
 		{
 			if (this.branches != null && this.branches[idx] != null)
@@ -171,14 +138,12 @@ public class PlantBranchGrower : GameStateMachine<PlantBranchGrower, PlantBranch
 			return null;
 		}
 
-		// Token: 0x06007A31 RID: 31281 RVA: 0x000F4EFC File Offset: 0x000F30FC
 		protected override void OnCleanUp()
 		{
 			this.SetTrunkOccupyingCellsAsPlant(false);
 			base.OnCleanUp();
 		}
 
-		// Token: 0x06007A32 RID: 31282 RVA: 0x003254E0 File Offset: 0x003236E0
 		public Instance(IStateMachineTarget master, PlantBranchGrower.Def def) : base(master, def)
 		{
 			this.growing = base.GetComponent<IManageGrowingStates>();
@@ -188,7 +153,6 @@ public class PlantBranchGrower : GameStateMachine<PlantBranchGrower, PlantBranch
 			base.Subscribe(144050788, new Action<object>(this.OnUpdateRoom));
 		}
 
-		// Token: 0x06007A33 RID: 31283 RVA: 0x00325558 File Offset: 0x00323758
 		public override void StartSM()
 		{
 			base.StartSM();
@@ -209,7 +173,6 @@ public class PlantBranchGrower : GameStateMachine<PlantBranchGrower, PlantBranch
 			}
 		}
 
-		// Token: 0x06007A34 RID: 31284 RVA: 0x003255DC File Offset: 0x003237DC
 		private void OnUpdateRoom(object data)
 		{
 			if (this.branches == null)
@@ -222,7 +185,6 @@ public class PlantBranchGrower : GameStateMachine<PlantBranchGrower, PlantBranch
 			});
 		}
 
-		// Token: 0x06007A35 RID: 31285 RVA: 0x00325614 File Offset: 0x00323814
 		private void SetTrunkOccupyingCellsAsPlant(bool doSet)
 		{
 			CellOffset[] occupiedCellsOffsets = base.GetComponent<OccupyArea>().OccupiedCellsOffsets;
@@ -241,7 +203,6 @@ public class PlantBranchGrower : GameStateMachine<PlantBranchGrower, PlantBranch
 			}
 		}
 
-		// Token: 0x06007A36 RID: 31286 RVA: 0x00325694 File Offset: 0x00323894
 		private void OnNewGameSpawn(object data)
 		{
 			this.DefineBranchArray();
@@ -257,7 +218,6 @@ public class PlantBranchGrower : GameStateMachine<PlantBranchGrower, PlantBranch
 			this.growing.OverrideMaturityLevel(percentage);
 		}
 
-		// Token: 0x06007A37 RID: 31287 RVA: 0x003256F0 File Offset: 0x003238F0
 		public void ManuallyDefineBranchArray(KPrefabID[] _branches)
 		{
 			this.DefineBranchArray();
@@ -279,7 +239,6 @@ public class PlantBranchGrower : GameStateMachine<PlantBranchGrower, PlantBranch
 			}
 		}
 
-		// Token: 0x06007A38 RID: 31288 RVA: 0x000F4F0B File Offset: 0x000F310B
 		private void DefineBranchArray()
 		{
 			if (this.branches == null)
@@ -288,7 +247,6 @@ public class PlantBranchGrower : GameStateMachine<PlantBranchGrower, PlantBranch
 			}
 		}
 
-		// Token: 0x06007A39 RID: 31289 RVA: 0x0032575C File Offset: 0x0032395C
 		public void ActionPerBranch(Action<GameObject> action)
 		{
 			for (int i = 0; i < this.branches.Length; i++)
@@ -301,7 +259,6 @@ public class PlantBranchGrower : GameStateMachine<PlantBranchGrower, PlantBranch
 			}
 		}
 
-		// Token: 0x06007A3A RID: 31290 RVA: 0x0032579C File Offset: 0x0032399C
 		public GameObject[] GetExistingBranches()
 		{
 			List<GameObject> list = new List<GameObject>();
@@ -316,7 +273,6 @@ public class PlantBranchGrower : GameStateMachine<PlantBranchGrower, PlantBranch
 			return list.ToArray();
 		}
 
-		// Token: 0x06007A3B RID: 31291 RVA: 0x003257E8 File Offset: 0x003239E8
 		public void OnBranchRemoved(GameObject _branch)
 		{
 			for (int i = 0; i < this.branches.Length; i++)
@@ -330,7 +286,6 @@ public class PlantBranchGrower : GameStateMachine<PlantBranchGrower, PlantBranch
 			base.gameObject.Trigger(-1586842875, null);
 		}
 
-		// Token: 0x06007A3C RID: 31292 RVA: 0x000F4F2D File Offset: 0x000F312D
 		public void OnBrancHarvested(PlantBranch.Instance branch)
 		{
 			Action<PlantBranch.Instance, PlantBranchGrower.Instance> onBranchHarvested = base.def.onBranchHarvested;
@@ -341,7 +296,6 @@ public class PlantBranchGrower : GameStateMachine<PlantBranchGrower, PlantBranch
 			onBranchHarvested(branch, this);
 		}
 
-		// Token: 0x06007A3D RID: 31293 RVA: 0x0032583C File Offset: 0x00323A3C
 		private void OnUprooted(object data = null)
 		{
 			for (int i = 0; i < this.branches.Length; i++)
@@ -354,7 +308,6 @@ public class PlantBranchGrower : GameStateMachine<PlantBranchGrower, PlantBranch
 			}
 		}
 
-		// Token: 0x06007A3E RID: 31294 RVA: 0x0032587C File Offset: 0x00323A7C
 		public List<int> GetAvailableSpawnPositions()
 		{
 			PlantBranchGrower.Instance.spawn_choices.Clear();
@@ -370,7 +323,6 @@ public class PlantBranchGrower : GameStateMachine<PlantBranchGrower, PlantBranch
 			return PlantBranchGrower.Instance.spawn_choices;
 		}
 
-		// Token: 0x06007A3F RID: 31295 RVA: 0x003258F4 File Offset: 0x00323AF4
 		public void RefreshBranchZPositionOffset(GameObject _branch)
 		{
 			if (this.branches != null)
@@ -388,7 +340,6 @@ public class PlantBranchGrower : GameStateMachine<PlantBranchGrower, PlantBranch
 			}
 		}
 
-		// Token: 0x06007A40 RID: 31296 RVA: 0x00325970 File Offset: 0x00323B70
 		public bool SpawnRandomBranch(float growth_percentage = 0f)
 		{
 			if (this.IsUprooted)
@@ -423,7 +374,6 @@ public class PlantBranchGrower : GameStateMachine<PlantBranchGrower, PlantBranch
 			return false;
 		}
 
-		// Token: 0x06007A41 RID: 31297 RVA: 0x00325A14 File Offset: 0x00323C14
 		private PlantBranch.Instance SpawnBranchAtIndex(int idx)
 		{
 			if (idx < 0 || idx >= this.branches.Length)
@@ -458,7 +408,6 @@ public class PlantBranchGrower : GameStateMachine<PlantBranchGrower, PlantBranch
 			return smi;
 		}
 
-		// Token: 0x06007A42 RID: 31298 RVA: 0x00325B18 File Offset: 0x00323D18
 		private bool CanBranchGrowInCell(int cell)
 		{
 			if (!Grid.IsValidCell(cell))
@@ -485,7 +434,6 @@ public class PlantBranchGrower : GameStateMachine<PlantBranchGrower, PlantBranch
 			return Grid.IsValidCell(cell2) && !Grid.IsSubstantialLiquid(cell2, 0.35f) && (base.def.additionalBranchGrowRequirements == null || base.def.additionalBranchGrowRequirements(cell));
 		}
 
-		// Token: 0x06007A43 RID: 31299 RVA: 0x00325BBC File Offset: 0x00323DBC
 		public void UpdateAutoHarvestValue(PlantBranch.Instance specificBranch = null)
 		{
 			HarvestDesignatable component = base.GetComponent<HarvestDesignatable>();
@@ -518,18 +466,14 @@ public class PlantBranchGrower : GameStateMachine<PlantBranchGrower, PlantBranch
 			}
 		}
 
-		// Token: 0x04005BFA RID: 23546
 		private IManageGrowingStates growing;
 
-		// Token: 0x04005BFB RID: 23547
 		[MyCmpGet]
 		private UprootedMonitor uprootMonitor;
 
-		// Token: 0x04005BFC RID: 23548
 		[Serialize]
 		private Ref<KPrefabID>[] branches;
 
-		// Token: 0x04005BFD RID: 23549
 		private static List<int> spawn_choices = new List<int>();
 	}
 }

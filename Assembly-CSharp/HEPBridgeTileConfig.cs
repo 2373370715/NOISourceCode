@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200037D RID: 893
 public class HEPBridgeTileConfig : IBuildingConfig
 {
-	// Token: 0x06000E46 RID: 3654 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06000E47 RID: 3655 RVA: 0x001825A0 File Offset: 0x001807A0
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "HEPBridgeTile";
@@ -45,7 +42,6 @@ public class HEPBridgeTileConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000E48 RID: 3656 RVA: 0x0018267C File Offset: 0x0018087C
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -62,7 +58,6 @@ public class HEPBridgeTileConfig : IBuildingConfig
 		highEnergyParticleRedirector.Direction = EightDirection.Right;
 	}
 
-	// Token: 0x06000E49 RID: 3657 RVA: 0x000B0A31 File Offset: 0x000AEC31
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 		base.DoPostConfigurePreview(def, go);
@@ -70,14 +65,12 @@ public class HEPBridgeTileConfig : IBuildingConfig
 		go.AddOrGet<BuildingCellVisualizer>();
 	}
 
-	// Token: 0x06000E4A RID: 3658 RVA: 0x000B0A49 File Offset: 0x000AEC49
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		base.DoPostConfigureUnderConstruction(go);
 		go.AddOrGet<BuildingCellVisualizer>();
 	}
 
-	// Token: 0x06000E4B RID: 3659 RVA: 0x001826F4 File Offset: 0x001808F4
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.GetComponent<KPrefabID>().AddTag(GameTags.HEPPassThrough, false);
@@ -110,6 +103,5 @@ public class HEPBridgeTileConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x04000A8B RID: 2699
 	public const string ID = "HEPBridgeTile";
 }

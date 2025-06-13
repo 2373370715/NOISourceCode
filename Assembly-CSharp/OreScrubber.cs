@@ -5,17 +5,14 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000F37 RID: 3895
 public class OreScrubber : StateMachineComponent<OreScrubber.SMInstance>, IGameObjectEffectDescriptor
 {
-	// Token: 0x06004E29 RID: 20009 RVA: 0x000D21F6 File Offset: 0x000D03F6
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 		base.gameObject.FindOrAddComponent<Workable>();
 	}
 
-	// Token: 0x06004E2A RID: 20010 RVA: 0x00275AAC File Offset: 0x00273CAC
 	private void RefreshMeters()
 	{
 		float positionPercent = 0f;
@@ -27,7 +24,6 @@ public class OreScrubber : StateMachineComponent<OreScrubber.SMInstance>, IGameO
 		this.cleanMeter.SetPositionPercent(positionPercent);
 	}
 
-	// Token: 0x06004E2B RID: 20011 RVA: 0x00275B00 File Offset: 0x00273D00
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -43,7 +39,6 @@ public class OreScrubber : StateMachineComponent<OreScrubber.SMInstance>, IGameO
 		this.OnDirectionChanged(base.GetComponent<DirectionControl>().allowedDirection);
 	}
 
-	// Token: 0x06004E2C RID: 20012 RVA: 0x000D72AF File Offset: 0x000D54AF
 	private void OnDirectionChanged(WorkableReactable.AllowedDirection allowed_direction)
 	{
 		if (this.reactable != null)
@@ -52,7 +47,6 @@ public class OreScrubber : StateMachineComponent<OreScrubber.SMInstance>, IGameO
 		}
 	}
 
-	// Token: 0x06004E2D RID: 20013 RVA: 0x00275B9C File Offset: 0x00273D9C
 	public List<Descriptor> RequirementDescriptors()
 	{
 		List<Descriptor> list = new List<Descriptor>();
@@ -61,7 +55,6 @@ public class OreScrubber : StateMachineComponent<OreScrubber.SMInstance>, IGameO
 		return list;
 	}
 
-	// Token: 0x06004E2E RID: 20014 RVA: 0x00275C14 File Offset: 0x00273E14
 	public List<Descriptor> EffectDescriptors()
 	{
 		List<Descriptor> list = new List<Descriptor>();
@@ -73,7 +66,6 @@ public class OreScrubber : StateMachineComponent<OreScrubber.SMInstance>, IGameO
 		return list;
 	}
 
-	// Token: 0x06004E2F RID: 20015 RVA: 0x000D72C5 File Offset: 0x000D54C5
 	public List<Descriptor> GetDescriptors(GameObject go)
 	{
 		List<Descriptor> list = new List<Descriptor>();
@@ -82,13 +74,11 @@ public class OreScrubber : StateMachineComponent<OreScrubber.SMInstance>, IGameO
 		return list;
 	}
 
-	// Token: 0x06004E30 RID: 20016 RVA: 0x000D72E4 File Offset: 0x000D54E4
 	private void OnStorageChange(object data)
 	{
 		this.RefreshMeters();
 	}
 
-	// Token: 0x06004E31 RID: 20017 RVA: 0x00275CEC File Offset: 0x00273EEC
 	private static PrimaryElement GetFirstInfected(Storage storage)
 	{
 		foreach (GameObject gameObject in storage.items)
@@ -105,43 +95,32 @@ public class OreScrubber : StateMachineComponent<OreScrubber.SMInstance>, IGameO
 		return null;
 	}
 
-	// Token: 0x040036D9 RID: 14041
 	public float massConsumedPerUse = 1f;
 
-	// Token: 0x040036DA RID: 14042
 	public SimHashes consumedElement = SimHashes.BleachStone;
 
-	// Token: 0x040036DB RID: 14043
 	public int diseaseRemovalCount = 10000;
 
-	// Token: 0x040036DC RID: 14044
 	public SimHashes outputElement = SimHashes.Vacuum;
 
-	// Token: 0x040036DD RID: 14045
 	private WorkableReactable reactable;
 
-	// Token: 0x040036DE RID: 14046
 	private MeterController cleanMeter;
 
-	// Token: 0x040036DF RID: 14047
 	[Serialize]
 	public int maxPossiblyRemoved;
 
-	// Token: 0x040036E0 RID: 14048
 	private static readonly EventSystem.IntraObjectHandler<OreScrubber> OnStorageChangeDelegate = new EventSystem.IntraObjectHandler<OreScrubber>(delegate(OreScrubber component, object data)
 	{
 		component.OnStorageChange(data);
 	});
 
-	// Token: 0x02000F38 RID: 3896
 	private class ScrubOreReactable : WorkableReactable
 	{
-		// Token: 0x06004E34 RID: 20020 RVA: 0x000D733C File Offset: 0x000D553C
 		public ScrubOreReactable(Workable workable, ChoreType chore_type, WorkableReactable.AllowedDirection allowed_direction = WorkableReactable.AllowedDirection.Any) : base(workable, "ScrubOre", chore_type, allowed_direction)
 		{
 		}
 
-		// Token: 0x06004E35 RID: 20021 RVA: 0x00275D6C File Offset: 0x00273F6C
 		public override bool InternalCanBegin(GameObject new_reactor, Navigator.ActiveTransition transition)
 		{
 			if (base.InternalCanBegin(new_reactor, transition))
@@ -156,15 +135,12 @@ public class OreScrubber : StateMachineComponent<OreScrubber.SMInstance>, IGameO
 		}
 	}
 
-	// Token: 0x02000F39 RID: 3897
 	public class SMInstance : GameStateMachine<OreScrubber.States, OreScrubber.SMInstance, OreScrubber, object>.GameInstance
 	{
-		// Token: 0x06004E36 RID: 20022 RVA: 0x000D7351 File Offset: 0x000D5551
 		public SMInstance(OreScrubber master) : base(master)
 		{
 		}
 
-		// Token: 0x06004E37 RID: 20023 RVA: 0x00275DA4 File Offset: 0x00273FA4
 		public bool HasSufficientMass()
 		{
 			bool result = false;
@@ -176,7 +152,6 @@ public class OreScrubber : StateMachineComponent<OreScrubber.SMInstance>, IGameO
 			return result;
 		}
 
-		// Token: 0x06004E38 RID: 20024 RVA: 0x000D735A File Offset: 0x000D555A
 		public Dictionary<Tag, float> GetNeededMass()
 		{
 			return new Dictionary<Tag, float>
@@ -188,12 +163,10 @@ public class OreScrubber : StateMachineComponent<OreScrubber.SMInstance>, IGameO
 			};
 		}
 
-		// Token: 0x06004E39 RID: 20025 RVA: 0x000AA038 File Offset: 0x000A8238
 		public void OnCompleteWork(WorkerBase worker)
 		{
 		}
 
-		// Token: 0x06004E3A RID: 20026 RVA: 0x00275DE4 File Offset: 0x00273FE4
 		public void DumpOutput()
 		{
 			Storage component = base.master.GetComponent<Storage>();
@@ -204,10 +177,8 @@ public class OreScrubber : StateMachineComponent<OreScrubber.SMInstance>, IGameO
 		}
 	}
 
-	// Token: 0x02000F3A RID: 3898
 	public class States : GameStateMachine<OreScrubber.States, OreScrubber.SMInstance, OreScrubber>
 	{
-		// Token: 0x06004E3B RID: 20027 RVA: 0x00275E2C File Offset: 0x0027402C
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.notready;
@@ -219,37 +190,27 @@ public class OreScrubber : StateMachineComponent<OreScrubber.SMInstance>, IGameO
 			this.ready.occupied.PlayAnim("working_pre").QueueAnim("working_loop", true, null).WorkableStopTransition((OreScrubber.SMInstance smi) => smi.GetComponent<OreScrubber.Work>(), this.ready);
 		}
 
-		// Token: 0x040036E1 RID: 14049
 		public GameStateMachine<OreScrubber.States, OreScrubber.SMInstance, OreScrubber, object>.State notready;
 
-		// Token: 0x040036E2 RID: 14050
 		public OreScrubber.States.ReadyStates ready;
 
-		// Token: 0x040036E3 RID: 14051
 		public GameStateMachine<OreScrubber.States, OreScrubber.SMInstance, OreScrubber, object>.State notoperational;
 
-		// Token: 0x040036E4 RID: 14052
 		public GameStateMachine<OreScrubber.States, OreScrubber.SMInstance, OreScrubber, object>.State full;
 
-		// Token: 0x040036E5 RID: 14053
 		public GameStateMachine<OreScrubber.States, OreScrubber.SMInstance, OreScrubber, object>.State empty;
 
-		// Token: 0x02000F3B RID: 3899
 		public class ReadyStates : GameStateMachine<OreScrubber.States, OreScrubber.SMInstance, OreScrubber, object>.State
 		{
-			// Token: 0x040036E6 RID: 14054
 			public GameStateMachine<OreScrubber.States, OreScrubber.SMInstance, OreScrubber, object>.State free;
 
-			// Token: 0x040036E7 RID: 14055
 			public GameStateMachine<OreScrubber.States, OreScrubber.SMInstance, OreScrubber, object>.State occupied;
 		}
 	}
 
-	// Token: 0x02000F3D RID: 3901
 	[AddComponentMenu("KMonoBehaviour/Workable/Work")]
 	public class Work : Workable, IGameObjectEffectDescriptor
 	{
-		// Token: 0x06004E46 RID: 20038 RVA: 0x000D73C1 File Offset: 0x000D55C1
 		protected override void OnPrefabInit()
 		{
 			base.OnPrefabInit();
@@ -257,14 +218,12 @@ public class OreScrubber : StateMachineComponent<OreScrubber.SMInstance>, IGameO
 			this.shouldTransferDiseaseWithWorker = false;
 		}
 
-		// Token: 0x06004E47 RID: 20039 RVA: 0x000D73D7 File Offset: 0x000D55D7
 		protected override void OnStartWork(WorkerBase worker)
 		{
 			base.OnStartWork(worker);
 			this.diseaseRemoved = 0;
 		}
 
-		// Token: 0x06004E48 RID: 20040 RVA: 0x00276048 File Offset: 0x00274248
 		protected override bool OnWorkTick(WorkerBase worker, float dt)
 		{
 			base.OnWorkTick(worker, dt);
@@ -295,13 +254,11 @@ public class OreScrubber : StateMachineComponent<OreScrubber.SMInstance>, IGameO
 			return this.diseaseRemoved > component.diseaseRemovalCount;
 		}
 
-		// Token: 0x06004E49 RID: 20041 RVA: 0x000D73E7 File Offset: 0x000D55E7
 		protected override void OnCompleteWork(WorkerBase worker)
 		{
 			base.OnCompleteWork(worker);
 		}
 
-		// Token: 0x040036EF RID: 14063
 		private int diseaseRemoved;
 	}
 }

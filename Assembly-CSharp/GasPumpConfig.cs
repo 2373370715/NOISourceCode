@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200035A RID: 858
 public class GasPumpConfig : IBuildingConfig
 {
-	// Token: 0x06000D9A RID: 3482 RVA: 0x0017E018 File Offset: 0x0017C218
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "GasPump";
@@ -35,7 +33,6 @@ public class GasPumpConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000D9B RID: 3483 RVA: 0x0017E0E8 File Offset: 0x0017C2E8
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
@@ -58,6 +55,5 @@ public class GasPumpConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayBehindConduits, false);
 	}
 
-	// Token: 0x040009F4 RID: 2548
 	public const string ID = "GasPump";
 }

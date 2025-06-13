@@ -2,10 +2,8 @@
 using Klei.AI;
 using UnityEngine;
 
-// Token: 0x020007DC RID: 2012
 public class HappySinger : GameStateMachine<HappySinger, HappySinger.Instance>
 {
-	// Token: 0x06002391 RID: 9105 RVA: 0x001D26E8 File Offset: 0x001D08E8
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.neutral;
@@ -37,37 +35,27 @@ public class HappySinger : GameStateMachine<HappySinger, HappySinger.Instance>
 		});
 	}
 
-	// Token: 0x040017E2 RID: 6114
 	private Vector3 offset = new Vector3(0f, 0f, 0.1f);
 
-	// Token: 0x040017E3 RID: 6115
 	public GameStateMachine<HappySinger, HappySinger.Instance, IStateMachineTarget, object>.State neutral;
 
-	// Token: 0x040017E4 RID: 6116
 	public HappySinger.OverjoyedStates overjoyed;
 
-	// Token: 0x040017E5 RID: 6117
 	public string soundPath = GlobalAssets.GetSound("DupeSinging_NotesFX_LP", false);
 
-	// Token: 0x020007DD RID: 2013
 	public class OverjoyedStates : GameStateMachine<HappySinger, HappySinger.Instance, IStateMachineTarget, object>.State
 	{
-		// Token: 0x040017E6 RID: 6118
 		public GameStateMachine<HappySinger, HappySinger.Instance, IStateMachineTarget, object>.State idle;
 
-		// Token: 0x040017E7 RID: 6119
 		public GameStateMachine<HappySinger, HappySinger.Instance, IStateMachineTarget, object>.State moving;
 	}
 
-	// Token: 0x020007DE RID: 2014
 	public new class Instance : GameStateMachine<HappySinger, HappySinger.Instance, IStateMachineTarget, object>.GameInstance
 	{
-		// Token: 0x06002395 RID: 9109 RVA: 0x000BB94D File Offset: 0x000B9B4D
 		public Instance(IStateMachineTarget master) : base(master)
 		{
 		}
 
-		// Token: 0x06002396 RID: 9110 RVA: 0x001D2884 File Offset: 0x001D0A84
 		public void CreatePasserbyReactable()
 		{
 			if (this.passerbyReactable == null)
@@ -80,7 +68,6 @@ public class HappySinger : GameStateMachine<HappySinger, HappySinger.Instance>
 			}
 		}
 
-		// Token: 0x06002397 RID: 9111 RVA: 0x000BB956 File Offset: 0x000B9B56
 		public SpeechMonitor.Instance GetSpeechMonitor()
 		{
 			if (this.speechMonitor == null)
@@ -90,19 +77,16 @@ public class HappySinger : GameStateMachine<HappySinger, HappySinger.Instance>
 			return this.speechMonitor;
 		}
 
-		// Token: 0x06002398 RID: 9112 RVA: 0x000BB97C File Offset: 0x000B9B7C
 		private void AddReactionEffect(GameObject reactor)
 		{
 			reactor.Trigger(-1278274506, null);
 		}
 
-		// Token: 0x06002399 RID: 9113 RVA: 0x000BB98A File Offset: 0x000B9B8A
 		private bool ReactorIsOnFloor(GameObject reactor, Navigator.ActiveTransition transition)
 		{
 			return transition.end == NavType.Floor;
 		}
 
-		// Token: 0x0600239A RID: 9114 RVA: 0x000BB995 File Offset: 0x000B9B95
 		public void ClearPasserbyReactable()
 		{
 			if (this.passerbyReactable != null)
@@ -112,13 +96,10 @@ public class HappySinger : GameStateMachine<HappySinger, HappySinger.Instance>
 			}
 		}
 
-		// Token: 0x040017E8 RID: 6120
 		private Reactable passerbyReactable;
 
-		// Token: 0x040017E9 RID: 6121
 		public GameObject musicParticleFX;
 
-		// Token: 0x040017EA RID: 6122
 		public SpeechMonitor.Instance speechMonitor;
 	}
 }

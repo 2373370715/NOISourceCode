@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000CD RID: 205
 public class FarmStationConfig : IBuildingConfig
 {
-	// Token: 0x06000364 RID: 868 RVA: 0x00156C60 File Offset: 0x00154E60
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "FarmStation";
@@ -31,14 +29,12 @@ public class FarmStationConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000365 RID: 869 RVA: 0x000AB2A4 File Offset: 0x000A94A4
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<LoopingSounds>();
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.FarmStationType, false);
 	}
 
-	// Token: 0x06000366 RID: 870 RVA: 0x00156D0C File Offset: 0x00154F0C
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
@@ -80,18 +76,13 @@ public class FarmStationConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x04000210 RID: 528
 	public const string ID = "FarmStation";
 
-	// Token: 0x04000211 RID: 529
 	public static Tag MATERIAL_FOR_TINKER = GameTags.Fertilizer;
 
-	// Token: 0x04000212 RID: 530
 	public static Tag TINKER_TOOLS = FarmStationToolsConfig.tag;
 
-	// Token: 0x04000213 RID: 531
 	public const float MASS_PER_TINKER = 5f;
 
-	// Token: 0x04000214 RID: 532
 	public const float OUTPUT_TEMPERATURE = 308.15f;
 }

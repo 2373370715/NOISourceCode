@@ -2,17 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x0200128D RID: 4749
 [AddComponentMenu("KMonoBehaviour/Workable/DropToUserCapacity")]
 public class DropToUserCapacity : Workable
 {
-	// Token: 0x060060FE RID: 24830 RVA: 0x000C8314 File Offset: 0x000C6514
 	protected DropToUserCapacity()
 	{
 		base.SetOffsetTable(OffsetGroups.InvertedStandardTable);
 	}
 
-	// Token: 0x060060FF RID: 24831 RVA: 0x002BE110 File Offset: 0x002BC310
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -23,14 +20,12 @@ public class DropToUserCapacity : Workable
 		base.SetWorkTime(0.1f);
 	}
 
-	// Token: 0x06006100 RID: 24832 RVA: 0x000E3993 File Offset: 0x000E1B93
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
 		this.UpdateChore();
 	}
 
-	// Token: 0x06006101 RID: 24833 RVA: 0x000E39A1 File Offset: 0x000E1BA1
 	private Storage[] GetStorages()
 	{
 		if (this.storages == null)
@@ -40,13 +35,11 @@ public class DropToUserCapacity : Workable
 		return this.storages;
 	}
 
-	// Token: 0x06006102 RID: 24834 RVA: 0x000E39BD File Offset: 0x000E1BBD
 	private void OnStorageChanged(object data)
 	{
 		this.UpdateChore();
 	}
 
-	// Token: 0x06006103 RID: 24835 RVA: 0x002BE16C File Offset: 0x002BC36C
 	public void UpdateChore()
 	{
 		IUserControlledCapacity component = base.GetComponent<IUserControlledCapacity>();
@@ -67,7 +60,6 @@ public class DropToUserCapacity : Workable
 		}
 	}
 
-	// Token: 0x06006104 RID: 24836 RVA: 0x002BE200 File Offset: 0x002BC400
 	protected override void OnCompleteWork(WorkerBase worker)
 	{
 		Storage component = base.GetComponent<Storage>();
@@ -88,22 +80,17 @@ public class DropToUserCapacity : Workable
 		this.chore = null;
 	}
 
-	// Token: 0x04004557 RID: 17751
 	private Chore chore;
 
-	// Token: 0x04004558 RID: 17752
 	private bool showCmd;
 
-	// Token: 0x04004559 RID: 17753
 	private Storage[] storages;
 
-	// Token: 0x0400455A RID: 17754
 	private static readonly EventSystem.IntraObjectHandler<DropToUserCapacity> OnStorageCapacityChangedHandler = new EventSystem.IntraObjectHandler<DropToUserCapacity>(delegate(DropToUserCapacity component, object data)
 	{
 		component.OnStorageChanged(data);
 	});
 
-	// Token: 0x0400455B RID: 17755
 	private static readonly EventSystem.IntraObjectHandler<DropToUserCapacity> OnStorageChangedHandler = new EventSystem.IntraObjectHandler<DropToUserCapacity>(delegate(DropToUserCapacity component, object data)
 	{
 		component.OnStorageChanged(data);

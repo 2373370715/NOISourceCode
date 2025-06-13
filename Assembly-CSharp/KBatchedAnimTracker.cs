@@ -1,10 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200094F RID: 2383
 public class KBatchedAnimTracker : MonoBehaviour
 {
-	// Token: 0x06002A8C RID: 10892 RVA: 0x001E6EF0 File Offset: 0x001E50F0
 	private void Start()
 	{
 		if (this.controller == null)
@@ -39,7 +37,6 @@ public class KBatchedAnimTracker : MonoBehaviour
 		kbatchedAnimController.getPositionDataFunctionInUse = (Func<Vector4>)Delegate.Combine(kbatchedAnimController.getPositionDataFunctionInUse, new Func<Vector4>(this.MyAnimGetPosition));
 	}
 
-	// Token: 0x06002A8D RID: 10893 RVA: 0x001E7008 File Offset: 0x001E5208
 	private Vector4 MyAnimGetPosition()
 	{
 		if (this.myAnim != null && this.controller != null && this.controller.transform == this.myAnim.transform.parent)
@@ -50,7 +47,6 @@ public class KBatchedAnimTracker : MonoBehaviour
 		return base.transform.GetPosition();
 	}
 
-	// Token: 0x06002A8E RID: 10894 RVA: 0x001E70B0 File Offset: 0x001E52B0
 	private void OnDestroy()
 	{
 		if (this.controller != null)
@@ -68,7 +64,6 @@ public class KBatchedAnimTracker : MonoBehaviour
 		this.myAnim = null;
 	}
 
-	// Token: 0x06002A8F RID: 10895 RVA: 0x001E7154 File Offset: 0x001E5354
 	private void LateUpdate()
 	{
 		if (this.controller != null && (this.controller.IsVisible() || this.forceAlwaysVisible || this.forceUpdate))
@@ -81,14 +76,12 @@ public class KBatchedAnimTracker : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A90 RID: 10896 RVA: 0x000C0298 File Offset: 0x000BE498
 	public void SetAnimControllers(KBatchedAnimController controller, KBatchedAnimController parentController)
 	{
 		this.myAnim = controller;
 		this.controller = parentController;
 	}
 
-	// Token: 0x06002A91 RID: 10897 RVA: 0x001E71A4 File Offset: 0x001E53A4
 	private void UpdateFrame()
 	{
 		this.forceUpdate = false;
@@ -149,7 +142,6 @@ public class KBatchedAnimTracker : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A92 RID: 10898 RVA: 0x000C02A8 File Offset: 0x000BE4A8
 	[ContextMenu("ForceAlive")]
 	private void OnAnimStart(HashedString name)
 	{
@@ -158,7 +150,6 @@ public class KBatchedAnimTracker : MonoBehaviour
 		this.forceUpdate = true;
 	}
 
-	// Token: 0x06002A93 RID: 10899 RVA: 0x000C02BF File Offset: 0x000BE4BF
 	private void OnAnimStop(HashedString name)
 	{
 		if (!this.forceAlwaysAlive)
@@ -167,65 +158,47 @@ public class KBatchedAnimTracker : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A94 RID: 10900 RVA: 0x000C02D0 File Offset: 0x000BE4D0
 	private void OnLayerChanged(int layer)
 	{
 		this.myAnim.SetLayer(layer);
 	}
 
-	// Token: 0x06002A95 RID: 10901 RVA: 0x000C02DE File Offset: 0x000BE4DE
 	public void SetTarget(Vector3 target)
 	{
 		this.targetPoint = target;
 		this.targetPoint.z = 0f;
 	}
 
-	// Token: 0x04001CCA RID: 7370
 	public KBatchedAnimController controller;
 
-	// Token: 0x04001CCB RID: 7371
 	public Vector3 offset = Vector3.zero;
 
-	// Token: 0x04001CCC RID: 7372
 	public HashedString symbol;
 
-	// Token: 0x04001CCD RID: 7373
 	public Vector3 targetPoint = Vector3.zero;
 
-	// Token: 0x04001CCE RID: 7374
 	public Vector3 previousTargetPoint;
 
-	// Token: 0x04001CCF RID: 7375
 	public bool useTargetPoint;
 
-	// Token: 0x04001CD0 RID: 7376
 	public bool fadeOut = true;
 
-	// Token: 0x04001CD1 RID: 7377
 	public bool forceAlwaysVisible;
 
-	// Token: 0x04001CD2 RID: 7378
 	public bool matchParentOffset;
 
-	// Token: 0x04001CD3 RID: 7379
 	public bool forceAlwaysAlive;
 
-	// Token: 0x04001CD4 RID: 7380
 	private bool alive = true;
 
-	// Token: 0x04001CD5 RID: 7381
 	private bool forceUpdate;
 
-	// Token: 0x04001CD6 RID: 7382
 	private Matrix2x3 previousMatrix;
 
-	// Token: 0x04001CD7 RID: 7383
 	private Vector3 previousPosition;
 
-	// Token: 0x04001CD8 RID: 7384
 	public bool synchronizeEnabledState = true;
 
-	// Token: 0x04001CD9 RID: 7385
 	[SerializeField]
 	private KBatchedAnimController myAnim;
 }

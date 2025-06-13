@@ -4,10 +4,8 @@ using UnityEngine;
 
 namespace Rendering
 {
-	// Token: 0x02002133 RID: 8499
 	public class BlockTileRenderer : MonoBehaviour
 	{
-		// Token: 0x0600B50E RID: 46350 RVA: 0x0011A298 File Offset: 0x00118498
 		public static BlockTileRenderer.RenderInfoLayer GetRenderInfoLayer(bool isReplacement, SimHashes element)
 		{
 			if (isReplacement)
@@ -21,8 +19,6 @@ namespace Rendering
 			return BlockTileRenderer.RenderInfoLayer.Built;
 		}
 
-		// Token: 0x17000BA6 RID: 2982
-		// (get) Token: 0x0600B50F RID: 46351 RVA: 0x0011A2AA File Offset: 0x001184AA
 		public bool ForceRebuild
 		{
 			get
@@ -31,13 +27,11 @@ namespace Rendering
 			}
 		}
 
-		// Token: 0x0600B510 RID: 46352 RVA: 0x0045162C File Offset: 0x0044F82C
 		public BlockTileRenderer()
 		{
 			this.forceRebuild = false;
 		}
 
-		// Token: 0x0600B511 RID: 46353 RVA: 0x004516B0 File Offset: 0x0044F8B0
 		public void FreeResources()
 		{
 			foreach (KeyValuePair<KeyValuePair<BuildingDef, BlockTileRenderer.RenderInfoLayer>, BlockTileRenderer.RenderInfo> keyValuePair in this.renderInfo)
@@ -50,13 +44,11 @@ namespace Rendering
 			this.renderInfo.Clear();
 		}
 
-		// Token: 0x0600B512 RID: 46354 RVA: 0x0011A2B2 File Offset: 0x001184B2
 		private static bool MatchesDef(GameObject go, BuildingDef def)
 		{
 			return go != null && go.GetComponent<Building>().Def == def;
 		}
 
-		// Token: 0x0600B513 RID: 46355 RVA: 0x0045171C File Offset: 0x0044F91C
 		public virtual BlockTileRenderer.Bits GetConnectionBits(int x, int y, int query_layer)
 		{
 			BlockTileRenderer.Bits bits = (BlockTileRenderer.Bits)0;
@@ -106,7 +98,6 @@ namespace Rendering
 			return bits;
 		}
 
-		// Token: 0x0600B514 RID: 46356 RVA: 0x00451890 File Offset: 0x0044FA90
 		private bool IsDecorConnectable(GameObject src, GameObject target)
 		{
 			if (src != null && target != null)
@@ -121,7 +112,6 @@ namespace Rendering
 			return false;
 		}
 
-		// Token: 0x0600B515 RID: 46357 RVA: 0x004518D4 File Offset: 0x0044FAD4
 		public virtual BlockTileRenderer.Bits GetDecorConnectionBits(int x, int y, int query_layer)
 		{
 			BlockTileRenderer.Bits bits = (BlockTileRenderer.Bits)0;
@@ -170,13 +160,11 @@ namespace Rendering
 			return bits;
 		}
 
-		// Token: 0x0600B516 RID: 46358 RVA: 0x0011A2D0 File Offset: 0x001184D0
 		public void LateUpdate()
 		{
 			this.Render();
 		}
 
-		// Token: 0x0600B517 RID: 46359 RVA: 0x00451A2C File Offset: 0x0044FC2C
 		private void Render()
 		{
 			Vector2I vector2I;
@@ -206,7 +194,6 @@ namespace Rendering
 			}
 		}
 
-		// Token: 0x0600B518 RID: 46360 RVA: 0x00451B64 File Offset: 0x0044FD64
 		public Color GetCellColour(int cell, SimHashes element)
 		{
 			Color white;
@@ -229,14 +216,12 @@ namespace Rendering
 			return white;
 		}
 
-		// Token: 0x0600B519 RID: 46361 RVA: 0x00451BB8 File Offset: 0x0044FDB8
 		public static Vector2I GetChunkIdx(int cell)
 		{
 			Vector2I vector2I = Grid.CellToXY(cell);
 			return new Vector2I(vector2I.x / 16, vector2I.y / 16);
 		}
 
-		// Token: 0x0600B51A RID: 46362 RVA: 0x00451BE4 File Offset: 0x0044FDE4
 		public void AddBlock(int renderLayer, BuildingDef def, bool isReplacement, SimHashes element, int cell)
 		{
 			KeyValuePair<BuildingDef, BlockTileRenderer.RenderInfoLayer> key = new KeyValuePair<BuildingDef, BlockTileRenderer.RenderInfoLayer>(def, BlockTileRenderer.GetRenderInfoLayer(isReplacement, element));
@@ -250,7 +235,6 @@ namespace Rendering
 			renderInfo.AddCell(cell);
 		}
 
-		// Token: 0x0600B51B RID: 46363 RVA: 0x00451C44 File Offset: 0x0044FE44
 		public void RemoveBlock(BuildingDef def, bool isReplacement, SimHashes element, int cell)
 		{
 			KeyValuePair<BuildingDef, BlockTileRenderer.RenderInfoLayer> key = new KeyValuePair<BuildingDef, BlockTileRenderer.RenderInfoLayer>(def, BlockTileRenderer.GetRenderInfoLayer(isReplacement, element));
@@ -261,7 +245,6 @@ namespace Rendering
 			}
 		}
 
-		// Token: 0x0600B51C RID: 46364 RVA: 0x00451C78 File Offset: 0x0044FE78
 		public void Rebuild(ObjectLayer layer, int cell)
 		{
 			foreach (KeyValuePair<KeyValuePair<BuildingDef, BlockTileRenderer.RenderInfoLayer>, BlockTileRenderer.RenderInfo> keyValuePair in this.renderInfo)
@@ -273,25 +256,21 @@ namespace Rendering
 			}
 		}
 
-		// Token: 0x0600B51D RID: 46365 RVA: 0x0011A2D8 File Offset: 0x001184D8
 		public void SelectCell(int cell, bool enabled)
 		{
 			this.UpdateCellStatus(ref this.selectedCell, cell, enabled);
 		}
 
-		// Token: 0x0600B51E RID: 46366 RVA: 0x0011A2E8 File Offset: 0x001184E8
 		public void HighlightCell(int cell, bool enabled)
 		{
 			this.UpdateCellStatus(ref this.highlightCell, cell, enabled);
 		}
 
-		// Token: 0x0600B51F RID: 46367 RVA: 0x0011A2F8 File Offset: 0x001184F8
 		public void SetInvalidPlaceCell(int cell, bool enabled)
 		{
 			this.UpdateCellStatus(ref this.invalidPlaceCell, cell, enabled);
 		}
 
-		// Token: 0x0600B520 RID: 46368 RVA: 0x00451CE8 File Offset: 0x0044FEE8
 		private void UpdateCellStatus(ref int cell_status, int cell, bool enabled)
 		{
 			if (enabled)
@@ -328,80 +307,54 @@ namespace Rendering
 			}
 		}
 
-		// Token: 0x04008F29 RID: 36649
 		[SerializeField]
 		private bool forceRebuild;
 
-		// Token: 0x04008F2A RID: 36650
 		[SerializeField]
 		private Color highlightColour = new Color(1.25f, 1.25f, 1.25f, 1f);
 
-		// Token: 0x04008F2B RID: 36651
 		[SerializeField]
 		private Color selectColour = new Color(1.5f, 1.5f, 1.5f, 1f);
 
-		// Token: 0x04008F2C RID: 36652
 		[SerializeField]
 		private Color invalidPlaceColour = Color.red;
 
-		// Token: 0x04008F2D RID: 36653
 		private const float TILE_ATLAS_WIDTH = 2048f;
 
-		// Token: 0x04008F2E RID: 36654
 		private const float TILE_ATLAS_HEIGHT = 2048f;
 
-		// Token: 0x04008F2F RID: 36655
 		private const int chunkEdgeSize = 16;
 
-		// Token: 0x04008F30 RID: 36656
 		protected Dictionary<KeyValuePair<BuildingDef, BlockTileRenderer.RenderInfoLayer>, BlockTileRenderer.RenderInfo> renderInfo = new Dictionary<KeyValuePair<BuildingDef, BlockTileRenderer.RenderInfoLayer>, BlockTileRenderer.RenderInfo>();
 
-		// Token: 0x04008F31 RID: 36657
 		private int selectedCell = -1;
 
-		// Token: 0x04008F32 RID: 36658
 		private int highlightCell = -1;
 
-		// Token: 0x04008F33 RID: 36659
 		private int invalidPlaceCell = -1;
 
-		// Token: 0x02002134 RID: 8500
 		public enum RenderInfoLayer
 		{
-			// Token: 0x04008F35 RID: 36661
 			Built,
-			// Token: 0x04008F36 RID: 36662
 			UnderConstruction,
-			// Token: 0x04008F37 RID: 36663
 			Replacement
 		}
 
-		// Token: 0x02002135 RID: 8501
 		[Flags]
 		public enum Bits
 		{
-			// Token: 0x04008F39 RID: 36665
 			UpLeft = 128,
-			// Token: 0x04008F3A RID: 36666
 			Up = 64,
-			// Token: 0x04008F3B RID: 36667
 			UpRight = 32,
-			// Token: 0x04008F3C RID: 36668
 			Left = 16,
-			// Token: 0x04008F3D RID: 36669
 			Right = 8,
-			// Token: 0x04008F3E RID: 36670
 			DownLeft = 4,
-			// Token: 0x04008F3F RID: 36671
 			Down = 2,
-			// Token: 0x04008F40 RID: 36672
 			DownRight = 1
 		}
 
-		// Token: 0x02002136 RID: 8502
 		protected class RenderInfo
 		{
-			// Token: 0x0600B521 RID: 46369 RVA: 0x00451DF4 File Offset: 0x0044FFF4
 			public RenderInfo(BlockTileRenderer renderer, int queryLayer, int renderLayer, BuildingDef def, SimHashes element)
 			{
 				this.queryLayer = queryLayer;
@@ -468,7 +421,6 @@ namespace Rendering
 				this.trimUVSize = new Vector2(0.03125f, 0.03125f);
 			}
 
-			// Token: 0x0600B522 RID: 46370 RVA: 0x00452130 File Offset: 0x00450330
 			public void FreeResources()
 			{
 				UnityEngine.Object.DestroyImmediate(this.material);
@@ -490,7 +442,6 @@ namespace Rendering
 				this.occupiedCells.Clear();
 			}
 
-			// Token: 0x0600B523 RID: 46371 RVA: 0x004521D4 File Offset: 0x004503D4
 			public void AddCell(int cell)
 			{
 				int num = 0;
@@ -499,7 +450,6 @@ namespace Rendering
 				this.MarkDirty(cell);
 			}
 
-			// Token: 0x0600B524 RID: 46372 RVA: 0x00452208 File Offset: 0x00450408
 			public void RemoveCell(int cell)
 			{
 				int num = 0;
@@ -515,14 +465,12 @@ namespace Rendering
 				this.MarkDirty(cell);
 			}
 
-			// Token: 0x0600B525 RID: 46373 RVA: 0x00452250 File Offset: 0x00450450
 			public void MarkDirty(int cell)
 			{
 				Vector2I chunkIdx = BlockTileRenderer.GetChunkIdx(cell);
 				this.dirtyChunks[chunkIdx.x, chunkIdx.y] = true;
 			}
 
-			// Token: 0x0600B526 RID: 46374 RVA: 0x0011A308 File Offset: 0x00118508
 			public void MarkDirtyIfOccupied(int cell)
 			{
 				if (this.occupiedCells.ContainsKey(cell))
@@ -531,7 +479,6 @@ namespace Rendering
 				}
 			}
 
-			// Token: 0x0600B527 RID: 46375 RVA: 0x0045227C File Offset: 0x0045047C
 			public void Render(int x, int y)
 			{
 				if (this.meshChunks[x, y] != null)
@@ -544,7 +491,6 @@ namespace Rendering
 				}
 			}
 
-			// Token: 0x0600B528 RID: 46376 RVA: 0x00452304 File Offset: 0x00450504
 			public void Rebuild(BlockTileRenderer renderer, int chunk_x, int chunk_y, List<Vector3> vertices, List<Vector2> uvs, List<int> indices, List<Color> colours)
 			{
 				if (!this.dirtyChunks[chunk_x, chunk_y] && !renderer.ForceRebuild)
@@ -603,7 +549,6 @@ namespace Rendering
 				}
 			}
 
-			// Token: 0x0600B529 RID: 46377 RVA: 0x00452508 File Offset: 0x00450708
 			private void AddVertexInfo(BlockTileRenderer.RenderInfo.AtlasInfo atlas_info, Vector2 uv_trim_size, int x, int y, BlockTileRenderer.Bits connection_bits, Color color, List<Vector3> vertices, List<Vector2> uvs, List<int> indices, List<Color> colours)
 			{
 				Vector2 vector = new Vector2((float)x, (float)y);
@@ -663,78 +608,54 @@ namespace Rendering
 				colours.Add(color);
 			}
 
-			// Token: 0x04008F41 RID: 36673
 			private BlockTileRenderer.RenderInfo.AtlasInfo[] atlasInfo;
 
-			// Token: 0x04008F42 RID: 36674
 			private bool[,] dirtyChunks;
 
-			// Token: 0x04008F43 RID: 36675
 			private int queryLayer;
 
-			// Token: 0x04008F44 RID: 36676
 			private Material material;
 
-			// Token: 0x04008F45 RID: 36677
 			private int renderLayer;
 
-			// Token: 0x04008F46 RID: 36678
 			private Mesh[,] meshChunks;
 
-			// Token: 0x04008F47 RID: 36679
 			private BlockTileRenderer.DecorRenderInfo decorRenderInfo;
 
-			// Token: 0x04008F48 RID: 36680
 			private Vector2 trimUVSize;
 
-			// Token: 0x04008F49 RID: 36681
 			private Vector3 rootPosition;
 
-			// Token: 0x04008F4A RID: 36682
 			private Dictionary<int, int> occupiedCells = new Dictionary<int, int>();
 
-			// Token: 0x04008F4B RID: 36683
 			private SimHashes element;
 
-			// Token: 0x04008F4C RID: 36684
 			private float decorZOffset = -1f;
 
-			// Token: 0x04008F4D RID: 36685
 			private const float scale = 0.5f;
 
-			// Token: 0x04008F4E RID: 36686
 			private const float core_size = 256f;
 
-			// Token: 0x04008F4F RID: 36687
 			private const float trim_size = 64f;
 
-			// Token: 0x04008F50 RID: 36688
 			private const float cell_size = 1f;
 
-			// Token: 0x04008F51 RID: 36689
 			private const float world_trim_size = 0.25f;
 
-			// Token: 0x02002137 RID: 8503
 			private struct AtlasInfo
 			{
-				// Token: 0x04008F52 RID: 36690
 				public BlockTileRenderer.Bits requiredConnections;
 
-				// Token: 0x04008F53 RID: 36691
 				public BlockTileRenderer.Bits forbiddenConnections;
 
-				// Token: 0x04008F54 RID: 36692
 				public Vector4 uvBox;
 
-				// Token: 0x04008F55 RID: 36693
 				public string name;
 			}
 		}
 
-		// Token: 0x02002138 RID: 8504
 		private class DecorRenderInfo
 		{
-			// Token: 0x0600B52A RID: 46378 RVA: 0x00452718 File Offset: 0x00450918
 			public DecorRenderInfo(int num_x_chunks, int num_y_chunks, int query_layer, BuildingDef def, BlockTileDecorInfo decorInfo)
 			{
 				this.decorInfo = decorInfo;
@@ -761,7 +682,6 @@ namespace Rendering
 				this.meshChunks = new Mesh[num_x_chunks, num_y_chunks];
 			}
 
-			// Token: 0x0600B52B RID: 46379 RVA: 0x00452804 File Offset: 0x00450A04
 			public void FreeResources()
 			{
 				this.decorInfo = null;
@@ -782,7 +702,6 @@ namespace Rendering
 				this.triangles.Clear();
 			}
 
-			// Token: 0x0600B52C RID: 46380 RVA: 0x0011A31F File Offset: 0x0011851F
 			public void Render(int x, int y, Vector3 position, int renderLayer)
 			{
 				if (this.meshChunks[x, y] != null)
@@ -791,7 +710,6 @@ namespace Rendering
 				}
 			}
 
-			// Token: 0x0600B52D RID: 46381 RVA: 0x004528A0 File Offset: 0x00450AA0
 			public void Rebuild(BlockTileRenderer renderer, Dictionary<int, int> occupiedCells, int chunk_x, int chunk_y, float z_offset, int chunkEdgeSize, List<Vector3> vertices, List<Vector2> uvs, List<Color> colours, List<int> indices, SimHashes element)
 			{
 				vertices.Clear();
@@ -838,7 +756,6 @@ namespace Rendering
 				this.meshChunks[chunk_x, chunk_y] = null;
 			}
 
-			// Token: 0x0600B52E RID: 46382 RVA: 0x00452A5C File Offset: 0x00450C5C
 			private void AddDecor(int x, int y, float z_offset, BlockTileRenderer.Bits connection_bits, Color colour, List<Vector3> vertices, List<Vector2> uvs, List<BlockTileRenderer.DecorRenderInfo.TriangleInfo> triangles, List<Color> colours)
 			{
 				for (int i = 0; i < this.decorInfo.decor.Length; i++)
@@ -879,37 +796,26 @@ namespace Rendering
 				}
 			}
 
-			// Token: 0x04008F56 RID: 36694
 			private int queryLayer;
 
-			// Token: 0x04008F57 RID: 36695
 			private BlockTileDecorInfo decorInfo;
 
-			// Token: 0x04008F58 RID: 36696
 			private Mesh[,] meshChunks;
 
-			// Token: 0x04008F59 RID: 36697
 			private Material material;
 
-			// Token: 0x04008F5A RID: 36698
 			private List<BlockTileRenderer.DecorRenderInfo.TriangleInfo> triangles = new List<BlockTileRenderer.DecorRenderInfo.TriangleInfo>();
 
-			// Token: 0x04008F5B RID: 36699
 			private static Vector2 simplex_scale = new Vector2(92.41f, 87.16f);
 
-			// Token: 0x02002139 RID: 8505
 			private struct TriangleInfo
 			{
-				// Token: 0x04008F5C RID: 36700
 				public int sortOrder;
 
-				// Token: 0x04008F5D RID: 36701
 				public int i0;
 
-				// Token: 0x04008F5E RID: 36702
 				public int i1;
 
-				// Token: 0x04008F5F RID: 36703
 				public int i2;
 			}
 		}

@@ -7,10 +7,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
-// Token: 0x020020B4 RID: 8372
 public class VideoScreen : KModalScreen
 {
-	// Token: 0x0600B285 RID: 45701 RVA: 0x0043D860 File Offset: 0x0043BA60
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -40,14 +38,12 @@ public class VideoScreen : KModalScreen
 		this.Show(false);
 	}
 
-	// Token: 0x0600B286 RID: 45702 RVA: 0x00118939 File Offset: 0x00116B39
 	protected override void OnForcedCleanUp()
 	{
 		VideoScreen.Instance = null;
 		base.OnForcedCleanUp();
 	}
 
-	// Token: 0x0600B287 RID: 45703 RVA: 0x00118947 File Offset: 0x00116B47
 	protected override void OnShow(bool show)
 	{
 		base.transform.SetAsLastSibling();
@@ -55,7 +51,6 @@ public class VideoScreen : KModalScreen
 		this.screen = this.videoPlayer.gameObject.GetComponent<RawImage>();
 	}
 
-	// Token: 0x0600B288 RID: 45704 RVA: 0x00118971 File Offset: 0x00116B71
 	public void DisableAllMedia()
 	{
 		this.overlayContainer.gameObject.SetActive(false);
@@ -63,7 +58,6 @@ public class VideoScreen : KModalScreen
 		this.slideshow.gameObject.SetActive(false);
 	}
 
-	// Token: 0x0600B289 RID: 45705 RVA: 0x0043D8D8 File Offset: 0x0043BAD8
 	public void PlaySlideShow(Sprite[] sprites)
 	{
 		this.Show(true);
@@ -74,7 +68,6 @@ public class VideoScreen : KModalScreen
 		this.slideshow.SetPaused(false);
 	}
 
-	// Token: 0x0600B28A RID: 45706 RVA: 0x0043D928 File Offset: 0x0043BB28
 	public void PlaySlideShow(string[] files)
 	{
 		this.Show(true);
@@ -85,7 +78,6 @@ public class VideoScreen : KModalScreen
 		this.slideshow.SetPaused(false);
 	}
 
-	// Token: 0x0600B28B RID: 45707 RVA: 0x0043D978 File Offset: 0x0043BB78
 	public override void OnKeyDown(KButtonEvent e)
 	{
 		if (e.IsAction(global::Action.Escape))
@@ -107,7 +99,6 @@ public class VideoScreen : KModalScreen
 		base.OnKeyDown(e);
 	}
 
-	// Token: 0x0600B28C RID: 45708 RVA: 0x0043D9D0 File Offset: 0x0043BBD0
 	public void PlayVideo(VideoClip clip, bool unskippable = false, EventReference overrideAudioSnapshot = default(EventReference), bool showProceedButton = false, bool syncAudio = true)
 	{
 		global::Debug.Assert(clip != null);
@@ -140,7 +131,6 @@ public class VideoScreen : KModalScreen
 		this.proceedButton.gameObject.SetActive(showProceedButton && this.videoSkippable);
 	}
 
-	// Token: 0x0600B28D RID: 45709 RVA: 0x0043DB80 File Offset: 0x0043BD80
 	public void QueueVictoryVideoLoop(bool queue, string message = "", string victoryAchievement = "", string loopVideo = "", bool showAchievements = true, bool syncAudio = false)
 	{
 		this.victoryLoopQueued = queue;
@@ -157,7 +147,6 @@ public class VideoScreen : KModalScreen
 		}));
 	}
 
-	// Token: 0x0600B28E RID: 45710 RVA: 0x0043DBE4 File Offset: 0x0043BDE4
 	public void SetOverlayText(string overlayTemplate, List<string> strings)
 	{
 		VideoOverlay videoOverlay = null;
@@ -174,7 +163,6 @@ public class VideoScreen : KModalScreen
 		this.overlayContainer.gameObject.SetActive(true);
 	}
 
-	// Token: 0x0600B28F RID: 45711 RVA: 0x001189A6 File Offset: 0x00116BA6
 	private IEnumerator SwitchToVictoryLoop()
 	{
 		this.victoryLoopQueued = false;
@@ -208,7 +196,6 @@ public class VideoScreen : KModalScreen
 		yield break;
 	}
 
-	// Token: 0x0600B290 RID: 45712 RVA: 0x0043DC84 File Offset: 0x0043BE84
 	public void Stop()
 	{
 		this.videoPlayer.Stop();
@@ -226,7 +213,6 @@ public class VideoScreen : KModalScreen
 		this.Show(false);
 	}
 
-	// Token: 0x0600B291 RID: 45713 RVA: 0x0043DCFC File Offset: 0x0043BEFC
 	public override void ScreenUpdate(bool topLevel)
 	{
 		base.ScreenUpdate(topLevel);
@@ -238,64 +224,46 @@ public class VideoScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x04008CE9 RID: 36073
 	public static VideoScreen Instance;
 
-	// Token: 0x04008CEA RID: 36074
 	[SerializeField]
 	private VideoPlayer videoPlayer;
 
-	// Token: 0x04008CEB RID: 36075
 	[SerializeField]
 	private Slideshow slideshow;
 
-	// Token: 0x04008CEC RID: 36076
 	[SerializeField]
 	private KButton closeButton;
 
-	// Token: 0x04008CED RID: 36077
 	[SerializeField]
 	private KButton proceedButton;
 
-	// Token: 0x04008CEE RID: 36078
 	[SerializeField]
 	private RectTransform overlayContainer;
 
-	// Token: 0x04008CEF RID: 36079
 	[SerializeField]
 	private List<VideoOverlay> overlayPrefabs;
 
-	// Token: 0x04008CF0 RID: 36080
 	private RawImage screen;
 
-	// Token: 0x04008CF1 RID: 36081
 	private RenderTexture renderTexture;
 
-	// Token: 0x04008CF2 RID: 36082
 	private EventReference activeAudioSnapshot;
 
-	// Token: 0x04008CF3 RID: 36083
 	[SerializeField]
 	private Image fadeOverlay;
 
-	// Token: 0x04008CF4 RID: 36084
 	private EventInstance audioHandle;
 
-	// Token: 0x04008CF5 RID: 36085
 	private bool victoryLoopQueued;
 
-	// Token: 0x04008CF6 RID: 36086
 	private string victoryLoopMessage = "";
 
-	// Token: 0x04008CF7 RID: 36087
 	private string victoryLoopClip = "";
 
-	// Token: 0x04008CF8 RID: 36088
 	private bool victoryLoopSyncAudio;
 
-	// Token: 0x04008CF9 RID: 36089
 	private bool videoSkippable = true;
 
-	// Token: 0x04008CFA RID: 36090
 	public System.Action OnStop;
 }

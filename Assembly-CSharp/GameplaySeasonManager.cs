@@ -4,10 +4,8 @@ using System.Linq;
 using Klei.AI;
 using KSerialization;
 
-// Token: 0x020013A1 RID: 5025
 public class GameplaySeasonManager : GameStateMachine<GameplaySeasonManager, GameplaySeasonManager.Instance, IStateMachineTarget, GameplaySeasonManager.Def>
 {
-	// Token: 0x06006700 RID: 26368 RVA: 0x002DFE08 File Offset: 0x002DE008
 	public override void InitializeStates(out StateMachine.BaseState defaultState)
 	{
 		defaultState = this.root;
@@ -20,21 +18,17 @@ public class GameplaySeasonManager : GameStateMachine<GameplaySeasonManager, Gam
 		}, UpdateRate.SIM_4000ms, false);
 	}
 
-	// Token: 0x020013A2 RID: 5026
 	public class Def : StateMachine.BaseDef
 	{
 	}
 
-	// Token: 0x020013A3 RID: 5027
 	public new class Instance : GameStateMachine<GameplaySeasonManager, GameplaySeasonManager.Instance, IStateMachineTarget, GameplaySeasonManager.Def>.GameInstance
 	{
-		// Token: 0x06006703 RID: 26371 RVA: 0x000E7A66 File Offset: 0x000E5C66
 		public Instance(IStateMachineTarget master, GameplaySeasonManager.Def def) : base(master, def)
 		{
 			this.activeSeasons = new List<GameplaySeasonInstance>();
 		}
 
-		// Token: 0x06006704 RID: 26372 RVA: 0x002DFE70 File Offset: 0x002DE070
 		public void Initialize()
 		{
 			this.activeSeasons.RemoveAll((GameplaySeasonInstance item) => item.Season == null);
@@ -92,7 +86,6 @@ public class GameplaySeasonManager : GameStateMachine<GameplaySeasonManager, Gam
 			}
 		}
 
-		// Token: 0x06006705 RID: 26373 RVA: 0x000E7A7B File Offset: 0x000E5C7B
 		private int GetWorldId()
 		{
 			if (this.m_worldContainer != null)
@@ -102,7 +95,6 @@ public class GameplaySeasonManager : GameStateMachine<GameplaySeasonManager, Gam
 			return -1;
 		}
 
-		// Token: 0x06006706 RID: 26374 RVA: 0x002E00C8 File Offset: 0x002DE2C8
 		public void Update(float dt)
 		{
 			foreach (GameplaySeasonInstance gameplaySeasonInstance in this.activeSeasons)
@@ -118,7 +110,6 @@ public class GameplaySeasonManager : GameStateMachine<GameplaySeasonManager, Gam
 			}
 		}
 
-		// Token: 0x06006707 RID: 26375 RVA: 0x000E7A98 File Offset: 0x000E5C98
 		public void StartNewSeason(GameplaySeason seasonType)
 		{
 			if (Game.IsDlcActiveForCurrentSave(seasonType.dlcId))
@@ -127,17 +118,14 @@ public class GameplaySeasonManager : GameStateMachine<GameplaySeasonManager, Gam
 			}
 		}
 
-		// Token: 0x06006708 RID: 26376 RVA: 0x002E0148 File Offset: 0x002DE348
 		public bool SeasonExists(GameplaySeason seasonType)
 		{
 			return this.activeSeasons.Find((GameplaySeasonInstance e) => e.Season.IdHash == seasonType.IdHash) != null;
 		}
 
-		// Token: 0x04004DC9 RID: 19913
 		[Serialize]
 		public List<GameplaySeasonInstance> activeSeasons;
 
-		// Token: 0x04004DCA RID: 19914
 		[MyCmpGet]
 		private WorldContainer m_worldContainer;
 	}

@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020019F2 RID: 6642
 public class SpaceTreeSeededComet : Comet
 {
-	// Token: 0x06008A79 RID: 35449 RVA: 0x0036A58C File Offset: 0x0036878C
 	protected override void DepositTiles(int cell, Element element, int world, int prev_cell, float temperature)
 	{
 		float depthOfElement = (float)base.GetDepthOfElement(cell2, element, world);
@@ -74,7 +72,6 @@ public class SpaceTreeSeededComet : Comet
 		pooledQueue.Recycle();
 	}
 
-	// Token: 0x06008A7A RID: 35450 RVA: 0x0036A82C File Offset: 0x00368A2C
 	private static void PlantTreeOnSolidTileCreated(int cell, int tileMaxHeight)
 	{
 		byte worldIdx = Grid.WorldIdx[cell];
@@ -115,7 +112,6 @@ public class SpaceTreeSeededComet : Comet
 		}
 	}
 
-	// Token: 0x06008A7B RID: 35451 RVA: 0x0036A8D0 File Offset: 0x00368AD0
 	public static bool CanGrowOnCell(int spawnCell, byte worldIdx)
 	{
 		CellOffset[] occupiedCellsOffsets = Assets.GetPrefab("SpaceTree").GetComponent<OccupyArea>().OccupiedCellsOffsets;

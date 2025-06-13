@@ -2,16 +2,13 @@
 using Unity.Collections;
 using UnityEngine;
 
-// Token: 0x02001AD7 RID: 6871
 public class SkyVisibilityVisualizerEffect : MonoBehaviour
 {
-	// Token: 0x06008FB1 RID: 36785 RVA: 0x001024A3 File Offset: 0x001006A3
 	private void Start()
 	{
 		this.material = new Material(Shader.Find("Klei/PostFX/SkyVisibility"));
 	}
 
-	// Token: 0x06008FB2 RID: 36786 RVA: 0x00384988 File Offset: 0x00382B88
 	private void OnPostRender()
 	{
 		SkyVisibilityVisualizer skyVisibilityVisualizer = null;
@@ -165,7 +162,6 @@ public class SkyVisibilityVisualizerEffect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06008FB3 RID: 36787 RVA: 0x00383BD8 File Offset: 0x00381DD8
 	private void FindWorldBounds(out Vector2I world_min, out Vector2I world_max)
 	{
 		if (ClusterManager.Instance != null)
@@ -181,21 +177,15 @@ public class SkyVisibilityVisualizerEffect : MonoBehaviour
 		world_max.y = Grid.HeightInCells;
 	}
 
-	// Token: 0x04006C40 RID: 27712
 	private Material material;
 
-	// Token: 0x04006C41 RID: 27713
 	private Camera myCamera;
 
-	// Token: 0x04006C42 RID: 27714
 	public Color highlightColor = new Color(0f, 1f, 0.8f, 1f);
 
-	// Token: 0x04006C43 RID: 27715
 	public Color highlightColor2 = new Color(1f, 0.32f, 0f, 1f);
 
-	// Token: 0x04006C44 RID: 27716
 	private Texture2D OcclusionTex;
 
-	// Token: 0x04006C45 RID: 27717
 	private int LastVisibleColumnCount;
 }

@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020004DA RID: 1242
 public class ObjectDispenserConfig : IBuildingConfig
 {
-	// Token: 0x0600155F RID: 5471 RVA: 0x0019E8E4 File Offset: 0x0019CAE4
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "ObjectDispenser";
@@ -39,7 +37,6 @@ public class ObjectDispenserConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001560 RID: 5472 RVA: 0x0019E9DC File Offset: 0x0019CBDC
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<ObjectDispenser>().dropOffset = new CellOffset(1, 0);
@@ -57,6 +54,5 @@ public class ObjectDispenserConfig : IBuildingConfig
 		UnityEngine.Object.DestroyImmediate(go.GetComponent<LogicOperationalController>());
 	}
 
-	// Token: 0x04000EC8 RID: 3784
 	public const string ID = "ObjectDispenser";
 }

@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000522 RID: 1314
 public class PropFacilityDisplay : IEntityConfig
 {
-	// Token: 0x0600168D RID: 5773 RVA: 0x001A349C File Offset: 0x001A169C
 	public GameObject CreatePrefab()
 	{
 		string id = "PropFacilityDisplay";
@@ -32,12 +30,10 @@ public class PropFacilityDisplay : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x0600168E RID: 5774 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x0600168F RID: 5775 RVA: 0x001A2F50 File Offset: 0x001A1150
 	public void OnSpawn(GameObject inst)
 	{
 		OccupyArea component = inst.GetComponent<OccupyArea>();

@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003B0 RID: 944
 public class LadderFastConfig : IBuildingConfig
 {
-	// Token: 0x06000F46 RID: 3910 RVA: 0x00186710 File Offset: 0x00184910
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "LadderFast";
@@ -31,7 +29,6 @@ public class LadderFastConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000F47 RID: 3911 RVA: 0x000B0F70 File Offset: 0x000AF170
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
@@ -41,11 +38,9 @@ public class LadderFastConfig : IBuildingConfig
 		go.AddOrGet<AnimTileable>();
 	}
 
-	// Token: 0x06000F48 RID: 3912 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000B30 RID: 2864
 	public const string ID = "LadderFast";
 }

@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02001506 RID: 5382
 [AddComponentMenu("KMonoBehaviour/scripts/MaterialNeeds")]
 public static class MaterialNeeds
 {
-	// Token: 0x06007005 RID: 28677 RVA: 0x00302A8C File Offset: 0x00300C8C
 	public static void UpdateNeed(Tag tag, float amount, int worldId)
 	{
 		WorldContainer world = ClusterManager.Instance.GetWorld(worldId);
@@ -24,7 +22,6 @@ public static class MaterialNeeds
 		global::Debug.LogWarning(string.Format("MaterialNeeds.UpdateNeed called with invalid worldId {0}", worldId));
 	}
 
-	// Token: 0x06007006 RID: 28678 RVA: 0x00302AF4 File Offset: 0x00300CF4
 	public static float GetAmount(Tag tag, int worldId, bool includeRelatedWorlds)
 	{
 		WorldContainer world = ClusterManager.Instance.GetWorld(worldId);

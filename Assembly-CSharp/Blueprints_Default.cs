@@ -2,10 +2,8 @@
 using Database;
 using STRINGS;
 
-// Token: 0x020009A7 RID: 2471
 public class Blueprints_Default : BlueprintProvider
 {
-	// Token: 0x06002C2F RID: 11311 RVA: 0x000C11EC File Offset: 0x000BF3EC
 	public override void SetupBlueprints()
 	{
 		this.SetupBuildingFacades();
@@ -18,12 +16,10 @@ public class Blueprints_Default : BlueprintProvider
 		this.SetupMonumentParts();
 	}
 
-	// Token: 0x06002C30 RID: 11312 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void SetupBuildingFacades()
 	{
 	}
 
-	// Token: 0x06002C31 RID: 11313 RVA: 0x001EE3B4 File Offset: 0x001EC5B4
 	private void SetupArtables()
 	{
 		this.blueprintCollection.artables.AddRange(new ArtableInfo[]
@@ -73,22 +69,18 @@ public class Blueprints_Default : BlueprintProvider
 		});
 	}
 
-	// Token: 0x06002C32 RID: 11314 RVA: 0x000AA038 File Offset: 0x000A8238
 	private void SetupClothingItems()
 	{
 	}
 
-	// Token: 0x06002C33 RID: 11315 RVA: 0x000AA038 File Offset: 0x000A8238
 	private void SetupClothingOutfits()
 	{
 	}
 
-	// Token: 0x06002C34 RID: 11316 RVA: 0x000AA038 File Offset: 0x000A8238
 	private void SetupBalloonArtistFacades()
 	{
 	}
 
-	// Token: 0x06002C35 RID: 11317 RVA: 0x001EEE74 File Offset: 0x001ED074
 	private void SetupStickerBombFacades()
 	{
 		this.blueprintCollection.stickerBombFacades.AddRange(new StickerBombFacadeInfo[]
@@ -116,7 +108,6 @@ public class Blueprints_Default : BlueprintProvider
 		});
 	}
 
-	// Token: 0x06002C36 RID: 11318 RVA: 0x001EF1D8 File Offset: 0x001ED3D8
 	private void SetupEquippableFacades()
 	{
 		this.blueprintCollection.equippableFacades.AddRange(new EquippableFacadeInfo[]
@@ -136,7 +127,6 @@ public class Blueprints_Default : BlueprintProvider
 		});
 	}
 
-	// Token: 0x06002C37 RID: 11319 RVA: 0x001EF428 File Offset: 0x001ED628
 	private void SetupMonumentParts()
 	{
 		this.blueprintCollection.monumentParts.AddRange(new MonumentPartInfo[]

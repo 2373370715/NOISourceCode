@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000385 RID: 901
 public class HeatCompressorConfig : IBuildingConfig
 {
-	// Token: 0x06000E73 RID: 3699 RVA: 0x00183568 File Offset: 0x00181768
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "HeatCompressor";
@@ -45,7 +43,6 @@ public class HeatCompressorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000E74 RID: 3700 RVA: 0x001836BC File Offset: 0x001818BC
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		Storage storage = go.AddComponent<Storage>();
@@ -72,12 +69,10 @@ public class HeatCompressorConfig : IBuildingConfig
 		go.AddOrGet<HeatCompressor>().SetStorage(storage, storage2, storage3);
 	}
 
-	// Token: 0x06000E75 RID: 3701 RVA: 0x000AAF59 File Offset: 0x000A9159
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
 	}
 
-	// Token: 0x04000AA7 RID: 2727
 	public const string ID = "HeatCompressor";
 }

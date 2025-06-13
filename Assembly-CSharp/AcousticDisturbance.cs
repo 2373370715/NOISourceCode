@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000C42 RID: 3138
 public class AcousticDisturbance
 {
-	// Token: 0x06003B49 RID: 15177 RVA: 0x00238040 File Offset: 0x00236240
 	public static void Emit(object data, int EmissionRadius)
 	{
 		GameObject gameObject = (GameObject)data;
@@ -39,7 +37,6 @@ public class AcousticDisturbance
 		AcousticDisturbance.cellsInRange.Clear();
 	}
 
-	// Token: 0x06003B4A RID: 15178 RVA: 0x00238158 File Offset: 0x00236358
 	private static void DrawVisualEffect(int center_cell, HashSet<int> cells)
 	{
 		SoundEvent.PlayOneShot(GlobalResources.Instance().AcousticDisturbanceSound, Grid.CellToPos(center_cell), 1f);
@@ -50,7 +47,6 @@ public class AcousticDisturbance
 		}
 	}
 
-	// Token: 0x06003B4B RID: 15179 RVA: 0x002381F0 File Offset: 0x002363F0
 	private static void SpawnEffect(object data)
 	{
 		Grid.SceneLayer layer = Grid.SceneLayer.InteriorWall;
@@ -61,7 +57,6 @@ public class AcousticDisturbance
 		GameScheduler.Instance.Schedule("radialgrid_loop", AcousticDisturbance.duration, new Action<object>(AcousticDisturbance.DestroyEffect), kbatchedAnimController, null);
 	}
 
-	// Token: 0x06003B4C RID: 15180 RVA: 0x000CABB1 File Offset: 0x000C8DB1
 	private static void DestroyEffect(object data)
 	{
 		KBatchedAnimController kbatchedAnimController = (KBatchedAnimController)data;
@@ -69,7 +64,6 @@ public class AcousticDisturbance
 		kbatchedAnimController.Play(AcousticDisturbance.PostAnim, KAnim.PlayMode.Once, 1f, 0f);
 	}
 
-	// Token: 0x06003B4D RID: 15181 RVA: 0x00238254 File Offset: 0x00236454
 	private static int GetGridDistance(int cell, int center_cell)
 	{
 		Vector2I u = Grid.CellToXY(cell);
@@ -78,22 +72,17 @@ public class AcousticDisturbance
 		return Math.Abs(vector2I.x) + Math.Abs(vector2I.y);
 	}
 
-	// Token: 0x04002904 RID: 10500
 	private static readonly HashedString[] PreAnims = new HashedString[]
 	{
 		"grid_pre",
 		"grid_loop"
 	};
 
-	// Token: 0x04002905 RID: 10501
 	private static readonly HashedString PostAnim = "grid_pst";
 
-	// Token: 0x04002906 RID: 10502
 	private static float distanceDelay = 0.25f;
 
-	// Token: 0x04002907 RID: 10503
 	private static float duration = 3f;
 
-	// Token: 0x04002908 RID: 10504
 	private static HashSet<int> cellsInRange = new HashSet<int>();
 }

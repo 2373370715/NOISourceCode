@@ -4,16 +4,13 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200201F RID: 8223
 public class ResearchSideScreen : SideScreenContent
 {
-	// Token: 0x0600AE12 RID: 44562 RVA: 0x001159AC File Offset: 0x00113BAC
 	public ResearchSideScreen()
 	{
 		this.refreshDisplayStateDelegate = new Action<object>(this.RefreshDisplayState);
 	}
 
-	// Token: 0x0600AE13 RID: 44563 RVA: 0x00425274 File Offset: 0x00423474
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -26,7 +23,6 @@ public class ResearchSideScreen : SideScreenContent
 		this.RefreshDisplayState(null);
 	}
 
-	// Token: 0x0600AE14 RID: 44564 RVA: 0x004252E4 File Offset: 0x004234E4
 	protected override void OnCmpEnable()
 	{
 		base.OnCmpEnable();
@@ -36,7 +32,6 @@ public class ResearchSideScreen : SideScreenContent
 		this.target.gameObject.Subscribe(-592767678, this.refreshDisplayStateDelegate);
 	}
 
-	// Token: 0x0600AE15 RID: 44565 RVA: 0x00425350 File Offset: 0x00423550
 	protected override void OnCmpDisable()
 	{
 		base.OnCmpDisable();
@@ -48,7 +43,6 @@ public class ResearchSideScreen : SideScreenContent
 		}
 	}
 
-	// Token: 0x0600AE16 RID: 44566 RVA: 0x004253B0 File Offset: 0x004235B0
 	protected override void OnCleanUp()
 	{
 		base.OnCleanUp();
@@ -62,13 +56,11 @@ public class ResearchSideScreen : SideScreenContent
 		}
 	}
 
-	// Token: 0x0600AE17 RID: 44567 RVA: 0x001159C6 File Offset: 0x00113BC6
 	public override bool IsValidForTarget(GameObject target)
 	{
 		return target.GetComponent<ResearchCenter>() != null || target.GetComponent<NuclearResearchCenter>() != null;
 	}
 
-	// Token: 0x0600AE18 RID: 44568 RVA: 0x00425438 File Offset: 0x00423638
 	private void RefreshDisplayState(object data = null)
 	{
 		if (SelectTool.Instance.selected == null)
@@ -138,21 +130,15 @@ public class ResearchSideScreen : SideScreenContent
 		this.DescriptionText.text = text2;
 	}
 
-	// Token: 0x04008902 RID: 35074
 	public KButton selectResearchButton;
 
-	// Token: 0x04008903 RID: 35075
 	public Image researchButtonIcon;
 
-	// Token: 0x04008904 RID: 35076
 	public GameObject content;
 
-	// Token: 0x04008905 RID: 35077
 	private GameObject target;
 
-	// Token: 0x04008906 RID: 35078
 	private Action<object> refreshDisplayStateDelegate;
 
-	// Token: 0x04008907 RID: 35079
 	public LocText DescriptionText;
 }

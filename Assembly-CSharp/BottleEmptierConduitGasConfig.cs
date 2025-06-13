@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000033 RID: 51
 public class BottleEmptierConduitGasConfig : IBuildingConfig
 {
-	// Token: 0x060000D7 RID: 215 RVA: 0x00149ED4 File Offset: 0x001480D4
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "BottleEmptierConduitGas";
@@ -31,7 +29,6 @@ public class BottleEmptierConduitGasConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060000D8 RID: 216 RVA: 0x00149F68 File Offset: 0x00148168
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		Prioritizable.AddRef(go);
@@ -56,17 +53,13 @@ public class BottleEmptierConduitGasConfig : IBuildingConfig
 		go.AddOrGet<RequireOutputs>().ignoreFullPipe = true;
 	}
 
-	// Token: 0x060000D9 RID: 217 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x0400008D RID: 141
 	public const string ID = "BottleEmptierConduitGas";
 
-	// Token: 0x0400008E RID: 142
 	private const int WIDTH = 1;
 
-	// Token: 0x0400008F RID: 143
 	private const int HEIGHT = 2;
 }

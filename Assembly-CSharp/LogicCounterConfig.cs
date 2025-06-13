@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003D8 RID: 984
 public class LogicCounterConfig : IBuildingConfig
 {
-	// Token: 0x06001000 RID: 4096 RVA: 0x001898C8 File Offset: 0x00187AC8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = LogicCounterConfig.ID;
@@ -47,7 +45,6 @@ public class LogicCounterConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001001 RID: 4097 RVA: 0x000B14E1 File Offset: 0x000AF6E1
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicCounter>().manuallyControlled = false;
@@ -55,6 +52,5 @@ public class LogicCounterConfig : IBuildingConfig
 		go.GetComponent<Switch>().defaultState = false;
 	}
 
-	// Token: 0x04000B7F RID: 2943
 	public static string ID = "LogicCounter";
 }

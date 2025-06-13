@@ -2,10 +2,8 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x0200073B RID: 1851
 public class RescueSweepBotChore : Chore<RescueSweepBotChore.StatesInstance>
 {
-	// Token: 0x0600208E RID: 8334 RVA: 0x001C8974 File Offset: 0x001C6B74
 	public RescueSweepBotChore(IStateMachineTarget master, GameObject sweepBot, GameObject baseStation)
 	{
 		Chore.Precondition canReachBaseStation = default(Chore.Precondition);
@@ -28,7 +26,6 @@ public class RescueSweepBotChore : Chore<RescueSweepBotChore.StatesInstance>
 		this.AddPrecondition(this.CanReachBaseStation, baseStation.GetComponent<Storage>());
 	}
 
-	// Token: 0x0600208F RID: 8335 RVA: 0x001C8A2C File Offset: 0x001C6C2C
 	public override void Begin(Chore.Precondition.Context context)
 	{
 		base.smi.sm.rescuer.Set(context.consumerState.gameObject, base.smi, false);
@@ -37,14 +34,12 @@ public class RescueSweepBotChore : Chore<RescueSweepBotChore.StatesInstance>
 		base.Begin(context);
 	}
 
-	// Token: 0x06002090 RID: 8336 RVA: 0x000B9D22 File Offset: 0x000B7F22
 	protected override void End(string reason)
 	{
 		this.DropSweepBot();
 		base.End(reason);
 	}
 
-	// Token: 0x06002091 RID: 8337 RVA: 0x001C8AD0 File Offset: 0x001C6CD0
 	private void DropSweepBot()
 	{
 		if (base.smi.sm.rescuer.Get(base.smi) != null && base.smi.sm.rescueTarget.Get(base.smi) != null)
@@ -53,10 +48,8 @@ public class RescueSweepBotChore : Chore<RescueSweepBotChore.StatesInstance>
 		}
 	}
 
-	// Token: 0x040015A4 RID: 5540
 	public Chore.Precondition CanReachBaseStation;
 
-	// Token: 0x040015A5 RID: 5541
 	public static Chore.Precondition CanReachIncapacitated = new Chore.Precondition
 	{
 		id = "CanReachIncapacitated",
@@ -78,19 +71,15 @@ public class RescueSweepBotChore : Chore<RescueSweepBotChore.StatesInstance>
 		}
 	};
 
-	// Token: 0x0200073C RID: 1852
 	public class StatesInstance : GameStateMachine<RescueSweepBotChore.States, RescueSweepBotChore.StatesInstance, RescueSweepBotChore, object>.GameInstance
 	{
-		// Token: 0x06002093 RID: 8339 RVA: 0x000B9D31 File Offset: 0x000B7F31
 		public StatesInstance(RescueSweepBotChore master) : base(master)
 		{
 		}
 	}
 
-	// Token: 0x0200073D RID: 1853
 	public class States : GameStateMachine<RescueSweepBotChore.States, RescueSweepBotChore.StatesInstance, RescueSweepBotChore>
 	{
-		// Token: 0x06002094 RID: 8340 RVA: 0x001C8BB8 File Offset: 0x001C6DB8
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.approachSweepBot;
@@ -148,37 +137,26 @@ public class RescueSweepBotChore : Chore<RescueSweepBotChore.StatesInstance>
 			});
 		}
 
-		// Token: 0x040015A6 RID: 5542
 		public GameStateMachine<RescueSweepBotChore.States, RescueSweepBotChore.StatesInstance, RescueSweepBotChore, object>.ApproachSubState<Storage> approachSweepBot;
 
-		// Token: 0x040015A7 RID: 5543
 		public GameStateMachine<RescueSweepBotChore.States, RescueSweepBotChore.StatesInstance, RescueSweepBotChore, object>.State failure;
 
-		// Token: 0x040015A8 RID: 5544
 		public RescueSweepBotChore.States.HoldingSweepBot holding;
 
-		// Token: 0x040015A9 RID: 5545
 		public StateMachine<RescueSweepBotChore.States, RescueSweepBotChore.StatesInstance, RescueSweepBotChore, object>.TargetParameter rescueTarget;
 
-		// Token: 0x040015AA RID: 5546
 		public StateMachine<RescueSweepBotChore.States, RescueSweepBotChore.StatesInstance, RescueSweepBotChore, object>.TargetParameter deliverTarget;
 
-		// Token: 0x040015AB RID: 5547
 		public StateMachine<RescueSweepBotChore.States, RescueSweepBotChore.StatesInstance, RescueSweepBotChore, object>.TargetParameter rescuer;
 
-		// Token: 0x0200073E RID: 1854
 		public class HoldingSweepBot : GameStateMachine<RescueSweepBotChore.States, RescueSweepBotChore.StatesInstance, RescueSweepBotChore, object>.State
 		{
-			// Token: 0x040015AC RID: 5548
 			public GameStateMachine<RescueSweepBotChore.States, RescueSweepBotChore.StatesInstance, RescueSweepBotChore, object>.State pickup;
 
-			// Token: 0x040015AD RID: 5549
 			public GameStateMachine<RescueSweepBotChore.States, RescueSweepBotChore.StatesInstance, RescueSweepBotChore, object>.ApproachSubState<IApproachable> delivering;
 
-			// Token: 0x040015AE RID: 5550
 			public GameStateMachine<RescueSweepBotChore.States, RescueSweepBotChore.StatesInstance, RescueSweepBotChore, object>.State deposit;
 
-			// Token: 0x040015AF RID: 5551
 			public GameStateMachine<RescueSweepBotChore.States, RescueSweepBotChore.StatesInstance, RescueSweepBotChore, object>.State ditch;
 		}
 	}

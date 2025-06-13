@@ -3,11 +3,9 @@ using Klei.AI;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x02000D83 RID: 3459
 [SerializationConfig(MemberSerialization.OptIn)]
 public class EggIncubator : SingleEntityReceptacle, ISaveLoadable, ISim1000ms
 {
-	// Token: 0x06004333 RID: 17203 RVA: 0x0025210C File Offset: 0x0025030C
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -24,7 +22,6 @@ public class EggIncubator : SingleEntityReceptacle, ISaveLoadable, ISim1000ms
 		base.Subscribe<EggIncubator>(-905833192, EggIncubator.OnCopySettingsDelegate);
 	}
 
-	// Token: 0x06004334 RID: 17204 RVA: 0x002521F0 File Offset: 0x002503F0
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -44,7 +41,6 @@ public class EggIncubator : SingleEntityReceptacle, ISaveLoadable, ISim1000ms
 		this.smi.StartSM();
 	}
 
-	// Token: 0x06004335 RID: 17205 RVA: 0x0025228C File Offset: 0x0025048C
 	private void OnCopySettings(object data)
 	{
 		EggIncubator component = ((GameObject)data).GetComponent<EggIncubator>();
@@ -78,14 +74,12 @@ public class EggIncubator : SingleEntityReceptacle, ISaveLoadable, ISim1000ms
 		}
 	}
 
-	// Token: 0x06004336 RID: 17206 RVA: 0x000CFDB0 File Offset: 0x000CDFB0
 	protected override void OnCleanUp()
 	{
 		this.smi.StopSM("cleanup");
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06004337 RID: 17207 RVA: 0x00252358 File Offset: 0x00250558
 	protected override void SubscribeToOccupant()
 	{
 		base.SubscribeToOccupant();
@@ -98,7 +92,6 @@ public class EggIncubator : SingleEntityReceptacle, ISaveLoadable, ISim1000ms
 		this.UpdateProgress();
 	}
 
-	// Token: 0x06004338 RID: 17208 RVA: 0x000CFDC8 File Offset: 0x000CDFC8
 	protected override void UnsubscribeFromOccupant()
 	{
 		base.UnsubscribeFromOccupant();
@@ -107,7 +100,6 @@ public class EggIncubator : SingleEntityReceptacle, ISaveLoadable, ISim1000ms
 		this.UpdateProgress();
 	}
 
-	// Token: 0x06004339 RID: 17209 RVA: 0x002523B4 File Offset: 0x002505B4
 	private void OnOperationalChanged(object data = null)
 	{
 		if (!base.occupyingObject)
@@ -116,7 +108,6 @@ public class EggIncubator : SingleEntityReceptacle, ISaveLoadable, ISim1000ms
 		}
 	}
 
-	// Token: 0x0600433A RID: 17210 RVA: 0x000CFDE8 File Offset: 0x000CDFE8
 	private void OnOccupantChanged(object data = null)
 	{
 		if (!base.occupyingObject)
@@ -125,7 +116,6 @@ public class EggIncubator : SingleEntityReceptacle, ISaveLoadable, ISim1000ms
 		}
 	}
 
-	// Token: 0x0600433B RID: 17211 RVA: 0x000CFE03 File Offset: 0x000CE003
 	private void OnStorageChange(object data = null)
 	{
 		if (base.occupyingObject && !this.storage.items.Contains(base.occupyingObject))
@@ -135,7 +125,6 @@ public class EggIncubator : SingleEntityReceptacle, ISaveLoadable, ISim1000ms
 		}
 	}
 
-	// Token: 0x0600433C RID: 17212 RVA: 0x002523E8 File Offset: 0x002505E8
 	protected override void ClearOccupant()
 	{
 		bool flag = false;
@@ -150,7 +139,6 @@ public class EggIncubator : SingleEntityReceptacle, ISaveLoadable, ISim1000ms
 		}
 	}
 
-	// Token: 0x0600433D RID: 17213 RVA: 0x00252448 File Offset: 0x00250648
 	protected override void PositionOccupyingObject()
 	{
 		base.PositionOccupyingObject();
@@ -162,7 +150,6 @@ public class EggIncubator : SingleEntityReceptacle, ISaveLoadable, ISim1000ms
 		}
 	}
 
-	// Token: 0x0600433E RID: 17214 RVA: 0x0025248C File Offset: 0x0025068C
 	public override void OrderRemoveOccupant()
 	{
 		UnityEngine.Object.Destroy(this.tracker);
@@ -176,7 +163,6 @@ public class EggIncubator : SingleEntityReceptacle, ISaveLoadable, ISim1000ms
 		this.ClearOccupant();
 	}
 
-	// Token: 0x0600433F RID: 17215 RVA: 0x002524FC File Offset: 0x002506FC
 	public float GetProgress()
 	{
 		float result = 0f;
@@ -195,20 +181,17 @@ public class EggIncubator : SingleEntityReceptacle, ISaveLoadable, ISim1000ms
 		return result;
 	}
 
-	// Token: 0x06004340 RID: 17216 RVA: 0x000CFE36 File Offset: 0x000CE036
 	private void UpdateProgress()
 	{
 		this.meter.SetPositionPercent(this.GetProgress());
 	}
 
-	// Token: 0x06004341 RID: 17217 RVA: 0x000CFE49 File Offset: 0x000CE049
 	public void Sim1000ms(float dt)
 	{
 		this.UpdateProgress();
 		this.UpdateChore();
 	}
 
-	// Token: 0x06004342 RID: 17218 RVA: 0x00252558 File Offset: 0x00250758
 	public void StoreBaby(GameObject baby)
 	{
 		this.UnsubscribeFromOccupant();
@@ -220,7 +203,6 @@ public class EggIncubator : SingleEntityReceptacle, ISaveLoadable, ISim1000ms
 		base.Trigger(-731304873, base.occupyingObject);
 	}
 
-	// Token: 0x06004343 RID: 17219 RVA: 0x002525C0 File Offset: 0x002507C0
 	private void UpdateChore()
 	{
 		if (this.operational.IsOperational && this.EggNeedsAttention())
@@ -238,7 +220,6 @@ public class EggIncubator : SingleEntityReceptacle, ISaveLoadable, ISim1000ms
 		}
 	}
 
-	// Token: 0x06004344 RID: 17220 RVA: 0x0025263C File Offset: 0x0025083C
 	private bool EggNeedsAttention()
 	{
 		if (!base.Occupant)
@@ -249,45 +230,35 @@ public class EggIncubator : SingleEntityReceptacle, ISaveLoadable, ISim1000ms
 		return instance != null && !instance.HasSongBuff();
 	}
 
-	// Token: 0x04002E7C RID: 11900
 	[MyCmpAdd]
 	private EggIncubatorWorkable workable;
 
-	// Token: 0x04002E7D RID: 11901
 	[MyCmpAdd]
 	private CopyBuildingSettings copySettings;
 
-	// Token: 0x04002E7E RID: 11902
 	private Chore chore;
 
-	// Token: 0x04002E7F RID: 11903
 	private EggIncubatorStates.Instance smi;
 
-	// Token: 0x04002E80 RID: 11904
 	private KBatchedAnimTracker tracker;
 
-	// Token: 0x04002E81 RID: 11905
 	private MeterController meter;
 
-	// Token: 0x04002E82 RID: 11906
 	private static readonly EventSystem.IntraObjectHandler<EggIncubator> OnOperationalChangedDelegate = new EventSystem.IntraObjectHandler<EggIncubator>(delegate(EggIncubator component, object data)
 	{
 		component.OnOperationalChanged(data);
 	});
 
-	// Token: 0x04002E83 RID: 11907
 	private static readonly EventSystem.IntraObjectHandler<EggIncubator> OnOccupantChangedDelegate = new EventSystem.IntraObjectHandler<EggIncubator>(delegate(EggIncubator component, object data)
 	{
 		component.OnOccupantChanged(data);
 	});
 
-	// Token: 0x04002E84 RID: 11908
 	private static readonly EventSystem.IntraObjectHandler<EggIncubator> OnStorageChangeDelegate = new EventSystem.IntraObjectHandler<EggIncubator>(delegate(EggIncubator component, object data)
 	{
 		component.OnStorageChange(data);
 	});
 
-	// Token: 0x04002E85 RID: 11909
 	private static readonly EventSystem.IntraObjectHandler<EggIncubator> OnCopySettingsDelegate = new EventSystem.IntraObjectHandler<EggIncubator>(delegate(EggIncubator component, object data)
 	{
 		component.OnCopySettings(data);

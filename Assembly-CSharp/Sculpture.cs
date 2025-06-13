@@ -1,10 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000B38 RID: 2872
 public class Sculpture : Artable
 {
-	// Token: 0x06003554 RID: 13652 RVA: 0x000C7336 File Offset: 0x000C5536
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -19,7 +17,6 @@ public class Sculpture : Artable
 		this.synchronizeAnims = false;
 	}
 
-	// Token: 0x06003555 RID: 13653 RVA: 0x0021B4C8 File Offset: 0x002196C8
 	public override void SetStage(string stage_id, bool skip_effect)
 	{
 		base.SetStage(stage_id, skip_effect);
@@ -37,6 +34,5 @@ public class Sculpture : Artable
 		}
 	}
 
-	// Token: 0x040024D4 RID: 9428
 	private static KAnimFile[] sculptureOverrides;
 }

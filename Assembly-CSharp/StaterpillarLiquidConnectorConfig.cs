@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005C9 RID: 1481
 public class StaterpillarLiquidConnectorConfig : IBuildingConfig
 {
-	// Token: 0x060019DF RID: 6623 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x060019E0 RID: 6624 RVA: 0x001B09BC File Offset: 0x001AEBBC
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = StaterpillarLiquidConnectorConfig.ID;
@@ -40,13 +37,11 @@ public class StaterpillarLiquidConnectorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060019E1 RID: 6625 RVA: 0x000B01B2 File Offset: 0x000AE3B2
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
 	}
 
-	// Token: 0x060019E2 RID: 6626 RVA: 0x001B0A60 File Offset: 0x001AEC60
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<Storage>();
@@ -59,12 +54,9 @@ public class StaterpillarLiquidConnectorConfig : IBuildingConfig
 		go.GetComponent<KSelectable>().IsSelectable = false;
 	}
 
-	// Token: 0x040010CD RID: 4301
 	public static readonly string ID = "StaterpillarLiquidConnector";
 
-	// Token: 0x040010CE RID: 4302
 	private const int WIDTH = 1;
 
-	// Token: 0x040010CF RID: 4303
 	private const int HEIGHT = 2;
 }

@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000819 RID: 2073
 [SkipSaveFileSerialization]
 [AddComponentMenu("KMonoBehaviour/scripts/PathProber")]
 public class PathProber : KMonoBehaviour
 {
-	// Token: 0x0600248C RID: 9356 RVA: 0x000BC302 File Offset: 0x000BA502
 	protected override void OnCleanUp()
 	{
 		if (this.PathGrid != null)
@@ -17,13 +15,11 @@ public class PathProber : KMonoBehaviour
 		base.OnCleanUp();
 	}
 
-	// Token: 0x0600248D RID: 9357 RVA: 0x000BC31D File Offset: 0x000BA51D
 	public void SetGroupProber(IGroupProber group_prober)
 	{
 		this.PathGrid.SetGroupProber(group_prober);
 	}
 
-	// Token: 0x0600248E RID: 9358 RVA: 0x000BC32B File Offset: 0x000BA52B
 	public void SetValidNavTypes(NavType[] nav_types, int max_probing_radius)
 	{
 		if (max_probing_radius != 0)
@@ -34,25 +30,21 @@ public class PathProber : KMonoBehaviour
 		this.PathGrid = new PathGrid(Grid.WidthInCells, Grid.HeightInCells, false, nav_types);
 	}
 
-	// Token: 0x0600248F RID: 9359 RVA: 0x000BC35B File Offset: 0x000BA55B
 	public int GetCost(int cell)
 	{
 		return this.PathGrid.GetCost(cell);
 	}
 
-	// Token: 0x06002490 RID: 9360 RVA: 0x000BC369 File Offset: 0x000BA569
 	public int GetNavigationCostIgnoreProberOffset(int cell, CellOffset[] offsets)
 	{
 		return this.PathGrid.GetCostIgnoreProberOffset(cell, offsets);
 	}
 
-	// Token: 0x06002491 RID: 9361 RVA: 0x000BC378 File Offset: 0x000BA578
 	public PathGrid GetPathGrid()
 	{
 		return this.PathGrid;
 	}
 
-	// Token: 0x06002492 RID: 9362 RVA: 0x001D6ACC File Offset: 0x001D4CCC
 	public void UpdateProbe(NavGrid nav_grid, int cell, NavType nav_type, PathFinderAbilities abilities, PathFinder.PotentialPath.Flags flags)
 	{
 		if (this.scratchPad == null)
@@ -90,33 +82,23 @@ public class PathProber : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x040018FB RID: 6395
 	public const int InvalidHandle = -1;
 
-	// Token: 0x040018FC RID: 6396
 	public const int InvalidIdx = -1;
 
-	// Token: 0x040018FD RID: 6397
 	public const int InvalidCell = -1;
 
-	// Token: 0x040018FE RID: 6398
 	public const int InvalidCost = -1;
 
-	// Token: 0x040018FF RID: 6399
 	private PathGrid PathGrid;
 
-	// Token: 0x04001900 RID: 6400
 	private PathFinder.PotentialList Potentials = new PathFinder.PotentialList();
 
-	// Token: 0x04001901 RID: 6401
 	public int updateCount = -1;
 
-	// Token: 0x04001902 RID: 6402
 	private const int updateCountThreshold = 25;
 
-	// Token: 0x04001903 RID: 6403
 	private PathFinder.PotentialScratchPad scratchPad;
 
-	// Token: 0x04001904 RID: 6404
 	public int potentialCellsPerUpdate = -1;
 }

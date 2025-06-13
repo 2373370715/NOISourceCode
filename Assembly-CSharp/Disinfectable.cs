@@ -3,11 +3,9 @@ using KSerialization;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000A65 RID: 2661
 [AddComponentMenu("KMonoBehaviour/Workable/Disinfectable")]
 public class Disinfectable : Workable
 {
-	// Token: 0x0600303D RID: 12349 RVA: 0x00208D5C File Offset: 0x00206F5C
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -24,7 +22,6 @@ public class Disinfectable : Workable
 		base.Subscribe<Disinfectable>(2127324410, Disinfectable.OnCancelDelegate);
 	}
 
-	// Token: 0x0600303E RID: 12350 RVA: 0x000C3C6E File Offset: 0x000C1E6E
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -36,14 +33,12 @@ public class Disinfectable : Workable
 		this.shouldTransferDiseaseWithWorker = false;
 	}
 
-	// Token: 0x0600303F RID: 12351 RVA: 0x000C3C97 File Offset: 0x000C1E97
 	protected override void OnStartWork(WorkerBase worker)
 	{
 		base.OnStartWork(worker);
 		this.diseasePerSecond = (float)base.GetComponent<PrimaryElement>().DiseaseCount / 10f;
 	}
 
-	// Token: 0x06003040 RID: 12352 RVA: 0x000C3CB8 File Offset: 0x000C1EB8
 	protected override bool OnWorkTick(WorkerBase worker, float dt)
 	{
 		base.OnWorkTick(worker, dt);
@@ -52,7 +47,6 @@ public class Disinfectable : Workable
 		return false;
 	}
 
-	// Token: 0x06003041 RID: 12353 RVA: 0x00208E14 File Offset: 0x00207014
 	protected override void OnCompleteWork(WorkerBase worker)
 	{
 		base.OnCompleteWork(worker);
@@ -65,7 +59,6 @@ public class Disinfectable : Workable
 		Prioritizable.RemoveRef(base.gameObject);
 	}
 
-	// Token: 0x06003042 RID: 12354 RVA: 0x000C3CEA File Offset: 0x000C1EEA
 	private void ToggleMarkForDisinfect()
 	{
 		if (this.isMarkedForDisinfect)
@@ -77,7 +70,6 @@ public class Disinfectable : Workable
 		this.MarkForDisinfect(false);
 	}
 
-	// Token: 0x06003043 RID: 12355 RVA: 0x00208E98 File Offset: 0x00207098
 	private void CancelDisinfection()
 	{
 		if (this.isMarkedForDisinfect)
@@ -91,7 +83,6 @@ public class Disinfectable : Workable
 		}
 	}
 
-	// Token: 0x06003044 RID: 12356 RVA: 0x00208F00 File Offset: 0x00207100
 	public void MarkForDisinfect(bool force = false)
 	{
 		if (!this.isMarkedForDisinfect || force)
@@ -103,26 +94,20 @@ public class Disinfectable : Workable
 		}
 	}
 
-	// Token: 0x06003045 RID: 12357 RVA: 0x000C3D0D File Offset: 0x000C1F0D
 	private void OnCancel(object data)
 	{
 		this.CancelDisinfection();
 	}
 
-	// Token: 0x04002124 RID: 8484
 	private Chore chore;
 
-	// Token: 0x04002125 RID: 8485
 	[Serialize]
 	private bool isMarkedForDisinfect;
 
-	// Token: 0x04002126 RID: 8486
 	private const float MAX_WORK_TIME = 10f;
 
-	// Token: 0x04002127 RID: 8487
 	private float diseasePerSecond;
 
-	// Token: 0x04002128 RID: 8488
 	private static readonly EventSystem.IntraObjectHandler<Disinfectable> OnCancelDelegate = new EventSystem.IntraObjectHandler<Disinfectable>(delegate(Disinfectable component, object data)
 	{
 		component.OnCancel(data);

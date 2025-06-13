@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000018 RID: 24
 public class AdvancedDoctorStationConfig : IBuildingConfig
 {
-	// Token: 0x0600005C RID: 92 RVA: 0x00147784 File Offset: 0x00145984
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "AdvancedDoctorStation";
@@ -31,14 +29,12 @@ public class AdvancedDoctorStationConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600005D RID: 93 RVA: 0x000AA16E File Offset: 0x000A836E
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<LoopingSounds>();
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.Clinic, false);
 	}
 
-	// Token: 0x0600005E RID: 94 RVA: 0x00147828 File Offset: 0x00145A28
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		Storage storage = go.AddOrGet<Storage>();
@@ -71,6 +67,5 @@ public class AdvancedDoctorStationConfig : IBuildingConfig
 		doctorStationDoctorWorkable.requiredSkillPerk = Db.Get().SkillPerks.CanAdvancedMedicine.Id;
 	}
 
-	// Token: 0x04000047 RID: 71
 	public const string ID = "AdvancedDoctorStation";
 }

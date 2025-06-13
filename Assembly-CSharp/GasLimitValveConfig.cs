@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000356 RID: 854
 public class GasLimitValveConfig : IBuildingConfig
 {
-	// Token: 0x06000D8A RID: 3466 RVA: 0x0017DA10 File Offset: 0x0017BC10
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "GasLimitValve";
@@ -53,7 +51,6 @@ public class GasLimitValveConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000D8B RID: 3467 RVA: 0x0017DB7C File Offset: 0x0017BD7C
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGetDef<PoweredActiveTransitionController.Def>();
@@ -67,7 +64,6 @@ public class GasLimitValveConfig : IBuildingConfig
 		limitValve.sliderRanges = LimitValveTuning.GetDefaultSlider();
 	}
 
-	// Token: 0x06000D8C RID: 3468 RVA: 0x000B0517 File Offset: 0x000AE717
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		UnityEngine.Object.DestroyImmediate(go.GetComponent<ConduitConsumer>());
@@ -76,9 +72,7 @@ public class GasLimitValveConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayInFrontOfConduits, false);
 	}
 
-	// Token: 0x040009EE RID: 2542
 	public const string ID = "GasLimitValve";
 
-	// Token: 0x040009EF RID: 2543
 	private const ConduitType CONDUIT_TYPE = ConduitType.Gas;
 }

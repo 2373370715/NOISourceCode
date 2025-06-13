@@ -4,22 +4,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000295 RID: 661
 public class CylindricaConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x060009AC RID: 2476 RVA: 0x000AA117 File Offset: 0x000A8317
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x060009AD RID: 2477 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x060009AE RID: 2478 RVA: 0x00170900 File Offset: 0x0016EB00
 	public GameObject CreatePrefab()
 	{
 		string id = "Cylindrica";
@@ -53,25 +49,19 @@ public class CylindricaConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x060009AF RID: 2479 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x060009B0 RID: 2480 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x0400076C RID: 1900
 	public const string ID = "Cylindrica";
 
-	// Token: 0x0400076D RID: 1901
 	public const string SEED_ID = "CylindricaSeed";
 
-	// Token: 0x0400076E RID: 1902
 	public static readonly EffectorValues POSITIVE_DECOR_EFFECT = DECOR.BONUS.TIER3;
 
-	// Token: 0x0400076F RID: 1903
 	public static readonly EffectorValues NEGATIVE_DECOR_EFFECT = DECOR.PENALTY.TIER3;
 }

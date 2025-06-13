@@ -4,12 +4,9 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-// Token: 0x020017E7 RID: 6119
 [AddComponentMenu("KMonoBehaviour/scripts/Timelapser")]
 public class Timelapser : KMonoBehaviour
 {
-	// Token: 0x170007EC RID: 2028
-	// (get) Token: 0x06007DCF RID: 32207 RVA: 0x000F75F0 File Offset: 0x000F57F0
 	public bool CapturingTimelapseScreenshot
 	{
 		get
@@ -18,12 +15,8 @@ public class Timelapser : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x170007ED RID: 2029
-	// (get) Token: 0x06007DD0 RID: 32208 RVA: 0x000F75F8 File Offset: 0x000F57F8
-	// (set) Token: 0x06007DD1 RID: 32209 RVA: 0x000F7600 File Offset: 0x000F5800
 	public Texture2D freezeTexture { get; private set; }
 
-	// Token: 0x06007DD2 RID: 32210 RVA: 0x00334008 File Offset: 0x00332208
 	protected override void OnPrefabInit()
 	{
 		this.RefreshRenderTextureSize(null);
@@ -40,7 +33,6 @@ public class Timelapser : KMonoBehaviour
 		base.StartCoroutine(this.Render());
 	}
 
-	// Token: 0x06007DD3 RID: 32211 RVA: 0x000F7609 File Offset: 0x000F5809
 	private void OnResize()
 	{
 		if (this.freezeTexture != null)
@@ -50,7 +42,6 @@ public class Timelapser : KMonoBehaviour
 		this.freezeTexture = new Texture2D(Camera.main.pixelWidth, Camera.main.pixelHeight, TextureFormat.ARGB32, false);
 	}
 
-	// Token: 0x06007DD4 RID: 32212 RVA: 0x003340B4 File Offset: 0x003322B4
 	private void RefreshRenderTextureSize(object data = null)
 	{
 		if (this.previewScreenshot)
@@ -74,8 +65,6 @@ public class Timelapser : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x170007EE RID: 2030
-	// (get) Token: 0x06007DD5 RID: 32213 RVA: 0x000F7645 File Offset: 0x000F5845
 	private bool timelapseUserEnabled
 	{
 		get
@@ -84,7 +73,6 @@ public class Timelapser : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06007DD6 RID: 32214 RVA: 0x00334174 File Offset: 0x00332374
 	private void OnNewDay(object data = null)
 	{
 		if (this.worldsToScreenshot.Count == 0)
@@ -122,7 +110,6 @@ public class Timelapser : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06007DD7 RID: 32215 RVA: 0x00334294 File Offset: 0x00332494
 	private void Update()
 	{
 		if (this.screenshotToday)
@@ -150,13 +137,11 @@ public class Timelapser : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06007DD8 RID: 32216 RVA: 0x000F7659 File Offset: 0x000F5859
 	private float CycleTimeToScreenshot()
 	{
 		return 300f - GameClock.Instance.GetTime() % 600f;
 	}
 
-	// Token: 0x06007DD9 RID: 32217 RVA: 0x000F7671 File Offset: 0x000F5871
 	private IEnumerator Render()
 	{
 		for (;;)
@@ -199,20 +184,17 @@ public class Timelapser : KMonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06007DDA RID: 32218 RVA: 0x000F7680 File Offset: 0x000F5880
 	public void InitialScreenshot()
 	{
 		this.worldsToScreenshot.Add(ClusterManager.Instance.GetStartWorld().id);
 		this.SaveScreenshot();
 	}
 
-	// Token: 0x06007DDB RID: 32219 RVA: 0x000F76A2 File Offset: 0x000F58A2
 	private void SaveScreenshot()
 	{
 		this.screenshotPending = true;
 	}
 
-	// Token: 0x06007DDC RID: 32220 RVA: 0x000F76AB File Offset: 0x000F58AB
 	public void SaveColonyPreview(string saveFileName)
 	{
 		this.previewSaveGamePath = saveFileName;
@@ -220,7 +202,6 @@ public class Timelapser : KMonoBehaviour
 		this.SaveScreenshot();
 	}
 
-	// Token: 0x06007DDD RID: 32221 RVA: 0x00334324 File Offset: 0x00332524
 	private void SetPostionAndOrtho(int world_id)
 	{
 		WorldContainer world = ClusterManager.Instance.GetWorld(world_id);
@@ -262,7 +243,6 @@ public class Timelapser : KMonoBehaviour
 		CameraController.Instance.SetPosition(new Vector3(telepad.transform.position.x, telepad.transform.position.y, CameraController.Instance.transform.position.z));
 	}
 
-	// Token: 0x06007DDE RID: 32222 RVA: 0x00334510 File Offset: 0x00332710
 	private void RenderAndPrint(int world_id)
 	{
 		WorldContainer world = ClusterManager.Instance.GetWorld(world_id);
@@ -295,7 +275,6 @@ public class Timelapser : KMonoBehaviour
 		RenderTexture.active = active;
 	}
 
-	// Token: 0x06007DDF RID: 32223 RVA: 0x00334638 File Offset: 0x00332838
 	public void WriteToPng(RenderTexture renderTex, int world_id = -1)
 	{
 		Texture2D texture2D = new Texture2D(renderTex.width, renderTex.height, TextureFormat.ARGB32, false);
@@ -372,49 +351,34 @@ public class Timelapser : KMonoBehaviour
 		File.WriteAllBytes(text4, bytes);
 	}
 
-	// Token: 0x04005F8C RID: 24460
 	private bool screenshotActive;
 
-	// Token: 0x04005F8D RID: 24461
 	private bool screenshotPending;
 
-	// Token: 0x04005F8E RID: 24462
 	private bool previewScreenshot;
 
-	// Token: 0x04005F8F RID: 24463
 	private string previewSaveGamePath = "";
 
-	// Token: 0x04005F90 RID: 24464
 	private bool screenshotToday;
 
-	// Token: 0x04005F91 RID: 24465
 	private List<int> worldsToScreenshot = new List<int>();
 
-	// Token: 0x04005F92 RID: 24466
 	private HashedString activeOverlay;
 
-	// Token: 0x04005F93 RID: 24467
 	private Camera freezeCamera;
 
-	// Token: 0x04005F94 RID: 24468
 	private RenderTexture bufferRenderTexture;
 
-	// Token: 0x04005F96 RID: 24470
 	private Vector3 camPosition;
 
-	// Token: 0x04005F97 RID: 24471
 	private float camSize;
 
-	// Token: 0x04005F98 RID: 24472
 	private bool debugScreenShot;
 
-	// Token: 0x04005F99 RID: 24473
 	private Vector2Int previewScreenshotResolution = new Vector2Int(Grid.WidthInCells * 2, Grid.HeightInCells * 2);
 
-	// Token: 0x04005F9A RID: 24474
 	private const int DEFAULT_SCREENSHOT_INTERVAL = 10;
 
-	// Token: 0x04005F9B RID: 24475
 	private int[] timelapseScreenshotCycles = new int[]
 	{
 		1,

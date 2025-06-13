@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000B49 RID: 2889
 [AddComponentMenu("KMonoBehaviour/scripts/StationaryChoreRangeVisualizer")]
 [Obsolete("Deprecated, use RangeVisualizer")]
 public class StationaryChoreRangeVisualizer : KMonoBehaviour
 {
-	// Token: 0x060035B2 RID: 13746 RVA: 0x0021CDC4 File Offset: 0x0021AFC4
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -19,7 +17,6 @@ public class StationaryChoreRangeVisualizer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060035B3 RID: 13747 RVA: 0x0021CE24 File Offset: 0x0021B024
 	protected override void OnCleanUp()
 	{
 		Singleton<CellChangeMonitor>.Instance.UnregisterCellChangedHandler(base.transform, new System.Action(this.OnCellChange));
@@ -29,7 +26,6 @@ public class StationaryChoreRangeVisualizer : KMonoBehaviour
 		base.OnCleanUp();
 	}
 
-	// Token: 0x060035B4 RID: 13748 RVA: 0x0021CE7C File Offset: 0x0021B07C
 	private void OnSelect(object data)
 	{
 		if ((bool)data)
@@ -42,19 +38,16 @@ public class StationaryChoreRangeVisualizer : KMonoBehaviour
 		this.ClearVisualizers();
 	}
 
-	// Token: 0x060035B5 RID: 13749 RVA: 0x000C7766 File Offset: 0x000C5966
 	private void OnRotated(object data)
 	{
 		this.UpdateVisualizers();
 	}
 
-	// Token: 0x060035B6 RID: 13750 RVA: 0x000C7766 File Offset: 0x000C5966
 	private void OnCellChange()
 	{
 		this.UpdateVisualizers();
 	}
 
-	// Token: 0x060035B7 RID: 13751 RVA: 0x0021CEE0 File Offset: 0x0021B0E0
 	private void UpdateVisualizers()
 	{
 		this.newCells.Clear();
@@ -112,7 +105,6 @@ public class StationaryChoreRangeVisualizer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060035B8 RID: 13752 RVA: 0x0021D0D0 File Offset: 0x0021B2D0
 	private void ClearVisualizers()
 	{
 		for (int i = 0; i < this.visualizers.Count; i++)
@@ -122,7 +114,6 @@ public class StationaryChoreRangeVisualizer : KMonoBehaviour
 		this.visualizers.Clear();
 	}
 
-	// Token: 0x060035B9 RID: 13753 RVA: 0x0021D118 File Offset: 0x0021B318
 	private KBatchedAnimController CreateEffect(int cell)
 	{
 		KBatchedAnimController kbatchedAnimController = FXHelpers.CreateEffect(StationaryChoreRangeVisualizer.AnimName, Grid.CellToPosCCC(cell, this.sceneLayer), null, false, this.sceneLayer, true);
@@ -133,86 +124,64 @@ public class StationaryChoreRangeVisualizer : KMonoBehaviour
 		return kbatchedAnimController;
 	}
 
-	// Token: 0x060035BA RID: 13754 RVA: 0x000C776E File Offset: 0x000C596E
 	private void DestroyEffect(KBatchedAnimController controller)
 	{
 		controller.destroyOnAnimComplete = true;
 		controller.Play(StationaryChoreRangeVisualizer.PostAnim, KAnim.PlayMode.Once, 1f, 0f);
 	}
 
-	// Token: 0x04002519 RID: 9497
 	[MyCmpReq]
 	private KSelectable selectable;
 
-	// Token: 0x0400251A RID: 9498
 	[MyCmpGet]
 	private Rotatable rotatable;
 
-	// Token: 0x0400251B RID: 9499
 	public int x;
 
-	// Token: 0x0400251C RID: 9500
 	public int y;
 
-	// Token: 0x0400251D RID: 9501
 	public int width;
 
-	// Token: 0x0400251E RID: 9502
 	public int height;
 
-	// Token: 0x0400251F RID: 9503
 	public bool movable;
 
-	// Token: 0x04002520 RID: 9504
 	public Grid.SceneLayer sceneLayer = Grid.SceneLayer.FXFront;
 
-	// Token: 0x04002521 RID: 9505
 	public CellOffset vision_offset;
 
-	// Token: 0x04002522 RID: 9506
 	public Func<int, bool> blocking_cb = new Func<int, bool>(Grid.PhysicalBlockingCB);
 
-	// Token: 0x04002523 RID: 9507
 	public bool blocking_tile_visible = true;
 
-	// Token: 0x04002524 RID: 9508
 	private static readonly string AnimName = "transferarmgrid_kanim";
 
-	// Token: 0x04002525 RID: 9509
 	private static readonly HashedString[] PreAnims = new HashedString[]
 	{
 		"grid_pre",
 		"grid_loop"
 	};
 
-	// Token: 0x04002526 RID: 9510
 	private static readonly HashedString PostAnim = "grid_pst";
 
-	// Token: 0x04002527 RID: 9511
 	private List<StationaryChoreRangeVisualizer.VisData> visualizers = new List<StationaryChoreRangeVisualizer.VisData>();
 
-	// Token: 0x04002528 RID: 9512
 	private List<int> newCells = new List<int>();
 
-	// Token: 0x04002529 RID: 9513
 	private static readonly EventSystem.IntraObjectHandler<StationaryChoreRangeVisualizer> OnSelectDelegate = new EventSystem.IntraObjectHandler<StationaryChoreRangeVisualizer>(delegate(StationaryChoreRangeVisualizer component, object data)
 	{
 		component.OnSelect(data);
 	});
 
-	// Token: 0x0400252A RID: 9514
 	private static readonly EventSystem.IntraObjectHandler<StationaryChoreRangeVisualizer> OnRotatedDelegate = new EventSystem.IntraObjectHandler<StationaryChoreRangeVisualizer>(delegate(StationaryChoreRangeVisualizer component, object data)
 	{
 		component.OnRotated(data);
 	});
 
-	// Token: 0x02000B4A RID: 2890
 	private struct VisData
 	{
-		// Token: 0x0400252B RID: 9515
 		public int cell;
 
-		// Token: 0x0400252C RID: 9516
 		public KBatchedAnimController controller;
 	}
 }

@@ -6,10 +6,8 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001DEA RID: 7658
 public class CrewJobsScreen : CrewListScreen<CrewJobsEntry>
 {
-	// Token: 0x0600A01A RID: 40986 RVA: 0x003E240C File Offset: 0x003E060C
 	protected override void OnActivate()
 	{
 		CrewJobsScreen.Instance = this;
@@ -20,7 +18,6 @@ public class CrewJobsScreen : CrewListScreen<CrewJobsEntry>
 		base.OnActivate();
 	}
 
-	// Token: 0x0600A01B RID: 40987 RVA: 0x0010CB6A File Offset: 0x0010AD6A
 	protected override void OnCmpEnable()
 	{
 		base.OnCmpEnable();
@@ -28,14 +25,12 @@ public class CrewJobsScreen : CrewListScreen<CrewJobsEntry>
 		this.SortByPreviousSelected();
 	}
 
-	// Token: 0x0600A01C RID: 40988 RVA: 0x0010CB7E File Offset: 0x0010AD7E
 	protected override void OnForcedCleanUp()
 	{
 		CrewJobsScreen.Instance = null;
 		base.OnForcedCleanUp();
 	}
 
-	// Token: 0x0600A01D RID: 40989 RVA: 0x003E247C File Offset: 0x003E067C
 	protected override void SpawnEntries()
 	{
 		base.SpawnEntries();
@@ -64,7 +59,6 @@ public class CrewJobsScreen : CrewListScreen<CrewJobsEntry>
 		this.dirty = true;
 	}
 
-	// Token: 0x0600A01E RID: 40990 RVA: 0x003E255C File Offset: 0x003E075C
 	private void SortByPreviousSelected()
 	{
 		if (this.sortToggleGroup == null || this.lastSortToggle == null)
@@ -86,7 +80,6 @@ public class CrewJobsScreen : CrewListScreen<CrewJobsEntry>
 		}
 	}
 
-	// Token: 0x0600A01F RID: 40991 RVA: 0x003E2610 File Offset: 0x003E0810
 	protected override void PositionColumnTitles()
 	{
 		base.PositionColumnTitles();
@@ -143,7 +136,6 @@ public class CrewJobsScreen : CrewListScreen<CrewJobsEntry>
 		this.EveryoneAllTaskToggle = new KeyValuePair<Button, CrewJobsScreen.everyoneToggleState>(key, this.EveryoneAllTaskToggle.Value);
 	}
 
-	// Token: 0x0600A020 RID: 40992 RVA: 0x003E285C File Offset: 0x003E0A5C
 	private string GetJobTooltip(GameObject go)
 	{
 		ToolTip component = go.GetComponent<ToolTip>();
@@ -161,7 +153,6 @@ public class CrewJobsScreen : CrewListScreen<CrewJobsEntry>
 		return "";
 	}
 
-	// Token: 0x0600A021 RID: 40993 RVA: 0x003E291C File Offset: 0x003E0B1C
 	private void ToggleAllTasksEveryone()
 	{
 		string name = "HUD_Click_Deselect";
@@ -176,13 +167,11 @@ public class CrewJobsScreen : CrewListScreen<CrewJobsEntry>
 		}
 	}
 
-	// Token: 0x0600A022 RID: 40994 RVA: 0x0010CB8C File Offset: 0x0010AD8C
 	private void SetJobEveryone(Button button, ChoreGroup chore_group)
 	{
 		this.SetJobEveryone(this.EveryoneToggles[button] != CrewJobsScreen.everyoneToggleState.on, chore_group);
 	}
 
-	// Token: 0x0600A023 RID: 40995 RVA: 0x003E2988 File Offset: 0x003E0B88
 	private void SetJobEveryone(bool state, ChoreGroup chore_group)
 	{
 		foreach (CrewJobsEntry crewJobsEntry in this.EntryObjects)
@@ -191,7 +180,6 @@ public class CrewJobsScreen : CrewListScreen<CrewJobsEntry>
 		}
 	}
 
-	// Token: 0x0600A024 RID: 40996 RVA: 0x003E29E0 File Offset: 0x003E0BE0
 	private void ToggleJobEveryone(Button button, ChoreGroup chore_group)
 	{
 		string name = "HUD_Click_Deselect";
@@ -206,7 +194,6 @@ public class CrewJobsScreen : CrewListScreen<CrewJobsEntry>
 		}
 	}
 
-	// Token: 0x0600A025 RID: 40997 RVA: 0x003E2A70 File Offset: 0x003E0C70
 	private void SortByEffectiveness(ChoreGroup chore_group, bool reverse, bool playSound)
 	{
 		if (playSound)
@@ -223,7 +210,6 @@ public class CrewJobsScreen : CrewListScreen<CrewJobsEntry>
 		base.ReorderEntries(list, reverse);
 	}
 
-	// Token: 0x0600A026 RID: 40998 RVA: 0x003E2AC4 File Offset: 0x003E0CC4
 	private void ResetSortToggles(Toggle exceptToggle)
 	{
 		for (int i = 0; i < this.ColumnTitlesContainer.childCount; i++)
@@ -245,7 +231,6 @@ public class CrewJobsScreen : CrewListScreen<CrewJobsEntry>
 		}
 	}
 
-	// Token: 0x0600A027 RID: 40999 RVA: 0x003E2B44 File Offset: 0x003E0D44
 	private void Refresh()
 	{
 		if (this.dirty)
@@ -338,56 +323,40 @@ public class CrewJobsScreen : CrewListScreen<CrewJobsEntry>
 		}
 	}
 
-	// Token: 0x0600A028 RID: 41000 RVA: 0x0010CBA7 File Offset: 0x0010ADA7
 	private void Update()
 	{
 		this.Refresh();
 	}
 
-	// Token: 0x0600A029 RID: 41001 RVA: 0x0010CBAF File Offset: 0x0010ADAF
 	public void Dirty(object data = null)
 	{
 		this.dirty = true;
 	}
 
-	// Token: 0x04007DC6 RID: 32198
 	public static CrewJobsScreen Instance;
 
-	// Token: 0x04007DC7 RID: 32199
 	private Dictionary<Button, CrewJobsScreen.everyoneToggleState> EveryoneToggles = new Dictionary<Button, CrewJobsScreen.everyoneToggleState>();
 
-	// Token: 0x04007DC8 RID: 32200
 	private KeyValuePair<Button, CrewJobsScreen.everyoneToggleState> EveryoneAllTaskToggle;
 
-	// Token: 0x04007DC9 RID: 32201
 	public TextStyleSetting TextStyle_JobTooltip_Title;
 
-	// Token: 0x04007DCA RID: 32202
 	public TextStyleSetting TextStyle_JobTooltip_Description;
 
-	// Token: 0x04007DCB RID: 32203
 	public TextStyleSetting TextStyle_JobTooltip_RelevantAttributes;
 
-	// Token: 0x04007DCC RID: 32204
 	public Toggle SortEveryoneToggle;
 
-	// Token: 0x04007DCD RID: 32205
 	private List<ChoreGroup> choreGroups = new List<ChoreGroup>();
 
-	// Token: 0x04007DCE RID: 32206
 	private bool dirty;
 
-	// Token: 0x04007DCF RID: 32207
 	private float screenWidth;
 
-	// Token: 0x02001DEB RID: 7659
 	public enum everyoneToggleState
 	{
-		// Token: 0x04007DD1 RID: 32209
 		off,
-		// Token: 0x04007DD2 RID: 32210
 		mixed,
-		// Token: 0x04007DD3 RID: 32211
 		on
 	}
 }

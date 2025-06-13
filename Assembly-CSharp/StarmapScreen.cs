@@ -11,10 +11,8 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// Token: 0x02002080 RID: 8320
 public class StarmapScreen : KModalScreen
 {
-	// Token: 0x0600B121 RID: 45345 RVA: 0x00107159 File Offset: 0x00105359
 	public override float GetSortKey()
 	{
 		if (base.isEditing)
@@ -24,13 +22,11 @@ public class StarmapScreen : KModalScreen
 		return 20f;
 	}
 
-	// Token: 0x0600B122 RID: 45346 RVA: 0x00117B1B File Offset: 0x00115D1B
 	public static void DestroyInstance()
 	{
 		StarmapScreen.Instance = null;
 	}
 
-	// Token: 0x0600B123 RID: 45347 RVA: 0x004353E4 File Offset: 0x004335E4
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -129,7 +125,6 @@ public class StarmapScreen : KModalScreen
 		});
 	}
 
-	// Token: 0x0600B124 RID: 45348 RVA: 0x00117B23 File Offset: 0x00115D23
 	protected override void OnCleanUp()
 	{
 		base.OnCleanUp();
@@ -140,7 +135,6 @@ public class StarmapScreen : KModalScreen
 		base.StopAllCoroutines();
 	}
 
-	// Token: 0x0600B125 RID: 45349 RVA: 0x004359F4 File Offset: 0x00433BF4
 	protected override void OnShow(bool show)
 	{
 		base.OnShow(show);
@@ -160,7 +154,6 @@ public class StarmapScreen : KModalScreen
 		this.forceScrollDown = true;
 	}
 
-	// Token: 0x0600B126 RID: 45350 RVA: 0x00435A98 File Offset: 0x00433C98
 	public void UpdateDestinationStates()
 	{
 		int num = 0;
@@ -246,26 +239,22 @@ public class StarmapScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600B127 RID: 45351 RVA: 0x00117B4A File Offset: 0x00115D4A
 	protected override void OnActivate()
 	{
 		base.OnActivate();
 		StarmapScreen.Instance = this;
 	}
 
-	// Token: 0x0600B128 RID: 45352 RVA: 0x00117B58 File Offset: 0x00115D58
 	private string DisplayDistance(float distance)
 	{
 		return global::Util.FormatWholeNumber(distance) + " " + UI.UNITSUFFIXES.DISTANCE.KILOMETER;
 	}
 
-	// Token: 0x0600B129 RID: 45353 RVA: 0x00117B74 File Offset: 0x00115D74
 	private string DisplayDestinationMass(SpaceDestination selectedDestination)
 	{
 		return GameUtil.GetFormattedMass(selectedDestination.AvailableMass, GameUtil.TimeSlice.None, GameUtil.MetricMassFormat.Tonne, true, "{0:0.#}");
 	}
 
-	// Token: 0x0600B12A RID: 45354 RVA: 0x00435EB4 File Offset: 0x004340B4
 	private string DisplayTotalStorageCapacity(CommandModule command)
 	{
 		float num = 0f;
@@ -280,7 +269,6 @@ public class StarmapScreen : KModalScreen
 		return GameUtil.GetFormattedMass(num, GameUtil.TimeSlice.None, GameUtil.MetricMassFormat.Tonne, true, "{0:0.#}");
 	}
 
-	// Token: 0x0600B12B RID: 45355 RVA: 0x00435F38 File Offset: 0x00434138
 	private string StorageCapacityTooltip(CommandModule command, SpaceDestination dest)
 	{
 		string text = "";
@@ -329,7 +317,6 @@ public class StarmapScreen : KModalScreen
 		return text;
 	}
 
-	// Token: 0x0600B12C RID: 45356 RVA: 0x0043616C File Offset: 0x0043436C
 	private void LoadPlanets()
 	{
 		foreach (SpaceDestination spaceDestination in Game.Instance.spacecraftManager.destinations)
@@ -352,7 +339,6 @@ public class StarmapScreen : KModalScreen
 		this.UpdateDestinationStates();
 	}
 
-	// Token: 0x0600B12D RID: 45357 RVA: 0x004362D4 File Offset: 0x004344D4
 	private void UnselectAllPlanets()
 	{
 		if (this.animateSelectedPlanetRoutine != null)
@@ -366,7 +352,6 @@ public class StarmapScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600B12E RID: 45358 RVA: 0x00117B89 File Offset: 0x00115D89
 	private void SelectPlanet(StarmapPlanet planet)
 	{
 		planet.SetSelectionActive(true);
@@ -377,7 +362,6 @@ public class StarmapScreen : KModalScreen
 		this.animateSelectedPlanetRoutine = base.StartCoroutine(this.AnimatePlanetSelection(planet));
 	}
 
-	// Token: 0x0600B12F RID: 45359 RVA: 0x00117BB9 File Offset: 0x00115DB9
 	private IEnumerator AnimatePlanetSelection(StarmapPlanet planet)
 	{
 		for (;;)
@@ -388,7 +372,6 @@ public class StarmapScreen : KModalScreen
 		yield break;
 	}
 
-	// Token: 0x0600B130 RID: 45360 RVA: 0x00117BC8 File Offset: 0x00115DC8
 	private void Update()
 	{
 		this.PositionPlanetWidgets();
@@ -399,14 +382,12 @@ public class StarmapScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600B131 RID: 45361 RVA: 0x00436350 File Offset: 0x00434550
 	private void ScrollToBottom()
 	{
 		RectTransform rectTransform = this.Map.GetComponentInChildren<VerticalLayoutGroup>().rectTransform();
 		rectTransform.SetLocalPosition(new Vector3(rectTransform.localPosition.x, rectTransform.rect.height - this.Map.rect.height, rectTransform.localPosition.z));
 	}
 
-	// Token: 0x0600B132 RID: 45362 RVA: 0x00117BE5 File Offset: 0x00115DE5
 	public override void OnKeyDown(KButtonEvent e)
 	{
 		if (this.CheckBlockedInput())
@@ -423,7 +404,6 @@ public class StarmapScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600B133 RID: 45363 RVA: 0x004363B4 File Offset: 0x004345B4
 	private bool CheckBlockedInput()
 	{
 		if (UnityEngine.EventSystems.EventSystem.current != null)
@@ -445,7 +425,6 @@ public class StarmapScreen : KModalScreen
 		return false;
 	}
 
-	// Token: 0x0600B134 RID: 45364 RVA: 0x00436454 File Offset: 0x00434654
 	private void PositionPlanetWidgets()
 	{
 		float num = this.rowPrefab.GetComponent<RectTransform>().rect.height / 2f;
@@ -455,7 +434,6 @@ public class StarmapScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600B135 RID: 45365 RVA: 0x00436504 File Offset: 0x00434704
 	private void OnSelectableChanged(object data)
 	{
 		if (!base.gameObject.activeSelf)
@@ -496,7 +474,6 @@ public class StarmapScreen : KModalScreen
 		this.Refresh(null);
 	}
 
-	// Token: 0x0600B136 RID: 45366 RVA: 0x00117C06 File Offset: 0x00115E06
 	private void ShowRocketListPanel()
 	{
 		this.listPanel.SetActive(true);
@@ -506,7 +483,6 @@ public class StarmapScreen : KModalScreen
 		this.UpdateMissionOverlay(null);
 	}
 
-	// Token: 0x0600B137 RID: 45367 RVA: 0x00117C3A File Offset: 0x00115E3A
 	private void ShowRocketDetailsPanel()
 	{
 		this.listPanel.SetActive(false);
@@ -516,7 +492,6 @@ public class StarmapScreen : KModalScreen
 		this.UpdateMissionOverlay(null);
 	}
 
-	// Token: 0x0600B138 RID: 45368 RVA: 0x0043660C File Offset: 0x0043480C
 	private void LaunchRocket(LaunchConditionManager lcm)
 	{
 		SpaceDestination spacecraftDestination = SpacecraftManager.instance.GetSpacecraftDestination(lcm);
@@ -531,20 +506,17 @@ public class StarmapScreen : KModalScreen
 		this.Refresh(null);
 	}
 
-	// Token: 0x0600B139 RID: 45369 RVA: 0x001094B0 File Offset: 0x001076B0
 	private void OnStartedTitlebarEditing()
 	{
 		base.isEditing = true;
 		KScreenManager.Instance.RefreshStack();
 	}
 
-	// Token: 0x0600B13A RID: 45370 RVA: 0x00106119 File Offset: 0x00104319
 	private void OnEndEditing(string data)
 	{
 		base.isEditing = false;
 	}
 
-	// Token: 0x0600B13B RID: 45371 RVA: 0x0043664C File Offset: 0x0043484C
 	private void FillRocketListPanel()
 	{
 		this.ClearRocketListPanel();
@@ -707,7 +679,6 @@ public class StarmapScreen : KModalScreen
 		this.UpdateRocketRowsTravelAbility();
 	}
 
-	// Token: 0x0600B13C RID: 45372 RVA: 0x00436D30 File Offset: 0x00434F30
 	public static global::Tuple<string, BreakdownListRow.Status> GetTextForState(Spacecraft.MissionState state, Spacecraft spacecraft)
 	{
 		switch (state)
@@ -726,7 +697,6 @@ public class StarmapScreen : KModalScreen
 		return new global::Tuple<string, BreakdownListRow.Status>(UI.STARMAP.MISSION_STATUS.DESTROYED, BreakdownListRow.Status.Red);
 	}
 
-	// Token: 0x0600B13D RID: 45373 RVA: 0x00436DDC File Offset: 0x00434FDC
 	private void ClearRocketListPanel()
 	{
 		this.listHeaderStatusLabel.text = UI.STARMAP.NO_ROCKETS_TITLE;
@@ -737,7 +707,6 @@ public class StarmapScreen : KModalScreen
 		this.listRocketRows.Clear();
 	}
 
-	// Token: 0x0600B13E RID: 45374 RVA: 0x00436E5C File Offset: 0x0043505C
 	private void FillChecklist(LaunchConditionManager launchConditionManager)
 	{
 		foreach (ProcessCondition processCondition in launchConditionManager.GetLaunchConditionList())
@@ -763,7 +732,6 @@ public class StarmapScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600B13F RID: 45375 RVA: 0x00436F00 File Offset: 0x00435100
 	private void SelectDestination(SpaceDestination destination)
 	{
 		this.selectedDestination = destination;
@@ -790,7 +758,6 @@ public class StarmapScreen : KModalScreen
 		this.Refresh(null);
 	}
 
-	// Token: 0x0600B140 RID: 45376 RVA: 0x00436FD0 File Offset: 0x004351D0
 	private void UpdateRocketRowsTravelAbility()
 	{
 		foreach (KeyValuePair<Spacecraft, HierarchyReferences> keyValuePair in this.listRocketRows)
@@ -807,7 +774,6 @@ public class StarmapScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600B141 RID: 45377 RVA: 0x004370A0 File Offset: 0x004352A0
 	private void RefreshAnalyzeButton()
 	{
 		if (this.selectedDestination == null)
@@ -863,7 +829,6 @@ public class StarmapScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600B142 RID: 45378 RVA: 0x00437214 File Offset: 0x00435414
 	private void Refresh(object data = null)
 	{
 		this.FillRocketListPanel();
@@ -884,7 +849,6 @@ public class StarmapScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600B143 RID: 45379 RVA: 0x0043726C File Offset: 0x0043546C
 	private void ClearRocketPanel()
 	{
 		this.rocketHeaderStatusLabel.text = UI.STARMAP.ROCKETSTATUS.NONE;
@@ -904,7 +868,6 @@ public class StarmapScreen : KModalScreen
 		LayoutRebuilder.ForceRebuildLayoutImmediate(this.rocketDetailsContainer);
 	}
 
-	// Token: 0x0600B144 RID: 45380 RVA: 0x00437320 File Offset: 0x00435520
 	private void FillRocketPanel()
 	{
 		this.ClearRocketPanel();
@@ -920,7 +883,6 @@ public class StarmapScreen : KModalScreen
 		LayoutRebuilder.ForceRebuildLayoutImmediate(this.rocketDetailsContainer);
 	}
 
-	// Token: 0x0600B145 RID: 45381 RVA: 0x0043738C File Offset: 0x0043558C
 	private void UpdateRangeDisplay()
 	{
 		this.rocketDetailsRange.AddRow().ShowData(UI.STARMAP.ROCKETSTATS.TOTAL_OXIDIZABLE_FUEL, GameUtil.GetFormattedMass(this.currentCommandModule.rocketStats.GetTotalOxidizableFuel(), GameUtil.TimeSlice.None, GameUtil.MetricMassFormat.UseThreshold, true, "{0:0.#}"));
@@ -959,7 +921,6 @@ public class StarmapScreen : KModalScreen
 		breakdownListRow4.SetImportant(true);
 	}
 
-	// Token: 0x0600B146 RID: 45382 RVA: 0x00437600 File Offset: 0x00435800
 	private void UpdateMassDisplay()
 	{
 		this.rocketDetailsMass.AddRow().ShowData(UI.STARMAP.ROCKETSTATS.DRY_MASS, GameUtil.GetFormattedMass(this.currentCommandModule.rocketStats.GetDryMass(), GameUtil.TimeSlice.None, GameUtil.MetricMassFormat.Tonne, true, "{0:0.#}"));
@@ -969,7 +930,6 @@ public class StarmapScreen : KModalScreen
 		breakdownListRow.SetImportant(true);
 	}
 
-	// Token: 0x0600B147 RID: 45383 RVA: 0x004376BC File Offset: 0x004358BC
 	private void UpdateFuelDisplay()
 	{
 		Tag engineFuelTag = this.currentCommandModule.rocketStats.GetEngineFuelTag();
@@ -1005,7 +965,6 @@ public class StarmapScreen : KModalScreen
 		breakdownListRow3.SetImportant(true);
 	}
 
-	// Token: 0x0600B148 RID: 45384 RVA: 0x0043789C File Offset: 0x00435A9C
 	private void UpdateOxidizerDisplay()
 	{
 		foreach (GameObject gameObject in AttachableBuilding.GetAttachedNetwork(this.currentCommandModule.GetComponent<AttachableBuilding>()))
@@ -1032,7 +991,6 @@ public class StarmapScreen : KModalScreen
 		breakdownListRow.SetImportant(true);
 	}
 
-	// Token: 0x0600B149 RID: 45385 RVA: 0x00437A68 File Offset: 0x00435C68
 	private void UpdateStorageDisplay()
 	{
 		float num = (this.selectedDestination != null) ? this.selectedDestination.AvailableMass : 0f;
@@ -1057,14 +1015,12 @@ public class StarmapScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600B14A RID: 45386 RVA: 0x00117C68 File Offset: 0x00115E68
 	private void ClearDestinationPanel()
 	{
 		this.destinationDetailsContainer.gameObject.SetActive(false);
 		this.destinationStatusLabel.text = UI.STARMAP.ROCKETSTATUS.NONE;
 	}
 
-	// Token: 0x0600B14B RID: 45387 RVA: 0x00437BEC File Offset: 0x00435DEC
 	private void ShowDestinationPanel()
 	{
 		if (this.selectedDestination == null)
@@ -1227,7 +1183,6 @@ public class StarmapScreen : KModalScreen
 		LayoutRebuilder.ForceRebuildLayoutImmediate(this.destinationDetailsContainer);
 	}
 
-	// Token: 0x0600B14C RID: 45388 RVA: 0x004384A8 File Offset: 0x004366A8
 	private void ValidateTravelAbility()
 	{
 		if (this.selectedDestination != null && SpacecraftManager.instance.GetDestinationAnalysisState(this.selectedDestination) == SpacecraftManager.DestinationAnalysisState.Complete && this.currentCommandModule != null && this.currentLaunchConditionManager != null)
@@ -1236,7 +1191,6 @@ public class StarmapScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x0600B14D RID: 45389 RVA: 0x00438508 File Offset: 0x00436708
 	private void UpdateDistanceOverlay(LaunchConditionManager lcmToVisualize = null)
 	{
 		if (lcmToVisualize == null)
@@ -1263,7 +1217,6 @@ public class StarmapScreen : KModalScreen
 		this.distanceOverlay.gameObject.SetActive(false);
 	}
 
-	// Token: 0x0600B14E RID: 45390 RVA: 0x00438640 File Offset: 0x00436840
 	private void UpdateMissionOverlay(LaunchConditionManager lcmToVisualize = null)
 	{
 		if (lcmToVisualize == null)
@@ -1351,274 +1304,185 @@ public class StarmapScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x04008B7F RID: 35711
 	public GameObject listPanel;
 
-	// Token: 0x04008B80 RID: 35712
 	public GameObject rocketPanel;
 
-	// Token: 0x04008B81 RID: 35713
 	public LocText listHeaderLabel;
 
-	// Token: 0x04008B82 RID: 35714
 	public LocText listHeaderStatusLabel;
 
-	// Token: 0x04008B83 RID: 35715
 	public HierarchyReferences listRocketTemplate;
 
-	// Token: 0x04008B84 RID: 35716
 	public LocText listNoRocketText;
 
-	// Token: 0x04008B85 RID: 35717
 	public RectTransform rocketListContainer;
 
-	// Token: 0x04008B86 RID: 35718
 	private Dictionary<Spacecraft, HierarchyReferences> listRocketRows = new Dictionary<Spacecraft, HierarchyReferences>();
 
-	// Token: 0x04008B87 RID: 35719
 	[Header("Shared References")]
 	public BreakdownList breakdownListPrefab;
 
-	// Token: 0x04008B88 RID: 35720
 	public GameObject progressBarPrefab;
 
-	// Token: 0x04008B89 RID: 35721
 	[Header("Selected Rocket References")]
 	public LocText rocketHeaderLabel;
 
-	// Token: 0x04008B8A RID: 35722
 	public LocText rocketHeaderStatusLabel;
 
-	// Token: 0x04008B8B RID: 35723
 	private BreakdownList rocketDetailsStatus;
 
-	// Token: 0x04008B8C RID: 35724
 	public Sprite rocketDetailsStatusIcon;
 
-	// Token: 0x04008B8D RID: 35725
 	private BreakdownList rocketDetailsChecklist;
 
-	// Token: 0x04008B8E RID: 35726
 	public Sprite rocketDetailsChecklistIcon;
 
-	// Token: 0x04008B8F RID: 35727
 	private BreakdownList rocketDetailsMass;
 
-	// Token: 0x04008B90 RID: 35728
 	public Sprite rocketDetailsMassIcon;
 
-	// Token: 0x04008B91 RID: 35729
 	private BreakdownList rocketDetailsRange;
 
-	// Token: 0x04008B92 RID: 35730
 	public Sprite rocketDetailsRangeIcon;
 
-	// Token: 0x04008B93 RID: 35731
 	public RocketThrustWidget rocketThrustWidget;
 
-	// Token: 0x04008B94 RID: 35732
 	private BreakdownList rocketDetailsStorage;
 
-	// Token: 0x04008B95 RID: 35733
 	public Sprite rocketDetailsStorageIcon;
 
-	// Token: 0x04008B96 RID: 35734
 	private BreakdownList rocketDetailsDupes;
 
-	// Token: 0x04008B97 RID: 35735
 	public Sprite rocketDetailsDupesIcon;
 
-	// Token: 0x04008B98 RID: 35736
 	private BreakdownList rocketDetailsFuel;
 
-	// Token: 0x04008B99 RID: 35737
 	public Sprite rocketDetailsFuelIcon;
 
-	// Token: 0x04008B9A RID: 35738
 	private BreakdownList rocketDetailsOxidizer;
 
-	// Token: 0x04008B9B RID: 35739
 	public Sprite rocketDetailsOxidizerIcon;
 
-	// Token: 0x04008B9C RID: 35740
 	public RectTransform rocketDetailsContainer;
 
-	// Token: 0x04008B9D RID: 35741
 	[Header("Selected Destination References")]
 	public LocText destinationHeaderLabel;
 
-	// Token: 0x04008B9E RID: 35742
 	public LocText destinationStatusLabel;
 
-	// Token: 0x04008B9F RID: 35743
 	public LocText destinationNameLabel;
 
-	// Token: 0x04008BA0 RID: 35744
 	public LocText destinationTypeNameLabel;
 
-	// Token: 0x04008BA1 RID: 35745
 	public LocText destinationTypeValueLabel;
 
-	// Token: 0x04008BA2 RID: 35746
 	public LocText destinationDistanceNameLabel;
 
-	// Token: 0x04008BA3 RID: 35747
 	public LocText destinationDistanceValueLabel;
 
-	// Token: 0x04008BA4 RID: 35748
 	public LocText destinationDescriptionLabel;
 
-	// Token: 0x04008BA5 RID: 35749
 	private BreakdownList destinationDetailsAnalysis;
 
-	// Token: 0x04008BA6 RID: 35750
 	private GenericUIProgressBar destinationAnalysisProgressBar;
 
-	// Token: 0x04008BA7 RID: 35751
 	public Sprite destinationDetailsAnalysisIcon;
 
-	// Token: 0x04008BA8 RID: 35752
 	private BreakdownList destinationDetailsResearch;
 
-	// Token: 0x04008BA9 RID: 35753
 	public Sprite destinationDetailsResearchIcon;
 
-	// Token: 0x04008BAA RID: 35754
 	private BreakdownList destinationDetailsMass;
 
-	// Token: 0x04008BAB RID: 35755
 	public Sprite destinationDetailsMassIcon;
 
-	// Token: 0x04008BAC RID: 35756
 	private BreakdownList destinationDetailsComposition;
 
-	// Token: 0x04008BAD RID: 35757
 	public Sprite destinationDetailsCompositionIcon;
 
-	// Token: 0x04008BAE RID: 35758
 	private BreakdownList destinationDetailsResources;
 
-	// Token: 0x04008BAF RID: 35759
 	public Sprite destinationDetailsResourcesIcon;
 
-	// Token: 0x04008BB0 RID: 35760
 	private BreakdownList destinationDetailsArtifacts;
 
-	// Token: 0x04008BB1 RID: 35761
 	public Sprite destinationDetailsArtifactsIcon;
 
-	// Token: 0x04008BB2 RID: 35762
 	public RectTransform destinationDetailsContainer;
 
-	// Token: 0x04008BB3 RID: 35763
 	public MultiToggle showRocketsButton;
 
-	// Token: 0x04008BB4 RID: 35764
 	public MultiToggle launchButton;
 
-	// Token: 0x04008BB5 RID: 35765
 	public MultiToggle analyzeButton;
 
-	// Token: 0x04008BB6 RID: 35766
 	private int rocketConditionEventHandler = -1;
 
-	// Token: 0x04008BB7 RID: 35767
 	[Header("Map References")]
 	public RectTransform Map;
 
-	// Token: 0x04008BB8 RID: 35768
 	public RectTransform rowsContiner;
 
-	// Token: 0x04008BB9 RID: 35769
 	public GameObject rowPrefab;
 
-	// Token: 0x04008BBA RID: 35770
 	public StarmapPlanet planetPrefab;
 
-	// Token: 0x04008BBB RID: 35771
 	public GameObject rocketIconPrefab;
 
-	// Token: 0x04008BBC RID: 35772
 	private List<GameObject> planetRows = new List<GameObject>();
 
-	// Token: 0x04008BBD RID: 35773
 	private Dictionary<SpaceDestination, StarmapPlanet> planetWidgets = new Dictionary<SpaceDestination, StarmapPlanet>();
 
-	// Token: 0x04008BBE RID: 35774
 	private float planetsMaxDistance = 1f;
 
-	// Token: 0x04008BBF RID: 35775
 	public Image distanceOverlay;
 
-	// Token: 0x04008BC0 RID: 35776
 	private int distanceOverlayVerticalOffset = 500;
 
-	// Token: 0x04008BC1 RID: 35777
 	private int distanceOverlayYOffset = 24;
 
-	// Token: 0x04008BC2 RID: 35778
 	public Image visualizeRocketImage;
 
-	// Token: 0x04008BC3 RID: 35779
 	public Image visualizeRocketTrajectory;
 
-	// Token: 0x04008BC4 RID: 35780
 	public LocText visualizeRocketLabel;
 
-	// Token: 0x04008BC5 RID: 35781
 	public LocText visualizeRocketProgress;
 
-	// Token: 0x04008BC6 RID: 35782
 	public Color[] distanceColors;
 
-	// Token: 0x04008BC7 RID: 35783
 	public LocText titleBarLabel;
 
-	// Token: 0x04008BC8 RID: 35784
 	public KButton button;
 
-	// Token: 0x04008BC9 RID: 35785
 	private const int DESTINATION_ICON_SCALE = 2;
 
-	// Token: 0x04008BCA RID: 35786
 	public static StarmapScreen Instance;
 
-	// Token: 0x04008BCB RID: 35787
 	private int selectionUpdateHandle = -1;
 
-	// Token: 0x04008BCC RID: 35788
 	private SpaceDestination selectedDestination;
 
-	// Token: 0x04008BCD RID: 35789
 	private KSelectable currentSelectable;
 
-	// Token: 0x04008BCE RID: 35790
 	private CommandModule currentCommandModule;
 
-	// Token: 0x04008BCF RID: 35791
 	private LaunchConditionManager currentLaunchConditionManager;
 
-	// Token: 0x04008BD0 RID: 35792
 	private bool currentRocketHasGasContainer;
 
-	// Token: 0x04008BD1 RID: 35793
 	private bool currentRocketHasLiquidContainer;
 
-	// Token: 0x04008BD2 RID: 35794
 	private bool currentRocketHasSolidContainer;
 
-	// Token: 0x04008BD3 RID: 35795
 	private bool currentRocketHasEntitiesContainer;
 
-	// Token: 0x04008BD4 RID: 35796
 	private bool forceScrollDown = true;
 
-	// Token: 0x04008BD5 RID: 35797
 	private Coroutine animateAnalysisRoutine;
 
-	// Token: 0x04008BD6 RID: 35798
 	private Coroutine animateSelectedPlanetRoutine;
 
-	// Token: 0x04008BD7 RID: 35799
 	private BreakdownListRow rangeRowTotal;
 }

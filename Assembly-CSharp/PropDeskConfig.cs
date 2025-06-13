@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000517 RID: 1303
 public class PropDeskConfig : IEntityConfig
 {
-	// Token: 0x0600165D RID: 5725 RVA: 0x001A2CB8 File Offset: 0x001A0EB8
 	public GameObject CreatePrefab()
 	{
 		string id = "PropDesk";
@@ -28,7 +26,6 @@ public class PropDeskConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x0600165E RID: 5726 RVA: 0x000AA768 File Offset: 0x000A8968
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.GetComponent<OccupyArea>().objectLayers = new ObjectLayer[]
@@ -37,7 +34,6 @@ public class PropDeskConfig : IEntityConfig
 		};
 	}
 
-	// Token: 0x0600165F RID: 5727 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}

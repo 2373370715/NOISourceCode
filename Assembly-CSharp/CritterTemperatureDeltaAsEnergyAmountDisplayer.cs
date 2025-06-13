@@ -2,15 +2,12 @@
 using Klei.AI;
 using STRINGS;
 
-// Token: 0x02001C3E RID: 7230
 public class CritterTemperatureDeltaAsEnergyAmountDisplayer : StandardAmountDisplayer
 {
-	// Token: 0x0600964D RID: 38477 RVA: 0x00106542 File Offset: 0x00104742
 	public CritterTemperatureDeltaAsEnergyAmountDisplayer(GameUtil.UnitClass unitClass, GameUtil.TimeSlice timeSlice) : base(unitClass, timeSlice, null, GameUtil.IdentityDescriptorTense.Normal)
 	{
 	}
 
-	// Token: 0x0600964E RID: 38478 RVA: 0x003AC04C File Offset: 0x003AA24C
 	public override string GetTooltip(Amount master, AmountInstance instance)
 	{
 		CritterTemperatureMonitor.Def def = instance.gameObject.GetDef<CritterTemperatureMonitor.Def>();

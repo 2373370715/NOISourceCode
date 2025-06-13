@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020017C2 RID: 6082
 public static class DiscreteShadowCaster
 {
-	// Token: 0x06007D06 RID: 32006 RVA: 0x000F6BC4 File Offset: 0x000F4DC4
 	public static DiscreteShadowCaster.Direction OctantToDirection(DiscreteShadowCaster.Octant octant)
 	{
 		switch (octant)
@@ -27,7 +25,6 @@ public static class DiscreteShadowCaster
 		}
 	}
 
-	// Token: 0x06007D07 RID: 32007 RVA: 0x0032F53C File Offset: 0x0032D73C
 	public static Vector2I DirectionToVector(DiscreteShadowCaster.Direction dir)
 	{
 		switch (dir)
@@ -45,7 +42,6 @@ public static class DiscreteShadowCaster
 		}
 	}
 
-	// Token: 0x06007D08 RID: 32008 RVA: 0x0032F58C File Offset: 0x0032D78C
 	public static Vector2I TravelDirectionToOrtogonalDiractionVector(DiscreteShadowCaster.Direction dir)
 	{
 		switch (dir)
@@ -61,13 +57,11 @@ public static class DiscreteShadowCaster
 		}
 	}
 
-	// Token: 0x06007D09 RID: 32009 RVA: 0x000F6BF7 File Offset: 0x000F4DF7
 	public static void GetVisibleCells(int cell, List<int> visiblePoints, int range, global::LightShape shape, bool canSeeThroughTransparent = true)
 	{
 		DiscreteShadowCaster.GetVisibleCells(cell, visiblePoints, range, 0, DiscreteShadowCaster.Direction.South, shape, canSeeThroughTransparent);
 	}
 
-	// Token: 0x06007D0A RID: 32010 RVA: 0x0032F5CC File Offset: 0x0032D7CC
 	public static void GetVisibleCells(int cell, List<int> visiblePoints, int range, int width, DiscreteShadowCaster.Direction direction, global::LightShape shape, bool canSeeThroughTransparent = true)
 	{
 		visiblePoints.Add(cell);
@@ -96,7 +90,6 @@ public static class DiscreteShadowCaster
 		}
 	}
 
-	// Token: 0x06007D0B RID: 32011 RVA: 0x0032F734 File Offset: 0x0032D934
 	public static void ScanQuad(Vector2I cellPos, DiscreteShadowCaster.Direction direction, int width, int range, List<int> visiblePoints, bool canSeeThroughTransparent)
 	{
 		if (width <= 0 || range <= 0)
@@ -139,14 +132,12 @@ public static class DiscreteShadowCaster
 		}
 	}
 
-	// Token: 0x06007D0C RID: 32012 RVA: 0x0032F884 File Offset: 0x0032DA84
 	private static bool DoesOcclude(int x, int y, bool canSeeThroughTransparent = false)
 	{
 		int num = Grid.XYToCell(x, y);
 		return Grid.IsValidCell(num) && (!canSeeThroughTransparent || !Grid.Transparent[num]) && Grid.Solid[num];
 	}
 
-	// Token: 0x06007D0D RID: 32013 RVA: 0x0032F8C0 File Offset: 0x0032DAC0
 	private static void ScanOctant(Vector2I cellPos, int range, int depth, DiscreteShadowCaster.Octant octant, double startSlope, double endSlope, List<int> visiblePoints, bool canSeeThroughTransparent = true)
 	{
 		int num = range * range;
@@ -484,7 +475,6 @@ public static class DiscreteShadowCaster
 		}
 	}
 
-	// Token: 0x06007D0E RID: 32014 RVA: 0x000F6C06 File Offset: 0x000F4E06
 	private static double GetSlope(double pX1, double pY1, double pX2, double pY2, bool pInvert)
 	{
 		if (pInvert)
@@ -494,43 +484,28 @@ public static class DiscreteShadowCaster
 		return (pX1 - pX2) / (pY1 - pY2);
 	}
 
-	// Token: 0x06007D0F RID: 32015 RVA: 0x000F6C1B File Offset: 0x000F4E1B
 	private static int GetVisDistance(int pX1, int pY1, int pX2, int pY2)
 	{
 		return (pX1 - pX2) * (pX1 - pX2) + (pY1 - pY2) * (pY1 - pY2);
 	}
 
-	// Token: 0x020017C3 RID: 6083
 	public enum Octant
 	{
-		// Token: 0x04005E28 RID: 24104
 		N_NW,
-		// Token: 0x04005E29 RID: 24105
 		N_NE,
-		// Token: 0x04005E2A RID: 24106
 		E_NE,
-		// Token: 0x04005E2B RID: 24107
 		E_SE,
-		// Token: 0x04005E2C RID: 24108
 		S_SE,
-		// Token: 0x04005E2D RID: 24109
 		S_SW,
-		// Token: 0x04005E2E RID: 24110
 		W_SW,
-		// Token: 0x04005E2F RID: 24111
 		W_NW
 	}
 
-	// Token: 0x020017C4 RID: 6084
 	public enum Direction
 	{
-		// Token: 0x04005E31 RID: 24113
 		North,
-		// Token: 0x04005E32 RID: 24114
 		East,
-		// Token: 0x04005E33 RID: 24115
 		South,
-		// Token: 0x04005E34 RID: 24116
 		West
 	}
 }

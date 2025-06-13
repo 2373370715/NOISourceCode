@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using ProcGen;
 using TUNING;
 
-// Token: 0x020020DD RID: 8413
 public class BestFit
 {
-	// Token: 0x0600B355 RID: 45909 RVA: 0x004417E0 File Offset: 0x0043F9E0
 	public static Vector2I BestFitWorlds(List<WorldPlacement> worldsToArrange, bool ignoreBestFitY = false)
 	{
 		List<BestFit.Rect> list = new List<BestFit.Rect>();
@@ -46,7 +44,6 @@ public class BestFit
 		return vector2I;
 	}
 
-	// Token: 0x0600B356 RID: 45910 RVA: 0x0044199C File Offset: 0x0043FB9C
 	private static bool UnoccupiedSpace(BestFit.Rect RectA, List<BestFit.Rect> placed)
 	{
 		foreach (BestFit.Rect rect in placed)
@@ -59,7 +56,6 @@ public class BestFit
 		return true;
 	}
 
-	// Token: 0x0600B357 RID: 45911 RVA: 0x00441A2C File Offset: 0x0043FC2C
 	public static Vector2I GetGridOffset(IList<WorldContainer> existingWorlds, Vector2I newWorldSize, out Vector2I newWorldOffset)
 	{
 		List<BestFit.Rect> list = new List<BestFit.Rect>();
@@ -88,7 +84,6 @@ public class BestFit
 		return result;
 	}
 
-	// Token: 0x0600B358 RID: 45912 RVA: 0x00441B70 File Offset: 0x0043FD70
 	public static int CountRocketInteriors(IList<WorldContainer> existingWorlds)
 	{
 		int num = 0;
@@ -107,7 +102,6 @@ public class BestFit
 		return num;
 	}
 
-	// Token: 0x0600B359 RID: 45913 RVA: 0x00441C38 File Offset: 0x0043FE38
 	private static bool PlaceWorld(List<BestFit.Rect> placedWorlds, Vector2I newWorldSize, out Vector2I newWorldOffset)
 	{
 		Vector2I vector2I = new Vector2I(Grid.WidthInCells, 0);
@@ -130,11 +124,8 @@ public class BestFit
 		return vector2I2.x + newWorldSize.x <= Grid.WidthInCells && vector2I2.y + newWorldSize.y <= Grid.HeightInCells;
 	}
 
-	// Token: 0x020020DE RID: 8414
 	private struct Rect
 	{
-		// Token: 0x17000B76 RID: 2934
-		// (get) Token: 0x0600B35B RID: 45915 RVA: 0x001191D6 File Offset: 0x001173D6
 		public int X1
 		{
 			get
@@ -143,8 +134,6 @@ public class BestFit
 			}
 		}
 
-		// Token: 0x17000B77 RID: 2935
-		// (get) Token: 0x0600B35C RID: 45916 RVA: 0x001191DE File Offset: 0x001173DE
 		public int X2
 		{
 			get
@@ -153,8 +142,6 @@ public class BestFit
 			}
 		}
 
-		// Token: 0x17000B78 RID: 2936
-		// (get) Token: 0x0600B35D RID: 45917 RVA: 0x001191EF File Offset: 0x001173EF
 		public int Y1
 		{
 			get
@@ -163,8 +150,6 @@ public class BestFit
 			}
 		}
 
-		// Token: 0x17000B79 RID: 2937
-		// (get) Token: 0x0600B35E RID: 45918 RVA: 0x001191F7 File Offset: 0x001173F7
 		public int Y2
 		{
 			get
@@ -173,7 +158,6 @@ public class BestFit
 			}
 		}
 
-		// Token: 0x0600B35F RID: 45919 RVA: 0x00119208 File Offset: 0x00117408
 		public Rect(int x, int y, int width, int height)
 		{
 			this.x = x;
@@ -182,16 +166,12 @@ public class BestFit
 			this.height = height;
 		}
 
-		// Token: 0x04008DEB RID: 36331
 		private int x;
 
-		// Token: 0x04008DEC RID: 36332
 		private int y;
 
-		// Token: 0x04008DED RID: 36333
 		private int width;
 
-		// Token: 0x04008DEE RID: 36334
 		private int height;
 	}
 }

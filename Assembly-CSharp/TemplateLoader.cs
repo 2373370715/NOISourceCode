@@ -5,23 +5,19 @@ using Klei.AI;
 using TemplateClasses;
 using UnityEngine;
 
-// Token: 0x020014A5 RID: 5285
 public static class TemplateLoader
 {
-	// Token: 0x06006D66 RID: 28006 RVA: 0x002F8D5C File Offset: 0x002F6F5C
 	public static void Stamp(TemplateContainer template, Vector2 rootLocation, System.Action on_complete_callback)
 	{
 		TemplateLoader.ActiveStamp item = new TemplateLoader.ActiveStamp(template, rootLocation, on_complete_callback);
 		TemplateLoader.activeStamps.Add(item);
 	}
 
-	// Token: 0x06006D67 RID: 28007 RVA: 0x000EC557 File Offset: 0x000EA757
 	private static void StampComplete(TemplateLoader.ActiveStamp stamp)
 	{
 		TemplateLoader.activeStamps.Remove(stamp);
 	}
 
-	// Token: 0x06006D68 RID: 28008 RVA: 0x002F8D80 File Offset: 0x002F6F80
 	private static void BuildPhase1(int baseX, int baseY, TemplateContainer template, System.Action callback)
 	{
 		if (Grid.WidthInCells < 16)
@@ -51,7 +47,6 @@ public static class TemplateLoader
 		callback();
 	}
 
-	// Token: 0x06006D69 RID: 28009 RVA: 0x002F8E44 File Offset: 0x002F7044
 	private static void BuildPhase2(int baseX, int baseY, TemplateContainer template, System.Action callback)
 	{
 		int num = Grid.OffsetCell(0, baseX, baseY);
@@ -78,7 +73,6 @@ public static class TemplateLoader
 		handle.index = -1;
 	}
 
-	// Token: 0x06006D6A RID: 28010 RVA: 0x002F8F60 File Offset: 0x002F7160
 	public static GameObject PlaceBuilding(Prefab prefab, int root_cell)
 	{
 		if (prefab == null || prefab.id == "")
@@ -253,7 +247,6 @@ public static class TemplateLoader
 		return gameObject;
 	}
 
-	// Token: 0x06006D6B RID: 28011 RVA: 0x002F94AC File Offset: 0x002F76AC
 	public static void PlaceUtilityConnection(GameObject spawned, Prefab bc, int root_cell)
 	{
 		int cell = Grid.OffsetCell(root_cell, bc.location_x, bc.location_y);
@@ -455,7 +448,6 @@ public static class TemplateLoader
 		});
 	}
 
-	// Token: 0x06006D6C RID: 28012 RVA: 0x002F9724 File Offset: 0x002F7924
 	public static GameObject PlacePickupables(Prefab prefab, int root_cell)
 	{
 		int location_x = prefab.location_x;
@@ -486,7 +478,6 @@ public static class TemplateLoader
 		return gameObject;
 	}
 
-	// Token: 0x06006D6D RID: 28013 RVA: 0x002F9820 File Offset: 0x002F7A20
 	public static GameObject PlaceOtherEntities(Prefab prefab, int root_cell)
 	{
 		int location_x = prefab.location_x;
@@ -535,7 +526,6 @@ public static class TemplateLoader
 		return gameObject;
 	}
 
-	// Token: 0x06006D6E RID: 28014 RVA: 0x002F9958 File Offset: 0x002F7B58
 	public static GameObject PlaceElementalOres(Prefab prefab, int root_cell)
 	{
 		int location_x = prefab.location_x;
@@ -555,7 +545,6 @@ public static class TemplateLoader
 		return substance.SpawnResource(position, prefab.units, prefab.temperature, index, prefab.diseaseCount, false, false, false);
 	}
 
-	// Token: 0x06006D6F RID: 28015 RVA: 0x002F9A00 File Offset: 0x002F7C00
 	private static void BuildPhase3(int baseX, int baseY, TemplateContainer template, System.Action callback)
 	{
 		if (template != null)
@@ -596,7 +585,6 @@ public static class TemplateLoader
 		}
 	}
 
-	// Token: 0x06006D70 RID: 28016 RVA: 0x002F9B3C File Offset: 0x002F7D3C
 	private static void BuildPhase4(int baseX, int baseY, TemplateContainer template, System.Action callback)
 	{
 		if (template != null)
@@ -620,7 +608,6 @@ public static class TemplateLoader
 		}
 	}
 
-	// Token: 0x06006D71 RID: 28017 RVA: 0x002F9BC0 File Offset: 0x002F7DC0
 	private static void ClearPickups(int baseX, int baseY, CellOffset[] template_as_offsets)
 	{
 		if (SaveGame.Instance.worldGenSpawner != null)
@@ -636,7 +623,6 @@ public static class TemplateLoader
 		}
 	}
 
-	// Token: 0x06006D72 RID: 28018 RVA: 0x002F9C60 File Offset: 0x002F7E60
 	private static void ClearEntities<T>(int rootX, int rootY, CellOffset[] TemplateOffsets) where T : KMonoBehaviour
 	{
 		foreach (T t in (T[])UnityEngine.Object.FindObjectsOfType(typeof(T)))
@@ -648,7 +634,6 @@ public static class TemplateLoader
 		}
 	}
 
-	// Token: 0x06006D73 RID: 28019 RVA: 0x002F9CC8 File Offset: 0x002F7EC8
 	private static void PlaceCells(int baseX, int baseY, TemplateContainer template, System.Action callback)
 	{
 		if (template == null)
@@ -685,7 +670,6 @@ public static class TemplateLoader
 		}
 	}
 
-	// Token: 0x06006D74 RID: 28020 RVA: 0x002F9E54 File Offset: 0x002F8054
 	public static void ApplyGridProperties(int baseX, int baseY, TemplateContainer template)
 	{
 		if (template.cells == null)
@@ -703,13 +687,10 @@ public static class TemplateLoader
 		}
 	}
 
-	// Token: 0x04005281 RID: 21121
 	private static List<TemplateLoader.ActiveStamp> activeStamps = new List<TemplateLoader.ActiveStamp>();
 
-	// Token: 0x020014A6 RID: 5286
 	private class ActiveStamp
 	{
-		// Token: 0x06006D76 RID: 28022 RVA: 0x000EC571 File Offset: 0x000EA771
 		public ActiveStamp(TemplateContainer template, Vector2 rootLocation, System.Action onCompleteCallback)
 		{
 			this.m_template = template;
@@ -718,7 +699,6 @@ public static class TemplateLoader
 			this.NextPhase();
 		}
 
-		// Token: 0x06006D77 RID: 28023 RVA: 0x002F9EDC File Offset: 0x002F80DC
 		private void NextPhase()
 		{
 			this.currentPhase++;
@@ -746,16 +726,12 @@ public static class TemplateLoader
 			}
 		}
 
-		// Token: 0x04005282 RID: 21122
 		private TemplateContainer m_template;
 
-		// Token: 0x04005283 RID: 21123
 		private Vector2I m_rootLocation;
 
-		// Token: 0x04005284 RID: 21124
 		private System.Action m_onCompleteCallback;
 
-		// Token: 0x04005285 RID: 21125
 		private int currentPhase;
 	}
 }

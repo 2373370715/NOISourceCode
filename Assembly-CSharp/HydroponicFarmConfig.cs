@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200038D RID: 909
 public class HydroponicFarmConfig : IBuildingConfig
 {
-	// Token: 0x06000E99 RID: 3737 RVA: 0x0018412C File Offset: 0x0018232C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "HydroponicFarm";
@@ -39,7 +37,6 @@ public class HydroponicFarmConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000E9A RID: 3738 RVA: 0x00184204 File Offset: 0x00182404
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		SimCellOccupier simCellOccupier = go.AddOrGet<SimCellOccupier>();
@@ -66,7 +63,6 @@ public class HydroponicFarmConfig : IBuildingConfig
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x06000E9B RID: 3739 RVA: 0x000B0B39 File Offset: 0x000AED39
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		FarmTileConfig.SetUpFarmPlotTags(go);
@@ -74,6 +70,5 @@ public class HydroponicFarmConfig : IBuildingConfig
 		go.GetComponent<RequireInputs>().requireConduitHasMass = false;
 	}
 
-	// Token: 0x04000ABF RID: 2751
 	public const string ID = "HydroponicFarm";
 }

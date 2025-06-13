@@ -3,10 +3,8 @@ using Klei.AI;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000741 RID: 1857
 public class RoboDancerChore : Chore<RoboDancerChore.StatesInstance>, IWorkerPrioritizable
 {
-	// Token: 0x060020A5 RID: 8357 RVA: 0x001C8F98 File Offset: 0x001C7198
 	public RoboDancerChore(IStateMachineTarget target) : base(Db.Get().ChoreTypes.JoyReaction, target, target.GetComponent<ChoreProvider>(), false, null, null, null, PriorityScreen.PriorityClass.high, 5, false, true, 0, false, ReportManager.ReportType.PersonalTime)
 	{
 		this.showAvailabilityInHoverText = false;
@@ -16,20 +14,16 @@ public class RoboDancerChore : Chore<RoboDancerChore.StatesInstance>, IWorkerPri
 		this.AddPrecondition(ChorePreconditions.instance.CanDoWorkerPrioritizable, this);
 	}
 
-	// Token: 0x060020A6 RID: 8358 RVA: 0x000B9DB5 File Offset: 0x000B7FB5
 	public bool GetWorkerPriority(WorkerBase worker, out int priority)
 	{
 		priority = this.basePriority;
 		return true;
 	}
 
-	// Token: 0x040015B7 RID: 5559
 	private int basePriority = RELAXATION.PRIORITY.TIER1;
 
-	// Token: 0x02000742 RID: 1858
 	public class States : GameStateMachine<RoboDancerChore.States, RoboDancerChore.StatesInstance, RoboDancerChore>
 	{
-		// Token: 0x060020A7 RID: 8359 RVA: 0x001C9034 File Offset: 0x001C7234
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.goToStand;
@@ -56,39 +50,28 @@ public class RoboDancerChore : Chore<RoboDancerChore.StatesInstance>, IWorkerPri
 			this.dancing.pst.QueueAnim("robotdance_pst", false, null).OnAnimQueueComplete(this.dancing.pre);
 		}
 
-		// Token: 0x040015B8 RID: 5560
 		public StateMachine<RoboDancerChore.States, RoboDancerChore.StatesInstance, RoboDancerChore, object>.TargetParameter roboDancer;
 
-		// Token: 0x040015B9 RID: 5561
 		public GameStateMachine<RoboDancerChore.States, RoboDancerChore.StatesInstance, RoboDancerChore, object>.State idle;
 
-		// Token: 0x040015BA RID: 5562
 		public GameStateMachine<RoboDancerChore.States, RoboDancerChore.StatesInstance, RoboDancerChore, object>.State goToStand;
 
-		// Token: 0x040015BB RID: 5563
 		public RoboDancerChore.States.DancingStates dancing;
 
-		// Token: 0x02000743 RID: 1859
 		public class DancingStates : GameStateMachine<RoboDancerChore.States, RoboDancerChore.StatesInstance, RoboDancerChore, object>.State
 		{
-			// Token: 0x040015BC RID: 5564
 			public GameStateMachine<RoboDancerChore.States, RoboDancerChore.StatesInstance, RoboDancerChore, object>.State pre;
 
-			// Token: 0x040015BD RID: 5565
 			public GameStateMachine<RoboDancerChore.States, RoboDancerChore.StatesInstance, RoboDancerChore, object>.State variation_1;
 
-			// Token: 0x040015BE RID: 5566
 			public GameStateMachine<RoboDancerChore.States, RoboDancerChore.StatesInstance, RoboDancerChore, object>.State variation_2;
 
-			// Token: 0x040015BF RID: 5567
 			public GameStateMachine<RoboDancerChore.States, RoboDancerChore.StatesInstance, RoboDancerChore, object>.State pst;
 		}
 	}
 
-	// Token: 0x02000745 RID: 1861
 	public class StatesInstance : GameStateMachine<RoboDancerChore.States, RoboDancerChore.StatesInstance, RoboDancerChore, object>.GameInstance
 	{
-		// Token: 0x060020B1 RID: 8369 RVA: 0x001C9248 File Offset: 0x001C7448
 		public StatesInstance(RoboDancerChore master, GameObject roboDancer)
 		{
 			Chore.Precondition isNotRoboHyped = default(Chore.Precondition);
@@ -104,13 +87,11 @@ public class RoboDancerChore : Chore<RoboDancerChore.StatesInstance>, IWorkerPri
 			base.sm.roboDancer.Set(roboDancer, base.smi, false);
 		}
 
-		// Token: 0x060020B2 RID: 8370 RVA: 0x000B9E05 File Offset: 0x000B8005
 		public bool IsRecTime()
 		{
 			return base.master.GetComponent<Schedulable>().IsAllowed(Db.Get().ScheduleBlockTypes.Recreation);
 		}
 
-		// Token: 0x060020B3 RID: 8371 RVA: 0x001C92D8 File Offset: 0x001C74D8
 		public int GetTargetCell()
 		{
 			Navigator component = base.GetComponent<Navigator>();
@@ -132,7 +113,6 @@ public class RoboDancerChore : Chore<RoboDancerChore.StatesInstance>, IWorkerPri
 			return Grid.PosToCell(base.master.gameObject);
 		}
 
-		// Token: 0x060020B4 RID: 8372 RVA: 0x001C9388 File Offset: 0x001C7588
 		public bool HasAudience()
 		{
 			if (base.smi.watchWorkables == null)
@@ -150,7 +130,6 @@ public class RoboDancerChore : Chore<RoboDancerChore.StatesInstance>, IWorkerPri
 			return false;
 		}
 
-		// Token: 0x060020B5 RID: 8373 RVA: 0x001C93D0 File Offset: 0x001C75D0
 		public void CreateAudienceWorkables()
 		{
 			int num = Grid.PosToCell(base.gameObject);
@@ -189,7 +168,6 @@ public class RoboDancerChore : Chore<RoboDancerChore.StatesInstance>, IWorkerPri
 			}
 		}
 
-		// Token: 0x060020B6 RID: 8374 RVA: 0x001C9578 File Offset: 0x001C7778
 		public void ClearAudienceWorkables()
 		{
 			for (int i = 0; i < this.audienceWorkables.Length; i++)
@@ -207,16 +185,12 @@ public class RoboDancerChore : Chore<RoboDancerChore.StatesInstance>, IWorkerPri
 			this.watchWorkables = null;
 		}
 
-		// Token: 0x040015C5 RID: 5573
 		private GameObject roboDancer;
 
-		// Token: 0x040015C6 RID: 5574
 		private GameObject[] audienceWorkables = new GameObject[4];
 
-		// Token: 0x040015C7 RID: 5575
 		private WatchRoboDancerWorkable[] watchWorkables;
 
-		// Token: 0x040015C8 RID: 5576
 		private Chore.Precondition IsNotRoboHyped;
 	}
 }

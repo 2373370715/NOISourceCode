@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200074F RID: 1871
 public class SleepChore : Chore<SleepChore.StatesInstance>
 {
-	// Token: 0x060020D1 RID: 8401 RVA: 0x001C9AE8 File Offset: 0x001C7CE8
 	public static void DisplayCustomStatusItemsWhenAsleep(SleepChore.StatesInstance smi)
 	{
 		if (smi.optional_StatusItemsDisplayedWhileAsleep == null)
@@ -22,7 +20,6 @@ public class SleepChore : Chore<SleepChore.StatesInstance>
 		}
 	}
 
-	// Token: 0x060020D2 RID: 8402 RVA: 0x001C9B30 File Offset: 0x001C7D30
 	public static void RemoveCustomStatusItemsWhenAsleep(SleepChore.StatesInstance smi)
 	{
 		if (smi.optional_StatusItemsDisplayedWhileAsleep == null)
@@ -37,12 +34,10 @@ public class SleepChore : Chore<SleepChore.StatesInstance>
 		}
 	}
 
-	// Token: 0x060020D3 RID: 8403 RVA: 0x000B9F86 File Offset: 0x000B8186
 	public SleepChore(ChoreType choreType, IStateMachineTarget target, GameObject bed, bool bedIsLocator, bool isInterruptable) : this(choreType, target, bed, bedIsLocator, isInterruptable, null)
 	{
 	}
 
-	// Token: 0x060020D4 RID: 8404 RVA: 0x001C9B78 File Offset: 0x001C7D78
 	public SleepChore(ChoreType choreType, IStateMachineTarget target, GameObject bed, bool bedIsLocator, bool isInterruptable, StatusItem[] optional_StatusItemsDisplayedWhileAsleep) : base(choreType, target, target.GetComponent<ChoreProvider>(), false, null, null, null, PriorityScreen.PriorityClass.personalNeeds, 5, false, true, 0, false, ReportManager.ReportType.PersonalTime)
 	{
 		base.smi = new SleepChore.StatesInstance(this, target.gameObject, bed, bedIsLocator, isInterruptable);
@@ -59,7 +54,6 @@ public class SleepChore : Chore<SleepChore.StatesInstance>
 		}
 	}
 
-	// Token: 0x060020D5 RID: 8405 RVA: 0x001C9C08 File Offset: 0x001C7E08
 	public static Sleepable GetSafeFloorLocator(GameObject sleeper)
 	{
 		int num = sleeper.GetComponent<Sensors>().GetSensor<SafeCellSensor>().GetSleepCellQuery();
@@ -70,13 +64,11 @@ public class SleepChore : Chore<SleepChore.StatesInstance>
 		return ChoreHelpers.CreateSleepLocator(Grid.CellToPosCBC(num, Grid.SceneLayer.Move)).GetComponent<Sleepable>();
 	}
 
-	// Token: 0x060020D6 RID: 8406 RVA: 0x000B9F96 File Offset: 0x000B8196
 	public static bool IsDarkAtCell(int cell)
 	{
 		return Grid.LightIntensity[cell] < DUPLICANTSTATS.STANDARD.Light.LOW_LIGHT;
 	}
 
-	// Token: 0x040015DD RID: 5597
 	public static readonly Chore.Precondition IsOkayTimeToSleep = new Chore.Precondition
 	{
 		id = "IsOkayTimeToSleep",
@@ -92,10 +84,8 @@ public class SleepChore : Chore<SleepChore.StatesInstance>
 		}
 	};
 
-	// Token: 0x02000750 RID: 1872
 	public class StatesInstance : GameStateMachine<SleepChore.States, SleepChore.StatesInstance, SleepChore, object>.GameInstance
 	{
-		// Token: 0x060020D8 RID: 8408 RVA: 0x001C9CA4 File Offset: 0x001C7EA4
 		public StatesInstance(SleepChore master, GameObject sleeper, GameObject bed, bool bedIsLocator, bool isInterruptable) : base(master)
 		{
 			base.sm.sleeper.Set(sleeper, base.smi, false);
@@ -113,7 +103,6 @@ public class SleepChore : Chore<SleepChore.StatesInstance>
 			base.sm.bed.Set(bed, base.smi, false);
 		}
 
-		// Token: 0x060020D9 RID: 8409 RVA: 0x001C9D58 File Offset: 0x001C7F58
 		public void CheckLightLevel()
 		{
 			GameObject go = base.sm.sleeper.Get(base.smi);
@@ -136,7 +125,6 @@ public class SleepChore : Chore<SleepChore.StatesInstance>
 			}
 		}
 
-		// Token: 0x060020DA RID: 8410 RVA: 0x001C9DDC File Offset: 0x001C7FDC
 		public void CheckTemperature()
 		{
 			GameObject go = base.sm.sleeper.Get(base.smi);
@@ -146,24 +134,20 @@ public class SleepChore : Chore<SleepChore.StatesInstance>
 			}
 		}
 
-		// Token: 0x060020DB RID: 8411 RVA: 0x000B9FB4 File Offset: 0x000B81B4
 		public bool IsLoudSleeper()
 		{
 			return base.sm.sleeper.Get(base.smi).GetComponent<Snorer>() != null;
 		}
 
-		// Token: 0x060020DC RID: 8412 RVA: 0x000B9FDC File Offset: 0x000B81DC
 		public bool IsGlowStick()
 		{
 			return base.sm.sleeper.Get(base.smi).GetComponent<GlowStick>() != null;
 		}
 
-		// Token: 0x060020DD RID: 8413 RVA: 0x000AA038 File Offset: 0x000A8238
 		public void EvaluateSleepQuality()
 		{
 		}
 
-		// Token: 0x060020DE RID: 8414 RVA: 0x001C9E1C File Offset: 0x001C801C
 		public void AddLocator(GameObject sleepable)
 		{
 			this.locator = sleepable;
@@ -172,7 +156,6 @@ public class SleepChore : Chore<SleepChore.StatesInstance>
 			base.sm.bed.Set(this.locator, this, false);
 		}
 
-		// Token: 0x060020DF RID: 8415 RVA: 0x001C9E64 File Offset: 0x001C8064
 		public void DestroyLocator()
 		{
 			if (this.locator != null)
@@ -184,7 +167,6 @@ public class SleepChore : Chore<SleepChore.StatesInstance>
 			}
 		}
 
-		// Token: 0x060020E0 RID: 8416 RVA: 0x001C9EBC File Offset: 0x001C80BC
 		public void SetAnim()
 		{
 			Sleepable sleepable = base.sm.bed.Get<Sleepable>(base.smi);
@@ -214,38 +196,27 @@ public class SleepChore : Chore<SleepChore.StatesInstance>
 			}
 		}
 
-		// Token: 0x040015DE RID: 5598
 		public bool hadPeacefulSleep;
 
-		// Token: 0x040015DF RID: 5599
 		public bool hadNormalSleep;
 
-		// Token: 0x040015E0 RID: 5600
 		public bool hadBadSleep;
 
-		// Token: 0x040015E1 RID: 5601
 		public bool hadTerribleSleep;
 
-		// Token: 0x040015E2 RID: 5602
 		public int lastEvaluatedDay = -1;
 
-		// Token: 0x040015E3 RID: 5603
 		public float wakeUpBuffer = 2f;
 
-		// Token: 0x040015E4 RID: 5604
 		public string stateChangeNoiseSource;
 
-		// Token: 0x040015E5 RID: 5605
 		public StatusItem[] optional_StatusItemsDisplayedWhileAsleep;
 
-		// Token: 0x040015E6 RID: 5606
 		private GameObject locator;
 	}
 
-	// Token: 0x02000751 RID: 1873
 	public class States : GameStateMachine<SleepChore.States, SleepChore.StatesInstance, SleepChore>
 	{
-		// Token: 0x060020E1 RID: 8417 RVA: 0x001C9F44 File Offset: 0x001C8144
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.approach;
@@ -357,85 +328,58 @@ public class SleepChore : Chore<SleepChore.StatesInstance>
 			}).ReturnSuccess();
 		}
 
-		// Token: 0x040015E7 RID: 5607
 		public StateMachine<SleepChore.States, SleepChore.StatesInstance, SleepChore, object>.TargetParameter sleeper;
 
-		// Token: 0x040015E8 RID: 5608
 		public StateMachine<SleepChore.States, SleepChore.StatesInstance, SleepChore, object>.TargetParameter bed;
 
-		// Token: 0x040015E9 RID: 5609
 		public StateMachine<SleepChore.States, SleepChore.StatesInstance, SleepChore, object>.BoolParameter isInterruptable;
 
-		// Token: 0x040015EA RID: 5610
 		public StateMachine<SleepChore.States, SleepChore.StatesInstance, SleepChore, object>.BoolParameter isDisturbedByNoise;
 
-		// Token: 0x040015EB RID: 5611
 		public StateMachine<SleepChore.States, SleepChore.StatesInstance, SleepChore, object>.BoolParameter isDisturbedByLight;
 
-		// Token: 0x040015EC RID: 5612
 		public StateMachine<SleepChore.States, SleepChore.StatesInstance, SleepChore, object>.BoolParameter isDisturbedByMovement;
 
-		// Token: 0x040015ED RID: 5613
 		public StateMachine<SleepChore.States, SleepChore.StatesInstance, SleepChore, object>.BoolParameter isDisturbedByCold;
 
-		// Token: 0x040015EE RID: 5614
 		public StateMachine<SleepChore.States, SleepChore.StatesInstance, SleepChore, object>.BoolParameter isScaredOfDark;
 
-		// Token: 0x040015EF RID: 5615
 		public StateMachine<SleepChore.States, SleepChore.StatesInstance, SleepChore, object>.BoolParameter needsNightLight;
 
-		// Token: 0x040015F0 RID: 5616
 		public GameStateMachine<SleepChore.States, SleepChore.StatesInstance, SleepChore, object>.ApproachSubState<IApproachable> approach;
 
-		// Token: 0x040015F1 RID: 5617
 		public SleepChore.States.SleepStates sleep;
 
-		// Token: 0x040015F2 RID: 5618
 		public GameStateMachine<SleepChore.States, SleepChore.StatesInstance, SleepChore, object>.State success;
 
-		// Token: 0x02000752 RID: 1874
 		public class SleepStates : GameStateMachine<SleepChore.States, SleepChore.StatesInstance, SleepChore, object>.State
 		{
-			// Token: 0x040015F3 RID: 5619
 			public GameStateMachine<SleepChore.States, SleepChore.StatesInstance, SleepChore, object>.State condition_transition;
 
-			// Token: 0x040015F4 RID: 5620
 			public GameStateMachine<SleepChore.States, SleepChore.StatesInstance, SleepChore, object>.State condition_transition_pre;
 
-			// Token: 0x040015F5 RID: 5621
 			public GameStateMachine<SleepChore.States, SleepChore.StatesInstance, SleepChore, object>.State uninterruptable;
 
-			// Token: 0x040015F6 RID: 5622
 			public GameStateMachine<SleepChore.States, SleepChore.StatesInstance, SleepChore, object>.State normal;
 
-			// Token: 0x040015F7 RID: 5623
 			public GameStateMachine<SleepChore.States, SleepChore.StatesInstance, SleepChore, object>.State interrupt_noise;
 
-			// Token: 0x040015F8 RID: 5624
 			public GameStateMachine<SleepChore.States, SleepChore.StatesInstance, SleepChore, object>.State interrupt_noise_transition;
 
-			// Token: 0x040015F9 RID: 5625
 			public GameStateMachine<SleepChore.States, SleepChore.StatesInstance, SleepChore, object>.State interrupt_light;
 
-			// Token: 0x040015FA RID: 5626
 			public GameStateMachine<SleepChore.States, SleepChore.StatesInstance, SleepChore, object>.State interrupt_light_transition;
 
-			// Token: 0x040015FB RID: 5627
 			public GameStateMachine<SleepChore.States, SleepChore.StatesInstance, SleepChore, object>.State interrupt_scared;
 
-			// Token: 0x040015FC RID: 5628
 			public GameStateMachine<SleepChore.States, SleepChore.StatesInstance, SleepChore, object>.State interrupt_scared_transition;
 
-			// Token: 0x040015FD RID: 5629
 			public GameStateMachine<SleepChore.States, SleepChore.StatesInstance, SleepChore, object>.State interrupt_movement;
 
-			// Token: 0x040015FE RID: 5630
 			public GameStateMachine<SleepChore.States, SleepChore.StatesInstance, SleepChore, object>.State interrupt_movement_transition;
 
-			// Token: 0x040015FF RID: 5631
 			public GameStateMachine<SleepChore.States, SleepChore.StatesInstance, SleepChore, object>.State interrupt_cold;
 
-			// Token: 0x04001600 RID: 5632
 			public GameStateMachine<SleepChore.States, SleepChore.StatesInstance, SleepChore, object>.State interrupt_cold_transition;
 		}
 	}

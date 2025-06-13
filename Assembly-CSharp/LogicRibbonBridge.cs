@@ -1,9 +1,7 @@
 ﻿using System;
 
-// Token: 0x02000E9B RID: 3739
 public class LogicRibbonBridge : KMonoBehaviour
 {
-	// Token: 0x06004A48 RID: 19016 RVA: 0x00269514 File Offset: 0x00267714
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();

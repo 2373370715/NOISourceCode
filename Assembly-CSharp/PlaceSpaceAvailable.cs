@@ -2,10 +2,8 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x020018AA RID: 6314
 public class PlaceSpaceAvailable : SelectModuleCondition
 {
-	// Token: 0x06008277 RID: 33399 RVA: 0x0034A5A8 File Offset: 0x003487A8
 	public override bool EvaluateCondition(GameObject existingModule, BuildingDef selectedPart, SelectModuleCondition.SelectionContext selectionContext)
 	{
 		BuildingAttachPoint component = existingModule.GetComponent<BuildingAttachPoint>();
@@ -69,7 +67,6 @@ public class PlaceSpaceAvailable : SelectModuleCondition
 		}
 	}
 
-	// Token: 0x06008278 RID: 33400 RVA: 0x000FA4C5 File Offset: 0x000F86C5
 	public override string GetStatusTooltip(bool ready, GameObject moduleBase, BuildingDef selectedPart)
 	{
 		if (ready)

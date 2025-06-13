@@ -1,9 +1,7 @@
 ﻿using System;
 
-// Token: 0x02000FB3 RID: 4019
 public class ScannerModule : GameStateMachine<ScannerModule, ScannerModule.Instance, IStateMachineTarget, ScannerModule.Def>
 {
-	// Token: 0x060050E5 RID: 20709 RVA: 0x0027E948 File Offset: 0x0027CB48
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.root;
@@ -25,22 +23,17 @@ public class ScannerModule : GameStateMachine<ScannerModule, ScannerModule.Insta
 		});
 	}
 
-	// Token: 0x02000FB4 RID: 4020
 	public class Def : StateMachine.BaseDef
 	{
-		// Token: 0x040038FA RID: 14586
 		public int scanRadius = 1;
 	}
 
-	// Token: 0x02000FB5 RID: 4021
 	public new class Instance : GameStateMachine<ScannerModule, ScannerModule.Instance, IStateMachineTarget, ScannerModule.Def>.GameInstance
 	{
-		// Token: 0x060050E8 RID: 20712 RVA: 0x000D92C4 File Offset: 0x000D74C4
 		public Instance(IStateMachineTarget master, ScannerModule.Def def) : base(master, def)
 		{
 		}
 
-		// Token: 0x060050E9 RID: 20713 RVA: 0x0027EA68 File Offset: 0x0027CC68
 		public void Scan()
 		{
 			Clustercraft component = base.GetComponent<RocketModuleCluster>().CraftInterface.GetComponent<Clustercraft>();
@@ -56,7 +49,6 @@ public class ScannerModule : GameStateMachine<ScannerModule, ScannerModule.Insta
 			}
 		}
 
-		// Token: 0x060050EA RID: 20714 RVA: 0x0027EB08 File Offset: 0x0027CD08
 		public void SetFogOfWarAllowed()
 		{
 			CraftModuleInterface craftInterface = base.GetComponent<RocketModuleCluster>().CraftInterface;

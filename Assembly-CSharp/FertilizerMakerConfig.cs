@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200027E RID: 638
 public class FertilizerMakerConfig : IBuildingConfig
 {
-	// Token: 0x06000945 RID: 2373 RVA: 0x0016E848 File Offset: 0x0016CA48
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "FertilizerMaker";
@@ -33,7 +31,6 @@ public class FertilizerMakerConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000946 RID: 2374 RVA: 0x00148FAC File Offset: 0x001471AC
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
@@ -82,34 +79,25 @@ public class FertilizerMakerConfig : IBuildingConfig
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x06000947 RID: 2375 RVA: 0x000AA1AD File Offset: 0x000A83AD
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
 		go.AddOrGetDef<PoweredActiveController.Def>();
 	}
 
-	// Token: 0x04000728 RID: 1832
 	public const string ID = "FertilizerMaker";
 
-	// Token: 0x04000729 RID: 1833
 	private const float FERTILIZER_PER_LOAD = 10f;
 
-	// Token: 0x0400072A RID: 1834
 	private const float FERTILIZER_PRODUCTION_RATE = 0.12f;
 
-	// Token: 0x0400072B RID: 1835
 	private const float METHANE_PRODUCTION_RATE = 0.01f;
 
-	// Token: 0x0400072C RID: 1836
 	private const float _TOTAL_PRODUCTION = 0.13f;
 
-	// Token: 0x0400072D RID: 1837
 	private const float DIRT_CONSUMPTION_RATE = 0.065f;
 
-	// Token: 0x0400072E RID: 1838
 	private const float DIRTY_WATER_CONSUMPTION_RATE = 0.039f;
 
-	// Token: 0x0400072F RID: 1839
 	private const float PHOSPHORITE_CONSUMPTION_RATE = 0.025999999f;
 }

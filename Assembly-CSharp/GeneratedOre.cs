@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020004E4 RID: 1252
 public class GeneratedOre
 {
-	// Token: 0x0600158A RID: 5514 RVA: 0x0019F450 File Offset: 0x0019D650
 	public static void LoadGeneratedOre(List<Type> types)
 	{
 		Type typeFromHandle = typeof(IOreConfig);
@@ -52,7 +50,6 @@ public class GeneratedOre
 		}
 	}
 
-	// Token: 0x0600158B RID: 5515 RVA: 0x0019F604 File Offset: 0x0019D804
 	public static SubstanceChunk CreateChunk(Element element, float mass, float temperature, byte diseaseIdx, int diseaseCount, Vector3 position)
 	{
 		if (temperature <= 0f)

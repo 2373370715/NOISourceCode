@@ -3,10 +3,8 @@ using System.Collections.Generic;
 
 namespace TUNING
 {
-	// Token: 0x020022D4 RID: 8916
 	public class GERM_EXPOSURE
 	{
-		// Token: 0x0600BBDE RID: 48094 RVA: 0x0048B1BC File Offset: 0x004893BC
 		// Note: this type is marked as 'beforefieldinit'.
 		static GERM_EXPOSURE()
 		{
@@ -93,10 +91,8 @@ namespace TUNING
 			};
 		}
 
-		// Token: 0x04009C41 RID: 40001
 		public const float MIN_EXPOSURE_PERIOD = 540f;
 
-		// Token: 0x04009C42 RID: 40002
 		public static readonly int[] INHALE_TICK_THRESHOLD = new int[]
 		{
 			5,
@@ -105,13 +101,10 @@ namespace TUNING
 			20
 		};
 
-		// Token: 0x04009C43 RID: 40003
 		public static readonly float[] EXPOSURE_TIER_RESISTANCE_BONUSES;
 
-		// Token: 0x04009C44 RID: 40004
 		public const int MAX_EXPOSURE_TIER = 3;
 
-		// Token: 0x04009C45 RID: 40005
 		public static ExposureType[] TYPES;
 	}
 }

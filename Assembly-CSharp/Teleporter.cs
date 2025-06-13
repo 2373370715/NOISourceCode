@@ -3,22 +3,16 @@ using System.Collections.Generic;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x02001029 RID: 4137
 public class Teleporter : KMonoBehaviour
 {
-	// Token: 0x170004C5 RID: 1221
-	// (get) Token: 0x0600539F RID: 21407 RVA: 0x000DAE56 File Offset: 0x000D9056
-	// (set) Token: 0x060053A0 RID: 21408 RVA: 0x000DAE5E File Offset: 0x000D905E
 	[Serialize]
 	public int teleporterID { get; private set; }
 
-	// Token: 0x060053A1 RID: 21409 RVA: 0x000B74E6 File Offset: 0x000B56E6
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 	}
 
-	// Token: 0x060053A2 RID: 21410 RVA: 0x000DAE67 File Offset: 0x000D9067
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -27,7 +21,6 @@ public class Teleporter : KMonoBehaviour
 		base.Subscribe<Teleporter>(-801688580, Teleporter.OnLogicValueChangedDelegate);
 	}
 
-	// Token: 0x060053A3 RID: 21411 RVA: 0x002871EC File Offset: 0x002853EC
 	private void OnLogicValueChanged(object data)
 	{
 		LogicPorts component = base.GetComponent<LogicPorts>();
@@ -49,26 +42,22 @@ public class Teleporter : KMonoBehaviour
 		this.SetTeleporterID(num);
 	}
 
-	// Token: 0x060053A4 RID: 21412 RVA: 0x000DAE92 File Offset: 0x000D9092
 	protected override void OnCleanUp()
 	{
 		Components.Teleporters.Remove(this);
 		base.OnCleanUp();
 	}
 
-	// Token: 0x060053A5 RID: 21413 RVA: 0x000DAEA5 File Offset: 0x000D90A5
 	public bool HasTeleporterTarget()
 	{
 		return this.FindTeleportTarget() != null;
 	}
 
-	// Token: 0x060053A6 RID: 21414 RVA: 0x000DAEB3 File Offset: 0x000D90B3
 	public bool IsValidTeleportTarget(Teleporter from_tele)
 	{
 		return from_tele.teleporterID == this.teleporterID && this.operational.IsOperational;
 	}
 
-	// Token: 0x060053A7 RID: 21415 RVA: 0x002872BC File Offset: 0x002854BC
 	public Teleporter FindTeleportTarget()
 	{
 		List<Teleporter> list = new List<Teleporter>();
@@ -88,7 +77,6 @@ public class Teleporter : KMonoBehaviour
 		return result;
 	}
 
-	// Token: 0x060053A8 RID: 21416 RVA: 0x00287344 File Offset: 0x00285544
 	public void SetTeleporterID(int ID)
 	{
 		this.teleporterID = ID;
@@ -98,13 +86,11 @@ public class Teleporter : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060053A9 RID: 21417 RVA: 0x000DAED0 File Offset: 0x000D90D0
 	public void SetTeleportTarget(Teleporter target)
 	{
 		this.teleportTarget.Set(target);
 	}
 
-	// Token: 0x060053AA RID: 21418 RVA: 0x002873A8 File Offset: 0x002855A8
 	public void TeleportObjects()
 	{
 		Teleporter teleporter = this.teleportTarget.Get();
@@ -138,18 +124,14 @@ public class Teleporter : KMonoBehaviour
 		this.teleportTarget.Set(null);
 	}
 
-	// Token: 0x04003B05 RID: 15109
 	[MyCmpReq]
 	private Operational operational;
 
-	// Token: 0x04003B07 RID: 15111
 	[Serialize]
 	public Ref<Teleporter> teleportTarget = new Ref<Teleporter>();
 
-	// Token: 0x04003B08 RID: 15112
 	public int ID_LENGTH = 4;
 
-	// Token: 0x04003B09 RID: 15113
 	private static readonly EventSystem.IntraObjectHandler<Teleporter> OnLogicValueChangedDelegate = new EventSystem.IntraObjectHandler<Teleporter>(delegate(Teleporter component, object data)
 	{
 		component.OnLogicValueChanged(data);

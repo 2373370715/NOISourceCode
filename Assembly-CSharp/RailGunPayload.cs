@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x02000F6A RID: 3946
 [SerializationConfig(MemberSerialization.OptIn)]
 public class RailGunPayload : GameStateMachine<RailGunPayload, RailGunPayload.StatesInstance, IStateMachineTarget, RailGunPayload.Def>
 {
-	// Token: 0x06004F40 RID: 20288 RVA: 0x00278BA0 File Offset: 0x00276DA0
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.grounded.idle;
@@ -59,93 +57,65 @@ public class RailGunPayload : GameStateMachine<RailGunPayload, RailGunPayload.St
 		this.landing.impact.PlayAnim("land").TriggerOnEnter(GameHashes.JettisonCargo, null).OnAnimQueueComplete(this.grounded.crater);
 	}
 
-	// Token: 0x040037BD RID: 14269
 	public StateMachine<RailGunPayload, RailGunPayload.StatesInstance, IStateMachineTarget, RailGunPayload.Def>.IntParameter destinationWorld = new StateMachine<RailGunPayload, RailGunPayload.StatesInstance, IStateMachineTarget, RailGunPayload.Def>.IntParameter(-1);
 
-	// Token: 0x040037BE RID: 14270
 	public StateMachine<RailGunPayload, RailGunPayload.StatesInstance, IStateMachineTarget, RailGunPayload.Def>.BoolParameter onSurface = new StateMachine<RailGunPayload, RailGunPayload.StatesInstance, IStateMachineTarget, RailGunPayload.Def>.BoolParameter(false);
 
-	// Token: 0x040037BF RID: 14271
 	public StateMachine<RailGunPayload, RailGunPayload.StatesInstance, IStateMachineTarget, RailGunPayload.Def>.Signal beginTravelling;
 
-	// Token: 0x040037C0 RID: 14272
 	public StateMachine<RailGunPayload, RailGunPayload.StatesInstance, IStateMachineTarget, RailGunPayload.Def>.Signal launch;
 
-	// Token: 0x040037C1 RID: 14273
 	public RailGunPayload.TakeoffStates takeoff;
 
-	// Token: 0x040037C2 RID: 14274
 	public RailGunPayload.TravelStates travel;
 
-	// Token: 0x040037C3 RID: 14275
 	public RailGunPayload.LandingStates landing;
 
-	// Token: 0x040037C4 RID: 14276
 	public RailGunPayload.GroundedStates grounded;
 
-	// Token: 0x02000F6B RID: 3947
 	public class Def : StateMachine.BaseDef
 	{
-		// Token: 0x040037C5 RID: 14277
 		public bool attractToBeacons;
 
-		// Token: 0x040037C6 RID: 14278
 		public string clusterAnimSymbolSwapTarget;
 
-		// Token: 0x040037C7 RID: 14279
 		public List<string> randomClusterSymbolSwaps;
 
-		// Token: 0x040037C8 RID: 14280
 		public string worldAnimSymbolSwapTarget;
 
-		// Token: 0x040037C9 RID: 14281
 		public List<string> randomWorldSymbolSwaps;
 	}
 
-	// Token: 0x02000F6C RID: 3948
 	public class TakeoffStates : GameStateMachine<RailGunPayload, RailGunPayload.StatesInstance, IStateMachineTarget, RailGunPayload.Def>.State
 	{
-		// Token: 0x040037CA RID: 14282
 		public GameStateMachine<RailGunPayload, RailGunPayload.StatesInstance, IStateMachineTarget, RailGunPayload.Def>.State launch;
 
-		// Token: 0x040037CB RID: 14283
 		public GameStateMachine<RailGunPayload, RailGunPayload.StatesInstance, IStateMachineTarget, RailGunPayload.Def>.State airborne;
 	}
 
-	// Token: 0x02000F6D RID: 3949
 	public class TravelStates : GameStateMachine<RailGunPayload, RailGunPayload.StatesInstance, IStateMachineTarget, RailGunPayload.Def>.State
 	{
-		// Token: 0x040037CC RID: 14284
 		public GameStateMachine<RailGunPayload, RailGunPayload.StatesInstance, IStateMachineTarget, RailGunPayload.Def>.State travelling;
 
-		// Token: 0x040037CD RID: 14285
 		public GameStateMachine<RailGunPayload, RailGunPayload.StatesInstance, IStateMachineTarget, RailGunPayload.Def>.State transferWorlds;
 	}
 
-	// Token: 0x02000F6E RID: 3950
 	public class LandingStates : GameStateMachine<RailGunPayload, RailGunPayload.StatesInstance, IStateMachineTarget, RailGunPayload.Def>.State
 	{
-		// Token: 0x040037CE RID: 14286
 		public GameStateMachine<RailGunPayload, RailGunPayload.StatesInstance, IStateMachineTarget, RailGunPayload.Def>.State landing;
 
-		// Token: 0x040037CF RID: 14287
 		public GameStateMachine<RailGunPayload, RailGunPayload.StatesInstance, IStateMachineTarget, RailGunPayload.Def>.State impact;
 	}
 
-	// Token: 0x02000F6F RID: 3951
 	public class GroundedStates : GameStateMachine<RailGunPayload, RailGunPayload.StatesInstance, IStateMachineTarget, RailGunPayload.Def>.State
 	{
-		// Token: 0x040037D0 RID: 14288
 		public GameStateMachine<RailGunPayload, RailGunPayload.StatesInstance, IStateMachineTarget, RailGunPayload.Def>.State crater;
 
-		// Token: 0x040037D1 RID: 14289
 		public GameStateMachine<RailGunPayload, RailGunPayload.StatesInstance, IStateMachineTarget, RailGunPayload.Def>.State idle;
 	}
 
-	// Token: 0x02000F70 RID: 3952
 	public class StatesInstance : GameStateMachine<RailGunPayload, RailGunPayload.StatesInstance, IStateMachineTarget, RailGunPayload.Def>.GameInstance
 	{
-		// Token: 0x06004F4A RID: 20298 RVA: 0x00278F98 File Offset: 0x00277198
 		public StatesInstance(IStateMachineTarget master, RailGunPayload.Def def) : base(master, def)
 		{
 			this.animController = base.GetComponent<KBatchedAnimController>();
@@ -164,7 +134,6 @@ public class RailGunPayload : GameStateMachine<RailGunPayload, RailGunPayload.St
 			}
 		}
 
-		// Token: 0x06004F4B RID: 20299 RVA: 0x002790DC File Offset: 0x002772DC
 		public void Launch(AxialI source, AxialI destination)
 		{
 			base.GetComponent<BallisticClusterGridEntity>().Configure(source, destination);
@@ -173,7 +142,6 @@ public class RailGunPayload : GameStateMachine<RailGunPayload, RailGunPayload.St
 			this.GoTo(base.sm.takeoff);
 		}
 
-		// Token: 0x06004F4C RID: 20300 RVA: 0x00279124 File Offset: 0x00277324
 		public void Travel(AxialI source, AxialI destination)
 		{
 			base.GetComponent<BallisticClusterGridEntity>().Configure(source, destination);
@@ -182,7 +150,6 @@ public class RailGunPayload : GameStateMachine<RailGunPayload, RailGunPayload.St
 			this.GoTo(base.sm.travel);
 		}
 
-		// Token: 0x06004F4D RID: 20301 RVA: 0x000D637E File Offset: 0x000D457E
 		public void StartTakeoff()
 		{
 			if (GameComps.Fallers.Has(base.gameObject))
@@ -191,7 +158,6 @@ public class RailGunPayload : GameStateMachine<RailGunPayload, RailGunPayload.St
 			}
 		}
 
-		// Token: 0x06004F4E RID: 20302 RVA: 0x0027916C File Offset: 0x0027736C
 		public void StartLand()
 		{
 			WorldContainer worldContainer = ClusterManager.Instance.GetWorld(base.sm.destinationWorld.Get(this));
@@ -228,7 +194,6 @@ public class RailGunPayload : GameStateMachine<RailGunPayload, RailGunPayload.St
 			base.sm.destinationWorld.Set(-1, this, false);
 		}
 
-		// Token: 0x06004F4F RID: 20303 RVA: 0x002792D4 File Offset: 0x002774D4
 		public void UpdateLaunch(float dt)
 		{
 			if (base.gameObject.GetMyWorld() != null)
@@ -245,7 +210,6 @@ public class RailGunPayload : GameStateMachine<RailGunPayload, RailGunPayload.St
 			}
 		}
 
-		// Token: 0x06004F50 RID: 20304 RVA: 0x00279368 File Offset: 0x00277568
 		public bool UpdateLanding(float dt)
 		{
 			if (base.gameObject.GetMyWorld() != null)
@@ -261,19 +225,16 @@ public class RailGunPayload : GameStateMachine<RailGunPayload, RailGunPayload.St
 			return false;
 		}
 
-		// Token: 0x06004F51 RID: 20305 RVA: 0x000D80C0 File Offset: 0x000D62C0
 		public void OnDroppedAll()
 		{
 			base.gameObject.DeleteObject();
 		}
 
-		// Token: 0x06004F52 RID: 20306 RVA: 0x000D80CD File Offset: 0x000D62CD
 		public bool IsTraveling()
 		{
 			return base.IsInsideState(base.sm.travel.travelling);
 		}
 
-		// Token: 0x06004F53 RID: 20307 RVA: 0x002793C0 File Offset: 0x002775C0
 		public void MoveToSpace()
 		{
 			Pickupable component = base.GetComponent<Pickupable>();
@@ -284,7 +245,6 @@ public class RailGunPayload : GameStateMachine<RailGunPayload, RailGunPayload.St
 			base.gameObject.transform.SetPosition(new Vector3(-1f, -1f, 0f));
 		}
 
-		// Token: 0x06004F54 RID: 20308 RVA: 0x0027940C File Offset: 0x0027760C
 		public void MoveToWorld()
 		{
 			Pickupable component = base.GetComponent<Pickupable>();
@@ -299,15 +259,12 @@ public class RailGunPayload : GameStateMachine<RailGunPayload, RailGunPayload.St
 			}
 		}
 
-		// Token: 0x040037D2 RID: 14290
 		[Serialize]
 		public float takeoffVelocity;
 
-		// Token: 0x040037D3 RID: 14291
 		[Serialize]
 		private int randomSymbolSwapIndex = -1;
 
-		// Token: 0x040037D4 RID: 14292
 		public KBatchedAnimController animController;
 	}
 }

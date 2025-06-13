@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020004B7 RID: 1207
 public class MonumentBottomConfig : IBuildingConfig
 {
-	// Token: 0x060014AB RID: 5291 RVA: 0x0019C288 File Offset: 0x0019A488
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "MonumentBottom";
@@ -45,7 +43,6 @@ public class MonumentBottomConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060014AC RID: 5292 RVA: 0x0019C388 File Offset: 0x0019A588
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -57,17 +54,14 @@ public class MonumentBottomConfig : IBuildingConfig
 		go.AddOrGet<MonumentPart>().part = MonumentPartResource.Part.Bottom;
 	}
 
-	// Token: 0x060014AD RID: 5293 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 	}
 
-	// Token: 0x060014AE RID: 5294 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 	}
 
-	// Token: 0x060014AF RID: 5295 RVA: 0x000B36E0 File Offset: 0x000B18E0
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<KBatchedAnimController>().initialAnim = "option_a";
@@ -79,6 +73,5 @@ public class MonumentBottomConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x04000E11 RID: 3601
 	public const string ID = "MonumentBottom";
 }

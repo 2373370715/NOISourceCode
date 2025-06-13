@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200028E RID: 654
 public class BulbPlantConfig : IEntityConfig
 {
-	// Token: 0x0600098B RID: 2443 RVA: 0x0016FBA4 File Offset: 0x0016DDA4
 	public GameObject CreatePrefab()
 	{
 		string id = "BulbPlant";
@@ -48,25 +46,19 @@ public class BulbPlantConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x0600098C RID: 2444 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x0600098D RID: 2445 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x0400074B RID: 1867
 	public const string ID = "BulbPlant";
 
-	// Token: 0x0400074C RID: 1868
 	public const string SEED_ID = "BulbPlantSeed";
 
-	// Token: 0x0400074D RID: 1869
 	public readonly EffectorValues POSITIVE_DECOR_EFFECT = DECOR.BONUS.TIER1;
 
-	// Token: 0x0400074E RID: 1870
 	public readonly EffectorValues NEGATIVE_DECOR_EFFECT = DECOR.PENALTY.TIER3;
 }

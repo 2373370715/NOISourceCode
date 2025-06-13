@@ -1,13 +1,10 @@
 ﻿using System;
 using TUNING;
 
-// Token: 0x0200033C RID: 828
 public abstract class FossilExcavationWorkable : Workable
 {
-	// Token: 0x06000D07 RID: 3335
 	protected abstract bool IsMarkedForExcavation();
 
-	// Token: 0x06000D08 RID: 3336 RVA: 0x0017BEA4 File Offset: 0x0017A0A4
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -26,7 +23,6 @@ public abstract class FossilExcavationWorkable : Workable
 		this.shouldShowSkillPerkStatusItem = false;
 	}
 
-	// Token: 0x06000D09 RID: 3337 RVA: 0x0017BF5C File Offset: 0x0017A15C
 	protected override void UpdateStatusItem(object data = null)
 	{
 		base.UpdateStatusItem(data);
@@ -41,9 +37,7 @@ public abstract class FossilExcavationWorkable : Workable
 		}
 	}
 
-	// Token: 0x040009B8 RID: 2488
 	protected Guid waitingWorkStatusItemHandle;
 
-	// Token: 0x040009B9 RID: 2489
 	protected StatusItem waitingForExcavationWorkStatusItem = Db.Get().BuildingStatusItems.FossilHuntExcavationOrdered;
 }

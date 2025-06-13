@@ -2,22 +2,18 @@
 using Klei.AI;
 using UnityEngine;
 
-// Token: 0x020002E0 RID: 736
 public class TransformingPlant : KMonoBehaviour
 {
-	// Token: 0x06000B50 RID: 2896 RVA: 0x000AF95C File Offset: 0x000ADB5C
 	public void SubscribeToTransformEvent(GameHashes eventHash)
 	{
 		base.Subscribe<TransformingPlant>((int)eventHash, TransformingPlant.OnTransformationEventDelegate);
 	}
 
-	// Token: 0x06000B51 RID: 2897 RVA: 0x000AF96B File Offset: 0x000ADB6B
 	public void UnsubscribeToTransformEvent(GameHashes eventHash)
 	{
 		base.Unsubscribe<TransformingPlant>((int)eventHash, TransformingPlant.OnTransformationEventDelegate, false);
 	}
 
-	// Token: 0x06000B52 RID: 2898 RVA: 0x00178110 File Offset: 0x00176310
 	private void DoPlantTransform(object data)
 	{
 		if (this.eventDataCondition != null && !this.eventDataCondition(data))
@@ -79,25 +75,18 @@ public class TransformingPlant : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x040008DE RID: 2270
 	public string transformPlantId;
 
-	// Token: 0x040008DF RID: 2271
 	public Func<object, bool> eventDataCondition;
 
-	// Token: 0x040008E0 RID: 2272
 	public bool useGrowthTimeRatio;
 
-	// Token: 0x040008E1 RID: 2273
 	public bool keepPlantablePlotStorage = true;
 
-	// Token: 0x040008E2 RID: 2274
 	public string fxKAnim;
 
-	// Token: 0x040008E3 RID: 2275
 	public string fxAnim;
 
-	// Token: 0x040008E4 RID: 2276
 	private static readonly EventSystem.IntraObjectHandler<TransformingPlant> OnTransformationEventDelegate = new EventSystem.IntraObjectHandler<TransformingPlant>(delegate(TransformingPlant component, object data)
 	{
 		component.DoPlantTransform(data);

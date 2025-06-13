@@ -1,10 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000CF3 RID: 3315
 public class BuildingFacadeAnimateIn : MonoBehaviour
 {
-	// Token: 0x06003FA1 RID: 16289 RVA: 0x00246300 File Offset: 0x00244500
 	private void Awake()
 	{
 		this.placeAnimController.TintColour = new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, 1);
@@ -19,7 +17,6 @@ public class BuildingFacadeAnimateIn : MonoBehaviour
 		});
 	}
 
-	// Token: 0x06003FA2 RID: 16290 RVA: 0x000CDCA7 File Offset: 0x000CBEA7
 	private void Update()
 	{
 		if (this.sourceAnimController.IsNullOrDestroyed())
@@ -31,7 +28,6 @@ public class BuildingFacadeAnimateIn : MonoBehaviour
 		this.updater.Internal_Update(Time.unscaledDeltaTime);
 	}
 
-	// Token: 0x06003FA3 RID: 16291 RVA: 0x00246394 File Offset: 0x00244594
 	private void OnDisable()
 	{
 		if (!this.sourceAnimController.IsNullOrDestroyed())
@@ -43,7 +39,6 @@ public class BuildingFacadeAnimateIn : MonoBehaviour
 		UnityEngine.Object.Destroy(base.gameObject);
 	}
 
-	// Token: 0x06003FA4 RID: 16292 RVA: 0x002463E8 File Offset: 0x002445E8
 	public static BuildingFacadeAnimateIn MakeFor(KBatchedAnimController sourceAnimController)
 	{
 		BuildingFacadeAnimateIn.SetVisibilityOn(sourceAnimController, false);
@@ -66,7 +61,6 @@ public class BuildingFacadeAnimateIn : MonoBehaviour
 		return buildingFacadeAnimateIn;
 	}
 
-	// Token: 0x06003FA5 RID: 16293 RVA: 0x002464CC File Offset: 0x002446CC
 	private static void SetVisibilityOn(KBatchedAnimController animController, bool isVisible)
 	{
 		animController.SetVisiblity(isVisible);
@@ -79,7 +73,6 @@ public class BuildingFacadeAnimateIn : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06003FA6 RID: 16294 RVA: 0x00246514 File Offset: 0x00244714
 	private static KBatchedAnimController SpawnAnimFrom(KBatchedAnimController sourceAnimController)
 	{
 		GameObject gameObject = new GameObject();
@@ -106,15 +99,11 @@ public class BuildingFacadeAnimateIn : MonoBehaviour
 		return kbatchedAnimController;
 	}
 
-	// Token: 0x04002BF1 RID: 11249
 	private KBatchedAnimController sourceAnimController;
 
-	// Token: 0x04002BF2 RID: 11250
 	private KBatchedAnimController placeAnimController;
 
-	// Token: 0x04002BF3 RID: 11251
 	private KBatchedAnimController colorAnimController;
 
-	// Token: 0x04002BF4 RID: 11252
 	private Updater updater;
 }

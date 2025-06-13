@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005D3 RID: 1491
 public class StorageLockerSmartConfig : IBuildingConfig
 {
-	// Token: 0x06001A13 RID: 6675 RVA: 0x001B1684 File Offset: 0x001AF884
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "StorageLockerSmart";
@@ -38,7 +36,6 @@ public class StorageLockerSmartConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001A14 RID: 6676 RVA: 0x001B1764 File Offset: 0x001AF964
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		SoundEventVolumeCache.instance.AddVolume("storagelocker_kanim", "StorageLocker_Hit_metallic_low", NOISE_POLLUTION.NOISY.TIER1);
@@ -59,6 +56,5 @@ public class StorageLockerSmartConfig : IBuildingConfig
 		go.AddOrGetDef<RocketUsageRestriction.Def>();
 	}
 
-	// Token: 0x040010E4 RID: 4324
 	public const string ID = "StorageLockerSmart";
 }

@@ -1,17 +1,14 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020014D5 RID: 5333
 [AddComponentMenu("KMonoBehaviour/scripts/BuildingLoader")]
 public class BuildingLoader : KMonoBehaviour
 {
-	// Token: 0x06006E53 RID: 28243 RVA: 0x000ECD07 File Offset: 0x000EAF07
 	public static void DestroyInstance()
 	{
 		BuildingLoader.Instance = null;
 	}
 
-	// Token: 0x06006E54 RID: 28244 RVA: 0x000ECD0F File Offset: 0x000EAF0F
 	protected override void OnPrefabInit()
 	{
 		BuildingLoader.Instance = this;
@@ -20,7 +17,6 @@ public class BuildingLoader : KMonoBehaviour
 		UnityEngine.Object.DontDestroyOnLoad(this.previewTemplate);
 	}
 
-	// Token: 0x06006E55 RID: 28245 RVA: 0x000ECD3A File Offset: 0x000EAF3A
 	private GameObject CreateTemplate()
 	{
 		GameObject gameObject = new GameObject();
@@ -34,7 +30,6 @@ public class BuildingLoader : KMonoBehaviour
 		return gameObject;
 	}
 
-	// Token: 0x06006E56 RID: 28246 RVA: 0x000ECD78 File Offset: 0x000EAF78
 	private GameObject CreatePreviewTemplate()
 	{
 		GameObject gameObject = this.CreateTemplate();
@@ -42,7 +37,6 @@ public class BuildingLoader : KMonoBehaviour
 		return gameObject;
 	}
 
-	// Token: 0x06006E57 RID: 28247 RVA: 0x000ECD87 File Offset: 0x000EAF87
 	private GameObject CreateConstructionTemplate()
 	{
 		GameObject gameObject = this.CreateTemplate();
@@ -55,7 +49,6 @@ public class BuildingLoader : KMonoBehaviour
 		return gameObject;
 	}
 
-	// Token: 0x06006E58 RID: 28248 RVA: 0x000ECDBE File Offset: 0x000EAFBE
 	public GameObject CreateBuilding(BuildingDef def, GameObject go, GameObject parent = null)
 	{
 		go = UnityEngine.Object.Instantiate<GameObject>(go);
@@ -68,7 +61,6 @@ public class BuildingLoader : KMonoBehaviour
 		return go;
 	}
 
-	// Token: 0x06006E59 RID: 28249 RVA: 0x002FD4EC File Offset: 0x002FB6EC
 	private static bool Add2DComponents(BuildingDef def, GameObject go, string initialAnimState = null, bool no_collider = false, int layer = -1)
 	{
 		bool flag = def.AnimFiles != null && def.AnimFiles.Length != 0;
@@ -125,7 +117,6 @@ public class BuildingLoader : KMonoBehaviour
 		return flag;
 	}
 
-	// Token: 0x06006E5A RID: 28250 RVA: 0x002FD670 File Offset: 0x002FB870
 	private static T UpdateComponentRequirement<T>(GameObject go, bool required) where T : Component
 	{
 		T t = go.GetComponent(typeof(T)) as T;
@@ -141,7 +132,6 @@ public class BuildingLoader : KMonoBehaviour
 		return t;
 	}
 
-	// Token: 0x06006E5B RID: 28251 RVA: 0x002FD6EC File Offset: 0x002FB8EC
 	public static KPrefabID AddID(GameObject go, string str)
 	{
 		KPrefabID kprefabID = go.GetComponent<KPrefabID>();
@@ -155,7 +145,6 @@ public class BuildingLoader : KMonoBehaviour
 		return kprefabID;
 	}
 
-	// Token: 0x06006E5C RID: 28252 RVA: 0x002FD730 File Offset: 0x002FB930
 	public GameObject CreateBuildingUnderConstruction(BuildingDef def)
 	{
 		GameObject gameObject = this.CreateBuilding(def, this.constructionTemplate, null);
@@ -197,7 +186,6 @@ public class BuildingLoader : KMonoBehaviour
 		return gameObject;
 	}
 
-	// Token: 0x06006E5D RID: 28253 RVA: 0x002FD88C File Offset: 0x002FBA8C
 	public GameObject CreateBuildingComplete(GameObject go, BuildingDef def)
 	{
 		go.name = def.PrefabID + "Complete";
@@ -299,7 +287,6 @@ public class BuildingLoader : KMonoBehaviour
 		return go;
 	}
 
-	// Token: 0x06006E5E RID: 28254 RVA: 0x002FDBA8 File Offset: 0x002FBDA8
 	public GameObject CreateBuildingPreview(BuildingDef def)
 	{
 		GameObject gameObject = this.CreateBuilding(def, this.previewTemplate, null);
@@ -339,12 +326,9 @@ public class BuildingLoader : KMonoBehaviour
 		return gameObject;
 	}
 
-	// Token: 0x04005337 RID: 21303
 	private GameObject previewTemplate;
 
-	// Token: 0x04005338 RID: 21304
 	private GameObject constructionTemplate;
 
-	// Token: 0x04005339 RID: 21305
 	public static BuildingLoader Instance;
 }

@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000549 RID: 1353
 public class RadiationLightConfig : IBuildingConfig
 {
-	// Token: 0x0600173F RID: 5951 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06001740 RID: 5952 RVA: 0x001A4FC8 File Offset: 0x001A31C8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "RadiationLight";
@@ -37,7 +34,6 @@ public class RadiationLightConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001741 RID: 5953 RVA: 0x001A5060 File Offset: 0x001A3260
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<LoopingSounds>();
@@ -77,43 +73,31 @@ public class RadiationLightConfig : IBuildingConfig
 		radiationLight.consumptionRate = 0.016666668f;
 	}
 
-	// Token: 0x06001742 RID: 5954 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x06001743 RID: 5955 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 	}
 
-	// Token: 0x04000F4D RID: 3917
 	public const string ID = "RadiationLight";
 
-	// Token: 0x04000F4E RID: 3918
 	private Tag FUEL_ELEMENT = SimHashes.UraniumOre.CreateTag();
 
-	// Token: 0x04000F4F RID: 3919
 	private SimHashes WASTE_ELEMENT = SimHashes.DepletedUranium;
 
-	// Token: 0x04000F50 RID: 3920
 	private const float FUEL_PER_CYCLE = 10f;
 
-	// Token: 0x04000F51 RID: 3921
 	private const float CYCLES_PER_REFILL = 5f;
 
-	// Token: 0x04000F52 RID: 3922
 	private const float FUEL_TO_WASTE_RATIO = 0.5f;
 
-	// Token: 0x04000F53 RID: 3923
 	private const float FUEL_STORAGE_AMOUNT = 50f;
 
-	// Token: 0x04000F54 RID: 3924
 	private const float FUEL_CONSUMPTION_RATE = 0.016666668f;
 
-	// Token: 0x04000F55 RID: 3925
 	private const short RAD_LIGHT_SIZE_X = 16;
 
-	// Token: 0x04000F56 RID: 3926
 	private const short RAD_LIGHT_SIZE_Y = 4;
 }

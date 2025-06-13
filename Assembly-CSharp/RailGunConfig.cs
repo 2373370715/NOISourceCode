@@ -4,16 +4,13 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200054A RID: 1354
 public class RailGunConfig : IBuildingConfig
 {
-	// Token: 0x06001745 RID: 5957 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06001746 RID: 5958 RVA: 0x001A51D8 File Offset: 0x001A33D8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "RailGun";
@@ -53,7 +50,6 @@ public class RailGunConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001747 RID: 5959 RVA: 0x000B4378 File Offset: 0x000B2578
 	private void AttachPorts(GameObject go)
 	{
 		go.AddComponent<ConduitSecondaryInput>().portInfo = this.liquidInputPort;
@@ -61,7 +57,6 @@ public class RailGunConfig : IBuildingConfig
 		go.AddComponent<ConduitSecondaryInput>().portInfo = this.solidInputPort;
 	}
 
-	// Token: 0x06001748 RID: 5960 RVA: 0x001A5340 File Offset: 0x001A3540
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		RailGun railGun = go.AddOrGet<RailGun>();
@@ -81,7 +76,6 @@ public class RailGunConfig : IBuildingConfig
 		highEnergyParticleStorage.showCapacityStatusItem = true;
 	}
 
-	// Token: 0x06001749 RID: 5961 RVA: 0x001A53D4 File Offset: 0x001A35D4
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		List<Tag> list = new List<Tag>();
@@ -99,21 +93,18 @@ public class RailGunConfig : IBuildingConfig
 		RailGunConfig.AddVisualizer(go);
 	}
 
-	// Token: 0x0600174A RID: 5962 RVA: 0x000B43AD File Offset: 0x000B25AD
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 		this.AttachPorts(go);
 		RailGunConfig.AddVisualizer(go);
 	}
 
-	// Token: 0x0600174B RID: 5963 RVA: 0x000B43BC File Offset: 0x000B25BC
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		this.AttachPorts(go);
 		RailGunConfig.AddVisualizer(go);
 	}
 
-	// Token: 0x0600174C RID: 5964 RVA: 0x001A5454 File Offset: 0x001A3654
 	private static void AddVisualizer(GameObject prefab)
 	{
 		SkyVisibilityVisualizer skyVisibilityVisualizer = prefab.AddOrGet<SkyVisibilityVisualizer>();
@@ -126,7 +117,6 @@ public class RailGunConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x0600174D RID: 5965 RVA: 0x001A54A8 File Offset: 0x001A36A8
 	private static bool RailGunSkyVisibility(int cell)
 	{
 		DebugUtil.DevAssert(ClusterManager.Instance != null, "RailGun assumes DLC", null);
@@ -147,42 +137,29 @@ public class RailGunConfig : IBuildingConfig
 		return false;
 	}
 
-	// Token: 0x04000F57 RID: 3927
 	public const string ID = "RailGun";
 
-	// Token: 0x04000F58 RID: 3928
 	public const string PORT_ID = "HEP_STORAGE";
 
-	// Token: 0x04000F59 RID: 3929
 	public const int RANGE = 20;
 
-	// Token: 0x04000F5A RID: 3930
 	public const float BASE_PARTICLE_COST = 0f;
 
-	// Token: 0x04000F5B RID: 3931
 	public const float HEX_PARTICLE_COST = 10f;
 
-	// Token: 0x04000F5C RID: 3932
 	public const float HEP_CAPACITY = 200f;
 
-	// Token: 0x04000F5D RID: 3933
 	public const float TAKEOFF_VELOCITY = 35f;
 
-	// Token: 0x04000F5E RID: 3934
 	public const int MAINTENANCE_AFTER_NUM_PAYLOADS = 6;
 
-	// Token: 0x04000F5F RID: 3935
 	public const int MAINTENANCE_COOLDOWN = 30;
 
-	// Token: 0x04000F60 RID: 3936
 	public const float CAPACITY = 1200f;
 
-	// Token: 0x04000F61 RID: 3937
 	private ConduitPortInfo solidInputPort = new ConduitPortInfo(ConduitType.Solid, new CellOffset(-1, 0));
 
-	// Token: 0x04000F62 RID: 3938
 	private ConduitPortInfo liquidInputPort = new ConduitPortInfo(ConduitType.Liquid, new CellOffset(0, 0));
 
-	// Token: 0x04000F63 RID: 3939
 	private ConduitPortInfo gasInputPort = new ConduitPortInfo(ConduitType.Gas, new CellOffset(1, 0));
 }

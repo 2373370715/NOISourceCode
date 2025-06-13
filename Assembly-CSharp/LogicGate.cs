@@ -3,11 +3,9 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000E7F RID: 3711
 [SerializationConfig(MemberSerialization.OptIn)]
 public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnection
 {
-	// Token: 0x06004914 RID: 18708 RVA: 0x00265894 File Offset: 0x00263A94
 	protected override void OnSpawn()
 	{
 		this.inputOne = new LogicEventHandler(base.InputCellOne, new Action<int, int>(this.UpdateState), null, LogicPortSpriteType.Input);
@@ -62,7 +60,6 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		}
 	}
 
-	// Token: 0x06004915 RID: 18709 RVA: 0x000D3D67 File Offset: 0x000D1F67
 	protected override void OnCleanUp()
 	{
 		this.cleaningUp = true;
@@ -72,19 +69,16 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06004916 RID: 18710 RVA: 0x000D3D9E File Offset: 0x000D1F9E
 	private void OnBuildingBroken(object data)
 	{
 		this.Disconnect();
 	}
 
-	// Token: 0x06004917 RID: 18711 RVA: 0x000D3DA6 File Offset: 0x000D1FA6
 	private void OnBuildingFullyRepaired(object data)
 	{
 		this.Connect();
 	}
 
-	// Token: 0x06004918 RID: 18712 RVA: 0x00265A84 File Offset: 0x00263C84
 	private void Connect()
 	{
 		if (!this.connected)
@@ -137,7 +131,6 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		}
 	}
 
-	// Token: 0x06004919 RID: 18713 RVA: 0x00265C80 File Offset: 0x00263E80
 	private void Disconnect()
 	{
 		if (this.connected)
@@ -197,7 +190,6 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		}
 	}
 
-	// Token: 0x0600491A RID: 18714 RVA: 0x00265E84 File Offset: 0x00264084
 	private void UpdateState(int new_value, int prev_value)
 	{
 		if (this.cleaningUp)
@@ -315,7 +307,6 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		this.RefreshAnimation();
 	}
 
-	// Token: 0x0600491B RID: 18715 RVA: 0x00266118 File Offset: 0x00264318
 	private void OnAdditionalOutputsLogicValueChanged(HashedString port_id, int new_value, int prev_value)
 	{
 		if (base.gameObject != null)
@@ -329,18 +320,15 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		}
 	}
 
-	// Token: 0x0600491C RID: 18716 RVA: 0x000AA038 File Offset: 0x000A8238
 	public virtual void LogicTick()
 	{
 	}
 
-	// Token: 0x0600491D RID: 18717 RVA: 0x000B64D6 File Offset: 0x000B46D6
 	protected virtual int GetCustomValue(int val1, int val2)
 	{
 		return val1;
 	}
 
-	// Token: 0x0600491E RID: 18718 RVA: 0x0026616C File Offset: 0x0026436C
 	public int GetPortValue(LogicGateBase.PortId port)
 	{
 		switch (port)
@@ -382,7 +370,6 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		}
 	}
 
-	// Token: 0x0600491F RID: 18719 RVA: 0x0026623C File Offset: 0x0026443C
 	public bool GetPortConnected(LogicGateBase.PortId port)
 	{
 		if ((port == LogicGateBase.PortId.InputTwo && !base.RequiresTwoInputs && !base.RequiresFourInputs) || (port == LogicGateBase.PortId.InputThree && !base.RequiresFourInputs) || (port == LogicGateBase.PortId.InputFour && !base.RequiresFourInputs))
@@ -393,13 +380,11 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		return Game.Instance.logicCircuitManager.GetNetworkForCell(cell) != null;
 	}
 
-	// Token: 0x06004920 RID: 18720 RVA: 0x000D3DAE File Offset: 0x000D1FAE
 	public void SetPortDescriptions(LogicGate.LogicGateDescriptions descriptions)
 	{
 		this.descriptions = descriptions;
 	}
 
-	// Token: 0x06004921 RID: 18721 RVA: 0x00266294 File Offset: 0x00264494
 	public LogicGate.LogicGateDescriptions.Description GetPortDescription(LogicGateBase.PortId port)
 	{
 		switch (port)
@@ -477,31 +462,26 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		}
 	}
 
-	// Token: 0x06004922 RID: 18722 RVA: 0x000D3DB7 File Offset: 0x000D1FB7
 	public int GetLogicValue()
 	{
 		return this.outputValueOne;
 	}
 
-	// Token: 0x06004923 RID: 18723 RVA: 0x000D3DBF File Offset: 0x000D1FBF
 	public int GetLogicCell()
 	{
 		return this.GetLogicUICell();
 	}
 
-	// Token: 0x06004924 RID: 18724 RVA: 0x000D3DC7 File Offset: 0x000D1FC7
 	public int GetLogicUICell()
 	{
 		return base.OutputCellOne;
 	}
 
-	// Token: 0x06004925 RID: 18725 RVA: 0x000B1628 File Offset: 0x000AF828
 	public bool IsLogicInput()
 	{
 		return false;
 	}
 
-	// Token: 0x06004926 RID: 18726 RVA: 0x000D3DCF File Offset: 0x000D1FCF
 	private LogicEventHandler GetInputFromControlValue(int val)
 	{
 		switch (val)
@@ -516,7 +496,6 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		return this.inputOne;
 	}
 
-	// Token: 0x06004927 RID: 18727 RVA: 0x000D3E04 File Offset: 0x000D2004
 	private void ShowSymbolConditionally(bool showAnything, bool active, KBatchedAnimController kbac, KAnimHashedString ifTrue, KAnimHashedString ifFalse)
 	{
 		if (!showAnything)
@@ -529,7 +508,6 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		kbac.SetSymbolVisiblity(ifFalse, !active);
 	}
 
-	// Token: 0x06004928 RID: 18728 RVA: 0x000D3E31 File Offset: 0x000D2031
 	private void TintSymbolConditionally(bool tintAnything, bool condition, KBatchedAnimController kbac, KAnimHashedString symbol, Color ifTrue, Color ifFalse)
 	{
 		if (tintAnything)
@@ -540,14 +518,12 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		kbac.SetSymbolTint(symbol, Color.white);
 	}
 
-	// Token: 0x06004929 RID: 18729 RVA: 0x000D3E55 File Offset: 0x000D2055
 	private void SetBloomSymbolShowing(bool showing, KBatchedAnimController kbac, KAnimHashedString symbol, KAnimHashedString bloomSymbol)
 	{
 		kbac.SetSymbolVisiblity(bloomSymbol, showing);
 		kbac.SetSymbolVisiblity(symbol, !showing);
 	}
 
-	// Token: 0x0600492A RID: 18730 RVA: 0x0026643C File Offset: 0x0026463C
 	protected void RefreshAnimation()
 	{
 		if (this.cleaningUp)
@@ -710,12 +686,10 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		}
 	}
 
-	// Token: 0x0600492B RID: 18731 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnLogicNetworkConnectionChanged(bool connected)
 	{
 	}
 
-	// Token: 0x04003347 RID: 13127
 	private static readonly LogicGate.LogicGateDescriptions.Description INPUT_ONE_SINGLE_DESCRIPTION = new LogicGate.LogicGateDescriptions.Description
 	{
 		name = UI.LOGIC_PORTS.GATE_SINGLE_INPUT_ONE_NAME,
@@ -723,7 +697,6 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		inactive = UI.LOGIC_PORTS.GATE_SINGLE_INPUT_ONE_INACTIVE
 	};
 
-	// Token: 0x04003348 RID: 13128
 	private static readonly LogicGate.LogicGateDescriptions.Description INPUT_ONE_MULTI_DESCRIPTION = new LogicGate.LogicGateDescriptions.Description
 	{
 		name = UI.LOGIC_PORTS.GATE_MULTI_INPUT_ONE_NAME,
@@ -731,7 +704,6 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		inactive = UI.LOGIC_PORTS.GATE_MULTI_INPUT_ONE_INACTIVE
 	};
 
-	// Token: 0x04003349 RID: 13129
 	private static readonly LogicGate.LogicGateDescriptions.Description INPUT_TWO_DESCRIPTION = new LogicGate.LogicGateDescriptions.Description
 	{
 		name = UI.LOGIC_PORTS.GATE_MULTI_INPUT_TWO_NAME,
@@ -739,7 +711,6 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		inactive = UI.LOGIC_PORTS.GATE_MULTI_INPUT_TWO_INACTIVE
 	};
 
-	// Token: 0x0400334A RID: 13130
 	private static readonly LogicGate.LogicGateDescriptions.Description INPUT_THREE_DESCRIPTION = new LogicGate.LogicGateDescriptions.Description
 	{
 		name = UI.LOGIC_PORTS.GATE_MULTI_INPUT_THREE_NAME,
@@ -747,7 +718,6 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		inactive = UI.LOGIC_PORTS.GATE_MULTI_INPUT_THREE_INACTIVE
 	};
 
-	// Token: 0x0400334B RID: 13131
 	private static readonly LogicGate.LogicGateDescriptions.Description INPUT_FOUR_DESCRIPTION = new LogicGate.LogicGateDescriptions.Description
 	{
 		name = UI.LOGIC_PORTS.GATE_MULTI_INPUT_FOUR_NAME,
@@ -755,7 +725,6 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		inactive = UI.LOGIC_PORTS.GATE_MULTI_INPUT_FOUR_INACTIVE
 	};
 
-	// Token: 0x0400334C RID: 13132
 	private static readonly LogicGate.LogicGateDescriptions.Description OUTPUT_ONE_SINGLE_DESCRIPTION = new LogicGate.LogicGateDescriptions.Description
 	{
 		name = UI.LOGIC_PORTS.GATE_SINGLE_OUTPUT_ONE_NAME,
@@ -763,7 +732,6 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		inactive = UI.LOGIC_PORTS.GATE_SINGLE_OUTPUT_ONE_INACTIVE
 	};
 
-	// Token: 0x0400334D RID: 13133
 	private static readonly LogicGate.LogicGateDescriptions.Description OUTPUT_ONE_MULTI_DESCRIPTION = new LogicGate.LogicGateDescriptions.Description
 	{
 		name = UI.LOGIC_PORTS.GATE_MULTI_OUTPUT_ONE_NAME,
@@ -771,7 +739,6 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		inactive = UI.LOGIC_PORTS.GATE_MULTI_OUTPUT_ONE_INACTIVE
 	};
 
-	// Token: 0x0400334E RID: 13134
 	private static readonly LogicGate.LogicGateDescriptions.Description OUTPUT_TWO_DESCRIPTION = new LogicGate.LogicGateDescriptions.Description
 	{
 		name = UI.LOGIC_PORTS.GATE_MULTI_OUTPUT_TWO_NAME,
@@ -779,7 +746,6 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		inactive = UI.LOGIC_PORTS.GATE_MULTI_OUTPUT_TWO_INACTIVE
 	};
 
-	// Token: 0x0400334F RID: 13135
 	private static readonly LogicGate.LogicGateDescriptions.Description OUTPUT_THREE_DESCRIPTION = new LogicGate.LogicGateDescriptions.Description
 	{
 		name = UI.LOGIC_PORTS.GATE_MULTI_OUTPUT_THREE_NAME,
@@ -787,7 +753,6 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		inactive = UI.LOGIC_PORTS.GATE_MULTI_OUTPUT_THREE_INACTIVE
 	};
 
-	// Token: 0x04003350 RID: 13136
 	private static readonly LogicGate.LogicGateDescriptions.Description OUTPUT_FOUR_DESCRIPTION = new LogicGate.LogicGateDescriptions.Description
 	{
 		name = UI.LOGIC_PORTS.GATE_MULTI_OUTPUT_FOUR_NAME,
@@ -795,7 +760,6 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		inactive = UI.LOGIC_PORTS.GATE_MULTI_OUTPUT_FOUR_INACTIVE
 	};
 
-	// Token: 0x04003351 RID: 13137
 	private static readonly LogicGate.LogicGateDescriptions.Description CONTROL_ONE_DESCRIPTION = new LogicGate.LogicGateDescriptions.Description
 	{
 		name = UI.LOGIC_PORTS.GATE_MULTIPLEXER_CONTROL_ONE_NAME,
@@ -803,7 +767,6 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		inactive = UI.LOGIC_PORTS.GATE_MULTIPLEXER_CONTROL_ONE_INACTIVE
 	};
 
-	// Token: 0x04003352 RID: 13138
 	private static readonly LogicGate.LogicGateDescriptions.Description CONTROL_TWO_DESCRIPTION = new LogicGate.LogicGateDescriptions.Description
 	{
 		name = UI.LOGIC_PORTS.GATE_MULTIPLEXER_CONTROL_TWO_NAME,
@@ -811,266 +774,182 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		inactive = UI.LOGIC_PORTS.GATE_MULTIPLEXER_CONTROL_TWO_INACTIVE
 	};
 
-	// Token: 0x04003353 RID: 13139
 	private LogicGate.LogicGateDescriptions descriptions;
 
-	// Token: 0x04003354 RID: 13140
 	private LogicEventSender[] additionalOutputs;
 
-	// Token: 0x04003355 RID: 13141
 	private const bool IS_CIRCUIT_ENDPOINT = true;
 
-	// Token: 0x04003356 RID: 13142
 	private bool connected;
 
-	// Token: 0x04003357 RID: 13143
 	protected bool cleaningUp;
 
-	// Token: 0x04003358 RID: 13144
 	private int lastAnimState = -1;
 
-	// Token: 0x04003359 RID: 13145
 	[Serialize]
 	protected int outputValueOne;
 
-	// Token: 0x0400335A RID: 13146
 	[Serialize]
 	protected int outputValueTwo;
 
-	// Token: 0x0400335B RID: 13147
 	[Serialize]
 	protected int outputValueThree;
 
-	// Token: 0x0400335C RID: 13148
 	[Serialize]
 	protected int outputValueFour;
 
-	// Token: 0x0400335D RID: 13149
 	private LogicEventHandler inputOne;
 
-	// Token: 0x0400335E RID: 13150
 	private LogicEventHandler inputTwo;
 
-	// Token: 0x0400335F RID: 13151
 	private LogicEventHandler inputThree;
 
-	// Token: 0x04003360 RID: 13152
 	private LogicEventHandler inputFour;
 
-	// Token: 0x04003361 RID: 13153
 	private LogicPortVisualizer outputOne;
 
-	// Token: 0x04003362 RID: 13154
 	private LogicPortVisualizer outputTwo;
 
-	// Token: 0x04003363 RID: 13155
 	private LogicPortVisualizer outputThree;
 
-	// Token: 0x04003364 RID: 13156
 	private LogicPortVisualizer outputFour;
 
-	// Token: 0x04003365 RID: 13157
 	private LogicEventSender outputTwoSender;
 
-	// Token: 0x04003366 RID: 13158
 	private LogicEventSender outputThreeSender;
 
-	// Token: 0x04003367 RID: 13159
 	private LogicEventSender outputFourSender;
 
-	// Token: 0x04003368 RID: 13160
 	private LogicEventHandler controlOne;
 
-	// Token: 0x04003369 RID: 13161
 	private LogicEventHandler controlTwo;
 
-	// Token: 0x0400336A RID: 13162
 	private static readonly EventSystem.IntraObjectHandler<LogicGate> OnBuildingBrokenDelegate = new EventSystem.IntraObjectHandler<LogicGate>(delegate(LogicGate component, object data)
 	{
 		component.OnBuildingBroken(data);
 	});
 
-	// Token: 0x0400336B RID: 13163
 	private static readonly EventSystem.IntraObjectHandler<LogicGate> OnBuildingFullyRepairedDelegate = new EventSystem.IntraObjectHandler<LogicGate>(delegate(LogicGate component, object data)
 	{
 		component.OnBuildingFullyRepaired(data);
 	});
 
-	// Token: 0x0400336C RID: 13164
 	private static KAnimHashedString INPUT1_SYMBOL = "input1";
 
-	// Token: 0x0400336D RID: 13165
 	private static KAnimHashedString INPUT2_SYMBOL = "input2";
 
-	// Token: 0x0400336E RID: 13166
 	private static KAnimHashedString INPUT3_SYMBOL = "input3";
 
-	// Token: 0x0400336F RID: 13167
 	private static KAnimHashedString INPUT4_SYMBOL = "input4";
 
-	// Token: 0x04003370 RID: 13168
 	private static KAnimHashedString OUTPUT1_SYMBOL = "output1";
 
-	// Token: 0x04003371 RID: 13169
 	private static KAnimHashedString OUTPUT2_SYMBOL = "output2";
 
-	// Token: 0x04003372 RID: 13170
 	private static KAnimHashedString OUTPUT3_SYMBOL = "output3";
 
-	// Token: 0x04003373 RID: 13171
 	private static KAnimHashedString OUTPUT4_SYMBOL = "output4";
 
-	// Token: 0x04003374 RID: 13172
 	private static KAnimHashedString INPUT1_SYMBOL_BLM_RED = "input1_red_bloom";
 
-	// Token: 0x04003375 RID: 13173
 	private static KAnimHashedString INPUT1_SYMBOL_BLM_GRN = "input1_green_bloom";
 
-	// Token: 0x04003376 RID: 13174
 	private static KAnimHashedString INPUT2_SYMBOL_BLM_RED = "input2_red_bloom";
 
-	// Token: 0x04003377 RID: 13175
 	private static KAnimHashedString INPUT2_SYMBOL_BLM_GRN = "input2_green_bloom";
 
-	// Token: 0x04003378 RID: 13176
 	private static KAnimHashedString INPUT3_SYMBOL_BLM_RED = "input3_red_bloom";
 
-	// Token: 0x04003379 RID: 13177
 	private static KAnimHashedString INPUT3_SYMBOL_BLM_GRN = "input3_green_bloom";
 
-	// Token: 0x0400337A RID: 13178
 	private static KAnimHashedString INPUT4_SYMBOL_BLM_RED = "input4_red_bloom";
 
-	// Token: 0x0400337B RID: 13179
 	private static KAnimHashedString INPUT4_SYMBOL_BLM_GRN = "input4_green_bloom";
 
-	// Token: 0x0400337C RID: 13180
 	private static KAnimHashedString OUTPUT1_SYMBOL_BLM_RED = "output1_red_bloom";
 
-	// Token: 0x0400337D RID: 13181
 	private static KAnimHashedString OUTPUT1_SYMBOL_BLM_GRN = "output1_green_bloom";
 
-	// Token: 0x0400337E RID: 13182
 	private static KAnimHashedString OUTPUT2_SYMBOL_BLM_RED = "output2_red_bloom";
 
-	// Token: 0x0400337F RID: 13183
 	private static KAnimHashedString OUTPUT2_SYMBOL_BLM_GRN = "output2_green_bloom";
 
-	// Token: 0x04003380 RID: 13184
 	private static KAnimHashedString OUTPUT3_SYMBOL_BLM_RED = "output3_red_bloom";
 
-	// Token: 0x04003381 RID: 13185
 	private static KAnimHashedString OUTPUT3_SYMBOL_BLM_GRN = "output3_green_bloom";
 
-	// Token: 0x04003382 RID: 13186
 	private static KAnimHashedString OUTPUT4_SYMBOL_BLM_RED = "output4_red_bloom";
 
-	// Token: 0x04003383 RID: 13187
 	private static KAnimHashedString OUTPUT4_SYMBOL_BLM_GRN = "output4_green_bloom";
 
-	// Token: 0x04003384 RID: 13188
 	private static KAnimHashedString LINE_LEFT_1_SYMBOL = "line_left_1";
 
-	// Token: 0x04003385 RID: 13189
 	private static KAnimHashedString LINE_LEFT_2_SYMBOL = "line_left_2";
 
-	// Token: 0x04003386 RID: 13190
 	private static KAnimHashedString LINE_LEFT_3_SYMBOL = "line_left_3";
 
-	// Token: 0x04003387 RID: 13191
 	private static KAnimHashedString LINE_LEFT_4_SYMBOL = "line_left_4";
 
-	// Token: 0x04003388 RID: 13192
 	private static KAnimHashedString LINE_RIGHT_1_SYMBOL = "line_right_1";
 
-	// Token: 0x04003389 RID: 13193
 	private static KAnimHashedString LINE_RIGHT_2_SYMBOL = "line_right_2";
 
-	// Token: 0x0400338A RID: 13194
 	private static KAnimHashedString LINE_RIGHT_3_SYMBOL = "line_right_3";
 
-	// Token: 0x0400338B RID: 13195
 	private static KAnimHashedString LINE_RIGHT_4_SYMBOL = "line_right_4";
 
-	// Token: 0x0400338C RID: 13196
 	private static KAnimHashedString FLIPPER_1_SYMBOL = "flipper1";
 
-	// Token: 0x0400338D RID: 13197
 	private static KAnimHashedString FLIPPER_2_SYMBOL = "flipper2";
 
-	// Token: 0x0400338E RID: 13198
 	private static KAnimHashedString FLIPPER_3_SYMBOL = "flipper3";
 
-	// Token: 0x0400338F RID: 13199
 	private static KAnimHashedString INPUT_SYMBOL = "input";
 
-	// Token: 0x04003390 RID: 13200
 	private static KAnimHashedString OUTPUT_SYMBOL = "output";
 
-	// Token: 0x04003391 RID: 13201
 	private static KAnimHashedString INPUT1_SYMBOL_BLOOM = "input1_bloom";
 
-	// Token: 0x04003392 RID: 13202
 	private static KAnimHashedString INPUT2_SYMBOL_BLOOM = "input2_bloom";
 
-	// Token: 0x04003393 RID: 13203
 	private static KAnimHashedString INPUT3_SYMBOL_BLOOM = "input3_bloom";
 
-	// Token: 0x04003394 RID: 13204
 	private static KAnimHashedString INPUT4_SYMBOL_BLOOM = "input4_bloom";
 
-	// Token: 0x04003395 RID: 13205
 	private static KAnimHashedString OUTPUT1_SYMBOL_BLOOM = "output1_bloom";
 
-	// Token: 0x04003396 RID: 13206
 	private static KAnimHashedString OUTPUT2_SYMBOL_BLOOM = "output2_bloom";
 
-	// Token: 0x04003397 RID: 13207
 	private static KAnimHashedString OUTPUT3_SYMBOL_BLOOM = "output3_bloom";
 
-	// Token: 0x04003398 RID: 13208
 	private static KAnimHashedString OUTPUT4_SYMBOL_BLOOM = "output4_bloom";
 
-	// Token: 0x04003399 RID: 13209
 	private static KAnimHashedString LINE_LEFT_1_SYMBOL_BLOOM = "line_left_1_bloom";
 
-	// Token: 0x0400339A RID: 13210
 	private static KAnimHashedString LINE_LEFT_2_SYMBOL_BLOOM = "line_left_2_bloom";
 
-	// Token: 0x0400339B RID: 13211
 	private static KAnimHashedString LINE_LEFT_3_SYMBOL_BLOOM = "line_left_3_bloom";
 
-	// Token: 0x0400339C RID: 13212
 	private static KAnimHashedString LINE_LEFT_4_SYMBOL_BLOOM = "line_left_4_bloom";
 
-	// Token: 0x0400339D RID: 13213
 	private static KAnimHashedString LINE_RIGHT_1_SYMBOL_BLOOM = "line_right_1_bloom";
 
-	// Token: 0x0400339E RID: 13214
 	private static KAnimHashedString LINE_RIGHT_2_SYMBOL_BLOOM = "line_right_2_bloom";
 
-	// Token: 0x0400339F RID: 13215
 	private static KAnimHashedString LINE_RIGHT_3_SYMBOL_BLOOM = "line_right_3_bloom";
 
-	// Token: 0x040033A0 RID: 13216
 	private static KAnimHashedString LINE_RIGHT_4_SYMBOL_BLOOM = "line_right_4_bloom";
 
-	// Token: 0x040033A1 RID: 13217
 	private static KAnimHashedString FLIPPER_1_SYMBOL_BLOOM = "flipper1_bloom";
 
-	// Token: 0x040033A2 RID: 13218
 	private static KAnimHashedString FLIPPER_2_SYMBOL_BLOOM = "flipper2_bloom";
 
-	// Token: 0x040033A3 RID: 13219
 	private static KAnimHashedString FLIPPER_3_SYMBOL_BLOOM = "flipper3_bloom";
 
-	// Token: 0x040033A4 RID: 13220
 	private static KAnimHashedString INPUT_SYMBOL_BLOOM = "input_bloom";
 
-	// Token: 0x040033A5 RID: 13221
 	private static KAnimHashedString OUTPUT_SYMBOL_BLOOM = "output_bloom";
 
-	// Token: 0x040033A6 RID: 13222
 	private static KAnimHashedString[][] multiplexerSymbolPaths = new KAnimHashedString[][]
 	{
 		new KAnimHashedString[]
@@ -1107,7 +986,6 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		}
 	};
 
-	// Token: 0x040033A7 RID: 13223
 	private static KAnimHashedString[] multiplexerSymbols = new KAnimHashedString[]
 	{
 		LogicGate.LINE_LEFT_1_SYMBOL,
@@ -1122,7 +1000,6 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		LogicGate.OUTPUT_SYMBOL
 	};
 
-	// Token: 0x040033A8 RID: 13224
 	private static KAnimHashedString[] multiplexerBloomSymbols = new KAnimHashedString[]
 	{
 		LogicGate.LINE_LEFT_1_SYMBOL_BLOOM,
@@ -1137,7 +1014,6 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		LogicGate.OUTPUT_SYMBOL_BLOOM
 	};
 
-	// Token: 0x040033A9 RID: 13225
 	private static KAnimHashedString[][] demultiplexerSymbolPaths = new KAnimHashedString[][]
 	{
 		new KAnimHashedString[]
@@ -1170,7 +1046,6 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		}
 	};
 
-	// Token: 0x040033AA RID: 13226
 	private static KAnimHashedString[] demultiplexerSymbols = new KAnimHashedString[]
 	{
 		LogicGate.INPUT_SYMBOL,
@@ -1182,7 +1057,6 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		LogicGate.LINE_RIGHT_4_SYMBOL
 	};
 
-	// Token: 0x040033AB RID: 13227
 	private static KAnimHashedString[] demultiplexerBloomSymbols = new KAnimHashedString[]
 	{
 		LogicGate.INPUT_SYMBOL_BLOOM,
@@ -1194,7 +1068,6 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		LogicGate.LINE_RIGHT_4_SYMBOL_BLOOM
 	};
 
-	// Token: 0x040033AC RID: 13228
 	private static KAnimHashedString[] demultiplexerOutputSymbols = new KAnimHashedString[]
 	{
 		LogicGate.OUTPUT1_SYMBOL,
@@ -1203,7 +1076,6 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		LogicGate.OUTPUT4_SYMBOL
 	};
 
-	// Token: 0x040033AD RID: 13229
 	private static KAnimHashedString[] demultiplexerOutputRedSymbols = new KAnimHashedString[]
 	{
 		LogicGate.OUTPUT1_SYMBOL_BLM_RED,
@@ -1212,7 +1084,6 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		LogicGate.OUTPUT4_SYMBOL_BLM_RED
 	};
 
-	// Token: 0x040033AE RID: 13230
 	private static KAnimHashedString[] demultiplexerOutputGreenSymbols = new KAnimHashedString[]
 	{
 		LogicGate.OUTPUT1_SYMBOL_BLM_GRN,
@@ -1221,55 +1092,38 @@ public class LogicGate : LogicGateBase, ILogicEventSender, ILogicNetworkConnecti
 		LogicGate.OUTPUT4_SYMBOL_BLM_GRN
 	};
 
-	// Token: 0x040033AF RID: 13231
 	private Color activeTintColor = new Color(0.5411765f, 0.9882353f, 0.29803923f);
 
-	// Token: 0x040033B0 RID: 13232
 	private Color inactiveTintColor = Color.red;
 
-	// Token: 0x02000E80 RID: 3712
 	public class LogicGateDescriptions
 	{
-		// Token: 0x040033B1 RID: 13233
 		public LogicGate.LogicGateDescriptions.Description inputOne;
 
-		// Token: 0x040033B2 RID: 13234
 		public LogicGate.LogicGateDescriptions.Description inputTwo;
 
-		// Token: 0x040033B3 RID: 13235
 		public LogicGate.LogicGateDescriptions.Description inputThree;
 
-		// Token: 0x040033B4 RID: 13236
 		public LogicGate.LogicGateDescriptions.Description inputFour;
 
-		// Token: 0x040033B5 RID: 13237
 		public LogicGate.LogicGateDescriptions.Description outputOne;
 
-		// Token: 0x040033B6 RID: 13238
 		public LogicGate.LogicGateDescriptions.Description outputTwo;
 
-		// Token: 0x040033B7 RID: 13239
 		public LogicGate.LogicGateDescriptions.Description outputThree;
 
-		// Token: 0x040033B8 RID: 13240
 		public LogicGate.LogicGateDescriptions.Description outputFour;
 
-		// Token: 0x040033B9 RID: 13241
 		public LogicGate.LogicGateDescriptions.Description controlOne;
 
-		// Token: 0x040033BA RID: 13242
 		public LogicGate.LogicGateDescriptions.Description controlTwo;
 
-		// Token: 0x02000E81 RID: 3713
 		public class Description
 		{
-			// Token: 0x040033BB RID: 13243
 			public string name;
 
-			// Token: 0x040033BC RID: 13244
 			public string active;
 
-			// Token: 0x040033BD RID: 13245
 			public string inactive;
 		}
 	}

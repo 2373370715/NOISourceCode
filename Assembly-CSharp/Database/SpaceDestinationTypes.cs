@@ -4,10 +4,8 @@ using STRINGS;
 
 namespace Database
 {
-	// Token: 0x020021D3 RID: 8659
 	public class SpaceDestinationTypes : ResourceSet<SpaceDestinationType>
 	{
-		// Token: 0x0600B89C RID: 47260 RVA: 0x00470EA8 File Offset: 0x0046F0A8
 		public SpaceDestinationTypes(ResourceSet parent) : base("SpaceDestinations", parent)
 		{
 			this.Satellite = base.Add(new SpaceDestinationType("Satellite", parent, UI.SPACEDESTINATIONS.DEBRIS.SATELLITE.NAME, UI.SPACEDESTINATIONS.DEBRIS.SATELLITE.DESCRIPTION, 16, "asteroid", new Dictionary<SimHashes, MathUtil.MinMax>
@@ -415,79 +413,54 @@ namespace Database
 			}
 		}
 
-		// Token: 0x040096A9 RID: 38569
 		public SpaceDestinationType Satellite;
 
-		// Token: 0x040096AA RID: 38570
 		public SpaceDestinationType MetallicAsteroid;
 
-		// Token: 0x040096AB RID: 38571
 		public SpaceDestinationType RockyAsteroid;
 
-		// Token: 0x040096AC RID: 38572
 		public SpaceDestinationType CarbonaceousAsteroid;
 
-		// Token: 0x040096AD RID: 38573
 		public SpaceDestinationType IcyDwarf;
 
-		// Token: 0x040096AE RID: 38574
 		public SpaceDestinationType OrganicDwarf;
 
-		// Token: 0x040096AF RID: 38575
 		public SpaceDestinationType DustyMoon;
 
-		// Token: 0x040096B0 RID: 38576
 		public SpaceDestinationType TerraPlanet;
 
-		// Token: 0x040096B1 RID: 38577
 		public SpaceDestinationType VolcanoPlanet;
 
-		// Token: 0x040096B2 RID: 38578
 		public SpaceDestinationType GasGiant;
 
-		// Token: 0x040096B3 RID: 38579
 		public SpaceDestinationType IceGiant;
 
-		// Token: 0x040096B4 RID: 38580
 		public SpaceDestinationType Wormhole;
 
-		// Token: 0x040096B5 RID: 38581
 		public SpaceDestinationType SaltDwarf;
 
-		// Token: 0x040096B6 RID: 38582
 		public SpaceDestinationType RustPlanet;
 
-		// Token: 0x040096B7 RID: 38583
 		public SpaceDestinationType ForestPlanet;
 
-		// Token: 0x040096B8 RID: 38584
 		public SpaceDestinationType RedDwarf;
 
-		// Token: 0x040096B9 RID: 38585
 		public SpaceDestinationType GoldAsteroid;
 
-		// Token: 0x040096BA RID: 38586
 		public SpaceDestinationType HydrogenGiant;
 
-		// Token: 0x040096BB RID: 38587
 		public SpaceDestinationType OilyAsteroid;
 
-		// Token: 0x040096BC RID: 38588
 		public SpaceDestinationType ShinyPlanet;
 
-		// Token: 0x040096BD RID: 38589
 		public SpaceDestinationType ChlorinePlanet;
 
-		// Token: 0x040096BE RID: 38590
 		public SpaceDestinationType SaltDesertPlanet;
 
-		// Token: 0x040096BF RID: 38591
 		public SpaceDestinationType Earth;
 
-		// Token: 0x040096C0 RID: 38592
 		public SpaceDestinationType DLC2CeresSpaceDestination;
 
-		// Token: 0x040096C1 RID: 38593
 		public static Dictionary<SimHashes, MathUtil.MinMax> extendedElementTable = new Dictionary<SimHashes, MathUtil.MinMax>
 		{
 			{

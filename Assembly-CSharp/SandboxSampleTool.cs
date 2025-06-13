@@ -6,24 +6,20 @@ using FMODUnity;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001483 RID: 5251
 public class SandboxSampleTool : InterfaceTool
 {
-	// Token: 0x06006CC4 RID: 27844 RVA: 0x000EBEC4 File Offset: 0x000EA0C4
 	public override void GetOverlayColorData(out HashSet<ToolMenu.CellColorData> colors)
 	{
 		colors = new HashSet<ToolMenu.CellColorData>();
 		colors.Add(new ToolMenu.CellColorData(this.currentCell, this.radiusIndicatorColor));
 	}
 
-	// Token: 0x06006CC5 RID: 27845 RVA: 0x000EBEE6 File Offset: 0x000EA0E6
 	public override void OnMouseMove(Vector3 cursorPos)
 	{
 		base.OnMouseMove(cursorPos);
 		this.currentCell = Grid.PosToCell(cursorPos);
 	}
 
-	// Token: 0x06006CC6 RID: 27846 RVA: 0x002F58BC File Offset: 0x002F3ABC
 	public override void OnLeftClickDown(Vector3 cursor_pos)
 	{
 		int cell = Grid.PosToCell(cursor_pos);
@@ -37,7 +33,6 @@ public class SandboxSampleTool : InterfaceTool
 		this.PlaySound();
 	}
 
-	// Token: 0x06006CC7 RID: 27847 RVA: 0x002F5920 File Offset: 0x002F3B20
 	public static void Sample(int cell)
 	{
 		SandboxToolParameterMenu.instance.settings.SetIntSetting("SandboxTools.SelectedElement", (int)Grid.Element[cell].idx);
@@ -47,7 +42,6 @@ public class SandboxSampleTool : InterfaceTool
 		SandboxToolParameterMenu.instance.RefreshDisplay();
 	}
 
-	// Token: 0x06006CC8 RID: 27848 RVA: 0x002F5344 File Offset: 0x002F3544
 	protected override void OnActivateTool()
 	{
 		base.OnActivateTool();
@@ -60,7 +54,6 @@ public class SandboxSampleTool : InterfaceTool
 		SandboxToolParameterMenu.instance.diseaseCountSlider.row.SetActive(true);
 	}
 
-	// Token: 0x06006CC9 RID: 27849 RVA: 0x000EBEFB File Offset: 0x000EA0FB
 	protected override void OnDeactivateTool(InterfaceTool new_tool)
 	{
 		base.OnDeactivateTool(new_tool);
@@ -68,7 +61,6 @@ public class SandboxSampleTool : InterfaceTool
 		this.StopSound();
 	}
 
-	// Token: 0x06006CCA RID: 27850 RVA: 0x002F59D8 File Offset: 0x002F3BD8
 	private void PlaySound()
 	{
 		Element element = ElementLoader.elements[SandboxToolParameterMenu.instance.settings.GetIntSetting("SandboxTools.SelectedElement")];
@@ -106,19 +98,15 @@ public class SandboxSampleTool : InterfaceTool
 		this.ev.start();
 	}
 
-	// Token: 0x06006CCB RID: 27851 RVA: 0x000EBF1A File Offset: 0x000EA11A
 	private void StopSound()
 	{
 		this.ev.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 		this.ev.release();
 	}
 
-	// Token: 0x0400521B RID: 21019
 	protected Color radiusIndicatorColor = new Color(0.5f, 0.7f, 0.5f, 0.2f);
 
-	// Token: 0x0400521C RID: 21020
 	private int currentCell;
 
-	// Token: 0x0400521D RID: 21021
 	private EventInstance ev;
 }

@@ -1,22 +1,18 @@
 ﻿using System;
 using STRINGS;
 
-// Token: 0x02001267 RID: 4711
 public class FloatingRocketDiagnostic : ColonyDiagnostic
 {
-	// Token: 0x06006038 RID: 24632 RVA: 0x000E3321 File Offset: 0x000E1521
 	public FloatingRocketDiagnostic(int worldID) : base(worldID, UI.COLONY_DIAGNOSTICS.FLOATINGROCKETDIAGNOSTIC.ALL_NAME)
 	{
 		this.icon = "icon_errand_rocketry";
 	}
 
-	// Token: 0x06006039 RID: 24633 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x0600603A RID: 24634 RVA: 0x002B9FDC File Offset: 0x002B81DC
 	public override ColonyDiagnostic.DiagnosticResult Evaluate()
 	{
 		WorldContainer world = ClusterManager.Instance.GetWorld(base.worldID);

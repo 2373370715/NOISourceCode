@@ -3,16 +3,13 @@ using Klei.AI;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020016EA RID: 5866
 public class PartyPointWorkable : Workable, IWorkerPrioritizable
 {
-	// Token: 0x06007900 RID: 30976 RVA: 0x000B09A4 File Offset: 0x000AEBA4
 	private PartyPointWorkable()
 	{
 		base.SetReportType(ReportManager.ReportType.PersonalTime);
 	}
 
-	// Token: 0x06007901 RID: 30977 RVA: 0x00321B30 File Offset: 0x0031FD30
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -76,7 +73,6 @@ public class PartyPointWorkable : Workable, IWorkerPrioritizable
 		};
 	}
 
-	// Token: 0x06007902 RID: 30978 RVA: 0x00321C94 File Offset: 0x0031FE94
 	public override Workable.AnimInfo GetAnim(WorkerBase worker)
 	{
 		int num = UnityEngine.Random.Range(0, this.workerOverrideAnims.Length);
@@ -84,7 +80,6 @@ public class PartyPointWorkable : Workable, IWorkerPrioritizable
 		return base.GetAnim(worker);
 	}
 
-	// Token: 0x06007903 RID: 30979 RVA: 0x000F3FC5 File Offset: 0x000F21C5
 	public override Vector3 GetFacingTarget()
 	{
 		if (this.lastTalker != null)
@@ -94,13 +89,11 @@ public class PartyPointWorkable : Workable, IWorkerPrioritizable
 		return base.GetFacingTarget();
 	}
 
-	// Token: 0x06007904 RID: 30980 RVA: 0x000B1628 File Offset: 0x000AF828
 	protected override bool OnWorkTick(WorkerBase worker, float dt)
 	{
 		return false;
 	}
 
-	// Token: 0x06007905 RID: 30981 RVA: 0x00321CC8 File Offset: 0x0031FEC8
 	protected override void OnStartWork(WorkerBase worker)
 	{
 		base.OnStartWork(worker);
@@ -109,7 +102,6 @@ public class PartyPointWorkable : Workable, IWorkerPrioritizable
 		worker.Subscribe(25860745, new Action<object>(this.OnStoppedTalking));
 	}
 
-	// Token: 0x06007906 RID: 30982 RVA: 0x00321D20 File Offset: 0x0031FF20
 	protected override void OnStopWork(WorkerBase worker)
 	{
 		base.OnStopWork(worker);
@@ -118,7 +110,6 @@ public class PartyPointWorkable : Workable, IWorkerPrioritizable
 		worker.Unsubscribe(25860745, new Action<object>(this.OnStoppedTalking));
 	}
 
-	// Token: 0x06007907 RID: 30983 RVA: 0x00321D74 File Offset: 0x0031FF74
 	protected override void OnCompleteWork(WorkerBase worker)
 	{
 		Effects component = worker.GetComponent<Effects>();
@@ -128,7 +119,6 @@ public class PartyPointWorkable : Workable, IWorkerPrioritizable
 		}
 	}
 
-	// Token: 0x06007908 RID: 30984 RVA: 0x00321DA4 File Offset: 0x0031FFA4
 	private void OnStartedTalking(object data)
 	{
 		ConversationManager.StartedTalkingEvent startedTalkingEvent = data as ConversationManager.StartedTalkingEvent;
@@ -159,12 +149,10 @@ public class PartyPointWorkable : Workable, IWorkerPrioritizable
 		}
 	}
 
-	// Token: 0x06007909 RID: 30985 RVA: 0x000AA038 File Offset: 0x000A8238
 	private void OnStoppedTalking(object data)
 	{
 	}
 
-	// Token: 0x0600790A RID: 30986 RVA: 0x000F3FEC File Offset: 0x000F21EC
 	public bool GetWorkerPriority(WorkerBase worker, out int priority)
 	{
 		priority = this.basePriority;
@@ -175,29 +163,20 @@ public class PartyPointWorkable : Workable, IWorkerPrioritizable
 		return true;
 	}
 
-	// Token: 0x04005AD3 RID: 23251
 	private GameObject lastTalker;
 
-	// Token: 0x04005AD4 RID: 23252
 	public int basePriority;
 
-	// Token: 0x04005AD5 RID: 23253
 	public string specificEffect;
 
-	// Token: 0x04005AD6 RID: 23254
 	public KAnimFile[][] workerOverrideAnims;
 
-	// Token: 0x04005AD7 RID: 23255
 	private PartyPointWorkable.ActivityType activity;
 
-	// Token: 0x020016EB RID: 5867
 	private enum ActivityType
 	{
-		// Token: 0x04005AD9 RID: 23257
 		Talk,
-		// Token: 0x04005ADA RID: 23258
 		Dance,
-		// Token: 0x04005ADB RID: 23259
 		LENGTH
 	}
 }

@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200057F RID: 1407
 public class RocketInteriorPowerPlugConfig : IBuildingConfig
 {
-	// Token: 0x0600183F RID: 6207 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06001840 RID: 6208 RVA: 0x001AA540 File Offset: 0x001A8740
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "RocketInteriorPowerPlug";
@@ -41,7 +38,6 @@ public class RocketInteriorPowerPlugConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001841 RID: 6209 RVA: 0x000B4A1E File Offset: 0x000B2C1E
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		base.ConfigureBuildingTemplate(go, prefab_tag);
@@ -49,13 +45,11 @@ public class RocketInteriorPowerPlugConfig : IBuildingConfig
 		go.AddComponent<RequireInputs>();
 	}
 
-	// Token: 0x06001842 RID: 6210 RVA: 0x000B4BB4 File Offset: 0x000B2DB4
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGetDef<OperationalController.Def>();
 		go.AddOrGet<WireUtilitySemiVirtualNetworkLink>().link1 = new CellOffset(0, 0);
 	}
 
-	// Token: 0x04001005 RID: 4101
 	public const string ID = "RocketInteriorPowerPlug";
 }

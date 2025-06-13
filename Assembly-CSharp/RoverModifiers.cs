@@ -3,11 +3,9 @@ using Klei.AI;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x02001155 RID: 4437
 [SerializationConfig(MemberSerialization.OptIn)]
 public class RoverModifiers : Modifiers, ISaveLoadable
 {
-	// Token: 0x06005A98 RID: 23192 RVA: 0x002A3E5C File Offset: 0x002A205C
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -16,7 +14,6 @@ public class RoverModifiers : Modifiers, ISaveLoadable
 		this.attributes.Add(Db.Get().Attributes.Strength);
 	}
 
-	// Token: 0x06005A99 RID: 23193 RVA: 0x002A3EC0 File Offset: 0x002A20C0
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -31,7 +28,6 @@ public class RoverModifiers : Modifiers, ISaveLoadable
 		}
 	}
 
-	// Token: 0x06005A9A RID: 23194 RVA: 0x002A3F54 File Offset: 0x002A2154
 	private void SetupDependentAttribute(Klei.AI.Attribute targetAttribute, AttributeConverter attributeConverter)
 	{
 		Klei.AI.Attribute attribute = attributeConverter.attribute;
@@ -44,7 +40,6 @@ public class RoverModifiers : Modifiers, ISaveLoadable
 		}));
 	}
 
-	// Token: 0x06005A9B RID: 23195 RVA: 0x002A3FE8 File Offset: 0x002A21E8
 	private void OnBeginChore(object data)
 	{
 		Storage component = base.GetComponent<Storage>();
@@ -54,7 +49,6 @@ public class RoverModifiers : Modifiers, ISaveLoadable
 		}
 	}
 
-	// Token: 0x04004085 RID: 16517
 	private static readonly EventSystem.IntraObjectHandler<RoverModifiers> OnBeginChoreDelegate = new EventSystem.IntraObjectHandler<RoverModifiers>(delegate(RoverModifiers component, object data)
 	{
 		component.OnBeginChore(data);

@@ -6,10 +6,8 @@ using ProcGen;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001EED RID: 7917
 public class PasteBaseTemplateScreen : KScreen
 {
-	// Token: 0x0600A624 RID: 42532 RVA: 0x00110401 File Offset: 0x0010E601
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -20,14 +18,12 @@ public class PasteBaseTemplateScreen : KScreen
 		this.RefreshStampButtons();
 	}
 
-	// Token: 0x0600A625 RID: 42533 RVA: 0x00110438 File Offset: 0x0010E638
 	protected override void OnForcedCleanUp()
 	{
 		PasteBaseTemplateScreen.Instance = null;
 		base.OnForcedCleanUp();
 	}
 
-	// Token: 0x0600A626 RID: 42534 RVA: 0x003FD360 File Offset: 0x003FB560
 	[ContextMenu("Refresh")]
 	public void RefreshStampButtons()
 	{
@@ -92,7 +88,6 @@ public class PasteBaseTemplateScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600A627 RID: 42535 RVA: 0x003FD64C File Offset: 0x003FB84C
 	private void UpdateDirectory(string relativePath)
 	{
 		if (this.m_CurrentDirectory == PasteBaseTemplateScreen.NO_DIRECTORY)
@@ -107,7 +102,6 @@ public class PasteBaseTemplateScreen : KScreen
 		this.RefreshStampButtons();
 	}
 
-	// Token: 0x0600A628 RID: 42536 RVA: 0x003FD69C File Offset: 0x003FB89C
 	private void UpDirectory()
 	{
 		int num = this.m_CurrentDirectory.LastIndexOf("/");
@@ -132,7 +126,6 @@ public class PasteBaseTemplateScreen : KScreen
 		this.RefreshStampButtons();
 	}
 
-	// Token: 0x0600A629 RID: 42537 RVA: 0x003FD70C File Offset: 0x003FB90C
 	private void OnClickPasteButton(string template_name)
 	{
 		if (template_name == null)
@@ -151,30 +144,21 @@ public class PasteBaseTemplateScreen : KScreen
 		StampTool.Instance.Activate(template, true, false);
 	}
 
-	// Token: 0x0400821C RID: 33308
 	public static PasteBaseTemplateScreen Instance;
 
-	// Token: 0x0400821D RID: 33309
 	public GameObject button_list_container;
 
-	// Token: 0x0400821E RID: 33310
 	public GameObject prefab_paste_button;
 
-	// Token: 0x0400821F RID: 33311
 	public GameObject prefab_directory_button;
 
-	// Token: 0x04008220 RID: 33312
 	public KButton button_directory_up;
 
-	// Token: 0x04008221 RID: 33313
 	public LocText directory_path_text;
 
-	// Token: 0x04008222 RID: 33314
 	private List<GameObject> m_template_buttons = new List<GameObject>();
 
-	// Token: 0x04008223 RID: 33315
 	private static readonly string NO_DIRECTORY = "NONE";
 
-	// Token: 0x04008224 RID: 33316
 	private string m_CurrentDirectory = PasteBaseTemplateScreen.NO_DIRECTORY;
 }

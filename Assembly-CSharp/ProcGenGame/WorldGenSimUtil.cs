@@ -9,10 +9,8 @@ using TemplateClasses;
 
 namespace ProcGenGame
 {
-	// Token: 0x0200212D RID: 8493
 	public static class WorldGenSimUtil
 	{
-		// Token: 0x0600B4F3 RID: 46323 RVA: 0x00450224 File Offset: 0x0044E424
 		public unsafe static bool DoSettleSim(WorldGenSettings settings, BinaryWriter writer, ref Sim.Cell[] cells, ref float[] bgTemp, ref Sim.DiseaseCell[] dcs, WorldGen.OfflineCallbackFunction updateProgressFn, Data data, List<TemplateSpawning.TemplateSpawner> templateSpawnTargets, Action<OfflineWorldGen.ErrorInfo> error_cb, int baseId)
 		{
 			Sim.SIM_Initialize(new Sim.GAME_MessageHandler(Sim.DLL_MessageHandler));
@@ -114,7 +112,6 @@ namespace ProcGenGame
 			return result;
 		}
 
-		// Token: 0x0600B4F4 RID: 46324 RVA: 0x004506D4 File Offset: 0x0044E8D4
 		private static bool SaveSim(BinaryWriter writer, Data data, int baseId, Action<OfflineWorldGen.ErrorInfo> error_cb)
 		{
 			bool result;
@@ -183,7 +180,6 @@ namespace ProcGenGame
 			return result;
 		}
 
-		// Token: 0x0600B4F5 RID: 46325 RVA: 0x00450980 File Offset: 0x0044EB80
 		public static void LoadSim(IReader reader, int baseCount, List<SimSaveFileStructure> loadedWorlds)
 		{
 			try
@@ -214,7 +210,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x04008F1E RID: 36638
 		private const int STEPS = 500;
 	}
 }

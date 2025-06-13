@@ -2,10 +2,8 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x020018A6 RID: 6310
 public class LimitOneCommandModule : SelectModuleCondition
 {
-	// Token: 0x0600826B RID: 33387 RVA: 0x0034A33C File Offset: 0x0034853C
 	public override bool EvaluateCondition(GameObject existingModule, BuildingDef selectedPart, SelectModuleCondition.SelectionContext selectionContext)
 	{
 		if (existingModule == null)
@@ -29,7 +27,6 @@ public class LimitOneCommandModule : SelectModuleCondition
 		return true;
 	}
 
-	// Token: 0x0600826C RID: 33388 RVA: 0x000FA45D File Offset: 0x000F865D
 	public override string GetStatusTooltip(bool ready, GameObject moduleBase, BuildingDef selectedPart)
 	{
 		if (ready)

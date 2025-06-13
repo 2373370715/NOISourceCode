@@ -2,36 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x0200132A RID: 4906
 [AddComponentMenu("KMonoBehaviour/scripts/FetchListStatusItemUpdater")]
 public class FetchListStatusItemUpdater : KMonoBehaviour, IRender200ms
 {
-	// Token: 0x06006472 RID: 25714 RVA: 0x000E5FFE File Offset: 0x000E41FE
 	public static void DestroyInstance()
 	{
 		FetchListStatusItemUpdater.instance = null;
 	}
 
-	// Token: 0x06006473 RID: 25715 RVA: 0x000E6006 File Offset: 0x000E4206
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 		FetchListStatusItemUpdater.instance = this;
 	}
 
-	// Token: 0x06006474 RID: 25716 RVA: 0x000E6014 File Offset: 0x000E4214
 	public void AddFetchList(FetchList2 fetch_list)
 	{
 		this.fetchLists.Add(fetch_list);
 	}
 
-	// Token: 0x06006475 RID: 25717 RVA: 0x000E6022 File Offset: 0x000E4222
 	public void RemoveFetchList(FetchList2 fetch_list)
 	{
 		this.fetchLists.Remove(fetch_list);
 	}
 
-	// Token: 0x06006476 RID: 25718 RVA: 0x002CCDB0 File Offset: 0x002CAFB0
 	public void Render200ms(float dt)
 	{
 		foreach (WorldContainer worldContainer in ClusterManager.Instance.WorldContainers)
@@ -158,15 +152,11 @@ public class FetchListStatusItemUpdater : KMonoBehaviour, IRender200ms
 		}
 	}
 
-	// Token: 0x0400484D RID: 18509
 	public static FetchListStatusItemUpdater instance;
 
-	// Token: 0x0400484E RID: 18510
 	private List<FetchList2> fetchLists = new List<FetchList2>();
 
-	// Token: 0x0400484F RID: 18511
 	private int[] currentIterationIndex = new int[255];
 
-	// Token: 0x04004850 RID: 18512
 	private int maxIteratingCount = 100;
 }

@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000293 RID: 659
 public class ColdWheatConfig : IEntityConfig
 {
-	// Token: 0x060009A2 RID: 2466 RVA: 0x001704E0 File Offset: 0x0016E6E0
 	public GameObject CreatePrefab()
 	{
 		string id = "ColdWheat";
@@ -60,25 +58,19 @@ public class ColdWheatConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x060009A3 RID: 2467 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x060009A4 RID: 2468 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x04000764 RID: 1892
 	public const string ID = "ColdWheat";
 
-	// Token: 0x04000765 RID: 1893
 	public const string SEED_ID = "ColdWheatSeed";
 
-	// Token: 0x04000766 RID: 1894
 	public const float FERTILIZATION_RATE = 0.008333334f;
 
-	// Token: 0x04000767 RID: 1895
 	public const float WATER_RATE = 0.033333335f;
 }

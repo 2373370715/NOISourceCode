@@ -2,17 +2,14 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200066A RID: 1642
 public class AttackChore : Chore<AttackChore.StatesInstance>
 {
-	// Token: 0x06001D44 RID: 7492 RVA: 0x000B7BEA File Offset: 0x000B5DEA
 	protected override void OnStateMachineStop(string reason, StateMachine.Status status)
 	{
 		this.CleanUpMultitool();
 		base.OnStateMachineStop(reason, status);
 	}
 
-	// Token: 0x06001D45 RID: 7493 RVA: 0x001BA798 File Offset: 0x001B8998
 	public AttackChore(IStateMachineTarget target, GameObject enemy) : base(Db.Get().ChoreTypes.Attack, target, target.GetComponent<ChoreProvider>(), false, null, null, null, PriorityScreen.PriorityClass.basic, 5, false, true, 0, false, ReportManager.ReportType.WorkTime)
 	{
 		base.smi = new AttackChore.StatesInstance(this);
@@ -21,7 +18,6 @@ public class AttackChore : Chore<AttackChore.StatesInstance>
 		base.SetPrioritizable(enemy.GetComponent<Prioritizable>());
 	}
 
-	// Token: 0x06001D46 RID: 7494 RVA: 0x001BA814 File Offset: 0x001B8A14
 	public string GetHitAnim()
 	{
 		Workable component = base.smi.sm.attackTarget.Get(base.smi).gameObject.GetComponent<Workable>();
@@ -32,7 +28,6 @@ public class AttackChore : Chore<AttackChore.StatesInstance>
 		return "hit";
 	}
 
-	// Token: 0x06001D47 RID: 7495 RVA: 0x001BA87C File Offset: 0x001B8A7C
 	public void OnTargetMoved(object data)
 	{
 		int num = Grid.PosToCell(base.smi.master.gameObject);
@@ -68,14 +63,12 @@ public class AttackChore : Chore<AttackChore.StatesInstance>
 		}
 	}
 
-	// Token: 0x06001D48 RID: 7496 RVA: 0x000B7BFA File Offset: 0x000B5DFA
 	public override void Begin(Chore.Precondition.Context context)
 	{
 		base.smi.sm.attacker.Set(context.consumerState.gameObject, base.smi, false);
 		base.Begin(context);
 	}
 
-	// Token: 0x06001D49 RID: 7497 RVA: 0x001BA998 File Offset: 0x001B8B98
 	protected override void End(string reason)
 	{
 		this.CleanUpMultitool();
@@ -91,13 +84,11 @@ public class AttackChore : Chore<AttackChore.StatesInstance>
 		base.End(reason);
 	}
 
-	// Token: 0x06001D4A RID: 7498 RVA: 0x000B7C2B File Offset: 0x000B5E2B
 	public void OnTargetDestroyed(object data)
 	{
 		this.Fail("target destroyed");
 	}
 
-	// Token: 0x06001D4B RID: 7499 RVA: 0x000B7C38 File Offset: 0x000B5E38
 	private void CleanUpMultitool()
 	{
 		if (base.smi.master.multiTool != null)
@@ -108,22 +99,17 @@ public class AttackChore : Chore<AttackChore.StatesInstance>
 		}
 	}
 
-	// Token: 0x0400128C RID: 4748
 	private MultitoolController.Instance multiTool;
 
-	// Token: 0x0200066B RID: 1643
 	public class StatesInstance : GameStateMachine<AttackChore.States, AttackChore.StatesInstance, AttackChore, object>.GameInstance
 	{
-		// Token: 0x06001D4C RID: 7500 RVA: 0x000B7C6E File Offset: 0x000B5E6E
 		public StatesInstance(AttackChore master) : base(master)
 		{
 		}
 	}
 
-	// Token: 0x0200066C RID: 1644
 	public class States : GameStateMachine<AttackChore.States, AttackChore.StatesInstance, AttackChore>
 	{
-		// Token: 0x06001D4D RID: 7501 RVA: 0x001BAA0C File Offset: 0x001B8C0C
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.approachtarget;
@@ -201,19 +187,14 @@ public class AttackChore : Chore<AttackChore.StatesInstance>
 			}).ReturnSuccess();
 		}
 
-		// Token: 0x0400128D RID: 4749
 		public StateMachine<AttackChore.States, AttackChore.StatesInstance, AttackChore, object>.TargetParameter attackTarget;
 
-		// Token: 0x0400128E RID: 4750
 		public StateMachine<AttackChore.States, AttackChore.StatesInstance, AttackChore, object>.TargetParameter attacker;
 
-		// Token: 0x0400128F RID: 4751
 		public GameStateMachine<AttackChore.States, AttackChore.StatesInstance, AttackChore, object>.ApproachSubState<RangedAttackable> approachtarget;
 
-		// Token: 0x04001290 RID: 4752
 		public GameStateMachine<AttackChore.States, AttackChore.StatesInstance, AttackChore, object>.State attack;
 
-		// Token: 0x04001291 RID: 4753
 		public GameStateMachine<AttackChore.States, AttackChore.StatesInstance, AttackChore, object>.State success;
 	}
 }

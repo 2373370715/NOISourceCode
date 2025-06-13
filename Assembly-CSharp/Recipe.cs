@@ -5,18 +5,11 @@ using Klei;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x0200178B RID: 6027
 [DebuggerDisplay("{Name}")]
 public class Recipe : IHasSortOrder
 {
-	// Token: 0x170007BF RID: 1983
-	// (get) Token: 0x06007BF4 RID: 31732 RVA: 0x000F5F51 File Offset: 0x000F4151
-	// (set) Token: 0x06007BF5 RID: 31733 RVA: 0x000F5F59 File Offset: 0x000F4159
 	public int sortOrder { get; set; }
 
-	// Token: 0x170007C0 RID: 1984
-	// (get) Token: 0x06007BF7 RID: 31735 RVA: 0x000F5F6B File Offset: 0x000F416B
-	// (set) Token: 0x06007BF6 RID: 31734 RVA: 0x000F5F62 File Offset: 0x000F4162
 	public string Name
 	{
 		get
@@ -33,12 +26,10 @@ public class Recipe : IHasSortOrder
 		}
 	}
 
-	// Token: 0x06007BF8 RID: 31736 RVA: 0x000F5F87 File Offset: 0x000F4187
 	public Recipe()
 	{
 	}
 
-	// Token: 0x06007BF9 RID: 31737 RVA: 0x0032C5C0 File Offset: 0x0032A7C0
 	public Recipe(string prefabId, float outputUnits = 1f, SimHashes elementOverride = (SimHashes)0, string nameOverride = null, string recipeDescription = null, int sortOrder = 0)
 	{
 		global::Debug.Assert(prefabId != null);
@@ -52,7 +43,6 @@ public class Recipe : IHasSortOrder
 		this.FabricationVisualizer = null;
 	}
 
-	// Token: 0x06007BFA RID: 31738 RVA: 0x000F5F9A File Offset: 0x000F419A
 	public Recipe SetFabricator(string fabricator, float fabricationTime)
 	{
 		this.fabricators = new string[]
@@ -64,7 +54,6 @@ public class Recipe : IHasSortOrder
 		return this;
 	}
 
-	// Token: 0x06007BFB RID: 31739 RVA: 0x000F5FBF File Offset: 0x000F41BF
 	public Recipe SetFabricators(string[] fabricators, float fabricationTime)
 	{
 		this.fabricators = fabricators;
@@ -73,7 +62,6 @@ public class Recipe : IHasSortOrder
 		return this;
 	}
 
-	// Token: 0x06007BFC RID: 31740 RVA: 0x000F5FDB File Offset: 0x000F41DB
 	public Recipe SetIcon(Sprite Icon)
 	{
 		this.Icon = Icon;
@@ -81,7 +69,6 @@ public class Recipe : IHasSortOrder
 		return this;
 	}
 
-	// Token: 0x06007BFD RID: 31741 RVA: 0x000F5FF0 File Offset: 0x000F41F0
 	public Recipe SetIcon(Sprite Icon, Color IconColor)
 	{
 		this.Icon = Icon;
@@ -89,14 +76,12 @@ public class Recipe : IHasSortOrder
 		return this;
 	}
 
-	// Token: 0x06007BFE RID: 31742 RVA: 0x000F6001 File Offset: 0x000F4201
 	public Recipe AddIngredient(Recipe.Ingredient ingredient)
 	{
 		this.Ingredients.Add(ingredient);
 		return this;
 	}
 
-	// Token: 0x06007BFF RID: 31743 RVA: 0x0032C62C File Offset: 0x0032A82C
 	public Recipe.Ingredient[] GetAllIngredients(IList<Tag> selectedTags)
 	{
 		List<Recipe.Ingredient> list = new List<Recipe.Ingredient>();
@@ -115,7 +100,6 @@ public class Recipe : IHasSortOrder
 		return list.ToArray();
 	}
 
-	// Token: 0x06007C00 RID: 31744 RVA: 0x0032C6A8 File Offset: 0x0032A8A8
 	public Recipe.Ingredient[] GetAllIngredients(IList<Element> selected_elements)
 	{
 		List<Recipe.Ingredient> list = new List<Recipe.Ingredient>();
@@ -140,14 +124,12 @@ public class Recipe : IHasSortOrder
 		return list.ToArray();
 	}
 
-	// Token: 0x06007C01 RID: 31745 RVA: 0x0032C760 File Offset: 0x0032A960
 	public GameObject Craft(Storage resource_storage, IList<Tag> selectedTags)
 	{
 		Recipe.Ingredient[] allIngredients = this.GetAllIngredients(selectedTags);
 		return this.CraftRecipe(resource_storage, allIngredients);
 	}
 
-	// Token: 0x06007C02 RID: 31746 RVA: 0x0032C780 File Offset: 0x0032A980
 	private GameObject CraftRecipe(Storage resource_storage, Recipe.Ingredient[] ingredientTags)
 	{
 		SimUtil.DiseaseInfo diseaseInfo = SimUtil.DiseaseInfo.Invalid;
@@ -210,8 +192,6 @@ public class Recipe : IHasSortOrder
 		return gameObject2;
 	}
 
-	// Token: 0x170007C1 RID: 1985
-	// (get) Token: 0x06007C03 RID: 31747 RVA: 0x0032C988 File Offset: 0x0032AB88
 	public string[] MaterialOptionNames
 	{
 		get
@@ -228,7 +208,6 @@ public class Recipe : IHasSortOrder
 		}
 	}
 
-	// Token: 0x06007C04 RID: 31748 RVA: 0x0032CA18 File Offset: 0x0032AC18
 	public Element[] MaterialOptions()
 	{
 		List<Element> list = new List<Element>();
@@ -242,7 +221,6 @@ public class Recipe : IHasSortOrder
 		return list.ToArray();
 	}
 
-	// Token: 0x06007C05 RID: 31749 RVA: 0x0032CA98 File Offset: 0x0032AC98
 	public BuildingDef GetBuildingDef()
 	{
 		BuildingComplete component = Assets.GetPrefab(this.Result).GetComponent<BuildingComplete>();
@@ -253,7 +231,6 @@ public class Recipe : IHasSortOrder
 		return null;
 	}
 
-	// Token: 0x06007C06 RID: 31750 RVA: 0x0032CAC8 File Offset: 0x0032ACC8
 	public Sprite GetUIIcon()
 	{
 		Sprite result = null;
@@ -272,7 +249,6 @@ public class Recipe : IHasSortOrder
 		return result;
 	}
 
-	// Token: 0x06007C07 RID: 31751 RVA: 0x000F6010 File Offset: 0x000F4210
 	public Color GetUIColor()
 	{
 		if (!(this.Icon != null))
@@ -282,68 +258,50 @@ public class Recipe : IHasSortOrder
 		return this.IconColor;
 	}
 
-	// Token: 0x04005D70 RID: 23920
 	private string nameOverride;
 
-	// Token: 0x04005D71 RID: 23921
 	public string HotKey;
 
-	// Token: 0x04005D72 RID: 23922
 	public string Type;
 
-	// Token: 0x04005D73 RID: 23923
 	public List<Recipe.Ingredient> Ingredients;
 
-	// Token: 0x04005D74 RID: 23924
 	public string recipeDescription;
 
-	// Token: 0x04005D75 RID: 23925
 	public Tag Result;
 
-	// Token: 0x04005D76 RID: 23926
 	public GameObject FabricationVisualizer;
 
-	// Token: 0x04005D77 RID: 23927
 	public SimHashes ResultElementOverride;
 
-	// Token: 0x04005D78 RID: 23928
 	public Sprite Icon;
 
-	// Token: 0x04005D79 RID: 23929
 	public Color IconColor = Color.white;
 
-	// Token: 0x04005D7A RID: 23930
 	public string[] fabricators;
 
-	// Token: 0x04005D7B RID: 23931
 	public float OutputUnits;
 
-	// Token: 0x04005D7C RID: 23932
 	public float FabricationTime;
 
-	// Token: 0x04005D7D RID: 23933
 	public string TechUnlock;
 
-	// Token: 0x0200178C RID: 6028
 	[DebuggerDisplay("{tag} {amount}")]
 	[Serializable]
 	public class Ingredient
 	{
-		// Token: 0x06007C08 RID: 31752 RVA: 0x000F602C File Offset: 0x000F422C
 		public Ingredient(string tag, float amount)
 		{
 			this.tag = TagManager.Create(tag);
 			this.amount = amount;
 		}
 
-		// Token: 0x06007C09 RID: 31753 RVA: 0x000F6047 File Offset: 0x000F4247
 		public Ingredient(Tag tag, float amount)
 		{
 			this.tag = tag;
 			this.amount = amount;
 		}
 
-		// Token: 0x06007C0A RID: 31754 RVA: 0x0032CB24 File Offset: 0x0032AD24
 		public List<Element> GetElementOptions()
 		{
 			List<Element> list = new List<Element>(ElementLoader.elements);
@@ -352,10 +310,8 @@ public class Recipe : IHasSortOrder
 			return list;
 		}
 
-		// Token: 0x04005D7E RID: 23934
 		public Tag tag;
 
-		// Token: 0x04005D7F RID: 23935
 		public float amount;
 	}
 }

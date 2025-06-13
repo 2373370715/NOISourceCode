@@ -5,10 +5,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000D9 RID: 217
 public static class BaseBellyConfig
 {
-	// Token: 0x06000389 RID: 905 RVA: 0x00157B04 File Offset: 0x00155D04
 	public static GameObject BaseBelly(string id, string name, string desc, string anim_file, string traitId, bool is_baby, string symbolOverridePrefix = null)
 	{
 		float mass = 400f;
@@ -62,7 +60,6 @@ public static class BaseBellyConfig
 		return gameObject;
 	}
 
-	// Token: 0x0600038A RID: 906 RVA: 0x00157F54 File Offset: 0x00156154
 	public static Diet.Info BasicDiet(Tag foodTag, Tag poopTag, float caloriesPerKg, float producedConversionRate, string diseaseId, float diseasePerKgProduced)
 	{
 		return new Diet.Info(new HashSet<Tag>
@@ -71,7 +68,6 @@ public static class BaseBellyConfig
 		}, poopTag, caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, Diet.Info.FoodType.EatPlantDirectly, true, null);
 	}
 
-	// Token: 0x0600038B RID: 907 RVA: 0x00157F80 File Offset: 0x00156180
 	public static List<Diet.Info> StandardDiets()
 	{
 		return new List<Diet.Info>
@@ -93,7 +89,6 @@ public static class BaseBellyConfig
 		};
 	}
 
-	// Token: 0x0600038C RID: 908 RVA: 0x001580FC File Offset: 0x001562FC
 	public static GameObject SetupDiet(GameObject prefab, List<Diet.Info> diet_infos, float referenceCaloriesPerKg, float minPoopSizeInKg)
 	{
 		Diet diet = new Diet(diet_infos.ToArray());

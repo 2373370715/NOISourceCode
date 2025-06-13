@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02002096 RID: 8342
 public class TileScreen : KScreen
 {
-	// Token: 0x0600B1ED RID: 45549 RVA: 0x0043A8A8 File Offset: 0x00438AA8
 	private bool SetSliderColour(float temperature, float transition_temperature)
 	{
 		if (Mathf.Abs(temperature - transition_temperature) < 5f)
@@ -20,7 +18,6 @@ public class TileScreen : KScreen
 		return false;
 	}
 
-	// Token: 0x0600B1EE RID: 45550 RVA: 0x0043A90C File Offset: 0x00438B0C
 	private void DisplayTileInfo()
 	{
 		Vector3 mousePos = KInputManager.GetMousePos();
@@ -113,7 +110,6 @@ public class TileScreen : KScreen
 		this.nameLabel.text = "Unknown";
 	}
 
-	// Token: 0x0600B1EF RID: 45551 RVA: 0x0043AE7C File Offset: 0x0043907C
 	private void DisplayConduitFlowInfo()
 	{
 		HashedString mode = OverlayScreen.Instance.GetMode();
@@ -174,7 +170,6 @@ public class TileScreen : KScreen
 		this.massTitleLabel.text = "";
 	}
 
-	// Token: 0x0600B1F0 RID: 45552 RVA: 0x0043B27C File Offset: 0x0043947C
 	private void Update()
 	{
 		base.transform.SetPosition(KInputManager.GetMousePos());
@@ -187,50 +182,35 @@ public class TileScreen : KScreen
 		this.DisplayTileInfo();
 	}
 
-	// Token: 0x04008C46 RID: 35910
 	public Text nameLabel;
 
-	// Token: 0x04008C47 RID: 35911
 	public Text symbolLabel;
 
-	// Token: 0x04008C48 RID: 35912
 	public Text massTitleLabel;
 
-	// Token: 0x04008C49 RID: 35913
 	public Text massAmtLabel;
 
-	// Token: 0x04008C4A RID: 35914
 	public Image massIcon;
 
-	// Token: 0x04008C4B RID: 35915
 	public MinMaxSlider temperatureSlider;
 
-	// Token: 0x04008C4C RID: 35916
 	public Text temperatureSliderText;
 
-	// Token: 0x04008C4D RID: 35917
 	public Image temperatureSliderIcon;
 
-	// Token: 0x04008C4E RID: 35918
 	public Image solidIcon;
 
-	// Token: 0x04008C4F RID: 35919
 	public Image liquidIcon;
 
-	// Token: 0x04008C50 RID: 35920
 	public Image gasIcon;
 
-	// Token: 0x04008C51 RID: 35921
 	public Text solidText;
 
-	// Token: 0x04008C52 RID: 35922
 	public Text gasText;
 
-	// Token: 0x04008C53 RID: 35923
 	[SerializeField]
 	private Color temperatureDefaultColour;
 
-	// Token: 0x04008C54 RID: 35924
 	[SerializeField]
 	private Color temperatureTransitionColour;
 }

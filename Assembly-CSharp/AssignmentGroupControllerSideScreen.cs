@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001F93 RID: 8083
 public class AssignmentGroupControllerSideScreen : KScreen
 {
-	// Token: 0x0600AAC8 RID: 43720 RVA: 0x00113745 File Offset: 0x00111945
 	protected override void OnShow(bool show)
 	{
 		base.OnShow(show);
@@ -16,7 +14,6 @@ public class AssignmentGroupControllerSideScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600AAC9 RID: 43721 RVA: 0x00416B24 File Offset: 0x00414D24
 	protected override void OnCmpDisable()
 	{
 		for (int i = 0; i < this.identityRowMap.Count; i++)
@@ -27,14 +24,12 @@ public class AssignmentGroupControllerSideScreen : KScreen
 		base.OnCmpDisable();
 	}
 
-	// Token: 0x0600AACA RID: 43722 RVA: 0x00113757 File Offset: 0x00111957
 	public void SetTarget(GameObject target)
 	{
 		this.target = target.GetComponent<AssignmentGroupController>();
 		this.RefreshRows();
 	}
 
-	// Token: 0x0600AACB RID: 43723 RVA: 0x00416B6C File Offset: 0x00414D6C
 	private void RefreshRows()
 	{
 		int num = 0;
@@ -133,7 +128,6 @@ public class AssignmentGroupControllerSideScreen : KScreen
 		this.minionRowContainer.GetComponent<QuickLayout>().ForceUpdate();
 	}
 
-	// Token: 0x0600AACC RID: 43724 RVA: 0x00416ED0 File Offset: 0x004150D0
 	private string UpdateToolTip(MinionAssignablesProxy minion, bool offworld)
 	{
 		string text = this.target.CheckMinionIsMember(minion) ? UI.UISIDESCREENS.ASSIGNMENTGROUPCONTROLLER.TOOLTIPS.UNASSIGN : UI.UISIDESCREENS.ASSIGNMENTGROUPCONTROLLER.TOOLTIPS.ASSIGN;
@@ -151,38 +145,28 @@ public class AssignmentGroupControllerSideScreen : KScreen
 		return text;
 	}
 
-	// Token: 0x0400866C RID: 34412
 	[SerializeField]
 	private GameObject header;
 
-	// Token: 0x0400866D RID: 34413
 	[SerializeField]
 	private GameObject minionRowPrefab;
 
-	// Token: 0x0400866E RID: 34414
 	[SerializeField]
 	private GameObject footer;
 
-	// Token: 0x0400866F RID: 34415
 	[SerializeField]
 	private GameObject minionRowContainer;
 
-	// Token: 0x04008670 RID: 34416
 	private AssignmentGroupController target;
 
-	// Token: 0x04008671 RID: 34417
 	private List<GameObject> identityRowMap = new List<GameObject>();
 
-	// Token: 0x02001F94 RID: 8084
 	private struct RowSortHelper
 	{
-		// Token: 0x04008672 RID: 34418
 		public MinionAssignablesProxy minion;
 
-		// Token: 0x04008673 RID: 34419
 		public bool isPilot;
 
-		// Token: 0x04008674 RID: 34420
 		public bool isSameWorld;
 	}
 }

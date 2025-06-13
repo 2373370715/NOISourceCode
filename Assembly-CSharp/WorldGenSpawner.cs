@@ -7,17 +7,14 @@ using ProcGenGame;
 using TemplateClasses;
 using UnityEngine;
 
-// Token: 0x02001AA6 RID: 6822
 [AddComponentMenu("KMonoBehaviour/scripts/WorldGenSpawner")]
 public class WorldGenSpawner : KMonoBehaviour
 {
-	// Token: 0x06008EAA RID: 36522 RVA: 0x00101B35 File Offset: 0x000FFD35
 	public bool SpawnsRemain()
 	{
 		return this.spawnables.Count > 0;
 	}
 
-	// Token: 0x06008EAB RID: 36523 RVA: 0x0037B080 File Offset: 0x00379280
 	public void SpawnEverything()
 	{
 		for (int i = 0; i < this.spawnables.Count; i++)
@@ -26,7 +23,6 @@ public class WorldGenSpawner : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008EAC RID: 36524 RVA: 0x0037B0B4 File Offset: 0x003792B4
 	public void SpawnTag(string id)
 	{
 		for (int i = 0; i < this.spawnables.Count; i++)
@@ -38,7 +34,6 @@ public class WorldGenSpawner : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008EAD RID: 36525 RVA: 0x0037B108 File Offset: 0x00379308
 	public void ClearSpawnersInArea(Vector2 root_position, CellOffset[] area)
 	{
 		for (int i = 0; i < this.spawnables.Count; i++)
@@ -50,13 +45,11 @@ public class WorldGenSpawner : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008EAE RID: 36526 RVA: 0x00101B45 File Offset: 0x000FFD45
 	public IReadOnlyList<WorldGenSpawner.Spawnable> GetSpawnables()
 	{
 		return this.spawnables;
 	}
 
-	// Token: 0x06008EAF RID: 36527 RVA: 0x0037B15C File Offset: 0x0037935C
 	protected override void OnSpawn()
 	{
 		if (!this.hasPlacedTemplates)
@@ -76,7 +69,6 @@ public class WorldGenSpawner : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008EB0 RID: 36528 RVA: 0x0037B1DC File Offset: 0x003793DC
 	[OnSerializing]
 	private void OnSerializing()
 	{
@@ -92,20 +84,17 @@ public class WorldGenSpawner : KMonoBehaviour
 		this.spawnInfos = list.ToArray();
 	}
 
-	// Token: 0x06008EB1 RID: 36529 RVA: 0x00101B4D File Offset: 0x000FFD4D
 	private void AddSpawnable(Prefab prefab)
 	{
 		this.spawnables.Add(new WorldGenSpawner.Spawnable(prefab));
 	}
 
-	// Token: 0x06008EB2 RID: 36530 RVA: 0x0037B234 File Offset: 0x00379434
 	public void AddLegacySpawner(Tag tag, int cell)
 	{
 		Vector2I vector2I = Grid.CellToXY(cell);
 		this.AddSpawnable(new Prefab(tag.Name, Prefab.Type.Other, vector2I.x, vector2I.y, SimHashes.Carbon, -1f, 1f, null, 0, Orientation.Neutral, null, null, 0, null));
 	}
 
-	// Token: 0x06008EB3 RID: 36531 RVA: 0x0037B280 File Offset: 0x00379480
 	public List<Tag> GetUnspawnedWithType<T>(int worldID) where T : KMonoBehaviour
 	{
 		List<Tag> list = new List<Tag>();
@@ -123,7 +112,6 @@ public class WorldGenSpawner : KMonoBehaviour
 		return list;
 	}
 
-	// Token: 0x06008EB4 RID: 36532 RVA: 0x0037B31C File Offset: 0x0037951C
 	public List<WorldGenSpawner.Spawnable> GeInfoOfUnspawnedWithType<T>(int worldID) where T : KMonoBehaviour
 	{
 		List<WorldGenSpawner.Spawnable> list = new List<WorldGenSpawner.Spawnable>();
@@ -141,13 +129,11 @@ public class WorldGenSpawner : KMonoBehaviour
 		return list;
 	}
 
-	// Token: 0x06008EB5 RID: 36533 RVA: 0x0037B3AC File Offset: 0x003795AC
 	public List<Tag> GetSpawnersWithTag(Tag tag, int worldID, bool includeSpawned = false)
 	{
 		List<Tag> list = new List<Tag>();
 		List<WorldGenSpawner.Spawnable> list2 = this.spawnables;
 		Predicate<WorldGenSpawner.Spawnable> <>9__0;
-		Predicate<WorldGenSpawner.Spawnable> match2;
 		if ((match2 = <>9__0) == null)
 		{
 			match2 = (<>9__0 = ((WorldGenSpawner.Spawnable match) => (includeSpawned || !match.isSpawned) && (int)Grid.WorldIdx[match.cell] == worldID && match.spawnInfo.id == tag));
@@ -159,13 +145,11 @@ public class WorldGenSpawner : KMonoBehaviour
 		return list;
 	}
 
-	// Token: 0x06008EB6 RID: 36534 RVA: 0x0037B458 File Offset: 0x00379658
 	public List<WorldGenSpawner.Spawnable> GetSpawnablesWithTag(Tag tag, int worldID, bool includeSpawned = false)
 	{
 		List<WorldGenSpawner.Spawnable> list = new List<WorldGenSpawner.Spawnable>();
 		List<WorldGenSpawner.Spawnable> list2 = this.spawnables;
 		Predicate<WorldGenSpawner.Spawnable> <>9__0;
-		Predicate<WorldGenSpawner.Spawnable> match2;
 		if ((match2 = <>9__0) == null)
 		{
 			match2 = (<>9__0 = ((WorldGenSpawner.Spawnable match) => (includeSpawned || !match.isSpawned) && (int)Grid.WorldIdx[match.cell] == worldID && match.spawnInfo.id == tag));
@@ -177,13 +161,11 @@ public class WorldGenSpawner : KMonoBehaviour
 		return list;
 	}
 
-	// Token: 0x06008EB7 RID: 36535 RVA: 0x0037B4F4 File Offset: 0x003796F4
 	public List<WorldGenSpawner.Spawnable> GetSpawnablesWithTag(bool includeSpawned = false, params Tag[] tags)
 	{
 		List<WorldGenSpawner.Spawnable> list = new List<WorldGenSpawner.Spawnable>();
 		List<WorldGenSpawner.Spawnable> list2 = this.spawnables;
 		Predicate<WorldGenSpawner.Spawnable> <>9__0;
-		Predicate<WorldGenSpawner.Spawnable> match2;
 		if ((match2 = <>9__0) == null)
 		{
 			match2 = (<>9__0 = ((WorldGenSpawner.Spawnable match) => includeSpawned || !match.isSpawned));
@@ -202,13 +184,11 @@ public class WorldGenSpawner : KMonoBehaviour
 		return list;
 	}
 
-	// Token: 0x06008EB8 RID: 36536 RVA: 0x0037B5C0 File Offset: 0x003797C0
 	private void PlaceTemplates(Cluster clusterLayout)
 	{
 		this.spawnables = new List<WorldGenSpawner.Spawnable>();
 		foreach (WorldGen worldGen in clusterLayout.worlds)
 		{
-			foreach (Prefab prefab in worldGen.SpawnData.buildings)
 			{
 				prefab.location_x += worldGen.data.world.offset.x;
 				prefab.location_y += worldGen.data.world.offset.y;
@@ -248,13 +228,11 @@ public class WorldGenSpawner : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008EB9 RID: 36537 RVA: 0x0037B95C File Offset: 0x00379B5C
 	private void DoReveal(Cluster clusterLayout)
 	{
 		foreach (WorldGen worldGen in clusterLayout.worlds)
 		{
 			Game.Instance.Reset(worldGen.SpawnData, worldGen.WorldOffset);
-		}
 		for (int i = 0; i < Grid.CellCount; i++)
 		{
 			Grid.Revealed[i] = false;
@@ -267,42 +245,23 @@ public class WorldGenSpawner : KMonoBehaviour
 		GridVisibility.Reveal(vector2I.x, vector2I.y, radius, innerRadius);
 	}
 
-	// Token: 0x04006B90 RID: 27536
 	[Serialize]
 	private Prefab[] spawnInfos;
 
-	// Token: 0x04006B91 RID: 27537
 	[Serialize]
-	private bool hasPlacedTemplates;
 
-	// Token: 0x04006B92 RID: 27538
 	private List<WorldGenSpawner.Spawnable> spawnables = new List<WorldGenSpawner.Spawnable>();
-
-	// Token: 0x02001AA7 RID: 6823
 	public class Spawnable
 	{
-		// Token: 0x17000969 RID: 2409
-		// (get) Token: 0x06008EBB RID: 36539 RVA: 0x00101B73 File Offset: 0x000FFD73
-		// (set) Token: 0x06008EBC RID: 36540 RVA: 0x00101B7B File Offset: 0x000FFD7B
-		public Prefab spawnInfo { get; private set; }
 
-		// Token: 0x1700096A RID: 2410
-		// (get) Token: 0x06008EBD RID: 36541 RVA: 0x00101B84 File Offset: 0x000FFD84
-		// (set) Token: 0x06008EBE RID: 36542 RVA: 0x00101B8C File Offset: 0x000FFD8C
 		public bool isSpawned { get; private set; }
 
-		// Token: 0x1700096B RID: 2411
-		// (get) Token: 0x06008EBF RID: 36543 RVA: 0x00101B95 File Offset: 0x000FFD95
-		// (set) Token: 0x06008EC0 RID: 36544 RVA: 0x00101B9D File Offset: 0x000FFD9D
 		public int cell { get; private set; }
 
-		// Token: 0x06008EC1 RID: 36545 RVA: 0x0037BA2C File Offset: 0x00379C2C
-		public Spawnable(Prefab spawn_info)
 		{
 			this.spawnInfo = spawn_info;
 			int num = Grid.XYToCell(this.spawnInfo.location_x, this.spawnInfo.location_y);
 			GameObject prefab = Assets.GetPrefab(spawn_info.id);
-			if (prefab != null)
 			{
 				WorldSpawnableMonitor.Def def = prefab.GetDef<WorldSpawnableMonitor.Def>();
 				if (def != null && def.adjustSpawnLocationCb != null)
@@ -320,33 +279,27 @@ public class WorldGenSpawner : KMonoBehaviour
 			this.fogOfWarPartitionerEntry = GameScenePartitioner.Instance.Add("WorldGenSpawner.OnReveal", this, this.cell, GameScenePartitioner.Instance.fogOfWarChangedLayer, new Action<object>(this.OnReveal));
 		}
 
-		// Token: 0x06008EC2 RID: 36546 RVA: 0x00101BA6 File Offset: 0x000FFDA6
 		private void OnReveal(object data)
 		{
 			if (Grid.Spawnable[this.cell] > 0)
 			{
 				this.TrySpawn();
-			}
 		}
 
-		// Token: 0x06008EC3 RID: 36547 RVA: 0x00101BBD File Offset: 0x000FFDBD
 		private void OnSolidChanged(object data)
 		{
 			if (!Grid.Solid[this.cell])
 			{
 				GameScenePartitioner.Instance.Free(ref this.solidChangedPartitionerEntry);
-				Game.Instance.GetComponent<EntombedItemVisualizer>().RemoveItem(this.cell);
 				this.Spawn();
 			}
 		}
 
-		// Token: 0x06008EC4 RID: 36548 RVA: 0x0037BAFC File Offset: 0x00379CFC
 		public void FreeResources()
 		{
 			if (this.solidChangedPartitionerEntry.IsValid())
 			{
 				GameScenePartitioner.Instance.Free(ref this.solidChangedPartitionerEntry);
-				if (Game.Instance != null)
 				{
 					Game.Instance.GetComponent<EntombedItemVisualizer>().RemoveItem(this.cell);
 				}
@@ -355,13 +308,11 @@ public class WorldGenSpawner : KMonoBehaviour
 			this.isSpawned = true;
 		}
 
-		// Token: 0x06008EC5 RID: 36549 RVA: 0x0037BB60 File Offset: 0x00379D60
 		public void TrySpawn()
 		{
 			if (this.isSpawned)
 			{
 				return;
-			}
 			if (this.solidChangedPartitionerEntry.IsValid())
 			{
 				return;
@@ -401,37 +352,31 @@ public class WorldGenSpawner : KMonoBehaviour
 			this.Spawn();
 		}
 
-		// Token: 0x06008EC6 RID: 36550 RVA: 0x0037BC94 File Offset: 0x00379E94
 		private Tag GetPrefabTag()
 		{
 			Mob mob = SettingsCache.mobs.GetMob(this.spawnInfo.id);
 			if (mob != null && mob.prefabName != null)
 			{
-				return new Tag(mob.prefabName);
 			}
 			return new Tag(this.spawnInfo.id);
 		}
 
-		// Token: 0x06008EC7 RID: 36551 RVA: 0x0037BCE0 File Offset: 0x00379EE0
 		private void Spawn()
 		{
 			this.isSpawned = true;
 			GameObject gameObject = WorldGenSpawner.Spawnable.GetSpawnableCallback(this.spawnInfo.type)(this.spawnInfo, 0);
 			if (gameObject != null && gameObject)
-			{
 				gameObject.SetActive(true);
 				gameObject.Trigger(1119167081, this.spawnInfo);
 			}
 			this.FreeResources();
 		}
 
-		// Token: 0x06008EC8 RID: 36552 RVA: 0x0037BD40 File Offset: 0x00379F40
 		public static WorldGenSpawner.Spawnable.PlaceEntityFn GetSpawnableCallback(Prefab.Type type)
 		{
 			switch (type)
 			{
 			case Prefab.Type.Building:
-				return new WorldGenSpawner.Spawnable.PlaceEntityFn(TemplateLoader.PlaceBuilding);
 			case Prefab.Type.Ore:
 				return new WorldGenSpawner.Spawnable.PlaceEntityFn(TemplateLoader.PlaceElementalOres);
 			case Prefab.Type.Pickupable:
@@ -443,14 +388,10 @@ public class WorldGenSpawner : KMonoBehaviour
 			}
 		}
 
-		// Token: 0x04006B96 RID: 27542
 		private HandleVector<int>.Handle fogOfWarPartitionerEntry;
 
-		// Token: 0x04006B97 RID: 27543
 		private HandleVector<int>.Handle solidChangedPartitionerEntry;
 
-		// Token: 0x02001AA8 RID: 6824
-		// (Invoke) Token: 0x06008ECA RID: 36554
+Invoke) Token: 0x06008ECA RID: 36554
 		public delegate GameObject PlaceEntityFn(Prefab prefab, int root_cell);
-	}
 }

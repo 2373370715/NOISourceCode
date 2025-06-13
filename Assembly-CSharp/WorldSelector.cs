@@ -6,23 +6,19 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020020D8 RID: 8408
 public class WorldSelector : KScreen, ISim4000ms
 {
-	// Token: 0x0600B332 RID: 45874 RVA: 0x0011911A File Offset: 0x0011731A
 	public static void DestroyInstance()
 	{
 		WorldSelector.Instance = null;
 	}
 
-	// Token: 0x0600B333 RID: 45875 RVA: 0x00119122 File Offset: 0x00117322
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 		WorldSelector.Instance = this;
 	}
 
-	// Token: 0x0600B334 RID: 45876 RVA: 0x00440918 File Offset: 0x0043EB18
 	protected override void OnSpawn()
 	{
 		if (!DlcManager.FeatureClusterSpaceEnabled())
@@ -60,7 +56,6 @@ public class WorldSelector : KScreen, ISim4000ms
 		});
 	}
 
-	// Token: 0x0600B335 RID: 45877 RVA: 0x004409F8 File Offset: 0x0043EBF8
 	private void SpawnToggles()
 	{
 		foreach (KeyValuePair<int, MultiToggle> keyValuePair in this.worldRows)
@@ -83,7 +78,6 @@ public class WorldSelector : KScreen, ISim4000ms
 		}
 	}
 
-	// Token: 0x0600B336 RID: 45878 RVA: 0x00440B1C File Offset: 0x0043ED1C
 	private void AddWorld(object data)
 	{
 		int num = (int)data;
@@ -100,7 +94,6 @@ public class WorldSelector : KScreen, ISim4000ms
 		this.RefreshToggles();
 	}
 
-	// Token: 0x0600B337 RID: 45879 RVA: 0x00440BAC File Offset: 0x0043EDAC
 	private void RemoveWorld(object data)
 	{
 		int key = (int)data;
@@ -114,7 +107,6 @@ public class WorldSelector : KScreen, ISim4000ms
 		this.RefreshToggles();
 	}
 
-	// Token: 0x0600B338 RID: 45880 RVA: 0x00440BF8 File Offset: 0x0043EDF8
 	public void OnWorldRowClicked(int id)
 	{
 		WorldContainer world = ClusterManager.Instance.GetWorld(id);
@@ -124,7 +116,6 @@ public class WorldSelector : KScreen, ISim4000ms
 		}
 	}
 
-	// Token: 0x0600B339 RID: 45881 RVA: 0x00440C30 File Offset: 0x0043EE30
 	private void RefreshToggles()
 	{
 		foreach (KeyValuePair<int, MultiToggle> keyValuePair in this.worldRows)
@@ -163,7 +154,6 @@ public class WorldSelector : KScreen, ISim4000ms
 		this.SortRows();
 	}
 
-	// Token: 0x0600B33A RID: 45882 RVA: 0x00440DC4 File Offset: 0x0043EFC4
 	private void RefreshWorldStatus()
 	{
 		foreach (KeyValuePair<int, MultiToggle> keyValuePair in this.worldRows)
@@ -182,7 +172,6 @@ public class WorldSelector : KScreen, ISim4000ms
 		}
 	}
 
-	// Token: 0x0600B33B RID: 45883 RVA: 0x00440EDC File Offset: 0x0043F0DC
 	private void RefreshToggleTooltips()
 	{
 		int num = 0;
@@ -225,7 +214,6 @@ public class WorldSelector : KScreen, ISim4000ms
 		}
 	}
 
-	// Token: 0x0600B33C RID: 45884 RVA: 0x0044108C File Offset: 0x0043F28C
 	private void SortRows()
 	{
 		List<KeyValuePair<int, MultiToggle>> list = this.worldRows.ToList<KeyValuePair<int, MultiToggle>>();
@@ -261,7 +249,6 @@ public class WorldSelector : KScreen, ISim4000ms
 		}
 	}
 
-	// Token: 0x0600B33D RID: 45885 RVA: 0x004412AC File Offset: 0x0043F4AC
 	private global::Action IdxToHotkeyAction(int idx)
 	{
 		global::Action result;
@@ -305,7 +292,6 @@ public class WorldSelector : KScreen, ISim4000ms
 		return result;
 	}
 
-	// Token: 0x0600B33E RID: 45886 RVA: 0x0044134C File Offset: 0x0043F54C
 	public void Sim4000ms(float dt)
 	{
 		foreach (KeyValuePair<int, MultiToggle> keyValuePair in this.worldRows)
@@ -322,7 +308,6 @@ public class WorldSelector : KScreen, ISim4000ms
 		this.RefreshToggleTooltips();
 	}
 
-	// Token: 0x0600B33F RID: 45887 RVA: 0x00441428 File Offset: 0x0043F628
 	public void TriggerVisualNotification(int worldID, ColonyDiagnostic.DiagnosticResult.Opinion result)
 	{
 		foreach (KeyValuePair<int, MultiToggle> keyValuePair in this.worldRows)
@@ -338,7 +323,6 @@ public class WorldSelector : KScreen, ISim4000ms
 		}
 	}
 
-	// Token: 0x0600B340 RID: 45888 RVA: 0x00119130 File Offset: 0x00117330
 	private IEnumerator VisualNotificationRoutine(GameObject contentGameObject, RectTransform indicator, GameObject spacer)
 	{
 		spacer.GetComponent<NotificationAnimator>().Begin(false);
@@ -365,27 +349,19 @@ public class WorldSelector : KScreen, ISim4000ms
 		yield break;
 	}
 
-	// Token: 0x04008DD5 RID: 36309
 	public static WorldSelector Instance;
 
-	// Token: 0x04008DD6 RID: 36310
 	public Dictionary<int, MultiToggle> worldRows;
 
-	// Token: 0x04008DD7 RID: 36311
 	public TextStyleSetting titleTextSetting;
 
-	// Token: 0x04008DD8 RID: 36312
 	public TextStyleSetting bodyTextSetting;
 
-	// Token: 0x04008DD9 RID: 36313
 	public GameObject worldRowPrefab;
 
-	// Token: 0x04008DDA RID: 36314
 	public GameObject worldRowContainer;
 
-	// Token: 0x04008DDB RID: 36315
 	private Dictionary<int, ColonyDiagnostic.DiagnosticResult.Opinion> previousWorldDiagnosticStatus = new Dictionary<int, ColonyDiagnostic.DiagnosticResult.Opinion>();
 
-	// Token: 0x04008DDC RID: 36316
 	private Dictionary<int, List<GameObject>> worldStatusIcons = new Dictionary<int, List<GameObject>>();
 }

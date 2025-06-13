@@ -4,23 +4,19 @@ using Klei.AI;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x0200185A RID: 6234
 public class Sauna : StateMachineComponent<Sauna.StatesInstance>, IGameObjectEffectDescriptor
 {
-	// Token: 0x06008084 RID: 32900 RVA: 0x000F92D8 File Offset: 0x000F74D8
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
 		base.smi.StartSM();
 	}
 
-	// Token: 0x06008085 RID: 32901 RVA: 0x000F92EB File Offset: 0x000F74EB
 	protected override void OnCleanUp()
 	{
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06008086 RID: 32902 RVA: 0x002C93D8 File Offset: 0x002C75D8
 	private void AddRequirementDesc(List<Descriptor> descs, Tag tag, float mass)
 	{
 		string arg = tag.ProperName();
@@ -29,7 +25,6 @@ public class Sauna : StateMachineComponent<Sauna.StatesInstance>, IGameObjectEff
 		descs.Add(item);
 	}
 
-	// Token: 0x06008087 RID: 32903 RVA: 0x003411F0 File Offset: 0x0033F3F0
 	List<Descriptor> IGameObjectEffectDescriptor.GetDescriptors(GameObject go)
 	{
 		List<Descriptor> list = new List<Descriptor>();
@@ -43,25 +38,18 @@ public class Sauna : StateMachineComponent<Sauna.StatesInstance>, IGameObjectEff
 		return list;
 	}
 
-	// Token: 0x040061C4 RID: 25028
 	public string specificEffect;
 
-	// Token: 0x040061C5 RID: 25029
 	public string trackingEffect;
 
-	// Token: 0x040061C6 RID: 25030
 	public float steamPerUseKG;
 
-	// Token: 0x040061C7 RID: 25031
 	public float waterOutputTemp;
 
-	// Token: 0x040061C8 RID: 25032
 	public static readonly Operational.Flag sufficientSteam = new Operational.Flag("sufficientSteam", Operational.Flag.Type.Requirement);
 
-	// Token: 0x0200185B RID: 6235
 	public class States : GameStateMachine<Sauna.States, Sauna.StatesInstance, Sauna>
 	{
-		// Token: 0x0600808A RID: 32906 RVA: 0x0034135C File Offset: 0x0033F55C
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.inoperational;
@@ -72,7 +60,6 @@ public class Sauna : StateMachineComponent<Sauna.StatesInstance>, IGameObjectEff
 			this.ready.working.WorkableCompleteTransition((Sauna.StatesInstance smi) => smi.master.GetComponent<SaunaWorkable>(), this.ready.idle).WorkableStopTransition((Sauna.StatesInstance smi) => smi.master.GetComponent<SaunaWorkable>(), this.ready.idle);
 		}
 
-		// Token: 0x0600808B RID: 32907 RVA: 0x0034150C File Offset: 0x0033F70C
 		private Chore CreateChore(Sauna.StatesInstance smi)
 		{
 			Workable component = smi.master.GetComponent<SaunaWorkable>();
@@ -81,37 +68,28 @@ public class Sauna : StateMachineComponent<Sauna.StatesInstance>, IGameObjectEff
 			return workChore;
 		}
 
-		// Token: 0x0600808C RID: 32908 RVA: 0x0034156C File Offset: 0x0033F76C
 		private bool IsReady(Sauna.StatesInstance smi)
 		{
 			PrimaryElement primaryElement = smi.GetComponent<Storage>().FindPrimaryElement(SimHashes.Steam);
 			return primaryElement != null && primaryElement.Mass >= smi.master.steamPerUseKG;
 		}
 
-		// Token: 0x040061C9 RID: 25033
 		private GameStateMachine<Sauna.States, Sauna.StatesInstance, Sauna, object>.State inoperational;
 
-		// Token: 0x040061CA RID: 25034
 		private GameStateMachine<Sauna.States, Sauna.StatesInstance, Sauna, object>.State operational;
 
-		// Token: 0x040061CB RID: 25035
 		private Sauna.States.ReadyStates ready;
 
-		// Token: 0x0200185C RID: 6236
 		public class ReadyStates : GameStateMachine<Sauna.States, Sauna.StatesInstance, Sauna, object>.State
 		{
-			// Token: 0x040061CC RID: 25036
 			public GameStateMachine<Sauna.States, Sauna.StatesInstance, Sauna, object>.State idle;
 
-			// Token: 0x040061CD RID: 25037
 			public GameStateMachine<Sauna.States, Sauna.StatesInstance, Sauna, object>.State working;
 		}
 	}
 
-	// Token: 0x0200185E RID: 6238
 	public class StatesInstance : GameStateMachine<Sauna.States, Sauna.StatesInstance, Sauna, object>.GameInstance
 	{
-		// Token: 0x06008094 RID: 32916 RVA: 0x000F9336 File Offset: 0x000F7536
 		public StatesInstance(Sauna smi) : base(smi)
 		{
 		}

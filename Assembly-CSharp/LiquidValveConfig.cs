@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003D4 RID: 980
 public class LiquidValveConfig : IBuildingConfig
 {
-	// Token: 0x06000FEE RID: 4078 RVA: 0x00189428 File Offset: 0x00187628
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "LiquidValve";
@@ -32,7 +30,6 @@ public class LiquidValveConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000FEF RID: 4079 RVA: 0x001894CC File Offset: 0x001876CC
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
@@ -50,7 +47,6 @@ public class LiquidValveConfig : IBuildingConfig
 		go.AddOrGet<Workable>().workTime = 5f;
 	}
 
-	// Token: 0x06000FF0 RID: 4080 RVA: 0x000B05D4 File Offset: 0x000AE7D4
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		UnityEngine.Object.DestroyImmediate(go.GetComponent<RequireInputs>());
@@ -60,9 +56,7 @@ public class LiquidValveConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayInFrontOfConduits, false);
 	}
 
-	// Token: 0x04000B78 RID: 2936
 	public const string ID = "LiquidValve";
 
-	// Token: 0x04000B79 RID: 2937
 	private const ConduitType CONDUIT_TYPE = ConduitType.Liquid;
 }

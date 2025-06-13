@@ -4,16 +4,13 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005EF RID: 1519
 public class UraniumCentrifugeConfig : IBuildingConfig
 {
-	// Token: 0x06001A9F RID: 6815 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06001AA0 RID: 6816 RVA: 0x001B46A0 File Offset: 0x001B28A0
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "UraniumCentrifuge";
@@ -51,7 +48,6 @@ public class UraniumCentrifugeConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001AA1 RID: 6817 RVA: 0x001B4788 File Offset: 0x001B2988
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
@@ -89,26 +85,20 @@ public class UraniumCentrifugeConfig : IBuildingConfig
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x06001AA2 RID: 6818 RVA: 0x000AA1AD File Offset: 0x000A83AD
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
 		go.AddOrGetDef<PoweredActiveController.Def>();
 	}
 
-	// Token: 0x0400112C RID: 4396
 	public const string ID = "UraniumCentrifuge";
 
-	// Token: 0x0400112D RID: 4397
 	public const float OUTPUT_TEMP = 1173.15f;
 
-	// Token: 0x0400112E RID: 4398
 	public const float REFILL_RATE = 2400f;
 
-	// Token: 0x0400112F RID: 4399
 	public static readonly CellOffset outPipeOffset = new CellOffset(1, 3);
 
-	// Token: 0x04001130 RID: 4400
 	private static readonly List<Storage.StoredItemModifier> storedItemModifiers = new List<Storage.StoredItemModifier>
 	{
 		Storage.StoredItemModifier.Hide,

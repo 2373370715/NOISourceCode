@@ -4,10 +4,8 @@ using Klei.AI;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x020011FF RID: 4607
 public class RadiationVulnerable : GameStateMachine<RadiationVulnerable, RadiationVulnerable.StatesInstance, IStateMachineTarget, RadiationVulnerable.Def>
 {
-	// Token: 0x06005DA0 RID: 23968 RVA: 0x002AD764 File Offset: 0x002AB964
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.comfortable;
@@ -16,19 +14,14 @@ public class RadiationVulnerable : GameStateMachine<RadiationVulnerable, Radiati
 		this.too_bright.Transition(this.comfortable, (RadiationVulnerable.StatesInstance smi) => smi.GetRadiationThresholdCrossed() != 1, UpdateRate.SIM_1000ms).TriggerOnEnter(GameHashes.RadiationDiscomfort, null);
 	}
 
-	// Token: 0x040042D1 RID: 17105
 	public GameStateMachine<RadiationVulnerable, RadiationVulnerable.StatesInstance, IStateMachineTarget, RadiationVulnerable.Def>.State comfortable;
 
-	// Token: 0x040042D2 RID: 17106
 	public GameStateMachine<RadiationVulnerable, RadiationVulnerable.StatesInstance, IStateMachineTarget, RadiationVulnerable.Def>.State too_dark;
 
-	// Token: 0x040042D3 RID: 17107
 	public GameStateMachine<RadiationVulnerable, RadiationVulnerable.StatesInstance, IStateMachineTarget, RadiationVulnerable.Def>.State too_bright;
 
-	// Token: 0x02001200 RID: 4608
 	public class Def : StateMachine.BaseDef, IGameObjectEffectDescriptor
 	{
-		// Token: 0x06005DA2 RID: 23970 RVA: 0x002AD85C File Offset: 0x002ABA5C
 		public List<Descriptor> GetDescriptors(GameObject go)
 		{
 			Modifiers component = go.GetComponent<Modifiers>();
@@ -51,17 +44,14 @@ public class RadiationVulnerable : GameStateMachine<RadiationVulnerable, Radiati
 		}
 	}
 
-	// Token: 0x02001201 RID: 4609
 	public class StatesInstance : GameStateMachine<RadiationVulnerable, RadiationVulnerable.StatesInstance, IStateMachineTarget, RadiationVulnerable.Def>.GameInstance, IWiltCause
 	{
-		// Token: 0x06005DA4 RID: 23972 RVA: 0x002AD984 File Offset: 0x002ABB84
 		public StatesInstance(IStateMachineTarget master, RadiationVulnerable.Def def) : base(master, def)
 		{
 			this.minRadiationAttributeInstance = Db.Get().PlantAttributes.MinRadiationThreshold.Lookup(base.gameObject);
 			this.maxRadiationAttributeInstance = Db.Get().PlantAttributes.MaxRadiationThreshold.Lookup(base.gameObject);
 		}
 
-		// Token: 0x06005DA5 RID: 23973 RVA: 0x002AD9DC File Offset: 0x002ABBDC
 		public int GetRadiationThresholdCrossed()
 		{
 			int num = Grid.PosToCell(base.master.gameObject);
@@ -80,8 +70,6 @@ public class RadiationVulnerable : GameStateMachine<RadiationVulnerable, Radiati
 			return 1;
 		}
 
-		// Token: 0x1700058D RID: 1421
-		// (get) Token: 0x06005DA6 RID: 23974 RVA: 0x000E18A6 File Offset: 0x000DFAA6
 		public WiltCondition.Condition[] Conditions
 		{
 			get
@@ -93,8 +81,6 @@ public class RadiationVulnerable : GameStateMachine<RadiationVulnerable, Radiati
 			}
 		}
 
-		// Token: 0x1700058E RID: 1422
-		// (get) Token: 0x06005DA7 RID: 23975 RVA: 0x002ADA3C File Offset: 0x002ABC3C
 		public string WiltStateString
 		{
 			get
@@ -111,10 +97,8 @@ public class RadiationVulnerable : GameStateMachine<RadiationVulnerable, Radiati
 			}
 		}
 
-		// Token: 0x040042D4 RID: 17108
 		private AttributeInstance minRadiationAttributeInstance;
 
-		// Token: 0x040042D5 RID: 17109
 		private AttributeInstance maxRadiationAttributeInstance;
 	}
 }

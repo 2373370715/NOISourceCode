@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200041B RID: 1051
 public class MetalRefineryConfig : IBuildingConfig
 {
-	// Token: 0x06001177 RID: 4471 RVA: 0x0018EC04 File Offset: 0x0018CE04
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "MetalRefinery";
@@ -36,7 +34,6 @@ public class MetalRefineryConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001178 RID: 4472 RVA: 0x0018ECC0 File Offset: 0x0018CEC0
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
@@ -128,7 +125,6 @@ public class MetalRefineryConfig : IBuildingConfig
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x06001179 RID: 4473 RVA: 0x000B21DB File Offset: 0x000B03DB
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		SymbolOverrideControllerUtil.AddToPrefab(go);
@@ -144,22 +140,16 @@ public class MetalRefineryConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x04000C2E RID: 3118
 	public const string ID = "MetalRefinery";
 
-	// Token: 0x04000C2F RID: 3119
 	private const float INPUT_KG = 100f;
 
-	// Token: 0x04000C30 RID: 3120
 	private const float LIQUID_COOLED_HEAT_PORTION = 0.8f;
 
-	// Token: 0x04000C31 RID: 3121
 	private static readonly Tag COOLANT_TAG = GameTags.Liquid;
 
-	// Token: 0x04000C32 RID: 3122
 	private const float COOLANT_MASS = 400f;
 
-	// Token: 0x04000C33 RID: 3123
 	private static readonly List<Storage.StoredItemModifier> RefineryStoredItemModifiers = new List<Storage.StoredItemModifier>
 	{
 		Storage.StoredItemModifier.Hide,

@@ -4,11 +4,9 @@ using System.Runtime.Serialization;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x020007A2 RID: 1954
 [AddComponentMenu("KMonoBehaviour/scripts/ConsumableConsumer")]
 public class ConsumableConsumer : KMonoBehaviour
 {
-	// Token: 0x060022AA RID: 8874 RVA: 0x001D05D8 File Offset: 0x001CE7D8
 	[OnDeserialized]
 	[Obsolete]
 	private void OnDeserialized()
@@ -20,7 +18,6 @@ public class ConsumableConsumer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060022AB RID: 8875 RVA: 0x001D0614 File Offset: 0x001CE814
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -34,14 +31,12 @@ public class ConsumableConsumer : KMonoBehaviour
 		this.dietaryRestrictionTagSet = new HashSet<Tag>();
 	}
 
-	// Token: 0x060022AC RID: 8876 RVA: 0x000BB014 File Offset: 0x000B9214
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
 		this.SetModelDietaryRestrictions();
 	}
 
-	// Token: 0x060022AD RID: 8877 RVA: 0x001D0668 File Offset: 0x001CE868
 	private void SetModelDietaryRestrictions()
 	{
 		if (this.HasTag(GameTags.Minions.Models.Standard))
@@ -55,21 +50,18 @@ public class ConsumableConsumer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060022AE RID: 8878 RVA: 0x001D06BC File Offset: 0x001CE8BC
 	public bool IsPermitted(string consumable_id)
 	{
 		Tag item = new Tag(consumable_id);
 		return !this.forbiddenTagSet.Contains(item) && !this.dietaryRestrictionTagSet.Contains(item);
 	}
 
-	// Token: 0x060022AF RID: 8879 RVA: 0x001D06F0 File Offset: 0x001CE8F0
 	public bool IsDietRestricted(string consumable_id)
 	{
 		Tag item = new Tag(consumable_id);
 		return this.dietaryRestrictionTagSet.Contains(item);
 	}
 
-	// Token: 0x060022B0 RID: 8880 RVA: 0x001D0714 File Offset: 0x001CE914
 	public void SetPermitted(string consumable_id, bool is_allowed)
 	{
 		Tag item = new Tag(consumable_id);
@@ -85,19 +77,15 @@ public class ConsumableConsumer : KMonoBehaviour
 		this.consumableRulesChanged.Signal();
 	}
 
-	// Token: 0x0400173E RID: 5950
 	[Obsolete("Deprecated, use forbiddenTagSet")]
 	[Serialize]
 	[HideInInspector]
 	public Tag[] forbiddenTags;
 
-	// Token: 0x0400173F RID: 5951
 	[Serialize]
 	public HashSet<Tag> forbiddenTagSet;
 
-	// Token: 0x04001740 RID: 5952
 	public HashSet<Tag> dietaryRestrictionTagSet;
 
-	// Token: 0x04001741 RID: 5953
 	public System.Action consumableRulesChanged;
 }

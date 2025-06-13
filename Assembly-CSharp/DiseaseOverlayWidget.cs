@@ -5,11 +5,9 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001D0D RID: 7437
 [AddComponentMenu("KMonoBehaviour/scripts/DiseaseOverlayWidget")]
 public class DiseaseOverlayWidget : KMonoBehaviour
 {
-	// Token: 0x06009B59 RID: 39769 RVA: 0x003CC0EC File Offset: 0x003CA2EC
 	public void Refresh(AmountInstance value_src)
 	{
 		GameObject gameObject = value_src.gameObject;
@@ -65,26 +63,20 @@ public class DiseaseOverlayWidget : KMonoBehaviour
 		this.germsImage.transform.parent.gameObject.SetActive(this.displayedDiseases.Count > 0);
 	}
 
-	// Token: 0x0400796C RID: 31084
 	[SerializeField]
 	private Image progressFill;
 
-	// Token: 0x0400796D RID: 31085
 	[SerializeField]
 	private ToolTip progressToolTip;
 
-	// Token: 0x0400796E RID: 31086
 	[SerializeField]
 	private Image germsImage;
 
-	// Token: 0x0400796F RID: 31087
 	[SerializeField]
 	private Vector3 offset;
 
-	// Token: 0x04007970 RID: 31088
 	[SerializeField]
 	private Image diseasedImage;
 
-	// Token: 0x04007971 RID: 31089
 	private List<Image> displayedDiseases = new List<Image>();
 }

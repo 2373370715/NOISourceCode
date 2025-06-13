@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003A2 RID: 930
 public class InsulationTileConfig : IBuildingConfig
 {
-	// Token: 0x06000F06 RID: 3846 RVA: 0x0018537C File Offset: 0x0018357C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "InsulationTile";
@@ -41,7 +39,6 @@ public class InsulationTileConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000F07 RID: 3847 RVA: 0x00185480 File Offset: 0x00183680
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
@@ -55,19 +52,16 @@ public class InsulationTileConfig : IBuildingConfig
 		go.AddOrGet<BuildingHP>().destroyOnDamaged = true;
 	}
 
-	// Token: 0x06000F08 RID: 3848 RVA: 0x000B0E23 File Offset: 0x000AF023
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.GetComponent<KPrefabID>().AddTag(GameTags.FloorTiles, false);
 	}
 
-	// Token: 0x06000F09 RID: 3849 RVA: 0x000AA509 File Offset: 0x000A8709
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		base.DoPostConfigureUnderConstruction(go);
 		go.AddOrGet<KAnimGridTileVisualizer>();
 	}
 
-	// Token: 0x04000B10 RID: 2832
 	public const string ID = "InsulationTile";
 }

@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000551 RID: 1361
 public class RationBoxConfig : IBuildingConfig
 {
-	// Token: 0x06001769 RID: 5993 RVA: 0x001A5C08 File Offset: 0x001A3E08
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "RationBox";
@@ -29,7 +27,6 @@ public class RationBoxConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600176A RID: 5994 RVA: 0x001A5C9C File Offset: 0x001A3E9C
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		Prioritizable.AddRef(go);
@@ -49,12 +46,10 @@ public class RationBoxConfig : IBuildingConfig
 		go.AddOrGetDef<RocketUsageRestriction.Def>();
 	}
 
-	// Token: 0x0600176B RID: 5995 RVA: 0x000AAC8E File Offset: 0x000A8E8E
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGetDef<StorageController.Def>();
 	}
 
-	// Token: 0x04000F74 RID: 3956
 	public const string ID = "RationBox";
 }

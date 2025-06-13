@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000AC2 RID: 2754
 [AddComponentMenu("KMonoBehaviour/scripts/MingleCellTracker")]
 public class MingleCellTracker : KMonoBehaviour, ISim1000ms
 {
-	// Token: 0x0600324E RID: 12878 RVA: 0x00210330 File Offset: 0x0020E530
 	public void Sim1000ms(float dt)
 	{
 		this.mingleCells.Clear();
@@ -31,6 +29,5 @@ public class MingleCellTracker : KMonoBehaviour, ISim1000ms
 		}
 	}
 
-	// Token: 0x0400226B RID: 8811
 	public List<int> mingleCells = new List<int>();
 }

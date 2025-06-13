@@ -1,10 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200175B RID: 5979
 public class ClusterCoverPostFX : MonoBehaviour
 {
-	// Token: 0x06007AFC RID: 31484 RVA: 0x000F57B9 File Offset: 0x000F39B9
 	private void Awake()
 	{
 		if (this.shader != null)
@@ -13,14 +11,12 @@ public class ClusterCoverPostFX : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06007AFD RID: 31485 RVA: 0x000F57DA File Offset: 0x000F39DA
 	private void OnRenderImage(RenderTexture source, RenderTexture destination)
 	{
 		this.SetupUVs();
 		Graphics.Blit(source, destination, this.material, 0);
 	}
 
-	// Token: 0x06007AFE RID: 31486 RVA: 0x00327DC0 File Offset: 0x00325FC0
 	private void SetupUVs()
 	{
 		if (this.myCamera == null)
@@ -60,13 +56,10 @@ public class ClusterCoverPostFX : MonoBehaviour
 		this.material.SetVector("_WorldCoords", value2);
 	}
 
-	// Token: 0x04005C9B RID: 23707
 	[SerializeField]
 	private Shader shader;
 
-	// Token: 0x04005C9C RID: 23708
 	private Material material;
 
-	// Token: 0x04005C9D RID: 23709
 	private Camera myCamera;
 }

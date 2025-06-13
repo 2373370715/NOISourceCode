@@ -3,10 +3,8 @@ using Klei.AI;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000495 RID: 1173
 public class MinionSelectPreviewConfig : IEntityConfig
 {
-	// Token: 0x06001408 RID: 5128 RVA: 0x0019AA48 File Offset: 0x00198C48
 	public GameObject CreatePrefab()
 	{
 		GameObject gameObject = EntityTemplates.CreateEntity(MinionSelectPreviewConfig.ID, MinionSelectPreviewConfig.ID, true);
@@ -49,16 +47,13 @@ public class MinionSelectPreviewConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06001409 RID: 5129 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject go)
 	{
 	}
 
-	// Token: 0x0600140A RID: 5130 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject go)
 	{
 	}
 
-	// Token: 0x04000DC8 RID: 3528
 	public static string ID = "MinionSelectPreview";
 }

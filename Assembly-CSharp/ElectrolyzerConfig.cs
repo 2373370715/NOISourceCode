@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000AC RID: 172
 public class ElectrolyzerConfig : IBuildingConfig
 {
-	// Token: 0x060002C6 RID: 710 RVA: 0x0015269C File Offset: 0x0015089C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "Electrolyzer";
@@ -36,7 +34,6 @@ public class ElectrolyzerConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060002C7 RID: 711 RVA: 0x00152764 File Offset: 0x00150964
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		CellOffset cellOffset = new CellOffset(0, 1);
@@ -71,19 +68,15 @@ public class ElectrolyzerConfig : IBuildingConfig
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x060002C8 RID: 712 RVA: 0x000AA1AD File Offset: 0x000A83AD
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
 		go.AddOrGetDef<PoweredActiveController.Def>();
 	}
 
-	// Token: 0x040001C8 RID: 456
 	public const string ID = "Electrolyzer";
 
-	// Token: 0x040001C9 RID: 457
 	public const float WATER2OXYGEN_RATIO = 0.888f;
 
-	// Token: 0x040001CA RID: 458
 	public const float OXYGEN_TEMPERATURE = 343.15f;
 }

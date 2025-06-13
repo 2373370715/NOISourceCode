@@ -5,12 +5,9 @@ using Klei.Input;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-// Token: 0x0200146F RID: 5231
 [AddComponentMenu("KMonoBehaviour/scripts/InterfaceTool")]
 public class InterfaceTool : KMonoBehaviour
 {
-	// Token: 0x170006D0 RID: 1744
-	// (get) Token: 0x06006C02 RID: 27650 RVA: 0x000EB6C9 File Offset: 0x000E98C9
 	public static InterfaceToolConfig ActiveConfig
 	{
 		get
@@ -23,7 +20,6 @@ public class InterfaceTool : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06006C03 RID: 27651 RVA: 0x002F2FE4 File Offset: 0x002F11E4
 	public static void ToggleConfig(global::Action configKey)
 	{
 		if (InterfaceTool.interfaceConfigMap == null)
@@ -47,7 +43,6 @@ public class InterfaceTool : KMonoBehaviour
 		InterfaceTool.activeConfigs.Remove(item);
 	}
 
-	// Token: 0x06006C04 RID: 27652 RVA: 0x002F3094 File Offset: 0x002F1294
 	public static void InitializeConfigs(global::Action defaultKey, List<InterfaceToolConfig> configs)
 	{
 		string arg = (configs == null) ? "null" : configs.Count.ToString();
@@ -63,8 +58,6 @@ public class InterfaceTool : KMonoBehaviour
 		InterfaceTool.ToggleConfig(defaultKey);
 	}
 
-	// Token: 0x170006D1 RID: 1745
-	// (get) Token: 0x06006C05 RID: 27653 RVA: 0x000EB6EF File Offset: 0x000E98EF
 	public HashedString ViewMode
 	{
 		get
@@ -73,14 +66,12 @@ public class InterfaceTool : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06006C06 RID: 27654 RVA: 0x000EB6F7 File Offset: 0x000E98F7
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
 		this.hoverTextConfiguration = base.GetComponent<HoverTextConfiguration>();
 	}
 
-	// Token: 0x06006C07 RID: 27655 RVA: 0x000EB70B File Offset: 0x000E990B
 	public void ActivateTool()
 	{
 		this.OnActivateTool();
@@ -88,7 +79,6 @@ public class InterfaceTool : KMonoBehaviour
 		Game.Instance.Trigger(1174281782, this);
 	}
 
-	// Token: 0x06006C08 RID: 27656 RVA: 0x002F3130 File Offset: 0x002F1330
 	public virtual bool ShowHoverUI()
 	{
 		if (ManagementMenu.Instance == null || ManagementMenu.Instance.IsFullscreenUIActive())
@@ -104,7 +94,6 @@ public class InterfaceTool : KMonoBehaviour
 		return current != null && !current.IsPointerOverGameObject();
 	}
 
-	// Token: 0x06006C09 RID: 27657 RVA: 0x002F31D4 File Offset: 0x002F13D4
 	protected virtual void OnActivateTool()
 	{
 		if (OverlayScreen.Instance != null && this.viewMode != OverlayModes.None.ID && OverlayScreen.Instance.mode != this.viewMode)
@@ -115,7 +104,6 @@ public class InterfaceTool : KMonoBehaviour
 		this.SetCursor(this.cursor, this.cursorOffset, CursorMode.Auto);
 	}
 
-	// Token: 0x06006C0A RID: 27658 RVA: 0x002F3248 File Offset: 0x002F1448
 	public void SetCurrentVirtualInputModuleMousMovementMode(bool mouseMovementOnly, Action<VirtualInputModule> extraActions = null)
 	{
 		UnityEngine.EventSystems.EventSystem current = UnityEngine.EventSystems.EventSystem.current;
@@ -133,7 +121,6 @@ public class InterfaceTool : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06006C0B RID: 27659 RVA: 0x002F3298 File Offset: 0x002F1498
 	public void DeactivateTool(InterfaceTool new_tool = null)
 	{
 		this.OnDeactivateTool(new_tool);
@@ -144,30 +131,25 @@ public class InterfaceTool : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06006C0C RID: 27660 RVA: 0x000BE729 File Offset: 0x000BC929
 	public virtual void GetOverlayColorData(out HashSet<ToolMenu.CellColorData> colors)
 	{
 		colors = null;
 	}
 
-	// Token: 0x06006C0D RID: 27661 RVA: 0x000AA038 File Offset: 0x000A8238
 	protected virtual void OnDeactivateTool(InterfaceTool new_tool)
 	{
 	}
 
-	// Token: 0x06006C0E RID: 27662 RVA: 0x000EB733 File Offset: 0x000E9933
 	private void OnApplicationFocus(bool focusStatus)
 	{
 		this.isAppFocused = focusStatus;
 	}
 
-	// Token: 0x06006C0F RID: 27663 RVA: 0x000EACF5 File Offset: 0x000E8EF5
 	public virtual string GetDeactivateSound()
 	{
 		return "Tile_Cancel";
 	}
 
-	// Token: 0x06006C10 RID: 27664 RVA: 0x002F3304 File Offset: 0x002F1504
 	public virtual void OnMouseMove(Vector3 cursor_pos)
 	{
 		if (this.visualizer == null || !this.isAppFocused)
@@ -179,37 +161,30 @@ public class InterfaceTool : KMonoBehaviour
 		this.visualizer.transform.SetLocalPosition(cursor_pos);
 	}
 
-	// Token: 0x06006C11 RID: 27665 RVA: 0x000AA038 File Offset: 0x000A8238
 	public virtual void OnKeyDown(KButtonEvent e)
 	{
 	}
 
-	// Token: 0x06006C12 RID: 27666 RVA: 0x000AA038 File Offset: 0x000A8238
 	public virtual void OnKeyUp(KButtonEvent e)
 	{
 	}
 
-	// Token: 0x06006C13 RID: 27667 RVA: 0x000AA038 File Offset: 0x000A8238
 	public virtual void OnLeftClickDown(Vector3 cursor_pos)
 	{
 	}
 
-	// Token: 0x06006C14 RID: 27668 RVA: 0x000AA038 File Offset: 0x000A8238
 	public virtual void OnLeftClickUp(Vector3 cursor_pos)
 	{
 	}
 
-	// Token: 0x06006C15 RID: 27669 RVA: 0x000AA038 File Offset: 0x000A8238
 	public virtual void OnRightClickDown(Vector3 cursor_pos, KButtonEvent e)
 	{
 	}
 
-	// Token: 0x06006C16 RID: 27670 RVA: 0x000AA038 File Offset: 0x000A8238
 	public virtual void OnRightClickUp(Vector3 cursor_pos)
 	{
 	}
 
-	// Token: 0x06006C17 RID: 27671 RVA: 0x000EB73C File Offset: 0x000E993C
 	public virtual void OnFocus(bool focus)
 	{
 		if (this.visualizer != null)
@@ -219,14 +194,12 @@ public class InterfaceTool : KMonoBehaviour
 		this.hasFocus = focus;
 	}
 
-	// Token: 0x06006C18 RID: 27672 RVA: 0x002F3360 File Offset: 0x002F1560
 	protected Vector2 GetRegularizedPos(Vector2 input, bool minimize)
 	{
 		Vector3 vector = new Vector3(Grid.HalfCellSizeInMeters, Grid.HalfCellSizeInMeters, 0f);
 		return Grid.CellToPosCCC(Grid.PosToCell(input), Grid.SceneLayer.Background) + (minimize ? (-vector) : vector);
 	}
 
-	// Token: 0x06006C19 RID: 27673 RVA: 0x002F33A8 File Offset: 0x002F15A8
 	protected Vector2 GetWorldRestrictedPosition(Vector2 input)
 	{
 		input.x = Mathf.Clamp(input.x, ClusterManager.Instance.activeWorld.minimumBounds.x, ClusterManager.Instance.activeWorld.maximumBounds.x);
@@ -234,7 +207,6 @@ public class InterfaceTool : KMonoBehaviour
 		return input;
 	}
 
-	// Token: 0x06006C1A RID: 27674 RVA: 0x002F342C File Offset: 0x002F162C
 	protected void SetCursor(Texture2D new_cursor, Vector2 offset, CursorMode mode)
 	{
 		if (new_cursor != InterfaceTool.activeCursor && new_cursor != null)
@@ -256,7 +228,6 @@ public class InterfaceTool : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06006C1B RID: 27675 RVA: 0x000EB75F File Offset: 0x000E995F
 	protected void UpdateHoverElements(List<KSelectable> hits)
 	{
 		if (this.hoverTextConfiguration != null)
@@ -265,7 +236,6 @@ public class InterfaceTool : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06006C1C RID: 27676 RVA: 0x002F34C0 File Offset: 0x002F16C0
 	public virtual void LateUpdate()
 	{
 		if (!this.populateHitsList)
@@ -303,7 +273,6 @@ public class InterfaceTool : KMonoBehaviour
 		this.playedSoundThisFrame = false;
 	}
 
-	// Token: 0x06006C1D RID: 27677 RVA: 0x002F35C4 File Offset: 0x002F17C4
 	public void GetSelectablesUnderCursor(List<KSelectable> hits)
 	{
 		if (this.hoverOverride != null)
@@ -342,13 +311,11 @@ public class InterfaceTool : KMonoBehaviour
 		pooledList.Recycle();
 	}
 
-	// Token: 0x06006C1E RID: 27678 RVA: 0x000EB77B File Offset: 0x000E997B
 	public void SetLinkCursor(bool set)
 	{
 		this.SetCursor(set ? Assets.GetTexture("cursor_hand") : this.cursor, set ? Vector2.zero : this.cursorOffset, CursorMode.Auto);
 	}
 
-	// Token: 0x06006C1F RID: 27679 RVA: 0x002F3768 File Offset: 0x002F1968
 	protected T GetObjectUnderCursor<T>(bool cycleSelection, Func<T, bool> condition = null, Component previous_selection = null) where T : MonoBehaviour
 	{
 		this.intersections.Clear();
@@ -389,7 +356,6 @@ public class InterfaceTool : KMonoBehaviour
 		return this.intersections[index].component as T;
 	}
 
-	// Token: 0x06006C20 RID: 27680 RVA: 0x002F38E8 File Offset: 0x002F1AE8
 	private void GetObjectUnderCursor2D<T>(List<InterfaceTool.Intersection> intersections, Func<T, bool> condition, int layer_mask) where T : MonoBehaviour
 	{
 		Camera main = Camera.main;
@@ -453,7 +419,6 @@ public class InterfaceTool : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06006C21 RID: 27681 RVA: 0x002F3B8C File Offset: 0x002F1D8C
 	private int SortSelectables(KMonoBehaviour x, KMonoBehaviour y)
 	{
 		if (x == null && y == null)
@@ -476,13 +441,11 @@ public class InterfaceTool : KMonoBehaviour
 		return x.GetInstanceID().CompareTo(y.GetInstanceID());
 	}
 
-	// Token: 0x06006C22 RID: 27682 RVA: 0x000EB7A9 File Offset: 0x000E99A9
 	public void SetHoverOverride(KSelectable hover_override)
 	{
 		this.hoverOverride = hover_override;
 	}
 
-	// Token: 0x06006C23 RID: 27683 RVA: 0x002F3C08 File Offset: 0x002F1E08
 	private int SortHoverCards(ScenePartitionerEntry x, ScenePartitionerEntry y)
 	{
 		KMonoBehaviour x2 = x.obj as KMonoBehaviour;
@@ -490,13 +453,11 @@ public class InterfaceTool : KMonoBehaviour
 		return this.SortSelectables(x2, y2);
 	}
 
-	// Token: 0x06006C24 RID: 27684 RVA: 0x000EB7B2 File Offset: 0x000E99B2
 	private static bool is_component_null(InterfaceTool.Intersection intersection)
 	{
 		return !intersection.component;
 	}
 
-	// Token: 0x06006C25 RID: 27685 RVA: 0x000EB7C2 File Offset: 0x000E99C2
 	protected void ClearHover()
 	{
 		if (this.hover != null)
@@ -508,99 +469,68 @@ public class InterfaceTool : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x040051C8 RID: 20936
 	private static Dictionary<global::Action, InterfaceToolConfig> interfaceConfigMap = null;
 
-	// Token: 0x040051C9 RID: 20937
 	private static List<InterfaceToolConfig> activeConfigs = new List<InterfaceToolConfig>();
 
-	// Token: 0x040051CA RID: 20938
 	public const float MaxClickDistance = 0.02f;
 
-	// Token: 0x040051CB RID: 20939
 	public const float DepthBias = -0.15f;
 
-	// Token: 0x040051CC RID: 20940
 	public GameObject visualizer;
 
-	// Token: 0x040051CD RID: 20941
 	public Grid.SceneLayer visualizerLayer = Grid.SceneLayer.Move;
 
-	// Token: 0x040051CE RID: 20942
 	public string placeSound;
 
-	// Token: 0x040051CF RID: 20943
 	protected bool populateHitsList;
 
-	// Token: 0x040051D0 RID: 20944
 	[NonSerialized]
 	public bool hasFocus;
 
-	// Token: 0x040051D1 RID: 20945
 	[SerializeField]
 	protected Texture2D cursor;
 
-	// Token: 0x040051D2 RID: 20946
 	public Vector2 cursorOffset = new Vector2(2f, 2f);
 
-	// Token: 0x040051D3 RID: 20947
 	public System.Action OnDeactivate;
 
-	// Token: 0x040051D4 RID: 20948
 	private static Texture2D activeCursor = null;
 
-	// Token: 0x040051D5 RID: 20949
 	private static HashedString toolActivatedViewMode = OverlayModes.None.ID;
 
-	// Token: 0x040051D6 RID: 20950
 	protected HashedString viewMode = OverlayModes.None.ID;
 
-	// Token: 0x040051D7 RID: 20951
 	private HoverTextConfiguration hoverTextConfiguration;
 
-	// Token: 0x040051D8 RID: 20952
 	private KSelectable hoverOverride;
 
-	// Token: 0x040051D9 RID: 20953
 	public KSelectable hover;
 
-	// Token: 0x040051DA RID: 20954
 	protected int layerMask;
 
-	// Token: 0x040051DB RID: 20955
 	protected SelectMarker selectMarker;
 
-	// Token: 0x040051DC RID: 20956
 	private List<RaycastResult> castResults = new List<RaycastResult>();
 
-	// Token: 0x040051DD RID: 20957
 	private bool isAppFocused = true;
 
-	// Token: 0x040051DE RID: 20958
 	private List<KSelectable> hits = new List<KSelectable>();
 
-	// Token: 0x040051DF RID: 20959
 	protected bool playedSoundThisFrame;
 
-	// Token: 0x040051E0 RID: 20960
 	private List<InterfaceTool.Intersection> intersections = new List<InterfaceTool.Intersection>();
 
-	// Token: 0x040051E1 RID: 20961
 	private HashSet<Component> prevIntersectionGroup = new HashSet<Component>();
 
-	// Token: 0x040051E2 RID: 20962
 	private HashSet<Component> curIntersectionGroup = new HashSet<Component>();
 
-	// Token: 0x040051E3 RID: 20963
 	private int hitCycleCount;
 
-	// Token: 0x02001470 RID: 5232
 	public struct Intersection
 	{
-		// Token: 0x040051E4 RID: 20964
 		public MonoBehaviour component;
 
-		// Token: 0x040051E5 RID: 20965
 		public float distance;
 	}
 }

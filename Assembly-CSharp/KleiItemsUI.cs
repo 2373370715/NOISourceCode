@@ -4,16 +4,13 @@ using Database;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001DA7 RID: 7591
 public static class KleiItemsUI
 {
-	// Token: 0x06009E94 RID: 40596 RVA: 0x0010BA66 File Offset: 0x00109C66
 	public static string WrapAsToolTipTitle(string text)
 	{
 		return "<b><style=\"KLink\">" + text + "</style></b>";
 	}
 
-	// Token: 0x06009E95 RID: 40597 RVA: 0x0010BA78 File Offset: 0x00109C78
 	public static string WrapWithColor(string text, Color color)
 	{
 		return string.Concat(new string[]
@@ -26,25 +23,21 @@ public static class KleiItemsUI
 		});
 	}
 
-	// Token: 0x06009E96 RID: 40598 RVA: 0x0010BAAA File Offset: 0x00109CAA
 	public static Sprite GetNoneClothingItemIcon(PermitCategory category, Option<Personality> personality)
 	{
 		return KleiItemsUI.GetNoneIconForCategory(category, personality);
 	}
 
-	// Token: 0x06009E97 RID: 40599 RVA: 0x0010BAB3 File Offset: 0x00109CB3
 	public static Sprite GetNoneBalloonArtistIcon()
 	{
 		return KleiItemsUI.GetNoneIconForCategory(PermitCategory.JoyResponse, null);
 	}
 
-	// Token: 0x06009E98 RID: 40600 RVA: 0x0010BAC2 File Offset: 0x00109CC2
 	private static Sprite GetNoneIconForCategory(PermitCategory category, Option<Personality> personality)
 	{
 		return Assets.GetSprite(KleiItemsUI.<GetNoneIconForCategory>g__GetIconName|5_0(category, personality));
 	}
 
-	// Token: 0x06009E99 RID: 40601 RVA: 0x003DCB0C File Offset: 0x003DAD0C
 	public static string GetNoneOutfitName(ClothingOutfitUtility.OutfitType outfitType)
 	{
 		switch (outfitType)
@@ -61,7 +54,6 @@ public static class KleiItemsUI
 		}
 	}
 
-	// Token: 0x06009E9A RID: 40602 RVA: 0x003DCB6C File Offset: 0x003DAD6C
 	[return: TupleElementNames(new string[]
 	{
 		"name",
@@ -100,13 +92,11 @@ public static class KleiItemsUI
 		return new ValueTuple<string, string>("-", "-");
 	}
 
-	// Token: 0x06009E9B RID: 40603 RVA: 0x0010BAD5 File Offset: 0x00109CD5
 	public static void ConfigureTooltipOn(GameObject gameObject, Option<LocString> tooltipText = default(Option<LocString>))
 	{
 		KleiItemsUI.ConfigureTooltipOn(gameObject, tooltipText.HasValue ? Option.Some<string>(tooltipText.Value) : Option.None);
 	}
 
-	// Token: 0x06009E9C RID: 40604 RVA: 0x003DCD28 File Offset: 0x003DAF28
 	public static void ConfigureTooltipOn(GameObject gameObject, Option<string> tooltipText = default(Option<string>))
 	{
 		ToolTip toolTip = gameObject.GetComponent<ToolTip>();
@@ -133,7 +123,6 @@ public static class KleiItemsUI
 		toolTip.SetSimpleTooltip(tooltipText.Value);
 	}
 
-	// Token: 0x06009E9D RID: 40605 RVA: 0x003DCDD4 File Offset: 0x003DAFD4
 	public static string GetTooltipStringFor(PermitResource permit)
 	{
 		string text = KleiItemsUI.WrapAsToolTipTitle(permit.Name);
@@ -168,7 +157,6 @@ public static class KleiItemsUI
 		return text;
 	}
 
-	// Token: 0x06009E9E RID: 40606 RVA: 0x003DCECC File Offset: 0x003DB0CC
 	public static string GetNoneTooltipStringFor(PermitCategory category)
 	{
 		ValueTuple<string, string> noneClothingItemStrings = KleiItemsUI.GetNoneClothingItemStrings(category);
@@ -177,7 +165,6 @@ public static class KleiItemsUI
 		return KleiItemsUI.WrapAsToolTipTitle(item) + "\n" + item2;
 	}
 
-	// Token: 0x06009E9F RID: 40607 RVA: 0x0010BB03 File Offset: 0x00109D03
 	public static Color GetColor(string input)
 	{
 		if (input[0] == '#')
@@ -187,7 +174,6 @@ public static class KleiItemsUI
 		return Util.ColorFromHex(input);
 	}
 
-	// Token: 0x06009EA1 RID: 40609 RVA: 0x003DCF00 File Offset: 0x003DB100
 	[CompilerGenerated]
 	internal static string <GetNoneIconForCategory>g__GetIconName|5_0(PermitCategory category, Option<Personality> personality)
 	{
@@ -232,6 +218,5 @@ public static class KleiItemsUI
 		}
 	}
 
-	// Token: 0x04007C95 RID: 31893
 	public static readonly Color TEXT_COLOR__PERMIT_NOT_OWNED = KleiItemsUI.GetColor("#DD992F");
 }

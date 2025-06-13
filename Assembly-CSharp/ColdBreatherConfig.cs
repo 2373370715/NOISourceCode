@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000292 RID: 658
 public class ColdBreatherConfig : IEntityConfig
 {
-	// Token: 0x0600099D RID: 2461 RVA: 0x001701E8 File Offset: 0x0016E3E8
 	public GameObject CreatePrefab()
 	{
 		string id = "ColdBreather";
@@ -83,41 +81,30 @@ public class ColdBreatherConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x0600099E RID: 2462 RVA: 0x001704B8 File Offset: 0x0016E6B8
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.AddOrGet<EntityCellVisualizer>().AddPort(EntityCellVisualizer.Ports.HeatSink, default(CellOffset));
 	}
 
-	// Token: 0x0600099F RID: 2463 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x0400075B RID: 1883
 	public const string ID = "ColdBreather";
 
-	// Token: 0x0400075C RID: 1884
 	public static readonly Tag TAG = TagManager.Create("ColdBreather");
 
-	// Token: 0x0400075D RID: 1885
 	public const float FERTILIZATION_RATE = 0.006666667f;
 
-	// Token: 0x0400075E RID: 1886
 	public const SimHashes FERTILIZER = SimHashes.Phosphorite;
 
-	// Token: 0x0400075F RID: 1887
 	public const float TEMP_DELTA = -5f;
 
-	// Token: 0x04000760 RID: 1888
 	public const float CONSUMPTION_RATE = 1f;
 
-	// Token: 0x04000761 RID: 1889
 	public const float RADIATION_STRENGTH = 480f;
 
-	// Token: 0x04000762 RID: 1890
 	public const string SEED_ID = "ColdBreatherSeed";
 
-	// Token: 0x04000763 RID: 1891
 	public static readonly Tag SEED_TAG = TagManager.Create("ColdBreatherSeed");
 }

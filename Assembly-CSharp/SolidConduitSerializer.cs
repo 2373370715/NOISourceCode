@@ -4,22 +4,18 @@ using System.IO;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x020018FB RID: 6395
 [SerializationConfig(MemberSerialization.OptIn)]
 [AddComponentMenu("KMonoBehaviour/scripts/SolidConduitSerializer")]
 public class SolidConduitSerializer : KMonoBehaviour, ISaveLoadableDetails
 {
-	// Token: 0x06008470 RID: 33904 RVA: 0x000AA038 File Offset: 0x000A8238
 	protected override void OnPrefabInit()
 	{
 	}
 
-	// Token: 0x06008471 RID: 33905 RVA: 0x000AA038 File Offset: 0x000A8238
 	protected override void OnSpawn()
 	{
 	}
 
-	// Token: 0x06008472 RID: 33906 RVA: 0x003529DC File Offset: 0x00350BDC
 	public void Serialize(BinaryWriter writer)
 	{
 		SolidConduitFlow solidConduitFlow = Game.Instance.solidConduitFlow;
@@ -61,7 +57,6 @@ public class SolidConduitSerializer : KMonoBehaviour, ISaveLoadableDetails
 		}
 	}
 
-	// Token: 0x06008473 RID: 33907 RVA: 0x00352B00 File Offset: 0x00350D00
 	public void Deserialize(IReader reader)
 	{
 		SolidConduitFlow solidConduitFlow = Game.Instance.solidConduitFlow;

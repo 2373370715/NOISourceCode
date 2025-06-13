@@ -6,10 +6,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001F29 RID: 7977
 public class ResearchScreenSideBar : KScreen
 {
-	// Token: 0x0600A7ED RID: 42989 RVA: 0x00408158 File Offset: 0x00406358
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -39,7 +37,6 @@ public class ResearchScreenSideBar : KScreen
 		Game.Instance.Subscribe(-107300940, new Action<object>(this.UpdateProjectFilter));
 	}
 
-	// Token: 0x0600A7EE RID: 42990 RVA: 0x00408220 File Offset: 0x00406420
 	private void Update()
 	{
 		for (int i = 0; i < Math.Min(this.QueuedActivations.Count, this.activationPerFrame); i++)
@@ -54,7 +51,6 @@ public class ResearchScreenSideBar : KScreen
 		this.QueuedDeactivations.RemoveRange(0, Math.Min(this.QueuedDeactivations.Count, this.activationPerFrame));
 	}
 
-	// Token: 0x0600A7EF RID: 42991 RVA: 0x004082D8 File Offset: 0x004064D8
 	private void ConfigCompletionFilters()
 	{
 		MultiToggle multiToggle = this.allFilter;
@@ -75,7 +71,6 @@ public class ResearchScreenSideBar : KScreen
 		this.SetCompletionFilter(ResearchScreenSideBar.CompletionState.All, false);
 	}
 
-	// Token: 0x0600A7F0 RID: 42992 RVA: 0x00408364 File Offset: 0x00406564
 	private void SetCompletionFilter(ResearchScreenSideBar.CompletionState state, bool suppressUpdate)
 	{
 		this.completionFilter = state;
@@ -88,7 +83,6 @@ public class ResearchScreenSideBar : KScreen
 		}
 	}
 
-	// Token: 0x0600A7F1 RID: 42993 RVA: 0x001116F2 File Offset: 0x0010F8F2
 	public override float GetSortKey()
 	{
 		if (base.isEditing)
@@ -98,7 +92,6 @@ public class ResearchScreenSideBar : KScreen
 		return 21f;
 	}
 
-	// Token: 0x0600A7F2 RID: 42994 RVA: 0x004083D8 File Offset: 0x004065D8
 	public override void OnKeyDown(KButtonEvent e)
 	{
 		if (this.researchScreen != null && this.researchScreen.canvas && !this.researchScreen.canvas.enabled)
@@ -136,14 +129,12 @@ public class ResearchScreenSideBar : KScreen
 		}
 	}
 
-	// Token: 0x0600A7F3 RID: 42995 RVA: 0x00111707 File Offset: 0x0010F907
 	protected override void OnShow(bool show)
 	{
 		base.OnShow(show);
 		this.RefreshWidgets();
 	}
 
-	// Token: 0x0600A7F4 RID: 42996 RVA: 0x004084A8 File Offset: 0x004066A8
 	private void SetTextFilter(string newValue, bool suppressUpdate)
 	{
 		if (base.isEditing)
@@ -185,7 +176,6 @@ public class ResearchScreenSideBar : KScreen
 		}
 	}
 
-	// Token: 0x0600A7F5 RID: 42997 RVA: 0x0040866C File Offset: 0x0040686C
 	private void UpdateProjectFilter(object data = null)
 	{
 		Dictionary<string, bool> dictionary = new Dictionary<string, bool>();
@@ -219,7 +209,6 @@ public class ResearchScreenSideBar : KScreen
 		}
 	}
 
-	// Token: 0x0600A7F6 RID: 42998 RVA: 0x00408860 File Offset: 0x00406A60
 	private int CompareTechScores(global::Tuple<GameObject, string> a, global::Tuple<GameObject, string> b)
 	{
 		int techMatchScore = this.GetTechMatchScore(a.second);
@@ -236,8 +225,6 @@ public class ResearchScreenSideBar : KScreen
 		return this.techCaches[a.second].CompareTo(this.techCaches[b.second]);
 	}
 
-	// Token: 0x17000AC0 RID: 2752
-	// (get) Token: 0x0600A7F7 RID: 42999 RVA: 0x00111716 File Offset: 0x0010F916
 	private Comparer<global::Tuple<GameObject, string>> TechWidgetComparer
 	{
 		get
@@ -250,7 +237,6 @@ public class ResearchScreenSideBar : KScreen
 		}
 	}
 
-	// Token: 0x0600A7F8 RID: 43000 RVA: 0x004088C8 File Offset: 0x00406AC8
 	private void RefreshProjectsActive()
 	{
 		if (this.projectTechItems.Count == 0)
@@ -338,7 +324,6 @@ public class ResearchScreenSideBar : KScreen
 		pooledList2.Recycle();
 	}
 
-	// Token: 0x0600A7F9 RID: 43001 RVA: 0x00408C98 File Offset: 0x00406E98
 	private void RefreshCategoriesContentExpanded()
 	{
 		foreach (KeyValuePair<string, GameObject> keyValuePair in this.projectCategories)
@@ -348,7 +333,6 @@ public class ResearchScreenSideBar : KScreen
 		}
 	}
 
-	// Token: 0x0600A7FA RID: 43002 RVA: 0x00408D4C File Offset: 0x00406F4C
 	private void CreateCategory(string categoryID, string title = null)
 	{
 		GameObject gameObject = Util.KInstantiateUI(this.techCategoryPrefabAlt, this.projectsContainer, true);
@@ -367,7 +351,6 @@ public class ResearchScreenSideBar : KScreen
 		};
 	}
 
-	// Token: 0x0600A7FB RID: 43003 RVA: 0x00408E0C File Offset: 0x0040700C
 	private void PopulateProjects()
 	{
 		ListPool<global::Tuple<global::Tuple<string, GameObject>, int>, ResearchScreen>.PooledList pooledList = ListPool<global::Tuple<global::Tuple<string, GameObject>, int>, ResearchScreen>.Allocate();
@@ -409,7 +392,6 @@ public class ResearchScreenSideBar : KScreen
 		pooledList.Recycle();
 	}
 
-	// Token: 0x0600A7FC RID: 43004 RVA: 0x0040907C File Offset: 0x0040727C
 	private void PopulateFilterButtons()
 	{
 		using (Dictionary<string, List<Tag>>.Enumerator enumerator = this.filterPresets.GetEnumerator())
@@ -443,12 +425,10 @@ public class ResearchScreenSideBar : KScreen
 		}
 	}
 
-	// Token: 0x0600A7FD RID: 43005 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void RefreshQueue()
 	{
 	}
 
-	// Token: 0x0600A7FE RID: 43006 RVA: 0x00409190 File Offset: 0x00407390
 	private void RefreshWidgets()
 	{
 		List<TechInstance> researchQueue = Research.Instance.GetResearchQueue();
@@ -473,7 +453,6 @@ public class ResearchScreenSideBar : KScreen
 		}
 	}
 
-	// Token: 0x0600A7FF RID: 43007 RVA: 0x00409274 File Offset: 0x00407474
 	private void RefreshWidgetProgressBars(string techID, GameObject widget)
 	{
 		HierarchyReferences component = widget.GetComponent<HierarchyReferences>();
@@ -493,7 +472,6 @@ public class ResearchScreenSideBar : KScreen
 		}
 	}
 
-	// Token: 0x0600A800 RID: 43008 RVA: 0x0040947C File Offset: 0x0040767C
 	private GameObject SpawnTechWidget(string techID, GameObject parentContainer)
 	{
 		GameObject gameObject = Util.KInstantiateUI(this.techWidgetRootAltPrefab, parentContainer, true);
@@ -540,7 +518,6 @@ public class ResearchScreenSideBar : KScreen
 		return gameObject;
 	}
 
-	// Token: 0x0600A801 RID: 43009 RVA: 0x004096B8 File Offset: 0x004078B8
 	private void ChangeGameObjectActive(GameObject target, bool targetActiveState)
 	{
 		if (target.activeSelf != targetActiveState)
@@ -565,19 +542,16 @@ public class ResearchScreenSideBar : KScreen
 		}
 	}
 
-	// Token: 0x0600A802 RID: 43010 RVA: 0x0011173D File Offset: 0x0010F93D
 	private bool IsTextFilterActive()
 	{
 		return !string.IsNullOrEmpty(this.currentSearchString);
 	}
 
-	// Token: 0x0600A803 RID: 43011 RVA: 0x0011174D File Offset: 0x0010F94D
 	private bool AnyFilterActive()
 	{
 		return this.completionFilter != ResearchScreenSideBar.CompletionState.All || this.IsTextFilterActive();
 	}
 
-	// Token: 0x0600A804 RID: 43012 RVA: 0x00409720 File Offset: 0x00407920
 	private int GetTechItemMatchScore(SearchUtil.TechCache techCache, string techItemID)
 	{
 		TechItem techItem = Db.Get().TechItems.Get(techItemID);
@@ -611,7 +585,6 @@ public class ResearchScreenSideBar : KScreen
 		return techCache.techItems[techItemID].Score;
 	}
 
-	// Token: 0x0600A805 RID: 43013 RVA: 0x004097A4 File Offset: 0x004079A4
 	private int GetTechMatchScore(string techID)
 	{
 		Tech tech = Db.Get().Techs.Get(techID);
@@ -641,7 +614,6 @@ public class ResearchScreenSideBar : KScreen
 		return this.techCaches[techID].Score;
 	}
 
-	// Token: 0x0600A806 RID: 43014 RVA: 0x00409818 File Offset: 0x00407A18
 	public void ResetFilter()
 	{
 		this.SetTextFilter("", true);
@@ -655,7 +627,6 @@ public class ResearchScreenSideBar : KScreen
 		this.UpdateProjectFilter(null);
 	}
 
-	// Token: 0x0600A807 RID: 43015 RVA: 0x0011175F File Offset: 0x0010F95F
 	public void SetSearch(string newSearch)
 	{
 		newSearch = UI.StripLinkFormatting(newSearch);
@@ -663,132 +634,97 @@ public class ResearchScreenSideBar : KScreen
 		this.SetTextFilter(newSearch, false);
 	}
 
-	// Token: 0x040083FD RID: 33789
 	[Header("Containers")]
 	[SerializeField]
 	private GameObject queueContainer;
 
-	// Token: 0x040083FE RID: 33790
 	[SerializeField]
 	private GameObject projectsContainer;
 
-	// Token: 0x040083FF RID: 33791
 	[SerializeField]
 	private GameObject searchFiltersContainer;
 
-	// Token: 0x04008400 RID: 33792
 	[Header("Prefabs")]
 	[SerializeField]
 	private GameObject headerTechTypePrefab;
 
-	// Token: 0x04008401 RID: 33793
 	[SerializeField]
 	private GameObject filterButtonPrefab;
 
-	// Token: 0x04008402 RID: 33794
 	[SerializeField]
 	private GameObject techWidgetRootPrefab;
 
-	// Token: 0x04008403 RID: 33795
 	[SerializeField]
 	private GameObject techWidgetRootAltPrefab;
 
-	// Token: 0x04008404 RID: 33796
 	[SerializeField]
 	private GameObject techItemPrefab;
 
-	// Token: 0x04008405 RID: 33797
 	[SerializeField]
 	private GameObject techWidgetUnlockedItemPrefab;
 
-	// Token: 0x04008406 RID: 33798
 	[SerializeField]
 	private GameObject techWidgetRowPrefab;
 
-	// Token: 0x04008407 RID: 33799
 	[SerializeField]
 	private GameObject techCategoryPrefab;
 
-	// Token: 0x04008408 RID: 33800
 	[SerializeField]
 	private GameObject techCategoryPrefabAlt;
 
-	// Token: 0x04008409 RID: 33801
 	[Header("Other references")]
 	[SerializeField]
 	private KInputTextField searchBox;
 
-	// Token: 0x0400840A RID: 33802
 	[SerializeField]
 	private MultiToggle allFilter;
 
-	// Token: 0x0400840B RID: 33803
 	[SerializeField]
 	private MultiToggle availableFilter;
 
-	// Token: 0x0400840C RID: 33804
 	[SerializeField]
 	private MultiToggle completedFilter;
 
-	// Token: 0x0400840D RID: 33805
 	[SerializeField]
 	private ResearchScreen researchScreen;
 
-	// Token: 0x0400840E RID: 33806
 	[SerializeField]
 	private KButton clearSearchButton;
 
-	// Token: 0x0400840F RID: 33807
 	[SerializeField]
 	private Color evenRowColor;
 
-	// Token: 0x04008410 RID: 33808
 	[SerializeField]
 	private Color oddRowColor;
 
-	// Token: 0x04008411 RID: 33809
 	private ResearchScreenSideBar.CompletionState completionFilter;
 
-	// Token: 0x04008412 RID: 33810
 	private Dictionary<string, bool> filterStates = new Dictionary<string, bool>();
 
-	// Token: 0x04008413 RID: 33811
 	private Dictionary<string, bool> categoryExpanded = new Dictionary<string, bool>();
 
-	// Token: 0x04008414 RID: 33812
 	private string currentSearchString = "";
 
-	// Token: 0x04008415 RID: 33813
 	private string currentSearchStringUpper = "";
 
-	// Token: 0x04008416 RID: 33814
 	private const string SEARCH_RESULTS_CATEGORY_ID = "SearchResults";
 
-	// Token: 0x04008417 RID: 33815
 	private Dictionary<string, SearchUtil.TechCache> techCaches;
 
-	// Token: 0x04008418 RID: 33816
 	private readonly Dictionary<string, SearchUtil.TechItemCache> techItemCaches = new Dictionary<string, SearchUtil.TechItemCache>();
 
-	// Token: 0x04008419 RID: 33817
 	private readonly List<GameObject> orderedTechs = new List<GameObject>();
 
-	// Token: 0x0400841A RID: 33818
 	private Dictionary<string, GameObject> queueTechs = new Dictionary<string, GameObject>();
 
-	// Token: 0x0400841B RID: 33819
 	private Dictionary<string, GameObject> projectTechs = new Dictionary<string, GameObject>();
 
-	// Token: 0x0400841C RID: 33820
 	private Dictionary<string, GameObject> projectCategories = new Dictionary<string, GameObject>();
 
-	// Token: 0x0400841D RID: 33821
 	private Dictionary<string, GameObject> filterButtons = new Dictionary<string, GameObject>();
 
-	// Token: 0x0400841E RID: 33822
 	private Dictionary<string, Dictionary<string, GameObject>> projectTechItems = new Dictionary<string, Dictionary<string, GameObject>>();
 
-	// Token: 0x0400841F RID: 33823
 	private Dictionary<string, List<Tag>> filterPresets = new Dictionary<string, List<Tag>>
 	{
 		{
@@ -841,33 +777,23 @@ public class ResearchScreenSideBar : KScreen
 		}
 	};
 
-	// Token: 0x04008420 RID: 33824
 	private List<GameObject> QueuedActivations = new List<GameObject>();
 
-	// Token: 0x04008421 RID: 33825
 	private List<GameObject> QueuedDeactivations = new List<GameObject>();
 
-	// Token: 0x04008422 RID: 33826
 	public ButtonSoundPlayer soundPlayer;
 
-	// Token: 0x04008423 RID: 33827
 	[SerializeField]
 	private int activationPerFrame = 5;
 
-	// Token: 0x04008424 RID: 33828
 	private Comparer<global::Tuple<GameObject, string>> techWidgetComparer;
 
-	// Token: 0x04008425 RID: 33829
 	private bool evenRow;
 
-	// Token: 0x02001F2A RID: 7978
 	private enum CompletionState
 	{
-		// Token: 0x04008427 RID: 33831
 		All,
-		// Token: 0x04008428 RID: 33832
 		Available,
-		// Token: 0x04008429 RID: 33833
 		Completed
 	}
 }

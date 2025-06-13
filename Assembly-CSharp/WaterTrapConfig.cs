@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02001A93 RID: 6803
 public class WaterTrapConfig : IBuildingConfig
 {
-	// Token: 0x06008DE2 RID: 36322 RVA: 0x00377A8C File Offset: 0x00375C8C
 	public override BuildingDef CreateBuildingDef()
 	{
 		BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef("WaterTrap", 1, 2, "critter_trap_water_kanim", 10, 10f, TUNING.BUILDINGS.CONSTRUCTION_MASS_KG.TIER3, MATERIALS.RAW_METALS, 1600f, BuildLocationRule.Anywhere, TUNING.BUILDINGS.DECOR.PENALTY.TIER2, NOISE_POLLUTION.NOISY.TIER0, 0.2f);
@@ -26,7 +24,6 @@ public class WaterTrapConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06008DE3 RID: 36323 RVA: 0x00377B8C File Offset: 0x00375D8C
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<BuildingComplete>().isManuallyOperated = true;
@@ -69,7 +66,6 @@ public class WaterTrapConfig : IBuildingConfig
 		go.AddOrGet<LogicOperationalController>();
 	}
 
-	// Token: 0x06008DE4 RID: 36324 RVA: 0x00377CDC File Offset: 0x00375EDC
 	private static void AddGuide(GameObject go, bool occupy_tiles)
 	{
 		GameObject gameObject = new GameObject();
@@ -89,7 +85,6 @@ public class WaterTrapConfig : IBuildingConfig
 		waterTrapGuide.occupyTiles = occupy_tiles;
 	}
 
-	// Token: 0x06008DE5 RID: 36325 RVA: 0x00377D78 File Offset: 0x00375F78
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		WaterTrapConfig.AddGuide(go.GetComponent<Building>().Def.BuildingPreview, false);
@@ -106,15 +101,11 @@ public class WaterTrapConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x04006B22 RID: 27426
 	public const string ID = "WaterTrap";
 
-	// Token: 0x04006B23 RID: 27427
 	public const string OUTPUT_LOGIC_PORT_ID = "TRAP_HAS_PREY_STATUS_PORT";
 
-	// Token: 0x04006B24 RID: 27428
 	public const int TRAIL_LENGTH = 4;
 
-	// Token: 0x04006B25 RID: 27429
 	private static readonly List<Storage.StoredItemModifier> StoredItemModifiers = new List<Storage.StoredItemModifier>();
 }

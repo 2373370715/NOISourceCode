@@ -3,16 +3,13 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200037A RID: 890
 public class GunkEmptierConfig : IBuildingConfig
 {
-	// Token: 0x06000E32 RID: 3634 RVA: 0x000AA12F File Offset: 0x000A832F
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.DLC3;
 	}
 
-	// Token: 0x06000E33 RID: 3635 RVA: 0x00182094 File Offset: 0x00180294
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "GunkEmptier";
@@ -40,7 +37,6 @@ public class GunkEmptierConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000E34 RID: 3636 RVA: 0x00182148 File Offset: 0x00180348
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		Prioritizable.AddRef(go);
@@ -62,14 +58,11 @@ public class GunkEmptierConfig : IBuildingConfig
 		go.AddOrGetDef<RocketUsageRestriction.Def>();
 	}
 
-	// Token: 0x06000E35 RID: 3637 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000A7E RID: 2686
 	public const string ID = "GunkEmptier";
 
-	// Token: 0x04000A7F RID: 2687
 	private static float STORAGE_CAPACITY = GunkMonitor.GUNK_CAPACITY * 1.5f;
 }

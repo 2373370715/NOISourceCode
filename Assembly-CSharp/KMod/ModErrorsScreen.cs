@@ -4,10 +4,8 @@ using UnityEngine;
 
 namespace KMod
 {
-	// Token: 0x0200225E RID: 8798
 	public class ModErrorsScreen : KScreen
 	{
-		// Token: 0x0600BB08 RID: 47880 RVA: 0x00482474 File Offset: 0x00480674
 		public static bool ShowErrors(List<Event> events)
 		{
 			if (Global.Instance.modManager.events.Count == 0)
@@ -21,7 +19,6 @@ namespace KMod
 			return true;
 		}
 
-		// Token: 0x0600BB09 RID: 47881 RVA: 0x004824C8 File Offset: 0x004806C8
 		private void Initialize(List<Event> events)
 		{
 			foreach (Event @event in events)
@@ -68,7 +65,6 @@ namespace KMod
 			}
 		}
 
-		// Token: 0x0600BB0A RID: 47882 RVA: 0x0011CEDB File Offset: 0x0011B0DB
 		protected override void OnActivate()
 		{
 			base.OnActivate();
@@ -76,19 +72,15 @@ namespace KMod
 			this.closeButton.onClick += this.Deactivate;
 		}
 
-		// Token: 0x04009936 RID: 39222
 		[SerializeField]
 		private KButton closeButtonTitle;
 
-		// Token: 0x04009937 RID: 39223
 		[SerializeField]
 		private KButton closeButton;
 
-		// Token: 0x04009938 RID: 39224
 		[SerializeField]
 		private GameObject entryPrefab;
 
-		// Token: 0x04009939 RID: 39225
 		[SerializeField]
 		private Transform entryParent;
 	}

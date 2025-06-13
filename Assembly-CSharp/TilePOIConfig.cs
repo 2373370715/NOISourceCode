@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005E8 RID: 1512
 public class TilePOIConfig : IBuildingConfig
 {
-	// Token: 0x06001A7A RID: 6778 RVA: 0x001B3F54 File Offset: 0x001B2154
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = TilePOIConfig.ID;
@@ -45,7 +43,6 @@ public class TilePOIConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001A7B RID: 6779 RVA: 0x000B5A3D File Offset: 0x000B3C3D
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
@@ -55,7 +52,6 @@ public class TilePOIConfig : IBuildingConfig
 		go.AddOrGet<KAnimGridTileVisualizer>();
 	}
 
-	// Token: 0x06001A7C RID: 6780 RVA: 0x000B5A74 File Offset: 0x000B3C74
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.GetComponent<KPrefabID>().AddTag(GameTags.Bunker, false);
@@ -63,13 +59,11 @@ public class TilePOIConfig : IBuildingConfig
 		go.GetComponent<Deconstructable>().allowDeconstruction = true;
 	}
 
-	// Token: 0x06001A7D RID: 6781 RVA: 0x000AA509 File Offset: 0x000A8709
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		base.DoPostConfigureUnderConstruction(go);
 		go.AddOrGet<KAnimGridTileVisualizer>();
 	}
 
-	// Token: 0x0400111F RID: 4383
 	public static string ID = "TilePOI";
 }

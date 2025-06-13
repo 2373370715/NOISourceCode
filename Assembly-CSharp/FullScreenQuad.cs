@@ -1,10 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020017C9 RID: 6089
 public class FullScreenQuad
 {
-	// Token: 0x06007D1D RID: 32029 RVA: 0x00330534 File Offset: 0x0032E734
 	public FullScreenQuad(string name, Camera camera, bool invert = false)
 	{
 		this.Camera = camera;
@@ -49,22 +47,17 @@ public class FullScreenQuad
 		}));
 	}
 
-	// Token: 0x06007D1E RID: 32030 RVA: 0x003306EC File Offset: 0x0032E8EC
 	public void Draw(Texture texture)
 	{
 		this.Material.mainTexture = texture;
 		Graphics.DrawMesh(this.Mesh, Vector3.zero, Quaternion.identity, this.Material, this.Layer, this.Camera, 0, null, false, false);
 	}
 
-	// Token: 0x04005E3C RID: 24124
 	private Mesh Mesh;
 
-	// Token: 0x04005E3D RID: 24125
 	private Camera Camera;
 
-	// Token: 0x04005E3E RID: 24126
 	private Material Material;
 
-	// Token: 0x04005E3F RID: 24127
 	private int Layer;
 }

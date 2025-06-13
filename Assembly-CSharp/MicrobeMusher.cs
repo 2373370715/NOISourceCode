@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000EE7 RID: 3815
 public class MicrobeMusher : ComplexFabricator
 {
-	// Token: 0x06004C69 RID: 19561 RVA: 0x000CF0A6 File Offset: 0x000CD2A6
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -14,7 +12,6 @@ public class MicrobeMusher : ComplexFabricator
 		this.fetchChoreTypeIdHash = Db.Get().ChoreTypes.CookFetch.IdHash;
 	}
 
-	// Token: 0x06004C6A RID: 19562 RVA: 0x00270124 File Offset: 0x0026E324
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -36,7 +33,6 @@ public class MicrobeMusher : ComplexFabricator
 		this.workable.meter.meterController.SetSymbolVisiblity(MicrobeMusher.meterRationHash, false);
 	}
 
-	// Token: 0x06004C6B RID: 19563 RVA: 0x00270250 File Offset: 0x0026E450
 	protected override List<GameObject> SpawnOrderProduct(ComplexRecipe recipe)
 	{
 		List<GameObject> list = base.SpawnOrderProduct(recipe);
@@ -59,13 +55,10 @@ public class MicrobeMusher : ComplexFabricator
 		return list;
 	}
 
-	// Token: 0x0400357F RID: 13695
 	[SerializeField]
 	public Vector3 mushbarSpawnOffset = Vector3.right;
 
-	// Token: 0x04003580 RID: 13696
 	private static readonly KAnimHashedString meterRationHash = new KAnimHashedString("meter_ration");
 
-	// Token: 0x04003581 RID: 13697
 	private static readonly KAnimHashedString canHash = new KAnimHashedString("can");
 }

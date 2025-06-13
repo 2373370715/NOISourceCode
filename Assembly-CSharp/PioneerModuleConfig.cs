@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020004FE RID: 1278
 public class PioneerModuleConfig : IBuildingConfig
 {
-	// Token: 0x060015F7 RID: 5623 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x060015F8 RID: 5624 RVA: 0x001A15B4 File Offset: 0x0019F7B4
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "PioneerModule";
@@ -41,7 +38,6 @@ public class PioneerModuleConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060015F9 RID: 5625 RVA: 0x001A1658 File Offset: 0x0019F858
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -71,7 +67,6 @@ public class PioneerModuleConfig : IBuildingConfig
 		go.AddOrGet<NavTeleporter>();
 	}
 
-	// Token: 0x060015FA RID: 5626 RVA: 0x0019F13C File Offset: 0x0019D33C
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		Prioritizable.AddRef(go);
@@ -86,6 +81,5 @@ public class PioneerModuleConfig : IBuildingConfig
 		fakeFloorAdder.initiallyActive = false;
 	}
 
-	// Token: 0x04000F1E RID: 3870
 	public const string ID = "PioneerModule";
 }

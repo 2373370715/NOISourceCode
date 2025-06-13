@@ -1,10 +1,8 @@
 ﻿using System;
 using STRINGS;
 
-// Token: 0x02000150 RID: 336
 public class CreatureSleepStates : GameStateMachine<CreatureSleepStates, CreatureSleepStates.Instance, IStateMachineTarget, CreatureSleepStates.Def>
 {
-	// Token: 0x060004EA RID: 1258 RVA: 0x00160748 File Offset: 0x0015E948
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.pre;
@@ -23,33 +21,25 @@ public class CreatureSleepStates : GameStateMachine<CreatureSleepStates, Creatur
 		this.behaviourcomplete.BehaviourComplete(GameTags.Creatures.Behaviours.SleepBehaviour, false);
 	}
 
-	// Token: 0x060004EB RID: 1259 RVA: 0x000ABA94 File Offset: 0x000A9C94
 	public static bool ShouldWakeUp(CreatureSleepStates.Instance smi)
 	{
 		return !GameClock.Instance.IsNighttime();
 	}
 
-	// Token: 0x04000396 RID: 918
 	public GameStateMachine<CreatureSleepStates, CreatureSleepStates.Instance, IStateMachineTarget, CreatureSleepStates.Def>.State pre;
 
-	// Token: 0x04000397 RID: 919
 	public GameStateMachine<CreatureSleepStates, CreatureSleepStates.Instance, IStateMachineTarget, CreatureSleepStates.Def>.State loop;
 
-	// Token: 0x04000398 RID: 920
 	public GameStateMachine<CreatureSleepStates, CreatureSleepStates.Instance, IStateMachineTarget, CreatureSleepStates.Def>.State pst;
 
-	// Token: 0x04000399 RID: 921
 	public GameStateMachine<CreatureSleepStates, CreatureSleepStates.Instance, IStateMachineTarget, CreatureSleepStates.Def>.State behaviourcomplete;
 
-	// Token: 0x02000151 RID: 337
 	public class Def : StateMachine.BaseDef
 	{
 	}
 
-	// Token: 0x02000152 RID: 338
 	public new class Instance : GameStateMachine<CreatureSleepStates, CreatureSleepStates.Instance, IStateMachineTarget, CreatureSleepStates.Def>.GameInstance
 	{
-		// Token: 0x060004EE RID: 1262 RVA: 0x000ABFA8 File Offset: 0x000AA1A8
 		public Instance(Chore<CreatureSleepStates.Instance> chore, CreatureSleepStates.Def def) : base(chore, def)
 		{
 			chore.AddPrecondition(ChorePreconditions.instance.CheckBehaviourPrecondition, GameTags.Creatures.Behaviours.SleepBehaviour);

@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200008D RID: 141
 public class CrewCapsuleConfig : IBuildingConfig
 {
-	// Token: 0x0600023C RID: 572 RVA: 0x0014FCFC File Offset: 0x0014DEFC
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "CrewCapsule";
@@ -36,7 +34,6 @@ public class CrewCapsuleConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600023D RID: 573 RVA: 0x000AACA3 File Offset: 0x000A8EA3
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<LoopingSounds>();
@@ -45,7 +42,6 @@ public class CrewCapsuleConfig : IBuildingConfig
 		go.AddOrGet<RocketLaunchConditionVisualizer>();
 	}
 
-	// Token: 0x0600023E RID: 574 RVA: 0x0014FDB8 File Offset: 0x0014DFB8
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddComponent<Storage>();
@@ -58,6 +54,5 @@ public class CrewCapsuleConfig : IBuildingConfig
 		conduitConsumer.wrongElementResult = ConduitConsumer.WrongElementResult.Dump;
 	}
 
-	// Token: 0x0400016F RID: 367
 	public const string ID = "CrewCapsule";
 }

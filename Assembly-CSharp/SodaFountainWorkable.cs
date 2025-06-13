@@ -5,17 +5,14 @@ using Klei.AI;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020018EA RID: 6378
 [AddComponentMenu("KMonoBehaviour/Workable/SodaFountainWorkable")]
 public class SodaFountainWorkable : Workable, IWorkerPrioritizable
 {
-	// Token: 0x060083E3 RID: 33763 RVA: 0x000FB3B1 File Offset: 0x000F95B1
 	private SodaFountainWorkable()
 	{
 		base.SetReportType(ReportManager.ReportType.PersonalTime);
 	}
 
-	// Token: 0x060083E4 RID: 33764 RVA: 0x0035032C File Offset: 0x0034E52C
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -30,7 +27,6 @@ public class SodaFountainWorkable : Workable, IWorkerPrioritizable
 		this.sodaFountain = base.GetComponent<SodaFountain>();
 	}
 
-	// Token: 0x060083E5 RID: 33765 RVA: 0x0035038C File Offset: 0x0034E58C
 	public override Workable.AnimInfo GetAnim(WorkerBase worker)
 	{
 		KAnimFile[] overrideAnims = null;
@@ -41,13 +37,11 @@ public class SodaFountainWorkable : Workable, IWorkerPrioritizable
 		return base.GetAnim(worker);
 	}
 
-	// Token: 0x060083E6 RID: 33766 RVA: 0x000FB3CC File Offset: 0x000F95CC
 	protected override void OnStartWork(WorkerBase worker)
 	{
 		this.operational.SetActive(true, false);
 	}
 
-	// Token: 0x060083E7 RID: 33767 RVA: 0x003503C0 File Offset: 0x0034E5C0
 	protected override void OnCompleteWork(WorkerBase worker)
 	{
 		Storage component = base.GetComponent<Storage>();
@@ -74,13 +68,11 @@ public class SodaFountainWorkable : Workable, IWorkerPrioritizable
 		}
 	}
 
-	// Token: 0x060083E8 RID: 33768 RVA: 0x000FB3DB File Offset: 0x000F95DB
 	protected override void OnStopWork(WorkerBase worker)
 	{
 		this.operational.SetActive(false, false);
 	}
 
-	// Token: 0x060083E9 RID: 33769 RVA: 0x003504A8 File Offset: 0x0034E6A8
 	public bool GetWorkerPriority(WorkerBase worker, out int priority)
 	{
 		priority = this.basePriority;
@@ -97,16 +89,12 @@ public class SodaFountainWorkable : Workable, IWorkerPrioritizable
 		return true;
 	}
 
-	// Token: 0x0400646F RID: 25711
 	public Dictionary<Tag, KAnimFile[]> workerTypeOverrideAnims = new Dictionary<Tag, KAnimFile[]>();
 
-	// Token: 0x04006470 RID: 25712
 	[MyCmpReq]
 	private Operational operational;
 
-	// Token: 0x04006471 RID: 25713
 	public int basePriority;
 
-	// Token: 0x04006472 RID: 25714
 	private SodaFountain sodaFountain;
 }

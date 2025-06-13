@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003AC RID: 940
 public class KeroseneEngineConfig : IBuildingConfig
 {
-	// Token: 0x06000F32 RID: 3890 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetForbiddenDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06000F33 RID: 3891 RVA: 0x00186004 File Offset: 0x00184204
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "KeroseneEngine";
@@ -41,7 +38,6 @@ public class KeroseneEngineConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000F34 RID: 3892 RVA: 0x0017D1D0 File Offset: 0x0017B3D0
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -53,7 +49,6 @@ public class KeroseneEngineConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x06000F35 RID: 3893 RVA: 0x000B0EE4 File Offset: 0x000AF0E4
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		RocketEngine rocketEngine = go.AddOrGet<RocketEngine>();
@@ -63,6 +58,5 @@ public class KeroseneEngineConfig : IBuildingConfig
 		BuildingTemplates.ExtendBuildingToRocketModule(go, "rocket_petroleum_engine_bg_kanim", false);
 	}
 
-	// Token: 0x04000B25 RID: 2853
 	public const string ID = "KeroseneEngine";
 }

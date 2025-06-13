@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000559 RID: 1369
 public class ResetSkillsStationConfig : IBuildingConfig
 {
-	// Token: 0x06001790 RID: 6032 RVA: 0x001A6730 File Offset: 0x001A4930
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "ResetSkillsStation";
@@ -30,7 +28,6 @@ public class ResetSkillsStationConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001791 RID: 6033 RVA: 0x001A67C0 File Offset: 0x001A49C0
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
@@ -46,11 +43,9 @@ public class ResetSkillsStationConfig : IBuildingConfig
 		resetSkillsStation.workLayer = Grid.SceneLayer.BuildingFront;
 	}
 
-	// Token: 0x06001792 RID: 6034 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000F8E RID: 3982
 	public const string ID = "ResetSkillsStation";
 }

@@ -3,17 +3,14 @@ using Klei.AI;
 
 namespace Database
 {
-	// Token: 0x020021A3 RID: 8611
 	public class Emotes : ResourceSet<Resource>
 	{
-		// Token: 0x0600B7E5 RID: 47077 RVA: 0x0011B3E3 File Offset: 0x001195E3
 		public Emotes(ResourceSet parent) : base("Emotes", parent)
 		{
 			this.Minion = new Emotes.MinionEmotes(this);
 			this.Critter = new Emotes.CritterEmotes(this);
 		}
 
-		// Token: 0x0600B7E6 RID: 47078 RVA: 0x00469A5C File Offset: 0x00467C5C
 		public void ResetProblematicReferences()
 		{
 			for (int i = 0; i < this.Minion.resources.Count; i++)
@@ -34,16 +31,12 @@ namespace Database
 			}
 		}
 
-		// Token: 0x040094BF RID: 38079
 		public Emotes.MinionEmotes Minion;
 
-		// Token: 0x040094C0 RID: 38080
 		public Emotes.CritterEmotes Critter;
 
-		// Token: 0x020021A4 RID: 8612
 		public class MinionEmotes : ResourceSet<Emote>
 		{
-			// Token: 0x0600B7E7 RID: 47079 RVA: 0x0011B409 File Offset: 0x00119609
 			public MinionEmotes(ResourceSet parent) : base("Minion", parent)
 			{
 				this.InitializeCelebrations();
@@ -52,7 +45,6 @@ namespace Database
 				this.InitializeGreetings();
 			}
 
-			// Token: 0x0600B7E8 RID: 47080 RVA: 0x00469B08 File Offset: 0x00467D08
 			public void InitializeCelebrations()
 			{
 				this.ClapCheer = new Emote(this, "ClapCheer", new EmoteStep[]
@@ -96,7 +88,6 @@ namespace Database
 				this.ThumbsUp = new Emote(this, "ThumbsUp", Emotes.MinionEmotes.DEFAULT_STEPS, "anim_react_thumbsup_kanim");
 			}
 
-			// Token: 0x0600B7E9 RID: 47081 RVA: 0x00469C48 File Offset: 0x00467E48
 			private void InitializePhysicalStatus()
 			{
 				this.CloseCall_Fall = new Emote(this, "Near Fall", Emotes.MinionEmotes.DEFAULT_STEPS, "anim_react_floor_missing_kanim");
@@ -172,7 +163,6 @@ namespace Database
 				}, "anim_sneeze_kanim");
 			}
 
-			// Token: 0x0600B7EA RID: 47082 RVA: 0x00469EE4 File Offset: 0x004680E4
 			private void InitializeEmotionalStatus()
 			{
 				this.Concern = new Emote(this, "Concern", Emotes.MinionEmotes.DEFAULT_STEPS, "anim_react_concern_kanim");
@@ -196,7 +186,6 @@ namespace Database
 				this.Sing = new Emote(this, "Sing", Emotes.MinionEmotes.DEFAULT_STEPS, "anim_react_singer_kanim");
 			}
 
-			// Token: 0x0600B7EB RID: 47083 RVA: 0x00469FC4 File Offset: 0x004681C4
 			private void InitializeGreetings()
 			{
 				this.FingerGuns = new Emote(this, "Finger Guns", Emotes.MinionEmotes.DEFAULT_STEPS, "anim_react_fingerguns_kanim");
@@ -204,7 +193,6 @@ namespace Database
 				this.Wave_Shy = new Emote(this, "Shy Wave", Emotes.MinionEmotes.DEFAULT_STEPS, "anim_react_wave_shy_kanim");
 			}
 
-			// Token: 0x040094C1 RID: 38081
 			private static EmoteStep[] DEFAULT_STEPS = new EmoteStep[]
 			{
 				new EmoteStep
@@ -213,7 +201,6 @@ namespace Database
 				}
 			};
 
-			// Token: 0x040094C2 RID: 38082
 			private static EmoteStep[] DEFAULT_IDLE_STEPS = new EmoteStep[]
 			{
 				new EmoteStep
@@ -230,102 +217,71 @@ namespace Database
 				}
 			};
 
-			// Token: 0x040094C3 RID: 38083
 			public Emote ClapCheer;
 
-			// Token: 0x040094C4 RID: 38084
 			public Emote Cheer;
 
-			// Token: 0x040094C5 RID: 38085
 			public Emote ProductiveCheer;
 
-			// Token: 0x040094C6 RID: 38086
 			public Emote ResearchComplete;
 
-			// Token: 0x040094C7 RID: 38087
 			public Emote ThumbsUp;
 
-			// Token: 0x040094C8 RID: 38088
 			public Emote CloseCall_Fall;
 
-			// Token: 0x040094C9 RID: 38089
 			public Emote Cold;
 
-			// Token: 0x040094CA RID: 38090
 			public Emote Cough;
 
-			// Token: 0x040094CB RID: 38091
 			public Emote Cough_Small;
 
-			// Token: 0x040094CC RID: 38092
 			public Emote FoodPoisoning;
 
-			// Token: 0x040094CD RID: 38093
 			public Emote Hot;
 
-			// Token: 0x040094CE RID: 38094
 			public Emote IritatedEyes;
 
-			// Token: 0x040094CF RID: 38095
 			public Emote MorningStretch;
 
-			// Token: 0x040094D0 RID: 38096
 			public Emote Radiation_Glare;
 
-			// Token: 0x040094D1 RID: 38097
 			public Emote Radiation_Itch;
 
-			// Token: 0x040094D2 RID: 38098
 			public Emote Sick;
 
-			// Token: 0x040094D3 RID: 38099
 			public Emote Sneeze;
 
-			// Token: 0x040094D4 RID: 38100
 			public Emote WaterDamage;
 
-			// Token: 0x040094D5 RID: 38101
 			public Emote Sneeze_Short;
 
-			// Token: 0x040094D6 RID: 38102
 			public Emote GrindingGears;
 
-			// Token: 0x040094D7 RID: 38103
 			public Emote Concern;
 
-			// Token: 0x040094D8 RID: 38104
 			public Emote Cringe;
 
-			// Token: 0x040094D9 RID: 38105
 			public Emote Disappointed;
 
-			// Token: 0x040094DA RID: 38106
 			public Emote Shock;
 
-			// Token: 0x040094DB RID: 38107
 			public Emote Sing;
 
-			// Token: 0x040094DC RID: 38108
 			public Emote FingerGuns;
 
-			// Token: 0x040094DD RID: 38109
 			public Emote Wave;
 
-			// Token: 0x040094DE RID: 38110
 			public Emote Wave_Shy;
 		}
 
-		// Token: 0x020021A5 RID: 8613
 		public class CritterEmotes : ResourceSet<Emote>
 		{
-			// Token: 0x0600B7ED RID: 47085 RVA: 0x0011B42F File Offset: 0x0011962F
 			public CritterEmotes(ResourceSet parent) : base("Critter", parent)
 			{
 				this.InitializePhysicalState();
 				this.InitializeEmotionalState();
 			}
 
-			// Token: 0x0600B7EE RID: 47086 RVA: 0x0046A0A8 File Offset: 0x004682A8
 			private void InitializePhysicalState()
 			{
 				this.Hungry = new Emote(this, "Hungry", new EmoteStep[]
@@ -337,7 +293,6 @@ namespace Database
 				}, null);
 			}
 
-			// Token: 0x0600B7EF RID: 47087 RVA: 0x0046A0E8 File Offset: 0x004682E8
 			private void InitializeEmotionalState()
 			{
 				this.Angry = new Emote(this, "Angry", new EmoteStep[]
@@ -370,19 +325,14 @@ namespace Database
 				}, null);
 			}
 
-			// Token: 0x040094DF RID: 38111
 			public Emote Hungry;
 
-			// Token: 0x040094E0 RID: 38112
 			public Emote Angry;
 
-			// Token: 0x040094E1 RID: 38113
 			public Emote Happy;
 
-			// Token: 0x040094E2 RID: 38114
 			public Emote Idle;
 
-			// Token: 0x040094E3 RID: 38115
 			public Emote Sad;
 		}
 	}

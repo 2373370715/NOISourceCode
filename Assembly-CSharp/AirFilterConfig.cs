@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200001D RID: 29
 public class AirFilterConfig : IBuildingConfig
 {
-	// Token: 0x06000072 RID: 114 RVA: 0x00147E68 File Offset: 0x00146068
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "AirFilter";
@@ -33,7 +31,6 @@ public class AirFilterConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000073 RID: 115 RVA: 0x00147F10 File Offset: 0x00146110
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<LoopingSounds>();
@@ -78,27 +75,20 @@ public class AirFilterConfig : IBuildingConfig
 		go.AddOrGet<KBatchedAnimController>().randomiseLoopedOffset = true;
 	}
 
-	// Token: 0x06000074 RID: 116 RVA: 0x000AA1BD File Offset: 0x000A83BD
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGetDef<ActiveController.Def>();
 	}
 
-	// Token: 0x04000052 RID: 82
 	public const string ID = "AirFilter";
 
-	// Token: 0x04000053 RID: 83
 	public const float DIRTY_AIR_CONSUMPTION_RATE = 0.1f;
 
-	// Token: 0x04000054 RID: 84
 	private const float SAND_CONSUMPTION_RATE = 0.13333334f;
 
-	// Token: 0x04000055 RID: 85
 	private const float REFILL_RATE = 2400f;
 
-	// Token: 0x04000056 RID: 86
 	private const float SAND_STORAGE_AMOUNT = 320.00003f;
 
-	// Token: 0x04000057 RID: 87
 	private const float CLAY_PER_LOAD = 10f;
 }

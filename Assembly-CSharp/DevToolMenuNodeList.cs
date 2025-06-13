@@ -2,10 +2,8 @@
 using System.IO;
 using ImGuiNET;
 
-// Token: 0x02000BEF RID: 3055
 public class DevToolMenuNodeList
 {
-	// Token: 0x060039F7 RID: 14839 RVA: 0x00230688 File Offset: 0x0022E888
 	public DevToolMenuNodeParent AddOrGetParentFor(string childPath)
 	{
 		string[] array = Path.GetDirectoryName(childPath).Split('/', StringSplitOptions.None);
@@ -37,7 +35,6 @@ public class DevToolMenuNodeList
 		return devToolMenuNodeParent;
 	}
 
-	// Token: 0x060039F8 RID: 14840 RVA: 0x00230734 File Offset: 0x0022E934
 	public DevToolMenuNodeAction AddAction(string path, System.Action onClickFn)
 	{
 		DevToolMenuNodeAction devToolMenuNodeAction = new DevToolMenuNodeAction(Path.GetFileName(path), onClickFn);
@@ -45,7 +42,6 @@ public class DevToolMenuNodeList
 		return devToolMenuNodeAction;
 	}
 
-	// Token: 0x060039F9 RID: 14841 RVA: 0x0023075C File Offset: 0x0022E95C
 	public void Draw()
 	{
 		foreach (IMenuNode menuNode in this.root.children)
@@ -54,7 +50,6 @@ public class DevToolMenuNodeList
 		}
 	}
 
-	// Token: 0x060039FA RID: 14842 RVA: 0x000C9F76 File Offset: 0x000C8176
 	public void DrawFull()
 	{
 		if (ImGui.BeginMainMenuBar())
@@ -64,6 +59,5 @@ public class DevToolMenuNodeList
 		}
 	}
 
-	// Token: 0x04002815 RID: 10261
 	private DevToolMenuNodeParent root = new DevToolMenuNodeParent("<root>");
 }

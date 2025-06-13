@@ -6,10 +6,8 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000A13 RID: 2579
 public class CreatureCalorieMonitor : GameStateMachine<CreatureCalorieMonitor, CreatureCalorieMonitor.Instance, IStateMachineTarget, CreatureCalorieMonitor.Def>
 {
-	// Token: 0x06002EE6 RID: 12006 RVA: 0x002039B4 File Offset: 0x00201BB4
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.normal;
@@ -40,13 +38,11 @@ public class CreatureCalorieMonitor : GameStateMachine<CreatureCalorieMonitor, C
 		this.outOfCaloriesTame.Add(new AttributeModifier(Db.Get().CritterAttributes.Happiness.Id, -10f, CREATURES.MODIFIERS.OUT_OF_CALORIES.NAME, false, false, true));
 	}
 
-	// Token: 0x06002EE7 RID: 12007 RVA: 0x00203E44 File Offset: 0x00202044
 	private static bool ReadyToPoop(CreatureCalorieMonitor.Instance smi)
 	{
 		return smi.stomach.IsReadyToPoop() && Time.time - smi.lastMealOrPoopTime >= smi.def.minimumTimeBeforePooping && !smi.IsInsideState(smi.sm.pause);
 	}
 
-	// Token: 0x06002EE8 RID: 12008 RVA: 0x000C2D49 File Offset: 0x000C0F49
 	private static void UpdateMetabolismCalorieModifier(CreatureCalorieMonitor.Instance smi, float dt)
 	{
 		if (smi.IsInsideState(smi.sm.pause))
@@ -56,7 +52,6 @@ public class CreatureCalorieMonitor : GameStateMachine<CreatureCalorieMonitor, C
 		smi.deltaCalorieMetabolismModifier.SetValue(1f - smi.metabolism.GetTotalValue() / 100f);
 	}
 
-	// Token: 0x06002EE9 RID: 12009 RVA: 0x000C2D81 File Offset: 0x000C0F81
 	private static void StarvationStartTime(CreatureCalorieMonitor.Instance smi)
 	{
 		if (smi.sm.starvationStartTime.Get(smi) <= 0f)
@@ -65,7 +60,6 @@ public class CreatureCalorieMonitor : GameStateMachine<CreatureCalorieMonitor, C
 		}
 	}
 
-	// Token: 0x06002EEA RID: 12010 RVA: 0x00203E94 File Offset: 0x00202094
 	private static void RecalculateStartTimeOnUnpause(CreatureCalorieMonitor.Instance smi)
 	{
 		float num = smi.sm.starvationStartTime.Get(smi);
@@ -76,41 +70,30 @@ public class CreatureCalorieMonitor : GameStateMachine<CreatureCalorieMonitor, C
 		}
 	}
 
-	// Token: 0x04002013 RID: 8211
 	public GameStateMachine<CreatureCalorieMonitor, CreatureCalorieMonitor.Instance, IStateMachineTarget, CreatureCalorieMonitor.Def>.State normal;
 
-	// Token: 0x04002014 RID: 8212
 	public CreatureCalorieMonitor.PauseStates pause;
 
-	// Token: 0x04002015 RID: 8213
 	private CreatureCalorieMonitor.HungryStates hungry;
 
-	// Token: 0x04002016 RID: 8214
 	private Effect outOfCaloriesTame;
 
-	// Token: 0x04002017 RID: 8215
 	public StateMachine<CreatureCalorieMonitor, CreatureCalorieMonitor.Instance, IStateMachineTarget, CreatureCalorieMonitor.Def>.FloatParameter starvationStartTime;
 
-	// Token: 0x02000A14 RID: 2580
 	public struct CaloriesConsumedEvent
 	{
-		// Token: 0x04002018 RID: 8216
 		public Tag tag;
 
-		// Token: 0x04002019 RID: 8217
 		public float calories;
 	}
 
-	// Token: 0x02000A15 RID: 2581
 	public class Def : StateMachine.BaseDef, IGameObjectEffectDescriptor
 	{
-		// Token: 0x06002EEE RID: 12014 RVA: 0x000C27F8 File Offset: 0x000C09F8
 		public override void Configure(GameObject prefab)
 		{
 			prefab.GetComponent<Modifiers>().initialAmounts.Add(Db.Get().Amounts.Calories.Id);
 		}
 
-		// Token: 0x06002EEF RID: 12015 RVA: 0x00203EE4 File Offset: 0x002020E4
 		public List<Descriptor> GetDescriptors(GameObject obj)
 		{
 			List<Descriptor> list = new List<Descriptor>();
@@ -203,68 +186,47 @@ public class CreatureCalorieMonitor : GameStateMachine<CreatureCalorieMonitor, C
 			return list;
 		}
 
-		// Token: 0x0400201A RID: 8218
 		public Diet diet;
 
-		// Token: 0x0400201B RID: 8219
 		public float minConsumedCaloriesBeforePooping = 100f;
 
-		// Token: 0x0400201C RID: 8220
 		public float maxPoopSizeKG = -1f;
 
-		// Token: 0x0400201D RID: 8221
 		public float minimumTimeBeforePooping = 10f;
 
-		// Token: 0x0400201E RID: 8222
 		public float deathTimer = 6000f;
 
-		// Token: 0x0400201F RID: 8223
 		public bool storePoop;
 	}
 
-	// Token: 0x02000A19 RID: 2585
 	public class PauseStates : GameStateMachine<CreatureCalorieMonitor, CreatureCalorieMonitor.Instance, IStateMachineTarget, CreatureCalorieMonitor.Def>.State
 	{
-		// Token: 0x04002029 RID: 8233
 		public GameStateMachine<CreatureCalorieMonitor, CreatureCalorieMonitor.Instance, IStateMachineTarget, CreatureCalorieMonitor.Def>.State commonPause;
 
-		// Token: 0x0400202A RID: 8234
 		public GameStateMachine<CreatureCalorieMonitor, CreatureCalorieMonitor.Instance, IStateMachineTarget, CreatureCalorieMonitor.Def>.State starvingPause;
 	}
 
-	// Token: 0x02000A1A RID: 2586
 	public class HungryStates : GameStateMachine<CreatureCalorieMonitor, CreatureCalorieMonitor.Instance, IStateMachineTarget, CreatureCalorieMonitor.Def>.State
 	{
-		// Token: 0x0400202B RID: 8235
 		public GameStateMachine<CreatureCalorieMonitor, CreatureCalorieMonitor.Instance, IStateMachineTarget, CreatureCalorieMonitor.Def>.State hungry;
 
-		// Token: 0x0400202C RID: 8236
 		public CreatureCalorieMonitor.HungryStates.OutOfCaloriesState outofcalories;
 
-		// Token: 0x02000A1B RID: 2587
 		public class OutOfCaloriesState : GameStateMachine<CreatureCalorieMonitor, CreatureCalorieMonitor.Instance, IStateMachineTarget, CreatureCalorieMonitor.Def>.State
 		{
-			// Token: 0x0400202D RID: 8237
 			public GameStateMachine<CreatureCalorieMonitor, CreatureCalorieMonitor.Instance, IStateMachineTarget, CreatureCalorieMonitor.Def>.State wild;
 
-			// Token: 0x0400202E RID: 8238
 			public GameStateMachine<CreatureCalorieMonitor, CreatureCalorieMonitor.Instance, IStateMachineTarget, CreatureCalorieMonitor.Def>.State tame;
 
-			// Token: 0x0400202F RID: 8239
 			public GameStateMachine<CreatureCalorieMonitor, CreatureCalorieMonitor.Instance, IStateMachineTarget, CreatureCalorieMonitor.Def>.State starvedtodeath;
 		}
 	}
 
-	// Token: 0x02000A1C RID: 2588
 	[SerializationConfig(MemberSerialization.OptIn)]
 	public class Stomach
 	{
-		// Token: 0x170001D3 RID: 467
-		// (get) Token: 0x06002F01 RID: 12033 RVA: 0x000C2EA5 File Offset: 0x000C10A5
-		// (set) Token: 0x06002F02 RID: 12034 RVA: 0x000C2EAD File Offset: 0x000C10AD
 		public Diet diet { get; private set; }
 
-		// Token: 0x06002F03 RID: 12035 RVA: 0x002044F4 File Offset: 0x002026F4
 		public Stomach(GameObject owner, float minConsumedCaloriesBeforePooping, float max_poop_size_in_kg, bool storePoop)
 		{
 			this.diet = DietManager.Instance.GetPrefabDiet(owner);
@@ -274,7 +236,6 @@ public class CreatureCalorieMonitor : GameStateMachine<CreatureCalorieMonitor, C
 			this.maxPoopSizeInKG = max_poop_size_in_kg;
 		}
 
-		// Token: 0x06002F04 RID: 12036 RVA: 0x00204540 File Offset: 0x00202740
 		public void Poop()
 		{
 			this.shouldContinuingPooping = true;
@@ -417,13 +378,11 @@ public class CreatureCalorieMonitor : GameStateMachine<CreatureCalorieMonitor, C
 			this.owner.Trigger(-1844238272, null);
 		}
 
-		// Token: 0x06002F05 RID: 12037 RVA: 0x000C2EB6 File Offset: 0x000C10B6
 		public List<CreatureCalorieMonitor.Stomach.CaloriesConsumedEntry> GetCalorieEntries()
 		{
 			return this.caloriesConsumed;
 		}
 
-		// Token: 0x06002F06 RID: 12038 RVA: 0x00204A40 File Offset: 0x00202C40
 		public float GetTotalConsumedCalories()
 		{
 			float num = 0f;
@@ -441,20 +400,17 @@ public class CreatureCalorieMonitor : GameStateMachine<CreatureCalorieMonitor, C
 			return num;
 		}
 
-		// Token: 0x06002F07 RID: 12039 RVA: 0x000C2EBE File Offset: 0x000C10BE
 		public float GetFullness()
 		{
 			return this.GetTotalConsumedCalories() / this.minConsumedCaloriesBeforePooping;
 		}
 
-		// Token: 0x06002F08 RID: 12040 RVA: 0x00204AD0 File Offset: 0x00202CD0
 		public bool IsReadyToPoop()
 		{
 			float totalConsumedCalories = this.GetTotalConsumedCalories();
 			return totalConsumedCalories > 0f && (this.shouldContinuingPooping || totalConsumedCalories >= this.minConsumedCaloriesBeforePooping);
 		}
 
-		// Token: 0x06002F09 RID: 12041 RVA: 0x00204B04 File Offset: 0x00202D04
 		public void Consume(Tag tag, float calories)
 		{
 			for (int i = 0; i < this.caloriesConsumed.Count; i++)
@@ -474,7 +430,6 @@ public class CreatureCalorieMonitor : GameStateMachine<CreatureCalorieMonitor, C
 			this.caloriesConsumed.Add(item);
 		}
 
-		// Token: 0x06002F0A RID: 12042 RVA: 0x00204B90 File Offset: 0x00202D90
 		public Tag GetNextPoopEntry()
 		{
 			for (int i = 0; i < this.caloriesConsumed.Count; i++)
@@ -492,42 +447,31 @@ public class CreatureCalorieMonitor : GameStateMachine<CreatureCalorieMonitor, C
 			return Tag.Invalid;
 		}
 
-		// Token: 0x04002030 RID: 8240
 		[Serialize]
 		private List<CreatureCalorieMonitor.Stomach.CaloriesConsumedEntry> caloriesConsumed = new List<CreatureCalorieMonitor.Stomach.CaloriesConsumedEntry>();
 
-		// Token: 0x04002031 RID: 8241
 		[Serialize]
 		private bool shouldContinuingPooping;
 
-		// Token: 0x04002032 RID: 8242
 		private float minConsumedCaloriesBeforePooping;
 
-		// Token: 0x04002033 RID: 8243
 		private float maxPoopSizeInKG;
 
-		// Token: 0x04002035 RID: 8245
 		private GameObject owner;
 
-		// Token: 0x04002036 RID: 8246
 		private bool storePoop;
 
-		// Token: 0x02000A1D RID: 2589
 		[Serializable]
 		public struct CaloriesConsumedEntry
 		{
-			// Token: 0x04002037 RID: 8247
 			public Tag tag;
 
-			// Token: 0x04002038 RID: 8248
 			public float calories;
 		}
 	}
 
-	// Token: 0x02000A1E RID: 2590
 	public new class Instance : GameStateMachine<CreatureCalorieMonitor, CreatureCalorieMonitor.Instance, IStateMachineTarget, CreatureCalorieMonitor.Def>.GameInstance
 	{
-		// Token: 0x06002F0B RID: 12043 RVA: 0x00204C00 File Offset: 0x00202E00
 		public Instance(IStateMachineTarget master, CreatureCalorieMonitor.Def def) : base(master, def)
 		{
 			this.calories = Db.Get().Amounts.Calories.Lookup(base.gameObject);
@@ -538,14 +482,12 @@ public class CreatureCalorieMonitor : GameStateMachine<CreatureCalorieMonitor, C
 			this.calories.deltaAttribute.Add(this.deltaCalorieMetabolismModifier);
 		}
 
-		// Token: 0x06002F0C RID: 12044 RVA: 0x000C2ECD File Offset: 0x000C10CD
 		public override void StartSM()
 		{
 			this.prefabID = base.gameObject.GetComponent<KPrefabID>();
 			base.StartSM();
 		}
 
-		// Token: 0x06002F0D RID: 12045 RVA: 0x00204CE8 File Offset: 0x00202EE8
 		public void OnCaloriesConsumed(object data)
 		{
 			CreatureCalorieMonitor.CaloriesConsumedEvent caloriesConsumedEvent = (CreatureCalorieMonitor.CaloriesConsumedEvent)data;
@@ -554,57 +496,45 @@ public class CreatureCalorieMonitor : GameStateMachine<CreatureCalorieMonitor, C
 			this.lastMealOrPoopTime = Time.time;
 		}
 
-		// Token: 0x06002F0E RID: 12046 RVA: 0x000C2EE6 File Offset: 0x000C10E6
 		public float GetDeathTimeRemaining()
 		{
 			return base.smi.def.deathTimer - (GameClock.Instance.GetTime() - base.sm.starvationStartTime.Get(base.smi));
 		}
 
-		// Token: 0x06002F0F RID: 12047 RVA: 0x000C2F1A File Offset: 0x000C111A
 		public void Poop()
 		{
 			this.lastMealOrPoopTime = Time.time;
 			this.stomach.Poop();
 		}
 
-		// Token: 0x06002F10 RID: 12048 RVA: 0x000C2F32 File Offset: 0x000C1132
 		public float GetCalories0to1()
 		{
 			return this.calories.value / this.calories.GetMax();
 		}
 
-		// Token: 0x06002F11 RID: 12049 RVA: 0x000C2F4B File Offset: 0x000C114B
 		public bool IsHungry()
 		{
 			return this.GetCalories0to1() < 0.9f;
 		}
 
-		// Token: 0x06002F12 RID: 12050 RVA: 0x000C2F5A File Offset: 0x000C115A
 		public bool IsOutOfCalories()
 		{
 			return this.GetCalories0to1() <= 0f;
 		}
 
-		// Token: 0x04002039 RID: 8249
 		public const float HUNGRY_RATIO = 0.9f;
 
-		// Token: 0x0400203A RID: 8250
 		public AmountInstance calories;
 
-		// Token: 0x0400203B RID: 8251
 		[Serialize]
 		public CreatureCalorieMonitor.Stomach stomach;
 
-		// Token: 0x0400203C RID: 8252
 		public float lastMealOrPoopTime;
 
-		// Token: 0x0400203D RID: 8253
 		public AttributeInstance metabolism;
 
-		// Token: 0x0400203E RID: 8254
 		public AttributeModifier deltaCalorieMetabolismModifier;
 
-		// Token: 0x0400203F RID: 8255
 		public KPrefabID prefabID;
 	}
 }

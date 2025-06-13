@@ -1,16 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020013A9 RID: 5033
 public class GassyMooComet : Comet
 {
-	// Token: 0x06006722 RID: 26402 RVA: 0x000E7BB3 File Offset: 0x000E5DB3
 	public void SetCustomInitialFlip(bool state)
 	{
 		this.initialFlipState = new bool?(state);
 	}
 
-	// Token: 0x06006723 RID: 26403 RVA: 0x002E03E8 File Offset: 0x002DE5E8
 	public override void RandomizeVelocity()
 	{
 		bool flag = false;
@@ -35,7 +32,6 @@ public class GassyMooComet : Comet
 		base.GetComponent<KBatchedAnimController>().FlipX = flag;
 	}
 
-	// Token: 0x06006724 RID: 26404 RVA: 0x002E04DC File Offset: 0x002DE6DC
 	protected override void SpawnCraterPrefabs()
 	{
 		KBatchedAnimController animController = base.GetComponent<KBatchedAnimController>();
@@ -89,12 +85,9 @@ public class GassyMooComet : Comet
 		};
 	}
 
-	// Token: 0x04004DD9 RID: 19929
 	public const float MOO_ANGLE = 15f;
 
-	// Token: 0x04004DDA RID: 19930
 	public Vector3 mooSpawnImpactOffset = new Vector3(-0.5f, 0f, 0f);
 
-	// Token: 0x04004DDB RID: 19931
 	private bool? initialFlipState;
 }

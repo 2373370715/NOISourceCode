@@ -5,10 +5,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200024D RID: 589
 public class LightBugPurpleConfig : IEntityConfig
 {
-	// Token: 0x06000841 RID: 2113 RVA: 0x0016B22C File Offset: 0x0016942C
 	public static GameObject CreateLightBug(string id, string name, string desc, string anim_file, bool is_baby)
 	{
 		GameObject prefab = BaseLightBugConfig.BaseLightBug(id, name, desc, anim_file, "LightBugPurpleBaseTrait", LIGHT2D.LIGHTBUG_COLOR_PURPLE, DECOR.BONUS.TIER6, is_baby, "prp_");
@@ -31,7 +29,6 @@ public class LightBugPurpleConfig : IEntityConfig
 		return BaseLightBugConfig.SetupDiet(prefab, hashSet, Tag.Invalid, LightBugPurpleConfig.CALORIES_PER_KG_OF_ORE);
 	}
 
-	// Token: 0x06000842 RID: 2114 RVA: 0x0016B3C8 File Offset: 0x001695C8
 	public GameObject CreatePrefab()
 	{
 		GameObject gameObject = LightBugPurpleConfig.CreateLightBug("LightBugPurple", STRINGS.CREATURES.SPECIES.LIGHTBUG.VARIANT_PURPLE.NAME, STRINGS.CREATURES.SPECIES.LIGHTBUG.VARIANT_PURPLE.DESC, "lightbug_kanim", false);
@@ -39,32 +36,24 @@ public class LightBugPurpleConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06000843 RID: 2115 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x06000844 RID: 2116 RVA: 0x000ADF93 File Offset: 0x000AC193
 	public void OnSpawn(GameObject inst)
 	{
 		BaseLightBugConfig.SetupLoopingSounds(inst);
 	}
 
-	// Token: 0x0400063E RID: 1598
 	public const string ID = "LightBugPurple";
 
-	// Token: 0x0400063F RID: 1599
 	public const string BASE_TRAIT_ID = "LightBugPurpleBaseTrait";
 
-	// Token: 0x04000640 RID: 1600
 	public const string EGG_ID = "LightBugPurpleEgg";
 
-	// Token: 0x04000641 RID: 1601
 	private static float KG_ORE_EATEN_PER_CYCLE = 1f;
 
-	// Token: 0x04000642 RID: 1602
 	private static float CALORIES_PER_KG_OF_ORE = LightBugTuning.STANDARD_CALORIES_PER_CYCLE / LightBugPurpleConfig.KG_ORE_EATEN_PER_CYCLE;
 
-	// Token: 0x04000643 RID: 1603
 	public static int EGG_SORT_ORDER = LightBugConfig.EGG_SORT_ORDER + 2;
 }

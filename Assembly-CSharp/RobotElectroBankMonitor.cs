@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using Klei.AI;
 using UnityEngine;
 
-// Token: 0x02001823 RID: 6179
 public class RobotElectroBankMonitor : GameStateMachine<RobotElectroBankMonitor, RobotElectroBankMonitor.Instance, IStateMachineTarget, RobotElectroBankMonitor.Def>
 {
-	// Token: 0x06007F25 RID: 32549 RVA: 0x0033AED0 File Offset: 0x003390D0
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.powered;
@@ -37,13 +35,11 @@ public class RobotElectroBankMonitor : GameStateMachine<RobotElectroBankMonitor,
 		this.deceased.DoNothing();
 	}
 
-	// Token: 0x06007F26 RID: 32550 RVA: 0x000F836D File Offset: 0x000F656D
 	private void UpdateBatteryMeter(RobotElectroBankMonitor.Instance smi, HashedString symbol)
 	{
 		smi.UpdateBatteryState(symbol);
 	}
 
-	// Token: 0x06007F27 RID: 32551 RVA: 0x0033B090 File Offset: 0x00339290
 	public static bool ChargeDecent(RobotElectroBankMonitor.Instance smi)
 	{
 		float num = 0f;
@@ -57,7 +53,6 @@ public class RobotElectroBankMonitor : GameStateMachine<RobotElectroBankMonitor,
 		return num >= smi.def.lowBatteryWarningPercent * 120000f;
 	}
 
-	// Token: 0x06007F28 RID: 32552 RVA: 0x0033B118 File Offset: 0x00339318
 	public static void ConsumePower(RobotElectroBankMonitor.Instance smi, float dt)
 	{
 		if (smi.electrobank == null)
@@ -73,7 +68,6 @@ public class RobotElectroBankMonitor : GameStateMachine<RobotElectroBankMonitor,
 		}
 	}
 
-	// Token: 0x06007F29 RID: 32553 RVA: 0x000F8376 File Offset: 0x000F6576
 	public static void RequestBattery(RobotElectroBankMonitor.Instance smi)
 	{
 		if (smi.fetchBatteryChore.IsPaused)
@@ -82,51 +76,36 @@ public class RobotElectroBankMonitor : GameStateMachine<RobotElectroBankMonitor,
 		}
 	}
 
-	// Token: 0x040060A8 RID: 24744
 	public static readonly HashedString BATTER_SYMBOL = "meter_target";
 
-	// Token: 0x040060A9 RID: 24745
 	public static readonly HashedString BATTER_FULL_SYMBOL = "battery_full";
 
-	// Token: 0x040060AA RID: 24746
 	public static readonly HashedString BATTER_LOW_SYMBOL = "battery_low";
 
-	// Token: 0x040060AB RID: 24747
 	public static readonly HashedString BATTER_DEAD_SYMBOL = "battery_dead";
 
-	// Token: 0x040060AC RID: 24748
 	public RobotElectroBankMonitor.PoweredState powered;
 
-	// Token: 0x040060AD RID: 24749
 	public GameStateMachine<RobotElectroBankMonitor, RobotElectroBankMonitor.Instance, IStateMachineTarget, RobotElectroBankMonitor.Def>.State deceased;
 
-	// Token: 0x040060AE RID: 24750
 	public GameStateMachine<RobotElectroBankMonitor, RobotElectroBankMonitor.Instance, IStateMachineTarget, RobotElectroBankMonitor.Def>.State powerdown;
 
-	// Token: 0x040060AF RID: 24751
 	public StateMachine<RobotElectroBankMonitor, RobotElectroBankMonitor.Instance, IStateMachineTarget, RobotElectroBankMonitor.Def>.BoolParameter hasElectrobank;
 
-	// Token: 0x02001824 RID: 6180
 	public class Def : StateMachine.BaseDef
 	{
-		// Token: 0x040060B0 RID: 24752
 		public float lowBatteryWarningPercent;
 	}
 
-	// Token: 0x02001825 RID: 6181
 	public class PoweredState : GameStateMachine<RobotElectroBankMonitor, RobotElectroBankMonitor.Instance, IStateMachineTarget, RobotElectroBankMonitor.Def>.State
 	{
-		// Token: 0x040060B1 RID: 24753
 		public GameStateMachine<RobotElectroBankMonitor, RobotElectroBankMonitor.Instance, IStateMachineTarget, RobotElectroBankMonitor.Def>.State highBattery;
 
-		// Token: 0x040060B2 RID: 24754
 		public GameStateMachine<RobotElectroBankMonitor, RobotElectroBankMonitor.Instance, IStateMachineTarget, RobotElectroBankMonitor.Def>.State lowBattery;
 	}
 
-	// Token: 0x02001826 RID: 6182
 	public new class Instance : GameStateMachine<RobotElectroBankMonitor, RobotElectroBankMonitor.Instance, IStateMachineTarget, RobotElectroBankMonitor.Def>.GameInstance
 	{
-		// Token: 0x06007F31 RID: 32561 RVA: 0x0033B190 File Offset: 0x00339390
 		public Instance(IStateMachineTarget master, RobotElectroBankMonitor.Def def) : base(master, def)
 		{
 			this.fetchBatteryChore = base.GetComponent<ManualDeliveryKG>();
@@ -150,7 +129,6 @@ public class RobotElectroBankMonitor : GameStateMachine<RobotElectroBankMonitor,
 			component2.OnFilterChanged = (Action<HashSet<Tag>>)Delegate.Combine(component2.OnFilterChanged, new Action<HashSet<Tag>>(this.OnFilterChanged));
 		}
 
-		// Token: 0x06007F32 RID: 32562 RVA: 0x0033B2BC File Offset: 0x003394BC
 		public void ElectroBankStorageChange(object data = null)
 		{
 			GameObject gameObject = (GameObject)data;
@@ -196,7 +174,6 @@ public class RobotElectroBankMonitor : GameStateMachine<RobotElectroBankMonitor,
 			}
 		}
 
-		// Token: 0x06007F33 RID: 32563 RVA: 0x0033B4A8 File Offset: 0x003396A8
 		private void DropDischargedElectroBank(GameObject go)
 		{
 			Electrobank component = go.GetComponent<Electrobank>();
@@ -206,7 +183,6 @@ public class RobotElectroBankMonitor : GameStateMachine<RobotElectroBankMonitor,
 			}
 		}
 
-		// Token: 0x06007F34 RID: 32564 RVA: 0x0033B4E8 File Offset: 0x003396E8
 		public void UpdateBatteryState(HashedString newState)
 		{
 			if (this.currentSymbolSwap.IsValid)
@@ -218,7 +194,6 @@ public class RobotElectroBankMonitor : GameStateMachine<RobotElectroBankMonitor,
 			this.currentSymbolSwap = newState;
 		}
 
-		// Token: 0x06007F35 RID: 32565 RVA: 0x0033B554 File Offset: 0x00339754
 		private void OnFilterChanged(HashSet<Tag> allowed_tags)
 		{
 			if (this.fetchBatteryChore != null)
@@ -235,30 +210,22 @@ public class RobotElectroBankMonitor : GameStateMachine<RobotElectroBankMonitor,
 			}
 		}
 
-		// Token: 0x040060B3 RID: 24755
 		public Storage electroBankStorage;
 
-		// Token: 0x040060B4 RID: 24756
 		public Electrobank electrobank;
 
-		// Token: 0x040060B5 RID: 24757
 		public ManualDeliveryKG fetchBatteryChore;
 
-		// Token: 0x040060B6 RID: 24758
 		public AmountInstance bankAmount;
 
-		// Token: 0x040060B7 RID: 24759
 		[MyCmpReq]
 		private SymbolOverrideController symbolOverrideController;
 
-		// Token: 0x040060B8 RID: 24760
 		[MyCmpReq]
 		private KBatchedAnimController animController;
 
-		// Token: 0x040060B9 RID: 24761
 		private HashedString currentSymbolSwap;
 
-		// Token: 0x040060BA RID: 24762
 		private HashSet<Tag> batteryTags = new HashSet<Tag>();
 	}
 }

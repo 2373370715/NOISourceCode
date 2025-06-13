@@ -1,10 +1,8 @@
 ﻿using System;
 using TUNING;
 
-// Token: 0x02001815 RID: 6165
 public class ArmTrapWorkable : Workable
 {
-	// Token: 0x06007EF3 RID: 32499 RVA: 0x0033A44C File Offset: 0x0033864C
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -29,7 +27,6 @@ public class ArmTrapWorkable : Workable
 		this.resetProgressOnStop = true;
 	}
 
-	// Token: 0x06007EF4 RID: 32500 RVA: 0x000F80F7 File Offset: 0x000F62F7
 	public override void OnPendingCompleteWork(WorkerBase worker)
 	{
 		base.OnPendingCompleteWork(worker);
@@ -37,19 +34,15 @@ public class ArmTrapWorkable : Workable
 		base.gameObject.Trigger(-2025798095, null);
 	}
 
-	// Token: 0x06007EF5 RID: 32501 RVA: 0x000F8118 File Offset: 0x000F6318
 	protected override void OnCompleteWork(WorkerBase worker)
 	{
 		base.OnCompleteWork(worker);
 		this.WorkInPstAnimation = false;
 	}
 
-	// Token: 0x0400607A RID: 24698
 	public bool WorkInPstAnimation;
 
-	// Token: 0x0400607B RID: 24699
 	public bool CanBeArmedAtLongDistance;
 
-	// Token: 0x0400607C RID: 24700
 	public CellOffset[] initialOffsets;
 }

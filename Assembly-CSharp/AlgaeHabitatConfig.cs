@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000020 RID: 32
 public class AlgaeHabitatConfig : IBuildingConfig
 {
-	// Token: 0x0600007E RID: 126 RVA: 0x00148538 File Offset: 0x00146738
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "AlgaeHabitat";
@@ -35,7 +33,6 @@ public class AlgaeHabitatConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600007F RID: 127 RVA: 0x00148620 File Offset: 0x00146820
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		Storage storage = go.AddOrGet<Storage>();
@@ -109,33 +106,24 @@ public class AlgaeHabitatConfig : IBuildingConfig
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x06000080 RID: 128 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000060 RID: 96
 	public const string ID = "AlgaeHabitat";
 
-	// Token: 0x04000061 RID: 97
 	private const float ALGAE_RATE = 0.030000001f;
 
-	// Token: 0x04000062 RID: 98
 	private const float WATER_RATE = 0.3f;
 
-	// Token: 0x04000063 RID: 99
 	private const float OXYGEN_RATE = 0.040000003f;
 
-	// Token: 0x04000064 RID: 100
 	private const float CO2_RATE = 0.0003333333f;
 
-	// Token: 0x04000065 RID: 101
 	private const float ALGAE_CAPACITY = 90f;
 
-	// Token: 0x04000066 RID: 102
 	private const float WATER_CAPACITY = 360f;
 
-	// Token: 0x04000067 RID: 103
 	private static readonly List<Storage.StoredItemModifier> PollutedWaterStorageModifiers = new List<Storage.StoredItemModifier>
 	{
 		Storage.StoredItemModifier.Hide,

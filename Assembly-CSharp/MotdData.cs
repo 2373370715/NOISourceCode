@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 
-// Token: 0x02001E9A RID: 7834
 public class MotdData
 {
-	// Token: 0x0600A435 RID: 42037 RVA: 0x003F46E4 File Offset: 0x003F28E4
 	public static MotdData Parse(string inputStr)
 	{
 		MotdData result;
@@ -55,9 +53,7 @@ public class MotdData
 		return result;
 	}
 
-	// Token: 0x04008068 RID: 32872
 	public int liveVersion;
 
-	// Token: 0x04008069 RID: 32873
 	public List<MotdData_Box> boxesLive = new List<MotdData_Box>();
 }

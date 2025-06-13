@@ -1,22 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000AD3 RID: 2771
 [AddComponentMenu("KMonoBehaviour/scripts/NavPathDrawer")]
 public class NavPathDrawer : KMonoBehaviour
 {
-	// Token: 0x17000212 RID: 530
-	// (get) Token: 0x060032D5 RID: 13013 RVA: 0x000C5802 File Offset: 0x000C3A02
-	// (set) Token: 0x060032D6 RID: 13014 RVA: 0x000C5809 File Offset: 0x000C3A09
 	public static NavPathDrawer Instance { get; private set; }
 
-	// Token: 0x060032D7 RID: 13015 RVA: 0x000C5811 File Offset: 0x000C3A11
 	public static void DestroyInstance()
 	{
 		NavPathDrawer.Instance = null;
 	}
 
-	// Token: 0x060032D8 RID: 13016 RVA: 0x002123F8 File Offset: 0x002105F8
 	protected override void OnPrefabInit()
 	{
 		Shader shader = Shader.Find("Lines/Colored Blended");
@@ -24,13 +18,11 @@ public class NavPathDrawer : KMonoBehaviour
 		NavPathDrawer.Instance = this;
 	}
 
-	// Token: 0x060032D9 RID: 13017 RVA: 0x000C5811 File Offset: 0x000C3A11
 	protected override void OnCleanUp()
 	{
 		NavPathDrawer.Instance = null;
 	}
 
-	// Token: 0x060032DA RID: 13018 RVA: 0x000C5819 File Offset: 0x000C3A19
 	public void DrawPath(Vector3 navigator_pos, PathFinder.Path path)
 	{
 		this.navigatorPos = navigator_pos;
@@ -38,25 +30,21 @@ public class NavPathDrawer : KMonoBehaviour
 		this.path = path;
 	}
 
-	// Token: 0x060032DB RID: 13019 RVA: 0x000C5845 File Offset: 0x000C3A45
 	public Navigator GetNavigator()
 	{
 		return this.navigator;
 	}
 
-	// Token: 0x060032DC RID: 13020 RVA: 0x000C584D File Offset: 0x000C3A4D
 	public void SetNavigator(Navigator navigator)
 	{
 		this.navigator = navigator;
 	}
 
-	// Token: 0x060032DD RID: 13021 RVA: 0x000C5856 File Offset: 0x000C3A56
 	public void ClearNavigator()
 	{
 		this.navigator = null;
 	}
 
-	// Token: 0x060032DE RID: 13022 RVA: 0x00212424 File Offset: 0x00210624
 	private void DrawPath(PathFinder.Path path, Vector3 navigator_pos, Color color)
 	{
 		if (path.nodes != null && path.nodes.Count > 1)
@@ -82,7 +70,6 @@ public class NavPathDrawer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060032DF RID: 13023 RVA: 0x00212570 File Offset: 0x00210770
 	private void OnPostRender()
 	{
 		this.DrawPath(this.path, this.navigatorPos, Color.white);
@@ -100,7 +87,6 @@ public class NavPathDrawer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060032E0 RID: 13024 RVA: 0x002125F0 File Offset: 0x002107F0
 	private void DebugDrawSelectedNavigator()
 	{
 		if (!DebugHandler.DebugPathFinding)
@@ -135,15 +121,11 @@ public class NavPathDrawer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x040022BD RID: 8893
 	private PathFinder.Path path;
 
-	// Token: 0x040022BE RID: 8894
 	public Material material;
 
-	// Token: 0x040022BF RID: 8895
 	private Vector3 navigatorPos;
 
-	// Token: 0x040022C0 RID: 8896
 	private Navigator navigator;
 }

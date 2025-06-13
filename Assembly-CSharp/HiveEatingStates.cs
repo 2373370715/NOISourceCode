@@ -3,10 +3,8 @@ using Klei.AI;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x020001A1 RID: 417
 public class HiveEatingStates : GameStateMachine<HiveEatingStates, HiveEatingStates.Instance, IStateMachineTarget, HiveEatingStates.Def>
 {
-	// Token: 0x060005CF RID: 1487 RVA: 0x00162F5C File Offset: 0x0016115C
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.eating;
@@ -35,62 +33,48 @@ public class HiveEatingStates : GameStateMachine<HiveEatingStates, HiveEatingSta
 		this.behaviourcomplete.BehaviourComplete(GameTags.Creatures.WantsToEat, false);
 	}
 
-	// Token: 0x0400043D RID: 1085
 	public HiveEatingStates.EatingStates eating;
 
-	// Token: 0x0400043E RID: 1086
 	public GameStateMachine<HiveEatingStates, HiveEatingStates.Instance, IStateMachineTarget, HiveEatingStates.Def>.State behaviourcomplete;
 
-	// Token: 0x020001A2 RID: 418
 	public class Def : StateMachine.BaseDef
 	{
-		// Token: 0x060005D1 RID: 1489 RVA: 0x000ACA29 File Offset: 0x000AAC29
 		public Def(Tag consumedOre)
 		{
 			this.consumedOre = consumedOre;
 		}
 
-		// Token: 0x0400043F RID: 1087
 		public Tag consumedOre;
 	}
 
-	// Token: 0x020001A3 RID: 419
 	public class EatingStates : GameStateMachine<HiveEatingStates, HiveEatingStates.Instance, IStateMachineTarget, HiveEatingStates.Def>.State
 	{
-		// Token: 0x04000440 RID: 1088
 		public GameStateMachine<HiveEatingStates, HiveEatingStates.Instance, IStateMachineTarget, HiveEatingStates.Def>.State pre;
 
-		// Token: 0x04000441 RID: 1089
 		public GameStateMachine<HiveEatingStates, HiveEatingStates.Instance, IStateMachineTarget, HiveEatingStates.Def>.State loop;
 
-		// Token: 0x04000442 RID: 1090
 		public GameStateMachine<HiveEatingStates, HiveEatingStates.Instance, IStateMachineTarget, HiveEatingStates.Def>.State pst;
 	}
 
-	// Token: 0x020001A4 RID: 420
 	public new class Instance : GameStateMachine<HiveEatingStates, HiveEatingStates.Instance, IStateMachineTarget, HiveEatingStates.Def>.GameInstance
 	{
-		// Token: 0x060005D3 RID: 1491 RVA: 0x000ACA40 File Offset: 0x000AAC40
 		public Instance(Chore<HiveEatingStates.Instance> chore, HiveEatingStates.Def def) : base(chore, def)
 		{
 			chore.AddPrecondition(ChorePreconditions.instance.CheckBehaviourPrecondition, GameTags.Creatures.WantsToEat);
 		}
 
-		// Token: 0x060005D4 RID: 1492 RVA: 0x000ACA64 File Offset: 0x000AAC64
 		public void TurnOn()
 		{
 			this.emitter.emitRads = 600f * this.emitter.emitRate;
 			this.emitter.Refresh();
 		}
 
-		// Token: 0x060005D5 RID: 1493 RVA: 0x000ACA8D File Offset: 0x000AAC8D
 		public void TurnOff()
 		{
 			this.emitter.emitRads = 0f;
 			this.emitter.Refresh();
 		}
 
-		// Token: 0x060005D6 RID: 1494 RVA: 0x001630E8 File Offset: 0x001612E8
 		public void EatOreFromStorage(HiveEatingStates.Instance smi, float dt)
 		{
 			GameObject gameObject = smi.storage.FindFirst(smi.def.consumedOre);
@@ -139,11 +123,9 @@ public class HiveEatingStates : GameStateMachine<HiveEatingStates, HiveEatingSta
 			smi.gameObject.Trigger(-2038961714, caloriesConsumedEvent);
 		}
 
-		// Token: 0x04000443 RID: 1091
 		[MyCmpReq]
 		public Storage storage;
 
-		// Token: 0x04000444 RID: 1092
 		[MyCmpReq]
 		private RadiationEmitter emitter;
 	}

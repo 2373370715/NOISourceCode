@@ -3,10 +3,8 @@ using Klei.AI;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001C30 RID: 7216
 public class BionicBatteryDisplayer : StandardAmountDisplayer
 {
-	// Token: 0x06009633 RID: 38451 RVA: 0x003AB384 File Offset: 0x003A9584
 	private string GetIconForState(BionicBatteryDisplayer.ElectrobankState state)
 	{
 		switch (state)
@@ -19,7 +17,6 @@ public class BionicBatteryDisplayer : StandardAmountDisplayer
 		return BionicBatteryMonitor.DischargedBatteryIcon;
 	}
 
-	// Token: 0x06009634 RID: 38452 RVA: 0x003AB3C8 File Offset: 0x003A95C8
 	public override string GetTooltip(Amount master, AmountInstance instance)
 	{
 		BionicBatteryMonitor.Instance smi = instance.gameObject.GetSMI<BionicBatteryMonitor.Instance>();
@@ -96,38 +93,28 @@ public class BionicBatteryDisplayer : StandardAmountDisplayer
 		return text;
 	}
 
-	// Token: 0x06009635 RID: 38453 RVA: 0x0010650C File Offset: 0x0010470C
 	public override string GetValueString(Amount master, AmountInstance instance)
 	{
 		return base.GetValueString(master, instance);
 	}
 
-	// Token: 0x06009636 RID: 38454 RVA: 0x00106516 File Offset: 0x00104716
 	public BionicBatteryDisplayer() : base(GameUtil.UnitClass.Energy, GameUtil.TimeSlice.PerSecond, null, GameUtil.IdentityDescriptorTense.Normal)
 	{
 		this.formatter = new BionicBatteryDisplayer.BionicBatteryAttributeFormatter();
 	}
 
-	// Token: 0x040074C3 RID: 29891
 	private const float criticalIconFlashFrequency = 0.45f;
 
-	// Token: 0x02001C31 RID: 7217
 	private enum ElectrobankState
 	{
-		// Token: 0x040074C5 RID: 29893
 		Unexistent,
-		// Token: 0x040074C6 RID: 29894
 		Damaged,
-		// Token: 0x040074C7 RID: 29895
 		Depleated,
-		// Token: 0x040074C8 RID: 29896
 		Charged
 	}
 
-	// Token: 0x02001C32 RID: 7218
 	public class BionicBatteryAttributeFormatter : StandardAttributeFormatter
 	{
-		// Token: 0x06009637 RID: 38455 RVA: 0x0010652E File Offset: 0x0010472E
 		public BionicBatteryAttributeFormatter() : base(GameUtil.UnitClass.Energy, GameUtil.TimeSlice.PerSecond)
 		{
 		}

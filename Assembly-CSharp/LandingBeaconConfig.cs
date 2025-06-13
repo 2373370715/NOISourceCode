@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003B2 RID: 946
 public class LandingBeaconConfig : IBuildingConfig
 {
-	// Token: 0x06000F4E RID: 3918 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06000F4F RID: 3919 RVA: 0x00186890 File Offset: 0x00184A90
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "LandingBeacon";
@@ -39,7 +36,6 @@ public class LandingBeaconConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000F50 RID: 3920 RVA: 0x000B0F9A File Offset: 0x000AF19A
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<LoopingSounds>();
@@ -47,25 +43,21 @@ public class LandingBeaconConfig : IBuildingConfig
 		go.AddOrGetDef<LandingBeacon.Def>();
 	}
 
-	// Token: 0x06000F51 RID: 3921 RVA: 0x000B0FBB File Offset: 0x000AF1BB
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 		LandingBeaconConfig.AddVisualizer(go);
 	}
 
-	// Token: 0x06000F52 RID: 3922 RVA: 0x000B0FC3 File Offset: 0x000AF1C3
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		LandingBeaconConfig.AddVisualizer(go);
 	}
 
-	// Token: 0x06000F53 RID: 3923 RVA: 0x000B0FC3 File Offset: 0x000AF1C3
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		LandingBeaconConfig.AddVisualizer(go);
 	}
 
-	// Token: 0x06000F54 RID: 3924 RVA: 0x000B0FCB File Offset: 0x000AF1CB
 	private static void AddVisualizer(GameObject prefab)
 	{
 		SkyVisibilityVisualizer skyVisibilityVisualizer = prefab.AddOrGet<SkyVisibilityVisualizer>();
@@ -77,7 +69,6 @@ public class LandingBeaconConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x06000F55 RID: 3925 RVA: 0x0018692C File Offset: 0x00184B2C
 	private static bool BeaconSkyVisibility(int cell)
 	{
 		DebugUtil.DevAssert(ClusterManager.Instance != null, "beacon assumes DLC", null);
@@ -98,9 +89,7 @@ public class LandingBeaconConfig : IBuildingConfig
 		return false;
 	}
 
-	// Token: 0x04000B31 RID: 2865
 	public const string ID = "LandingBeacon";
 
-	// Token: 0x04000B32 RID: 2866
 	public const int LANDING_ACCURACY = 3;
 }

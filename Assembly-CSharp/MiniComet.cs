@@ -4,13 +4,10 @@ using FMOD.Studio;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x02001520 RID: 5408
 [SerializationConfig(MemberSerialization.OptIn)]
 [AddComponentMenu("KMonoBehaviour/scripts/MiniComet")]
 public class MiniComet : KMonoBehaviour, ISim33ms
 {
-	// Token: 0x17000730 RID: 1840
-	// (get) Token: 0x06007052 RID: 28754 RVA: 0x000EDFDB File Offset: 0x000EC1DB
 	public Vector3 TargetPosition
 	{
 		get
@@ -19,9 +16,6 @@ public class MiniComet : KMonoBehaviour, ISim33ms
 		}
 	}
 
-	// Token: 0x17000731 RID: 1841
-	// (get) Token: 0x06007053 RID: 28755 RVA: 0x000EDFE8 File Offset: 0x000EC1E8
-	// (set) Token: 0x06007054 RID: 28756 RVA: 0x000EDFF0 File Offset: 0x000EC1F0
 	public Vector2 Velocity
 	{
 		get
@@ -34,7 +28,6 @@ public class MiniComet : KMonoBehaviour, ISim33ms
 		}
 	}
 
-	// Token: 0x06007055 RID: 28757 RVA: 0x00304860 File Offset: 0x00302A60
 	private float GetVolume(GameObject gameObject)
 	{
 		float result = 1f;
@@ -45,7 +38,6 @@ public class MiniComet : KMonoBehaviour, ISim33ms
 		return result;
 	}
 
-	// Token: 0x06007056 RID: 28758 RVA: 0x000EDFF9 File Offset: 0x000EC1F9
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -54,7 +46,6 @@ public class MiniComet : KMonoBehaviour, ISim33ms
 		this.RandomizeVelocity();
 	}
 
-	// Token: 0x06007057 RID: 28759 RVA: 0x003048A0 File Offset: 0x00302AA0
 	protected override void OnSpawn()
 	{
 		this.anim.Offset = this.offsetPosition;
@@ -69,13 +60,11 @@ public class MiniComet : KMonoBehaviour, ISim33ms
 		this.typeID = base.GetComponent<KPrefabID>().PrefabTag;
 	}
 
-	// Token: 0x06007058 RID: 28760 RVA: 0x000C4795 File Offset: 0x000C2995
 	protected override void OnCleanUp()
 	{
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06007059 RID: 28761 RVA: 0x00304924 File Offset: 0x00302B24
 	protected void SetupOffset()
 	{
 		Vector3 position = base.transform.GetPosition();
@@ -100,7 +89,6 @@ public class MiniComet : KMonoBehaviour, ISim33ms
 		this.anim.Offset = this.offsetPosition;
 	}
 
-	// Token: 0x0600705A RID: 28762 RVA: 0x00304AE8 File Offset: 0x00302CE8
 	public virtual void RandomizeVelocity()
 	{
 		float num = UnityEngine.Random.Range(this.spawnAngle.x, this.spawnAngle.y);
@@ -110,13 +98,11 @@ public class MiniComet : KMonoBehaviour, ISim33ms
 		base.GetComponent<KBatchedAnimController>().Rotation = -num - 90f;
 	}
 
-	// Token: 0x0600705B RID: 28763 RVA: 0x000EE029 File Offset: 0x000EC229
 	public int GetRandomNumOres()
 	{
 		return UnityEngine.Random.Range(this.explosionOreCount.x, this.explosionOreCount.y + 1);
 	}
 
-	// Token: 0x0600705C RID: 28764 RVA: 0x00304B6C File Offset: 0x00302D6C
 	[ContextMenu("Explode")]
 	private void Explode(Vector3 pos, int cell, int prev_cell, Element element)
 	{
@@ -154,7 +140,6 @@ public class MiniComet : KMonoBehaviour, ISim33ms
 		}
 	}
 
-	// Token: 0x0600705D RID: 28765 RVA: 0x00304D04 File Offset: 0x00302F04
 	public float GetDistanceFromImpact()
 	{
 		float num = this.velocity.x / this.velocity.y;
@@ -175,13 +160,11 @@ public class MiniComet : KMonoBehaviour, ISim33ms
 		return 6f;
 	}
 
-	// Token: 0x0600705E RID: 28766 RVA: 0x000EE048 File Offset: 0x000EC248
 	public float GetSoundDistance()
 	{
 		return this.GetDistanceFromImpact();
 	}
 
-	// Token: 0x0600705F RID: 28767 RVA: 0x00304DB0 File Offset: 0x00302FB0
 	public void Sim33ms(float dt)
 	{
 		if (this.hasExploded)
@@ -231,7 +214,6 @@ public class MiniComet : KMonoBehaviour, ISim33ms
 		this.age += dt;
 	}
 
-	// Token: 0x06007060 RID: 28768 RVA: 0x00304FC0 File Offset: 0x003031C0
 	private void PlayImpactSound(Vector3 pos)
 	{
 		if (this.impactSound == null)
@@ -251,14 +233,12 @@ public class MiniComet : KMonoBehaviour, ISim33ms
 		}
 	}
 
-	// Token: 0x06007061 RID: 28769 RVA: 0x000EE050 File Offset: 0x000EC250
 	private void StartLoopingSound()
 	{
 		this.loopingSounds.StartSound(this.flyingSound);
 		this.loopingSounds.UpdateFirstParameter(this.flyingSound, this.FLYING_SOUND_ID_PARAMETER, (float)this.flyingSoundID);
 	}
 
-	// Token: 0x06007062 RID: 28770 RVA: 0x00305064 File Offset: 0x00303264
 	public void Explode()
 	{
 		PrimaryElement component = base.GetComponent<PrimaryElement>();
@@ -269,95 +249,66 @@ public class MiniComet : KMonoBehaviour, ISim33ms
 		global::Util.KDestroyGameObject(base.gameObject);
 	}
 
-	// Token: 0x04005469 RID: 21609
 	[MyCmpGet]
 	private PrimaryElement pe;
 
-	// Token: 0x0400546A RID: 21610
 	public Vector2 spawnVelocity = new Vector2(7f, 9f);
 
-	// Token: 0x0400546B RID: 21611
 	public Vector2 spawnAngle = new Vector2(30f, 150f);
 
-	// Token: 0x0400546C RID: 21612
 	public SpawnFXHashes explosionEffectHash;
 
-	// Token: 0x0400546D RID: 21613
 	public int addDiseaseCount;
 
-	// Token: 0x0400546E RID: 21614
 	public byte diseaseIdx = byte.MaxValue;
 
-	// Token: 0x0400546F RID: 21615
 	public Vector2I explosionOreCount = new Vector2I(1, 1);
 
-	// Token: 0x04005470 RID: 21616
 	public Vector2 explosionSpeedRange = new Vector2(0f, 0f);
 
-	// Token: 0x04005471 RID: 21617
 	public string impactSound;
 
-	// Token: 0x04005472 RID: 21618
 	public string flyingSound;
 
-	// Token: 0x04005473 RID: 21619
 	public int flyingSoundID;
 
-	// Token: 0x04005474 RID: 21620
 	private HashedString FLYING_SOUND_ID_PARAMETER = "meteorType";
 
-	// Token: 0x04005475 RID: 21621
 	public bool Targeted;
 
-	// Token: 0x04005476 RID: 21622
 	[Serialize]
 	protected Vector3 offsetPosition;
 
-	// Token: 0x04005477 RID: 21623
 	[Serialize]
 	protected Vector2 velocity;
 
-	// Token: 0x04005478 RID: 21624
 	private Vector3 previousPosition;
 
-	// Token: 0x04005479 RID: 21625
 	private bool hasExploded;
 
-	// Token: 0x0400547A RID: 21626
 	public string[] craterPrefabs;
 
-	// Token: 0x0400547B RID: 21627
 	public bool spawnWithOffset;
 
-	// Token: 0x0400547C RID: 21628
 	private float age;
 
-	// Token: 0x0400547D RID: 21629
 	public System.Action OnImpact;
 
-	// Token: 0x0400547E RID: 21630
 	public Ref<KPrefabID> ignoreObstacleForDamage = new Ref<KPrefabID>();
 
-	// Token: 0x0400547F RID: 21631
 	[MyCmpGet]
 	private KBatchedAnimController anim;
 
-	// Token: 0x04005480 RID: 21632
 	[MyCmpGet]
 	private KSelectable selectable;
 
-	// Token: 0x04005481 RID: 21633
 	public Tag typeID;
 
-	// Token: 0x04005482 RID: 21634
 	private LoopingSounds loopingSounds;
 
-	// Token: 0x04005483 RID: 21635
 	private List<GameObject> damagedEntities = new List<GameObject>();
 
-	// Token: 0x04005484 RID: 21636
 	private List<int> destroyedCells = new List<int>();
 
-	// Token: 0x04005485 RID: 21637
 	private const float MAX_DISTANCE_TEST = 6f;
 }

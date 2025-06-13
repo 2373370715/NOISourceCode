@@ -4,10 +4,8 @@ using Klei.AI;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001628 RID: 5672
 public class SicknessMonitor : GameStateMachine<SicknessMonitor, SicknessMonitor.Instance>
 {
-	// Token: 0x06007561 RID: 30049 RVA: 0x00315040 File Offset: 0x00313240
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		base.serializable = StateMachine.SerializeType.Both_DEPRECATED;
@@ -35,22 +33,16 @@ public class SicknessMonitor : GameStateMachine<SicknessMonitor, SicknessMonitor
 		this.post.ToggleChore((SicknessMonitor.Instance smi) => new EmoteChore(smi.master, Db.Get().ChoreTypes.EmoteHighPriority, SicknessMonitor.SickPostKAnim, SicknessMonitor.SickPostAnims, KAnim.PlayMode.Once, false), this.healthy);
 	}
 
-	// Token: 0x0400582F RID: 22575
 	public GameStateMachine<SicknessMonitor, SicknessMonitor.Instance, IStateMachineTarget, object>.State healthy;
 
-	// Token: 0x04005830 RID: 22576
 	public SicknessMonitor.SickStates sick;
 
-	// Token: 0x04005831 RID: 22577
 	public GameStateMachine<SicknessMonitor, SicknessMonitor.Instance, IStateMachineTarget, object>.State post;
 
-	// Token: 0x04005832 RID: 22578
 	public GameStateMachine<SicknessMonitor, SicknessMonitor.Instance, IStateMachineTarget, object>.State post_nocheer;
 
-	// Token: 0x04005833 RID: 22579
 	private static readonly HashedString SickPostKAnim = "anim_cheer_kanim";
 
-	// Token: 0x04005834 RID: 22580
 	private static readonly HashedString[] SickPostAnims = new HashedString[]
 	{
 		"cheer_pre",
@@ -58,38 +50,30 @@ public class SicknessMonitor : GameStateMachine<SicknessMonitor, SicknessMonitor
 		"cheer_pst"
 	};
 
-	// Token: 0x02001629 RID: 5673
 	public class SickStates : GameStateMachine<SicknessMonitor, SicknessMonitor.Instance, IStateMachineTarget, object>.State
 	{
-		// Token: 0x04005835 RID: 22581
 		public GameStateMachine<SicknessMonitor, SicknessMonitor.Instance, IStateMachineTarget, object>.State minor;
 
-		// Token: 0x04005836 RID: 22582
 		public GameStateMachine<SicknessMonitor, SicknessMonitor.Instance, IStateMachineTarget, object>.State major;
 	}
 
-	// Token: 0x0200162A RID: 5674
 	public new class Instance : GameStateMachine<SicknessMonitor, SicknessMonitor.Instance, IStateMachineTarget, object>.GameInstance
 	{
-		// Token: 0x06007566 RID: 30054 RVA: 0x000F19EE File Offset: 0x000EFBEE
 		public Instance(IStateMachineTarget master) : base(master)
 		{
 			this.sicknesses = master.GetComponent<MinionModifiers>().sicknesses;
 		}
 
-		// Token: 0x06007567 RID: 30055 RVA: 0x000F1A08 File Offset: 0x000EFC08
 		private string OnGetToolTip(List<Notification> notifications, object data)
 		{
 			return DUPLICANTS.STATUSITEMS.HASDISEASE.TOOLTIP;
 		}
 
-		// Token: 0x06007568 RID: 30056 RVA: 0x000F1A14 File Offset: 0x000EFC14
 		public bool IsSick()
 		{
 			return this.sicknesses.Count > 0;
 		}
 
-		// Token: 0x06007569 RID: 30057 RVA: 0x003152CC File Offset: 0x003134CC
 		public bool HasMajorDisease()
 		{
 			using (IEnumerator<SicknessInstance> enumerator = this.sicknesses.GetEnumerator())
@@ -105,7 +89,6 @@ public class SicknessMonitor : GameStateMachine<SicknessMonitor, SicknessMonitor
 			return false;
 		}
 
-		// Token: 0x0600756A RID: 30058 RVA: 0x00315328 File Offset: 0x00313528
 		public void AutoAssignClinic()
 		{
 			Ownables soleOwner = base.sm.masterTarget.Get(base.smi).GetComponent<MinionIdentity>().GetSoleOwner();
@@ -122,7 +105,6 @@ public class SicknessMonitor : GameStateMachine<SicknessMonitor, SicknessMonitor
 			soleOwner.AutoAssignSlot(clinic);
 		}
 
-		// Token: 0x0600756B RID: 30059 RVA: 0x0031538C File Offset: 0x0031358C
 		public void UnassignClinic()
 		{
 			Assignables soleOwner = base.sm.masterTarget.Get(base.smi).GetComponent<MinionIdentity>().GetSoleOwner();
@@ -134,7 +116,6 @@ public class SicknessMonitor : GameStateMachine<SicknessMonitor, SicknessMonitor
 			}
 		}
 
-		// Token: 0x0600756C RID: 30060 RVA: 0x003153DC File Offset: 0x003135DC
 		public bool IsSleepingOrSleepSchedule()
 		{
 			Schedulable component = base.GetComponent<Schedulable>();
@@ -146,7 +127,6 @@ public class SicknessMonitor : GameStateMachine<SicknessMonitor, SicknessMonitor
 			return component2 != null && component2.HasTag(GameTags.Asleep);
 		}
 
-		// Token: 0x04005837 RID: 22583
 		private Sicknesses sicknesses;
 	}
 }

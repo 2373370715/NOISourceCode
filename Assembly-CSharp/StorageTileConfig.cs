@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005D4 RID: 1492
 public class StorageTileConfig : IBuildingConfig
 {
-	// Token: 0x06001A16 RID: 6678 RVA: 0x001B1804 File Offset: 0x001AFA04
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "StorageTile";
@@ -45,7 +43,6 @@ public class StorageTileConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001A17 RID: 6679 RVA: 0x001B18E4 File Offset: 0x001AFAE4
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
@@ -81,23 +78,18 @@ public class StorageTileConfig : IBuildingConfig
 		go.AddOrGetDef<RocketUsageRestriction.Def>().restrictOperational = false;
 	}
 
-	// Token: 0x06001A18 RID: 6680 RVA: 0x000B0779 File Offset: 0x000AE979
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		GeneratedBuildings.RemoveLoopingSounds(go);
 		go.GetComponent<KPrefabID>().AddTag(GameTags.FloorTiles, false);
 	}
 
-	// Token: 0x040010E5 RID: 4325
 	public const string ANIM_NAME = "storagetile_kanim";
 
-	// Token: 0x040010E6 RID: 4326
 	public const string ID = "StorageTile";
 
-	// Token: 0x040010E7 RID: 4327
 	public static float CAPACITY = 1000f;
 
-	// Token: 0x040010E8 RID: 4328
 	private static readonly List<Storage.StoredItemModifier> StoredItemModifiers = new List<Storage.StoredItemModifier>
 	{
 		Storage.StoredItemModifier.Insulate,

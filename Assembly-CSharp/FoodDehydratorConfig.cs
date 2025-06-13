@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000334 RID: 820
 public class FoodDehydratorConfig : IBuildingConfig
 {
-	// Token: 0x06000CD4 RID: 3284 RVA: 0x0017B19C File Offset: 0x0017939C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "FoodDehydrator";
@@ -42,7 +40,6 @@ public class FoodDehydratorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000CD5 RID: 3285 RVA: 0x0017B270 File Offset: 0x00179470
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<DropAllWorkable>();
@@ -90,7 +87,6 @@ public class FoodDehydratorConfig : IBuildingConfig
 		go.AddOrGetDef<FoodDehydrator.Def>();
 	}
 
-	// Token: 0x06000CD6 RID: 3286 RVA: 0x0017B410 File Offset: 0x00179610
 	private void ConfigureRecipes()
 	{
 		List<ValueTuple<EdiblesManager.FoodInfo, Tag>> list = new List<ValueTuple<EdiblesManager.FoodInfo, Tag>>
@@ -137,18 +133,14 @@ public class FoodDehydratorConfig : IBuildingConfig
 		}
 	}
 
-	// Token: 0x06000CD7 RID: 3287 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x040009A0 RID: 2464
 	public const string ID = "FoodDehydrator";
 
-	// Token: 0x040009A1 RID: 2465
 	public ComplexRecipe DehydratedFoodRecipe;
 
-	// Token: 0x040009A2 RID: 2466
 	private static readonly List<Storage.StoredItemModifier> GourmetCookingStationStoredItemModifiers = new List<Storage.StoredItemModifier>
 	{
 		Storage.StoredItemModifier.Hide,

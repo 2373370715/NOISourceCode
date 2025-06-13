@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200028A RID: 650
 public class BasicForagePlantPlantedConfig : IEntityConfig
 {
-	// Token: 0x06000979 RID: 2425 RVA: 0x0016F510 File Offset: 0x0016D710
 	public GameObject CreatePrefab()
 	{
 		string id = "BasicForagePlantPlanted";
@@ -33,16 +31,13 @@ public class BasicForagePlantPlantedConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x0600097A RID: 2426 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x0600097B RID: 2427 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x0400073F RID: 1855
 	public const string ID = "BasicForagePlantPlanted";
 }

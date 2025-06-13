@@ -7,10 +7,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x02001D39 RID: 7481
 internal class GraphicsOptionsScreen : KModalScreen
 {
-	// Token: 0x06009C3B RID: 39995 RVA: 0x003CFCB4 File Offset: 0x003CDEB4
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -72,14 +70,12 @@ internal class GraphicsOptionsScreen : KModalScreen
 		this.RefreshColorExamples(this.originalSettings.colorSetId);
 	}
 
-	// Token: 0x06009C3C RID: 39996 RVA: 0x0010A187 File Offset: 0x00108387
 	public static void SetSettingsFromPrefs()
 	{
 		GraphicsOptionsScreen.SetResolutionFromPrefs();
 		GraphicsOptionsScreen.SetLowResFromPrefs();
 	}
 
-	// Token: 0x06009C3D RID: 39997 RVA: 0x003CFF88 File Offset: 0x003CE188
 	public static void SetLowResFromPrefs()
 	{
 		int num = 0;
@@ -98,7 +94,6 @@ internal class GraphicsOptionsScreen : KModalScreen
 		});
 	}
 
-	// Token: 0x06009C3E RID: 39998 RVA: 0x003CFFE8 File Offset: 0x003CE1E8
 	public static void SetResolutionFromPrefs()
 	{
 		int num = Screen.currentResolution.width;
@@ -194,7 +189,6 @@ internal class GraphicsOptionsScreen : KModalScreen
 		Screen.SetResolution(num, num2, fullScreenMode, refreshRate);
 	}
 
-	// Token: 0x06009C3F RID: 39999 RVA: 0x003D0304 File Offset: 0x003CE504
 	public static void SetColorModeFromPrefs()
 	{
 		int num = 0;
@@ -205,7 +199,6 @@ internal class GraphicsOptionsScreen : KModalScreen
 		GlobalAssets.Instance.colorSet = GlobalAssets.Instance.colorSetOptions[num];
 	}
 
-	// Token: 0x06009C40 RID: 40000 RVA: 0x003D0340 File Offset: 0x003CE540
 	public static void OnResize()
 	{
 		GraphicsOptionsScreen.Settings settings = default(GraphicsOptionsScreen.Settings);
@@ -218,7 +211,6 @@ internal class GraphicsOptionsScreen : KModalScreen
 		GraphicsOptionsScreen.SaveSettingsToPrefs(settings);
 	}
 
-	// Token: 0x06009C41 RID: 40001 RVA: 0x003D03C4 File Offset: 0x003CE5C4
 	private static void SaveSettingsToPrefs(GraphicsOptionsScreen.Settings settings)
 	{
 		KPlayerPrefs.SetInt(GraphicsOptionsScreen.LowResKey, settings.lowRes);
@@ -237,7 +229,6 @@ internal class GraphicsOptionsScreen : KModalScreen
 		KPlayerPrefs.SetInt(GraphicsOptionsScreen.ColorModeKey, settings.colorSetId);
 	}
 
-	// Token: 0x06009C42 RID: 40002 RVA: 0x003D04C4 File Offset: 0x003CE6C4
 	private void UpdateUIScale(float value)
 	{
 		this.CanvasScalers = UnityEngine.Object.FindObjectsOfType<KCanvasScaler>(true);
@@ -251,7 +242,6 @@ internal class GraphicsOptionsScreen : KModalScreen
 		this.UpdateSliderLabel();
 	}
 
-	// Token: 0x06009C43 RID: 40003 RVA: 0x003D0520 File Offset: 0x003CE720
 	private void UpdateSliderLabel()
 	{
 		if (this.CanvasScalers != null && this.CanvasScalers.Length != 0 && this.CanvasScalers[0] != null)
@@ -261,7 +251,6 @@ internal class GraphicsOptionsScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x06009C44 RID: 40004 RVA: 0x0010A193 File Offset: 0x00108393
 	public override void OnKeyDown(KButtonEvent e)
 	{
 		if (e.TryConsume(global::Action.Escape) || e.TryConsume(global::Action.MouseRight))
@@ -273,7 +262,6 @@ internal class GraphicsOptionsScreen : KModalScreen
 		base.OnKeyDown(e);
 	}
 
-	// Token: 0x06009C45 RID: 40005 RVA: 0x003D0594 File Offset: 0x003CE794
 	private void BuildOptions()
 	{
 		this.options.Clear();
@@ -294,13 +282,11 @@ internal class GraphicsOptionsScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x06009C46 RID: 40006 RVA: 0x003D0660 File Offset: 0x003CE860
 	private string ResolutionDisplayString(Resolution resolution)
 	{
 		return string.Format("{0} x {1} @ {2}Hz", resolution.width, resolution.height, Mathf.Floor((float)resolution.refreshRateRatio.value));
 	}
 
-	// Token: 0x06009C47 RID: 40007 RVA: 0x003D06AC File Offset: 0x003CE8AC
 	private void BuildColorModeOptions()
 	{
 		this.colorModeOptions.Clear();
@@ -310,7 +296,6 @@ internal class GraphicsOptionsScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x06009C48 RID: 40008 RVA: 0x003D0708 File Offset: 0x003CE908
 	private void RefreshColorExamples(int idx)
 	{
 		Color32 logicOn = GlobalAssets.Instance.colorSetOptions[idx].logicOn;
@@ -330,7 +315,6 @@ internal class GraphicsOptionsScreen : KModalScreen
 		this.colorExampleCropGrown.color = cropGrown;
 	}
 
-	// Token: 0x06009C49 RID: 40009 RVA: 0x003D0804 File Offset: 0x003CEA04
 	private int GetResolutionIndex(Resolution resolution)
 	{
 		int num = -1;
@@ -355,7 +339,6 @@ internal class GraphicsOptionsScreen : KModalScreen
 		return result;
 	}
 
-	// Token: 0x06009C4A RID: 40010 RVA: 0x003D08D8 File Offset: 0x003CEAD8
 	private GraphicsOptionsScreen.Settings CaptureSettings()
 	{
 		return new GraphicsOptionsScreen.Settings
@@ -372,7 +355,6 @@ internal class GraphicsOptionsScreen : KModalScreen
 		};
 	}
 
-	// Token: 0x06009C4B RID: 40011 RVA: 0x003D0964 File Offset: 0x003CEB64
 	private void OnApply()
 	{
 		try
@@ -417,13 +399,11 @@ internal class GraphicsOptionsScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x06009C4C RID: 40012 RVA: 0x000CDCDF File Offset: 0x000CBEDF
 	public void OnDone()
 	{
 		UnityEngine.Object.Destroy(base.gameObject);
 	}
 
-	// Token: 0x06009C4D RID: 40013 RVA: 0x003D0B10 File Offset: 0x003CED10
 	private void RefreshApplyButton()
 	{
 		GraphicsOptionsScreen.Settings settings = this.CaptureSettings();
@@ -451,20 +431,17 @@ internal class GraphicsOptionsScreen : KModalScreen
 		this.applyButton.isInteractable = (this.resolutionDropdown.value != resolutionIndex);
 	}
 
-	// Token: 0x06009C4E RID: 40014 RVA: 0x0010A1C0 File Offset: 0x001083C0
 	private void OnFullscreenToggle()
 	{
 		this.fullscreenToggle.ChangeState((this.fullscreenToggle.CurrentState == 0) ? 1 : 0);
 		this.RefreshApplyButton();
 	}
 
-	// Token: 0x06009C4F RID: 40015 RVA: 0x0010A1E4 File Offset: 0x001083E4
 	private void OnResolutionChanged(int idx)
 	{
 		this.RefreshApplyButton();
 	}
 
-	// Token: 0x06009C50 RID: 40016 RVA: 0x0010A1EC File Offset: 0x001083EC
 	private void OnColorModeChanged(int idx)
 	{
 		this.colorModeId = idx;
@@ -472,14 +449,12 @@ internal class GraphicsOptionsScreen : KModalScreen
 		this.RefreshColorExamples(this.colorModeId);
 	}
 
-	// Token: 0x06009C51 RID: 40017 RVA: 0x0010A207 File Offset: 0x00108407
 	private void OnLowResToggle()
 	{
 		this.lowResToggle.ChangeState((this.lowResToggle.CurrentState == 0) ? 1 : 0);
 		this.RefreshApplyButton();
 	}
 
-	// Token: 0x06009C52 RID: 40018 RVA: 0x003D0BD0 File Offset: 0x003CEDD0
 	private void ApplyConfirmSettings(GraphicsOptionsScreen.Settings new_settings, System.Action on_confirm)
 	{
 		GraphicsOptionsScreen.Settings current_settings = this.CaptureSettings();
@@ -501,7 +476,6 @@ internal class GraphicsOptionsScreen : KModalScreen
 		this.confirmDialog.gameObject.SetActive(true);
 	}
 
-	// Token: 0x06009C53 RID: 40019 RVA: 0x003D0CA8 File Offset: 0x003CEEA8
 	private void ApplySettings(GraphicsOptionsScreen.Settings new_settings)
 	{
 		Resolution resolution = new_settings.resolution;
@@ -520,7 +494,6 @@ internal class GraphicsOptionsScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x06009C54 RID: 40020 RVA: 0x0010A22B File Offset: 0x0010842B
 	private IEnumerator Timer(float time, System.Action revert)
 	{
 		yield return new WaitForSecondsRealtime(time);
@@ -532,147 +505,106 @@ internal class GraphicsOptionsScreen : KModalScreen
 		yield break;
 	}
 
-	// Token: 0x06009C55 RID: 40021 RVA: 0x0010A248 File Offset: 0x00108448
 	private void Update()
 	{
 		global::Debug.developerConsoleVisible = false;
 	}
 
-	// Token: 0x04007A34 RID: 31284
 	[SerializeField]
 	private Dropdown resolutionDropdown;
 
-	// Token: 0x04007A35 RID: 31285
 	[SerializeField]
 	private MultiToggle lowResToggle;
 
-	// Token: 0x04007A36 RID: 31286
 	[SerializeField]
 	private MultiToggle fullscreenToggle;
 
-	// Token: 0x04007A37 RID: 31287
 	[SerializeField]
 	private KButton applyButton;
 
-	// Token: 0x04007A38 RID: 31288
 	[SerializeField]
 	private KButton doneButton;
 
-	// Token: 0x04007A39 RID: 31289
 	[SerializeField]
 	private KButton closeButton;
 
-	// Token: 0x04007A3A RID: 31290
 	[SerializeField]
 	private ConfirmDialogScreen confirmPrefab;
 
-	// Token: 0x04007A3B RID: 31291
 	[SerializeField]
 	private ConfirmDialogScreen feedbackPrefab;
 
-	// Token: 0x04007A3C RID: 31292
 	[SerializeField]
 	private KSlider uiScaleSlider;
 
-	// Token: 0x04007A3D RID: 31293
 	[SerializeField]
 	private LocText sliderLabel;
 
-	// Token: 0x04007A3E RID: 31294
 	[SerializeField]
 	private LocText title;
 
-	// Token: 0x04007A3F RID: 31295
 	[SerializeField]
 	private Dropdown colorModeDropdown;
 
-	// Token: 0x04007A40 RID: 31296
 	[SerializeField]
 	private KImage colorExampleLogicOn;
 
-	// Token: 0x04007A41 RID: 31297
 	[SerializeField]
 	private KImage colorExampleLogicOff;
 
-	// Token: 0x04007A42 RID: 31298
 	[SerializeField]
 	private KImage colorExampleCropHalted;
 
-	// Token: 0x04007A43 RID: 31299
 	[SerializeField]
 	private KImage colorExampleCropGrowing;
 
-	// Token: 0x04007A44 RID: 31300
 	[SerializeField]
 	private KImage colorExampleCropGrown;
 
-	// Token: 0x04007A45 RID: 31301
 	public static readonly string ResolutionWidthKey = "ResolutionWidth";
 
-	// Token: 0x04007A46 RID: 31302
 	public static readonly string ResolutionHeightKey = "ResolutionHeight";
 
-	// Token: 0x04007A47 RID: 31303
 	public static readonly string RefreshRateKeyNumerator = "RefreshRateNumerator";
 
-	// Token: 0x04007A48 RID: 31304
 	public static readonly string RefreshRateKeyDenominator = "RefreshRateNumerator";
 
-	// Token: 0x04007A49 RID: 31305
 	public static readonly string FullScreenKey = "FullScreen";
 
-	// Token: 0x04007A4A RID: 31306
 	public static readonly string LowResKey = "LowResTextures";
 
-	// Token: 0x04007A4B RID: 31307
 	public static readonly string ColorModeKey = "ColorModeID";
 
-	// Token: 0x04007A4C RID: 31308
 	private const FullScreenMode FULLSCREEN = FullScreenMode.MaximizedWindow;
 
-	// Token: 0x04007A4D RID: 31309
 	private const FullScreenMode WINDOWED = FullScreenMode.Windowed;
 
-	// Token: 0x04007A4E RID: 31310
 	private KCanvasScaler[] CanvasScalers;
 
-	// Token: 0x04007A4F RID: 31311
 	private ConfirmDialogScreen confirmDialog;
 
-	// Token: 0x04007A50 RID: 31312
 	private ConfirmDialogScreen feedbackDialog;
 
-	// Token: 0x04007A51 RID: 31313
 	private List<Resolution> resolutions = new List<Resolution>();
 
-	// Token: 0x04007A52 RID: 31314
 	private List<Dropdown.OptionData> options = new List<Dropdown.OptionData>();
 
-	// Token: 0x04007A53 RID: 31315
 	private List<Dropdown.OptionData> colorModeOptions = new List<Dropdown.OptionData>();
 
-	// Token: 0x04007A54 RID: 31316
 	private int colorModeId;
 
-	// Token: 0x04007A55 RID: 31317
 	private bool colorModeChanged;
 
-	// Token: 0x04007A56 RID: 31318
 	private GraphicsOptionsScreen.Settings originalSettings;
 
-	// Token: 0x02001D3A RID: 7482
 	private struct Settings
 	{
-		// Token: 0x04007A57 RID: 31319
 		public FullScreenMode fullscreen;
 
-		// Token: 0x04007A58 RID: 31320
 		public Resolution resolution;
 
-		// Token: 0x04007A59 RID: 31321
 		public int lowRes;
 
-		// Token: 0x04007A5A RID: 31322
 		public int colorSetId;
 	}
 }

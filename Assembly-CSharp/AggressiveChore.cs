@@ -2,22 +2,18 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000664 RID: 1636
 public class AggressiveChore : Chore<AggressiveChore.StatesInstance>
 {
-	// Token: 0x06001D30 RID: 7472 RVA: 0x001BA0BC File Offset: 0x001B82BC
 	public AggressiveChore(IStateMachineTarget target, Action<Chore> on_complete = null) : base(Db.Get().ChoreTypes.StressActingOut, target, target.GetComponent<ChoreProvider>(), false, on_complete, null, null, PriorityScreen.PriorityClass.compulsory, 5, false, true, 0, false, ReportManager.ReportType.WorkTime)
 	{
 		base.smi = new AggressiveChore.StatesInstance(this, target.gameObject);
 	}
 
-	// Token: 0x06001D31 RID: 7473 RVA: 0x000B7B36 File Offset: 0x000B5D36
 	public override void Cleanup()
 	{
 		base.Cleanup();
 	}
 
-	// Token: 0x06001D32 RID: 7474 RVA: 0x001BA104 File Offset: 0x001B8304
 	public void PunchWallDamage(float dt)
 	{
 		if (Grid.Solid[base.smi.sm.wallCellToBreak] && Grid.StrengthInfo[base.smi.sm.wallCellToBreak] < 100)
@@ -26,16 +22,13 @@ public class AggressiveChore : Chore<AggressiveChore.StatesInstance>
 		}
 	}
 
-	// Token: 0x02000665 RID: 1637
 	public class StatesInstance : GameStateMachine<AggressiveChore.States, AggressiveChore.StatesInstance, AggressiveChore, object>.GameInstance
 	{
-		// Token: 0x06001D33 RID: 7475 RVA: 0x000B7B3E File Offset: 0x000B5D3E
 		public StatesInstance(AggressiveChore master, GameObject breaker) : base(master)
 		{
 			base.sm.breaker.Set(breaker, base.smi, false);
 		}
 
-		// Token: 0x06001D34 RID: 7476 RVA: 0x001BA194 File Offset: 0x001B8394
 		public void FindBreakable()
 		{
 			Navigator navigator = base.GetComponent<Navigator>();
@@ -68,10 +61,8 @@ public class AggressiveChore : Chore<AggressiveChore.StatesInstance>
 		}
 	}
 
-	// Token: 0x02000667 RID: 1639
 	public class States : GameStateMachine<AggressiveChore.States, AggressiveChore.StatesInstance, AggressiveChore>
 	{
-		// Token: 0x06001D37 RID: 7479 RVA: 0x001BA38C File Offset: 0x001B858C
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.findbreakable;
@@ -138,46 +129,32 @@ public class AggressiveChore : Chore<AggressiveChore.StatesInstance>
 			this.breaking.ToggleWork<Breakable>(this.breakable, null, null, null);
 		}
 
-		// Token: 0x04001278 RID: 4728
 		public StateMachine<AggressiveChore.States, AggressiveChore.StatesInstance, AggressiveChore, object>.TargetParameter breaker;
 
-		// Token: 0x04001279 RID: 4729
 		public StateMachine<AggressiveChore.States, AggressiveChore.StatesInstance, AggressiveChore, object>.TargetParameter breakable;
 
-		// Token: 0x0400127A RID: 4730
 		public StateMachine<AggressiveChore.States, AggressiveChore.StatesInstance, AggressiveChore, object>.IntParameter moveToWallTarget;
 
-		// Token: 0x0400127B RID: 4731
 		public int wallCellToBreak;
 
-		// Token: 0x0400127C RID: 4732
 		public GameStateMachine<AggressiveChore.States, AggressiveChore.StatesInstance, AggressiveChore, object>.ApproachSubState<Breakable> move_target;
 
-		// Token: 0x0400127D RID: 4733
 		public GameStateMachine<AggressiveChore.States, AggressiveChore.StatesInstance, AggressiveChore, object>.State move_notarget;
 
-		// Token: 0x0400127E RID: 4734
 		public GameStateMachine<AggressiveChore.States, AggressiveChore.StatesInstance, AggressiveChore, object>.State findbreakable;
 
-		// Token: 0x0400127F RID: 4735
 		public GameStateMachine<AggressiveChore.States, AggressiveChore.StatesInstance, AggressiveChore, object>.State noTarget;
 
-		// Token: 0x04001280 RID: 4736
 		public GameStateMachine<AggressiveChore.States, AggressiveChore.StatesInstance, AggressiveChore, object>.State breaking;
 
-		// Token: 0x04001281 RID: 4737
 		public AggressiveChore.States.BreakingWall breaking_wall;
 
-		// Token: 0x02000668 RID: 1640
 		public class BreakingWall : GameStateMachine<AggressiveChore.States, AggressiveChore.StatesInstance, AggressiveChore, object>.State
 		{
-			// Token: 0x04001282 RID: 4738
 			public GameStateMachine<AggressiveChore.States, AggressiveChore.StatesInstance, AggressiveChore, object>.State Pre;
 
-			// Token: 0x04001283 RID: 4739
 			public GameStateMachine<AggressiveChore.States, AggressiveChore.StatesInstance, AggressiveChore, object>.State Loop;
 
-			// Token: 0x04001284 RID: 4740
 			public GameStateMachine<AggressiveChore.States, AggressiveChore.StatesInstance, AggressiveChore, object>.State Pst;
 		}
 	}

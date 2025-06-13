@@ -4,22 +4,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020002AF RID: 687
 public class IceFlowerConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x06000A0A RID: 2570 RVA: 0x000AA536 File Offset: 0x000A8736
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.DLC2;
 	}
 
-	// Token: 0x06000A0B RID: 2571 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x06000A0C RID: 2572 RVA: 0x00172E7C File Offset: 0x0017107C
 	public GameObject CreatePrefab()
 	{
 		string id = "IceFlower";
@@ -55,25 +51,19 @@ public class IceFlowerConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x06000A0D RID: 2573 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x06000A0E RID: 2574 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x040007EB RID: 2027
 	public const string ID = "IceFlower";
 
-	// Token: 0x040007EC RID: 2028
 	public const string SEED_ID = "IceFlowerSeed";
 
-	// Token: 0x040007ED RID: 2029
 	public readonly EffectorValues POSITIVE_DECOR_EFFECT = DECOR.BONUS.TIER3;
 
-	// Token: 0x040007EE RID: 2030
 	public readonly EffectorValues NEGATIVE_DECOR_EFFECT = DECOR.PENALTY.TIER3;
 }

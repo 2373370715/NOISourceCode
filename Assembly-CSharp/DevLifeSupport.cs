@@ -1,10 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000D6C RID: 3436
 public class DevLifeSupport : KMonoBehaviour, ISim200ms
 {
-	// Token: 0x06004299 RID: 17049 RVA: 0x000CF792 File Offset: 0x000CD992
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -14,7 +12,6 @@ public class DevLifeSupport : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x0600429A RID: 17050 RVA: 0x0024FF8C File Offset: 0x0024E18C
 	public void Sim200ms(float dt)
 	{
 		Vector2I vector2I = new Vector2I(-this.effectRadius, -this.effectRadius);
@@ -44,16 +41,12 @@ public class DevLifeSupport : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x04002DF9 RID: 11769
 	[MyCmpReq]
 	private ElementConsumer elementConsumer;
 
-	// Token: 0x04002DFA RID: 11770
 	public float targetTemperature = 294.15f;
 
-	// Token: 0x04002DFB RID: 11771
 	public int effectRadius = 7;
 
-	// Token: 0x04002DFC RID: 11772
 	private const float temperatureControlK = 0.2f;
 }

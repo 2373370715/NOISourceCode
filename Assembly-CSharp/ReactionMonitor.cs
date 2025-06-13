@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using Klei.AI;
 using UnityEngine;
 
-// Token: 0x02000834 RID: 2100
 public class ReactionMonitor : GameStateMachine<ReactionMonitor, ReactionMonitor.Instance, IStateMachineTarget, ReactionMonitor.Def>
 {
-	// Token: 0x0600250F RID: 9487 RVA: 0x001D86F4 File Offset: 0x001D68F4
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.idle;
@@ -53,40 +51,28 @@ public class ReactionMonitor : GameStateMachine<ReactionMonitor, ReactionMonitor
 		this.dead.DoNothing();
 	}
 
-	// Token: 0x06002510 RID: 9488 RVA: 0x000BC95F File Offset: 0x000BAB5F
 	private static bool ShouldReact(ReactionMonitor.Instance smi)
 	{
 		return smi.ImmediateReactable != null;
 	}
 
-	// Token: 0x04001998 RID: 6552
 	public GameStateMachine<ReactionMonitor, ReactionMonitor.Instance, IStateMachineTarget, ReactionMonitor.Def>.State idle;
 
-	// Token: 0x04001999 RID: 6553
 	public GameStateMachine<ReactionMonitor, ReactionMonitor.Instance, IStateMachineTarget, ReactionMonitor.Def>.State reacting;
 
-	// Token: 0x0400199A RID: 6554
 	public GameStateMachine<ReactionMonitor, ReactionMonitor.Instance, IStateMachineTarget, ReactionMonitor.Def>.State dead;
 
-	// Token: 0x0400199B RID: 6555
 	public StateMachine<ReactionMonitor, ReactionMonitor.Instance, IStateMachineTarget, ReactionMonitor.Def>.ObjectParameter<Reactable> reactable;
 
-	// Token: 0x02000835 RID: 2101
 	public class Def : StateMachine.BaseDef
 	{
-		// Token: 0x0400199C RID: 6556
 		public ObjectLayer ReactionLayer;
 	}
 
-	// Token: 0x02000836 RID: 2102
 	public new class Instance : GameStateMachine<ReactionMonitor, ReactionMonitor.Instance, IStateMachineTarget, ReactionMonitor.Def>.GameInstance
 	{
-		// Token: 0x1700011A RID: 282
-		// (get) Token: 0x06002519 RID: 9497 RVA: 0x000BCA0E File Offset: 0x000BAC0E
-		// (set) Token: 0x0600251A RID: 9498 RVA: 0x000BCA16 File Offset: 0x000BAC16
 		public Reactable ImmediateReactable { get; private set; }
 
-		// Token: 0x0600251B RID: 9499 RVA: 0x000BCA1F File Offset: 0x000BAC1F
 		public Instance(IStateMachineTarget master, ReactionMonitor.Def def) : base(master, def)
 		{
 			this.animController = base.GetComponent<KBatchedAnimController>();
@@ -94,13 +80,11 @@ public class ReactionMonitor : GameStateMachine<ReactionMonitor, ReactionMonitor
 			this.oneshotReactables = new List<Reactable>();
 		}
 
-		// Token: 0x0600251C RID: 9500 RVA: 0x000BCA56 File Offset: 0x000BAC56
 		public bool CanReact(Emote e)
 		{
 			return this.animController != null && e.IsValidForController(this.animController);
 		}
 
-		// Token: 0x0600251D RID: 9501 RVA: 0x001D8898 File Offset: 0x001D6A98
 		public bool TryReact(Reactable reactable, float clockTime, Navigator.ActiveTransition transition = null)
 		{
 			if (reactable == null)
@@ -122,7 +106,6 @@ public class ReactionMonitor : GameStateMachine<ReactionMonitor, ReactionMonitor
 			return true;
 		}
 
-		// Token: 0x0600251E RID: 9502 RVA: 0x001D8928 File Offset: 0x001D6B28
 		public void PollForReactables(Navigator.ActiveTransition transition)
 		{
 			if (this.IsReacting())
@@ -157,13 +140,11 @@ public class ReactionMonitor : GameStateMachine<ReactionMonitor, ReactionMonitor
 			pooledList.Recycle();
 		}
 
-		// Token: 0x0600251F RID: 9503 RVA: 0x000BCA74 File Offset: 0x000BAC74
 		public void ClearLastReaction()
 		{
 			this.lastReaction = float.NaN;
 		}
 
-		// Token: 0x06002520 RID: 9504 RVA: 0x001D8A30 File Offset: 0x001D6C30
 		public void StopReaction()
 		{
 			for (int i = this.oneshotReactables.Count - 1; i >= 0; i--)
@@ -178,13 +159,11 @@ public class ReactionMonitor : GameStateMachine<ReactionMonitor, ReactionMonitor
 			base.smi.GoTo(base.sm.idle);
 		}
 
-		// Token: 0x06002521 RID: 9505 RVA: 0x000BCA81 File Offset: 0x000BAC81
 		public bool IsReacting()
 		{
 			return base.smi.IsInsideState(base.sm.reacting);
 		}
 
-		// Token: 0x06002522 RID: 9506 RVA: 0x001D8AB0 File Offset: 0x001D6CB0
 		public SelfEmoteReactable AddSelfEmoteReactable(GameObject target, HashedString reactionId, Emote emote, bool isOneShot, ChoreType choreType, float globalCooldown = 0f, float localCooldown = 20f, float lifeSpan = float.NegativeInfinity, float maxInitialDelay = 0f, List<Reactable.ReactablePrecondition> emotePreconditions = null)
 		{
 			if (!this.CanReact(emote))
@@ -206,7 +185,6 @@ public class ReactionMonitor : GameStateMachine<ReactionMonitor, ReactionMonitor
 			return selfEmoteReactable;
 		}
 
-		// Token: 0x06002523 RID: 9507 RVA: 0x001D8B14 File Offset: 0x001D6D14
 		public SelfEmoteReactable AddSelfEmoteReactable(GameObject target, string reactionId, string emoteAnim, bool isOneShot, ChoreType choreType, float globalCooldown = 0f, float localCooldown = 20f, float maxTriggerTime = float.NegativeInfinity, float maxInitialDelay = 0f, List<Reactable.ReactablePrecondition> emotePreconditions = null)
 		{
 			Emote emote = new Emote(null, reactionId, new EmoteStep[]
@@ -219,7 +197,6 @@ public class ReactionMonitor : GameStateMachine<ReactionMonitor, ReactionMonitor
 			return this.AddSelfEmoteReactable(target, reactionId, emote, isOneShot, choreType, globalCooldown, localCooldown, maxTriggerTime, maxInitialDelay, emotePreconditions);
 		}
 
-		// Token: 0x06002524 RID: 9508 RVA: 0x000BCA99 File Offset: 0x000BAC99
 		public void AddOneshotReactable(SelfEmoteReactable reactable)
 		{
 			if (reactable == null)
@@ -229,7 +206,6 @@ public class ReactionMonitor : GameStateMachine<ReactionMonitor, ReactionMonitor
 			this.oneshotReactables.Add(reactable);
 		}
 
-		// Token: 0x06002525 RID: 9509 RVA: 0x001D8B64 File Offset: 0x001D6D64
 		public void CancelOneShotReactable(SelfEmoteReactable cancel_target)
 		{
 			for (int i = this.oneshotReactables.Count - 1; i >= 0; i--)
@@ -244,7 +220,6 @@ public class ReactionMonitor : GameStateMachine<ReactionMonitor, ReactionMonitor
 			}
 		}
 
-		// Token: 0x06002526 RID: 9510 RVA: 0x001D8BB0 File Offset: 0x001D6DB0
 		public void CancelOneShotReactables(Emote reactionEmote)
 		{
 			for (int i = this.oneshotReactables.Count - 1; i >= 0; i--)
@@ -258,16 +233,12 @@ public class ReactionMonitor : GameStateMachine<ReactionMonitor, ReactionMonitor
 			}
 		}
 
-		// Token: 0x0400199E RID: 6558
 		private KBatchedAnimController animController;
 
-		// Token: 0x0400199F RID: 6559
 		private float lastReaction = float.NaN;
 
-		// Token: 0x040019A0 RID: 6560
 		private Dictionary<HashedString, float> lastReactTimes;
 
-		// Token: 0x040019A1 RID: 6561
 		private List<Reactable> oneshotReactables;
 	}
 }

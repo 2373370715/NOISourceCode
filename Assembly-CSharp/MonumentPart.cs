@@ -5,11 +5,9 @@ using KSerialization;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000F1B RID: 3867
 [AddComponentMenu("KMonoBehaviour/scripts/MonumentPart")]
 public class MonumentPart : KMonoBehaviour
 {
-	// Token: 0x06004D6F RID: 19823 RVA: 0x000D6A25 File Offset: 0x000D4C25
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -21,7 +19,6 @@ public class MonumentPart : KMonoBehaviour
 		this.UpdateMonumentDecor();
 	}
 
-	// Token: 0x06004D70 RID: 19824 RVA: 0x00273EC0 File Offset: 0x002720C0
 	[OnDeserialized]
 	private void OnDeserializedMethod()
 	{
@@ -47,7 +44,6 @@ public class MonumentPart : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06004D71 RID: 19825 RVA: 0x000D6A57 File Offset: 0x000D4C57
 	protected override void OnCleanUp()
 	{
 		Components.MonumentParts.Remove(this);
@@ -55,7 +51,6 @@ public class MonumentPart : KMonoBehaviour
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06004D72 RID: 19826 RVA: 0x00273F4C File Offset: 0x0027214C
 	public void SetState(string state)
 	{
 		MonumentPartResource monumentPartResource = Db.GetMonumentParts().Get(state);
@@ -68,7 +63,6 @@ public class MonumentPart : KMonoBehaviour
 		this.chosenState = state;
 	}
 
-	// Token: 0x06004D73 RID: 19827 RVA: 0x00273FA4 File Offset: 0x002721A4
 	public bool IsMonumentCompleted()
 	{
 		bool flag = this.GetMonumentPart(MonumentPartResource.Part.Top) != null;
@@ -77,7 +71,6 @@ public class MonumentPart : KMonoBehaviour
 		return flag && flag3 && flag2;
 	}
 
-	// Token: 0x06004D74 RID: 19828 RVA: 0x00273FE0 File Offset: 0x002721E0
 	public void UpdateMonumentDecor()
 	{
 		GameObject monumentPart = this.GetMonumentPart(MonumentPartResource.Part.Middle);
@@ -94,7 +87,6 @@ public class MonumentPart : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06004D75 RID: 19829 RVA: 0x0027406C File Offset: 0x0027226C
 	public void RemoveMonumentPiece()
 	{
 		if (this.IsMonumentCompleted())
@@ -109,7 +101,6 @@ public class MonumentPart : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06004D76 RID: 19830 RVA: 0x002740E4 File Offset: 0x002722E4
 	private GameObject GetMonumentPart(MonumentPartResource.Part requestPart)
 	{
 		foreach (GameObject gameObject in AttachableBuilding.GetAttachedNetwork(base.GetComponent<AttachableBuilding>()))
@@ -123,13 +114,10 @@ public class MonumentPart : KMonoBehaviour
 		return null;
 	}
 
-	// Token: 0x04003662 RID: 13922
 	public MonumentPartResource.Part part;
 
-	// Token: 0x04003663 RID: 13923
 	public string stateUISymbol;
 
-	// Token: 0x04003664 RID: 13924
 	[Serialize]
 	private string chosenState;
 }

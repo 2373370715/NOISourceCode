@@ -4,22 +4,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020002DD RID: 733
 public class SwampHarvestPlantConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x06000B3E RID: 2878 RVA: 0x000AA117 File Offset: 0x000A8317
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06000B3F RID: 2879 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x06000B40 RID: 2880 RVA: 0x00177C04 File Offset: 0x00175E04
 	public GameObject CreatePrefab()
 	{
 		string id = "SwampHarvestPlant";
@@ -67,22 +63,17 @@ public class SwampHarvestPlantConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x06000B41 RID: 2881 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject prefab)
 	{
 	}
 
-	// Token: 0x06000B42 RID: 2882 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x040008D5 RID: 2261
 	public const string ID = "SwampHarvestPlant";
 
-	// Token: 0x040008D6 RID: 2262
 	public const string SEED_ID = "SwampHarvestPlantSeed";
 
-	// Token: 0x040008D7 RID: 2263
 	public const float WATER_RATE = 0.06666667f;
 }

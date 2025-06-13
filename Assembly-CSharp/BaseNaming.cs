@@ -4,11 +4,9 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.Events;
 
-// Token: 0x02001AF3 RID: 6899
 [AddComponentMenu("KMonoBehaviour/scripts/BaseNaming")]
 public class BaseNaming : KMonoBehaviour
 {
-	// Token: 0x0600904A RID: 36938 RVA: 0x003863EC File Offset: 0x003845EC
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -19,7 +17,6 @@ public class BaseNaming : KMonoBehaviour
 		this.minionSelectScreen = base.GetComponent<MinionSelectScreen>();
 	}
 
-	// Token: 0x0600904B RID: 36939 RVA: 0x00386460 File Offset: 0x00384660
 	private bool CheckBaseName(string newName)
 	{
 		if (string.IsNullOrEmpty(newName))
@@ -52,14 +49,12 @@ public class BaseNaming : KMonoBehaviour
 		return true;
 	}
 
-	// Token: 0x0600904C RID: 36940 RVA: 0x00102CAF File Offset: 0x00100EAF
 	private void OnEditing(string newName)
 	{
 		Util.ScrubInputField(this.inputField, false, false);
 		this.CheckBaseName(this.inputField.text);
 	}
 
-	// Token: 0x0600904D RID: 36941 RVA: 0x00386510 File Offset: 0x00384710
 	private void OnEndEdit(string newName)
 	{
 		if (Localization.HasDirtyWords(newName))
@@ -92,7 +87,6 @@ public class BaseNaming : KMonoBehaviour
 		SaveLoader.SetActiveSaveFilePath(Path.Combine(path2, newName, path));
 	}
 
-	// Token: 0x0600904E RID: 36942 RVA: 0x003865C4 File Offset: 0x003847C4
 	private void GenerateBaseName()
 	{
 		string text = this.GenerateBaseNameString();
@@ -101,7 +95,6 @@ public class BaseNaming : KMonoBehaviour
 		this.OnEndEdit(text);
 	}
 
-	// Token: 0x0600904F RID: 36943 RVA: 0x00386604 File Offset: 0x00384804
 	private string GenerateBaseNameString()
 	{
 		string fullString = LocString.GetStrings(typeof(NAMEGEN.COLONY.FORMATS)).GetRandom<string>();
@@ -113,7 +106,6 @@ public class BaseNaming : KMonoBehaviour
 		return this.ReplaceStringWithRandom(fullString, "{adjective4}", strings);
 	}
 
-	// Token: 0x06009050 RID: 36944 RVA: 0x00102CD0 File Offset: 0x00100ED0
 	private string ReplaceStringWithRandom(string fullString, string replacementKey, string[] replacementValues)
 	{
 		if (!fullString.Contains(replacementKey))
@@ -123,14 +115,11 @@ public class BaseNaming : KMonoBehaviour
 		return fullString.Replace(replacementKey, replacementValues.GetRandom<string>());
 	}
 
-	// Token: 0x04006D0D RID: 27917
 	[SerializeField]
 	private KInputTextField inputField;
 
-	// Token: 0x04006D0E RID: 27918
 	[SerializeField]
 	private KButton shuffleBaseNameButton;
 
-	// Token: 0x04006D0F RID: 27919
 	private MinionSelectScreen minionSelectScreen;
 }

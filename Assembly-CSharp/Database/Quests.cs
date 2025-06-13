@@ -3,10 +3,8 @@ using System.Collections.Generic;
 
 namespace Database
 {
-	// Token: 0x020021C8 RID: 8648
 	public class Quests : ResourceSet<Quest>
 	{
-		// Token: 0x0600B876 RID: 47222 RVA: 0x0046F1A8 File Offset: 0x0046D3A8
 		public Quests(ResourceSet parent) : base("Quests", parent)
 		{
 			this.LonelyMinionGreetingQuest = base.Add(new Quest("KnockQuest", new QuestCriteria[]
@@ -58,19 +56,14 @@ namespace Database
 			}));
 		}
 
-		// Token: 0x0400964E RID: 38478
 		public Quest LonelyMinionGreetingQuest;
 
-		// Token: 0x0400964F RID: 38479
 		public Quest LonelyMinionFoodQuest;
 
-		// Token: 0x04009650 RID: 38480
 		public Quest LonelyMinionPowerQuest;
 
-		// Token: 0x04009651 RID: 38481
 		public Quest LonelyMinionDecorQuest;
 
-		// Token: 0x04009652 RID: 38482
 		public Quest FossilHuntQuest;
 	}
 }

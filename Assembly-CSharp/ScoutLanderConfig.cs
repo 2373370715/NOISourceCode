@@ -4,22 +4,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000587 RID: 1415
 public class ScoutLanderConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x06001866 RID: 6246 RVA: 0x000AA117 File Offset: 0x000A8317
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06001867 RID: 6247 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x06001868 RID: 6248 RVA: 0x001AB0BC File Offset: 0x001A92BC
 	public GameObject CreatePrefab()
 	{
 		string id = "ScoutLander";
@@ -58,7 +54,6 @@ public class ScoutLanderConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x06001869 RID: 6249 RVA: 0x000AB23D File Offset: 0x000A943D
 	public void OnPrefabInit(GameObject inst)
 	{
 		OccupyArea component = inst.GetComponent<OccupyArea>();
@@ -69,17 +64,13 @@ public class ScoutLanderConfig : IEntityConfig, IHasDlcRestrictions
 		};
 	}
 
-	// Token: 0x0600186A RID: 6250 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x0400101F RID: 4127
 	public const string ID = "ScoutLander";
 
-	// Token: 0x04001020 RID: 4128
 	public const string PREVIEW_ID = "ScoutLander_Preview";
 
-	// Token: 0x04001021 RID: 4129
 	public const float MASS = 400f;
 }

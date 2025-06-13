@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02001AFC RID: 6908
 public class BuildToolHoverTextCard : HoverTextConfiguration
 {
-	// Token: 0x0600907E RID: 36990 RVA: 0x00387B84 File Offset: 0x00385D84
 	public override void UpdateHoverElements(List<KSelectable> hoverObjects)
 	{
 		HoverTextScreen instance = HoverTextScreen.Instance;
@@ -187,6 +185,5 @@ public class BuildToolHoverTextCard : HoverTextConfiguration
 		hoverTextDrawer.EndDrawing();
 	}
 
-	// Token: 0x04006D39 RID: 27961
 	public BuildingDef currentDef;
 }

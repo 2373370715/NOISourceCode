@@ -7,11 +7,9 @@ using Klei.CustomSettings;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001871 RID: 6257
 [AddComponentMenu("KMonoBehaviour/scripts/SaveUpgradeWarning")]
 public class SaveUpgradeWarning : KMonoBehaviour
 {
-	// Token: 0x06008108 RID: 33032 RVA: 0x000F97CB File Offset: 0x000F79CB
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -19,7 +17,6 @@ public class SaveUpgradeWarning : KMonoBehaviour
 		game.OnLoad = (Action<Game.GameSaveData>)Delegate.Combine(game.OnLoad, new Action<Game.GameSaveData>(this.OnLoad));
 	}
 
-	// Token: 0x06008109 RID: 33033 RVA: 0x000F97FA File Offset: 0x000F79FA
 	protected override void OnCleanUp()
 	{
 		Game game = this.game;
@@ -27,7 +24,6 @@ public class SaveUpgradeWarning : KMonoBehaviour
 		base.OnCleanUp();
 	}
 
-	// Token: 0x0600810A RID: 33034 RVA: 0x003443D4 File Offset: 0x003425D4
 	private void OnLoad(Game.GameSaveData data)
 	{
 		List<SaveUpgradeWarning.Upgrade> list = new List<SaveUpgradeWarning.Upgrade>
@@ -51,7 +47,6 @@ public class SaveUpgradeWarning : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600810B RID: 33035 RVA: 0x003444F0 File Offset: 0x003426F0
 	private void SuddenMoraleHelper()
 	{
 		Effect morale_effect = Db.Get().effects.Get("SuddenMoraleHelper");
@@ -74,7 +69,6 @@ public class SaveUpgradeWarning : KMonoBehaviour
 		screen.PopupConfirmDialog(string.Format(UI.FRONTEND.SAVEUPGRADEWARNINGS.SUDDENMORALEHELPER, Mathf.RoundToInt(morale_effect.duration / 600f)), UI.FRONTEND.SAVEUPGRADEWARNINGS.SUDDENMORALEHELPER_TITLE, null);
 	}
 
-	// Token: 0x0600810C RID: 33036 RVA: 0x003445CC File Offset: 0x003427CC
 	private void BedAndBathHelper()
 	{
 		if (SaveGame.Instance == null)
@@ -94,7 +88,6 @@ public class SaveUpgradeWarning : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600810D RID: 33037 RVA: 0x0034462C File Offset: 0x0034282C
 	private void NewAutomationWarning()
 	{
 		SpriteListDialogScreen screen = Util.KInstantiateUI<SpriteListDialogScreen>(ScreenPrefabs.Instance.SpriteListDialogScreen.gameObject, GameScreenManager.Instance.ssOverlayCanvas.gameObject, true);
@@ -112,7 +105,6 @@ public class SaveUpgradeWarning : KMonoBehaviour
 		base.StartCoroutine(this.SendAutomationWarningNotifications());
 	}
 
-	// Token: 0x0600810E RID: 33038 RVA: 0x000F9829 File Offset: 0x000F7A29
 	private IEnumerator SendAutomationWarningNotifications()
 	{
 		yield return SequenceUtil.WaitForEndOfFrame;
@@ -158,7 +150,6 @@ public class SaveUpgradeWarning : KMonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x0600810F RID: 33039 RVA: 0x000F9831 File Offset: 0x000F7A31
 	private IEnumerator TemporaryDisableMeteorShowers(float timeOffDurationInCycles)
 	{
 		yield return SequenceUtil.WaitForEndOfFrame;
@@ -187,7 +178,6 @@ public class SaveUpgradeWarning : KMonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06008110 RID: 33040 RVA: 0x003446FC File Offset: 0x003428FC
 	private void SpaceScannersAndTelescopeUpdateWarning()
 	{
 		SpriteListDialogScreen screen = Util.KInstantiateUI<SpriteListDialogScreen>(ScreenPrefabs.Instance.SpriteListDialogScreen.gameObject, GameScreenManager.Instance.ssOverlayCanvas.gameObject, true);
@@ -201,7 +191,6 @@ public class SaveUpgradeWarning : KMonoBehaviour
 		base.StartCoroutine(this.TemporaryDisableMeteorShowers(20f));
 	}
 
-	// Token: 0x06008111 RID: 33041 RVA: 0x003447FC File Offset: 0x003429FC
 	private void U50CritterWarning()
 	{
 		SpriteListDialogScreen screen = Util.KInstantiateUI<SpriteListDialogScreen>(ScreenPrefabs.Instance.SpriteListDialogScreen.gameObject, GameScreenManager.Instance.ssOverlayCanvas.gameObject, true);
@@ -215,7 +204,6 @@ public class SaveUpgradeWarning : KMonoBehaviour
 		screen.PopupConfirmDialog(UI.FRONTEND.SAVEUPGRADEWARNINGS.U50_CHANGES_SUMMARY, UI.FRONTEND.SAVEUPGRADEWARNINGS.U50_CHANGES_TITLE);
 	}
 
-	// Token: 0x06008112 RID: 33042 RVA: 0x00344904 File Offset: 0x00342B04
 	private void MergedownWarning()
 	{
 		SpriteListDialogScreen screen = Util.KInstantiateUI<SpriteListDialogScreen>(ScreenPrefabs.Instance.SpriteListDialogScreen.gameObject, GameScreenManager.Instance.ssOverlayCanvas.gameObject, true);
@@ -235,11 +223,9 @@ public class SaveUpgradeWarning : KMonoBehaviour
 		base.StartCoroutine(this.SendAutomationWarningNotifications());
 	}
 
-	// Token: 0x04006241 RID: 25153
 	[MyCmpReq]
 	private Game game;
 
-	// Token: 0x04006242 RID: 25154
 	private static string[] buildingIDsWithNewPorts = new string[]
 	{
 		"LiquidVent",
@@ -250,10 +236,8 @@ public class SaveUpgradeWarning : KMonoBehaviour
 		"GasReservoir"
 	};
 
-	// Token: 0x02001872 RID: 6258
 	private struct Upgrade
 	{
-		// Token: 0x06008115 RID: 33045 RVA: 0x000F987D File Offset: 0x000F7A7D
 		public Upgrade(int major, int minor, System.Action action)
 		{
 			this.major = major;
@@ -261,13 +245,10 @@ public class SaveUpgradeWarning : KMonoBehaviour
 			this.action = action;
 		}
 
-		// Token: 0x04006243 RID: 25155
 		public int major;
 
-		// Token: 0x04006244 RID: 25156
 		public int minor;
 
-		// Token: 0x04006245 RID: 25157
 		public System.Action action;
 	}
 }

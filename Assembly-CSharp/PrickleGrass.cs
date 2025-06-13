@@ -2,74 +2,60 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x0200173F RID: 5951
 public class PrickleGrass : StateMachineComponent<PrickleGrass.StatesInstance>
 {
-	// Token: 0x06007A73 RID: 31347 RVA: 0x000F511F File Offset: 0x000F331F
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 		base.Subscribe<PrickleGrass>(1309017699, PrickleGrass.SetReplantedTrueDelegate);
 	}
 
-	// Token: 0x06007A74 RID: 31348 RVA: 0x000F5138 File Offset: 0x000F3338
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
 		base.smi.StartSM();
 	}
 
-	// Token: 0x06007A75 RID: 31349 RVA: 0x000F42AD File Offset: 0x000F24AD
 	protected void DestroySelf(object callbackParam)
 	{
 		CreatureHelpers.DeselectCreature(base.gameObject);
 		Util.KDestroyGameObject(base.gameObject);
 	}
 
-	// Token: 0x04005C0F RID: 23567
 	[MyCmpReq]
 	private WiltCondition wiltCondition;
 
-	// Token: 0x04005C10 RID: 23568
 	[MyCmpReq]
 	private EntombVulnerable entombVulnerable;
 
-	// Token: 0x04005C11 RID: 23569
 	public bool replanted;
 
-	// Token: 0x04005C12 RID: 23570
 	public EffectorValues positive_decor_effect = new EffectorValues
 	{
 		amount = 1,
 		radius = 5
 	};
 
-	// Token: 0x04005C13 RID: 23571
 	public EffectorValues negative_decor_effect = new EffectorValues
 	{
 		amount = -1,
 		radius = 5
 	};
 
-	// Token: 0x04005C14 RID: 23572
 	private static readonly EventSystem.IntraObjectHandler<PrickleGrass> SetReplantedTrueDelegate = new EventSystem.IntraObjectHandler<PrickleGrass>(delegate(PrickleGrass component, object data)
 	{
 		component.replanted = true;
 	});
 
-	// Token: 0x02001740 RID: 5952
 	public class StatesInstance : GameStateMachine<PrickleGrass.States, PrickleGrass.StatesInstance, PrickleGrass, object>.GameInstance
 	{
-		// Token: 0x06007A78 RID: 31352 RVA: 0x000F5167 File Offset: 0x000F3367
 		public StatesInstance(PrickleGrass smi) : base(smi)
 		{
 		}
 	}
 
-	// Token: 0x02001741 RID: 5953
 	public class States : GameStateMachine<PrickleGrass.States, PrickleGrass.StatesInstance, PrickleGrass>
 	{
-		// Token: 0x06007A79 RID: 31353 RVA: 0x00326328 File Offset: 0x00324528
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.grow;
@@ -121,38 +107,27 @@ public class PrickleGrass : StateMachineComponent<PrickleGrass.StatesInstance>
 			});
 		}
 
-		// Token: 0x04005C15 RID: 23573
 		public GameStateMachine<PrickleGrass.States, PrickleGrass.StatesInstance, PrickleGrass, object>.State grow;
 
-		// Token: 0x04005C16 RID: 23574
 		public GameStateMachine<PrickleGrass.States, PrickleGrass.StatesInstance, PrickleGrass, object>.State blocked_from_growing;
 
-		// Token: 0x04005C17 RID: 23575
 		public PrickleGrass.States.AliveStates alive;
 
-		// Token: 0x04005C18 RID: 23576
 		public GameStateMachine<PrickleGrass.States, PrickleGrass.StatesInstance, PrickleGrass, object>.State dead;
 
-		// Token: 0x02001742 RID: 5954
 		public class AliveStates : GameStateMachine<PrickleGrass.States, PrickleGrass.StatesInstance, PrickleGrass, object>.PlantAliveSubState
 		{
-			// Token: 0x04005C19 RID: 23577
 			public GameStateMachine<PrickleGrass.States, PrickleGrass.StatesInstance, PrickleGrass, object>.State idle;
 
-			// Token: 0x04005C1A RID: 23578
 			public PrickleGrass.States.WiltingState wilting;
 		}
 
-		// Token: 0x02001743 RID: 5955
 		public class WiltingState : GameStateMachine<PrickleGrass.States, PrickleGrass.StatesInstance, PrickleGrass, object>.State
 		{
-			// Token: 0x04005C1B RID: 23579
 			public GameStateMachine<PrickleGrass.States, PrickleGrass.StatesInstance, PrickleGrass, object>.State wilting_pre;
 
-			// Token: 0x04005C1C RID: 23580
 			public GameStateMachine<PrickleGrass.States, PrickleGrass.StatesInstance, PrickleGrass, object>.State wilting;
 
-			// Token: 0x04005C1D RID: 23581
 			public GameStateMachine<PrickleGrass.States, PrickleGrass.StatesInstance, PrickleGrass, object>.State wilting_pst;
 		}
 	}

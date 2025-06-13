@@ -1,10 +1,8 @@
 ﻿using System;
 using ImGuiNET;
 
-// Token: 0x02000BDB RID: 3035
 public class DevToolDLCManager : DevTool
 {
-	// Token: 0x06003990 RID: 14736 RVA: 0x0022C578 File Offset: 0x0022A778
 	protected override void RenderTo(DevPanel panel)
 	{
 		string name = DistributionPlatform.Inst.Name;

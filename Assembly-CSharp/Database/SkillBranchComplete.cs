@@ -4,16 +4,13 @@ using STRINGS;
 
 namespace Database
 {
-	// Token: 0x02002201 RID: 8705
 	public class SkillBranchComplete : ColonyAchievementRequirement, AchievementRequirementSerialization_Deprecated
 	{
-		// Token: 0x0600B95E RID: 47454 RVA: 0x0011C00B File Offset: 0x0011A20B
 		public SkillBranchComplete(List<Skill> skillsToMaster)
 		{
 			this.skillsToMaster = skillsToMaster;
 		}
 
-		// Token: 0x0600B95F RID: 47455 RVA: 0x00476654 File Offset: 0x00474854
 		public override bool Success()
 		{
 			foreach (MinionResume minionResume in Components.MinionResumes.Items)
@@ -42,7 +39,6 @@ namespace Database
 			return false;
 		}
 
-		// Token: 0x0600B960 RID: 47456 RVA: 0x00476774 File Offset: 0x00474974
 		public void Deserialize(IReader reader)
 		{
 			this.skillsToMaster = new List<Skill>();
@@ -54,13 +50,11 @@ namespace Database
 			}
 		}
 
-		// Token: 0x0600B961 RID: 47457 RVA: 0x0011C01A File Offset: 0x0011A21A
 		public override string GetProgress(bool complete)
 		{
 			return COLONY_ACHIEVEMENTS.MISC_REQUIREMENTS.STATUS.SKILL_BRANCH;
 		}
 
-		// Token: 0x04009778 RID: 38776
 		private List<Skill> skillsToMaster;
 	}
 }

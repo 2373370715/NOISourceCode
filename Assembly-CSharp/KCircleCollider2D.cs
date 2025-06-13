@@ -1,12 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000AA2 RID: 2722
 public class KCircleCollider2D : KCollider2D
 {
-	// Token: 0x170001FD RID: 509
-	// (get) Token: 0x06003195 RID: 12693 RVA: 0x000C4A2D File Offset: 0x000C2C2D
-	// (set) Token: 0x06003196 RID: 12694 RVA: 0x000C4A35 File Offset: 0x000C2C35
 	public float radius
 	{
 		get
@@ -20,7 +16,6 @@ public class KCircleCollider2D : KCollider2D
 		}
 	}
 
-	// Token: 0x06003197 RID: 12695 RVA: 0x0020D480 File Offset: 0x0020B680
 	public override Extents GetExtents()
 	{
 		Vector3 vector = base.transform.GetPosition() + new Vector3(base.offset.x, base.offset.y, 0f);
@@ -31,8 +26,6 @@ public class KCircleCollider2D : KCollider2D
 		return new Extents((int)(vector.x - this._radius), (int)(vector.y - this._radius), width, height);
 	}
 
-	// Token: 0x170001FE RID: 510
-	// (get) Token: 0x06003198 RID: 12696 RVA: 0x0020D544 File Offset: 0x0020B744
 	public override Bounds bounds
 	{
 		get
@@ -41,7 +34,6 @@ public class KCircleCollider2D : KCollider2D
 		}
 	}
 
-	// Token: 0x06003199 RID: 12697 RVA: 0x0020D5A8 File Offset: 0x0020B7A8
 	public override bool Intersects(Vector2 pos)
 	{
 		Vector3 position = base.transform.GetPosition();
@@ -49,14 +41,12 @@ public class KCircleCollider2D : KCollider2D
 		return (pos - b).sqrMagnitude <= this._radius * this._radius;
 	}
 
-	// Token: 0x0600319A RID: 12698 RVA: 0x0020D600 File Offset: 0x0020B800
 	private void OnDrawGizmosSelected()
 	{
 		Gizmos.color = Color.green;
 		Gizmos.DrawWireSphere(this.bounds.center, this.radius);
 	}
 
-	// Token: 0x04002209 RID: 8713
 	[SerializeField]
 	private float _radius;
 }

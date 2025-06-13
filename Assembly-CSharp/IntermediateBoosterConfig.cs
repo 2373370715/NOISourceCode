@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000414 RID: 1044
 public class IntermediateBoosterConfig : IEntityConfig
 {
-	// Token: 0x06001151 RID: 4433 RVA: 0x0018DCF8 File Offset: 0x0018BEF8
 	public GameObject CreatePrefab()
 	{
 		GameObject gameObject = EntityTemplates.CreateLooseEntity("IntermediateBooster", STRINGS.ITEMS.PILLS.INTERMEDIATEBOOSTER.NAME, STRINGS.ITEMS.PILLS.INTERMEDIATEBOOSTER.DESC, 1f, true, Assets.GetAnim("pill_3_kanim"), "object", Grid.SceneLayer.Front, EntityTemplates.CollisionShape.RECTANGLE, 0.8f, 0.4f, true, 0, SimHashes.Creature, null);
@@ -34,19 +32,15 @@ public class IntermediateBoosterConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06001152 RID: 4434 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x06001153 RID: 4435 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x04000C01 RID: 3073
 	public const string ID = "IntermediateBooster";
 
-	// Token: 0x04000C02 RID: 3074
 	public static ComplexRecipe recipe;
 }

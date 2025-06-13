@@ -2,10 +2,8 @@
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x020016ED RID: 5869
 public class PedestalArtifactSpawner : KMonoBehaviour
 {
-	// Token: 0x0600790D RID: 30989 RVA: 0x00321E68 File Offset: 0x00320068
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -28,15 +26,12 @@ public class PedestalArtifactSpawner : KMonoBehaviour
 		this.artifactSpawned = true;
 	}
 
-	// Token: 0x04005ADC RID: 23260
 	[MyCmpReq]
 	private Storage storage;
 
-	// Token: 0x04005ADD RID: 23261
 	[MyCmpReq]
 	private SingleEntityReceptacle receptacle;
 
-	// Token: 0x04005ADE RID: 23262
 	[Serialize]
 	private bool artifactSpawned;
 }

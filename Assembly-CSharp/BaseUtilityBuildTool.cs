@@ -5,23 +5,19 @@ using FMOD.Studio;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001452 RID: 5202
 public class BaseUtilityBuildTool : DragTool
 {
-	// Token: 0x06006AFF RID: 27391 RVA: 0x000EAA9D File Offset: 0x000E8C9D
 	protected override void OnPrefabInit()
 	{
 		this.buildingCount = UnityEngine.Random.Range(1, 14);
 		this.canChangeDragAxis = false;
 	}
 
-	// Token: 0x06006B00 RID: 27392 RVA: 0x000EAAB4 File Offset: 0x000E8CB4
 	private void Play(GameObject go, string anim)
 	{
 		go.GetComponent<KBatchedAnimController>().Play(anim, KAnim.PlayMode.Once, 1f, 0f);
 	}
 
-	// Token: 0x06006B01 RID: 27393 RVA: 0x002EE744 File Offset: 0x002EC944
 	protected override void OnActivateTool()
 	{
 		base.OnActivateTool();
@@ -46,7 +42,6 @@ public class BaseUtilityBuildTool : DragTool
 		}
 	}
 
-	// Token: 0x06006B02 RID: 27394 RVA: 0x000EAAD2 File Offset: 0x000E8CD2
 	protected override void OnDeactivateTool(InterfaceTool new_tool)
 	{
 		this.StopVisUpdater();
@@ -59,7 +54,6 @@ public class BaseUtilityBuildTool : DragTool
 		this.facadeID = null;
 	}
 
-	// Token: 0x06006B03 RID: 27395 RVA: 0x000EAB0B File Offset: 0x000E8D0B
 	public void Activate(BuildingDef def, IList<Tag> selected_elements)
 	{
 		this.selectedElements = selected_elements;
@@ -69,14 +63,12 @@ public class BaseUtilityBuildTool : DragTool
 		ResourceRemainingDisplayScreen.instance.SetResources(selected_elements, def.CraftRecipe);
 	}
 
-	// Token: 0x06006B04 RID: 27396 RVA: 0x000EAB43 File Offset: 0x000E8D43
 	public void Activate(BuildingDef def, IList<Tag> selected_elements, string facadeID)
 	{
 		this.facadeID = facadeID;
 		this.Activate(def, selected_elements);
 	}
 
-	// Token: 0x06006B05 RID: 27397 RVA: 0x002EE84C File Offset: 0x002ECA4C
 	protected override void OnDragTool(int cell, int distFromOrigin)
 	{
 		if (this.path.Count == 0 || this.path[this.path.Count - 1].cell == cell)
@@ -121,13 +113,11 @@ public class BaseUtilityBuildTool : DragTool
 		ResourceRemainingDisplayScreen.instance.SetNumberOfPendingConstructions(this.path.Count);
 	}
 
-	// Token: 0x06006B06 RID: 27398 RVA: 0x000EAB54 File Offset: 0x000E8D54
 	protected override int GetDragLength()
 	{
 		return this.path.Count;
 	}
 
-	// Token: 0x06006B07 RID: 27399 RVA: 0x002EEB0C File Offset: 0x002ECD0C
 	private bool CheckValidPathPiece(int cell)
 	{
 		if (this.def.BuildLocationRule == BuildLocationRule.NotInTiles)
@@ -150,7 +140,6 @@ public class BaseUtilityBuildTool : DragTool
 		return !(gameObject2 != null) || !(gameObject2.GetComponent<KAnimGraphTileVisualizer>() == null);
 	}
 
-	// Token: 0x06006B08 RID: 27400 RVA: 0x002EEBB0 File Offset: 0x002ECDB0
 	private bool CheckForConnection(int cell, string defName, string soundName, ref BuildingCellVisualizer outBcv, bool fireEvents = true)
 	{
 		outBcv = null;
@@ -270,7 +259,6 @@ public class BaseUtilityBuildTool : DragTool
 		return false;
 	}
 
-	// Token: 0x06006B09 RID: 27401 RVA: 0x002EEE58 File Offset: 0x002ED058
 	private Building GetBuilding(int cell)
 	{
 		GameObject gameObject = Grid.Objects[cell, 1];
@@ -281,13 +269,11 @@ public class BaseUtilityBuildTool : DragTool
 		return null;
 	}
 
-	// Token: 0x06006B0A RID: 27402 RVA: 0x000B1628 File Offset: 0x000AF828
 	protected override DragTool.Mode GetMode()
 	{
 		return DragTool.Mode.Brush;
 	}
 
-	// Token: 0x06006B0B RID: 27403 RVA: 0x002EEE84 File Offset: 0x002ED084
 	public override void OnLeftClickDown(Vector3 cursor_pos)
 	{
 		if (this.visualizer == null)
@@ -325,7 +311,6 @@ public class BaseUtilityBuildTool : DragTool
 		base.OnLeftClickDown(cursor_pos);
 	}
 
-	// Token: 0x06006B0C RID: 27404 RVA: 0x000EAB61 File Offset: 0x000E8D61
 	public override void OnLeftClickUp(Vector3 cursor_pos)
 	{
 		if (this.visualizer == null)
@@ -339,7 +324,6 @@ public class BaseUtilityBuildTool : DragTool
 		base.OnLeftClickUp(cursor_pos);
 	}
 
-	// Token: 0x06006B0D RID: 27405 RVA: 0x002EEFD4 File Offset: 0x002ED1D4
 	public override void OnMouseMove(Vector3 cursorPos)
 	{
 		base.OnMouseMove(cursorPos);
@@ -362,7 +346,6 @@ public class BaseUtilityBuildTool : DragTool
 		}
 	}
 
-	// Token: 0x06006B0E RID: 27406 RVA: 0x002EF04C File Offset: 0x002ED24C
 	private void SetColor(GameObject root, Color c, float strength)
 	{
 		KBatchedAnimController component = root.GetComponent<KBatchedAnimController>();
@@ -372,13 +355,11 @@ public class BaseUtilityBuildTool : DragTool
 		}
 	}
 
-	// Token: 0x06006B0F RID: 27407 RVA: 0x000EABA1 File Offset: 0x000E8DA1
 	protected virtual void ApplyPathToConduitSystem()
 	{
 		DebugUtil.Assert(false, "I don't think this function ever runs");
 	}
 
-	// Token: 0x06006B10 RID: 27408 RVA: 0x000EABAE File Offset: 0x000E8DAE
 	private IEnumerator VisUpdater()
 	{
 		for (;;)
@@ -415,7 +396,6 @@ public class BaseUtilityBuildTool : DragTool
 		yield break;
 	}
 
-	// Token: 0x06006B11 RID: 27409 RVA: 0x002EF078 File Offset: 0x002ED278
 	private void BuildPath()
 	{
 		this.ApplyPathToConduitSystem();
@@ -542,7 +522,6 @@ public class BaseUtilityBuildTool : DragTool
 		ResourceRemainingDisplayScreen.instance.SetNumberOfPendingConstructions(0);
 	}
 
-	// Token: 0x06006B12 RID: 27410 RVA: 0x002EF588 File Offset: 0x002ED788
 	private BaseUtilityBuildTool.PathNode CreateVisualizer(BaseUtilityBuildTool.PathNode node)
 	{
 		if (node.visualizer == null)
@@ -555,7 +534,6 @@ public class BaseUtilityBuildTool : DragTool
 		return node;
 	}
 
-	// Token: 0x06006B13 RID: 27411 RVA: 0x002EF5E4 File Offset: 0x002ED7E4
 	private void StopVisUpdater()
 	{
 		for (int i = 0; i < this.path.Count; i++)
@@ -570,52 +548,37 @@ public class BaseUtilityBuildTool : DragTool
 		}
 	}
 
-	// Token: 0x0400513D RID: 20797
 	private IList<Tag> selectedElements;
 
-	// Token: 0x0400513E RID: 20798
 	private BuildingDef def;
 
-	// Token: 0x0400513F RID: 20799
 	protected List<BaseUtilityBuildTool.PathNode> path = new List<BaseUtilityBuildTool.PathNode>();
 
-	// Token: 0x04005140 RID: 20800
 	protected IUtilityNetworkMgr conduitMgr;
 
-	// Token: 0x04005141 RID: 20801
 	private string facadeID;
 
-	// Token: 0x04005142 RID: 20802
 	private Coroutine visUpdater;
 
-	// Token: 0x04005143 RID: 20803
 	private int buildingCount;
 
-	// Token: 0x04005144 RID: 20804
 	private int lastCell = -1;
 
-	// Token: 0x04005145 RID: 20805
 	private BuildingCellVisualizer previousCellConnection;
 
-	// Token: 0x04005146 RID: 20806
 	private int previousCell;
 
-	// Token: 0x02001453 RID: 5203
 	protected struct PathNode
 	{
-		// Token: 0x06006B15 RID: 27413 RVA: 0x000EABD7 File Offset: 0x000E8DD7
 		public void Play(string anim)
 		{
 			this.visualizer.GetComponent<KBatchedAnimController>().Play(anim, KAnim.PlayMode.Once, 1f, 0f);
 		}
 
-		// Token: 0x04005147 RID: 20807
 		public int cell;
 
-		// Token: 0x04005148 RID: 20808
 		public bool valid;
 
-		// Token: 0x04005149 RID: 20809
 		public GameObject visualizer;
 	}
 }

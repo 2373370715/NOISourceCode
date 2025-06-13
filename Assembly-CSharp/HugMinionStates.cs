@@ -2,10 +2,8 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x020001BF RID: 447
 public class HugMinionStates : GameStateMachine<HugMinionStates, HugMinionStates.Instance, IStateMachineTarget, HugMinionStates.Def>
 {
-	// Token: 0x06000620 RID: 1568 RVA: 0x00163A0C File Offset: 0x00161C0C
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.moving;
@@ -28,7 +26,6 @@ public class HugMinionStates : GameStateMachine<HugMinionStates, HugMinionStates
 		this.behaviourcomplete.BehaviourComplete(GameTags.Creatures.WantsAHug, false);
 	}
 
-	// Token: 0x06000621 RID: 1569 RVA: 0x00163B34 File Offset: 0x00161D34
 	private static int FindFlopLocation(HugMinionStates.Instance smi)
 	{
 		Navigator component = smi.GetComponent<Navigator>();
@@ -45,33 +42,25 @@ public class HugMinionStates : GameStateMachine<HugMinionStates, HugMinionStates
 		return smi.targetFlopCell;
 	}
 
-	// Token: 0x0400047C RID: 1148
 	public GameStateMachine<HugMinionStates, HugMinionStates.Instance, IStateMachineTarget, HugMinionStates.Def>.ApproachSubState<EggIncubator> moving;
 
-	// Token: 0x0400047D RID: 1149
 	public GameStateMachine<HugMinionStates, HugMinionStates.Instance, IStateMachineTarget, HugMinionStates.Def>.State waiting;
 
-	// Token: 0x0400047E RID: 1150
 	public GameStateMachine<HugMinionStates, HugMinionStates.Instance, IStateMachineTarget, HugMinionStates.Def>.State behaviourcomplete;
 
-	// Token: 0x0400047F RID: 1151
 	public StateMachine<HugMinionStates, HugMinionStates.Instance, IStateMachineTarget, HugMinionStates.Def>.FloatParameter timeout;
 
-	// Token: 0x020001C0 RID: 448
 	public class Def : StateMachine.BaseDef
 	{
 	}
 
-	// Token: 0x020001C1 RID: 449
 	public new class Instance : GameStateMachine<HugMinionStates, HugMinionStates.Instance, IStateMachineTarget, HugMinionStates.Def>.GameInstance
 	{
-		// Token: 0x06000624 RID: 1572 RVA: 0x000ACE7C File Offset: 0x000AB07C
 		public Instance(Chore<HugMinionStates.Instance> chore, HugMinionStates.Def def) : base(chore, def)
 		{
 			chore.AddPrecondition(ChorePreconditions.instance.CheckBehaviourPrecondition, GameTags.Creatures.WantsAHug);
 		}
 
-		// Token: 0x04000480 RID: 1152
 		public int targetFlopCell;
 	}
 }

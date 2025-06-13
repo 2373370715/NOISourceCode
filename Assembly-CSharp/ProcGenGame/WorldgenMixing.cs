@@ -9,10 +9,8 @@ using STRINGS;
 
 namespace ProcGenGame
 {
-	// Token: 0x0200212E RID: 8494
 	public class WorldgenMixing
 	{
-		// Token: 0x0600B4F6 RID: 46326 RVA: 0x00450A10 File Offset: 0x0044EC10
 		public static bool RefreshWorldMixing(MutatedClusterLayout mutatedLayout, int seed, bool isRunningWorldgenDebug, bool muteErrors)
 		{
 			if (mutatedLayout == null)
@@ -26,13 +24,11 @@ namespace ProcGenGame
 			return WorldgenMixing.DoWorldMixingInternal(mutatedLayout, seed, isRunningWorldgenDebug, muteErrors) != null;
 		}
 
-		// Token: 0x0600B4F7 RID: 46327 RVA: 0x0011A215 File Offset: 0x00118415
 		public static MutatedClusterLayout DoWorldMixing(ClusterLayout layout, int seed, bool isRunningWorldgenDebug, bool muteErrors)
 		{
 			return WorldgenMixing.DoWorldMixingInternal(new MutatedClusterLayout(layout), seed, isRunningWorldgenDebug, muteErrors);
 		}
 
-		// Token: 0x0600B4F8 RID: 46328 RVA: 0x00450A78 File Offset: 0x0044EC78
 		private static MutatedClusterLayout DoWorldMixingInternal(MutatedClusterLayout mutatedClusterLayout, int seed, bool isRunningWorldgenDebug, bool muteErrors)
 		{
 			List<WorldgenMixing.WorldMixingOption> list = new List<WorldgenMixing.WorldMixingOption>();
@@ -110,7 +106,6 @@ namespace ProcGenGame
 			return mutatedClusterLayout;
 		}
 
-		// Token: 0x0600B4F9 RID: 46329 RVA: 0x00450D30 File Offset: 0x0044EF30
 		private static WorldgenMixing.WorldMixingOption FindWorldMixingOption(WorldPlacement worldPlacement, List<WorldgenMixing.WorldMixingOption> options)
 		{
 			options = options.StableSort<WorldgenMixing.WorldMixingOption>().ToList<WorldgenMixing.WorldMixingOption>();
@@ -144,7 +139,6 @@ namespace ProcGenGame
 			return null;
 		}
 
-		// Token: 0x0600B4FA RID: 46330 RVA: 0x00450E58 File Offset: 0x0044F058
 		private static bool ValidateWorldMixingOptions(List<WorldgenMixing.WorldMixingOption> options, bool isRunningWorldgenDebug, bool muteErrors)
 		{
 			List<string> list = new List<string>();
@@ -179,7 +173,6 @@ namespace ProcGenGame
 			return false;
 		}
 
-		// Token: 0x0600B4FB RID: 46331 RVA: 0x00450F28 File Offset: 0x0044F128
 		public static void DoSubworldMixing(Cluster cluster, int seed, Func<int, WorldGen, bool> ShouldSkipWorldCallback, bool isRunningWorldgenDebug)
 		{
 			List<WorldgenMixing.MixingOption<SubworldMixingSettings>> list = new List<WorldgenMixing.MixingOption<SubworldMixingSettings>>();
@@ -231,7 +224,6 @@ namespace ProcGenGame
 			WorldgenMixing.ValidateSubworldMixingOptions(list, isRunningWorldgenDebug);
 		}
 
-		// Token: 0x0600B4FC RID: 46332 RVA: 0x004510F4 File Offset: 0x0044F2F4
 		private static void ValidateSubworldMixingOptions(List<WorldgenMixing.MixingOption<SubworldMixingSettings>> options, bool isRunningWorldgenDebug)
 		{
 			List<string> list = new List<string>();
@@ -260,7 +252,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B4FD RID: 46333 RVA: 0x004511BC File Offset: 0x0044F3BC
 		private static void ApplySubworldMixingToWorld(ProcGen.World world, List<WorldgenMixing.MixingOption<SubworldMixingSettings>> availableSubworldsForMixing)
 		{
 			List<ProcGen.World.SubworldMixingRule> list = new List<ProcGen.World.SubworldMixingRule>();
@@ -316,7 +307,6 @@ namespace ProcGenGame
 			WorldgenMixing.CleanupUnusedMixing(world);
 		}
 
-		// Token: 0x0600B4FE RID: 46334 RVA: 0x00451400 File Offset: 0x0044F600
 		private static WorldgenMixing.MixingOption<SubworldMixingSettings> FindSubworldMixing(ProcGen.World.SubworldMixingRule rule, List<WorldgenMixing.MixingOption<SubworldMixingSettings>> options)
 		{
 			options = options.StableSort<WorldgenMixing.MixingOption<SubworldMixingSettings>>().ToList<WorldgenMixing.MixingOption<SubworldMixingSettings>>();
@@ -354,7 +344,6 @@ namespace ProcGenGame
 			return null;
 		}
 
-		// Token: 0x0600B4FF RID: 46335 RVA: 0x00451558 File Offset: 0x0044F758
 		private static void CleanupUnusedMixing(ProcGen.World world)
 		{
 			foreach (ProcGen.World.AllowedCellsFilter allowedCellsFilter in world.unknownCellsAllowedSubworlds)
@@ -363,20 +352,15 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B500 RID: 46336 RVA: 0x0011A225 File Offset: 0x00118425
 		private static bool IsMixingProxyName(string name)
 		{
 			return name.StartsWith("(");
 		}
 
-		// Token: 0x04008F1F RID: 36639
 		private const int NUM_WORLD_TO_TRY_SUBWORLDMIXING = 3;
 
-		// Token: 0x0200212F RID: 8495
 		public class MixingOption<T> : IComparable<WorldgenMixing.MixingOption<T>>
 		{
-			// Token: 0x17000BA4 RID: 2980
-			// (get) Token: 0x0600B502 RID: 46338 RVA: 0x0011A232 File Offset: 0x00118432
 			public bool IsExhausted
 			{
 				get
@@ -385,8 +369,6 @@ namespace ProcGenGame
 				}
 			}
 
-			// Token: 0x17000BA5 RID: 2981
-			// (get) Token: 0x0600B503 RID: 46339 RVA: 0x0011A240 File Offset: 0x00118440
 			public bool IsSatisfied
 			{
 				get
@@ -395,14 +377,12 @@ namespace ProcGenGame
 				}
 			}
 
-			// Token: 0x0600B504 RID: 46340 RVA: 0x0011A24E File Offset: 0x0011844E
 			public void Consume()
 			{
 				this.minCount--;
 				this.maxCount--;
 			}
 
-			// Token: 0x0600B505 RID: 46341 RVA: 0x004515BC File Offset: 0x0044F7BC
 			public int CompareTo(WorldgenMixing.MixingOption<T> other)
 			{
 				int num = other.minCount.CompareTo(this.minCount);
@@ -413,23 +393,17 @@ namespace ProcGenGame
 				return other.maxCount.CompareTo(this.maxCount);
 			}
 
-			// Token: 0x04008F20 RID: 36640
 			public string worldgenPath;
 
-			// Token: 0x04008F21 RID: 36641
 			public T mixingSettings;
 
-			// Token: 0x04008F22 RID: 36642
 			public int minCount;
 
-			// Token: 0x04008F23 RID: 36643
 			public int maxCount;
 		}
 
-		// Token: 0x02002130 RID: 8496
 		public class WorldMixingOption : WorldgenMixing.MixingOption<WorldMixingSettings>
 		{
-			// Token: 0x04008F24 RID: 36644
 			public ProcGen.World cachedWorld;
 		}
 	}

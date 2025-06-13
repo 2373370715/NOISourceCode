@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005A3 RID: 1443
 public class SolarPanelModuleConfig : IBuildingConfig
 {
-	// Token: 0x060018F2 RID: 6386 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x060018F3 RID: 6387 RVA: 0x001AD154 File Offset: 0x001AB354
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "SolarPanelModule";
@@ -47,7 +44,6 @@ public class SolarPanelModuleConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060018F4 RID: 6388 RVA: 0x001AD244 File Offset: 0x001AB444
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -61,7 +57,6 @@ public class SolarPanelModuleConfig : IBuildingConfig
 		go.AddComponent<PartialLightBlocking>();
 	}
 
-	// Token: 0x060018F5 RID: 6389 RVA: 0x000B4D26 File Offset: 0x000B2F26
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		Prioritizable.AddRef(go);
@@ -70,15 +65,11 @@ public class SolarPanelModuleConfig : IBuildingConfig
 		go.GetComponent<RocketModule>().operationalLandedRequired = false;
 	}
 
-	// Token: 0x04001045 RID: 4165
 	public const string ID = "SolarPanelModule";
 
-	// Token: 0x04001046 RID: 4166
 	private static readonly CellOffset PLUG_OFFSET = new CellOffset(-1, 0);
 
-	// Token: 0x04001047 RID: 4167
 	private const float EFFICIENCY_RATIO = 0.75f;
 
-	// Token: 0x04001048 RID: 4168
 	public const float MAX_WATTS = 60f;
 }

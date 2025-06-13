@@ -2,10 +2,8 @@
 using Database;
 using UnityEngine;
 
-// Token: 0x02001DB2 RID: 7602
 public class KleiPermitDioramaVis_BuildingOnBackground : KMonoBehaviour, IKleiPermitDioramaVisTarget
 {
-	// Token: 0x06009ED0 RID: 40656 RVA: 0x003DDCCC File Offset: 0x003DBECC
 	public void ConfigureSetup()
 	{
 		this.buildingKAnimPrefab.gameObject.SetActive(false);
@@ -31,13 +29,11 @@ public class KleiPermitDioramaVis_BuildingOnBackground : KMonoBehaviour, IKleiPe
 		}
 	}
 
-	// Token: 0x06009ED1 RID: 40657 RVA: 0x000CEC86 File Offset: 0x000CCE86
 	public GameObject GetGameObject()
 	{
 		return base.gameObject;
 	}
 
-	// Token: 0x06009ED2 RID: 40658 RVA: 0x003DDDD0 File Offset: 0x003DBFD0
 	public void ConfigureWith(PermitResource permit)
 	{
 		BuildingFacadeResource buildingPermit = (BuildingFacadeResource)permit;
@@ -51,10 +47,8 @@ public class KleiPermitDioramaVis_BuildingOnBackground : KMonoBehaviour, IKleiPe
 		}
 	}
 
-	// Token: 0x04007CC1 RID: 31937
 	[SerializeField]
 	private KBatchedAnimController buildingKAnimPrefab;
 
-	// Token: 0x04007CC2 RID: 31938
 	private KBatchedAnimController[] buildingKAnimArray;
 }

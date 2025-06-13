@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000359 RID: 857
 public class GasPermeableMembraneConfig : IBuildingConfig
 {
-	// Token: 0x06000D95 RID: 3477 RVA: 0x0017DEBC File Offset: 0x0017C0BC
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "GasPermeableMembrane";
@@ -40,7 +38,6 @@ public class GasPermeableMembraneConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000D96 RID: 3478 RVA: 0x0017DFB8 File Offset: 0x0017C1B8
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
@@ -53,20 +50,17 @@ public class GasPermeableMembraneConfig : IBuildingConfig
 		go.AddComponent<SimTemperatureTransfer>();
 	}
 
-	// Token: 0x06000D97 RID: 3479 RVA: 0x000B0586 File Offset: 0x000AE786
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddComponent<ZoneTile>();
 		go.GetComponent<KPrefabID>().AddTag(GameTags.FloorTiles, false);
 	}
 
-	// Token: 0x06000D98 RID: 3480 RVA: 0x000AA509 File Offset: 0x000A8709
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		base.DoPostConfigureUnderConstruction(go);
 		go.AddOrGet<KAnimGridTileVisualizer>();
 	}
 
-	// Token: 0x040009F3 RID: 2547
 	public const string ID = "GasPermeableMembrane";
 }

@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000381 RID: 897
 public class HabitatModuleMediumConfig : IBuildingConfig
 {
-	// Token: 0x06000E5A RID: 3674 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06000E5B RID: 3675 RVA: 0x00182A6C File Offset: 0x00180C6C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "HabitatModuleMedium";
@@ -41,7 +38,6 @@ public class HabitatModuleMediumConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000E5C RID: 3676 RVA: 0x00182B18 File Offset: 0x00180D18
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -79,7 +75,6 @@ public class HabitatModuleMediumConfig : IBuildingConfig
 		go.AddComponent<RocketConduitReceiver>().conduitPortInfo = this.gasOutputPort;
 	}
 
-	// Token: 0x06000E5D RID: 3677 RVA: 0x00182C80 File Offset: 0x00180E80
 	private void AttachPorts(GameObject go)
 	{
 		go.AddComponent<ConduitSecondaryInput>().portInfo = this.liquidInputPort;
@@ -88,7 +83,6 @@ public class HabitatModuleMediumConfig : IBuildingConfig
 		go.AddComponent<ConduitSecondaryOutput>().portInfo = this.gasOutputPort;
 	}
 
-	// Token: 0x06000E5E RID: 3678 RVA: 0x00182CD4 File Offset: 0x00180ED4
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		BuildingTemplates.ExtendBuildingToRocketModuleCluster(go, null, ROCKETRY.BURDEN.MAJOR, 0f, 0f);
@@ -109,7 +103,6 @@ public class HabitatModuleMediumConfig : IBuildingConfig
 		go.GetComponent<ReorderableBuilding>().buildConditions.Add(new LimitOneCommandModule());
 	}
 
-	// Token: 0x06000E5F RID: 3679 RVA: 0x000B0A7F File Offset: 0x000AEC7F
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 		base.DoPostConfigurePreview(def, go);
@@ -117,7 +110,6 @@ public class HabitatModuleMediumConfig : IBuildingConfig
 		this.AttachPorts(go);
 	}
 
-	// Token: 0x06000E60 RID: 3680 RVA: 0x000B0A97 File Offset: 0x000AEC97
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		base.DoPostConfigureUnderConstruction(go);
@@ -125,18 +117,13 @@ public class HabitatModuleMediumConfig : IBuildingConfig
 		this.AttachPorts(go);
 	}
 
-	// Token: 0x04000A96 RID: 2710
 	public const string ID = "HabitatModuleMedium";
 
-	// Token: 0x04000A97 RID: 2711
 	private ConduitPortInfo gasInputPort = new ConduitPortInfo(ConduitType.Gas, new CellOffset(-2, 0));
 
-	// Token: 0x04000A98 RID: 2712
 	private ConduitPortInfo gasOutputPort = new ConduitPortInfo(ConduitType.Gas, new CellOffset(2, 0));
 
-	// Token: 0x04000A99 RID: 2713
 	private ConduitPortInfo liquidInputPort = new ConduitPortInfo(ConduitType.Liquid, new CellOffset(-2, 3));
 
-	// Token: 0x04000A9A RID: 2714
 	private ConduitPortInfo liquidOutputPort = new ConduitPortInfo(ConduitType.Liquid, new CellOffset(2, 3));
 }

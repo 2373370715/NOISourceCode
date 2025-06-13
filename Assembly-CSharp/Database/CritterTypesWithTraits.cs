@@ -3,10 +3,8 @@ using System.Collections.Generic;
 
 namespace Database
 {
-	// Token: 0x02002203 RID: 8707
 	public class CritterTypesWithTraits : ColonyAchievementRequirement, AchievementRequirementSerialization_Deprecated
 	{
-		// Token: 0x0600B966 RID: 47462 RVA: 0x0047691C File Offset: 0x00474B1C
 		public CritterTypesWithTraits(List<Tag> critterTypes)
 		{
 			foreach (Tag key in critterTypes)
@@ -20,7 +18,6 @@ namespace Database
 			this.trait = GameTags.Creatures.Wild;
 		}
 
-		// Token: 0x0600B967 RID: 47463 RVA: 0x004769AC File Offset: 0x00474BAC
 		public override bool Success()
 		{
 			HashSet<Tag> tamedCritterTypes = SaveGame.Instance.ColonyAchievementTracker.tamedCritterTypes;
@@ -33,7 +30,6 @@ namespace Database
 			return flag;
 		}
 
-		// Token: 0x0600B968 RID: 47464 RVA: 0x00476A28 File Offset: 0x00474C28
 		public void UpdateSavedState()
 		{
 			this.revisedCritterTypesToCheckState.Clear();
@@ -48,7 +44,6 @@ namespace Database
 			}
 		}
 
-		// Token: 0x0600B969 RID: 47465 RVA: 0x00476B04 File Offset: 0x00474D04
 		public void Deserialize(IReader reader)
 		{
 			this.critterTypesToCheck = new Dictionary<Tag, bool>();
@@ -63,16 +58,12 @@ namespace Database
 			this.trait = GameTags.Creatures.Wild;
 		}
 
-		// Token: 0x0400977B RID: 38779
 		public Dictionary<Tag, bool> critterTypesToCheck = new Dictionary<Tag, bool>();
 
-		// Token: 0x0400977C RID: 38780
 		private Tag trait;
 
-		// Token: 0x0400977D RID: 38781
 		private bool hasTrait;
 
-		// Token: 0x0400977E RID: 38782
 		private Dictionary<Tag, bool> revisedCritterTypesToCheckState = new Dictionary<Tag, bool>();
 	}
 }

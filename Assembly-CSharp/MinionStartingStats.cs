@@ -5,38 +5,32 @@ using Klei.AI;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200152A RID: 5418
 public class MinionStartingStats : ITelepadDeliverable
 {
-	// Token: 0x060070AC RID: 28844 RVA: 0x003067E0 File Offset: 0x003049E0
 	public MinionStartingStats(Personality personality, string guaranteedAptitudeID = null, string guaranteedTraitID = null, bool isDebugMinion = false)
 	{
 		this.personality = personality;
 		this.GenerateStats(guaranteedAptitudeID, guaranteedTraitID, isDebugMinion, false);
 	}
 
-	// Token: 0x060070AD RID: 28845 RVA: 0x00306834 File Offset: 0x00304A34
 	public MinionStartingStats(bool is_starter_minion, string guaranteedAptitudeID = null, string guaranteedTraitID = null, bool isDebugMinion = false)
 	{
 		this.personality = Db.Get().Personalities.GetRandom(true, is_starter_minion);
 		this.GenerateStats(guaranteedAptitudeID, guaranteedTraitID, isDebugMinion, is_starter_minion);
 	}
 
-	// Token: 0x060070AE RID: 28846 RVA: 0x00306898 File Offset: 0x00304A98
 	public MinionStartingStats(Tag model, bool is_starter_minion, string guaranteedAptitudeID = null, string guaranteedTraitID = null, bool isDebugMinion = false)
 	{
 		this.personality = Db.Get().Personalities.GetRandom(model, true, is_starter_minion);
 		this.GenerateStats(guaranteedAptitudeID, guaranteedTraitID, isDebugMinion, is_starter_minion);
 	}
 
-	// Token: 0x060070AF RID: 28847 RVA: 0x003068FC File Offset: 0x00304AFC
 	public MinionStartingStats(List<Tag> models, bool is_starter_minion, string guaranteedAptitudeID = null, string guaranteedTraitID = null, bool isDebugMinion = false)
 	{
 		this.personality = Db.Get().Personalities.GetRandom(models, true, is_starter_minion);
 		this.GenerateStats(guaranteedAptitudeID, guaranteedTraitID, isDebugMinion, is_starter_minion);
 	}
 
-	// Token: 0x060070B0 RID: 28848 RVA: 0x00306960 File Offset: 0x00304B60
 	private void GenerateStats(string guaranteedAptitudeID = null, string guaranteedTraitID = null, bool isDebugMinion = false, bool is_starter_minion = false)
 	{
 		this.voiceIdx = UnityEngine.Random.Range(0, 4);
@@ -175,7 +169,6 @@ public class MinionStartingStats : ITelepadDeliverable
 		}
 	}
 
-	// Token: 0x060070B1 RID: 28849 RVA: 0x00306E34 File Offset: 0x00305034
 	private int GenerateTraits(bool is_starter_minion, List<ChoreGroup> disabled_chore_groups, string guaranteedAptitudeID = null, string guaranteedTraitID = null, bool isDebugMinion = false)
 	{
 		MinionStartingStats.<>c__DisplayClass19_0 CS$<>8__locals1 = new MinionStartingStats.<>c__DisplayClass19_0();
@@ -406,7 +399,6 @@ public class MinionStartingStats : ITelepadDeliverable
 		return CS$<>8__locals1.statDelta;
 	}
 
-	// Token: 0x060070B2 RID: 28850 RVA: 0x0030723C File Offset: 0x0030543C
 	private void GenerateAptitudes(string guaranteedAptitudeID = null)
 	{
 		if (this.personality.model == BionicMinionConfig.MODEL)
@@ -429,7 +421,6 @@ public class MinionStartingStats : ITelepadDeliverable
 		}
 	}
 
-	// Token: 0x060070B3 RID: 28851 RVA: 0x00307310 File Offset: 0x00305510
 	private void GenerateAttributes(int pointsDelta, List<ChoreGroup> disabled_chore_groups)
 	{
 		List<string> list = new List<string>(DUPLICANTSTATS.ALL_ATTRIBUTES);
@@ -507,7 +498,6 @@ public class MinionStartingStats : ITelepadDeliverable
 		}
 	}
 
-	// Token: 0x060070B4 RID: 28852 RVA: 0x0030763C File Offset: 0x0030583C
 	public void Apply(GameObject go)
 	{
 		MinionIdentity component = go.GetComponent<MinionIdentity>();
@@ -525,7 +515,6 @@ public class MinionStartingStats : ITelepadDeliverable
 		this.ApplyJoyResponseOutfit(this.personality, go);
 	}
 
-	// Token: 0x060070B5 RID: 28853 RVA: 0x003076D4 File Offset: 0x003058D4
 	public void ApplyExperience(GameObject go)
 	{
 		foreach (KeyValuePair<string, int> keyValuePair in this.StartingLevels)
@@ -534,7 +523,6 @@ public class MinionStartingStats : ITelepadDeliverable
 		}
 	}
 
-	// Token: 0x060070B6 RID: 28854 RVA: 0x000EE298 File Offset: 0x000EC498
 	public void ApplyAccessories(GameObject go)
 	{
 		Accessorizer component = go.GetComponent<Accessorizer>();
@@ -542,7 +530,6 @@ public class MinionStartingStats : ITelepadDeliverable
 		component.UpdateHairBasedOnHat();
 	}
 
-	// Token: 0x060070B7 RID: 28855 RVA: 0x0030773C File Offset: 0x0030593C
 	public void ApplyOutfit(Personality personality, GameObject go)
 	{
 		WearableAccessorizer component = go.GetComponent<WearableAccessorizer>();
@@ -553,20 +540,17 @@ public class MinionStartingStats : ITelepadDeliverable
 		}
 	}
 
-	// Token: 0x060070B8 RID: 28856 RVA: 0x0030777C File Offset: 0x0030597C
 	public void ApplyJoyResponseOutfit(Personality personality, GameObject go)
 	{
 		JoyResponseOutfitTarget joyResponseOutfitTarget = JoyResponseOutfitTarget.FromPersonality(personality);
 		JoyResponseOutfitTarget.FromMinion(go).WriteFacadeId(joyResponseOutfitTarget.ReadFacadeId());
 	}
 
-	// Token: 0x060070B9 RID: 28857 RVA: 0x000EE2B1 File Offset: 0x000EC4B1
 	public void ApplyRace(GameObject go)
 	{
 		go.GetComponent<MinionIdentity>().voiceIdx = this.voiceIdx;
 	}
 
-	// Token: 0x060070BA RID: 28858 RVA: 0x003077A8 File Offset: 0x003059A8
 	public static KCompBuilder.BodyData CreateBodyData(Personality p)
 	{
 		return new KCompBuilder.BodyData
@@ -594,7 +578,6 @@ public class MinionStartingStats : ITelepadDeliverable
 		};
 	}
 
-	// Token: 0x060070BB RID: 28859 RVA: 0x00307B0C File Offset: 0x00305D0C
 	public void ApplyAptitudes(GameObject go)
 	{
 		MinionResume component = go.GetComponent<MinionResume>();
@@ -604,7 +587,6 @@ public class MinionStartingStats : ITelepadDeliverable
 		}
 	}
 
-	// Token: 0x060070BC RID: 28860 RVA: 0x00307B80 File Offset: 0x00305D80
 	public void ApplyTraits(GameObject go)
 	{
 		Traits component = go.GetComponent<Traits>();
@@ -622,7 +604,6 @@ public class MinionStartingStats : ITelepadDeliverable
 		go.GetComponent<MinionIdentity>().SetGender(this.GenderStringKey);
 	}
 
-	// Token: 0x060070BD RID: 28861 RVA: 0x00307C38 File Offset: 0x00305E38
 	public GameObject Deliver(Vector3 location)
 	{
 		GameObject prefab = Assets.GetPrefab(this.personality.model);
@@ -636,7 +617,6 @@ public class MinionStartingStats : ITelepadDeliverable
 		return gameObject;
 	}
 
-	// Token: 0x060070BE RID: 28862 RVA: 0x00307CC0 File Offset: 0x00305EC0
 	private List<DUPLICANTSTATS.TraitVal> GetBionicTraitsCompatibleWithArchetype(string guaranteedAptitudeID)
 	{
 		if (!DUPLICANTSTATS.ARCHETYPE_BIONIC_TRAIT_COMPATIBILITY.ContainsKey(guaranteedAptitudeID))
@@ -651,7 +631,6 @@ public class MinionStartingStats : ITelepadDeliverable
 		return list;
 	}
 
-	// Token: 0x060070BF RID: 28863 RVA: 0x00307D30 File Offset: 0x00305F30
 	private bool AreTraitAndAptitudesExclusive(DUPLICANTSTATS.TraitVal traitVal, Dictionary<SkillGroup, float> aptitudes)
 	{
 		if (traitVal.mutuallyExclusiveAptitudes == null)
@@ -674,7 +653,6 @@ public class MinionStartingStats : ITelepadDeliverable
 		return false;
 	}
 
-	// Token: 0x060070C0 RID: 28864 RVA: 0x00307DE8 File Offset: 0x00305FE8
 	private bool AreTraitAndArchetypeExclusive(DUPLICANTSTATS.TraitVal traitVal, string guaranteedAptitudeID)
 	{
 		if (!DUPLICANTSTATS.ARCHETYPE_TRAIT_EXCLUSIONS.ContainsKey(guaranteedAptitudeID))
@@ -694,7 +672,6 @@ public class MinionStartingStats : ITelepadDeliverable
 		return false;
 	}
 
-	// Token: 0x060070C1 RID: 28865 RVA: 0x00307E70 File Offset: 0x00306070
 	private bool AreTraitsMutuallyExclusive(DUPLICANTSTATS.TraitVal traitVal, List<string> selectedTraits)
 	{
 		foreach (string text in selectedTraits)
@@ -735,48 +712,33 @@ public class MinionStartingStats : ITelepadDeliverable
 		return false;
 	}
 
-	// Token: 0x040054A9 RID: 21673
 	public string Name;
 
-	// Token: 0x040054AA RID: 21674
 	public string NameStringKey;
 
-	// Token: 0x040054AB RID: 21675
 	public string GenderStringKey;
 
-	// Token: 0x040054AC RID: 21676
 	public List<Trait> Traits = new List<Trait>();
 
-	// Token: 0x040054AD RID: 21677
 	public int rarityBalance;
 
-	// Token: 0x040054AE RID: 21678
 	public Trait stressTrait;
 
-	// Token: 0x040054AF RID: 21679
 	public Trait joyTrait;
 
-	// Token: 0x040054B0 RID: 21680
 	public Trait congenitaltrait;
 
-	// Token: 0x040054B1 RID: 21681
 	public string stickerType;
 
-	// Token: 0x040054B2 RID: 21682
 	public int voiceIdx;
 
-	// Token: 0x040054B3 RID: 21683
 	public Dictionary<string, int> StartingLevels = new Dictionary<string, int>();
 
-	// Token: 0x040054B4 RID: 21684
 	public Personality personality;
 
-	// Token: 0x040054B5 RID: 21685
 	public List<Accessory> accessories = new List<Accessory>();
 
-	// Token: 0x040054B6 RID: 21686
 	public bool IsValid;
 
-	// Token: 0x040054B7 RID: 21687
 	public Dictionary<SkillGroup, float> skillAptitudes = new Dictionary<SkillGroup, float>();
 }

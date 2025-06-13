@@ -2,16 +2,13 @@
 using Klei.AI;
 using STRINGS;
 
-// Token: 0x02001C3B RID: 7227
 public class MaturityDisplayer : AsPercentAmountDisplayer
 {
-	// Token: 0x06009646 RID: 38470 RVA: 0x001065E5 File Offset: 0x001047E5
 	public MaturityDisplayer() : base(GameUtil.TimeSlice.PerCycle)
 	{
 		this.formatter = new MaturityDisplayer.MaturityAttributeFormatter();
 	}
 
-	// Token: 0x06009647 RID: 38471 RVA: 0x003ABD48 File Offset: 0x003A9F48
 	public override string GetTooltipDescription(Amount master, AmountInstance instance)
 	{
 		string text = base.GetTooltipDescription(master, instance);
@@ -39,7 +36,6 @@ public class MaturityDisplayer : AsPercentAmountDisplayer
 		return text;
 	}
 
-	// Token: 0x06009648 RID: 38472 RVA: 0x003ABE20 File Offset: 0x003AA020
 	public override string GetDescription(Amount master, AmountInstance instance)
 	{
 		Growing component = instance.gameObject.GetComponent<Growing>();
@@ -50,15 +46,12 @@ public class MaturityDisplayer : AsPercentAmountDisplayer
 		return base.GetDescription(master, instance);
 	}
 
-	// Token: 0x02001C3C RID: 7228
 	public class MaturityAttributeFormatter : StandardAttributeFormatter
 	{
-		// Token: 0x06009649 RID: 38473 RVA: 0x001065F9 File Offset: 0x001047F9
 		public MaturityAttributeFormatter() : base(GameUtil.UnitClass.Percent, GameUtil.TimeSlice.None)
 		{
 		}
 
-		// Token: 0x0600964A RID: 38474 RVA: 0x003ABE94 File Offset: 0x003AA094
 		public override string GetFormattedModifier(AttributeModifier modifier)
 		{
 			float num = modifier.Value;

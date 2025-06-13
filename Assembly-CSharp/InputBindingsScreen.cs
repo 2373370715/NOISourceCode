@@ -6,22 +6,18 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001D5E RID: 7518
 public class InputBindingsScreen : KModalScreen
 {
-	// Token: 0x06009CEF RID: 40175 RVA: 0x000AA7E7 File Offset: 0x000A89E7
 	public override bool IsModal()
 	{
 		return true;
 	}
 
-	// Token: 0x06009CF0 RID: 40176 RVA: 0x0010A93C File Offset: 0x00108B3C
 	private bool IsKeyDown(KeyCode key_code)
 	{
 		return Input.GetKey(key_code) || Input.GetKeyDown(key_code);
 	}
 
-	// Token: 0x06009CF1 RID: 40177 RVA: 0x003D386C File Offset: 0x003D1A6C
 	private string GetModifierString(Modifier modifiers)
 	{
 		string text = "";
@@ -36,7 +32,6 @@ public class InputBindingsScreen : KModalScreen
 		return text;
 	}
 
-	// Token: 0x06009CF2 RID: 40178 RVA: 0x003D38EC File Offset: 0x003D1AEC
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -45,7 +40,6 @@ public class InputBindingsScreen : KModalScreen
 		this.nextScreenButton.onClick += this.OnNextScreen;
 	}
 
-	// Token: 0x06009CF3 RID: 40179 RVA: 0x003D393C File Offset: 0x003D1B3C
 	protected override void OnActivate()
 	{
 		this.CollectScreens();
@@ -58,7 +52,6 @@ public class InputBindingsScreen : KModalScreen
 		this.BuildDisplay();
 	}
 
-	// Token: 0x06009CF4 RID: 40180 RVA: 0x003D39D8 File Offset: 0x003D1BD8
 	private void CollectScreens()
 	{
 		this.screens.Clear();
@@ -76,20 +69,17 @@ public class InputBindingsScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x06009CF5 RID: 40181 RVA: 0x0010A94E File Offset: 0x00108B4E
 	protected override void OnDeactivate()
 	{
 		GameInputMapping.SaveBindings();
 		this.DestroyDisplay();
 	}
 
-	// Token: 0x06009CF6 RID: 40182 RVA: 0x000AA765 File Offset: 0x000A8965
 	private LocString GetActionString(global::Action action)
 	{
 		return null;
 	}
 
-	// Token: 0x06009CF7 RID: 40183 RVA: 0x003D3A74 File Offset: 0x003D1C74
 	private string GetBindingText(BindingEntry binding)
 	{
 		string text = GameUtil.GetKeycodeLocalized(binding.mKeyCode);
@@ -100,7 +90,6 @@ public class InputBindingsScreen : KModalScreen
 		return text;
 	}
 
-	// Token: 0x06009CF8 RID: 40184 RVA: 0x003D3AF0 File Offset: 0x003D1CF0
 	private void BuildDisplay()
 	{
 		string text = this.screens[this.activeScreen];
@@ -138,13 +127,11 @@ public class InputBindingsScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x06009CF9 RID: 40185 RVA: 0x0010A95B File Offset: 0x00108B5B
 	private void DestroyDisplay()
 	{
 		this.entryPool.ClearAll();
 	}
 
-	// Token: 0x06009CFA RID: 40186 RVA: 0x003D3CD0 File Offset: 0x003D1ED0
 	private void Update()
 	{
 		if (this.waitingForKeyPress)
@@ -186,7 +173,6 @@ public class InputBindingsScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x06009CFB RID: 40187 RVA: 0x003D3DE8 File Offset: 0x003D1FE8
 	private BindingEntry GetDuplicatedBinding(string activeScreen, BindingEntry new_binding)
 	{
 		BindingEntry result = default(BindingEntry);
@@ -202,7 +188,6 @@ public class InputBindingsScreen : KModalScreen
 		return result;
 	}
 
-	// Token: 0x06009CFC RID: 40188 RVA: 0x0010A968 File Offset: 0x00108B68
 	public override void OnKeyDown(KButtonEvent e)
 	{
 		if (this.waitingForKeyPress)
@@ -218,13 +203,11 @@ public class InputBindingsScreen : KModalScreen
 		base.OnKeyDown(e);
 	}
 
-	// Token: 0x06009CFD RID: 40189 RVA: 0x00103818 File Offset: 0x00101A18
 	public override void OnKeyUp(KButtonEvent e)
 	{
 		e.Consumed = true;
 	}
 
-	// Token: 0x06009CFE RID: 40190 RVA: 0x003D3E94 File Offset: 0x003D2094
 	private void OnBack()
 	{
 		int num = this.NumUnboundActions();
@@ -254,7 +237,6 @@ public class InputBindingsScreen : KModalScreen
 		this.confirmDialog.gameObject.SetActive(true);
 	}
 
-	// Token: 0x06009CFF RID: 40191 RVA: 0x003D3F50 File Offset: 0x003D2150
 	private int NumUnboundActions()
 	{
 		int num = 0;
@@ -269,7 +251,6 @@ public class InputBindingsScreen : KModalScreen
 		return num;
 	}
 
-	// Token: 0x06009D00 RID: 40192 RVA: 0x003D3FA4 File Offset: 0x003D21A4
 	private BindingEntry GetFirstUnbound()
 	{
 		BindingEntry result = default(BindingEntry);
@@ -285,7 +266,6 @@ public class InputBindingsScreen : KModalScreen
 		return result;
 	}
 
-	// Token: 0x06009D01 RID: 40193 RVA: 0x0010A99A File Offset: 0x00108B9A
 	private void OnReset()
 	{
 		GameInputMapping.KeyBindings = (BindingEntry[])GameInputMapping.DefaultBindings.Clone();
@@ -293,7 +273,6 @@ public class InputBindingsScreen : KModalScreen
 		this.BuildDisplay();
 	}
 
-	// Token: 0x06009D02 RID: 40194 RVA: 0x0010A9C0 File Offset: 0x00108BC0
 	public void OnPrevScreen()
 	{
 		if (this.activeScreen > 0)
@@ -307,7 +286,6 @@ public class InputBindingsScreen : KModalScreen
 		this.BuildDisplay();
 	}
 
-	// Token: 0x06009D03 RID: 40195 RVA: 0x0010A9F4 File Offset: 0x00108BF4
 	public void OnNextScreen()
 	{
 		if (this.activeScreen < this.screens.Count - 1)
@@ -321,7 +299,6 @@ public class InputBindingsScreen : KModalScreen
 		this.BuildDisplay();
 	}
 
-	// Token: 0x06009D04 RID: 40196 RVA: 0x003D3FE4 File Offset: 0x003D21E4
 	private void Bind(KKeyCode kkey_code, Modifier modifier)
 	{
 		BindingEntry bindingEntry = new BindingEntry(this.screens[this.activeScreen], GamepadButton.NumButtons, kkey_code, modifier, this.actionToRebind, true, this.ignoreRootConflicts);
@@ -354,7 +331,6 @@ public class InputBindingsScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x06009D05 RID: 40197 RVA: 0x003D41A8 File Offset: 0x003D23A8
 	private void Unbind(global::Action action)
 	{
 		for (int i = 0; i < GameInputMapping.KeyBindings.Length; i++)
@@ -369,7 +345,6 @@ public class InputBindingsScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x06009D07 RID: 40199 RVA: 0x0010AA4D File Offset: 0x00108C4D
 	// Note: this type is marked as 'beforefieldinit'.
 	static InputBindingsScreen()
 	{
@@ -378,68 +353,48 @@ public class InputBindingsScreen : KModalScreen
 		InputBindingsScreen.validKeys = array;
 	}
 
-	// Token: 0x04007AEC RID: 31468
 	private const string ROOT_KEY = "STRINGS.INPUT_BINDINGS.";
 
-	// Token: 0x04007AED RID: 31469
 	[SerializeField]
 	private OptionsMenuScreen optionsScreen;
 
-	// Token: 0x04007AEE RID: 31470
 	[SerializeField]
 	private ConfirmDialogScreen confirmPrefab;
 
-	// Token: 0x04007AEF RID: 31471
 	public KButton backButton;
 
-	// Token: 0x04007AF0 RID: 31472
 	public KButton resetButton;
 
-	// Token: 0x04007AF1 RID: 31473
 	public KButton closeButton;
 
-	// Token: 0x04007AF2 RID: 31474
 	public KButton prevScreenButton;
 
-	// Token: 0x04007AF3 RID: 31475
 	public KButton nextScreenButton;
 
-	// Token: 0x04007AF4 RID: 31476
 	private bool waitingForKeyPress;
 
-	// Token: 0x04007AF5 RID: 31477
 	private global::Action actionToRebind = global::Action.NumActions;
 
-	// Token: 0x04007AF6 RID: 31478
 	private bool ignoreRootConflicts;
 
-	// Token: 0x04007AF7 RID: 31479
 	private KButton activeButton;
 
-	// Token: 0x04007AF8 RID: 31480
 	[SerializeField]
 	private LocText screenTitle;
 
-	// Token: 0x04007AF9 RID: 31481
 	[SerializeField]
 	private GameObject parent;
 
-	// Token: 0x04007AFA RID: 31482
 	[SerializeField]
 	private GameObject entryPrefab;
 
-	// Token: 0x04007AFB RID: 31483
 	private ConfirmDialogScreen confirmDialog;
 
-	// Token: 0x04007AFC RID: 31484
 	private int activeScreen = -1;
 
-	// Token: 0x04007AFD RID: 31485
 	private List<string> screens = new List<string>();
 
-	// Token: 0x04007AFE RID: 31486
 	private UIPool<HorizontalLayoutGroup> entryPool;
 
-	// Token: 0x04007AFF RID: 31487
 	private static readonly KeyCode[] validKeys;
 }

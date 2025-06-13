@@ -6,10 +6,8 @@ using Database;
 using Newtonsoft.Json.Linq;
 using STRINGS;
 
-// Token: 0x020010B8 RID: 4280
 public static class ClothingOutfitUtility
 {
-	// Token: 0x06005724 RID: 22308 RVA: 0x002933A8 File Offset: 0x002915A8
 	public static string GetName(this ClothingOutfitUtility.OutfitType self)
 	{
 		switch (self)
@@ -26,7 +24,6 @@ public static class ClothingOutfitUtility
 		}
 	}
 
-	// Token: 0x06005725 RID: 22309 RVA: 0x00293410 File Offset: 0x00291610
 	public static bool SaveClothingOutfitData()
 	{
 		if (!Directory.Exists(Util.RootFolder()))
@@ -43,7 +40,6 @@ public static class ClothingOutfitUtility
 		return ClothingOutfitUtility.TryWriteTo(path, data);
 	}
 
-	// Token: 0x06005726 RID: 22310 RVA: 0x0029347C File Offset: 0x0029167C
 	public static void LoadClothingOutfitData(ClothingOutfits dbClothingOutfits)
 	{
 		string pathToJsonFile = ClothingOutfitUtility.GetPathToJsonFile(ClothingOutfitUtility.OutfitFile_U47_to_Present);
@@ -147,13 +143,11 @@ public static class ClothingOutfitUtility
 		CustomClothingOutfits.Instance.Internal_SetOutfitData(version);
 	}
 
-	// Token: 0x06005727 RID: 22311 RVA: 0x000DD4AF File Offset: 0x000DB6AF
 	public static string GetPathToJsonFile(string jsonFileName)
 	{
 		return Path.Combine(Util.RootFolder(), Util.GetKleiItemUserDataFolderName(), jsonFileName);
 	}
 
-	// Token: 0x06005728 RID: 22312 RVA: 0x00293764 File Offset: 0x00291964
 	public static bool TryWriteTo(string path, string data)
 	{
 		bool result = false;
@@ -173,7 +167,6 @@ public static class ClothingOutfitUtility
 		return result;
 	}
 
-	// Token: 0x06005729 RID: 22313 RVA: 0x002937DC File Offset: 0x002919DC
 	public static bool TryReadFrom(string path, out string data)
 	{
 		data = null;
@@ -196,7 +189,6 @@ public static class ClothingOutfitUtility
 		return result;
 	}
 
-	// Token: 0x04003DAE RID: 15790
 	public static readonly PermitCategory[] PERMIT_CATEGORIES_FOR_CLOTHING = new PermitCategory[]
 	{
 		PermitCategory.DupeTops,
@@ -205,7 +197,6 @@ public static class ClothingOutfitUtility
 		PermitCategory.DupeShoes
 	};
 
-	// Token: 0x04003DAF RID: 15791
 	public static readonly PermitCategory[] PERMIT_CATEGORIES_FOR_ATMO_SUITS = new PermitCategory[]
 	{
 		PermitCategory.AtmoSuitHelmet,
@@ -215,22 +206,15 @@ public static class ClothingOutfitUtility
 		PermitCategory.AtmoSuitShoes
 	};
 
-	// Token: 0x04003DB0 RID: 15792
 	private static string OutfitFile_U44_to_U46 = "OutfitUserData.json";
 
-	// Token: 0x04003DB1 RID: 15793
 	private static string OutfitFile_U47_to_Present = "OutfitUserData2.json";
 
-	// Token: 0x020010B9 RID: 4281
 	public enum OutfitType
 	{
-		// Token: 0x04003DB3 RID: 15795
 		Clothing,
-		// Token: 0x04003DB4 RID: 15796
 		JoyResponse,
-		// Token: 0x04003DB5 RID: 15797
 		AtmoSuit,
-		// Token: 0x04003DB6 RID: 15798
 		LENGTH
 	}
 }

@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x0200180A RID: 6154
 public class RetiredColonyData
 {
-	// Token: 0x06007EAA RID: 32426 RVA: 0x000AA024 File Offset: 0x000A8224
 	public RetiredColonyData()
 	{
 	}
 
-	// Token: 0x06007EAB RID: 32427 RVA: 0x00338AF8 File Offset: 0x00336CF8
 	public RetiredColonyData(string colonyName, int cycleCount, string date, string[] achievements, MinionAssignablesProxy[] minions, BuildingComplete[] buildingCompletes, string startWorld, Dictionary<string, string> worldIdentities)
 	{
 		this.colonyName = colonyName;
@@ -228,115 +225,67 @@ public class RetiredColonyData
 		}
 	}
 
-	// Token: 0x17000807 RID: 2055
-	// (get) Token: 0x06007EAC RID: 32428 RVA: 0x000F7E02 File Offset: 0x000F6002
-	// (set) Token: 0x06007EAD RID: 32429 RVA: 0x000F7E0A File Offset: 0x000F600A
 	public string colonyName { get; set; }
 
-	// Token: 0x17000808 RID: 2056
-	// (get) Token: 0x06007EAE RID: 32430 RVA: 0x000F7E13 File Offset: 0x000F6013
-	// (set) Token: 0x06007EAF RID: 32431 RVA: 0x000F7E1B File Offset: 0x000F601B
 	public int cycleCount { get; set; }
 
-	// Token: 0x17000809 RID: 2057
-	// (get) Token: 0x06007EB0 RID: 32432 RVA: 0x000F7E24 File Offset: 0x000F6024
-	// (set) Token: 0x06007EB1 RID: 32433 RVA: 0x000F7E2C File Offset: 0x000F602C
 	public string date { get; set; }
 
-	// Token: 0x1700080A RID: 2058
-	// (get) Token: 0x06007EB2 RID: 32434 RVA: 0x000F7E35 File Offset: 0x000F6035
-	// (set) Token: 0x06007EB3 RID: 32435 RVA: 0x000F7E3D File Offset: 0x000F603D
 	public string[] achievements { get; set; }
 
-	// Token: 0x1700080B RID: 2059
-	// (get) Token: 0x06007EB4 RID: 32436 RVA: 0x000F7E46 File Offset: 0x000F6046
-	// (set) Token: 0x06007EB5 RID: 32437 RVA: 0x000F7E4E File Offset: 0x000F604E
 	public RetiredColonyData.RetiredDuplicantData[] Duplicants { get; set; }
 
-	// Token: 0x1700080C RID: 2060
-	// (get) Token: 0x06007EB6 RID: 32438 RVA: 0x000F7E57 File Offset: 0x000F6057
-	// (set) Token: 0x06007EB7 RID: 32439 RVA: 0x000F7E5F File Offset: 0x000F605F
 	public List<global::Tuple<string, int>> buildings { get; set; }
 
-	// Token: 0x1700080D RID: 2061
-	// (get) Token: 0x06007EB8 RID: 32440 RVA: 0x000F7E68 File Offset: 0x000F6068
-	// (set) Token: 0x06007EB9 RID: 32441 RVA: 0x000F7E70 File Offset: 0x000F6070
 	public RetiredColonyData.RetiredColonyStatistic[] Stats { get; set; }
 
-	// Token: 0x1700080E RID: 2062
-	// (get) Token: 0x06007EBA RID: 32442 RVA: 0x000F7E79 File Offset: 0x000F6079
-	// (set) Token: 0x06007EBB RID: 32443 RVA: 0x000F7E81 File Offset: 0x000F6081
 	public Dictionary<string, string> worldIdentities { get; set; }
 
-	// Token: 0x1700080F RID: 2063
-	// (get) Token: 0x06007EBC RID: 32444 RVA: 0x000F7E8A File Offset: 0x000F608A
-	// (set) Token: 0x06007EBD RID: 32445 RVA: 0x000F7E92 File Offset: 0x000F6092
 	public string startWorld { get; set; }
 
-	// Token: 0x0200180B RID: 6155
 	public static class DataIDs
 	{
-		// Token: 0x0400603A RID: 24634
 		public static string OxygenProduced = "oxygenProduced";
 
-		// Token: 0x0400603B RID: 24635
 		public static string OxygenConsumed = "oxygenConsumed";
 
-		// Token: 0x0400603C RID: 24636
 		public static string CaloriesProduced = "caloriesProduced";
 
-		// Token: 0x0400603D RID: 24637
 		public static string CaloriesRemoved = "caloriesRemoved";
 
-		// Token: 0x0400603E RID: 24638
 		public static string PowerProduced = "powerProduced";
 
-		// Token: 0x0400603F RID: 24639
 		public static string PowerWasted = "powerWasted";
 
-		// Token: 0x04006040 RID: 24640
 		public static string WorkTime = "workTime";
 
-		// Token: 0x04006041 RID: 24641
 		public static string TravelTime = "travelTime";
 
-		// Token: 0x04006042 RID: 24642
 		public static string AverageWorkTime = "averageWorkTime";
 
-		// Token: 0x04006043 RID: 24643
 		public static string AverageTravelTime = "averageTravelTime";
 
-		// Token: 0x04006044 RID: 24644
 		public static string LiveDuplicants = "liveDuplicants";
 
-		// Token: 0x04006045 RID: 24645
 		public static string AverageStressCreated = "averageStressCreated";
 
-		// Token: 0x04006046 RID: 24646
 		public static string AverageStressRemoved = "averageStressRemoved";
 
-		// Token: 0x04006047 RID: 24647
 		public static string DomesticatedCritters = "domesticatedCritters";
 
-		// Token: 0x04006048 RID: 24648
 		public static string WildCritters = "wildCritters";
 
-		// Token: 0x04006049 RID: 24649
 		public static string AverageGerms = "averageGerms";
 
-		// Token: 0x0400604A RID: 24650
 		public static string RocketsInFlight = "rocketsInFlight";
 	}
 
-	// Token: 0x0200180C RID: 6156
 	public class RetiredColonyStatistic
 	{
-		// Token: 0x06007EBF RID: 32447 RVA: 0x000AA024 File Offset: 0x000A8224
 		public RetiredColonyStatistic()
 		{
 		}
 
-		// Token: 0x06007EC0 RID: 32448 RVA: 0x000F7E9B File Offset: 0x000F609B
 		public RetiredColonyStatistic(string id, global::Tuple<float, float>[] data, string name, string axisNameX, string axisNameY)
 		{
 			this.id = id;
@@ -346,7 +295,6 @@ public class RetiredColonyData
 			this.nameY = axisNameY;
 		}
 
-		// Token: 0x06007EC1 RID: 32449 RVA: 0x00339B98 File Offset: 0x00337D98
 		public global::Tuple<float, float> GetByMaxValue()
 		{
 			if (this.value.Length == 0)
@@ -370,7 +318,6 @@ public class RetiredColonyData
 			return this.value[num];
 		}
 
-		// Token: 0x06007EC2 RID: 32450 RVA: 0x00339C08 File Offset: 0x00337E08
 		public global::Tuple<float, float> GetByMaxKey()
 		{
 			if (this.value.Length == 0)
@@ -390,35 +337,25 @@ public class RetiredColonyData
 			return this.value[num];
 		}
 
-		// Token: 0x0400604B RID: 24651
 		public string id;
 
-		// Token: 0x0400604C RID: 24652
 		public global::Tuple<float, float>[] value;
 
-		// Token: 0x0400604D RID: 24653
 		public string name;
 
-		// Token: 0x0400604E RID: 24654
 		public string nameX;
 
-		// Token: 0x0400604F RID: 24655
 		public string nameY;
 	}
 
-	// Token: 0x0200180D RID: 6157
 	public class RetiredDuplicantData
 	{
-		// Token: 0x04006050 RID: 24656
 		public string name;
 
-		// Token: 0x04006051 RID: 24657
 		public int age;
 
-		// Token: 0x04006052 RID: 24658
 		public int skillPointsGained;
 
-		// Token: 0x04006053 RID: 24659
 		public Dictionary<string, string> accessories;
 	}
 }

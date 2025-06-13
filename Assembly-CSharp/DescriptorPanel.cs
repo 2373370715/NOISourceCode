@@ -2,17 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02001CF4 RID: 7412
 [AddComponentMenu("KMonoBehaviour/scripts/DescriptorPanel")]
 public class DescriptorPanel : KMonoBehaviour
 {
-	// Token: 0x06009AAA RID: 39594 RVA: 0x00109220 File Offset: 0x00107420
 	public bool HasDescriptors()
 	{
 		return this.labels.Count > 0;
 	}
 
-	// Token: 0x06009AAB RID: 39595 RVA: 0x003C8A2C File Offset: 0x003C6C2C
 	public void SetDescriptors(IList<Descriptor> descriptors)
 	{
 		int i;
@@ -40,10 +37,8 @@ public class DescriptorPanel : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x040078C6 RID: 30918
 	[SerializeField]
 	private GameObject customLabelPrefab;
 
-	// Token: 0x040078C7 RID: 30919
 	private List<GameObject> labels = new List<GameObject>();
 }

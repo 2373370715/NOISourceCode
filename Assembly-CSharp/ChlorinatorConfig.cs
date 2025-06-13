@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000047 RID: 71
 public class ChlorinatorConfig : IBuildingConfig
 {
-	// Token: 0x0600013E RID: 318 RVA: 0x0014BE24 File Offset: 0x0014A024
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "Chlorinator";
@@ -33,12 +31,10 @@ public class ChlorinatorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600013F RID: 319 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 	}
 
-	// Token: 0x06000140 RID: 320 RVA: 0x0014BEC4 File Offset: 0x0014A0C4
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
@@ -54,7 +50,6 @@ public class ChlorinatorConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
 	}
 
-	// Token: 0x06000141 RID: 321 RVA: 0x0014BF38 File Offset: 0x0014A138
 	private void ConfigureRecipes()
 	{
 		ComplexRecipe.RecipeElement[] array = new ComplexRecipe.RecipeElement[]
@@ -77,7 +72,6 @@ public class ChlorinatorConfig : IBuildingConfig
 		complexRecipe.nameDisplay = ComplexRecipe.RecipeNameDisplay.Result;
 	}
 
-	// Token: 0x06000142 RID: 322 RVA: 0x0014C018 File Offset: 0x0014A218
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
@@ -94,50 +88,35 @@ public class ChlorinatorConfig : IBuildingConfig
 		def.popWaitRange = ChlorinatorConfig.POP_TIMING;
 	}
 
-	// Token: 0x06000143 RID: 323 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void ConfigurePost(BuildingDef def)
 	{
 	}
 
-	// Token: 0x040000BD RID: 189
 	public const string ID = "Chlorinator";
 
-	// Token: 0x040000BE RID: 190
 	public static readonly Tag BLEACH_STONE_TAG = SimHashes.BleachStone.CreateTag();
 
-	// Token: 0x040000BF RID: 191
 	public static readonly Tag SAND_TAG = SimHashes.Sand.CreateTag();
 
-	// Token: 0x040000C0 RID: 192
 	private const float BLEACH_STONE_PER_CYCLE = 150f;
 
-	// Token: 0x040000C1 RID: 193
 	public const float BLEACH_STONE_OUTPUT_PER_RECIPE = 10f;
 
-	// Token: 0x040000C2 RID: 194
 	public const float INPUT_KG = 30f;
 
-	// Token: 0x040000C3 RID: 195
 	public const float OUTPUT_BLEACH_STONE_PERCENT = 0.33333334f;
 
-	// Token: 0x040000C4 RID: 196
 	public const float OUTPUT_BLEACHSTONE_ORE_SIZE = 2f;
 
-	// Token: 0x040000C5 RID: 197
 	public const float OUTPUT_SAND_ORE_SIZE = 6f;
 
-	// Token: 0x040000C6 RID: 198
 	public static readonly MathUtil.MinMax POP_TIMING = new MathUtil.MinMax(0.1f, 0.4f);
 
-	// Token: 0x040000C7 RID: 199
 	public static readonly MathUtil.MinMaxInt EMIT_ORE_COUNT_RANGE_BLEACH_STONE = new MathUtil.MinMaxInt(2, 3);
 
-	// Token: 0x040000C8 RID: 200
 	public static readonly MathUtil.MinMaxInt EMIT_ORE_COUNT_RANGE_SAND = new MathUtil.MinMaxInt(1, 1);
 
-	// Token: 0x040000C9 RID: 201
 	public static readonly MathUtil.MinMax EMIT_ORE_INITIAL_VELOCITY_RANGE = new MathUtil.MinMax(2f, 4f);
 
-	// Token: 0x040000CA RID: 202
 	public static readonly MathUtil.MinMax EMIT_ORE_INITIAL_DIRECTION_HALF_ANGLE_IN_DEGREES_RANGE = new MathUtil.MinMax(40f, 0f);
 }

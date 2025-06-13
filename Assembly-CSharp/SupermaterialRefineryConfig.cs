@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005DD RID: 1501
 public class SupermaterialRefineryConfig : IBuildingConfig
 {
-	// Token: 0x06001A41 RID: 6721 RVA: 0x001B2B28 File Offset: 0x001B0D28
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "SupermaterialRefinery";
@@ -31,7 +29,6 @@ public class SupermaterialRefineryConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001A42 RID: 6722 RVA: 0x001B2BAC File Offset: 0x001B0DAC
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<DropAllWorkable>();
@@ -158,7 +155,6 @@ public class SupermaterialRefineryConfig : IBuildingConfig
 		{
 			new ComplexRecipe.RecipeElement(SimHashes.ViscoGel.CreateTag(), 100f, ComplexRecipe.RecipeElement.TemperatureOperation.Heated, false)
 		};
-		ComplexRecipe complexRecipe6 = new ComplexRecipe(ComplexRecipeManager.MakeRecipeID("SupermaterialRefinery", array11, array12), array11, array12);
 		complexRecipe6.time = 80f;
 		complexRecipe6.description = STRINGS.BUILDINGS.PREFABS.SUPERMATERIALREFINERY.VISCOGEL_RECIPE_DESCRIPTION;
 		complexRecipe6.nameDisplay = ComplexRecipe.RecipeNameDisplay.Result;
@@ -192,7 +188,6 @@ public class SupermaterialRefineryConfig : IBuildingConfig
 		}
 	}
 
-	// Token: 0x06001A43 RID: 6723 RVA: 0x000B58A2 File Offset: 0x000B3AA2
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.GetComponent<KPrefabID>().prefabSpawnFn += delegate(GameObject game_object)
@@ -204,19 +199,14 @@ public class SupermaterialRefineryConfig : IBuildingConfig
 			component.SkillExperienceSkillGroup = Db.Get().SkillGroups.Technicals.Id;
 			component.SkillExperienceMultiplier = SKILLS.PART_DAY_EXPERIENCE;
 			KAnimFile anim = Assets.GetAnim("anim_interacts_supermaterial_refinery_kanim");
-			KAnimFile[] overrideAnims = new KAnimFile[]
 			{
 				anim
-			};
 			component.overrideAnims = overrideAnims;
 			component.workAnims = new HashedString[]
-			{
 				"working_pre",
 				"working_loop"
-			};
 			component.synchronizeAnims = false;
 			KAnimFileData data = anim.GetData();
-			int animCount = data.animCount;
 			this.dupeInteractAnims = new HashedString[animCount - 2];
 			int i = 0;
 			int num = 0;
@@ -238,18 +228,13 @@ public class SupermaterialRefineryConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x040010FB RID: 4347
 	public const string ID = "SupermaterialRefinery";
 
-	// Token: 0x040010FC RID: 4348
 	private const float INPUT_KG = 100f;
 
-	// Token: 0x040010FD RID: 4349
 	private const float OUTPUT_KG = 100f;
 
-	// Token: 0x040010FE RID: 4350
 	private const float OUTPUT_TEMPERATURE = 313.15f;
 
-	// Token: 0x040010FF RID: 4351
 	private HashedString[] dupeInteractAnims;
 }

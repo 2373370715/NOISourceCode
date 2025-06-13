@@ -5,10 +5,8 @@ using UnityEngine;
 
 namespace ProcGenGame
 {
-	// Token: 0x02002108 RID: 8456
 	public class Border : Path
 	{
-		// Token: 0x0600B3F2 RID: 46066 RVA: 0x004470C8 File Offset: 0x004452C8
 		public Border(Neighbors neighbors, Vector2 e0, Vector2 e1)
 		{
 			this.neighbors = neighbors;
@@ -23,7 +21,6 @@ namespace ProcGenGame
 			base.AddSegment(e1, e0);
 		}
 
-		// Token: 0x0600B3F3 RID: 46067 RVA: 0x00447144 File Offset: 0x00445344
 		private void SetCell(int gridCell, float defaultTemperature, TerrainCell.SetValuesFunction SetValues, SeededRandom rnd)
 		{
 			WeightedSimHash weightedSimHash = WeightedRandom.Choose<WeightedSimHash>(this.element, rnd);
@@ -35,7 +32,6 @@ namespace ProcGenGame
 			SetValues(gridCell, elementOverride.element, elementOverride.pdelement, elementOverride.dc);
 		}
 
-		// Token: 0x0600B3F4 RID: 46068 RVA: 0x004471A0 File Offset: 0x004453A0
 		public void ConvertToMap(Chunk world, TerrainCell.SetValuesFunction SetValues, float neighbour0Temperature, float neighbour1Temperature, float midTemp, SeededRandom rnd, int snapLastCells)
 		{
 			for (int i = 0; i < this.pathElements.Count; i++)
@@ -76,13 +72,10 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x04008E79 RID: 36473
 		public Neighbors neighbors;
 
-		// Token: 0x04008E7A RID: 36474
 		public List<WeightedSimHash> element;
 
-		// Token: 0x04008E7B RID: 36475
 		public float width;
 	}
 }

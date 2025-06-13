@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003C3 RID: 963
 public class LiquidConduitConfig : IBuildingConfig
 {
-	// Token: 0x06000FA0 RID: 4000 RVA: 0x000B11CF File Offset: 0x000AF3CF
 	public static void CommonConduitPostConfigureComplete(GameObject go)
 	{
 		GeneratedBuildings.RemoveLoopingSounds(go);
 	}
 
-	// Token: 0x06000FA1 RID: 4001 RVA: 0x00187EB4 File Offset: 0x001860B4
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "LiquidConduit";
@@ -49,7 +46,6 @@ public class LiquidConduitConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000FA2 RID: 4002 RVA: 0x000B11D7 File Offset: 0x000AF3D7
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
@@ -57,7 +53,6 @@ public class LiquidConduitConfig : IBuildingConfig
 		go.AddOrGet<Conduit>().type = ConduitType.Liquid;
 	}
 
-	// Token: 0x06000FA3 RID: 4003 RVA: 0x00185320 File Offset: 0x00183520
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.GetComponent<Building>().Def.BuildingUnderConstruction.GetComponent<Constructable>().isDiggingRequired = false;
@@ -69,7 +64,6 @@ public class LiquidConduitConfig : IBuildingConfig
 		LiquidConduitConfig.CommonConduitPostConfigureComplete(go);
 	}
 
-	// Token: 0x06000FA4 RID: 4004 RVA: 0x000B0E0E File Offset: 0x000AF00E
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		KAnimGraphTileVisualizer kanimGraphTileVisualizer = go.AddComponent<KAnimGraphTileVisualizer>();
@@ -77,6 +71,5 @@ public class LiquidConduitConfig : IBuildingConfig
 		kanimGraphTileVisualizer.isPhysicalBuilding = false;
 	}
 
-	// Token: 0x04000B56 RID: 2902
 	public const string ID = "LiquidConduit";
 }

@@ -5,16 +5,13 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000ED6 RID: 3798
 public class MegaBrainTank : StateMachineComponent<MegaBrainTank.StatesInstance>
 {
-	// Token: 0x06004BF7 RID: 19447 RVA: 0x000B74E6 File Offset: 0x000B56E6
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 	}
 
-	// Token: 0x06004BF8 RID: 19448 RVA: 0x0026E43C File Offset: 0x0026C63C
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -26,14 +23,12 @@ public class MegaBrainTank : StateMachineComponent<MegaBrainTank.StatesInstance>
 		base.smi.JournalDelivery.FillToCapacity = true;
 	}
 
-	// Token: 0x06004BF9 RID: 19449 RVA: 0x000D580B File Offset: 0x000D3A0B
 	protected override void OnCleanUp()
 	{
 		base.OnCleanUp();
 		base.Unsubscribe(-1503271301);
 	}
 
-	// Token: 0x06004BFA RID: 19450 RVA: 0x0026E4CC File Offset: 0x0026C6CC
 	private void OnBuildingSelect(object obj)
 	{
 		if (!(bool)obj)
@@ -48,20 +43,16 @@ public class MegaBrainTank : StateMachineComponent<MegaBrainTank.StatesInstance>
 		base.smi.ShowEventCompleteUI(null);
 	}
 
-	// Token: 0x06004BFB RID: 19451 RVA: 0x000D581E File Offset: 0x000D3A1E
 	private void DoInitialUnlock()
 	{
 		Game.Instance.unlocks.Unlock("story_trait_mega_brain_tank_initial", true);
 	}
 
-	// Token: 0x0400352A RID: 13610
 	[Serialize]
 	private bool introDisplayed;
 
-	// Token: 0x02000ED7 RID: 3799
 	public class States : GameStateMachine<MegaBrainTank.States, MegaBrainTank.StatesInstance, MegaBrainTank>
 	{
-		// Token: 0x06004BFD RID: 19453 RVA: 0x0026E53C File Offset: 0x0026C73C
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			base.serializable = StateMachine.SerializeType.ParamsOnly;
@@ -131,34 +122,24 @@ public class MegaBrainTank : StateMachineComponent<MegaBrainTank.StatesInstance>
 			}
 		}
 
-		// Token: 0x0400352B RID: 13611
 		public MegaBrainTank.States.CommonState common;
 
-		// Token: 0x0400352C RID: 13612
 		public StateMachine<MegaBrainTank.States, MegaBrainTank.StatesInstance, MegaBrainTank, object>.Signal storyTraitCompleted;
 
-		// Token: 0x0400352D RID: 13613
 		public Effect StatBonus;
 
-		// Token: 0x02000ED8 RID: 3800
 		public class CommonState : GameStateMachine<MegaBrainTank.States, MegaBrainTank.StatesInstance, MegaBrainTank, object>.State
 		{
-			// Token: 0x0400352E RID: 13614
 			public GameStateMachine<MegaBrainTank.States, MegaBrainTank.StatesInstance, MegaBrainTank, object>.State dormant;
 
-			// Token: 0x0400352F RID: 13615
 			public GameStateMachine<MegaBrainTank.States, MegaBrainTank.StatesInstance, MegaBrainTank, object>.State idle;
 
-			// Token: 0x04003530 RID: 13616
 			public GameStateMachine<MegaBrainTank.States, MegaBrainTank.StatesInstance, MegaBrainTank, object>.State active;
 		}
 	}
 
-	// Token: 0x02000EDA RID: 3802
 	public class StatesInstance : GameStateMachine<MegaBrainTank.States, MegaBrainTank.StatesInstance, MegaBrainTank, object>.GameInstance
 	{
-		// Token: 0x17000426 RID: 1062
-		// (get) Token: 0x06004C0C RID: 19468 RVA: 0x000D58F0 File Offset: 0x000D3AF0
 		public KBatchedAnimController BrainController
 		{
 			get
@@ -167,8 +148,6 @@ public class MegaBrainTank : StateMachineComponent<MegaBrainTank.StatesInstance>
 			}
 		}
 
-		// Token: 0x17000427 RID: 1063
-		// (get) Token: 0x06004C0D RID: 19469 RVA: 0x000D58FA File Offset: 0x000D3AFA
 		public KBatchedAnimController ShelfController
 		{
 			get
@@ -177,38 +156,18 @@ public class MegaBrainTank : StateMachineComponent<MegaBrainTank.StatesInstance>
 			}
 		}
 
-		// Token: 0x17000428 RID: 1064
-		// (get) Token: 0x06004C0E RID: 19470 RVA: 0x000D5904 File Offset: 0x000D3B04
-		// (set) Token: 0x06004C0F RID: 19471 RVA: 0x000D590C File Offset: 0x000D3B0C
 		public Storage BrainStorage { get; private set; }
 
-		// Token: 0x17000429 RID: 1065
-		// (get) Token: 0x06004C10 RID: 19472 RVA: 0x000D5915 File Offset: 0x000D3B15
-		// (set) Token: 0x06004C11 RID: 19473 RVA: 0x000D591D File Offset: 0x000D3B1D
 		public KSelectable Selectable { get; private set; }
 
-		// Token: 0x1700042A RID: 1066
-		// (get) Token: 0x06004C12 RID: 19474 RVA: 0x000D5926 File Offset: 0x000D3B26
-		// (set) Token: 0x06004C13 RID: 19475 RVA: 0x000D592E File Offset: 0x000D3B2E
 		public Operational Operational { get; private set; }
 
-		// Token: 0x1700042B RID: 1067
-		// (get) Token: 0x06004C14 RID: 19476 RVA: 0x000D5937 File Offset: 0x000D3B37
-		// (set) Token: 0x06004C15 RID: 19477 RVA: 0x000D593F File Offset: 0x000D3B3F
 		public ElementConverter ElementConverter { get; private set; }
 
-		// Token: 0x1700042C RID: 1068
-		// (get) Token: 0x06004C16 RID: 19478 RVA: 0x000D5948 File Offset: 0x000D3B48
-		// (set) Token: 0x06004C17 RID: 19479 RVA: 0x000D5950 File Offset: 0x000D3B50
 		public ManualDeliveryKG JournalDelivery { get; private set; }
 
-		// Token: 0x1700042D RID: 1069
-		// (get) Token: 0x06004C18 RID: 19480 RVA: 0x000D5959 File Offset: 0x000D3B59
-		// (set) Token: 0x06004C19 RID: 19481 RVA: 0x000D5961 File Offset: 0x000D3B61
 		public LoopingSounds BrainSounds { get; private set; }
 
-		// Token: 0x1700042E RID: 1070
-		// (get) Token: 0x06004C1A RID: 19482 RVA: 0x000D596A File Offset: 0x000D3B6A
 		public bool IsHungry
 		{
 			get
@@ -217,8 +176,6 @@ public class MegaBrainTank : StateMachineComponent<MegaBrainTank.StatesInstance>
 			}
 		}
 
-		// Token: 0x1700042F RID: 1071
-		// (get) Token: 0x06004C1B RID: 19483 RVA: 0x000D597B File Offset: 0x000D3B7B
 		public int TimeTilDigested
 		{
 			get
@@ -227,8 +184,6 @@ public class MegaBrainTank : StateMachineComponent<MegaBrainTank.StatesInstance>
 			}
 		}
 
-		// Token: 0x17000430 RID: 1072
-		// (get) Token: 0x06004C1C RID: 19484 RVA: 0x000D5984 File Offset: 0x000D3B84
 		public int ActivationProgress
 		{
 			get
@@ -237,8 +192,6 @@ public class MegaBrainTank : StateMachineComponent<MegaBrainTank.StatesInstance>
 			}
 		}
 
-		// Token: 0x17000431 RID: 1073
-		// (get) Token: 0x06004C1D RID: 19485 RVA: 0x000D5993 File Offset: 0x000D3B93
 		public HashedString CurrentActivationAnim
 		{
 			get
@@ -247,8 +200,6 @@ public class MegaBrainTank : StateMachineComponent<MegaBrainTank.StatesInstance>
 			}
 		}
 
-		// Token: 0x17000432 RID: 1074
-		// (get) Token: 0x06004C1E RID: 19486 RVA: 0x0026E8EC File Offset: 0x0026CAEC
 		private HashedString currentActivationLoop
 		{
 			get
@@ -258,7 +209,6 @@ public class MegaBrainTank : StateMachineComponent<MegaBrainTank.StatesInstance>
 			}
 		}
 
-		// Token: 0x06004C1F RID: 19487 RVA: 0x0026E910 File Offset: 0x0026CB10
 		public StatesInstance(MegaBrainTank master) : base(master)
 		{
 			this.BrainSounds = base.GetComponent<LoopingSounds>();
@@ -273,7 +223,6 @@ public class MegaBrainTank : StateMachineComponent<MegaBrainTank.StatesInstance>
 			this.fxLink = new KAnimLink(this.BrainController, this.ShelfController);
 		}
 
-		// Token: 0x06004C20 RID: 19488 RVA: 0x0026E9D8 File Offset: 0x0026CBD8
 		public override void StartSM()
 		{
 			this.InitializeEffectsList();
@@ -308,7 +257,6 @@ public class MegaBrainTank : StateMachineComponent<MegaBrainTank.StatesInstance>
 			this.CompleteBrainActivation();
 		}
 
-		// Token: 0x06004C21 RID: 19489 RVA: 0x0026EB80 File Offset: 0x0026CD80
 		public override void StopSM(string reason)
 		{
 			this.BrainController.onAnimComplete -= this.OnAnimComplete;
@@ -318,7 +266,6 @@ public class MegaBrainTank : StateMachineComponent<MegaBrainTank.StatesInstance>
 			base.StopSM(reason);
 		}
 
-		// Token: 0x06004C22 RID: 19490 RVA: 0x0026EBEC File Offset: 0x0026CDEC
 		private void InitializeEffectsList()
 		{
 			Components.Cmps<MinionIdentity> liveMinionIdentities = Components.LiveMinionIdentities;
@@ -331,7 +278,6 @@ public class MegaBrainTank : StateMachineComponent<MegaBrainTank.StatesInstance>
 			}
 		}
 
-		// Token: 0x06004C23 RID: 19491 RVA: 0x0026EC60 File Offset: 0x0026CE60
 		private void OnLiveMinionIdAdded(MinionIdentity id)
 		{
 			Effects component = id.GetComponent<Effects>();
@@ -342,14 +288,12 @@ public class MegaBrainTank : StateMachineComponent<MegaBrainTank.StatesInstance>
 			}
 		}
 
-		// Token: 0x06004C24 RID: 19492 RVA: 0x0026ECAC File Offset: 0x0026CEAC
 		private void OnLiveMinionIdRemoved(MinionIdentity id)
 		{
 			Effects component = id.GetComponent<Effects>();
 			MegaBrainTank.StatesInstance.minionEffects.Remove(component);
 		}
 
-		// Token: 0x06004C25 RID: 19493 RVA: 0x0026ECCC File Offset: 0x0026CECC
 		public void SetBonusActive(bool active)
 		{
 			for (int i = 0; i < MegaBrainTank.StatesInstance.minionEffects.Count; i++)
@@ -365,7 +309,6 @@ public class MegaBrainTank : StateMachineComponent<MegaBrainTank.StatesInstance>
 			}
 		}
 
-		// Token: 0x06004C26 RID: 19494 RVA: 0x0026ED2C File Offset: 0x0026CF2C
 		private void OnAnimComplete(HashedString anim)
 		{
 			if (anim == MegaBrainTankConfig.KACHUNK)
@@ -379,7 +322,6 @@ public class MegaBrainTank : StateMachineComponent<MegaBrainTank.StatesInstance>
 			}
 		}
 
-		// Token: 0x06004C27 RID: 19495 RVA: 0x0026ED8C File Offset: 0x0026CF8C
 		private void OnJournalDeliveryStateChanged(Workable w, Workable.WorkableEvent state)
 		{
 			if (state == Workable.WorkableEvent.WorkStopped)
@@ -407,7 +349,6 @@ public class MegaBrainTank : StateMachineComponent<MegaBrainTank.StatesInstance>
 			this.BrainStorage.SetWorkTime(num * this.BrainStorage.storageWorkTime);
 		}
 
-		// Token: 0x06004C28 RID: 19496 RVA: 0x0026EE38 File Offset: 0x0026D038
 		public void ShelveJournals(float dt)
 		{
 			float num = this.lastRemainingTime - this.BrainStorage.WorkTimeRemaining;
@@ -446,7 +387,6 @@ public class MegaBrainTank : StateMachineComponent<MegaBrainTank.StatesInstance>
 			this.UnitsFromLastStore -= 1;
 		}
 
-		// Token: 0x06004C29 RID: 19497 RVA: 0x0026EF6C File Offset: 0x0026D16C
 		public void StoreJournals()
 		{
 			this.lastRemainingTime = 0f;
@@ -461,7 +401,6 @@ public class MegaBrainTank : StateMachineComponent<MegaBrainTank.StatesInstance>
 			this.targetProgress = Mathf.Clamp01(unitsAvailable / 25f);
 		}
 
-		// Token: 0x06004C2A RID: 19498 RVA: 0x0026EFF8 File Offset: 0x0026D1F8
 		public void ActivateBrains(float dt)
 		{
 			if (this.currentlyActivating)
@@ -481,7 +420,6 @@ public class MegaBrainTank : StateMachineComponent<MegaBrainTank.StatesInstance>
 			}
 		}
 
-		// Token: 0x06004C2B RID: 19499 RVA: 0x0026F094 File Offset: 0x0026D294
 		public void CompleteBrainActivation()
 		{
 			this.BrainController.Play(this.currentActivationLoop, KAnim.PlayMode.Loop, 1f, 0f);
@@ -495,7 +433,6 @@ public class MegaBrainTank : StateMachineComponent<MegaBrainTank.StatesInstance>
 			}
 		}
 
-		// Token: 0x06004C2C RID: 19500 RVA: 0x0026F100 File Offset: 0x0026D300
 		public void Digest(float dt)
 		{
 			float unitsAvailable = this.BrainStorage.GetUnitsAvailable(DreamJournalConfig.ID);
@@ -513,7 +450,6 @@ public class MegaBrainTank : StateMachineComponent<MegaBrainTank.StatesInstance>
 			}
 		}
 
-		// Token: 0x06004C2D RID: 19501 RVA: 0x0026F190 File Offset: 0x0026D390
 		public void CleanTank(bool active)
 		{
 			this.SetBonusActive(active);
@@ -542,7 +478,6 @@ public class MegaBrainTank : StateMachineComponent<MegaBrainTank.StatesInstance>
 			this.BrainSounds.StopSound(this.brainHum);
 		}
 
-		// Token: 0x06004C2E RID: 19502 RVA: 0x0026F2CC File Offset: 0x0026D4CC
 		public bool IncrementMeter(float dt)
 		{
 			if (this.targetProgress - this.meterFill <= Mathf.Epsilon)
@@ -558,7 +493,6 @@ public class MegaBrainTank : StateMachineComponent<MegaBrainTank.StatesInstance>
 			return this.targetProgress - this.meterFill > 0.001f;
 		}
 
-		// Token: 0x06004C2F RID: 19503 RVA: 0x0026F358 File Offset: 0x0026D558
 		public void CompleteEvent()
 		{
 			this.Selectable.RemoveStatusItem(Db.Get().BuildingStatusItems.MegaBrainTankActivationProgress, false);
@@ -574,7 +508,6 @@ public class MegaBrainTank : StateMachineComponent<MegaBrainTank.StatesInstance>
 			this.notifier.Add(this.eventComplete, "");
 		}
 
-		// Token: 0x06004C30 RID: 19504 RVA: 0x0026F45C File Offset: 0x0026D65C
 		public void ShowEventCompleteUI(object _ = null)
 		{
 			if (this.eventComplete == null)
@@ -598,7 +531,6 @@ public class MegaBrainTank : StateMachineComponent<MegaBrainTank.StatesInstance>
 			});
 		}
 
-		// Token: 0x06004C31 RID: 19505 RVA: 0x0026F564 File Offset: 0x0026D764
 		private void OnCompleteStorySequence()
 		{
 			Vector3 keepsakeSpawnPosition = Grid.CellToPosCCC(Grid.OffsetCell(Grid.PosToCell(base.master), new CellOffset(0, 2)), Grid.SceneLayer.Ore);
@@ -607,55 +539,38 @@ public class MegaBrainTank : StateMachineComponent<MegaBrainTank.StatesInstance>
 			base.sm.storyTraitCompleted.Trigger(this);
 		}
 
-		// Token: 0x0400353B RID: 13627
 		private static List<Effects> minionEffects;
 
-		// Token: 0x04003542 RID: 13634
 		public short UnitsFromLastStore;
 
-		// Token: 0x04003543 RID: 13635
 		private float meterFill = 0.04f;
 
-		// Token: 0x04003544 RID: 13636
 		private float targetProgress;
 
-		// Token: 0x04003545 RID: 13637
 		private float timeTilDigested;
 
-		// Token: 0x04003546 RID: 13638
 		private float journalActivationTimer;
 
-		// Token: 0x04003547 RID: 13639
 		private float lastRemainingTime;
 
-		// Token: 0x04003548 RID: 13640
 		private byte activatedJournals;
 
-		// Token: 0x04003549 RID: 13641
 		private bool currentlyActivating;
 
-		// Token: 0x0400354A RID: 13642
 		private short nextActiveBrain = 1;
 
-		// Token: 0x0400354B RID: 13643
 		private string brainHum;
 
-		// Token: 0x0400354C RID: 13644
 		private KBatchedAnimController[] controllers;
 
-		// Token: 0x0400354D RID: 13645
 		private KAnimLink fxLink;
 
-		// Token: 0x0400354E RID: 13646
 		private MeterController meter;
 
-		// Token: 0x0400354F RID: 13647
 		private EventInfoData eventInfo;
 
-		// Token: 0x04003550 RID: 13648
 		private Notification eventComplete;
 
-		// Token: 0x04003551 RID: 13649
 		private Notifier notifier;
 	}
 }

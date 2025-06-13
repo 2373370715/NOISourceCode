@@ -7,10 +7,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000443 RID: 1091
 public class BionicUpgradeComponentConfig : IMultiEntityConfig
 {
-	// Token: 0x06001286 RID: 4742 RVA: 0x00194BEC File Offset: 0x00192DEC
 	public static string GenerateTooltipForBooster(BionicUpgradeComponent booster)
 	{
 		string str = "<b>" + booster.GetProperName() + "</b>";
@@ -22,7 +20,6 @@ public class BionicUpgradeComponentConfig : IMultiEntityConfig
 		return str + "\n\n" + BionicUpgradeComponentConfig.UpgradesData[booster.PrefabID()].stateMachineDescription;
 	}
 
-	// Token: 0x06001287 RID: 4743 RVA: 0x00194C58 File Offset: 0x00192E58
 	public static Tag[] GetBoostersWithSkillPerk(string perkID)
 	{
 		return (from data in BionicUpgradeComponentConfig.UpgradesData
@@ -31,7 +28,6 @@ public class BionicUpgradeComponentConfig : IMultiEntityConfig
 		select kvp.Key).ToArray<Tag>();
 	}
 
-	// Token: 0x06001288 RID: 4744 RVA: 0x00194CB4 File Offset: 0x00192EB4
 	public AttributeModifier[] CreateBoosterModifiers(string name, Dictionary<string, float> attributes)
 	{
 		AttributeModifier[] array = new AttributeModifier[attributes.Count];
@@ -46,7 +42,6 @@ public class BionicUpgradeComponentConfig : IMultiEntityConfig
 		return array;
 	}
 
-	// Token: 0x06001289 RID: 4745 RVA: 0x00194D64 File Offset: 0x00192F64
 	public List<GameObject> CreatePrefabs()
 	{
 		List<GameObject> list = new List<GameObject>();
@@ -589,17 +584,14 @@ public class BionicUpgradeComponentConfig : IMultiEntityConfig
 		return list;
 	}
 
-	// Token: 0x0600128A RID: 4746 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x0600128B RID: 4747 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x0600128C RID: 4748 RVA: 0x001963A4 File Offset: 0x001945A4
 	public static Tag GetBionicUpgradePrefabIDWithTraitID(string traitID)
 	{
 		foreach (Tag tag in BionicUpgradeComponentConfig.UpgradesData.Keys)
@@ -613,7 +605,6 @@ public class BionicUpgradeComponentConfig : IMultiEntityConfig
 		return Tag.Invalid;
 	}
 
-	// Token: 0x0600128D RID: 4749 RVA: 0x00196424 File Offset: 0x00194624
 	public static GameObject CreateNewUpgradeComponent(string id, string name = null, string desc = null, float wattageCost = 0f, Func<StateMachine.Instance, StateMachine.Instance> stateMachine = null, string sm_description = "", string[] dlcIDs = null, string animFile = "upgrade_disc_kanim", string animStateName = "object", SimHashes element = SimHashes.Creature, string craftTechUnlockID = null, BionicUpgradeComponentConfig.BoosterType booster = BionicUpgradeComponentConfig.BoosterType.Basic, bool isStartingBooster = false, bool isCarePackage = false, SkillPerk[] skillPerks = null)
 	{
 		if (!DlcManager.IsAllContentSubscribed(dlcIDs))
@@ -712,7 +703,6 @@ public class BionicUpgradeComponentConfig : IMultiEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x0600128E RID: 4750 RVA: 0x00196890 File Offset: 0x00194A90
 	public static string GetColonyBoosterAssignmentString(string boosterID)
 	{
 		int num = 0;
@@ -741,67 +731,46 @@ public class BionicUpgradeComponentConfig : IMultiEntityConfig
 		return string.Format(STRINGS.BUILDINGS.PREFABS.ADVANCEDCRAFTINGTABLE.COLONY_HAS_BOOSTER_ASSIGNED_COUNT, num);
 	}
 
-	// Token: 0x04000CF5 RID: 3317
 	public const string DEFAULT_ANIM_FILE_NAME = "upgrade_disc_kanim";
 
-	// Token: 0x04000CF6 RID: 3318
 	public const string STARTING_TRAIT_PREFIX = "StartWith";
 
-	// Token: 0x04000CF7 RID: 3319
 	public const string Booster_Dig1 = "Booster_Dig1";
 
-	// Token: 0x04000CF8 RID: 3320
 	public const string Booster_Construct1 = "Booster_Construct1";
 
-	// Token: 0x04000CF9 RID: 3321
 	public const string Booster_Dig2 = "Booster_Dig2";
 
-	// Token: 0x04000CFA RID: 3322
 	public const string Booster_Farm1 = "Booster_Farm1";
 
-	// Token: 0x04000CFB RID: 3323
 	public const string Booster_Ranch1 = "Booster_Ranch1";
 
-	// Token: 0x04000CFC RID: 3324
 	public const string Booster_Cook1 = "Booster_Cook1";
 
-	// Token: 0x04000CFD RID: 3325
 	public const string Booster_Art1 = "Booster_Art1";
 
-	// Token: 0x04000CFE RID: 3326
 	public const string Booster_Research1 = "Booster_Research1";
 
-	// Token: 0x04000CFF RID: 3327
 	public const string Booster_Research2 = "Booster_Research2";
 
-	// Token: 0x04000D00 RID: 3328
 	public const string Booster_Research3 = "Booster_Research3";
 
-	// Token: 0x04000D01 RID: 3329
 	public const string Booster_Pilot1 = "Booster_Pilot1";
 
-	// Token: 0x04000D02 RID: 3330
 	public const string Booster_PilotVanilla1 = "Booster_PilotVanilla1";
 
-	// Token: 0x04000D03 RID: 3331
 	public const string Booster_Suits1 = "Booster_Suits1";
 
-	// Token: 0x04000D04 RID: 3332
 	public const string Booster_Carry1 = "Booster_Carry1";
 
-	// Token: 0x04000D05 RID: 3333
 	public const string Booster_Op1 = "Booster_Op1";
 
-	// Token: 0x04000D06 RID: 3334
 	public const string Booster_Op2 = "Booster_Op2";
 
-	// Token: 0x04000D07 RID: 3335
 	public const string Booster_Medicine1 = "Booster_Medicine1";
 
-	// Token: 0x04000D08 RID: 3336
 	public const string Booster_Tidy1 = "Booster_Tidy1";
 
-	// Token: 0x04000D09 RID: 3337
 	public static List<string> BASIC_BOOSTERS = new List<string>
 	{
 		"Booster_Dig1",
@@ -811,41 +780,24 @@ public class BionicUpgradeComponentConfig : IMultiEntityConfig
 		"Booster_Medicine1"
 	};
 
-	// Token: 0x04000D0A RID: 3338
 	public static Dictionary<Tag, BionicUpgradeComponentConfig.BionicUpgradeData> UpgradesData = new Dictionary<Tag, BionicUpgradeComponentConfig.BionicUpgradeData>();
 
-	// Token: 0x02000444 RID: 1092
 	public enum BoosterType
 	{
-		// Token: 0x04000D0C RID: 3340
 		Basic,
-		// Token: 0x04000D0D RID: 3341
 		Intermediate,
-		// Token: 0x04000D0E RID: 3342
 		Advanced,
-		// Token: 0x04000D0F RID: 3343
 		Sleep,
-		// Token: 0x04000D10 RID: 3344
 		Space,
-		// Token: 0x04000D11 RID: 3345
 		Special
 	}
 
-	// Token: 0x02000445 RID: 1093
 	public class BionicUpgradeData
 	{
-		// Token: 0x1700006C RID: 108
-		// (get) Token: 0x06001292 RID: 4754 RVA: 0x000B2B86 File Offset: 0x000B0D86
-		// (set) Token: 0x06001291 RID: 4753 RVA: 0x000B2B7D File Offset: 0x000B0D7D
 		public float WattageCost { get; private set; }
 
-		// Token: 0x1700006D RID: 109
-		// (get) Token: 0x06001294 RID: 4756 RVA: 0x000B2B97 File Offset: 0x000B0D97
-		// (set) Token: 0x06001293 RID: 4755 RVA: 0x000B2B8E File Offset: 0x000B0D8E
 		public Func<StateMachine.Instance, StateMachine.Instance> stateMachine { get; private set; }
 
-		// Token: 0x1700006E RID: 110
-		// (get) Token: 0x06001295 RID: 4757 RVA: 0x000B2B9F File Offset: 0x000B0D9F
 		public string uiAnimName
 		{
 			get
@@ -858,22 +810,12 @@ public class BionicUpgradeComponentConfig : IMultiEntityConfig
 			}
 		}
 
-		// Token: 0x1700006F RID: 111
-		// (get) Token: 0x06001297 RID: 4759 RVA: 0x000B2BD2 File Offset: 0x000B0DD2
-		// (set) Token: 0x06001296 RID: 4758 RVA: 0x000B2BC9 File Offset: 0x000B0DC9
 		public string relatedTrait { get; private set; }
 
-		// Token: 0x17000070 RID: 112
-		// (get) Token: 0x06001299 RID: 4761 RVA: 0x000B2BE3 File Offset: 0x000B0DE3
-		// (set) Token: 0x06001298 RID: 4760 RVA: 0x000B2BDA File Offset: 0x000B0DDA
 		public BionicUpgradeComponentConfig.BoosterType Booster { get; private set; }
 
-		// Token: 0x17000071 RID: 113
-		// (get) Token: 0x0600129B RID: 4763 RVA: 0x000B2BF4 File Offset: 0x000B0DF4
-		// (set) Token: 0x0600129A RID: 4762 RVA: 0x000B2BEB File Offset: 0x000B0DEB
 		public bool isCarePackage { get; private set; }
 
-		// Token: 0x0600129C RID: 4764 RVA: 0x001969DC File Offset: 0x00194BDC
 		public BionicUpgradeData(float cost, string animStateName, string relatedTrait, BionicUpgradeComponentConfig.BoosterType booster, Func<StateMachine.Instance, StateMachine.Instance> smi, string stateMachineDescription, bool isCarePackage, string[] skillPerkIds = null)
 		{
 			this.WattageCost = cost;
@@ -886,16 +828,12 @@ public class BionicUpgradeComponentConfig : IMultiEntityConfig
 			this.skillPerks = skillPerkIds;
 		}
 
-		// Token: 0x04000D12 RID: 3346
 		private const string DEFAULT_ANIM_STATE_NAME = "object";
 
-		// Token: 0x04000D14 RID: 3348
 		public string stateMachineDescription;
 
-		// Token: 0x04000D16 RID: 3350
 		public string animStateName = "object";
 
-		// Token: 0x04000D1A RID: 3354
 		public string[] skillPerks = new string[0];
 	}
 }

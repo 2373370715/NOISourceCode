@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001F44 RID: 8004
 public class RocketSimpleInfoPanel : SimpleInfoPanel
 {
-	// Token: 0x0600A8C0 RID: 43200 RVA: 0x00111DD1 File Offset: 0x0010FFD1
 	public RocketSimpleInfoPanel(SimpleInfoScreen simpleInfoScreen) : base(simpleInfoScreen)
 	{
 	}
 
-	// Token: 0x0600A8C1 RID: 43201 RVA: 0x0040D558 File Offset: 0x0040B758
 	public override void Refresh(CollapsibleDetailContentPanel rocketStatusContainer, GameObject selectedTarget)
 	{
 		if (selectedTarget == null)
@@ -186,7 +183,6 @@ public class RocketSimpleInfoPanel : SimpleInfoPanel
 		rocketStatusContainer.Commit();
 	}
 
-	// Token: 0x0600A8C2 RID: 43202 RVA: 0x0040DDA0 File Offset: 0x0040BFA0
 	public static void GetRocketStuffFromTarget(GameObject selectedTarget, ref RocketModuleCluster rocketModuleCluster, ref Clustercraft clusterCraft, ref CraftModuleInterface craftModuleInterface)
 	{
 		rocketModuleCluster = selectedTarget.GetComponent<RocketModuleCluster>();
@@ -207,9 +203,7 @@ public class RocketSimpleInfoPanel : SimpleInfoPanel
 		}
 	}
 
-	// Token: 0x040084D0 RID: 34000
 	private Dictionary<string, GameObject> cargoBayLabels = new Dictionary<string, GameObject>();
 
-	// Token: 0x040084D1 RID: 34001
 	private Dictionary<string, GameObject> artifactModuleLabels = new Dictionary<string, GameObject>();
 }

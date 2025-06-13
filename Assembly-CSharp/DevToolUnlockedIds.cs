@@ -4,16 +4,13 @@ using System.Linq;
 using ImGuiNET;
 using UnityEngine;
 
-// Token: 0x02000C14 RID: 3092
 public class DevToolUnlockedIds : DevTool
 {
-	// Token: 0x06003A9D RID: 15005 RVA: 0x000CA51F File Offset: 0x000C871F
 	public DevToolUnlockedIds()
 	{
 		this.RequiresGameRunning = true;
 	}
 
-	// Token: 0x06003A9E RID: 15006 RVA: 0x00235B44 File Offset: 0x00233D44
 	protected override void RenderTo(DevPanel panel)
 	{
 		bool flag;
@@ -83,7 +80,6 @@ public class DevToolUnlockedIds : DevTool
 		}
 	}
 
-	// Token: 0x06003A9F RID: 15007 RVA: 0x00235D70 File Offset: 0x00233F70
 	private Option<DevToolUnlockedIds.UnlocksWrapper> GetUnlocks()
 	{
 		if (App.IsExiting)
@@ -101,34 +97,27 @@ public class DevToolUnlockedIds : DevTool
 		return Option.Some<DevToolUnlockedIds.UnlocksWrapper>(new DevToolUnlockedIds.UnlocksWrapper(Game.Instance.unlocks));
 	}
 
-	// Token: 0x04002892 RID: 10386
 	private string filterForUnlockIds = "";
 
-	// Token: 0x04002893 RID: 10387
 	private string unlockIdToAdd = "";
 
-	// Token: 0x02000C15 RID: 3093
 	public readonly struct UnlocksWrapper
 	{
-		// Token: 0x06003AA0 RID: 15008 RVA: 0x000CA544 File Offset: 0x000C8744
 		public UnlocksWrapper(Unlocks unlocks)
 		{
 			this.unlocks = unlocks;
 		}
 
-		// Token: 0x06003AA1 RID: 15009 RVA: 0x000CA54D File Offset: 0x000C874D
 		public void AddId(string unlockId)
 		{
 			this.unlocks.Unlock(unlockId, true);
 		}
 
-		// Token: 0x06003AA2 RID: 15010 RVA: 0x000CA55C File Offset: 0x000C875C
 		public void RemoveId(string unlockId)
 		{
 			this.unlocks.Lock(unlockId);
 		}
 
-		// Token: 0x06003AA3 RID: 15011 RVA: 0x000CA56A File Offset: 0x000C876A
 		public IEnumerable<string> GetAllIds()
 		{
 			return from s in this.unlocks.GetAllUnlockedIds()
@@ -136,8 +125,6 @@ public class DevToolUnlockedIds : DevTool
 			select s;
 		}
 
-		// Token: 0x170002AB RID: 683
-		// (get) Token: 0x06003AA4 RID: 15012 RVA: 0x000CA59B File Offset: 0x000C879B
 		public int Count
 		{
 			get
@@ -146,7 +133,6 @@ public class DevToolUnlockedIds : DevTool
 			}
 		}
 
-		// Token: 0x04002894 RID: 10388
 		public readonly Unlocks unlocks;
 	}
 }

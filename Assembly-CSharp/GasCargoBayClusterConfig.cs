@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200034D RID: 845
 public class GasCargoBayClusterConfig : IBuildingConfig
 {
-	// Token: 0x06000D58 RID: 3416 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06000D59 RID: 3417 RVA: 0x0017D114 File Offset: 0x0017B314
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "GasCargoBayCluster";
@@ -43,7 +40,6 @@ public class GasCargoBayClusterConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000D5A RID: 3418 RVA: 0x0017D1D0 File Offset: 0x0017B3D0
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -55,16 +51,13 @@ public class GasCargoBayClusterConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x06000D5B RID: 3419 RVA: 0x000B0233 File Offset: 0x000AE433
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go = BuildingTemplates.ExtendBuildingToClusterCargoBay(go, this.CAPACITY, STORAGEFILTERS.GASES, CargoBay.CargoType.Gasses);
 		BuildingTemplates.ExtendBuildingToRocketModuleCluster(go, null, ROCKETRY.BURDEN.MODERATE, 0f, 0f);
 	}
 
-	// Token: 0x040009DC RID: 2524
 	public const string ID = "GasCargoBayCluster";
 
-	// Token: 0x040009DD RID: 2525
 	public float CAPACITY = ROCKETRY.GAS_CARGO_BAY_CLUSTER_CAPACITY * ROCKETRY.CARGO_CAPACITY_SCALE;
 }

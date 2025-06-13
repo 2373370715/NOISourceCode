@@ -5,10 +5,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000572 RID: 1394
 public class SweepBotConfig : IEntityConfig
 {
-	// Token: 0x060017F1 RID: 6129 RVA: 0x001A87FC File Offset: 0x001A69FC
 	public GameObject CreatePrefab()
 	{
 		string id = "SweepBot";
@@ -83,12 +81,10 @@ public class SweepBotConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x060017F2 RID: 6130 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject prefab)
 	{
 	}
 
-	// Token: 0x060017F3 RID: 6131 RVA: 0x001A8B90 File Offset: 0x001A6D90
 	public void OnSpawn(GameObject inst)
 	{
 		StorageUnloadMonitor.Instance smi = inst.GetSMI<StorageUnloadMonitor.Instance>();
@@ -97,33 +93,23 @@ public class SweepBotConfig : IEntityConfig
 		inst.GetSMI<CreatureFallMonitor.Instance>().anim = "idle_loop";
 	}
 
-	// Token: 0x04000FD6 RID: 4054
 	public const string ID = "SweepBot";
 
-	// Token: 0x04000FD7 RID: 4055
 	public const string BASE_TRAIT_ID = "SweepBotBaseTrait";
 
-	// Token: 0x04000FD8 RID: 4056
 	public const float STORAGE_CAPACITY = 500f;
 
-	// Token: 0x04000FD9 RID: 4057
 	public const float BATTERY_CAPACITY = 9000f;
 
-	// Token: 0x04000FDA RID: 4058
 	public const float BATTERY_DEPLETION_RATE = 17.142857f;
 
-	// Token: 0x04000FDB RID: 4059
 	public const float MAX_SWEEP_AMOUNT = 10f;
 
-	// Token: 0x04000FDC RID: 4060
 	public const float MOP_SPEED = 10f;
 
-	// Token: 0x04000FDD RID: 4061
 	private string name = STRINGS.ROBOTS.MODELS.SWEEPBOT.NAME;
 
-	// Token: 0x04000FDE RID: 4062
 	private string desc = STRINGS.ROBOTS.MODELS.SWEEPBOT.DESC;
 
-	// Token: 0x04000FDF RID: 4063
 	public static float MASS = 25f;
 }

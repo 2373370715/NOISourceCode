@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using STRINGS;
 
-// Token: 0x02001276 RID: 4726
 public class ToiletDiagnostic : ColonyDiagnostic
 {
-	// Token: 0x06006069 RID: 24681 RVA: 0x002BB544 File Offset: 0x002B9744
 	public ToiletDiagnostic(int worldID) : base(worldID, UI.COLONY_DIAGNOSTICS.TOILETDIAGNOSTIC.ALL_NAME)
 	{
 		this.icon = "icon_action_region_toilet";
@@ -16,7 +14,6 @@ public class ToiletDiagnostic : ColonyDiagnostic
 		base.AddCriterion("CheckBladders", new DiagnosticCriterion(UI.COLONY_DIAGNOSTICS.TOILETDIAGNOSTIC.CRITERIA.CHECKBLADDERS, new Func<ColonyDiagnostic.DiagnosticResult>(this.CheckBladders)));
 	}
 
-	// Token: 0x0600606A RID: 24682 RVA: 0x002BB610 File Offset: 0x002B9810
 	private ColonyDiagnostic.DiagnosticResult CheckHasAnyToilets()
 	{
 		ColonyDiagnostic.DiagnosticResult result = new ColonyDiagnostic.DiagnosticResult(ColonyDiagnostic.DiagnosticResult.Opinion.Normal, UI.COLONY_DIAGNOSTICS.GENERIC_CRITERIA_PASS, null);
@@ -33,7 +30,6 @@ public class ToiletDiagnostic : ColonyDiagnostic
 		return result;
 	}
 
-	// Token: 0x0600606B RID: 24683 RVA: 0x002BB67C File Offset: 0x002B987C
 	private ColonyDiagnostic.DiagnosticResult CheckEnoughToilets()
 	{
 		ColonyDiagnostic.DiagnosticResult result = new ColonyDiagnostic.DiagnosticResult(ColonyDiagnostic.DiagnosticResult.Opinion.Normal, UI.COLONY_DIAGNOSTICS.GENERIC_CRITERIA_PASS, null);
@@ -55,7 +51,6 @@ public class ToiletDiagnostic : ColonyDiagnostic
 		return result;
 	}
 
-	// Token: 0x0600606C RID: 24684 RVA: 0x002BB720 File Offset: 0x002B9920
 	private ColonyDiagnostic.DiagnosticResult CheckBladders()
 	{
 		ColonyDiagnostic.DiagnosticResult result = new ColonyDiagnostic.DiagnosticResult(ColonyDiagnostic.DiagnosticResult.Opinion.Normal, UI.COLONY_DIAGNOSTICS.GENERIC_CRITERIA_PASS, null);
@@ -83,13 +78,11 @@ public class ToiletDiagnostic : ColonyDiagnostic
 		return result;
 	}
 
-	// Token: 0x0600606D RID: 24685 RVA: 0x000E3450 File Offset: 0x000E1650
 	private bool MinionFilter(MinionIdentity minion)
 	{
 		return minion.modifiers.amounts.Has(Db.Get().Amounts.Bladder);
 	}
 
-	// Token: 0x0600606E RID: 24686 RVA: 0x002BB818 File Offset: 0x002B9A18
 	public override ColonyDiagnostic.DiagnosticResult Evaluate()
 	{
 		ColonyDiagnostic.DiagnosticResult result = new ColonyDiagnostic.DiagnosticResult(ColonyDiagnostic.DiagnosticResult.Opinion.Normal, this.NO_MINIONS_WITH_BLADDER, null);
@@ -101,14 +94,12 @@ public class ToiletDiagnostic : ColonyDiagnostic
 		return base.Evaluate();
 	}
 
-	// Token: 0x0600606F RID: 24687 RVA: 0x000E3471 File Offset: 0x000E1671
 	private void RefreshData()
 	{
 		this.minionsWithBladders = Components.LiveMinionIdentities.GetWorldItems(base.worldID, true, new Func<MinionIdentity, bool>(this.MinionFilter));
 		this.toilets = Components.Toilets.GetWorldItems(base.worldID, true);
 	}
 
-	// Token: 0x06006070 RID: 24688 RVA: 0x002BB854 File Offset: 0x002B9A54
 	public override string GetAverageValueString()
 	{
 		if (this.minionsWithBladders == null || this.minionsWithBladders.Count == 0)
@@ -126,15 +117,11 @@ public class ToiletDiagnostic : ColonyDiagnostic
 		return num.ToString() + ":" + this.minionsWithBladders.Count.ToString();
 	}
 
-	// Token: 0x040044F7 RID: 17655
 	private const bool INCLUDE_CHILD_WORLDS = true;
 
-	// Token: 0x040044F8 RID: 17656
 	private List<MinionIdentity> minionsWithBladders;
 
-	// Token: 0x040044F9 RID: 17657
 	private List<IUsable> toilets;
 
-	// Token: 0x040044FA RID: 17658
 	private readonly string NO_MINIONS_WITH_BLADDER;
 }

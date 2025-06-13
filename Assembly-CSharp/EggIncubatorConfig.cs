@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000AA RID: 170
 public class EggIncubatorConfig : IBuildingConfig
 {
-	// Token: 0x060002BC RID: 700 RVA: 0x00152470 File Offset: 0x00150670
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "EggIncubator";
@@ -36,7 +34,6 @@ public class EggIncubatorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060002BD RID: 701 RVA: 0x000AAF62 File Offset: 0x000A9162
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		Prioritizable.AddRef(go);
@@ -46,15 +43,12 @@ public class EggIncubatorConfig : IBuildingConfig
 		eggIncubator.SetWorkTime(5f);
 	}
 
-	// Token: 0x060002BE RID: 702 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x040001C3 RID: 451
 	public const string ID = "EggIncubator";
 
-	// Token: 0x040001C4 RID: 452
 	public static readonly List<Storage.StoredItemModifier> IncubatorStorage = new List<Storage.StoredItemModifier>
 	{
 		Storage.StoredItemModifier.Preserve

@@ -2,18 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020017DF RID: 6111
 [Serializable]
 public class RadiationGridEmitter
 {
-	// Token: 0x06007D9A RID: 32154 RVA: 0x00332B54 File Offset: 0x00330D54
 	public RadiationGridEmitter(int originCell, int intensity)
 	{
 		this.originCell = originCell;
 		this.intensity = intensity;
 	}
 
-	// Token: 0x06007D9B RID: 32155 RVA: 0x00332BA4 File Offset: 0x00330DA4
 	public void Emit()
 	{
 		this.scanCells.Clear();
@@ -45,33 +42,24 @@ public class RadiationGridEmitter
 		}
 	}
 
-	// Token: 0x06007D9C RID: 32156 RVA: 0x000F73B9 File Offset: 0x000F55B9
 	private int CalculateFalloff(float falloffRate, int cell, int origin)
 	{
 		return Mathf.Max(1, Mathf.RoundToInt(falloffRate * (float)Mathf.Max(Grid.GetCellDistance(origin, cell), 1)));
 	}
 
-	// Token: 0x04005F56 RID: 24406
 	private static int MAX_EMIT_DISTANCE = 128;
 
-	// Token: 0x04005F57 RID: 24407
 	public int originCell = -1;
 
-	// Token: 0x04005F58 RID: 24408
 	public int intensity = 1;
 
-	// Token: 0x04005F59 RID: 24409
 	public int projectionCount = 20;
 
-	// Token: 0x04005F5A RID: 24410
 	public int direction;
 
-	// Token: 0x04005F5B RID: 24411
 	public int angle = 360;
 
-	// Token: 0x04005F5C RID: 24412
 	public bool enabled;
 
-	// Token: 0x04005F5D RID: 24413
 	private HashSet<int> scanCells = new HashSet<int>();
 }

@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02001101 RID: 4353
 [AddComponentMenu("KMonoBehaviour/scripts/Weapon")]
 public class Weapon : KMonoBehaviour
 {
-	// Token: 0x060058DA RID: 22746 RVA: 0x0029A9F4 File Offset: 0x00298BF4
 	public void Configure(float base_damage_min, float base_damage_max, AttackProperties.DamageType attackType = AttackProperties.DamageType.Standard, AttackProperties.TargetType targetType = AttackProperties.TargetType.Single, int maxHits = 1, float aoeRadius = 0f)
 	{
 		this.properties = new AttackProperties();
@@ -18,7 +16,6 @@ public class Weapon : KMonoBehaviour
 		this.properties.attacker = this;
 	}
 
-	// Token: 0x060058DB RID: 22747 RVA: 0x000DE578 File Offset: 0x000DC778
 	public void AddEffect(string effectID = "WasAttacked", float probability = 1f)
 	{
 		if (this.properties.effects == null)
@@ -28,7 +25,6 @@ public class Weapon : KMonoBehaviour
 		this.properties.effects.Add(new AttackEffect(effectID, probability));
 	}
 
-	// Token: 0x060058DC RID: 22748 RVA: 0x0029AA58 File Offset: 0x00298C58
 	public int AttackArea(Vector3 centerPoint)
 	{
 		Vector3 b = Vector3.zero;
@@ -58,7 +54,6 @@ public class Weapon : KMonoBehaviour
 		return list.Count;
 	}
 
-	// Token: 0x060058DD RID: 22749 RVA: 0x000DE5AE File Offset: 0x000DC7AE
 	public void AttackTarget(GameObject target)
 	{
 		this.AttackTargets(new GameObject[]
@@ -67,7 +62,6 @@ public class Weapon : KMonoBehaviour
 		});
 	}
 
-	// Token: 0x060058DE RID: 22750 RVA: 0x000DE5C0 File Offset: 0x000DC7C0
 	public void AttackTargets(GameObject[] targets)
 	{
 		if (this.properties == null)
@@ -78,17 +72,14 @@ public class Weapon : KMonoBehaviour
 		new Attack(this.properties, targets);
 	}
 
-	// Token: 0x060058DF RID: 22751 RVA: 0x000DE5F2 File Offset: 0x000DC7F2
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
 		this.properties.attacker = this;
 	}
 
-	// Token: 0x04003EAD RID: 16045
 	[MyCmpReq]
 	private FactionAlignment alignment;
 
-	// Token: 0x04003EAE RID: 16046
 	public AttackProperties properties;
 }

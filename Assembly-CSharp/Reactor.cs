@@ -4,12 +4,8 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000F7F RID: 3967
 public class Reactor : StateMachineComponent<Reactor.StatesInstance>, IGameObjectEffectDescriptor
 {
-	// Token: 0x17000476 RID: 1142
-	// (get) Token: 0x06004FBA RID: 20410 RVA: 0x000D85F0 File Offset: 0x000D67F0
-	// (set) Token: 0x06004FBB RID: 20411 RVA: 0x000D85F8 File Offset: 0x000D67F8
 	private float ReactionMassTarget
 	{
 		get
@@ -25,8 +21,6 @@ public class Reactor : StateMachineComponent<Reactor.StatesInstance>, IGameObjec
 		}
 	}
 
-	// Token: 0x17000477 RID: 1143
-	// (get) Token: 0x06004FBC RID: 20412 RVA: 0x000D8637 File Offset: 0x000D6837
 	public float FuelTemperature
 	{
 		get
@@ -39,8 +33,6 @@ public class Reactor : StateMachineComponent<Reactor.StatesInstance>, IGameObjec
 		}
 	}
 
-	// Token: 0x17000478 RID: 1144
-	// (get) Token: 0x06004FBD RID: 20413 RVA: 0x0027A09C File Offset: 0x0027829C
 	public float ReserveCoolantMass
 	{
 		get
@@ -54,8 +46,6 @@ public class Reactor : StateMachineComponent<Reactor.StatesInstance>, IGameObjec
 		}
 	}
 
-	// Token: 0x17000479 RID: 1145
-	// (get) Token: 0x06004FBE RID: 20414 RVA: 0x000D866D File Offset: 0x000D686D
 	public bool On
 	{
 		get
@@ -64,7 +54,6 @@ public class Reactor : StateMachineComponent<Reactor.StatesInstance>, IGameObjec
 		}
 	}
 
-	// Token: 0x06004FBF RID: 20415 RVA: 0x0027A0C8 File Offset: 0x002782C8
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -79,27 +68,23 @@ public class Reactor : StateMachineComponent<Reactor.StatesInstance>, IGameObjec
 		this.CheckLogicInputValueChanged(true);
 	}
 
-	// Token: 0x06004FC0 RID: 20416 RVA: 0x000D868A File Offset: 0x000D688A
 	protected override void OnCleanUp()
 	{
 		Components.NuclearReactors.Remove(this);
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06004FC1 RID: 20417 RVA: 0x000D869D File Offset: 0x000D689D
 	private void Update()
 	{
 		this.CheckLogicInputValueChanged(false);
 	}
 
-	// Token: 0x06004FC2 RID: 20418 RVA: 0x0027A12C File Offset: 0x0027832C
 	public Notification CreateMeltdownNotification()
 	{
 		KSelectable component = base.GetComponent<KSelectable>();
 		return new Notification(MISC.NOTIFICATIONS.REACTORMELTDOWN.NAME, NotificationType.Bad, (List<Notification> notificationList, object data) => MISC.NOTIFICATIONS.REACTORMELTDOWN.TOOLTIP + notificationList.ReduceMessages(false), "/t• " + component.GetProperName(), false, 0f, null, null, null, true, false, false);
 	}
 
-	// Token: 0x06004FC3 RID: 20419 RVA: 0x000D86A6 File Offset: 0x000D68A6
 	public void SetStorages(Storage supply, Storage reaction, Storage waste)
 	{
 		this.supplyStorage = supply;
@@ -107,7 +92,6 @@ public class Reactor : StateMachineComponent<Reactor.StatesInstance>, IGameObjec
 		this.wasteStorage = waste;
 	}
 
-	// Token: 0x06004FC4 RID: 20420 RVA: 0x0027A18C File Offset: 0x0027838C
 	private void CheckLogicInputValueChanged(bool onLoad = false)
 	{
 		int num = 1;
@@ -129,12 +113,10 @@ public class Reactor : StateMachineComponent<Reactor.StatesInstance>, IGameObjec
 		}
 	}
 
-	// Token: 0x06004FC5 RID: 20421 RVA: 0x000AA038 File Offset: 0x000A8238
 	private void OnLogicConnectionChanged(int value, bool connection)
 	{
 	}
 
-	// Token: 0x06004FC6 RID: 20422 RVA: 0x0027A22C File Offset: 0x0027842C
 	private void CreateMeters()
 	{
 		this.temperatureMeter = new MeterController(base.GetComponent<KBatchedAnimController>(), "temperature_meter_target", "meter_temperature", Meter.Offset.Infront, Grid.SceneLayer.NoLayer, new string[]
@@ -147,7 +129,6 @@ public class Reactor : StateMachineComponent<Reactor.StatesInstance>, IGameObjec
 		});
 	}
 
-	// Token: 0x06004FC7 RID: 20423 RVA: 0x0027A294 File Offset: 0x00278494
 	private void TransferFuel()
 	{
 		PrimaryElement activeFuel = this.GetActiveFuel();
@@ -162,7 +143,6 @@ public class Reactor : StateMachineComponent<Reactor.StatesInstance>, IGameObjec
 		}
 	}
 
-	// Token: 0x06004FC8 RID: 20424 RVA: 0x0027A31C File Offset: 0x0027851C
 	private void TransferCoolant()
 	{
 		PrimaryElement activeCoolant = this.GetActiveCoolant();
@@ -177,7 +157,6 @@ public class Reactor : StateMachineComponent<Reactor.StatesInstance>, IGameObjec
 		}
 	}
 
-	// Token: 0x06004FC9 RID: 20425 RVA: 0x0027A398 File Offset: 0x00278598
 	private PrimaryElement GetStoredFuel()
 	{
 		GameObject gameObject = this.supplyStorage.FindFirst(this.fuelTag);
@@ -188,7 +167,6 @@ public class Reactor : StateMachineComponent<Reactor.StatesInstance>, IGameObjec
 		return null;
 	}
 
-	// Token: 0x06004FCA RID: 20426 RVA: 0x0027A3D4 File Offset: 0x002785D4
 	private PrimaryElement GetActiveFuel()
 	{
 		GameObject gameObject = this.reactionStorage.FindFirst(this.fuelTag);
@@ -199,7 +177,6 @@ public class Reactor : StateMachineComponent<Reactor.StatesInstance>, IGameObjec
 		return null;
 	}
 
-	// Token: 0x06004FCB RID: 20427 RVA: 0x0027A410 File Offset: 0x00278610
 	private PrimaryElement GetStoredCoolant()
 	{
 		GameObject gameObject = this.supplyStorage.FindFirst(this.coolantTag);
@@ -210,7 +187,6 @@ public class Reactor : StateMachineComponent<Reactor.StatesInstance>, IGameObjec
 		return null;
 	}
 
-	// Token: 0x06004FCC RID: 20428 RVA: 0x0027A44C File Offset: 0x0027864C
 	private PrimaryElement GetActiveCoolant()
 	{
 		GameObject gameObject = this.reactionStorage.FindFirst(this.coolantTag);
@@ -221,7 +197,6 @@ public class Reactor : StateMachineComponent<Reactor.StatesInstance>, IGameObjec
 		return null;
 	}
 
-	// Token: 0x06004FCD RID: 20429 RVA: 0x0027A488 File Offset: 0x00278688
 	private bool CanStartReaction()
 	{
 		PrimaryElement activeCoolant = this.GetActiveCoolant();
@@ -229,7 +204,6 @@ public class Reactor : StateMachineComponent<Reactor.StatesInstance>, IGameObjec
 		return activeCoolant && activeFuel && activeCoolant.Mass >= 30f && activeFuel.Mass >= 0.5f;
 	}
 
-	// Token: 0x06004FCE RID: 20430 RVA: 0x0027A4D0 File Offset: 0x002786D0
 	private void Cool(float dt)
 	{
 		PrimaryElement activeFuel = this.GetActiveFuel();
@@ -249,7 +223,6 @@ public class Reactor : StateMachineComponent<Reactor.StatesInstance>, IGameObjec
 		}
 	}
 
-	// Token: 0x06004FCF RID: 20431 RVA: 0x0027A538 File Offset: 0x00278738
 	private void React(float dt)
 	{
 		PrimaryElement activeFuel = this.GetActiveFuel();
@@ -261,21 +234,18 @@ public class Reactor : StateMachineComponent<Reactor.StatesInstance>, IGameObjec
 		}
 	}
 
-	// Token: 0x06004FD0 RID: 20432 RVA: 0x000D86BD File Offset: 0x000D68BD
 	private void SetEmitRads(float rads)
 	{
 		base.smi.master.radEmitter.emitRads = rads;
 		base.smi.master.radEmitter.Refresh();
 	}
 
-	// Token: 0x06004FD1 RID: 20433 RVA: 0x0027A59C File Offset: 0x0027879C
 	private bool ReadyToCool()
 	{
 		PrimaryElement activeCoolant = this.GetActiveCoolant();
 		return activeCoolant != null && activeCoolant.Mass > 0f;
 	}
 
-	// Token: 0x06004FD2 RID: 20434 RVA: 0x0027A5C8 File Offset: 0x002787C8
 	private void DumpSpentFuel()
 	{
 		PrimaryElement activeFuel = this.GetActiveFuel();
@@ -305,7 +275,6 @@ public class Reactor : StateMachineComponent<Reactor.StatesInstance>, IGameObjec
 		}
 	}
 
-	// Token: 0x06004FD3 RID: 20435 RVA: 0x0027A6C4 File Offset: 0x002788C4
 	private void UpdateVentStatus()
 	{
 		KSelectable component = base.GetComponent<KSelectable>();
@@ -325,7 +294,6 @@ public class Reactor : StateMachineComponent<Reactor.StatesInstance>, IGameObjec
 		}
 	}
 
-	// Token: 0x06004FD4 RID: 20436 RVA: 0x0027A77C File Offset: 0x0027897C
 	private void UpdateCoolantStatus()
 	{
 		KSelectable component = base.GetComponent<KSelectable>();
@@ -343,7 +311,6 @@ public class Reactor : StateMachineComponent<Reactor.StatesInstance>, IGameObjec
 		}
 	}
 
-	// Token: 0x06004FD5 RID: 20437 RVA: 0x0027A838 File Offset: 0x00278A38
 	private void InitVentCells()
 	{
 		if (this.ventCells == null)
@@ -364,7 +331,6 @@ public class Reactor : StateMachineComponent<Reactor.StatesInstance>, IGameObjec
 		}
 	}
 
-	// Token: 0x06004FD6 RID: 20438 RVA: 0x0027AAA4 File Offset: 0x00278CA4
 	public int GetVentCell()
 	{
 		this.InitVentCells();
@@ -378,7 +344,6 @@ public class Reactor : StateMachineComponent<Reactor.StatesInstance>, IGameObjec
 		return -1;
 	}
 
-	// Token: 0x06004FD7 RID: 20439 RVA: 0x0027AB04 File Offset: 0x00278D04
 	private bool ClearToVent()
 	{
 		this.InitVentCells();
@@ -392,100 +357,72 @@ public class Reactor : StateMachineComponent<Reactor.StatesInstance>, IGameObjec
 		return false;
 	}
 
-	// Token: 0x06004FD8 RID: 20440 RVA: 0x000CE880 File Offset: 0x000CCA80
 	public List<Descriptor> GetDescriptors(GameObject go)
 	{
 		return new List<Descriptor>();
 	}
 
-	// Token: 0x04003822 RID: 14370
 	[MyCmpGet]
 	private Operational operational;
 
-	// Token: 0x04003823 RID: 14371
 	[MyCmpGet]
 	private RadiationEmitter radEmitter;
 
-	// Token: 0x04003824 RID: 14372
 	[MyCmpGet]
 	private ManualDeliveryKG fuelDelivery;
 
-	// Token: 0x04003825 RID: 14373
 	private MeterController temperatureMeter;
 
-	// Token: 0x04003826 RID: 14374
 	private MeterController waterMeter;
 
-	// Token: 0x04003827 RID: 14375
 	private Storage supplyStorage;
 
-	// Token: 0x04003828 RID: 14376
 	private Storage reactionStorage;
 
-	// Token: 0x04003829 RID: 14377
 	private Storage wasteStorage;
 
-	// Token: 0x0400382A RID: 14378
 	private Tag fuelTag = SimHashes.EnrichedUranium.CreateTag();
 
-	// Token: 0x0400382B RID: 14379
 	private Tag coolantTag = GameTags.AnyWater;
 
-	// Token: 0x0400382C RID: 14380
 	private Vector3 dumpOffset = new Vector3(0f, 5f, 0f);
 
-	// Token: 0x0400382D RID: 14381
 	public static string MELTDOWN_STINGER = "Stinger_Loop_NuclearMeltdown";
 
-	// Token: 0x0400382E RID: 14382
 	private static float meterFrameScaleHack = 3f;
 
-	// Token: 0x0400382F RID: 14383
 	[Serialize]
 	private float spentFuel;
 
-	// Token: 0x04003830 RID: 14384
 	private float timeSinceMeltdownEmit;
 
-	// Token: 0x04003831 RID: 14385
 	private const float reactorMeltDownBonusMassAmount = 10f;
 
-	// Token: 0x04003832 RID: 14386
 	[MyCmpGet]
 	private LogicPorts logicPorts;
 
-	// Token: 0x04003833 RID: 14387
 	private LogicEventHandler fuelControlPort;
 
-	// Token: 0x04003834 RID: 14388
 	private bool fuelDeliveryEnabled = true;
 
-	// Token: 0x04003835 RID: 14389
 	public Guid refuelStausHandle;
 
-	// Token: 0x04003836 RID: 14390
 	[Serialize]
 	public int numCyclesRunning;
 
-	// Token: 0x04003837 RID: 14391
 	private float reactionMassTarget = 60f;
 
-	// Token: 0x04003838 RID: 14392
 	private int[] ventCells;
 
-	// Token: 0x02000F80 RID: 3968
 	public class StatesInstance : GameStateMachine<Reactor.States, Reactor.StatesInstance, Reactor, object>.GameInstance
 	{
-		// Token: 0x06004FDB RID: 20443 RVA: 0x000D8700 File Offset: 0x000D6900
 		public StatesInstance(Reactor smi) : base(smi)
 		{
 		}
 	}
 
-	// Token: 0x02000F81 RID: 3969
 	public class States : GameStateMachine<Reactor.States, Reactor.StatesInstance, Reactor>
 	{
-		// Token: 0x06004FDC RID: 20444 RVA: 0x0027ABB8 File Offset: 0x00278DB8
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			base.serializable = StateMachine.SerializeType.ParamsOnly;
@@ -665,81 +602,56 @@ public class Reactor : StateMachineComponent<Reactor.StatesInstance>, IGameObjec
 			}, UpdateRate.SIM_200ms, false);
 		}
 
-		// Token: 0x04003839 RID: 14393
 		public StateMachine<Reactor.States, Reactor.StatesInstance, Reactor, object>.Signal doVent;
 
-		// Token: 0x0400383A RID: 14394
 		public StateMachine<Reactor.States, Reactor.StatesInstance, Reactor, object>.BoolParameter canVent = new StateMachine<Reactor.States, Reactor.StatesInstance, Reactor, object>.BoolParameter(true);
 
-		// Token: 0x0400383B RID: 14395
 		public StateMachine<Reactor.States, Reactor.StatesInstance, Reactor, object>.BoolParameter reactionUnderway = new StateMachine<Reactor.States, Reactor.StatesInstance, Reactor, object>.BoolParameter();
 
-		// Token: 0x0400383C RID: 14396
 		public StateMachine<Reactor.States, Reactor.StatesInstance, Reactor, object>.FloatParameter meltdownMassRemaining = new StateMachine<Reactor.States, Reactor.StatesInstance, Reactor, object>.FloatParameter(0f);
 
-		// Token: 0x0400383D RID: 14397
 		public StateMachine<Reactor.States, Reactor.StatesInstance, Reactor, object>.FloatParameter timeSinceMeltdown = new StateMachine<Reactor.States, Reactor.StatesInstance, Reactor, object>.FloatParameter(0f);
 
-		// Token: 0x0400383E RID: 14398
 		public StateMachine<Reactor.States, Reactor.StatesInstance, Reactor, object>.BoolParameter meltingDown = new StateMachine<Reactor.States, Reactor.StatesInstance, Reactor, object>.BoolParameter(false);
 
-		// Token: 0x0400383F RID: 14399
 		public StateMachine<Reactor.States, Reactor.StatesInstance, Reactor, object>.BoolParameter melted = new StateMachine<Reactor.States, Reactor.StatesInstance, Reactor, object>.BoolParameter(false);
 
-		// Token: 0x04003840 RID: 14400
 		public GameStateMachine<Reactor.States, Reactor.StatesInstance, Reactor, object>.State off;
 
-		// Token: 0x04003841 RID: 14401
 		public GameStateMachine<Reactor.States, Reactor.StatesInstance, Reactor, object>.State off_pre;
 
-		// Token: 0x04003842 RID: 14402
 		public Reactor.States.ReactingStates on;
 
-		// Token: 0x04003843 RID: 14403
 		public Reactor.States.MeltdownStates meltdown;
 
-		// Token: 0x04003844 RID: 14404
 		public GameStateMachine<Reactor.States, Reactor.StatesInstance, Reactor, object>.State dead;
 
-		// Token: 0x02000F82 RID: 3970
 		public class ReactingStates : GameStateMachine<Reactor.States, Reactor.StatesInstance, Reactor, object>.State
 		{
-			// Token: 0x04003845 RID: 14405
 			public GameStateMachine<Reactor.States, Reactor.StatesInstance, Reactor, object>.State pre;
 
-			// Token: 0x04003846 RID: 14406
 			public GameStateMachine<Reactor.States, Reactor.StatesInstance, Reactor, object>.State reacting;
 
-			// Token: 0x04003847 RID: 14407
 			public GameStateMachine<Reactor.States, Reactor.StatesInstance, Reactor, object>.State pst;
 
-			// Token: 0x04003848 RID: 14408
 			public Reactor.States.ReactingStates.VentingStates venting;
 
-			// Token: 0x02000F83 RID: 3971
 			public class VentingStates : GameStateMachine<Reactor.States, Reactor.StatesInstance, Reactor, object>.State
 			{
-				// Token: 0x04003849 RID: 14409
 				public GameStateMachine<Reactor.States, Reactor.StatesInstance, Reactor, object>.State ventIssue;
 
-				// Token: 0x0400384A RID: 14410
 				public GameStateMachine<Reactor.States, Reactor.StatesInstance, Reactor, object>.State vent;
 			}
 		}
 
-		// Token: 0x02000F84 RID: 3972
 		public class MeltdownStates : GameStateMachine<Reactor.States, Reactor.StatesInstance, Reactor, object>.State
 		{
-			// Token: 0x0400384B RID: 14411
 			public GameStateMachine<Reactor.States, Reactor.StatesInstance, Reactor, object>.State almost_pre;
 
-			// Token: 0x0400384C RID: 14412
 			public GameStateMachine<Reactor.States, Reactor.StatesInstance, Reactor, object>.State almost_loop;
 
-			// Token: 0x0400384D RID: 14413
 			public GameStateMachine<Reactor.States, Reactor.StatesInstance, Reactor, object>.State pre;
 
-			// Token: 0x0400384E RID: 14414
 			public GameStateMachine<Reactor.States, Reactor.StatesInstance, Reactor, object>.State loop;
 		}
 	}

@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000371 RID: 881
 public class GraveConfig : IBuildingConfig
 {
-	// Token: 0x06000DFC RID: 3580 RVA: 0x0018132C File Offset: 0x0017F52C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "Grave";
@@ -28,7 +26,6 @@ public class GraveConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000DFD RID: 3581 RVA: 0x00181398 File Offset: 0x0017F598
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GraveConfig.STORAGE_OVERRIDE_ANIM_FILES = new KAnimFile[]
@@ -52,7 +49,6 @@ public class GraveConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().prefabInitFn += this.OnInit;
 	}
 
-	// Token: 0x06000DFE RID: 3582 RVA: 0x00181444 File Offset: 0x0017F644
 	private void OnInit(GameObject go)
 	{
 		GraveStorage graveStorage = go.AddOrGet<GraveStorage>();
@@ -67,30 +63,23 @@ public class GraveConfig : IBuildingConfig
 		});
 	}
 
-	// Token: 0x06000DFF RID: 3583 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000A66 RID: 2662
 	public const string ID = "Grave";
 
-	// Token: 0x04000A67 RID: 2663
 	public const string AnimFile = "gravestone_kanim";
 
-	// Token: 0x04000A68 RID: 2664
 	private static KAnimFile[] STORAGE_OVERRIDE_ANIM_FILES;
 
-	// Token: 0x04000A69 RID: 2665
 	private static readonly HashedString[] STORAGE_WORK_ANIMS = new HashedString[]
 	{
 		"working_pre"
 	};
 
-	// Token: 0x04000A6A RID: 2666
 	private static readonly HashedString STORAGE_PST_ANIM = HashedString.Invalid;
 
-	// Token: 0x04000A6B RID: 2667
 	private static readonly List<Storage.StoredItemModifier> StorageModifiers = new List<Storage.StoredItemModifier>
 	{
 		Storage.StoredItemModifier.Hide,

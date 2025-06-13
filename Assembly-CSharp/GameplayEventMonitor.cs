@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-// Token: 0x020015B7 RID: 5559
 public class GameplayEventMonitor : GameStateMachine<GameplayEventMonitor, GameplayEventMonitor.Instance, IStateMachineTarget, GameplayEventMonitor.Def>
 {
-	// Token: 0x06007376 RID: 29558 RVA: 0x0030F674 File Offset: 0x0030D874
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		base.InitializeStates(out default_state);
@@ -30,19 +28,16 @@ public class GameplayEventMonitor : GameStateMachine<GameplayEventMonitor, Gamep
 		this.activeState.seenAllEvents.EventTransition(GameHashes.GameplayEventMonitorStart, this.activeState.unseenEvents, GameStateMachine<GameplayEventMonitor, GameplayEventMonitor.Instance, IStateMachineTarget, GameplayEventMonitor.Def>.Not(new StateMachine<GameplayEventMonitor, GameplayEventMonitor.Instance, IStateMachineTarget, GameplayEventMonitor.Def>.Transition.ConditionCallback(this.SeenAll))).Enter(new StateMachine<GameplayEventMonitor, GameplayEventMonitor.Instance, IStateMachineTarget, GameplayEventMonitor.Def>.State.Callback(this.UpdateEventDisplay));
 	}
 
-	// Token: 0x06007377 RID: 29559 RVA: 0x000F0270 File Offset: 0x000EE470
 	private bool HasEvents(GameplayEventMonitor.Instance smi)
 	{
 		return smi.events.Count > 0;
 	}
 
-	// Token: 0x06007378 RID: 29560 RVA: 0x000F0280 File Offset: 0x000EE480
 	private bool SeenAll(GameplayEventMonitor.Instance smi)
 	{
 		return smi.UnseenCount() == 0;
 	}
 
-	// Token: 0x06007379 RID: 29561 RVA: 0x000F028B File Offset: 0x000EE48B
 	private void UpdateFX(GameplayEventMonitor.Instance smi)
 	{
 		if (smi.fx != null)
@@ -51,7 +46,6 @@ public class GameplayEventMonitor : GameStateMachine<GameplayEventMonitor, Gamep
 		}
 	}
 
-	// Token: 0x0600737A RID: 29562 RVA: 0x000F02B8 File Offset: 0x000EE4B8
 	private GameplayEventFX.Instance CreateFX(GameplayEventMonitor.Instance smi)
 	{
 		if (!smi.isMasterNull)
@@ -62,7 +56,6 @@ public class GameplayEventMonitor : GameStateMachine<GameplayEventMonitor, Gamep
 		return null;
 	}
 
-	// Token: 0x0600737B RID: 29563 RVA: 0x0030F7F4 File Offset: 0x0030D9F4
 	public void UpdateEventDisplay(GameplayEventMonitor.Instance smi)
 	{
 		if (smi.events.Count == 0 || smi.UnseenCount() > 0)
@@ -87,37 +80,28 @@ public class GameplayEventMonitor : GameStateMachine<GameplayEventMonitor, Gamep
 		}
 	}
 
-	// Token: 0x040056A3 RID: 22179
 	public GameStateMachine<GameplayEventMonitor, GameplayEventMonitor.Instance, IStateMachineTarget, GameplayEventMonitor.Def>.State idle;
 
-	// Token: 0x040056A4 RID: 22180
 	public GameplayEventMonitor.ActiveState activeState;
 
-	// Token: 0x020015B8 RID: 5560
 	public class Def : StateMachine.BaseDef
 	{
 	}
 
-	// Token: 0x020015B9 RID: 5561
 	public class ActiveState : GameStateMachine<GameplayEventMonitor, GameplayEventMonitor.Instance, IStateMachineTarget, GameplayEventMonitor.Def>.State
 	{
-		// Token: 0x040056A5 RID: 22181
 		public GameStateMachine<GameplayEventMonitor, GameplayEventMonitor.Instance, IStateMachineTarget, GameplayEventMonitor.Def>.State unseenEvents;
 
-		// Token: 0x040056A6 RID: 22182
 		public GameStateMachine<GameplayEventMonitor, GameplayEventMonitor.Instance, IStateMachineTarget, GameplayEventMonitor.Def>.State seenAllEvents;
 	}
 
-	// Token: 0x020015BA RID: 5562
 	public new class Instance : GameStateMachine<GameplayEventMonitor, GameplayEventMonitor.Instance, IStateMachineTarget, GameplayEventMonitor.Def>.GameInstance
 	{
-		// Token: 0x06007380 RID: 29568 RVA: 0x000F0308 File Offset: 0x000EE508
 		public Instance(IStateMachineTarget master, GameplayEventMonitor.Def def) : base(master, def)
 		{
 			NameDisplayScreen.Instance.RegisterComponent(base.gameObject, this, false);
 		}
 
-		// Token: 0x06007381 RID: 29569 RVA: 0x0030F8D0 File Offset: 0x0030DAD0
 		public void OnMonitorStart(object data)
 		{
 			GameplayEventInstance gameplayEventInstance = data as GameplayEventInstance;
@@ -130,7 +114,6 @@ public class GameplayEventMonitor : GameStateMachine<GameplayEventMonitor, Gamep
 			base.smi.sm.UpdateEventDisplay(base.smi);
 		}
 
-		// Token: 0x06007382 RID: 29570 RVA: 0x0030F938 File Offset: 0x0030DB38
 		public void OnMonitorEnd(object data)
 		{
 			GameplayEventInstance gameplayEventInstance = data as GameplayEventInstance;
@@ -147,7 +130,6 @@ public class GameplayEventMonitor : GameStateMachine<GameplayEventMonitor, Gamep
 			}
 		}
 
-		// Token: 0x06007383 RID: 29571 RVA: 0x0030F9C4 File Offset: 0x0030DBC4
 		public void OnSelect(object data)
 		{
 			if (!(bool)data)
@@ -169,16 +151,13 @@ public class GameplayEventMonitor : GameStateMachine<GameplayEventMonitor, Gamep
 			}
 		}
 
-		// Token: 0x06007384 RID: 29572 RVA: 0x000F032F File Offset: 0x000EE52F
 		public int UnseenCount()
 		{
 			return this.events.Count((GameplayEventInstance evt) => !evt.seenNotification);
 		}
 
-		// Token: 0x040056A7 RID: 22183
 		public List<GameplayEventInstance> events = new List<GameplayEventInstance>();
 
-		// Token: 0x040056A8 RID: 22184
 		public GameplayEventFX.Instance fx;
 	}
 }

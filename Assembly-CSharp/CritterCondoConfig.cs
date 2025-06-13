@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200008E RID: 142
 public class CritterCondoConfig : IBuildingConfig
 {
-	// Token: 0x06000240 RID: 576 RVA: 0x0014FE14 File Offset: 0x0014E014
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "CritterCondo";
@@ -37,17 +35,14 @@ public class CritterCondoConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000241 RID: 577 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 	}
 
-	// Token: 0x06000242 RID: 578 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 	}
 
-	// Token: 0x06000243 RID: 579 RVA: 0x0014FEB0 File Offset: 0x0014E0B0
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		RoomTracker roomTracker = go.AddOrGet<RoomTracker>();
@@ -64,14 +59,11 @@ public class CritterCondoConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.RanchStationType, false);
 	}
 
-	// Token: 0x06000244 RID: 580 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void ConfigurePost(BuildingDef def)
 	{
 	}
 
-	// Token: 0x04000170 RID: 368
 	public const string ID = "CritterCondo";
 
-	// Token: 0x04000171 RID: 369
 	public const float EFFECT_DURATION_IN_SECONDS = 600f;
 }

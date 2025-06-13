@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000D9E RID: 3486
 [AddComponentMenu("KMonoBehaviour/scripts/FabricatorIngredientStatusManager")]
 public class FabricatorIngredientStatusManager : KMonoBehaviour, ISim1000ms
 {
-	// Token: 0x060043C0 RID: 17344 RVA: 0x000D0394 File Offset: 0x000CE594
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -15,7 +13,6 @@ public class FabricatorIngredientStatusManager : KMonoBehaviour, ISim1000ms
 		this.InitializeBalances();
 	}
 
-	// Token: 0x060043C1 RID: 17345 RVA: 0x00253ED4 File Offset: 0x002520D4
 	private void InitializeBalances()
 	{
 		foreach (ComplexRecipe complexRecipe in this.fabricator.GetRecipes())
@@ -28,13 +25,11 @@ public class FabricatorIngredientStatusManager : KMonoBehaviour, ISim1000ms
 		}
 	}
 
-	// Token: 0x060043C2 RID: 17346 RVA: 0x000D03BA File Offset: 0x000CE5BA
 	public void Sim1000ms(float dt)
 	{
 		this.RefreshStatusItems();
 	}
 
-	// Token: 0x060043C3 RID: 17347 RVA: 0x00253F4C File Offset: 0x0025214C
 	private void RefreshStatusItems()
 	{
 		foreach (KeyValuePair<ComplexRecipe, Guid> keyValuePair in this.statusItems)
@@ -100,7 +95,6 @@ public class FabricatorIngredientStatusManager : KMonoBehaviour, ISim1000ms
 		}
 	}
 
-	// Token: 0x060043C4 RID: 17348 RVA: 0x002542CC File Offset: 0x002524CC
 	private bool ChangeRecipeRequiredResourceBalance(ComplexRecipe recipe, Tag tag, float newBalance)
 	{
 		bool result = false;
@@ -112,18 +106,13 @@ public class FabricatorIngredientStatusManager : KMonoBehaviour, ISim1000ms
 		return result;
 	}
 
-	// Token: 0x04002EE9 RID: 12009
 	private KSelectable selectable;
 
-	// Token: 0x04002EEA RID: 12010
 	private ComplexFabricator fabricator;
 
-	// Token: 0x04002EEB RID: 12011
 	private Dictionary<ComplexRecipe, Guid> statusItems = new Dictionary<ComplexRecipe, Guid>();
 
-	// Token: 0x04002EEC RID: 12012
 	private Dictionary<ComplexRecipe, Dictionary<Tag, float>> recipeRequiredResourceBalances = new Dictionary<ComplexRecipe, Dictionary<Tag, float>>();
 
-	// Token: 0x04002EED RID: 12013
 	private List<ComplexRecipe> deadOrderKeys = new List<ComplexRecipe>();
 }

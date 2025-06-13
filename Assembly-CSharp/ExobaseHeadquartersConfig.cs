@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000CA RID: 202
 public class ExobaseHeadquartersConfig : IBuildingConfig
 {
-	// Token: 0x06000357 RID: 855 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06000358 RID: 856 RVA: 0x00156794 File Offset: 0x00154994
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "ExobaseHeadquarters";
@@ -39,7 +36,6 @@ public class ExobaseHeadquartersConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000359 RID: 857 RVA: 0x00156868 File Offset: 0x00154A68
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		LoreBearerUtil.AddLoreTo(go);
@@ -99,11 +95,9 @@ public class ExobaseHeadquartersConfig : IBuildingConfig
 		activatable.SetWorkTime(15f);
 	}
 
-	// Token: 0x0600035A RID: 858 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x0400020D RID: 525
 	public const string ID = "ExobaseHeadquarters";
 }

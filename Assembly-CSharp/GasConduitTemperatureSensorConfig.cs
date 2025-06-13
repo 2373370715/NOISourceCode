@@ -4,11 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000057 RID: 87
 public class GasConduitTemperatureSensorConfig : ConduitSensorConfig
 {
-	// Token: 0x1700000E RID: 14
-	// (get) Token: 0x06000199 RID: 409 RVA: 0x000AA7E7 File Offset: 0x000A89E7
 	protected override ConduitType ConduitType
 	{
 		get
@@ -17,7 +14,6 @@ public class GasConduitTemperatureSensorConfig : ConduitSensorConfig
 		}
 	}
 
-	// Token: 0x0600019A RID: 410 RVA: 0x0014D51C File Offset: 0x0014B71C
 	public override BuildingDef CreateBuildingDef()
 	{
 		BuildingDef result = base.CreateBuildingDef(GasConduitTemperatureSensorConfig.ID, "gas_temperature_sensor_kanim", TUNING.BUILDINGS.CONSTRUCTION_MASS_KG.TIER0, MATERIALS.REFINED_METALS, new List<LogicPorts.Port>
@@ -28,7 +24,6 @@ public class GasConduitTemperatureSensorConfig : ConduitSensorConfig
 		return result;
 	}
 
-	// Token: 0x0600019B RID: 411 RVA: 0x0014D590 File Offset: 0x0014B790
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		base.DoPostConfigureComplete(go);
@@ -43,6 +38,5 @@ public class GasConduitTemperatureSensorConfig : ConduitSensorConfig
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayInFrontOfConduits, false);
 	}
 
-	// Token: 0x040000F0 RID: 240
 	public static string ID = "GasConduitTemperatureSensor";
 }

@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000284 RID: 644
 public class FloorLampConfig : IBuildingConfig
 {
-	// Token: 0x06000960 RID: 2400 RVA: 0x0016EF68 File Offset: 0x0016D168
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "FloorLamp";
@@ -28,7 +26,6 @@ public class FloorLampConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000961 RID: 2401 RVA: 0x0016EFE4 File Offset: 0x0016D1E4
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 		LightShapePreview lightShapePreview = go.AddComponent<LightShapePreview>();
@@ -38,13 +35,11 @@ public class FloorLampConfig : IBuildingConfig
 		lightShapePreview.offset = new CellOffset((int)def.BuildingComplete.GetComponent<Light2D>().Offset.x, (int)def.BuildingComplete.GetComponent<Light2D>().Offset.y);
 	}
 
-	// Token: 0x06000962 RID: 2402 RVA: 0x000AA614 File Offset: 0x000A8814
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.LightSource, false);
 	}
 
-	// Token: 0x06000963 RID: 2403 RVA: 0x0016F04C File Offset: 0x0016D24C
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<EnergyConsumer>();
@@ -61,6 +56,5 @@ public class FloorLampConfig : IBuildingConfig
 		go.AddOrGetDef<LightController.Def>();
 	}
 
-	// Token: 0x04000736 RID: 1846
 	public const string ID = "FloorLamp";
 }

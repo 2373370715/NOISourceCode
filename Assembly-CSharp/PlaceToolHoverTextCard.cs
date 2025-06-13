@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001B88 RID: 7048
 public class PlaceToolHoverTextCard : HoverTextConfiguration
 {
-	// Token: 0x060093E7 RID: 37863 RVA: 0x0039BAA4 File Offset: 0x00399CA4
 	public override void UpdateHoverElements(List<KSelectable> hoverObjects)
 	{
 		HoverTextScreen instance = HoverTextScreen.Instance;
@@ -38,6 +36,5 @@ public class PlaceToolHoverTextCard : HoverTextConfiguration
 		hoverTextDrawer.EndDrawing();
 	}
 
-	// Token: 0x04007033 RID: 28723
 	public Placeable currentPlaceable;
 }

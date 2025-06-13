@@ -6,37 +6,31 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x020017F0 RID: 6128
 [SerializationConfig(MemberSerialization.OptIn)]
 [AddComponentMenu("KMonoBehaviour/scripts/Research")]
 public class Research : KMonoBehaviour, ISaveLoadable
 {
-	// Token: 0x06007E0C RID: 32268 RVA: 0x000F781B File Offset: 0x000F5A1B
 	public static void DestroyInstance()
 	{
 		Research.Instance = null;
 	}
 
-	// Token: 0x06007E0D RID: 32269 RVA: 0x003356CC File Offset: 0x003338CC
 	public TechInstance GetTechInstance(string techID)
 	{
 		return this.techs.Find((TechInstance match) => match.tech.Id == techID);
 	}
 
-	// Token: 0x06007E0E RID: 32270 RVA: 0x000F7823 File Offset: 0x000F5A23
 	public bool IsBeingResearched(Tech tech)
 	{
 		return this.activeResearch != null && tech != null && this.activeResearch.tech == tech;
 	}
 
-	// Token: 0x06007E0F RID: 32271 RVA: 0x000F7840 File Offset: 0x000F5A40
 	protected override void OnPrefabInit()
 	{
 		Research.Instance = this;
 		this.researchTypes = new ResearchTypes();
 	}
 
-	// Token: 0x06007E10 RID: 32272 RVA: 0x00335700 File Offset: 0x00333900
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -58,19 +52,16 @@ public class Research : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x06007E11 RID: 32273 RVA: 0x000F7853 File Offset: 0x000F5A53
 	public ResearchType GetResearchType(string id)
 	{
 		return this.researchTypes.GetResearchType(id);
 	}
 
-	// Token: 0x06007E12 RID: 32274 RVA: 0x000F7861 File Offset: 0x000F5A61
 	public TechInstance GetActiveResearch()
 	{
 		return this.activeResearch;
 	}
 
-	// Token: 0x06007E13 RID: 32275 RVA: 0x000F7869 File Offset: 0x000F5A69
 	public TechInstance GetTargetResearch()
 	{
 		if (this.queuedTech != null && this.queuedTech.Count > 0)
@@ -80,7 +71,6 @@ public class Research : KMonoBehaviour, ISaveLoadable
 		return null;
 	}
 
-	// Token: 0x06007E14 RID: 32276 RVA: 0x003357CC File Offset: 0x003339CC
 	public TechInstance Get(Tech tech)
 	{
 		foreach (TechInstance techInstance in this.techs)
@@ -93,7 +83,6 @@ public class Research : KMonoBehaviour, ISaveLoadable
 		return null;
 	}
 
-	// Token: 0x06007E15 RID: 32277 RVA: 0x00335828 File Offset: 0x00333A28
 	public TechInstance GetOrAdd(Tech tech)
 	{
 		TechInstance techInstance = this.techs.Find((TechInstance tc) => tc.tech == tech);
@@ -106,7 +95,6 @@ public class Research : KMonoBehaviour, ISaveLoadable
 		return techInstance2;
 	}
 
-	// Token: 0x06007E16 RID: 32278 RVA: 0x00335878 File Offset: 0x00333A78
 	public void GetNextTech()
 	{
 		if (this.queuedTech.Count > 0)
@@ -121,7 +109,6 @@ public class Research : KMonoBehaviour, ISaveLoadable
 		this.SetActiveResearch(null, false);
 	}
 
-	// Token: 0x06007E17 RID: 32279 RVA: 0x003358DC File Offset: 0x00333ADC
 	private void AddTechToQueue(Tech tech)
 	{
 		TechInstance orAdd = this.GetOrAdd(tech);
@@ -135,7 +122,6 @@ public class Research : KMonoBehaviour, ISaveLoadable
 		});
 	}
 
-	// Token: 0x06007E18 RID: 32280 RVA: 0x00335930 File Offset: 0x00333B30
 	public void CancelResearch(Tech tech, bool clickedEntry = true)
 	{
 		Research.<>c__DisplayClass26_0 CS$<>8__locals1 = new Research.<>c__DisplayClass26_0();
@@ -163,7 +149,6 @@ public class Research : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x06007E19 RID: 32281 RVA: 0x00335A28 File Offset: 0x00333C28
 	private void NotifyResearchCenters(GameHashes hash, object data)
 	{
 		foreach (object obj in Components.ResearchCenters)
@@ -173,7 +158,6 @@ public class Research : KMonoBehaviour, ISaveLoadable
 		base.Trigger((int)hash, data);
 	}
 
-	// Token: 0x06007E1A RID: 32282 RVA: 0x00335A8C File Offset: 0x00333C8C
 	public void SetActiveResearch(Tech tech, bool clearQueue = false)
 	{
 		if (clearQueue)
@@ -203,7 +187,6 @@ public class Research : KMonoBehaviour, ISaveLoadable
 		this.UpdateResearcherRoleNotification();
 	}
 
-	// Token: 0x06007E1B RID: 32283 RVA: 0x00335B40 File Offset: 0x00333D40
 	private void UpdateResearcherRoleNotification()
 	{
 		if (this.NoResearcherRoleNotification != null)
@@ -238,14 +221,12 @@ public class Research : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x06007E1C RID: 32284 RVA: 0x00335DC8 File Offset: 0x00333FC8
 	private string NoResearcherRoleTooltip(List<Notification> list, object data)
 	{
 		Skill skill = (Skill)data;
 		return RESEARCH.MESSAGING.NO_RESEARCHER_SKILL_TOOLTIP.Replace("{ResearchType}", skill.Name);
 	}
 
-	// Token: 0x06007E1D RID: 32285 RVA: 0x00335DF4 File Offset: 0x00333FF4
 	public void AddResearchPoints(string researchTypeID, float points)
 	{
 		if (!this.UseGlobalPointInventory && this.activeResearch == null)
@@ -258,7 +239,6 @@ public class Research : KMonoBehaviour, ISaveLoadable
 		this.NotifyResearchCenters(GameHashes.ResearchPointsChanged, null);
 	}
 
-	// Token: 0x06007E1E RID: 32286 RVA: 0x00335E50 File Offset: 0x00334050
 	private void CheckBuyResearch()
 	{
 		if (this.activeResearch != null)
@@ -277,7 +257,6 @@ public class Research : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x06007E1F RID: 32287 RVA: 0x00335F20 File Offset: 0x00334120
 	protected override void OnCleanUp()
 	{
 		if (Game.Instance != null && this.skillsUpdateHandle != -1)
@@ -289,7 +268,6 @@ public class Research : KMonoBehaviour, ISaveLoadable
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06007E20 RID: 32288 RVA: 0x00335F88 File Offset: 0x00334188
 	public void CompleteQueue()
 	{
 		while (this.queuedTech.Count > 0)
@@ -301,13 +279,11 @@ public class Research : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x06007E21 RID: 32289 RVA: 0x000F789B File Offset: 0x000F5A9B
 	public List<TechInstance> GetResearchQueue()
 	{
 		return new List<TechInstance>(this.queuedTech);
 	}
 
-	// Token: 0x06007E22 RID: 32290 RVA: 0x00336004 File Offset: 0x00334204
 	[OnSerializing]
 	internal void OnSerializing()
 	{
@@ -335,7 +311,6 @@ public class Research : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x06007E23 RID: 32291 RVA: 0x003360FC File Offset: 0x003342FC
 	[OnDeserialized]
 	internal void OnDeserialized()
 	{
@@ -360,13 +335,11 @@ public class Research : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x06007E24 RID: 32292 RVA: 0x000F78A8 File Offset: 0x000F5AA8
 	private void OnRolesUpdated(object data)
 	{
 		this.UpdateResearcherRoleNotification();
 	}
 
-	// Token: 0x06007E25 RID: 32293 RVA: 0x003361D0 File Offset: 0x003343D0
 	public string GetMissingResearchBuildingName()
 	{
 		foreach (KeyValuePair<string, float> keyValuePair in this.activeResearch.tech.costsByResearchTypeID)
@@ -402,7 +375,6 @@ public class Research : KMonoBehaviour, ISaveLoadable
 		return null;
 	}
 
-	// Token: 0x06007E26 RID: 32294 RVA: 0x00336300 File Offset: 0x00334500
 	private void CheckResearchBuildings(object data)
 	{
 		if (this.activeResearch == null)
@@ -418,58 +390,41 @@ public class Research : KMonoBehaviour, ISaveLoadable
 		this.notifier.Add(this.MissingResearchStation, "");
 	}
 
-	// Token: 0x04005FD3 RID: 24531
 	public static Research Instance;
 
-	// Token: 0x04005FD4 RID: 24532
 	[MyCmpAdd]
 	private Notifier notifier;
 
-	// Token: 0x04005FD5 RID: 24533
 	private List<TechInstance> techs = new List<TechInstance>();
 
-	// Token: 0x04005FD6 RID: 24534
 	private List<TechInstance> queuedTech = new List<TechInstance>();
 
-	// Token: 0x04005FD7 RID: 24535
 	private TechInstance activeResearch;
 
-	// Token: 0x04005FD8 RID: 24536
 	private Notification NoResearcherRoleNotification;
 
-	// Token: 0x04005FD9 RID: 24537
 	private Notification MissingResearchStation = new Notification(RESEARCH.MESSAGING.MISSING_RESEARCH_STATION, NotificationType.Bad, (List<Notification> list, object data) => RESEARCH.MESSAGING.MISSING_RESEARCH_STATION_TOOLTIP.ToString().Replace("{0}", Research.Instance.GetMissingResearchBuildingName()), null, false, 11f, null, null, null, true, false, false);
 
-	// Token: 0x04005FDA RID: 24538
 	private List<IResearchCenter> researchCenterPrefabs = new List<IResearchCenter>();
 
-	// Token: 0x04005FDB RID: 24539
 	protected int skillsUpdateHandle = -1;
 
-	// Token: 0x04005FDC RID: 24540
 	public ResearchTypes researchTypes;
 
-	// Token: 0x04005FDD RID: 24541
 	public bool UseGlobalPointInventory;
 
-	// Token: 0x04005FDE RID: 24542
 	[Serialize]
 	public ResearchPointInventory globalPointInventory;
 
-	// Token: 0x04005FDF RID: 24543
 	[Serialize]
 	private Research.SaveData saveData;
 
-	// Token: 0x020017F1 RID: 6129
 	private struct SaveData
 	{
-		// Token: 0x04005FE0 RID: 24544
 		public string activeResearchId;
 
-		// Token: 0x04005FE1 RID: 24545
 		public string targetResearchId;
 
-		// Token: 0x04005FE2 RID: 24546
 		public TechInstance.SaveData[] techs;
 	}
 }

@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000543 RID: 1347
 public class PropSurfaceSatellite1Config : IEntityConfig
 {
-	// Token: 0x06001725 RID: 5925 RVA: 0x001A4A80 File Offset: 0x001A2C80
 	public GameObject CreatePrefab()
 	{
 		string id = "PropSurfaceSatellite1";
@@ -39,7 +37,6 @@ public class PropSurfaceSatellite1Config : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06001726 RID: 5926 RVA: 0x001A4B60 File Offset: 0x001A2D60
 	public static string[][] GetLockerBaseContents()
 	{
 		return new string[][]
@@ -66,7 +63,6 @@ public class PropSurfaceSatellite1Config : IEntityConfig
 		};
 	}
 
-	// Token: 0x06001727 RID: 5927 RVA: 0x001A4BE0 File Offset: 0x001A2DE0
 	public void OnPrefabInit(GameObject inst)
 	{
 		SetLocker component = inst.GetComponent<SetLocker>();
@@ -84,7 +80,6 @@ public class PropSurfaceSatellite1Config : IEntityConfig
 		radiationEmitter.emitRads = 2400f / ((float)radiationEmitter.emitRadiusX / 6f);
 	}
 
-	// Token: 0x06001728 RID: 5928 RVA: 0x001A4C58 File Offset: 0x001A2E58
 	public void OnSpawn(GameObject inst)
 	{
 		RadiationEmitter component = inst.GetComponent<RadiationEmitter>();
@@ -94,6 +89,5 @@ public class PropSurfaceSatellite1Config : IEntityConfig
 		}
 	}
 
-	// Token: 0x04000F48 RID: 3912
 	public const string ID = "PropSurfaceSatellite1";
 }

@@ -6,22 +6,15 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x02002075 RID: 8309
 public class SpeedControlScreen : KScreen
 {
-	// Token: 0x17000B54 RID: 2900
-	// (get) Token: 0x0600B0D9 RID: 45273 RVA: 0x001178B3 File Offset: 0x00115AB3
-	// (set) Token: 0x0600B0DA RID: 45274 RVA: 0x001178BA File Offset: 0x00115ABA
 	public static SpeedControlScreen Instance { get; private set; }
 
-	// Token: 0x0600B0DB RID: 45275 RVA: 0x001178C2 File Offset: 0x00115AC2
 	public static void DestroyInstance()
 	{
 		SpeedControlScreen.Instance = null;
 	}
 
-	// Token: 0x17000B55 RID: 2901
-	// (get) Token: 0x0600B0DC RID: 45276 RVA: 0x001178CA File Offset: 0x00115ACA
 	public bool IsPaused
 	{
 		get
@@ -30,7 +23,6 @@ public class SpeedControlScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600B0DD RID: 45277 RVA: 0x00434360 File Offset: 0x00432560
 	protected override void OnPrefabInit()
 	{
 		SpeedControlScreen.Instance = this;
@@ -78,7 +70,6 @@ public class SpeedControlScreen : KScreen
 		KInputManager.InputChange.AddListener(new UnityAction(this.ResetToolTip));
 	}
 
-	// Token: 0x0600B0DE RID: 45278 RVA: 0x001178D5 File Offset: 0x00115AD5
 	protected override void OnSpawn()
 	{
 		if (SaveGame.Instance != null)
@@ -90,20 +81,17 @@ public class SpeedControlScreen : KScreen
 		this.OnChanged();
 	}
 
-	// Token: 0x0600B0DF RID: 45279 RVA: 0x0011790C File Offset: 0x00115B0C
 	protected override void OnForcedCleanUp()
 	{
 		KInputManager.InputChange.RemoveListener(new UnityAction(this.ResetToolTip));
 		base.OnForcedCleanUp();
 	}
 
-	// Token: 0x0600B0E0 RID: 45280 RVA: 0x0011792A File Offset: 0x00115B2A
 	public int GetSpeed()
 	{
 		return this.speed;
 	}
 
-	// Token: 0x0600B0E1 RID: 45281 RVA: 0x00434504 File Offset: 0x00432704
 	public void SetSpeed(int Speed)
 	{
 		this.speed = Speed % 3;
@@ -131,7 +119,6 @@ public class SpeedControlScreen : KScreen
 		this.OnSpeedChange();
 	}
 
-	// Token: 0x0600B0E2 RID: 45282 RVA: 0x00117932 File Offset: 0x00115B32
 	public void ToggleRidiculousSpeed()
 	{
 		if (this.ultraSpeed == 3f)
@@ -146,7 +133,6 @@ public class SpeedControlScreen : KScreen
 		this.OnChanged();
 	}
 
-	// Token: 0x0600B0E3 RID: 45283 RVA: 0x00117966 File Offset: 0x00115B66
 	public void TogglePause(bool playsound = true)
 	{
 		if (this.IsPaused)
@@ -157,7 +143,6 @@ public class SpeedControlScreen : KScreen
 		this.Pause(playsound, false);
 	}
 
-	// Token: 0x0600B0E4 RID: 45284 RVA: 0x004345D0 File Offset: 0x004327D0
 	public void ResetToolTip()
 	{
 		this.speedButtonWidget_slow.GetComponent<ToolTip>().ClearMultiStringTooltip();
@@ -176,7 +161,6 @@ public class SpeedControlScreen : KScreen
 		this.pauseButtonWidget.GetComponent<ToolTip>().AddMultiStringTooltip(GameUtil.ReplaceHotkeyString(UI.TOOLTIPS.PAUSE, global::Action.TogglePause), this.TooltipTextStyle);
 	}
 
-	// Token: 0x0600B0E5 RID: 45285 RVA: 0x00434700 File Offset: 0x00432900
 	public void Pause(bool playSound = true, bool isCrashed = false)
 	{
 		this.pauseCount++;
@@ -206,7 +190,6 @@ public class SpeedControlScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600B0E6 RID: 45286 RVA: 0x004347D4 File Offset: 0x004329D4
 	public void Unpause(bool playSound = true)
 	{
 		this.pauseCount = Mathf.Max(0, this.pauseCount - 1);
@@ -230,19 +213,16 @@ public class SpeedControlScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600B0E7 RID: 45287 RVA: 0x00117980 File Offset: 0x00115B80
 	private void OnPause()
 	{
 		this.OnChanged();
 	}
 
-	// Token: 0x0600B0E8 RID: 45288 RVA: 0x00117980 File Offset: 0x00115B80
 	private void OnPlay()
 	{
 		this.OnChanged();
 	}
 
-	// Token: 0x0600B0E9 RID: 45289 RVA: 0x00117988 File Offset: 0x00115B88
 	public void OnSpeedChange()
 	{
 		if (Game.IsQuitting())
@@ -252,7 +232,6 @@ public class SpeedControlScreen : KScreen
 		this.OnChanged();
 	}
 
-	// Token: 0x0600B0EA RID: 45290 RVA: 0x004348A4 File Offset: 0x00432AA4
 	private void OnChanged()
 	{
 		if (this.IsPaused)
@@ -276,7 +255,6 @@ public class SpeedControlScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600B0EB RID: 45291 RVA: 0x00434904 File Offset: 0x00432B04
 	public override void OnKeyDown(KButtonEvent e)
 	{
 		if (e.TryConsume(global::Action.TogglePause))
@@ -306,7 +284,6 @@ public class SpeedControlScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600B0EC RID: 45292 RVA: 0x004349C4 File Offset: 0x00432BC4
 	private void PlaySpeedChangeSound(float speed)
 	{
 		string sound = GlobalAssets.GetSound("Speed_Change", false);
@@ -318,7 +295,6 @@ public class SpeedControlScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600B0ED RID: 45293 RVA: 0x00434A0C File Offset: 0x00432C0C
 	public void DebugStepFrame()
 	{
 		DebugUtil.LogArgs(new object[]
@@ -330,7 +306,6 @@ public class SpeedControlScreen : KScreen
 		base.StartCoroutine(this.DebugStepFrameDelay());
 	}
 
-	// Token: 0x0600B0EE RID: 45294 RVA: 0x00117998 File Offset: 0x00115B98
 	private IEnumerator DebugStepFrameDelay()
 	{
 		yield return null;
@@ -344,61 +319,42 @@ public class SpeedControlScreen : KScreen
 		yield break;
 	}
 
-	// Token: 0x04008B4C RID: 35660
 	public GameObject playButtonWidget;
 
-	// Token: 0x04008B4D RID: 35661
 	public GameObject pauseButtonWidget;
 
-	// Token: 0x04008B4E RID: 35662
 	public Image playIcon;
 
-	// Token: 0x04008B4F RID: 35663
 	public Image pauseIcon;
 
-	// Token: 0x04008B50 RID: 35664
 	[SerializeField]
 	private TextStyleSetting TooltipTextStyle;
 
-	// Token: 0x04008B51 RID: 35665
 	public GameObject speedButtonWidget_slow;
 
-	// Token: 0x04008B52 RID: 35666
 	public GameObject speedButtonWidget_medium;
 
-	// Token: 0x04008B53 RID: 35667
 	public GameObject speedButtonWidget_fast;
 
-	// Token: 0x04008B54 RID: 35668
 	public GameObject mainMenuWidget;
 
-	// Token: 0x04008B55 RID: 35669
 	public float normalSpeed;
 
-	// Token: 0x04008B56 RID: 35670
 	public float fastSpeed;
 
-	// Token: 0x04008B57 RID: 35671
 	public float ultraSpeed;
 
-	// Token: 0x04008B58 RID: 35672
 	private KToggle pauseButton;
 
-	// Token: 0x04008B59 RID: 35673
 	private KToggle slowButton;
 
-	// Token: 0x04008B5A RID: 35674
 	private KToggle mediumButton;
 
-	// Token: 0x04008B5B RID: 35675
 	private KToggle fastButton;
 
-	// Token: 0x04008B5C RID: 35676
 	private int speed;
 
-	// Token: 0x04008B5D RID: 35677
 	private int pauseCount;
 
-	// Token: 0x04008B5F RID: 35679
 	private float stepTime;
 }

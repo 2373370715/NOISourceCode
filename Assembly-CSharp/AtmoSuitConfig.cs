@@ -5,10 +5,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000B6 RID: 182
 public class AtmoSuitConfig : IEquipmentConfig
 {
-	// Token: 0x0600030A RID: 778 RVA: 0x0015447C File Offset: 0x0015267C
 	public EquipmentDef CreateEquipmentDef()
 	{
 		List<AttributeModifier> list = new List<AttributeModifier>();
@@ -95,7 +93,6 @@ public class AtmoSuitConfig : IEquipmentConfig
 		return equipmentDef;
 	}
 
-	// Token: 0x0600030B RID: 779 RVA: 0x00154744 File Offset: 0x00152944
 	public void DoPostConfigure(GameObject go)
 	{
 		SuitTank suitTank = go.AddComponent<SuitTank>();
@@ -118,18 +115,13 @@ public class AtmoSuitConfig : IEquipmentConfig
 		go.AddComponent<SuitDiseaseHandler>();
 	}
 
-	// Token: 0x040001E0 RID: 480
 	public const string ID = "Atmo_Suit";
 
-	// Token: 0x040001E1 RID: 481
 	public const string WORN_ID = "Worn_Atmo_Suit";
 
-	// Token: 0x040001E2 RID: 482
 	public static ComplexRecipe recipe;
 
-	// Token: 0x040001E3 RID: 483
 	private const PathFinder.PotentialPath.Flags suit_flags = PathFinder.PotentialPath.Flags.HasAtmoSuit;
 
-	// Token: 0x040001E4 RID: 484
 	private AttributeModifier expertAthleticsModifier;
 }

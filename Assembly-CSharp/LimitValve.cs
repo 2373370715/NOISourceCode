@@ -2,12 +2,9 @@
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x02000E5B RID: 3675
 [SerializationConfig(MemberSerialization.OptIn)]
 public class LimitValve : KMonoBehaviour, ISaveLoadable
 {
-	// Token: 0x1700037B RID: 891
-	// (get) Token: 0x060047CC RID: 18380 RVA: 0x000D2F87 File Offset: 0x000D1187
 	public float RemainingCapacity
 	{
 		get
@@ -16,7 +13,6 @@ public class LimitValve : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x060047CD RID: 18381 RVA: 0x000D2FA0 File Offset: 0x000D11A0
 	public NonLinearSlider.Range[] GetRanges()
 	{
 		if (this.sliderRanges != null && this.sliderRanges.Length != 0)
@@ -26,9 +22,6 @@ public class LimitValve : KMonoBehaviour, ISaveLoadable
 		return NonLinearSlider.GetDefaultRange(this.maxLimitKg);
 	}
 
-	// Token: 0x1700037C RID: 892
-	// (get) Token: 0x060047CE RID: 18382 RVA: 0x000D2FC5 File Offset: 0x000D11C5
-	// (set) Token: 0x060047CF RID: 18383 RVA: 0x000D2FCD File Offset: 0x000D11CD
 	public float Limit
 	{
 		get
@@ -42,9 +35,6 @@ public class LimitValve : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x1700037D RID: 893
-	// (get) Token: 0x060047D0 RID: 18384 RVA: 0x000D2FDC File Offset: 0x000D11DC
-	// (set) Token: 0x060047D1 RID: 18385 RVA: 0x000D2FE4 File Offset: 0x000D11E4
 	public float Amount
 	{
 		get
@@ -59,14 +49,12 @@ public class LimitValve : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x060047D2 RID: 18386 RVA: 0x000D3009 File Offset: 0x000D1209
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 		base.Subscribe<LimitValve>(-905833192, LimitValve.OnCopySettingsDelegate);
 	}
 
-	// Token: 0x060047D3 RID: 18387 RVA: 0x002619E4 File Offset: 0x0025FBE4
 	protected override void OnSpawn()
 	{
 		LogicCircuitManager logicCircuitManager = Game.Instance.logicCircuitManager;
@@ -97,7 +85,6 @@ public class LimitValve : KMonoBehaviour, ISaveLoadable
 		base.OnSpawn();
 	}
 
-	// Token: 0x060047D4 RID: 18388 RVA: 0x000D3022 File Offset: 0x000D1222
 	protected override void OnCleanUp()
 	{
 		LogicCircuitManager logicCircuitManager = Game.Instance.logicCircuitManager;
@@ -105,7 +92,6 @@ public class LimitValve : KMonoBehaviour, ISaveLoadable
 		base.OnCleanUp();
 	}
 
-	// Token: 0x060047D5 RID: 18389 RVA: 0x000D3055 File Offset: 0x000D1255
 	private void LogicTick()
 	{
 		if (this.m_resetRequested)
@@ -114,14 +100,12 @@ public class LimitValve : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x060047D6 RID: 18390 RVA: 0x000D3065 File Offset: 0x000D1265
 	public void ResetAmount()
 	{
 		this.m_resetRequested = false;
 		this.Amount = 0f;
 	}
 
-	// Token: 0x060047D7 RID: 18391 RVA: 0x00261B28 File Offset: 0x0025FD28
 	private float DesiredMassTransfer(float dt, SimHashes element, float mass, float temperature, byte disease_idx, int disease_count, Pickupable pickupable)
 	{
 		if (!this.operational.IsOperational)
@@ -140,7 +124,6 @@ public class LimitValve : KMonoBehaviour, ISaveLoadable
 		return Mathf.Min(mass, this.RemainingCapacity);
 	}
 
-	// Token: 0x060047D8 RID: 18392 RVA: 0x00261BB4 File Offset: 0x0025FDB4
 	private void OnMassTransfer(SimHashes element, float transferredMass, float temperature, byte disease_idx, int disease_count, Pickupable pickupable)
 	{
 		if (!LogicCircuitNetwork.IsBitActive(0, this.ports.GetInputValue(LimitValve.RESET_PORT_ID)))
@@ -158,7 +141,6 @@ public class LimitValve : KMonoBehaviour, ISaveLoadable
 		this.Refresh();
 	}
 
-	// Token: 0x060047D9 RID: 18393 RVA: 0x00261C54 File Offset: 0x0025FE54
 	private void Refresh()
 	{
 		if (this.operational == null)
@@ -178,7 +160,6 @@ public class LimitValve : KMonoBehaviour, ISaveLoadable
 		this.selectable.SetStatusItem(Db.Get().StatusItemCategories.Main, Db.Get().BuildingStatusItems.LimitValveLimitReached, this);
 	}
 
-	// Token: 0x060047DA RID: 18394 RVA: 0x00261D74 File Offset: 0x0025FF74
 	public void OnLogicValueChanged(object data)
 	{
 		LogicValueChanged logicValueChanged = (LogicValueChanged)data;
@@ -188,7 +169,6 @@ public class LimitValve : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x060047DB RID: 18395 RVA: 0x00261DB0 File Offset: 0x0025FFB0
 	private void OnCopySettings(object data)
 	{
 		LimitValve component = ((GameObject)data).GetComponent<LimitValve>();
@@ -198,78 +178,58 @@ public class LimitValve : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x04003255 RID: 12885
 	public static readonly HashedString RESET_PORT_ID = new HashedString("LimitValveReset");
 
-	// Token: 0x04003256 RID: 12886
 	public static readonly HashedString OUTPUT_PORT_ID = new HashedString("LimitValveOutput");
 
-	// Token: 0x04003257 RID: 12887
 	public static readonly Operational.Flag limitNotReached = new Operational.Flag("limitNotReached", Operational.Flag.Type.Requirement);
 
-	// Token: 0x04003258 RID: 12888
 	public ConduitType conduitType;
 
-	// Token: 0x04003259 RID: 12889
 	public float maxLimitKg = 100f;
 
-	// Token: 0x0400325A RID: 12890
 	[MyCmpReq]
 	private Operational operational;
 
-	// Token: 0x0400325B RID: 12891
 	[MyCmpReq]
 	private LogicPorts ports;
 
-	// Token: 0x0400325C RID: 12892
 	[MyCmpGet]
 	private KBatchedAnimController controller;
 
-	// Token: 0x0400325D RID: 12893
 	[MyCmpReq]
 	private KSelectable selectable;
 
-	// Token: 0x0400325E RID: 12894
 	[MyCmpGet]
 	private ConduitBridge conduitBridge;
 
-	// Token: 0x0400325F RID: 12895
 	[MyCmpGet]
 	private SolidConduitBridge solidConduitBridge;
 
-	// Token: 0x04003260 RID: 12896
 	[Serialize]
 	[SerializeField]
 	private float m_limit;
 
-	// Token: 0x04003261 RID: 12897
 	[Serialize]
 	private float m_amount;
 
-	// Token: 0x04003262 RID: 12898
 	[Serialize]
 	private bool m_resetRequested;
 
-	// Token: 0x04003263 RID: 12899
 	private MeterController limitMeter;
 
-	// Token: 0x04003264 RID: 12900
 	public bool displayUnitsInsteadOfMass;
 
-	// Token: 0x04003265 RID: 12901
 	public NonLinearSlider.Range[] sliderRanges;
 
-	// Token: 0x04003266 RID: 12902
 	[MyCmpAdd]
 	private CopyBuildingSettings copyBuildingSettings;
 
-	// Token: 0x04003267 RID: 12903
 	private static readonly EventSystem.IntraObjectHandler<LimitValve> OnLogicValueChangedDelegate = new EventSystem.IntraObjectHandler<LimitValve>(delegate(LimitValve component, object data)
 	{
 		component.OnLogicValueChanged(data);
 	});
 
-	// Token: 0x04003268 RID: 12904
 	private static readonly EventSystem.IntraObjectHandler<LimitValve> OnCopySettingsDelegate = new EventSystem.IntraObjectHandler<LimitValve>(delegate(LimitValve component, object data)
 	{
 		component.OnCopySettings(data);

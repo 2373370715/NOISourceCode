@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003C2 RID: 962
 public class LiquidConduitBridgeConfig : IBuildingConfig
 {
-	// Token: 0x06000F9C RID: 3996 RVA: 0x00187DE0 File Offset: 0x00185FE0
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "LiquidConduitBridge";
@@ -38,7 +36,6 @@ public class LiquidConduitBridgeConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000F9D RID: 3997 RVA: 0x000B11A6 File Offset: 0x000AF3A6
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
@@ -46,7 +43,6 @@ public class LiquidConduitBridgeConfig : IBuildingConfig
 		go.AddOrGet<ConduitBridge>().type = ConduitType.Liquid;
 	}
 
-	// Token: 0x06000F9E RID: 3998 RVA: 0x000B02E8 File Offset: 0x000AE4E8
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		UnityEngine.Object.DestroyImmediate(go.GetComponent<RequireInputs>());
@@ -54,9 +50,7 @@ public class LiquidConduitBridgeConfig : IBuildingConfig
 		UnityEngine.Object.DestroyImmediate(go.GetComponent<ConduitDispenser>());
 	}
 
-	// Token: 0x04000B54 RID: 2900
 	public const string ID = "LiquidConduitBridge";
 
-	// Token: 0x04000B55 RID: 2901
 	private const ConduitType CONDUIT_TYPE = ConduitType.Liquid;
 }

@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005A4 RID: 1444
 public class SolidBoosterConfig : IBuildingConfig
 {
-	// Token: 0x060018F8 RID: 6392 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetForbiddenDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x060018F9 RID: 6393 RVA: 0x001AD2B8 File Offset: 0x001AB4B8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "SolidBooster";
@@ -42,7 +39,6 @@ public class SolidBoosterConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060018FA RID: 6394 RVA: 0x0017D1D0 File Offset: 0x0017B3D0
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -54,17 +50,14 @@ public class SolidBoosterConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x060018FB RID: 6395 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 	}
 
-	// Token: 0x060018FC RID: 6396 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 	}
 
-	// Token: 0x060018FD RID: 6397 RVA: 0x001AD370 File Offset: 0x001AB570
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		SolidBooster solidBooster = go.AddOrGet<SolidBooster>();
@@ -90,9 +83,7 @@ public class SolidBoosterConfig : IBuildingConfig
 		BuildingTemplates.ExtendBuildingToRocketModule(go, "rocket_solid_booster_bg_kanim", false);
 	}
 
-	// Token: 0x04001049 RID: 4169
 	public const string ID = "SolidBooster";
 
-	// Token: 0x0400104A RID: 4170
 	public const float capacity = 400f;
 }

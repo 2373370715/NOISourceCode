@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020002B5 RID: 693
 public class OxyfernConfig : IEntityConfig
 {
-	// Token: 0x06000A26 RID: 2598 RVA: 0x001735F0 File Offset: 0x001717F0
 	public GameObject CreatePrefab()
 	{
 		string id = "Oxyfern";
@@ -81,35 +79,26 @@ public class OxyfernConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06000A27 RID: 2599 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject prefab)
 	{
 	}
 
-	// Token: 0x06000A28 RID: 2600 RVA: 0x000AECD6 File Offset: 0x000ACED6
 	public void OnSpawn(GameObject inst)
 	{
 		inst.GetComponent<Oxyfern>().SetConsumptionRate();
 	}
 
-	// Token: 0x040007F9 RID: 2041
 	public const string ID = "Oxyfern";
 
-	// Token: 0x040007FA RID: 2042
 	public const string SEED_ID = "OxyfernSeed";
 
-	// Token: 0x040007FB RID: 2043
 	public const float WATER_CONSUMPTION_RATE = 0.031666666f;
 
-	// Token: 0x040007FC RID: 2044
 	public const float FERTILIZATION_RATE = 0.006666667f;
 
-	// Token: 0x040007FD RID: 2045
 	public const float CO2_RATE = 0.00062500004f;
 
-	// Token: 0x040007FE RID: 2046
 	private const float CONVERSION_RATIO = 50f;
 
-	// Token: 0x040007FF RID: 2047
 	public const float OXYGEN_RATE = 0.031250004f;
 }

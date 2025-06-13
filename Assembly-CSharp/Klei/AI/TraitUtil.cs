@@ -5,10 +5,8 @@ using UnityEngine;
 
 namespace Klei.AI
 {
-	// Token: 0x02003CEA RID: 15594
 	public class TraitUtil
 	{
-		// Token: 0x0600EF79 RID: 61305 RVA: 0x001452A8 File Offset: 0x001434A8
 		public static System.Action CreateDisabledTaskTrait(string id, string name, string desc, string disabled_chore_group, bool is_valid_starter_trait)
 		{
 			return delegate()
@@ -21,7 +19,6 @@ namespace Klei.AI
 			};
 		}
 
-		// Token: 0x0600EF7A RID: 61306 RVA: 0x004EA044 File Offset: 0x004E8244
 		public static System.Action CreateTrait(string id, string name, string desc, string attributeId, float delta, string[] chore_groups, bool positiveTrait = false)
 		{
 			return delegate()
@@ -35,7 +32,6 @@ namespace Klei.AI
 			};
 		}
 
-		// Token: 0x0600EF7B RID: 61307 RVA: 0x004EA098 File Offset: 0x004E8298
 		public static System.Action CreateAttributeEffectTrait(string id, string name, string desc, string attributeId, float delta, string attributeId2, float delta2, bool positiveTrait = false)
 		{
 			return delegate()
@@ -46,7 +42,6 @@ namespace Klei.AI
 			};
 		}
 
-		// Token: 0x0600EF7C RID: 61308 RVA: 0x001452DE File Offset: 0x001434DE
 		public static System.Action CreateAttributeEffectTrait(string id, string name, string desc, string[] attributeIds, float[] deltas, bool positiveTrait = false)
 		{
 			return delegate()
@@ -60,7 +55,6 @@ namespace Klei.AI
 			};
 		}
 
-		// Token: 0x0600EF7D RID: 61309 RVA: 0x004EA0F4 File Offset: 0x004E82F4
 		public static System.Action CreateAttributeEffectTrait(string id, string name, string desc, string attributeId, float delta, bool positiveTrait = false, Action<GameObject> on_add = null, bool is_valid_starter_trait = true)
 		{
 			return delegate()
@@ -71,7 +65,6 @@ namespace Klei.AI
 			};
 		}
 
-		// Token: 0x0600EF7E RID: 61310 RVA: 0x0014531C File Offset: 0x0014351C
 		public static System.Action CreateEffectModifierTrait(string id, string name, string desc, string[] ignoredEffects, bool positiveTrait = false)
 		{
 			return delegate()
@@ -80,7 +73,6 @@ namespace Klei.AI
 			};
 		}
 
-		// Token: 0x0600EF7F RID: 61311 RVA: 0x00145352 File Offset: 0x00143552
 		public static System.Action CreateNamedTrait(string id, string name, string desc, bool positiveTrait = false)
 		{
 			return delegate()
@@ -89,13 +81,11 @@ namespace Klei.AI
 			};
 		}
 
-		// Token: 0x0600EF80 RID: 61312 RVA: 0x004EA150 File Offset: 0x004E8350
 		public static System.Action CreateTrait(string id, string name, string desc, Action<GameObject> on_add, ChoreGroup[] disabled_chore_groups = null, bool positiveTrait = false, Func<string> extendedDescFn = null)
 		{
 			return TraitUtil.CreateTrait(id, name, desc, on_add, null, null, disabled_chore_groups, positiveTrait, extendedDescFn);
 		}
 
-		// Token: 0x0600EF81 RID: 61313 RVA: 0x004EA170 File Offset: 0x004E8370
 		public static System.Action CreateTrait(string id, string name, string desc, Action<GameObject> on_add, string[] requiredDlcIds, string[] forbiddenDlcIds = null, ChoreGroup[] disabled_chore_groups = null, bool positiveTrait = false, Func<string> extendedDescFn = null)
 		{
 			return delegate()
@@ -110,7 +100,6 @@ namespace Klei.AI
 			};
 		}
 
-		// Token: 0x0600EF82 RID: 61314 RVA: 0x00145380 File Offset: 0x00143580
 		public static System.Action CreateComponentTrait<T>(string id, string name, string desc, bool positiveTrait = false, Func<string> extendedDescFn = null) where T : KMonoBehaviour
 		{
 			return delegate()
@@ -128,7 +117,6 @@ namespace Klei.AI
 			};
 		}
 
-		// Token: 0x0600EF83 RID: 61315 RVA: 0x001453B6 File Offset: 0x001435B6
 		public static System.Action CreateSkillGrantingTrait(string id, string name, string desc, string skillId)
 		{
 			return delegate()
@@ -146,7 +134,6 @@ namespace Klei.AI
 			};
 		}
 
-		// Token: 0x0600EF84 RID: 61316 RVA: 0x004EA1D4 File Offset: 0x004E83D4
 		public static string GetSkillGrantingTraitNameById(string id)
 		{
 			string result = "";
@@ -158,7 +145,6 @@ namespace Klei.AI
 			return result;
 		}
 
-		// Token: 0x0600EF85 RID: 61317 RVA: 0x001453E4 File Offset: 0x001435E4
 		public static System.Action CreateBionicUpgradeTrait(string id, string effectsDescription)
 		{
 			return delegate()

@@ -4,11 +4,9 @@ using System.Diagnostics;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x0200198A RID: 6538
 [AddComponentMenu("KMonoBehaviour/scripts/RocketModule")]
 public class RocketModule : KMonoBehaviour
 {
-	// Token: 0x06008819 RID: 34841 RVA: 0x00361A24 File Offset: 0x0035FC24
 	public ProcessCondition AddModuleCondition(ProcessCondition.ProcessConditionType conditionType, ProcessCondition condition)
 	{
 		if (!this.moduleConditions.ContainsKey(conditionType))
@@ -22,7 +20,6 @@ public class RocketModule : KMonoBehaviour
 		return condition;
 	}
 
-	// Token: 0x0600881A RID: 34842 RVA: 0x00361A78 File Offset: 0x0035FC78
 	public List<ProcessCondition> GetConditionSet(ProcessCondition.ProcessConditionType conditionType)
 	{
 		List<ProcessCondition> list = new List<ProcessCondition>();
@@ -45,13 +42,11 @@ public class RocketModule : KMonoBehaviour
 		return list;
 	}
 
-	// Token: 0x0600881B RID: 34843 RVA: 0x000FD9A9 File Offset: 0x000FBBA9
 	public void SetBGKAnim(KAnimFile anim_file)
 	{
 		this.bgAnimFile = anim_file;
 	}
 
-	// Token: 0x0600881C RID: 34844 RVA: 0x000FD9B2 File Offset: 0x000FBBB2
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -59,7 +54,6 @@ public class RocketModule : KMonoBehaviour
 		GameUtil.SubscribeToTags<RocketModule>(this, RocketModule.OnRocketNotOnGroundTagDelegate, false);
 	}
 
-	// Token: 0x0600881D RID: 34845 RVA: 0x00361AF8 File Offset: 0x0035FCF8
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -88,7 +82,6 @@ public class RocketModule : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600881E RID: 34846 RVA: 0x00361BC0 File Offset: 0x0035FDC0
 	public void FixSorting()
 	{
 		int num = 0;
@@ -114,13 +107,11 @@ public class RocketModule : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600881F RID: 34847 RVA: 0x000FD9D2 File Offset: 0x000FBBD2
 	private void OnAttachmentNetworkChanged(object ab)
 	{
 		this.FixSorting();
 	}
 
-	// Token: 0x06008820 RID: 34848 RVA: 0x00361C4C File Offset: 0x0035FE4C
 	private void AddBGGantry()
 	{
 		KAnimControllerBase component = base.GetComponent<KAnimControllerBase>();
@@ -144,7 +135,6 @@ public class RocketModule : KMonoBehaviour
 		gameObject.SetActive(true);
 	}
 
-	// Token: 0x06008821 RID: 34849 RVA: 0x00361D18 File Offset: 0x0035FF18
 	private void DEBUG_OnDestroy(object data)
 	{
 		if (this.conditionManager != null && !App.IsExiting && !KMonoBehaviour.isLoadingScene)
@@ -154,7 +144,6 @@ public class RocketModule : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008822 RID: 34850 RVA: 0x00361D8C File Offset: 0x0035FF8C
 	private void OnRocketOnGroundTag(object data)
 	{
 		this.RegisterComponents();
@@ -165,7 +154,6 @@ public class RocketModule : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008823 RID: 34851 RVA: 0x00361DC4 File Offset: 0x0035FFC4
 	private void OnRocketNotOnGroundTag(object data)
 	{
 		this.DeregisterComponents();
@@ -176,7 +164,6 @@ public class RocketModule : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008824 RID: 34852 RVA: 0x00361DFC File Offset: 0x0035FFFC
 	public void DeregisterComponents()
 	{
 		KSelectable component = base.GetComponent<KSelectable>();
@@ -247,7 +234,6 @@ public class RocketModule : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008825 RID: 34853 RVA: 0x00361FA0 File Offset: 0x003601A0
 	public void RegisterComponents()
 	{
 		base.GetComponent<KSelectable>().IsSelectable = true;
@@ -318,7 +304,6 @@ public class RocketModule : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008826 RID: 34854 RVA: 0x00362130 File Offset: 0x00360330
 	private void ToggleComponent(Type cmpType, bool enabled)
 	{
 		MonoBehaviour monoBehaviour = (MonoBehaviour)base.GetComponent(cmpType);
@@ -328,7 +313,6 @@ public class RocketModule : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008827 RID: 34855 RVA: 0x000FD9DA File Offset: 0x000FBBDA
 	public void RegisterWithConditionManager()
 	{
 		global::Debug.Assert(!DlcManager.FeatureClusterSpaceEnabled());
@@ -338,7 +322,6 @@ public class RocketModule : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008828 RID: 34856 RVA: 0x000FDA03 File Offset: 0x000FBC03
 	protected override void OnCleanUp()
 	{
 		if (this.conditionManager != null)
@@ -348,7 +331,6 @@ public class RocketModule : KMonoBehaviour
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06008829 RID: 34857 RVA: 0x0036215C File Offset: 0x0036035C
 	public virtual LaunchConditionManager FindLaunchConditionManager()
 	{
 		if (!DlcManager.FeatureClusterSpaceEnabled())
@@ -365,20 +347,17 @@ public class RocketModule : KMonoBehaviour
 		return null;
 	}
 
-	// Token: 0x0600882A RID: 34858 RVA: 0x000FDA25 File Offset: 0x000FBC25
 	public void SetParentRocketName(string newName)
 	{
 		this.parentRocketName = newName;
 		NameDisplayScreen.Instance.UpdateName(base.gameObject);
 	}
 
-	// Token: 0x0600882B RID: 34859 RVA: 0x000FDA3E File Offset: 0x000FBC3E
 	public virtual string GetParentRocketName()
 	{
 		return this.parentRocketName;
 	}
 
-	// Token: 0x0600882C RID: 34860 RVA: 0x003621CC File Offset: 0x003603CC
 	public void MoveToSpace()
 	{
 		Prioritizable component = base.GetComponent<Prioritizable>();
@@ -399,7 +378,6 @@ public class RocketModule : KMonoBehaviour
 		base.GetComponent<KSelectable>().ToggleStatusItem(Db.Get().BuildingStatusItems.Entombed, false, this);
 	}
 
-	// Token: 0x0600882D RID: 34861 RVA: 0x0036229C File Offset: 0x0036049C
 	public void MoveToPad(int newCell)
 	{
 		base.gameObject.transform.SetPosition(Grid.CellToPos(newCell, CellAlignment.Bottom, Grid.SceneLayer.Building));
@@ -419,47 +397,35 @@ public class RocketModule : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0400672C RID: 26412
 	public LaunchConditionManager conditionManager;
 
-	// Token: 0x0400672D RID: 26413
 	public Dictionary<ProcessCondition.ProcessConditionType, List<ProcessCondition>> moduleConditions = new Dictionary<ProcessCondition.ProcessConditionType, List<ProcessCondition>>();
 
-	// Token: 0x0400672E RID: 26414
 	public static readonly Operational.Flag landedFlag = new Operational.Flag("landed", Operational.Flag.Type.Requirement);
 
-	// Token: 0x0400672F RID: 26415
 	public bool operationalLandedRequired = true;
 
-	// Token: 0x04006730 RID: 26416
 	private string rocket_module_bg_base_string = "{0}{1}";
 
-	// Token: 0x04006731 RID: 26417
 	private string rocket_module_bg_affix = "BG";
 
-	// Token: 0x04006732 RID: 26418
 	private string rocket_module_bg_anim = "on";
 
-	// Token: 0x04006733 RID: 26419
 	[SerializeField]
 	private KAnimFile bgAnimFile;
 
-	// Token: 0x04006734 RID: 26420
 	protected string parentRocketName = UI.STARMAP.DEFAULT_NAME;
 
-	// Token: 0x04006735 RID: 26421
 	private static readonly EventSystem.IntraObjectHandler<RocketModule> DEBUG_OnDestroyDelegate = new EventSystem.IntraObjectHandler<RocketModule>(delegate(RocketModule component, object data)
 	{
 		component.DEBUG_OnDestroy(data);
 	});
 
-	// Token: 0x04006736 RID: 26422
 	private static readonly EventSystem.IntraObjectHandler<RocketModule> OnRocketOnGroundTagDelegate = GameUtil.CreateHasTagHandler<RocketModule>(GameTags.RocketOnGround, delegate(RocketModule component, object data)
 	{
 		component.OnRocketOnGroundTag(data);
 	});
 
-	// Token: 0x04006737 RID: 26423
 	private static readonly EventSystem.IntraObjectHandler<RocketModule> OnRocketNotOnGroundTagDelegate = GameUtil.CreateHasTagHandler<RocketModule>(GameTags.RocketNotOnGround, delegate(RocketModule component, object data)
 	{
 		component.OnRocketNotOnGroundTag(data);

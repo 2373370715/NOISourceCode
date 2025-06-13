@@ -2,10 +2,8 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000136 RID: 310
 public class BuzzStates : GameStateMachine<BuzzStates, BuzzStates.Instance, IStateMachineTarget, BuzzStates.Def>
 {
-	// Token: 0x06000491 RID: 1169 RVA: 0x0015F810 File Offset: 0x0015DA10
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.idle;
@@ -35,7 +33,6 @@ public class BuzzStates : GameStateMachine<BuzzStates, BuzzStates.Instance, ISta
 		});
 	}
 
-	// Token: 0x06000492 RID: 1170 RVA: 0x0015F98C File Offset: 0x0015DB8C
 	public void MoveToNewCell(BuzzStates.Instance smi)
 	{
 		Navigator component = smi.GetComponent<Navigator>();
@@ -45,7 +42,6 @@ public class BuzzStates : GameStateMachine<BuzzStates, BuzzStates.Instance, ISta
 		component.GoTo(moveCellQuery.GetResultCell(), null);
 	}
 
-	// Token: 0x06000493 RID: 1171 RVA: 0x0015F9D8 File Offset: 0x0015DBD8
 	public void PlayIdle(BuzzStates.Instance smi)
 	{
 		KAnimControllerBase component = smi.GetComponent<KAnimControllerBase>();
@@ -73,64 +69,46 @@ public class BuzzStates : GameStateMachine<BuzzStates, BuzzStates.Instance, ISta
 		component.Play(idleAnim, KAnim.PlayMode.Loop, 1f, 0f);
 	}
 
-	// Token: 0x0400034E RID: 846
 	private StateMachine<BuzzStates, BuzzStates.Instance, IStateMachineTarget, BuzzStates.Def>.IntParameter numMoves;
 
-	// Token: 0x0400034F RID: 847
 	private BuzzStates.BuzzingStates buzz;
 
-	// Token: 0x04000350 RID: 848
 	public GameStateMachine<BuzzStates, BuzzStates.Instance, IStateMachineTarget, BuzzStates.Def>.State idle;
 
-	// Token: 0x04000351 RID: 849
 	public GameStateMachine<BuzzStates, BuzzStates.Instance, IStateMachineTarget, BuzzStates.Def>.State move;
 
-	// Token: 0x02000137 RID: 311
 	public class Def : StateMachine.BaseDef
 	{
-		// Token: 0x04000352 RID: 850
 		public BuzzStates.Def.IdleAnimCallback customIdleAnim;
 
-		// Token: 0x02000138 RID: 312
-		// (Invoke) Token: 0x06000499 RID: 1177
+Invoke) Token: 0x06000499 RID: 1177
 		public delegate HashedString IdleAnimCallback(BuzzStates.Instance smi, ref HashedString pre_anim);
 	}
 
-	// Token: 0x02000139 RID: 313
 	public new class Instance : GameStateMachine<BuzzStates, BuzzStates.Instance, IStateMachineTarget, BuzzStates.Def>.GameInstance
 	{
-		// Token: 0x0600049C RID: 1180 RVA: 0x000ABC4E File Offset: 0x000A9E4E
 		public Instance(Chore<BuzzStates.Instance> chore, BuzzStates.Def def) : base(chore, def)
 		{
 		}
 	}
 
-	// Token: 0x0200013A RID: 314
 	public class BuzzingStates : GameStateMachine<BuzzStates, BuzzStates.Instance, IStateMachineTarget, BuzzStates.Def>.State
 	{
-		// Token: 0x04000353 RID: 851
 		public GameStateMachine<BuzzStates, BuzzStates.Instance, IStateMachineTarget, BuzzStates.Def>.State move;
 
-		// Token: 0x04000354 RID: 852
 		public GameStateMachine<BuzzStates, BuzzStates.Instance, IStateMachineTarget, BuzzStates.Def>.State pause;
 	}
 
-	// Token: 0x0200013B RID: 315
 	public class MoveCellQuery : PathFinderQuery
 	{
-		// Token: 0x17000010 RID: 16
-		// (get) Token: 0x0600049E RID: 1182 RVA: 0x000ABC60 File Offset: 0x000A9E60
-		// (set) Token: 0x0600049F RID: 1183 RVA: 0x000ABC68 File Offset: 0x000A9E68
 		public bool allowLiquid { get; set; }
 
-		// Token: 0x060004A0 RID: 1184 RVA: 0x000ABC71 File Offset: 0x000A9E71
 		public MoveCellQuery(NavType navType)
 		{
 			this.navType = navType;
 			this.maxIterations = UnityEngine.Random.Range(5, 25);
 		}
 
-		// Token: 0x060004A1 RID: 1185 RVA: 0x0015FA9C File Offset: 0x0015DC9C
 		public override bool IsMatch(int cell, int parent_cell, int cost)
 		{
 			if (!Grid.IsValidCell(cell))
@@ -154,19 +132,15 @@ public class BuzzStates : GameStateMachine<BuzzStates, BuzzStates.Instance, ISta
 			return num <= 0;
 		}
 
-		// Token: 0x060004A2 RID: 1186 RVA: 0x000ABC99 File Offset: 0x000A9E99
 		public override int GetResultCell()
 		{
 			return this.targetCell;
 		}
 
-		// Token: 0x04000355 RID: 853
 		private NavType navType;
 
-		// Token: 0x04000356 RID: 854
 		private int targetCell = Grid.InvalidCell;
 
-		// Token: 0x04000357 RID: 855
 		private int maxIterations;
 	}
 }

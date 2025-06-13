@@ -4,27 +4,20 @@ using FMOD.Studio;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001EAD RID: 7853
 public class NotificationScreen : KScreen
 {
-	// Token: 0x17000A93 RID: 2707
-	// (get) Token: 0x0600A4A9 RID: 42153 RVA: 0x0010F412 File Offset: 0x0010D612
-	// (set) Token: 0x0600A4AA RID: 42154 RVA: 0x0010F419 File Offset: 0x0010D619
 	public static NotificationScreen Instance { get; private set; }
 
-	// Token: 0x0600A4AB RID: 42155 RVA: 0x0010F421 File Offset: 0x0010D621
 	public static void DestroyInstance()
 	{
 		NotificationScreen.Instance = null;
 	}
 
-	// Token: 0x0600A4AC RID: 42156 RVA: 0x0010F429 File Offset: 0x0010D629
 	public void AddPendingNotification(Notification notification)
 	{
 		this.pendingNotifications.Add(notification);
 	}
 
-	// Token: 0x0600A4AD RID: 42157 RVA: 0x0010F437 File Offset: 0x0010D637
 	public void RemovePendingNotification(Notification notification)
 	{
 		this.dirty = true;
@@ -32,7 +25,6 @@ public class NotificationScreen : KScreen
 		this.RemoveNotification(notification);
 	}
 
-	// Token: 0x0600A4AE RID: 42158 RVA: 0x003F699C File Offset: 0x003F4B9C
 	public void RemoveNotification(Notification notification)
 	{
 		NotificationScreen.Entry entry = null;
@@ -51,7 +43,6 @@ public class NotificationScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600A4AF RID: 42159 RVA: 0x0010F454 File Offset: 0x0010D654
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -61,14 +52,12 @@ public class NotificationScreen : KScreen
 		this.InitNotificationSounds();
 	}
 
-	// Token: 0x0600A4B0 RID: 42160 RVA: 0x003F6A10 File Offset: 0x003F4C10
 	private void OnNewMessage(object data)
 	{
 		Message m = (Message)data;
 		this.notifier.Add(new MessageNotification(m), "");
 	}
 
-	// Token: 0x0600A4B1 RID: 42161 RVA: 0x003F6A3C File Offset: 0x003F4C3C
 	private void ShowMessage(MessageNotification mn)
 	{
 		mn.message.OnClick();
@@ -95,14 +84,12 @@ public class NotificationScreen : KScreen
 		mn.Clear();
 	}
 
-	// Token: 0x0600A4B2 RID: 42162 RVA: 0x003F6B48 File Offset: 0x003F4D48
 	public void OnClickNextMessage()
 	{
 		Notification notification2 = this.notifications.Find((Notification notification) => notification.Type == NotificationType.Messages);
 		this.ShowMessage((MessageNotification)notification2);
 	}
 
-	// Token: 0x0600A4B3 RID: 42163 RVA: 0x003F6B8C File Offset: 0x003F4D8C
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -126,14 +113,12 @@ public class NotificationScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600A4B4 RID: 42164 RVA: 0x0010F48A File Offset: 0x0010D68A
 	protected override void OnActivate()
 	{
 		base.OnActivate();
 		this.dirty = true;
 	}
 
-	// Token: 0x0600A4B5 RID: 42165 RVA: 0x003F6C98 File Offset: 0x003F4E98
 	public void AddNotification(Notification notification)
 	{
 		if (DebugHandler.NotificationsDisabled)
@@ -272,7 +257,6 @@ public class NotificationScreen : KScreen
 		this.SortNotifications();
 	}
 
-	// Token: 0x0600A4B6 RID: 42166 RVA: 0x003F71D0 File Offset: 0x003F53D0
 	private void SortNotifications()
 	{
 		this.notifications.Sort(delegate(Notification n1, Notification n2)
@@ -294,7 +278,6 @@ public class NotificationScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600A4B7 RID: 42167 RVA: 0x003F7270 File Offset: 0x003F5470
 	private void PlayDingSound(Notification notification, int count)
 	{
 		string text;
@@ -330,7 +313,6 @@ public class NotificationScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600A4B8 RID: 42168 RVA: 0x003F733C File Offset: 0x003F553C
 	private void Update()
 	{
 		int i = 0;
@@ -374,7 +356,6 @@ public class NotificationScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600A4B9 RID: 42169 RVA: 0x003F7418 File Offset: 0x003F5618
 	private void OnClick(NotificationScreen.Entry entry)
 	{
 		Notification nextClickedNotification = entry.NextClickedNotification;
@@ -428,12 +409,10 @@ public class NotificationScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600A4BA RID: 42170 RVA: 0x000AA038 File Offset: 0x000A8238
 	private void PositionLocatorIcon()
 	{
 	}
 
-	// Token: 0x0600A4BB RID: 42171 RVA: 0x003F7580 File Offset: 0x003F5780
 	private void InitNotificationSounds()
 	{
 		this.notificationSounds[NotificationType.Good] = "Notification";
@@ -447,7 +426,6 @@ public class NotificationScreen : KScreen
 		this.notificationSounds[NotificationType.MessageImportant] = "Message_Important";
 	}
 
-	// Token: 0x0600A4BC RID: 42172 RVA: 0x003F7628 File Offset: 0x003F5828
 	public Sprite GetNotificationIcon(NotificationType type)
 	{
 		switch (type)
@@ -468,7 +446,6 @@ public class NotificationScreen : KScreen
 		return this.icon_normal;
 	}
 
-	// Token: 0x0600A4BD RID: 42173 RVA: 0x003F7694 File Offset: 0x003F5894
 	public Color GetNotificationColour(NotificationType type)
 	{
 		switch (type)
@@ -489,7 +466,6 @@ public class NotificationScreen : KScreen
 		return GlobalAssets.Instance.colorSet.NotificationNormal;
 	}
 
-	// Token: 0x0600A4BE RID: 42174 RVA: 0x003F7764 File Offset: 0x003F5964
 	public Color GetNotificationBGColour(NotificationType type)
 	{
 		switch (type)
@@ -510,164 +486,120 @@ public class NotificationScreen : KScreen
 		return GlobalAssets.Instance.colorSet.NotificationNormalBG;
 	}
 
-	// Token: 0x0600A4BF RID: 42175 RVA: 0x0010F499 File Offset: 0x0010D699
 	public string GetNotificationSound(NotificationType type)
 	{
 		return this.notificationSounds[type];
 	}
 
-	// Token: 0x040080BE RID: 32958
 	public float lifetime;
 
-	// Token: 0x040080BF RID: 32959
 	public bool dirty;
 
-	// Token: 0x040080C0 RID: 32960
 	public GameObject LabelPrefab;
 
-	// Token: 0x040080C1 RID: 32961
 	public GameObject LabelsFolder;
 
-	// Token: 0x040080C2 RID: 32962
 	public GameObject MessagesPrefab;
 
-	// Token: 0x040080C3 RID: 32963
 	public GameObject MessagesFolder;
 
-	// Token: 0x040080C4 RID: 32964
 	private MessageDialogFrame messageDialog;
 
-	// Token: 0x040080C5 RID: 32965
 	private float initTime;
 
-	// Token: 0x040080C6 RID: 32966
 	[MyCmpAdd]
 	private Notifier notifier;
 
-	// Token: 0x040080C7 RID: 32967
 	[SerializeField]
 	private List<MessageDialog> dialogPrefabs = new List<MessageDialog>();
 
-	// Token: 0x040080C8 RID: 32968
 	[SerializeField]
 	private Color badColorBG;
 
-	// Token: 0x040080C9 RID: 32969
 	[SerializeField]
 	private Color badColor = Color.red;
 
-	// Token: 0x040080CA RID: 32970
 	[SerializeField]
 	private Color normalColorBG;
 
-	// Token: 0x040080CB RID: 32971
 	[SerializeField]
 	private Color normalColor = Color.white;
 
-	// Token: 0x040080CC RID: 32972
 	[SerializeField]
 	private Color warningColorBG;
 
-	// Token: 0x040080CD RID: 32973
 	[SerializeField]
 	private Color warningColor;
 
-	// Token: 0x040080CE RID: 32974
 	[SerializeField]
 	private Color messageColorBG;
 
-	// Token: 0x040080CF RID: 32975
 	[SerializeField]
 	private Color messageColor;
 
-	// Token: 0x040080D0 RID: 32976
 	[SerializeField]
 	private Color messageImportantColorBG;
 
-	// Token: 0x040080D1 RID: 32977
 	[SerializeField]
 	private Color messageImportantColor;
 
-	// Token: 0x040080D2 RID: 32978
 	[SerializeField]
 	private Color eventColorBG;
 
-	// Token: 0x040080D3 RID: 32979
 	[SerializeField]
 	private Color eventColor;
 
-	// Token: 0x040080D4 RID: 32980
 	public Sprite icon_normal;
 
-	// Token: 0x040080D5 RID: 32981
 	public Sprite icon_warning;
 
-	// Token: 0x040080D6 RID: 32982
 	public Sprite icon_bad;
 
-	// Token: 0x040080D7 RID: 32983
 	public Sprite icon_threatening;
 
-	// Token: 0x040080D8 RID: 32984
 	public Sprite icon_message;
 
-	// Token: 0x040080D9 RID: 32985
 	public Sprite icon_message_important;
 
-	// Token: 0x040080DA RID: 32986
 	public Sprite icon_video;
 
-	// Token: 0x040080DB RID: 32987
 	public Sprite icon_event;
 
-	// Token: 0x040080DC RID: 32988
 	private List<Notification> pendingNotifications = new List<Notification>();
 
-	// Token: 0x040080DD RID: 32989
 	private List<Notification> notifications = new List<Notification>();
 
-	// Token: 0x040080DE RID: 32990
 	public TextStyleSetting TooltipTextStyle;
 
-	// Token: 0x040080DF RID: 32991
 	private Dictionary<NotificationType, string> notificationSounds = new Dictionary<NotificationType, string>();
 
-	// Token: 0x040080E0 RID: 32992
 	private Dictionary<string, float> timeOfLastNotification = new Dictionary<string, float>();
 
-	// Token: 0x040080E1 RID: 32993
 	private float soundDecayTime = 10f;
 
-	// Token: 0x040080E2 RID: 32994
 	private List<NotificationScreen.Entry> entries = new List<NotificationScreen.Entry>();
 
-	// Token: 0x040080E3 RID: 32995
 	private Dictionary<string, NotificationScreen.Entry> entriesByMessage = new Dictionary<string, NotificationScreen.Entry>();
 
-	// Token: 0x02001EAE RID: 7854
 	private class Entry
 	{
-		// Token: 0x0600A4C1 RID: 42177 RVA: 0x0010F4A7 File Offset: 0x0010D6A7
 		public Entry(GameObject label)
 		{
 			this.label = label;
 		}
 
-		// Token: 0x0600A4C2 RID: 42178 RVA: 0x0010F4C1 File Offset: 0x0010D6C1
 		public void Add(Notification notification)
 		{
 			this.notifications.Add(notification);
 			this.UpdateMessage(notification, true);
 		}
 
-		// Token: 0x0600A4C3 RID: 42179 RVA: 0x0010F4D7 File Offset: 0x0010D6D7
 		public void Remove(Notification notification)
 		{
 			this.notifications.Remove(notification);
 			this.UpdateMessage(notification, false);
 		}
 
-		// Token: 0x0600A4C4 RID: 42180 RVA: 0x003F78B8 File Offset: 0x003F5AB8
 		public void UpdateMessage(Notification notification, bool playSound = true)
 		{
 			if (Game.IsQuitting())
@@ -689,8 +621,6 @@ public class NotificationScreen : KScreen
 			}
 		}
 
-		// Token: 0x17000A94 RID: 2708
-		// (get) Token: 0x0600A4C5 RID: 42181 RVA: 0x003F7970 File Offset: 0x003F5B70
 		public Notification NextClickedNotification
 		{
 			get
@@ -702,16 +632,12 @@ public class NotificationScreen : KScreen
 			}
 		}
 
-		// Token: 0x040080E4 RID: 32996
 		public string message;
 
-		// Token: 0x040080E5 RID: 32997
 		public int clickIdx;
 
-		// Token: 0x040080E6 RID: 32998
 		public GameObject label;
 
-		// Token: 0x040080E7 RID: 32999
 		public List<Notification> notifications = new List<Notification>();
 	}
 }

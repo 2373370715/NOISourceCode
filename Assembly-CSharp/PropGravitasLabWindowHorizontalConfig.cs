@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000538 RID: 1336
 public class PropGravitasLabWindowHorizontalConfig : IBuildingConfig
 {
-	// Token: 0x060016F4 RID: 5876 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x060016F5 RID: 5877 RVA: 0x001A435C File Offset: 0x001A255C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "PropGravitasLabWindowHorizontal";
@@ -38,7 +35,6 @@ public class PropGravitasLabWindowHorizontalConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060016F6 RID: 5878 RVA: 0x00156BF8 File Offset: 0x00154DF8
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<AnimTileable>().objectLayer = ObjectLayer.Backwall;
@@ -49,11 +45,9 @@ public class PropGravitasLabWindowHorizontalConfig : IBuildingConfig
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
 	}
 
-	// Token: 0x060016F7 RID: 5879 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000F44 RID: 3908
 	public const string ID = "PropGravitasLabWindowHorizontal";
 }

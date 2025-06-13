@@ -4,16 +4,13 @@ using Klei.AI;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x02000CA8 RID: 3240
 public class BuildingComplete : Building
 {
-	// Token: 0x06003D98 RID: 15768 RVA: 0x000CC4CC File Offset: 0x000CA6CC
 	private bool WasReplaced()
 	{
 		return this.replacingTileLayer != ObjectLayer.NumLayers;
 	}
 
-	// Token: 0x06003D99 RID: 15769 RVA: 0x0023FD28 File Offset: 0x0023DF28
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -67,7 +64,6 @@ public class BuildingComplete : Building
 		}
 	}
 
-	// Token: 0x06003D9A RID: 15770 RVA: 0x000CC4DB File Offset: 0x000CA6DB
 	private void OnEntombedChanged()
 	{
 		if (base.gameObject.HasTag(GameTags.Entombed))
@@ -78,21 +74,18 @@ public class BuildingComplete : Building
 		Components.EntombedBuildings.Remove(this);
 	}
 
-	// Token: 0x06003D9B RID: 15771 RVA: 0x000CC506 File Offset: 0x000CA706
 	public override void UpdatePosition()
 	{
 		base.UpdatePosition();
 		GameScenePartitioner.Instance.UpdatePosition(this.scenePartitionerEntry, base.GetExtents());
 	}
 
-	// Token: 0x06003D9C RID: 15772 RVA: 0x0023FF9C File Offset: 0x0023E19C
 	private void OnObjectReplaced(object data)
 	{
 		Constructable.ReplaceCallbackParameters replaceCallbackParameters = (Constructable.ReplaceCallbackParameters)data;
 		this.replacingTileLayer = replaceCallbackParameters.TileLayer;
 	}
 
-	// Token: 0x06003D9D RID: 15773 RVA: 0x0023FFBC File Offset: 0x0023E1BC
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -203,25 +196,21 @@ public class BuildingComplete : Building
 		BuildingInventory.Instance.RegisterBuilding(this);
 	}
 
-	// Token: 0x06003D9E RID: 15774 RVA: 0x000CC524 File Offset: 0x000CA724
 	private void OnSetTemperature(PrimaryElement primary_element, float temperature)
 	{
 		BuildingComplete.MinKelvinSeen = Mathf.Min(BuildingComplete.MinKelvinSeen, temperature);
 	}
 
-	// Token: 0x06003D9F RID: 15775 RVA: 0x000CC536 File Offset: 0x000CA736
 	public void SetCreationTime(float time)
 	{
 		this.creationTime = time;
 	}
 
-	// Token: 0x06003DA0 RID: 15776 RVA: 0x000CC53F File Offset: 0x000CA73F
 	private string GetInspectSound()
 	{
 		return GlobalAssets.GetSound("AI_Inspect_" + base.GetComponent<KPrefabID>().PrefabTag.Name, false);
 	}
 
-	// Token: 0x06003DA1 RID: 15777 RVA: 0x00240348 File Offset: 0x0023E548
 	protected override void OnCleanUp()
 	{
 		if (Game.quitting)
@@ -283,51 +272,38 @@ public class BuildingComplete : Building
 		base.Trigger(-21016276, this);
 	}
 
-	// Token: 0x04002A81 RID: 10881
 	[MyCmpReq]
 	private Modifiers modifiers;
 
-	// Token: 0x04002A82 RID: 10882
 	[MyCmpGet]
 	public KPrefabID prefabid;
 
-	// Token: 0x04002A83 RID: 10883
 	public bool isManuallyOperated;
 
-	// Token: 0x04002A84 RID: 10884
 	public bool isArtable;
 
-	// Token: 0x04002A85 RID: 10885
 	public PrimaryElement primaryElement;
 
-	// Token: 0x04002A86 RID: 10886
 	[Serialize]
 	public float creationTime = -1f;
 
-	// Token: 0x04002A87 RID: 10887
 	private bool hasSpawnedKComponents;
 
-	// Token: 0x04002A88 RID: 10888
 	private ObjectLayer replacingTileLayer = ObjectLayer.NumLayers;
 
-	// Token: 0x04002A89 RID: 10889
 	public List<AttributeModifier> regionModifiers = new List<AttributeModifier>();
 
-	// Token: 0x04002A8A RID: 10890
 	private static readonly EventSystem.IntraObjectHandler<BuildingComplete> OnEntombedChange = new EventSystem.IntraObjectHandler<BuildingComplete>(delegate(BuildingComplete component, object data)
 	{
 		component.OnEntombedChanged();
 	});
 
-	// Token: 0x04002A8B RID: 10891
 	private static readonly EventSystem.IntraObjectHandler<BuildingComplete> OnObjectReplacedDelegate = new EventSystem.IntraObjectHandler<BuildingComplete>(delegate(BuildingComplete component, object data)
 	{
 		component.OnObjectReplaced(data);
 	});
 
-	// Token: 0x04002A8C RID: 10892
 	private HandleVector<int>.Handle scenePartitionerEntry;
 
-	// Token: 0x04002A8D RID: 10893
 	public static float MinKelvinSeen = float.MaxValue;
 }

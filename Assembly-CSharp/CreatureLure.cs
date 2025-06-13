@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x02001CD9 RID: 7385
 [SerializationConfig(MemberSerialization.OptIn)]
 public class CreatureLure : StateMachineComponent<CreatureLure.StatesInstance>
 {
-	// Token: 0x060099FC RID: 39420 RVA: 0x00108939 File Offset: 0x00106B39
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -15,7 +13,6 @@ public class CreatureLure : StateMachineComponent<CreatureLure.StatesInstance>
 		base.Subscribe<CreatureLure>(-905833192, CreatureLure.OnCopySettingsDelegate);
 	}
 
-	// Token: 0x060099FD RID: 39421 RVA: 0x003C5CB8 File Offset: 0x003C3EB8
 	private void OnCopySettings(object data)
 	{
 		CreatureLure component = ((GameObject)data).GetComponent<CreatureLure>();
@@ -25,7 +22,6 @@ public class CreatureLure : StateMachineComponent<CreatureLure.StatesInstance>
 		}
 	}
 
-	// Token: 0x060099FE RID: 39422 RVA: 0x003C5CE8 File Offset: 0x003C3EE8
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -42,14 +38,12 @@ public class CreatureLure : StateMachineComponent<CreatureLure.StatesInstance>
 		base.Subscribe<CreatureLure>(-1697596308, CreatureLure.OnStorageChangeDelegate);
 	}
 
-	// Token: 0x060099FF RID: 39423 RVA: 0x003C5D5C File Offset: 0x003C3F5C
 	private void OnStorageChange(object data = null)
 	{
 		bool value = this.baitStorage.GetAmountAvailable(this.activeBaitSetting) > 0f;
 		this.operational.SetFlag(CreatureLure.baited, value);
 	}
 
-	// Token: 0x06009A00 RID: 39424 RVA: 0x003C5D94 File Offset: 0x003C3F94
 	public void ChangeBaitSetting(Tag baitSetting)
 	{
 		if (this.fetchChore != null)
@@ -81,7 +75,6 @@ public class CreatureLure : StateMachineComponent<CreatureLure.StatesInstance>
 		}
 	}
 
-	// Token: 0x06009A01 RID: 39425 RVA: 0x003C5E80 File Offset: 0x003C4080
 	protected void CreateFetchChore()
 	{
 		if (this.fetchChore != null)
@@ -100,57 +93,43 @@ public class CreatureLure : StateMachineComponent<CreatureLure.StatesInstance>
 		base.GetComponent<KSelectable>().AddStatusItem(Db.Get().BuildingStatusItems.AwaitingBaitDelivery, null);
 	}
 
-	// Token: 0x04007824 RID: 30756
 	public static float CONSUMPTION_RATE = 1f;
 
-	// Token: 0x04007825 RID: 30757
 	[Serialize]
 	public Tag activeBaitSetting;
 
-	// Token: 0x04007826 RID: 30758
 	public List<Tag> baitTypes;
 
-	// Token: 0x04007827 RID: 30759
 	public Storage baitStorage;
 
-	// Token: 0x04007828 RID: 30760
 	protected FetchChore fetchChore;
 
-	// Token: 0x04007829 RID: 30761
 	private Operational operational;
 
-	// Token: 0x0400782A RID: 30762
 	private static readonly Operational.Flag baited = new Operational.Flag("Baited", Operational.Flag.Type.Requirement);
 
-	// Token: 0x0400782B RID: 30763
 	[MyCmpAdd]
 	private CopyBuildingSettings copyBuildingSettings;
 
-	// Token: 0x0400782C RID: 30764
 	private static readonly EventSystem.IntraObjectHandler<CreatureLure> OnCopySettingsDelegate = new EventSystem.IntraObjectHandler<CreatureLure>(delegate(CreatureLure component, object data)
 	{
 		component.OnCopySettings(data);
 	});
 
-	// Token: 0x0400782D RID: 30765
 	private static readonly EventSystem.IntraObjectHandler<CreatureLure> OnStorageChangeDelegate = new EventSystem.IntraObjectHandler<CreatureLure>(delegate(CreatureLure component, object data)
 	{
 		component.OnStorageChange(data);
 	});
 
-	// Token: 0x02001CDA RID: 7386
 	public class StatesInstance : GameStateMachine<CreatureLure.States, CreatureLure.StatesInstance, CreatureLure, object>.GameInstance
 	{
-		// Token: 0x06009A04 RID: 39428 RVA: 0x00108966 File Offset: 0x00106B66
 		public StatesInstance(CreatureLure master) : base(master)
 		{
 		}
 	}
 
-	// Token: 0x02001CDB RID: 7387
 	public class States : GameStateMachine<CreatureLure.States, CreatureLure.StatesInstance, CreatureLure>
 	{
-		// Token: 0x06009A05 RID: 39429 RVA: 0x003C5F94 File Offset: 0x003C4194
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.idle;
@@ -190,7 +169,6 @@ public class CreatureLure : StateMachineComponent<CreatureLure.StatesInstance>
 			}).EventTransition(GameHashes.OnStorageChange, this.working, (CreatureLure.StatesInstance smi) => !smi.master.baitStorage.IsEmpty() && smi.master.operational.IsOperational).EventTransition(GameHashes.OperationalChanged, this.working, (CreatureLure.StatesInstance smi) => !smi.master.baitStorage.IsEmpty() && smi.master.operational.IsOperational);
 		}
 
-		// Token: 0x06009A06 RID: 39430 RVA: 0x0010896F File Offset: 0x00106B6F
 		private static void ClearBait(StateMachine.Instance smi)
 		{
 			if (smi.GetSMI<Lure.Instance>() != null)
@@ -199,13 +177,10 @@ public class CreatureLure : StateMachineComponent<CreatureLure.StatesInstance>
 			}
 		}
 
-		// Token: 0x0400782E RID: 30766
 		public GameStateMachine<CreatureLure.States, CreatureLure.StatesInstance, CreatureLure, object>.State idle;
 
-		// Token: 0x0400782F RID: 30767
 		public GameStateMachine<CreatureLure.States, CreatureLure.StatesInstance, CreatureLure, object>.State working;
 
-		// Token: 0x04007830 RID: 30768
 		public GameStateMachine<CreatureLure.States, CreatureLure.StatesInstance, CreatureLure, object>.State empty;
 	}
 }

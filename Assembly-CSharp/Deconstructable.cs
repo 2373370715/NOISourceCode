@@ -5,12 +5,9 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000A5C RID: 2652
 [AddComponentMenu("KMonoBehaviour/Workable/Deconstructable")]
 public class Deconstructable : Workable
 {
-	// Token: 0x170001D7 RID: 471
-	// (get) Token: 0x06002FDD RID: 12253 RVA: 0x00207094 File Offset: 0x00205294
 	private CellOffset[] placementOffsets
 	{
 		get
@@ -47,7 +44,6 @@ public class Deconstructable : Workable
 		}
 	}
 
-	// Token: 0x06002FDE RID: 12254 RVA: 0x00207158 File Offset: 0x00205358
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -77,7 +73,6 @@ public class Deconstructable : Workable
 		base.SetWorkTime(30f);
 	}
 
-	// Token: 0x06002FDF RID: 12255 RVA: 0x00207268 File Offset: 0x00205468
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -107,7 +102,6 @@ public class Deconstructable : Workable
 		this.reconstructable = base.GetComponent<Reconstructable>();
 	}
 
-	// Token: 0x06002FE0 RID: 12256 RVA: 0x00207360 File Offset: 0x00205560
 	protected override void OnStartWork(WorkerBase worker)
 	{
 		this.progressBar.barColor = ProgressBarsConfig.Instance.GetBarColor("DeconstructBar");
@@ -115,7 +109,6 @@ public class Deconstructable : Workable
 		base.Trigger(1830962028, this);
 	}
 
-	// Token: 0x06002FE1 RID: 12257 RVA: 0x002073B0 File Offset: 0x002055B0
 	protected override void OnCompleteWork(WorkerBase worker)
 	{
 		base.Trigger(-702296337, this);
@@ -165,8 +158,6 @@ public class Deconstructable : Workable
 		}
 	}
 
-	// Token: 0x170001D8 RID: 472
-	// (get) Token: 0x06002FE2 RID: 12258 RVA: 0x000C3904 File Offset: 0x000C1B04
 	public bool HasBeenDestroyed
 	{
 		get
@@ -175,7 +166,6 @@ public class Deconstructable : Workable
 		}
 	}
 
-	// Token: 0x06002FE3 RID: 12259 RVA: 0x00207598 File Offset: 0x00205798
 	public List<GameObject> ForceDestroyAndGetMaterials()
 	{
 		PrimaryElement component = base.GetComponent<PrimaryElement>();
@@ -185,7 +175,6 @@ public class Deconstructable : Workable
 		return this.TriggerDestroy(temperature, diseaseIdx, diseaseCount);
 	}
 
-	// Token: 0x06002FE4 RID: 12260 RVA: 0x002075C8 File Offset: 0x002057C8
 	private List<GameObject> TriggerDestroy(float temperature, byte disease_idx, int disease_count, WorkerBase tile_worker)
 	{
 		if (this == null || this.destroyed)
@@ -206,13 +195,11 @@ public class Deconstructable : Workable
 		return result;
 	}
 
-	// Token: 0x06002FE5 RID: 12261 RVA: 0x000C390C File Offset: 0x000C1B0C
 	private List<GameObject> TriggerDestroy(float temperature, byte disease_idx, int disease_count)
 	{
 		return this.TriggerDestroy(temperature, disease_idx, disease_count, base.worker);
 	}
 
-	// Token: 0x06002FE6 RID: 12262 RVA: 0x00207640 File Offset: 0x00205840
 	public void QueueDeconstruction(bool userTriggered)
 	{
 		if (userTriggered && DebugHandler.InstantBuildMode)
@@ -239,13 +226,11 @@ public class Deconstructable : Workable
 		}
 	}
 
-	// Token: 0x06002FE7 RID: 12263 RVA: 0x000C391D File Offset: 0x000C1B1D
 	private void QueueDeconstruction()
 	{
 		this.QueueDeconstruction(true);
 	}
 
-	// Token: 0x06002FE8 RID: 12264 RVA: 0x000C3926 File Offset: 0x000C1B26
 	private void OnDeconstruct()
 	{
 		if (this.chore == null)
@@ -256,13 +241,11 @@ public class Deconstructable : Workable
 		this.CancelDeconstruction();
 	}
 
-	// Token: 0x06002FE9 RID: 12265 RVA: 0x000C393D File Offset: 0x000C1B3D
 	public bool IsMarkedForDeconstruction()
 	{
 		return this.chore != null;
 	}
 
-	// Token: 0x06002FEA RID: 12266 RVA: 0x000C3948 File Offset: 0x000C1B48
 	public void SetAllowDeconstruction(bool allow)
 	{
 		this.allowDeconstruction = allow;
@@ -272,7 +255,6 @@ public class Deconstructable : Workable
 		}
 	}
 
-	// Token: 0x06002FEB RID: 12267 RVA: 0x0020771C File Offset: 0x0020591C
 	public void SpawnItemsFromConstruction(WorkerBase chore_worker)
 	{
 		PrimaryElement component = base.GetComponent<PrimaryElement>();
@@ -282,7 +264,6 @@ public class Deconstructable : Workable
 		this.SpawnItemsFromConstruction(temperature, diseaseIdx, diseaseCount, chore_worker);
 	}
 
-	// Token: 0x06002FEC RID: 12268 RVA: 0x00207750 File Offset: 0x00205950
 	private List<GameObject> SpawnItemsFromConstruction(float temperature, byte disease_idx, int disease_count, WorkerBase construction_worker)
 	{
 		List<GameObject> list = new List<GameObject>();
@@ -329,7 +310,6 @@ public class Deconstructable : Workable
 		return list;
 	}
 
-	// Token: 0x06002FED RID: 12269 RVA: 0x0020789C File Offset: 0x00205A9C
 	public GameObject SpawnItem(Vector3 position, Tag src_element, float src_mass, float src_temperature, byte disease_idx, int disease_count, WorkerBase chore_worker)
 	{
 		GameObject gameObject = null;
@@ -371,7 +351,6 @@ public class Deconstructable : Workable
 		return gameObject;
 	}
 
-	// Token: 0x06002FEE RID: 12270 RVA: 0x0020799C File Offset: 0x00205B9C
 	private void OnRefreshUserMenu(object data)
 	{
 		if (!this.allowDeconstruction)
@@ -382,7 +361,6 @@ public class Deconstructable : Workable
 		Game.Instance.userMenu.AddButton(base.gameObject, button, 0f);
 	}
 
-	// Token: 0x06002FEF RID: 12271 RVA: 0x00207A40 File Offset: 0x00205C40
 	public void CancelDeconstruction()
 	{
 		if (this.chore != null)
@@ -401,13 +379,11 @@ public class Deconstructable : Workable
 		}
 	}
 
-	// Token: 0x06002FF0 RID: 12272 RVA: 0x000C395F File Offset: 0x000C1B5F
 	private void OnCancel(object data)
 	{
 		this.CancelDeconstruction();
 	}
 
-	// Token: 0x06002FF1 RID: 12273 RVA: 0x000C3967 File Offset: 0x000C1B67
 	private void OnDeconstruct(object data)
 	{
 		if (this.allowDeconstruction || DebugHandler.InstantBuildMode)
@@ -416,53 +392,40 @@ public class Deconstructable : Workable
 		}
 	}
 
-	// Token: 0x040020F2 RID: 8434
 	public Chore chore;
 
-	// Token: 0x040020F3 RID: 8435
 	public bool allowDeconstruction = true;
 
-	// Token: 0x040020F4 RID: 8436
 	public string audioSize;
 
-	// Token: 0x040020F5 RID: 8437
 	public float customWorkTime = -1f;
 
-	// Token: 0x040020F6 RID: 8438
 	private Reconstructable reconstructable;
 
-	// Token: 0x040020F7 RID: 8439
 	[Serialize]
 	private bool isMarkedForDeconstruction;
 
-	// Token: 0x040020F8 RID: 8440
 	[Serialize]
 	public Tag[] constructionElements;
 
-	// Token: 0x040020F9 RID: 8441
 	public bool looseEntityDeconstructable;
 
-	// Token: 0x040020FA RID: 8442
 	private static readonly EventSystem.IntraObjectHandler<Deconstructable> OnRefreshUserMenuDelegate = new EventSystem.IntraObjectHandler<Deconstructable>(delegate(Deconstructable component, object data)
 	{
 		component.OnRefreshUserMenu(data);
 	});
 
-	// Token: 0x040020FB RID: 8443
 	private static readonly EventSystem.IntraObjectHandler<Deconstructable> OnCancelDelegate = new EventSystem.IntraObjectHandler<Deconstructable>(delegate(Deconstructable component, object data)
 	{
 		component.OnCancel(data);
 	});
 
-	// Token: 0x040020FC RID: 8444
 	private static readonly EventSystem.IntraObjectHandler<Deconstructable> OnDeconstructDelegate = new EventSystem.IntraObjectHandler<Deconstructable>(delegate(Deconstructable component, object data)
 	{
 		component.OnDeconstruct(data);
 	});
 
-	// Token: 0x040020FD RID: 8445
 	private static readonly Vector2 INITIAL_VELOCITY_RANGE = new Vector2(0.5f, 4f);
 
-	// Token: 0x040020FE RID: 8446
 	private bool destroyed;
 }

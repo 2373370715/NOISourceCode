@@ -2,18 +2,15 @@
 using Klei;
 using UnityEngine;
 
-// Token: 0x02000A7C RID: 2684
 [SkipSaveFileSerialization]
 [AddComponentMenu("KMonoBehaviour/scripts/EntitySplitter")]
 public class EntitySplitter : KMonoBehaviour
 {
-	// Token: 0x060030C9 RID: 12489 RVA: 0x000C42C4 File Offset: 0x000C24C4
 	protected static Pickupable OnTakeBehavior(Pickupable p, float a)
 	{
 		return EntitySplitter.Split(p, a, null);
 	}
 
-	// Token: 0x060030CA RID: 12490 RVA: 0x0020AD84 File Offset: 0x00208F84
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -30,7 +27,6 @@ public class EntitySplitter : KMonoBehaviour
 		base.Subscribe<EntitySplitter>(-2064133523, EntitySplitter.OnAbsorbDelegate);
 	}
 
-	// Token: 0x060030CB RID: 12491 RVA: 0x0020AE40 File Offset: 0x00209040
 	protected override void OnCleanUp()
 	{
 		base.OnCleanUp();
@@ -42,7 +38,6 @@ public class EntitySplitter : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060030CC RID: 12492 RVA: 0x0020AE88 File Offset: 0x00209088
 	public static bool CanFirstAbsorbSecond(Pickupable pickupable, Rottable.Instance rottable, Pickupable other, float maxStackSize)
 	{
 		if (other == null)
@@ -121,7 +116,6 @@ public class EntitySplitter : KMonoBehaviour
 		return true;
 	}
 
-	// Token: 0x060030CD RID: 12493 RVA: 0x0020B00C File Offset: 0x0020920C
 	public static Pickupable Split(Pickupable pickupable, float amount, GameObject prefab = null)
 	{
 		if (amount >= pickupable.TotalAmount && prefab == null)
@@ -170,7 +164,6 @@ public class EntitySplitter : KMonoBehaviour
 		return component;
 	}
 
-	// Token: 0x060030CE RID: 12494 RVA: 0x0020B198 File Offset: 0x00209398
 	private void OnAbsorb(object data)
 	{
 		Pickupable pickupable = (Pickupable)data;
@@ -206,10 +199,8 @@ public class EntitySplitter : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x04002193 RID: 8595
 	public float maxStackSize = PrimaryElement.MAX_MASS;
 
-	// Token: 0x04002194 RID: 8596
 	private static readonly EventSystem.IntraObjectHandler<EntitySplitter> OnAbsorbDelegate = new EventSystem.IntraObjectHandler<EntitySplitter>(delegate(EntitySplitter component, object data)
 	{
 		component.OnAbsorb(data);

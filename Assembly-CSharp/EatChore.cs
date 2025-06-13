@@ -5,10 +5,8 @@ using Klei.AI;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x020006AA RID: 1706
 public class EatChore : Chore<EatChore.StatesInstance>
 {
-	// Token: 0x06001E58 RID: 7768 RVA: 0x001BFA28 File Offset: 0x001BDC28
 	public EatChore(IStateMachineTarget master) : base(Db.Get().ChoreTypes.Eat, master, master.GetComponent<ChoreProvider>(), false, null, null, null, PriorityScreen.PriorityClass.personalNeeds, 5, false, true, 0, false, ReportManager.ReportType.PersonalTime)
 	{
 		base.smi = new EatChore.StatesInstance(this);
@@ -17,7 +15,6 @@ public class EatChore : Chore<EatChore.StatesInstance>
 		this.AddPrecondition(EatChore.EdibleIsNotNull, null);
 	}
 
-	// Token: 0x06001E59 RID: 7769 RVA: 0x001BFA90 File Offset: 0x001BDC90
 	public override void Begin(Chore.Precondition.Context context)
 	{
 		if (context.consumerState.consumer == null)
@@ -62,7 +59,6 @@ public class EatChore : Chore<EatChore.StatesInstance>
 		base.Begin(context);
 	}
 
-	// Token: 0x040013BE RID: 5054
 	public static readonly Chore.Precondition EdibleIsNotNull = new Chore.Precondition
 	{
 		id = "EdibleIsNotNull",
@@ -73,15 +69,12 @@ public class EatChore : Chore<EatChore.StatesInstance>
 		}
 	};
 
-	// Token: 0x020006AB RID: 1707
 	public class StatesInstance : GameStateMachine<EatChore.States, EatChore.StatesInstance, EatChore, object>.GameInstance
 	{
-		// Token: 0x06001E5B RID: 7771 RVA: 0x000B885D File Offset: 0x000B6A5D
 		public StatesInstance(EatChore master) : base(master)
 		{
 		}
 
-		// Token: 0x06001E5C RID: 7772 RVA: 0x001BFC74 File Offset: 0x001BDE74
 		public void UpdateMessStation()
 		{
 			Ownables soleOwner = base.sm.eater.Get(base.smi).GetComponent<MinionIdentity>().GetSoleOwner();
@@ -95,7 +88,6 @@ public class EatChore : Chore<EatChore.StatesInstance>
 			base.smi.sm.messstation.Set(value, base.smi);
 		}
 
-		// Token: 0x06001E5D RID: 7773 RVA: 0x001BFD30 File Offset: 0x001BDF30
 		public bool UseSalt()
 		{
 			if (base.smi.sm.messstation != null && base.smi.sm.messstation.Get(base.smi) != null)
@@ -106,7 +98,6 @@ public class EatChore : Chore<EatChore.StatesInstance>
 			return false;
 		}
 
-		// Token: 0x06001E5E RID: 7774 RVA: 0x001BFDA8 File Offset: 0x001BDFA8
 		public void CreateLocator()
 		{
 			int num = base.sm.eater.Get<Sensors>(base.smi).GetSensor<SafeCellSensor>().GetCellQuery();
@@ -121,7 +112,6 @@ public class EatChore : Chore<EatChore.StatesInstance>
 			this.locatorCell = num;
 		}
 
-		// Token: 0x06001E5F RID: 7775 RVA: 0x000B8866 File Offset: 0x000B6A66
 		public void DestroyLocator()
 		{
 			Grid.Reserved[this.locatorCell] = false;
@@ -129,7 +119,6 @@ public class EatChore : Chore<EatChore.StatesInstance>
 			base.sm.locator.Set(null, this);
 		}
 
-		// Token: 0x06001E60 RID: 7776 RVA: 0x001BFE3C File Offset: 0x001BE03C
 		public void SetZ(GameObject go, float z)
 		{
 			Vector3 position = go.transform.GetPosition();
@@ -137,7 +126,6 @@ public class EatChore : Chore<EatChore.StatesInstance>
 			go.transform.SetPosition(position);
 		}
 
-		// Token: 0x06001E61 RID: 7777 RVA: 0x001BFE6C File Offset: 0x001BE06C
 		public void ApplyRoomEffects()
 		{
 			Room roomOfGameObject = Game.Instance.roomProber.GetRoomOfGameObject(base.sm.messstation.Get(base.smi).gameObject);
@@ -147,7 +135,6 @@ public class EatChore : Chore<EatChore.StatesInstance>
 			}
 		}
 
-		// Token: 0x06001E62 RID: 7778 RVA: 0x001BFEF4 File Offset: 0x001BE0F4
 		public void ApplySaltEffect()
 		{
 			Storage component = base.sm.messstation.Get(base.smi).gameObject.GetComponent<Storage>();
@@ -159,14 +146,11 @@ public class EatChore : Chore<EatChore.StatesInstance>
 			}
 		}
 
-		// Token: 0x040013BF RID: 5055
 		private int locatorCell;
 	}
 
-	// Token: 0x020006AC RID: 1708
 	public class States : GameStateMachine<EatChore.States, EatChore.StatesInstance, EatChore>
 	{
-		// Token: 0x06001E63 RID: 7779 RVA: 0x001BFFAC File Offset: 0x001BE1AC
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.chooseaction;
@@ -247,75 +231,52 @@ public class EatChore : Chore<EatChore.StatesInstance>
 			this.eatonfloorstate.eat.ToggleAnims("anim_eat_floor_kanim", 0f).DoEat(this.ediblechunk, this.actualfoodunits, null, null);
 		}
 
-		// Token: 0x040013C0 RID: 5056
 		public StateMachine<EatChore.States, EatChore.StatesInstance, EatChore, object>.TargetParameter eater;
 
-		// Token: 0x040013C1 RID: 5057
 		public StateMachine<EatChore.States, EatChore.StatesInstance, EatChore, object>.TargetParameter ediblesource;
 
-		// Token: 0x040013C2 RID: 5058
 		public StateMachine<EatChore.States, EatChore.StatesInstance, EatChore, object>.TargetParameter ediblechunk;
 
-		// Token: 0x040013C3 RID: 5059
 		public StateMachine<EatChore.States, EatChore.StatesInstance, EatChore, object>.TargetParameter messstation;
 
-		// Token: 0x040013C4 RID: 5060
 		public StateMachine<EatChore.States, EatChore.StatesInstance, EatChore, object>.FloatParameter requestedfoodunits;
 
-		// Token: 0x040013C5 RID: 5061
 		public StateMachine<EatChore.States, EatChore.StatesInstance, EatChore, object>.FloatParameter actualfoodunits;
 
-		// Token: 0x040013C6 RID: 5062
 		public StateMachine<EatChore.States, EatChore.StatesInstance, EatChore, object>.TargetParameter locator;
 
-		// Token: 0x040013C7 RID: 5063
 		public GameStateMachine<EatChore.States, EatChore.StatesInstance, EatChore, object>.State chooseaction;
 
-		// Token: 0x040013C8 RID: 5064
 		public EatChore.States.RehydrateSubState rehydrate;
 
-		// Token: 0x040013C9 RID: 5065
 		public GameStateMachine<EatChore.States, EatChore.StatesInstance, EatChore, object>.FetchSubState fetch;
 
-		// Token: 0x040013CA RID: 5066
 		public EatChore.States.EatOnFloorState eatonfloorstate;
 
-		// Token: 0x040013CB RID: 5067
 		public EatChore.States.EatAtMessStationState eatatmessstation;
 
-		// Token: 0x020006AD RID: 1709
 		public class EatOnFloorState : GameStateMachine<EatChore.States, EatChore.StatesInstance, EatChore, object>.State
 		{
-			// Token: 0x040013CC RID: 5068
 			public GameStateMachine<EatChore.States, EatChore.StatesInstance, EatChore, object>.ApproachSubState<IApproachable> moveto;
 
-			// Token: 0x040013CD RID: 5069
 			public GameStateMachine<EatChore.States, EatChore.StatesInstance, EatChore, object>.State eat;
 		}
 
-		// Token: 0x020006AE RID: 1710
 		public class EatAtMessStationState : GameStateMachine<EatChore.States, EatChore.StatesInstance, EatChore, object>.State
 		{
-			// Token: 0x040013CE RID: 5070
 			public GameStateMachine<EatChore.States, EatChore.StatesInstance, EatChore, object>.ApproachSubState<MessStation> moveto;
 
-			// Token: 0x040013CF RID: 5071
 			public GameStateMachine<EatChore.States, EatChore.StatesInstance, EatChore, object>.State eat;
 		}
 
-		// Token: 0x020006AF RID: 1711
 		public class RehydrateSubState : GameStateMachine<EatChore.States, EatChore.StatesInstance, EatChore, object>.State
 		{
-			// Token: 0x040013D0 RID: 5072
 			public StateMachine<EatChore.States, EatChore.StatesInstance, EatChore, object>.TargetParameter foodpackage;
 
-			// Token: 0x040013D1 RID: 5073
 			public StateMachine<EatChore.States, EatChore.StatesInstance, EatChore, object>.ObjectParameter<AccessabilityManager> rehydrator;
 
-			// Token: 0x040013D2 RID: 5074
 			public GameStateMachine<EatChore.States, EatChore.StatesInstance, EatChore, object>.ApproachSubState<DehydratedFoodPackage> approach;
 
-			// Token: 0x040013D3 RID: 5075
 			public GameStateMachine<EatChore.States, EatChore.StatesInstance, EatChore, object>.State work;
 		}
 	}

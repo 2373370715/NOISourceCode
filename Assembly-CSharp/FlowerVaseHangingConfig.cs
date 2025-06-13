@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020002ED RID: 749
 public class FlowerVaseHangingConfig : IBuildingConfig
 {
-	// Token: 0x06000B85 RID: 2949 RVA: 0x00178CFC File Offset: 0x00176EFC
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "FlowerVaseHanging";
@@ -31,7 +29,6 @@ public class FlowerVaseHangingConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000B86 RID: 2950 RVA: 0x00178D8C File Offset: 0x00176F8C
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<Storage>();
@@ -43,11 +40,9 @@ public class FlowerVaseHangingConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(GameTags.Decoration, false);
 	}
 
-	// Token: 0x06000B87 RID: 2951 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000907 RID: 2311
 	public const string ID = "FlowerVaseHanging";
 }

@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020004B9 RID: 1209
 public class MonumentMiddleConfig : IBuildingConfig
 {
-	// Token: 0x060014B4 RID: 5300 RVA: 0x0019C3EC File Offset: 0x0019A5EC
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "MonumentMiddle";
@@ -47,7 +45,6 @@ public class MonumentMiddleConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060014B5 RID: 5301 RVA: 0x0019C500 File Offset: 0x0019A700
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -59,17 +56,14 @@ public class MonumentMiddleConfig : IBuildingConfig
 		go.AddOrGet<MonumentPart>().part = MonumentPartResource.Part.Middle;
 	}
 
-	// Token: 0x060014B6 RID: 5302 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 	}
 
-	// Token: 0x060014B7 RID: 5303 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 	}
 
-	// Token: 0x060014B8 RID: 5304 RVA: 0x000B3741 File Offset: 0x000B1941
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<KBatchedAnimController>().initialAnim = "option_a";
@@ -81,6 +75,5 @@ public class MonumentMiddleConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x04000E14 RID: 3604
 	public const string ID = "MonumentMiddle";
 }

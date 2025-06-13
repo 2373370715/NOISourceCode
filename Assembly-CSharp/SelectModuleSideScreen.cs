@@ -6,10 +6,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02002027 RID: 8231
 public class SelectModuleSideScreen : KScreen
 {
-	// Token: 0x0600AE56 RID: 44630 RVA: 0x00114927 File Offset: 0x00112B27
 	protected override void OnShow(bool show)
 	{
 		base.OnShow(show);
@@ -19,7 +17,6 @@ public class SelectModuleSideScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600AE57 RID: 44631 RVA: 0x00115D16 File Offset: 0x00113F16
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -28,14 +25,12 @@ public class SelectModuleSideScreen : KScreen
 		this.buildSelectedModuleButton.onClick += this.OnClickBuildSelectedModule;
 	}
 
-	// Token: 0x0600AE58 RID: 44632 RVA: 0x00115D42 File Offset: 0x00113F42
 	protected override void OnForcedCleanUp()
 	{
 		SelectModuleSideScreen.Instance = null;
 		base.OnForcedCleanUp();
 	}
 
-	// Token: 0x0600AE59 RID: 44633 RVA: 0x00115D50 File Offset: 0x00113F50
 	protected override void OnCmpDisable()
 	{
 		this.ClearSubscriptionHandles();
@@ -43,7 +38,6 @@ public class SelectModuleSideScreen : KScreen
 		base.OnCmpDisable();
 	}
 
-	// Token: 0x0600AE5A RID: 44634 RVA: 0x00425FA4 File Offset: 0x004241A4
 	private void ClearSubscriptionHandles()
 	{
 		foreach (int id in this.gameSubscriptionHandles)
@@ -53,7 +47,6 @@ public class SelectModuleSideScreen : KScreen
 		this.gameSubscriptionHandles.Clear();
 	}
 
-	// Token: 0x0600AE5B RID: 44635 RVA: 0x00426008 File Offset: 0x00424208
 	protected override void OnCmpEnable()
 	{
 		base.OnCmpEnable();
@@ -62,7 +55,6 @@ public class SelectModuleSideScreen : KScreen
 		this.gameSubscriptionHandles.Add(Game.Instance.Subscribe(-1948169901, new Action<object>(this.UpdateBuildableStates)));
 	}
 
-	// Token: 0x0600AE5C RID: 44636 RVA: 0x00426070 File Offset: 0x00424270
 	protected override void OnCleanUp()
 	{
 		foreach (int id in this.gameSubscriptionHandles)
@@ -73,7 +65,6 @@ public class SelectModuleSideScreen : KScreen
 		base.OnCleanUp();
 	}
 
-	// Token: 0x0600AE5D RID: 44637 RVA: 0x004260D8 File Offset: 0x004242D8
 	public void SetLaunchPad(LaunchPad pad)
 	{
 		this.launchPad = pad;
@@ -85,7 +76,6 @@ public class SelectModuleSideScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600AE5E RID: 44638 RVA: 0x00426154 File Offset: 0x00424354
 	public void SetTarget(GameObject new_target)
 	{
 		if (new_target == null)
@@ -112,7 +102,6 @@ public class SelectModuleSideScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600AE5F RID: 44639 RVA: 0x00426228 File Offset: 0x00424428
 	private void UpdateBuildableStates(object data = null)
 	{
 		foreach (KeyValuePair<BuildingDef, GameObject> keyValuePair in this.buttons)
@@ -140,7 +129,6 @@ public class SelectModuleSideScreen : KScreen
 		this.SetButtonColors();
 	}
 
-	// Token: 0x0600AE60 RID: 44640 RVA: 0x00115D65 File Offset: 0x00113F65
 	private void OnClickBuildSelectedModule()
 	{
 		if (this.selectedModuleDef != null)
@@ -149,7 +137,6 @@ public class SelectModuleSideScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600AE61 RID: 44641 RVA: 0x00426334 File Offset: 0x00424534
 	private void ConfigureMaterialSelector()
 	{
 		this.buildSelectedModuleButton.isInteractable = false;
@@ -165,7 +152,6 @@ public class SelectModuleSideScreen : KScreen
 		this.materialSelectionPanel.AutoSelectAvailableMaterial();
 	}
 
-	// Token: 0x0600AE62 RID: 44642 RVA: 0x00426400 File Offset: 0x00424600
 	private void ConfigureFacadeSelector()
 	{
 		if (this.facadeSelectionPanel == null)
@@ -176,19 +162,16 @@ public class SelectModuleSideScreen : KScreen
 		this.facadeSelectionPanel.SetBuildingDef(this.selectedModuleDef.PrefabID, null);
 	}
 
-	// Token: 0x0600AE63 RID: 44643 RVA: 0x00115D7B File Offset: 0x00113F7B
 	private bool IsDefBuildable(BuildingDef def)
 	{
 		return this.moduleBuildableState.ContainsKey(def) && this.moduleBuildableState[def];
 	}
 
-	// Token: 0x0600AE64 RID: 44644 RVA: 0x0042646C File Offset: 0x0042466C
 	private void UpdateBuildButton()
 	{
 		this.buildSelectedModuleButton.isInteractable = (this.materialSelectionPanel != null && this.materialSelectionPanel.AllSelectorsSelected() && this.selectedModuleDef != null && this.moduleBuildableState[this.selectedModuleDef]);
 	}
 
-	// Token: 0x0600AE65 RID: 44645 RVA: 0x004264C4 File Offset: 0x004246C4
 	public void SetButtonColors()
 	{
 		foreach (KeyValuePair<BuildingDef, GameObject> keyValuePair in this.buttons)
@@ -223,7 +206,6 @@ public class SelectModuleSideScreen : KScreen
 		this.UpdateBuildButton();
 	}
 
-	// Token: 0x0600AE66 RID: 44646 RVA: 0x004265C8 File Offset: 0x004247C8
 	private bool TestBuildable(BuildingDef def)
 	{
 		GameObject buildingComplete = def.BuildingComplete;
@@ -254,7 +236,6 @@ public class SelectModuleSideScreen : KScreen
 		return true;
 	}
 
-	// Token: 0x0600AE67 RID: 44647 RVA: 0x00426758 File Offset: 0x00424958
 	private void ClearButtons()
 	{
 		foreach (KeyValuePair<BuildingDef, GameObject> keyValuePair in this.buttons)
@@ -269,7 +250,6 @@ public class SelectModuleSideScreen : KScreen
 		this.buttons.Clear();
 	}
 
-	// Token: 0x0600AE68 RID: 44648 RVA: 0x004267F0 File Offset: 0x004249F0
 	public void SpawnButtons(object data = null)
 	{
 		this.ClearButtons();
@@ -315,7 +295,6 @@ public class SelectModuleSideScreen : KScreen
 		this.UpdateBuildableStates(null);
 	}
 
-	// Token: 0x0600AE69 RID: 44649 RVA: 0x004269D8 File Offset: 0x00424BD8
 	private void SetupBuildingTooltip(ToolTip tooltip, BuildingDef def)
 	{
 		tooltip.ClearMultiStringTooltip();
@@ -404,7 +383,6 @@ public class SelectModuleSideScreen : KScreen
 		this.AddErrorTooltips(tooltip, def, false);
 	}
 
-	// Token: 0x0600AE6A RID: 44650 RVA: 0x00426E90 File Offset: 0x00425090
 	private SelectModuleCondition.SelectionContext GetSelectionContext(BuildingDef def)
 	{
 		SelectModuleCondition.SelectionContext result = SelectModuleCondition.SelectionContext.AddModuleAbove;
@@ -431,7 +409,6 @@ public class SelectModuleSideScreen : KScreen
 		return result;
 	}
 
-	// Token: 0x0600AE6B RID: 44651 RVA: 0x00426F3C File Offset: 0x0042513C
 	private string GetErrorTooltips(BuildingDef def)
 	{
 		List<SelectModuleCondition> buildConditions = def.BuildingComplete.GetComponent<ReorderableBuilding>().buildConditions;
@@ -455,7 +432,6 @@ public class SelectModuleSideScreen : KScreen
 		return text;
 	}
 
-	// Token: 0x0600AE6C RID: 44652 RVA: 0x00427008 File Offset: 0x00425208
 	private void AddErrorTooltips(ToolTip tooltip, BuildingDef def, bool clearFirst = false)
 	{
 		if (clearFirst)
@@ -469,7 +445,6 @@ public class SelectModuleSideScreen : KScreen
 		tooltip.AddMultiStringTooltip(this.GetErrorTooltips(def), PlanScreen.Instance.buildingToolTipSettings.MaterialRequirement);
 	}
 
-	// Token: 0x0600AE6D RID: 44653 RVA: 0x00115D99 File Offset: 0x00113F99
 	public void SelectModule(BuildingDef def)
 	{
 		this.selectedModuleDef = def;
@@ -480,7 +455,6 @@ public class SelectModuleSideScreen : KScreen
 		this.AddErrorTooltips(this.buildSelectedModuleButton.GetComponent<ToolTip>(), this.selectedModuleDef, true);
 	}
 
-	// Token: 0x0600AE6E RID: 44654 RVA: 0x0042705C File Offset: 0x0042525C
 	private void OrderBuildSelectedModule()
 	{
 		BuildingDef previousSelectedDef = this.selectedModuleDef;
@@ -512,7 +486,6 @@ public class SelectModuleSideScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600AE6F RID: 44655 RVA: 0x00115DD2 File Offset: 0x00113FD2
 	private IEnumerator SelectNextFrame(KSelectable selectable, BuildingDef previousSelectedDef, float scrollPosition)
 	{
 		yield return 0;
@@ -521,74 +494,51 @@ public class SelectModuleSideScreen : KScreen
 		yield break;
 	}
 
-	// Token: 0x0400892C RID: 35116
 	public RocketModule module;
 
-	// Token: 0x0400892D RID: 35117
 	private LaunchPad launchPad;
 
-	// Token: 0x0400892E RID: 35118
 	public GameObject mainContents;
 
-	// Token: 0x0400892F RID: 35119
 	[Header("Category")]
 	public GameObject categoryPrefab;
 
-	// Token: 0x04008930 RID: 35120
 	public GameObject moduleButtonPrefab;
 
-	// Token: 0x04008931 RID: 35121
 	public GameObject categoryContent;
 
-	// Token: 0x04008932 RID: 35122
 	private BuildingDef selectedModuleDef;
 
-	// Token: 0x04008933 RID: 35123
 	public List<GameObject> categories = new List<GameObject>();
 
-	// Token: 0x04008934 RID: 35124
 	public Dictionary<BuildingDef, GameObject> buttons = new Dictionary<BuildingDef, GameObject>();
 
-	// Token: 0x04008935 RID: 35125
 	private Dictionary<BuildingDef, bool> moduleBuildableState = new Dictionary<BuildingDef, bool>();
 
-	// Token: 0x04008936 RID: 35126
 	public static SelectModuleSideScreen Instance;
 
-	// Token: 0x04008937 RID: 35127
 	public bool addingNewModule;
 
-	// Token: 0x04008938 RID: 35128
 	public GameObject materialSelectionPanelPrefab;
 
-	// Token: 0x04008939 RID: 35129
 	private MaterialSelectionPanel materialSelectionPanel;
 
-	// Token: 0x0400893A RID: 35130
 	public GameObject facadeSelectionPanelPrefab;
 
-	// Token: 0x0400893B RID: 35131
 	private FacadeSelectionPanel facadeSelectionPanel;
 
-	// Token: 0x0400893C RID: 35132
 	public KButton buildSelectedModuleButton;
 
-	// Token: 0x0400893D RID: 35133
 	public ColorStyleSetting colorStyleButton;
 
-	// Token: 0x0400893E RID: 35134
 	public ColorStyleSetting colorStyleButtonSelected;
 
-	// Token: 0x0400893F RID: 35135
 	public ColorStyleSetting colorStyleButtonInactive;
 
-	// Token: 0x04008940 RID: 35136
 	public ColorStyleSetting colorStyleButtonInactiveSelected;
 
-	// Token: 0x04008941 RID: 35137
 	private List<int> gameSubscriptionHandles = new List<int>();
 
-	// Token: 0x04008942 RID: 35138
 	public static List<string> moduleButtonSortOrder = new List<string>
 	{
 		"CO2Engine",

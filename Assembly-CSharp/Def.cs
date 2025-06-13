@@ -2,18 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02001251 RID: 4689
 [Serializable]
 public class Def : ScriptableObject
 {
-	// Token: 0x06005FCA RID: 24522 RVA: 0x000E2F06 File Offset: 0x000E1106
 	public virtual void InitDef()
 	{
 		this.Tag = TagManager.Create(this.PrefabID);
 	}
 
-	// Token: 0x170005C5 RID: 1477
-	// (get) Token: 0x06005FCB RID: 24523 RVA: 0x000AA765 File Offset: 0x000A8965
 	public virtual string Name
 	{
 		get
@@ -22,7 +18,6 @@ public class Def : ScriptableObject
 		}
 	}
 
-	// Token: 0x06005FCC RID: 24524 RVA: 0x002B7974 File Offset: 0x002B5B74
 	public static global::Tuple<Sprite, Color> GetUISprite(object item, string animName = "ui", bool centered = false)
 	{
 		if (item is Substance)
@@ -149,7 +144,6 @@ public class Def : ScriptableObject
 		}
 	}
 
-	// Token: 0x06005FCD RID: 24525 RVA: 0x000E2F19 File Offset: 0x000E1119
 	public static global::Tuple<Sprite, Color> GetUISprite(Tag prefabID, string facadeID)
 	{
 		if (Assets.GetPrefab(prefabID).GetComponent<Equippable>() != null && !facadeID.IsNullOrWhiteSpace())
@@ -159,13 +153,11 @@ public class Def : ScriptableObject
 		return Def.GetUISprite(prefabID, "ui", false);
 	}
 
-	// Token: 0x06005FCE RID: 24526 RVA: 0x000E2F58 File Offset: 0x000E1158
 	public static Sprite GetFacadeUISprite(string facadeID)
 	{
 		return Def.GetUISpriteFromMultiObjectAnim(Assets.GetAnim(Db.GetBuildingFacades().Get(facadeID).AnimFile), "ui", false, "");
 	}
 
-	// Token: 0x06005FCF RID: 24527 RVA: 0x002B7DC4 File Offset: 0x002B5FC4
 	public static Sprite GetUISpriteFromMultiObjectAnim(KAnimFile animFile, string animName = "ui", bool centered = false, string symbolName = "")
 	{
 		global::Tuple<KAnimFile, string, bool> key = new global::Tuple<KAnimFile, string, bool>(animFile, animName, centered);
@@ -192,7 +184,6 @@ public class Def : ScriptableObject
 		return spriteFromKAnimFile;
 	}
 
-	// Token: 0x06005FD0 RID: 24528 RVA: 0x002B7E78 File Offset: 0x002B6078
 	public static Sprite GetSpriteFromKAnimFile(KAnimFile animFile, KAnimFileData kafd, KAnim.Build build, KBatchGroupData batchGroupData, string animName = "ui", bool centered = false, string symbolName = "")
 	{
 		kafd = ((kafd == null) ? animFile.GetData() : kafd);
@@ -254,7 +245,6 @@ public class Def : ScriptableObject
 		return sprite;
 	}
 
-	// Token: 0x06005FD1 RID: 24529 RVA: 0x002B8080 File Offset: 0x002B6280
 	public static KAnimFile GetAnimFileFromPrefabWithTag(GameObject prefab, string desiredAnimName, out string animName)
 	{
 		animName = desiredAnimName;
@@ -296,21 +286,16 @@ public class Def : ScriptableObject
 		return prefab.GetComponent<KBatchedAnimController>().AnimFiles[0];
 	}
 
-	// Token: 0x06005FD2 RID: 24530 RVA: 0x000E2F84 File Offset: 0x000E1184
 	public static KAnimFile GetAnimFileFromPrefabWithTag(Tag prefabID, string desiredAnimName, out string animName)
 	{
 		return Def.GetAnimFileFromPrefabWithTag(Assets.GetPrefab(prefabID), desiredAnimName, out animName);
 	}
 
-	// Token: 0x040044B0 RID: 17584
 	public string PrefabID;
 
-	// Token: 0x040044B1 RID: 17585
 	public Tag Tag;
 
-	// Token: 0x040044B2 RID: 17586
 	private static Dictionary<global::Tuple<KAnimFile, string, bool>, Sprite> knownUISprites = new Dictionary<global::Tuple<KAnimFile, string, bool>, Sprite>();
 
-	// Token: 0x040044B3 RID: 17587
 	public const string DEFAULT_SPRITE = "unknown";
 }

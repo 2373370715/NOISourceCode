@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000418 RID: 1048
 public class MegaBrainTankConfig : IBuildingConfig
 {
-	// Token: 0x06001165 RID: 4453 RVA: 0x0018E184 File Offset: 0x0018C384
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "MegaBrainTank";
@@ -33,7 +31,6 @@ public class MegaBrainTankConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001166 RID: 4454 RVA: 0x0018E21C File Offset: 0x0018C41C
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		base.ConfigureBuildingTemplate(go, prefab_tag);
@@ -48,7 +45,6 @@ public class MegaBrainTankConfig : IBuildingConfig
 		go.GetComponent<BuildingHP>().invincible = true;
 	}
 
-	// Token: 0x06001167 RID: 4455 RVA: 0x0018E294 File Offset: 0x0018C494
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LoopingSounds>();
@@ -107,7 +103,6 @@ public class MegaBrainTankConfig : IBuildingConfig
 		go.GetComponent<Deconstructable>().allowDeconstruction = false;
 	}
 
-	// Token: 0x06001168 RID: 4456 RVA: 0x0018E48C File Offset: 0x0018C68C
 	private void ConfigureJournalShelf(KPrefabID parentId)
 	{
 		KBatchedAnimController component = parentId.GetComponent<KBatchedAnimController>();
@@ -135,7 +130,6 @@ public class MegaBrainTankConfig : IBuildingConfig
 		}
 	}
 
-	// Token: 0x0600116A RID: 4458 RVA: 0x0018E5A8 File Offset: 0x0018C7A8
 	// Note: this type is marked as 'beforefieldinit'.
 	static MegaBrainTankConfig()
 	{
@@ -193,93 +187,63 @@ public class MegaBrainTankConfig : IBuildingConfig
 		MegaBrainTankConfig.MaximumAptitude = new StatusItem("MaximumAptitude", DUPLICANTS.MODIFIERS.MEGABRAINTANKBONUS.NAME, DUPLICANTS.MODIFIERS.MEGABRAINTANKBONUS.TOOLTIP, "", StatusItem.IconType.Info, NotificationType.Messages, false, OverlayModes.None.ID, 129022, true, null);
 	}
 
-	// Token: 0x04000C0B RID: 3083
 	public const string ID = "MegaBrainTank";
 
-	// Token: 0x04000C0C RID: 3084
 	public const string INITIAL_LORE_UNLOCK_ID = "story_trait_mega_brain_tank_initial";
 
-	// Token: 0x04000C0D RID: 3085
 	public const string COMPLETED_LORE_UNLOCK_ID = "story_trait_mega_brain_tank_competed";
 
-	// Token: 0x04000C0E RID: 3086
 	public const string ACTIVE_EFFECT_ID = "MegaBrainTankBonus";
 
-	// Token: 0x04000C0F RID: 3087
 	public static object[,] STAT_BONUSES;
 
-	// Token: 0x04000C10 RID: 3088
 	private const float KG_OXYGEN_CONSUMED_PER_SECOND = 0.5f;
 
-	// Token: 0x04000C11 RID: 3089
 	public const float MIN_OXYGEN_TO_WAKE_UP = 1f;
 
-	// Token: 0x04000C12 RID: 3090
 	private const float KG_OXYGEN_STORAGE_CAPACITY = 5f;
 
-	// Token: 0x04000C13 RID: 3091
 	public const short JOURNALS_TO_ACTIVATE = 25;
 
-	// Token: 0x04000C14 RID: 3092
 	public const float DIGESTION_RATE = 60f;
 
-	// Token: 0x04000C15 RID: 3093
 	public const float MAX_DIGESTION_TIME = 1500f;
 
-	// Token: 0x04000C16 RID: 3094
 	public const float REFILL_THESHOLD_ADJUSTMENT = 1f;
 
-	// Token: 0x04000C17 RID: 3095
 	public const short MAX_PHYSICAL_JOURNALS = 5;
 
-	// Token: 0x04000C18 RID: 3096
 	public const ConduitType CONDUIT_TYPE = ConduitType.Gas;
 
-	// Token: 0x04000C19 RID: 3097
 	private const string ANIM_FILE = "gravitas_megabrain_kanim";
 
-	// Token: 0x04000C1A RID: 3098
 	public const string METER_ANIM = "meter";
 
-	// Token: 0x04000C1B RID: 3099
 	public const string METER_TARGET = "meter_oxygen_target";
 
-	// Token: 0x04000C1C RID: 3100
 	public static string[] METER_SYMBOLS;
 
-	// Token: 0x04000C1D RID: 3101
 	public const short TOTAL_BRAINS = 5;
 
-	// Token: 0x04000C1E RID: 3102
 	public const string BRAIN_HUM_EVENT = "MegaBrainTank_brain_wave_LP";
 
-	// Token: 0x04000C1F RID: 3103
 	public const float METER_INCREMENT_SPEED = 0.04f;
 
-	// Token: 0x04000C20 RID: 3104
 	public static HashedString ACTIVATE_ALL;
 
-	// Token: 0x04000C21 RID: 3105
 	public static HashedString DEACTIVATE_ALL;
 
-	// Token: 0x04000C22 RID: 3106
 	public static HashedString[] ACTIVATION_ANIMS;
 
-	// Token: 0x04000C23 RID: 3107
 	public const short MAX_STORAGE_WORK_TIME = 2;
 
-	// Token: 0x04000C24 RID: 3108
 	private const string KACHUNK_ANIM = "kachunk";
 
-	// Token: 0x04000C25 RID: 3109
 	public static HashedString KACHUNK;
 
-	// Token: 0x04000C26 RID: 3110
 	public static HashedString JOURNAL_SHELF;
 
-	// Token: 0x04000C27 RID: 3111
 	public static HashedString[] JOURNAL_SYMBOLS;
 
-	// Token: 0x04000C28 RID: 3112
 	public static StatusItem MaximumAptitude;
 }

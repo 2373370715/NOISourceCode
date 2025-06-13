@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005AB RID: 1451
 public class SolidConduitOutboxConfig : IBuildingConfig
 {
-	// Token: 0x0600191C RID: 6428 RVA: 0x001ADA68 File Offset: 0x001ABC68
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "SolidConduitOutbox";
@@ -31,7 +29,6 @@ public class SolidConduitOutboxConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600191D RID: 6429 RVA: 0x000B4EDE File Offset: 0x000B30DE
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
@@ -44,20 +41,17 @@ public class SolidConduitOutboxConfig : IBuildingConfig
 		go.AddOrGet<SimpleVent>();
 	}
 
-	// Token: 0x0600191E RID: 6430 RVA: 0x000B4DF7 File Offset: 0x000B2FF7
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		base.DoPostConfigureUnderConstruction(go);
 		go.GetComponent<Constructable>().requiredSkillPerk = Db.Get().SkillPerks.ConveyorBuild.Id;
 	}
 
-	// Token: 0x0600191F RID: 6431 RVA: 0x000B4F1A File Offset: 0x000B311A
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		Prioritizable.AddRef(go);
 		go.AddOrGet<Automatable>();
 	}
 
-	// Token: 0x04001054 RID: 4180
 	public const string ID = "SolidConduitOutbox";
 }

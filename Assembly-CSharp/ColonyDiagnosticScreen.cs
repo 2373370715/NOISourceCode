@@ -5,10 +5,8 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001CC4 RID: 7364
 public class ColonyDiagnosticScreen : KScreen, ISim1000ms
 {
-	// Token: 0x0600999E RID: 39326 RVA: 0x003C4290 File Offset: 0x003C2490
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -23,14 +21,12 @@ public class ColonyDiagnosticScreen : KScreen, ISim1000ms
 		}));
 	}
 
-	// Token: 0x0600999F RID: 39327 RVA: 0x00108531 File Offset: 0x00106731
 	protected override void OnForcedCleanUp()
 	{
 		ColonyDiagnosticScreen.Instance = null;
 		base.OnForcedCleanUp();
 	}
 
-	// Token: 0x060099A0 RID: 39328 RVA: 0x003C4308 File Offset: 0x003C2508
 	private void RefreshSingleWorld(object data = null)
 	{
 		foreach (ColonyDiagnosticScreen.DiagnosticRow diagnosticRow in this.diagnosticRows)
@@ -42,7 +38,6 @@ public class ColonyDiagnosticScreen : KScreen, ISim1000ms
 		this.SpawnTrackerLines(ClusterManager.Instance.activeWorldId);
 	}
 
-	// Token: 0x060099A1 RID: 39329 RVA: 0x003C4380 File Offset: 0x003C2580
 	private void SpawnTrackerLines(int world)
 	{
 		this.AddDiagnostic<BreathabilityDiagnostic>(world, this.contentContainer, this.diagnosticRows);
@@ -86,7 +81,6 @@ public class ColonyDiagnosticScreen : KScreen, ISim1000ms
 		this.RefreshAll();
 	}
 
-	// Token: 0x060099A2 RID: 39330 RVA: 0x003C4608 File Offset: 0x003C2808
 	private GameObject AddDiagnostic<T>(int worldID, GameObject parent, List<ColonyDiagnosticScreen.DiagnosticRow> parentCollection) where T : ColonyDiagnostic
 	{
 		T diagnostic = ColonyDiagnosticUtility.Instance.GetDiagnostic<T>(worldID);
@@ -99,13 +93,11 @@ public class ColonyDiagnosticScreen : KScreen, ISim1000ms
 		return gameObject;
 	}
 
-	// Token: 0x060099A3 RID: 39331 RVA: 0x0010853F File Offset: 0x0010673F
 	public static void SetIndication(ColonyDiagnostic.DiagnosticResult.Opinion opinion, GameObject indicatorGameObject)
 	{
 		indicatorGameObject.GetComponentInChildren<Image>().color = ColonyDiagnosticScreen.GetDiagnosticIndicationColor(opinion);
 	}
 
-	// Token: 0x060099A4 RID: 39332 RVA: 0x00108552 File Offset: 0x00106752
 	public static Color GetDiagnosticIndicationColor(ColonyDiagnostic.DiagnosticResult.Opinion opinion)
 	{
 		switch (opinion)
@@ -120,13 +112,11 @@ public class ColonyDiagnosticScreen : KScreen, ISim1000ms
 		return Color.white;
 	}
 
-	// Token: 0x060099A5 RID: 39333 RVA: 0x0010858F File Offset: 0x0010678F
 	public void Sim1000ms(float dt)
 	{
 		this.RefreshAll();
 	}
 
-	// Token: 0x060099A6 RID: 39334 RVA: 0x003C4650 File Offset: 0x003C2850
 	public void RefreshAll()
 	{
 		foreach (ColonyDiagnosticScreen.DiagnosticRow diagnosticRow in this.diagnosticRows)
@@ -140,7 +130,6 @@ public class ColonyDiagnosticScreen : KScreen, ISim1000ms
 		this.seeAllButton.GetComponentInChildren<LocText>().SetText(string.Format(UI.DIAGNOSTICS_SCREEN.SEE_ALL, AllDiagnosticsScreen.Instance.GetRowCount()));
 	}
 
-	// Token: 0x060099A7 RID: 39335 RVA: 0x003C4704 File Offset: 0x003C2904
 	private ColonyDiagnostic.DiagnosticResult.Opinion UpdateDiagnosticRow(ColonyDiagnosticScreen.DiagnosticRow row)
 	{
 		ColonyDiagnostic.DiagnosticResult.Opinion currentDisplayedResult = row.currentDisplayedResult;
@@ -171,7 +160,6 @@ public class ColonyDiagnosticScreen : KScreen, ISim1000ms
 		return row.diagnostic.LatestResult.opinion;
 	}
 
-	// Token: 0x060099A8 RID: 39336 RVA: 0x00108597 File Offset: 0x00106797
 	private void SetRowActive(ColonyDiagnosticScreen.DiagnosticRow row, bool active)
 	{
 		if (row.gameObject.activeSelf != active)
@@ -181,28 +169,20 @@ public class ColonyDiagnosticScreen : KScreen, ISim1000ms
 		}
 	}
 
-	// Token: 0x0400777F RID: 30591
 	public GameObject linePrefab;
 
-	// Token: 0x04007780 RID: 30592
 	public static ColonyDiagnosticScreen Instance;
 
-	// Token: 0x04007781 RID: 30593
 	private List<ColonyDiagnosticScreen.DiagnosticRow> diagnosticRows = new List<ColonyDiagnosticScreen.DiagnosticRow>();
 
-	// Token: 0x04007782 RID: 30594
 	public GameObject header;
 
-	// Token: 0x04007783 RID: 30595
 	public GameObject contentContainer;
 
-	// Token: 0x04007784 RID: 30596
 	public GameObject rootIndicator;
 
-	// Token: 0x04007785 RID: 30597
 	public MultiToggle seeAllButton;
 
-	// Token: 0x04007786 RID: 30598
 	public static Dictionary<ColonyDiagnostic.DiagnosticResult.Opinion, string> notificationSoundsActive = new Dictionary<ColonyDiagnostic.DiagnosticResult.Opinion, string>
 	{
 		{
@@ -239,7 +219,6 @@ public class ColonyDiagnosticScreen : KScreen, ISim1000ms
 		}
 	};
 
-	// Token: 0x04007787 RID: 30599
 	public static Dictionary<ColonyDiagnostic.DiagnosticResult.Opinion, string> notificationSoundsInactive = new Dictionary<ColonyDiagnostic.DiagnosticResult.Opinion, string>
 	{
 		{
@@ -276,10 +255,8 @@ public class ColonyDiagnosticScreen : KScreen, ISim1000ms
 		}
 	};
 
-	// Token: 0x02001CC5 RID: 7365
 	private class DiagnosticRow : ISim4000ms
 	{
-		// Token: 0x060099AB RID: 39339 RVA: 0x003C48D4 File Offset: 0x003C2AD4
 		public DiagnosticRow(int worldID, GameObject gameObject, ColonyDiagnostic diagnostic)
 		{
 			global::Debug.Assert(diagnostic != null);
@@ -337,24 +314,18 @@ public class ColonyDiagnosticScreen : KScreen, ISim1000ms
 			SimAndRenderScheduler.instance.Add(this, true);
 		}
 
-		// Token: 0x060099AC RID: 39340 RVA: 0x000C550D File Offset: 0x000C370D
 		public void OnCleanUp()
 		{
 			SimAndRenderScheduler.instance.Remove(this);
 		}
 
-		// Token: 0x060099AD RID: 39341 RVA: 0x001085CC File Offset: 0x001067CC
 		public void Sim4000ms(float dt)
 		{
 			this.Update(false);
 		}
 
-		// Token: 0x17000A2A RID: 2602
-		// (get) Token: 0x060099AE RID: 39342 RVA: 0x001085D5 File Offset: 0x001067D5
-		// (set) Token: 0x060099AF RID: 39343 RVA: 0x001085DD File Offset: 0x001067DD
 		public GameObject gameObject { get; private set; }
 
-		// Token: 0x060099B0 RID: 39344 RVA: 0x003C4A60 File Offset: 0x003C2C60
 		public void Update(bool force = false)
 		{
 			if (!force && ClusterManager.Instance.activeWorldId != this.worldID)
@@ -393,13 +364,11 @@ public class ColonyDiagnosticScreen : KScreen, ISim1000ms
 			this.titleLabel.color = color;
 		}
 
-		// Token: 0x060099B1 RID: 39345 RVA: 0x001085E6 File Offset: 0x001067E6
 		public bool CheckAllowVisualNotification()
 		{
 			return this.timeOfLastNotification == 0f || GameClock.Instance.GetTime() >= this.timeOfLastNotification + 300f;
 		}
 
-		// Token: 0x060099B2 RID: 39346 RVA: 0x003C4C44 File Offset: 0x003C2E44
 		public void TriggerVisualNotification()
 		{
 			if (DebugHandler.NotificationsDisabled)
@@ -414,7 +383,6 @@ public class ColonyDiagnosticScreen : KScreen, ISim1000ms
 			}
 		}
 
-		// Token: 0x060099B3 RID: 39347 RVA: 0x00108612 File Offset: 0x00106812
 		private IEnumerator VisualNotificationRoutine()
 		{
 			this.gameObject.GetComponentInChildren<NotificationAnimator>().Begin(false);
@@ -441,7 +409,6 @@ public class ColonyDiagnosticScreen : KScreen, ISim1000ms
 			yield break;
 		}
 
-		// Token: 0x060099B4 RID: 39348 RVA: 0x003C4CA8 File Offset: 0x003C2EA8
 		public void ResolveNotificationRoutine()
 		{
 			this.gameObject.GetComponent<HierarchyReferences>().GetReference<Image>("Indicator").rectTransform.sizeDelta = Vector2.zero;
@@ -449,49 +416,34 @@ public class ColonyDiagnosticScreen : KScreen, ISim1000ms
 			this.activeRoutine = null;
 		}
 
-		// Token: 0x04007788 RID: 30600
 		private const float displayHistoryPeriod = 600f;
 
-		// Token: 0x04007789 RID: 30601
 		public ColonyDiagnostic diagnostic;
 
-		// Token: 0x0400778A RID: 30602
 		public SparkLayer sparkLayer;
 
-		// Token: 0x0400778C RID: 30604
 		public int worldID;
 
-		// Token: 0x0400778D RID: 30605
 		private LocText titleLabel;
 
-		// Token: 0x0400778E RID: 30606
 		private LocText valueLabel;
 
-		// Token: 0x0400778F RID: 30607
 		private Image indicator;
 
-		// Token: 0x04007790 RID: 30608
 		private ToolTip tooltip;
 
-		// Token: 0x04007791 RID: 30609
 		private MultiToggle button;
 
-		// Token: 0x04007792 RID: 30610
 		private Image image;
 
-		// Token: 0x04007793 RID: 30611
 		public ColonyDiagnostic.DiagnosticResult.Opinion currentDisplayedResult;
 
-		// Token: 0x04007794 RID: 30612
 		private Vector2 defaultIndicatorSizeDelta;
 
-		// Token: 0x04007795 RID: 30613
 		private float timeOfLastNotification;
 
-		// Token: 0x04007796 RID: 30614
 		private const float MIN_TIME_BETWEEN_NOTIFICATIONS = 300f;
 
-		// Token: 0x04007797 RID: 30615
 		private Coroutine activeRoutine;
 	}
 }

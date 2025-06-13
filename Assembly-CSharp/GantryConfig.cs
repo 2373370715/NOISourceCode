@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200034B RID: 843
 public class GantryConfig : IBuildingConfig
 {
-	// Token: 0x06000D4D RID: 3405 RVA: 0x0017CE24 File Offset: 0x0017B024
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "Gantry";
@@ -44,13 +42,11 @@ public class GantryConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000D4E RID: 3406 RVA: 0x000B01B2 File Offset: 0x000AE3B2
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
 	}
 
-	// Token: 0x06000D4F RID: 3407 RVA: 0x0017CF34 File Offset: 0x0017B134
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<Gantry>();
@@ -67,17 +63,14 @@ public class GantryConfig : IBuildingConfig
 		UnityEngine.Object.DestroyImmediate(go.GetComponent<LogicOperationalController>());
 	}
 
-	// Token: 0x06000D50 RID: 3408 RVA: 0x000B01C9 File Offset: 0x000AE3C9
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 		base.DoPostConfigurePreview(def, go);
 		go.AddOrGetDef<MakeBaseSolid.Def>().solidOffsets = GantryConfig.SOLID_OFFSETS;
 	}
 
-	// Token: 0x040009D3 RID: 2515
 	public const string ID = "Gantry";
 
-	// Token: 0x040009D4 RID: 2516
 	private static readonly CellOffset[] SOLID_OFFSETS = new CellOffset[]
 	{
 		new CellOffset(-2, 1),

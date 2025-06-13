@@ -5,11 +5,8 @@ using Klei.AI;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x0200069B RID: 1691
 public class ChorePreconditions
 {
-	// Token: 0x170000C1 RID: 193
-	// (get) Token: 0x06001E07 RID: 7687 RVA: 0x000B8494 File Offset: 0x000B6694
 	public static ChorePreconditions instance
 	{
 		get
@@ -22,13 +19,11 @@ public class ChorePreconditions
 		}
 	}
 
-	// Token: 0x06001E08 RID: 7688 RVA: 0x000B84AC File Offset: 0x000B66AC
 	public static void DestroyInstance()
 	{
 		ChorePreconditions._instance = null;
 	}
 
-	// Token: 0x06001E09 RID: 7689 RVA: 0x001BD6E8 File Offset: 0x001BB8E8
 	public ChorePreconditions()
 	{
 		Chore.Precondition precondition = default(Chore.Precondition);
@@ -744,147 +739,99 @@ public class ChorePreconditions
 		base..ctor();
 	}
 
-	// Token: 0x04001342 RID: 4930
 	private static ChorePreconditions _instance;
 
-	// Token: 0x04001343 RID: 4931
 	public Chore.Precondition IsPreemptable;
 
-	// Token: 0x04001344 RID: 4932
 	public Chore.Precondition HasUrge;
 
-	// Token: 0x04001345 RID: 4933
 	public Chore.Precondition IsValid;
 
-	// Token: 0x04001346 RID: 4934
 	public Chore.Precondition IsPermitted;
 
-	// Token: 0x04001347 RID: 4935
 	public Chore.Precondition IsAssignedtoMe;
 
-	// Token: 0x04001348 RID: 4936
 	public Chore.Precondition IsInMyRoom;
 
-	// Token: 0x04001349 RID: 4937
 	public Chore.Precondition IsPreferredAssignable;
 
-	// Token: 0x0400134A RID: 4938
 	public Chore.Precondition IsPreferredAssignableOrUrgentBladder;
 
-	// Token: 0x0400134B RID: 4939
 	public Chore.Precondition IsNotTransferArm;
 
-	// Token: 0x0400134C RID: 4940
 	public Chore.Precondition HasSkillPerk;
 
-	// Token: 0x0400134D RID: 4941
 	public Chore.Precondition IsMinion;
 
-	// Token: 0x0400134E RID: 4942
 	public Chore.Precondition IsMoreSatisfyingEarly;
 
-	// Token: 0x0400134F RID: 4943
 	public Chore.Precondition IsMoreSatisfyingLate;
 
-	// Token: 0x04001350 RID: 4944
 	public Chore.Precondition IsChattable;
 
-	// Token: 0x04001351 RID: 4945
 	public Chore.Precondition IsNotRedAlert;
 
-	// Token: 0x04001352 RID: 4946
 	public Chore.Precondition IsScheduledTime;
 
-	// Token: 0x04001353 RID: 4947
 	public Chore.Precondition CanMoveTo;
 
-	// Token: 0x04001354 RID: 4948
 	public Chore.Precondition CanMoveToCell;
 
-	// Token: 0x04001355 RID: 4949
 	public Chore.Precondition CanMoveToDynamicCell;
 
-	// Token: 0x04001356 RID: 4950
 	public Chore.Precondition CanMoveToDynamicCellUntilBegun;
 
-	// Token: 0x04001357 RID: 4951
 	public Chore.Precondition CanPickup;
 
-	// Token: 0x04001358 RID: 4952
 	public Chore.Precondition IsAwake;
 
-	// Token: 0x04001359 RID: 4953
 	public Chore.Precondition IsStanding;
 
-	// Token: 0x0400135A RID: 4954
 	public Chore.Precondition IsMoving;
 
-	// Token: 0x0400135B RID: 4955
 	public Chore.Precondition IsOffLadder;
 
-	// Token: 0x0400135C RID: 4956
 	public Chore.Precondition NotInTube;
 
-	// Token: 0x0400135D RID: 4957
 	public Chore.Precondition ConsumerHasTrait;
 
-	// Token: 0x0400135E RID: 4958
 	public Chore.Precondition IsOperational;
 
-	// Token: 0x0400135F RID: 4959
 	public Chore.Precondition IsNotMarkedForDeconstruction;
 
-	// Token: 0x04001360 RID: 4960
 	public Chore.Precondition IsNotMarkedForDisable;
 
-	// Token: 0x04001361 RID: 4961
 	public Chore.Precondition IsFunctional;
 
-	// Token: 0x04001362 RID: 4962
 	public Chore.Precondition IsOverrideTargetNullOrMe;
 
-	// Token: 0x04001363 RID: 4963
 	public Chore.Precondition NotChoreCreator;
 
-	// Token: 0x04001364 RID: 4964
 	public Chore.Precondition IsGettingMoreStressed;
 
-	// Token: 0x04001365 RID: 4965
 	public Chore.Precondition IsAllowedByAutomation;
 
-	// Token: 0x04001366 RID: 4966
 	public Chore.Precondition HasTag;
 
-	// Token: 0x04001367 RID: 4967
 	public Chore.Precondition CheckBehaviourPrecondition;
 
-	// Token: 0x04001368 RID: 4968
 	public Chore.Precondition CanDoWorkerPrioritizable;
 
-	// Token: 0x04001369 RID: 4969
 	public Chore.Precondition IsExclusivelyAvailableWithOtherChores;
 
-	// Token: 0x0400136A RID: 4970
 	public Chore.Precondition IsBladderFull;
 
-	// Token: 0x0400136B RID: 4971
 	public Chore.Precondition IsBladderNotFull;
 
-	// Token: 0x0400136C RID: 4972
 	public Chore.Precondition NoDeadBodies;
 
-	// Token: 0x0400136D RID: 4973
 	public Chore.Precondition IsNotARobot;
 
-	// Token: 0x0400136E RID: 4974
 	public Chore.Precondition IsNotABionic;
 
-	// Token: 0x0400136F RID: 4975
 	public Chore.Precondition IsBionic;
 
-	// Token: 0x04001370 RID: 4976
 	public Chore.Precondition NotCurrentlyPeeing;
 
-	// Token: 0x04001371 RID: 4977
 	public Chore.Precondition IsRocketTravelling;
 }

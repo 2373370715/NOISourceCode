@@ -4,11 +4,9 @@ using KSerialization;
 using ProcGenGame;
 using UnityEngine;
 
-// Token: 0x020010D5 RID: 4309
 [SerializationConfig(MemberSerialization.OptIn)]
 public class ClusterPOIManager : KMonoBehaviour
 {
-	// Token: 0x060057F1 RID: 22513 RVA: 0x000DDCAF File Offset: 0x000DBEAF
 	private ClusterFogOfWarManager.Instance GetFOWManager()
 	{
 		if (this.m_fowManager == null)
@@ -18,7 +16,6 @@ public class ClusterPOIManager : KMonoBehaviour
 		return this.m_fowManager;
 	}
 
-	// Token: 0x060057F2 RID: 22514 RVA: 0x000DDCCF File Offset: 0x000DBECF
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -31,25 +28,21 @@ public class ClusterPOIManager : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060057F3 RID: 22515 RVA: 0x000DDCFC File Offset: 0x000DBEFC
 	public void RegisterTemporalTear(TemporalTear temporalTear)
 	{
 		this.m_temporalTear.Set(temporalTear);
 	}
 
-	// Token: 0x060057F4 RID: 22516 RVA: 0x000DDD0A File Offset: 0x000DBF0A
 	public bool HasTemporalTear()
 	{
 		return this.m_temporalTear.Get() != null;
 	}
 
-	// Token: 0x060057F5 RID: 22517 RVA: 0x000DDD1D File Offset: 0x000DBF1D
 	public TemporalTear GetTemporalTear()
 	{
 		return this.m_temporalTear.Get();
 	}
 
-	// Token: 0x060057F6 RID: 22518 RVA: 0x00295A7C File Offset: 0x00293C7C
 	private void UpgradeOldSaves()
 	{
 		bool flag = false;
@@ -74,7 +67,6 @@ public class ClusterPOIManager : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060057F7 RID: 22519 RVA: 0x00295B44 File Offset: 0x00293D44
 	public void SpawnSpacePOIsInLegacySave()
 	{
 		Dictionary<int[], string[]> dictionary = new Dictionary<int[], string[]>();
@@ -215,7 +207,6 @@ public class ClusterPOIManager : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060057F8 RID: 22520 RVA: 0x00295FE8 File Offset: 0x002941E8
 	public void PopulatePOIsFromWorldGen(Cluster clusterLayout)
 	{
 		foreach (KeyValuePair<AxialI, string> keyValuePair in clusterLayout.poiPlacements)
@@ -226,7 +217,6 @@ public class ClusterPOIManager : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060057F9 RID: 22521 RVA: 0x00296064 File Offset: 0x00294264
 	public void RevealTemporalTear()
 	{
 		if (this.m_temporalTear.Get() == null)
@@ -238,7 +228,6 @@ public class ClusterPOIManager : KMonoBehaviour
 		this.GetFOWManager().RevealLocation(location, 1);
 	}
 
-	// Token: 0x060057FA RID: 22522 RVA: 0x000DDD2A File Offset: 0x000DBF2A
 	public bool IsTemporalTearRevealed()
 	{
 		if (this.m_temporalTear.Get() == null)
@@ -249,7 +238,6 @@ public class ClusterPOIManager : KMonoBehaviour
 		return this.GetFOWManager().IsLocationRevealed(this.m_temporalTear.Get().Location);
 	}
 
-	// Token: 0x060057FB RID: 22523 RVA: 0x002960B0 File Offset: 0x002942B0
 	public void OpenTemporalTear(int openerWorldId)
 	{
 		if (this.m_temporalTear.Get() == null)
@@ -264,26 +252,21 @@ public class ClusterPOIManager : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060057FC RID: 22524 RVA: 0x000DDD66 File Offset: 0x000DBF66
 	public bool HasTemporalTearConsumedCraft()
 	{
 		return !(this.m_temporalTear.Get() == null) && this.m_temporalTear.Get().HasConsumedCraft();
 	}
 
-	// Token: 0x060057FD RID: 22525 RVA: 0x000DDD8D File Offset: 0x000DBF8D
 	public bool IsTemporalTearOpen()
 	{
 		return !(this.m_temporalTear.Get() == null) && this.m_temporalTear.Get().IsOpen();
 	}
 
-	// Token: 0x04003E13 RID: 15891
 	[Serialize]
 	private List<Ref<ResearchDestination>> m_researchDestinations = new List<Ref<ResearchDestination>>();
 
-	// Token: 0x04003E14 RID: 15892
 	[Serialize]
 	private Ref<TemporalTear> m_temporalTear = new Ref<TemporalTear>();
 
-	// Token: 0x04003E15 RID: 15893
 	private ClusterFogOfWarManager.Instance m_fowManager;
 }

@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200050A RID: 1290
 public class PolymerizerConfig : IBuildingConfig
 {
-	// Token: 0x06001620 RID: 5664 RVA: 0x001A1E3C File Offset: 0x001A003C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "Polymerizer";
@@ -38,7 +36,6 @@ public class PolymerizerConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001621 RID: 5665 RVA: 0x001A1F20 File Offset: 0x001A0120
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
@@ -76,46 +73,33 @@ public class PolymerizerConfig : IBuildingConfig
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x06001622 RID: 5666 RVA: 0x000AA1AD File Offset: 0x000A83AD
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
 		go.AddOrGetDef<PoweredActiveController.Def>();
 	}
 
-	// Token: 0x04000F2A RID: 3882
 	public const string ID = "Polymerizer";
 
-	// Token: 0x04000F2B RID: 3883
 	private const ConduitType INPUT_CONDUIT_TYPE = ConduitType.Liquid;
 
-	// Token: 0x04000F2C RID: 3884
 	private const ConduitType OUTPUT_CONDUIT_TYPE = ConduitType.Gas;
 
-	// Token: 0x04000F2D RID: 3885
 	private const float CONSUMED_OIL_KG_PER_DAY = 500f;
 
-	// Token: 0x04000F2E RID: 3886
 	private const float GENERATED_PLASTIC_KG_PER_DAY = 300f;
 
-	// Token: 0x04000F2F RID: 3887
 	private const float SECONDS_PER_PLASTIC_BLOCK = 60f;
 
-	// Token: 0x04000F30 RID: 3888
 	private const float GENERATED_EXHAUST_STEAM_KG_PER_DAY = 5f;
 
-	// Token: 0x04000F31 RID: 3889
 	private const float GENERATED_EXHAUST_CO2_KG_PER_DAY = 5f;
 
-	// Token: 0x04000F32 RID: 3890
 	public static Tag INPUT_ELEMENT_TAG = GameTags.PlastifiableLiquid;
 
-	// Token: 0x04000F33 RID: 3891
 	private const SimHashes PRODUCED_ELEMENT = SimHashes.Polypropylene;
 
-	// Token: 0x04000F34 RID: 3892
 	private const SimHashes EXHAUST_ENVIRONMENT_ELEMENT = SimHashes.Steam;
 
-	// Token: 0x04000F35 RID: 3893
 	private const SimHashes EXHAUST_CONDUIT_ELEMENT = SimHashes.CarbonDioxide;
 }

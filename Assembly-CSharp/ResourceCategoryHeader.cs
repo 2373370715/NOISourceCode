@@ -5,11 +5,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// Token: 0x02001F31 RID: 7985
 [AddComponentMenu("KMonoBehaviour/scripts/ResourceCategoryHeader")]
 public class ResourceCategoryHeader : KMonoBehaviour, IPointerEnterHandler, IEventSystemHandler, IPointerExitHandler, ISim4000ms
 {
-	// Token: 0x0600A820 RID: 43040 RVA: 0x00409C00 File Offset: 0x00407E00
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -25,7 +23,6 @@ public class ResourceCategoryHeader : KMonoBehaviour, IPointerEnterHandler, IEve
 		this.SetActiveColor(false);
 	}
 
-	// Token: 0x0600A821 RID: 43041 RVA: 0x00111868 File Offset: 0x0010FA68
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -34,7 +31,6 @@ public class ResourceCategoryHeader : KMonoBehaviour, IPointerEnterHandler, IEve
 		this.RefreshChart();
 	}
 
-	// Token: 0x0600A822 RID: 43042 RVA: 0x00111893 File Offset: 0x0010FA93
 	private void SetInteractable(bool state)
 	{
 		if (!state)
@@ -51,7 +47,6 @@ public class ResourceCategoryHeader : KMonoBehaviour, IPointerEnterHandler, IEve
 		this.expandArrow.SetActive();
 	}
 
-	// Token: 0x0600A823 RID: 43043 RVA: 0x00409C8C File Offset: 0x00407E8C
 	private void SetActiveColor(bool state)
 	{
 		if (state)
@@ -70,7 +65,6 @@ public class ResourceCategoryHeader : KMonoBehaviour, IPointerEnterHandler, IEve
 		this.expandArrow.TargetImage.color = this.TextColor_NonInteractable;
 	}
 
-	// Token: 0x0600A824 RID: 43044 RVA: 0x00409D68 File Offset: 0x00407F68
 	public void SetTag(Tag t, GameUtil.MeasureUnit measure)
 	{
 		this.ResourceCategoryTag = t;
@@ -83,7 +77,6 @@ public class ResourceCategoryHeader : KMonoBehaviour, IPointerEnterHandler, IEve
 		}
 	}
 
-	// Token: 0x0600A825 RID: 43045 RVA: 0x00409DC0 File Offset: 0x00407FC0
 	private void ToggleOpen(bool play_sound)
 	{
 		if (!this.anyDiscovered)
@@ -114,7 +107,6 @@ public class ResourceCategoryHeader : KMonoBehaviour, IPointerEnterHandler, IEve
 		this.elements.QuantityText.fontSize = (float)this.minimizedFontSize;
 	}
 
-	// Token: 0x0600A826 RID: 43046 RVA: 0x00409E84 File Offset: 0x00408084
 	private void Hover(bool is_hovering)
 	{
 		this.Background.color = (is_hovering ? this.BackgroundHoverColor : new Color(0f, 0f, 0f, 0f));
@@ -140,19 +132,16 @@ public class ResourceCategoryHeader : KMonoBehaviour, IPointerEnterHandler, IEve
 		}
 	}
 
-	// Token: 0x0600A827 RID: 43047 RVA: 0x001118CA File Offset: 0x0010FACA
 	public void OnPointerEnter(PointerEventData eventData)
 	{
 		this.Hover(true);
 	}
 
-	// Token: 0x0600A828 RID: 43048 RVA: 0x001118D3 File Offset: 0x0010FAD3
 	public void OnPointerExit(PointerEventData eventData)
 	{
 		this.Hover(false);
 	}
 
-	// Token: 0x0600A829 RID: 43049 RVA: 0x00409F64 File Offset: 0x00408164
 	public void SetOpen(bool open)
 	{
 		this.IsOpen = open;
@@ -172,7 +161,6 @@ public class ResourceCategoryHeader : KMonoBehaviour, IPointerEnterHandler, IEve
 		this.EntryContainer.gameObject.SetActive(this.IsOpen);
 	}
 
-	// Token: 0x0600A82A RID: 43050 RVA: 0x00409FEC File Offset: 0x004081EC
 	private void GetAmounts(bool doExtras, out float available, out float total, out float reserved)
 	{
 		available = 0f;
@@ -218,7 +206,6 @@ public class ResourceCategoryHeader : KMonoBehaviour, IPointerEnterHandler, IEve
 		pooledList.Recycle();
 	}
 
-	// Token: 0x0600A82B RID: 43051 RVA: 0x0040A138 File Offset: 0x00408338
 	public void UpdateContents()
 	{
 		float num;
@@ -256,7 +243,6 @@ public class ResourceCategoryHeader : KMonoBehaviour, IPointerEnterHandler, IEve
 		this.SetInteractable(this.anyDiscovered);
 	}
 
-	// Token: 0x0600A82C RID: 43052 RVA: 0x0040A268 File Offset: 0x00408468
 	private string OnTooltip()
 	{
 		float quantity;
@@ -277,7 +263,6 @@ public class ResourceCategoryHeader : KMonoBehaviour, IPointerEnterHandler, IEve
 		return text;
 	}
 
-	// Token: 0x0600A82D RID: 43053 RVA: 0x001118DC File Offset: 0x0010FADC
 	private ResourceEntry NewResourceEntry(Tag resourceTag, GameUtil.MeasureUnit measure)
 	{
 		ResourceEntry component = Util.KInstantiateUI(this.Prefab_ResourceEntry, this.EntryContainer.gameObject, true).GetComponent<ResourceEntry>();
@@ -285,13 +270,11 @@ public class ResourceCategoryHeader : KMonoBehaviour, IPointerEnterHandler, IEve
 		return component;
 	}
 
-	// Token: 0x0600A82E RID: 43054 RVA: 0x00111902 File Offset: 0x0010FB02
 	public void Sim4000ms(float dt)
 	{
 		this.RefreshChart();
 	}
 
-	// Token: 0x0600A82F RID: 43055 RVA: 0x0040A364 File Offset: 0x00408564
 	private void RefreshChart()
 	{
 		if (this.sparkChart != null)
@@ -302,95 +285,67 @@ public class ResourceCategoryHeader : KMonoBehaviour, IPointerEnterHandler, IEve
 		}
 	}
 
-	// Token: 0x04008439 RID: 33849
 	public GameObject Prefab_ResourceEntry;
 
-	// Token: 0x0400843A RID: 33850
 	public Transform EntryContainer;
 
-	// Token: 0x0400843B RID: 33851
 	public Tag ResourceCategoryTag;
 
-	// Token: 0x0400843C RID: 33852
 	public GameUtil.MeasureUnit Measure;
 
-	// Token: 0x0400843D RID: 33853
 	public bool IsOpen;
 
-	// Token: 0x0400843E RID: 33854
 	public ImageToggleState expandArrow;
 
-	// Token: 0x0400843F RID: 33855
 	private Button mButton;
 
-	// Token: 0x04008440 RID: 33856
 	public Dictionary<Tag, ResourceEntry> ResourcesDiscovered = new Dictionary<Tag, ResourceEntry>();
 
-	// Token: 0x04008441 RID: 33857
 	public ResourceCategoryHeader.ElementReferences elements;
 
-	// Token: 0x04008442 RID: 33858
 	public Color TextColor_Interactable;
 
-	// Token: 0x04008443 RID: 33859
 	public Color TextColor_NonInteractable;
 
-	// Token: 0x04008444 RID: 33860
 	private string quantityString;
 
-	// Token: 0x04008445 RID: 33861
 	private float currentQuantity;
 
-	// Token: 0x04008446 RID: 33862
 	private bool anyDiscovered;
 
-	// Token: 0x04008447 RID: 33863
 	public const float chartHistoryLength = 3000f;
 
-	// Token: 0x04008448 RID: 33864
 	[MyCmpGet]
 	private ToolTip tooltip;
 
-	// Token: 0x04008449 RID: 33865
 	[SerializeField]
 	private int minimizedFontSize;
 
-	// Token: 0x0400844A RID: 33866
 	[SerializeField]
 	private int maximizedFontSize;
 
-	// Token: 0x0400844B RID: 33867
 	[SerializeField]
 	private Color highlightColour;
 
-	// Token: 0x0400844C RID: 33868
 	[SerializeField]
 	private Color BackgroundHoverColor;
 
-	// Token: 0x0400844D RID: 33869
 	[SerializeField]
 	private Image Background;
 
-	// Token: 0x0400844E RID: 33870
 	public GameObject sparkChart;
 
-	// Token: 0x0400844F RID: 33871
 	private float cachedAvailable = float.MinValue;
 
-	// Token: 0x04008450 RID: 33872
 	private float cachedTotal = float.MinValue;
 
-	// Token: 0x04008451 RID: 33873
 	private float cachedReserved = float.MinValue;
 
-	// Token: 0x02001F32 RID: 7986
 	[Serializable]
 	public struct ElementReferences
 	{
-		// Token: 0x04008452 RID: 33874
 		public LocText LabelText;
 
-		// Token: 0x04008453 RID: 33875
 		public LocText QuantityText;
 	}
 }

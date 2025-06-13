@@ -1,10 +1,8 @@
 ﻿using System;
 using STRINGS;
 
-// Token: 0x0200018F RID: 399
 public class FixedCaptureStates : GameStateMachine<FixedCaptureStates, FixedCaptureStates.Instance, IStateMachineTarget, FixedCaptureStates.Def>
 {
-	// Token: 0x060005A1 RID: 1441 RVA: 0x00162610 File Offset: 0x00160810
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.capture;
@@ -60,41 +58,33 @@ public class FixedCaptureStates : GameStateMachine<FixedCaptureStates, FixedCapt
 		this.behaviourcomplete.BehaviourComplete(GameTags.Creatures.WantsToGetCaptured, false);
 	}
 
-	// Token: 0x060005A2 RID: 1442 RVA: 0x000AC7F3 File Offset: 0x000AA9F3
 	private static FixedCapturePoint.Instance GetCapturePoint(FixedCaptureStates.Instance smi)
 	{
 		return smi.GetSMI<FixedCapturableMonitor.Instance>().targetCapturePoint;
 	}
 
-	// Token: 0x060005A3 RID: 1443 RVA: 0x00162920 File Offset: 0x00160B20
 	private static int GetTargetCaptureCell(FixedCaptureStates.Instance smi)
 	{
 		FixedCapturePoint.Instance capturePoint = FixedCaptureStates.GetCapturePoint(smi);
 		return capturePoint.def.getTargetCapturePoint(capturePoint);
 	}
 
-	// Token: 0x0400041A RID: 1050
 	private FixedCaptureStates.CaptureStates capture;
 
-	// Token: 0x0400041B RID: 1051
 	private GameStateMachine<FixedCaptureStates, FixedCaptureStates.Instance, IStateMachineTarget, FixedCaptureStates.Def>.State behaviourcomplete;
 
-	// Token: 0x02000190 RID: 400
 	public class Def : StateMachine.BaseDef
 	{
 	}
 
-	// Token: 0x02000191 RID: 401
 	public new class Instance : GameStateMachine<FixedCaptureStates, FixedCaptureStates.Instance, IStateMachineTarget, FixedCaptureStates.Def>.GameInstance
 	{
-		// Token: 0x060005A6 RID: 1446 RVA: 0x000AC808 File Offset: 0x000AAA08
 		public Instance(Chore<FixedCaptureStates.Instance> chore, FixedCaptureStates.Def def) : base(chore, def)
 		{
 			this.originalSpeed = base.GetComponent<Navigator>().defaultSpeed;
 			chore.AddPrecondition(ChorePreconditions.instance.CheckBehaviourPrecondition, GameTags.Creatures.WantsToGetCaptured);
 		}
 
-		// Token: 0x060005A7 RID: 1447 RVA: 0x00162948 File Offset: 0x00160B48
 		public FixedCapturePoint.Instance GetCapturePoint()
 		{
 			FixedCapturableMonitor.Instance smi = this.GetSMI<FixedCapturableMonitor.Instance>();
@@ -105,7 +95,6 @@ public class FixedCaptureStates : GameStateMachine<FixedCaptureStates, FixedCapt
 			return smi.targetCapturePoint;
 		}
 
-		// Token: 0x060005A8 RID: 1448 RVA: 0x000AC83D File Offset: 0x000AAA3D
 		public void AbandonedCapturePoint()
 		{
 			if (this.GetCapturePoint() != null)
@@ -114,42 +103,30 @@ public class FixedCaptureStates : GameStateMachine<FixedCaptureStates, FixedCapt
 			}
 		}
 
-		// Token: 0x0400041C RID: 1052
 		public float originalSpeed;
 	}
 
-	// Token: 0x02000192 RID: 402
 	public class CaptureStates : GameStateMachine<FixedCaptureStates, FixedCaptureStates.Instance, IStateMachineTarget, FixedCaptureStates.Def>.State
 	{
-		// Token: 0x0400041D RID: 1053
 		public FixedCaptureStates.CaptureStates.CheerStates cheer;
 
-		// Token: 0x0400041E RID: 1054
 		public FixedCaptureStates.CaptureStates.MoveStates move;
 
-		// Token: 0x0400041F RID: 1055
 		public GameStateMachine<FixedCaptureStates, FixedCaptureStates.Instance, IStateMachineTarget, FixedCaptureStates.Def>.State ranching;
 
-		// Token: 0x02000193 RID: 403
 		public class CheerStates : GameStateMachine<FixedCaptureStates, FixedCaptureStates.Instance, IStateMachineTarget, FixedCaptureStates.Def>.State
 		{
-			// Token: 0x04000420 RID: 1056
 			public GameStateMachine<FixedCaptureStates, FixedCaptureStates.Instance, IStateMachineTarget, FixedCaptureStates.Def>.State pre;
 
-			// Token: 0x04000421 RID: 1057
 			public GameStateMachine<FixedCaptureStates, FixedCaptureStates.Instance, IStateMachineTarget, FixedCaptureStates.Def>.State cheer;
 
-			// Token: 0x04000422 RID: 1058
 			public GameStateMachine<FixedCaptureStates, FixedCaptureStates.Instance, IStateMachineTarget, FixedCaptureStates.Def>.State pst;
 		}
 
-		// Token: 0x02000194 RID: 404
 		public class MoveStates : GameStateMachine<FixedCaptureStates, FixedCaptureStates.Instance, IStateMachineTarget, FixedCaptureStates.Def>.State
 		{
-			// Token: 0x04000423 RID: 1059
 			public GameStateMachine<FixedCaptureStates, FixedCaptureStates.Instance, IStateMachineTarget, FixedCaptureStates.Def>.State movetoranch;
 
-			// Token: 0x04000424 RID: 1060
 			public GameStateMachine<FixedCaptureStates, FixedCaptureStates.Instance, IStateMachineTarget, FixedCaptureStates.Def>.State waitforranchertobeready;
 		}
 	}

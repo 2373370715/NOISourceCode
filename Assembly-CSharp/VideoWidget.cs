@@ -6,11 +6,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
-// Token: 0x020020B7 RID: 8375
 [AddComponentMenu("KMonoBehaviour/scripts/VideoWidget")]
 public class VideoWidget : KMonoBehaviour
 {
-	// Token: 0x0600B29E RID: 45726 RVA: 0x00118A53 File Offset: 0x00116C53
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -18,7 +16,6 @@ public class VideoWidget : KMonoBehaviour
 		this.rawImage = this.thumbnailPlayer.GetComponent<RawImage>();
 	}
 
-	// Token: 0x0600B29F RID: 45727 RVA: 0x0043DFD8 File Offset: 0x0043C1D8
 	private void Clicked()
 	{
 		VideoScreen.Instance.PlayVideo(this.clip, false, default(EventReference), false, true);
@@ -28,7 +25,6 @@ public class VideoWidget : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600B2A0 RID: 45728 RVA: 0x0043E024 File Offset: 0x0043C224
 	public void SetClip(VideoClip clip, string overlayName = null, List<string> texts = null)
 	{
 		if (clip == null)
@@ -45,7 +41,6 @@ public class VideoWidget : KMonoBehaviour
 		base.StartCoroutine(this.ConfigureThumbnail());
 	}
 
-	// Token: 0x0600B2A1 RID: 45729 RVA: 0x00118A83 File Offset: 0x00116C83
 	private IEnumerator ConfigureThumbnail()
 	{
 		this.thumbnailPlayer.audioOutputMode = VideoAudioOutputMode.None;
@@ -56,7 +51,6 @@ public class VideoWidget : KMonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x0600B2A2 RID: 45730 RVA: 0x00118A92 File Offset: 0x00116C92
 	private void Update()
 	{
 		if (this.thumbnailPlayer.isPlaying && this.thumbnailPlayer.time > 2.0)
@@ -65,29 +59,22 @@ public class VideoWidget : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x04008D02 RID: 36098
 	[SerializeField]
 	private VideoClip clip;
 
-	// Token: 0x04008D03 RID: 36099
 	[SerializeField]
 	private VideoPlayer thumbnailPlayer;
 
-	// Token: 0x04008D04 RID: 36100
 	[SerializeField]
 	private KButton button;
 
-	// Token: 0x04008D05 RID: 36101
 	[SerializeField]
 	private string overlayName;
 
-	// Token: 0x04008D06 RID: 36102
 	[SerializeField]
 	private List<string> texts;
 
-	// Token: 0x04008D07 RID: 36103
 	private RenderTexture renderTexture;
 
-	// Token: 0x04008D08 RID: 36104
 	private RawImage rawImage;
 }

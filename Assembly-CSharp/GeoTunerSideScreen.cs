@@ -5,10 +5,8 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001FD5 RID: 8149
 public class GeoTunerSideScreen : SideScreenContent
 {
-	// Token: 0x0600AC29 RID: 44073 RVA: 0x001145C9 File Offset: 0x001127C9
 	protected override void OnShow(bool show)
 	{
 		base.OnShow(show);
@@ -19,13 +17,11 @@ public class GeoTunerSideScreen : SideScreenContent
 		}
 	}
 
-	// Token: 0x0600AC2A RID: 44074 RVA: 0x001145E8 File Offset: 0x001127E8
 	public override bool IsValidForTarget(GameObject target)
 	{
 		return target.GetSMI<GeoTuner.Instance>() != null;
 	}
 
-	// Token: 0x0600AC2B RID: 44075 RVA: 0x001145F3 File Offset: 0x001127F3
 	public override void SetTarget(GameObject target)
 	{
 		this.targetGeotuner = target.GetSMI<GeoTuner.Instance>();
@@ -33,7 +29,6 @@ public class GeoTunerSideScreen : SideScreenContent
 		this.uiRefreshSubHandle = target.Subscribe(1980521255, new Action<object>(this.RefreshOptions));
 	}
 
-	// Token: 0x0600AC2C RID: 44076 RVA: 0x00114625 File Offset: 0x00112825
 	public override void ClearTarget()
 	{
 		if (this.uiRefreshSubHandle != -1 && this.targetGeotuner != null)
@@ -43,7 +38,6 @@ public class GeoTunerSideScreen : SideScreenContent
 		}
 	}
 
-	// Token: 0x0600AC2D RID: 44077 RVA: 0x0041C89C File Offset: 0x0041AA9C
 	private void RefreshOptions(object data = null)
 	{
 		int num = 0;
@@ -69,7 +63,6 @@ public class GeoTunerSideScreen : SideScreenContent
 		}
 	}
 
-	// Token: 0x0600AC2E RID: 44078 RVA: 0x0041CA24 File Offset: 0x0041AC24
 	private void ClearRows()
 	{
 		for (int i = this.rowContainer.childCount - 1; i >= 0; i--)
@@ -79,7 +72,6 @@ public class GeoTunerSideScreen : SideScreenContent
 		this.rows.Clear();
 	}
 
-	// Token: 0x0600AC2F RID: 44079 RVA: 0x0041CA68 File Offset: 0x0041AC68
 	private void SetRow(int idx, string name, Sprite icon, Geyser geyser, bool studied)
 	{
 		bool flag = geyser == null;
@@ -194,26 +186,19 @@ public class GeoTunerSideScreen : SideScreenContent
 		};
 	}
 
-	// Token: 0x04008795 RID: 34709
 	private GeoTuner.Instance targetGeotuner;
 
-	// Token: 0x04008796 RID: 34710
 	public GameObject rowPrefab;
 
-	// Token: 0x04008797 RID: 34711
 	public RectTransform rowContainer;
 
-	// Token: 0x04008798 RID: 34712
 	[SerializeField]
 	private TextStyleSetting AnalyzedTextStyle;
 
-	// Token: 0x04008799 RID: 34713
 	[SerializeField]
 	private TextStyleSetting UnanalyzedTextStyle;
 
-	// Token: 0x0400879A RID: 34714
 	public Dictionary<object, GameObject> rows = new Dictionary<object, GameObject>();
 
-	// Token: 0x0400879B RID: 34715
 	private int uiRefreshSubHandle = -1;
 }

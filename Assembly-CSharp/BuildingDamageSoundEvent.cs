@@ -1,16 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000937 RID: 2359
 [Serializable]
 public class BuildingDamageSoundEvent : SoundEvent
 {
-	// Token: 0x0600296E RID: 10606 RVA: 0x000BF667 File Offset: 0x000BD867
 	public BuildingDamageSoundEvent(string file_name, string sound_name, int frame) : base(file_name, sound_name, frame, false, false, (float)SoundEvent.IGNORE_INTERVAL, false)
 	{
 	}
 
-	// Token: 0x0600296F RID: 10607 RVA: 0x001E29C0 File Offset: 0x001E0BC0
 	public override void PlaySound(AnimEventManager.EventPlayerData behaviour)
 	{
 		Vector3 sound_pos = behaviour.position;

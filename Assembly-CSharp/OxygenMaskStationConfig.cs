@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020004F2 RID: 1266
 public class OxygenMaskStationConfig : IBuildingConfig
 {
-	// Token: 0x060015C5 RID: 5573 RVA: 0x001A0650 File Offset: 0x0019E850
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "OxygenMaskStation";
@@ -32,7 +30,6 @@ public class OxygenMaskStationConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060015C6 RID: 5574 RVA: 0x001A06D8 File Offset: 0x0019E8D8
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		Storage storage = go.AddComponent<Storage>();
@@ -80,26 +77,19 @@ public class OxygenMaskStationConfig : IBuildingConfig
 		go.AddOrGet<LoopingSounds>();
 	}
 
-	// Token: 0x060015C7 RID: 5575 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000EF7 RID: 3831
 	public const string ID = "OxygenMaskStation";
 
-	// Token: 0x04000EF8 RID: 3832
 	public const float MATERIAL_PER_MASK = 15f;
 
-	// Token: 0x04000EF9 RID: 3833
 	public const float OXYGEN_PER_MASK = 20f;
 
-	// Token: 0x04000EFA RID: 3834
 	public const int MASKS_PER_REFILL = 3;
 
-	// Token: 0x04000EFB RID: 3835
 	public const float WORK_TIME = 5f;
 
-	// Token: 0x04000EFC RID: 3836
 	public ChoreType fetchChoreType = Db.Get().ChoreTypes.Fetch;
 }

@@ -3,40 +3,20 @@ using System.Collections.Generic;
 using HUSL;
 using UnityEngine;
 
-// Token: 0x020007FB RID: 2043
 public class NavGrid
 {
-	// Token: 0x17000107 RID: 263
-	// (get) Token: 0x060023F7 RID: 9207 RVA: 0x000BBD24 File Offset: 0x000B9F24
-	// (set) Token: 0x060023F8 RID: 9208 RVA: 0x000BBD2C File Offset: 0x000B9F2C
 	public NavTable NavTable { get; private set; }
 
-	// Token: 0x17000108 RID: 264
-	// (get) Token: 0x060023F9 RID: 9209 RVA: 0x000BBD35 File Offset: 0x000B9F35
-	// (set) Token: 0x060023FA RID: 9210 RVA: 0x000BBD3D File Offset: 0x000B9F3D
 	public NavGrid.Transition[] transitions { get; set; }
 
-	// Token: 0x17000109 RID: 265
-	// (get) Token: 0x060023FB RID: 9211 RVA: 0x000BBD46 File Offset: 0x000B9F46
-	// (set) Token: 0x060023FC RID: 9212 RVA: 0x000BBD4E File Offset: 0x000B9F4E
 	public NavGrid.Transition[][] transitionsByNavType { get; private set; }
 
-	// Token: 0x1700010A RID: 266
-	// (get) Token: 0x060023FD RID: 9213 RVA: 0x000BBD57 File Offset: 0x000B9F57
-	// (set) Token: 0x060023FE RID: 9214 RVA: 0x000BBD5F File Offset: 0x000B9F5F
 	public int updateRangeX { get; private set; }
 
-	// Token: 0x1700010B RID: 267
-	// (get) Token: 0x060023FF RID: 9215 RVA: 0x000BBD68 File Offset: 0x000B9F68
-	// (set) Token: 0x06002400 RID: 9216 RVA: 0x000BBD70 File Offset: 0x000B9F70
 	public int updateRangeY { get; private set; }
 
-	// Token: 0x1700010C RID: 268
-	// (get) Token: 0x06002401 RID: 9217 RVA: 0x000BBD79 File Offset: 0x000B9F79
-	// (set) Token: 0x06002402 RID: 9218 RVA: 0x000BBD81 File Offset: 0x000B9F81
 	public int maxLinksPerCell { get; private set; }
 
-	// Token: 0x06002403 RID: 9219 RVA: 0x000BBD8A File Offset: 0x000B9F8A
 	public static NavType MirrorNavType(NavType nav_type)
 	{
 		if (nav_type == NavType.LeftWall)
@@ -50,7 +30,6 @@ public class NavGrid
 		return nav_type;
 	}
 
-	// Token: 0x06002404 RID: 9220 RVA: 0x001D4810 File Offset: 0x001D2A10
 	public NavGrid(string id, NavGrid.Transition[] transitions, NavGrid.NavTypeData[] nav_type_data, CellOffset[] bounding_offsets, NavTableValidator[] validators, int update_range_x, int update_range_y, int max_links_per_cell)
 	{
 		this.DirtyBitFlags = new byte[(Grid.CellCount + 7) / 8];
@@ -109,7 +88,6 @@ public class NavGrid
 		this.InitializeGraph();
 	}
 
-	// Token: 0x06002405 RID: 9221 RVA: 0x001D4A5C File Offset: 0x001D2C5C
 	public NavGrid.NavTypeData GetNavTypeData(NavType nav_type)
 	{
 		foreach (NavGrid.NavTypeData navTypeData in this.navTypeData)
@@ -122,7 +100,6 @@ public class NavGrid
 		throw new Exception("Missing nav type data for nav type:" + nav_type.ToString());
 	}
 
-	// Token: 0x06002406 RID: 9222 RVA: 0x001D4AB0 File Offset: 0x001D2CB0
 	public bool HasNavTypeData(NavType nav_type)
 	{
 		NavGrid.NavTypeData[] array = this.navTypeData;
@@ -136,19 +113,16 @@ public class NavGrid
 		return false;
 	}
 
-	// Token: 0x06002407 RID: 9223 RVA: 0x000BBD99 File Offset: 0x000B9F99
 	public HashedString GetIdleAnim(NavType nav_type)
 	{
 		return this.GetNavTypeData(nav_type).idleAnim;
 	}
 
-	// Token: 0x06002408 RID: 9224 RVA: 0x000BBDA7 File Offset: 0x000B9FA7
 	public void InitializeGraph()
 	{
 		NavGridUpdater.InitializeNavGrid(this.NavTable, this.Validators, this.boundingOffsets, this.maxLinksPerCell, this.Links, this.transitionsByNavType);
 	}
 
-	// Token: 0x06002409 RID: 9225 RVA: 0x001D4AE4 File Offset: 0x001D2CE4
 	public void UpdateGraph()
 	{
 		int count = this.DirtyCells.Count;
@@ -177,7 +151,6 @@ public class NavGrid
 		this.DirtyCells.Clear();
 	}
 
-	// Token: 0x0600240A RID: 9226 RVA: 0x001D4BF4 File Offset: 0x001D2DF4
 	public void UpdateGraph(IEnumerable<int> dirty_nav_cells)
 	{
 		NavGridUpdater.UpdateNavGrid(this.NavTable, this.Validators, this.boundingOffsets, this.maxLinksPerCell, this.Links, this.transitionsByNavType, this.teleportTransitions, dirty_nav_cells);
@@ -187,14 +160,12 @@ public class NavGrid
 		}
 	}
 
-	// Token: 0x0600240B RID: 9227 RVA: 0x000BBDD2 File Offset: 0x000B9FD2
 	public static void DebugDrawPath(int start_cell, int end_cell)
 	{
 		Grid.CellToPosCCF(start_cell, Grid.SceneLayer.Move);
 		Grid.CellToPosCCF(end_cell, Grid.SceneLayer.Move);
 	}
 
-	// Token: 0x0600240C RID: 9228 RVA: 0x001D4C48 File Offset: 0x001D2E48
 	public static void DebugDrawPath(PathFinder.Path path)
 	{
 		if (path.nodes != null)
@@ -206,7 +177,6 @@ public class NavGrid
 		}
 	}
 
-	// Token: 0x0600240D RID: 9229 RVA: 0x001D4CA0 File Offset: 0x001D2EA0
 	private void DebugDrawValidCells()
 	{
 		Color white = Color.white;
@@ -224,7 +194,6 @@ public class NavGrid
 		}
 	}
 
-	// Token: 0x0600240E RID: 9230 RVA: 0x001D4D0C File Offset: 0x001D2F0C
 	private void DebugDrawLinks()
 	{
 		Color white = Color.white;
@@ -243,7 +212,6 @@ public class NavGrid
 		}
 	}
 
-	// Token: 0x0600240F RID: 9231 RVA: 0x001D4DDC File Offset: 0x001D2FDC
 	private bool DrawNavTypeLink(NavType nav_type, ref Color color)
 	{
 		color = this.NavTypeColor(nav_type);
@@ -261,7 +229,6 @@ public class NavGrid
 		return false;
 	}
 
-	// Token: 0x06002410 RID: 9232 RVA: 0x001D4E28 File Offset: 0x001D3028
 	private bool DrawNavTypeCell(NavType nav_type, ref Color color)
 	{
 		color = this.NavTypeColor(nav_type);
@@ -279,7 +246,6 @@ public class NavGrid
 		return false;
 	}
 
-	// Token: 0x06002411 RID: 9233 RVA: 0x000BBDE6 File Offset: 0x000B9FE6
 	public void DebugUpdate()
 	{
 		if (this.DebugViewValidCells)
@@ -292,7 +258,6 @@ public class NavGrid
 		}
 	}
 
-	// Token: 0x06002412 RID: 9234 RVA: 0x001D4E74 File Offset: 0x001D3074
 	public void AddDirtyCell(int cell)
 	{
 		if (Grid.IsValidCell(cell) && ((int)this.DirtyBitFlags[cell / 8] & 1 << cell % 8) == 0)
@@ -304,7 +269,6 @@ public class NavGrid
 		}
 	}
 
-	// Token: 0x06002413 RID: 9235 RVA: 0x001D4EC8 File Offset: 0x001D30C8
 	public void Clear()
 	{
 		NavTableValidator[] validators = this.Validators;
@@ -314,7 +278,6 @@ public class NavGrid
 		}
 	}
 
-	// Token: 0x06002414 RID: 9236 RVA: 0x001D4EF4 File Offset: 0x001D30F4
 	public Color NavTypeColor(NavType navType)
 	{
 		if (this.debugColorLookup == null)
@@ -335,79 +298,54 @@ public class NavGrid
 		return this.debugColorLookup[(int)navType];
 	}
 
-	// Token: 0x0400185B RID: 6235
 	public bool DebugViewAllPaths;
 
-	// Token: 0x0400185C RID: 6236
 	public bool DebugViewValidCells;
 
-	// Token: 0x0400185D RID: 6237
 	public bool[] DebugViewValidCellsType;
 
-	// Token: 0x0400185E RID: 6238
 	public bool DebugViewValidCellsAll;
 
-	// Token: 0x0400185F RID: 6239
 	public bool DebugViewLinks;
 
-	// Token: 0x04001860 RID: 6240
 	public bool[] DebugViewLinkType;
 
-	// Token: 0x04001861 RID: 6241
 	public bool DebugViewLinksAll;
 
-	// Token: 0x04001862 RID: 6242
 	public static int InvalidHandle = -1;
 
-	// Token: 0x04001863 RID: 6243
 	public static int InvalidIdx = -1;
 
-	// Token: 0x04001864 RID: 6244
 	public static int InvalidCell = -1;
 
-	// Token: 0x04001865 RID: 6245
 	public Dictionary<int, int> teleportTransitions = new Dictionary<int, int>();
 
-	// Token: 0x04001866 RID: 6246
 	public NavGrid.Link[] Links;
 
-	// Token: 0x04001868 RID: 6248
 	private byte[] DirtyBitFlags;
 
-	// Token: 0x04001869 RID: 6249
 	private List<int> DirtyCells;
 
-	// Token: 0x0400186A RID: 6250
 	private NavTableValidator[] Validators = new NavTableValidator[0];
 
-	// Token: 0x0400186B RID: 6251
 	private CellOffset[] boundingOffsets;
 
-	// Token: 0x0400186C RID: 6252
 	public string id;
 
-	// Token: 0x0400186D RID: 6253
 	public bool updateEveryFrame;
 
-	// Token: 0x0400186E RID: 6254
 	public PathFinder.PotentialScratchPad potentialScratchPad;
 
-	// Token: 0x0400186F RID: 6255
 	public Action<IEnumerable<int>> OnNavGridUpdateComplete;
 
-	// Token: 0x04001872 RID: 6258
 	public NavType[] ValidNavTypes;
 
-	// Token: 0x04001873 RID: 6259
 	public NavGrid.NavTypeData[] navTypeData;
 
-	// Token: 0x04001877 RID: 6263
 	private Color[] debugColorLookup;
 
-	// Token: 0x020007FC RID: 2044
 	public struct Link
 	{
-		// Token: 0x06002416 RID: 9238 RVA: 0x000BBE18 File Offset: 0x000BA018
 		public Link(int link, NavType start_nav_type, NavType end_nav_type, byte transition_id, byte cost)
 		{
 			this.link = link;
@@ -417,48 +355,34 @@ public class NavGrid
 			this.cost = cost;
 		}
 
-		// Token: 0x04001878 RID: 6264
 		public int link;
 
-		// Token: 0x04001879 RID: 6265
 		public NavType startNavType;
 
-		// Token: 0x0400187A RID: 6266
 		public NavType endNavType;
 
-		// Token: 0x0400187B RID: 6267
 		public byte transitionId;
 
-		// Token: 0x0400187C RID: 6268
 		public byte cost;
 	}
 
-	// Token: 0x020007FD RID: 2045
 	public struct NavTypeData
 	{
-		// Token: 0x0400187D RID: 6269
 		public NavType navType;
 
-		// Token: 0x0400187E RID: 6270
 		public Vector2 animControllerOffset;
 
-		// Token: 0x0400187F RID: 6271
 		public bool flipX;
 
-		// Token: 0x04001880 RID: 6272
 		public bool flipY;
 
-		// Token: 0x04001881 RID: 6273
 		public float rotation;
 
-		// Token: 0x04001882 RID: 6274
 		public HashedString idleAnim;
 	}
 
-	// Token: 0x020007FE RID: 2046
 	public struct Transition
 	{
-		// Token: 0x06002417 RID: 9239 RVA: 0x001D4F9C File Offset: 0x001D319C
 		public override string ToString()
 		{
 			return string.Format("{0}: {1}->{2} ({3}); offset {4},{5}", new object[]
@@ -472,7 +396,6 @@ public class NavGrid
 			});
 		}
 
-		// Token: 0x06002418 RID: 9240 RVA: 0x001D5010 File Offset: 0x001D3210
 		public Transition(NavType start, NavType end, int x, int y, NavAxis start_axis, bool is_looping, bool loop_has_pre, bool is_escape, int cost, string anim, CellOffset[] void_offsets, CellOffset[] solid_offsets, NavOffset[] valid_nav_offsets, NavOffset[] invalid_nav_offsets, bool critter = false, float animSpeed = 1f, bool useOffsetX = false)
 		{
 			DebugUtil.Assert(cost <= 255 && cost >= 0);
@@ -521,7 +444,6 @@ public class NavGrid
 			this.animSpeed = animSpeed;
 		}
 
-		// Token: 0x06002419 RID: 9241 RVA: 0x001D51A4 File Offset: 0x001D33A4
 		public int IsValid(int cell, NavTable nav_table)
 		{
 			if (!Grid.IsCellOffsetValid(cell, this.x, this.y))
@@ -714,58 +636,40 @@ public class NavGrid
 			return num;
 		}
 
-		// Token: 0x04001883 RID: 6275
 		public NavType start;
 
-		// Token: 0x04001884 RID: 6276
 		public NavType end;
 
-		// Token: 0x04001885 RID: 6277
 		public NavAxis startAxis;
 
-		// Token: 0x04001886 RID: 6278
 		public int x;
 
-		// Token: 0x04001887 RID: 6279
 		public int y;
 
-		// Token: 0x04001888 RID: 6280
 		public byte id;
 
-		// Token: 0x04001889 RID: 6281
 		public byte cost;
 
-		// Token: 0x0400188A RID: 6282
 		public bool isLooping;
 
-		// Token: 0x0400188B RID: 6283
 		public bool isEscape;
 
-		// Token: 0x0400188C RID: 6284
 		public string preAnim;
 
-		// Token: 0x0400188D RID: 6285
 		public string anim;
 
-		// Token: 0x0400188E RID: 6286
 		public float animSpeed;
 
-		// Token: 0x0400188F RID: 6287
 		public CellOffset[] voidOffsets;
 
-		// Token: 0x04001890 RID: 6288
 		public CellOffset[] solidOffsets;
 
-		// Token: 0x04001891 RID: 6289
 		public NavOffset[] validNavOffsets;
 
-		// Token: 0x04001892 RID: 6290
 		public NavOffset[] invalidNavOffsets;
 
-		// Token: 0x04001893 RID: 6291
 		public bool isCritter;
 
-		// Token: 0x04001894 RID: 6292
 		public bool useXOffset;
 	}
 }

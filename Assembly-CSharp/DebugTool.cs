@@ -2,43 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02001460 RID: 5216
 public class DebugTool : DragTool
 {
-	// Token: 0x06006B87 RID: 27527 RVA: 0x000EB0F7 File Offset: 0x000E92F7
 	public static void DestroyInstance()
 	{
 		DebugTool.Instance = null;
 	}
 
-	// Token: 0x06006B88 RID: 27528 RVA: 0x000EB0FF File Offset: 0x000E92FF
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 		DebugTool.Instance = this;
 	}
 
-	// Token: 0x06006B89 RID: 27529 RVA: 0x000EAFAB File Offset: 0x000E91AB
 	public void Activate()
 	{
 		PlayerController.Instance.ActivateTool(this);
 	}
 
-	// Token: 0x06006B8A RID: 27530 RVA: 0x000EB10D File Offset: 0x000E930D
 	public void Activate(DebugTool.Type type)
 	{
 		this.type = type;
 		this.Activate();
 	}
 
-	// Token: 0x06006B8B RID: 27531 RVA: 0x000EB11C File Offset: 0x000E931C
 	protected override void OnDeactivateTool(InterfaceTool new_tool)
 	{
 		base.OnDeactivateTool(new_tool);
 		PlayerController.Instance.ToolDeactivated(this);
 	}
 
-	// Token: 0x06006B8C RID: 27532 RVA: 0x002F0EA4 File Offset: 0x002EF0A4
 	protected override void OnDragTool(int cell, int distFromOrigin)
 	{
 		if (Grid.IsValidCell(cell))
@@ -107,7 +100,6 @@ public class DebugTool : DragTool
 		}
 	}
 
-	// Token: 0x06006B8D RID: 27533 RVA: 0x002F102C File Offset: 0x002EF22C
 	public void DoReplaceSubstance(int cell)
 	{
 		if (!Grid.IsValidBuildingCell(cell))
@@ -174,7 +166,6 @@ public class DebugTool : DragTool
 		}
 	}
 
-	// Token: 0x06006B8E RID: 27534 RVA: 0x000EB130 File Offset: 0x000E9330
 	public void DeconstructCell(int cell)
 	{
 		bool instantBuildMode = DebugHandler.InstantBuildMode;
@@ -186,7 +177,6 @@ public class DebugTool : DragTool
 		}
 	}
 
-	// Token: 0x06006B8F RID: 27535 RVA: 0x002F12F0 File Offset: 0x002EF4F0
 	public void DestroyCell(int cell)
 	{
 		foreach (GameObject gameObject in new List<GameObject>
@@ -216,7 +206,6 @@ public class DebugTool : DragTool
 		SimMessages.ReplaceElement(cell, SimHashes.Vacuum, CellEventLogger.Instance.DebugTool, 0f, 0f, byte.MaxValue, 0, -1);
 	}
 
-	// Token: 0x06006B90 RID: 27536 RVA: 0x002F1468 File Offset: 0x002EF668
 	public void ClearCell(int cell)
 	{
 		Vector2I vector2I = Grid.CellToXY(cell);
@@ -233,7 +222,6 @@ public class DebugTool : DragTool
 		pooledList.Recycle();
 	}
 
-	// Token: 0x06006B91 RID: 27537 RVA: 0x002F14F0 File Offset: 0x002EF6F0
 	public void DoStoreSubstance(int cell)
 	{
 		if (!Grid.IsValidBuildingCell(cell))
@@ -283,44 +271,26 @@ public class DebugTool : DragTool
 		}
 	}
 
-	// Token: 0x04005180 RID: 20864
 	public static DebugTool Instance;
 
-	// Token: 0x04005181 RID: 20865
 	public DebugTool.Type type;
 
-	// Token: 0x02001461 RID: 5217
 	public enum Type
 	{
-		// Token: 0x04005183 RID: 20867
 		ReplaceSubstance,
-		// Token: 0x04005184 RID: 20868
 		FillReplaceSubstance,
-		// Token: 0x04005185 RID: 20869
 		Clear,
-		// Token: 0x04005186 RID: 20870
 		AddSelection,
-		// Token: 0x04005187 RID: 20871
 		RemoveSelection,
-		// Token: 0x04005188 RID: 20872
 		Deconstruct,
-		// Token: 0x04005189 RID: 20873
 		Destroy,
-		// Token: 0x0400518A RID: 20874
 		Sample,
-		// Token: 0x0400518B RID: 20875
 		StoreSubstance,
-		// Token: 0x0400518C RID: 20876
 		Dig,
-		// Token: 0x0400518D RID: 20877
 		Heat,
-		// Token: 0x0400518E RID: 20878
 		Cool,
-		// Token: 0x0400518F RID: 20879
 		AddPressure,
-		// Token: 0x04005190 RID: 20880
 		RemovePressure,
-		// Token: 0x04005191 RID: 20881
 		PaintPlant
 	}
 }

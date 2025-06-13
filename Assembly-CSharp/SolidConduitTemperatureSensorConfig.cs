@@ -4,11 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005AE RID: 1454
 public class SolidConduitTemperatureSensorConfig : ConduitSensorConfig
 {
-	// Token: 0x1700008F RID: 143
-	// (get) Token: 0x0600192B RID: 6443 RVA: 0x000B1693 File Offset: 0x000AF893
 	protected override ConduitType ConduitType
 	{
 		get
@@ -17,7 +14,6 @@ public class SolidConduitTemperatureSensorConfig : ConduitSensorConfig
 		}
 	}
 
-	// Token: 0x0600192C RID: 6444 RVA: 0x001ADC08 File Offset: 0x001ABE08
 	public override BuildingDef CreateBuildingDef()
 	{
 		BuildingDef result = base.CreateBuildingDef(SolidConduitTemperatureSensorConfig.ID, "conveyor_temperature_sensor_kanim", TUNING.BUILDINGS.CONSTRUCTION_MASS_KG.TIER0, MATERIALS.REFINED_METALS, new List<LogicPorts.Port>
@@ -28,7 +24,6 @@ public class SolidConduitTemperatureSensorConfig : ConduitSensorConfig
 		return result;
 	}
 
-	// Token: 0x0600192D RID: 6445 RVA: 0x001ADC7C File Offset: 0x001ABE7C
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		base.DoPostConfigureComplete(go);
@@ -42,6 +37,5 @@ public class SolidConduitTemperatureSensorConfig : ConduitSensorConfig
 		conduitTemperatureSensor.defaultState = false;
 	}
 
-	// Token: 0x04001057 RID: 4183
 	public static string ID = "SolidConduitTemperatureSensor";
 }

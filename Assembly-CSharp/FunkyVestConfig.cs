@@ -5,10 +5,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000BC RID: 188
 public class FunkyVestConfig : IEquipmentConfig
 {
-	// Token: 0x0600031F RID: 799 RVA: 0x00154EAC File Offset: 0x001530AC
 	public EquipmentDef CreateEquipmentDef()
 	{
 		new Dictionary<string, float>().Add("BasicFabric", (float)TUNING.EQUIPMENT.VESTS.FUNKY_VEST_MASS);
@@ -28,7 +26,6 @@ public class FunkyVestConfig : IEquipmentConfig
 		return equipmentDef;
 	}
 
-	// Token: 0x06000320 RID: 800 RVA: 0x00154BA8 File Offset: 0x00152DA8
 	public static void SetupVest(GameObject go)
 	{
 		go.GetComponent<KPrefabID>().AddTag(GameTags.Clothes, false);
@@ -41,16 +38,13 @@ public class FunkyVestConfig : IEquipmentConfig
 		go.GetComponent<KBatchedAnimController>().sceneLayer = Grid.SceneLayer.BuildingBack;
 	}
 
-	// Token: 0x06000321 RID: 801 RVA: 0x000AB197 File Offset: 0x000A9397
 	public void DoPostConfigure(GameObject go)
 	{
 		FunkyVestConfig.SetupVest(go);
 		go.GetComponent<KPrefabID>().AddTag(GameTags.PedestalDisplayable, false);
 	}
 
-	// Token: 0x040001E9 RID: 489
 	public const string ID = "Funky_Vest";
 
-	// Token: 0x040001EA RID: 490
 	public static ComplexRecipe recipe;
 }

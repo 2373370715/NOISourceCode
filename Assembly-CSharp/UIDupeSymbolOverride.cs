@@ -2,11 +2,9 @@
 using Database;
 using UnityEngine;
 
-// Token: 0x020020A4 RID: 8356
 [RequireComponent(typeof(SymbolOverrideController))]
 public class UIDupeSymbolOverride : MonoBehaviour
 {
-	// Token: 0x0600B22A RID: 45610 RVA: 0x0043C4FC File Offset: 0x0043A6FC
 	public void Apply(MinionIdentity minionIdentity)
 	{
 		if (this.slots == null)
@@ -42,7 +40,6 @@ public class UIDupeSymbolOverride : MonoBehaviour
 		this.SetAccessory(this.animController, this.slots.Hand.Lookup(bodyData.hand));
 	}
 
-	// Token: 0x0600B22B RID: 45611 RVA: 0x0043C7A8 File Offset: 0x0043A9A8
 	private KAnimHashedString SetAccessory(KBatchedAnimController minion, Accessory accessory)
 	{
 		if (accessory != null)
@@ -55,12 +52,9 @@ public class UIDupeSymbolOverride : MonoBehaviour
 		return HashedString.Invalid;
 	}
 
-	// Token: 0x04008CB0 RID: 36016
 	private KBatchedAnimController animController;
 
-	// Token: 0x04008CB1 RID: 36017
 	private AccessorySlots slots;
 
-	// Token: 0x04008CB2 RID: 36018
 	private SymbolOverrideController symbolOverrideController;
 }

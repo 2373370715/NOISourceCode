@@ -5,21 +5,17 @@ using ImGuiNET;
 using ImGuiObjectDrawer;
 using UnityEngine;
 
-// Token: 0x02000BE7 RID: 3047
 public class DevToolEntity_RanchStation : DevTool
 {
-	// Token: 0x060039C1 RID: 14785 RVA: 0x000C9D8A File Offset: 0x000C7F8A
 	public DevToolEntity_RanchStation() : this(Option.None)
 	{
 	}
 
-	// Token: 0x060039C2 RID: 14786 RVA: 0x000C9D9C File Offset: 0x000C7F9C
 	public DevToolEntity_RanchStation(Option<DevToolEntityTarget.ForWorldGameObject> target)
 	{
 		this.targetOpt = target;
 	}
 
-	// Token: 0x060039C3 RID: 14787 RVA: 0x0022DCE0 File Offset: 0x0022BEE0
 	protected override void RenderTo(DevPanel panel)
 	{
 		if (ImGui.BeginMenuBar())
@@ -80,7 +76,6 @@ public class DevToolEntity_RanchStation : DevTool
 		}
 	}
 
-	// Token: 0x060039C4 RID: 14788 RVA: 0x0022DEB8 File Offset: 0x0022C0B8
 	public static void DrawRanchableCollection(string name, IEnumerable<RanchableMonitor.Instance> ranchables)
 	{
 		if (ImGui.CollapsingHeader(name))
@@ -109,7 +104,6 @@ public class DevToolEntity_RanchStation : DevTool
 		}
 	}
 
-	// Token: 0x060039C5 RID: 14789 RVA: 0x0022DF74 File Offset: 0x0022C174
 	public static Option<string> GetErrorForCandidateTarget(DevToolEntityTarget uncastTarget)
 	{
 		if (!(uncastTarget is DevToolEntityTarget.ForWorldGameObject))
@@ -128,9 +122,7 @@ public class DevToolEntity_RanchStation : DevTool
 		return Option.None;
 	}
 
-	// Token: 0x040027D4 RID: 10196
 	private Option<DevToolEntityTarget.ForWorldGameObject> targetOpt;
 
-	// Token: 0x040027D5 RID: 10197
 	private bool shouldDrawBoundingBox = true;
 }

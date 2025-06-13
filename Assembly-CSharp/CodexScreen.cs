@@ -6,12 +6,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x02001C95 RID: 7317
 public class CodexScreen : KScreen
 {
-	// Token: 0x170009F8 RID: 2552
-	// (get) Token: 0x06009886 RID: 39046 RVA: 0x001079F4 File Offset: 0x00105BF4
-	// (set) Token: 0x06009887 RID: 39047 RVA: 0x001079FC File Offset: 0x00105BFC
 	public string activeEntryID
 	{
 		get
@@ -24,7 +20,6 @@ public class CodexScreen : KScreen
 		}
 	}
 
-	// Token: 0x06009888 RID: 39048 RVA: 0x003BEFB0 File Offset: 0x003BD1B0
 	protected override void OnActivate()
 	{
 		base.ConsumeMouseScroll = true;
@@ -56,7 +51,6 @@ public class CodexScreen : KScreen
 		});
 	}
 
-	// Token: 0x06009889 RID: 39049 RVA: 0x00107A05 File Offset: 0x00105C05
 	public override void OnKeyDown(KButtonEvent e)
 	{
 		if (this.editingSearch)
@@ -66,13 +60,11 @@ public class CodexScreen : KScreen
 		base.OnKeyDown(e);
 	}
 
-	// Token: 0x0600988A RID: 39050 RVA: 0x00102E82 File Offset: 0x00101082
 	public override float GetSortKey()
 	{
 		return 50f;
 	}
 
-	// Token: 0x0600988B RID: 39051 RVA: 0x003BF090 File Offset: 0x003BD290
 	public void RefreshTutorialMessages()
 	{
 		if (!this.HasFocus)
@@ -111,7 +103,6 @@ public class CodexScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600988C RID: 39052 RVA: 0x003BF1D4 File Offset: 0x003BD3D4
 	private void CodexScreenInit()
 	{
 		this.textStyles[CodexTextStyle.Title] = this.textStyleTitle;
@@ -141,7 +132,6 @@ public class CodexScreen : KScreen
 		KInputManager.InputChange.AddListener(new UnityAction(this.RefreshTutorialMessages));
 	}
 
-	// Token: 0x0600988D RID: 39053 RVA: 0x003BF2E0 File Offset: 0x003BD4E0
 	private void SetupPrefabs()
 	{
 		this.contentContainerPool = new UIGameObjectPool(this.prefabContentContainer);
@@ -166,7 +156,6 @@ public class CodexScreen : KScreen
 		this.ContentPrefabs[typeof(CodexElementCategoryList)] = this.prefabElementCategoryList;
 	}
 
-	// Token: 0x0600988E RID: 39054 RVA: 0x003BF4F8 File Offset: 0x003BD6F8
 	private List<CodexEntry> FilterSearch(string input)
 	{
 		this.searchResults.Clear();
@@ -200,7 +189,6 @@ public class CodexScreen : KScreen
 		return this.searchResults;
 	}
 
-	// Token: 0x0600988F RID: 39055 RVA: 0x003BF6B4 File Offset: 0x003BD8B4
 	private bool HasUnlockedCategoryEntries(string entryID)
 	{
 		foreach (ContentContainer contentContainer in CodexCache.entries[entryID].contentContainers)
@@ -213,7 +201,6 @@ public class CodexScreen : KScreen
 		return false;
 	}
 
-	// Token: 0x06009890 RID: 39056 RVA: 0x003BF738 File Offset: 0x003BD938
 	private void FilterEntries(bool allowOpenCategories = true)
 	{
 		foreach (KeyValuePair<CodexEntry, GameObject> keyValuePair in this.entryButtons)
@@ -250,14 +237,12 @@ public class CodexScreen : KScreen
 		}
 	}
 
-	// Token: 0x06009891 RID: 39057 RVA: 0x00107A1D File Offset: 0x00105C1D
 	private void ToggleCategoryOpen(GameObject header, bool open)
 	{
 		header.GetComponent<HierarchyReferences>().GetReference<MultiToggle>("ExpandToggle").ChangeState(open ? 1 : 0);
 		header.GetComponent<HierarchyReferences>().GetReference("Content").gameObject.SetActive(open);
 	}
 
-	// Token: 0x06009892 RID: 39058 RVA: 0x003BF8B8 File Offset: 0x003BDAB8
 	private void PopulatePools()
 	{
 		foreach (KeyValuePair<Type, GameObject> keyValuePair in this.ContentPrefabs)
@@ -268,7 +253,6 @@ public class CodexScreen : KScreen
 		}
 	}
 
-	// Token: 0x06009893 RID: 39059 RVA: 0x003BF930 File Offset: 0x003BDB30
 	private GameObject NewCategoryHeader(KeyValuePair<string, CodexEntry> entryKVP, Dictionary<string, GameObject> categories)
 	{
 		if (entryKVP.Value.category == "")
@@ -296,7 +280,6 @@ public class CodexScreen : KScreen
 		return categoryHeader;
 	}
 
-	// Token: 0x06009894 RID: 39060 RVA: 0x003BFA90 File Offset: 0x003BDC90
 	private void CategorizeEntries()
 	{
 		GameObject gameObject = this.navigatorContent.gameObject;
@@ -382,7 +365,6 @@ public class CodexScreen : KScreen
 		CodexScreen.SetupCategory(dictionary, "Root");
 	}
 
-	// Token: 0x06009895 RID: 39061 RVA: 0x00107A56 File Offset: 0x00105C56
 	private static void SetupCategory(Dictionary<string, GameObject> categories, string category_name)
 	{
 		if (!categories.ContainsKey(category_name))
@@ -392,7 +374,6 @@ public class CodexScreen : KScreen
 		categories[category_name].transform.parent.SetAsFirstSibling();
 	}
 
-	// Token: 0x06009896 RID: 39062 RVA: 0x003BFF30 File Offset: 0x003BE130
 	public void ChangeArticle(string id, bool playClickSound = false, Vector3 targetPosition = default(Vector3), CodexScreen.HistoryDirection historyMovement = CodexScreen.HistoryDirection.NewArticle)
 	{
 		global::Debug.Assert(id != null);
@@ -612,7 +593,6 @@ public class CodexScreen : KScreen
 		this.displayScrollRect.content.SetLocalPosition(Vector3.zero);
 	}
 
-	// Token: 0x06009897 RID: 39063 RVA: 0x003C08C4 File Offset: 0x003BEAC4
 	private void HistoryStepBack()
 	{
 		if (this.currentHistoryIdx == 0)
@@ -622,7 +602,6 @@ public class CodexScreen : KScreen
 		this.ChangeArticle(this.history[this.currentHistoryIdx - 1].id, false, this.history[this.currentHistoryIdx - 1].position, CodexScreen.HistoryDirection.Back);
 	}
 
-	// Token: 0x06009898 RID: 39064 RVA: 0x003C0914 File Offset: 0x003BEB14
 	private void HistoryStepForward()
 	{
 		if (this.currentHistoryIdx == this.history.Count - 1)
@@ -632,7 +611,6 @@ public class CodexScreen : KScreen
 		this.ChangeArticle(this.history[this.currentHistoryIdx + 1].id, false, this.history[this.currentHistoryIdx + 1].position, CodexScreen.HistoryDirection.Forward);
 	}
 
-	// Token: 0x06009899 RID: 39065 RVA: 0x003C0970 File Offset: 0x003BEB70
 	private void HistoryStepUp()
 	{
 		if (string.IsNullOrEmpty(CodexCache.entries[this.activeEntryID].parentId))
@@ -642,7 +620,6 @@ public class CodexScreen : KScreen
 		this.ChangeArticle(CodexCache.entries[this.activeEntryID].parentId, false, default(Vector3), CodexScreen.HistoryDirection.Up);
 	}
 
-	// Token: 0x0600989A RID: 39066 RVA: 0x00107A78 File Offset: 0x00105C78
 	private IEnumerator ScrollToTarget(RectTransform targetWidgetTransform)
 	{
 		yield return 0;
@@ -651,7 +628,6 @@ public class CodexScreen : KScreen
 		yield break;
 	}
 
-	// Token: 0x0600989B RID: 39067 RVA: 0x00107A8E File Offset: 0x00105C8E
 	private IEnumerator ScrollToTarget(Vector3 position)
 	{
 		yield return 0;
@@ -660,7 +636,6 @@ public class CodexScreen : KScreen
 		yield break;
 	}
 
-	// Token: 0x0600989C RID: 39068 RVA: 0x003C09C0 File Offset: 0x003BEBC0
 	public void FocusContainer(ContentContainer target)
 	{
 		if (target == null || target.go == null)
@@ -679,7 +654,6 @@ public class CodexScreen : KScreen
 		this.scrollToTargetRoutine = base.StartCoroutine(this.ScrollToTarget(rectTransform));
 	}
 
-	// Token: 0x0600989D RID: 39069 RVA: 0x003C0A28 File Offset: 0x003BEC28
 	private void ConfigureContentContainer(ContentContainer container, GameObject containerGameObject, bool bgColor = false)
 	{
 		container.go = containerGameObject;
@@ -734,255 +708,180 @@ public class CodexScreen : KScreen
 		}
 	}
 
-	// Token: 0x04007690 RID: 30352
 	private string _activeEntryID;
 
-	// Token: 0x04007691 RID: 30353
 	private Dictionary<Type, UIGameObjectPool> ContentUIPools = new Dictionary<Type, UIGameObjectPool>();
 
-	// Token: 0x04007692 RID: 30354
 	private Dictionary<Type, GameObject> ContentPrefabs = new Dictionary<Type, GameObject>();
 
-	// Token: 0x04007693 RID: 30355
 	private List<GameObject> categoryHeaders = new List<GameObject>();
 
-	// Token: 0x04007694 RID: 30356
 	private Dictionary<CodexEntry, GameObject> entryButtons = new Dictionary<CodexEntry, GameObject>();
 
-	// Token: 0x04007695 RID: 30357
 	private Dictionary<SubEntry, GameObject> subEntryButtons = new Dictionary<SubEntry, GameObject>();
 
-	// Token: 0x04007696 RID: 30358
 	private UIGameObjectPool contentContainerPool;
 
-	// Token: 0x04007697 RID: 30359
 	[SerializeField]
 	private KScrollRect displayScrollRect;
 
-	// Token: 0x04007698 RID: 30360
 	[SerializeField]
 	private RectTransform scrollContentPane;
 
-	// Token: 0x04007699 RID: 30361
 	private bool editingSearch;
 
-	// Token: 0x0400769A RID: 30362
 	private List<CodexScreen.HistoryEntry> history = new List<CodexScreen.HistoryEntry>();
 
-	// Token: 0x0400769B RID: 30363
 	private int currentHistoryIdx;
 
-	// Token: 0x0400769C RID: 30364
 	[Header("Hierarchy")]
 	[SerializeField]
 	private Transform navigatorContent;
 
-	// Token: 0x0400769D RID: 30365
 	[SerializeField]
 	private Transform displayPane;
 
-	// Token: 0x0400769E RID: 30366
 	[SerializeField]
 	private Transform contentContainers;
 
-	// Token: 0x0400769F RID: 30367
 	[SerializeField]
 	private Transform widgetPool;
 
-	// Token: 0x040076A0 RID: 30368
 	[SerializeField]
 	private KButton closeButton;
 
-	// Token: 0x040076A1 RID: 30369
 	[SerializeField]
 	private KInputTextField searchInputField;
 
-	// Token: 0x040076A2 RID: 30370
 	[SerializeField]
 	private KButton clearSearchButton;
 
-	// Token: 0x040076A3 RID: 30371
 	[SerializeField]
 	private LocText backButton;
 
-	// Token: 0x040076A4 RID: 30372
 	[SerializeField]
 	private KButton backButtonButton;
 
-	// Token: 0x040076A5 RID: 30373
 	[SerializeField]
 	private KButton fwdButtonButton;
 
-	// Token: 0x040076A6 RID: 30374
 	[SerializeField]
 	private LocText currentLocationText;
 
-	// Token: 0x040076A7 RID: 30375
 	[Header("Prefabs")]
 	[SerializeField]
 	private GameObject prefabNavigatorEntry;
 
-	// Token: 0x040076A8 RID: 30376
 	[SerializeField]
 	private GameObject prefabCategoryHeader;
 
-	// Token: 0x040076A9 RID: 30377
 	[SerializeField]
 	private GameObject prefabContentContainer;
 
-	// Token: 0x040076AA RID: 30378
 	[SerializeField]
 	private GameObject prefabTextWidget;
 
-	// Token: 0x040076AB RID: 30379
 	[SerializeField]
 	private GameObject prefabTextWithTooltipWidget;
 
-	// Token: 0x040076AC RID: 30380
 	[SerializeField]
 	private GameObject prefabImageWidget;
 
-	// Token: 0x040076AD RID: 30381
 	[SerializeField]
 	private GameObject prefabDividerLineWidget;
 
-	// Token: 0x040076AE RID: 30382
 	[SerializeField]
 	private GameObject prefabSpacer;
 
-	// Token: 0x040076AF RID: 30383
 	[SerializeField]
 	private GameObject prefabLargeSpacer;
 
-	// Token: 0x040076B0 RID: 30384
 	[SerializeField]
 	private GameObject prefabLabelWithIcon;
 
-	// Token: 0x040076B1 RID: 30385
 	[SerializeField]
 	private GameObject prefabLabelWithLargeIcon;
 
-	// Token: 0x040076B2 RID: 30386
 	[SerializeField]
 	private GameObject prefabContentLocked;
 
-	// Token: 0x040076B3 RID: 30387
 	[SerializeField]
 	private GameObject prefabVideoWidget;
 
-	// Token: 0x040076B4 RID: 30388
 	[SerializeField]
 	private GameObject prefabIndentedLabelWithIcon;
 
-	// Token: 0x040076B5 RID: 30389
 	[SerializeField]
 	private GameObject prefabRecipePanel;
 
-	// Token: 0x040076B6 RID: 30390
 	[SerializeField]
 	private GameObject PrefabConfigurableConsumerRecipePanel;
 
-	// Token: 0x040076B7 RID: 30391
 	[SerializeField]
 	private GameObject PrefabTemperatureTransitionPanel;
 
-	// Token: 0x040076B8 RID: 30392
 	[SerializeField]
 	private GameObject prefabConversionPanel;
 
-	// Token: 0x040076B9 RID: 30393
 	[SerializeField]
 	private GameObject prefabCollapsibleHeader;
 
-	// Token: 0x040076BA RID: 30394
 	[SerializeField]
 	private GameObject prefabCritterLifecycleWidget;
 
-	// Token: 0x040076BB RID: 30395
 	[SerializeField]
 	private GameObject prefabElementCategoryList;
 
-	// Token: 0x040076BC RID: 30396
 	[Header("Text Styles")]
 	[SerializeField]
 	private TextStyleSetting textStyleTitle;
 
-	// Token: 0x040076BD RID: 30397
 	[SerializeField]
 	private TextStyleSetting textStyleSubtitle;
 
-	// Token: 0x040076BE RID: 30398
 	[SerializeField]
 	private TextStyleSetting textStyleBody;
 
-	// Token: 0x040076BF RID: 30399
 	[SerializeField]
 	private TextStyleSetting textStyleBodyWhite;
 
-	// Token: 0x040076C0 RID: 30400
 	private Dictionary<CodexTextStyle, TextStyleSetting> textStyles = new Dictionary<CodexTextStyle, TextStyleSetting>();
 
-	// Token: 0x040076C1 RID: 30401
 	private List<CodexEntry> searchResults = new List<CodexEntry>();
 
-	// Token: 0x040076C2 RID: 30402
 	private List<SubEntry> subEntrySearchResults = new List<SubEntry>();
 
-	// Token: 0x040076C3 RID: 30403
 	private Coroutine scrollToTargetRoutine;
 
-	// Token: 0x02001C96 RID: 7318
 	public enum PlanCategory
 	{
-		// Token: 0x040076C5 RID: 30405
 		Home,
-		// Token: 0x040076C6 RID: 30406
 		Tips,
-		// Token: 0x040076C7 RID: 30407
 		MyLog,
-		// Token: 0x040076C8 RID: 30408
 		Investigations,
-		// Token: 0x040076C9 RID: 30409
 		Emails,
-		// Token: 0x040076CA RID: 30410
 		Journals,
-		// Token: 0x040076CB RID: 30411
 		ResearchNotes,
-		// Token: 0x040076CC RID: 30412
 		Creatures,
-		// Token: 0x040076CD RID: 30413
 		Plants,
-		// Token: 0x040076CE RID: 30414
 		Food,
-		// Token: 0x040076CF RID: 30415
 		Tech,
-		// Token: 0x040076D0 RID: 30416
 		Diseases,
-		// Token: 0x040076D1 RID: 30417
 		Roles,
-		// Token: 0x040076D2 RID: 30418
 		Buildings,
-		// Token: 0x040076D3 RID: 30419
 		Elements
 	}
 
-	// Token: 0x02001C97 RID: 7319
 	public enum HistoryDirection
 	{
-		// Token: 0x040076D5 RID: 30421
 		Back,
-		// Token: 0x040076D6 RID: 30422
 		Forward,
-		// Token: 0x040076D7 RID: 30423
 		Up,
-		// Token: 0x040076D8 RID: 30424
 		NewArticle
 	}
 
-	// Token: 0x02001C98 RID: 7320
 	public class HistoryEntry
 	{
-		// Token: 0x060098A6 RID: 39078 RVA: 0x00107AF4 File Offset: 0x00105CF4
 		public HistoryEntry(string entry, Vector3 pos, string articleName)
 		{
 			this.id = entry;
@@ -990,13 +889,10 @@ public class CodexScreen : KScreen
 			this.name = articleName;
 		}
 
-		// Token: 0x040076D9 RID: 30425
 		public string id;
 
-		// Token: 0x040076DA RID: 30426
 		public Vector3 position;
 
-		// Token: 0x040076DB RID: 30427
 		public string name;
 	}
 }

@@ -2,10 +2,8 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000460 RID: 1120
 public class CopperCometConfig : IEntityConfig
 {
-	// Token: 0x060012E2 RID: 4834 RVA: 0x00196EF4 File Offset: 0x001950F4
 	public GameObject CreatePrefab()
 	{
 		GameObject gameObject = EntityTemplates.CreateEntity(CopperCometConfig.ID, UI.SPACEDESTINATIONS.COMETS.COPPERCOMET.NAME, true);
@@ -39,16 +37,13 @@ public class CopperCometConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x060012E3 RID: 4835 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject go)
 	{
 	}
 
-	// Token: 0x060012E4 RID: 4836 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject go)
 	{
 	}
 
-	// Token: 0x04000D39 RID: 3385
 	public static string ID = "CopperCometConfig";
 }

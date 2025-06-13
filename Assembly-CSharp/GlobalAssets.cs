@@ -7,15 +7,10 @@ using STRINGS;
 using TMPro;
 using UnityEngine;
 
-// Token: 0x020013CA RID: 5066
 public class GlobalAssets : KMonoBehaviour
 {
-	// Token: 0x17000676 RID: 1654
-	// (get) Token: 0x06006801 RID: 26625 RVA: 0x000E874A File Offset: 0x000E694A
-	// (set) Token: 0x06006802 RID: 26626 RVA: 0x000E8751 File Offset: 0x000E6951
 	public static GlobalAssets Instance { get; private set; }
 
-	// Token: 0x06006803 RID: 26627 RVA: 0x002E5270 File Offset: 0x002E3470
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -112,7 +107,6 @@ public class GlobalAssets : KMonoBehaviour
 		LocString.CreateLocStringKeys(typeof(BLUEPRINTS), "STRINGS.");
 	}
 
-	// Token: 0x06006804 RID: 26628 RVA: 0x002E5640 File Offset: 0x002E3840
 	private void AddColorModeStyles()
 	{
 		TMP_Style style = new TMP_Style("logic_on", string.Format("<color=#{0}>", ColorUtility.ToHtmlStringRGB(this.colorSet.logicOn)), "</color>");
@@ -122,14 +116,12 @@ public class GlobalAssets : KMonoBehaviour
 		TMP_StyleSheet.RefreshStyles();
 	}
 
-	// Token: 0x06006805 RID: 26629 RVA: 0x000E8759 File Offset: 0x000E6959
 	protected override void OnCleanUp()
 	{
 		base.OnCleanUp();
 		GlobalAssets.Instance = null;
 	}
 
-	// Token: 0x06006806 RID: 26630 RVA: 0x002E56C8 File Offset: 0x002E38C8
 	public static string GetSound(string name, bool force_no_warning = false)
 	{
 		if (name == null)
@@ -142,30 +134,23 @@ public class GlobalAssets : KMonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06006807 RID: 26631 RVA: 0x000E8767 File Offset: 0x000E6967
 	public static bool IsLowPriority(string path)
 	{
 		return GlobalAssets.LowPrioritySounds.Contains(path);
 	}
 
-	// Token: 0x06006808 RID: 26632 RVA: 0x000E8774 File Offset: 0x000E6974
 	public static bool IsHighPriority(string path)
 	{
 		return GlobalAssets.HighPrioritySounds.Contains(path);
 	}
 
-	// Token: 0x04004E8F RID: 20111
 	private static Dictionary<string, string> SoundTable = new Dictionary<string, string>();
 
-	// Token: 0x04004E90 RID: 20112
 	private static HashSet<string> LowPrioritySounds = new HashSet<string>();
 
-	// Token: 0x04004E91 RID: 20113
 	private static HashSet<string> HighPrioritySounds = new HashSet<string>();
 
-	// Token: 0x04004E93 RID: 20115
 	public ColorSet colorSet;
 
-	// Token: 0x04004E94 RID: 20116
 	public ColorSet[] colorSetOptions;
 }

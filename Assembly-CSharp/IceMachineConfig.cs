@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000391 RID: 913
 public class IceMachineConfig : IBuildingConfig
 {
-	// Token: 0x06000EAB RID: 3755 RVA: 0x001847E0 File Offset: 0x001829E0
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "IceMachine";
@@ -29,7 +27,6 @@ public class IceMachineConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000EAC RID: 3756 RVA: 0x00184868 File Offset: 0x00182A68
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		Storage storage = go.AddOrGet<Storage>();
@@ -58,42 +55,30 @@ public class IceMachineConfig : IBuildingConfig
 		manualDeliveryKG.choreTypeIDHash = Db.Get().ChoreTypes.MachineFetch.IdHash;
 	}
 
-	// Token: 0x06000EAD RID: 3757 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000AD6 RID: 2774
 	public const string ID = "IceMachine";
 
-	// Token: 0x04000AD7 RID: 2775
 	private const float WATER_STORAGE = 60f;
 
-	// Token: 0x04000AD8 RID: 2776
 	private const float ICE_STORAGE = 300f;
 
-	// Token: 0x04000AD9 RID: 2777
 	private const float WATER_INPUT_RATE = 0.5f;
 
-	// Token: 0x04000ADA RID: 2778
 	private const float ICE_OUTPUT_RATE = 0.5f;
 
-	// Token: 0x04000ADB RID: 2779
 	private const float ICE_PER_LOAD = 30f;
 
-	// Token: 0x04000ADC RID: 2780
 	private const float TARGET_ICE_TEMP = 253.15f;
 
-	// Token: 0x04000ADD RID: 2781
 	private const float KDTU_TRANSFER_RATE = 80f;
 
-	// Token: 0x04000ADE RID: 2782
 	private const float THERMAL_CONSERVATION = 0.2f;
 
-	// Token: 0x04000ADF RID: 2783
 	private float energyConsumption = 240f;
 
-	// Token: 0x04000AE0 RID: 2784
 	public static Tag[] ELEMENT_OPTIONS = new Tag[]
 	{
 		SimHashes.Ice.CreateTag(),

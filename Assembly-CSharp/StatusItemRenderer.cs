@@ -2,55 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000B4E RID: 2894
 public class StatusItemRenderer
 {
-	// Token: 0x1700024D RID: 589
-	// (get) Token: 0x060035DB RID: 13787 RVA: 0x000C7961 File Offset: 0x000C5B61
-	// (set) Token: 0x060035DC RID: 13788 RVA: 0x000C7969 File Offset: 0x000C5B69
 	public int layer { get; private set; }
 
-	// Token: 0x1700024E RID: 590
-	// (get) Token: 0x060035DD RID: 13789 RVA: 0x000C7972 File Offset: 0x000C5B72
-	// (set) Token: 0x060035DE RID: 13790 RVA: 0x000C797A File Offset: 0x000C5B7A
 	public int selectedHandle { get; private set; }
 
-	// Token: 0x1700024F RID: 591
-	// (get) Token: 0x060035DF RID: 13791 RVA: 0x000C7983 File Offset: 0x000C5B83
-	// (set) Token: 0x060035E0 RID: 13792 RVA: 0x000C798B File Offset: 0x000C5B8B
 	public int highlightHandle { get; private set; }
 
-	// Token: 0x17000250 RID: 592
-	// (get) Token: 0x060035E1 RID: 13793 RVA: 0x000C7994 File Offset: 0x000C5B94
-	// (set) Token: 0x060035E2 RID: 13794 RVA: 0x000C799C File Offset: 0x000C5B9C
 	public Color32 backgroundColor { get; private set; }
 
-	// Token: 0x17000251 RID: 593
-	// (get) Token: 0x060035E3 RID: 13795 RVA: 0x000C79A5 File Offset: 0x000C5BA5
-	// (set) Token: 0x060035E4 RID: 13796 RVA: 0x000C79AD File Offset: 0x000C5BAD
 	public Color32 selectedColor { get; private set; }
 
-	// Token: 0x17000252 RID: 594
-	// (get) Token: 0x060035E5 RID: 13797 RVA: 0x000C79B6 File Offset: 0x000C5BB6
-	// (set) Token: 0x060035E6 RID: 13798 RVA: 0x000C79BE File Offset: 0x000C5BBE
 	public Color32 neutralColor { get; private set; }
 
-	// Token: 0x17000253 RID: 595
-	// (get) Token: 0x060035E7 RID: 13799 RVA: 0x000C79C7 File Offset: 0x000C5BC7
-	// (set) Token: 0x060035E8 RID: 13800 RVA: 0x000C79CF File Offset: 0x000C5BCF
 	public Sprite arrowSprite { get; private set; }
 
-	// Token: 0x17000254 RID: 596
-	// (get) Token: 0x060035E9 RID: 13801 RVA: 0x000C79D8 File Offset: 0x000C5BD8
-	// (set) Token: 0x060035EA RID: 13802 RVA: 0x000C79E0 File Offset: 0x000C5BE0
 	public Sprite backgroundSprite { get; private set; }
 
-	// Token: 0x17000255 RID: 597
-	// (get) Token: 0x060035EB RID: 13803 RVA: 0x000C79E9 File Offset: 0x000C5BE9
-	// (set) Token: 0x060035EC RID: 13804 RVA: 0x000C79F1 File Offset: 0x000C5BF1
 	public float scale { get; private set; }
 
-	// Token: 0x060035ED RID: 13805 RVA: 0x0021D708 File Offset: 0x0021B908
 	public StatusItemRenderer()
 	{
 		this.layer = LayerMask.NameToLayer("UI");
@@ -71,7 +42,6 @@ public class StatusItemRenderer
 		Game.Instance.Subscribe(2095258329, new Action<object>(this.OnHighlightObject));
 	}
 
-	// Token: 0x060035EE RID: 13806 RVA: 0x0021D83C File Offset: 0x0021BA3C
 	public int GetIdx(Transform transform)
 	{
 		int instanceID = transform.GetInstanceID();
@@ -94,7 +64,6 @@ public class StatusItemRenderer
 		return num;
 	}
 
-	// Token: 0x060035EF RID: 13807 RVA: 0x0021D8EC File Offset: 0x0021BAEC
 	public void Add(Transform transform, StatusItem status_item)
 	{
 		if (this.entryCount == this.entries.Length)
@@ -116,7 +85,6 @@ public class StatusItemRenderer
 		this.entries[idx] = entry;
 	}
 
-	// Token: 0x060035F0 RID: 13808 RVA: 0x0021D99C File Offset: 0x0021BB9C
 	public void Remove(Transform transform, StatusItem status_item)
 	{
 		int instanceID = transform.GetInstanceID();
@@ -138,7 +106,6 @@ public class StatusItemRenderer
 		}
 	}
 
-	// Token: 0x060035F1 RID: 13809 RVA: 0x0021DA08 File Offset: 0x0021BC08
 	private void ClearIdx(int idx)
 	{
 		StatusItemRenderer.Entry entry = this.entries[idx];
@@ -155,7 +122,6 @@ public class StatusItemRenderer
 		this.entryCount--;
 	}
 
-	// Token: 0x060035F2 RID: 13810 RVA: 0x000C79FA File Offset: 0x000C5BFA
 	private HashedString GetMode()
 	{
 		if (OverlayScreen.Instance != null)
@@ -165,7 +131,6 @@ public class StatusItemRenderer
 		return OverlayModes.None.ID;
 	}
 
-	// Token: 0x060035F3 RID: 13811 RVA: 0x0021DAB8 File Offset: 0x0021BCB8
 	public void MarkAllDirty()
 	{
 		for (int i = 0; i < this.entryCount; i++)
@@ -174,7 +139,6 @@ public class StatusItemRenderer
 		}
 	}
 
-	// Token: 0x060035F4 RID: 13812 RVA: 0x0021DAE8 File Offset: 0x0021BCE8
 	public void RenderEveryTick()
 	{
 		if (DebugHandler.HideUI)
@@ -193,7 +157,6 @@ public class StatusItemRenderer
 		}
 	}
 
-	// Token: 0x060035F5 RID: 13813 RVA: 0x0021DBEC File Offset: 0x0021BDEC
 	public void GetIntersections(Vector2 pos, List<InterfaceTool.Intersection> intersections)
 	{
 		foreach (StatusItemRenderer.Entry entry in this.visibleEntries)
@@ -202,7 +165,6 @@ public class StatusItemRenderer
 		}
 	}
 
-	// Token: 0x060035F6 RID: 13814 RVA: 0x0021DC48 File Offset: 0x0021BE48
 	public void GetIntersections(Vector2 pos, List<KSelectable> selectables)
 	{
 		foreach (StatusItemRenderer.Entry entry in this.visibleEntries)
@@ -211,7 +173,6 @@ public class StatusItemRenderer
 		}
 	}
 
-	// Token: 0x060035F7 RID: 13815 RVA: 0x0021DCA4 File Offset: 0x0021BEA4
 	public void SetOffset(Transform transform, Vector3 offset)
 	{
 		int num = 0;
@@ -221,7 +182,6 @@ public class StatusItemRenderer
 		}
 	}
 
-	// Token: 0x060035F8 RID: 13816 RVA: 0x0021DCDC File Offset: 0x0021BEDC
 	private void OnSelectObject(object data)
 	{
 		int num = 0;
@@ -245,7 +205,6 @@ public class StatusItemRenderer
 		}
 	}
 
-	// Token: 0x060035F9 RID: 13817 RVA: 0x0021DD60 File Offset: 0x0021BF60
 	private void OnHighlightObject(object data)
 	{
 		int num = 0;
@@ -273,7 +232,6 @@ public class StatusItemRenderer
 		}
 	}
 
-	// Token: 0x060035FA RID: 13818 RVA: 0x0021DE04 File Offset: 0x0021C004
 	public void Destroy()
 	{
 		Game.Instance.Unsubscribe(-1503271301, new Action<object>(this.OnSelectObject));
@@ -285,25 +243,18 @@ public class StatusItemRenderer
 		}
 	}
 
-	// Token: 0x04002539 RID: 9529
 	private StatusItemRenderer.Entry[] entries;
 
-	// Token: 0x0400253A RID: 9530
 	private int entryCount;
 
-	// Token: 0x0400253B RID: 9531
 	private Dictionary<int, int> handleTable = new Dictionary<int, int>();
 
-	// Token: 0x04002545 RID: 9541
 	private Shader shader;
 
-	// Token: 0x04002546 RID: 9542
 	public List<StatusItemRenderer.Entry> visibleEntries = new List<StatusItemRenderer.Entry>();
 
-	// Token: 0x02000B4F RID: 2895
 	public struct Entry
 	{
-		// Token: 0x060035FB RID: 13819 RVA: 0x000C7A19 File Offset: 0x000C5C19
 		public void Init(Shader shader)
 		{
 			this.statusItems = new List<StatusItem>();
@@ -313,7 +264,6 @@ public class StatusItemRenderer
 			this.material = new Material(shader);
 		}
 
-		// Token: 0x060035FC RID: 13820 RVA: 0x0021DE74 File Offset: 0x0021C074
 		public void Render(StatusItemRenderer renderer, Vector3 camera_bl, Vector3 camera_tr, HashedString overlay, Camera camera)
 		{
 			if (this.transform == null)
@@ -428,21 +378,18 @@ public class StatusItemRenderer
 			}
 		}
 
-		// Token: 0x060035FD RID: 13821 RVA: 0x000C7A54 File Offset: 0x000C5C54
 		public void Add(StatusItem status_item)
 		{
 			this.statusItems.Add(status_item);
 			this.dirty = true;
 		}
 
-		// Token: 0x060035FE RID: 13822 RVA: 0x000C7A69 File Offset: 0x000C5C69
 		public void Remove(StatusItem status_item)
 		{
 			this.statusItems.Remove(status_item);
 			this.dirty = true;
 		}
 
-		// Token: 0x060035FF RID: 13823 RVA: 0x0021E3FC File Offset: 0x0021C5FC
 		public void Replace(StatusItemRenderer.Entry entry)
 		{
 			this.handle = entry.handle;
@@ -457,7 +404,6 @@ public class StatusItemRenderer
 			this.statusItems.AddRange(entry.statusItems);
 		}
 
-		// Token: 0x06003600 RID: 13824 RVA: 0x0021E498 File Offset: 0x0021C698
 		private bool Intersects(Vector2 pos, float scale)
 		{
 			if (this.transform == null)
@@ -474,7 +420,6 @@ public class StatusItemRenderer
 			return pos.x >= vector2.x && pos.x <= vector3.x && pos.y >= vector2.y && pos.y <= vector3.y;
 		}
 
-		// Token: 0x06003601 RID: 13825 RVA: 0x0021E570 File Offset: 0x0021C770
 		public void GetIntersection(Vector2 pos, List<InterfaceTool.Intersection> intersections, float scale)
 		{
 			if (this.Intersects(pos, scale) && this.selectable.IsSelectable)
@@ -487,7 +432,6 @@ public class StatusItemRenderer
 			}
 		}
 
-		// Token: 0x06003602 RID: 13826 RVA: 0x000C7A7F File Offset: 0x000C5C7F
 		public void GetIntersection(Vector2 pos, List<KSelectable> selectables, float scale)
 		{
 			if (this.Intersects(pos, scale) && this.selectable.IsSelectable && !selectables.Contains(this.selectable))
@@ -496,7 +440,6 @@ public class StatusItemRenderer
 			}
 		}
 
-		// Token: 0x06003603 RID: 13827 RVA: 0x000C7AB2 File Offset: 0x000C5CB2
 		public void Clear()
 		{
 			this.statusItems.Clear();
@@ -504,7 +447,6 @@ public class StatusItemRenderer
 			this.dirty = false;
 		}
 
-		// Token: 0x06003604 RID: 13828 RVA: 0x000C7AD1 File Offset: 0x000C5CD1
 		public void FreeResources()
 		{
 			if (this.mesh != null)
@@ -518,64 +460,45 @@ public class StatusItemRenderer
 			}
 		}
 
-		// Token: 0x06003605 RID: 13829 RVA: 0x000C7B0C File Offset: 0x000C5D0C
 		public void MarkDirty()
 		{
 			this.dirty = true;
 		}
 
-		// Token: 0x04002547 RID: 9543
 		public int handle;
 
-		// Token: 0x04002548 RID: 9544
 		public Transform transform;
 
-		// Token: 0x04002549 RID: 9545
 		public Building building;
 
-		// Token: 0x0400254A RID: 9546
 		public Vector3 buildingPos;
 
-		// Token: 0x0400254B RID: 9547
 		public KSelectable selectable;
 
-		// Token: 0x0400254C RID: 9548
 		public List<StatusItem> statusItems;
 
-		// Token: 0x0400254D RID: 9549
 		public Mesh mesh;
 
-		// Token: 0x0400254E RID: 9550
 		public bool dirty;
 
-		// Token: 0x0400254F RID: 9551
 		public int layer;
 
-		// Token: 0x04002550 RID: 9552
 		public Material material;
 
-		// Token: 0x04002551 RID: 9553
 		public Vector3 offset;
 
-		// Token: 0x04002552 RID: 9554
 		public bool hasVisibleStatusItems;
 
-		// Token: 0x04002553 RID: 9555
 		public bool isBuilding;
 
-		// Token: 0x04002554 RID: 9556
 		private const int STATUS_ICONS_LIMIT = 12;
 
-		// Token: 0x04002555 RID: 9557
 		public static List<Sprite> spritesListedToRender = new List<Sprite>(12);
 
-		// Token: 0x04002556 RID: 9558
 		public static List<int> statusItemsToRender_Index = new List<int>(12);
 
-		// Token: 0x02000B50 RID: 2896
 		private struct MeshBuilder
 		{
-			// Token: 0x06003607 RID: 13831 RVA: 0x0021E5BC File Offset: 0x0021C7BC
 			public MeshBuilder(int quad_count, Material material)
 			{
 				this.vertices = new Vector3[4 * quad_count];
@@ -587,7 +510,6 @@ public class StatusItemRenderer
 				this.quadIdx = 0;
 			}
 
-			// Token: 0x06003608 RID: 13832 RVA: 0x0021E620 File Offset: 0x0021C820
 			public void AddQuad(Vector2 center, Vector2 half_size, float z, Sprite sprite, Color color)
 			{
 				if (this.quadIdx == StatusItemRenderer.Entry.MeshBuilder.textureIds.Length)
@@ -631,7 +553,6 @@ public class StatusItemRenderer
 				this.quadIdx++;
 			}
 
-			// Token: 0x06003609 RID: 13833 RVA: 0x0021E96C File Offset: 0x0021CB6C
 			public void End(Mesh mesh)
 			{
 				mesh.Clear();
@@ -643,28 +564,20 @@ public class StatusItemRenderer
 				mesh.RecalculateBounds();
 			}
 
-			// Token: 0x04002557 RID: 9559
 			private Vector3[] vertices;
 
-			// Token: 0x04002558 RID: 9560
 			private Vector2[] uvs;
 
-			// Token: 0x04002559 RID: 9561
 			private Vector2[] uv2s;
 
-			// Token: 0x0400255A RID: 9562
 			private int[] triangles;
 
-			// Token: 0x0400255B RID: 9563
 			private Color32[] colors;
 
-			// Token: 0x0400255C RID: 9564
 			private int quadIdx;
 
-			// Token: 0x0400255D RID: 9565
 			private Material material;
 
-			// Token: 0x0400255E RID: 9566
 			private static int[] textureIds = new int[]
 			{
 				Shader.PropertyToID("_Tex0"),

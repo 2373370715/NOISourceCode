@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000D57 RID: 3415
 public class DesalinatorConfig : IBuildingConfig
 {
-	// Token: 0x06004248 RID: 16968 RVA: 0x0024E9C4 File Offset: 0x0024CBC4
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "Desalinator";
@@ -37,7 +35,6 @@ public class DesalinatorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06004249 RID: 16969 RVA: 0x0024EA90 File Offset: 0x0024CC90
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
@@ -86,42 +83,32 @@ public class DesalinatorConfig : IBuildingConfig
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x0600424A RID: 16970 RVA: 0x000CF564 File Offset: 0x000CD764
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 		base.DoPostConfigurePreview(def, go);
 	}
 
-	// Token: 0x0600424B RID: 16971 RVA: 0x000CF56E File Offset: 0x000CD76E
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		base.DoPostConfigureUnderConstruction(go);
 	}
 
-	// Token: 0x0600424C RID: 16972 RVA: 0x000B501F File Offset: 0x000B321F
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGetDef<PoweredActiveController.Def>().showWorkingStatus = true;
 	}
 
-	// Token: 0x04002DBB RID: 11707
 	public const string ID = "Desalinator";
 
-	// Token: 0x04002DBC RID: 11708
 	private const ConduitType CONDUIT_TYPE = ConduitType.Liquid;
 
-	// Token: 0x04002DBD RID: 11709
 	private const float INPUT_RATE = 5f;
 
-	// Token: 0x04002DBE RID: 11710
 	private const float SALT_WATER_TO_SALT_OUTPUT_RATE = 0.35f;
 
-	// Token: 0x04002DBF RID: 11711
 	private const float SALT_WATER_TO_CLEAN_WATER_OUTPUT_RATE = 4.65f;
 
-	// Token: 0x04002DC0 RID: 11712
 	private const float BRINE_TO_SALT_OUTPUT_RATE = 1.5f;
 
-	// Token: 0x04002DC1 RID: 11713
 	private const float BRINE_TO_CLEAN_WATER_OUTPUT_RATE = 3.5f;
 }

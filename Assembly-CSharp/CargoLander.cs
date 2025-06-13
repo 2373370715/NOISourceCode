@@ -2,11 +2,9 @@
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x02001915 RID: 6421
 [SerializationConfig(MemberSerialization.OptIn)]
 public class CargoLander : GameStateMachine<CargoLander, CargoLander.StatesInstance, IStateMachineTarget, CargoLander.Def>
 {
-	// Token: 0x060084FD RID: 34045 RVA: 0x0035421C File Offset: 0x0035241C
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.init;
@@ -52,74 +50,54 @@ public class CargoLander : GameStateMachine<CargoLander, CargoLander.StatesInsta
 		this.grounded.empty.PlayAnim("deployed").ParamTransition<bool>(this.hasCargo, this.grounded.loaded, GameStateMachine<CargoLander, CargoLander.StatesInstance, IStateMachineTarget, CargoLander.Def>.IsTrue);
 	}
 
-	// Token: 0x04006531 RID: 25905
 	public StateMachine<CargoLander, CargoLander.StatesInstance, IStateMachineTarget, CargoLander.Def>.BoolParameter hasCargo;
 
-	// Token: 0x04006532 RID: 25906
 	public StateMachine<CargoLander, CargoLander.StatesInstance, IStateMachineTarget, CargoLander.Def>.Signal emptyCargo;
 
-	// Token: 0x04006533 RID: 25907
 	public GameStateMachine<CargoLander, CargoLander.StatesInstance, IStateMachineTarget, CargoLander.Def>.State init;
 
-	// Token: 0x04006534 RID: 25908
 	public GameStateMachine<CargoLander, CargoLander.StatesInstance, IStateMachineTarget, CargoLander.Def>.State stored;
 
-	// Token: 0x04006535 RID: 25909
 	public GameStateMachine<CargoLander, CargoLander.StatesInstance, IStateMachineTarget, CargoLander.Def>.State landing;
 
-	// Token: 0x04006536 RID: 25910
 	public GameStateMachine<CargoLander, CargoLander.StatesInstance, IStateMachineTarget, CargoLander.Def>.State land;
 
-	// Token: 0x04006537 RID: 25911
 	public CargoLander.CrashedStates grounded;
 
-	// Token: 0x04006538 RID: 25912
 	public StateMachine<CargoLander, CargoLander.StatesInstance, IStateMachineTarget, CargoLander.Def>.BoolParameter isLanded = new StateMachine<CargoLander, CargoLander.StatesInstance, IStateMachineTarget, CargoLander.Def>.BoolParameter(false);
 
-	// Token: 0x02001916 RID: 6422
 	public class Def : StateMachine.BaseDef
 	{
-		// Token: 0x04006539 RID: 25913
 		public Tag previewTag;
 
-		// Token: 0x0400653A RID: 25914
 		public bool deployOnLanding = true;
 	}
 
-	// Token: 0x02001917 RID: 6423
 	public class CrashedStates : GameStateMachine<CargoLander, CargoLander.StatesInstance, IStateMachineTarget, CargoLander.Def>.State
 	{
-		// Token: 0x0400653B RID: 25915
 		public GameStateMachine<CargoLander, CargoLander.StatesInstance, IStateMachineTarget, CargoLander.Def>.State loaded;
 
-		// Token: 0x0400653C RID: 25916
 		public GameStateMachine<CargoLander, CargoLander.StatesInstance, IStateMachineTarget, CargoLander.Def>.State emptying;
 
-		// Token: 0x0400653D RID: 25917
 		public GameStateMachine<CargoLander, CargoLander.StatesInstance, IStateMachineTarget, CargoLander.Def>.State empty;
 	}
 
-	// Token: 0x02001918 RID: 6424
 	public class StatesInstance : GameStateMachine<CargoLander, CargoLander.StatesInstance, IStateMachineTarget, CargoLander.Def>.GameInstance
 	{
-		// Token: 0x06008501 RID: 34049 RVA: 0x00354524 File Offset: 0x00352724
 		public StatesInstance(IStateMachineTarget master, CargoLander.Def def) : base(master, def)
 		{
 		}
 
-		// Token: 0x06008502 RID: 34050 RVA: 0x000FBE0F File Offset: 0x000FA00F
 		public void ResetAnimPosition()
 		{
 			base.GetComponent<KBatchedAnimController>().Offset = Vector3.up * this.flightAnimOffset;
 		}
 
-		// Token: 0x06008503 RID: 34051 RVA: 0x000FBE2C File Offset: 0x000FA02C
 		public void OnJettisoned()
 		{
 			this.flightAnimOffset = 50f;
 		}
 
-		// Token: 0x06008504 RID: 34052 RVA: 0x00354570 File Offset: 0x00352770
 		public void ShowLandingPreview(bool show)
 		{
 			if (show)
@@ -132,7 +110,6 @@ public class CargoLander : GameStateMachine<CargoLander, CargoLander.StatesInsta
 			this.landingPreview = null;
 		}
 
-		// Token: 0x06008505 RID: 34053 RVA: 0x003545D4 File Offset: 0x003527D4
 		public void LandingUpdate(float dt)
 		{
 			this.flightAnimOffset = Mathf.Max(this.flightAnimOffset - dt * this.topSpeed, 0f);
@@ -144,7 +121,6 @@ public class CargoLander : GameStateMachine<CargoLander, CargoLander.StatesInsta
 			}
 		}
 
-		// Token: 0x06008506 RID: 34054 RVA: 0x00354674 File Offset: 0x00352874
 		public void DoLand()
 		{
 			base.smi.master.GetComponent<KBatchedAnimController>().Offset = Vector3.zero;
@@ -160,7 +136,6 @@ public class CargoLander : GameStateMachine<CargoLander, CargoLander.StatesInsta
 			base.smi.master.gameObject.Trigger(1591811118, this);
 		}
 
-		// Token: 0x06008507 RID: 34055 RVA: 0x003546F8 File Offset: 0x003528F8
 		public bool CheckIfLoaded()
 		{
 			bool flag = false;
@@ -181,23 +156,17 @@ public class CargoLander : GameStateMachine<CargoLander, CargoLander.StatesInsta
 			return flag;
 		}
 
-		// Token: 0x0400653E RID: 25918
 		[Serialize]
 		public float flightAnimOffset = 50f;
 
-		// Token: 0x0400653F RID: 25919
 		public float exhaustEmitRate = 2f;
 
-		// Token: 0x04006540 RID: 25920
 		public float exhaustTemperature = 1000f;
 
-		// Token: 0x04006541 RID: 25921
 		public SimHashes exhaustElement = SimHashes.CarbonDioxide;
 
-		// Token: 0x04006542 RID: 25922
 		public float topSpeed = 5f;
 
-		// Token: 0x04006543 RID: 25923
 		private GameObject landingPreview;
 	}
 }

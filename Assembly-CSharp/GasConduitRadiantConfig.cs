@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000354 RID: 852
 public class GasConduitRadiantConfig : IBuildingConfig
 {
-	// Token: 0x06000D7E RID: 3454 RVA: 0x0017D828 File Offset: 0x0017BA28
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "GasConduitRadiant";
@@ -44,14 +42,12 @@ public class GasConduitRadiantConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000D7F RID: 3455 RVA: 0x000B0465 File Offset: 0x000AE665
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
 		go.AddOrGet<Conduit>().type = ConduitType.Gas;
 	}
 
-	// Token: 0x06000D80 RID: 3456 RVA: 0x0017D63C File Offset: 0x0017B83C
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.GetComponent<Building>().Def.BuildingUnderConstruction.GetComponent<Constructable>().isDiggingRequired = false;
@@ -63,7 +59,6 @@ public class GasConduitRadiantConfig : IBuildingConfig
 		LiquidConduitConfig.CommonConduitPostConfigureComplete(go);
 	}
 
-	// Token: 0x06000D81 RID: 3457 RVA: 0x000B0334 File Offset: 0x000AE534
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		KAnimGraphTileVisualizer kanimGraphTileVisualizer = go.AddComponent<KAnimGraphTileVisualizer>();
@@ -71,6 +66,5 @@ public class GasConduitRadiantConfig : IBuildingConfig
 		kanimGraphTileVisualizer.isPhysicalBuilding = false;
 	}
 
-	// Token: 0x040009EA RID: 2538
 	public const string ID = "GasConduitRadiant";
 }

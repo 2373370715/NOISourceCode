@@ -2,18 +2,15 @@
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x02001445 RID: 5189
 [SerializationConfig(MemberSerialization.OptIn)]
 public class IceMachine : StateMachineComponent<IceMachine.StatesInstance>, FewOptionSideScreen.IFewOptionSideScreen
 {
-	// Token: 0x06006A62 RID: 27234 RVA: 0x000EA254 File Offset: 0x000E8454
 	public void SetStorages(Storage waterStorage, Storage iceStorage)
 	{
 		this.waterStorage = waterStorage;
 		this.iceStorage = iceStorage;
 	}
 
-	// Token: 0x06006A63 RID: 27235 RVA: 0x002EBD3C File Offset: 0x002E9F3C
 	private bool CanMakeIce()
 	{
 		bool flag = this.waterStorage != null && this.waterStorage.GetMassAvailable(SimHashes.Water) >= 0.1f;
@@ -21,7 +18,6 @@ public class IceMachine : StateMachineComponent<IceMachine.StatesInstance>, FewO
 		return flag && !flag2;
 	}
 
-	// Token: 0x06006A64 RID: 27236 RVA: 0x002EBD9C File Offset: 0x002E9F9C
 	private void MakeIce(IceMachine.StatesInstance smi, float dt)
 	{
 		float num = this.heatRemovalRate * dt / (float)this.waterStorage.items.Count;
@@ -42,14 +38,12 @@ public class IceMachine : StateMachineComponent<IceMachine.StatesInstance>, FewO
 		smi.UpdateIceState();
 	}
 
-	// Token: 0x06006A65 RID: 27237 RVA: 0x000EA264 File Offset: 0x000E8464
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
 		base.smi.StartSM();
 	}
 
-	// Token: 0x06006A66 RID: 27238 RVA: 0x002EBEC4 File Offset: 0x002EA0C4
 	public FewOptionSideScreen.IFewOptionSideScreen.Option[] GetOptions()
 	{
 		FewOptionSideScreen.IFewOptionSideScreen.Option[] array = new FewOptionSideScreen.IFewOptionSideScreen.Option[IceMachineConfig.ELEMENT_OPTIONS.Length];
@@ -61,45 +55,34 @@ public class IceMachine : StateMachineComponent<IceMachine.StatesInstance>, FewO
 		return array;
 	}
 
-	// Token: 0x06006A67 RID: 27239 RVA: 0x000EA277 File Offset: 0x000E8477
 	public void OnOptionSelected(FewOptionSideScreen.IFewOptionSideScreen.Option option)
 	{
 		this.targetProductionElement = ElementLoader.GetElementID(option.tag);
 	}
 
-	// Token: 0x06006A68 RID: 27240 RVA: 0x000EA28A File Offset: 0x000E848A
 	public Tag GetSelectedOption()
 	{
 		return this.targetProductionElement.CreateTag();
 	}
 
-	// Token: 0x040050AE RID: 20654
 	[MyCmpGet]
 	private Operational operational;
 
-	// Token: 0x040050AF RID: 20655
 	public Storage waterStorage;
 
-	// Token: 0x040050B0 RID: 20656
 	public Storage iceStorage;
 
-	// Token: 0x040050B1 RID: 20657
 	public float targetTemperature;
 
-	// Token: 0x040050B2 RID: 20658
 	public float heatRemovalRate;
 
-	// Token: 0x040050B3 RID: 20659
 	private static StatusItem iceStorageFullStatusItem;
 
-	// Token: 0x040050B4 RID: 20660
 	[Serialize]
 	public SimHashes targetProductionElement = SimHashes.Ice;
 
-	// Token: 0x02001446 RID: 5190
 	public class StatesInstance : GameStateMachine<IceMachine.States, IceMachine.StatesInstance, IceMachine, object>.GameInstance
 	{
-		// Token: 0x06006A6A RID: 27242 RVA: 0x002EBF68 File Offset: 0x002EA168
 		public StatesInstance(IceMachine smi) : base(smi)
 		{
 			this.meter = new MeterController(base.gameObject.GetComponent<KBatchedAnimController>(), "meter_target", "meter", Meter.Offset.Infront, Grid.SceneLayer.NoLayer, new string[]
@@ -112,19 +95,16 @@ public class IceMachine : StateMachineComponent<IceMachine.StatesInstance>, FewO
 			base.Subscribe(-1697596308, new Action<object>(this.OnStorageChange));
 		}
 
-		// Token: 0x06006A6B RID: 27243 RVA: 0x000EA2AA File Offset: 0x000E84AA
 		private void OnStorageChange(object data)
 		{
 			this.UpdateMeter();
 		}
 
-		// Token: 0x06006A6C RID: 27244 RVA: 0x000EA2B2 File Offset: 0x000E84B2
 		public void UpdateMeter()
 		{
 			this.meter.SetPositionPercent(Mathf.Clamp01(base.smi.master.iceStorage.MassStored() / base.smi.master.iceStorage.Capacity()));
 		}
 
-		// Token: 0x06006A6D RID: 27245 RVA: 0x002EBFDC File Offset: 0x002EA1DC
 		public void UpdateIceState()
 		{
 			bool value = false;
@@ -139,17 +119,13 @@ public class IceMachine : StateMachineComponent<IceMachine.StatesInstance>, FewO
 			base.sm.doneFreezingIce.Set(value, this, false);
 		}
 
-		// Token: 0x040050B5 RID: 20661
 		private MeterController meter;
 
-		// Token: 0x040050B6 RID: 20662
 		public Chore emptyChore;
 	}
 
-	// Token: 0x02001447 RID: 5191
 	public class States : GameStateMachine<IceMachine.States, IceMachine.StatesInstance, IceMachine>
 	{
-		// Token: 0x06006A6E RID: 27246 RVA: 0x002EC06C File Offset: 0x002EA26C
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.off;
@@ -176,7 +152,6 @@ public class IceMachine : StateMachineComponent<IceMachine.StatesInstance>, FewO
 			this.on.working_pst.Exit(new StateMachine<IceMachine.States, IceMachine.StatesInstance, IceMachine, object>.State.Callback(this.DoTransfer)).PlayAnim("working_pst").OnAnimQueueComplete(this.on);
 		}
 
-		// Token: 0x06006A6F RID: 27247 RVA: 0x002EC290 File Offset: 0x002EA490
 		private void DoTransfer(IceMachine.StatesInstance smi)
 		{
 			for (int i = smi.master.waterStorage.items.Count - 1; i >= 0; i--)
@@ -190,28 +165,20 @@ public class IceMachine : StateMachineComponent<IceMachine.StatesInstance>, FewO
 			smi.UpdateMeter();
 		}
 
-		// Token: 0x040050B7 RID: 20663
 		public StateMachine<IceMachine.States, IceMachine.StatesInstance, IceMachine, object>.BoolParameter doneFreezingIce;
 
-		// Token: 0x040050B8 RID: 20664
 		public GameStateMachine<IceMachine.States, IceMachine.StatesInstance, IceMachine, object>.State off;
 
-		// Token: 0x040050B9 RID: 20665
 		public IceMachine.States.OnStates on;
 
-		// Token: 0x02001448 RID: 5192
 		public class OnStates : GameStateMachine<IceMachine.States, IceMachine.StatesInstance, IceMachine, object>.State
 		{
-			// Token: 0x040050BA RID: 20666
 			public GameStateMachine<IceMachine.States, IceMachine.StatesInstance, IceMachine, object>.State waiting;
 
-			// Token: 0x040050BB RID: 20667
 			public GameStateMachine<IceMachine.States, IceMachine.StatesInstance, IceMachine, object>.State working_pre;
 
-			// Token: 0x040050BC RID: 20668
 			public GameStateMachine<IceMachine.States, IceMachine.StatesInstance, IceMachine, object>.State working;
 
-			// Token: 0x040050BD RID: 20669
 			public GameStateMachine<IceMachine.States, IceMachine.StatesInstance, IceMachine, object>.State working_pst;
 		}
 	}

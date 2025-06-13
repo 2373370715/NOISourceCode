@@ -2,10 +2,8 @@
 using FMOD.Studio;
 using UnityEngine;
 
-// Token: 0x02000939 RID: 2361
 public class CountedSoundEvent : SoundEvent
 {
-	// Token: 0x06002975 RID: 10613 RVA: 0x001E2C30 File Offset: 0x001E0E30
 	private static string BaseSoundName(string sound_name)
 	{
 		int num = sound_name.IndexOf(":");
@@ -16,7 +14,6 @@ public class CountedSoundEvent : SoundEvent
 		return sound_name;
 	}
 
-	// Token: 0x06002976 RID: 10614 RVA: 0x001E2C58 File Offset: 0x001E0E58
 	public CountedSoundEvent(string file_name, string sound_name, int frame, bool do_load, bool is_looping, float min_interval, bool is_dynamic) : base(file_name, CountedSoundEvent.BaseSoundName(sound_name), frame, do_load, is_looping, min_interval, is_dynamic)
 	{
 		if (sound_name.Contains(":"))
@@ -60,7 +57,6 @@ public class CountedSoundEvent : SoundEvent
 		});
 	}
 
-	// Token: 0x06002977 RID: 10615 RVA: 0x001E2D74 File Offset: 0x001E0F74
 	public override void OnPlay(AnimEventManager.EventPlayerData behaviour)
 	{
 		if (string.IsNullOrEmpty(base.sound))
@@ -101,7 +97,6 @@ public class CountedSoundEvent : SoundEvent
 		}
 	}
 
-	// Token: 0x06002978 RID: 10616 RVA: 0x000BF6C5 File Offset: 0x000BD8C5
 	private void ParseParameter(string param)
 	{
 		this.counterModulus = int.Parse(param);
@@ -111,12 +106,9 @@ public class CountedSoundEvent : SoundEvent
 		}
 	}
 
-	// Token: 0x04001C39 RID: 7225
 	private const int COUNTER_MODULUS_INVALID = -2147483648;
 
-	// Token: 0x04001C3A RID: 7226
 	private const int COUNTER_MODULUS_CLEAR = -1;
 
-	// Token: 0x04001C3B RID: 7227
 	private int counterModulus = int.MinValue;
 }

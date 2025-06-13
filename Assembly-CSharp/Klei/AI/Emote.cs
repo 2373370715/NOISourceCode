@@ -3,11 +3,8 @@ using System.Collections.Generic;
 
 namespace Klei.AI
 {
-	// Token: 0x02003CE3 RID: 15587
 	public class Emote : Resource
 	{
-		// Token: 0x17000C6A RID: 3178
-		// (get) Token: 0x0600EF4A RID: 61258 RVA: 0x00145102 File Offset: 0x00143302
 		public int StepCount
 		{
 			get
@@ -20,8 +17,6 @@ namespace Klei.AI
 			}
 		}
 
-		// Token: 0x17000C6B RID: 3179
-		// (get) Token: 0x0600EF4B RID: 61259 RVA: 0x00145119 File Offset: 0x00143319
 		public KAnimFile AnimSet
 		{
 			get
@@ -34,14 +29,12 @@ namespace Klei.AI
 			}
 		}
 
-		// Token: 0x0600EF4C RID: 61260 RVA: 0x00145152 File Offset: 0x00143352
 		public Emote(ResourceSet parent, string emoteId, EmoteStep[] defaultSteps, string animSetName = null) : base(emoteId, parent, null)
 		{
 			this.emoteSteps.AddRange(defaultSteps);
 			this.animSetName = animSetName;
 		}
 
-		// Token: 0x0600EF4D RID: 61261 RVA: 0x004E9410 File Offset: 0x004E7610
 		public bool IsValidForController(KBatchedAnimController animController)
 		{
 			bool flag = true;
@@ -68,7 +61,6 @@ namespace Klei.AI
 			return flag;
 		}
 
-		// Token: 0x0600EF4E RID: 61262 RVA: 0x004E94C8 File Offset: 0x004E76C8
 		public void ApplyAnimOverrides(KBatchedAnimController animController, KAnimFile overrideSet)
 		{
 			KAnimFile kanimFile = (overrideSet != null) ? overrideSet : this.AnimSet;
@@ -79,7 +71,6 @@ namespace Klei.AI
 			animController.AddAnimOverrides(kanimFile, 0f);
 		}
 
-		// Token: 0x0600EF4F RID: 61263 RVA: 0x004E9508 File Offset: 0x004E7708
 		public void RemoveAnimOverrides(KBatchedAnimController animController, KAnimFile overrideSet)
 		{
 			KAnimFile kanimFile = (overrideSet != null) ? overrideSet : this.AnimSet;
@@ -90,7 +81,6 @@ namespace Klei.AI
 			animController.RemoveAnimOverrides(kanimFile);
 		}
 
-		// Token: 0x0600EF50 RID: 61264 RVA: 0x004E9544 File Offset: 0x004E7744
 		public void CollectStepAnims(out HashedString[] emoteAnims, int iterations)
 		{
 			emoteAnims = new HashedString[this.emoteSteps.Count * iterations];
@@ -100,13 +90,11 @@ namespace Klei.AI
 			}
 		}
 
-		// Token: 0x0600EF51 RID: 61265 RVA: 0x0014518D File Offset: 0x0014338D
 		public bool IsValidStep(int stepIdx)
 		{
 			return stepIdx >= 0 && stepIdx < this.emoteSteps.Count;
 		}
 
-		// Token: 0x17000C6C RID: 3180
 		public EmoteStep this[int stepIdx]
 		{
 			get
@@ -119,7 +107,6 @@ namespace Klei.AI
 			}
 		}
 
-		// Token: 0x0600EF53 RID: 61267 RVA: 0x004E959C File Offset: 0x004E779C
 		public int GetStepIndex(HashedString animName)
 		{
 			int i = 0;
@@ -137,13 +124,10 @@ namespace Klei.AI
 			return i;
 		}
 
-		// Token: 0x0400EADA RID: 60122
 		private HashedString animSetName = null;
 
-		// Token: 0x0400EADB RID: 60123
 		private KAnimFile animSet;
 
-		// Token: 0x0400EADC RID: 60124
 		private List<EmoteStep> emoteSteps = new List<EmoteStep>();
 	}
 }

@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005E9 RID: 1513
 public class TouristModuleConfig : IBuildingConfig
 {
-	// Token: 0x06001A80 RID: 6784 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetForbiddenDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06001A81 RID: 6785 RVA: 0x001B4074 File Offset: 0x001B2274
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "TouristModule";
@@ -41,7 +38,6 @@ public class TouristModuleConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001A82 RID: 6786 RVA: 0x001B4124 File Offset: 0x001B2324
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -58,7 +54,6 @@ public class TouristModuleConfig : IBuildingConfig
 		go.AddOrGet<MinionStorage>();
 	}
 
-	// Token: 0x06001A83 RID: 6787 RVA: 0x000B5AA6 File Offset: 0x000B3CA6
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		BuildingTemplates.ExtendBuildingToRocketModule(go, "rocket_tourist_bg_kanim", false);
@@ -67,6 +62,5 @@ public class TouristModuleConfig : IBuildingConfig
 		ownable.canBePublic = false;
 	}
 
-	// Token: 0x04001120 RID: 4384
 	public const string ID = "TouristModule";
 }

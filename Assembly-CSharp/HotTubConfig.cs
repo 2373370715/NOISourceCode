@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000388 RID: 904
 public class HotTubConfig : IBuildingConfig
 {
-	// Token: 0x06000E81 RID: 3713 RVA: 0x00183A2C File Offset: 0x00181C2C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "HotTub";
@@ -48,7 +46,6 @@ public class HotTubConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000E82 RID: 3714 RVA: 0x00183B3C File Offset: 0x00181D3C
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.RecBuilding, false);
@@ -88,33 +85,24 @@ public class HotTubConfig : IBuildingConfig
 		go.AddOrGetDef<RocketUsageRestriction.Def>();
 	}
 
-	// Token: 0x06000E83 RID: 3715 RVA: 0x000B0AEB File Offset: 0x000AECEB
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.GetComponent<RequireInputs>().requireConduitHasMass = false;
 	}
 
-	// Token: 0x04000AB2 RID: 2738
 	public const string ID = "HotTub";
 
-	// Token: 0x04000AB3 RID: 2739
 	public const string COLD_IMMUNITY_EFFECT_NAME = "WarmTouch";
 
-	// Token: 0x04000AB4 RID: 2740
 	public const float COLD_IMMUNITY_DURATION = 1800f;
 
-	// Token: 0x04000AB5 RID: 2741
 	private float WATER_AMOUNT = 100f;
 
-	// Token: 0x04000AB6 RID: 2742
 	private const float KDTU_TRANSFER_RATE = 15f;
 
-	// Token: 0x04000AB7 RID: 2743
 	private float MINIMUM_WATER_TEMPERATURE = 310.85f;
 
-	// Token: 0x04000AB8 RID: 2744
 	private float MAXIMUM_TUB_TEMPERATURE = 310.85f;
 
-	// Token: 0x04000AB9 RID: 2745
 	private float BLEACH_STONE_CONSUMPTION_RATE = 0.11666667f;
 }

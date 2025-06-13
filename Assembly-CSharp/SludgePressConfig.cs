@@ -4,16 +4,13 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200059B RID: 1435
 public class SludgePressConfig : IBuildingConfig
 {
-	// Token: 0x060018C8 RID: 6344 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x060018C9 RID: 6345 RVA: 0x001AC3D8 File Offset: 0x001AA5D8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "SludgePress";
@@ -39,7 +36,6 @@ public class SludgePressConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060018CA RID: 6346 RVA: 0x001AC470 File Offset: 0x001AA670
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
@@ -69,7 +65,6 @@ public class SludgePressConfig : IBuildingConfig
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x060018CB RID: 6347 RVA: 0x001AC548 File Offset: 0x001AA748
 	private void AddRecipes(GameObject go)
 	{
 		float num = 150f;
@@ -101,7 +96,6 @@ public class SludgePressConfig : IBuildingConfig
 		}
 	}
 
-	// Token: 0x060018CC RID: 6348 RVA: 0x000B4CAD File Offset: 0x000B2EAD
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		SymbolOverrideControllerUtil.AddToPrefab(go);
@@ -116,6 +110,5 @@ public class SludgePressConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x04001033 RID: 4147
 	public const string ID = "SludgePress";
 }

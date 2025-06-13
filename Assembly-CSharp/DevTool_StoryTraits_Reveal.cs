@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using ImGuiNET;
 using UnityEngine;
 
-// Token: 0x02000C1E RID: 3102
 public class DevTool_StoryTraits_Reveal : DevTool
 {
-	// Token: 0x06003ACD RID: 15053 RVA: 0x0023649C File Offset: 0x0023469C
 	protected override void RenderTo(DevPanel panel)
 	{
 		int cellIndex;
@@ -45,7 +43,6 @@ public class DevTool_StoryTraits_Reveal : DevTool
 		}
 	}
 
-	// Token: 0x06003ACE RID: 15054 RVA: 0x000CA723 File Offset: 0x000C8923
 	public IEnumerable<string> GetPrefabIDsToSearchFor()
 	{
 		yield return "MegaBrainTank";
@@ -55,7 +52,6 @@ public class DevTool_StoryTraits_Reveal : DevTool
 		yield break;
 	}
 
-	// Token: 0x06003ACF RID: 15055 RVA: 0x00236588 File Offset: 0x00234788
 	private bool GetCellIndexForSpawnable(string prefabId, IReadOnlyList<WorldGenSpawner.Spawnable> spawnablesToSearch, out int cellIndex)
 	{
 		foreach (WorldGenSpawner.Spawnable spawnable in spawnablesToSearch)
@@ -70,7 +66,6 @@ public class DevTool_StoryTraits_Reveal : DevTool
 		return false;
 	}
 
-	// Token: 0x06003AD0 RID: 15056 RVA: 0x002365F0 File Offset: 0x002347F0
 	private IReadOnlyList<WorldGenSpawner.Spawnable> GetAllSpawnables()
 	{
 		WorldGenSpawner worldGenSpawner = UnityEngine.Object.FindObjectOfType<WorldGenSpawner>(true);

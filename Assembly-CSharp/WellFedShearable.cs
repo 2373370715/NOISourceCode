@@ -4,10 +4,8 @@ using Klei.AI;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001229 RID: 4649
 public class WellFedShearable : GameStateMachine<WellFedShearable, WellFedShearable.Instance, IStateMachineTarget, WellFedShearable.Def>
 {
-	// Token: 0x06005E4B RID: 24139 RVA: 0x002AF2C0 File Offset: 0x002AD4C0
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.growing;
@@ -37,13 +35,11 @@ public class WellFedShearable : GameStateMachine<WellFedShearable, WellFedSheara
 		}).ToggleBehaviour(GameTags.Creatures.ScalesGrown, (WellFedShearable.Instance smi) => smi.HasTag(GameTags.Creatures.CanMolt), null).EventTransition(GameHashes.Molt, this.growing, GameStateMachine<WellFedShearable, WellFedShearable.Instance, IStateMachineTarget, WellFedShearable.Def>.Not(new StateMachine<WellFedShearable, WellFedShearable.Instance, IStateMachineTarget, WellFedShearable.Def>.Transition.ConditionCallback(WellFedShearable.AreScalesFullyGrown))).Transition(this.growing, GameStateMachine<WellFedShearable, WellFedShearable.Instance, IStateMachineTarget, WellFedShearable.Def>.Not(new StateMachine<WellFedShearable, WellFedShearable.Instance, IStateMachineTarget, WellFedShearable.Def>.Transition.ConditionCallback(WellFedShearable.AreScalesFullyGrown)), UpdateRate.SIM_1000ms);
 	}
 
-	// Token: 0x06005E4C RID: 24140 RVA: 0x000E20C6 File Offset: 0x000E02C6
 	private static bool AreScalesFullyGrown(WellFedShearable.Instance smi)
 	{
 		return smi.scaleGrowth.value >= smi.scaleGrowth.GetMax();
 	}
 
-	// Token: 0x06005E4D RID: 24141 RVA: 0x002AF438 File Offset: 0x002AD638
 	private static void UpdateScales(WellFedShearable.Instance smi, float dt)
 	{
 		int num = (int)((float)smi.def.levelCount * smi.scaleGrowth.value / 100f);
@@ -58,22 +54,17 @@ public class WellFedShearable : GameStateMachine<WellFedShearable, WellFedSheara
 		}
 	}
 
-	// Token: 0x04004351 RID: 17233
 	public GameStateMachine<WellFedShearable, WellFedShearable.Instance, IStateMachineTarget, WellFedShearable.Def>.State growing;
 
-	// Token: 0x04004352 RID: 17234
 	public GameStateMachine<WellFedShearable, WellFedShearable.Instance, IStateMachineTarget, WellFedShearable.Def>.State fullyGrown;
 
-	// Token: 0x0200122A RID: 4650
 	public class Def : StateMachine.BaseDef, IGameObjectEffectDescriptor
 	{
-		// Token: 0x06005E4F RID: 24143 RVA: 0x000E1AE4 File Offset: 0x000DFCE4
 		public override void Configure(GameObject prefab)
 		{
 			prefab.GetComponent<Modifiers>().initialAmounts.Add(Db.Get().Amounts.ScaleGrowth.Id);
 		}
 
-		// Token: 0x06005E50 RID: 24144 RVA: 0x002AF4B4 File Offset: 0x002AD6B4
 		public List<Descriptor> GetDescriptors(GameObject obj)
 		{
 			return new List<Descriptor>
@@ -82,34 +73,24 @@ public class WellFedShearable : GameStateMachine<WellFedShearable, WellFedSheara
 			};
 		}
 
-		// Token: 0x04004353 RID: 17235
 		public string effectId;
 
-		// Token: 0x04004354 RID: 17236
 		public float caloriesPerCycle;
 
-		// Token: 0x04004355 RID: 17237
 		public float growthDurationCycles;
 
-		// Token: 0x04004356 RID: 17238
 		public int levelCount;
 
-		// Token: 0x04004357 RID: 17239
 		public Tag itemDroppedOnShear;
 
-		// Token: 0x04004358 RID: 17240
 		public float dropMass;
 
-		// Token: 0x04004359 RID: 17241
 		public Tag requiredDiet = null;
 
-		// Token: 0x0400435A RID: 17242
 		public KAnimHashedString[] scaleGrowthSymbols = WellFedShearable.Def.SCALE_SYMBOL_NAMES;
 
-		// Token: 0x0400435B RID: 17243
 		public KAnimHashedString[] hideSymbols;
 
-		// Token: 0x0400435C RID: 17244
 		public static KAnimHashedString[] SCALE_SYMBOL_NAMES = new KAnimHashedString[]
 		{
 			"scale_0",
@@ -120,23 +101,19 @@ public class WellFedShearable : GameStateMachine<WellFedShearable, WellFedSheara
 		};
 	}
 
-	// Token: 0x0200122B RID: 4651
 	public new class Instance : GameStateMachine<WellFedShearable, WellFedShearable.Instance, IStateMachineTarget, WellFedShearable.Def>.GameInstance, IShearable
 	{
-		// Token: 0x06005E53 RID: 24147 RVA: 0x002AF5F4 File Offset: 0x002AD7F4
 		public Instance(IStateMachineTarget master, WellFedShearable.Def def) : base(master, def)
 		{
 			this.scaleGrowth = Db.Get().Amounts.ScaleGrowth.Lookup(base.gameObject);
 			this.scaleGrowth.value = this.scaleGrowth.GetMax();
 		}
 
-		// Token: 0x06005E54 RID: 24148 RVA: 0x000E210A File Offset: 0x000E030A
 		public bool IsFullyGrown()
 		{
 			return this.currentScaleLevel == base.def.levelCount;
 		}
 
-		// Token: 0x06005E55 RID: 24149 RVA: 0x002AF648 File Offset: 0x002AD848
 		public void OnCaloriesConsumed(object data)
 		{
 			CreatureCalorieMonitor.CaloriesConsumedEvent caloriesConsumedEvent = (CreatureCalorieMonitor.CaloriesConsumedEvent)data;
@@ -152,7 +129,6 @@ public class WellFedShearable : GameStateMachine<WellFedShearable, WellFedSheara
 			effectInstance.timeRemaining += caloriesConsumedEvent.calories / base.smi.def.caloriesPerCycle * 600f;
 		}
 
-		// Token: 0x06005E56 RID: 24150 RVA: 0x002AF6F4 File Offset: 0x002AD8F4
 		public void Shear()
 		{
 			PrimaryElement component = base.smi.GetComponent<PrimaryElement>();
@@ -173,18 +149,14 @@ public class WellFedShearable : GameStateMachine<WellFedShearable, WellFedSheara
 			WellFedShearable.UpdateScales(this, 0f);
 		}
 
-		// Token: 0x0400435D RID: 17245
 		[MyCmpGet]
 		private Effects effects;
 
-		// Token: 0x0400435E RID: 17246
 		[MyCmpGet]
 		public KBatchedAnimController animController;
 
-		// Token: 0x0400435F RID: 17247
 		public AmountInstance scaleGrowth;
 
-		// Token: 0x04004360 RID: 17248
 		public int currentScaleLevel = -1;
 	}
 }

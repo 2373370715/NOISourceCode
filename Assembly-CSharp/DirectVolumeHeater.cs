@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000D73 RID: 3443
 public class DirectVolumeHeater : KMonoBehaviour, ISim33ms, ISim200ms, ISim1000ms, ISim4000ms, IGameObjectEffectDescriptor
 {
-	// Token: 0x060042CD RID: 17101 RVA: 0x000CF9F2 File Offset: 0x000CDBF2
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -14,7 +12,6 @@ public class DirectVolumeHeater : KMonoBehaviour, ISim33ms, ISim200ms, ISim1000m
 		this.structureTemperature = GameComps.StructureTemperatures.GetHandle(base.gameObject);
 	}
 
-	// Token: 0x060042CE RID: 17102 RVA: 0x002501D4 File Offset: 0x0024E3D4
 	public void Sim33ms(float dt)
 	{
 		if (this.impulseFrequency == DirectVolumeHeater.TimeMode.ms33)
@@ -26,7 +23,6 @@ public class DirectVolumeHeater : KMonoBehaviour, ISim33ms, ISim200ms, ISim1000m
 		}
 	}
 
-	// Token: 0x060042CF RID: 17103 RVA: 0x00250210 File Offset: 0x0024E410
 	public void Sim200ms(float dt)
 	{
 		if (this.impulseFrequency == DirectVolumeHeater.TimeMode.ms200)
@@ -38,7 +34,6 @@ public class DirectVolumeHeater : KMonoBehaviour, ISim33ms, ISim200ms, ISim1000m
 		}
 	}
 
-	// Token: 0x060042D0 RID: 17104 RVA: 0x0025024C File Offset: 0x0024E44C
 	public void Sim1000ms(float dt)
 	{
 		if (this.impulseFrequency == DirectVolumeHeater.TimeMode.ms1000)
@@ -50,7 +45,6 @@ public class DirectVolumeHeater : KMonoBehaviour, ISim33ms, ISim200ms, ISim1000m
 		}
 	}
 
-	// Token: 0x060042D1 RID: 17105 RVA: 0x00250288 File Offset: 0x0024E488
 	public void Sim4000ms(float dt)
 	{
 		if (this.impulseFrequency == DirectVolumeHeater.TimeMode.ms4000)
@@ -62,13 +56,11 @@ public class DirectVolumeHeater : KMonoBehaviour, ISim33ms, ISim200ms, ISim1000m
 		}
 	}
 
-	// Token: 0x060042D2 RID: 17106 RVA: 0x000CFA1C File Offset: 0x000CDC1C
 	private float CalculateCellWeight(int dx, int dy, int maxDistance)
 	{
 		return 1f + (float)(maxDistance - Math.Abs(dx) - Math.Abs(dy));
 	}
 
-	// Token: 0x060042D3 RID: 17107 RVA: 0x002502C4 File Offset: 0x0024E4C4
 	private bool TestLineOfSight(int offsetCell)
 	{
 		int cell = Grid.PosToCell(base.gameObject);
@@ -81,7 +73,6 @@ public class DirectVolumeHeater : KMonoBehaviour, ISim33ms, ISim200ms, ISim1000m
 		return Grid.FastTestLineOfSightSolid(x2, y2, x, y);
 	}
 
-	// Token: 0x060042D4 RID: 17108 RVA: 0x002502F8 File Offset: 0x0024E4F8
 	private float AddSelfHeat(float dt)
 	{
 		if (!this.EnableEmission)
@@ -97,7 +88,6 @@ public class DirectVolumeHeater : KMonoBehaviour, ISim33ms, ISim200ms, ISim1000m
 		return result;
 	}
 
-	// Token: 0x060042D5 RID: 17109 RVA: 0x00250354 File Offset: 0x0024E554
 	private float AddHeatToVolume(float dt)
 	{
 		if (!this.EnableEmission)
@@ -149,7 +139,6 @@ public class DirectVolumeHeater : KMonoBehaviour, ISim33ms, ISim200ms, ISim1000m
 		return num8;
 	}
 
-	// Token: 0x060042D6 RID: 17110 RVA: 0x0025053C File Offset: 0x0024E73C
 	public List<Descriptor> GetDescriptors(GameObject go)
 	{
 		List<Descriptor> list = new List<Descriptor>();
@@ -160,57 +149,41 @@ public class DirectVolumeHeater : KMonoBehaviour, ISim33ms, ISim200ms, ISim1000m
 		return list;
 	}
 
-	// Token: 0x04002E04 RID: 11780
 	[SerializeField]
 	public int width = 12;
 
-	// Token: 0x04002E05 RID: 11781
 	[SerializeField]
 	public int height = 4;
 
-	// Token: 0x04002E06 RID: 11782
 	[SerializeField]
 	public float DTUs = 100000f;
 
-	// Token: 0x04002E07 RID: 11783
 	[SerializeField]
 	public float maximumInternalTemperature = 773.15f;
 
-	// Token: 0x04002E08 RID: 11784
 	[SerializeField]
 	public float maximumExternalTemperature = 340f;
 
-	// Token: 0x04002E09 RID: 11785
 	[SerializeField]
 	public Operational operational;
 
-	// Token: 0x04002E0A RID: 11786
 	[MyCmpAdd]
 	private KBatchedAnimHeatPostProcessingEffect heatEffect;
 
-	// Token: 0x04002E0B RID: 11787
 	public bool EnableEmission;
 
-	// Token: 0x04002E0C RID: 11788
 	private HandleVector<int>.Handle structureTemperature;
 
-	// Token: 0x04002E0D RID: 11789
 	private PrimaryElement primaryElement;
 
-	// Token: 0x04002E0E RID: 11790
 	[SerializeField]
 	private DirectVolumeHeater.TimeMode impulseFrequency = DirectVolumeHeater.TimeMode.ms1000;
 
-	// Token: 0x02000D74 RID: 3444
 	private enum TimeMode
 	{
-		// Token: 0x04002E10 RID: 11792
 		ms33,
-		// Token: 0x04002E11 RID: 11793
 		ms200,
-		// Token: 0x04002E12 RID: 11794
 		ms1000,
-		// Token: 0x04002E13 RID: 11795
 		ms4000
 	}
 }

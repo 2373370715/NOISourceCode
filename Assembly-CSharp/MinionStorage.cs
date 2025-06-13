@@ -4,26 +4,22 @@ using Klei.AI;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x02001521 RID: 5409
 [SerializationConfig(MemberSerialization.OptIn)]
 [AddComponentMenu("KMonoBehaviour/scripts/MinionStorage")]
 public class MinionStorage : KMonoBehaviour
 {
-	// Token: 0x06007064 RID: 28772 RVA: 0x000EE082 File Offset: 0x000EC282
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 		Components.MinionStorages.Add(this);
 	}
 
-	// Token: 0x06007065 RID: 28773 RVA: 0x000EE095 File Offset: 0x000EC295
 	protected override void OnCleanUp()
 	{
 		Components.MinionStorages.Remove(this);
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06007066 RID: 28774 RVA: 0x00305148 File Offset: 0x00303348
 	private KPrefabID CreateSerializedMinion(GameObject src_minion)
 	{
 		GameObject gameObject = Util.KInstantiate(SaveLoader.Instance.saveManager.GetPrefab(StoredMinionConfig.ID), Vector3.zero);
@@ -37,7 +33,6 @@ public class MinionStorage : KMonoBehaviour
 		return gameObject.GetComponent<KPrefabID>();
 	}
 
-	// Token: 0x06007067 RID: 28775 RVA: 0x003051BC File Offset: 0x003033BC
 	private void CopyMinion(MinionIdentity src_id, StoredMinionIdentity dest_id)
 	{
 		dest_id.storedName = src_id.name;
@@ -94,7 +89,6 @@ public class MinionStorage : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06007068 RID: 28776 RVA: 0x003053DC File Offset: 0x003035DC
 	private static void StoreModifiers(MinionIdentity src_id, StoredMinionIdentity dest_id)
 	{
 		foreach (AttributeInstance attributeInstance in src_id.GetComponent<MinionModifiers>().attributes)
@@ -110,7 +104,6 @@ public class MinionStorage : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06007069 RID: 28777 RVA: 0x00305498 File Offset: 0x00303698
 	private static void CopyMinion(StoredMinionIdentity src_id, MinionIdentity dest_id)
 	{
 		dest_id.Subscribe(1589886948, new Action<object>(MinionStorage.OnDeserializedMinionSpawned));
@@ -199,7 +192,6 @@ public class MinionStorage : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600706A RID: 28778 RVA: 0x003057DC File Offset: 0x003039DC
 	private static void OnDeserializedMinionSpawned(object deserializedMinionOBJ)
 	{
 		MinionIdentity component = ((GameObject)deserializedMinionOBJ).GetComponent<MinionIdentity>();
@@ -215,7 +207,6 @@ public class MinionStorage : KMonoBehaviour
 		component.Unsubscribe(1589886948, new Action<object>(MinionStorage.OnDeserializedMinionSpawned));
 	}
 
-	// Token: 0x0600706B RID: 28779 RVA: 0x0030586C File Offset: 0x00303A6C
 	public static void RedirectInstanceTracker(GameObject src_minion, GameObject dest_minion)
 	{
 		KPrefabID component = src_minion.GetComponent<KPrefabID>();
@@ -223,7 +214,6 @@ public class MinionStorage : KMonoBehaviour
 		component.InstanceID = -1;
 	}
 
-	// Token: 0x0600706C RID: 28780 RVA: 0x00305898 File Offset: 0x00303A98
 	public void SerializeMinion(GameObject minion)
 	{
 		this.CleanupBadReferences();
@@ -232,7 +222,6 @@ public class MinionStorage : KMonoBehaviour
 		this.serializedMinions.Add(item);
 	}
 
-	// Token: 0x0600706D RID: 28781 RVA: 0x003058D8 File Offset: 0x00303AD8
 	private void CleanupBadReferences()
 	{
 		for (int i = this.serializedMinions.Count - 1; i >= 0; i--)
@@ -244,7 +233,6 @@ public class MinionStorage : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600706E RID: 28782 RVA: 0x0030593C File Offset: 0x00303B3C
 	private int GetMinionIndex(Guid id)
 	{
 		int result = -1;
@@ -259,7 +247,6 @@ public class MinionStorage : KMonoBehaviour
 		return result;
 	}
 
-	// Token: 0x0600706F RID: 28783 RVA: 0x00305980 File Offset: 0x00303B80
 	public GameObject DeserializeMinion(Guid id, Vector3 pos)
 	{
 		int minionIndex = this.GetMinionIndex(id);
@@ -276,7 +263,6 @@ public class MinionStorage : KMonoBehaviour
 		return MinionStorage.DeserializeMinion(kprefabID.gameObject, pos);
 	}
 
-	// Token: 0x06007070 RID: 28784 RVA: 0x003059E4 File Offset: 0x00303BE4
 	public static GameObject DeserializeMinion(GameObject sourceMinion, Vector3 pos)
 	{
 		StoredMinionIdentity component = sourceMinion.GetComponent<StoredMinionIdentity>();
@@ -290,7 +276,6 @@ public class MinionStorage : KMonoBehaviour
 		return gameObject;
 	}
 
-	// Token: 0x06007071 RID: 28785 RVA: 0x00305A54 File Offset: 0x00303C54
 	public void DeleteStoredMinion(Guid id)
 	{
 		int minionIndex = this.GetMinionIndex(id);
@@ -306,26 +291,21 @@ public class MinionStorage : KMonoBehaviour
 		this.serializedMinions.RemoveAt(minionIndex);
 	}
 
-	// Token: 0x06007072 RID: 28786 RVA: 0x000EE0A8 File Offset: 0x000EC2A8
 	public List<MinionStorage.Info> GetStoredMinionInfo()
 	{
 		return this.serializedMinions;
 	}
 
-	// Token: 0x06007073 RID: 28787 RVA: 0x000EE0B0 File Offset: 0x000EC2B0
 	public void SetStoredMinionInfo(List<MinionStorage.Info> info)
 	{
 		this.serializedMinions = info;
 	}
 
-	// Token: 0x04005486 RID: 21638
 	[Serialize]
 	private List<MinionStorage.Info> serializedMinions = new List<MinionStorage.Info>();
 
-	// Token: 0x02001522 RID: 5410
 	public struct Info
 	{
-		// Token: 0x06007075 RID: 28789 RVA: 0x000EE0CC File Offset: 0x000EC2CC
 		public Info(string name, Ref<KPrefabID> ref_obj)
 		{
 			this.id = Guid.NewGuid();
@@ -333,7 +313,6 @@ public class MinionStorage : KMonoBehaviour
 			this.serializedMinion = ref_obj;
 		}
 
-		// Token: 0x06007076 RID: 28790 RVA: 0x00305AD0 File Offset: 0x00303CD0
 		public static MinionStorage.Info CreateEmpty()
 		{
 			return new MinionStorage.Info
@@ -344,13 +323,10 @@ public class MinionStorage : KMonoBehaviour
 			};
 		}
 
-		// Token: 0x04005487 RID: 21639
 		public Guid id;
 
-		// Token: 0x04005488 RID: 21640
 		public string name;
 
-		// Token: 0x04005489 RID: 21641
 		public Ref<KPrefabID> serializedMinion;
 	}
 }

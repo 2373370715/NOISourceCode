@@ -5,10 +5,8 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000E0D RID: 3597
 public class GravitasCreatureManipulator : GameStateMachine<GravitasCreatureManipulator, GravitasCreatureManipulator.Instance, IStateMachineTarget, GravitasCreatureManipulator.Def>
 {
-	// Token: 0x0600463D RID: 17981 RVA: 0x0025C78C File Offset: 0x0025A98C
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.inoperational;
@@ -62,19 +60,16 @@ public class GravitasCreatureManipulator : GameStateMachine<GravitasCreatureMani
 		state.ToggleStatusItem(name, tooltip, icon, icon_type, notification_type, allow_multiples, default(HashedString), 129022, resolve_string_callback, resolve_tooltip_callback, main);
 	}
 
-	// Token: 0x0600463E RID: 17982 RVA: 0x000D1E5D File Offset: 0x000D005D
 	private static string Processing(string str, GravitasCreatureManipulator.Instance smi)
 	{
 		return str.Replace("{percent}", GameUtil.GetFormattedPercent((1f - smi.sm.cooldownTimer.Get(smi) / smi.def.cooldownDuration) * 100f, GameUtil.TimeSlice.None));
 	}
 
-	// Token: 0x0600463F RID: 17983 RVA: 0x000D1E99 File Offset: 0x000D0099
 	private static string ProcessingTooltip(string str, GravitasCreatureManipulator.Instance smi)
 	{
 		return str.Replace("{timeleft}", GameUtil.GetFormattedTime(smi.sm.cooldownTimer.Get(smi), "F0"));
 	}
 
-	// Token: 0x06004640 RID: 17984 RVA: 0x0025CBEC File Offset: 0x0025ADEC
 	private static void CheckForCritter(GravitasCreatureManipulator.Instance smi)
 	{
 		if (smi.sm.creatureTarget.IsNull(smi))
@@ -97,73 +92,51 @@ public class GravitasCreatureManipulator : GameStateMachine<GravitasCreatureMani
 		}
 	}
 
-	// Token: 0x04003102 RID: 12546
 	public GameStateMachine<GravitasCreatureManipulator, GravitasCreatureManipulator.Instance, IStateMachineTarget, GravitasCreatureManipulator.Def>.State inoperational;
 
-	// Token: 0x04003103 RID: 12547
 	public GravitasCreatureManipulator.ActiveStates operational;
 
-	// Token: 0x04003104 RID: 12548
 	public StateMachine<GravitasCreatureManipulator, GravitasCreatureManipulator.Instance, IStateMachineTarget, GravitasCreatureManipulator.Def>.TargetParameter creatureTarget;
 
-	// Token: 0x04003105 RID: 12549
 	public StateMachine<GravitasCreatureManipulator, GravitasCreatureManipulator.Instance, IStateMachineTarget, GravitasCreatureManipulator.Def>.FloatParameter cooldownTimer;
 
-	// Token: 0x04003106 RID: 12550
 	public StateMachine<GravitasCreatureManipulator, GravitasCreatureManipulator.Instance, IStateMachineTarget, GravitasCreatureManipulator.Def>.FloatParameter workingTimer;
 
-	// Token: 0x02000E0E RID: 3598
 	public class Def : StateMachine.BaseDef
 	{
-		// Token: 0x04003107 RID: 12551
 		public CellOffset pickupOffset;
 
-		// Token: 0x04003108 RID: 12552
 		public CellOffset dropOffset;
 
-		// Token: 0x04003109 RID: 12553
 		public int numSpeciesToUnlockMorphMode;
 
-		// Token: 0x0400310A RID: 12554
 		public float workingDuration;
 
-		// Token: 0x0400310B RID: 12555
 		public float cooldownDuration;
 	}
 
-	// Token: 0x02000E0F RID: 3599
 	public class WorkingStates : GameStateMachine<GravitasCreatureManipulator, GravitasCreatureManipulator.Instance, IStateMachineTarget, GravitasCreatureManipulator.Def>.State
 	{
-		// Token: 0x0400310C RID: 12556
 		public GameStateMachine<GravitasCreatureManipulator, GravitasCreatureManipulator.Instance, IStateMachineTarget, GravitasCreatureManipulator.Def>.State pre;
 
-		// Token: 0x0400310D RID: 12557
 		public GameStateMachine<GravitasCreatureManipulator, GravitasCreatureManipulator.Instance, IStateMachineTarget, GravitasCreatureManipulator.Def>.State loop;
 
-		// Token: 0x0400310E RID: 12558
 		public GameStateMachine<GravitasCreatureManipulator, GravitasCreatureManipulator.Instance, IStateMachineTarget, GravitasCreatureManipulator.Def>.State pst;
 	}
 
-	// Token: 0x02000E10 RID: 3600
 	public class ActiveStates : GameStateMachine<GravitasCreatureManipulator, GravitasCreatureManipulator.Instance, IStateMachineTarget, GravitasCreatureManipulator.Def>.State
 	{
-		// Token: 0x0400310F RID: 12559
 		public GameStateMachine<GravitasCreatureManipulator, GravitasCreatureManipulator.Instance, IStateMachineTarget, GravitasCreatureManipulator.Def>.State idle;
 
-		// Token: 0x04003110 RID: 12560
 		public GameStateMachine<GravitasCreatureManipulator, GravitasCreatureManipulator.Instance, IStateMachineTarget, GravitasCreatureManipulator.Def>.State capture;
 
-		// Token: 0x04003111 RID: 12561
 		public GravitasCreatureManipulator.WorkingStates working;
 
-		// Token: 0x04003112 RID: 12562
 		public GameStateMachine<GravitasCreatureManipulator, GravitasCreatureManipulator.Instance, IStateMachineTarget, GravitasCreatureManipulator.Def>.State cooldown;
 	}
 
-	// Token: 0x02000E11 RID: 3601
 	public new class Instance : GameStateMachine<GravitasCreatureManipulator, GravitasCreatureManipulator.Instance, IStateMachineTarget, GravitasCreatureManipulator.Def>.GameInstance
 	{
-		// Token: 0x06004645 RID: 17989 RVA: 0x0025CC60 File Offset: 0x0025AE60
 		public Instance(IStateMachineTarget master, GravitasCreatureManipulator.Def def) : base(master, def)
 		{
 			this.pickupCell = Grid.OffsetCell(Grid.PosToCell(master.gameObject), base.smi.def.pickupOffset);
@@ -172,7 +145,6 @@ public class GravitasCreatureManipulator : GameStateMachine<GravitasCreatureMani
 			this.m_progressMeter = new MeterController(base.GetComponent<KBatchedAnimController>(), "meter_target", "meter", Meter.Offset.UserSpecified, Grid.SceneLayer.TileFront, Array.Empty<string>());
 		}
 
-		// Token: 0x06004646 RID: 17990 RVA: 0x0025CD3C File Offset: 0x0025AF3C
 		public override void StartSM()
 		{
 			base.StartSM();
@@ -188,14 +160,12 @@ public class GravitasCreatureManipulator : GameStateMachine<GravitasCreatureMani
 			StoryManager.Instance.DiscoverStoryEvent(Db.Get().Stories.CreatureManipulator);
 		}
 
-		// Token: 0x06004647 RID: 17991 RVA: 0x000D1ED1 File Offset: 0x000D00D1
 		public override void StopSM(string reason)
 		{
 			base.Unsubscribe(-1503271301, new Action<object>(this.OnBuildingSelect));
 			base.StopSM(reason);
 		}
 
-		// Token: 0x06004648 RID: 17992 RVA: 0x000D1EF1 File Offset: 0x000D00F1
 		private void OnBuildingSelect(object obj)
 		{
 			if (!(bool)obj)
@@ -212,8 +182,6 @@ public class GravitasCreatureManipulator : GameStateMachine<GravitasCreatureMani
 			}
 		}
 
-		// Token: 0x17000362 RID: 866
-		// (get) Token: 0x06004649 RID: 17993 RVA: 0x000D1F2D File Offset: 0x000D012D
 		public bool IsMorphMode
 		{
 			get
@@ -222,8 +190,6 @@ public class GravitasCreatureManipulator : GameStateMachine<GravitasCreatureMani
 			}
 		}
 
-		// Token: 0x17000363 RID: 867
-		// (get) Token: 0x0600464A RID: 17994 RVA: 0x000D1F35 File Offset: 0x000D0135
 		public bool IsCritterStored
 		{
 			get
@@ -232,7 +198,6 @@ public class GravitasCreatureManipulator : GameStateMachine<GravitasCreatureMani
 			}
 		}
 
-		// Token: 0x0600464B RID: 17995 RVA: 0x0025CDEC File Offset: 0x0025AFEC
 		private void UpdateStatusItems()
 		{
 			KSelectable component = base.gameObject.GetComponent<KSelectable>();
@@ -241,20 +206,17 @@ public class GravitasCreatureManipulator : GameStateMachine<GravitasCreatureMani
 			component.ToggleStatusItem(Db.Get().BuildingStatusItems.CreatureManipulatorMorphModeLocked, !this.IsMorphMode, this);
 		}
 
-		// Token: 0x0600464C RID: 17996 RVA: 0x000D1F45 File Offset: 0x000D0145
 		public void UpdateMeter()
 		{
 			this.m_progressMeter.SetPositionPercent(Mathf.Clamp01((float)this.ScannedSpecies.Count / (float)base.smi.def.numSpeciesToUnlockMorphMode));
 		}
 
-		// Token: 0x0600464D RID: 17997 RVA: 0x0025CE60 File Offset: 0x0025B060
 		public bool IsAccepted(GameObject go)
 		{
 			KPrefabID component = go.GetComponent<KPrefabID>();
 			return component.HasTag(GameTags.Creature) && !component.HasTag(GameTags.Robot) && component.PrefabTag != GameTags.Creature;
 		}
 
-		// Token: 0x0600464E RID: 17998 RVA: 0x0025CEA0 File Offset: 0x0025B0A0
 		private void DetectLargeCreature(object obj)
 		{
 			Pickupable pickupable = obj as Pickupable;
@@ -268,7 +230,6 @@ public class GravitasCreatureManipulator : GameStateMachine<GravitasCreatureMani
 			}
 		}
 
-		// Token: 0x0600464F RID: 17999 RVA: 0x0025CEE4 File Offset: 0x0025B0E4
 		private void DetectCreature(object obj)
 		{
 			Pickupable pickupable = obj as Pickupable;
@@ -278,20 +239,17 @@ public class GravitasCreatureManipulator : GameStateMachine<GravitasCreatureMani
 			}
 		}
 
-		// Token: 0x06004650 RID: 18000 RVA: 0x000D1F75 File Offset: 0x000D0175
 		public void SetCritterTarget(GameObject go)
 		{
 			base.smi.sm.creatureTarget.Set(go.gameObject, base.smi, false);
 		}
 
-		// Token: 0x06004651 RID: 18001 RVA: 0x0025CF5C File Offset: 0x0025B15C
 		public void StoreCreature()
 		{
 			GameObject go = base.smi.sm.creatureTarget.Get(base.smi);
 			this.m_storage.Store(go, false, false, true, false);
 		}
 
-		// Token: 0x06004652 RID: 18002 RVA: 0x0025CF98 File Offset: 0x0025B198
 		public void DropCritter()
 		{
 			List<GameObject> list = new List<GameObject>();
@@ -316,7 +274,6 @@ public class GravitasCreatureManipulator : GameStateMachine<GravitasCreatureMani
 			base.smi.sm.creatureTarget.Set(null, base.smi);
 		}
 
-		// Token: 0x06004653 RID: 18003 RVA: 0x000D1F9A File Offset: 0x000D019A
 		private void Scan(Tag species)
 		{
 			if (this.ScannedSpecies.Add(species))
@@ -329,7 +286,6 @@ public class GravitasCreatureManipulator : GameStateMachine<GravitasCreatureMani
 			this.TryShowCompletedNotification();
 		}
 
-		// Token: 0x06004654 RID: 18004 RVA: 0x0025D090 File Offset: 0x0025B290
 		public void SpawnMorph(Brain brain)
 		{
 			Tag tag = Tag.Invalid;
@@ -383,7 +339,6 @@ public class GravitasCreatureManipulator : GameStateMachine<GravitasCreatureMani
 			brain.gameObject.DeleteObject();
 		}
 
-		// Token: 0x06004655 RID: 18005 RVA: 0x0025D290 File Offset: 0x0025B490
 		public void ShowIntroNotification()
 		{
 			Game.Instance.unlocks.Unlock("story_trait_critter_manipulator_initial", true);
@@ -391,7 +346,6 @@ public class GravitasCreatureManipulator : GameStateMachine<GravitasCreatureMani
 			EventInfoScreen.ShowPopup(EventInfoDataHelper.GenerateStoryTraitData(CODEX.STORY_TRAITS.CRITTER_MANIPULATOR.BEGIN_POPUP.NAME, CODEX.STORY_TRAITS.CRITTER_MANIPULATOR.BEGIN_POPUP.DESCRIPTION, CODEX.STORY_TRAITS.CLOSE_BUTTON, "crittermanipulatoractivate_kanim", EventInfoDataHelper.PopupType.BEGIN, null, null, null));
 		}
 
-		// Token: 0x06004656 RID: 18006 RVA: 0x0025D2EC File Offset: 0x0025B4EC
 		public void ShowCritterScannedNotification(Tag species)
 		{
 			GravitasCreatureManipulator.Instance.<>c__DisplayClass29_0 CS$<>8__locals1 = new GravitasCreatureManipulator.Instance.<>c__DisplayClass29_0();
@@ -405,7 +359,6 @@ public class GravitasCreatureManipulator : GameStateMachine<GravitasCreatureMani
 			});
 		}
 
-		// Token: 0x06004657 RID: 18007 RVA: 0x0025D344 File Offset: 0x0025B544
 		public static void ShowLoreUnlockedPopup(Tag species)
 		{
 			InfoDialogScreen infoDialogScreen = LoreBearer.ShowPopupDialog().SetHeader(CODEX.STORY_TRAITS.CRITTER_MANIPULATOR.UNLOCK_SPECIES_POPUP.NAME).AddDefaultOK(false);
@@ -419,7 +372,6 @@ public class GravitasCreatureManipulator : GameStateMachine<GravitasCreatureMani
 			infoDialogScreen.AddPlainText(GravitasCreatureManipulatorConfig.GetBodyContentForUnknownSpecies());
 		}
 
-		// Token: 0x06004658 RID: 18008 RVA: 0x0025D3C4 File Offset: 0x0025B5C4
 		public void TryShowCompletedNotification()
 		{
 			if (this.ScannedSpecies.Count < base.smi.def.numSpeciesToUnlockMorphMode)
@@ -436,7 +388,6 @@ public class GravitasCreatureManipulator : GameStateMachine<GravitasCreatureMani
 			base.gameObject.GetComponent<KSelectable>().AddStatusItem(Db.Get().MiscStatusItems.AttentionRequired, base.smi);
 		}
 
-		// Token: 0x06004659 RID: 18009 RVA: 0x0025D488 File Offset: 0x0025B688
 		public void ClearEndNotification()
 		{
 			base.gameObject.GetComponent<KSelectable>().RemoveStatusItem(Db.Get().MiscStatusItems.AttentionRequired, false);
@@ -447,7 +398,6 @@ public class GravitasCreatureManipulator : GameStateMachine<GravitasCreatureMani
 			this.m_endNotification = null;
 		}
 
-		// Token: 0x0600465A RID: 18010 RVA: 0x0025D4DC File Offset: 0x0025B6DC
 		public void UnlockMorphMode(object _)
 		{
 			if (this.m_morphModeUnlocked)
@@ -475,7 +425,6 @@ public class GravitasCreatureManipulator : GameStateMachine<GravitasCreatureMani
 			});
 		}
 
-		// Token: 0x0600465B RID: 18011 RVA: 0x0025D5E0 File Offset: 0x0025B7E0
 		private void OnStorySequenceComplete()
 		{
 			Vector3 keepsakeSpawnPosition = Grid.CellToPosCCC(Grid.OffsetCell(Grid.PosToCell(base.smi), new CellOffset(-1, 1)), Grid.SceneLayer.Ore);
@@ -483,7 +432,6 @@ public class GravitasCreatureManipulator : GameStateMachine<GravitasCreatureMani
 			this.eventInfo = null;
 		}
 
-		// Token: 0x0600465C RID: 18012 RVA: 0x000D1FD4 File Offset: 0x000D01D4
 		protected override void OnCleanUp()
 		{
 			GameScenePartitioner.Instance.Free(ref this.m_partitionEntry);
@@ -494,38 +442,28 @@ public class GravitasCreatureManipulator : GameStateMachine<GravitasCreatureMani
 			}
 		}
 
-		// Token: 0x04003113 RID: 12563
 		public int pickupCell;
 
-		// Token: 0x04003114 RID: 12564
 		[MyCmpGet]
 		private Storage m_storage;
 
-		// Token: 0x04003115 RID: 12565
 		[Serialize]
 		public HashSet<Tag> ScannedSpecies = new HashSet<Tag>();
 
-		// Token: 0x04003116 RID: 12566
 		[Serialize]
 		private bool m_introPopupSeen;
 
-		// Token: 0x04003117 RID: 12567
 		[Serialize]
 		private bool m_morphModeUnlocked;
 
-		// Token: 0x04003118 RID: 12568
 		private EventInfoData eventInfo;
 
-		// Token: 0x04003119 RID: 12569
 		private Notification m_endNotification;
 
-		// Token: 0x0400311A RID: 12570
 		private MeterController m_progressMeter;
 
-		// Token: 0x0400311B RID: 12571
 		private HandleVector<int>.Handle m_partitionEntry;
 
-		// Token: 0x0400311C RID: 12572
 		private HandleVector<int>.Handle m_largeCreaturePartitionEntry;
 	}
 }

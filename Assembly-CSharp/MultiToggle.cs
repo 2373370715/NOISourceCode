@@ -3,12 +3,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// Token: 0x020020D0 RID: 8400
 [AddComponentMenu("KMonoBehaviour/scripts/MultiToggle")]
 public class MultiToggle : KMonoBehaviour, IPointerClickHandler, IEventSystemHandler, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
-	// Token: 0x17000B73 RID: 2931
-	// (get) Token: 0x0600B310 RID: 45840 RVA: 0x00118F81 File Offset: 0x00117181
 	public int CurrentState
 	{
 		get
@@ -17,13 +14,11 @@ public class MultiToggle : KMonoBehaviour, IPointerClickHandler, IEventSystemHan
 		}
 	}
 
-	// Token: 0x0600B311 RID: 45841 RVA: 0x00118F89 File Offset: 0x00117189
 	public void NextState()
 	{
 		this.ChangeState((this.state + 1) % this.states.Length);
 	}
 
-	// Token: 0x0600B312 RID: 45842 RVA: 0x00118FA2 File Offset: 0x001171A2
 	protected virtual void Update()
 	{
 		if (this.clickHeldDown)
@@ -36,7 +31,6 @@ public class MultiToggle : KMonoBehaviour, IPointerClickHandler, IEventSystemHan
 		}
 	}
 
-	// Token: 0x0600B313 RID: 45843 RVA: 0x00118FDF File Offset: 0x001171DF
 	protected override void OnDisable()
 	{
 		if (!base.gameObject.activeInHierarchy)
@@ -47,7 +41,6 @@ public class MultiToggle : KMonoBehaviour, IPointerClickHandler, IEventSystemHan
 		}
 	}
 
-	// Token: 0x0600B314 RID: 45844 RVA: 0x00119001 File Offset: 0x00117201
 	public void ChangeState(int new_state_index, bool forceRefreshState)
 	{
 		if (forceRefreshState)
@@ -57,7 +50,6 @@ public class MultiToggle : KMonoBehaviour, IPointerClickHandler, IEventSystemHan
 		this.ChangeState(new_state_index);
 	}
 
-	// Token: 0x0600B315 RID: 45845 RVA: 0x0043FDF4 File Offset: 0x0043DFF4
 	public void ChangeState(int new_state_index)
 	{
 		if (!this.stateDirty && new_state_index == this.state)
@@ -97,7 +89,6 @@ public class MultiToggle : KMonoBehaviour, IPointerClickHandler, IEventSystemHan
 		this.RefreshHoverColor();
 	}
 
-	// Token: 0x0600B316 RID: 45846 RVA: 0x0043FF70 File Offset: 0x0043E170
 	public virtual void OnPointerClick(PointerEventData eventData)
 	{
 		if (!this.allowRightClick && eventData.button == PointerEventData.InputButton.Right)
@@ -120,7 +111,6 @@ public class MultiToggle : KMonoBehaviour, IPointerClickHandler, IEventSystemHan
 		this.RefreshHoverColor();
 	}
 
-	// Token: 0x0600B317 RID: 45847 RVA: 0x0043FFE8 File Offset: 0x0043E1E8
 	public void OnPointerEnter(PointerEventData eventData)
 	{
 		this.pointerOver = true;
@@ -154,7 +144,6 @@ public class MultiToggle : KMonoBehaviour, IPointerClickHandler, IEventSystemHan
 		}
 	}
 
-	// Token: 0x0600B318 RID: 45848 RVA: 0x00440124 File Offset: 0x0043E324
 	protected void RefreshHoverColor()
 	{
 		if (base.gameObject.activeInHierarchy)
@@ -192,7 +181,6 @@ public class MultiToggle : KMonoBehaviour, IPointerClickHandler, IEventSystemHan
 		}
 	}
 
-	// Token: 0x0600B319 RID: 45849 RVA: 0x004402E8 File Offset: 0x0043E4E8
 	public void OnPointerExit(PointerEventData eventData)
 	{
 		this.pointerOver = false;
@@ -226,7 +214,6 @@ public class MultiToggle : KMonoBehaviour, IPointerClickHandler, IEventSystemHan
 		}
 	}
 
-	// Token: 0x0600B31A RID: 45850 RVA: 0x00440424 File Offset: 0x0043E624
 	public virtual void OnPointerDown(PointerEventData eventData)
 	{
 		if (!this.allowRightClick && eventData.button == PointerEventData.InputButton.Right)
@@ -254,7 +241,6 @@ public class MultiToggle : KMonoBehaviour, IPointerClickHandler, IEventSystemHan
 		}
 	}
 
-	// Token: 0x0600B31B RID: 45851 RVA: 0x00119014 File Offset: 0x00117214
 	public virtual void OnPointerUp(PointerEventData eventData)
 	{
 		if (!this.allowRightClick && eventData.button == PointerEventData.InputButton.Right)
@@ -264,7 +250,6 @@ public class MultiToggle : KMonoBehaviour, IPointerClickHandler, IEventSystemHan
 		this.StopHolding();
 	}
 
-	// Token: 0x0600B31C RID: 45852 RVA: 0x004404E4 File Offset: 0x0043E6E4
 	private void StopHolding()
 	{
 		if (this.clickHeldDown)
@@ -282,56 +267,39 @@ public class MultiToggle : KMonoBehaviour, IPointerClickHandler, IEventSystemHan
 		this.totalHeldTime = 0f;
 	}
 
-	// Token: 0x04008D9F RID: 36255
 	[Header("Settings")]
 	[SerializeField]
 	public ToggleState[] states;
 
-	// Token: 0x04008DA0 RID: 36256
 	public bool play_sound_on_click = true;
 
-	// Token: 0x04008DA1 RID: 36257
 	public bool play_sound_on_release;
 
-	// Token: 0x04008DA2 RID: 36258
 	public Image toggle_image;
 
-	// Token: 0x04008DA3 RID: 36259
 	protected int state;
 
-	// Token: 0x04008DA4 RID: 36260
 	public System.Action onClick;
 
-	// Token: 0x04008DA5 RID: 36261
 	private bool stateDirty = true;
 
-	// Token: 0x04008DA6 RID: 36262
 	public Func<bool> onDoubleClick;
 
-	// Token: 0x04008DA7 RID: 36263
 	public System.Action onEnter;
 
-	// Token: 0x04008DA8 RID: 36264
 	public System.Action onExit;
 
-	// Token: 0x04008DA9 RID: 36265
 	public System.Action onHold;
 
-	// Token: 0x04008DAA RID: 36266
 	public System.Action onStopHold;
 
-	// Token: 0x04008DAB RID: 36267
 	public bool allowRightClick = true;
 
-	// Token: 0x04008DAC RID: 36268
 	protected bool clickHeldDown;
 
-	// Token: 0x04008DAD RID: 36269
 	protected float totalHeldTime;
 
-	// Token: 0x04008DAE RID: 36270
 	protected float heldTimeThreshold = 0.4f;
 
-	// Token: 0x04008DAF RID: 36271
 	private bool pointerOver;
 }

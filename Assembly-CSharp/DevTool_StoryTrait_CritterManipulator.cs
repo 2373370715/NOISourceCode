@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using ImGuiNET;
 using STRINGS;
 
-// Token: 0x02000C1C RID: 3100
 public class DevTool_StoryTrait_CritterManipulator : DevTool
 {
-	// Token: 0x06003AC1 RID: 15041 RVA: 0x00236204 File Offset: 0x00234404
 	protected override void RenderTo(DevPanel panel)
 	{
 		if (ImGui.CollapsingHeader("Debug species lore unlock popup", ImGuiTreeNodeFlags.DefaultOpen))
@@ -20,7 +18,6 @@ public class DevTool_StoryTrait_CritterManipulator : DevTool
 		}
 	}
 
-	// Token: 0x06003AC2 RID: 15042 RVA: 0x000CA6A3 File Offset: 0x000C88A3
 	public void Button_OpenSpecies(Tag species, string speciesName = null)
 	{
 		if (speciesName == null)
@@ -37,7 +34,6 @@ public class DevTool_StoryTrait_CritterManipulator : DevTool
 		}
 	}
 
-	// Token: 0x06003AC3 RID: 15043 RVA: 0x000CA6E3 File Offset: 0x000C88E3
 	public IEnumerable<Tag> GetCritterSpeciesTags()
 	{
 		yield return GameTags.Creatures.Species.HatchSpecies;

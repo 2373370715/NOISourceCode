@@ -1,20 +1,16 @@
 ﻿using System;
 
-// Token: 0x0200096B RID: 2411
 public class UIAnimationSoundEvent : SoundEvent
 {
-	// Token: 0x06002B10 RID: 11024 RVA: 0x000BF67B File Offset: 0x000BD87B
 	public UIAnimationSoundEvent(string file_name, string sound_name, int frame, bool looping) : base(file_name, sound_name, frame, true, looping, (float)SoundEvent.IGNORE_INTERVAL, false)
 	{
 	}
 
-	// Token: 0x06002B11 RID: 11025 RVA: 0x000C06BA File Offset: 0x000BE8BA
 	public override void OnPlay(AnimEventManager.EventPlayerData behaviour)
 	{
 		this.PlaySound(behaviour);
 	}
 
-	// Token: 0x06002B12 RID: 11026 RVA: 0x001E9D08 File Offset: 0x001E7F08
 	public override void PlaySound(AnimEventManager.EventPlayerData behaviour)
 	{
 		if (base.looping)
@@ -57,7 +53,6 @@ public class UIAnimationSoundEvent : SoundEvent
 		}
 	}
 
-	// Token: 0x06002B13 RID: 11027 RVA: 0x001E2BFC File Offset: 0x001E0DFC
 	public override void Stop(AnimEventManager.EventPlayerData behaviour)
 	{
 		if (base.looping)

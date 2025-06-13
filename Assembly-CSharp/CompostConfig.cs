@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000051 RID: 81
 public class CompostConfig : IBuildingConfig
 {
-	// Token: 0x0600017C RID: 380 RVA: 0x0014CF3C File Offset: 0x0014B13C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "Compost";
@@ -31,7 +29,6 @@ public class CompostConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600017D RID: 381 RVA: 0x0014CFF8 File Offset: 0x0014B1F8
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		Storage storage = go.AddOrGet<Storage>();
@@ -67,29 +64,21 @@ public class CompostConfig : IBuildingConfig
 		go.AddOrGet<BuildingComplete>().isManuallyOperated = true;
 	}
 
-	// Token: 0x0600017E RID: 382 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x040000E5 RID: 229
 	public const string ID = "Compost";
 
-	// Token: 0x040000E6 RID: 230
 	public static readonly Tag COMPOST_TAG = GameTags.Compostable;
 
-	// Token: 0x040000E7 RID: 231
 	public const float SAND_INPUT_PER_SECOND = 0.1f;
 
-	// Token: 0x040000E8 RID: 232
 	public const float FERTILIZER_OUTPUT_PER_SECOND = 0.1f;
 
-	// Token: 0x040000E9 RID: 233
 	public const float FERTILIZER_OUTPUT_TEMP = 348.15f;
 
-	// Token: 0x040000EA RID: 234
 	public const float INPUT_CAPACITY = 300f;
 
-	// Token: 0x040000EB RID: 235
 	private const SimHashes OUTPUT_ELEMENT = SimHashes.Dirt;
 }

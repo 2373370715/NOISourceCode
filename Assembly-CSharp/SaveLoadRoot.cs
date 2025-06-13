@@ -5,18 +5,15 @@ using System.Reflection;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x02000B32 RID: 2866
 [SkipSaveFileSerialization]
 [AddComponentMenu("KMonoBehaviour/scripts/SaveLoadRoot")]
 public class SaveLoadRoot : KMonoBehaviour
 {
-	// Token: 0x0600352A RID: 13610 RVA: 0x000C716F File Offset: 0x000C536F
 	public static void DestroyStatics()
 	{
 		SaveLoadRoot.serializableComponentManagers = null;
 	}
 
-	// Token: 0x0600352B RID: 13611 RVA: 0x0021A410 File Offset: 0x00218610
 	protected override void OnPrefabInit()
 	{
 		if (SaveLoadRoot.serializableComponentManagers == null)
@@ -35,7 +32,6 @@ public class SaveLoadRoot : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600352C RID: 13612 RVA: 0x000C7177 File Offset: 0x000C5377
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -46,13 +42,11 @@ public class SaveLoadRoot : KMonoBehaviour
 		this.hasOnSpawnRun = true;
 	}
 
-	// Token: 0x0600352D RID: 13613 RVA: 0x000C719E File Offset: 0x000C539E
 	public void DeclareOptionalComponent<T>() where T : KMonoBehaviour
 	{
 		this.m_optionalComponentTypeNames.Add(typeof(T).ToString());
 	}
 
-	// Token: 0x0600352E RID: 13614 RVA: 0x000C71BA File Offset: 0x000C53BA
 	public void SetRegistered(bool registered)
 	{
 		if (this.registered != registered)
@@ -70,7 +64,6 @@ public class SaveLoadRoot : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600352F RID: 13615 RVA: 0x0021A490 File Offset: 0x00218690
 	protected override void OnCleanUp()
 	{
 		if (SaveLoader.Instance != null && SaveLoader.Instance.saveManager != null)
@@ -83,7 +76,6 @@ public class SaveLoadRoot : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06003530 RID: 13616 RVA: 0x0021A4F0 File Offset: 0x002186F0
 	public void Save(BinaryWriter writer)
 	{
 		Transform transform = base.transform;
@@ -95,7 +87,6 @@ public class SaveLoadRoot : KMonoBehaviour
 		this.SaveWithoutTransform(writer);
 	}
 
-	// Token: 0x06003531 RID: 13617 RVA: 0x0021A538 File Offset: 0x00218738
 	public void SaveWithoutTransform(BinaryWriter writer)
 	{
 		KMonoBehaviour[] components = base.GetComponents<KMonoBehaviour>();
@@ -156,13 +147,11 @@ public class SaveLoadRoot : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06003532 RID: 13618 RVA: 0x000C71F8 File Offset: 0x000C53F8
 	public static SaveLoadRoot Load(Tag tag, IReader reader)
 	{
 		return SaveLoadRoot.Load(SaveLoader.Instance.saveManager.GetPrefab(tag), reader);
 	}
 
-	// Token: 0x06003533 RID: 13619 RVA: 0x0021A740 File Offset: 0x00218940
 	public static SaveLoadRoot Load(GameObject prefab, IReader reader)
 	{
 		Vector3 vector = reader.ReadVector3();
@@ -184,7 +173,6 @@ public class SaveLoadRoot : KMonoBehaviour
 		return SaveLoadRoot.Load(prefab, vector, rotation, scale, reader);
 	}
 
-	// Token: 0x06003534 RID: 13620 RVA: 0x0021A7F8 File Offset: 0x002189F8
 	public static SaveLoadRoot Load(GameObject prefab, Vector3 position, Quaternion rotation, Vector3 scale, IReader reader)
 	{
 		SaveLoadRoot saveLoadRoot = null;
@@ -222,7 +210,6 @@ public class SaveLoadRoot : KMonoBehaviour
 		return saveLoadRoot;
 	}
 
-	// Token: 0x06003535 RID: 13621 RVA: 0x0021A8A4 File Offset: 0x00218AA4
 	private static void LoadInternal(GameObject gameObject, IReader reader)
 	{
 		Dictionary<string, int> dictionary = new Dictionary<string, int>();
@@ -324,22 +311,16 @@ public class SaveLoadRoot : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0400249D RID: 9373
 	public Tag associatedTag;
 
-	// Token: 0x0400249E RID: 9374
 	private bool hasOnSpawnRun;
 
-	// Token: 0x0400249F RID: 9375
 	private bool registered = true;
 
-	// Token: 0x040024A0 RID: 9376
 	[SerializeField]
 	private List<string> m_optionalComponentTypeNames = new List<string>();
 
-	// Token: 0x040024A1 RID: 9377
 	private static Dictionary<string, ISerializableComponentManager> serializableComponentManagers;
 
-	// Token: 0x040024A2 RID: 9378
 	private static Dictionary<Type, string> sTypeToString = new Dictionary<Type, string>();
 }

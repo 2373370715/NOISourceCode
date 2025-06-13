@@ -2,15 +2,12 @@
 using FMOD.Studio;
 using UnityEngine;
 
-// Token: 0x0200093D RID: 2365
 public class HatchDrillSoundEvent : SoundEvent
 {
-	// Token: 0x06002983 RID: 10627 RVA: 0x000BF755 File Offset: 0x000BD955
 	public HatchDrillSoundEvent(string file_name, string sound_name, int frame, float min_interval) : base(file_name, sound_name, frame, true, true, min_interval, false)
 	{
 	}
 
-	// Token: 0x06002984 RID: 10628 RVA: 0x001E340C File Offset: 0x001E160C
 	public override void PlaySound(AnimEventManager.EventPlayerData behaviour)
 	{
 		Vector3 vector = behaviour.position;
@@ -25,7 +22,6 @@ public class HatchDrillSoundEvent : SoundEvent
 		SoundEvent.EndOneShot(instance);
 	}
 
-	// Token: 0x06002985 RID: 10629 RVA: 0x001E3484 File Offset: 0x001E1684
 	private static int GetAudioCategory(int cell)
 	{
 		if (!Grid.IsValidCell(cell))

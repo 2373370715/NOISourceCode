@@ -3,23 +3,19 @@ using Klei.AI;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020010DB RID: 4315
 public class DirectlyEdiblePlant_TreeBranches : KMonoBehaviour, IPlantConsumptionInstructions
 {
-	// Token: 0x0600582E RID: 22574 RVA: 0x000DDF71 File Offset: 0x000DC171
 	protected override void OnSpawn()
 	{
 		this.trunk = base.gameObject.GetSMI<PlantBranchGrower.Instance>();
 		base.OnSpawn();
 	}
 
-	// Token: 0x0600582F RID: 22575 RVA: 0x000DDF8A File Offset: 0x000DC18A
 	public bool CanPlantBeEaten()
 	{
 		return this.GetMaxBranchMaturity() >= this.MinimumEdibleMaturity;
 	}
 
-	// Token: 0x06005830 RID: 22576 RVA: 0x002967B8 File Offset: 0x002949B8
 	public float ConsumePlant(float desiredUnitsToConsume)
 	{
 		float maxBranchMaturity = this.GetMaxBranchMaturity();
@@ -46,7 +42,6 @@ public class DirectlyEdiblePlant_TreeBranches : KMonoBehaviour, IPlantConsumptio
 		return desiredUnitsToConsume;
 	}
 
-	// Token: 0x06005831 RID: 22577 RVA: 0x00296870 File Offset: 0x00294A70
 	public float PlantProductGrowthPerCycle()
 	{
 		Crop component = base.GetComponent<Crop>();
@@ -59,7 +54,6 @@ public class DirectlyEdiblePlant_TreeBranches : KMonoBehaviour, IPlantConsumptio
 		return 1f / num;
 	}
 
-	// Token: 0x06005832 RID: 22578 RVA: 0x002968D4 File Offset: 0x00294AD4
 	public float GetMaxBranchMaturity()
 	{
 		float max_maturity = 0f;
@@ -83,7 +77,6 @@ public class DirectlyEdiblePlant_TreeBranches : KMonoBehaviour, IPlantConsumptio
 		return max_maturity;
 	}
 
-	// Token: 0x06005833 RID: 22579 RVA: 0x00296918 File Offset: 0x00294B18
 	private GameObject GetMostMatureBranch()
 	{
 		float max_maturity = 0f;
@@ -107,31 +100,25 @@ public class DirectlyEdiblePlant_TreeBranches : KMonoBehaviour, IPlantConsumptio
 		return max_branch;
 	}
 
-	// Token: 0x06005834 RID: 22580 RVA: 0x0029695C File Offset: 0x00294B5C
 	public string GetFormattedConsumptionPerCycle(float consumer_KGWorthOfCaloriesLostPerSecond)
 	{
 		float num = this.PlantProductGrowthPerCycle();
 		return GameUtil.GetFormattedPlantGrowth(consumer_KGWorthOfCaloriesLostPerSecond * num * 100f, GameUtil.TimeSlice.PerCycle);
 	}
 
-	// Token: 0x06005835 RID: 22581 RVA: 0x000AA765 File Offset: 0x000A8965
 	public CellOffset[] GetAllowedOffsets()
 	{
 		return null;
 	}
 
-	// Token: 0x06005836 RID: 22582 RVA: 0x000AA7E7 File Offset: 0x000A89E7
 	public Diet.Info.FoodType GetDietFoodType()
 	{
 		return Diet.Info.FoodType.EatPlantDirectly;
 	}
 
-	// Token: 0x04003E21 RID: 15905
 	private PlantBranchGrower.Instance trunk;
 
-	// Token: 0x04003E22 RID: 15906
 	public float MinimumEdibleMaturity = 0.25f;
 
-	// Token: 0x04003E23 RID: 15907
 	public string overrideCropID;
 }

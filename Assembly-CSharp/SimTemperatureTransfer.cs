@@ -2,14 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020018CB RID: 6347
 [SkipSaveFileSerialization]
 [AddComponentMenu("KMonoBehaviour/scripts/SimTemperatureTransfer")]
 public class SimTemperatureTransfer : KMonoBehaviour
 {
-	// Token: 0x17000854 RID: 2132
-	// (get) Token: 0x06008330 RID: 33584 RVA: 0x000FAC61 File Offset: 0x000F8E61
-	// (set) Token: 0x06008331 RID: 33585 RVA: 0x000FAC69 File Offset: 0x000F8E69
 	public float SurfaceArea
 	{
 		get
@@ -22,9 +18,6 @@ public class SimTemperatureTransfer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x17000855 RID: 2133
-	// (get) Token: 0x06008332 RID: 33586 RVA: 0x000FAC72 File Offset: 0x000F8E72
-	// (set) Token: 0x06008333 RID: 33587 RVA: 0x000FAC7A File Offset: 0x000F8E7A
 	public float Thickness
 	{
 		get
@@ -37,9 +30,6 @@ public class SimTemperatureTransfer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x17000856 RID: 2134
-	// (get) Token: 0x06008334 RID: 33588 RVA: 0x000FAC83 File Offset: 0x000F8E83
-	// (set) Token: 0x06008335 RID: 33589 RVA: 0x000FAC8B File Offset: 0x000F8E8B
 	public float GroundTransferScale
 	{
 		get
@@ -52,8 +42,6 @@ public class SimTemperatureTransfer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x17000857 RID: 2135
-	// (get) Token: 0x06008336 RID: 33590 RVA: 0x000FAC94 File Offset: 0x000F8E94
 	public int SimHandle
 	{
 		get
@@ -62,13 +50,11 @@ public class SimTemperatureTransfer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008337 RID: 33591 RVA: 0x000FAC9C File Offset: 0x000F8E9C
 	public static void ClearInstanceMap()
 	{
 		SimTemperatureTransfer.handleInstanceMap.Clear();
 	}
 
-	// Token: 0x06008338 RID: 33592 RVA: 0x0034DFCC File Offset: 0x0034C1CC
 	public static void DoOreMeltTransition(int sim_handle)
 	{
 		SimTemperatureTransfer simTemperatureTransfer = null;
@@ -134,7 +120,6 @@ public class SimTemperatureTransfer : KMonoBehaviour
 		Util.KDestroyGameObject(simTemperatureTransfer.gameObject);
 	}
 
-	// Token: 0x06008339 RID: 33593 RVA: 0x0034E1B4 File Offset: 0x0034C3B4
 	protected override void OnPrefabInit()
 	{
 		this.pe.sttOptimizationHook = this;
@@ -144,7 +129,6 @@ public class SimTemperatureTransfer : KMonoBehaviour
 		primaryElement.onDataChanged = (Action<PrimaryElement>)Delegate.Combine(primaryElement.onDataChanged, new Action<PrimaryElement>(this.OnDataChanged));
 	}
 
-	// Token: 0x0600833A RID: 33594 RVA: 0x0034E224 File Offset: 0x0034C424
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -157,7 +141,6 @@ public class SimTemperatureTransfer : KMonoBehaviour
 		this.SimRegister();
 	}
 
-	// Token: 0x0600833B RID: 33595 RVA: 0x000FACA8 File Offset: 0x000F8EA8
 	protected override void OnCmpEnable()
 	{
 		base.OnCmpEnable();
@@ -168,7 +151,6 @@ public class SimTemperatureTransfer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600833C RID: 33596 RVA: 0x0034E2A4 File Offset: 0x0034C4A4
 	protected override void OnCmpDisable()
 	{
 		if (Sim.IsValidHandle(this.simHandle))
@@ -180,7 +162,6 @@ public class SimTemperatureTransfer : KMonoBehaviour
 		base.OnCmpDisable();
 	}
 
-	// Token: 0x0600833D RID: 33597 RVA: 0x0034E2F8 File Offset: 0x0034C4F8
 	private void OnCellChanged()
 	{
 		int cell = Grid.PosToCell(this);
@@ -198,7 +179,6 @@ public class SimTemperatureTransfer : KMonoBehaviour
 		this.forceDataSyncOnRegister = true;
 	}
 
-	// Token: 0x0600833E RID: 33598 RVA: 0x000FACD9 File Offset: 0x000F8ED9
 	protected override void OnCleanUp()
 	{
 		Singleton<CellChangeMonitor>.Instance.UnregisterCellChangedHandler(base.transform, new System.Action(this.OnCellChanged));
@@ -206,7 +186,6 @@ public class SimTemperatureTransfer : KMonoBehaviour
 		base.OnForcedCleanUp();
 	}
 
-	// Token: 0x0600833F RID: 33599 RVA: 0x0034E344 File Offset: 0x0034C544
 	private unsafe static float OnGetTemperature(PrimaryElement primary_element)
 	{
 		SimTemperatureTransfer sttOptimizationHook = primary_element.sttOptimizationHook;
@@ -224,7 +203,6 @@ public class SimTemperatureTransfer : KMonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06008340 RID: 33600 RVA: 0x0034E3C0 File Offset: 0x0034C5C0
 	private unsafe static void OnSetTemperature(PrimaryElement primary_element, float temperature)
 	{
 		if (temperature <= 0f)
@@ -244,7 +222,6 @@ public class SimTemperatureTransfer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008341 RID: 33601 RVA: 0x0034E460 File Offset: 0x0034C660
 	private void OnDataChanged(PrimaryElement primary_element)
 	{
 		if (Sim.IsValidHandle(this.simHandle))
@@ -256,7 +233,6 @@ public class SimTemperatureTransfer : KMonoBehaviour
 		this.forceDataSyncOnRegister = true;
 	}
 
-	// Token: 0x06008342 RID: 33602 RVA: 0x0034E4BC File Offset: 0x0034C6BC
 	protected void SimRegister()
 	{
 		if (base.isSpawned && this.simHandle == -1 && base.enabled && this.pe.Mass > 0f && !this.pe.Element.IsTemperatureInsulated)
@@ -275,7 +251,6 @@ public class SimTemperatureTransfer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008343 RID: 33603 RVA: 0x0034E5B8 File Offset: 0x0034C7B8
 	protected unsafe void SimUnregister()
 	{
 		if (this.simHandle != -1 && !KMonoBehaviour.isLoadingScene)
@@ -291,13 +266,11 @@ public class SimTemperatureTransfer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008344 RID: 33604 RVA: 0x000FAD03 File Offset: 0x000F8F03
 	private static void OnSimRegisteredCallback(int handle, object data)
 	{
 		((SimTemperatureTransfer)data).OnSimRegistered(handle);
 	}
 
-	// Token: 0x06008345 RID: 33605 RVA: 0x0034E63C File Offset: 0x0034C83C
 	private unsafe void OnSimRegistered(int handle)
 	{
 		if (this != null && this.simHandle == -2)
@@ -334,40 +307,29 @@ public class SimTemperatureTransfer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x040063F1 RID: 25585
 	[MyCmpReq]
 	public PrimaryElement pe;
 
-	// Token: 0x040063F2 RID: 25586
 	private const float SIM_FREEZE_SPAWN_ORE_PERCENT = 0.8f;
 
-	// Token: 0x040063F3 RID: 25587
 	public const float MIN_MASS_FOR_TEMPERATURE_TRANSFER = 0.01f;
 
-	// Token: 0x040063F4 RID: 25588
 	public float deltaKJ;
 
-	// Token: 0x040063F5 RID: 25589
 	public Action<SimTemperatureTransfer> onSimRegistered;
 
-	// Token: 0x040063F6 RID: 25590
 	protected int simHandle = -1;
 
-	// Token: 0x040063F7 RID: 25591
 	protected bool forceDataSyncOnRegister;
 
-	// Token: 0x040063F8 RID: 25592
 	[SerializeField]
 	protected float surfaceArea = 10f;
 
-	// Token: 0x040063F9 RID: 25593
 	[SerializeField]
 	protected float thickness = 0.01f;
 
-	// Token: 0x040063FA RID: 25594
 	[SerializeField]
 	protected float groundTransferScale = 0.0625f;
 
-	// Token: 0x040063FB RID: 25595
 	private static Dictionary<int, SimTemperatureTransfer> handleInstanceMap = new Dictionary<int, SimTemperatureTransfer>();
 }

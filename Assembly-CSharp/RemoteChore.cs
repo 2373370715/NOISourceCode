@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using STRINGS;
 
-// Token: 0x02001793 RID: 6035
 public class RemoteChore : WorkChore<RemoteWorkTerminal>
 {
-	// Token: 0x06007C23 RID: 31779 RVA: 0x0032CE90 File Offset: 0x0032B090
 	public RemoteChore(RemoteWorkTerminal terminal) : base(Db.Get().ChoreTypes.RemoteOperate, terminal, null, true, null, null, null, true, null, false, true, null, false, true, true, PriorityScreen.PriorityClass.basic, 5, false, true)
 	{
 		this.terminal = terminal;
@@ -16,7 +14,6 @@ public class RemoteChore : WorkChore<RemoteWorkTerminal>
 		this.AddPrecondition(RemoteChore.RemoteDockOperational, terminal);
 	}
 
-	// Token: 0x06007C24 RID: 31780 RVA: 0x0032CF08 File Offset: 0x0032B108
 	public override void CollectChores(ChoreConsumerState duplicantState, List<Chore.Precondition.Context> succeeded_contexts, List<Chore.Precondition.Context> incomplete_contexts, List<Chore.Precondition.Context> failed_contexts, bool is_attempting_override)
 	{
 		Chore.Precondition.Context context = new Chore.Precondition.Context(this, duplicantState, is_attempting_override, null);
@@ -88,7 +85,6 @@ public class RemoteChore : WorkChore<RemoteWorkTerminal>
 		failed_contexts.Add(context);
 	}
 
-	// Token: 0x06007C25 RID: 31781 RVA: 0x0032D1F0 File Offset: 0x0032B3F0
 	public override void PrepareChore(ref Chore.Precondition.Context context)
 	{
 		base.PrepareChore(ref context);
@@ -102,7 +98,6 @@ public class RemoteChore : WorkChore<RemoteWorkTerminal>
 		currentDock.SetNextChore(this.terminal, (Chore.Precondition.Context)context.data);
 	}
 
-	// Token: 0x06007C26 RID: 31782 RVA: 0x0032D250 File Offset: 0x0032B450
 	protected override void End(string reason)
 	{
 		if (this.active_subchore != null && this.active_subchore.driver != null && !this.active_subchore.driver.HasChore())
@@ -117,7 +112,6 @@ public class RemoteChore : WorkChore<RemoteWorkTerminal>
 		}
 	}
 
-	// Token: 0x04005D8E RID: 23950
 	private static Chore.Precondition RemoteTerminalHasDock = new Chore.Precondition
 	{
 		id = "RemoteDockAssigned",
@@ -129,7 +123,6 @@ public class RemoteChore : WorkChore<RemoteWorkTerminal>
 		canExecuteOnAnyThread = true
 	};
 
-	// Token: 0x04005D8F RID: 23951
 	private static Chore.Precondition RemoteDockOperational = new Chore.Precondition
 	{
 		id = "RemoteDockOperational",
@@ -142,7 +135,6 @@ public class RemoteChore : WorkChore<RemoteWorkTerminal>
 		canExecuteOnAnyThread = true
 	};
 
-	// Token: 0x04005D90 RID: 23952
 	private static Chore.Precondition RemoteDockHasWorker = new Chore.Precondition
 	{
 		id = "RemoteDockHasAvailableWorker",
@@ -155,7 +147,6 @@ public class RemoteChore : WorkChore<RemoteWorkTerminal>
 		canExecuteOnAnyThread = true
 	};
 
-	// Token: 0x04005D91 RID: 23953
 	private static Chore.Precondition RemoteDockAvailable = new Chore.Precondition
 	{
 		id = "RemoteDockAvailable",
@@ -169,7 +160,6 @@ public class RemoteChore : WorkChore<RemoteWorkTerminal>
 		canExecuteOnAnyThread = true
 	};
 
-	// Token: 0x04005D92 RID: 23954
 	private static Chore.Precondition RemoteChoreSubchorePreconditions = new Chore.Precondition
 	{
 		id = "RemoteChorePreconditionsMet",
@@ -191,9 +181,7 @@ public class RemoteChore : WorkChore<RemoteWorkTerminal>
 		canExecuteOnAnyThread = false
 	};
 
-	// Token: 0x04005D93 RID: 23955
 	private RemoteWorkTerminal terminal;
 
-	// Token: 0x04005D94 RID: 23956
 	private Chore active_subchore;
 }

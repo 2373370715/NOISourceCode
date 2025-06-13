@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using TemplateClasses;
 using UnityEngine;
 
-// Token: 0x0200149C RID: 5276
 public class StampToolPreview_Placers : IStampToolPreviewPlugin
 {
-	// Token: 0x06006D45 RID: 27973 RVA: 0x002F7C50 File Offset: 0x002F5E50
 	public StampToolPreview_Placers(GameObject placerPrefab)
 	{
 		StampToolPreview_Placers <>4__this = this;
@@ -22,7 +20,6 @@ public class StampToolPreview_Placers : IStampToolPreviewPlugin
 		}, 0);
 	}
 
-	// Token: 0x06006D46 RID: 27974 RVA: 0x002F7C9C File Offset: 0x002F5E9C
 	public void Setup(StampToolPreviewContext context)
 	{
 		for (int i = 0; i < context.stampTemplate.cells.Count; i++)
@@ -59,12 +56,9 @@ public class StampToolPreview_Placers : IStampToolPreviewPlugin
 		}));
 	}
 
-	// Token: 0x0400526D RID: 21101
 	private List<GameObject> inUse = new List<GameObject>();
 
-	// Token: 0x0400526E RID: 21102
 	private GameObjectPool pool;
 
-	// Token: 0x0400526F RID: 21103
 	private Transform poolParent;
 }

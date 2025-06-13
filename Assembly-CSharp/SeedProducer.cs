@@ -4,11 +4,9 @@ using Klei.AI;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001216 RID: 4630
 [AddComponentMenu("KMonoBehaviour/scripts/SeedProducer")]
 public class SeedProducer : KMonoBehaviour, IGameObjectEffectDescriptor
 {
-	// Token: 0x06005DE6 RID: 24038 RVA: 0x000E1B40 File Offset: 0x000DFD40
 	public void Configure(string SeedID, SeedProducer.ProductionType productionType, int newSeedsProduced = 1)
 	{
 		this.seedInfo.seedId = SeedID;
@@ -16,7 +14,6 @@ public class SeedProducer : KMonoBehaviour, IGameObjectEffectDescriptor
 		this.seedInfo.newSeedsProduced = newSeedsProduced;
 	}
 
-	// Token: 0x06005DE7 RID: 24039 RVA: 0x000E1B66 File Offset: 0x000DFD66
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -25,7 +22,6 @@ public class SeedProducer : KMonoBehaviour, IGameObjectEffectDescriptor
 		base.Subscribe<SeedProducer>(-1072826864, SeedProducer.CropPickedDelegate);
 	}
 
-	// Token: 0x06005DE8 RID: 24040 RVA: 0x002AE3F0 File Offset: 0x002AC5F0
 	private GameObject ProduceSeed(string seedId, int units = 1, bool canMutate = true)
 	{
 		if (seedId != null && units > 0)
@@ -67,7 +63,6 @@ public class SeedProducer : KMonoBehaviour, IGameObjectEffectDescriptor
 		return null;
 	}
 
-	// Token: 0x06005DE9 RID: 24041 RVA: 0x002AE524 File Offset: 0x002AC724
 	public void DropSeed(object data = null)
 	{
 		if (this.droppedSeedAlready)
@@ -88,13 +83,11 @@ public class SeedProducer : KMonoBehaviour, IGameObjectEffectDescriptor
 		this.droppedSeedAlready = true;
 	}
 
-	// Token: 0x06005DEA RID: 24042 RVA: 0x000E1BA1 File Offset: 0x000DFDA1
 	public void CropDepleted(object data)
 	{
 		this.DropSeed(null);
 	}
 
-	// Token: 0x06005DEB RID: 24043 RVA: 0x002AE5AC File Offset: 0x002AC7AC
 	public void CropPicked(object data)
 	{
 		if (this.seedInfo.productionType == SeedProducer.ProductionType.Harvest)
@@ -113,7 +106,6 @@ public class SeedProducer : KMonoBehaviour, IGameObjectEffectDescriptor
 		}
 	}
 
-	// Token: 0x06005DEC RID: 24044 RVA: 0x002AE640 File Offset: 0x002AC840
 	public bool RollForMutation()
 	{
 		AttributeInstance attributeInstance = Db.Get().PlantAttributes.MaxRadiationThreshold.Lookup(this);
@@ -122,7 +114,6 @@ public class SeedProducer : KMonoBehaviour, IGameObjectEffectDescriptor
 		return UnityEngine.Random.value < num2;
 	}
 
-	// Token: 0x06005DED RID: 24045 RVA: 0x002AE6B0 File Offset: 0x002AC8B0
 	public List<Descriptor> GetDescriptors(GameObject go)
 	{
 		List<Descriptor> list = new List<Descriptor>();
@@ -150,52 +141,37 @@ public class SeedProducer : KMonoBehaviour, IGameObjectEffectDescriptor
 		return list;
 	}
 
-	// Token: 0x04004300 RID: 17152
 	public SeedProducer.SeedInfo seedInfo;
 
-	// Token: 0x04004301 RID: 17153
 	private bool droppedSeedAlready;
 
-	// Token: 0x04004302 RID: 17154
 	private static readonly EventSystem.IntraObjectHandler<SeedProducer> DropSeedDelegate = new EventSystem.IntraObjectHandler<SeedProducer>(delegate(SeedProducer component, object data)
 	{
 		component.DropSeed(data);
 	});
 
-	// Token: 0x04004303 RID: 17155
 	private static readonly EventSystem.IntraObjectHandler<SeedProducer> CropPickedDelegate = new EventSystem.IntraObjectHandler<SeedProducer>(delegate(SeedProducer component, object data)
 	{
 		component.CropPicked(data);
 	});
 
-	// Token: 0x02001217 RID: 4631
 	[Serializable]
 	public struct SeedInfo
 	{
-		// Token: 0x04004304 RID: 17156
 		public string seedId;
 
-		// Token: 0x04004305 RID: 17157
 		public SeedProducer.ProductionType productionType;
 
-		// Token: 0x04004306 RID: 17158
 		public int newSeedsProduced;
 	}
 
-	// Token: 0x02001218 RID: 4632
 	public enum ProductionType
 	{
-		// Token: 0x04004308 RID: 17160
 		Hidden,
-		// Token: 0x04004309 RID: 17161
 		DigOnly,
-		// Token: 0x0400430A RID: 17162
 		Harvest,
-		// Token: 0x0400430B RID: 17163
 		Fruit,
-		// Token: 0x0400430C RID: 17164
 		Sterile,
-		// Token: 0x0400430D RID: 17165
 		Crop
 	}
 }

@@ -5,10 +5,8 @@ using ImGuiNET;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x02000BFC RID: 3068
 public class DevToolSceneBrowser : DevTool
 {
-	// Token: 0x06003A21 RID: 14881 RVA: 0x00231A18 File Offset: 0x0022FC18
 	public DevToolSceneBrowser()
 	{
 		this.drawFlags = ImGuiWindowFlags.MenuBar;
@@ -18,7 +16,6 @@ public class DevToolSceneBrowser : DevTool
 		this.Stack.Add(stackItem);
 	}
 
-	// Token: 0x06003A22 RID: 14882 RVA: 0x00231A68 File Offset: 0x0022FC68
 	private void PushGameObject(GameObject go)
 	{
 		if (this.StackIndex < this.Stack.Count && go == this.Stack[this.StackIndex].Root)
@@ -37,7 +34,6 @@ public class DevToolSceneBrowser : DevTool
 		this.StackIndex++;
 	}
 
-	// Token: 0x06003A23 RID: 14883 RVA: 0x00231B24 File Offset: 0x0022FD24
 	protected override void RenderTo(DevPanel panel)
 	{
 		for (int i = this.Stack.Count - 1; i > 0; i--)
@@ -231,34 +227,24 @@ public class DevToolSceneBrowser : DevTool
 		}
 	}
 
-	// Token: 0x0400282C RID: 10284
 	private List<DevToolSceneBrowser.StackItem> Stack = new List<DevToolSceneBrowser.StackItem>();
 
-	// Token: 0x0400282D RID: 10285
 	private int StackIndex;
 
-	// Token: 0x0400282E RID: 10286
 	private static int SelectedIndex = -1;
 
-	// Token: 0x0400282F RID: 10287
 	private static string SearchFilter = "";
 
-	// Token: 0x04002830 RID: 10288
 	private static List<GameObject> SearchResults = new List<GameObject>();
 
-	// Token: 0x04002831 RID: 10289
 	private static int SearchSelectedIndex = -1;
 
-	// Token: 0x02000BFD RID: 3069
 	private class StackItem
 	{
-		// Token: 0x04002832 RID: 10290
 		public bool SceneRoot;
 
-		// Token: 0x04002833 RID: 10291
 		public GameObject Root;
 
-		// Token: 0x04002834 RID: 10292
 		public string Filter;
 	}
 }

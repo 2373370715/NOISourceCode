@@ -4,16 +4,13 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000024 RID: 36
 public class ArtifactCargoBayConfig : IBuildingConfig
 {
-	// Token: 0x06000090 RID: 144 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06000091 RID: 145 RVA: 0x00148C14 File Offset: 0x00146E14
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "ArtifactCargoBay";
@@ -45,7 +42,6 @@ public class ArtifactCargoBayConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000092 RID: 146 RVA: 0x00148CE0 File Offset: 0x00146EE0
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -57,7 +53,6 @@ public class ArtifactCargoBayConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x06000093 RID: 147 RVA: 0x00148D44 File Offset: 0x00146F44
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		BuildingTemplates.ExtendBuildingToRocketModuleCluster(go, null, ROCKETRY.BURDEN.MAJOR, 0f, 0f);
@@ -75,6 +70,5 @@ public class ArtifactCargoBayConfig : IBuildingConfig
 		go.AddOrGetDef<ArtifactHarvestModule.Def>();
 	}
 
-	// Token: 0x0400006E RID: 110
 	public const string ID = "ArtifactCargoBay";
 }

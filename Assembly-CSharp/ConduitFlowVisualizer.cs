@@ -4,10 +4,8 @@ using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
 
-// Token: 0x02001B0C RID: 6924
 public class ConduitFlowVisualizer
 {
-	// Token: 0x0600911C RID: 37148 RVA: 0x0038B840 File Offset: 0x00389A40
 	public ConduitFlowVisualizer(ConduitFlow flow_manager, Game.ConduitVisInfo vis_info, EventReference overlay_sound, ConduitFlowVisualizer.Tuning tuning)
 	{
 		this.flowManager = flow_manager;
@@ -19,21 +17,18 @@ public class ConduitFlowVisualizer
 		ConduitFlowVisualizer.RenderMeshPerThreadData.Ball.InitializeResources();
 	}
 
-	// Token: 0x0600911D RID: 37149 RVA: 0x001033E0 File Offset: 0x001015E0
 	public void FreeResources()
 	{
 		this.movingBallMesh.Cleanup();
 		this.staticBallMesh.Cleanup();
 	}
 
-	// Token: 0x0600911E RID: 37150 RVA: 0x0038B8CC File Offset: 0x00389ACC
 	private float CalculateMassScale(float mass)
 	{
 		float t = (mass - this.visInfo.overlayMassScaleRange.x) / (this.visInfo.overlayMassScaleRange.y - this.visInfo.overlayMassScaleRange.x);
 		return Mathf.Lerp(this.visInfo.overlayMassScaleValues.x, this.visInfo.overlayMassScaleValues.y, t);
 	}
 
-	// Token: 0x0600911F RID: 37151 RVA: 0x0038B934 File Offset: 0x00389B34
 	private Color32 GetContentsColor(Element element, Color32 default_color)
 	{
 		if (element != null)
@@ -45,7 +40,6 @@ public class ConduitFlowVisualizer
 		return default_color;
 	}
 
-	// Token: 0x06009120 RID: 37152 RVA: 0x001033F8 File Offset: 0x001015F8
 	private Color32 GetTintColour()
 	{
 		if (!this.showContents)
@@ -55,7 +49,6 @@ public class ConduitFlowVisualizer
 		return GlobalAssets.Instance.colorSet.GetColorByName(this.visInfo.overlayTintName);
 	}
 
-	// Token: 0x06009121 RID: 37153 RVA: 0x00103428 File Offset: 0x00101628
 	private Color32 GetInsulatedTintColour()
 	{
 		if (!this.showContents)
@@ -65,7 +58,6 @@ public class ConduitFlowVisualizer
 		return GlobalAssets.Instance.colorSet.GetColorByName(this.visInfo.overlayInsulatedTintName);
 	}
 
-	// Token: 0x06009122 RID: 37154 RVA: 0x00103458 File Offset: 0x00101658
 	private Color32 GetRadiantTintColour()
 	{
 		if (!this.showContents)
@@ -75,7 +67,6 @@ public class ConduitFlowVisualizer
 		return GlobalAssets.Instance.colorSet.GetColorByName(this.visInfo.overlayRadiantTintName);
 	}
 
-	// Token: 0x06009123 RID: 37155 RVA: 0x0038B96C File Offset: 0x00389B6C
 	private Color32 GetCellTintColour(int cell)
 	{
 		Color32 result;
@@ -94,7 +85,6 @@ public class ConduitFlowVisualizer
 		return result;
 	}
 
-	// Token: 0x06009124 RID: 37156 RVA: 0x0038B9B0 File Offset: 0x00389BB0
 	public void Render(float z, int render_layer, float lerp_percent, bool trigger_audio = false)
 	{
 		this.animTime += (double)Time.deltaTime;
@@ -123,7 +113,6 @@ public class ConduitFlowVisualizer
 		}
 	}
 
-	// Token: 0x06009125 RID: 37157 RVA: 0x0038BA64 File Offset: 0x00389C64
 	private void RenderMesh(float z, int render_layer, float lerp_percent, bool trigger_audio)
 	{
 		GridArea visibleArea = GridVisibleArea.GetVisibleArea();
@@ -161,14 +150,12 @@ public class ConduitFlowVisualizer
 		ConduitFlowVisualizer.RenderMeshBatchJob.Instance.Reset(ConduitFlowVisualizer.RenderMeshContext.EmptyContext);
 	}
 
-	// Token: 0x06009126 RID: 37158 RVA: 0x00103488 File Offset: 0x00101688
 	public void ColourizePipeContents(bool show_contents, bool move_to_overlay_layer)
 	{
 		this.showContents = show_contents;
 		this.layer = ((show_contents && move_to_overlay_layer) ? LayerMask.NameToLayer("MaskedOverlay") : 0);
 	}
 
-	// Token: 0x06009127 RID: 37159 RVA: 0x0038BD58 File Offset: 0x00389F58
 	private void AddAudioSource(ConduitFlow.Conduit conduit, Vector3 camera_pos)
 	{
 		using (new KProfiler.Region("AddAudioSource", null))
@@ -207,7 +194,6 @@ public class ConduitFlowVisualizer
 		}
 	}
 
-	// Token: 0x06009128 RID: 37160 RVA: 0x0038BE70 File Offset: 0x0038A070
 	private void TriggerAudio()
 	{
 		if (SpeedControlScreen.Instance.IsPaused)
@@ -240,7 +226,6 @@ public class ConduitFlowVisualizer
 		}
 	}
 
-	// Token: 0x06009129 RID: 37161 RVA: 0x001034A9 File Offset: 0x001016A9
 	public void AddThermalConductivity(int cell, float conductivity)
 	{
 		if (conductivity < 1f)
@@ -254,7 +239,6 @@ public class ConduitFlowVisualizer
 		}
 	}
 
-	// Token: 0x0600912A RID: 37162 RVA: 0x001034D6 File Offset: 0x001016D6
 	public void RemoveThermalConductivity(int cell, float conductivity)
 	{
 		if (conductivity < 1f)
@@ -268,84 +252,59 @@ public class ConduitFlowVisualizer
 		}
 	}
 
-	// Token: 0x0600912B RID: 37163 RVA: 0x00103503 File Offset: 0x00101703
 	public void SetHighlightedCell(int cell)
 	{
 		this.highlightedCell = cell;
 	}
 
-	// Token: 0x04006DB6 RID: 28086
 	private ConduitFlow flowManager;
 
-	// Token: 0x04006DB7 RID: 28087
 	private EventReference overlaySound;
 
-	// Token: 0x04006DB8 RID: 28088
 	private bool showContents;
 
-	// Token: 0x04006DB9 RID: 28089
 	private double animTime;
 
-	// Token: 0x04006DBA RID: 28090
 	private int layer;
 
-	// Token: 0x04006DBB RID: 28091
 	private static Vector2 GRID_OFFSET = new Vector2(0.5f, 0.5f);
 
-	// Token: 0x04006DBC RID: 28092
 	private List<ConduitFlowVisualizer.AudioInfo> audioInfo;
 
-	// Token: 0x04006DBD RID: 28093
 	private HashSet<int> insulatedCells = new HashSet<int>();
 
-	// Token: 0x04006DBE RID: 28094
 	private HashSet<int> radiantCells = new HashSet<int>();
 
-	// Token: 0x04006DBF RID: 28095
 	private Game.ConduitVisInfo visInfo;
 
-	// Token: 0x04006DC0 RID: 28096
 	private ConduitFlowVisualizer.ConduitFlowMesh movingBallMesh;
 
-	// Token: 0x04006DC1 RID: 28097
 	private ConduitFlowVisualizer.ConduitFlowMesh staticBallMesh;
 
-	// Token: 0x04006DC2 RID: 28098
 	private int highlightedCell = -1;
 
-	// Token: 0x04006DC3 RID: 28099
 	private Color32 highlightColour = new Color(0.2f, 0.2f, 0.2f, 0.2f);
 
-	// Token: 0x04006DC4 RID: 28100
 	private ConduitFlowVisualizer.Tuning tuning;
 
-	// Token: 0x02001B0D RID: 6925
 	[Serializable]
 	public class Tuning
 	{
-		// Token: 0x04006DC5 RID: 28101
 		public bool renderMesh;
 
-		// Token: 0x04006DC6 RID: 28102
 		public float size;
 
-		// Token: 0x04006DC7 RID: 28103
 		public float spriteCount;
 
-		// Token: 0x04006DC8 RID: 28104
 		public float framesPerSecond;
 
-		// Token: 0x04006DC9 RID: 28105
 		public Texture2D backgroundTexture;
 
-		// Token: 0x04006DCA RID: 28106
 		public Texture2D foregroundTexture;
 	}
 
-	// Token: 0x02001B0E RID: 6926
 	private class ConduitFlowMesh
 	{
-		// Token: 0x0600912E RID: 37166 RVA: 0x0038BF64 File Offset: 0x0038A164
 		public ConduitFlowMesh()
 		{
 			this.mesh = new Mesh();
@@ -353,7 +312,6 @@ public class ConduitFlowVisualizer
 			this.material = new Material(Shader.Find("Klei/ConduitBall"));
 		}
 
-		// Token: 0x0600912F RID: 37167 RVA: 0x0038BFD4 File Offset: 0x0038A1D4
 		public void AddQuad(Vector2 pos, Color32 color, float size, float is_foreground, float highlight, Vector2I uvbl, Vector2I uvtl, Vector2I uvbr, Vector2I uvtr)
 		{
 			float num = size * 0.5f;
@@ -378,19 +336,16 @@ public class ConduitFlowVisualizer
 			this.quadIndex++;
 		}
 
-		// Token: 0x06009130 RID: 37168 RVA: 0x00103522 File Offset: 0x00101722
 		public void SetTexture(string id, Texture2D texture)
 		{
 			this.material.SetTexture(id, texture);
 		}
 
-		// Token: 0x06009131 RID: 37169 RVA: 0x00103531 File Offset: 0x00101731
 		public void SetVector(string id, Vector4 data)
 		{
 			this.material.SetVector(id, data);
 		}
 
-		// Token: 0x06009132 RID: 37170 RVA: 0x00103540 File Offset: 0x00101740
 		public void Begin()
 		{
 			this.positions.Clear();
@@ -400,7 +355,6 @@ public class ConduitFlowVisualizer
 			this.quadIndex = 0;
 		}
 
-		// Token: 0x06009133 RID: 37171 RVA: 0x0038C1C8 File Offset: 0x0038A3C8
 		public void End(float z, int layer)
 		{
 			this.mesh.Clear();
@@ -411,7 +365,6 @@ public class ConduitFlowVisualizer
 			Graphics.DrawMesh(this.mesh, new Vector3(ConduitFlowVisualizer.GRID_OFFSET.x, ConduitFlowVisualizer.GRID_OFFSET.y, z - 0.1f), Quaternion.identity, this.material, layer);
 		}
 
-		// Token: 0x06009134 RID: 37172 RVA: 0x00103575 File Offset: 0x00101775
 		public void Cleanup()
 		{
 			UnityEngine.Object.Destroy(this.mesh);
@@ -420,48 +373,34 @@ public class ConduitFlowVisualizer
 			this.material = null;
 		}
 
-		// Token: 0x04006DCB RID: 28107
 		private Mesh mesh;
 
-		// Token: 0x04006DCC RID: 28108
 		private Material material;
 
-		// Token: 0x04006DCD RID: 28109
 		private List<Vector3> positions = new List<Vector3>();
 
-		// Token: 0x04006DCE RID: 28110
 		private List<Vector4> uvs = new List<Vector4>();
 
-		// Token: 0x04006DCF RID: 28111
 		private List<int> triangles = new List<int>();
 
-		// Token: 0x04006DD0 RID: 28112
 		private List<Color32> colors = new List<Color32>();
 
-		// Token: 0x04006DD1 RID: 28113
 		private int quadIndex;
 	}
 
-	// Token: 0x02001B0F RID: 6927
 	private struct AudioInfo
 	{
-		// Token: 0x04006DD2 RID: 28114
 		public int networkID;
 
-		// Token: 0x04006DD3 RID: 28115
 		public int blobCount;
 
-		// Token: 0x04006DD4 RID: 28116
 		public float distance;
 
-		// Token: 0x04006DD5 RID: 28117
 		public Vector3 position;
 	}
 
-	// Token: 0x02001B10 RID: 6928
 	private struct RenderMeshContext
 	{
-		// Token: 0x06009135 RID: 37173 RVA: 0x0038C260 File Offset: 0x0038A460
 		public RenderMeshContext(ConduitFlowVisualizer outer, float lerp_percent, Vector2I min, Vector2I max)
 		{
 			this.outer = outer;
@@ -478,29 +417,22 @@ public class ConduitFlowVisualizer
 			}
 		}
 
-		// Token: 0x06009136 RID: 37174 RVA: 0x0010359B File Offset: 0x0010179B
 		public void Finish()
 		{
 			this.visible_conduits.Recycle();
 		}
 
-		// Token: 0x04006DD6 RID: 28118
 		public static ConduitFlowVisualizer.RenderMeshContext EmptyContext;
 
-		// Token: 0x04006DD7 RID: 28119
 		public ListPool<int, ConduitFlowVisualizer>.PooledList visible_conduits;
 
-		// Token: 0x04006DD8 RID: 28120
 		public ConduitFlowVisualizer outer;
 
-		// Token: 0x04006DD9 RID: 28121
 		public float lerp_percent;
 	}
 
-	// Token: 0x02001B11 RID: 6929
 	private class RenderMeshPerThreadData
 	{
-		// Token: 0x06009138 RID: 37176 RVA: 0x0038C304 File Offset: 0x0038A504
 		public void Finish(ConduitFlowVisualizer.ConduitFlowMesh moving_ball_mesh, ConduitFlowVisualizer.ConduitFlowMesh static_ball_mesh, Vector3 camera_pos, ConduitFlowVisualizer visualizer)
 		{
 			for (int num = 0; num != this.moving_balls.Count; num++)
@@ -523,19 +455,14 @@ public class ConduitFlowVisualizer
 			this.moving_conduits.Clear();
 		}
 
-		// Token: 0x04006DDA RID: 28122
 		public List<ConduitFlowVisualizer.RenderMeshPerThreadData.Ball> moving_balls = new List<ConduitFlowVisualizer.RenderMeshPerThreadData.Ball>();
 
-		// Token: 0x04006DDB RID: 28123
 		public List<ConduitFlowVisualizer.RenderMeshPerThreadData.Ball> static_balls = new List<ConduitFlowVisualizer.RenderMeshPerThreadData.Ball>();
 
-		// Token: 0x04006DDC RID: 28124
 		public List<ConduitFlow.Conduit> moving_conduits = new List<ConduitFlow.Conduit>();
 
-		// Token: 0x02001B12 RID: 6930
 		public struct Ball
 		{
-			// Token: 0x0600913A RID: 37178 RVA: 0x001035D1 File Offset: 0x001017D1
 			public Ball(ConduitFlow.FlowDirections direction, Vector2 pos, Color32 color, float size, bool foreground, bool highlight)
 			{
 				this.pos = pos;
@@ -546,7 +473,6 @@ public class ConduitFlowVisualizer
 				this.highlight = highlight;
 			}
 
-			// Token: 0x0600913B RID: 37179 RVA: 0x0038C3D8 File Offset: 0x0038A5D8
 			public static void InitializeResources()
 			{
 				ConduitFlowVisualizer.RenderMeshPerThreadData.Ball.uv_packs[ConduitFlow.FlowDirections.None] = new ConduitFlowVisualizer.RenderMeshPerThreadData.Ball.UVPack
@@ -574,63 +500,46 @@ public class ConduitFlowVisualizer
 				ConduitFlowVisualizer.RenderMeshPerThreadData.Ball.uv_packs[ConduitFlow.FlowDirections.Down] = ConduitFlowVisualizer.RenderMeshPerThreadData.Ball.uv_packs[ConduitFlow.FlowDirections.Up];
 			}
 
-			// Token: 0x0600913C RID: 37180 RVA: 0x00103600 File Offset: 0x00101800
 			private static ConduitFlowVisualizer.RenderMeshPerThreadData.Ball.UVPack GetUVPack(ConduitFlow.FlowDirections direction)
 			{
 				return ConduitFlowVisualizer.RenderMeshPerThreadData.Ball.uv_packs[direction];
 			}
 
-			// Token: 0x0600913D RID: 37181 RVA: 0x0038C4E0 File Offset: 0x0038A6E0
 			public void Consume(ConduitFlowVisualizer.ConduitFlowMesh mesh)
 			{
 				ConduitFlowVisualizer.RenderMeshPerThreadData.Ball.UVPack uvpack = ConduitFlowVisualizer.RenderMeshPerThreadData.Ball.GetUVPack(this.direction);
 				mesh.AddQuad(this.pos, this.color, this.size, (float)(this.foreground ? 1 : 0), (float)(this.highlight ? 1 : 0), uvpack.bl, uvpack.tl, uvpack.br, uvpack.tr);
 			}
 
-			// Token: 0x04006DDD RID: 28125
 			private Vector2 pos;
 
-			// Token: 0x04006DDE RID: 28126
 			private float size;
 
-			// Token: 0x04006DDF RID: 28127
 			private Color32 color;
 
-			// Token: 0x04006DE0 RID: 28128
 			private ConduitFlow.FlowDirections direction;
 
-			// Token: 0x04006DE1 RID: 28129
 			private bool foreground;
 
-			// Token: 0x04006DE2 RID: 28130
 			private bool highlight;
 
-			// Token: 0x04006DE3 RID: 28131
 			private static Dictionary<ConduitFlow.FlowDirections, ConduitFlowVisualizer.RenderMeshPerThreadData.Ball.UVPack> uv_packs = new Dictionary<ConduitFlow.FlowDirections, ConduitFlowVisualizer.RenderMeshPerThreadData.Ball.UVPack>();
 
-			// Token: 0x02001B13 RID: 6931
 			private class UVPack
 			{
-				// Token: 0x04006DE4 RID: 28132
 				public Vector2I bl;
 
-				// Token: 0x04006DE5 RID: 28133
 				public Vector2I tl;
 
-				// Token: 0x04006DE6 RID: 28134
 				public Vector2I br;
 
-				// Token: 0x04006DE7 RID: 28135
 				public Vector2I tr;
 			}
 		}
 	}
 
-	// Token: 0x02001B14 RID: 6932
 	private class RenderMeshBatchJob : WorkItemCollectionWithThreadContex<ConduitFlowVisualizer.RenderMeshContext, ConduitFlowVisualizer.RenderMeshPerThreadData>
 	{
-		// Token: 0x170009A2 RID: 2466
-		// (get) Token: 0x06009140 RID: 37184 RVA: 0x00103619 File Offset: 0x00101819
 		public static ConduitFlowVisualizer.RenderMeshBatchJob Instance
 		{
 			get
@@ -643,7 +552,6 @@ public class ConduitFlowVisualizer
 			}
 		}
 
-		// Token: 0x06009141 RID: 37185 RVA: 0x0038C544 File Offset: 0x0038A744
 		public RenderMeshBatchJob()
 		{
 			this.threadContexts = new List<ConduitFlowVisualizer.RenderMeshPerThreadData>();
@@ -653,7 +561,6 @@ public class ConduitFlowVisualizer
 			}
 		}
 
-		// Token: 0x06009142 RID: 37186 RVA: 0x00103647 File Offset: 0x00101847
 		public void Reset(ConduitFlowVisualizer.RenderMeshContext context)
 		{
 			this.sharedData = context;
@@ -665,7 +572,6 @@ public class ConduitFlowVisualizer
 			this.count = (context.visible_conduits.Count + 32 - 1) / 32;
 		}
 
-		// Token: 0x06009143 RID: 37187 RVA: 0x0038C584 File Offset: 0x0038A784
 		public override void RunItem(int item, ref ConduitFlowVisualizer.RenderMeshContext shared_data, ConduitFlowVisualizer.RenderMeshPerThreadData thread_context, int threadIndex)
 		{
 			Element element = null;
@@ -739,7 +645,6 @@ public class ConduitFlowVisualizer
 			}
 		}
 
-		// Token: 0x06009144 RID: 37188 RVA: 0x0038C940 File Offset: 0x0038AB40
 		public void Finish(ConduitFlowVisualizer.ConduitFlowMesh moving_ball_mesh, ConduitFlowVisualizer.ConduitFlowMesh static_ball_mesh, Vector3 camera_pos, ConduitFlowVisualizer visualizer)
 		{
 			foreach (ConduitFlowVisualizer.RenderMeshPerThreadData renderMeshPerThreadData in this.threadContexts)
@@ -749,10 +654,8 @@ public class ConduitFlowVisualizer
 			this.sharedData.Finish();
 		}
 
-		// Token: 0x04006DE8 RID: 28136
 		private const int kBatchSize = 32;
 
-		// Token: 0x04006DE9 RID: 28137
 		private static ConduitFlowVisualizer.RenderMeshBatchJob instance;
 	}
 }

@@ -3,12 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02001088 RID: 4232
 [SkipSaveFileSerialization]
 [AddComponentMenu("KMonoBehaviour/scripts/Wire")]
 public class Wire : KMonoBehaviour, IDisconnectable, IFirstFrameCallback, IWattageRating, IHaveUtilityNetworkMgr, IBridgedNetworkItem
 {
-	// Token: 0x060055EB RID: 21995 RVA: 0x0028E244 File Offset: 0x0028C444
 	public static float GetMaxWattageAsFloat(Wire.WattageRating rating)
 	{
 		switch (rating)
@@ -28,8 +26,6 @@ public class Wire : KMonoBehaviour, IDisconnectable, IFirstFrameCallback, IWatta
 		}
 	}
 
-	// Token: 0x170004F1 RID: 1265
-	// (get) Token: 0x060055EC RID: 21996 RVA: 0x0028E290 File Offset: 0x0028C490
 	public bool IsConnected
 	{
 		get
@@ -39,8 +35,6 @@ public class Wire : KMonoBehaviour, IDisconnectable, IFirstFrameCallback, IWatta
 		}
 	}
 
-	// Token: 0x170004F2 RID: 1266
-	// (get) Token: 0x060055ED RID: 21997 RVA: 0x0028E2C8 File Offset: 0x0028C4C8
 	public ushort NetworkID
 	{
 		get
@@ -55,7 +49,6 @@ public class Wire : KMonoBehaviour, IDisconnectable, IFirstFrameCallback, IWatta
 		}
 	}
 
-	// Token: 0x060055EE RID: 21998 RVA: 0x0028E30C File Offset: 0x0028C50C
 	protected override void OnSpawn()
 	{
 		int cell = Grid.PosToCell(base.transform.GetPosition());
@@ -68,7 +61,6 @@ public class Wire : KMonoBehaviour, IDisconnectable, IFirstFrameCallback, IWatta
 		base.GetComponent<KBatchedAnimController>().SetSymbolVisiblity(Wire.OutlineSymbol, false);
 	}
 
-	// Token: 0x060055EF RID: 21999 RVA: 0x0028E39C File Offset: 0x0028C59C
 	protected override void OnCleanUp()
 	{
 		int cell = Grid.PosToCell(base.transform.GetPosition());
@@ -82,7 +74,6 @@ public class Wire : KMonoBehaviour, IDisconnectable, IFirstFrameCallback, IWatta
 		base.OnCleanUp();
 	}
 
-	// Token: 0x060055F0 RID: 22000 RVA: 0x0028E428 File Offset: 0x0028C628
 	private void InitializeSwitchState()
 	{
 		int cell = Grid.PosToCell(base.transform.GetPosition());
@@ -103,33 +94,28 @@ public class Wire : KMonoBehaviour, IDisconnectable, IFirstFrameCallback, IWatta
 		}
 	}
 
-	// Token: 0x060055F1 RID: 22001 RVA: 0x0028E484 File Offset: 0x0028C684
 	public UtilityConnections GetWireConnections()
 	{
 		int cell = Grid.PosToCell(base.transform.GetPosition());
 		return Game.Instance.electricalConduitSystem.GetConnections(cell, true);
 	}
 
-	// Token: 0x060055F2 RID: 22002 RVA: 0x0028E4B4 File Offset: 0x0028C6B4
 	public string GetWireConnectionsString()
 	{
 		UtilityConnections wireConnections = this.GetWireConnections();
 		return Game.Instance.electricalConduitSystem.GetVisualizerString(wireConnections);
 	}
 
-	// Token: 0x060055F3 RID: 22003 RVA: 0x000DC813 File Offset: 0x000DAA13
 	private void OnBuildingBroken(object data)
 	{
 		this.Disconnect();
 	}
 
-	// Token: 0x060055F4 RID: 22004 RVA: 0x000DC81B File Offset: 0x000DAA1B
 	private void OnBuildingFullyRepaired(object data)
 	{
 		this.InitializeSwitchState();
 	}
 
-	// Token: 0x060055F5 RID: 22005 RVA: 0x0028E4D8 File Offset: 0x0028C6D8
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -194,19 +180,16 @@ public class Wire : KMonoBehaviour, IDisconnectable, IFirstFrameCallback, IWatta
 		}
 	}
 
-	// Token: 0x060055F6 RID: 22006 RVA: 0x000DC823 File Offset: 0x000DAA23
 	public Wire.WattageRating GetMaxWattageRating()
 	{
 		return this.MaxWattageRating;
 	}
 
-	// Token: 0x060055F7 RID: 22007 RVA: 0x000DC82B File Offset: 0x000DAA2B
 	public bool IsDisconnected()
 	{
 		return this.disconnected;
 	}
 
-	// Token: 0x060055F8 RID: 22008 RVA: 0x0028E590 File Offset: 0x0028C790
 	public bool Connect()
 	{
 		BuildingHP component = base.GetComponent<BuildingHP>();
@@ -218,7 +201,6 @@ public class Wire : KMonoBehaviour, IDisconnectable, IFirstFrameCallback, IWatta
 		return !this.disconnected;
 	}
 
-	// Token: 0x060055F9 RID: 22009 RVA: 0x0028E5D8 File Offset: 0x0028C7D8
 	public void Disconnect()
 	{
 		this.disconnected = true;
@@ -226,14 +208,12 @@ public class Wire : KMonoBehaviour, IDisconnectable, IFirstFrameCallback, IWatta
 		Game.Instance.electricalConduitSystem.ForceRebuildNetworks();
 	}
 
-	// Token: 0x060055FA RID: 22010 RVA: 0x000DC833 File Offset: 0x000DAA33
 	public void SetFirstFrameCallback(System.Action ffCb)
 	{
 		this.firstFrameCallback = ffCb;
 		base.StartCoroutine(this.RunCallback());
 	}
 
-	// Token: 0x060055FB RID: 22011 RVA: 0x000DC849 File Offset: 0x000DAA49
 	private IEnumerator RunCallback()
 	{
 		yield return null;
@@ -246,13 +226,11 @@ public class Wire : KMonoBehaviour, IDisconnectable, IFirstFrameCallback, IWatta
 		yield break;
 	}
 
-	// Token: 0x060055FC RID: 22012 RVA: 0x000DC858 File Offset: 0x000DAA58
 	public IUtilityNetworkMgr GetNetworkManager()
 	{
 		return Game.Instance.electricalConduitSystem;
 	}
 
-	// Token: 0x060055FD RID: 22013 RVA: 0x0028E628 File Offset: 0x0028C828
 	public void AddNetworks(ICollection<UtilityNetwork> networks)
 	{
 		int cell = Grid.PosToCell(base.transform.GetPosition());
@@ -263,7 +241,6 @@ public class Wire : KMonoBehaviour, IDisconnectable, IFirstFrameCallback, IWatta
 		}
 	}
 
-	// Token: 0x060055FE RID: 22014 RVA: 0x0028E664 File Offset: 0x0028C864
 	public bool IsConnectedToNetworks(ICollection<UtilityNetwork> networks)
 	{
 		int cell = Grid.PosToCell(base.transform.GetPosition());
@@ -271,61 +248,44 @@ public class Wire : KMonoBehaviour, IDisconnectable, IFirstFrameCallback, IWatta
 		return networks.Contains(networkForCell);
 	}
 
-	// Token: 0x060055FF RID: 22015 RVA: 0x000C1501 File Offset: 0x000BF701
 	public int GetNetworkCell()
 	{
 		return Grid.PosToCell(this);
 	}
 
-	// Token: 0x04003CD0 RID: 15568
 	[SerializeField]
 	public Wire.WattageRating MaxWattageRating;
 
-	// Token: 0x04003CD1 RID: 15569
 	[SerializeField]
 	private bool disconnected = true;
 
-	// Token: 0x04003CD2 RID: 15570
 	public static readonly KAnimHashedString OutlineSymbol = new KAnimHashedString("outline");
 
-	// Token: 0x04003CD3 RID: 15571
 	public float circuitOverloadTime;
 
-	// Token: 0x04003CD4 RID: 15572
 	private static readonly EventSystem.IntraObjectHandler<Wire> OnBuildingBrokenDelegate = new EventSystem.IntraObjectHandler<Wire>(delegate(Wire component, object data)
 	{
 		component.OnBuildingBroken(data);
 	});
 
-	// Token: 0x04003CD5 RID: 15573
 	private static readonly EventSystem.IntraObjectHandler<Wire> OnBuildingFullyRepairedDelegate = new EventSystem.IntraObjectHandler<Wire>(delegate(Wire component, object data)
 	{
 		component.OnBuildingFullyRepaired(data);
 	});
 
-	// Token: 0x04003CD6 RID: 15574
 	private static StatusItem WireCircuitStatus = null;
 
-	// Token: 0x04003CD7 RID: 15575
 	private static StatusItem WireMaxWattageStatus = null;
 
-	// Token: 0x04003CD8 RID: 15576
 	private System.Action firstFrameCallback;
 
-	// Token: 0x02001089 RID: 4233
 	public enum WattageRating
 	{
-		// Token: 0x04003CDA RID: 15578
 		Max500,
-		// Token: 0x04003CDB RID: 15579
 		Max1000,
-		// Token: 0x04003CDC RID: 15580
 		Max2000,
-		// Token: 0x04003CDD RID: 15581
 		Max20000,
-		// Token: 0x04003CDE RID: 15582
 		Max50000,
-		// Token: 0x04003CDF RID: 15583
 		NumRatings
 	}
 }

@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000042 RID: 66
 [AddComponentMenu("KMonoBehaviour/scripts/CargoBay")]
 public class CargoBayConduit : KMonoBehaviour
 {
-	// Token: 0x06000122 RID: 290 RVA: 0x0014B730 File Offset: 0x00149930
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -27,7 +25,6 @@ public class CargoBayConduit : KMonoBehaviour
 		this.UpdateStatusItems();
 	}
 
-	// Token: 0x06000123 RID: 291 RVA: 0x0014B844 File Offset: 0x00149A44
 	protected override void OnCleanUp()
 	{
 		LaunchPad currentPad = base.GetComponent<RocketModuleCluster>().CraftInterface.CurrentPad;
@@ -38,7 +35,6 @@ public class CargoBayConduit : KMonoBehaviour
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06000124 RID: 292 RVA: 0x0014B888 File Offset: 0x00149A88
 	public void OnLaunch(object data)
 	{
 		ConduitDispenser component = base.GetComponent<ConduitDispenser>();
@@ -49,7 +45,6 @@ public class CargoBayConduit : KMonoBehaviour
 		base.GetComponent<RocketModuleCluster>().CraftInterface.CurrentPad.Unsubscribe(-1009905786, new Action<object>(this.OnLaunchpadChainChanged));
 	}
 
-	// Token: 0x06000125 RID: 293 RVA: 0x0014B8D4 File Offset: 0x00149AD4
 	public void OnLand(object data)
 	{
 		ConduitDispenser component = base.GetComponent<ConduitDispenser>();
@@ -76,13 +71,11 @@ public class CargoBayConduit : KMonoBehaviour
 		this.UpdateStatusItems();
 	}
 
-	// Token: 0x06000126 RID: 294 RVA: 0x000AA587 File Offset: 0x000A8787
 	private void OnLaunchpadChainChanged(object data)
 	{
 		this.UpdateStatusItems();
 	}
 
-	// Token: 0x06000127 RID: 295 RVA: 0x0014B948 File Offset: 0x00149B48
 	private void UpdateStatusItems()
 	{
 		bool flag;
@@ -102,7 +95,6 @@ public class CargoBayConduit : KMonoBehaviour
 		this.connectedConduitPortStatusItem = component.ReplaceStatusItem(this.connectedConduitPortStatusItem, CargoBayConduit.connectedNoPortStatus, this);
 	}
 
-	// Token: 0x06000128 RID: 296 RVA: 0x0014B9B8 File Offset: 0x00149BB8
 	private void HasMatchingConduitPort(out bool hasMatch, out bool hasAny)
 	{
 		hasMatch = false;
@@ -135,7 +127,6 @@ public class CargoBayConduit : KMonoBehaviour
 		pooledHashSet.Recycle();
 	}
 
-	// Token: 0x040000B0 RID: 176
 	public static Dictionary<ConduitType, CargoBay.CargoType> ElementToCargoMap = new Dictionary<ConduitType, CargoBay.CargoType>
 	{
 		{
@@ -152,30 +143,23 @@ public class CargoBayConduit : KMonoBehaviour
 		}
 	};
 
-	// Token: 0x040000B1 RID: 177
 	private static readonly EventSystem.IntraObjectHandler<CargoBayConduit> OnLaunchDelegate = new EventSystem.IntraObjectHandler<CargoBayConduit>(delegate(CargoBayConduit component, object data)
 	{
 		component.OnLaunch(data);
 	});
 
-	// Token: 0x040000B2 RID: 178
 	private static readonly EventSystem.IntraObjectHandler<CargoBayConduit> OnLandDelegate = new EventSystem.IntraObjectHandler<CargoBayConduit>(delegate(CargoBayConduit component, object data)
 	{
 		component.OnLand(data);
 	});
 
-	// Token: 0x040000B3 RID: 179
 	private static StatusItem connectedPortStatus;
 
-	// Token: 0x040000B4 RID: 180
 	private static StatusItem connectedWrongPortStatus;
 
-	// Token: 0x040000B5 RID: 181
 	private static StatusItem connectedNoPortStatus;
 
-	// Token: 0x040000B6 RID: 182
 	private CargoBay.CargoType storageType;
 
-	// Token: 0x040000B7 RID: 183
 	private Guid connectedConduitPortStatusItem;
 }

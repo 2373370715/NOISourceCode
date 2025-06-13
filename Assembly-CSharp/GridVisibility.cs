@@ -1,11 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02001410 RID: 5136
 [AddComponentMenu("KMonoBehaviour/scripts/GridVisibility")]
 public class GridVisibility : KMonoBehaviour
 {
-	// Token: 0x06006907 RID: 26887 RVA: 0x002E816C File Offset: 0x002E636C
 	protected override void OnSpawn()
 	{
 		Singleton<CellChangeMonitor>.Instance.RegisterCellChangedHandler(base.transform, new System.Action(this.OnCellChange), "GridVisibility.OnSpawn");
@@ -17,7 +15,6 @@ public class GridVisibility : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06006908 RID: 26888 RVA: 0x002E81D0 File Offset: 0x002E63D0
 	private void OnCellChange()
 	{
 		if (base.gameObject.HasTag(GameTags.Dead))
@@ -40,7 +37,6 @@ public class GridVisibility : KMonoBehaviour
 		FogOfWarMask.ClearMask(num);
 	}
 
-	// Token: 0x06006909 RID: 26889 RVA: 0x002E8248 File Offset: 0x002E6448
 	public static void Reveal(int baseX, int baseY, int radius, float innerRadius)
 	{
 		int num = (int)Grid.WorldIdx[baseY * Grid.WidthInCells + baseX];
@@ -64,15 +60,12 @@ public class GridVisibility : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600690A RID: 26890 RVA: 0x000E93BD File Offset: 0x000E75BD
 	protected override void OnCleanUp()
 	{
 		Singleton<CellChangeMonitor>.Instance.UnregisterCellChangedHandler(base.transform, new System.Action(this.OnCellChange));
 	}
 
-	// Token: 0x04004FB6 RID: 20406
 	public int radius = 18;
 
-	// Token: 0x04004FB7 RID: 20407
 	public float innerRadius = 16.5f;
 }

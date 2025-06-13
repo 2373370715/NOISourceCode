@@ -4,10 +4,8 @@ using Database;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001B91 RID: 7057
 public class SandboxStoryTraitToolHoverTextCard : HoverTextConfiguration
 {
-	// Token: 0x06009428 RID: 37928 RVA: 0x0039C8D0 File Offset: 0x0039AAD0
 	public override void UpdateHoverElements(List<KSelectable> hoverObjects)
 	{
 		HoverTextScreen instance = HoverTextScreen.Instance;

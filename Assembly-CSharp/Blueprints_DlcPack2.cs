@@ -1,16 +1,13 @@
 ﻿using System;
 using Database;
 
-// Token: 0x020009A8 RID: 2472
 public class Blueprints_DlcPack2 : BlueprintProvider
 {
-	// Token: 0x06002C39 RID: 11321 RVA: 0x000AA536 File Offset: 0x000A8736
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.DLC2;
 	}
 
-	// Token: 0x06002C3A RID: 11322 RVA: 0x001F0148 File Offset: 0x001EE348
 	public override void SetupBlueprints()
 	{
 		base.AddBuilding("Headquarters", PermitRarity.Universal, "permit_headquarters_ceres", "hqbase_ice_kanim");

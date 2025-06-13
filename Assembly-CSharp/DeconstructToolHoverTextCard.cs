@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001B17 RID: 6935
 public class DeconstructToolHoverTextCard : HoverTextConfiguration
 {
-	// Token: 0x0600914E RID: 37198 RVA: 0x0038CC0C File Offset: 0x0038AE0C
 	public override void UpdateHoverElements(List<KSelectable> selected)
 	{
 		string lastEnabledFilter = ToolMenu.Instance.toolParameterMenu.GetLastEnabledFilter();
@@ -29,7 +27,6 @@ public class DeconstructToolHoverTextCard : HoverTextConfiguration
 		hoverTextDrawer.EndDrawing();
 	}
 
-	// Token: 0x0600914F RID: 37199 RVA: 0x0038CCAC File Offset: 0x0038AEAC
 	protected override void ConfigureTitle(HoverTextScreen screen)
 	{
 		string lastEnabledFilter = ToolMenu.Instance.toolParameterMenu.GetLastEnabledFilter();
@@ -44,6 +41,5 @@ public class DeconstructToolHoverTextCard : HoverTextConfiguration
 		this.lastUpdatedFilter = lastEnabledFilter;
 	}
 
-	// Token: 0x04006DF1 RID: 28145
 	private string lastUpdatedFilter;
 }

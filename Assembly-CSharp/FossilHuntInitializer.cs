@@ -5,10 +5,8 @@ using Klei.AI;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x0200033D RID: 829
 public class FossilHuntInitializer : StoryTraitStateMachine<FossilHuntInitializer, FossilHuntInitializer.Instance, FossilHuntInitializer.Def>
 {
-	// Token: 0x06000D0B RID: 3339 RVA: 0x0017BFC4 File Offset: 0x0017A1C4
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.Inactive;
@@ -18,7 +16,6 @@ public class FossilHuntInitializer : StoryTraitStateMachine<FossilHuntInitialize
 		this.Active.StoryComplete.Enter(new StateMachine<FossilHuntInitializer, FossilHuntInitializer.Instance, StateMachineController, FossilHuntInitializer.Def>.State.Callback(FossilHuntInitializer.CompleteStoryTrait));
 	}
 
-	// Token: 0x06000D0C RID: 3340 RVA: 0x0017C078 File Offset: 0x0017A278
 	public static bool OnUI_Quest_ObjectiveRowClicked(string rowLinkID)
 	{
 		rowLinkID = rowLinkID.ToUpper();
@@ -45,7 +42,6 @@ public class FossilHuntInitializer : StoryTraitStateMachine<FossilHuntInitialize
 		return false;
 	}
 
-	// Token: 0x06000D0D RID: 3341 RVA: 0x0017C1A4 File Offset: 0x0017A3A4
 	public static void CompleteStoryTrait(FossilHuntInitializer.Instance smi)
 	{
 		StoryInstance storyInstance = StoryManager.Instance.GetStoryInstance(Db.Get().Stories.FossilHunt.HashId);
@@ -61,13 +57,11 @@ public class FossilHuntInitializer : StoryTraitStateMachine<FossilHuntInitialize
 		smi.CompleteEvent();
 	}
 
-	// Token: 0x06000D0E RID: 3342 RVA: 0x000AFFB1 File Offset: 0x000AE1B1
 	public static string ResolveStrings_QuestObjectivesRowTooltips(string originalText, object obj)
 	{
 		return originalText + CODEX.STORY_TRAITS.FOSSILHUNT.QUEST.LINKED_TOOLTIP;
 	}
 
-	// Token: 0x06000D0F RID: 3343 RVA: 0x0017C1F8 File Offset: 0x0017A3F8
 	public static string ResolveQuestTitle(string title, QuestInstance quest)
 	{
 		int discoveredDigsitesRequired = FossilDigSiteConfig.DiscoveredDigsitesRequired;
@@ -75,7 +69,6 @@ public class FossilHuntInitializer : StoryTraitStateMachine<FossilHuntInitialize
 		return title + " - " + str;
 	}
 
-	// Token: 0x06000D10 RID: 3344 RVA: 0x0017C240 File Offset: 0x0017A440
 	public static ICheckboxListGroupControl.ListGroup[] GetFossilHuntQuestData()
 	{
 		QuestInstance quest = QuestManager.GetInstance(FossilDigSiteConfig.hashID, Db.Get().Quests.FossilHuntQuest);
@@ -95,28 +88,20 @@ public class FossilHuntInitializer : StoryTraitStateMachine<FossilHuntInitialize
 		return new ICheckboxListGroupControl.ListGroup[0];
 	}
 
-	// Token: 0x040009BA RID: 2490
 	private GameStateMachine<FossilHuntInitializer, FossilHuntInitializer.Instance, StateMachineController, FossilHuntInitializer.Def>.State Inactive;
 
-	// Token: 0x040009BB RID: 2491
 	private FossilHuntInitializer.ActiveState Active;
 
-	// Token: 0x040009BC RID: 2492
 	public StateMachine<FossilHuntInitializer, FossilHuntInitializer.Instance, StateMachineController, FossilHuntInitializer.Def>.BoolParameter storyCompleted;
 
-	// Token: 0x040009BD RID: 2493
 	public StateMachine<FossilHuntInitializer, FossilHuntInitializer.Instance, StateMachineController, FossilHuntInitializer.Def>.BoolParameter wasStoryStarted;
 
-	// Token: 0x040009BE RID: 2494
 	public StateMachine<FossilHuntInitializer, FossilHuntInitializer.Instance, StateMachineController, FossilHuntInitializer.Def>.Signal CompleteStory;
 
-	// Token: 0x040009BF RID: 2495
 	public const string LINK_OVERRIDE_PREFIX = "MOVECAMERATO";
 
-	// Token: 0x0200033E RID: 830
 	public class Def : StoryTraitStateMachine<FossilHuntInitializer, FossilHuntInitializer.Instance, FossilHuntInitializer.Def>.TraitDef
 	{
-		// Token: 0x06000D12 RID: 3346 RVA: 0x0017C300 File Offset: 0x0017A500
 		public override void Configure(GameObject prefab)
 		{
 			this.Story = Db.Get().Stories.FossilHunt;
@@ -146,33 +131,24 @@ public class FossilHuntInitializer : StoryTraitStateMachine<FossilHuntInitialize
 			};
 		}
 
-		// Token: 0x040009C0 RID: 2496
 		public const string LORE_UNLOCK_PREFIX = "story_trait_fossilhunt_";
 
-		// Token: 0x040009C1 RID: 2497
 		public bool IsMainDigsite;
 	}
 
-	// Token: 0x0200033F RID: 831
 	public class ActiveState : GameStateMachine<FossilHuntInitializer, FossilHuntInitializer.Instance, StateMachineController, FossilHuntInitializer.Def>.State
 	{
-		// Token: 0x040009C2 RID: 2498
 		public GameStateMachine<FossilHuntInitializer, FossilHuntInitializer.Instance, StateMachineController, FossilHuntInitializer.Def>.State inProgress;
 
-		// Token: 0x040009C3 RID: 2499
 		public GameStateMachine<FossilHuntInitializer, FossilHuntInitializer.Instance, StateMachineController, FossilHuntInitializer.Def>.State StoryComplete;
 	}
 
-	// Token: 0x02000340 RID: 832
 	public new class Instance : StoryTraitStateMachine<FossilHuntInitializer, FossilHuntInitializer.Instance, FossilHuntInitializer.Def>.TraitInstance
 	{
-		// Token: 0x06000D15 RID: 3349 RVA: 0x000AFFDB File Offset: 0x000AE1DB
 		public Instance(StateMachineController master, FossilHuntInitializer.Def def) : base(master, def)
 		{
 		}
 
-		// Token: 0x17000037 RID: 55
-		// (get) Token: 0x06000D16 RID: 3350 RVA: 0x000AFFE5 File Offset: 0x000AE1E5
 		public string Title
 		{
 			get
@@ -181,8 +157,6 @@ public class FossilHuntInitializer : StoryTraitStateMachine<FossilHuntInitialize
 			}
 		}
 
-		// Token: 0x17000038 RID: 56
-		// (get) Token: 0x06000D17 RID: 3351 RVA: 0x000AFFF1 File Offset: 0x000AE1F1
 		public string Description
 		{
 			get
@@ -191,7 +165,6 @@ public class FossilHuntInitializer : StoryTraitStateMachine<FossilHuntInitialize
 			}
 		}
 
-		// Token: 0x06000D18 RID: 3352 RVA: 0x0017C418 File Offset: 0x0017A618
 		public override void StartSM()
 		{
 			base.StartSM();
@@ -220,7 +193,6 @@ public class FossilHuntInitializer : StoryTraitStateMachine<FossilHuntInitialize
 			storyInstance2.StoryStateChanged = (Action<StoryInstance.State>)Delegate.Combine(storyInstance2.StoryStateChanged, new Action<StoryInstance.State>(this.OnStoryStateChanged));
 		}
 
-		// Token: 0x06000D19 RID: 3353 RVA: 0x0017C4D8 File Offset: 0x0017A6D8
 		protected override void OnCleanUp()
 		{
 			StoryInstance storyInstance = StoryManager.Instance.GetStoryInstance(Db.Get().Stories.FossilHunt.HashId);
@@ -232,7 +204,6 @@ public class FossilHuntInitializer : StoryTraitStateMachine<FossilHuntInitialize
 			base.OnCleanUp();
 		}
 
-		// Token: 0x06000D1A RID: 3354 RVA: 0x000AFFFD File Offset: 0x000AE1FD
 		private void OnStoryStateChanged(StoryInstance.State state)
 		{
 			if (state == StoryInstance.State.IN_PROGRESS)
@@ -241,7 +212,6 @@ public class FossilHuntInitializer : StoryTraitStateMachine<FossilHuntInitialize
 			}
 		}
 
-		// Token: 0x06000D1B RID: 3355 RVA: 0x0017C530 File Offset: 0x0017A730
 		protected override void OnObjectSelect(object clicked)
 		{
 			if (!StoryManager.Instance.HasDisplayedPopup(base.def.Story, EventInfoDataHelper.PopupType.BEGIN))
@@ -265,7 +235,6 @@ public class FossilHuntInitializer : StoryTraitStateMachine<FossilHuntInitialize
 			}
 		}
 
-		// Token: 0x06000D1C RID: 3356 RVA: 0x000B0017 File Offset: 0x000AE217
 		public override void OnPopupClosed()
 		{
 			if (!StoryManager.Instance.HasDisplayedPopup(base.def.Story, EventInfoDataHelper.PopupType.COMPLETE))
@@ -275,7 +244,6 @@ public class FossilHuntInitializer : StoryTraitStateMachine<FossilHuntInitialize
 			base.OnPopupClosed();
 		}
 
-		// Token: 0x06000D1D RID: 3357 RVA: 0x0017C5D8 File Offset: 0x0017A7D8
 		protected override void OnBuildingActivated(object activated)
 		{
 			StoryInstance storyInstance = StoryManager.Instance.GetStoryInstance(Db.Get().Stories.MegaBrainTank.HashId);
@@ -288,7 +256,6 @@ public class FossilHuntInitializer : StoryTraitStateMachine<FossilHuntInitialize
 			base.OnBuildingActivated(activated);
 		}
 
-		// Token: 0x06000D1E RID: 3358 RVA: 0x000B003E File Offset: 0x000AE23E
 		public void RevealMajorFossilDigSites()
 		{
 			this.RevealAll(8, new Tag[]
@@ -297,7 +264,6 @@ public class FossilHuntInitializer : StoryTraitStateMachine<FossilHuntInitialize
 			});
 		}
 
-		// Token: 0x06000D1F RID: 3359 RVA: 0x0017C638 File Offset: 0x0017A838
 		public void RevealMinorFossilDigSites()
 		{
 			this.RevealAll(3, new Tag[]
@@ -308,7 +274,6 @@ public class FossilHuntInitializer : StoryTraitStateMachine<FossilHuntInitialize
 			});
 		}
 
-		// Token: 0x06000D20 RID: 3360 RVA: 0x0017C688 File Offset: 0x0017A888
 		private void RevealAll(int radius, params Tag[] tags)
 		{
 			foreach (WorldGenSpawner.Spawnable spawnable in SaveGame.Instance.worldGenSpawner.GetSpawnablesWithTag(false, tags))
@@ -320,7 +285,6 @@ public class FossilHuntInitializer : StoryTraitStateMachine<FossilHuntInitialize
 			}
 		}
 
-		// Token: 0x06000D21 RID: 3361 RVA: 0x000B005E File Offset: 0x000AE25E
 		public override void OnCompleteStorySequence()
 		{
 			if (base.def.IsMainDigsite)
@@ -329,7 +293,6 @@ public class FossilHuntInitializer : StoryTraitStateMachine<FossilHuntInitialize
 			}
 		}
 
-		// Token: 0x06000D22 RID: 3362 RVA: 0x0017C6F8 File Offset: 0x0017A8F8
 		public void ShowLoreUnlockedPopup(int popupID)
 		{
 			InfoDialogScreen infoDialogScreen = LoreBearer.ShowPopupDialog().SetHeader(CODEX.STORY_TRAITS.FOSSILHUNT.UNLOCK_DNADATA_POPUP.NAME).AddDefaultOK(false);
@@ -343,7 +306,6 @@ public class FossilHuntInitializer : StoryTraitStateMachine<FossilHuntInitialize
 			infoDialogScreen.AddPlainText(GravitasCreatureManipulatorConfig.GetBodyContentForUnknownSpecies());
 		}
 
-		// Token: 0x06000D23 RID: 3363 RVA: 0x0017C77C File Offset: 0x0017A97C
 		public void ShowObjectiveCompletedNotification()
 		{
 			FossilHuntInitializer.Instance.<>c__DisplayClass16_0 CS$<>8__locals1 = new FossilHuntInitializer.Instance.<>c__DisplayClass16_0();
@@ -367,7 +329,6 @@ public class FossilHuntInitializer : StoryTraitStateMachine<FossilHuntInitialize
 			});
 		}
 
-		// Token: 0x06000D24 RID: 3364 RVA: 0x000B0073 File Offset: 0x000AE273
 		public void ShowFirstFossilExcavatedNotification()
 		{
 			this.<ShowFirstFossilExcavatedNotification>g__ShowNotificationAndWaitForClick|17_1().Then(delegate
@@ -376,7 +337,6 @@ public class FossilHuntInitializer : StoryTraitStateMachine<FossilHuntInitialize
 			});
 		}
 
-		// Token: 0x06000D25 RID: 3365 RVA: 0x0017C814 File Offset: 0x0017AA14
 		public void ShowQuestUnlockedPopup()
 		{
 			LoreBearer.ShowPopupDialog().SetHeader(CODEX.STORY_TRAITS.FOSSILHUNT.QUEST_AVAILABLE_POPUP.NAME).AddDefaultOK(false).AddPlainText(CODEX.STORY_TRAITS.FOSSILHUNT.QUEST_AVAILABLE_POPUP.DESCRIPTION.text.Value).AddOption(CODEX.STORY_TRAITS.FOSSILHUNT.QUEST_AVAILABLE_POPUP.CHECK_BUTTON, delegate(InfoDialogScreen dialog)
@@ -386,7 +346,6 @@ public class FossilHuntInitializer : StoryTraitStateMachine<FossilHuntInitialize
 			}, false);
 		}
 
-		// Token: 0x06000D27 RID: 3367 RVA: 0x000B0095 File Offset: 0x000AE295
 		[CompilerGenerated]
 		private Promise <ShowFirstFossilExcavatedNotification>g__ShowNotificationAndWaitForClick|17_1()
 		{

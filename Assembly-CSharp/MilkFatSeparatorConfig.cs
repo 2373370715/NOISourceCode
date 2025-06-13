@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000421 RID: 1057
 public class MilkFatSeparatorConfig : IBuildingConfig
 {
-	// Token: 0x06001193 RID: 4499 RVA: 0x0018FA48 File Offset: 0x0018DC48
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "MilkFatSeparator";
@@ -35,12 +33,10 @@ public class MilkFatSeparatorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001194 RID: 4500 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 	}
 
-	// Token: 0x06001195 RID: 4501 RVA: 0x0018FB08 File Offset: 0x0018DD08
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		Storage storage = go.AddOrGet<Storage>();
@@ -79,40 +75,29 @@ public class MilkFatSeparatorConfig : IBuildingConfig
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x06001196 RID: 4502 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x06001197 RID: 4503 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void ConfigurePost(BuildingDef def)
 	{
 	}
 
-	// Token: 0x04000C42 RID: 3138
 	public const string ID = "MilkFatSeparator";
 
-	// Token: 0x04000C43 RID: 3139
 	public const float INPUT_RATE = 1f;
 
-	// Token: 0x04000C44 RID: 3140
 	public const float MILK_STORED_CAPACITY = 4f;
 
-	// Token: 0x04000C45 RID: 3141
 	public const float MILK_FAT_CAPACITY = 15f;
 
-	// Token: 0x04000C46 RID: 3142
 	public const float EFFICIENCY = 0.9f;
 
-	// Token: 0x04000C47 RID: 3143
 	public const float MILKFAT_PERCENT = 0.1f;
 
-	// Token: 0x04000C48 RID: 3144
 	private const float MILK_TO_FAT_OUTPUT_RATE = 0.089999996f;
 
-	// Token: 0x04000C49 RID: 3145
 	private const float MILK_TO_BRINE_WATER_OUTPUT_RATE = 0.80999994f;
 
-	// Token: 0x04000C4A RID: 3146
 	private const float MILK_TO_CO2_RATE = 0.100000024f;
 }

@@ -8,10 +8,8 @@ using ProcGen;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200129B RID: 4763
 public class EconomyDetails
 {
-	// Token: 0x06006141 RID: 24897 RVA: 0x002BEF90 File Offset: 0x002BD190
 	public EconomyDetails()
 	{
 		this.massResourceType = new EconomyDetails.Resource.Type("Mass", "kg");
@@ -92,7 +90,6 @@ public class EconomyDetails
 		this.transformations.Add(transformation4);
 	}
 
-	// Token: 0x06006142 RID: 24898 RVA: 0x000E3C69 File Offset: 0x000E1E69
 	private static void WriteProduct(StreamWriter o, string a, string b)
 	{
 		o.Write(string.Concat(new string[]
@@ -105,7 +102,6 @@ public class EconomyDetails
 		}));
 	}
 
-	// Token: 0x06006143 RID: 24899 RVA: 0x000E3C9C File Offset: 0x000E1E9C
 	private static void WriteProduct(StreamWriter o, string a, string b, string c)
 	{
 		o.Write(string.Concat(new string[]
@@ -120,7 +116,6 @@ public class EconomyDetails
 		}));
 	}
 
-	// Token: 0x06006144 RID: 24900 RVA: 0x002BF614 File Offset: 0x002BD814
 	public void DumpTransformations(EconomyDetails.Scenario scenario, StreamWriter o)
 	{
 		List<EconomyDetails.Resource> used_resources = new List<EconomyDetails.Resource>();
@@ -299,7 +294,6 @@ public class EconomyDetails
 		o.Write("\nCycles:,=" + text + "/" + str2);
 	}
 
-	// Token: 0x06006145 RID: 24901 RVA: 0x002BFF40 File Offset: 0x002BE140
 	public EconomyDetails.Resource CreateResource(Tag tag, EconomyDetails.Resource.Type resource_type)
 	{
 		foreach (EconomyDetails.Resource resource in this.resources)
@@ -314,13 +308,11 @@ public class EconomyDetails
 		return resource2;
 	}
 
-	// Token: 0x06006146 RID: 24902 RVA: 0x000E3CDB File Offset: 0x000E1EDB
 	public EconomyDetails.Resource CreateResource(Element element)
 	{
 		return this.CreateResource(element.tag, this.massResourceType);
 	}
 
-	// Token: 0x06006147 RID: 24903 RVA: 0x002BFFB8 File Offset: 0x002BE1B8
 	public EconomyDetails.Transformation CreateTransformation(Effect effect)
 	{
 		EconomyDetails.Transformation transformation = new EconomyDetails.Transformation(new Tag(effect.Id), this.effectTransformationType, 1f, false);
@@ -333,7 +325,6 @@ public class EconomyDetails
 		return transformation;
 	}
 
-	// Token: 0x06006148 RID: 24904 RVA: 0x002C0058 File Offset: 0x002BE258
 	public EconomyDetails.Transformation GetTransformation(Tag tag)
 	{
 		foreach (EconomyDetails.Transformation transformation in this.transformations)
@@ -346,7 +337,6 @@ public class EconomyDetails
 		return null;
 	}
 
-	// Token: 0x06006149 RID: 24905 RVA: 0x002C00BC File Offset: 0x002BE2BC
 	public EconomyDetails.Transformation CreateTransformation(KPrefabID prefab_id, Tag tag)
 	{
 		if (tag == new Tag(EconomyDetails.debugTag))
@@ -606,7 +596,6 @@ public class EconomyDetails
 		return transformation;
 	}
 
-	// Token: 0x0600614A RID: 24906 RVA: 0x002C0CBC File Offset: 0x002BEEBC
 	private void CollectDietTransformations(KPrefabID prefab_id)
 	{
 		Trait trait = Db.Get().traits.Get(prefab_id.GetComponent<Modifiers>().initialTraits[0]);
@@ -644,7 +633,6 @@ public class EconomyDetails
 		}
 	}
 
-	// Token: 0x0600614B RID: 24907 RVA: 0x002C0F04 File Offset: 0x002BF104
 	private static void CollectDietScenarios(List<EconomyDetails.Scenario> scenarios)
 	{
 		EconomyDetails.Scenario scenario = new EconomyDetails.Scenario("diets/all", 0f, null);
@@ -670,7 +658,6 @@ public class EconomyDetails
 		scenarios.Add(scenario);
 	}
 
-	// Token: 0x0600614C RID: 24908 RVA: 0x002C1054 File Offset: 0x002BF254
 	public void GatherStartingBiomeAmounts()
 	{
 		for (int i = 0; i < Grid.CellCount; i++)
@@ -686,13 +673,11 @@ public class EconomyDetails
 		}
 	}
 
-	// Token: 0x0600614D RID: 24909 RVA: 0x000E3CEF File Offset: 0x000E1EEF
 	public EconomyDetails.Resource GetResource(SimHashes element)
 	{
 		return this.GetResource(ElementLoader.FindElementByHash(element).tag);
 	}
 
-	// Token: 0x0600614E RID: 24910 RVA: 0x002C10CC File Offset: 0x002BF2CC
 	public EconomyDetails.Resource GetResource(Tag tag)
 	{
 		foreach (EconomyDetails.Resource resource in this.resources)
@@ -710,13 +695,11 @@ public class EconomyDetails
 		return null;
 	}
 
-	// Token: 0x0600614F RID: 24911 RVA: 0x000E3D02 File Offset: 0x000E1F02
 	private float GetDupeBreathingPerSecond(EconomyDetails details)
 	{
 		return details.GetTransformation(TagManager.Create("Duplicant")).GetDelta(details.GetResource(GameTags.Oxygen)).amount;
 	}
 
-	// Token: 0x06006150 RID: 24912 RVA: 0x002C114C File Offset: 0x002BF34C
 	private EconomyDetails.BiomeTransformation CreateBiomeTransformationFromTransformation(EconomyDetails details, Tag transformation_tag, Tag input_resource_tag, Tag output_resource_tag)
 	{
 		EconomyDetails.Resource resource = details.GetResource(input_resource_tag);
@@ -727,7 +710,6 @@ public class EconomyDetails
 		return new EconomyDetails.BiomeTransformation((transformation_tag.Name + input_resource_tag.Name + "Cycles").ToTag(), resource, num / -num2);
 	}
 
-	// Token: 0x06006151 RID: 24913 RVA: 0x002C11C4 File Offset: 0x002BF3C4
 	private static void DumpEconomyDetails()
 	{
 		global::Debug.Log("Starting Economy Details Dump...");
@@ -936,7 +918,6 @@ public class EconomyDetails
 		global::Debug.Log("Completed economy details dump!!");
 	}
 
-	// Token: 0x06006152 RID: 24914 RVA: 0x002C214C File Offset: 0x002C034C
 	private static void DumpNameMapping()
 	{
 		string path = "assets/Tuning/Economy/name_mapping.csv";
@@ -1018,121 +999,78 @@ public class EconomyDetails
 		}
 	}
 
-	// Token: 0x0400457F RID: 17791
 	private List<EconomyDetails.Transformation> transformations = new List<EconomyDetails.Transformation>();
 
-	// Token: 0x04004580 RID: 17792
 	private List<EconomyDetails.Resource> resources = new List<EconomyDetails.Resource>();
 
-	// Token: 0x04004581 RID: 17793
 	public Dictionary<Element, float> startingBiomeAmounts = new Dictionary<Element, float>();
 
-	// Token: 0x04004582 RID: 17794
 	public int startingBiomeCellCount;
 
-	// Token: 0x04004583 RID: 17795
 	public EconomyDetails.Resource energyResource;
 
-	// Token: 0x04004584 RID: 17796
 	public EconomyDetails.Resource heatResource;
 
-	// Token: 0x04004585 RID: 17797
 	public EconomyDetails.Resource duplicantTimeResource;
 
-	// Token: 0x04004586 RID: 17798
 	public EconomyDetails.Resource caloriesResource;
 
-	// Token: 0x04004587 RID: 17799
 	public EconomyDetails.Resource fixedCaloriesResource;
 
-	// Token: 0x04004588 RID: 17800
 	public EconomyDetails.Resource.Type massResourceType;
 
-	// Token: 0x04004589 RID: 17801
 	public EconomyDetails.Resource.Type heatResourceType;
 
-	// Token: 0x0400458A RID: 17802
 	public EconomyDetails.Resource.Type energyResourceType;
 
-	// Token: 0x0400458B RID: 17803
 	public EconomyDetails.Resource.Type timeResourceType;
 
-	// Token: 0x0400458C RID: 17804
 	public EconomyDetails.Resource.Type attributeResourceType;
 
-	// Token: 0x0400458D RID: 17805
 	public EconomyDetails.Resource.Type caloriesResourceType;
 
-	// Token: 0x0400458E RID: 17806
 	public EconomyDetails.Resource.Type amountResourceType;
 
-	// Token: 0x0400458F RID: 17807
 	public EconomyDetails.Transformation.Type buildingTransformationType;
 
-	// Token: 0x04004590 RID: 17808
 	public EconomyDetails.Transformation.Type foodTransformationType;
 
-	// Token: 0x04004591 RID: 17809
 	public EconomyDetails.Transformation.Type plantTransformationType;
 
-	// Token: 0x04004592 RID: 17810
 	public EconomyDetails.Transformation.Type creatureTransformationType;
 
-	// Token: 0x04004593 RID: 17811
 	public EconomyDetails.Transformation.Type dupeTransformationType;
 
-	// Token: 0x04004594 RID: 17812
 	public EconomyDetails.Transformation.Type referenceTransformationType;
 
-	// Token: 0x04004595 RID: 17813
 	public EconomyDetails.Transformation.Type effectTransformationType;
 
-	// Token: 0x04004596 RID: 17814
 	private const string GEYSER_ACTIVE_SUFFIX = "_ActiveOnly";
 
-	// Token: 0x04004597 RID: 17815
 	public EconomyDetails.Transformation.Type geyserActivePeriodTransformationType;
 
-	// Token: 0x04004598 RID: 17816
 	public EconomyDetails.Transformation.Type geyserLifetimeTransformationType;
 
-	// Token: 0x04004599 RID: 17817
 	private static string debugTag = "CO2Scrubber";
 
-	// Token: 0x0200129C RID: 4764
 	public class Resource
 	{
-		// Token: 0x170005D2 RID: 1490
-		// (get) Token: 0x06006154 RID: 24916 RVA: 0x000E3D35 File Offset: 0x000E1F35
-		// (set) Token: 0x06006155 RID: 24917 RVA: 0x000E3D3D File Offset: 0x000E1F3D
 		public Tag tag { get; private set; }
 
-		// Token: 0x170005D3 RID: 1491
-		// (get) Token: 0x06006156 RID: 24918 RVA: 0x000E3D46 File Offset: 0x000E1F46
-		// (set) Token: 0x06006157 RID: 24919 RVA: 0x000E3D4E File Offset: 0x000E1F4E
 		public EconomyDetails.Resource.Type type { get; private set; }
 
-		// Token: 0x06006158 RID: 24920 RVA: 0x000E3D57 File Offset: 0x000E1F57
 		public Resource(Tag tag, EconomyDetails.Resource.Type type)
 		{
 			this.tag = tag;
 			this.type = type;
 		}
 
-		// Token: 0x0200129D RID: 4765
 		public class Type
 		{
-			// Token: 0x170005D4 RID: 1492
-			// (get) Token: 0x06006159 RID: 24921 RVA: 0x000E3D6D File Offset: 0x000E1F6D
-			// (set) Token: 0x0600615A RID: 24922 RVA: 0x000E3D75 File Offset: 0x000E1F75
 			public string id { get; private set; }
 
-			// Token: 0x170005D5 RID: 1493
-			// (get) Token: 0x0600615B RID: 24923 RVA: 0x000E3D7E File Offset: 0x000E1F7E
-			// (set) Token: 0x0600615C RID: 24924 RVA: 0x000E3D86 File Offset: 0x000E1F86
 			public string unit { get; private set; }
 
-			// Token: 0x0600615D RID: 24925 RVA: 0x000E3D8F File Offset: 0x000E1F8F
 			public Type(string id, string unit)
 			{
 				this.id = id;
@@ -1141,25 +1079,14 @@ public class EconomyDetails
 		}
 	}
 
-	// Token: 0x0200129E RID: 4766
 	public class BiomeTransformation
 	{
-		// Token: 0x170005D6 RID: 1494
-		// (get) Token: 0x0600615E RID: 24926 RVA: 0x000E3DA5 File Offset: 0x000E1FA5
-		// (set) Token: 0x0600615F RID: 24927 RVA: 0x000E3DAD File Offset: 0x000E1FAD
 		public Tag tag { get; private set; }
 
-		// Token: 0x170005D7 RID: 1495
-		// (get) Token: 0x06006160 RID: 24928 RVA: 0x000E3DB6 File Offset: 0x000E1FB6
-		// (set) Token: 0x06006161 RID: 24929 RVA: 0x000E3DBE File Offset: 0x000E1FBE
 		public EconomyDetails.Resource resource { get; private set; }
 
-		// Token: 0x170005D8 RID: 1496
-		// (get) Token: 0x06006162 RID: 24930 RVA: 0x000E3DC7 File Offset: 0x000E1FC7
-		// (set) Token: 0x06006163 RID: 24931 RVA: 0x000E3DCF File Offset: 0x000E1FCF
 		public float ratio { get; private set; }
 
-		// Token: 0x06006164 RID: 24932 RVA: 0x000E3DD8 File Offset: 0x000E1FD8
 		public BiomeTransformation(Tag tag, EconomyDetails.Resource resource, float ratio)
 		{
 			this.tag = tag;
@@ -1167,7 +1094,6 @@ public class EconomyDetails
 			this.ratio = ratio;
 		}
 
-		// Token: 0x06006165 RID: 24933 RVA: 0x000E3DF5 File Offset: 0x000E1FF5
 		public float Transform(Element element, float amount)
 		{
 			if (this.resource.tag == element.tag)
@@ -1178,25 +1104,14 @@ public class EconomyDetails
 		}
 	}
 
-	// Token: 0x0200129F RID: 4767
 	public class Ratio
 	{
-		// Token: 0x170005D9 RID: 1497
-		// (get) Token: 0x06006166 RID: 24934 RVA: 0x000E3E1D File Offset: 0x000E201D
-		// (set) Token: 0x06006167 RID: 24935 RVA: 0x000E3E25 File Offset: 0x000E2025
 		public EconomyDetails.Resource input { get; private set; }
 
-		// Token: 0x170005DA RID: 1498
-		// (get) Token: 0x06006168 RID: 24936 RVA: 0x000E3E2E File Offset: 0x000E202E
-		// (set) Token: 0x06006169 RID: 24937 RVA: 0x000E3E36 File Offset: 0x000E2036
 		public EconomyDetails.Resource output { get; private set; }
 
-		// Token: 0x170005DB RID: 1499
-		// (get) Token: 0x0600616A RID: 24938 RVA: 0x000E3E3F File Offset: 0x000E203F
-		// (set) Token: 0x0600616B RID: 24939 RVA: 0x000E3E47 File Offset: 0x000E2047
 		public bool allowNegativeOutput { get; private set; }
 
-		// Token: 0x0600616C RID: 24940 RVA: 0x000E3E50 File Offset: 0x000E2050
 		public Ratio(EconomyDetails.Resource input, EconomyDetails.Resource output, bool allow_negative_output)
 		{
 			this.input = input;
@@ -1205,25 +1120,14 @@ public class EconomyDetails
 		}
 	}
 
-	// Token: 0x020012A0 RID: 4768
 	public class Scenario
 	{
-		// Token: 0x170005DC RID: 1500
-		// (get) Token: 0x0600616D RID: 24941 RVA: 0x000E3E6D File Offset: 0x000E206D
-		// (set) Token: 0x0600616E RID: 24942 RVA: 0x000E3E75 File Offset: 0x000E2075
 		public string name { get; private set; }
 
-		// Token: 0x170005DD RID: 1501
-		// (get) Token: 0x0600616F RID: 24943 RVA: 0x000E3E7E File Offset: 0x000E207E
-		// (set) Token: 0x06006170 RID: 24944 RVA: 0x000E3E86 File Offset: 0x000E2086
 		public float defaultCount { get; private set; }
 
-		// Token: 0x170005DE RID: 1502
-		// (get) Token: 0x06006171 RID: 24945 RVA: 0x000E3E8F File Offset: 0x000E208F
-		// (set) Token: 0x06006172 RID: 24946 RVA: 0x000E3E97 File Offset: 0x000E2097
 		public float timeInSeconds { get; set; }
 
-		// Token: 0x06006173 RID: 24947 RVA: 0x000E3EA0 File Offset: 0x000E20A0
 		public Scenario(string name, float default_count, Func<EconomyDetails.Transformation, bool> filter)
 		{
 			this.name = name;
@@ -1232,13 +1136,11 @@ public class EconomyDetails
 			this.timeInSeconds = 600f;
 		}
 
-		// Token: 0x06006174 RID: 24948 RVA: 0x000E3ED3 File Offset: 0x000E20D3
 		public void AddEntry(EconomyDetails.Scenario.Entry entry)
 		{
 			this.entries.Add(entry);
 		}
 
-		// Token: 0x06006175 RID: 24949 RVA: 0x002C2460 File Offset: 0x002C0660
 		public float GetCount(Tag tag)
 		{
 			foreach (EconomyDetails.Scenario.Entry entry in this.entries)
@@ -1251,7 +1153,6 @@ public class EconomyDetails
 			return this.defaultCount;
 		}
 
-		// Token: 0x06006176 RID: 24950 RVA: 0x002C24CC File Offset: 0x002C06CC
 		public bool IncludesTransformation(EconomyDetails.Transformation transformation)
 		{
 			if (this.filter != null && this.filter(transformation))
@@ -1271,26 +1172,16 @@ public class EconomyDetails
 			return false;
 		}
 
-		// Token: 0x040045A7 RID: 17831
 		private Func<EconomyDetails.Transformation, bool> filter;
 
-		// Token: 0x040045A8 RID: 17832
 		private List<EconomyDetails.Scenario.Entry> entries = new List<EconomyDetails.Scenario.Entry>();
 
-		// Token: 0x020012A1 RID: 4769
 		public class Entry
 		{
-			// Token: 0x170005DF RID: 1503
-			// (get) Token: 0x06006177 RID: 24951 RVA: 0x000E3EE1 File Offset: 0x000E20E1
-			// (set) Token: 0x06006178 RID: 24952 RVA: 0x000E3EE9 File Offset: 0x000E20E9
 			public Tag tag { get; private set; }
 
-			// Token: 0x170005E0 RID: 1504
-			// (get) Token: 0x06006179 RID: 24953 RVA: 0x000E3EF2 File Offset: 0x000E20F2
-			// (set) Token: 0x0600617A RID: 24954 RVA: 0x000E3EFA File Offset: 0x000E20FA
 			public float count { get; private set; }
 
-			// Token: 0x0600617B RID: 24955 RVA: 0x000E3F03 File Offset: 0x000E2103
 			public Entry(Tag tag, float count)
 			{
 				this.tag = tag;
@@ -1299,30 +1190,16 @@ public class EconomyDetails
 		}
 	}
 
-	// Token: 0x020012A2 RID: 4770
 	public class Transformation
 	{
-		// Token: 0x170005E1 RID: 1505
-		// (get) Token: 0x0600617C RID: 24956 RVA: 0x000E3F19 File Offset: 0x000E2119
-		// (set) Token: 0x0600617D RID: 24957 RVA: 0x000E3F21 File Offset: 0x000E2121
 		public Tag tag { get; private set; }
 
-		// Token: 0x170005E2 RID: 1506
-		// (get) Token: 0x0600617E RID: 24958 RVA: 0x000E3F2A File Offset: 0x000E212A
-		// (set) Token: 0x0600617F RID: 24959 RVA: 0x000E3F32 File Offset: 0x000E2132
 		public EconomyDetails.Transformation.Type type { get; private set; }
 
-		// Token: 0x170005E3 RID: 1507
-		// (get) Token: 0x06006180 RID: 24960 RVA: 0x000E3F3B File Offset: 0x000E213B
-		// (set) Token: 0x06006181 RID: 24961 RVA: 0x000E3F43 File Offset: 0x000E2143
 		public float timeInSeconds { get; private set; }
 
-		// Token: 0x170005E4 RID: 1508
-		// (get) Token: 0x06006182 RID: 24962 RVA: 0x000E3F4C File Offset: 0x000E214C
-		// (set) Token: 0x06006183 RID: 24963 RVA: 0x000E3F54 File Offset: 0x000E2154
 		public bool timeInvariant { get; private set; }
 
-		// Token: 0x06006184 RID: 24964 RVA: 0x000E3F5D File Offset: 0x000E215D
 		public Transformation(Tag tag, EconomyDetails.Transformation.Type type, float time_in_seconds, bool timeInvariant = false)
 		{
 			this.tag = tag;
@@ -1331,14 +1208,12 @@ public class EconomyDetails
 			this.timeInvariant = timeInvariant;
 		}
 
-		// Token: 0x06006185 RID: 24965 RVA: 0x000E3F8D File Offset: 0x000E218D
 		public void AddDelta(EconomyDetails.Transformation.Delta delta)
 		{
 			global::Debug.Assert(delta.resource != null);
 			this.deltas.Add(delta);
 		}
 
-		// Token: 0x06006186 RID: 24966 RVA: 0x002C2548 File Offset: 0x002C0748
 		public EconomyDetails.Transformation.Delta GetDelta(EconomyDetails.Resource resource)
 		{
 			foreach (EconomyDetails.Transformation.Delta delta in this.deltas)
@@ -1351,23 +1226,14 @@ public class EconomyDetails
 			return null;
 		}
 
-		// Token: 0x040045AC RID: 17836
 		public List<EconomyDetails.Transformation.Delta> deltas = new List<EconomyDetails.Transformation.Delta>();
 
-		// Token: 0x020012A3 RID: 4771
 		public class Delta
 		{
-			// Token: 0x170005E5 RID: 1509
-			// (get) Token: 0x06006187 RID: 24967 RVA: 0x000E3FA9 File Offset: 0x000E21A9
-			// (set) Token: 0x06006188 RID: 24968 RVA: 0x000E3FB1 File Offset: 0x000E21B1
 			public EconomyDetails.Resource resource { get; private set; }
 
-			// Token: 0x170005E6 RID: 1510
-			// (get) Token: 0x06006189 RID: 24969 RVA: 0x000E3FBA File Offset: 0x000E21BA
-			// (set) Token: 0x0600618A RID: 24970 RVA: 0x000E3FC2 File Offset: 0x000E21C2
 			public float amount { get; set; }
 
-			// Token: 0x0600618B RID: 24971 RVA: 0x000E3FCB File Offset: 0x000E21CB
 			public Delta(EconomyDetails.Resource resource, float amount)
 			{
 				this.resource = resource;
@@ -1375,15 +1241,10 @@ public class EconomyDetails
 			}
 		}
 
-		// Token: 0x020012A4 RID: 4772
 		public class Type
 		{
-			// Token: 0x170005E7 RID: 1511
-			// (get) Token: 0x0600618C RID: 24972 RVA: 0x000E3FE1 File Offset: 0x000E21E1
-			// (set) Token: 0x0600618D RID: 24973 RVA: 0x000E3FE9 File Offset: 0x000E21E9
 			public string id { get; private set; }
 
-			// Token: 0x0600618E RID: 24974 RVA: 0x000E3FF2 File Offset: 0x000E21F2
 			public Type(string id)
 			{
 				this.id = id;

@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000046 RID: 70
 public class CheckpointConfig : IBuildingConfig
 {
-	// Token: 0x0600013A RID: 314 RVA: 0x0014BD50 File Offset: 0x00149F50
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "Checkpoint";
@@ -38,17 +36,14 @@ public class CheckpointConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600013B RID: 315 RVA: 0x000AA627 File Offset: 0x000A8827
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<Checkpoint>();
 	}
 
-	// Token: 0x0600013C RID: 316 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x040000BC RID: 188
 	public const string ID = "Checkpoint";
 }

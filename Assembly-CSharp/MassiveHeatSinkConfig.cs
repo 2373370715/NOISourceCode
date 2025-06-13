@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200040C RID: 1036
 public class MassiveHeatSinkConfig : IBuildingConfig
 {
-	// Token: 0x06001130 RID: 4400 RVA: 0x0018D2A8 File Offset: 0x0018B4A8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "MassiveHeatSink";
@@ -31,7 +29,6 @@ public class MassiveHeatSinkConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001131 RID: 4401 RVA: 0x0018D338 File Offset: 0x0018B538
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
@@ -58,12 +55,9 @@ public class MassiveHeatSinkConfig : IBuildingConfig
 		go.AddOrGet<Demolishable>();
 	}
 
-	// Token: 0x04000BF0 RID: 3056
 	public const string ID = "MassiveHeatSink";
 
-	// Token: 0x04000BF1 RID: 3057
 	private const float CONSUMPTION_RATE = 0.01f;
 
-	// Token: 0x04000BF2 RID: 3058
 	private const float STORAGE_CAPACITY = 0.099999994f;
 }

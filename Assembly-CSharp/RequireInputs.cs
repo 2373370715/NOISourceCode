@@ -1,13 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020017EA RID: 6122
 [SkipSaveFileSerialization]
 [AddComponentMenu("KMonoBehaviour/scripts/RequireInputs")]
 public class RequireInputs : KMonoBehaviour, ISim200ms
 {
-	// Token: 0x170007F2 RID: 2034
-	// (get) Token: 0x06007DEC RID: 32236 RVA: 0x000F76F3 File Offset: 0x000F58F3
 	public bool RequiresPower
 	{
 		get
@@ -16,8 +13,6 @@ public class RequireInputs : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x170007F3 RID: 2035
-	// (get) Token: 0x06007DED RID: 32237 RVA: 0x000F76FB File Offset: 0x000F58FB
 	public bool RequiresInputConduit
 	{
 		get
@@ -26,15 +21,12 @@ public class RequireInputs : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x06007DEE RID: 32238 RVA: 0x000F7703 File Offset: 0x000F5903
 	public void SetRequirements(bool power, bool conduit)
 	{
 		this.requirePower = power;
 		this.requireConduit = conduit;
 	}
 
-	// Token: 0x170007F4 RID: 2036
-	// (get) Token: 0x06007DEF RID: 32239 RVA: 0x000F7713 File Offset: 0x000F5913
 	public bool RequirementsMet
 	{
 		get
@@ -43,20 +35,17 @@ public class RequireInputs : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x06007DF0 RID: 32240 RVA: 0x000F771B File Offset: 0x000F591B
 	protected override void OnPrefabInit()
 	{
 		this.Bind();
 	}
 
-	// Token: 0x06007DF1 RID: 32241 RVA: 0x000F7723 File Offset: 0x000F5923
 	protected override void OnSpawn()
 	{
 		this.CheckRequirements(true);
 		this.Bind();
 	}
 
-	// Token: 0x06007DF2 RID: 32242 RVA: 0x00334B5C File Offset: 0x00332D5C
 	[ContextMenu("Bind")]
 	private void Bind()
 	{
@@ -71,13 +60,11 @@ public class RequireInputs : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x06007DF3 RID: 32243 RVA: 0x000F7732 File Offset: 0x000F5932
 	public void Sim200ms(float dt)
 	{
 		this.CheckRequirements(false);
 	}
 
-	// Token: 0x06007DF4 RID: 32244 RVA: 0x00334BAC File Offset: 0x00332DAC
 	private void CheckRequirements(bool forceEvent)
 	{
 		bool flag = true;
@@ -157,83 +144,57 @@ public class RequireInputs : KMonoBehaviour, ISim200ms
 		}
 	}
 
-	// Token: 0x06007DF5 RID: 32245 RVA: 0x000F773B File Offset: 0x000F593B
 	public bool VisualizeRequirement(RequireInputs.Requirements r)
 	{
 		return (this.visualizeRequirements & r) == r;
 	}
 
-	// Token: 0x04005FA1 RID: 24481
 	[SerializeField]
 	private bool requirePower = true;
 
-	// Token: 0x04005FA2 RID: 24482
 	[SerializeField]
 	private bool requireConduit;
 
-	// Token: 0x04005FA3 RID: 24483
 	public bool requireConduitHasMass = true;
 
-	// Token: 0x04005FA4 RID: 24484
 	public RequireInputs.Requirements visualizeRequirements = RequireInputs.Requirements.All;
 
-	// Token: 0x04005FA5 RID: 24485
 	private static readonly Operational.Flag inputConnectedFlag = new Operational.Flag("inputConnected", Operational.Flag.Type.Requirement);
 
-	// Token: 0x04005FA6 RID: 24486
 	private static readonly Operational.Flag pipesHaveMass = new Operational.Flag("pipesHaveMass", Operational.Flag.Type.Requirement);
 
-	// Token: 0x04005FA7 RID: 24487
 	private Guid noWireStatusGuid;
 
-	// Token: 0x04005FA8 RID: 24488
 	private Guid needPowerStatusGuid;
 
-	// Token: 0x04005FA9 RID: 24489
 	private bool requirementsMet;
 
-	// Token: 0x04005FAA RID: 24490
 	private BuildingEnabledButton button;
 
-	// Token: 0x04005FAB RID: 24491
 	private IEnergyConsumer energy;
 
-	// Token: 0x04005FAC RID: 24492
 	public ConduitConsumer conduitConsumer;
 
-	// Token: 0x04005FAD RID: 24493
 	[MyCmpReq]
 	private KSelectable selectable;
 
-	// Token: 0x04005FAE RID: 24494
 	[MyCmpGet]
 	private Operational operational;
 
-	// Token: 0x04005FAF RID: 24495
 	private bool previouslyConnected = true;
 
-	// Token: 0x04005FB0 RID: 24496
 	private bool previouslySatisfied = true;
 
-	// Token: 0x020017EB RID: 6123
 	[Flags]
 	public enum Requirements
 	{
-		// Token: 0x04005FB2 RID: 24498
 		None = 0,
-		// Token: 0x04005FB3 RID: 24499
 		NoWire = 1,
-		// Token: 0x04005FB4 RID: 24500
 		NeedPower = 2,
-		// Token: 0x04005FB5 RID: 24501
 		ConduitConnected = 4,
-		// Token: 0x04005FB6 RID: 24502
 		ConduitEmpty = 8,
-		// Token: 0x04005FB7 RID: 24503
 		AllPower = 3,
-		// Token: 0x04005FB8 RID: 24504
 		AllConduit = 12,
-		// Token: 0x04005FB9 RID: 24505
 		All = 15
 	}
 }

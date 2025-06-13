@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003F9 RID: 1017
 public class LogicWattageSensorConfig : IBuildingConfig
 {
-	// Token: 0x060010B6 RID: 4278 RVA: 0x0018B948 File Offset: 0x00189B48
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = LogicWattageSensorConfig.ID;
@@ -40,7 +38,6 @@ public class LogicWattageSensorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060010B7 RID: 4279 RVA: 0x000B1C7F File Offset: 0x000AFE7F
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		LogicWattageSensor logicWattageSensor = go.AddOrGet<LogicWattageSensor>();
@@ -49,9 +46,7 @@ public class LogicWattageSensorConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayInFrontOfConduits, false);
 	}
 
-	// Token: 0x04000BA4 RID: 2980
 	public static string ID = "LogicWattageSensor";
 
-	// Token: 0x04000BA5 RID: 2981
 	private static readonly string kanim = "wattage_sensor_kanim";
 }

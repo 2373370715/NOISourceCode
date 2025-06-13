@@ -4,18 +4,15 @@ using System.Runtime.Serialization;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x02000AFD RID: 2813
 [AddComponentMenu("KMonoBehaviour/scripts/Prioritizable")]
 public class Prioritizable : KMonoBehaviour
 {
-	// Token: 0x06003417 RID: 13335 RVA: 0x000C66D0 File Offset: 0x000C48D0
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 		base.Subscribe<Prioritizable>(-905833192, Prioritizable.OnCopySettingsDelegate);
 	}
 
-	// Token: 0x06003418 RID: 13336 RVA: 0x002160B0 File Offset: 0x002142B0
 	private void OnCopySettings(object data)
 	{
 		Prioritizable component = ((GameObject)data).GetComponent<Prioritizable>();
@@ -25,7 +22,6 @@ public class Prioritizable : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06003419 RID: 13337 RVA: 0x002160E0 File Offset: 0x002142E0
 	[OnDeserialized]
 	private void OnDeserialized()
 	{
@@ -41,7 +37,6 @@ public class Prioritizable : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600341A RID: 13338 RVA: 0x00216144 File Offset: 0x00214344
 	protected override void OnSpawn()
 	{
 		if (this.onPriorityChanged != null)
@@ -56,13 +51,11 @@ public class Prioritizable : KMonoBehaviour
 		Components.Prioritizables.Add(this);
 	}
 
-	// Token: 0x0600341B RID: 13339 RVA: 0x000C66E9 File Offset: 0x000C48E9
 	public PrioritySetting GetMasterPriority()
 	{
 		return this.masterPrioritySetting;
 	}
 
-	// Token: 0x0600341C RID: 13340 RVA: 0x002161C8 File Offset: 0x002143C8
 	public void SetMasterPriority(PrioritySetting priority)
 	{
 		if (!priority.Equals(this.masterPrioritySetting))
@@ -77,13 +70,11 @@ public class Prioritizable : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600341D RID: 13341 RVA: 0x000C66F1 File Offset: 0x000C48F1
 	private void RefreshTopPriorityOnWorld()
 	{
 		this.SetTopPriorityOnWorld(this.IsTopPriority());
 	}
 
-	// Token: 0x0600341E RID: 13342 RVA: 0x0021621C File Offset: 0x0021441C
 	private void SetTopPriorityOnWorld(bool state)
 	{
 		WorldContainer myWorld = base.gameObject.GetMyWorld();
@@ -99,7 +90,6 @@ public class Prioritizable : KMonoBehaviour
 		myWorld.RemoveTopPriorityPrioritizable(this);
 	}
 
-	// Token: 0x0600341F RID: 13343 RVA: 0x000C66FF File Offset: 0x000C48FF
 	public void AddRef()
 	{
 		this.refCount++;
@@ -107,7 +97,6 @@ public class Prioritizable : KMonoBehaviour
 		this.RefreshHighPriorityNotification();
 	}
 
-	// Token: 0x06003420 RID: 13344 RVA: 0x000C671B File Offset: 0x000C491B
 	public void RemoveRef()
 	{
 		this.refCount--;
@@ -118,19 +107,16 @@ public class Prioritizable : KMonoBehaviour
 		this.RefreshHighPriorityNotification();
 	}
 
-	// Token: 0x06003421 RID: 13345 RVA: 0x000C6748 File Offset: 0x000C4948
 	public bool IsPrioritizable()
 	{
 		return this.refCount > 0;
 	}
 
-	// Token: 0x06003422 RID: 13346 RVA: 0x000C6753 File Offset: 0x000C4953
 	public bool IsTopPriority()
 	{
 		return this.masterPrioritySetting.priority_class == PriorityScreen.PriorityClass.topPriority && this.IsPrioritizable();
 	}
 
-	// Token: 0x06003423 RID: 13347 RVA: 0x00216260 File Offset: 0x00214460
 	protected override void OnCleanUp()
 	{
 		WorldContainer myWorld = base.gameObject.GetMyWorld();
@@ -151,7 +137,6 @@ public class Prioritizable : KMonoBehaviour
 		Components.Prioritizables.Remove(this);
 	}
 
-	// Token: 0x06003424 RID: 13348 RVA: 0x0021630C File Offset: 0x0021450C
 	public static void AddRef(GameObject go)
 	{
 		Prioritizable component = go.GetComponent<Prioritizable>();
@@ -161,7 +146,6 @@ public class Prioritizable : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06003425 RID: 13349 RVA: 0x00216330 File Offset: 0x00214530
 	public static void RemoveRef(GameObject go)
 	{
 		Prioritizable component = go.GetComponent<Prioritizable>();
@@ -171,7 +155,6 @@ public class Prioritizable : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06003426 RID: 13350 RVA: 0x00216354 File Offset: 0x00214554
 	private void RefreshHighPriorityNotification()
 	{
 		bool flag = this.masterPrioritySetting.priority_class == PriorityScreen.PriorityClass.topPriority && this.IsPrioritizable();
@@ -186,39 +169,30 @@ public class Prioritizable : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x040023A7 RID: 9127
 	[SerializeField]
 	[Serialize]
 	private int masterPriority = int.MinValue;
 
-	// Token: 0x040023A8 RID: 9128
 	[SerializeField]
 	[Serialize]
 	private PrioritySetting masterPrioritySetting = new PrioritySetting(PriorityScreen.PriorityClass.basic, 5);
 
-	// Token: 0x040023A9 RID: 9129
 	public Action<PrioritySetting> onPriorityChanged;
 
-	// Token: 0x040023AA RID: 9130
 	public bool showIcon = true;
 
-	// Token: 0x040023AB RID: 9131
 	public Vector2 iconOffset;
 
-	// Token: 0x040023AC RID: 9132
 	public float iconScale = 1f;
 
-	// Token: 0x040023AD RID: 9133
 	[SerializeField]
 	private int refCount;
 
-	// Token: 0x040023AE RID: 9134
 	private static readonly EventSystem.IntraObjectHandler<Prioritizable> OnCopySettingsDelegate = new EventSystem.IntraObjectHandler<Prioritizable>(delegate(Prioritizable component, object data)
 	{
 		component.OnCopySettings(data);
 	});
 
-	// Token: 0x040023AF RID: 9135
 	private static Dictionary<PrioritySetting, PrioritySetting> conversions = new Dictionary<PrioritySetting, PrioritySetting>
 	{
 		{
@@ -263,9 +237,7 @@ public class Prioritizable : KMonoBehaviour
 		}
 	};
 
-	// Token: 0x040023B0 RID: 9136
 	private HandleVector<int>.Handle scenePartitionerEntry;
 
-	// Token: 0x040023B1 RID: 9137
 	private Guid highPriorityStatusItem;
 }

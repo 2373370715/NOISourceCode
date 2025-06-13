@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000422 RID: 1058
 public class MilkFeederConfig : IBuildingConfig
 {
-	// Token: 0x06001199 RID: 4505 RVA: 0x0018FCA8 File Offset: 0x0018DEA8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "MilkFeeder";
@@ -31,12 +29,10 @@ public class MilkFeederConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600119A RID: 4506 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 	}
 
-	// Token: 0x0600119B RID: 4507 RVA: 0x0018FD48 File Offset: 0x0018DF48
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		Prioritizable.AddRef(go);
@@ -62,32 +58,24 @@ public class MilkFeederConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.RanchStationType, false);
 	}
 
-	// Token: 0x0600119C RID: 4508 RVA: 0x000B2287 File Offset: 0x000B0487
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGetDef<MilkFeeder.Def>();
 	}
 
-	// Token: 0x0600119D RID: 4509 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void ConfigurePost(BuildingDef def)
 	{
 	}
 
-	// Token: 0x04000C4B RID: 3147
 	public const string ID = "MilkFeeder";
 
-	// Token: 0x04000C4C RID: 3148
 	public const string HAD_CONSUMED_MILK_RECENTLY_EFFECT_ID = "HadMilk";
 
-	// Token: 0x04000C4D RID: 3149
 	public const float EFFECT_DURATION_IN_SECONDS = 600f;
 
-	// Token: 0x04000C4E RID: 3150
 	public static readonly CellOffset DRINK_FROM_OFFSET = new CellOffset(1, 0);
 
-	// Token: 0x04000C4F RID: 3151
 	public static readonly Tag MILK_TAG = SimHashes.Milk.CreateTag();
 
-	// Token: 0x04000C50 RID: 3152
 	public const float UNITS_OF_MILK_CONSUMED_PER_FEEDING = 5f;
 }

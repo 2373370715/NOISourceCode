@@ -4,10 +4,8 @@ using STRINGS;
 
 namespace Klei.AI
 {
-	// Token: 0x02003C70 RID: 15472
 	public class FoodSickness : Sickness
 	{
-		// Token: 0x0600ED6D RID: 60781 RVA: 0x004E1808 File Offset: 0x004DFA08
 		public FoodSickness() : base("FoodSickness", Sickness.SicknessType.Pathogen, Sickness.Severity.Minor, 0.005f, new List<Sickness.InfectionVector>
 		{
 			Sickness.InfectionVector.Digestion
@@ -27,13 +25,10 @@ namespace Klei.AI
 			base.AddSicknessComponent(new PeriodicEmoteSickness(Db.Get().Emotes.Minion.Sick, 10f));
 		}
 
-		// Token: 0x0400E975 RID: 59765
 		public const string ID = "FoodSickness";
 
-		// Token: 0x0400E976 RID: 59766
 		public const string RECOVERY_ID = "FoodSicknessRecovery";
 
-		// Token: 0x0400E977 RID: 59767
 		private const float VOMIT_FREQUENCY = 200f;
 	}
 }

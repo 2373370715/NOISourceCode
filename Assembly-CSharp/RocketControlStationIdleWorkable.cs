@@ -2,11 +2,9 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000FAE RID: 4014
 [AddComponentMenu("KMonoBehaviour/Workable/RocketControlStationIdleWorkable")]
 public class RocketControlStationIdleWorkable : Workable
 {
-	// Token: 0x060050CF RID: 20687 RVA: 0x0027E644 File Offset: 0x0027C844
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -24,7 +22,6 @@ public class RocketControlStationIdleWorkable : Workable
 		base.SetWorkTime(30f);
 	}
 
-	// Token: 0x060050D0 RID: 20688 RVA: 0x0027E708 File Offset: 0x0027C908
 	protected override void OnStartWork(WorkerBase worker)
 	{
 		base.OnStartWork(worker);
@@ -35,7 +32,6 @@ public class RocketControlStationIdleWorkable : Workable
 		}
 	}
 
-	// Token: 0x040038E6 RID: 14566
 	[MyCmpReq]
 	private Operational operational;
 }

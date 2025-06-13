@@ -3,17 +3,14 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000ACF RID: 2767
 [AddComponentMenu("KMonoBehaviour/Workable/Moppable")]
 public class Moppable : Workable, ISim1000ms, ISim200ms
 {
-	// Token: 0x0600329D RID: 12957 RVA: 0x002116CC File Offset: 0x0020F8CC
 	private Moppable()
 	{
 		this.showProgressBar = false;
 	}
 
-	// Token: 0x0600329E RID: 12958 RVA: 0x00211728 File Offset: 0x0020F928
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -26,7 +23,6 @@ public class Moppable : Workable, ISim1000ms, ISim200ms
 		Prioritizable.AddRef(base.gameObject);
 	}
 
-	// Token: 0x0600329F RID: 12959 RVA: 0x002117AC File Offset: 0x0020F9AC
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -54,20 +50,17 @@ public class Moppable : Workable, ISim1000ms, ISim200ms
 		SimAndRenderScheduler.instance.Remove(this);
 	}
 
-	// Token: 0x060032A0 RID: 12960 RVA: 0x002118F8 File Offset: 0x0020FAF8
 	private void OnRefreshUserMenu(object data)
 	{
 		Game.Instance.userMenu.AddButton(base.gameObject, new KIconButtonMenu.ButtonInfo("icon_cancel", UI.USERMENUACTIONS.CANCELMOP.NAME, new System.Action(this.OnCancel), global::Action.NumActions, null, null, null, UI.USERMENUACTIONS.CANCELMOP.TOOLTIP, true), 1f);
 	}
 
-	// Token: 0x060032A1 RID: 12961 RVA: 0x000C54CF File Offset: 0x000C36CF
 	private void OnCancel()
 	{
 		DetailsScreen.Instance.Show(false);
 		base.gameObject.Trigger(2127324410, null);
 	}
 
-	// Token: 0x060032A2 RID: 12962 RVA: 0x000C54ED File Offset: 0x000C36ED
 	protected override void OnStartWork(WorkerBase worker)
 	{
 		SimAndRenderScheduler.instance.Add(this, false);
@@ -75,26 +68,22 @@ public class Moppable : Workable, ISim1000ms, ISim200ms
 		this.MopTick(this.amountMoppedPerTick);
 	}
 
-	// Token: 0x060032A3 RID: 12963 RVA: 0x000C550D File Offset: 0x000C370D
 	protected override void OnStopWork(WorkerBase worker)
 	{
 		SimAndRenderScheduler.instance.Remove(this);
 	}
 
-	// Token: 0x060032A4 RID: 12964 RVA: 0x000C550D File Offset: 0x000C370D
 	protected override void OnCompleteWork(WorkerBase worker)
 	{
 		SimAndRenderScheduler.instance.Remove(this);
 	}
 
-	// Token: 0x060032A5 RID: 12965 RVA: 0x000C551A File Offset: 0x000C371A
 	public override bool InstantlyFinish(WorkerBase worker)
 	{
 		this.MopTick(1000f);
 		return true;
 	}
 
-	// Token: 0x060032A6 RID: 12966 RVA: 0x00211954 File Offset: 0x0020FB54
 	public void Sim1000ms(float dt)
 	{
 		if (this.amountMopped > 0f)
@@ -104,7 +93,6 @@ public class Moppable : Workable, ISim1000ms, ISim200ms
 		}
 	}
 
-	// Token: 0x060032A7 RID: 12967 RVA: 0x000C5528 File Offset: 0x000C3728
 	public void Sim200ms(float dt)
 	{
 		if (base.worker != null)
@@ -114,7 +102,6 @@ public class Moppable : Workable, ISim1000ms, ISim200ms
 		}
 	}
 
-	// Token: 0x060032A8 RID: 12968 RVA: 0x002119B0 File Offset: 0x0020FBB0
 	private void OnCellMopped(Sim.MassConsumedCallback mass_cb_info, object data)
 	{
 		if (this == null)
@@ -130,7 +117,6 @@ public class Moppable : Workable, ISim1000ms, ISim200ms
 		}
 	}
 
-	// Token: 0x060032A9 RID: 12969 RVA: 0x00211A68 File Offset: 0x0020FC68
 	public static void MopCell(int cell, float amount, Action<Sim.MassConsumedCallback, object> cb)
 	{
 		if (Grid.Element[cell].IsLiquid)
@@ -144,7 +130,6 @@ public class Moppable : Workable, ISim1000ms, ISim200ms
 		}
 	}
 
-	// Token: 0x060032AA RID: 12970 RVA: 0x00211ABC File Offset: 0x0020FCBC
 	private void MopTick(float mopAmount)
 	{
 		int cell = Grid.PosToCell(this);
@@ -158,7 +143,6 @@ public class Moppable : Workable, ISim1000ms, ISim200ms
 		}
 	}
 
-	// Token: 0x060032AB RID: 12971 RVA: 0x00211B18 File Offset: 0x0020FD18
 	private bool IsThereLiquid()
 	{
 		int cell = Grid.PosToCell(this);
@@ -174,7 +158,6 @@ public class Moppable : Workable, ISim1000ms, ISim200ms
 		return result;
 	}
 
-	// Token: 0x060032AC RID: 12972 RVA: 0x00211B78 File Offset: 0x0020FD78
 	private void Refresh()
 	{
 		if (!this.IsThereLiquid())
@@ -194,13 +177,11 @@ public class Moppable : Workable, ISim1000ms, ISim200ms
 		}
 	}
 
-	// Token: 0x060032AD RID: 12973 RVA: 0x000C554A File Offset: 0x000C374A
 	private void OnLiquidChanged(object data)
 	{
 		this.Refresh();
 	}
 
-	// Token: 0x060032AE RID: 12974 RVA: 0x000C5552 File Offset: 0x000C3752
 	private void TryDestroy()
 	{
 		if (this != null)
@@ -209,14 +190,12 @@ public class Moppable : Workable, ISim1000ms, ISim200ms
 		}
 	}
 
-	// Token: 0x060032AF RID: 12975 RVA: 0x000C5568 File Offset: 0x000C3768
 	protected override void OnCleanUp()
 	{
 		base.OnCleanUp();
 		GameScenePartitioner.Instance.Free(ref this.partitionerEntry);
 	}
 
-	// Token: 0x060032B0 RID: 12976 RVA: 0x00211BDC File Offset: 0x0020FDDC
 	private void OnReachableChanged(object data)
 	{
 		if (this.childRenderer != null)
@@ -243,30 +222,22 @@ public class Moppable : Workable, ISim1000ms, ISim200ms
 		}
 	}
 
-	// Token: 0x040022A2 RID: 8866
 	[MyCmpReq]
 	private KSelectable Selectable;
 
-	// Token: 0x040022A3 RID: 8867
 	[MyCmpAdd]
 	private Prioritizable prioritizable;
 
-	// Token: 0x040022A4 RID: 8868
 	public float amountMoppedPerTick = 1000f;
 
-	// Token: 0x040022A5 RID: 8869
 	private HandleVector<int>.Handle partitionerEntry;
 
-	// Token: 0x040022A6 RID: 8870
 	private SchedulerHandle destroyHandle;
 
-	// Token: 0x040022A7 RID: 8871
 	private float amountMopped;
 
-	// Token: 0x040022A8 RID: 8872
 	private MeshRenderer childRenderer;
 
-	// Token: 0x040022A9 RID: 8873
 	private CellOffset[] offsets = new CellOffset[]
 	{
 		new CellOffset(0, 0),
@@ -274,13 +245,11 @@ public class Moppable : Workable, ISim1000ms, ISim200ms
 		new CellOffset(-1, 0)
 	};
 
-	// Token: 0x040022AA RID: 8874
 	private static readonly EventSystem.IntraObjectHandler<Moppable> OnRefreshUserMenuDelegate = new EventSystem.IntraObjectHandler<Moppable>(delegate(Moppable component, object data)
 	{
 		component.OnRefreshUserMenu(data);
 	});
 
-	// Token: 0x040022AB RID: 8875
 	private static readonly EventSystem.IntraObjectHandler<Moppable> OnReachableChangedDelegate = new EventSystem.IntraObjectHandler<Moppable>(delegate(Moppable component, object data)
 	{
 		component.OnReachableChanged(data);

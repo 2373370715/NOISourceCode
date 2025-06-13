@@ -1,9 +1,7 @@
 ﻿using System;
 
-// Token: 0x0200197A RID: 6522
 public class RoboPilotModule : KMonoBehaviour
 {
-	// Token: 0x060087D2 RID: 34770 RVA: 0x0036016C File Offset: 0x0035E36C
 	protected override void OnSpawn()
 	{
 		this.databankStorage = base.GetComponent<Storage>();
@@ -34,7 +32,6 @@ public class RoboPilotModule : KMonoBehaviour
 		this.RequestDataBanksForDestination(null);
 	}
 
-	// Token: 0x060087D3 RID: 34771 RVA: 0x003602D0 File Offset: 0x0035E4D0
 	private void RequestDataBanksForDestination(object data = null)
 	{
 		int num = -1;
@@ -65,7 +62,6 @@ public class RoboPilotModule : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060087D4 RID: 34772 RVA: 0x00360384 File Offset: 0x0035E584
 	protected override void OnCleanUp()
 	{
 		base.Unsubscribe(-1697596308, new Action<object>(this.UpdateMeter));
@@ -85,7 +81,6 @@ public class RoboPilotModule : KMonoBehaviour
 		base.OnCleanUp();
 	}
 
-	// Token: 0x060087D5 RID: 34773 RVA: 0x00360460 File Offset: 0x0035E660
 	private void OnLaunchConditionChanged(object data)
 	{
 		RocketModuleCluster component = base.GetComponent<RocketModuleCluster>();
@@ -95,7 +90,6 @@ public class RoboPilotModule : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060087D6 RID: 34774 RVA: 0x0036049C File Offset: 0x0035E69C
 	private void OnRocketLanded(object o)
 	{
 		if (this.consumeDataBanksOnLand)
@@ -108,7 +102,6 @@ public class RoboPilotModule : KMonoBehaviour
 		this.RequestDataBanksForDestination(null);
 	}
 
-	// Token: 0x060087D7 RID: 34775 RVA: 0x00360514 File Offset: 0x0035E714
 	private void OnRocketLaunched(object o)
 	{
 		KBatchedAnimController component = base.GetComponent<KBatchedAnimController>();
@@ -117,7 +110,6 @@ public class RoboPilotModule : KMonoBehaviour
 		component.Queue("launch_pst", KAnim.PlayMode.Once, 1f, 0f);
 	}
 
-	// Token: 0x060087D8 RID: 34776 RVA: 0x000FD78B File Offset: 0x000FB98B
 	public void ConsumeDataBanksInFlight()
 	{
 		if (this.databankStorage != null)
@@ -126,7 +118,6 @@ public class RoboPilotModule : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060087D9 RID: 34777 RVA: 0x00360578 File Offset: 0x0035E778
 	private void PlayDeliveryAnimation(object data = null)
 	{
 		KBatchedAnimController component = base.GetComponent<KBatchedAnimController>();
@@ -135,31 +126,26 @@ public class RoboPilotModule : KMonoBehaviour
 		component.Queue(currentAnim, KAnim.PlayMode.Once, 1f, 0f);
 	}
 
-	// Token: 0x060087DA RID: 34778 RVA: 0x000FD7B2 File Offset: 0x000FB9B2
 	private void UpdateMeter(object data = null)
 	{
 		this.meter.SetPositionPercent(this.databankStorage.MassStored() / this.databankStorage.Capacity());
 	}
 
-	// Token: 0x060087DB RID: 34779 RVA: 0x000FD7D6 File Offset: 0x000FB9D6
 	public bool HasResourcesToMove(int distance)
 	{
 		return this.databankStorage.UnitsStored() >= (float)(distance * this.dataBankConsumption);
 	}
 
-	// Token: 0x060087DC RID: 34780 RVA: 0x000FD7F1 File Offset: 0x000FB9F1
 	public float ResourcesRequiredToMove(int distance)
 	{
 		return (float)(distance * this.dataBankConsumption);
 	}
 
-	// Token: 0x060087DD RID: 34781 RVA: 0x000FD7FC File Offset: 0x000FB9FC
 	public bool IsFull()
 	{
 		return this.databankStorage.MassStored() >= this.databankStorage.Capacity();
 	}
 
-	// Token: 0x060087DE RID: 34782 RVA: 0x000FD819 File Offset: 0x000FBA19
 	public float GetDataBanksStored()
 	{
 		if (!(this.databankStorage != null))
@@ -169,7 +155,6 @@ public class RoboPilotModule : KMonoBehaviour
 		return this.databankStorage.UnitsStored();
 	}
 
-	// Token: 0x060087DF RID: 34783 RVA: 0x003605C0 File Offset: 0x0035E7C0
 	public float GetDataBankRange()
 	{
 		if (this.databankStorage == null)
@@ -183,22 +168,16 @@ public class RoboPilotModule : KMonoBehaviour
 		return this.databankStorage.UnitsStored() / (float)this.dataBankConsumption * 600f;
 	}
 
-	// Token: 0x040066DF RID: 26335
 	private MeterController meter;
 
-	// Token: 0x040066E0 RID: 26336
 	private Storage databankStorage;
 
-	// Token: 0x040066E1 RID: 26337
 	private ManualDeliveryKG manualDeliveryChore;
 
-	// Token: 0x040066E2 RID: 26338
 	public int dataBankConsumption = 2;
 
-	// Token: 0x040066E3 RID: 26339
 	public bool consumeDataBanksOnLand;
 
-	// Token: 0x040066E4 RID: 26340
 	private static CellOffset[] dataDeliveryOffsets = new CellOffset[]
 	{
 		new CellOffset(0, 0),

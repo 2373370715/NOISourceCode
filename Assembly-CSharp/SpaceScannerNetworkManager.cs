@@ -5,32 +5,27 @@ using Klei.AI;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x020019EF RID: 6639
 [Serialize]
 [SerializationConfig(MemberSerialization.OptIn)]
 [Serializable]
 public class SpaceScannerNetworkManager : ISim1000ms
 {
-	// Token: 0x06008A5F RID: 35423 RVA: 0x000FF04A File Offset: 0x000FD24A
 	public Dictionary<int, SpaceScannerWorldData> DEBUG_GetWorldIdToDataMap()
 	{
 		return this.worldIdToDataMap;
 	}
 
-	// Token: 0x06008A60 RID: 35424 RVA: 0x00369A0C File Offset: 0x00367C0C
 	public bool IsTargetDetectedOnWorld(int worldId, SpaceScannerTarget target)
 	{
 		SpaceScannerWorldData spaceScannerWorldData;
 		return this.worldIdToDataMap.TryGetValue(worldId, out spaceScannerWorldData) && spaceScannerWorldData.targetIdsDetected.Contains(target.id);
 	}
 
-	// Token: 0x06008A61 RID: 35425 RVA: 0x000FF052 File Offset: 0x000FD252
 	public MathUtil.MinMax GetDetectTimeRangeForWorld(int worldId)
 	{
 		return SpaceScannerNetworkManager.GetDetectTimeRange(this.GetQualityForWorld(worldId));
 	}
 
-	// Token: 0x06008A62 RID: 35426 RVA: 0x00369A3C File Offset: 0x00367C3C
 	public float GetQualityForWorld(int worldId)
 	{
 		SpaceScannerWorldData spaceScannerWorldData;
@@ -41,7 +36,6 @@ public class SpaceScannerNetworkManager : ISim1000ms
 		return 0f;
 	}
 
-	// Token: 0x06008A63 RID: 35427 RVA: 0x00369A68 File Offset: 0x00367C68
 	private SpaceScannerWorldData GetOrCreateWorldData(int worldId)
 	{
 		SpaceScannerWorldData spaceScannerWorldData;
@@ -53,7 +47,6 @@ public class SpaceScannerNetworkManager : ISim1000ms
 		return spaceScannerWorldData;
 	}
 
-	// Token: 0x06008A64 RID: 35428 RVA: 0x00369A9C File Offset: 0x00367C9C
 	public void Sim1000ms(float dt)
 	{
 		SpaceScannerNetworkManager.UpdateWorldDataScratchpads(this.worldIdToDataMap);
@@ -69,7 +62,6 @@ public class SpaceScannerNetworkManager : ISim1000ms
 		}
 	}
 
-	// Token: 0x06008A65 RID: 35429 RVA: 0x00369B2C File Offset: 0x00367D2C
 	private static void UpdateNetworkQualityFor(SpaceScannerWorldData worldData)
 	{
 		float num = SpaceScannerNetworkManager.CalcWorldNetworkQuality(worldData.GetWorld());
@@ -80,7 +72,6 @@ public class SpaceScannerNetworkManager : ISim1000ms
 		worldData.networkQuality01 = num;
 	}
 
-	// Token: 0x06008A66 RID: 35430 RVA: 0x00369BA8 File Offset: 0x00367DA8
 	private static void UpdateDetectionOfTargetsFor(SpaceScannerWorldData worldData)
 	{
 		using (HashSetPool<string, SpaceScannerNetworkManager>.PooledHashSet pooledHashSet = PoolsFor<SpaceScannerNetworkManager>.AllocateHashSet<string>())
@@ -132,7 +123,6 @@ public class SpaceScannerNetworkManager : ISim1000ms
 		}
 	}
 
-	// Token: 0x06008A67 RID: 35431 RVA: 0x00369E5C File Offset: 0x0036805C
 	private static bool IsDetectingAnyMeteorShower(SpaceScannerWorldData worldData)
 	{
 		SpaceScannerNetworkManager.meteorShowerInstances.Clear();
@@ -160,7 +150,6 @@ public class SpaceScannerNetworkManager : ISim1000ms
 		return SpaceScannerNetworkManager.IsDetectedUsingStickyCheck<MeteorShowerEvent.StatesInstance>(candidateTarget, num <= detectTime, worldData.scratchpad.lastDetectedMeteorShowers);
 	}
 
-	// Token: 0x06008A68 RID: 35432 RVA: 0x00369F38 File Offset: 0x00368138
 	private static bool IsDetectingAnyBallisticObject(SpaceScannerWorldData worldData)
 	{
 		float num = float.MaxValue;
@@ -171,14 +160,12 @@ public class SpaceScannerNetworkManager : ISim1000ms
 		return num < SpaceScannerNetworkManager.GetDetectTime(worldData, SpaceScannerTarget.BallisticObject());
 	}
 
-	// Token: 0x06008A69 RID: 35433 RVA: 0x00369FAC File Offset: 0x003681AC
 	private static bool IsDetectingRocketBaseGame(SpaceScannerWorldData worldData, LaunchConditionManager rocket)
 	{
 		Spacecraft spacecraftFromLaunchConditionManager = SpacecraftManager.instance.GetSpacecraftFromLaunchConditionManager(rocket);
 		return SpaceScannerNetworkManager.IsDetectedUsingStickyCheck<LaunchConditionManager>(rocket, SpaceScannerNetworkManager.<IsDetectingRocketBaseGame>g__IsDetected|12_0(worldData, spacecraftFromLaunchConditionManager, rocket), worldData.scratchpad.lastDetectedRocketsBaseGame);
 	}
 
-	// Token: 0x06008A6A RID: 35434 RVA: 0x00369FE0 File Offset: 0x003681E0
 	private static bool IsDetectingRocketDlc1(SpaceScannerWorldData worldData, Clustercraft clustercraft)
 	{
 		if (clustercraft.IsNullOrDestroyed())
@@ -203,7 +190,6 @@ public class SpaceScannerNetworkManager : ISim1000ms
 		return SpaceScannerNetworkManager.IsDetectedUsingStickyCheck<Clustercraft>(clustercraft, flag, worldData.scratchpad.lastDetectedRocketsDLC1);
 	}
 
-	// Token: 0x06008A6B RID: 35435 RVA: 0x000FF060 File Offset: 0x000FD260
 	private static bool IsDetectedUsingStickyCheck<T>(T candidateTarget, bool isDetected, HashSet<T> existingDetections)
 	{
 		if (isDetected)
@@ -217,7 +203,6 @@ public class SpaceScannerNetworkManager : ISim1000ms
 		return isDetected;
 	}
 
-	// Token: 0x06008A6C RID: 35436 RVA: 0x0036A0C4 File Offset: 0x003682C4
 	private static float GetDetectTime(SpaceScannerWorldData worldData, SpaceScannerTarget target)
 	{
 		float value;
@@ -229,13 +214,11 @@ public class SpaceScannerNetworkManager : ISim1000ms
 		return SpaceScannerNetworkManager.GetDetectTimeRange(worldData.networkQuality01).Lerp(value);
 	}
 
-	// Token: 0x06008A6D RID: 35437 RVA: 0x000FF07C File Offset: 0x000FD27C
 	private static MathUtil.MinMax GetDetectTimeRange(float networkQuality01)
 	{
 		return new MathUtil.MinMax(Mathf.Lerp(1f, 200f, networkQuality01), 200f);
 	}
 
-	// Token: 0x06008A6E RID: 35438 RVA: 0x0036A114 File Offset: 0x00368314
 	private static float CalcWorldNetworkQuality(WorldContainer world)
 	{
 		int width = world.Width;
@@ -275,7 +258,6 @@ public class SpaceScannerNetworkManager : ISim1000ms
 		return Mathf.Clamp01(((float)num2 / (float)width).Remap(new ValueTuple<float, float>(0f, 0.5f), new ValueTuple<float, float>(0f, 1f)));
 	}
 
-	// Token: 0x06008A6F RID: 35439 RVA: 0x0036A2A8 File Offset: 0x003684A8
 	private static void UpdateWorldDataScratchpads(Dictionary<int, SpaceScannerWorldData> worldIdToDataMap)
 	{
 		foreach (KeyValuePair<int, SpaceScannerWorldData> keyValuePair in worldIdToDataMap)
@@ -339,7 +321,6 @@ public class SpaceScannerNetworkManager : ISim1000ms
 		}
 	}
 
-	// Token: 0x06008A72 RID: 35442 RVA: 0x0036A464 File Offset: 0x00368664
 	[CompilerGenerated]
 	internal static bool <IsDetectingRocketBaseGame>g__IsDetected|12_0(SpaceScannerWorldData worldData, Spacecraft spacecraft, LaunchConditionManager rocket)
 	{
@@ -366,10 +347,8 @@ public class SpaceScannerNetworkManager : ISim1000ms
 		}
 	}
 
-	// Token: 0x0400686E RID: 26734
 	[Serialize]
 	private Dictionary<int, SpaceScannerWorldData> worldIdToDataMap = new Dictionary<int, SpaceScannerWorldData>();
 
-	// Token: 0x0400686F RID: 26735
 	private static List<GameplayEventInstance> meteorShowerInstances = new List<GameplayEventInstance>();
 }

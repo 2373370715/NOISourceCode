@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using FMOD.Studio;
 using UnityEngine;
 
-// Token: 0x020014ED RID: 5357
 internal class LogicEventHandler : ILogicEventReceiver, ILogicNetworkConnection, ILogicUIElement, IUniformGridObject
 {
-	// Token: 0x06006F53 RID: 28499 RVA: 0x000ED689 File Offset: 0x000EB889
 	public LogicEventHandler(int cell, Action<int, int> on_value_changed, Action<int, bool> on_connection_changed, LogicPortSpriteType sprite_type)
 	{
 		this.cell = cell;
@@ -15,7 +13,6 @@ internal class LogicEventHandler : ILogicEventReceiver, ILogicNetworkConnection,
 		this.spriteType = sprite_type;
 	}
 
-	// Token: 0x06006F54 RID: 28500 RVA: 0x0030079C File Offset: 0x002FE99C
 	public void ReceiveLogicEvent(int value)
 	{
 		this.TriggerAudio(value);
@@ -24,8 +21,6 @@ internal class LogicEventHandler : ILogicEventReceiver, ILogicNetworkConnection,
 		this.onValueChanged(value, arg);
 	}
 
-	// Token: 0x1700071C RID: 1820
-	// (get) Token: 0x06006F55 RID: 28501 RVA: 0x000ED6AE File Offset: 0x000EB8AE
 	public int Value
 	{
 		get
@@ -34,37 +29,31 @@ internal class LogicEventHandler : ILogicEventReceiver, ILogicNetworkConnection,
 		}
 	}
 
-	// Token: 0x06006F56 RID: 28502 RVA: 0x000ED6B6 File Offset: 0x000EB8B6
 	public int GetLogicUICell()
 	{
 		return this.cell;
 	}
 
-	// Token: 0x06006F57 RID: 28503 RVA: 0x000ED6BE File Offset: 0x000EB8BE
 	public LogicPortSpriteType GetLogicPortSpriteType()
 	{
 		return this.spriteType;
 	}
 
-	// Token: 0x06006F58 RID: 28504 RVA: 0x000ED6C6 File Offset: 0x000EB8C6
 	public Vector2 PosMin()
 	{
 		return Grid.CellToPos2D(this.cell);
 	}
 
-	// Token: 0x06006F59 RID: 28505 RVA: 0x000ED6C6 File Offset: 0x000EB8C6
 	public Vector2 PosMax()
 	{
 		return Grid.CellToPos2D(this.cell);
 	}
 
-	// Token: 0x06006F5A RID: 28506 RVA: 0x000ED6B6 File Offset: 0x000EB8B6
 	public int GetLogicCell()
 	{
 		return this.cell;
 	}
 
-	// Token: 0x06006F5B RID: 28507 RVA: 0x003007CC File Offset: 0x002FE9CC
 	private void TriggerAudio(int new_value)
 	{
 		LogicCircuitNetwork networkForCell = Game.Instance.logicCircuitManager.GetNetworkForCell(this.cell);
@@ -110,7 +99,6 @@ internal class LogicEventHandler : ILogicEventReceiver, ILogicNetworkConnection,
 		}
 	}
 
-	// Token: 0x06006F5C RID: 28508 RVA: 0x000ED6D8 File Offset: 0x000EB8D8
 	public void OnLogicNetworkConnectionChanged(bool connected)
 	{
 		if (this.onConnectionChanged != null)
@@ -119,18 +107,13 @@ internal class LogicEventHandler : ILogicEventReceiver, ILogicNetworkConnection,
 		}
 	}
 
-	// Token: 0x040053B8 RID: 21432
 	private int cell;
 
-	// Token: 0x040053B9 RID: 21433
 	private int value;
 
-	// Token: 0x040053BA RID: 21434
 	private Action<int, int> onValueChanged;
 
-	// Token: 0x040053BB RID: 21435
 	private Action<int, bool> onConnectionChanged;
 
-	// Token: 0x040053BC RID: 21436
 	private LogicPortSpriteType spriteType;
 }

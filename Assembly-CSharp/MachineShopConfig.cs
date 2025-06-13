@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003FF RID: 1023
 public class MachineShopConfig : IBuildingConfig
 {
-	// Token: 0x060010D4 RID: 4308 RVA: 0x0018C340 File Offset: 0x0018A540
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "MachineShop";
@@ -28,27 +26,21 @@ public class MachineShopConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060010D5 RID: 4309 RVA: 0x000B1DAC File Offset: 0x000AFFAC
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<LoopingSounds>();
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.MachineShopType, false);
 	}
 
-	// Token: 0x060010D6 RID: 4310 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000BBF RID: 3007
 	public const string ID = "MachineShop";
 
-	// Token: 0x04000BC0 RID: 3008
 	public static readonly Tag MATERIAL_FOR_TINKER = GameTags.RefinedMetal;
 
-	// Token: 0x04000BC1 RID: 3009
 	public const float MASS_PER_TINKER = 5f;
 
-	// Token: 0x04000BC2 RID: 3010
 	public static readonly string ROLE_PERK = "IncreaseMachinery";
 }

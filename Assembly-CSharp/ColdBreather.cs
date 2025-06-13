@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001709 RID: 5897
 [SkipSaveFileSerialization]
 public class ColdBreather : StateMachineComponent<ColdBreather.StatesInstance>, IGameObjectEffectDescriptor
 {
-	// Token: 0x06007972 RID: 31090 RVA: 0x000F4466 File Offset: 0x000F2666
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -15,7 +13,6 @@ public class ColdBreather : StateMachineComponent<ColdBreather.StatesInstance>, 
 		base.smi.StartSM();
 	}
 
-	// Token: 0x06007973 RID: 31091 RVA: 0x000F44A0 File Offset: 0x000F26A0
 	protected override void OnPrefabInit()
 	{
 		this.elementConsumer.EnableConsumption(false);
@@ -23,7 +20,6 @@ public class ColdBreather : StateMachineComponent<ColdBreather.StatesInstance>, 
 		base.OnPrefabInit();
 	}
 
-	// Token: 0x06007974 RID: 31092 RVA: 0x003230CC File Offset: 0x003212CC
 	private void OnReplanted(object data = null)
 	{
 		ReceptacleMonitor component = base.GetComponent<ReceptacleMonitor>();
@@ -47,7 +43,6 @@ public class ColdBreather : StateMachineComponent<ColdBreather.StatesInstance>, 
 		}
 	}
 
-	// Token: 0x06007975 RID: 31093 RVA: 0x00323144 File Offset: 0x00321344
 	protected override void OnCleanUp()
 	{
 		Game.Instance.massEmitCallbackManager.Release(this.simEmitCBHandle, "coldbreather");
@@ -59,14 +54,12 @@ public class ColdBreather : StateMachineComponent<ColdBreather.StatesInstance>, 
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06007976 RID: 31094 RVA: 0x000F42AD File Offset: 0x000F24AD
 	protected void DestroySelf(object callbackParam)
 	{
 		CreatureHelpers.DeselectCreature(base.gameObject);
 		Util.KDestroyGameObject(base.gameObject);
 	}
 
-	// Token: 0x06007977 RID: 31095 RVA: 0x000F44C5 File Offset: 0x000F26C5
 	public List<Descriptor> GetDescriptors(GameObject go)
 	{
 		return new List<Descriptor>
@@ -75,7 +68,6 @@ public class ColdBreather : StateMachineComponent<ColdBreather.StatesInstance>, 
 		};
 	}
 
-	// Token: 0x06007978 RID: 31096 RVA: 0x000F44ED File Offset: 0x000F26ED
 	private void SetEmitting(bool emitting)
 	{
 		if (this.radiationEmitter != null)
@@ -84,7 +76,6 @@ public class ColdBreather : StateMachineComponent<ColdBreather.StatesInstance>, 
 		}
 	}
 
-	// Token: 0x06007979 RID: 31097 RVA: 0x003231A4 File Offset: 0x003213A4
 	private void Exhale()
 	{
 		if (this.lastEmitTag != Tag.Invalid)
@@ -116,13 +107,11 @@ public class ColdBreather : StateMachineComponent<ColdBreather.StatesInstance>, 
 		}
 	}
 
-	// Token: 0x0600797A RID: 31098 RVA: 0x000F4509 File Offset: 0x000F2709
 	private static void OnSimEmittedCallback(Sim.MassEmittedCallback info, object data)
 	{
 		((ColdBreather)data).OnSimEmitted(info);
 	}
 
-	// Token: 0x0600797B RID: 31099 RVA: 0x00323308 File Offset: 0x00321508
 	private void OnSimEmitted(Sim.MassEmittedCallback info)
 	{
 		if (info.suceeded == 1 && this.storage && this.lastEmitTag.IsValid)
@@ -132,73 +121,54 @@ public class ColdBreather : StateMachineComponent<ColdBreather.StatesInstance>, 
 		this.lastEmitTag = Tag.Invalid;
 	}
 
-	// Token: 0x04005B38 RID: 23352
 	[MyCmpReq]
 	private WiltCondition wiltCondition;
 
-	// Token: 0x04005B39 RID: 23353
 	[MyCmpReq]
 	private KAnimControllerBase animController;
 
-	// Token: 0x04005B3A RID: 23354
 	[MyCmpReq]
 	private Storage storage;
 
-	// Token: 0x04005B3B RID: 23355
 	[MyCmpReq]
 	private ElementConsumer elementConsumer;
 
-	// Token: 0x04005B3C RID: 23356
 	[MyCmpGet]
 	private RadiationEmitter radiationEmitter;
 
-	// Token: 0x04005B3D RID: 23357
 	[MyCmpReq]
 	private ReceptacleMonitor receptacleMonitor;
 
-	// Token: 0x04005B3E RID: 23358
 	private const float EXHALE_PERIOD = 1f;
 
-	// Token: 0x04005B3F RID: 23359
 	public float consumptionRate;
 
-	// Token: 0x04005B40 RID: 23360
 	public float deltaEmitTemperature = -5f;
 
-	// Token: 0x04005B41 RID: 23361
 	public Vector3 emitOffsetCell = new Vector3(0f, 0f);
 
-	// Token: 0x04005B42 RID: 23362
 	private List<GameObject> gases = new List<GameObject>();
 
-	// Token: 0x04005B43 RID: 23363
 	private Tag lastEmitTag;
 
-	// Token: 0x04005B44 RID: 23364
 	private int nextGasEmitIndex;
 
-	// Token: 0x04005B45 RID: 23365
 	private HandleVector<Game.ComplexCallbackInfo<Sim.MassEmittedCallback>>.Handle simEmitCBHandle = HandleVector<Game.ComplexCallbackInfo<Sim.MassEmittedCallback>>.InvalidHandle;
 
-	// Token: 0x04005B46 RID: 23366
 	private static readonly EventSystem.IntraObjectHandler<ColdBreather> OnReplantedDelegate = new EventSystem.IntraObjectHandler<ColdBreather>(delegate(ColdBreather component, object data)
 	{
 		component.OnReplanted(data);
 	});
 
-	// Token: 0x0200170A RID: 5898
 	public class StatesInstance : GameStateMachine<ColdBreather.States, ColdBreather.StatesInstance, ColdBreather, object>.GameInstance
 	{
-		// Token: 0x0600797E RID: 31102 RVA: 0x000F4571 File Offset: 0x000F2771
 		public StatesInstance(ColdBreather master) : base(master)
 		{
 		}
 	}
 
-	// Token: 0x0200170B RID: 5899
 	public class States : GameStateMachine<ColdBreather.States, ColdBreather.StatesInstance, ColdBreather>
 	{
-		// Token: 0x0600797F RID: 31103 RVA: 0x0032335C File Offset: 0x0032155C
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			base.serializable = StateMachine.SerializeType.Both_DEPRECATED;
@@ -247,28 +217,20 @@ public class ColdBreather : StateMachineComponent<ColdBreather.StatesInstance>, 
 			});
 		}
 
-		// Token: 0x04005B47 RID: 23367
 		public GameStateMachine<ColdBreather.States, ColdBreather.StatesInstance, ColdBreather, object>.State grow;
 
-		// Token: 0x04005B48 RID: 23368
 		public GameStateMachine<ColdBreather.States, ColdBreather.StatesInstance, ColdBreather, object>.State blocked_from_growing;
 
-		// Token: 0x04005B49 RID: 23369
 		public ColdBreather.States.AliveStates alive;
 
-		// Token: 0x04005B4A RID: 23370
 		public GameStateMachine<ColdBreather.States, ColdBreather.StatesInstance, ColdBreather, object>.State dead;
 
-		// Token: 0x04005B4B RID: 23371
 		private StatusItem statusItemCooling;
 
-		// Token: 0x0200170C RID: 5900
 		public class AliveStates : GameStateMachine<ColdBreather.States, ColdBreather.StatesInstance, ColdBreather, object>.PlantAliveSubState
 		{
-			// Token: 0x04005B4C RID: 23372
 			public GameStateMachine<ColdBreather.States, ColdBreather.StatesInstance, ColdBreather, object>.State mature;
 
-			// Token: 0x04005B4D RID: 23373
 			public GameStateMachine<ColdBreather.States, ColdBreather.StatesInstance, ColdBreather, object>.State wilting;
 		}
 	}

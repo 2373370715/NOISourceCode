@@ -3,10 +3,8 @@ using Klei.AI;
 
 namespace Database
 {
-	// Token: 0x0200219D RID: 8605
 	public class CritterAttributes : ResourceSet<Klei.AI.Attribute>
 	{
-		// Token: 0x0600B7B6 RID: 47030 RVA: 0x00466988 File Offset: 0x00464B88
 		public CritterAttributes(ResourceSet parent) : base("CritterAttributes", parent)
 		{
 			this.Happiness = base.Add(new Klei.AI.Attribute("Happiness", Strings.Get("STRINGS.CREATURES.STATS.HAPPINESS.NAME"), "", Strings.Get("STRINGS.CREATURES.STATS.HAPPINESS.TOOLTIP"), 0f, Klei.AI.Attribute.Display.General, false, "ui_icon_happiness", null, null));
@@ -15,10 +13,8 @@ namespace Database
 			this.Metabolism.SetFormatter(new ToPercentAttributeFormatter(100f, GameUtil.TimeSlice.None));
 		}
 
-		// Token: 0x040093EF RID: 37871
 		public Klei.AI.Attribute Happiness;
 
-		// Token: 0x040093F0 RID: 37872
 		public Klei.AI.Attribute Metabolism;
 	}
 }

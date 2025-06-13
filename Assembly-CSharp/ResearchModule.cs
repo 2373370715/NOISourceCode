@@ -2,11 +2,9 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000F93 RID: 3987
 [AddComponentMenu("KMonoBehaviour/scripts/ResearchModule")]
 public class ResearchModule : KMonoBehaviour
 {
-	// Token: 0x0600504A RID: 20554 RVA: 0x0027D03C File Offset: 0x0027B23C
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -15,12 +13,10 @@ public class ResearchModule : KMonoBehaviour
 		base.Subscribe<ResearchModule>(-887025858, ResearchModule.OnLandDelegate);
 	}
 
-	// Token: 0x0600504B RID: 20555 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnLaunch(object data)
 	{
 	}
 
-	// Token: 0x0600504C RID: 20556 RVA: 0x0027D094 File Offset: 0x0027B294
 	public void OnLand(object data)
 	{
 		if (!DlcManager.FeatureClusterSpaceEnabled())
@@ -50,13 +46,11 @@ public class ResearchModule : KMonoBehaviour
 		gameObject2.GetComponent<PrimaryElement>().Mass = (float)ROCKETRY.DESTINATION_RESEARCH.EVERGREEN;
 	}
 
-	// Token: 0x04003891 RID: 14481
 	private static readonly EventSystem.IntraObjectHandler<ResearchModule> OnLaunchDelegate = new EventSystem.IntraObjectHandler<ResearchModule>(delegate(ResearchModule component, object data)
 	{
 		component.OnLaunch(data);
 	});
 
-	// Token: 0x04003892 RID: 14482
 	private static readonly EventSystem.IntraObjectHandler<ResearchModule> OnLandDelegate = new EventSystem.IntraObjectHandler<ResearchModule>(delegate(ResearchModule component, object data)
 	{
 		component.OnLand(data);

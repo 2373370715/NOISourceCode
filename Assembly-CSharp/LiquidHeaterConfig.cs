@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003CC RID: 972
 public class LiquidHeaterConfig : IBuildingConfig
 {
-	// Token: 0x06000FD1 RID: 4049 RVA: 0x001889BC File Offset: 0x00186BBC
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "LiquidHeater";
@@ -32,7 +30,6 @@ public class LiquidHeaterConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000FD2 RID: 4050 RVA: 0x000B13B9 File Offset: 0x000AF5B9
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<LoopingSounds>();
@@ -42,16 +39,13 @@ public class LiquidHeaterConfig : IBuildingConfig
 		spaceHeater.minimumCellMass = 400f;
 	}
 
-	// Token: 0x06000FD3 RID: 4051 RVA: 0x000AA1AD File Offset: 0x000A83AD
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
 		go.AddOrGetDef<PoweredActiveController.Def>();
 	}
 
-	// Token: 0x04000B68 RID: 2920
 	public const string ID = "LiquidHeater";
 
-	// Token: 0x04000B69 RID: 2921
 	public const float CONSUMPTION_RATE = 1f;
 }

@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000423 RID: 1059
 public class MilkPressConfig : IBuildingConfig
 {
-	// Token: 0x060011A0 RID: 4512 RVA: 0x0018FE14 File Offset: 0x0018E014
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "MilkPress";
@@ -34,7 +32,6 @@ public class MilkPressConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060011A1 RID: 4513 RVA: 0x0018FEC0 File Offset: 0x0018E0C0
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<LogicOperationalController>();
@@ -69,7 +66,6 @@ public class MilkPressConfig : IBuildingConfig
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x060011A2 RID: 4514 RVA: 0x0018FFCC File Offset: 0x0018E1CC
 	private void AddRecipes(GameObject go)
 	{
 		ComplexRecipe.RecipeElement[] array = new ComplexRecipe.RecipeElement[]
@@ -145,7 +141,6 @@ public class MilkPressConfig : IBuildingConfig
 		}
 	}
 
-	// Token: 0x060011A3 RID: 4515 RVA: 0x000B22AD File Offset: 0x000B04AD
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		SymbolOverrideControllerUtil.AddToPrefab(go);
@@ -160,10 +155,8 @@ public class MilkPressConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x04000C51 RID: 3153
 	public const string ID = "MilkPress";
 
-	// Token: 0x04000C52 RID: 3154
 	private static readonly List<Storage.StoredItemModifier> RefineryStoredItemModifiers = new List<Storage.StoredItemModifier>
 	{
 		Storage.StoredItemModifier.Hide,

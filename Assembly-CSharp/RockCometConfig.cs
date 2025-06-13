@@ -2,10 +2,8 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x0200045E RID: 1118
 public class RockCometConfig : IEntityConfig
 {
-	// Token: 0x060012D8 RID: 4824 RVA: 0x00196C34 File Offset: 0x00194E34
 	public GameObject CreatePrefab()
 	{
 		GameObject gameObject = EntityTemplates.CreateEntity(RockCometConfig.ID, UI.SPACEDESTINATIONS.COMETS.ROCKCOMET.NAME, true);
@@ -40,22 +38,17 @@ public class RockCometConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x060012D9 RID: 4825 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject go)
 	{
 	}
 
-	// Token: 0x060012DA RID: 4826 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject go)
 	{
 	}
 
-	// Token: 0x04000D35 RID: 3381
 	public static readonly string ID = "RockComet";
 
-	// Token: 0x04000D36 RID: 3382
 	private const SimHashes element = SimHashes.Regolith;
 
-	// Token: 0x04000D37 RID: 3383
 	private const int ADDED_CELLS = 6;
 }

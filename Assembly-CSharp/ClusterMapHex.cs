@@ -5,15 +5,10 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001C6B RID: 7275
 public class ClusterMapHex : MultiToggle, ICanvasRaycastFilter
 {
-	// Token: 0x170009D0 RID: 2512
-	// (get) Token: 0x06009740 RID: 38720 RVA: 0x00106F74 File Offset: 0x00105174
-	// (set) Token: 0x06009741 RID: 38721 RVA: 0x00106F7C File Offset: 0x0010517C
 	public AxialI location { get; private set; }
 
-	// Token: 0x06009742 RID: 38722 RVA: 0x003B29F4 File Offset: 0x003B0BF4
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -24,13 +19,11 @@ public class ClusterMapHex : MultiToggle, ICanvasRaycastFilter
 		this.onExit = new System.Action(this.OnUnhover);
 	}
 
-	// Token: 0x06009743 RID: 38723 RVA: 0x00106F85 File Offset: 0x00105185
 	public void SetLocation(AxialI location)
 	{
 		this.location = location;
 	}
 
-	// Token: 0x06009744 RID: 38724 RVA: 0x003B2A5C File Offset: 0x003B0C5C
 	public void SetRevealed(ClusterRevealLevel level)
 	{
 		this._revealLevel = level;
@@ -53,7 +46,6 @@ public class ClusterMapHex : MultiToggle, ICanvasRaycastFilter
 		}
 	}
 
-	// Token: 0x06009745 RID: 38725 RVA: 0x00106F8E File Offset: 0x0010518E
 	public void SetDestinationStatus(string fail_reason)
 	{
 		this.m_tooltip.ClearMultiStringTooltip();
@@ -64,7 +56,6 @@ public class ClusterMapHex : MultiToggle, ICanvasRaycastFilter
 		}
 	}
 
-	// Token: 0x06009746 RID: 38726 RVA: 0x003B2AEC File Offset: 0x003B0CEC
 	public void SetDestinationStatus(string fail_reason, int pathLength, int rocketRange, bool repeat)
 	{
 		this.m_tooltip.ClearMultiStringTooltip();
@@ -85,7 +76,6 @@ public class ClusterMapHex : MultiToggle, ICanvasRaycastFilter
 		}
 	}
 
-	// Token: 0x06009747 RID: 38727 RVA: 0x003B2B74 File Offset: 0x003B0D74
 	public void UpdateToggleState(ClusterMapHex.ToggleState state)
 	{
 		int new_state_index = -1;
@@ -104,7 +94,6 @@ public class ClusterMapHex : MultiToggle, ICanvasRaycastFilter
 		base.ChangeState(new_state_index);
 	}
 
-	// Token: 0x06009748 RID: 38728 RVA: 0x00106FC1 File Offset: 0x001051C1
 	private void TrySelect()
 	{
 		if (DebugHandler.InstantBuildMode)
@@ -114,7 +103,6 @@ public class ClusterMapHex : MultiToggle, ICanvasRaycastFilter
 		ClusterMapScreen.Instance.SelectHex(this);
 	}
 
-	// Token: 0x06009749 RID: 38729 RVA: 0x003B2BA8 File Offset: 0x003B0DA8
 	private bool TryGoTo()
 	{
 		List<WorldContainer> list = (from entity in ClusterGrid.Instance.GetVisibleEntitiesAtCell(this.location)
@@ -129,7 +117,6 @@ public class ClusterMapHex : MultiToggle, ICanvasRaycastFilter
 		return false;
 	}
 
-	// Token: 0x0600974A RID: 38730 RVA: 0x003B2C38 File Offset: 0x003B0E38
 	private void OnHover()
 	{
 		this.m_tooltip.ClearMultiStringTooltip();
@@ -161,7 +148,6 @@ public class ClusterMapHex : MultiToggle, ICanvasRaycastFilter
 		ClusterMapScreen.Instance.OnHoverHex(this);
 	}
 
-	// Token: 0x0600974B RID: 38731 RVA: 0x00106FEB File Offset: 0x001051EB
 	private void OnUnhover()
 	{
 		if (ClusterMapScreen.Instance != null)
@@ -170,7 +156,6 @@ public class ClusterMapHex : MultiToggle, ICanvasRaycastFilter
 		}
 	}
 
-	// Token: 0x0600974C RID: 38732 RVA: 0x003B2D14 File Offset: 0x003B0F14
 	private void UpdateHoverColors(bool validDestination)
 	{
 		Color color_on_hover = validDestination ? this.hoverColorValid : this.hoverColorInvalid;
@@ -185,7 +170,6 @@ public class ClusterMapHex : MultiToggle, ICanvasRaycastFilter
 		base.RefreshHoverColor();
 	}
 
-	// Token: 0x0600974D RID: 38733 RVA: 0x003B2D9C File Offset: 0x003B0F9C
 	public bool IsRaycastLocationValid(Vector2 inputPoint, Camera eventCamera)
 	{
 		Vector2 vector = this.rectTransform.position;
@@ -195,42 +179,29 @@ public class ClusterMapHex : MultiToggle, ICanvasRaycastFilter
 		return num <= vector2.x && num2 <= vector2.y && vector2.y * vector2.x - vector2.y / 2f * num - vector2.x * num2 >= 0f;
 	}
 
-	// Token: 0x040075C0 RID: 30144
 	private RectTransform rectTransform;
 
-	// Token: 0x040075C1 RID: 30145
 	public Color hoverColorValid;
 
-	// Token: 0x040075C2 RID: 30146
 	public Color hoverColorInvalid;
 
-	// Token: 0x040075C3 RID: 30147
 	public Image fogOfWar;
 
-	// Token: 0x040075C4 RID: 30148
 	public Image peekedTile;
 
-	// Token: 0x040075C5 RID: 30149
 	public TextStyleSetting invalidDestinationTooltipStyle;
 
-	// Token: 0x040075C6 RID: 30150
 	public TextStyleSetting informationTooltipStyle;
 
-	// Token: 0x040075C7 RID: 30151
 	[MyCmpGet]
 	private ToolTip m_tooltip;
 
-	// Token: 0x040075C8 RID: 30152
 	private ClusterRevealLevel _revealLevel;
 
-	// Token: 0x02001C6C RID: 7276
 	public enum ToggleState
 	{
-		// Token: 0x040075CA RID: 30154
 		Unselected,
-		// Token: 0x040075CB RID: 30155
 		Selected,
-		// Token: 0x040075CC RID: 30156
 		OrbitHighlight
 	}
 }

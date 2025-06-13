@@ -5,11 +5,9 @@ using UnityEngine;
 
 namespace Klei.AI
 {
-	// Token: 0x02003C93 RID: 15507
 	[DebuggerDisplay("{effect.Id}")]
 	public class EffectInstance : ModifierInstance<Effect>
 	{
-		// Token: 0x0600EDEA RID: 60906 RVA: 0x004E4720 File Offset: 0x004E2920
 		public EffectInstance(GameObject game_object, Effect effect, bool should_save) : base(game_object, effect)
 		{
 			this.effect = effect;
@@ -39,7 +37,6 @@ namespace Klei.AI
 			}
 		}
 
-		// Token: 0x0600EDEB RID: 60907 RVA: 0x004E4800 File Offset: 0x004E2A00
 		protected void DefineEffectImmunities()
 		{
 			if (this.immunityEffects == null && this.effect.immunityEffectsNames != null)
@@ -52,7 +49,6 @@ namespace Klei.AI
 			}
 		}
 
-		// Token: 0x0600EDEC RID: 60908 RVA: 0x004E4874 File Offset: 0x004E2A74
 		protected void ApplyImmunities()
 		{
 			if (base.gameObject != null && this.immunityEffects != null)
@@ -66,7 +62,6 @@ namespace Klei.AI
 			}
 		}
 
-		// Token: 0x0600EDED RID: 60909 RVA: 0x004E48EC File Offset: 0x004E2AEC
 		protected void RemoveImmunities()
 		{
 			if (base.gameObject != null && this.immunityEffects != null)
@@ -79,7 +74,6 @@ namespace Klei.AI
 			}
 		}
 
-		// Token: 0x0600EDEE RID: 60910 RVA: 0x004E4954 File Offset: 0x004E2B54
 		public void RegisterEmote(string emoteAnim, float cooldown = -1f)
 		{
 			ReactionMonitor.Instance smi = base.gameObject.GetSMI<ReactionMonitor.Instance>();
@@ -101,7 +95,6 @@ namespace Klei.AI
 			}
 		}
 
-		// Token: 0x0600EDEF RID: 60911 RVA: 0x004E49FC File Offset: 0x004E2BFC
 		public void RegisterEmote(Emote emote, float cooldown = -1f)
 		{
 			ReactionMonitor.Instance smi = base.gameObject.GetSMI<ReactionMonitor.Instance>();
@@ -123,13 +116,11 @@ namespace Klei.AI
 			}
 		}
 
-		// Token: 0x0600EDF0 RID: 60912 RVA: 0x001441E7 File Offset: 0x001423E7
 		private bool NotInATube(GameObject go, Navigator.ActiveTransition transition)
 		{
 			return transition.navGridTransition.start != NavType.Tube && transition.navGridTransition.end != NavType.Tube;
 		}
 
-		// Token: 0x0600EDF1 RID: 60913 RVA: 0x004E4AA8 File Offset: 0x004E2CA8
 		public override void OnCleanUp()
 		{
 			if (this.statusItem != null)
@@ -145,19 +136,16 @@ namespace Klei.AI
 			this.RemoveImmunities();
 		}
 
-		// Token: 0x0600EDF2 RID: 60914 RVA: 0x0014420A File Offset: 0x0014240A
 		public float GetTimeRemaining()
 		{
 			return this.timeRemaining;
 		}
 
-		// Token: 0x0600EDF3 RID: 60915 RVA: 0x00144212 File Offset: 0x00142412
 		public bool IsExpired()
 		{
 			return this.effect.duration > 0f && this.timeRemaining <= 0f;
 		}
 
-		// Token: 0x0600EDF4 RID: 60916 RVA: 0x004E4AFC File Offset: 0x004E2CFC
 		private void ConfigureStatusItem()
 		{
 			StatusItem.IconType iconType = this.effect.isBad ? StatusItem.IconType.Exclamation : StatusItem.IconType.Info;
@@ -178,13 +166,11 @@ namespace Klei.AI
 			this.statusItem.resolveTooltipCallback = new Func<string, object, string>(this.ResolveTooltip);
 		}
 
-		// Token: 0x0600EDF5 RID: 60917 RVA: 0x000B64D6 File Offset: 0x000B46D6
 		private string ResolveString(string str, object data)
 		{
 			return str;
 		}
 
-		// Token: 0x0600EDF6 RID: 60918 RVA: 0x004E4BBC File Offset: 0x004E2DBC
 		private string ResolveTooltip(string str, object data)
 		{
 			string text = str;
@@ -201,22 +187,16 @@ namespace Klei.AI
 			return text;
 		}
 
-		// Token: 0x0400E9DC RID: 59868
 		public Effect effect;
 
-		// Token: 0x0400E9DD RID: 59869
 		public bool shouldSave;
 
-		// Token: 0x0400E9DE RID: 59870
 		public StatusItem statusItem;
 
-		// Token: 0x0400E9DF RID: 59871
 		public float timeRemaining;
 
-		// Token: 0x0400E9E0 RID: 59872
 		public EmoteReactable reactable;
 
-		// Token: 0x0400E9E1 RID: 59873
 		protected Effect[] immunityEffects;
 	}
 }

@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000015 RID: 21
 public class AdvancedApothecaryConfig : IBuildingConfig
 {
-	// Token: 0x0600004E RID: 78 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x0600004F RID: 79 RVA: 0x001471F0 File Offset: 0x001453F0
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "AdvancedApothecary";
@@ -37,7 +34,6 @@ public class AdvancedApothecaryConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000050 RID: 80 RVA: 0x0014728C File Offset: 0x0014548C
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		Prioritizable.AddRef(go);
@@ -59,15 +55,12 @@ public class AdvancedApothecaryConfig : IBuildingConfig
 		def.meterSymbolName = null;
 	}
 
-	// Token: 0x06000051 RID: 81 RVA: 0x000AA11E File Offset: 0x000A831E
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGetDef<PoweredController.Def>();
 	}
 
-	// Token: 0x04000042 RID: 66
 	public const string ID = "AdvancedApothecary";
 
-	// Token: 0x04000043 RID: 67
 	public const float PARTICLE_CAPACITY = 400f;
 }

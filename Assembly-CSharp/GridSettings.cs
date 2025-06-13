@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x0200140F RID: 5135
 [AddComponentMenu("KMonoBehaviour/scripts/GridSettings")]
 public class GridSettings : KMonoBehaviour
 {
-	// Token: 0x06006904 RID: 26884 RVA: 0x002E7EB4 File Offset: 0x002E60B4
 	public static void Reset(int width, int height)
 	{
 		Grid.WidthInCells = width;
@@ -54,7 +52,6 @@ public class GridSettings : KMonoBehaviour
 		Grid.OnReveal = null;
 	}
 
-	// Token: 0x06006905 RID: 26885 RVA: 0x002E80CC File Offset: 0x002E62CC
 	public static void ClearGrid()
 	{
 		Grid.WidthInCells = 0;
@@ -81,6 +78,5 @@ public class GridSettings : KMonoBehaviour
 		Grid.ResetNavMasksAndDetails();
 	}
 
-	// Token: 0x04004FB5 RID: 20405
 	public const float CellSizeInMeters = 1f;
 }

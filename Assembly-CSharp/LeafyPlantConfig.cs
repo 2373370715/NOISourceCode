@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020002B0 RID: 688
 public class LeafyPlantConfig : IEntityConfig
 {
-	// Token: 0x06000A10 RID: 2576 RVA: 0x00172FEC File Offset: 0x001711EC
 	public GameObject CreatePrefab()
 	{
 		string id = "LeafyPlant";
@@ -44,25 +42,19 @@ public class LeafyPlantConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06000A11 RID: 2577 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x06000A12 RID: 2578 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x040007EF RID: 2031
 	public const string ID = "LeafyPlant";
 
-	// Token: 0x040007F0 RID: 2032
 	public const string SEED_ID = "LeafyPlantSeed";
 
-	// Token: 0x040007F1 RID: 2033
 	public readonly EffectorValues POSITIVE_DECOR_EFFECT = DECOR.BONUS.TIER3;
 
-	// Token: 0x040007F2 RID: 2034
 	public readonly EffectorValues NEGATIVE_DECOR_EFFECT = DECOR.PENALTY.TIER3;
 }

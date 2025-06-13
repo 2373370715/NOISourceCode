@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200059F RID: 1439
 public class SmallSculptureConfig : IBuildingConfig
 {
-	// Token: 0x060018DC RID: 6364 RVA: 0x001ACA04 File Offset: 0x001AAC04
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "SmallSculpture";
@@ -39,19 +37,16 @@ public class SmallSculptureConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060018DD RID: 6365 RVA: 0x000AA54F File Offset: 0x000A874F
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<BuildingComplete>().isArtable = true;
 		go.GetComponent<KPrefabID>().AddTag(GameTags.Decoration, false);
 	}
 
-	// Token: 0x060018DE RID: 6366 RVA: 0x000B0C21 File Offset: 0x000AEE21
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddComponent<Sculpture>().defaultAnimName = "slab";
 	}
 
-	// Token: 0x0400103B RID: 4155
 	public const string ID = "SmallSculpture";
 }

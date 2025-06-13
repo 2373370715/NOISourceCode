@@ -4,10 +4,8 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001FAB RID: 8107
 public class CometDetectorSideScreen : SideScreenContent
 {
-	// Token: 0x0600AB64 RID: 43876 RVA: 0x00113D7B File Offset: 0x00111F7B
 	protected override void OnShow(bool show)
 	{
 		base.OnShow(show);
@@ -17,7 +15,6 @@ public class CometDetectorSideScreen : SideScreenContent
 		}
 	}
 
-	// Token: 0x0600AB65 RID: 43877 RVA: 0x00419000 File Offset: 0x00417200
 	private void RefreshOptions()
 	{
 		if (this.clusterDetector != null)
@@ -48,7 +45,6 @@ public class CometDetectorSideScreen : SideScreenContent
 		}
 	}
 
-	// Token: 0x0600AB66 RID: 43878 RVA: 0x004191C8 File Offset: 0x004173C8
 	private void ClearRows()
 	{
 		for (int i = this.rowContainer.childCount - 1; i >= 0; i--)
@@ -58,7 +54,6 @@ public class CometDetectorSideScreen : SideScreenContent
 		this.rows.Clear();
 	}
 
-	// Token: 0x0600AB67 RID: 43879 RVA: 0x00113D8D File Offset: 0x00111F8D
 	public override void SetTarget(GameObject target)
 	{
 		if (DlcManager.IsExpansion1Active())
@@ -72,7 +67,6 @@ public class CometDetectorSideScreen : SideScreenContent
 		this.RefreshOptions();
 	}
 
-	// Token: 0x0600AB68 RID: 43880 RVA: 0x0041920C File Offset: 0x0041740C
 	private void SetClusterRow(int idx, string name, Sprite icon, ClusterCometDetector.Instance.ClusterCometDetectorState state, Clustercraft rocketTarget = null)
 	{
 		GameObject gameObject;
@@ -99,7 +93,6 @@ public class CometDetectorSideScreen : SideScreenContent
 		};
 	}
 
-	// Token: 0x0600AB69 RID: 43881 RVA: 0x004192DC File Offset: 0x004174DC
 	private void SetRow(int idx, string name, Sprite icon, LaunchConditionManager target)
 	{
 		GameObject gameObject;
@@ -124,7 +117,6 @@ public class CometDetectorSideScreen : SideScreenContent
 		};
 	}
 
-	// Token: 0x0600AB6A RID: 43882 RVA: 0x00113DB6 File Offset: 0x00111FB6
 	public override bool IsValidForTarget(GameObject target)
 	{
 		if (DlcManager.IsExpansion1Active())
@@ -134,18 +126,13 @@ public class CometDetectorSideScreen : SideScreenContent
 		return target.GetSMI<CometDetector.Instance>() != null;
 	}
 
-	// Token: 0x040086E7 RID: 34535
 	private CometDetector.Instance detector;
 
-	// Token: 0x040086E8 RID: 34536
 	private ClusterCometDetector.Instance clusterDetector;
 
-	// Token: 0x040086E9 RID: 34537
 	public GameObject rowPrefab;
 
-	// Token: 0x040086EA RID: 34538
 	public RectTransform rowContainer;
 
-	// Token: 0x040086EB RID: 34539
 	public Dictionary<object, GameObject> rows = new Dictionary<object, GameObject>();
 }

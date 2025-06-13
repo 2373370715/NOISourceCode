@@ -11,21 +11,15 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001B2F RID: 6959
 public class LoadScreen : KModalScreen
 {
-	// Token: 0x170009A5 RID: 2469
-	// (get) Token: 0x060091C0 RID: 37312 RVA: 0x00103C3B File Offset: 0x00101E3B
-	// (set) Token: 0x060091C1 RID: 37313 RVA: 0x00103C42 File Offset: 0x00101E42
 	public static LoadScreen Instance { get; private set; }
 
-	// Token: 0x060091C2 RID: 37314 RVA: 0x00103C4A File Offset: 0x00101E4A
 	public static void DestroyInstance()
 	{
 		LoadScreen.Instance = null;
 	}
 
-	// Token: 0x060091C3 RID: 37315 RVA: 0x0038E5C4 File Offset: 0x0038C7C4
 	protected override void OnPrefabInit()
 	{
 		global::Debug.Assert(LoadScreen.Instance == null);
@@ -76,19 +70,16 @@ public class LoadScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x060091C4 RID: 37316 RVA: 0x00103C52 File Offset: 0x00101E52
 	private bool IsInMenu()
 	{
 		return App.GetCurrentSceneName() == "frontend";
 	}
 
-	// Token: 0x060091C5 RID: 37317 RVA: 0x00103C63 File Offset: 0x00101E63
 	private bool CloudSavesVisible()
 	{
 		return SaveLoader.GetCloudSavesAvailable() && this.IsInMenu();
 	}
 
-	// Token: 0x060091C6 RID: 37318 RVA: 0x0038E6E4 File Offset: 0x0038C8E4
 	protected override void OnActivate()
 	{
 		base.OnActivate();
@@ -119,7 +110,6 @@ public class LoadScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x060091C7 RID: 37319 RVA: 0x0038E7AC File Offset: 0x0038C9AC
 	private Dictionary<string, List<LoadScreen.SaveGameFileDetails>> GetColoniesDetails(List<SaveLoader.SaveFileEntry> files)
 	{
 		Dictionary<string, List<LoadScreen.SaveGameFileDetails>> dictionary = new Dictionary<string, List<LoadScreen.SaveGameFileDetails>>();
@@ -164,28 +154,24 @@ public class LoadScreen : KModalScreen
 		return dictionary;
 	}
 
-	// Token: 0x060091C8 RID: 37320 RVA: 0x0038E914 File Offset: 0x0038CB14
 	private Dictionary<string, List<LoadScreen.SaveGameFileDetails>> GetColonies(bool sort)
 	{
 		List<SaveLoader.SaveFileEntry> allFiles = SaveLoader.GetAllFiles(sort, SaveLoader.SaveType.both);
 		return this.GetColoniesDetails(allFiles);
 	}
 
-	// Token: 0x060091C9 RID: 37321 RVA: 0x0038E930 File Offset: 0x0038CB30
 	private Dictionary<string, List<LoadScreen.SaveGameFileDetails>> GetLocalColonies(bool sort)
 	{
 		List<SaveLoader.SaveFileEntry> allFiles = SaveLoader.GetAllFiles(sort, SaveLoader.SaveType.local);
 		return this.GetColoniesDetails(allFiles);
 	}
 
-	// Token: 0x060091CA RID: 37322 RVA: 0x0038E94C File Offset: 0x0038CB4C
 	private Dictionary<string, List<LoadScreen.SaveGameFileDetails>> GetCloudColonies(bool sort)
 	{
 		List<SaveLoader.SaveFileEntry> allFiles = SaveLoader.GetAllFiles(sort, SaveLoader.SaveType.cloud);
 		return this.GetColoniesDetails(allFiles);
 	}
 
-	// Token: 0x060091CB RID: 37323 RVA: 0x0038E968 File Offset: 0x0038CB68
 	private bool IsFileValid(string filename)
 	{
 		bool result = false;
@@ -201,7 +187,6 @@ public class LoadScreen : KModalScreen
 		return result;
 	}
 
-	// Token: 0x060091CC RID: 37324 RVA: 0x0038E9BC File Offset: 0x0038CBBC
 	private void CheckCloudLocalOverlap()
 	{
 		if (!SaveLoader.GetCloudSavesAvailable())
@@ -275,7 +260,6 @@ public class LoadScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x060091CD RID: 37325 RVA: 0x00103C74 File Offset: 0x00101E74
 	private void DeleteFileAndEmptyFolder(string file)
 	{
 		if (File.Exists(file))
@@ -285,7 +269,6 @@ public class LoadScreen : KModalScreen
 		this.RemoveEmptyFolder(System.IO.Path.GetDirectoryName(file));
 	}
 
-	// Token: 0x060091CE RID: 37326 RVA: 0x0038EC34 File Offset: 0x0038CE34
 	private void RemoveEmptyFolder(string path)
 	{
 		if (!Directory.Exists(path))
@@ -311,7 +294,6 @@ public class LoadScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x060091CF RID: 37327 RVA: 0x0038ECA8 File Offset: 0x0038CEA8
 	private void RefreshColonyList()
 	{
 		if (this.colonyListPool != null)
@@ -337,7 +319,6 @@ public class LoadScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x060091D0 RID: 37328 RVA: 0x0038ED6C File Offset: 0x0038CF6C
 	private string GetFileHash(string path)
 	{
 		string result;
@@ -351,7 +332,6 @@ public class LoadScreen : KModalScreen
 		return result;
 	}
 
-	// Token: 0x060091D1 RID: 37329 RVA: 0x0038EDDC File Offset: 0x0038CFDC
 	private bool FileMatch(string file, string other_file, out global::Tuple<bool, bool> matches)
 	{
 		matches = new global::Tuple<bool, bool>(false, false);
@@ -392,7 +372,6 @@ public class LoadScreen : KModalScreen
 		return flag && flag2;
 	}
 
-	// Token: 0x060091D2 RID: 37330 RVA: 0x0038EEA4 File Offset: 0x0038D0A4
 	private bool MigrateFile(string source, string dest, bool ignoreMissing = false)
 	{
 		global::Debug.Log(string.Concat(new string[]
@@ -471,7 +450,6 @@ public class LoadScreen : KModalScreen
 		return true;
 	}
 
-	// Token: 0x060091D3 RID: 37331 RVA: 0x0038F0A8 File Offset: 0x0038D2A8
 	private bool MigrateSave(string dest_root, string file, bool is_auto_save, out string saveError)
 	{
 		saveError = null;
@@ -510,7 +488,6 @@ public class LoadScreen : KModalScreen
 		return true;
 	}
 
-	// Token: 0x060091D4 RID: 37332 RVA: 0x0038F184 File Offset: 0x0038D384
 	private ValueTuple<int, int, ulong> GetSavesSizeAndCounts(List<LoadScreen.SaveGameFileDetails> list)
 	{
 		ulong num = 0UL;
@@ -532,7 +509,6 @@ public class LoadScreen : KModalScreen
 		return new ValueTuple<int, int, ulong>(num2, num3, num);
 	}
 
-	// Token: 0x060091D5 RID: 37333 RVA: 0x0038F1DC File Offset: 0x0038D3DC
 	private int CountValidSaves(string path, SearchOption searchType = SearchOption.AllDirectories)
 	{
 		int num = 0;
@@ -547,7 +523,6 @@ public class LoadScreen : KModalScreen
 		return num;
 	}
 
-	// Token: 0x060091D6 RID: 37334 RVA: 0x0038F220 File Offset: 0x0038D420
 	private ValueTuple<int, int> GetMigrationSaveCounts()
 	{
 		int item = this.CountValidSaves(SaveLoader.GetSavePrefixAndCreateFolder(), SearchOption.TopDirectoryOnly);
@@ -555,7 +530,6 @@ public class LoadScreen : KModalScreen
 		return new ValueTuple<int, int>(item, item2);
 	}
 
-	// Token: 0x060091D7 RID: 37335 RVA: 0x0038F24C File Offset: 0x0038D44C
 	private ValueTuple<int, int> MigrateSaves(out string errorColony, out string errorMessage)
 	{
 		errorColony = null;
@@ -602,7 +576,6 @@ public class LoadScreen : KModalScreen
 		return new ValueTuple<int, int>(num, num2);
 	}
 
-	// Token: 0x060091D8 RID: 37336 RVA: 0x0038F33C File Offset: 0x0038D53C
 	public void ShowMigrationIfNecessary(bool fromMainMenu)
 	{
 		ValueTuple<int, int> migrationSaveCounts = this.GetMigrationSaveCounts();
@@ -710,14 +683,12 @@ public class LoadScreen : KModalScreen
 		};
 	}
 
-	// Token: 0x060091D9 RID: 37337 RVA: 0x00103C90 File Offset: 0x00101E90
 	private void SetCloudSaveInfoActive(bool active)
 	{
 		this.colonyCloudButton.gameObject.SetActive(active);
 		this.colonyLocalButton.gameObject.SetActive(active);
 	}
 
-	// Token: 0x060091DA RID: 37338 RVA: 0x0038F538 File Offset: 0x0038D738
 	private bool ConvertToLocalOrCloud(string fromRoot, string destRoot, string colonyName)
 	{
 		string text = System.IO.Path.Combine(fromRoot, colonyName);
@@ -746,7 +717,6 @@ public class LoadScreen : KModalScreen
 		return false;
 	}
 
-	// Token: 0x060091DB RID: 37339 RVA: 0x0038F5F4 File Offset: 0x0038D7F4
 	private bool ConvertColonyToCloud(string colonyName)
 	{
 		string savePrefix = SaveLoader.GetSavePrefix();
@@ -759,7 +729,6 @@ public class LoadScreen : KModalScreen
 		return this.ConvertToLocalOrCloud(savePrefix, cloudSavePrefix, colonyName);
 	}
 
-	// Token: 0x060091DC RID: 37340 RVA: 0x0038F628 File Offset: 0x0038D828
 	private bool ConvertColonyToLocal(string colonyName)
 	{
 		string savePrefix = SaveLoader.GetSavePrefix();
@@ -772,7 +741,6 @@ public class LoadScreen : KModalScreen
 		return this.ConvertToLocalOrCloud(cloudSavePrefix, savePrefix, colonyName);
 	}
 
-	// Token: 0x060091DD RID: 37341 RVA: 0x0038F65C File Offset: 0x0038D85C
 	private void DoConvertAllToLocal()
 	{
 		Dictionary<string, List<LoadScreen.SaveGameFileDetails>> cloudColonies = this.GetCloudColonies(false);
@@ -795,7 +763,6 @@ public class LoadScreen : KModalScreen
 		SaveLoader.SetCloudSavesDefault(false);
 	}
 
-	// Token: 0x060091DE RID: 37342 RVA: 0x0038F718 File Offset: 0x0038D918
 	private void DoConvertAllToCloud()
 	{
 		Dictionary<string, List<LoadScreen.SaveGameFileDetails>> localColonies = this.GetLocalColonies(false);
@@ -827,7 +794,6 @@ public class LoadScreen : KModalScreen
 		SaveLoader.SetCloudSavesDefault(true);
 	}
 
-	// Token: 0x060091DF RID: 37343 RVA: 0x0038F82C File Offset: 0x0038DA2C
 	private void ConvertAllToCloud()
 	{
 		string message = string.Format("{0}\n{1}\n", UI.FRONTEND.LOADSCREEN.CONVERT_TO_CLOUD_DETAILS, UI.FRONTEND.LOADSCREEN.CONVERT_ALL_WARNING);
@@ -841,7 +807,6 @@ public class LoadScreen : KModalScreen
 		}, this.localToCloudSprite);
 	}
 
-	// Token: 0x060091E0 RID: 37344 RVA: 0x0038F8B0 File Offset: 0x0038DAB0
 	private void ConvertAllToLocal()
 	{
 		string message = string.Format("{0}\n{1}\n", UI.FRONTEND.LOADSCREEN.CONVERT_TO_LOCAL_DETAILS, UI.FRONTEND.LOADSCREEN.CONVERT_ALL_WARNING);
@@ -855,7 +820,6 @@ public class LoadScreen : KModalScreen
 		}, this.cloudToLocalSprite);
 	}
 
-	// Token: 0x060091E1 RID: 37345 RVA: 0x0038F934 File Offset: 0x0038DB34
 	private void ShowSaveInfo()
 	{
 		if (this.infoScreen == null)
@@ -876,7 +840,6 @@ public class LoadScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x060091E2 RID: 37346 RVA: 0x00103CB4 File Offset: 0x00101EB4
 	protected override void OnDeactivate()
 	{
 		if (SpeedControlScreen.Instance != null)
@@ -887,7 +850,6 @@ public class LoadScreen : KModalScreen
 		base.OnDeactivate();
 	}
 
-	// Token: 0x060091E3 RID: 37347 RVA: 0x00103CDB File Offset: 0x00101EDB
 	private void ShowColonyList()
 	{
 		this.colonyListRoot.SetActive(true);
@@ -896,7 +858,6 @@ public class LoadScreen : KModalScreen
 		this.selectedSave = null;
 	}
 
-	// Token: 0x060091E4 RID: 37348 RVA: 0x0038FA28 File Offset: 0x0038DC28
 	private bool CheckSaveVersion(LoadScreen.SaveGameFileDetails save, LocText display)
 	{
 		if (LoadScreen.IsSaveFileFromUnsupportedFutureBuild(save.FileHeader, save.FileInfo))
@@ -932,7 +893,6 @@ public class LoadScreen : KModalScreen
 		return true;
 	}
 
-	// Token: 0x060091E5 RID: 37349 RVA: 0x0038FB2C File Offset: 0x0038DD2C
 	private bool CheckSaveDLCsCompatable(LoadScreen.SaveGameFileDetails save)
 	{
 		HashSet<string> hashSet;
@@ -940,7 +900,6 @@ public class LoadScreen : KModalScreen
 		return save.FileInfo.IsCompatableWithCurrentDlcConfiguration(out hashSet, out hashSet2);
 	}
 
-	// Token: 0x060091E6 RID: 37350 RVA: 0x0038FB4C File Offset: 0x0038DD4C
 	private string GetSaveDLCIncompatabilityTooltip(LoadScreen.SaveGameFileDetails save)
 	{
 		string text = "";
@@ -965,7 +924,6 @@ public class LoadScreen : KModalScreen
 		return text;
 	}
 
-	// Token: 0x060091E7 RID: 37351 RVA: 0x0038FC3C File Offset: 0x0038DE3C
 	private void ShowColonySave(LoadScreen.SaveGameFileDetails save)
 	{
 		HierarchyReferences component = this.colonyViewRoot.GetComponent<HierarchyReferences>();
@@ -1022,7 +980,6 @@ public class LoadScreen : KModalScreen
 		};
 	}
 
-	// Token: 0x060091E8 RID: 37352 RVA: 0x0038FF24 File Offset: 0x0038E124
 	private void ShowColony(List<LoadScreen.SaveGameFileDetails> saves, int selectIndex = -1)
 	{
 		if (saves.Count <= 0)
@@ -1119,7 +1076,6 @@ public class LoadScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x060091E9 RID: 37353 RVA: 0x00390318 File Offset: 0x0038E518
 	private void AddColonyToList(List<LoadScreen.SaveGameFileDetails> saves)
 	{
 		if (saves.Count == 0)
@@ -1240,7 +1196,6 @@ public class LoadScreen : KModalScreen
 		freeElement.transform.SetAsLastSibling();
 	}
 
-	// Token: 0x060091EA RID: 37354 RVA: 0x003907B8 File Offset: 0x0038E9B8
 	private void SetPreview(string filename, string basename, Image preview, bool fallbackToTimelapse = false)
 	{
 		preview.color = Color.black;
@@ -1271,7 +1226,6 @@ public class LoadScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x060091EB RID: 37355 RVA: 0x00103D03 File Offset: 0x00101F03
 	public static void ForceStopGame()
 	{
 		ThreadedHttps<KleiMetrics>.Instance.ClearGameFields();
@@ -1281,13 +1235,11 @@ public class LoadScreen : KModalScreen
 		Sim.Shutdown();
 	}
 
-	// Token: 0x060091EC RID: 37356 RVA: 0x00103D2F File Offset: 0x00101F2F
 	private static bool IsSaveFileFromUnsupportedFutureBuild(SaveGame.Header header, SaveGame.GameInfo gameInfo)
 	{
 		return gameInfo.saveMajorVersion > 7 || (gameInfo.saveMajorVersion == 7 && gameInfo.saveMinorVersion > 35) || header.buildVersion > 663500U;
 	}
 
-	// Token: 0x060091ED RID: 37357 RVA: 0x003908C8 File Offset: 0x0038EAC8
 	private void UpdateSelected(KButton button, string filename, List<string> dlcIds)
 	{
 		if (this.selectedSave != null && this.selectedSave.button != null)
@@ -1307,7 +1259,6 @@ public class LoadScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x060091EE RID: 37358 RVA: 0x00390968 File Offset: 0x0038EB68
 	private void Load()
 	{
 		if (!DlcManager.IsAllContentSubscribed(this.selectedSave.dlcIds))
@@ -1323,7 +1274,6 @@ public class LoadScreen : KModalScreen
 		LoadingOverlay.Load(new System.Action(this.DoLoad));
 	}
 
-	// Token: 0x060091EF RID: 37359 RVA: 0x00103D5C File Offset: 0x00101F5C
 	private void DoLoad()
 	{
 		if (this.selectedSave == null)
@@ -1334,7 +1284,6 @@ public class LoadScreen : KModalScreen
 		this.Deactivate();
 	}
 
-	// Token: 0x060091F0 RID: 37360 RVA: 0x003909D8 File Offset: 0x0038EBD8
 	public static void DoLoad(string filename)
 	{
 		KCrashReporter.MOST_RECENT_SAVEFILE = filename;
@@ -1368,13 +1317,11 @@ public class LoadScreen : KModalScreen
 		App.LoadScene("backend");
 	}
 
-	// Token: 0x060091F1 RID: 37361 RVA: 0x00103D7D File Offset: 0x00101F7D
 	private void MoreInfo()
 	{
 		App.OpenWebURL("http://support.kleientertainment.com/customer/portal/articles/2776550");
 	}
 
-	// Token: 0x060091F2 RID: 37362 RVA: 0x00390AFC File Offset: 0x0038ECFC
 	private void Delete(System.Action onDelete)
 	{
 		if (this.selectedSave == null || string.IsNullOrEmpty(this.selectedSave.filename))
@@ -1402,13 +1349,11 @@ public class LoadScreen : KModalScreen
 		});
 	}
 
-	// Token: 0x060091F3 RID: 37363 RVA: 0x00103D89 File Offset: 0x00101F89
 	private void ShowSimpleDialog(string title, string message)
 	{
 		global::Util.KInstantiateUI<InfoDialogScreen>(ScreenPrefabs.Instance.InfoDialogScreen.gameObject, base.gameObject, false).SetHeader(title).AddPlainText(message).AddDefaultOK(false).Activate();
 	}
 
-	// Token: 0x060091F4 RID: 37364 RVA: 0x00390B74 File Offset: 0x0038ED74
 	private void ConfirmCloudSaveMigrations(string message, string title, string confirmText, string backupText, System.Action commitAction, System.Action backupAction, Sprite sprite)
 	{
 		global::Util.KInstantiateUI<InfoDialogScreen>(ScreenPrefabs.Instance.InfoDialogScreen.gameObject, base.gameObject, false).SetHeader(title).AddSprite(sprite).AddPlainText(message).AddDefaultCancel().AddOption(confirmText, delegate(InfoDialogScreen d)
@@ -1418,7 +1363,6 @@ public class LoadScreen : KModalScreen
 		}, true).Activate();
 	}
 
-	// Token: 0x060091F5 RID: 37365 RVA: 0x00390BDC File Offset: 0x0038EDDC
 	private void ShowConvertError(string message)
 	{
 		if (this.errorInfoScreen == null)
@@ -1437,7 +1381,6 @@ public class LoadScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x060091F6 RID: 37366 RVA: 0x00390CDC File Offset: 0x0038EEDC
 	private void ConfirmDoAction(string message, System.Action action)
 	{
 		if (this.confirmScreen == null)
@@ -1450,7 +1393,6 @@ public class LoadScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x060091F7 RID: 37367 RVA: 0x00103DBD File Offset: 0x00101FBD
 	public override void OnKeyDown(KButtonEvent e)
 	{
 		if (this.currentColony != null && e.TryConsume(global::Action.Escape))
@@ -1460,141 +1402,101 @@ public class LoadScreen : KModalScreen
 		base.OnKeyDown(e);
 	}
 
-	// Token: 0x04006E6C RID: 28268
 	private const int MAX_CLOUD_TUTORIALS = 5;
 
-	// Token: 0x04006E6D RID: 28269
 	private const string CLOUD_TUTORIAL_KEY = "LoadScreenCloudTutorialTimes";
 
-	// Token: 0x04006E6E RID: 28270
 	private const int ITEMS_PER_PAGE = 20;
 
-	// Token: 0x04006E6F RID: 28271
 	[SerializeField]
 	private KButton closeButton;
 
-	// Token: 0x04006E70 RID: 28272
 	[SerializeField]
 	private GameObject saveButtonRoot;
 
-	// Token: 0x04006E71 RID: 28273
 	[SerializeField]
 	private GameObject colonyListRoot;
 
-	// Token: 0x04006E72 RID: 28274
 	[SerializeField]
 	private GameObject colonyViewRoot;
 
-	// Token: 0x04006E73 RID: 28275
 	[SerializeField]
 	private HierarchyReferences migrationPanelRefs;
 
-	// Token: 0x04006E74 RID: 28276
 	[SerializeField]
 	private HierarchyReferences saveButtonPrefab;
 
-	// Token: 0x04006E75 RID: 28277
 	[SerializeField]
 	private KButton loadMoreButton;
 
-	// Token: 0x04006E76 RID: 28278
 	[Space]
 	[SerializeField]
 	private KButton colonyCloudButton;
 
-	// Token: 0x04006E77 RID: 28279
 	[SerializeField]
 	private KButton colonyLocalButton;
 
-	// Token: 0x04006E78 RID: 28280
 	[SerializeField]
 	private KButton colonyInfoButton;
 
-	// Token: 0x04006E79 RID: 28281
 	[SerializeField]
 	private Sprite localToCloudSprite;
 
-	// Token: 0x04006E7A RID: 28282
 	[SerializeField]
 	private Sprite cloudToLocalSprite;
 
-	// Token: 0x04006E7B RID: 28283
 	[SerializeField]
 	private Sprite errorSprite;
 
-	// Token: 0x04006E7C RID: 28284
 	[SerializeField]
 	private Sprite infoSprite;
 
-	// Token: 0x04006E7D RID: 28285
 	[SerializeField]
 	private Bouncer cloudTutorialBouncer;
 
-	// Token: 0x04006E7E RID: 28286
 	public bool requireConfirmation = true;
 
-	// Token: 0x04006E7F RID: 28287
 	private LoadScreen.SelectedSave selectedSave;
 
-	// Token: 0x04006E80 RID: 28288
 	private List<LoadScreen.SaveGameFileDetails> currentColony;
 
-	// Token: 0x04006E81 RID: 28289
 	private UIPool<HierarchyReferences> colonyListPool;
 
-	// Token: 0x04006E82 RID: 28290
 	private ConfirmDialogScreen confirmScreen;
 
-	// Token: 0x04006E83 RID: 28291
 	private InfoDialogScreen infoScreen;
 
-	// Token: 0x04006E84 RID: 28292
 	private InfoDialogScreen errorInfoScreen;
 
-	// Token: 0x04006E85 RID: 28293
 	private ConfirmDialogScreen errorScreen;
 
-	// Token: 0x04006E86 RID: 28294
 	private InspectSaveScreen inspectScreenInstance;
 
-	// Token: 0x04006E87 RID: 28295
 	private int displayedPageCount = 1;
 
-	// Token: 0x02001B30 RID: 6960
 	private struct SaveGameFileDetails
 	{
-		// Token: 0x04006E88 RID: 28296
 		public string BaseName;
 
-		// Token: 0x04006E89 RID: 28297
 		public string FileName;
 
-		// Token: 0x04006E8A RID: 28298
 		public string UniqueID;
 
-		// Token: 0x04006E8B RID: 28299
 		public System.DateTime FileDate;
 
-		// Token: 0x04006E8C RID: 28300
 		public SaveGame.Header FileHeader;
 
-		// Token: 0x04006E8D RID: 28301
 		public SaveGame.GameInfo FileInfo;
 
-		// Token: 0x04006E8E RID: 28302
 		public long Size;
 	}
 
-	// Token: 0x02001B31 RID: 6961
 	private class SelectedSave
 	{
-		// Token: 0x04006E8F RID: 28303
 		public string filename;
 
-		// Token: 0x04006E90 RID: 28304
 		public List<string> dlcIds;
 
-		// Token: 0x04006E91 RID: 28305
 		public KButton button;
 	}
 }

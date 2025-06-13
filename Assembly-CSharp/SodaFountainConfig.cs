@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005A1 RID: 1441
 public class SodaFountainConfig : IBuildingConfig
 {
-	// Token: 0x060018E9 RID: 6377 RVA: 0x001ACD4C File Offset: 0x001AAF4C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "SodaFountain";
@@ -35,7 +33,6 @@ public class SodaFountainConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060018EA RID: 6378 RVA: 0x001ACE04 File Offset: 0x001AB004
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		KPrefabID component = go.GetComponent<KPrefabID>();
@@ -68,7 +65,6 @@ public class SodaFountainConfig : IBuildingConfig
 		component.prefabInitFn += this.OnInit;
 	}
 
-	// Token: 0x060018EB RID: 6379 RVA: 0x001ACF50 File Offset: 0x001AB150
 	private void OnInit(GameObject go)
 	{
 		SodaFountainWorkable component = go.GetComponent<SodaFountainWorkable>();
@@ -83,11 +79,9 @@ public class SodaFountainConfig : IBuildingConfig
 		});
 	}
 
-	// Token: 0x060018EC RID: 6380 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04001040 RID: 4160
 	public const string ID = "SodaFountain";
 }

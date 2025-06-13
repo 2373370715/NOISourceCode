@@ -2,16 +2,12 @@
 
 namespace STRINGS
 {
-	// Token: 0x02003C04 RID: 15364
 	public class SUBWORLDS
 	{
-		// Token: 0x02003C05 RID: 15365
 		public static class BARREN
 		{
-			// Token: 0x0400E725 RID: 59173
 			public static LocString NAME = "Barren";
 
-			// Token: 0x0400E726 RID: 59174
 			public static LocString DESC = string.Concat(new string[]
 			{
 				"Initial scans of this biome yield no signs of either ",
@@ -25,7 +21,6 @@ namespace STRINGS
 				" deposits. These dry, dusty plains can be mined for building materials but there is little in the way of life sustaining resources here for a colony."
 			});
 
-			// Token: 0x0400E727 RID: 59175
 			public static LocString UTILITY = string.Concat(new string[]
 			{
 				"The layers of sedimentary rock are predominantly made up of ",
@@ -42,16 +37,12 @@ namespace STRINGS
 			});
 		}
 
-		// Token: 0x02003C06 RID: 15366
 		public static class FOREST
 		{
-			// Token: 0x0400E728 RID: 59176
 			public static LocString NAME = "Forest";
 
-			// Token: 0x0400E729 RID: 59177
 			public static LocString DESC = "Temperate and filled with unique " + UI.FormatAsLink("Plant", "PLANTS") + " life, this biome contains all the necessities for life support, although not in quantities sufficient to sustain a long term colony. Exploration into neighboring biomes should be a priority.";
 
-			// Token: 0x0400E72A RID: 59178
 			public static LocString UTILITY = string.Concat(new string[]
 			{
 				"Small pockets of ",
@@ -82,13 +73,10 @@ namespace STRINGS
 			});
 		}
 
-		// Token: 0x02003C07 RID: 15367
 		public static class FROZEN
 		{
-			// Token: 0x0400E72B RID: 59179
 			public static LocString NAME = "Tundra";
 
-			// Token: 0x0400E72C RID: 59180
 			public static LocString DESC = string.Concat(new string[]
 			{
 				"The sub-zero temperatures of the Tundra Biome provide rare frozen deposits of ",
@@ -100,7 +88,6 @@ namespace STRINGS
 				" regulation needs."
 			});
 
-			// Token: 0x0400E72D RID: 59181
 			public static LocString UTILITY = string.Concat(new string[]
 			{
 				"Far from devoid of life, this biome contains some much needed plant life, ripe for cultivation. ",
@@ -117,13 +104,10 @@ namespace STRINGS
 			});
 		}
 
-		// Token: 0x02003C08 RID: 15368
 		public static class JUNGLE
 		{
-			// Token: 0x0400E72E RID: 59182
 			public static LocString NAME = "Jungle";
 
-			// Token: 0x0400E72F RID: 59183
 			public static LocString DESC = string.Concat(new string[]
 			{
 				"Initial investigations of the Jungle Biome reveal an ecosystem filled with unique flora but centered around ",
@@ -133,7 +117,6 @@ namespace STRINGS
 				" gas, toxic to Duplicants. When exploring here, it is worth setting up a good system."
 			});
 
-			// Token: 0x0400E730 RID: 59184
 			public static LocString UTILITY = string.Concat(new string[]
 			{
 				"The ",
@@ -154,16 +137,12 @@ namespace STRINGS
 			});
 		}
 
-		// Token: 0x02003C09 RID: 15369
 		public static class MAGMA
 		{
-			// Token: 0x0400E731 RID: 59185
 			public static LocString NAME = "Magma";
 
-			// Token: 0x0400E732 RID: 59186
 			public static LocString DESC = "Temperatures in the Magma Biome can reach upwards of 1526 degrees, making it a reliable source of extreme heat that can be exploited for the purposes of producing " + UI.FormatAsLink("Power", "POWER") + " and fuel.";
 
-			// Token: 0x0400E733 RID: 59187
 			public static LocString UTILITY = string.Concat(new string[]
 			{
 				UI.FormatAsLink("Magma", "MAGMA"),
@@ -189,16 +168,12 @@ namespace STRINGS
 			});
 		}
 
-		// Token: 0x02003C0A RID: 15370
 		public static class MARSH
 		{
-			// Token: 0x0400E734 RID: 59188
 			public static LocString NAME = "Marsh";
 
-			// Token: 0x0400E735 RID: 59189
 			public static LocString DESC = UI.FormatAsLink("Polluted Oxygen", "CONTAMINATEDOXYGEN") + " dominates the atmosphere of the Marsh Biome as it escapes from the " + UI.FormatAsLink("Slime", "SLIMEMOLD") + " this biome is known for.";
 
-			// Token: 0x0400E736 RID: 59190
 			public static LocString UTILITY = string.Concat(new string[]
 			{
 				"Marsh Biomes contain large amounts of ",
@@ -217,16 +192,12 @@ namespace STRINGS
 			});
 		}
 
-		// Token: 0x02003C0B RID: 15371
 		public static class METALLIC
 		{
-			// Token: 0x0400E737 RID: 59191
 			public static LocString NAME = "Metallic";
 
-			// Token: 0x0400E738 RID: 59192
 			public static LocString DESC = "A plethora of metals pervade the Metallic Biome making it the go-to destination for a colony ramping up production for technological advancement.";
 
-			// Token: 0x0400E739 RID: 59193
 			public static LocString UTILITY = string.Concat(new string[]
 			{
 				UI.FormatAsLink("Gold Amalgam", "GOLDAMALGAM"),
@@ -254,13 +225,10 @@ namespace STRINGS
 			});
 		}
 
-		// Token: 0x02003C0C RID: 15372
 		public static class OCEAN
 		{
-			// Token: 0x0400E73A RID: 59194
 			public static LocString NAME = "Ocean";
 
-			// Token: 0x0400E73B RID: 59195
 			public static LocString DESC = string.Concat(new string[]
 			{
 				UI.FormatAsLink("Sand", "SAND"),
@@ -273,7 +241,6 @@ namespace STRINGS
 				" biome."
 			});
 
-			// Token: 0x0400E73C RID: 59196
 			public static LocString UTILITY = string.Concat(new string[]
 			{
 				UI.FormatAsLink("Pokeshell", "CRABSPECIES"),
@@ -303,13 +270,10 @@ namespace STRINGS
 			});
 		}
 
-		// Token: 0x02003C0D RID: 15373
 		public static class OIL
 		{
-			// Token: 0x0400E73D RID: 59197
 			public static LocString NAME = "Oily";
 
-			// Token: 0x0400E73E RID: 59198
 			public static LocString DESC = string.Concat(new string[]
 			{
 				"Viscous pools of liquid ",
@@ -319,7 +283,6 @@ namespace STRINGS
 				"-rich environment of the Oil Biome."
 			});
 
-			// Token: 0x0400E73F RID: 59199
 			public static LocString UTILITY = string.Concat(new string[]
 			{
 				"Though ",
@@ -344,16 +307,12 @@ namespace STRINGS
 			});
 		}
 
-		// Token: 0x02003C0E RID: 15374
 		public static class RADIOACTIVE
 		{
-			// Token: 0x0400E740 RID: 59200
 			public static LocString NAME = "Radioactive";
 
-			// Token: 0x0400E741 RID: 59201
 			public static LocString DESC = "A highly volatile environment containing a highly useful resource, this biome is invaluable when venturing into nuclear technologies.";
 
-			// Token: 0x0400E742 RID: 59202
 			public static LocString UTILITY = string.Concat(new string[]
 			{
 				UI.FormatAsLink("Lead Suits", "LEAD_SUIT"),
@@ -371,16 +330,12 @@ namespace STRINGS
 			});
 		}
 
-		// Token: 0x02003C0F RID: 15375
 		public static class RUST
 		{
-			// Token: 0x0400E743 RID: 59203
 			public static LocString NAME = "Rust";
 
-			// Token: 0x0400E744 RID: 59204
 			public static LocString DESC = "The orange-brown oasis of the Rust Biome is home to many unusual flora and fauna. It contains the resources for several intermediate technologies.";
 
-			// Token: 0x0400E745 RID: 59205
 			public static LocString UTILITY = string.Concat(new string[]
 			{
 				"When combined with the ",
@@ -407,16 +362,12 @@ namespace STRINGS
 			});
 		}
 
-		// Token: 0x02003C10 RID: 15376
 		public static class SANDSTONE
 		{
-			// Token: 0x0400E746 RID: 59206
 			public static LocString NAME = "Sandstone";
 
-			// Token: 0x0400E747 RID: 59207
 			public static LocString DESC = "The Sandstone Biome is a temperate oasis with few inherent dangers. It's the perfect spot to get your colony up and running.";
 
-			// Token: 0x0400E748 RID: 59208
 			public static LocString UTILITY = string.Concat(new string[]
 			{
 				UI.FormatAsLink("Oxylite", "OXYROCK"),
@@ -444,16 +395,12 @@ namespace STRINGS
 			});
 		}
 
-		// Token: 0x02003C11 RID: 15377
 		public static class WASTELAND
 		{
-			// Token: 0x0400E749 RID: 59209
 			public static LocString NAME = "Wasteland";
 
-			// Token: 0x0400E74A RID: 59210
 			public static LocString DESC = "While the Wasteland Biome does not look particularly interesting, a pragmatic colony can take advantage of its selection of construction resources.";
 
-			// Token: 0x0400E74B RID: 59211
 			public static LocString UTILITY = string.Concat(new string[]
 			{
 				"The prevalance of ",
@@ -484,16 +431,12 @@ namespace STRINGS
 			});
 		}
 
-		// Token: 0x02003C12 RID: 15378
 		public static class SPACE
 		{
-			// Token: 0x0400E74C RID: 59212
 			public static LocString NAME = "Space";
 
-			// Token: 0x0400E74D RID: 59213
 			public static LocString DESC = "The Space Biome is located on the scenic surface of an asteroid. Watch for dazzling meteorites to shower elements down from the sky.";
 
-			// Token: 0x0400E74E RID: 59214
 			public static LocString UTILITY = string.Concat(new string[]
 			{
 				"Setting up ",
@@ -510,13 +453,10 @@ namespace STRINGS
 			});
 		}
 
-		// Token: 0x02003C13 RID: 15379
 		public static class SWAMP
 		{
-			// Token: 0x0400E74F RID: 59215
 			public static LocString NAME = "Swampy";
 
-			// Token: 0x0400E750 RID: 59216
 			public static LocString DESC = string.Concat(new string[]
 			{
 				"With its abundance of ",
@@ -528,7 +468,6 @@ namespace STRINGS
 				" the Swampy Biome presents some challenges for a budding colony. But, with a little hard work, it can also turn into a great starting biome with some valuable resources."
 			});
 
-			// Token: 0x0400E751 RID: 59217
 			public static LocString UTILITY = string.Concat(new string[]
 			{
 				UI.FormatAsLink("Swamp Chard", "SWAMPFORAGEPLANTPLANTED"),
@@ -554,16 +493,12 @@ namespace STRINGS
 			});
 		}
 
-		// Token: 0x02003C14 RID: 15380
 		public static class NIOBIUM
 		{
-			// Token: 0x0400E752 RID: 59218
 			public static LocString NAME = "Niobium";
 
-			// Token: 0x0400E753 RID: 59219
 			public static LocString DESC = "The Niobium Biome features only two resources yet, because " + UI.FormatAsLink("Niobium", "NIOBIUM") + " is an extremely rare and valuable element, it is worth making a special visit.";
 
-			// Token: 0x0400E754 RID: 59220
 			public static LocString UTILITY = string.Concat(new string[]
 			{
 				"By itself, ",
@@ -580,16 +515,12 @@ namespace STRINGS
 			});
 		}
 
-		// Token: 0x02003C15 RID: 15381
 		public static class AQUATIC
 		{
-			// Token: 0x0400E755 RID: 59221
 			public static LocString NAME = "Aquatic";
 
-			// Token: 0x0400E756 RID: 59222
 			public static LocString DESC = "The Aquatic Biome is flush with a huge deposit of precious " + UI.FormatAsLink("Water", "WATER") + ".";
 
-			// Token: 0x0400E757 RID: 59223
 			public static LocString UTILITY = string.Concat(new string[]
 			{
 				"Initially there is very little solid ground in this biome to establish a temporary base, but once a transportation network can be established to send the ",
@@ -610,13 +541,10 @@ namespace STRINGS
 			});
 		}
 
-		// Token: 0x02003C16 RID: 15382
 		public static class MOO
 		{
-			// Token: 0x0400E758 RID: 59224
 			public static LocString NAME = "Moo";
 
-			// Token: 0x0400E759 RID: 59225
 			public static LocString DESC = string.Concat(new string[]
 			{
 				"The Moo Biome is the natural habitat of the charismatic ",
@@ -626,7 +554,6 @@ namespace STRINGS
 				"."
 			});
 
-			// Token: 0x0400E75A RID: 59226
 			public static LocString UTILITY = string.Concat(new string[]
 			{
 				"In addition to ",
@@ -657,16 +584,12 @@ namespace STRINGS
 			});
 		}
 
-		// Token: 0x02003C17 RID: 15383
 		public static class REGOLITH
 		{
-			// Token: 0x0400E75B RID: 59227
 			public static LocString NAME = "Regolith";
 
-			// Token: 0x0400E75C RID: 59228
 			public static LocString DESC = "The Regolith Biome contains a bounty of " + UI.FormatAsLink("Regolith", "REGOLITH") + " which is very useful as a material for filtration.";
 
-			// Token: 0x0400E75D RID: 59229
 			public static LocString UTILITY = string.Concat(new string[]
 			{
 				"Lingering within the layers of Regolith are the pernicious ",
@@ -677,16 +600,12 @@ namespace STRINGS
 			});
 		}
 
-		// Token: 0x02003C18 RID: 15384
 		public static class ICECAVES
 		{
-			// Token: 0x0400E75E RID: 59230
 			public static LocString NAME = "Ice Cave";
 
-			// Token: 0x0400E75F RID: 59231
 			public static LocString DESC = "The Ice Cave Biome's extremely low temperatures make thermal regulation the top priority.";
 
-			// Token: 0x0400E760 RID: 59232
 			public static LocString UTILITY = string.Concat(new string[]
 			{
 				"The below-freezing climate in this biome keeps elements frozen solid, but once a colony has established the means necessary to melt the abundant ",
@@ -717,16 +636,12 @@ namespace STRINGS
 			});
 		}
 
-		// Token: 0x02003C19 RID: 15385
 		public static class CARROTQUARRY
 		{
-			// Token: 0x0400E761 RID: 59233
 			public static LocString NAME = "Cool Pool";
 
-			// Token: 0x0400E762 RID: 59234
 			public static LocString DESC = "The Cool Pool Biome's chilly landscape features plentiful " + UI.FormatAsLink("Ethanol", "ETHANOL") + " lakes, making it an excellent destination for a colony eager to gather fuel resources.";
 
-			// Token: 0x0400E763 RID: 59235
 			public static LocString UTILITY = string.Concat(new string[]
 			{
 				UI.FormatAsLink("Plume Squash", "CARROTPLANT"),
@@ -756,13 +671,10 @@ namespace STRINGS
 			});
 		}
 
-		// Token: 0x02003C1A RID: 15386
 		public static class SUGARWOODS
 		{
-			// Token: 0x0400E764 RID: 59236
 			public static LocString NAME = "Nectar";
 
-			// Token: 0x0400E765 RID: 59237
 			public static LocString DESC = string.Concat(new string[]
 			{
 				"The ",
@@ -778,7 +690,6 @@ namespace STRINGS
 				"."
 			});
 
-			// Token: 0x0400E766 RID: 59238
 			public static LocString UTILITY = string.Concat(new string[]
 			{
 				UI.FormatAsLink("Spigot Seals", "SEALSPECIES"),
@@ -806,4 +717,3 @@ namespace STRINGS
 			});
 		}
 	}
-}

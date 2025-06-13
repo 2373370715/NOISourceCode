@@ -1,11 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000B00 RID: 2816
 [AddComponentMenu("KMonoBehaviour/scripts/PumpingStationGuide")]
 public class PumpingStationGuide : KMonoBehaviour, IRenderEveryTick
 {
-	// Token: 0x06003431 RID: 13361 RVA: 0x000C67FA File Offset: 0x000C49FA
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -15,7 +13,6 @@ public class PumpingStationGuide : KMonoBehaviour, IRenderEveryTick
 		this.RefreshDepthAvailable();
 	}
 
-	// Token: 0x06003432 RID: 13362 RVA: 0x000C682B File Offset: 0x000C4A2B
 	public void RefreshPosition()
 	{
 		if (this.guideController != null && this.guideController.IsMoving)
@@ -24,13 +21,11 @@ public class PumpingStationGuide : KMonoBehaviour, IRenderEveryTick
 		}
 	}
 
-	// Token: 0x06003433 RID: 13363 RVA: 0x000C6853 File Offset: 0x000C4A53
 	private void RefreshTint()
 	{
 		this.guideController.TintColour = this.parentController.TintColour;
 	}
 
-	// Token: 0x06003434 RID: 13364 RVA: 0x00216A9C File Offset: 0x00214C9C
 	private void RefreshDepthAvailable()
 	{
 		int depthAvailable = PumpingStationGuide.GetDepthAvailable(Grid.PosToCell(this), this.parent);
@@ -54,7 +49,6 @@ public class PumpingStationGuide : KMonoBehaviour, IRenderEveryTick
 		}
 	}
 
-	// Token: 0x06003435 RID: 13365 RVA: 0x000C686B File Offset: 0x000C4A6B
 	public void RenderEveryTick(float dt)
 	{
 		this.RefreshPosition();
@@ -62,7 +56,6 @@ public class PumpingStationGuide : KMonoBehaviour, IRenderEveryTick
 		this.RefreshDepthAvailable();
 	}
 
-	// Token: 0x06003436 RID: 13366 RVA: 0x00216B20 File Offset: 0x00214D20
 	public static void OccupyArea(GameObject go, int depth_available)
 	{
 		int cell = Grid.PosToCell(go.transform.GetPosition());
@@ -89,7 +82,6 @@ public class PumpingStationGuide : KMonoBehaviour, IRenderEveryTick
 		}
 	}
 
-	// Token: 0x06003437 RID: 13367 RVA: 0x00216BF0 File Offset: 0x00214DF0
 	public static int GetDepthAvailable(int root_cell, GameObject pump)
 	{
 		int num = 4;
@@ -107,18 +99,13 @@ public class PumpingStationGuide : KMonoBehaviour, IRenderEveryTick
 		return result;
 	}
 
-	// Token: 0x040023BC RID: 9148
 	private int previousDepthAvailable = -1;
 
-	// Token: 0x040023BD RID: 9149
 	public GameObject parent;
 
-	// Token: 0x040023BE RID: 9150
 	public bool occupyTiles;
 
-	// Token: 0x040023BF RID: 9151
 	private KBatchedAnimController parentController;
 
-	// Token: 0x040023C0 RID: 9152
 	private KBatchedAnimController guideController;
 }

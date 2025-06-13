@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000038 RID: 56
 public class BuildingTemplates
 {
-	// Token: 0x060000E7 RID: 231 RVA: 0x0014A30C File Offset: 0x0014850C
 	public static BuildingDef CreateBuildingDef(string id, int width, int height, string anim, int hitpoints, float construction_time, float[] construction_mass, string[] construction_materials, float melting_point, BuildLocationRule build_location_rule, EffectorValues decor, EffectorValues noise, float temperature_modification_mass_scale = 0.2f)
 	{
 		BuildingDef buildingDef = ScriptableObject.CreateInstance<BuildingDef>();
@@ -43,13 +41,11 @@ public class BuildingTemplates
 		return buildingDef;
 	}
 
-	// Token: 0x060000E8 RID: 232 RVA: 0x000AA418 File Offset: 0x000A8618
 	public static void CreateStandardBuildingDef(BuildingDef def)
 	{
 		def.Breakable = true;
 	}
 
-	// Token: 0x060000E9 RID: 233 RVA: 0x0014A404 File Offset: 0x00148604
 	public static void CreateFoundationTileDef(BuildingDef def)
 	{
 		def.IsFoundation = true;
@@ -73,7 +69,6 @@ public class BuildingTemplates
 		};
 	}
 
-	// Token: 0x060000EA RID: 234 RVA: 0x000AA421 File Offset: 0x000A8621
 	public static void CreateLadderDef(BuildingDef def)
 	{
 		def.TileLayer = ObjectLayer.LadderTile;
@@ -88,7 +83,6 @@ public class BuildingTemplates
 		};
 	}
 
-	// Token: 0x060000EB RID: 235 RVA: 0x000AA45C File Offset: 0x000A865C
 	public static void CreateElectricalBuildingDef(BuildingDef def)
 	{
 		BuildingTemplates.CreateStandardBuildingDef(def);
@@ -97,7 +91,6 @@ public class BuildingTemplates
 		def.AudioCategory = "HollowMetal";
 	}
 
-	// Token: 0x060000EC RID: 236 RVA: 0x000AA481 File Offset: 0x000A8681
 	public static void CreateRocketBuildingDef(BuildingDef def)
 	{
 		BuildingTemplates.CreateStandardBuildingDef(def);
@@ -106,14 +99,12 @@ public class BuildingTemplates
 		def.UseStructureTemperature = false;
 	}
 
-	// Token: 0x060000ED RID: 237 RVA: 0x000AA4A2 File Offset: 0x000A86A2
 	public static void CreateMonumentBuildingDef(BuildingDef def)
 	{
 		BuildingTemplates.CreateStandardBuildingDef(def);
 		def.Invincible = true;
 	}
 
-	// Token: 0x060000EE RID: 238 RVA: 0x000AA4B1 File Offset: 0x000A86B1
 	public static Storage CreateDefaultStorage(GameObject go, bool forceCreate = false)
 	{
 		Storage storage = forceCreate ? go.AddComponent<Storage>() : go.AddOrGet<Storage>();
@@ -121,7 +112,6 @@ public class BuildingTemplates
 		return storage;
 	}
 
-	// Token: 0x060000EF RID: 239 RVA: 0x0014A48C File Offset: 0x0014868C
 	public static void CreateComplexFabricatorStorage(GameObject go, ComplexFabricator fabricator)
 	{
 		fabricator.inStorage = go.AddComponent<Storage>();
@@ -138,12 +128,10 @@ public class BuildingTemplates
 		fabricator.outStorage.SetDefaultStoredItemModifiers(Storage.StandardFabricatorStorage);
 	}
 
-	// Token: 0x060000F0 RID: 240 RVA: 0x000AA038 File Offset: 0x000A8238
 	public static void DoPostConfigure(GameObject go)
 	{
 	}
 
-	// Token: 0x060000F1 RID: 241 RVA: 0x0014A544 File Offset: 0x00148744
 	public static GameObject ExtendBuildingToRocketModule(GameObject template, string vanillaBGAnim, bool clusterRocket = false)
 	{
 		template.AddTag(GameTags.RocketModule);
@@ -197,7 +185,6 @@ public class BuildingTemplates
 		return template;
 	}
 
-	// Token: 0x060000F2 RID: 242 RVA: 0x0014A658 File Offset: 0x00148858
 	public static GameObject ExtendBuildingToRocketModuleCluster(GameObject template, string vanillaBGAnim, int burden, float enginePower = 0f, float fuelCostPerDistance = 0f)
 	{
 		template.AddTag(GameTags.RocketModule);
@@ -235,7 +222,6 @@ public class BuildingTemplates
 		return template;
 	}
 
-	// Token: 0x060000F3 RID: 243 RVA: 0x0014A7D4 File Offset: 0x001489D4
 	public static GameObject ExtendBuildingToClusterCargoBay(GameObject template, float capacity, List<Tag> storageFilters, CargoBay.CargoType cargoType)
 	{
 		Storage storage = template.AddOrGet<Storage>();
@@ -253,7 +239,6 @@ public class BuildingTemplates
 		return template;
 	}
 
-	// Token: 0x060000F4 RID: 244 RVA: 0x000AA4CF File Offset: 0x000A86CF
 	public static void ExtendBuildingToGravitas(GameObject template)
 	{
 		template.GetComponent<Deconstructable>().allowDeconstruction = false;

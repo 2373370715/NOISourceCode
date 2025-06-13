@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x02001652 RID: 5714
 public class SuitWearer : GameStateMachine<SuitWearer, SuitWearer.Instance>
 {
-	// Token: 0x06007624 RID: 30244 RVA: 0x00317594 File Offset: 0x00315794
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.root;
@@ -19,16 +17,12 @@ public class SuitWearer : GameStateMachine<SuitWearer, SuitWearer.Instance>
 		this.nosuit.DoNothing();
 	}
 
-	// Token: 0x040058D7 RID: 22743
 	public GameStateMachine<SuitWearer, SuitWearer.Instance, IStateMachineTarget, object>.State suit;
 
-	// Token: 0x040058D8 RID: 22744
 	public GameStateMachine<SuitWearer, SuitWearer.Instance, IStateMachineTarget, object>.State nosuit;
 
-	// Token: 0x02001653 RID: 5715
 	public new class Instance : GameStateMachine<SuitWearer, SuitWearer.Instance, IStateMachineTarget, object>.GameInstance
 	{
-		// Token: 0x06007626 RID: 30246 RVA: 0x00317620 File Offset: 0x00315820
 		public Instance(IStateMachineTarget master) : base(master)
 		{
 			this.navigator = master.GetComponent<Navigator>();
@@ -36,7 +30,6 @@ public class SuitWearer : GameStateMachine<SuitWearer, SuitWearer.Instance>
 			this.prefabInstanceID = this.navigator.GetComponent<KPrefabID>().InstanceID;
 		}
 
-		// Token: 0x06007627 RID: 30247 RVA: 0x000F22ED File Offset: 0x000F04ED
 		public void OnPathAdvanced(object data)
 		{
 			if (this.navigator.CurrentNavType == NavType.Hover && (this.navigator.flags & PathFinder.PotentialPath.Flags.HasJetPack) <= PathFinder.PotentialPath.Flags.None)
@@ -47,7 +40,6 @@ public class SuitWearer : GameStateMachine<SuitWearer, SuitWearer.Instance>
 			this.ReserveSuits();
 		}
 
-		// Token: 0x06007628 RID: 30248 RVA: 0x00317678 File Offset: 0x00315878
 		public void ReserveSuits()
 		{
 			PathFinder.Path path = this.navigator.path;
@@ -120,7 +112,6 @@ public class SuitWearer : GameStateMachine<SuitWearer, SuitWearer.Instance>
 			}
 		}
 
-		// Token: 0x06007629 RID: 30249 RVA: 0x00317824 File Offset: 0x00315A24
 		public void UnreserveSuits()
 		{
 			foreach (int num in this.suitReservations)
@@ -141,22 +132,17 @@ public class SuitWearer : GameStateMachine<SuitWearer, SuitWearer.Instance>
 			this.emptyLockerReservations.Clear();
 		}
 
-		// Token: 0x0600762A RID: 30250 RVA: 0x000F2327 File Offset: 0x000F0527
 		protected override void OnCleanUp()
 		{
 			this.UnreserveSuits();
 		}
 
-		// Token: 0x040058D9 RID: 22745
 		private List<int> suitReservations = new List<int>();
 
-		// Token: 0x040058DA RID: 22746
 		private List<int> emptyLockerReservations = new List<int>();
 
-		// Token: 0x040058DB RID: 22747
 		private Navigator navigator;
 
-		// Token: 0x040058DC RID: 22748
 		private int prefabInstanceID;
 	}
 }

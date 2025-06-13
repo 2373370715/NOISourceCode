@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200001F RID: 31
 public class AlgaeDistilleryConfig : IBuildingConfig
 {
-	// Token: 0x0600007A RID: 122 RVA: 0x00148308 File Offset: 0x00146508
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "AlgaeDistillery";
@@ -34,7 +32,6 @@ public class AlgaeDistilleryConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600007B RID: 123 RVA: 0x001483C8 File Offset: 0x001465C8
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
@@ -71,31 +68,23 @@ public class AlgaeDistilleryConfig : IBuildingConfig
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x0600007C RID: 124 RVA: 0x000AA1AD File Offset: 0x000A83AD
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
 		go.AddOrGetDef<PoweredActiveController.Def>();
 	}
 
-	// Token: 0x04000059 RID: 89
 	public const string ID = "AlgaeDistillery";
 
-	// Token: 0x0400005A RID: 90
 	public const float INPUT_SLIME_PER_SECOND = 0.6f;
 
-	// Token: 0x0400005B RID: 91
 	public const float ALGAE_PER_SECOND = 0.2f;
 
-	// Token: 0x0400005C RID: 92
 	public const float DIRTY_WATER_PER_SECOND = 0.40000004f;
 
-	// Token: 0x0400005D RID: 93
 	public const float OUTPUT_TEMP = 303.15f;
 
-	// Token: 0x0400005E RID: 94
 	public const float REFILL_RATE = 2400f;
 
-	// Token: 0x0400005F RID: 95
 	public const float ALGAE_STORAGE_AMOUNT = 480f;
 }

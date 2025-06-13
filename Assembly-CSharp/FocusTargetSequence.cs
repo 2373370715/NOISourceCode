@@ -2,16 +2,13 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x02000609 RID: 1545
 public static class FocusTargetSequence
 {
-	// Token: 0x06001B4F RID: 6991 RVA: 0x000B635F File Offset: 0x000B455F
 	public static void Start(MonoBehaviour coroutineRunner, FocusTargetSequence.Data sequenceData)
 	{
 		FocusTargetSequence.sequenceCoroutine = coroutineRunner.StartCoroutine(FocusTargetSequence.RunSequence(sequenceData));
 	}
 
-	// Token: 0x06001B50 RID: 6992 RVA: 0x001B6F24 File Offset: 0x001B5124
 	public static void Cancel(MonoBehaviour coroutineRunner)
 	{
 		if (FocusTargetSequence.sequenceCoroutine == null)
@@ -40,7 +37,6 @@ public static class FocusTargetSequence
 		FocusTargetSequence.prevSpeed = -1;
 	}
 
-	// Token: 0x06001B51 RID: 6993 RVA: 0x000B6372 File Offset: 0x000B4572
 	public static IEnumerator RunSequence(FocusTargetSequence.Data sequenceData)
 	{
 		SaveGame.Instance.GetComponent<UserNavigation>();
@@ -99,7 +95,6 @@ public static class FocusTargetSequence
 		yield break;
 	}
 
-	// Token: 0x06001B52 RID: 6994 RVA: 0x001B6FD4 File Offset: 0x001B51D4
 	private static void SetUIVisible(bool visible)
 	{
 		NotificationScreen.Instance.Show(visible);
@@ -128,22 +123,16 @@ public static class FocusTargetSequence
 		}
 	}
 
-	// Token: 0x0400117C RID: 4476
 	private static Coroutine sequenceCoroutine = null;
 
-	// Token: 0x0400117D RID: 4477
 	private static KSelectable prevSelected = null;
 
-	// Token: 0x0400117E RID: 4478
 	private static bool wasPaused = false;
 
-	// Token: 0x0400117F RID: 4479
 	private static int prevSpeed = -1;
 
-	// Token: 0x0200060A RID: 1546
 	public struct Data
 	{
-		// Token: 0x06001B54 RID: 6996 RVA: 0x000B639B File Offset: 0x000B459B
 		public void Clear()
 		{
 			this.PopupData = null;
@@ -151,25 +140,18 @@ public static class FocusTargetSequence
 			this.CanCompleteCB = null;
 		}
 
-		// Token: 0x04001180 RID: 4480
 		public int WorldId;
 
-		// Token: 0x04001181 RID: 4481
 		public float OrthographicSize;
 
-		// Token: 0x04001182 RID: 4482
 		public float TargetSize;
 
-		// Token: 0x04001183 RID: 4483
 		public Vector3 Target;
 
-		// Token: 0x04001184 RID: 4484
 		public EventInfoData PopupData;
 
-		// Token: 0x04001185 RID: 4485
 		public System.Action CompleteCB;
 
-		// Token: 0x04001186 RID: 4486
 		public Func<bool> CanCompleteCB;
 	}
 }

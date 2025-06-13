@@ -3,16 +3,11 @@ using System.Collections.Generic;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000B23 RID: 2851
 [AddComponentMenu("KMonoBehaviour/scripts/RoomTracker")]
 public class RoomTracker : KMonoBehaviour, IGameObjectEffectDescriptor
 {
-	// Token: 0x17000242 RID: 578
-	// (get) Token: 0x060034DD RID: 13533 RVA: 0x000C6EC9 File Offset: 0x000C50C9
-	// (set) Token: 0x060034DE RID: 13534 RVA: 0x000C6ED1 File Offset: 0x000C50D1
 	public Room room { get; private set; }
 
-	// Token: 0x060034DF RID: 13535 RVA: 0x00218C6C File Offset: 0x00216E6C
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -21,7 +16,6 @@ public class RoomTracker : KMonoBehaviour, IGameObjectEffectDescriptor
 		this.FindAndSetRoom();
 	}
 
-	// Token: 0x060034E0 RID: 13536 RVA: 0x00218CD0 File Offset: 0x00216ED0
 	public void FindAndSetRoom()
 	{
 		CavityInfo cavityForCell = Game.Instance.roomProber.GetCavityForCell(Grid.PosToCell(base.gameObject));
@@ -33,13 +27,11 @@ public class RoomTracker : KMonoBehaviour, IGameObjectEffectDescriptor
 		this.OnUpdateRoom(null);
 	}
 
-	// Token: 0x060034E1 RID: 13537 RVA: 0x000C6EDA File Offset: 0x000C50DA
 	public bool IsInCorrectRoom()
 	{
 		return this.room != null && this.room.roomType.Id == this.requiredRoomType;
 	}
 
-	// Token: 0x060034E2 RID: 13538 RVA: 0x00218D18 File Offset: 0x00216F18
 	public bool SufficientBuildLocation(int cell)
 	{
 		if (!Grid.IsValidCell(cell))
@@ -57,7 +49,6 @@ public class RoomTracker : KMonoBehaviour, IGameObjectEffectDescriptor
 		return true;
 	}
 
-	// Token: 0x060034E3 RID: 13539 RVA: 0x00218D64 File Offset: 0x00216F64
 	private void OnUpdateRoom(object data)
 	{
 		this.room = (Room)data;
@@ -86,7 +77,6 @@ public class RoomTracker : KMonoBehaviour, IGameObjectEffectDescriptor
 		}
 	}
 
-	// Token: 0x060034E4 RID: 13540 RVA: 0x00218EA0 File Offset: 0x002170A0
 	public List<Descriptor> GetDescriptors(GameObject go)
 	{
 		List<Descriptor> list = new List<Descriptor>();
@@ -108,36 +98,25 @@ public class RoomTracker : KMonoBehaviour, IGameObjectEffectDescriptor
 		return list;
 	}
 
-	// Token: 0x04002455 RID: 9301
 	public RoomTracker.Requirement requirement;
 
-	// Token: 0x04002456 RID: 9302
 	public string requiredRoomType;
 
-	// Token: 0x04002457 RID: 9303
 	public string customStatusItemID;
 
-	// Token: 0x04002458 RID: 9304
 	private Guid statusItemGuid;
 
-	// Token: 0x0400245A RID: 9306
 	private static readonly EventSystem.IntraObjectHandler<RoomTracker> OnUpdateRoomDelegate = new EventSystem.IntraObjectHandler<RoomTracker>(delegate(RoomTracker component, object data)
 	{
 		component.OnUpdateRoom(data);
 	});
 
-	// Token: 0x02000B24 RID: 2852
 	public enum Requirement
 	{
-		// Token: 0x0400245C RID: 9308
 		TrackingOnly,
-		// Token: 0x0400245D RID: 9309
 		Recommended,
-		// Token: 0x0400245E RID: 9310
 		Required,
-		// Token: 0x0400245F RID: 9311
 		CustomRecommended,
-		// Token: 0x04002460 RID: 9312
 		CustomRequired
 	}
 }

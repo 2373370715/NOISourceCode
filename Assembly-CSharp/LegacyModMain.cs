@@ -5,10 +5,8 @@ using Klei.AI;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x020003B9 RID: 953
 public class LegacyModMain
 {
-	// Token: 0x06000F74 RID: 3956 RVA: 0x00187058 File Offset: 0x00185258
 	public static void Load()
 	{
 		List<Type> list = new List<Type>();
@@ -31,7 +29,6 @@ public class LegacyModMain
 		EntityTemplates.DestroyBaseOreTemplates();
 	}
 
-	// Token: 0x06000F75 RID: 3957 RVA: 0x001870C4 File Offset: 0x001852C4
 	private static void Test()
 	{
 		Dictionary<Type, int> dictionary = new Dictionary<Type, int>();
@@ -72,7 +69,6 @@ public class LegacyModMain
 		global::Debug.Log(text);
 	}
 
-	// Token: 0x06000F76 RID: 3958 RVA: 0x00187258 File Offset: 0x00185458
 	private static void ListUnusedTypes()
 	{
 		HashSet<Type> hashSet = new HashSet<Type>();
@@ -110,12 +106,10 @@ public class LegacyModMain
 		global::Debug.Log(text);
 	}
 
-	// Token: 0x06000F77 RID: 3959 RVA: 0x000AA038 File Offset: 0x000A8238
 	private static void DebugSelected()
 	{
 	}
 
-	// Token: 0x06000F78 RID: 3960 RVA: 0x000B103F File Offset: 0x000AF23F
 	private static void DebugSelected(GameObject go)
 	{
 		object component = go.GetComponent<Constructable>();
@@ -123,13 +117,11 @@ public class LegacyModMain
 		global::Debug.Log(component);
 	}
 
-	// Token: 0x06000F79 RID: 3961 RVA: 0x000B1050 File Offset: 0x000AF250
 	private static void LoadOre(List<Type> types)
 	{
 		GeneratedOre.LoadGeneratedOre(types);
 	}
 
-	// Token: 0x06000F7A RID: 3962 RVA: 0x001873E0 File Offset: 0x001855E0
 	private static void LoadBuildings(List<Type> types)
 	{
 		LocString.CreateLocStringKeys(typeof(BUILDINGS.PREFABS), "STRINGS.BUILDINGS.");
@@ -139,21 +131,18 @@ public class LegacyModMain
 		GeneratedBuildings.LoadGeneratedBuildings(types);
 	}
 
-	// Token: 0x06000F7B RID: 3963 RVA: 0x000B1058 File Offset: 0x000AF258
 	private static void LoadEntities(List<Type> types)
 	{
 		EntityConfigManager.Instance.LoadGeneratedEntities(types);
 		BuildingConfigManager.Instance.ConfigurePost();
 	}
 
-	// Token: 0x06000F7C RID: 3964 RVA: 0x000B106F File Offset: 0x000AF26F
 	private static void LoadEquipment(List<Type> types)
 	{
 		LocString.CreateLocStringKeys(typeof(EQUIPMENT.PREFABS), "STRINGS.EQUIPMENT.");
 		GeneratedEquipment.LoadGeneratedEquipment(types);
 	}
 
-	// Token: 0x06000F7D RID: 3965 RVA: 0x00187444 File Offset: 0x00185644
 	private static void ConfigElements()
 	{
 		foreach (LegacyModMain.ElementInfo elementInfo in new LegacyModMain.ElementInfo[]
@@ -286,26 +275,19 @@ public class LegacyModMain
 		}
 	}
 
-	// Token: 0x020003BA RID: 954
 	private struct Entry
 	{
-		// Token: 0x04000B3F RID: 2879
 		public int count;
 
-		// Token: 0x04000B40 RID: 2880
 		public Type type;
 	}
 
-	// Token: 0x020003BB RID: 955
 	private struct ElementInfo
 	{
-		// Token: 0x04000B41 RID: 2881
 		public SimHashes id;
 
-		// Token: 0x04000B42 RID: 2882
 		public float decor;
 
-		// Token: 0x04000B43 RID: 2883
 		public float overheatMod;
 	}
 }

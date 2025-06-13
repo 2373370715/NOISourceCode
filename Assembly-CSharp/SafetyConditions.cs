@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x02000825 RID: 2085
 public class SafetyConditions
 {
-	// Token: 0x060024BD RID: 9405 RVA: 0x001D71F4 File Offset: 0x001D53F4
 	public SafetyConditions()
 	{
 		int num = 1;
@@ -72,63 +70,43 @@ public class SafetyConditions
 		}.ToArray());
 	}
 
-	// Token: 0x04001920 RID: 6432
 	public SafetyChecker.Condition IsNotLiquid;
 
-	// Token: 0x04001921 RID: 6433
 	public SafetyChecker.Condition IsNotCoveredInLiquid;
 
-	// Token: 0x04001922 RID: 6434
 	public SafetyChecker.Condition IsNotLadder;
 
-	// Token: 0x04001923 RID: 6435
 	public SafetyChecker.Condition IsCorrectTemperature;
 
-	// Token: 0x04001924 RID: 6436
 	public SafetyChecker.Condition IsWarming;
 
-	// Token: 0x04001925 RID: 6437
 	public SafetyChecker.Condition IsCooling;
 
-	// Token: 0x04001926 RID: 6438
 	public SafetyChecker.Condition HasSomeOxygen;
 
-	// Token: 0x04001927 RID: 6439
 	public SafetyChecker.Condition HasSomeOxygenAround;
 
-	// Token: 0x04001928 RID: 6440
 	public SafetyChecker.Condition IsClear;
 
-	// Token: 0x04001929 RID: 6441
 	public SafetyChecker.Condition IsNotFoundation;
 
-	// Token: 0x0400192A RID: 6442
 	public SafetyChecker.Condition IsNotDoor;
 
-	// Token: 0x0400192B RID: 6443
 	public SafetyChecker.Condition IsNotLedge;
 
-	// Token: 0x0400192C RID: 6444
 	public SafetyChecker.Condition IsNearby;
 
-	// Token: 0x0400192D RID: 6445
 	public SafetyChecker WarmUpChecker;
 
-	// Token: 0x0400192E RID: 6446
 	public SafetyChecker CoolDownChecker;
 
-	// Token: 0x0400192F RID: 6447
 	public SafetyChecker RecoverBreathChecker;
 
-	// Token: 0x04001930 RID: 6448
 	public SafetyChecker AbsorbCellCellChecker;
 
-	// Token: 0x04001931 RID: 6449
 	public SafetyChecker VomitCellChecker;
 
-	// Token: 0x04001932 RID: 6450
 	public SafetyChecker SafeCellChecker;
 
-	// Token: 0x04001933 RID: 6451
 	public SafetyChecker IdleCellChecker;
 }

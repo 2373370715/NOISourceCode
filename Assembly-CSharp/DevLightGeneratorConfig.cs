@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200009D RID: 157
 public class DevLightGeneratorConfig : IBuildingConfig
 {
-	// Token: 0x06000287 RID: 647 RVA: 0x001513B8 File Offset: 0x0014F5B8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "DevLightGenerator";
@@ -31,7 +29,6 @@ public class DevLightGeneratorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000288 RID: 648 RVA: 0x000AAE02 File Offset: 0x000A9002
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 		LightShapePreview lightShapePreview = go.AddComponent<LightShapePreview>();
@@ -40,14 +37,12 @@ public class DevLightGeneratorConfig : IBuildingConfig
 		lightShapePreview.shape = global::LightShape.Circle;
 	}
 
-	// Token: 0x06000289 RID: 649 RVA: 0x000AAE26 File Offset: 0x000A9026
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddTag(GameTags.DevBuilding);
 		go.AddTag(RoomConstraints.ConstraintTags.LightSource);
 	}
 
-	// Token: 0x0600028A RID: 650 RVA: 0x00151468 File Offset: 0x0014F668
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		DevLightGenerator devLightGenerator = go.AddOrGet<DevLightGenerator>();
@@ -63,6 +58,5 @@ public class DevLightGeneratorConfig : IBuildingConfig
 		go.AddOrGetDef<LightController.Def>();
 	}
 
-	// Token: 0x040001A4 RID: 420
 	public const string ID = "DevLightGenerator";
 }

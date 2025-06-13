@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020004F0 RID: 1264
 public class OxygenMaskLockerConfig : IBuildingConfig
 {
-	// Token: 0x060015BD RID: 5565 RVA: 0x001A043C File Offset: 0x0019E63C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "OxygenMaskLocker";
@@ -28,7 +26,6 @@ public class OxygenMaskLockerConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060015BE RID: 5566 RVA: 0x001A04B0 File Offset: 0x0019E6B0
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<SuitLocker>().OutfitTags = new Tag[]
@@ -51,12 +48,10 @@ public class OxygenMaskLockerConfig : IBuildingConfig
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x060015BF RID: 5567 RVA: 0x000B0E6A File Offset: 0x000AF06A
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		SymbolOverrideControllerUtil.AddToPrefab(go);
 	}
 
-	// Token: 0x04000EF5 RID: 3829
 	public const string ID = "OxygenMaskLocker";
 }

@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-// Token: 0x02001BAB RID: 7083
 public class UserMenuScreen : KIconButtonMenu
 {
-	// Token: 0x060094DB RID: 38107 RVA: 0x003A2460 File Offset: 0x003A0660
 	protected override void OnPrefabInit()
 	{
 		this.keepMenuOpen = true;
@@ -16,7 +14,6 @@ public class UserMenuScreen : KIconButtonMenu
 		this.buttonParent.transform.SetAsLastSibling();
 	}
 
-	// Token: 0x060094DC RID: 38108 RVA: 0x00105AF4 File Offset: 0x00103CF4
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -24,14 +21,12 @@ public class UserMenuScreen : KIconButtonMenu
 		KInputManager.InputChange.AddListener(new UnityAction(base.RefreshButtonTooltip));
 	}
 
-	// Token: 0x060094DD RID: 38109 RVA: 0x00105B2E File Offset: 0x00103D2E
 	protected override void OnForcedCleanUp()
 	{
 		KInputManager.InputChange.RemoveListener(new UnityAction(base.RefreshButtonTooltip));
 		base.OnForcedCleanUp();
 	}
 
-	// Token: 0x060094DE RID: 38110 RVA: 0x00105B4C File Offset: 0x00103D4C
 	public void SetSelected(GameObject go)
 	{
 		this.ClearPrioritizable();
@@ -39,7 +34,6 @@ public class UserMenuScreen : KIconButtonMenu
 		this.RefreshPrioritizable();
 	}
 
-	// Token: 0x060094DF RID: 38111 RVA: 0x003A24C0 File Offset: 0x003A06C0
 	private void ClearPrioritizable()
 	{
 		if (this.selected != null)
@@ -53,7 +47,6 @@ public class UserMenuScreen : KIconButtonMenu
 		}
 	}
 
-	// Token: 0x060094E0 RID: 38112 RVA: 0x003A2514 File Offset: 0x003A0714
 	private void RefreshPrioritizable()
 	{
 		if (this.selected != null)
@@ -71,7 +64,6 @@ public class UserMenuScreen : KIconButtonMenu
 		}
 	}
 
-	// Token: 0x060094E1 RID: 38113 RVA: 0x003A25A4 File Offset: 0x003A07A4
 	public void Refresh(GameObject go)
 	{
 		if (go != this.selected)
@@ -94,25 +86,21 @@ public class UserMenuScreen : KIconButtonMenu
 		base.transform.parent.gameObject.SetActive(true);
 	}
 
-	// Token: 0x060094E2 RID: 38114 RVA: 0x00105B61 File Offset: 0x00103D61
 	public void AddSliders(IList<UserMenu.SliderInfo> sliders)
 	{
 		this.slidersInfos.AddRange(sliders);
 	}
 
-	// Token: 0x060094E3 RID: 38115 RVA: 0x00105B6F File Offset: 0x00103D6F
 	public void AddButtons(IList<KIconButtonMenu.ButtonInfo> buttons)
 	{
 		this.buttonInfos.AddRange(buttons);
 	}
 
-	// Token: 0x060094E4 RID: 38116 RVA: 0x00105B7D File Offset: 0x00103D7D
 	private void OnUIRefresh(object data)
 	{
 		this.Refresh(data as GameObject);
 	}
 
-	// Token: 0x060094E5 RID: 38117 RVA: 0x003A2674 File Offset: 0x003A0874
 	public void RefreshSliders()
 	{
 		if (this.sliders != null)
@@ -156,7 +144,6 @@ public class UserMenuScreen : KIconButtonMenu
 		}
 	}
 
-	// Token: 0x060094E6 RID: 38118 RVA: 0x003A28D8 File Offset: 0x003A0AD8
 	private void OnPriorityClicked(PrioritySetting priority)
 	{
 		if (this.selected != null)
@@ -169,36 +156,26 @@ public class UserMenuScreen : KIconButtonMenu
 		}
 	}
 
-	// Token: 0x060094E7 RID: 38119 RVA: 0x00105B8B File Offset: 0x00103D8B
 	private void OnPriorityChanged(PrioritySetting priority)
 	{
 		this.priorityScreen.SetScreenPriority(priority, false);
 	}
 
-	// Token: 0x0400710B RID: 28939
 	private GameObject selected;
 
-	// Token: 0x0400710C RID: 28940
 	public MinMaxSlider sliderPrefab;
 
-	// Token: 0x0400710D RID: 28941
 	public GameObject sliderParent;
 
-	// Token: 0x0400710E RID: 28942
 	public PriorityScreen priorityScreenPrefab;
 
-	// Token: 0x0400710F RID: 28943
 	public GameObject priorityScreenParent;
 
-	// Token: 0x04007110 RID: 28944
 	private List<MinMaxSlider> sliders = new List<MinMaxSlider>();
 
-	// Token: 0x04007111 RID: 28945
 	private List<UserMenu.SliderInfo> slidersInfos = new List<UserMenu.SliderInfo>();
 
-	// Token: 0x04007112 RID: 28946
 	private List<KIconButtonMenu.ButtonInfo> buttonInfos = new List<KIconButtonMenu.ButtonInfo>();
 
-	// Token: 0x04007113 RID: 28947
 	private PriorityScreen priorityScreen;
 }

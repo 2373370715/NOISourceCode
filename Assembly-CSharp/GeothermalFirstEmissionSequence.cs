@@ -4,16 +4,13 @@ using System.Collections.Generic;
 using FMOD.Studio;
 using UnityEngine;
 
-// Token: 0x020010E9 RID: 4329
 public static class GeothermalFirstEmissionSequence
 {
-	// Token: 0x06005880 RID: 22656 RVA: 0x000DE280 File Offset: 0x000DC480
 	public static void Start(GeothermalController controller)
 	{
 		controller.StartCoroutine(GeothermalFirstEmissionSequence.Sequence(controller));
 	}
 
-	// Token: 0x06005881 RID: 22657 RVA: 0x000DE28F File Offset: 0x000DC48F
 	private static IEnumerator Sequence(GeothermalController controller)
 	{
 		List<GeothermalVent> items = Components.GeothermalVents.GetItems(controller.GetMyWorldId());

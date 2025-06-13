@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003B7 RID: 951
 public class LeadSuitLockerConfig : IBuildingConfig
 {
-	// Token: 0x06000F6A RID: 3946 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06000F6B RID: 3947 RVA: 0x00186E0C File Offset: 0x0018500C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "LeadSuitLocker";
@@ -37,7 +34,6 @@ public class LeadSuitLockerConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000F6C RID: 3948 RVA: 0x00186EA0 File Offset: 0x001850A0
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<SuitLocker>().OutfitTags = new Tag[]
@@ -61,12 +57,10 @@ public class LeadSuitLockerConfig : IBuildingConfig
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x06000F6D RID: 3949 RVA: 0x000B0E6A File Offset: 0x000AF06A
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		SymbolOverrideControllerUtil.AddToPrefab(go);
 	}
 
-	// Token: 0x04000B3D RID: 2877
 	public const string ID = "LeadSuitLocker";
 }

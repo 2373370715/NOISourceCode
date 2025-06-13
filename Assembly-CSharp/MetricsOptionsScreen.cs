@@ -3,16 +3,13 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001E6F RID: 7791
 public class MetricsOptionsScreen : KModalScreen
 {
-	// Token: 0x0600A335 RID: 41781 RVA: 0x0010E812 File Offset: 0x0010CA12
 	private bool IsSettingsDirty()
 	{
 		return this.disableDataCollection != KPrivacyPrefs.instance.disableDataCollection;
 	}
 
-	// Token: 0x0600A336 RID: 41782 RVA: 0x0010E829 File Offset: 0x0010CA29
 	public override void OnKeyDown(KButtonEvent e)
 	{
 		if ((e.TryConsume(global::Action.Escape) || e.TryConsume(global::Action.MouseRight)) && !this.IsSettingsDirty())
@@ -22,7 +19,6 @@ public class MetricsOptionsScreen : KModalScreen
 		base.OnKeyDown(e);
 	}
 
-	// Token: 0x0600A337 RID: 41783 RVA: 0x003EF444 File Offset: 0x003ED644
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -55,7 +51,6 @@ public class MetricsOptionsScreen : KModalScreen
 		this.Refresh();
 	}
 
-	// Token: 0x0600A338 RID: 41784 RVA: 0x0010E853 File Offset: 0x0010CA53
 	private void OnClickToggle()
 	{
 		this.disableDataCollection = !this.disableDataCollection;
@@ -63,7 +58,6 @@ public class MetricsOptionsScreen : KModalScreen
 		this.Refresh();
 	}
 
-	// Token: 0x0600A339 RID: 41785 RVA: 0x003EF548 File Offset: 0x003ED748
 	private void ApplySettingsAndDoRestart()
 	{
 		KPrivacyPrefs.instance.disableDataCollection = this.disableDataCollection;
@@ -75,7 +69,6 @@ public class MetricsOptionsScreen : KModalScreen
 		App.instance.Restart();
 	}
 
-	// Token: 0x0600A33A RID: 41786 RVA: 0x003EF5DC File Offset: 0x003ED7DC
 	private void Refresh()
 	{
 		this.enableButton.GetComponent<HierarchyReferences>().GetReference("Button").transform.GetChild(0).gameObject.SetActive(!this.disableDataCollection);
@@ -89,24 +82,17 @@ public class MetricsOptionsScreen : KModalScreen
 		this.dismissButton.GetComponentInChildren<LocText>().text = UI.FRONTEND.METRICS_OPTIONS_SCREEN.DONE_BUTTON;
 	}
 
-	// Token: 0x04007F9A RID: 32666
 	public LocText title;
 
-	// Token: 0x04007F9B RID: 32667
 	public KButton dismissButton;
 
-	// Token: 0x04007F9C RID: 32668
 	public KButton closeButton;
 
-	// Token: 0x04007F9D RID: 32669
 	public GameObject enableButton;
 
-	// Token: 0x04007F9E RID: 32670
 	public Button descriptionButton;
 
-	// Token: 0x04007F9F RID: 32671
 	public LocText restartWarningText;
 
-	// Token: 0x04007FA0 RID: 32672
 	private bool disableDataCollection;
 }

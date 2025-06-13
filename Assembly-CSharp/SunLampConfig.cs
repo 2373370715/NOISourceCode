@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005DC RID: 1500
 public class SunLampConfig : IBuildingConfig
 {
-	// Token: 0x06001A3C RID: 6716 RVA: 0x001B29AC File Offset: 0x001B0BAC
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "SunLamp";
@@ -37,7 +35,6 @@ public class SunLampConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001A3D RID: 6717 RVA: 0x001B2A54 File Offset: 0x001B0C54
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 		LightShapePreview lightShapePreview = go.AddComponent<LightShapePreview>();
@@ -47,13 +44,11 @@ public class SunLampConfig : IBuildingConfig
 		lightShapePreview.offset = new CellOffset((int)LIGHT2D.SUNLAMP_OFFSET.x, (int)LIGHT2D.SUNLAMP_OFFSET.y);
 	}
 
-	// Token: 0x06001A3E RID: 6718 RVA: 0x000AA614 File Offset: 0x000A8814
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.LightSource, false);
 	}
 
-	// Token: 0x06001A3F RID: 6719 RVA: 0x001B2AA4 File Offset: 0x001B0CA4
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<EnergyConsumer>();
@@ -71,6 +66,5 @@ public class SunLampConfig : IBuildingConfig
 		go.AddOrGetDef<LightController.Def>();
 	}
 
-	// Token: 0x040010FA RID: 4346
 	public const string ID = "SunLamp";
 }

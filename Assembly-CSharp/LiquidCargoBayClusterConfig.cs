@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003BE RID: 958
 public class LiquidCargoBayClusterConfig : IBuildingConfig
 {
-	// Token: 0x06000F88 RID: 3976 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06000F89 RID: 3977 RVA: 0x00187A04 File Offset: 0x00185C04
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "LiquidCargoBayCluster";
@@ -43,7 +40,6 @@ public class LiquidCargoBayClusterConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000F8A RID: 3978 RVA: 0x0017D1D0 File Offset: 0x0017B3D0
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -55,16 +51,13 @@ public class LiquidCargoBayClusterConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x06000F8B RID: 3979 RVA: 0x000B10D8 File Offset: 0x000AF2D8
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go = BuildingTemplates.ExtendBuildingToClusterCargoBay(go, this.CAPACITY, STORAGEFILTERS.LIQUIDS, CargoBay.CargoType.Liquids);
 		BuildingTemplates.ExtendBuildingToRocketModuleCluster(go, null, ROCKETRY.BURDEN.MODERATE_PLUS, 0f, 0f);
 	}
 
-	// Token: 0x04000B4D RID: 2893
 	public const string ID = "LiquidCargoBayCluster";
 
-	// Token: 0x04000B4E RID: 2894
 	public float CAPACITY = ROCKETRY.LIQUID_CARGO_BAY_CLUSTER_CAPACITY * ROCKETRY.CARGO_CAPACITY_SCALE;
 }

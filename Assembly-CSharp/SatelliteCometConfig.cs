@@ -2,10 +2,8 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000465 RID: 1125
 public class SatelliteCometConfig : IEntityConfig
 {
-	// Token: 0x060012FF RID: 4863 RVA: 0x00197534 File Offset: 0x00195734
 	public GameObject CreatePrefab()
 	{
 		GameObject gameObject = EntityTemplates.CreateEntity(SatelliteCometConfig.ID, UI.SPACEDESTINATIONS.COMETS.SATELLITE.NAME, true);
@@ -48,16 +46,13 @@ public class SatelliteCometConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06001300 RID: 4864 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject go)
 	{
 	}
 
-	// Token: 0x06001301 RID: 4865 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject go)
 	{
 	}
 
-	// Token: 0x04000D3F RID: 3391
 	public static string ID = "SatelliteCometComet";
 }

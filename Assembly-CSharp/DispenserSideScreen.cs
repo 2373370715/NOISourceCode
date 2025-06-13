@@ -4,16 +4,13 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001FC2 RID: 8130
 public class DispenserSideScreen : SideScreenContent
 {
-	// Token: 0x0600ABDB RID: 43995 RVA: 0x0011428E File Offset: 0x0011248E
 	public override bool IsValidForTarget(GameObject target)
 	{
 		return target.GetComponent<IDispenser>() != null;
 	}
 
-	// Token: 0x0600ABDC RID: 43996 RVA: 0x00114299 File Offset: 0x00112499
 	public override void SetTarget(GameObject target)
 	{
 		base.SetTarget(target);
@@ -21,7 +18,6 @@ public class DispenserSideScreen : SideScreenContent
 		this.Refresh();
 	}
 
-	// Token: 0x0600ABDD RID: 43997 RVA: 0x0041B388 File Offset: 0x00419588
 	private void Refresh()
 	{
 		this.dispenseButton.ClearOnClick();
@@ -61,28 +57,22 @@ public class DispenserSideScreen : SideScreenContent
 		this.targetDispenser.OnStopWorkEvent += this.Refresh;
 	}
 
-	// Token: 0x0600ABDE RID: 43998 RVA: 0x001142B4 File Offset: 0x001124B4
 	private void SelectTag(Tag tag)
 	{
 		this.targetDispenser.SelectItem(tag);
 		this.Refresh();
 	}
 
-	// Token: 0x04008756 RID: 34646
 	[SerializeField]
 	private KButton dispenseButton;
 
-	// Token: 0x04008757 RID: 34647
 	[SerializeField]
 	private RectTransform itemRowContainer;
 
-	// Token: 0x04008758 RID: 34648
 	[SerializeField]
 	private GameObject itemRowPrefab;
 
-	// Token: 0x04008759 RID: 34649
 	private IDispenser targetDispenser;
 
-	// Token: 0x0400875A RID: 34650
 	private Dictionary<Tag, GameObject> rows = new Dictionary<Tag, GameObject>();
 }

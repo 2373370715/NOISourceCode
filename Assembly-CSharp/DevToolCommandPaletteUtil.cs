@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-// Token: 0x02000BD9 RID: 3033
 public static class DevToolCommandPaletteUtil
 {
-	// Token: 0x0600398C RID: 14732 RVA: 0x0022C4CC File Offset: 0x0022A6CC
 	public static List<DevToolCommandPalette.Command> GenerateDefaultCommandPalette()
 	{
 		List<DevToolCommandPalette.Command> list = new List<DevToolCommandPalette.Command>();

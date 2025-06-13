@@ -6,11 +6,8 @@ using Ionic.Zip;
 using Steamworks;
 using UnityEngine;
 
-// Token: 0x02001ABF RID: 6847
 public class SteamUGCService : MonoBehaviour
 {
-	// Token: 0x17000974 RID: 2420
-	// (get) Token: 0x06008F3A RID: 36666 RVA: 0x00101FC9 File Offset: 0x001001C9
 	public static SteamUGCService Instance
 	{
 		get
@@ -19,7 +16,6 @@ public class SteamUGCService : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06008F3B RID: 36667 RVA: 0x00380FB0 File Offset: 0x0037F1B0
 	private SteamUGCService()
 	{
 		this.on_subscribed = Callback<RemoteStoragePublishedFileSubscribed_t>.Create(new Callback<RemoteStoragePublishedFileSubscribed_t>.DispatchDelegate(this.OnItemSubscribed));
@@ -30,7 +26,6 @@ public class SteamUGCService : MonoBehaviour
 		this.mods = new List<SteamUGCService.Mod>();
 	}
 
-	// Token: 0x06008F3C RID: 36668 RVA: 0x003810BC File Offset: 0x0037F2BC
 	public static void Initialize()
 	{
 		if (SteamUGCService.instance != null)
@@ -45,7 +40,6 @@ public class SteamUGCService : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06008F3D RID: 36669 RVA: 0x00381108 File Offset: 0x0037F308
 	public void AddClient(SteamUGCService.IClient client)
 	{
 		this.clients.Add(client);
@@ -58,13 +52,11 @@ public class SteamUGCService : MonoBehaviour
 		pooledList.Recycle();
 	}
 
-	// Token: 0x06008F3E RID: 36670 RVA: 0x00101FD0 File Offset: 0x001001D0
 	public void RemoveClient(SteamUGCService.IClient client)
 	{
 		this.clients.Remove(client);
 	}
 
-	// Token: 0x06008F3F RID: 36671 RVA: 0x00381190 File Offset: 0x0037F390
 	public void Awake()
 	{
 		global::Debug.Assert(SteamUGCService.instance == null);
@@ -78,26 +70,22 @@ public class SteamUGCService : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06008F40 RID: 36672 RVA: 0x003811D8 File Offset: 0x0037F3D8
 	public bool IsSubscribed(PublishedFileId_t item)
 	{
 		return this.downloads.Contains(item) || this.proxies.Contains(item) || this.queries.Contains(item) || this.publishes.Any((SteamUGCDetails_t candidate) => candidate.m_nPublishedFileId == item) || this.mods.Exists((SteamUGCService.Mod candidate) => candidate.fileId == item);
 	}
 
-	// Token: 0x06008F41 RID: 36673 RVA: 0x00381260 File Offset: 0x0037F460
 	public SteamUGCService.Mod FindMod(PublishedFileId_t item)
 	{
 		return this.mods.Find((SteamUGCService.Mod candidate) => candidate.fileId == item);
 	}
 
-	// Token: 0x06008F42 RID: 36674 RVA: 0x00101FDF File Offset: 0x001001DF
 	private void OnDestroy()
 	{
 		global::Debug.Assert(SteamUGCService.instance == this);
 		SteamUGCService.instance = null;
 	}
 
-	// Token: 0x06008F43 RID: 36675 RVA: 0x00381294 File Offset: 0x0037F494
 	private Texture2D LoadPreviewImage(SteamUGCDetails_t details)
 	{
 		byte[] array = null;
@@ -134,7 +122,6 @@ public class SteamUGCService : MonoBehaviour
 		return texture2D;
 	}
 
-	// Token: 0x06008F44 RID: 36676 RVA: 0x00381364 File Offset: 0x0037F564
 	private void Update()
 	{
 		if (!SteamManager.Initialized)
@@ -276,7 +263,6 @@ public class SteamUGCService : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06008F45 RID: 36677 RVA: 0x0038193C File Offset: 0x0037FB3C
 	private void OnSteamUGCQueryDetailsCompleted(SteamUGCQueryCompleted_t pCallback, bool bIOFailure)
 	{
 		EResult eResult = pCallback.m_eResult;
@@ -339,25 +325,21 @@ public class SteamUGCService : MonoBehaviour
 		this.details_query = UGCQueryHandle_t.Invalid;
 	}
 
-	// Token: 0x06008F46 RID: 36678 RVA: 0x00101FF7 File Offset: 0x001001F7
 	private void OnItemSubscribed(RemoteStoragePublishedFileSubscribed_t pCallback)
 	{
 		this.downloads.Add(pCallback.m_nPublishedFileId);
 	}
 
-	// Token: 0x06008F47 RID: 36679 RVA: 0x0010200B File Offset: 0x0010020B
 	private void OnItemUpdated(RemoteStoragePublishedFileUpdated_t pCallback)
 	{
 		this.downloads.Add(pCallback.m_nPublishedFileId);
 	}
 
-	// Token: 0x06008F48 RID: 36680 RVA: 0x0010201F File Offset: 0x0010021F
 	private void OnItemUnsubscribed(RemoteStoragePublishedFileUnsubscribed_t pCallback)
 	{
 		this.removals.Add(pCallback.m_nPublishedFileId);
 	}
 
-	// Token: 0x06008F49 RID: 36681 RVA: 0x00381B10 File Offset: 0x0037FD10
 	private void OnDownloadItemComplete(DownloadItemResult_t callback)
 	{
 		if (SteamManager.ONI_STEAM_APP_IDS.Contains(callback.m_unAppID) && callback.m_eResult == EResult.k_EResultOK)
@@ -367,7 +349,6 @@ public class SteamUGCService : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06008F4A RID: 36682 RVA: 0x00381B5C File Offset: 0x0037FD5C
 	public static byte[] GetBytesFromZip(PublishedFileId_t item, string[] filesToExtract, out System.DateTime lastModified, bool getFirstMatch = false)
 	{
 		byte[] result = null;
@@ -424,52 +405,36 @@ public class SteamUGCService : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x04006BE8 RID: 27624
 	private UGCQueryHandle_t details_query = UGCQueryHandle_t.Invalid;
 
-	// Token: 0x04006BE9 RID: 27625
 	private Callback<RemoteStoragePublishedFileSubscribed_t> on_subscribed;
 
-	// Token: 0x04006BEA RID: 27626
 	private Callback<RemoteStoragePublishedFileUpdated_t> on_updated;
 
-	// Token: 0x04006BEB RID: 27627
 	private Callback<RemoteStoragePublishedFileUnsubscribed_t> on_unsubscribed;
 
-	// Token: 0x04006BEC RID: 27628
 	private CallResult<SteamUGCQueryCompleted_t> on_query_completed;
 
-	// Token: 0x04006BED RID: 27629
 	private Callback<DownloadItemResult_t> on_download_completed;
 
-	// Token: 0x04006BEE RID: 27630
 	private HashSet<PublishedFileId_t> downloads = new HashSet<PublishedFileId_t>();
 
-	// Token: 0x04006BEF RID: 27631
 	private HashSet<PublishedFileId_t> queries = new HashSet<PublishedFileId_t>();
 
-	// Token: 0x04006BF0 RID: 27632
 	private HashSet<PublishedFileId_t> proxies = new HashSet<PublishedFileId_t>();
 
-	// Token: 0x04006BF1 RID: 27633
 	private HashSet<SteamUGCDetails_t> publishes = new HashSet<SteamUGCDetails_t>();
 
-	// Token: 0x04006BF2 RID: 27634
 	private HashSet<PublishedFileId_t> removals = new HashSet<PublishedFileId_t>();
 
-	// Token: 0x04006BF3 RID: 27635
 	private HashSet<SteamUGCDetails_t> previews = new HashSet<SteamUGCDetails_t>();
 
-	// Token: 0x04006BF4 RID: 27636
 	private HashSet<PublishedFileId_t> awaiting_download = new HashSet<PublishedFileId_t>();
 
-	// Token: 0x04006BF5 RID: 27637
 	private List<SteamUGCService.Mod> mods = new List<SteamUGCService.Mod>();
 
-	// Token: 0x04006BF6 RID: 27638
 	private Dictionary<PublishedFileId_t, int> retry_counts = new Dictionary<PublishedFileId_t, int>();
 
-	// Token: 0x04006BF7 RID: 27639
 	private static readonly string[] previewFileNames = new string[]
 	{
 		"preview.png",
@@ -479,22 +444,16 @@ public class SteamUGCService : MonoBehaviour
 		".jpg"
 	};
 
-	// Token: 0x04006BF8 RID: 27640
 	private List<SteamUGCService.IClient> clients = new List<SteamUGCService.IClient>();
 
-	// Token: 0x04006BF9 RID: 27641
 	private static SteamUGCService instance;
 
-	// Token: 0x04006BFA RID: 27642
 	private const EItemState DOWNLOADING_MASK = EItemState.k_EItemStateDownloading | EItemState.k_EItemStateDownloadPending;
 
-	// Token: 0x04006BFB RID: 27643
 	private const int RETRY_THRESHOLD = 1000;
 
-	// Token: 0x02001AC0 RID: 6848
 	public class Mod
 	{
-		// Token: 0x06008F4C RID: 36684 RVA: 0x00381CA4 File Offset: 0x0037FEA4
 		public Mod(SteamUGCDetails_t item, Texture2D previewImage)
 		{
 			this.title = item.m_rgchTitle;
@@ -505,7 +464,6 @@ public class SteamUGCService : MonoBehaviour
 			this.previewImage = previewImage;
 		}
 
-		// Token: 0x06008F4D RID: 36685 RVA: 0x00102068 File Offset: 0x00100268
 		public Mod(PublishedFileId_t id)
 		{
 			this.title = string.Empty;
@@ -516,39 +474,21 @@ public class SteamUGCService : MonoBehaviour
 			this.previewImage = null;
 		}
 
-		// Token: 0x17000975 RID: 2421
-		// (get) Token: 0x06008F4E RID: 36686 RVA: 0x001020A7 File Offset: 0x001002A7
-		// (set) Token: 0x06008F4F RID: 36687 RVA: 0x001020AF File Offset: 0x001002AF
 		public string title { get; private set; }
 
-		// Token: 0x17000976 RID: 2422
-		// (get) Token: 0x06008F50 RID: 36688 RVA: 0x001020B8 File Offset: 0x001002B8
-		// (set) Token: 0x06008F51 RID: 36689 RVA: 0x001020C0 File Offset: 0x001002C0
 		public string description { get; private set; }
 
-		// Token: 0x17000977 RID: 2423
-		// (get) Token: 0x06008F52 RID: 36690 RVA: 0x001020C9 File Offset: 0x001002C9
-		// (set) Token: 0x06008F53 RID: 36691 RVA: 0x001020D1 File Offset: 0x001002D1
 		public PublishedFileId_t fileId { get; private set; }
 
-		// Token: 0x17000978 RID: 2424
-		// (get) Token: 0x06008F54 RID: 36692 RVA: 0x001020DA File Offset: 0x001002DA
-		// (set) Token: 0x06008F55 RID: 36693 RVA: 0x001020E2 File Offset: 0x001002E2
 		public ulong lastUpdateTime { get; private set; }
 
-		// Token: 0x17000979 RID: 2425
-		// (get) Token: 0x06008F56 RID: 36694 RVA: 0x001020EB File Offset: 0x001002EB
-		// (set) Token: 0x06008F57 RID: 36695 RVA: 0x001020F3 File Offset: 0x001002F3
 		public List<string> tags { get; private set; }
 
-		// Token: 0x04006C01 RID: 27649
 		public Texture2D previewImage;
 	}
 
-	// Token: 0x02001AC1 RID: 6849
 	public interface IClient
 	{
-		// Token: 0x06008F58 RID: 36696
 		void UpdateMods(IEnumerable<PublishedFileId_t> added, IEnumerable<PublishedFileId_t> updated, IEnumerable<PublishedFileId_t> removed, IEnumerable<SteamUGCService.Mod> loaded_previews);
 	}
 }

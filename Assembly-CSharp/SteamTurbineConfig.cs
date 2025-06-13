@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005CD RID: 1485
 public class SteamTurbineConfig : IBuildingConfig
 {
-	// Token: 0x060019F6 RID: 6646 RVA: 0x001B0EF8 File Offset: 0x001AF0F8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "SteamTurbine";
@@ -45,14 +43,12 @@ public class SteamTurbineConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060019F7 RID: 6647 RVA: 0x000B5755 File Offset: 0x000B3955
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		base.DoPostConfigureUnderConstruction(go);
 		go.GetComponent<Constructable>().requiredSkillPerk = Db.Get().SkillPerks.CanPowerTinker.Id;
 	}
 
-	// Token: 0x060019F8 RID: 6648 RVA: 0x001B0FE0 File Offset: 0x001AF1E0
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<Storage>().SetDefaultStoredItemModifiers(SteamTurbineConfig.StoredItemModifiers);
@@ -87,16 +83,12 @@ public class SteamTurbineConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x040010D4 RID: 4308
 	public const string ID = "SteamTurbine";
 
-	// Token: 0x040010D5 RID: 4309
 	private const int HEIGHT = 4;
 
-	// Token: 0x040010D6 RID: 4310
 	private const int WIDTH = 5;
 
-	// Token: 0x040010D7 RID: 4311
 	private static readonly List<Storage.StoredItemModifier> StoredItemModifiers = new List<Storage.StoredItemModifier>
 	{
 		Storage.StoredItemModifier.Hide,

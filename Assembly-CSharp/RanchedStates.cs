@@ -1,10 +1,8 @@
 ﻿using System;
 using STRINGS;
 
-// Token: 0x020001F1 RID: 497
 public class RanchedStates : GameStateMachine<RanchedStates, RanchedStates.Instance, IStateMachineTarget, RanchedStates.Def>
 {
-	// Token: 0x060006AF RID: 1711 RVA: 0x0016527C File Offset: 0x0016347C
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.ranch;
@@ -116,19 +114,16 @@ public class RanchedStates : GameStateMachine<RanchedStates, RanchedStates.Insta
 		state3.ToggleStatusItem(name4, tooltip4, icon4, icon_type4, notification_type4, allow_multiples4, default(HashedString), 129022, null, null, main);
 	}
 
-	// Token: 0x060006B0 RID: 1712 RVA: 0x000AD3A3 File Offset: 0x000AB5A3
 	private static void ClearLayerOverride(RanchedStates.Instance smi)
 	{
 		smi.AnimController.SetSceneLayer(Grid.SceneLayer.Creatures);
 	}
 
-	// Token: 0x060006B1 RID: 1713 RVA: 0x000AD3B2 File Offset: 0x000AB5B2
 	private static RanchStation.Instance GetRanchStation(RanchedStates.Instance smi)
 	{
 		return smi.GetRanchStation();
 	}
 
-	// Token: 0x060006B2 RID: 1714 RVA: 0x00165840 File Offset: 0x00163A40
 	private static void GetOnTable(RanchedStates.Instance smi)
 	{
 		Navigator navigator = smi.Get<Navigator>();
@@ -139,21 +134,18 @@ public class RanchedStates : GameStateMachine<RanchedStates, RanchedStates.Insta
 		smi.Get<Facing>().SetFacing(false);
 	}
 
-	// Token: 0x060006B3 RID: 1715 RVA: 0x00165870 File Offset: 0x00163A70
 	private static bool IsCrittersTurn(RanchedStates.Instance smi)
 	{
 		RanchStation.Instance ranchStation = RanchedStates.GetRanchStation(smi);
 		return ranchStation != null && ranchStation.IsRancherReady && ranchStation.TryGetRanched(smi);
 	}
 
-	// Token: 0x060006B4 RID: 1716 RVA: 0x0016589C File Offset: 0x00163A9C
 	private static int GetRanchNavTarget(RanchedStates.Instance smi)
 	{
 		RanchStation.Instance ranchStation = RanchedStates.GetRanchStation(smi);
 		return smi.ModifyNavTargetForCritter(ranchStation.GetRanchNavTarget());
 	}
 
-	// Token: 0x060006B5 RID: 1717 RVA: 0x001658BC File Offset: 0x00163ABC
 	private static int GetRunawayCell(RanchedStates.Instance smi)
 	{
 		int cell = Grid.PosToCell(smi.transform.GetPosition());
@@ -165,33 +157,23 @@ public class RanchedStates : GameStateMachine<RanchedStates, RanchedStates.Insta
 		return num;
 	}
 
-	// Token: 0x040004E2 RID: 1250
 	private RanchedStates.RanchStates ranch;
 
-	// Token: 0x040004E3 RID: 1251
 	private StateMachine<RanchedStates, RanchedStates.Instance, IStateMachineTarget, RanchedStates.Def>.TargetParameter ranchTarget;
 
-	// Token: 0x020001F2 RID: 498
 	public class Def : StateMachine.BaseDef
 	{
-		// Token: 0x040004E4 RID: 1252
 		public string StartWaitingAnim = "queue_pre";
 
-		// Token: 0x040004E5 RID: 1253
 		public string WaitingAnim = "queue_loop";
 
-		// Token: 0x040004E6 RID: 1254
 		public string EndWaitingAnim = "queue_pst";
 
-		// Token: 0x040004E7 RID: 1255
 		public int WaitCellOffset = 1;
 	}
 
-	// Token: 0x020001F3 RID: 499
 	public new class Instance : GameStateMachine<RanchedStates, RanchedStates.Instance, IStateMachineTarget, RanchedStates.Def>.GameInstance
 	{
-		// Token: 0x17000014 RID: 20
-		// (get) Token: 0x060006B8 RID: 1720 RVA: 0x000AD3F2 File Offset: 0x000AB5F2
 		public RanchableMonitor.Instance Monitor
 		{
 			get
@@ -204,8 +186,6 @@ public class RanchedStates : GameStateMachine<RanchedStates, RanchedStates.Insta
 			}
 		}
 
-		// Token: 0x17000015 RID: 21
-		// (get) Token: 0x060006B9 RID: 1721 RVA: 0x000AD40E File Offset: 0x000AB60E
 		public KBatchedAnimController AnimController
 		{
 			get
@@ -214,7 +194,6 @@ public class RanchedStates : GameStateMachine<RanchedStates, RanchedStates.Insta
 			}
 		}
 
-		// Token: 0x060006BA RID: 1722 RVA: 0x001658FC File Offset: 0x00163AFC
 		public Instance(Chore<RanchedStates.Instance> chore, RanchedStates.Def def) : base(chore, def)
 		{
 			this.animController = base.GetComponent<KBatchedAnimController>();
@@ -224,7 +203,6 @@ public class RanchedStates : GameStateMachine<RanchedStates, RanchedStates.Insta
 			this.cheerAnimLength = ((anim != null) ? (anim.totalTime + 0.2f) : 1.2f);
 		}
 
-		// Token: 0x060006BB RID: 1723 RVA: 0x000AD416 File Offset: 0x000AB616
 		public RanchStation.Instance GetRanchStation()
 		{
 			if (this.Monitor != null)
@@ -234,7 +212,6 @@ public class RanchedStates : GameStateMachine<RanchedStates, RanchedStates.Insta
 			return null;
 		}
 
-		// Token: 0x060006BC RID: 1724 RVA: 0x000AD42D File Offset: 0x000AB62D
 		public void EnterQueue()
 		{
 			if (this.GetRanchStation() != null)
@@ -244,7 +221,6 @@ public class RanchedStates : GameStateMachine<RanchedStates, RanchedStates.Insta
 			}
 		}
 
-		// Token: 0x060006BD RID: 1725 RVA: 0x000AD455 File Offset: 0x000AB655
 		public void AbandonRanchStation()
 		{
 			if (this.Monitor.TargetRanchStation == null || this.status == StateMachine.Status.Failed)
@@ -254,7 +230,6 @@ public class RanchedStates : GameStateMachine<RanchedStates, RanchedStates.Insta
 			this.StopSM("Abandoned Ranch");
 		}
 
-		// Token: 0x060006BE RID: 1726 RVA: 0x0016598C File Offset: 0x00163B8C
 		public void SetRanchStation(RanchStation.Instance ranch_station)
 		{
 			if (this.Monitor.TargetRanchStation != null && this.Monitor.TargetRanchStation != ranch_station)
@@ -265,7 +240,6 @@ public class RanchedStates : GameStateMachine<RanchedStates, RanchedStates.Insta
 			this.Monitor.TargetRanchStation = ranch_station;
 		}
 
-		// Token: 0x060006BF RID: 1727 RVA: 0x000AD479 File Offset: 0x000AB679
 		public int ModifyNavTargetForCritter(int navCell)
 		{
 			if (base.smi.HasTag(GameTags.Creatures.Flyer))
@@ -275,7 +249,6 @@ public class RanchedStates : GameStateMachine<RanchedStates, RanchedStates.Insta
 			return navCell;
 		}
 
-		// Token: 0x060006C0 RID: 1728 RVA: 0x00165A00 File Offset: 0x00163C00
 		private void InitializeWaitCell()
 		{
 			if (this.GetRanchStation() == null)
@@ -307,7 +280,6 @@ public class RanchedStates : GameStateMachine<RanchedStates, RanchedStates.Insta
 			this.waitCell = Grid.OffsetCell(cell2, offset);
 		}
 
-		// Token: 0x060006C1 RID: 1729 RVA: 0x00165B10 File Offset: 0x00163D10
 		public void UpdateWaitingState()
 		{
 			if (!RanchedStates.IsCrittersTurn(base.smi))
@@ -323,71 +295,50 @@ public class RanchedStates : GameStateMachine<RanchedStates, RanchedStates.Insta
 			base.smi.GoTo(base.smi.sm.ranch.Cheer);
 		}
 
-		// Token: 0x040004E8 RID: 1256
 		public float OriginalSpeed;
 
-		// Token: 0x040004E9 RID: 1257
 		private int waitCell;
 
-		// Token: 0x040004EA RID: 1258
 		private KBatchedAnimController animController;
 
-		// Token: 0x040004EB RID: 1259
 		private RanchableMonitor.Instance ranchMonitor;
 
-		// Token: 0x040004EC RID: 1260
 		public float cheerAnimLength;
 	}
 
-	// Token: 0x020001F4 RID: 500
 	public class RanchStates : GameStateMachine<RanchedStates, RanchedStates.Instance, IStateMachineTarget, RanchedStates.Def>.State
 	{
-		// Token: 0x040004ED RID: 1261
 		public RanchedStates.CheerStates Cheer;
 
-		// Token: 0x040004EE RID: 1262
 		public RanchedStates.MoveStates Move;
 
-		// Token: 0x040004EF RID: 1263
 		public RanchedStates.WaitStates Wait;
 
-		// Token: 0x040004F0 RID: 1264
 		public GameStateMachine<RanchedStates, RanchedStates.Instance, IStateMachineTarget, RanchedStates.Def>.State Ranching;
 
-		// Token: 0x040004F1 RID: 1265
 		public GameStateMachine<RanchedStates, RanchedStates.Instance, IStateMachineTarget, RanchedStates.Def>.State Wavegoodbye;
 
-		// Token: 0x040004F2 RID: 1266
 		public GameStateMachine<RanchedStates, RanchedStates.Instance, IStateMachineTarget, RanchedStates.Def>.State Runaway;
 	}
 
-	// Token: 0x020001F5 RID: 501
 	public class CheerStates : GameStateMachine<RanchedStates, RanchedStates.Instance, IStateMachineTarget, RanchedStates.Def>.State
 	{
-		// Token: 0x040004F3 RID: 1267
 		public GameStateMachine<RanchedStates, RanchedStates.Instance, IStateMachineTarget, RanchedStates.Def>.State Cheer;
 
-		// Token: 0x040004F4 RID: 1268
 		public GameStateMachine<RanchedStates, RanchedStates.Instance, IStateMachineTarget, RanchedStates.Def>.State Pst;
 	}
 
-	// Token: 0x020001F6 RID: 502
 	public class MoveStates : GameStateMachine<RanchedStates, RanchedStates.Instance, IStateMachineTarget, RanchedStates.Def>.State
 	{
-		// Token: 0x040004F5 RID: 1269
 		public GameStateMachine<RanchedStates, RanchedStates.Instance, IStateMachineTarget, RanchedStates.Def>.State MoveToRanch;
 	}
 
-	// Token: 0x020001F7 RID: 503
 	public class WaitStates : GameStateMachine<RanchedStates, RanchedStates.Instance, IStateMachineTarget, RanchedStates.Def>.State
 	{
-		// Token: 0x040004F6 RID: 1270
 		public GameStateMachine<RanchedStates, RanchedStates.Instance, IStateMachineTarget, RanchedStates.Def>.State WaitInLine;
 
-		// Token: 0x040004F7 RID: 1271
 		public GameStateMachine<RanchedStates, RanchedStates.Instance, IStateMachineTarget, RanchedStates.Def>.State Waiting;
 
-		// Token: 0x040004F8 RID: 1272
 		public GameStateMachine<RanchedStates, RanchedStates.Instance, IStateMachineTarget, RanchedStates.Def>.State DoneWaiting;
 	}
 }

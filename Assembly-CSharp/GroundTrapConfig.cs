@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02001414 RID: 5140
 public class GroundTrapConfig : IBuildingConfig
 {
-	// Token: 0x0600691F RID: 26911 RVA: 0x002E8708 File Offset: 0x002E6908
 	public override BuildingDef CreateBuildingDef()
 	{
 		BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef("CreatureGroundTrap", 2, 2, "critter_trap_ground_kanim", 10, 10f, TUNING.BUILDINGS.CONSTRUCTION_MASS_KG.TIER3, MATERIALS.RAW_METALS, 1600f, BuildLocationRule.OnFloor, TUNING.BUILDINGS.DECOR.PENALTY.TIER2, NOISE_POLLUTION.NOISY.TIER0, 0.2f);
@@ -26,7 +24,6 @@ public class GroundTrapConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06006920 RID: 26912 RVA: 0x002E8808 File Offset: 0x002E6A08
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<Prioritizable>();
@@ -53,17 +50,13 @@ public class GroundTrapConfig : IBuildingConfig
 		go.AddOrGet<LogicOperationalController>();
 	}
 
-	// Token: 0x06006921 RID: 26913 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04004FC3 RID: 20419
 	public const string ID = "CreatureGroundTrap";
 
-	// Token: 0x04004FC4 RID: 20420
 	public const string OUTPUT_LOGIC_PORT_ID = "TRAP_HAS_PREY_STATUS_PORT";
 
-	// Token: 0x04004FC5 RID: 20421
 	private static readonly List<Storage.StoredItemModifier> StoredItemModifiers = new List<Storage.StoredItemModifier>();
 }

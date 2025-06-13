@@ -4,22 +4,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200004E RID: 78
 public class ClustercraftInteriorDoorConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x06000169 RID: 361 RVA: 0x000AA117 File Offset: 0x000A8317
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x0600016A RID: 362 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x0600016B RID: 363 RVA: 0x0014C9BC File Offset: 0x0014ABBC
 	public GameObject CreatePrefab()
 	{
 		string id = ClustercraftInteriorDoorConfig.ID;
@@ -47,7 +43,6 @@ public class ClustercraftInteriorDoorConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x0600016C RID: 364 RVA: 0x000AA768 File Offset: 0x000A8968
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.GetComponent<OccupyArea>().objectLayers = new ObjectLayer[]
@@ -56,7 +51,6 @@ public class ClustercraftInteriorDoorConfig : IEntityConfig, IHasDlcRestrictions
 		};
 	}
 
-	// Token: 0x0600016D RID: 365 RVA: 0x0014CAA4 File Offset: 0x0014ACA4
 	public void OnSpawn(GameObject inst)
 	{
 		PrimaryElement component = inst.GetComponent<PrimaryElement>();
@@ -81,6 +75,5 @@ public class ClustercraftInteriorDoorConfig : IEntityConfig, IHasDlcRestrictions
 		}
 	}
 
-	// Token: 0x040000DA RID: 218
 	public static string ID = "ClustercraftInteriorDoor";
 }

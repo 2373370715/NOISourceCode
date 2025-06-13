@@ -2,16 +2,13 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x020019DA RID: 6618
 public class ConditionHasMinimumMass : ProcessCondition
 {
-	// Token: 0x060089F0 RID: 35312 RVA: 0x000FEA50 File Offset: 0x000FCC50
 	public ConditionHasMinimumMass(CommandModule command)
 	{
 		this.commandModule = command;
 	}
 
-	// Token: 0x060089F1 RID: 35313 RVA: 0x003686A8 File Offset: 0x003668A8
 	public override ProcessCondition.Status EvaluateCondition()
 	{
 		int id = SpacecraftManager.instance.GetSpacecraftFromLaunchConditionManager(this.commandModule.GetComponent<LaunchConditionManager>()).id;
@@ -23,7 +20,6 @@ public class ConditionHasMinimumMass : ProcessCondition
 		return ProcessCondition.Status.Warning;
 	}
 
-	// Token: 0x060089F2 RID: 35314 RVA: 0x00368704 File Offset: 0x00366904
 	public override string GetStatusMessage(ProcessCondition.Status status)
 	{
 		int id = SpacecraftManager.instance.GetSpacecraftFromLaunchConditionManager(this.commandModule.GetComponent<LaunchConditionManager>()).id;
@@ -39,7 +35,6 @@ public class ConditionHasMinimumMass : ProcessCondition
 		return string.Format(UI.STARMAP.LAUNCHCHECKLIST.MINIMUM_MASS, UI.STARMAP.COMPOSITION_UNDISCOVERED_AMOUNT);
 	}
 
-	// Token: 0x060089F3 RID: 35315 RVA: 0x0036878C File Offset: 0x0036698C
 	public override string GetStatusTooltip(ProcessCondition.Status status)
 	{
 		int id = SpacecraftManager.instance.GetSpacecraftFromLaunchConditionManager(this.commandModule.GetComponent<LaunchConditionManager>()).id;
@@ -90,7 +85,6 @@ public class ConditionHasMinimumMass : ProcessCondition
 		return text;
 	}
 
-	// Token: 0x060089F4 RID: 35316 RVA: 0x003689F8 File Offset: 0x00366BF8
 	public static float CargoCapacity(SpaceDestination destination, CommandModule module)
 	{
 		if (module == null)
@@ -110,12 +104,10 @@ public class ConditionHasMinimumMass : ProcessCondition
 		return num;
 	}
 
-	// Token: 0x060089F5 RID: 35317 RVA: 0x000AA7E7 File Offset: 0x000A89E7
 	public override bool ShowInUI()
 	{
 		return true;
 	}
 
-	// Token: 0x04006841 RID: 26689
 	private CommandModule commandModule;
 }

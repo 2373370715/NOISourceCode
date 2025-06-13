@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000AAE RID: 2734
 public class LonelyMinion : GameStateMachine<LonelyMinion, LonelyMinion.Instance, StateMachineController, LonelyMinion.Def>
 {
-	// Token: 0x060031E4 RID: 12772 RVA: 0x0020DDDC File Offset: 0x0020BFDC
 	private bool HahCheckedMail(LonelyMinion.Instance smi)
 	{
 		if (smi.AnimController.currentAnim == LonelyMinionConfig.CHECK_MAIL)
@@ -31,7 +29,6 @@ public class LonelyMinion : GameStateMachine<LonelyMinion, LonelyMinion.Instance
 		}
 	}
 
-	// Token: 0x060031E5 RID: 12773 RVA: 0x0020DECC File Offset: 0x0020C0CC
 	private void CheckForMail(LonelyMinion.Instance smi)
 	{
 		Tag prefabTag = this.Mail.Get(smi).GetComponent<KPrefabID>().PrefabTag;
@@ -70,7 +67,6 @@ public class LonelyMinion : GameStateMachine<LonelyMinion, LonelyMinion.Instance
 		smi.transform.parent.gameObject.AddOrGet<Notifier>().Add(notification, "");
 	}
 
-	// Token: 0x060031E6 RID: 12774 RVA: 0x0020E074 File Offset: 0x0020C274
 	private void EvaluateCurrentDecor(LonelyMinion.Instance smi, float dt)
 	{
 		QuestInstance instance = QuestManager.GetInstance(smi.def.QuestOwnerId, Db.Get().Quests.LonelyMinionDecorQuest);
@@ -93,7 +89,6 @@ public class LonelyMinion : GameStateMachine<LonelyMinion, LonelyMinion.Instance
 		}, out flag2, out flag3);
 	}
 
-	// Token: 0x060031E7 RID: 12775 RVA: 0x0020E12C File Offset: 0x0020C32C
 	private void DelayIdle(LonelyMinion.Instance smi, float dt)
 	{
 		if (smi.AnimController.currentAnim != smi.AnimController.defaultAnim)
@@ -111,7 +106,6 @@ public class LonelyMinion : GameStateMachine<LonelyMinion, LonelyMinion.Instance
 		}
 	}
 
-	// Token: 0x060031E8 RID: 12776 RVA: 0x0020E1A8 File Offset: 0x0020C3A8
 	private void PlayIdle(LonelyMinion.Instance smi, HashedString idleAnim)
 	{
 		if (!idleAnim.IsValid)
@@ -143,7 +137,6 @@ public class LonelyMinion : GameStateMachine<LonelyMinion, LonelyMinion.Instance
 		smi.AnimController.Play(idleAnim, KAnim.PlayMode.Once, 1f, 0f);
 	}
 
-	// Token: 0x060031E9 RID: 12777 RVA: 0x0020E300 File Offset: 0x0020C500
 	private void OnIdleAnimComplete(LonelyMinion.Instance smi)
 	{
 		if (smi.AnimController.currentAnim == smi.AnimController.defaultAnim)
@@ -166,14 +159,12 @@ public class LonelyMinion : GameStateMachine<LonelyMinion, LonelyMinion.Instance
 		}
 	}
 
-	// Token: 0x060031EA RID: 12778 RVA: 0x0020E44C File Offset: 0x0020C64C
 	private void OnBecomeInactive(LonelyMinion.Instance smi)
 	{
 		smi.AnimController.GetSynchronizer().Clear();
 		smi.AnimController.Play(smi.AnimController.initialAnim, smi.AnimController.initialMode, 1f, 0f);
 	}
 
-	// Token: 0x060031EB RID: 12779 RVA: 0x0020E49C File Offset: 0x0020C69C
 	private void OnBecomeActive(LonelyMinion.Instance smi)
 	{
 		LonelyMinionHouse.Instance smi2 = smi.transform.parent.GetSMI<LonelyMinionHouse.Instance>();
@@ -188,7 +179,6 @@ public class LonelyMinion : GameStateMachine<LonelyMinion, LonelyMinion.Instance
 		}
 	}
 
-	// Token: 0x060031EC RID: 12780 RVA: 0x0020E4F8 File Offset: 0x0020C6F8
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.Inactive;
@@ -219,39 +209,27 @@ public class LonelyMinion : GameStateMachine<LonelyMinion, LonelyMinion.Instance
 		});
 	}
 
-	// Token: 0x04002223 RID: 8739
 	public StateMachine<LonelyMinion, LonelyMinion.Instance, StateMachineController, LonelyMinion.Def>.TargetParameter Mail;
 
-	// Token: 0x04002224 RID: 8740
 	public StateMachine<LonelyMinion, LonelyMinion.Instance, StateMachineController, LonelyMinion.Def>.BoolParameter Active;
 
-	// Token: 0x04002225 RID: 8741
 	public GameStateMachine<LonelyMinion, LonelyMinion.Instance, StateMachineController, LonelyMinion.Def>.State Idle;
 
-	// Token: 0x04002226 RID: 8742
 	public GameStateMachine<LonelyMinion, LonelyMinion.Instance, StateMachineController, LonelyMinion.Def>.State Inactive;
 
-	// Token: 0x04002227 RID: 8743
 	public LonelyMinion.MailStates CheckMail;
 
-	// Token: 0x02000AAF RID: 2735
 	public class Def : StateMachine.BaseDef
 	{
-		// Token: 0x04002228 RID: 8744
 		public Personality Personality;
 
-		// Token: 0x04002229 RID: 8745
 		public HashedString QuestOwnerId;
 
-		// Token: 0x0400222A RID: 8746
 		public Extents DecorInspectionArea;
 	}
 
-	// Token: 0x02000AB0 RID: 2736
 	public new class Instance : GameStateMachine<LonelyMinion, LonelyMinion.Instance, StateMachineController, LonelyMinion.Def>.GameInstance
 	{
-		// Token: 0x17000204 RID: 516
-		// (get) Token: 0x060031F3 RID: 12787 RVA: 0x000C4E99 File Offset: 0x000C3099
 		public KBatchedAnimController AnimController
 		{
 			get
@@ -260,8 +238,6 @@ public class LonelyMinion : GameStateMachine<LonelyMinion, LonelyMinion.Instance
 			}
 		}
 
-		// Token: 0x17000205 RID: 517
-		// (get) Token: 0x060031F4 RID: 12788 RVA: 0x000C4EA3 File Offset: 0x000C30A3
 		public KBatchedAnimController PackageSnapPoint
 		{
 			get
@@ -270,7 +246,6 @@ public class LonelyMinion : GameStateMachine<LonelyMinion, LonelyMinion.Instance
 			}
 		}
 
-		// Token: 0x060031F5 RID: 12789 RVA: 0x0020E758 File Offset: 0x0020C958
 		public Instance(StateMachineController master, LonelyMinion.Def def) : base(master, def)
 		{
 			this.animControllers = base.gameObject.GetComponentsInChildren<KBatchedAnimController>(true);
@@ -281,7 +256,6 @@ public class LonelyMinion : GameStateMachine<LonelyMinion, LonelyMinion.Instance
 			storyInstance.StoryStateChanged = (Action<StoryInstance.State>)Delegate.Combine(storyInstance.StoryStateChanged, new Action<StoryInstance.State>(this.OnStoryStateChanged));
 		}
 
-		// Token: 0x060031F6 RID: 12790 RVA: 0x0020E800 File Offset: 0x0020CA00
 		public override void StartSM()
 		{
 			LonelyMinionHouse.Instance smi = base.smi.transform.parent.GetSMI<LonelyMinionHouse.Instance>();
@@ -293,7 +267,6 @@ public class LonelyMinion : GameStateMachine<LonelyMinion, LonelyMinion.Instance
 			base.StartSM();
 		}
 
-		// Token: 0x060031F7 RID: 12791 RVA: 0x0020E8A4 File Offset: 0x0020CAA4
 		public override void StopSM(string reason)
 		{
 			QuestInstance instance = QuestManager.GetInstance(base.def.QuestOwnerId, Db.Get().Quests.LonelyMinionGreetingQuest);
@@ -304,7 +277,6 @@ public class LonelyMinion : GameStateMachine<LonelyMinion, LonelyMinion.Instance
 			this.ResetHandle.FreeResources();
 		}
 
-		// Token: 0x060031F8 RID: 12792 RVA: 0x000C4EAD File Offset: 0x000C30AD
 		public HashedString ChooseIdle()
 		{
 			if (this.availableIdles.Count > 1)
@@ -314,7 +286,6 @@ public class LonelyMinion : GameStateMachine<LonelyMinion, LonelyMinion.Instance
 			return this.availableIdles[0];
 		}
 
-		// Token: 0x060031F9 RID: 12793 RVA: 0x0020E914 File Offset: 0x0020CB14
 		public void Pickup(Pickupable pickupable, bool store)
 		{
 			base.sm.Mail.Set(null, this, true);
@@ -328,13 +299,11 @@ public class LonelyMinion : GameStateMachine<LonelyMinion, LonelyMinion.Instance
 			UnityEngine.Object.Destroy(pickupable.gameObject);
 		}
 
-		// Token: 0x060031FA RID: 12794 RVA: 0x0020E98C File Offset: 0x0020CB8C
 		public void Drop()
 		{
 			this.storage.DropAll(this.PackageSnapPoint.transform.position, false, false, default(Vector3), true, null);
 		}
 
-		// Token: 0x060031FB RID: 12795 RVA: 0x000C4ED4 File Offset: 0x000C30D4
 		private void OnStoryStateChanged(StoryInstance.State state)
 		{
 			if (state != StoryInstance.State.COMPLETE)
@@ -344,7 +313,6 @@ public class LonelyMinion : GameStateMachine<LonelyMinion, LonelyMinion.Instance
 			this.StoryCleanUp();
 		}
 
-		// Token: 0x060031FC RID: 12796 RVA: 0x0020E9C4 File Offset: 0x0020CBC4
 		private void StoryCleanUp()
 		{
 			this.AnimController.GetSynchronizer().Clear();
@@ -352,7 +320,6 @@ public class LonelyMinion : GameStateMachine<LonelyMinion, LonelyMinion.Instance
 			storyInstance.StoryStateChanged = (Action<StoryInstance.State>)Delegate.Remove(storyInstance.StoryStateChanged, new Action<StoryInstance.State>(this.OnStoryStateChanged));
 		}
 
-		// Token: 0x060031FD RID: 12797 RVA: 0x0020EA20 File Offset: 0x0020CC20
 		private void InitializeIdles()
 		{
 			QuestInstance instance = QuestManager.GetInstance(base.def.QuestOwnerId, Db.Get().Quests.LonelyMinionFoodQuest);
@@ -391,7 +358,6 @@ public class LonelyMinion : GameStateMachine<LonelyMinion, LonelyMinion.Instance
 			}
 		}
 
-		// Token: 0x060031FE RID: 12798 RVA: 0x0020EB90 File Offset: 0x0020CD90
 		public void UnlockQuestIdle(QuestInstance quest, Quest.State prevState, float delta)
 		{
 			if (prevState == Quest.State.NotStarted && quest.IsStarted)
@@ -428,7 +394,6 @@ public class LonelyMinion : GameStateMachine<LonelyMinion, LonelyMinion.Instance
 			this.availableIdles.Remove(LonelyMinionConfig.BLINDS_IDLE_0);
 		}
 
-		// Token: 0x060031FF RID: 12799 RVA: 0x0020ECE8 File Offset: 0x0020CEE8
 		public void ShowQuestCompleteNotification(QuestInstance quest, Quest.State prevState, float delta = 0f)
 		{
 			if (!quest.IsComplete)
@@ -445,7 +410,6 @@ public class LonelyMinion : GameStateMachine<LonelyMinion, LonelyMinion.Instance
 			base.transform.parent.gameObject.AddOrGet<Notifier>().Add(notification, "");
 		}
 
-		// Token: 0x06003200 RID: 12800 RVA: 0x0020EDA4 File Offset: 0x0020CFA4
 		private void ShowQuestCompletePopup(object data)
 		{
 			global::Tuple<string, string> tuple = data as global::Tuple<string, string>;
@@ -456,32 +420,23 @@ public class LonelyMinion : GameStateMachine<LonelyMinion, LonelyMinion.Instance
 			}
 		}
 
-		// Token: 0x0400222B RID: 8747
 		public SchedulerHandle ResetHandle;
 
-		// Token: 0x0400222C RID: 8748
 		public float StartingAverageDecor = float.NegativeInfinity;
 
-		// Token: 0x0400222D RID: 8749
 		public float IdleDelayTimer;
 
-		// Token: 0x0400222E RID: 8750
 		private KBatchedAnimController[] animControllers;
 
-		// Token: 0x0400222F RID: 8751
 		private Storage storage;
 
-		// Token: 0x04002230 RID: 8752
 		private const int maxIdles = 8;
 
-		// Token: 0x04002231 RID: 8753
 		private List<HashedString> availableIdles = new List<HashedString>(8);
 	}
 
-	// Token: 0x02000AB1 RID: 2737
 	public class MailStates : GameStateMachine<LonelyMinion, LonelyMinion.Instance, StateMachineController, LonelyMinion.Def>.State
 	{
-		// Token: 0x06003201 RID: 12801 RVA: 0x0020EE0C File Offset: 0x0020D00C
 		public static void OnEnter(LonelyMinion.Instance smi)
 		{
 			KBatchedAnimController component = smi.sm.Mail.Get(smi).GetComponent<KBatchedAnimController>();
@@ -493,13 +448,11 @@ public class LonelyMinion : GameStateMachine<LonelyMinion, LonelyMinion.Instance
 			smi.AnimController.Play(LonelyMinionConfig.CHECK_MAIL, KAnim.PlayMode.Once, 1f, 0f);
 		}
 
-		// Token: 0x06003202 RID: 12802 RVA: 0x000C4EE1 File Offset: 0x000C30E1
 		public static void OnExit(LonelyMinion.Instance smi)
 		{
 			smi.ResetHandle = smi.ScheduleNextFrame(new Action<object>(LonelyMinion.MailStates.ResetState), smi);
 		}
 
-		// Token: 0x06003203 RID: 12803 RVA: 0x0020EE90 File Offset: 0x0020D090
 		private static void ResetState(object data)
 		{
 			LonelyMinion.Instance instance = data as LonelyMinion.Instance;
@@ -507,7 +460,6 @@ public class LonelyMinion : GameStateMachine<LonelyMinion, LonelyMinion.Instance
 			instance.Drop();
 		}
 
-		// Token: 0x06003204 RID: 12804 RVA: 0x000C4EFC File Offset: 0x000C30FC
 		public static void PlayAnims(LonelyMinion.Instance smi, HashedString anim)
 		{
 			if (anim.IsValid)
@@ -518,13 +470,10 @@ public class LonelyMinion : GameStateMachine<LonelyMinion, LonelyMinion.Instance
 			smi.GoTo(smi.sm.Idle);
 		}
 
-		// Token: 0x04002232 RID: 8754
 		public GameStateMachine<LonelyMinion, LonelyMinion.Instance, StateMachineController, LonelyMinion.Def>.State Success;
 
-		// Token: 0x04002233 RID: 8755
 		public GameStateMachine<LonelyMinion, LonelyMinion.Instance, StateMachineController, LonelyMinion.Def>.State Failure;
 
-		// Token: 0x04002234 RID: 8756
 		public GameStateMachine<LonelyMinion, LonelyMinion.Instance, StateMachineController, LonelyMinion.Def>.State Duplicate;
 	}
 }

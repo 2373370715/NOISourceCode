@@ -3,17 +3,14 @@ using System.Collections.Generic;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001277 RID: 4727
 public class TrappedDuplicantDiagnostic : ColonyDiagnostic
 {
-	// Token: 0x06006071 RID: 24689 RVA: 0x002BB8EC File Offset: 0x002B9AEC
 	public TrappedDuplicantDiagnostic(int worldID) : base(worldID, UI.COLONY_DIAGNOSTICS.TRAPPEDDUPLICANTDIAGNOSTIC.ALL_NAME)
 	{
 		this.icon = "overlay_power";
 		base.AddCriterion("CheckTrapped", new DiagnosticCriterion(UI.COLONY_DIAGNOSTICS.TRAPPEDDUPLICANTDIAGNOSTIC.CRITERIA.CHECKTRAPPED, new Func<ColonyDiagnostic.DiagnosticResult>(this.CheckTrapped)));
 	}
 
-	// Token: 0x06006072 RID: 24690 RVA: 0x002BB93C File Offset: 0x002B9B3C
 	public ColonyDiagnostic.DiagnosticResult CheckTrapped()
 	{
 		ColonyDiagnostic.DiagnosticResult result = new ColonyDiagnostic.DiagnosticResult(ColonyDiagnostic.DiagnosticResult.Opinion.Normal, UI.COLONY_DIAGNOSTICS.GENERIC_CRITERIA_PASS, null);
@@ -69,7 +66,6 @@ public class TrappedDuplicantDiagnostic : ColonyDiagnostic
 		return result;
 	}
 
-	// Token: 0x06006073 RID: 24691 RVA: 0x002BBC1C File Offset: 0x002B9E1C
 	private bool CheckMinionBasicallyIdle(MinionIdentity minion)
 	{
 		KPrefabID component = minion.GetComponent<KPrefabID>();

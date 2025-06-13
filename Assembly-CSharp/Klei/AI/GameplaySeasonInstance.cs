@@ -6,12 +6,9 @@ using UnityEngine;
 
 namespace Klei.AI
 {
-	// Token: 0x02003CB3 RID: 15539
 	[SerializationConfig(MemberSerialization.OptIn)]
 	public class GameplaySeasonInstance : ISaveLoadable
 	{
-		// Token: 0x17000C5E RID: 3166
-		// (get) Token: 0x0600EE7A RID: 61050 RVA: 0x00144745 File Offset: 0x00142945
 		public float NextEventTime
 		{
 			get
@@ -20,8 +17,6 @@ namespace Klei.AI
 			}
 		}
 
-		// Token: 0x17000C5F RID: 3167
-		// (get) Token: 0x0600EE7B RID: 61051 RVA: 0x00144754 File Offset: 0x00142954
 		public GameplaySeason Season
 		{
 			get
@@ -34,7 +29,6 @@ namespace Klei.AI
 			}
 		}
 
-		// Token: 0x0600EE7C RID: 61052 RVA: 0x004E6D0C File Offset: 0x004E4F0C
 		public GameplaySeasonInstance(GameplaySeason season, int worldId)
 		{
 			this.seasonId = season.Id;
@@ -52,7 +46,6 @@ namespace Klei.AI
 			this.CalculateNextEventTime();
 		}
 
-		// Token: 0x0600EE7D RID: 61053 RVA: 0x004E6D74 File Offset: 0x004E4F74
 		private void CalculateNextEventTime()
 		{
 			float seasonPeriod = this.Season.GetSeasonPeriod();
@@ -66,7 +59,6 @@ namespace Klei.AI
 			}
 		}
 
-		// Token: 0x0600EE7E RID: 61054 RVA: 0x004E6DFC File Offset: 0x004E4FFC
 		public bool StartEvent(bool ignorePreconditions = false)
 		{
 			bool result = false;
@@ -111,7 +103,6 @@ namespace Klei.AI
 			return result;
 		}
 
-		// Token: 0x0600EE7F RID: 61055 RVA: 0x004E6F38 File Offset: 0x004E5138
 		public bool ShouldGenerateEvents()
 		{
 			WorldContainer world = ClusterManager.Instance.GetWorld(this.worldId);
@@ -127,33 +118,25 @@ namespace Klei.AI
 			return currentTimeInCycles > this.Season.minCycle && currentTimeInCycles < this.Season.maxCycle;
 		}
 
-		// Token: 0x0400EA57 RID: 59991
 		public const int LIMIT_SELECTION = 5;
 
-		// Token: 0x0400EA58 RID: 59992
 		[Serialize]
 		public int numStartEvents;
 
-		// Token: 0x0400EA59 RID: 59993
 		[Serialize]
 		public int worldId;
 
-		// Token: 0x0400EA5A RID: 59994
 		[Serialize]
 		private readonly string seasonId;
 
-		// Token: 0x0400EA5B RID: 59995
 		[Serialize]
 		private float nextPeriodTime;
 
-		// Token: 0x0400EA5C RID: 59996
 		[Serialize]
 		private float randomizedNextTime;
 
-		// Token: 0x0400EA5D RID: 59997
 		private bool allEventWillNotRunAgain;
 
-		// Token: 0x0400EA5E RID: 59998
 		private GameplaySeason _season;
 	}
 }

@@ -3,20 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-// Token: 0x0200108D RID: 4237
 public class BundledAssetsLoader : KMonoBehaviour
 {
-	// Token: 0x170004F5 RID: 1269
-	// (get) Token: 0x0600560F RID: 22031 RVA: 0x000DC8A8 File Offset: 0x000DAAA8
-	// (set) Token: 0x06005610 RID: 22032 RVA: 0x000DC8B0 File Offset: 0x000DAAB0
 	public BundledAssets Expansion1Assets { get; private set; }
 
-	// Token: 0x170004F6 RID: 1270
-	// (get) Token: 0x06005611 RID: 22033 RVA: 0x000DC8B9 File Offset: 0x000DAAB9
-	// (set) Token: 0x06005612 RID: 22034 RVA: 0x000DC8C1 File Offset: 0x000DAAC1
 	public List<BundledAssets> DlcAssetsList { get; private set; }
 
-	// Token: 0x06005613 RID: 22035 RVA: 0x0028E954 File Offset: 0x0028CB54
 	protected override void OnPrefabInit()
 	{
 		BundledAssetsLoader.instance = this;
@@ -44,6 +36,5 @@ public class BundledAssetsLoader : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x04003CE7 RID: 15591
 	public static BundledAssetsLoader instance;
 }

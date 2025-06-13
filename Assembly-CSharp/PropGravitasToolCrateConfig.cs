@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200053B RID: 1339
 public class PropGravitasToolCrateConfig : IEntityConfig
 {
-	// Token: 0x06001705 RID: 5893 RVA: 0x001A4520 File Offset: 0x001A2720
 	public GameObject CreatePrefab()
 	{
 		string id = "PropGravitasToolCrate";
@@ -27,7 +25,6 @@ public class PropGravitasToolCrateConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06001706 RID: 5894 RVA: 0x000AA768 File Offset: 0x000A8968
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.GetComponent<OccupyArea>().objectLayers = new ObjectLayer[]
@@ -36,7 +33,6 @@ public class PropGravitasToolCrateConfig : IEntityConfig
 		};
 	}
 
-	// Token: 0x06001707 RID: 5895 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}

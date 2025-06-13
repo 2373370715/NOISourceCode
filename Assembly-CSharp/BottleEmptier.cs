@@ -5,11 +5,9 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000C99 RID: 3225
 [SerializationConfig(MemberSerialization.OptIn)]
 public class BottleEmptier : StateMachineComponent<BottleEmptier.StatesInstance>, IGameObjectEffectDescriptor
 {
-	// Token: 0x06003D37 RID: 15671 RVA: 0x000CC0FE File Offset: 0x000CA2FE
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -19,13 +17,11 @@ public class BottleEmptier : StateMachineComponent<BottleEmptier.StatesInstance>
 		base.Subscribe<BottleEmptier>(-905833192, BottleEmptier.OnCopySettingsDelegate);
 	}
 
-	// Token: 0x06003D38 RID: 15672 RVA: 0x000AA765 File Offset: 0x000A8965
 	public List<Descriptor> GetDescriptors(GameObject go)
 	{
 		return null;
 	}
 
-	// Token: 0x06003D39 RID: 15673 RVA: 0x0023E3EC File Offset: 0x0023C5EC
 	private void DefineManualPumpingAffectedBuildings()
 	{
 		if (BottleEmptier.manualPumpingAffectedBuildings.ContainsKey(this.isGasEmptier))
@@ -44,14 +40,12 @@ public class BottleEmptier : StateMachineComponent<BottleEmptier.StatesInstance>
 		BottleEmptier.manualPumpingAffectedBuildings.Add(this.isGasEmptier, list.ToArray());
 	}
 
-	// Token: 0x06003D3A RID: 15674 RVA: 0x000CC139 File Offset: 0x000CA339
 	private void OnChangeAllowManualPumpingStationFetching()
 	{
 		this.allowManualPumpingStationFetching = !this.allowManualPumpingStationFetching;
 		base.smi.RefreshChore();
 	}
 
-	// Token: 0x06003D3B RID: 15675 RVA: 0x0023E498 File Offset: 0x0023C698
 	private void OnRefreshUserMenu(object data)
 	{
 		string text = this.isGasEmptier ? UI.USERMENUACTIONS.MANUAL_PUMP_DELIVERY.ALLOWED_GAS.TOOLTIP : UI.USERMENUACTIONS.MANUAL_PUMP_DELIVERY.ALLOWED.TOOLTIP;
@@ -75,7 +69,6 @@ public class BottleEmptier : StateMachineComponent<BottleEmptier.StatesInstance>
 		Game.Instance.userMenu.AddButton(base.gameObject, button2, 0.4f);
 	}
 
-	// Token: 0x06003D3C RID: 15676 RVA: 0x0023E638 File Offset: 0x0023C838
 	private void OnCopySettings(object data)
 	{
 		BottleEmptier component = ((GameObject)data).GetComponent<BottleEmptier>();
@@ -83,44 +76,32 @@ public class BottleEmptier : StateMachineComponent<BottleEmptier.StatesInstance>
 		base.smi.RefreshChore();
 	}
 
-	// Token: 0x04002A49 RID: 10825
 	public float emptyRate = 10f;
 
-	// Token: 0x04002A4A RID: 10826
 	[Serialize]
 	public bool allowManualPumpingStationFetching;
 
-	// Token: 0x04002A4B RID: 10827
 	[Serialize]
 	public bool emit = true;
 
-	// Token: 0x04002A4C RID: 10828
 	public bool isGasEmptier;
 
-	// Token: 0x04002A4D RID: 10829
 	private static Dictionary<bool, string[]> manualPumpingAffectedBuildings = new Dictionary<bool, string[]>();
 
-	// Token: 0x04002A4E RID: 10830
 	private static readonly EventSystem.IntraObjectHandler<BottleEmptier> OnRefreshUserMenuDelegate = new EventSystem.IntraObjectHandler<BottleEmptier>(delegate(BottleEmptier component, object data)
 	{
 		component.OnRefreshUserMenu(data);
 	});
 
-	// Token: 0x04002A4F RID: 10831
 	private static readonly EventSystem.IntraObjectHandler<BottleEmptier> OnCopySettingsDelegate = new EventSystem.IntraObjectHandler<BottleEmptier>(delegate(BottleEmptier component, object data)
 	{
 		component.OnCopySettings(data);
 	});
 
-	// Token: 0x02000C9A RID: 3226
 	public class StatesInstance : GameStateMachine<BottleEmptier.States, BottleEmptier.StatesInstance, BottleEmptier, object>.GameInstance
 	{
-		// Token: 0x170002CA RID: 714
-		// (get) Token: 0x06003D3F RID: 15679 RVA: 0x000CC1AF File Offset: 0x000CA3AF
-		// (set) Token: 0x06003D40 RID: 15680 RVA: 0x000CC1B7 File Offset: 0x000CA3B7
 		public MeterController meter { get; private set; }
 
-		// Token: 0x06003D41 RID: 15681 RVA: 0x0023E668 File Offset: 0x0023C868
 		public StatesInstance(BottleEmptier smi) : base(smi)
 		{
 			TreeFilterable component = base.master.GetComponent<TreeFilterable>();
@@ -137,7 +118,6 @@ public class BottleEmptier : StateMachineComponent<BottleEmptier.StatesInstance>
 			base.Subscribe(644822890, new Action<object>(this.OnOnlyFetchMarkedItemsSettingChanged));
 		}
 
-		// Token: 0x06003D42 RID: 15682 RVA: 0x0023E73C File Offset: 0x0023C93C
 		public void CreateChore()
 		{
 			HashSet<Tag> tags = base.GetComponent<TreeFilterable>().GetTags();
@@ -158,7 +138,6 @@ public class BottleEmptier : StateMachineComponent<BottleEmptier.StatesInstance>
 			this.chore = new FetchChore(Db.Get().ChoreTypes.StorageFetch, component, component.Capacity(), tags, FetchChore.MatchCriteria.MatchID, Tag.Invalid, forbidden_tags, null, true, null, null, null, Operational.State.Operational, 0);
 		}
 
-		// Token: 0x06003D43 RID: 15683 RVA: 0x000CC1C0 File Offset: 0x000CA3C0
 		public void CancelChore()
 		{
 			if (this.chore != null)
@@ -168,32 +147,27 @@ public class BottleEmptier : StateMachineComponent<BottleEmptier.StatesInstance>
 			}
 		}
 
-		// Token: 0x06003D44 RID: 15684 RVA: 0x000CC1E1 File Offset: 0x000CA3E1
 		public void RefreshChore()
 		{
 			this.GoTo(base.sm.unoperational);
 		}
 
-		// Token: 0x06003D45 RID: 15685 RVA: 0x000CC1F4 File Offset: 0x000CA3F4
 		private void OnFilterChanged(HashSet<Tag> tags)
 		{
 			this.RefreshChore();
 		}
 
-		// Token: 0x06003D46 RID: 15686 RVA: 0x0023E7C4 File Offset: 0x0023C9C4
 		private void OnStorageChange(object data)
 		{
 			this.meter.SetPositionPercent(Mathf.Clamp01(this.storage.RemainingCapacity() / this.storage.capacityKg));
 			this.meter.meterController.enabled = (this.storage.ExactMassStored() > 0f);
 		}
 
-		// Token: 0x06003D47 RID: 15687 RVA: 0x000CC1F4 File Offset: 0x000CA3F4
 		private void OnOnlyFetchMarkedItemsSettingChanged(object data)
 		{
 			this.RefreshChore();
 		}
 
-		// Token: 0x06003D48 RID: 15688 RVA: 0x0023E81C File Offset: 0x0023CA1C
 		public void StartMeter()
 		{
 			PrimaryElement firstPrimaryElement = this.GetFirstPrimaryElement();
@@ -213,7 +187,6 @@ public class BottleEmptier : StateMachineComponent<BottleEmptier.StatesInstance>
 			this.OnStorageChange(null);
 		}
 
-		// Token: 0x06003D49 RID: 15689 RVA: 0x0023E928 File Offset: 0x0023CB28
 		private PrimaryElement GetFirstPrimaryElement()
 		{
 			for (int i = 0; i < this.storage.Count; i++)
@@ -231,7 +204,6 @@ public class BottleEmptier : StateMachineComponent<BottleEmptier.StatesInstance>
 			return null;
 		}
 
-		// Token: 0x06003D4A RID: 15690 RVA: 0x0023E974 File Offset: 0x0023CB74
 		public void Emit(float dt)
 		{
 			if (!base.smi.master.emit)
@@ -272,18 +244,14 @@ public class BottleEmptier : StateMachineComponent<BottleEmptier.StatesInstance>
 			SimMessages.ModifyCell(num3, idx, temperature, num2, diseaseInfo.idx, diseaseInfo.count, SimMessages.ReplaceType.None, false, -1);
 		}
 
-		// Token: 0x04002A50 RID: 10832
 		[MyCmpGet]
 		public Storage storage;
 
-		// Token: 0x04002A51 RID: 10833
 		private FetchChore chore;
 	}
 
-	// Token: 0x02000C9B RID: 3227
 	public class States : GameStateMachine<BottleEmptier.States, BottleEmptier.StatesInstance, BottleEmptier>
 	{
-		// Token: 0x06003D4B RID: 15691 RVA: 0x0023EAB0 File Offset: 0x0023CCB0
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.waitingfordelivery;
@@ -348,16 +316,12 @@ public class BottleEmptier : StateMachineComponent<BottleEmptier.StatesInstance>
 			}, UpdateRate.SIM_200ms, false).PlayAnim("working_loop", KAnim.PlayMode.Loop);
 		}
 
-		// Token: 0x04002A53 RID: 10835
 		private StatusItem statusItem;
 
-		// Token: 0x04002A54 RID: 10836
 		public GameStateMachine<BottleEmptier.States, BottleEmptier.StatesInstance, BottleEmptier, object>.State unoperational;
 
-		// Token: 0x04002A55 RID: 10837
 		public GameStateMachine<BottleEmptier.States, BottleEmptier.StatesInstance, BottleEmptier, object>.State waitingfordelivery;
 
-		// Token: 0x04002A56 RID: 10838
 		public GameStateMachine<BottleEmptier.States, BottleEmptier.StatesInstance, BottleEmptier, object>.State emptying;
 	}
 }

@@ -4,12 +4,9 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200141B RID: 5147
 [AddComponentMenu("KMonoBehaviour/scripts/HarvestDesignatable")]
 public class HarvestDesignatable : KMonoBehaviour
 {
-	// Token: 0x170006B7 RID: 1719
-	// (get) Token: 0x06006956 RID: 26966 RVA: 0x000E96F7 File Offset: 0x000E78F7
 	public bool InPlanterBox
 	{
 		get
@@ -18,9 +15,6 @@ public class HarvestDesignatable : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x170006B8 RID: 1720
-	// (get) Token: 0x06006957 RID: 26967 RVA: 0x000E96FF File Offset: 0x000E78FF
-	// (set) Token: 0x06006958 RID: 26968 RVA: 0x000E9707 File Offset: 0x000E7907
 	public bool MarkedForHarvest
 	{
 		get
@@ -33,8 +27,6 @@ public class HarvestDesignatable : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x170006B9 RID: 1721
-	// (get) Token: 0x06006959 RID: 26969 RVA: 0x000E9710 File Offset: 0x000E7910
 	public bool HarvestWhenReady
 	{
 		get
@@ -43,20 +35,17 @@ public class HarvestDesignatable : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600695A RID: 26970 RVA: 0x000E9718 File Offset: 0x000E7918
 	protected HarvestDesignatable()
 	{
 		this.onEnableOverlayDelegate = new Action<object>(this.OnEnableOverlay);
 	}
 
-	// Token: 0x0600695B RID: 26971 RVA: 0x000E974B File Offset: 0x000E794B
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 		base.Subscribe<HarvestDesignatable>(1309017699, HarvestDesignatable.SetInPlanterBoxTrueDelegate);
 	}
 
-	// Token: 0x0600695C RID: 26972 RVA: 0x002E8D84 File Offset: 0x002E6F84
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -74,7 +63,6 @@ public class HarvestDesignatable : KMonoBehaviour
 		this.area = base.GetComponent<OccupyArea>();
 	}
 
-	// Token: 0x0600695D RID: 26973 RVA: 0x002E8E44 File Offset: 0x002E7044
 	protected override void OnCleanUp()
 	{
 		base.OnCleanUp();
@@ -86,7 +74,6 @@ public class HarvestDesignatable : KMonoBehaviour
 		Game.Instance.Unsubscribe(1983128072, new Action<object>(this.RefreshOverlayIcon));
 	}
 
-	// Token: 0x0600695E RID: 26974 RVA: 0x000E9764 File Offset: 0x000E7964
 	private void DestroyOverlayIcon()
 	{
 		if (this.HarvestWhenReadyOverlayIcon != null)
@@ -96,7 +83,6 @@ public class HarvestDesignatable : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600695F RID: 26975 RVA: 0x002E8EC8 File Offset: 0x002E70C8
 	private void CreateOverlayIcon()
 	{
 		if (this.HarvestWhenReadyOverlayIcon != null)
@@ -121,13 +107,11 @@ public class HarvestDesignatable : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06006960 RID: 26976 RVA: 0x000E978B File Offset: 0x000E798B
 	private void OnDisableOverlay(object data)
 	{
 		this.DestroyOverlayIcon();
 	}
 
-	// Token: 0x06006961 RID: 26977 RVA: 0x000E9793 File Offset: 0x000E7993
 	private void OnEnableOverlay(object data)
 	{
 		if ((HashedString)data == OverlayModes.Harvest.ID)
@@ -138,7 +122,6 @@ public class HarvestDesignatable : KMonoBehaviour
 		this.DestroyOverlayIcon();
 	}
 
-	// Token: 0x06006962 RID: 26978 RVA: 0x002E8FC0 File Offset: 0x002E71C0
 	private void RefreshOverlayIcon(object data = null)
 	{
 		if (this.HarvestWhenReadyOverlayIcon != null)
@@ -170,14 +153,12 @@ public class HarvestDesignatable : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06006963 RID: 26979 RVA: 0x002E9114 File Offset: 0x002E7314
 	public bool CanBeHarvested()
 	{
 		Harvestable component = base.GetComponent<Harvestable>();
 		return !(component != null) || component.CanBeHarvested;
 	}
 
-	// Token: 0x06006964 RID: 26980 RVA: 0x000E97B4 File Offset: 0x000E79B4
 	public void SetInPlanterBox(bool state)
 	{
 		if (state)
@@ -195,7 +176,6 @@ public class HarvestDesignatable : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06006965 RID: 26981 RVA: 0x002E913C File Offset: 0x002E733C
 	public void SetHarvestWhenReady(bool state)
 	{
 		this.harvestWhenReady = state;
@@ -215,12 +195,10 @@ public class HarvestDesignatable : KMonoBehaviour
 		this.RefreshOverlayIcon(null);
 	}
 
-	// Token: 0x06006966 RID: 26982 RVA: 0x000AA038 File Offset: 0x000A8238
 	protected virtual void OnCancel(object data = null)
 	{
 	}
 
-	// Token: 0x06006967 RID: 26983 RVA: 0x002E91C4 File Offset: 0x002E73C4
 	public virtual void MarkForHarvest()
 	{
 		if (!this.CanBeHarvested())
@@ -235,13 +213,11 @@ public class HarvestDesignatable : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06006968 RID: 26984 RVA: 0x000E97DC File Offset: 0x000E79DC
 	protected virtual void OnClickHarvestWhenReady()
 	{
 		this.SetHarvestWhenReady(true);
 	}
 
-	// Token: 0x06006969 RID: 26985 RVA: 0x002E91F8 File Offset: 0x002E73F8
 	protected virtual void OnClickCancelHarvestWhenReady()
 	{
 		Harvestable component = base.GetComponent<Harvestable>();
@@ -252,7 +228,6 @@ public class HarvestDesignatable : KMonoBehaviour
 		this.SetHarvestWhenReady(false);
 	}
 
-	// Token: 0x0600696A RID: 26986 RVA: 0x002E9228 File Offset: 0x002E7428
 	public virtual void OnRefreshUserMenu(object data)
 	{
 		if (this.showUserMenuButtons)
@@ -270,49 +245,37 @@ public class HarvestDesignatable : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x04004FE5 RID: 20453
 	public Vector2 iconOffset = Vector2.zero;
 
-	// Token: 0x04004FE6 RID: 20454
 	public bool defaultHarvestStateWhenPlanted = true;
 
-	// Token: 0x04004FE7 RID: 20455
 	public OccupyArea area;
 
-	// Token: 0x04004FE8 RID: 20456
 	[Serialize]
 	protected bool isMarkedForHarvest;
 
-	// Token: 0x04004FE9 RID: 20457
 	[Serialize]
 	private bool isInPlanterBox;
 
-	// Token: 0x04004FEA RID: 20458
 	public bool showUserMenuButtons = true;
 
-	// Token: 0x04004FEB RID: 20459
 	[Serialize]
 	protected bool harvestWhenReady;
 
-	// Token: 0x04004FEC RID: 20460
 	public RectTransform HarvestWhenReadyOverlayIcon;
 
-	// Token: 0x04004FED RID: 20461
 	private Action<object> onEnableOverlayDelegate;
 
-	// Token: 0x04004FEE RID: 20462
 	private static readonly EventSystem.IntraObjectHandler<HarvestDesignatable> OnCancelDelegate = new EventSystem.IntraObjectHandler<HarvestDesignatable>(delegate(HarvestDesignatable component, object data)
 	{
 		component.OnCancel(data);
 	});
 
-	// Token: 0x04004FEF RID: 20463
 	private static readonly EventSystem.IntraObjectHandler<HarvestDesignatable> OnRefreshUserMenuDelegate = new EventSystem.IntraObjectHandler<HarvestDesignatable>(delegate(HarvestDesignatable component, object data)
 	{
 		component.OnRefreshUserMenu(data);
 	});
 
-	// Token: 0x04004FF0 RID: 20464
 	private static readonly EventSystem.IntraObjectHandler<HarvestDesignatable> SetInPlanterBoxTrueDelegate = new EventSystem.IntraObjectHandler<HarvestDesignatable>(delegate(HarvestDesignatable component, object data)
 	{
 		component.SetInPlanterBox(true);

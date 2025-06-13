@@ -2,14 +2,10 @@
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x02000A9D RID: 2717
 [SerializationConfig(MemberSerialization.OptIn)]
 [AddComponentMenu("KMonoBehaviour/scripts/KAnimGraphTileVisualizer")]
 public class KAnimGraphTileVisualizer : KMonoBehaviour, ISaveLoadable, IUtilityItem
 {
-	// Token: 0x170001F9 RID: 505
-	// (get) Token: 0x06003177 RID: 12663 RVA: 0x000C4960 File Offset: 0x000C2B60
-	// (set) Token: 0x06003178 RID: 12664 RVA: 0x000C4968 File Offset: 0x000C2B68
 	public UtilityConnections Connections
 	{
 		get
@@ -23,8 +19,6 @@ public class KAnimGraphTileVisualizer : KMonoBehaviour, ISaveLoadable, IUtilityI
 		}
 	}
 
-	// Token: 0x170001FA RID: 506
-	// (get) Token: 0x06003179 RID: 12665 RVA: 0x0020CCF4 File Offset: 0x0020AEF4
 	public IUtilityNetworkMgr ConnectionManager
 	{
 		get
@@ -49,7 +43,6 @@ public class KAnimGraphTileVisualizer : KMonoBehaviour, ISaveLoadable, IUtilityI
 		}
 	}
 
-	// Token: 0x0600317A RID: 12666 RVA: 0x0020CD6C File Offset: 0x0020AF6C
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -60,7 +53,6 @@ public class KAnimGraphTileVisualizer : KMonoBehaviour, ISaveLoadable, IUtilityI
 		TileVisualizer.RefreshCell(cell, component.Def.TileLayer, component.Def.ReplacementLayer);
 	}
 
-	// Token: 0x0600317B RID: 12667 RVA: 0x0020CDD8 File Offset: 0x0020AFD8
 	protected override void OnCleanUp()
 	{
 		if (this.connectionManager != null && !this.skipCleanup)
@@ -73,7 +65,6 @@ public class KAnimGraphTileVisualizer : KMonoBehaviour, ISaveLoadable, IUtilityI
 		}
 	}
 
-	// Token: 0x0600317C RID: 12668 RVA: 0x0020CE44 File Offset: 0x0020B044
 	[ContextMenu("Refresh")]
 	public void Refresh()
 	{
@@ -98,7 +89,6 @@ public class KAnimGraphTileVisualizer : KMonoBehaviour, ISaveLoadable, IUtilityI
 		}
 	}
 
-	// Token: 0x0600317D RID: 12669 RVA: 0x0020CF04 File Offset: 0x0020B104
 	public int GetNetworkID()
 	{
 		UtilityNetwork network = this.GetNetwork();
@@ -109,21 +99,18 @@ public class KAnimGraphTileVisualizer : KMonoBehaviour, ISaveLoadable, IUtilityI
 		return network.id;
 	}
 
-	// Token: 0x0600317E RID: 12670 RVA: 0x0020CF24 File Offset: 0x0020B124
 	private UtilityNetwork GetNetwork()
 	{
 		int cell = Grid.PosToCell(base.transform.GetPosition());
 		return this.connectionManager.GetNetworkForDirection(cell, Direction.None);
 	}
 
-	// Token: 0x0600317F RID: 12671 RVA: 0x0020CF50 File Offset: 0x0020B150
 	public UtilityNetwork GetNetworkForDirection(Direction d)
 	{
 		int cell = Grid.PosToCell(base.transform.GetPosition());
 		return this.connectionManager.GetNetworkForDirection(cell, d);
 	}
 
-	// Token: 0x06003180 RID: 12672 RVA: 0x0020CF7C File Offset: 0x0020B17C
 	public void UpdateConnections(UtilityConnections new_connections)
 	{
 		this._connections = new_connections;
@@ -134,7 +121,6 @@ public class KAnimGraphTileVisualizer : KMonoBehaviour, ISaveLoadable, IUtilityI
 		}
 	}
 
-	// Token: 0x06003181 RID: 12673 RVA: 0x0020CFBC File Offset: 0x0020B1BC
 	public KAnimGraphTileVisualizer GetNeighbour(Direction d)
 	{
 		KAnimGraphTileVisualizer result = null;
@@ -203,40 +189,27 @@ public class KAnimGraphTileVisualizer : KMonoBehaviour, ISaveLoadable, IUtilityI
 		return result;
 	}
 
-	// Token: 0x040021F7 RID: 8695
 	[Serialize]
 	private UtilityConnections _connections;
 
-	// Token: 0x040021F8 RID: 8696
 	public bool isPhysicalBuilding;
 
-	// Token: 0x040021F9 RID: 8697
 	public bool skipCleanup;
 
-	// Token: 0x040021FA RID: 8698
 	public bool skipRefresh;
 
-	// Token: 0x040021FB RID: 8699
 	public KAnimGraphTileVisualizer.ConnectionSource connectionSource;
 
-	// Token: 0x040021FC RID: 8700
 	[NonSerialized]
 	public IUtilityNetworkMgr connectionManager;
 
-	// Token: 0x02000A9E RID: 2718
 	public enum ConnectionSource
 	{
-		// Token: 0x040021FE RID: 8702
 		Gas,
-		// Token: 0x040021FF RID: 8703
 		Liquid,
-		// Token: 0x04002200 RID: 8704
 		Electrical,
-		// Token: 0x04002201 RID: 8705
 		Logic,
-		// Token: 0x04002202 RID: 8706
 		Tube,
-		// Token: 0x04002203 RID: 8707
 		Solid
 	}
 }

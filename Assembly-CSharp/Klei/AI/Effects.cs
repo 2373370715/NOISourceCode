@@ -6,18 +6,15 @@ using UnityEngine;
 
 namespace Klei.AI
 {
-	// Token: 0x02003C94 RID: 15508
 	[SerializationConfig(MemberSerialization.OptIn)]
 	[AddComponentMenu("KMonoBehaviour/scripts/Effects")]
 	public class Effects : KMonoBehaviour, ISaveLoadable, ISim1000ms
 	{
-		// Token: 0x0600EDF7 RID: 60919 RVA: 0x00144238 File Offset: 0x00142438
 		protected override void OnPrefabInit()
 		{
 			this.autoRegisterSimRender = false;
 		}
 
-		// Token: 0x0600EDF8 RID: 60920 RVA: 0x004E4C38 File Offset: 0x004E2E38
 		protected override void OnSpawn()
 		{
 			if (this.saveLoadImmunities != null)
@@ -52,7 +49,6 @@ namespace Klei.AI
 			}
 		}
 
-		// Token: 0x0600EDF9 RID: 60921 RVA: 0x004E4D3C File Offset: 0x004E2F3C
 		public EffectInstance Get(string effect_id)
 		{
 			foreach (EffectInstance effectInstance in this.effects)
@@ -65,7 +61,6 @@ namespace Klei.AI
 			return null;
 		}
 
-		// Token: 0x0600EDFA RID: 60922 RVA: 0x004E4DA4 File Offset: 0x004E2FA4
 		public EffectInstance Get(HashedString effect_id)
 		{
 			foreach (EffectInstance effectInstance in this.effects)
@@ -78,7 +73,6 @@ namespace Klei.AI
 			return null;
 		}
 
-		// Token: 0x0600EDFB RID: 60923 RVA: 0x004E4E0C File Offset: 0x004E300C
 		public EffectInstance Get(Effect effect)
 		{
 			foreach (EffectInstance effectInstance in this.effects)
@@ -91,7 +85,6 @@ namespace Klei.AI
 			return null;
 		}
 
-		// Token: 0x0600EDFC RID: 60924 RVA: 0x004E4E68 File Offset: 0x004E3068
 		public bool HasImmunityTo(Effect effect)
 		{
 			using (List<Effects.EffectImmunity>.Enumerator enumerator = this.effectImmunites.GetEnumerator())
@@ -107,21 +100,18 @@ namespace Klei.AI
 			return false;
 		}
 
-		// Token: 0x0600EDFD RID: 60925 RVA: 0x004E4EC4 File Offset: 0x004E30C4
 		public EffectInstance Add(string effect_id, bool should_save)
 		{
 			Effect newEffect = Db.Get().effects.Get(effect_id);
 			return this.Add(newEffect, should_save);
 		}
 
-		// Token: 0x0600EDFE RID: 60926 RVA: 0x004E4EEC File Offset: 0x004E30EC
 		public EffectInstance Add(HashedString effect_id, bool should_save)
 		{
 			Effect newEffect = Db.Get().effects.Get(effect_id);
 			return this.Add(newEffect, should_save);
 		}
 
-		// Token: 0x0600EDFF RID: 60927 RVA: 0x004E4F14 File Offset: 0x004E3114
 		public EffectInstance Add(Effect newEffect, bool should_save)
 		{
 			if (this.HasImmunityTo(newEffect))
@@ -171,13 +161,11 @@ namespace Klei.AI
 			return effectInstance;
 		}
 
-		// Token: 0x0600EE00 RID: 60928 RVA: 0x00144241 File Offset: 0x00142441
 		public void Remove(Effect effect)
 		{
 			this.Remove(effect.IdHash);
 		}
 
-		// Token: 0x0600EE01 RID: 60929 RVA: 0x004E50CC File Offset: 0x004E32CC
 		public void Remove(HashedString effect_id)
 		{
 			int i = 0;
@@ -218,7 +206,6 @@ namespace Klei.AI
 			}
 		}
 
-		// Token: 0x0600EE02 RID: 60930 RVA: 0x004E5200 File Offset: 0x004E3400
 		public void Remove(string effect_id)
 		{
 			int i = 0;
@@ -259,7 +246,6 @@ namespace Klei.AI
 			}
 		}
 
-		// Token: 0x0600EE03 RID: 60931 RVA: 0x004E5334 File Offset: 0x004E3534
 		public bool HasEffect(HashedString effect_id)
 		{
 			using (List<EffectInstance>.Enumerator enumerator = this.effects.GetEnumerator())
@@ -275,7 +261,6 @@ namespace Klei.AI
 			return false;
 		}
 
-		// Token: 0x0600EE04 RID: 60932 RVA: 0x004E5398 File Offset: 0x004E3598
 		public bool HasEffect(string effect_id)
 		{
 			using (List<EffectInstance>.Enumerator enumerator = this.effects.GetEnumerator())
@@ -291,7 +276,6 @@ namespace Klei.AI
 			return false;
 		}
 
-		// Token: 0x0600EE05 RID: 60933 RVA: 0x004E53FC File Offset: 0x004E35FC
 		public bool HasEffect(Effect effect)
 		{
 			using (List<EffectInstance>.Enumerator enumerator = this.effects.GetEnumerator())
@@ -307,7 +291,6 @@ namespace Klei.AI
 			return false;
 		}
 
-		// Token: 0x0600EE06 RID: 60934 RVA: 0x004E5458 File Offset: 0x004E3658
 		public void Sim1000ms(float dt)
 		{
 			for (int i = 0; i < this.effectsThatExpire.Count; i++)
@@ -321,7 +304,6 @@ namespace Klei.AI
 			}
 		}
 
-		// Token: 0x0600EE07 RID: 60935 RVA: 0x004E54AC File Offset: 0x004E36AC
 		public void AddImmunity(Effect effect, string giverID, bool shouldSave = true)
 		{
 			if (giverID != null)
@@ -339,7 +321,6 @@ namespace Klei.AI
 			base.Trigger(1152870979, effectImmunity2);
 		}
 
-		// Token: 0x0600EE08 RID: 60936 RVA: 0x004E553C File Offset: 0x004E373C
 		public void RemoveImmunity(Effect effect, string ID)
 		{
 			Effects.EffectImmunity effectImmunity = default(Effects.EffectImmunity);
@@ -359,7 +340,6 @@ namespace Klei.AI
 			}
 		}
 
-		// Token: 0x0600EE09 RID: 60937 RVA: 0x004E55D4 File Offset: 0x004E37D4
 		[OnSerializing]
 		internal void OnSerializing()
 		{
@@ -396,7 +376,6 @@ namespace Klei.AI
 			this.saveLoadImmunities = list2.ToArray();
 		}
 
-		// Token: 0x0600EE0A RID: 60938 RVA: 0x004E5710 File Offset: 0x004E3910
 		public List<Effects.SaveLoadImmunities> GetAllImmunitiesForSerialization()
 		{
 			List<Effects.SaveLoadImmunities> list = new List<Effects.SaveLoadImmunities>();
@@ -414,7 +393,6 @@ namespace Klei.AI
 			return list;
 		}
 
-		// Token: 0x0600EE0B RID: 60939 RVA: 0x004E57A8 File Offset: 0x004E39A8
 		public List<Effects.SaveLoadEffect> GetAllEffectsForSerialization()
 		{
 			List<Effects.SaveLoadEffect> list = new List<Effects.SaveLoadEffect>();
@@ -431,13 +409,11 @@ namespace Klei.AI
 			return list;
 		}
 
-		// Token: 0x0600EE0C RID: 60940 RVA: 0x0014424F File Offset: 0x0014244F
 		public List<EffectInstance> GetTimeLimitedEffects()
 		{
 			return this.effectsThatExpire;
 		}
 
-		// Token: 0x0600EE0D RID: 60941 RVA: 0x004E583C File Offset: 0x004E3A3C
 		public void CopyEffects(Effects source)
 		{
 			foreach (EffectInstance effectInstance in source.effects)
@@ -450,28 +426,21 @@ namespace Klei.AI
 			}
 		}
 
-		// Token: 0x0400E9E2 RID: 59874
 		[Serialize]
 		private Effects.SaveLoadEffect[] saveLoadEffects;
 
-		// Token: 0x0400E9E3 RID: 59875
 		[Serialize]
 		private Effects.SaveLoadImmunities[] saveLoadImmunities;
 
-		// Token: 0x0400E9E4 RID: 59876
 		private List<EffectInstance> effects = new List<EffectInstance>();
 
-		// Token: 0x0400E9E5 RID: 59877
 		private List<EffectInstance> effectsThatExpire = new List<EffectInstance>();
 
-		// Token: 0x0400E9E6 RID: 59878
 		private List<Effects.EffectImmunity> effectImmunites = new List<Effects.EffectImmunity>();
 
-		// Token: 0x02003C95 RID: 15509
 		[Serializable]
 		public struct EffectImmunity
 		{
-			// Token: 0x0600EE0F RID: 60943 RVA: 0x00144280 File Offset: 0x00142480
 			public EffectImmunity(Effect e, string id, bool save = true)
 			{
 				this.giverID = id;
@@ -479,41 +448,30 @@ namespace Klei.AI
 				this.shouldSave = save;
 			}
 
-			// Token: 0x0400E9E7 RID: 59879
 			public string giverID;
 
-			// Token: 0x0400E9E8 RID: 59880
 			public Effect effect;
 
-			// Token: 0x0400E9E9 RID: 59881
 			public bool shouldSave;
 		}
 
-		// Token: 0x02003C96 RID: 15510
 		[Serializable]
 		public struct SaveLoadImmunities
 		{
-			// Token: 0x0400E9EA RID: 59882
 			public string giverID;
 
-			// Token: 0x0400E9EB RID: 59883
 			public string effectID;
 
-			// Token: 0x0400E9EC RID: 59884
 			public bool saved;
 		}
 
-		// Token: 0x02003C97 RID: 15511
 		[Serializable]
 		public struct SaveLoadEffect
 		{
-			// Token: 0x0400E9ED RID: 59885
 			public string id;
 
-			// Token: 0x0400E9EE RID: 59886
 			public float timeRemaining;
 
-			// Token: 0x0400E9EF RID: 59887
 			public bool saved;
 		}
 	}

@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using Database;
 using UnityEngine;
 
-// Token: 0x02001FF1 RID: 8177
 public class MonumentSideScreen : SideScreenContent
 {
-	// Token: 0x0600ACDA RID: 44250 RVA: 0x00114C68 File Offset: 0x00112E68
 	public override bool IsValidForTarget(GameObject target)
 	{
 		return target.GetComponent<MonumentPart>() != null;
 	}
 
-	// Token: 0x0600ACDB RID: 44251 RVA: 0x0041FF4C File Offset: 0x0041E14C
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -34,7 +31,6 @@ public class MonumentSideScreen : SideScreenContent
 		};
 	}
 
-	// Token: 0x0600ACDC RID: 44252 RVA: 0x0041FFC8 File Offset: 0x0041E1C8
 	public override void SetTarget(GameObject target)
 	{
 		base.SetTarget(target);
@@ -43,7 +39,6 @@ public class MonumentSideScreen : SideScreenContent
 		this.GenerateStateButtons();
 	}
 
-	// Token: 0x0600ACDD RID: 44253 RVA: 0x00420018 File Offset: 0x0041E218
 	public void GenerateStateButtons()
 	{
 		for (int i = this.buttons.Count - 1; i >= 0; i--)
@@ -69,22 +64,16 @@ public class MonumentSideScreen : SideScreenContent
 		}
 	}
 
-	// Token: 0x04008813 RID: 34835
 	private MonumentPart target;
 
-	// Token: 0x04008814 RID: 34836
 	public KButton debugVictoryButton;
 
-	// Token: 0x04008815 RID: 34837
 	public KButton flipButton;
 
-	// Token: 0x04008816 RID: 34838
 	public GameObject stateButtonPrefab;
 
-	// Token: 0x04008817 RID: 34839
 	private List<GameObject> buttons = new List<GameObject>();
 
-	// Token: 0x04008818 RID: 34840
 	[SerializeField]
 	private RectTransform buttonContainer;
 }

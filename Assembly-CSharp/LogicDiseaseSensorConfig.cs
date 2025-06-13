@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003DA RID: 986
 public class LogicDiseaseSensorConfig : IBuildingConfig
 {
-	// Token: 0x06001008 RID: 4104 RVA: 0x00189B88 File Offset: 0x00187D88
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = LogicDiseaseSensorConfig.ID;
@@ -48,7 +46,6 @@ public class LogicDiseaseSensorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001009 RID: 4105 RVA: 0x000B1543 File Offset: 0x000AF743
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		LogicDiseaseSensor logicDiseaseSensor = go.AddOrGet<LogicDiseaseSensor>();
@@ -58,6 +55,5 @@ public class LogicDiseaseSensorConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayInFrontOfConduits, false);
 	}
 
-	// Token: 0x04000B81 RID: 2945
 	public static string ID = "LogicDiseaseSensor";
 }

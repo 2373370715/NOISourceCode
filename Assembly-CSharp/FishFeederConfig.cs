@@ -5,10 +5,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000281 RID: 641
 public class FishFeederConfig : IBuildingConfig
 {
-	// Token: 0x06000951 RID: 2385 RVA: 0x0016EB0C File Offset: 0x0016CD0C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "FishFeeder";
@@ -32,12 +30,10 @@ public class FishFeederConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000952 RID: 2386 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 	}
 
-	// Token: 0x06000953 RID: 2387 RVA: 0x0016EB94 File Offset: 0x0016CD94
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		Prioritizable.AddRef(go);
@@ -70,8 +66,6 @@ public class FishFeederConfig : IBuildingConfig
 		creatureFeeder.feederOffset = new CellOffset(0, -2);
 	}
 
-	// Token: 0x06000954 RID: 2388 RVA: 0x000AEAAC File Offset: 0x000ACCAC
-	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGetDef<StorageController.Def>();
 		go.AddOrGetDef<FishFeeder.Def>();
@@ -82,8 +76,6 @@ public class FishFeederConfig : IBuildingConfig
 		SymbolOverrideControllerUtil.AddToPrefab(go);
 	}
 
-	// Token: 0x06000955 RID: 2389 RVA: 0x0016ED54 File Offset: 0x0016CF54
-	public override void ConfigurePost(BuildingDef def)
 	{
 		List<Tag> list = new List<Tag>();
 		foreach (KeyValuePair<Tag, Diet> keyValuePair in DietManager.CollectDiets(new Tag[]
@@ -96,6 +88,5 @@ public class FishFeederConfig : IBuildingConfig
 		def.BuildingComplete.GetComponent<Storage>().storageFilters = list;
 	}
 
-	// Token: 0x04000732 RID: 1842
 	public const string ID = "FishFeeder";
 }

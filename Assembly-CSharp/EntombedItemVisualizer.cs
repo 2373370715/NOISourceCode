@@ -2,24 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020012E5 RID: 4837
 [AddComponentMenu("KMonoBehaviour/scripts/EntombedItemVisualizer")]
 public class EntombedItemVisualizer : KMonoBehaviour
 {
-	// Token: 0x0600633A RID: 25402 RVA: 0x000E5224 File Offset: 0x000E3424
 	public void Clear()
 	{
 		this.cellEntombedCounts.Clear();
 	}
 
-	// Token: 0x0600633B RID: 25403 RVA: 0x000E5231 File Offset: 0x000E3431
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 		this.entombedItemPool = new GameObjectPool(new Func<GameObject>(this.InstantiateEntombedObject), 32);
 	}
 
-	// Token: 0x0600633C RID: 25404 RVA: 0x002C7B68 File Offset: 0x002C5D68
 	public bool AddItem(int cell)
 	{
 		bool result = false;
@@ -47,7 +43,6 @@ public class EntombedItemVisualizer : KMonoBehaviour
 		return result;
 	}
 
-	// Token: 0x0600633D RID: 25405 RVA: 0x002C7C58 File Offset: 0x002C5E58
 	public void RemoveItem(int cell)
 	{
 		EntombedItemVisualizer.Data data;
@@ -63,7 +58,6 @@ public class EntombedItemVisualizer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600633E RID: 25406 RVA: 0x002C7CA0 File Offset: 0x002C5EA0
 	public void ForceClear(int cell)
 	{
 		EntombedItemVisualizer.Data data;
@@ -73,7 +67,6 @@ public class EntombedItemVisualizer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600633F RID: 25407 RVA: 0x002C7CC8 File Offset: 0x002C5EC8
 	private void ReleaseVisualizer(int cell, EntombedItemVisualizer.Data data)
 	{
 		if (data.controller != null)
@@ -84,13 +77,11 @@ public class EntombedItemVisualizer : KMonoBehaviour
 		this.cellEntombedCounts.Remove(cell);
 	}
 
-	// Token: 0x06006340 RID: 25408 RVA: 0x000E5252 File Offset: 0x000E3452
 	public bool IsEntombedItem(int cell)
 	{
 		return this.cellEntombedCounts.ContainsKey(cell) && this.cellEntombedCounts[cell].refCount > 0;
 	}
 
-	// Token: 0x06006341 RID: 25409 RVA: 0x000E5278 File Offset: 0x000E3478
 	private GameObject InstantiateEntombedObject()
 	{
 		GameObject gameObject = GameUtil.KInstantiate(this.entombedItemPrefab, Grid.SceneLayer.FXFront, null, 0);
@@ -98,11 +89,9 @@ public class EntombedItemVisualizer : KMonoBehaviour
 		return gameObject;
 	}
 
-	// Token: 0x04004725 RID: 18213
 	[SerializeField]
 	private GameObject entombedItemPrefab;
 
-	// Token: 0x04004726 RID: 18214
 	private static readonly string[] EntombedVisualizerAnims = new string[]
 	{
 		"idle1",
@@ -111,19 +100,14 @@ public class EntombedItemVisualizer : KMonoBehaviour
 		"idle4"
 	};
 
-	// Token: 0x04004727 RID: 18215
 	private GameObjectPool entombedItemPool;
 
-	// Token: 0x04004728 RID: 18216
 	private Dictionary<int, EntombedItemVisualizer.Data> cellEntombedCounts = new Dictionary<int, EntombedItemVisualizer.Data>();
 
-	// Token: 0x020012E6 RID: 4838
 	private struct Data
 	{
-		// Token: 0x04004729 RID: 18217
 		public int refCount;
 
-		// Token: 0x0400472A RID: 18218
 		public KBatchedAnimController controller;
 	}
 }

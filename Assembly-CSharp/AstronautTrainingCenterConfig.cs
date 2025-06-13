@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000025 RID: 37
 public class AstronautTrainingCenterConfig : IBuildingConfig
 {
-	// Token: 0x06000095 RID: 149 RVA: 0x00148DCC File Offset: 0x00146FCC
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "AstronautTrainingCenter";
@@ -32,7 +30,6 @@ public class AstronautTrainingCenterConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000096 RID: 150 RVA: 0x00148E70 File Offset: 0x00147070
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<BuildingComplete>().isManuallyOperated = true;
@@ -48,11 +45,9 @@ public class AstronautTrainingCenterConfig : IBuildingConfig
 		astronautTrainingCenter.workLayer = Grid.SceneLayer.BuildingFront;
 	}
 
-	// Token: 0x06000097 RID: 151 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x0400006F RID: 111
 	public const string ID = "AstronautTrainingCenter";
 }

@@ -2,11 +2,9 @@
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x02001422 RID: 5154
 [SerializationConfig(MemberSerialization.OptIn)]
 public class HighEnergyParticle : StateMachineComponent<HighEnergyParticle.StatesInstance>
 {
-	// Token: 0x060069A2 RID: 27042 RVA: 0x000E9B1C File Offset: 0x000E7D1C
 	protected override void OnPrefabInit()
 	{
 		this.loopingSounds = base.gameObject.GetComponent<LoopingSounds>();
@@ -14,7 +12,6 @@ public class HighEnergyParticle : StateMachineComponent<HighEnergyParticle.State
 		base.OnPrefabInit();
 	}
 
-	// Token: 0x060069A3 RID: 27043 RVA: 0x002E9AA0 File Offset: 0x002E7CA0
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -28,7 +25,6 @@ public class HighEnergyParticle : StateMachineComponent<HighEnergyParticle.State
 		base.smi.StartSM();
 	}
 
-	// Token: 0x060069A4 RID: 27044 RVA: 0x002E9B28 File Offset: 0x002E7D28
 	protected override void OnCleanUp()
 	{
 		base.OnCleanUp();
@@ -40,7 +36,6 @@ public class HighEnergyParticle : StateMachineComponent<HighEnergyParticle.State
 		}
 	}
 
-	// Token: 0x060069A5 RID: 27045 RVA: 0x002E9B7C File Offset: 0x002E7D7C
 	public void SetDirection(EightDirection direction)
 	{
 		this.direction = direction;
@@ -48,7 +43,6 @@ public class HighEnergyParticle : StateMachineComponent<HighEnergyParticle.State
 		base.smi.master.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 	}
 
-	// Token: 0x060069A6 RID: 27046 RVA: 0x002E9BBC File Offset: 0x002E7DBC
 	public void Collide(HighEnergyParticle.CollisionType collisionType)
 	{
 		this.collision = collisionType;
@@ -86,13 +80,11 @@ public class HighEnergyParticle : StateMachineComponent<HighEnergyParticle.State
 		base.smi.sm.destroySignal.Trigger(base.smi);
 	}
 
-	// Token: 0x060069A7 RID: 27047 RVA: 0x000E9B46 File Offset: 0x000E7D46
 	public void DestroyNow()
 	{
 		base.smi.sm.destroySimpleSignal.Trigger(base.smi);
 	}
 
-	// Token: 0x060069A8 RID: 27048 RVA: 0x002E9D18 File Offset: 0x002E7F18
 	private void Capture(HighEnergyParticlePort input)
 	{
 		if (input.currentParticle != null)
@@ -118,7 +110,6 @@ public class HighEnergyParticle : StateMachineComponent<HighEnergyParticle.State
 		this.Collide(HighEnergyParticle.CollisionType.CaptureAndRelease);
 	}
 
-	// Token: 0x060069A9 RID: 27049 RVA: 0x000E9B63 File Offset: 0x000E7D63
 	public void Uncapture()
 	{
 		if (this.capturedBy != null)
@@ -128,7 +119,6 @@ public class HighEnergyParticle : StateMachineComponent<HighEnergyParticle.State
 		this.capturedBy = null;
 	}
 
-	// Token: 0x060069AA RID: 27050 RVA: 0x002E9DAC File Offset: 0x002E7FAC
 	public void CheckCollision()
 	{
 		if (this.collision != HighEnergyParticle.CollisionType.None)
@@ -228,7 +218,6 @@ public class HighEnergyParticle : StateMachineComponent<HighEnergyParticle.State
 		}
 	}
 
-	// Token: 0x060069AB RID: 27051 RVA: 0x002EA140 File Offset: 0x002E8340
 	public void MovingUpdate(float dt)
 	{
 		if (this.collision != HighEnergyParticle.CollisionType.None)
@@ -263,98 +252,70 @@ public class HighEnergyParticle : StateMachineComponent<HighEnergyParticle.State
 		base.transform.SetPosition(vector);
 	}
 
-	// Token: 0x060069AC RID: 27052 RVA: 0x000E9B86 File Offset: 0x000E7D86
 	private void StartLoopingSound()
 	{
 		this.loopingSounds.StartSound(this.flyingSound);
 	}
 
-	// Token: 0x060069AD RID: 27053 RVA: 0x000E9B9A File Offset: 0x000E7D9A
 	private void StopLoopingSound()
 	{
 		this.loopingSounds.StopSound(this.flyingSound);
 	}
 
-	// Token: 0x0400500B RID: 20491
 	[Serialize]
 	private EightDirection direction;
 
-	// Token: 0x0400500C RID: 20492
 	[Serialize]
 	public float speed;
 
-	// Token: 0x0400500D RID: 20493
 	[Serialize]
 	public float payload;
 
-	// Token: 0x0400500E RID: 20494
 	[MyCmpReq]
 	private RadiationEmitter emitter;
 
-	// Token: 0x0400500F RID: 20495
 	[Serialize]
 	public float perCellFalloff;
 
-	// Token: 0x04005010 RID: 20496
 	[Serialize]
 	public HighEnergyParticle.CollisionType collision;
 
-	// Token: 0x04005011 RID: 20497
 	[Serialize]
 	public HighEnergyParticlePort capturedBy;
 
-	// Token: 0x04005012 RID: 20498
 	public short emitRadius;
 
-	// Token: 0x04005013 RID: 20499
 	public float emitRate;
 
-	// Token: 0x04005014 RID: 20500
 	public float emitSpeed;
 
-	// Token: 0x04005015 RID: 20501
 	private LoopingSounds loopingSounds;
 
-	// Token: 0x04005016 RID: 20502
 	public string flyingSound;
 
-	// Token: 0x04005017 RID: 20503
 	public bool isCollideable;
 
-	// Token: 0x02001423 RID: 5155
 	public enum CollisionType
 	{
-		// Token: 0x04005019 RID: 20505
 		None,
-		// Token: 0x0400501A RID: 20506
 		Solid,
-		// Token: 0x0400501B RID: 20507
 		Creature,
-		// Token: 0x0400501C RID: 20508
 		Minion,
-		// Token: 0x0400501D RID: 20509
 		Captured,
-		// Token: 0x0400501E RID: 20510
 		HighEnergyParticle,
-		// Token: 0x0400501F RID: 20511
 		CaptureAndRelease,
-		// Token: 0x04005020 RID: 20512
 		PassThrough
 	}
 
-	// Token: 0x02001424 RID: 5156
 	public class StatesInstance : GameStateMachine<HighEnergyParticle.States, HighEnergyParticle.StatesInstance, HighEnergyParticle, object>.GameInstance
 	{
-		// Token: 0x060069AF RID: 27055 RVA: 0x000E9BB5 File Offset: 0x000E7DB5
 		public StatesInstance(HighEnergyParticle smi) : base(smi)
 		{
 		}
 	}
 
-	// Token: 0x02001425 RID: 5157
 	public class States : GameStateMachine<HighEnergyParticle.States, HighEnergyParticle.StatesInstance, HighEnergyParticle>
 	{
-		// Token: 0x060069B0 RID: 27056 RVA: 0x002EA28C File Offset: 0x002E848C
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.ready.pre;
@@ -397,7 +358,6 @@ public class HighEnergyParticle : StateMachineComponent<HighEnergyParticle.State
 			});
 		}
 
-		// Token: 0x060069B1 RID: 27057 RVA: 0x002EA5C4 File Offset: 0x002E87C4
 		private void EmitRemainingPayload(HighEnergyParticle.StatesInstance smi)
 		{
 			smi.master.GetComponent<KBatchedAnimController>().GetCurrentAnim();
@@ -412,44 +372,31 @@ public class HighEnergyParticle : StateMachineComponent<HighEnergyParticle.State
 			}, null);
 		}
 
-		// Token: 0x04005021 RID: 20513
 		public HighEnergyParticle.States.ReadyStates ready;
 
-		// Token: 0x04005022 RID: 20514
 		public HighEnergyParticle.States.DestructionStates destroying;
 
-		// Token: 0x04005023 RID: 20515
 		public GameStateMachine<HighEnergyParticle.States, HighEnergyParticle.StatesInstance, HighEnergyParticle, object>.State catchAndRelease;
 
-		// Token: 0x04005024 RID: 20516
 		public StateMachine<HighEnergyParticle.States, HighEnergyParticle.StatesInstance, HighEnergyParticle, object>.Signal destroySignal;
 
-		// Token: 0x04005025 RID: 20517
 		public StateMachine<HighEnergyParticle.States, HighEnergyParticle.StatesInstance, HighEnergyParticle, object>.Signal destroySimpleSignal;
 
-		// Token: 0x02001426 RID: 5158
 		public class ReadyStates : GameStateMachine<HighEnergyParticle.States, HighEnergyParticle.StatesInstance, HighEnergyParticle, object>.State
 		{
-			// Token: 0x04005026 RID: 20518
 			public GameStateMachine<HighEnergyParticle.States, HighEnergyParticle.StatesInstance, HighEnergyParticle, object>.State pre;
 
-			// Token: 0x04005027 RID: 20519
 			public GameStateMachine<HighEnergyParticle.States, HighEnergyParticle.StatesInstance, HighEnergyParticle, object>.State moving;
 		}
 
-		// Token: 0x02001427 RID: 5159
 		public class DestructionStates : GameStateMachine<HighEnergyParticle.States, HighEnergyParticle.StatesInstance, HighEnergyParticle, object>.State
 		{
-			// Token: 0x04005028 RID: 20520
 			public GameStateMachine<HighEnergyParticle.States, HighEnergyParticle.StatesInstance, HighEnergyParticle, object>.State instant;
 
-			// Token: 0x04005029 RID: 20521
 			public GameStateMachine<HighEnergyParticle.States, HighEnergyParticle.StatesInstance, HighEnergyParticle, object>.State explode;
 
-			// Token: 0x0400502A RID: 20522
 			public GameStateMachine<HighEnergyParticle.States, HighEnergyParticle.StatesInstance, HighEnergyParticle, object>.State captured;
 
-			// Token: 0x0400502B RID: 20523
 			public GameStateMachine<HighEnergyParticle.States, HighEnergyParticle.StatesInstance, HighEnergyParticle, object>.State blackhole;
 		}
 	}

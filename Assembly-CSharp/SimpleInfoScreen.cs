@@ -8,21 +8,15 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02002058 RID: 8280
 public class SimpleInfoScreen : DetailScreenTab, ISim4000ms, ISim1000ms
 {
-	// Token: 0x17000B4B RID: 2891
-	// (get) Token: 0x0600B00B RID: 45067 RVA: 0x0011719A File Offset: 0x0011539A
-	// (set) Token: 0x0600B00C RID: 45068 RVA: 0x001171A2 File Offset: 0x001153A2
 	public CollapsibleDetailContentPanel StoragePanel { get; private set; }
 
-	// Token: 0x0600B00D RID: 45069 RVA: 0x000AA7E7 File Offset: 0x000A89E7
 	public override bool IsValidForTarget(GameObject target)
 	{
 		return true;
 	}
 
-	// Token: 0x0600B00E RID: 45070 RVA: 0x0042C9B4 File Offset: 0x0042ABB4
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -55,7 +49,6 @@ public class SimpleInfoScreen : DetailScreenTab, ISim4000ms, ISim1000ms
 		base.Subscribe<SimpleInfoScreen>(-1514841199, SimpleInfoScreen.OnRefreshDataDelegate);
 	}
 
-	// Token: 0x0600B00F RID: 45071 RVA: 0x0042CC1C File Offset: 0x0042AE1C
 	protected override void OnSelectTarget(GameObject target)
 	{
 		base.OnSelectTarget(target);
@@ -96,7 +89,6 @@ public class SimpleInfoScreen : DetailScreenTab, ISim4000ms, ISim1000ms
 		this.spaceSimpleInfoPOIPanel.Refresh(this.spacePOIPanel, this.selectedTarget);
 	}
 
-	// Token: 0x0600B010 RID: 45072 RVA: 0x0042CDF0 File Offset: 0x0042AFF0
 	public override void OnDeselectTarget(GameObject target)
 	{
 		base.OnDeselectTarget(target);
@@ -131,25 +123,21 @@ public class SimpleInfoScreen : DetailScreenTab, ISim4000ms, ISim1000ms
 		}
 	}
 
-	// Token: 0x0600B011 RID: 45073 RVA: 0x001171AB File Offset: 0x001153AB
 	private void OnStorageChange(object data)
 	{
 		SimpleInfoScreen.RefreshStoragePanel(this.StoragePanel, this.selectedTarget);
 	}
 
-	// Token: 0x0600B012 RID: 45074 RVA: 0x001171BE File Offset: 0x001153BE
 	private void OnBreedingChanceChanged(object data)
 	{
 		SimpleInfoScreen.RefreshFertilityPanel(this.fertilityPanel, this.selectedTarget);
 	}
 
-	// Token: 0x0600B013 RID: 45075 RVA: 0x001171D1 File Offset: 0x001153D1
 	private void OnAddStatusItem(StatusItemGroup.Entry status_item, StatusItemCategory category)
 	{
 		this.DoAddStatusItem(status_item, category, false);
 	}
 
-	// Token: 0x0600B014 RID: 45076 RVA: 0x0042CF5C File Offset: 0x0042B15C
 	private void DoAddStatusItem(StatusItemGroup.Entry status_item, StatusItemCategory category, bool show_immediate = false)
 	{
 		GameObject gameObject = this.statusItemsFolder;
@@ -194,13 +182,11 @@ public class SimpleInfoScreen : DetailScreenTab, ISim4000ms, ISim1000ms
 		this.statusItems.Add(statusItemEntry);
 	}
 
-	// Token: 0x0600B015 RID: 45077 RVA: 0x001171DC File Offset: 0x001153DC
 	private void OnRemoveStatusItem(StatusItemGroup.Entry status_item, bool immediate = false)
 	{
 		this.DoRemoveStatusItem(status_item, immediate);
 	}
 
-	// Token: 0x0600B016 RID: 45078 RVA: 0x0042D12C File Offset: 0x0042B32C
 	private void DoRemoveStatusItem(StatusItemGroup.Entry status_item, bool destroy_immediate = false)
 	{
 		for (int i = 0; i < this.statusItems.Count; i++)
@@ -216,19 +202,16 @@ public class SimpleInfoScreen : DetailScreenTab, ISim4000ms, ISim1000ms
 		}
 	}
 
-	// Token: 0x0600B017 RID: 45079 RVA: 0x001171E6 File Offset: 0x001153E6
 	private void OnStatusItemDestroy(SimpleInfoScreen.StatusItemEntry item)
 	{
 		this.oldStatusItems.Remove(item);
 	}
 
-	// Token: 0x0600B018 RID: 45080 RVA: 0x00109477 File Offset: 0x00107677
 	private void OnRefreshData(object obj)
 	{
 		this.Refresh(false);
 	}
 
-	// Token: 0x0600B019 RID: 45081 RVA: 0x0042D19C File Offset: 0x0042B39C
 	protected override void Refresh(bool force = false)
 	{
 		if (this.selectedTarget != this.lastTarget || force)
@@ -252,7 +235,6 @@ public class SimpleInfoScreen : DetailScreenTab, ISim4000ms, ISim1000ms
 		this.rocketSimpleInfoPanel.Refresh(this.rocketStatusContainer, this.selectedTarget);
 	}
 
-	// Token: 0x0600B01A RID: 45082 RVA: 0x001171F5 File Offset: 0x001153F5
 	public void Sim1000ms(float dt)
 	{
 		if (this.selectedTarget != null && this.selectedTarget.GetComponent<IProcessConditionSet>() != null)
@@ -261,14 +243,12 @@ public class SimpleInfoScreen : DetailScreenTab, ISim4000ms, ISim1000ms
 		}
 	}
 
-	// Token: 0x0600B01B RID: 45083 RVA: 0x00117218 File Offset: 0x00115418
 	public void Sim4000ms(float dt)
 	{
 		this.RefreshWorldPanel();
 		this.spaceSimpleInfoPOIPanel.Refresh(this.spacePOIPanel, this.selectedTarget);
 	}
 
-	// Token: 0x0600B01C RID: 45084 RVA: 0x0042D2B4 File Offset: 0x0042B4B4
 	private static void RefreshInfoPanel(CollapsibleDetailContentPanel targetPanel, GameObject targetEntity)
 	{
 		string text = "";
@@ -333,7 +313,6 @@ public class SimpleInfoScreen : DetailScreenTab, ISim4000ms, ISim1000ms
 		targetPanel.Commit();
 	}
 
-	// Token: 0x0600B01D RID: 45085 RVA: 0x0042D4B4 File Offset: 0x0042B6B4
 	private static void RefreshEffectsPanel(CollapsibleDetailContentPanel targetPanel, GameObject targetEntity, DescriptorPanel effectsContent)
 	{
 		if (targetEntity.GetComponent<MinionIdentity>() != null)
@@ -353,7 +332,6 @@ public class SimpleInfoScreen : DetailScreenTab, ISim4000ms, ISim1000ms
 		targetPanel.SetActive(targetEntity != null && flag);
 	}
 
-	// Token: 0x0600B01E RID: 45086 RVA: 0x0042D534 File Offset: 0x0042B734
 	private static void RefreshRequirementsPanel(CollapsibleDetailContentPanel targetPanel, GameObject targetEntity, DescriptorPanel requirementContent)
 	{
 		MinionIdentity component = targetEntity.GetComponent<MinionIdentity>();
@@ -376,7 +354,6 @@ public class SimpleInfoScreen : DetailScreenTab, ISim4000ms, ISim1000ms
 		targetPanel.SetActive(flag);
 	}
 
-	// Token: 0x0600B01F RID: 45087 RVA: 0x0042D5D4 File Offset: 0x0042B7D4
 	private static void RefreshFertilityPanel(CollapsibleDetailContentPanel targetPanel, GameObject targetEntity)
 	{
 		FertilityMonitor.Instance smi = targetEntity.GetSMI<FertilityMonitor.Instance>();
@@ -404,13 +381,11 @@ public class SimpleInfoScreen : DetailScreenTab, ISim4000ms, ISim1000ms
 		targetPanel.Commit();
 	}
 
-	// Token: 0x0600B020 RID: 45088 RVA: 0x001171AB File Offset: 0x001153AB
 	private void TriggerRefreshStorage(object data = null)
 	{
 		SimpleInfoScreen.RefreshStoragePanel(this.StoragePanel, this.selectedTarget);
 	}
 
-	// Token: 0x0600B021 RID: 45089 RVA: 0x0042D7C8 File Offset: 0x0042B9C8
 	private static void RefreshStoragePanel(CollapsibleDetailContentPanel targetPanel, GameObject targetEntity)
 	{
 		if (targetEntity == null)
@@ -496,7 +471,6 @@ public class SimpleInfoScreen : DetailScreenTab, ISim4000ms, ISim1000ms
 		targetPanel.Commit();
 	}
 
-	// Token: 0x0600B022 RID: 45090 RVA: 0x0042DAEC File Offset: 0x0042BCEC
 	private void CreateWorldTraitRow()
 	{
 		GameObject gameObject = global::Util.KInstantiateUI(this.iconLabelRow, this.worldTraitsPanel.Content.gameObject, true);
@@ -506,7 +480,6 @@ public class SimpleInfoScreen : DetailScreenTab, ISim4000ms, ISim1000ms
 		component.GetReference<LocText>("ValueLabel").gameObject.SetActive(false);
 	}
 
-	// Token: 0x0600B023 RID: 45091 RVA: 0x0042DB54 File Offset: 0x0042BD54
 	private static void RefreshMovePanel(CollapsibleDetailContentPanel targetPanel, GameObject targetEntity)
 	{
 		CancellableMove component = targetEntity.GetComponent<CancellableMove>();
@@ -579,7 +552,6 @@ public class SimpleInfoScreen : DetailScreenTab, ISim4000ms, ISim1000ms
 		targetPanel.Commit();
 	}
 
-	// Token: 0x0600B024 RID: 45092 RVA: 0x0042DE20 File Offset: 0x0042C020
 	private void RefreshWorldPanel()
 	{
 		WorldContainer worldContainer = (this.selectedTarget == null) ? null : this.selectedTarget.GetComponent<WorldContainer>();
@@ -784,7 +756,6 @@ public class SimpleInfoScreen : DetailScreenTab, ISim4000ms, ISim1000ms
 		this.surfaceConditionRows.Add(gameObject2);
 	}
 
-	// Token: 0x0600B025 RID: 45093 RVA: 0x0042EBD4 File Offset: 0x0042CDD4
 	private void RefreshProcessConditionsPanel()
 	{
 		foreach (GameObject original in this.processConditionRows)
@@ -820,7 +791,6 @@ public class SimpleInfoScreen : DetailScreenTab, ISim4000ms, ISim1000ms
 		}
 	}
 
-	// Token: 0x0600B026 RID: 45094 RVA: 0x0042ED00 File Offset: 0x0042CF00
 	private static void RefreshStressPanel(CollapsibleDetailContentPanel targetPanel, GameObject targetEntity)
 	{
 		MinionIdentity identity = (targetEntity != null) ? targetEntity.GetComponent<MinionIdentity>() : null;
@@ -862,7 +832,6 @@ public class SimpleInfoScreen : DetailScreenTab, ISim4000ms, ISim1000ms
 		targetPanel.Commit();
 	}
 
-	// Token: 0x0600B027 RID: 45095 RVA: 0x0042EFA8 File Offset: 0x0042D1A8
 	private void RefreshProcessConditionsForType(GameObject target, ProcessCondition.ProcessConditionType conditionType)
 	{
 		IProcessConditionSet component = target.GetComponent<IProcessConditionSet>();
@@ -896,186 +865,131 @@ public class SimpleInfoScreen : DetailScreenTab, ISim4000ms, ISim1000ms
 		}
 	}
 
-	// Token: 0x04008A51 RID: 35409
 	public GameObject iconLabelRow;
 
-	// Token: 0x04008A52 RID: 35410
 	public GameObject spacerRow;
 
-	// Token: 0x04008A53 RID: 35411
 	[SerializeField]
 	private GameObject attributesLabelTemplate;
 
-	// Token: 0x04008A54 RID: 35412
 	[SerializeField]
 	private GameObject attributesLabelButtonTemplate;
 
-	// Token: 0x04008A55 RID: 35413
 	[SerializeField]
 	private DescriptorPanel DescriptorContentPrefab;
 
-	// Token: 0x04008A56 RID: 35414
 	[SerializeField]
 	private GameObject VitalsPanelTemplate;
 
-	// Token: 0x04008A57 RID: 35415
 	[SerializeField]
 	private GameObject StatusItemPrefab;
 
-	// Token: 0x04008A58 RID: 35416
 	[SerializeField]
 	private Sprite statusWarningIcon;
 
-	// Token: 0x04008A59 RID: 35417
 	[SerializeField]
 	private HierarchyReferences processConditionHeader;
 
-	// Token: 0x04008A5A RID: 35418
 	[SerializeField]
 	private GameObject processConditionRow;
 
-	// Token: 0x04008A5B RID: 35419
 	[SerializeField]
 	private Text StatusPanelCurrentActionLabel;
 
-	// Token: 0x04008A5C RID: 35420
 	[SerializeField]
 	private GameObject bigIconLabelRow;
 
-	// Token: 0x04008A5D RID: 35421
 	[SerializeField]
 	private TextStyleSetting ToolTipStyle_Property;
 
-	// Token: 0x04008A5E RID: 35422
 	[SerializeField]
 	private TextStyleSetting StatusItemStyle_Main;
 
-	// Token: 0x04008A5F RID: 35423
 	[SerializeField]
 	private TextStyleSetting StatusItemStyle_Other;
 
-	// Token: 0x04008A60 RID: 35424
 	[SerializeField]
 	private Color statusItemTextColor_regular = Color.black;
 
-	// Token: 0x04008A61 RID: 35425
 	[SerializeField]
 	private Color statusItemTextColor_old = new Color(0.8235294f, 0.8235294f, 0.8235294f);
 
-	// Token: 0x04008A63 RID: 35427
 	private CollapsibleDetailContentPanel statusItemPanel;
 
-	// Token: 0x04008A64 RID: 35428
 	private MinionVitalsPanel vitalsPanel;
 
-	// Token: 0x04008A65 RID: 35429
 	private CollapsibleDetailContentPanel fertilityPanel;
 
-	// Token: 0x04008A66 RID: 35430
 	private CollapsibleDetailContentPanel rocketStatusContainer;
 
-	// Token: 0x04008A67 RID: 35431
 	private CollapsibleDetailContentPanel worldLifePanel;
 
-	// Token: 0x04008A68 RID: 35432
 	private CollapsibleDetailContentPanel worldElementsPanel;
 
-	// Token: 0x04008A69 RID: 35433
 	private CollapsibleDetailContentPanel worldBiomesPanel;
 
-	// Token: 0x04008A6A RID: 35434
 	private CollapsibleDetailContentPanel worldGeysersPanel;
 
-	// Token: 0x04008A6B RID: 35435
 	private CollapsibleDetailContentPanel worldMeteorShowersPanel;
 
-	// Token: 0x04008A6C RID: 35436
 	private CollapsibleDetailContentPanel spacePOIPanel;
 
-	// Token: 0x04008A6D RID: 35437
 	private CollapsibleDetailContentPanel worldTraitsPanel;
 
-	// Token: 0x04008A6E RID: 35438
 	private CollapsibleDetailContentPanel processConditionContainer;
 
-	// Token: 0x04008A6F RID: 35439
 	private CollapsibleDetailContentPanel requirementsPanel;
 
-	// Token: 0x04008A70 RID: 35440
 	private CollapsibleDetailContentPanel effectsPanel;
 
-	// Token: 0x04008A71 RID: 35441
 	private CollapsibleDetailContentPanel stressPanel;
 
-	// Token: 0x04008A72 RID: 35442
 	private CollapsibleDetailContentPanel infoPanel;
 
-	// Token: 0x04008A73 RID: 35443
 	private CollapsibleDetailContentPanel movePanel;
 
-	// Token: 0x04008A74 RID: 35444
 	private DescriptorPanel effectsContent;
 
-	// Token: 0x04008A75 RID: 35445
 	private DescriptorPanel requirementContent;
 
-	// Token: 0x04008A76 RID: 35446
 	private RocketSimpleInfoPanel rocketSimpleInfoPanel;
 
-	// Token: 0x04008A77 RID: 35447
 	private SpacePOISimpleInfoPanel spaceSimpleInfoPOIPanel;
 
-	// Token: 0x04008A78 RID: 35448
 	private DetailsPanelDrawer stressDrawer;
 
-	// Token: 0x04008A79 RID: 35449
 	private bool TargetIsMinion;
 
-	// Token: 0x04008A7A RID: 35450
 	private GameObject lastTarget;
 
-	// Token: 0x04008A7B RID: 35451
 	private GameObject statusItemsFolder;
 
-	// Token: 0x04008A7C RID: 35452
 	private Dictionary<Tag, GameObject> lifeformRows = new Dictionary<Tag, GameObject>();
 
-	// Token: 0x04008A7D RID: 35453
 	private Dictionary<Tag, GameObject> biomeRows = new Dictionary<Tag, GameObject>();
 
-	// Token: 0x04008A7E RID: 35454
 	private Dictionary<Tag, GameObject> geyserRows = new Dictionary<Tag, GameObject>();
 
-	// Token: 0x04008A7F RID: 35455
 	private Dictionary<Tag, GameObject> meteorShowerRows = new Dictionary<Tag, GameObject>();
 
-	// Token: 0x04008A80 RID: 35456
 	private List<GameObject> worldTraitRows = new List<GameObject>();
 
-	// Token: 0x04008A81 RID: 35457
 	private List<GameObject> surfaceConditionRows = new List<GameObject>();
 
-	// Token: 0x04008A82 RID: 35458
 	private List<SimpleInfoScreen.StatusItemEntry> statusItems = new List<SimpleInfoScreen.StatusItemEntry>();
 
-	// Token: 0x04008A83 RID: 35459
 	private List<SimpleInfoScreen.StatusItemEntry> oldStatusItems = new List<SimpleInfoScreen.StatusItemEntry>();
 
-	// Token: 0x04008A84 RID: 35460
 	private List<GameObject> processConditionRows = new List<GameObject>();
 
-	// Token: 0x04008A85 RID: 35461
 	private static readonly EventSystem.IntraObjectHandler<SimpleInfoScreen> OnRefreshDataDelegate = new EventSystem.IntraObjectHandler<SimpleInfoScreen>(delegate(SimpleInfoScreen component, object data)
 	{
 		component.OnRefreshData(data);
 	});
 
-	// Token: 0x02002059 RID: 8281
 	[DebuggerDisplay("{item.item.Name}")]
 	public class StatusItemEntry : IRenderEveryTick
 	{
-		// Token: 0x17000B4C RID: 2892
-		// (get) Token: 0x0600B02A RID: 45098 RVA: 0x00117253 File Offset: 0x00115453
 		public Image GetImage
 		{
 			get
@@ -1084,7 +998,6 @@ public class SimpleInfoScreen : DetailScreenTab, ISim4000ms, ISim1000ms
 			}
 		}
 
-		// Token: 0x0600B02B RID: 45099 RVA: 0x0042F1E8 File Offset: 0x0042D3E8
 		public StatusItemEntry(StatusItemGroup.Entry item, StatusItemCategory category, GameObject status_item_prefab, Transform parent, TextStyleSetting tooltip_style, Color color, TextStyleSetting style, bool skip_fade, Action<SimpleInfoScreen.StatusItemEntry> onDestroy)
 		{
 			this.item = item;
@@ -1116,7 +1029,6 @@ public class SimpleInfoScreen : DetailScreenTab, ISim4000ms, ISim1000ms
 			this.SetColor(1f);
 		}
 
-		// Token: 0x0600B02C RID: 45100 RVA: 0x0011725B File Offset: 0x0011545B
 		internal void SetSprite(TintedSprite sprite)
 		{
 			if (sprite != null)
@@ -1125,19 +1037,16 @@ public class SimpleInfoScreen : DetailScreenTab, ISim4000ms, ISim1000ms
 			}
 		}
 
-		// Token: 0x0600B02D RID: 45101 RVA: 0x00117271 File Offset: 0x00115471
 		public int GetIndex()
 		{
 			return this.widget.transform.GetSiblingIndex();
 		}
 
-		// Token: 0x0600B02E RID: 45102 RVA: 0x00117283 File Offset: 0x00115483
 		public void SetIndex(int index)
 		{
 			this.widget.transform.SetSiblingIndex(index);
 		}
 
-		// Token: 0x0600B02F RID: 45103 RVA: 0x0042F32C File Offset: 0x0042D52C
 		public void RenderEveryTick(float dt)
 		{
 			switch (this.fadeStage)
@@ -1172,20 +1081,17 @@ public class SimpleInfoScreen : DetailScreenTab, ISim4000ms, ISim1000ms
 			}
 		}
 
-		// Token: 0x0600B030 RID: 45104 RVA: 0x00117296 File Offset: 0x00115496
 		private string OnToolTip()
 		{
 			this.item.ShowToolTip(this.toolTip, this.tooltipStyle);
 			return "";
 		}
 
-		// Token: 0x0600B031 RID: 45105 RVA: 0x001172B4 File Offset: 0x001154B4
 		private void OnClick()
 		{
 			this.item.OnClick();
 		}
 
-		// Token: 0x0600B032 RID: 45106 RVA: 0x0042F3E0 File Offset: 0x0042D5E0
 		public void Refresh()
 		{
 			string name = this.item.GetName();
@@ -1196,7 +1102,6 @@ public class SimpleInfoScreen : DetailScreenTab, ISim4000ms, ISim1000ms
 			}
 		}
 
-		// Token: 0x0600B033 RID: 45107 RVA: 0x0042F424 File Offset: 0x0042D624
 		private void SetColor(float alpha = 1f)
 		{
 			Color color = new Color(this.color.r, this.color.g, this.color.b, alpha);
@@ -1204,7 +1109,6 @@ public class SimpleInfoScreen : DetailScreenTab, ISim4000ms, ISim1000ms
 			this.text.color = color;
 		}
 
-		// Token: 0x0600B034 RID: 45108 RVA: 0x0042F474 File Offset: 0x0042D674
 		public void Destroy(bool immediate)
 		{
 			if (this.toolTip != null)
@@ -1229,62 +1133,42 @@ public class SimpleInfoScreen : DetailScreenTab, ISim4000ms, ISim1000ms
 			this.fadeStage = SimpleInfoScreen.StatusItemEntry.FadeStage.OUT;
 		}
 
-		// Token: 0x04008A86 RID: 35462
 		public StatusItemGroup.Entry item;
 
-		// Token: 0x04008A87 RID: 35463
 		public StatusItemCategory category;
 
-		// Token: 0x04008A88 RID: 35464
 		public Color color;
 
-		// Token: 0x04008A89 RID: 35465
 		public TextStyleSetting style;
 
-		// Token: 0x04008A8A RID: 35466
 		public Action<SimpleInfoScreen.StatusItemEntry> onDestroy;
 
-		// Token: 0x04008A8B RID: 35467
 		private LayoutElement spacerLayout;
 
-		// Token: 0x04008A8C RID: 35468
 		private GameObject widget;
 
-		// Token: 0x04008A8D RID: 35469
 		private ToolTip toolTip;
 
-		// Token: 0x04008A8E RID: 35470
 		private TextStyleSetting tooltipStyle;
 
-		// Token: 0x04008A8F RID: 35471
 		private Image image;
 
-		// Token: 0x04008A90 RID: 35472
 		private LocText text;
 
-		// Token: 0x04008A91 RID: 35473
 		private KButton button;
 
-		// Token: 0x04008A92 RID: 35474
 		private SimpleInfoScreen.StatusItemEntry.FadeStage fadeStage;
 
-		// Token: 0x04008A93 RID: 35475
 		private float fade;
 
-		// Token: 0x04008A94 RID: 35476
 		private float fadeInTime;
 
-		// Token: 0x04008A95 RID: 35477
 		private float fadeOutTime = 1.8f;
 
-		// Token: 0x0200205A RID: 8282
 		private enum FadeStage
 		{
-			// Token: 0x04008A97 RID: 35479
 			IN,
-			// Token: 0x04008A98 RID: 35480
 			WAIT,
-			// Token: 0x04008A99 RID: 35481
 			OUT
 		}
 	}

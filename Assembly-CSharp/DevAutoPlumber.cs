@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-// Token: 0x02000D5F RID: 3423
 public class DevAutoPlumber
 {
-	// Token: 0x06004265 RID: 16997 RVA: 0x000CF69B File Offset: 0x000CD89B
 	public static void AutoPlumbBuilding(Building building)
 	{
 		DevAutoPlumber.DoElectricalPlumbing(building);
@@ -14,7 +12,6 @@ public class DevAutoPlumber
 		DevAutoPlumber.SetupSolidOreDelivery(building);
 	}
 
-	// Token: 0x06004266 RID: 16998 RVA: 0x0024EFB8 File Offset: 0x0024D1B8
 	public static void DoElectricalPlumbing(Building building)
 	{
 		if (!building.Def.RequiresPowerInput)
@@ -34,14 +31,12 @@ public class DevAutoPlumber
 		}, DevAutoPlumber.PortSelection.PowerInput);
 	}
 
-	// Token: 0x06004267 RID: 16999 RVA: 0x000CF6AF File Offset: 0x000CD8AF
 	public static void DoLiquidAndGasPlumbing(Building building)
 	{
 		DevAutoPlumber.SetupPlumbingInput(building);
 		DevAutoPlumber.SetupPlumbingOutput(building);
 	}
 
-	// Token: 0x06004268 RID: 17000 RVA: 0x0024F044 File Offset: 0x0024D244
 	public static void SetupSolidOreDelivery(Building building)
 	{
 		ManualDeliveryKG component = building.GetComponent<ManualDeliveryKG>();
@@ -68,7 +63,6 @@ public class DevAutoPlumber
 		}
 	}
 
-	// Token: 0x06004269 RID: 17001 RVA: 0x0024F164 File Offset: 0x0024D364
 	private static GameObject TrySpawnElementOreFromTag(Tag t, int cell, float amount)
 	{
 		Element element = ElementLoader.GetElement(t);
@@ -83,7 +77,6 @@ public class DevAutoPlumber
 		return null;
 	}
 
-	// Token: 0x0600426A RID: 17002 RVA: 0x0024F1D0 File Offset: 0x0024D3D0
 	private static void SetupPlumbingInput(Building building)
 	{
 		ConduitConsumer component = building.GetComponent<ConduitConsumer>();
@@ -131,7 +124,6 @@ public class DevAutoPlumber
 		gameObject.GetComponent<DevPump>().SelectedTag = ElementLoader.FindElementByHash(SimHashes.Vacuum).tag;
 	}
 
-	// Token: 0x0600426B RID: 17003 RVA: 0x0024F2BC File Offset: 0x0024D4BC
 	private static void SetupPlumbingOutput(Building building)
 	{
 		ConduitDispenser component = building.GetComponent<ConduitDispenser>();
@@ -172,7 +164,6 @@ public class DevAutoPlumber
 		DevAutoPlumber.PlaceSourceAndUtilityConduit(building, sourceDef, conduitDef, utlityNetworkManager, conduitTypeLayers, DevAutoPlumber.PortSelection.UtilityOutput);
 	}
 
-	// Token: 0x0600426C RID: 17004 RVA: 0x0024F36C File Offset: 0x0024D56C
 	private static Element GuessMostRelevantElementForPump(Building destinationBuilding)
 	{
 		ConduitConsumer consumer = destinationBuilding.GetComponent<ConduitConsumer>();
@@ -226,7 +217,6 @@ public class DevAutoPlumber
 		});
 	}
 
-	// Token: 0x0600426D RID: 17005 RVA: 0x0024F3D8 File Offset: 0x0024D5D8
 	private static GameObject PlaceSourceAndUtilityConduit(Building destinationBuilding, BuildingDef sourceDef, BuildingDef conduitDef, IUtilityNetworkMgr utlityNetworkManager, int[] conduitTypeLayers, DevAutoPlumber.PortSelection portSelection)
 	{
 		Building building = null;
@@ -260,7 +250,6 @@ public class DevAutoPlumber
 		return building.gameObject;
 	}
 
-	// Token: 0x0600426E RID: 17006 RVA: 0x0024F474 File Offset: 0x0024D674
 	private static int FindClearPlacementLocation(int nearStartingCell, int[] placementBlockingObjectLayers, List<int> rejectLocations)
 	{
 		Func<int, object, bool> fn = delegate(int test, object unusedData)
@@ -305,7 +294,6 @@ public class DevAutoPlumber
 		return GameUtil.FloodFillFind<object>(fn, null, nearStartingCell, max_depth, false, false);
 	}
 
-	// Token: 0x0600426F RID: 17007 RVA: 0x0024F4AC File Offset: 0x0024D6AC
 	private static List<int> GenerateClearConduitPath(Building sourceBuilding, Building destinationBuilding, int[] conduitTypeLayers, DevAutoPlumber.PortSelection portSelection)
 	{
 		new List<int>();
@@ -350,7 +338,6 @@ public class DevAutoPlumber
 		}, 20);
 	}
 
-	// Token: 0x06004270 RID: 17008 RVA: 0x0024F61C File Offset: 0x0024D81C
 	private static Building PlaceConduitSourceBuilding(int cell, BuildingDef def)
 	{
 		List<Tag> selected_elements = new List<Tag>
@@ -360,7 +347,6 @@ public class DevAutoPlumber
 		return def.Build(cell, Orientation.Neutral, null, selected_elements, 273.15f, true, GameClock.Instance.GetTime()).GetComponent<Building>();
 	}
 
-	// Token: 0x06004271 RID: 17009 RVA: 0x0024F660 File Offset: 0x0024D860
 	private static void BuildConduits(List<int> path, BuildingDef conduitDef, object utilityNetwork)
 	{
 		List<Tag> selected_elements = new List<Tag>
@@ -390,7 +376,6 @@ public class DevAutoPlumber
 		}
 	}
 
-	// Token: 0x06004272 RID: 17010 RVA: 0x0024F770 File Offset: 0x0024D970
 	private static List<int> GetGridPath(int startCell, int endCell, Func<int, bool> testFunction, int maxDepth = 20)
 	{
 		DevAutoPlumber.<>c__DisplayClass14_0 CS$<>8__locals1;
@@ -432,7 +417,6 @@ public class DevAutoPlumber
 		return list;
 	}
 
-	// Token: 0x06004274 RID: 17012 RVA: 0x0024F8E8 File Offset: 0x0024DAE8
 	[CompilerGenerated]
 	internal static void <GetGridPath>g___ExpandFrontier|14_0(int fromCell, ref DevAutoPlumber.<>c__DisplayClass14_0 A_1)
 	{
@@ -458,14 +442,10 @@ public class DevAutoPlumber
 		A_1.touched.Add(fromCell);
 	}
 
-	// Token: 0x02000D60 RID: 3424
 	private enum PortSelection
 	{
-		// Token: 0x04002DD2 RID: 11730
 		UtilityInput,
-		// Token: 0x04002DD3 RID: 11731
 		UtilityOutput,
-		// Token: 0x04002DD4 RID: 11732
 		PowerInput
 	}
 }

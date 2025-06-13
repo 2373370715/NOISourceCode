@@ -1,10 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02001816 RID: 6166
 public class FetchDrone : KMonoBehaviour
 {
-	// Token: 0x06007EF7 RID: 32503 RVA: 0x0033A52C File Offset: 0x0033872C
 	protected override void OnSpawn()
 	{
 		ChoreGroup[] array = new ChoreGroup[]
@@ -45,7 +43,6 @@ public class FetchDrone : KMonoBehaviour
 		base.Subscribe(-1582839653, new Action<object>(this.OnTagsChanged));
 	}
 
-	// Token: 0x06007EF8 RID: 32504 RVA: 0x000F8128 File Offset: 0x000F6328
 	protected override void OnCleanUp()
 	{
 		base.Unsubscribe(-1697596308);
@@ -53,7 +50,6 @@ public class FetchDrone : KMonoBehaviour
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06007EF9 RID: 32505 RVA: 0x0033A6F0 File Offset: 0x003388F0
 	private void OnTagsChanged(object data)
 	{
 		TagChangedEventData tagChangedEventData = (TagChangedEventData)data;
@@ -67,7 +63,6 @@ public class FetchDrone : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06007EFA RID: 32506 RVA: 0x0033A744 File Offset: 0x00338944
 	private void OnStorageChanged(object data)
 	{
 		GameObject gameObject = (GameObject)data;
@@ -75,7 +70,6 @@ public class FetchDrone : KMonoBehaviour
 		this.ShowPickupSymbol(gameObject);
 	}
 
-	// Token: 0x06007EFB RID: 32507 RVA: 0x0033A768 File Offset: 0x00338968
 	private void ShowPickupSymbol(GameObject pickupable)
 	{
 		bool flag = this.pickupableStorage.items.Contains(pickupable);
@@ -87,7 +81,6 @@ public class FetchDrone : KMonoBehaviour
 		this.animController.SetSymbolVisiblity(FetchDrone.BOTTOM_CARRY, flag);
 	}
 
-	// Token: 0x06007EFC RID: 32508 RVA: 0x0033A7C0 File Offset: 0x003389C0
 	private void AddAnimTracker(GameObject go)
 	{
 		KAnimControllerBase component = go.GetComponent<KAnimControllerBase>();
@@ -110,7 +103,6 @@ public class FetchDrone : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06007EFD RID: 32509 RVA: 0x0033A87C File Offset: 0x00338A7C
 	private void RemoveTracker(GameObject go)
 	{
 		KBatchedAnimTracker kbatchedAnimTracker = (go != null) ? go.GetComponent<KBatchedAnimTracker>() : null;
@@ -120,19 +112,14 @@ public class FetchDrone : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0400607D RID: 24701
 	private static string BOTTOM = "bottom";
 
-	// Token: 0x0400607E RID: 24702
 	private static string BOTTOM_CARRY = "bottom_carry";
 
-	// Token: 0x0400607F RID: 24703
 	private KBatchedAnimController animController;
 
-	// Token: 0x04006080 RID: 24704
 	private Storage pickupableStorage;
 
-	// Token: 0x04006081 RID: 24705
 	[MyCmpAdd]
 	private ChoreConsumer choreConsumer;
 }

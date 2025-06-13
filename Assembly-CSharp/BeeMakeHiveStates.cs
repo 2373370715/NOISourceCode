@@ -1,10 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000125 RID: 293
 public class BeeMakeHiveStates : GameStateMachine<BeeMakeHiveStates, BeeMakeHiveStates.Instance, IStateMachineTarget, BeeMakeHiveStates.Def>
 {
-	// Token: 0x06000462 RID: 1122 RVA: 0x0015F274 File Offset: 0x0015D474
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.findBuildLocation;
@@ -38,7 +36,6 @@ public class BeeMakeHiveStates : GameStateMachine<BeeMakeHiveStates, BeeMakeHive
 		});
 	}
 
-	// Token: 0x06000463 RID: 1123 RVA: 0x0015F344 File Offset: 0x0015D544
 	private void FindBuildLocation(BeeMakeHiveStates.Instance smi)
 	{
 		smi.targetBuildCell = Grid.InvalidCell;
@@ -51,33 +48,25 @@ public class BeeMakeHiveStates : GameStateMachine<BeeMakeHiveStates, BeeMakeHive
 		}
 	}
 
-	// Token: 0x0400032E RID: 814
 	public GameStateMachine<BeeMakeHiveStates, BeeMakeHiveStates.Instance, IStateMachineTarget, BeeMakeHiveStates.Def>.State findBuildLocation;
 
-	// Token: 0x0400032F RID: 815
 	public GameStateMachine<BeeMakeHiveStates, BeeMakeHiveStates.Instance, IStateMachineTarget, BeeMakeHiveStates.Def>.State moveToBuildLocation;
 
-	// Token: 0x04000330 RID: 816
 	public GameStateMachine<BeeMakeHiveStates, BeeMakeHiveStates.Instance, IStateMachineTarget, BeeMakeHiveStates.Def>.State doBuild;
 
-	// Token: 0x04000331 RID: 817
 	public GameStateMachine<BeeMakeHiveStates, BeeMakeHiveStates.Instance, IStateMachineTarget, BeeMakeHiveStates.Def>.State behaviourcomplete;
 
-	// Token: 0x02000126 RID: 294
 	public class Def : StateMachine.BaseDef
 	{
 	}
 
-	// Token: 0x02000127 RID: 295
 	public new class Instance : GameStateMachine<BeeMakeHiveStates, BeeMakeHiveStates.Instance, IStateMachineTarget, BeeMakeHiveStates.Def>.GameInstance
 	{
-		// Token: 0x06000468 RID: 1128 RVA: 0x000AB9ED File Offset: 0x000A9BED
 		public Instance(Chore<BeeMakeHiveStates.Instance> chore, BeeMakeHiveStates.Def def) : base(chore, def)
 		{
 			chore.AddPrecondition(ChorePreconditions.instance.CheckBehaviourPrecondition, GameTags.Creatures.WantsToMakeHome);
 		}
 
-		// Token: 0x06000469 RID: 1129 RVA: 0x0015F3B8 File Offset: 0x0015D5B8
 		public void BuildHome()
 		{
 			Vector3 position = Grid.CellToPos(this.targetBuildCell, CellAlignment.Bottom, Grid.SceneLayer.Creatures);
@@ -89,10 +78,8 @@ public class BeeMakeHiveStates : GameStateMachine<BeeMakeHiveStates, BeeMakeHive
 			gameObject.GetSMI<BeeHive.StatesInstance>().SetUpNewHive();
 		}
 
-		// Token: 0x04000332 RID: 818
 		public int targetBuildCell;
 
-		// Token: 0x04000333 RID: 819
 		public bool builtHome;
 	}
 }

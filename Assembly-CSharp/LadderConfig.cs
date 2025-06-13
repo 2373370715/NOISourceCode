@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003AF RID: 943
 public class LadderConfig : IBuildingConfig
 {
-	// Token: 0x06000F42 RID: 3906 RVA: 0x00186684 File Offset: 0x00184884
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "Ladder";
@@ -31,7 +29,6 @@ public class LadderConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000F43 RID: 3907 RVA: 0x000B0F46 File Offset: 0x000AF146
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
@@ -41,11 +38,9 @@ public class LadderConfig : IBuildingConfig
 		go.AddOrGet<AnimTileable>();
 	}
 
-	// Token: 0x06000F44 RID: 3908 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000B2F RID: 2863
 	public const string ID = "Ladder";
 }

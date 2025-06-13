@@ -1,11 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000E7C RID: 3708
 [AddComponentMenu("KMonoBehaviour/scripts/LogicGateBase")]
 public class LogicGateBase : KMonoBehaviour
 {
-	// Token: 0x060048FD RID: 18685 RVA: 0x00265674 File Offset: 0x00263874
 	private int GetActualCell(CellOffset offset)
 	{
 		Rotatable component = base.GetComponent<Rotatable>();
@@ -16,8 +14,6 @@ public class LogicGateBase : KMonoBehaviour
 		return Grid.OffsetCell(Grid.PosToCell(base.transform.GetPosition()), offset);
 	}
 
-	// Token: 0x17000398 RID: 920
-	// (get) Token: 0x060048FE RID: 18686 RVA: 0x000D3C3F File Offset: 0x000D1E3F
 	public int InputCellOne
 	{
 		get
@@ -26,8 +22,6 @@ public class LogicGateBase : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x17000399 RID: 921
-	// (get) Token: 0x060048FF RID: 18687 RVA: 0x000D3C53 File Offset: 0x000D1E53
 	public int InputCellTwo
 	{
 		get
@@ -36,8 +30,6 @@ public class LogicGateBase : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x1700039A RID: 922
-	// (get) Token: 0x06004900 RID: 18688 RVA: 0x000D3C67 File Offset: 0x000D1E67
 	public int InputCellThree
 	{
 		get
@@ -46,8 +38,6 @@ public class LogicGateBase : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x1700039B RID: 923
-	// (get) Token: 0x06004901 RID: 18689 RVA: 0x000D3C7B File Offset: 0x000D1E7B
 	public int InputCellFour
 	{
 		get
@@ -56,8 +46,6 @@ public class LogicGateBase : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x1700039C RID: 924
-	// (get) Token: 0x06004902 RID: 18690 RVA: 0x000D3C8F File Offset: 0x000D1E8F
 	public int OutputCellOne
 	{
 		get
@@ -66,8 +54,6 @@ public class LogicGateBase : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x1700039D RID: 925
-	// (get) Token: 0x06004903 RID: 18691 RVA: 0x000D3CA3 File Offset: 0x000D1EA3
 	public int OutputCellTwo
 	{
 		get
@@ -76,8 +62,6 @@ public class LogicGateBase : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x1700039E RID: 926
-	// (get) Token: 0x06004904 RID: 18692 RVA: 0x000D3CB7 File Offset: 0x000D1EB7
 	public int OutputCellThree
 	{
 		get
@@ -86,8 +70,6 @@ public class LogicGateBase : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x1700039F RID: 927
-	// (get) Token: 0x06004905 RID: 18693 RVA: 0x000D3CCB File Offset: 0x000D1ECB
 	public int OutputCellFour
 	{
 		get
@@ -96,8 +78,6 @@ public class LogicGateBase : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x170003A0 RID: 928
-	// (get) Token: 0x06004906 RID: 18694 RVA: 0x000D3CDF File Offset: 0x000D1EDF
 	public int ControlCellOne
 	{
 		get
@@ -106,8 +86,6 @@ public class LogicGateBase : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x170003A1 RID: 929
-	// (get) Token: 0x06004907 RID: 18695 RVA: 0x000D3CF3 File Offset: 0x000D1EF3
 	public int ControlCellTwo
 	{
 		get
@@ -116,7 +94,6 @@ public class LogicGateBase : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06004908 RID: 18696 RVA: 0x002656B0 File Offset: 0x002638B0
 	public int PortCell(LogicGateBase.PortId port)
 	{
 		switch (port)
@@ -146,7 +123,6 @@ public class LogicGateBase : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06004909 RID: 18697 RVA: 0x0026573C File Offset: 0x0026393C
 	public bool TryGetPortAtCell(int cell, out LogicGateBase.PortId port)
 	{
 		if (cell == this.InputCellOne)
@@ -203,8 +179,6 @@ public class LogicGateBase : KMonoBehaviour
 		return false;
 	}
 
-	// Token: 0x170003A2 RID: 930
-	// (get) Token: 0x0600490A RID: 18698 RVA: 0x000D3D07 File Offset: 0x000D1F07
 	public bool RequiresTwoInputs
 	{
 		get
@@ -213,8 +187,6 @@ public class LogicGateBase : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x170003A3 RID: 931
-	// (get) Token: 0x0600490B RID: 18699 RVA: 0x000D3D14 File Offset: 0x000D1F14
 	public bool RequiresFourInputs
 	{
 		get
@@ -223,8 +195,6 @@ public class LogicGateBase : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x170003A4 RID: 932
-	// (get) Token: 0x0600490C RID: 18700 RVA: 0x000D3D21 File Offset: 0x000D1F21
 	public bool RequiresFourOutputs
 	{
 		get
@@ -233,8 +203,6 @@ public class LogicGateBase : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x170003A5 RID: 933
-	// (get) Token: 0x0600490D RID: 18701 RVA: 0x000D3D2E File Offset: 0x000D1F2E
 	public bool RequiresControlInputs
 	{
 		get
@@ -243,47 +211,37 @@ public class LogicGateBase : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600490E RID: 18702 RVA: 0x000D3D3B File Offset: 0x000D1F3B
 	public static bool OpRequiresTwoInputs(LogicGateBase.Op op)
 	{
 		return op != LogicGateBase.Op.Not && op - LogicGateBase.Op.CustomSingle > 2;
 	}
 
-	// Token: 0x0600490F RID: 18703 RVA: 0x000D3D4A File Offset: 0x000D1F4A
 	public static bool OpRequiresFourInputs(LogicGateBase.Op op)
 	{
 		return op == LogicGateBase.Op.Multiplexer;
 	}
 
-	// Token: 0x06004910 RID: 18704 RVA: 0x000D3D53 File Offset: 0x000D1F53
 	public static bool OpRequiresFourOutputs(LogicGateBase.Op op)
 	{
 		return op == LogicGateBase.Op.Demultiplexer;
 	}
 
-	// Token: 0x06004911 RID: 18705 RVA: 0x000D3D5C File Offset: 0x000D1F5C
 	public static bool OpRequiresControlInputs(LogicGateBase.Op op)
 	{
 		return op - LogicGateBase.Op.Multiplexer <= 1;
 	}
 
-	// Token: 0x0400332B RID: 13099
 	public static LogicModeUI uiSrcData;
 
-	// Token: 0x0400332C RID: 13100
 	public static readonly HashedString OUTPUT_TWO_PORT_ID = new HashedString("LogicGateOutputTwo");
 
-	// Token: 0x0400332D RID: 13101
 	public static readonly HashedString OUTPUT_THREE_PORT_ID = new HashedString("LogicGateOutputThree");
 
-	// Token: 0x0400332E RID: 13102
 	public static readonly HashedString OUTPUT_FOUR_PORT_ID = new HashedString("LogicGateOutputFour");
 
-	// Token: 0x0400332F RID: 13103
 	[SerializeField]
 	public LogicGateBase.Op op;
 
-	// Token: 0x04003330 RID: 13104
 	public static CellOffset[] portOffsets = new CellOffset[]
 	{
 		CellOffset.none,
@@ -291,56 +249,34 @@ public class LogicGateBase : KMonoBehaviour
 		new CellOffset(1, 0)
 	};
 
-	// Token: 0x04003331 RID: 13105
 	public CellOffset[] inputPortOffsets;
 
-	// Token: 0x04003332 RID: 13106
 	public CellOffset[] outputPortOffsets;
 
-	// Token: 0x04003333 RID: 13107
 	public CellOffset[] controlPortOffsets;
 
-	// Token: 0x02000E7D RID: 3709
 	public enum PortId
 	{
-		// Token: 0x04003335 RID: 13109
 		InputOne,
-		// Token: 0x04003336 RID: 13110
 		InputTwo,
-		// Token: 0x04003337 RID: 13111
 		InputThree,
-		// Token: 0x04003338 RID: 13112
 		InputFour,
-		// Token: 0x04003339 RID: 13113
 		OutputOne,
-		// Token: 0x0400333A RID: 13114
 		OutputTwo,
-		// Token: 0x0400333B RID: 13115
 		OutputThree,
-		// Token: 0x0400333C RID: 13116
 		OutputFour,
-		// Token: 0x0400333D RID: 13117
 		ControlOne,
-		// Token: 0x0400333E RID: 13118
 		ControlTwo
 	}
 
-	// Token: 0x02000E7E RID: 3710
 	public enum Op
 	{
-		// Token: 0x04003340 RID: 13120
 		And,
-		// Token: 0x04003341 RID: 13121
 		Or,
-		// Token: 0x04003342 RID: 13122
 		Not,
-		// Token: 0x04003343 RID: 13123
 		Xor,
-		// Token: 0x04003344 RID: 13124
 		CustomSingle,
-		// Token: 0x04003345 RID: 13125
 		Multiplexer,
-		// Token: 0x04003346 RID: 13126
 		Demultiplexer
 	}
 }

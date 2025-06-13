@@ -3,21 +3,15 @@ using System.Linq;
 using Database;
 using UnityEngine;
 
-// Token: 0x02001D32 RID: 7474
 public class FullBodyUIMinionWidget : KMonoBehaviour
 {
-	// Token: 0x17000A4B RID: 2635
-	// (get) Token: 0x06009C08 RID: 39944 RVA: 0x00109FDE File Offset: 0x001081DE
-	// (set) Token: 0x06009C09 RID: 39945 RVA: 0x00109FE6 File Offset: 0x001081E6
 	public KBatchedAnimController animController { get; private set; }
 
-	// Token: 0x06009C0A RID: 39946 RVA: 0x00109FEF File Offset: 0x001081EF
 	protected override void OnSpawn()
 	{
 		this.TrySpawnDisplayMinion();
 	}
 
-	// Token: 0x06009C0B RID: 39947 RVA: 0x003CF168 File Offset: 0x003CD368
 	private void TrySpawnDisplayMinion()
 	{
 		if (this.animController == null)
@@ -28,7 +22,6 @@ public class FullBodyUIMinionWidget : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06009C0C RID: 39948 RVA: 0x003CF1D0 File Offset: 0x003CD3D0
 	private void InitializeAnimator()
 	{
 		this.TrySpawnDisplayMinion();
@@ -40,7 +33,6 @@ public class FullBodyUIMinionWidget : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06009C0D RID: 39949 RVA: 0x003CF240 File Offset: 0x003CD440
 	public void SetDefaultPortraitAnimator()
 	{
 		MinionIdentity minionIdentity = (Components.MinionIdentities.Count > 0) ? Components.MinionIdentities[0] : null;
@@ -59,7 +51,6 @@ public class FullBodyUIMinionWidget : KMonoBehaviour
 		this.UpdateClothingOverride(this.animController.GetComponent<SymbolOverrideController>(), minionIdentity, null);
 	}
 
-	// Token: 0x06009C0E RID: 39950 RVA: 0x003CF368 File Offset: 0x003CD568
 	public void SetPortraitAnimator(IAssignableIdentity assignableIdentity)
 	{
 		if (assignableIdentity == null || assignableIdentity.IsNull())
@@ -101,7 +92,6 @@ public class FullBodyUIMinionWidget : KMonoBehaviour
 		this.UpdateClothingOverride(this.animController.GetComponent<SymbolOverrideController>(), minionIdentity, storedMinionIdentity);
 	}
 
-	// Token: 0x06009C0F RID: 39951 RVA: 0x003CF578 File Offset: 0x003CD778
 	private void UpdateHatOverride(string current_hat, KAnim.Build.Symbol hair_symbol, KAnim.Build.Symbol hat_hair_symbol)
 	{
 		AccessorySlot hat = Db.Get().AccessorySlots.Hat;
@@ -119,7 +109,6 @@ public class FullBodyUIMinionWidget : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06009C10 RID: 39952 RVA: 0x003CF650 File Offset: 0x003CD850
 	private void UpdateClothingOverride(SymbolOverrideController symbolOverrideController, MinionIdentity identity, StoredMinionIdentity storedMinionIdentity)
 	{
 		string[] array = null;
@@ -138,19 +127,16 @@ public class FullBodyUIMinionWidget : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06009C11 RID: 39953 RVA: 0x00109FF7 File Offset: 0x001081F7
 	public void UpdateEquipment(Equippable equippable, KAnimFile animFile)
 	{
 		this.animController.GetComponent<WearableAccessorizer>().ApplyEquipment(equippable, animFile);
 	}
 
-	// Token: 0x06009C12 RID: 39954 RVA: 0x0010A00B File Offset: 0x0010820B
 	public void RemoveEquipment(Equippable equippable)
 	{
 		this.animController.GetComponent<WearableAccessorizer>().RemoveEquipment(equippable);
 	}
 
-	// Token: 0x06009C13 RID: 39955 RVA: 0x0010A01E File Offset: 0x0010821E
 	private void GetMinionIdentity(IAssignableIdentity assignableIdentity, out MinionIdentity minionIdentity, out StoredMinionIdentity storedMinionIdentity)
 	{
 		if (assignableIdentity is MinionAssignablesProxy)
@@ -163,10 +149,8 @@ public class FullBodyUIMinionWidget : KMonoBehaviour
 		storedMinionIdentity = (assignableIdentity as StoredMinionIdentity);
 	}
 
-	// Token: 0x04007A10 RID: 31248
 	[SerializeField]
 	private GameObject duplicantAnimAnchor;
 
-	// Token: 0x04007A12 RID: 31250
 	public const float UI_MINION_PORTRAIT_ANIM_SCALE = 0.38f;
 }

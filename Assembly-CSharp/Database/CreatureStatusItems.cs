@@ -8,16 +8,13 @@ using UnityEngine;
 
 namespace Database
 {
-	// Token: 0x0200219B RID: 8603
 	public class CreatureStatusItems : StatusItems
 	{
-		// Token: 0x0600B776 RID: 46966 RVA: 0x0011B2C7 File Offset: 0x001194C7
 		public CreatureStatusItems(ResourceSet parent) : base("CreatureStatusItems", parent)
 		{
 			this.CreateStatusItems();
 		}
 
-		// Token: 0x0600B777 RID: 46967 RVA: 0x004641C8 File Offset: 0x004623C8
 		private void CreateStatusItems()
 		{
 			this.Dead = new StatusItem("Dead", "CREATURES", "", StatusItem.IconType.Exclamation, NotificationType.BadMinor, false, OverlayModes.None.ID, false, 129022, null);
@@ -609,256 +606,172 @@ namespace Database
 			this.TemperatureColdDeadly.resolveStringCallback = this.TemperatureHotDeadly.resolveStringCallback;
 		}
 
-		// Token: 0x0400935E RID: 37726
 		public StatusItem Dead;
 
-		// Token: 0x0400935F RID: 37727
 		public StatusItem HealthStatus;
 
-		// Token: 0x04009360 RID: 37728
 		public StatusItem Hot;
 
-		// Token: 0x04009361 RID: 37729
 		public StatusItem Hot_Crop;
 
-		// Token: 0x04009362 RID: 37730
 		public StatusItem Scalding;
 
-		// Token: 0x04009363 RID: 37731
 		public StatusItem Scolding;
 
-		// Token: 0x04009364 RID: 37732
 		public StatusItem Cold;
 
-		// Token: 0x04009365 RID: 37733
 		public StatusItem Cold_Crop;
 
-		// Token: 0x04009366 RID: 37734
 		public StatusItem Crop_Too_Dark;
 
-		// Token: 0x04009367 RID: 37735
 		public StatusItem Crop_Too_Bright;
 
-		// Token: 0x04009368 RID: 37736
 		public StatusItem Crop_Blighted;
 
-		// Token: 0x04009369 RID: 37737
 		public StatusItem Hypothermia;
 
-		// Token: 0x0400936A RID: 37738
 		public StatusItem Hyperthermia;
 
-		// Token: 0x0400936B RID: 37739
 		public StatusItem Suffocating;
 
-		// Token: 0x0400936C RID: 37740
 		public StatusItem Hatching;
 
-		// Token: 0x0400936D RID: 37741
 		public StatusItem Incubating;
 
-		// Token: 0x0400936E RID: 37742
 		public StatusItem Drowning;
 
-		// Token: 0x0400936F RID: 37743
 		public StatusItem Saturated;
 
-		// Token: 0x04009370 RID: 37744
 		public StatusItem DryingOut;
 
-		// Token: 0x04009371 RID: 37745
 		public StatusItem Growing;
 
-		// Token: 0x04009372 RID: 37746
 		public StatusItem CropSleeping;
 
-		// Token: 0x04009373 RID: 37747
 		public StatusItem ReadyForHarvest;
 
-		// Token: 0x04009374 RID: 37748
 		public StatusItem ReadyForHarvest_Branch;
 
-		// Token: 0x04009375 RID: 37749
 		public StatusItem EnvironmentTooWarm;
 
-		// Token: 0x04009376 RID: 37750
 		public StatusItem EnvironmentTooCold;
 
-		// Token: 0x04009377 RID: 37751
 		public StatusItem Entombed;
 
-		// Token: 0x04009378 RID: 37752
 		public StatusItem Wilting;
 
-		// Token: 0x04009379 RID: 37753
 		public StatusItem WiltingDomestic;
 
-		// Token: 0x0400937A RID: 37754
 		public StatusItem WiltingNonGrowing;
 
-		// Token: 0x0400937B RID: 37755
 		public StatusItem WiltingNonGrowingDomestic;
 
-		// Token: 0x0400937C RID: 37756
 		public StatusItem WrongAtmosphere;
 
-		// Token: 0x0400937D RID: 37757
 		public StatusItem AtmosphericPressureTooLow;
 
-		// Token: 0x0400937E RID: 37758
 		public StatusItem AtmosphericPressureTooHigh;
 
-		// Token: 0x0400937F RID: 37759
 		public StatusItem Barren;
 
-		// Token: 0x04009380 RID: 37760
 		public StatusItem NeedsFertilizer;
 
-		// Token: 0x04009381 RID: 37761
 		public StatusItem NeedsIrrigation;
 
-		// Token: 0x04009382 RID: 37762
 		public StatusItem WrongTemperature;
 
-		// Token: 0x04009383 RID: 37763
 		public StatusItem WrongFertilizer;
 
-		// Token: 0x04009384 RID: 37764
 		public StatusItem WrongIrrigation;
 
-		// Token: 0x04009385 RID: 37765
 		public StatusItem WrongFertilizerMajor;
 
-		// Token: 0x04009386 RID: 37766
 		public StatusItem WrongIrrigationMajor;
 
-		// Token: 0x04009387 RID: 37767
 		public StatusItem CantAcceptFertilizer;
 
-		// Token: 0x04009388 RID: 37768
 		public StatusItem CantAcceptIrrigation;
 
-		// Token: 0x04009389 RID: 37769
 		public StatusItem Rotting;
 
-		// Token: 0x0400938A RID: 37770
 		public StatusItem Fresh;
 
-		// Token: 0x0400938B RID: 37771
 		public StatusItem Stale;
 
-		// Token: 0x0400938C RID: 37772
 		public StatusItem Spoiled;
 
-		// Token: 0x0400938D RID: 37773
 		public StatusItem Refrigerated;
 
-		// Token: 0x0400938E RID: 37774
 		public StatusItem RefrigeratedFrozen;
 
-		// Token: 0x0400938F RID: 37775
 		public StatusItem Unrefrigerated;
 
-		// Token: 0x04009390 RID: 37776
 		public StatusItem SterilizingAtmosphere;
 
-		// Token: 0x04009391 RID: 37777
 		public StatusItem ContaminatedAtmosphere;
 
-		// Token: 0x04009392 RID: 37778
 		public StatusItem Old;
 
-		// Token: 0x04009393 RID: 37779
 		public StatusItem ExchangingElementOutput;
 
-		// Token: 0x04009394 RID: 37780
 		public StatusItem ExchangingElementConsume;
 
-		// Token: 0x04009395 RID: 37781
 		public StatusItem Hungry;
 
-		// Token: 0x04009396 RID: 37782
 		public StatusItem HiveHungry;
 
-		// Token: 0x04009397 RID: 37783
 		public StatusItem NoSleepSpot;
 
-		// Token: 0x04009398 RID: 37784
 		public StatusItem ProducingSugarWater;
 
-		// Token: 0x04009399 RID: 37785
 		public StatusItem SugarWaterProductionPaused;
 
-		// Token: 0x0400939A RID: 37786
 		public StatusItem SugarWaterProductionWilted;
 
-		// Token: 0x0400939B RID: 37787
 		public StatusItem SpaceTreeBranchLightStatus;
 
-		// Token: 0x0400939C RID: 37788
 		public StatusItem OriginalPlantMutation;
 
-		// Token: 0x0400939D RID: 37789
 		public StatusItem UnknownMutation;
 
-		// Token: 0x0400939E RID: 37790
 		public StatusItem SpecificPlantMutation;
 
-		// Token: 0x0400939F RID: 37791
 		public StatusItem Crop_Too_NonRadiated;
 
-		// Token: 0x040093A0 RID: 37792
 		public StatusItem Crop_Too_Radiated;
 
-		// Token: 0x040093A1 RID: 37793
 		public StatusItem ElementGrowthGrowing;
 
-		// Token: 0x040093A2 RID: 37794
 		public StatusItem ElementGrowthStunted;
 
-		// Token: 0x040093A3 RID: 37795
 		public StatusItem ElementGrowthHalted;
 
-		// Token: 0x040093A4 RID: 37796
 		public StatusItem ElementGrowthComplete;
 
-		// Token: 0x040093A5 RID: 37797
 		public StatusItem LookingForFood;
 
-		// Token: 0x040093A6 RID: 37798
 		public StatusItem LookingForGas;
 
-		// Token: 0x040093A7 RID: 37799
 		public StatusItem LookingForLiquid;
 
-		// Token: 0x040093A8 RID: 37800
 		public StatusItem Beckoning;
 
-		// Token: 0x040093A9 RID: 37801
 		public StatusItem BeckoningBlocked;
 
-		// Token: 0x040093AA RID: 37802
 		public StatusItem MilkProducer;
 
-		// Token: 0x040093AB RID: 37803
 		public StatusItem MilkFull;
 
-		// Token: 0x040093AC RID: 37804
 		public StatusItem GettingRanched;
 
-		// Token: 0x040093AD RID: 37805
 		public StatusItem GettingMilked;
 
-		// Token: 0x040093AE RID: 37806
 		public StatusItem TemperatureHotUncomfortable;
 
-		// Token: 0x040093AF RID: 37807
 		public StatusItem TemperatureHotDeadly;
 
-		// Token: 0x040093B0 RID: 37808
 		public StatusItem TemperatureColdUncomfortable;
 
-		// Token: 0x040093B1 RID: 37809
 		public StatusItem TemperatureColdDeadly;
 	}
 }

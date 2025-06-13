@@ -1,12 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000AA1 RID: 2721
 public class KBoxCollider2D : KCollider2D
 {
-	// Token: 0x170001FB RID: 507
-	// (get) Token: 0x0600318E RID: 12686 RVA: 0x000C4A0D File Offset: 0x000C2C0D
-	// (set) Token: 0x0600318F RID: 12687 RVA: 0x000C4A15 File Offset: 0x000C2C15
 	public Vector2 size
 	{
 		get
@@ -20,7 +16,6 @@ public class KBoxCollider2D : KCollider2D
 		}
 	}
 
-	// Token: 0x06003190 RID: 12688 RVA: 0x0020D1D8 File Offset: 0x0020B3D8
 	public override Extents GetExtents()
 	{
 		Vector3 vector = base.transform.GetPosition() + new Vector3(base.offset.x, base.offset.y, 0f);
@@ -34,7 +29,6 @@ public class KBoxCollider2D : KCollider2D
 		return new Extents(vector2I.x, vector2I.y, width, height);
 	}
 
-	// Token: 0x06003191 RID: 12689 RVA: 0x0020D2E4 File Offset: 0x0020B4E4
 	public override bool Intersects(Vector2 intersect_pos)
 	{
 		Vector3 vector = base.transform.GetPosition() + new Vector3(base.offset.x, base.offset.y, 0f);
@@ -43,8 +37,6 @@ public class KBoxCollider2D : KCollider2D
 		return intersect_pos.x >= vector2.x && intersect_pos.x <= vector3.x && intersect_pos.y >= vector2.y && intersect_pos.y <= vector3.y;
 	}
 
-	// Token: 0x170001FC RID: 508
-	// (get) Token: 0x06003192 RID: 12690 RVA: 0x0020D3D0 File Offset: 0x0020B5D0
 	public override Bounds bounds
 	{
 		get
@@ -53,14 +45,12 @@ public class KBoxCollider2D : KCollider2D
 		}
 	}
 
-	// Token: 0x06003193 RID: 12691 RVA: 0x0020D434 File Offset: 0x0020B634
 	private void OnDrawGizmosSelected()
 	{
 		Gizmos.color = Color.green;
 		Gizmos.DrawWireCube(this.bounds.center, new Vector3(this._size.x, this._size.y, 0f));
 	}
 
-	// Token: 0x04002208 RID: 8712
 	[SerializeField]
 	private Vector2 _size;
 }

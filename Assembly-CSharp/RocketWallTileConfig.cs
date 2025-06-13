@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000582 RID: 1410
 public class RocketWallTileConfig : IBuildingConfig
 {
-	// Token: 0x0600184E RID: 6222 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x0600184F RID: 6223 RVA: 0x001AA864 File Offset: 0x001A8A64
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "RocketWallTile";
@@ -52,7 +49,6 @@ public class RocketWallTileConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001850 RID: 6224 RVA: 0x001AA990 File Offset: 0x001A8B90
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
@@ -65,7 +61,6 @@ public class RocketWallTileConfig : IBuildingConfig
 		go.AddOrGet<BuildingHP>().destroyOnDamaged = true;
 	}
 
-	// Token: 0x06001851 RID: 6225 RVA: 0x001AA9F4 File Offset: 0x001A8BF4
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		GeneratedBuildings.RemoveLoopingSounds(go);
@@ -77,16 +72,13 @@ public class RocketWallTileConfig : IBuildingConfig
 		go.GetComponent<Deconstructable>().allowDeconstruction = false;
 	}
 
-	// Token: 0x06001852 RID: 6226 RVA: 0x000AA509 File Offset: 0x000A8709
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		base.DoPostConfigureUnderConstruction(go);
 		go.AddOrGet<KAnimGridTileVisualizer>();
 	}
 
-	// Token: 0x0400100C RID: 4108
 	public const string ID = "RocketWallTile";
 
-	// Token: 0x0400100D RID: 4109
 	public static readonly int BlockTileConnectorID = Hash.SDBMLower("tiles_rocket_wall_int");
 }

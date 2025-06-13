@@ -5,10 +5,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000101 RID: 257
 public static class BaseSquirrelConfig
 {
-	// Token: 0x060003F8 RID: 1016 RVA: 0x0015D3B8 File Offset: 0x0015B5B8
 	public static GameObject BaseSquirrel(string id, string name, string desc, string anim_file, string traitId, bool is_baby, string symbolOverridePrefix = null, bool isHuggable = false)
 	{
 		float mass = 100f;
@@ -58,7 +56,6 @@ public static class BaseSquirrelConfig
 		return gameObject;
 	}
 
-	// Token: 0x060003F9 RID: 1017 RVA: 0x0015D774 File Offset: 0x0015B974
 	public static Diet.Info[] BasicDiet(Tag poopTag, float caloriesPerKg, float producedConversionRate, string diseaseId, float diseasePerKgProduced)
 	{
 		HashSet<Tag> hashSet = new HashSet<Tag>();
@@ -74,7 +71,6 @@ public static class BaseSquirrelConfig
 		};
 	}
 
-	// Token: 0x060003FA RID: 1018 RVA: 0x00158C40 File Offset: 0x00156E40
 	public static GameObject SetupDiet(GameObject prefab, Diet.Info[] diet_infos, float minPoopSizeInKg)
 	{
 		Diet diet = new Diet(diet_infos);
@@ -85,7 +81,6 @@ public static class BaseSquirrelConfig
 		return prefab;
 	}
 
-	// Token: 0x060003FB RID: 1019 RVA: 0x00158808 File Offset: 0x00156A08
 	private static int AdjustSpawnLocationCB(int cell)
 	{
 		while (!Grid.Solid[cell])

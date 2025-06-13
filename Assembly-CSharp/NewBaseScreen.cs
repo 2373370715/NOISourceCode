@@ -4,16 +4,13 @@ using FMODUnity;
 using ProcGenGame;
 using UnityEngine;
 
-// Token: 0x02001B4D RID: 6989
 public class NewBaseScreen : KScreen
 {
-	// Token: 0x06009292 RID: 37522 RVA: 0x000B95A1 File Offset: 0x000B77A1
 	public override float GetSortKey()
 	{
 		return 1f;
 	}
 
-	// Token: 0x06009293 RID: 37523 RVA: 0x00104621 File Offset: 0x00102821
 	protected override void OnPrefabInit()
 	{
 		NewBaseScreen.Instance = this;
@@ -21,14 +18,12 @@ public class NewBaseScreen : KScreen
 		TimeOfDay.Instance.SetScale(0f);
 	}
 
-	// Token: 0x06009294 RID: 37524 RVA: 0x0010463E File Offset: 0x0010283E
 	protected override void OnForcedCleanUp()
 	{
 		NewBaseScreen.Instance = null;
 		base.OnForcedCleanUp();
 	}
 
-	// Token: 0x06009295 RID: 37525 RVA: 0x00393AC4 File Offset: 0x00391CC4
 	public static Vector2I SetInitialCamera()
 	{
 		Vector2I vector2I = SaveLoader.Instance.cachedGSD.baseStartPos;
@@ -42,7 +37,6 @@ public class NewBaseScreen : KScreen
 		return vector2I;
 	}
 
-	// Token: 0x06009296 RID: 37526 RVA: 0x00393B5C File Offset: 0x00391D5C
 	protected override void OnActivate()
 	{
 		if (this.disabledUIElements != null)
@@ -63,14 +57,12 @@ public class NewBaseScreen : KScreen
 		this.Final();
 	}
 
-	// Token: 0x06009297 RID: 37527 RVA: 0x0010464C File Offset: 0x0010284C
 	public void Init(Cluster clusterLayout, ITelepadDeliverable[] startingMinionStats)
 	{
 		this.m_clusterLayout = clusterLayout;
 		this.m_minionStartingStats = startingMinionStats;
 	}
 
-	// Token: 0x06009298 RID: 37528 RVA: 0x00393BC0 File Offset: 0x00391DC0
 	protected override void OnDeactivate()
 	{
 		Game.Instance.Trigger(-122303817, null);
@@ -86,7 +78,6 @@ public class NewBaseScreen : KScreen
 		}
 	}
 
-	// Token: 0x06009299 RID: 37529 RVA: 0x00393C10 File Offset: 0x00391E10
 	public override void OnKeyDown(KButtonEvent e)
 	{
 		global::Action[] array = new global::Action[4];
@@ -102,7 +93,6 @@ public class NewBaseScreen : KScreen
 		}
 	}
 
-	// Token: 0x0600929A RID: 37530 RVA: 0x00393C50 File Offset: 0x00391E50
 	private void Final()
 	{
 		SpeedControlScreen.Instance.Unpause(false);
@@ -115,7 +105,6 @@ public class NewBaseScreen : KScreen
 		this.Deactivate();
 	}
 
-	// Token: 0x0600929B RID: 37531 RVA: 0x00393CA0 File Offset: 0x00391EA0
 	private void SpawnMinions(GameObject start_pad)
 	{
 		int num = Grid.PosToCell(start_pad);
@@ -157,22 +146,16 @@ public class NewBaseScreen : KScreen
 		ClusterManager.Instance.activeWorld.SetDupeVisited();
 	}
 
-	// Token: 0x04006F18 RID: 28440
 	public static NewBaseScreen Instance;
 
-	// Token: 0x04006F19 RID: 28441
 	[SerializeField]
 	private CanvasGroup[] disabledUIElements;
 
-	// Token: 0x04006F1A RID: 28442
 	public EventReference ScanSoundMigrated;
 
-	// Token: 0x04006F1B RID: 28443
 	public EventReference BuildBaseSoundMigrated;
 
-	// Token: 0x04006F1C RID: 28444
 	private ITelepadDeliverable[] m_minionStartingStats;
 
-	// Token: 0x04006F1D RID: 28445
 	private Cluster m_clusterLayout;
 }

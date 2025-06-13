@@ -5,10 +5,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000E7 RID: 231
 public static class BaseHatchConfig
 {
-	// Token: 0x060003AF RID: 943 RVA: 0x00159774 File Offset: 0x00157974
 	public static GameObject BaseHatch(string id, string name, string desc, string anim_file, string traitId, bool is_baby, string symbolOverridePrefix = null)
 	{
 		float mass = 100f;
@@ -57,7 +55,6 @@ public static class BaseHatchConfig
 		return gameObject;
 	}
 
-	// Token: 0x060003B0 RID: 944 RVA: 0x00159B68 File Offset: 0x00157D68
 	public static List<Diet.Info> BasicRockDiet(Tag poopTag, float caloriesPerKg, float producedConversionRate, string diseaseId, float diseasePerKgProduced)
 	{
 		HashSet<Tag> hashSet = new HashSet<Tag>();
@@ -73,7 +70,6 @@ public static class BaseHatchConfig
 		};
 	}
 
-	// Token: 0x060003B1 RID: 945 RVA: 0x00159BFC File Offset: 0x00157DFC
 	public static List<Diet.Info> HardRockDiet(Tag poopTag, float caloriesPerKg, float producedConversionRate, string diseaseId, float diseasePerKgProduced)
 	{
 		HashSet<Tag> hashSet = new HashSet<Tag>();
@@ -87,7 +83,6 @@ public static class BaseHatchConfig
 		};
 	}
 
-	// Token: 0x060003B2 RID: 946 RVA: 0x00159C70 File Offset: 0x00157E70
 	public static List<Diet.Info> MetalDiet(Tag poopTag, float caloriesPerKg, float producedConversionRate, string diseaseId, float diseasePerKgProduced)
 	{
 		List<Diet.Info> list = new List<Diet.Info>();
@@ -121,7 +116,6 @@ public static class BaseHatchConfig
 		return list;
 	}
 
-	// Token: 0x060003B3 RID: 947 RVA: 0x00159E4C File Offset: 0x0015804C
 	public static List<Diet.Info> VeggieDiet(Tag poopTag, float caloriesPerKg, float producedConversionRate, string diseaseId, float diseasePerKgProduced)
 	{
 		HashSet<Tag> hashSet = new HashSet<Tag>();
@@ -136,7 +130,6 @@ public static class BaseHatchConfig
 		};
 	}
 
-	// Token: 0x060003B4 RID: 948 RVA: 0x00159ED0 File Offset: 0x001580D0
 	public static List<Diet.Info> FoodDiet(Tag poopTag, float caloriesPerKg, float producedConversionRate, string diseaseId, float diseasePerKgProduced)
 	{
 		List<Diet.Info> list = new List<Diet.Info>();
@@ -153,7 +146,6 @@ public static class BaseHatchConfig
 		return list;
 	}
 
-	// Token: 0x060003B5 RID: 949 RVA: 0x001580FC File Offset: 0x001562FC
 	public static GameObject SetupDiet(GameObject prefab, List<Diet.Info> diet_infos, float referenceCaloriesPerKg, float minPoopSizeInKg)
 	{
 		Diet diet = new Diet(diet_infos.ToArray());
@@ -164,7 +156,6 @@ public static class BaseHatchConfig
 		return prefab;
 	}
 
-	// Token: 0x060003B6 RID: 950 RVA: 0x00158808 File Offset: 0x00156A08
 	private static int AdjustSpawnLocationCB(int cell)
 	{
 		while (!Grid.Solid[cell])

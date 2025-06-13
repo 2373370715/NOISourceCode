@@ -4,21 +4,17 @@ using Database;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001DB0 RID: 7600
 public class KleiPermitDioramaVis_AutomationGates : KMonoBehaviour, IKleiPermitDioramaVisTarget
 {
-	// Token: 0x06009EC8 RID: 40648 RVA: 0x000CEC86 File Offset: 0x000CCE86
 	public GameObject GetGameObject()
 	{
 		return base.gameObject;
 	}
 
-	// Token: 0x06009EC9 RID: 40649 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void ConfigureSetup()
 	{
 	}
 
-	// Token: 0x06009ECA RID: 40650 RVA: 0x003DDB60 File Offset: 0x003DBD60
 	public void ConfigureWith(PermitResource permit)
 	{
 		this.itemSprite.gameObject.SetActive(false);
@@ -65,14 +61,11 @@ public class KleiPermitDioramaVis_AutomationGates : KMonoBehaviour, IKleiPermitD
 		KleiPermitVisUtil.AnimateIn(this.buildingKAnim, default(Updater));
 	}
 
-	// Token: 0x04007CBC RID: 31932
 	[SerializeField]
 	private Image itemSprite;
 
-	// Token: 0x04007CBD RID: 31933
 	[SerializeField]
 	private KBatchedAnimController buildingKAnim;
 
-	// Token: 0x04007CBE RID: 31934
 	private PrefabDefinedUIPosition buildingKAnimPosition = new PrefabDefinedUIPosition();
 }

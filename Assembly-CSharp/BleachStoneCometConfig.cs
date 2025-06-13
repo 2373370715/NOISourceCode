@@ -2,22 +2,18 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000472 RID: 1138
 public class BleachStoneCometConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x0600134F RID: 4943 RVA: 0x000AA117 File Offset: 0x000A8317
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06001350 RID: 4944 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x06001351 RID: 4945 RVA: 0x001983C8 File Offset: 0x001965C8
 	public GameObject CreatePrefab()
 	{
 		float mass = ElementLoader.FindElementByHash(SimHashes.OxyRock).defaultValues.mass;
@@ -33,19 +29,15 @@ public class BleachStoneCometConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x06001352 RID: 4946 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject go)
 	{
 	}
 
-	// Token: 0x06001353 RID: 4947 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject go)
 	{
 	}
 
-	// Token: 0x04000D53 RID: 3411
 	public static string ID = "BleachStoneComet";
 
-	// Token: 0x04000D54 RID: 3412
 	private const int ADDED_CELLS = 1;
 }

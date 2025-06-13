@@ -3,16 +3,13 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005D5 RID: 1493
 public class SublimationStationConfig : IBuildingConfig
 {
-	// Token: 0x06001A1B RID: 6683 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06001A1C RID: 6684 RVA: 0x001B19FC File Offset: 0x001AFBFC
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "SublimationStation";
@@ -39,7 +36,6 @@ public class SublimationStationConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001A1D RID: 6685 RVA: 0x001B1AAC File Offset: 0x001AFCAC
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		Prioritizable.AddRef(go);
@@ -68,25 +64,19 @@ public class SublimationStationConfig : IBuildingConfig
 		manualDeliveryKG.choreTypeIDHash = Db.Get().ChoreTypes.FetchCritical.IdHash;
 	}
 
-	// Token: 0x06001A1E RID: 6686 RVA: 0x000AA1AD File Offset: 0x000A83AD
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
 		go.AddOrGetDef<PoweredActiveController.Def>();
 	}
 
-	// Token: 0x040010E9 RID: 4329
 	public const string ID = "SublimationStation";
 
-	// Token: 0x040010EA RID: 4330
 	private const float DIRT_CONSUME_RATE = 1f;
 
-	// Token: 0x040010EB RID: 4331
 	private const float DIRT_STORAGE = 600f;
 
-	// Token: 0x040010EC RID: 4332
 	private const float OXYGEN_GENERATION_RATE = 0.66f;
 
-	// Token: 0x040010ED RID: 4333
 	private const float OXYGEN_TEMPERATURE = 303.15f;
 }

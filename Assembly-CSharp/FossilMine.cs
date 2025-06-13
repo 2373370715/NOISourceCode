@@ -2,10 +2,8 @@
 using STRINGS;
 using TUNING;
 
-// Token: 0x02000346 RID: 838
 public class FossilMine : ComplexFabricator
 {
-	// Token: 0x06000D38 RID: 3384 RVA: 0x0017C96C File Offset: 0x0017AB6C
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -18,7 +16,6 @@ public class FossilMine : ComplexFabricator
 		this.choreType = Db.Get().ChoreTypes.Art;
 	}
 
-	// Token: 0x06000D39 RID: 3385 RVA: 0x0017CA14 File Offset: 0x0017AC14
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -34,7 +31,6 @@ public class FossilMine : ComplexFabricator
 		this.workable.SkillExperienceMultiplier = SKILLS.MOST_DAY_EXPERIENCE;
 	}
 
-	// Token: 0x06000D3A RID: 3386 RVA: 0x0017CADC File Offset: 0x0017ACDC
 	public void SetActiveState(bool active)
 	{
 		if (active)
@@ -62,7 +58,6 @@ public class FossilMine : ComplexFabricator
 		base.enabled = false;
 	}
 
-	// Token: 0x040009CC RID: 2508
 	[MyCmpAdd]
 	protected new FossilMineSM fabricatorSM;
 }

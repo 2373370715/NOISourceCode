@@ -5,10 +5,8 @@ using Klei.AI;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001C86 RID: 7302
 public class CodexEntryGenerator_Creatures
 {
-	// Token: 0x06009862 RID: 39010 RVA: 0x003BC4BC File Offset: 0x003BA6BC
 	public static Dictionary<string, CodexEntry> GenerateEntries()
 	{
 		CodexEntryGenerator_Creatures.<>c__DisplayClass6_0 CS$<>8__locals1;
@@ -39,7 +37,6 @@ public class CodexEntryGenerator_Creatures
 		return CS$<>8__locals1.results;
 	}
 
-	// Token: 0x06009863 RID: 39011 RVA: 0x003BC6B4 File Offset: 0x003BA8B4
 	private static CodexEntry GenerateFieldGuideEntry()
 	{
 		CodexEntryGenerator_Creatures.<>c__DisplayClass7_0 CS$<>8__locals1;
@@ -118,7 +115,6 @@ public class CodexEntryGenerator_Creatures
 		return CS$<>8__locals1.generalInfoEntry;
 	}
 
-	// Token: 0x06009864 RID: 39012 RVA: 0x003BCBCC File Offset: 0x003BADCC
 	private static CodexEntry GenerateCritterEntry(Tag speciesTag, string name, List<GameObject> brains)
 	{
 		CodexEntry codexEntry = null;
@@ -172,7 +168,6 @@ public class CodexEntryGenerator_Creatures
 		return codexEntry;
 	}
 
-	// Token: 0x06009865 RID: 39013 RVA: 0x003BCDA4 File Offset: 0x003BAFA4
 	private static void GenerateCreatureDescriptionContainers(GameObject creature, List<ContentContainer> containers)
 	{
 		containers.Add(new ContentContainer(new List<ICodexWidget>
@@ -360,7 +355,6 @@ public class CodexEntryGenerator_Creatures
 		}
 	}
 
-	// Token: 0x06009867 RID: 39015 RVA: 0x001078D2 File Offset: 0x00105AD2
 	[CompilerGenerated]
 	internal static void <GenerateEntries>g__AddEntry|6_0(string entryId, CodexEntry entry, string parentEntryId = "CREATURES", ref CodexEntryGenerator_Creatures.<>c__DisplayClass6_0 A_3)
 	{
@@ -373,7 +367,6 @@ public class CodexEntryGenerator_Creatures
 		A_3.results.Add(entryId, entry);
 	}
 
-	// Token: 0x06009868 RID: 39016 RVA: 0x003BD608 File Offset: 0x003BB808
 	[CompilerGenerated]
 	internal static void <GenerateEntries>g__PushCritterEntry|6_1(Tag speciesTag, string name, ref CodexEntryGenerator_Creatures.<>c__DisplayClass6_0 A_2)
 	{
@@ -384,7 +377,6 @@ public class CodexEntryGenerator_Creatures
 		}
 	}
 
-	// Token: 0x06009869 RID: 39017 RVA: 0x003BD644 File Offset: 0x003BB844
 	[CompilerGenerated]
 	internal static void <GenerateEntries>g__PopAndAddAllCritterEntries|6_2(ref CodexEntryGenerator_Creatures.<>c__DisplayClass6_0 A_0)
 	{
@@ -396,7 +388,6 @@ public class CodexEntryGenerator_Creatures
 		}
 	}
 
-	// Token: 0x0600986A RID: 39018 RVA: 0x003BD6C8 File Offset: 0x003BB8C8
 	[CompilerGenerated]
 	internal static void <GenerateFieldGuideEntry>g__AddSubEntry|7_0(string id, string name, ref CodexEntryGenerator_Creatures.<>c__DisplayClass7_0 A_2, ref CodexEntryGenerator_Creatures.<>c__DisplayClass7_1 A_3)
 	{
@@ -409,14 +400,12 @@ public class CodexEntryGenerator_Creatures
 		A_2.generalInfoEntry.subEntries.Add(A_3.subEntry);
 	}
 
-	// Token: 0x0600986B RID: 39019 RVA: 0x001078F4 File Offset: 0x00105AF4
 	[CompilerGenerated]
 	internal static void <GenerateFieldGuideEntry>g__AddImage|7_1(Sprite sprite, ref CodexEntryGenerator_Creatures.<>c__DisplayClass7_1 A_1)
 	{
 		A_1.subEntryContents.Add(new CodexImage(432, 1, sprite));
 	}
 
-	// Token: 0x0600986C RID: 39020 RVA: 0x0010790D File Offset: 0x00105B0D
 	[CompilerGenerated]
 	internal static void <GenerateFieldGuideEntry>g__AddSubtitle|7_2(string text, ref CodexEntryGenerator_Creatures.<>c__DisplayClass7_1 A_1)
 	{
@@ -424,21 +413,18 @@ public class CodexEntryGenerator_Creatures
 		A_1.subEntryContents.Add(new CodexText(text, CodexTextStyle.Subtitle, null));
 	}
 
-	// Token: 0x0600986D RID: 39021 RVA: 0x00107928 File Offset: 0x00105B28
 	[CompilerGenerated]
 	internal static void <GenerateFieldGuideEntry>g__AddBody|7_3(string text, ref CodexEntryGenerator_Creatures.<>c__DisplayClass7_1 A_1)
 	{
 		A_1.subEntryContents.Add(new CodexText(text, CodexTextStyle.Body, null));
 	}
 
-	// Token: 0x0600986E RID: 39022 RVA: 0x0010793D File Offset: 0x00105B3D
 	[CompilerGenerated]
 	internal static void <GenerateFieldGuideEntry>g__AddSpacer|7_4(ref CodexEntryGenerator_Creatures.<>c__DisplayClass7_1 A_0)
 	{
 		A_0.subEntryContents.Add(new CodexSpacer());
 	}
 
-	// Token: 0x0600986F RID: 39023 RVA: 0x003BD734 File Offset: 0x003BB934
 	[CompilerGenerated]
 	internal static void <GenerateFieldGuideEntry>g__AddBulletPoint|7_5(string text, ref CodexEntryGenerator_Creatures.<>c__DisplayClass7_1 A_1)
 	{
@@ -450,21 +436,15 @@ public class CodexEntryGenerator_Creatures
 		A_1.subEntryContents.Add(new CodexText(text, CodexTextStyle.Body, null));
 	}
 
-	// Token: 0x0400766A RID: 30314
 	public const string CATEGORY_ID = "CREATURES";
 
-	// Token: 0x0400766B RID: 30315
 	public const string GUIDE_ID = "CREATURES::GUIDE";
 
-	// Token: 0x0400766C RID: 30316
 	public const string GUIDE_METABOLISM_ID = "CREATURES::GUIDE::METABOLISM";
 
-	// Token: 0x0400766D RID: 30317
 	public const string GUIDE_MOOD_ID = "CREATURES::GUIDE::MOOD";
 
-	// Token: 0x0400766E RID: 30318
 	public const string GUIDE_FERTILITY_ID = "CREATURES::GUIDE::FERTILITY";
 
-	// Token: 0x0400766F RID: 30319
 	public const string GUIDE_DOMESTICATION_ID = "CREATURES::GUIDE::DOMESTICATION";
 }

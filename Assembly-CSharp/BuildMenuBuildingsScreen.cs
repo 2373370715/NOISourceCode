@@ -5,16 +5,13 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001AF4 RID: 6900
 public class BuildMenuBuildingsScreen : KIconToggleMenu
 {
-	// Token: 0x06009052 RID: 36946 RVA: 0x000F0401 File Offset: 0x000EE601
 	public override float GetSortKey()
 	{
 		return 8f;
 	}
 
-	// Token: 0x06009053 RID: 36947 RVA: 0x0038668C File Offset: 0x0038488C
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -24,7 +21,6 @@ public class BuildMenuBuildingsScreen : KIconToggleMenu
 		Game.Instance.Subscribe(-1190690038, new Action<object>(this.OnBuildToolDeactivated));
 	}
 
-	// Token: 0x06009054 RID: 36948 RVA: 0x003866F0 File Offset: 0x003848F0
 	public void Configure(HashedString category, IList<BuildMenu.BuildingInfo> building_infos)
 	{
 		this.ClearButtons();
@@ -68,7 +64,6 @@ public class BuildMenuBuildingsScreen : KIconToggleMenu
 		this.contentSizeLayout.minHeight = vector.y;
 	}
 
-	// Token: 0x06009055 RID: 36949 RVA: 0x00102CEA File Offset: 0x00100EEA
 	private void ConfigureToolTip(ToolTip tooltip, BuildingDef def)
 	{
 		tooltip.ClearMultiStringTooltip();
@@ -76,7 +71,6 @@ public class BuildMenuBuildingsScreen : KIconToggleMenu
 		tooltip.AddMultiStringTooltip(def.Effect, this.buildingToolTipSettings.BuildButtonDescription);
 	}
 
-	// Token: 0x06009056 RID: 36950 RVA: 0x003869B0 File Offset: 0x00384BB0
 	public void CloseRecipe(bool playSound = false)
 	{
 		if (playSound)
@@ -93,7 +87,6 @@ public class BuildMenuBuildingsScreen : KIconToggleMenu
 		this.onBuildingSelected(this.selectedBuilding);
 	}
 
-	// Token: 0x06009057 RID: 36951 RVA: 0x00386A18 File Offset: 0x00384C18
 	private void RefreshToggle(KIconToggleMenu.ToggleInfo info)
 	{
 		if (info == null || info.toggle == null)
@@ -208,14 +201,12 @@ public class BuildMenuBuildingsScreen : KIconToggleMenu
 		}
 	}
 
-	// Token: 0x06009058 RID: 36952 RVA: 0x00102D20 File Offset: 0x00100F20
 	public void ClearUI()
 	{
 		this.Show(false);
 		this.ClearButtons();
 	}
 
-	// Token: 0x06009059 RID: 36953 RVA: 0x00386E08 File Offset: 0x00385008
 	private void ClearButtons()
 	{
 		foreach (KToggle ktoggle in this.toggles)
@@ -234,14 +225,12 @@ public class BuildMenuBuildingsScreen : KIconToggleMenu
 		}
 	}
 
-	// Token: 0x0600905A RID: 36954 RVA: 0x00386EA0 File Offset: 0x003850A0
 	private void OnClickBuilding(KIconToggleMenu.ToggleInfo toggle_info)
 	{
 		BuildMenuBuildingsScreen.UserData userData = toggle_info.userData as BuildMenuBuildingsScreen.UserData;
 		this.OnSelectBuilding(userData.def);
 	}
 
-	// Token: 0x0600905B RID: 36955 RVA: 0x00386EC8 File Offset: 0x003850C8
 	private void OnSelectBuilding(BuildingDef def)
 	{
 		PlanScreen.RequirementsState requirementsState = BuildMenu.Instance.BuildableState(def);
@@ -270,7 +259,6 @@ public class BuildMenuBuildingsScreen : KIconToggleMenu
 		this.onBuildingSelected(this.selectedBuilding);
 	}
 
-	// Token: 0x0600905C RID: 36956 RVA: 0x00386F6C File Offset: 0x0038516C
 	public void UpdateBuildableStates()
 	{
 		if (this.toggleInfo == null || this.toggleInfo.Count <= 0)
@@ -303,13 +291,11 @@ public class BuildMenuBuildingsScreen : KIconToggleMenu
 		}
 	}
 
-	// Token: 0x0600905D RID: 36957 RVA: 0x00102D2F File Offset: 0x00100F2F
 	private void OnResearchComplete(object data)
 	{
 		this.UpdateBuildableStates();
 	}
 
-	// Token: 0x0600905E RID: 36958 RVA: 0x00387040 File Offset: 0x00385240
 	private void DeactivateBuildTools()
 	{
 		InterfaceTool activeTool = PlayerController.Instance.ActiveTool;
@@ -323,7 +309,6 @@ public class BuildMenuBuildingsScreen : KIconToggleMenu
 		}
 	}
 
-	// Token: 0x0600905F RID: 36959 RVA: 0x003870A8 File Offset: 0x003852A8
 	public override void OnKeyDown(KButtonEvent e)
 	{
 		if (this.mouseOver && base.ConsumeMouseScroll && !e.TryConsume(global::Action.ZoomIn))
@@ -351,7 +336,6 @@ public class BuildMenuBuildingsScreen : KIconToggleMenu
 		}
 	}
 
-	// Token: 0x06009060 RID: 36960 RVA: 0x0038712C File Offset: 0x0038532C
 	public override void OnKeyUp(KButtonEvent e)
 	{
 		if (!this.HasFocus)
@@ -375,7 +359,6 @@ public class BuildMenuBuildingsScreen : KIconToggleMenu
 		}
 	}
 
-	// Token: 0x06009061 RID: 36961 RVA: 0x003871A4 File Offset: 0x003853A4
 	public override void Close()
 	{
 		ToolMenu.Instance.ClearSelection();
@@ -389,7 +372,6 @@ public class BuildMenuBuildingsScreen : KIconToggleMenu
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06009062 RID: 36962 RVA: 0x00102D37 File Offset: 0x00100F37
 	public override void SetHasFocus(bool has_focus)
 	{
 		base.SetHasFocus(has_focus);
@@ -399,106 +381,79 @@ public class BuildMenuBuildingsScreen : KIconToggleMenu
 		}
 	}
 
-	// Token: 0x06009063 RID: 36963 RVA: 0x00102D6F File Offset: 0x00100F6F
 	private void OnBuildToolDeactivated(object data)
 	{
 		this.CloseRecipe(false);
 	}
 
-	// Token: 0x04006D10 RID: 27920
 	[SerializeField]
 	private Image focusIndicator;
 
-	// Token: 0x04006D11 RID: 27921
 	[SerializeField]
 	private Color32 focusedColour;
 
-	// Token: 0x04006D12 RID: 27922
 	[SerializeField]
 	private Color32 unfocusedColour;
 
-	// Token: 0x04006D13 RID: 27923
 	public Action<BuildingDef> onBuildingSelected;
 
-	// Token: 0x04006D14 RID: 27924
 	[SerializeField]
 	private LocText titleLabel;
 
-	// Token: 0x04006D15 RID: 27925
 	[SerializeField]
 	private BuildMenuBuildingsScreen.BuildingToolTipSettings buildingToolTipSettings;
 
-	// Token: 0x04006D16 RID: 27926
 	[SerializeField]
 	private LayoutElement contentSizeLayout;
 
-	// Token: 0x04006D17 RID: 27927
 	[SerializeField]
 	private GridLayoutGroup gridSizer;
 
-	// Token: 0x04006D18 RID: 27928
 	[SerializeField]
 	private Sprite Overlay_NeedTech;
 
-	// Token: 0x04006D19 RID: 27929
 	[SerializeField]
 	private Material defaultUIMaterial;
 
-	// Token: 0x04006D1A RID: 27930
 	[SerializeField]
 	private Material desaturatedUIMaterial;
 
-	// Token: 0x04006D1B RID: 27931
 	private BuildingDef selectedBuilding;
 
-	// Token: 0x02001AF5 RID: 6901
 	[Serializable]
 	public struct BuildingToolTipSettings
 	{
-		// Token: 0x04006D1C RID: 27932
 		public TextStyleSetting BuildButtonName;
 
-		// Token: 0x04006D1D RID: 27933
 		public TextStyleSetting BuildButtonDescription;
 
-		// Token: 0x04006D1E RID: 27934
 		public TextStyleSetting MaterialRequirement;
 
-		// Token: 0x04006D1F RID: 27935
 		public TextStyleSetting ResearchRequirement;
 	}
 
-	// Token: 0x02001AF6 RID: 6902
 	[Serializable]
 	public struct BuildingNameTextSetting
 	{
-		// Token: 0x04006D20 RID: 27936
 		public TextStyleSetting ActiveSelected;
 
-		// Token: 0x04006D21 RID: 27937
 		public TextStyleSetting ActiveDeselected;
 
-		// Token: 0x04006D22 RID: 27938
 		public TextStyleSetting InactiveSelected;
 
-		// Token: 0x04006D23 RID: 27939
 		public TextStyleSetting InactiveDeselected;
 	}
 
-	// Token: 0x02001AF7 RID: 6903
 	private class UserData
 	{
-		// Token: 0x06009065 RID: 36965 RVA: 0x00102D80 File Offset: 0x00100F80
 		public UserData(BuildingDef def, PlanScreen.RequirementsState state)
 		{
 			this.def = def;
 			this.requirementsState = state;
 		}
 
-		// Token: 0x04006D24 RID: 27940
 		public BuildingDef def;
 
-		// Token: 0x04006D25 RID: 27941
 		public PlanScreen.RequirementsState requirementsState;
 	}
 }

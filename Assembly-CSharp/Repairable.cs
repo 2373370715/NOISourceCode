@@ -8,12 +8,10 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000B09 RID: 2825
 [SerializationConfig(MemberSerialization.OptIn)]
 [AddComponentMenu("KMonoBehaviour/Workable/Repairable")]
 public class Repairable : Workable
 {
-	// Token: 0x06003455 RID: 13397 RVA: 0x00216FB8 File Offset: 0x002151B8
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -31,7 +29,6 @@ public class Repairable : Workable
 		this.workingPstFailed = null;
 	}
 
-	// Token: 0x06003456 RID: 13398 RVA: 0x000C69C9 File Offset: 0x000C4BC9
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -41,20 +38,17 @@ public class Repairable : Workable
 		this.workTimeRemaining = float.PositiveInfinity;
 	}
 
-	// Token: 0x06003457 RID: 13399 RVA: 0x000C69FE File Offset: 0x000C4BFE
 	private void OnProxyStorageChanged(object data)
 	{
 		base.Trigger(-1697596308, data);
 	}
 
-	// Token: 0x06003458 RID: 13400 RVA: 0x000C6A0C File Offset: 0x000C4C0C
 	protected override void OnLoadLevel()
 	{
 		this.smi = null;
 		base.OnLoadLevel();
 	}
 
-	// Token: 0x06003459 RID: 13401 RVA: 0x000C6A1B File Offset: 0x000C4C1B
 	protected override void OnCleanUp()
 	{
 		if (this.smi != null)
@@ -64,7 +58,6 @@ public class Repairable : Workable
 		base.OnCleanUp();
 	}
 
-	// Token: 0x0600345A RID: 13402 RVA: 0x00217068 File Offset: 0x00215268
 	private void OnRefreshUserMenu(object data)
 	{
 		if (base.gameObject != null && this.smi != null)
@@ -78,7 +71,6 @@ public class Repairable : Workable
 		}
 	}
 
-	// Token: 0x0600345B RID: 13403 RVA: 0x0021714C File Offset: 0x0021534C
 	private void AllowRepair()
 	{
 		if (DebugHandler.InstantBuildMode)
@@ -90,7 +82,6 @@ public class Repairable : Workable
 		this.OnRefreshUserMenu(null);
 	}
 
-	// Token: 0x0600345C RID: 13404 RVA: 0x000C6A3B File Offset: 0x000C4C3B
 	public void CancelRepair()
 	{
 		if (this.smi != null)
@@ -100,7 +91,6 @@ public class Repairable : Workable
 		this.OnRefreshUserMenu(null);
 	}
 
-	// Token: 0x0600345D RID: 13405 RVA: 0x002171A0 File Offset: 0x002153A0
 	protected override void OnStartWork(WorkerBase worker)
 	{
 		base.OnStartWork(worker);
@@ -113,7 +103,6 @@ public class Repairable : Workable
 		this.timeSpentRepairing = 0f;
 	}
 
-	// Token: 0x0600345E RID: 13406 RVA: 0x002171F8 File Offset: 0x002153F8
 	protected override bool OnWorkTick(WorkerBase worker, float dt)
 	{
 		float num = Mathf.Sqrt(base.GetComponent<PrimaryElement>().Mass);
@@ -137,7 +126,6 @@ public class Repairable : Workable
 		return false;
 	}
 
-	// Token: 0x0600345F RID: 13407 RVA: 0x002172C0 File Offset: 0x002154C0
 	protected override void OnStopWork(WorkerBase worker)
 	{
 		base.OnStopWork(worker);
@@ -148,7 +136,6 @@ public class Repairable : Workable
 		}
 	}
 
-	// Token: 0x06003460 RID: 13408 RVA: 0x002172F0 File Offset: 0x002154F0
 	protected override void OnCompleteWork(WorkerBase worker)
 	{
 		Operational component = base.GetComponent<Operational>();
@@ -158,7 +145,6 @@ public class Repairable : Workable
 		}
 	}
 
-	// Token: 0x06003461 RID: 13409 RVA: 0x0021731C File Offset: 0x0021551C
 	public void CreateStorageProxy()
 	{
 		if (this.storageProxy == null)
@@ -173,7 +159,6 @@ public class Repairable : Workable
 		}
 	}
 
-	// Token: 0x06003462 RID: 13410 RVA: 0x002173C0 File Offset: 0x002155C0
 	[OnSerializing]
 	private void OnSerializing()
 	{
@@ -191,14 +176,12 @@ public class Repairable : Workable
 		}
 	}
 
-	// Token: 0x06003463 RID: 13411 RVA: 0x000C6A67 File Offset: 0x000C4C67
 	[OnSerialized]
 	private void OnSerialized()
 	{
 		this.storedData = null;
 	}
 
-	// Token: 0x06003464 RID: 13412 RVA: 0x00217448 File Offset: 0x00215648
 	[OnDeserialized]
 	private void OnDeserialized()
 	{
@@ -211,44 +194,33 @@ public class Repairable : Workable
 		}
 	}
 
-	// Token: 0x040023D8 RID: 9176
 	public float expectedRepairTime = -1f;
 
-	// Token: 0x040023D9 RID: 9177
 	[MyCmpGet]
 	private BuildingHP hp;
 
-	// Token: 0x040023DA RID: 9178
 	private Repairable.SMInstance smi;
 
-	// Token: 0x040023DB RID: 9179
 	private Storage storageProxy;
 
-	// Token: 0x040023DC RID: 9180
 	[Serialize]
 	private byte[] storedData;
 
-	// Token: 0x040023DD RID: 9181
 	private float timeSpentRepairing;
 
-	// Token: 0x040023DE RID: 9182
 	private static readonly Operational.Flag repairedFlag = new Operational.Flag("repaired", Operational.Flag.Type.Functional);
 
-	// Token: 0x040023DF RID: 9183
 	private static readonly EventSystem.IntraObjectHandler<Repairable> OnRefreshUserMenuDelegate = new EventSystem.IntraObjectHandler<Repairable>(delegate(Repairable component, object data)
 	{
 		component.OnRefreshUserMenu(data);
 	});
 
-	// Token: 0x02000B0A RID: 2826
 	public class SMInstance : GameStateMachine<Repairable.States, Repairable.SMInstance, Repairable, object>.GameInstance
 	{
-		// Token: 0x06003467 RID: 13415 RVA: 0x000C6AAF File Offset: 0x000C4CAF
 		public SMInstance(Repairable smi) : base(smi)
 		{
 		}
 
-		// Token: 0x06003468 RID: 13416 RVA: 0x00217484 File Offset: 0x00215684
 		public bool HasRequiredMass()
 		{
 			PrimaryElement component = base.GetComponent<PrimaryElement>();
@@ -257,7 +229,6 @@ public class Repairable : Workable
 			return primaryElement != null && primaryElement.Mass >= num;
 		}
 
-		// Token: 0x06003469 RID: 13417 RVA: 0x002174D8 File Offset: 0x002156D8
 		public KeyValuePair<Tag, float> GetRequiredMass()
 		{
 			PrimaryElement component = base.GetComponent<PrimaryElement>();
@@ -267,13 +238,11 @@ public class Repairable : Workable
 			return new KeyValuePair<Tag, float>(component.Element.tag, value);
 		}
 
-		// Token: 0x0600346A RID: 13418 RVA: 0x000C6AB8 File Offset: 0x000C4CB8
 		public void ConsumeRepairMaterials()
 		{
 			base.smi.master.storageProxy.ConsumeAllIgnoringDisease();
 		}
 
-		// Token: 0x0600346B RID: 13419 RVA: 0x00217548 File Offset: 0x00215748
 		public void DestroyStorageProxy()
 		{
 			if (base.smi.master.storageProxy != null)
@@ -298,20 +267,16 @@ public class Repairable : Workable
 			}
 		}
 
-		// Token: 0x0600346C RID: 13420 RVA: 0x000C6ACF File Offset: 0x000C4CCF
 		public bool NeedsRepairs()
 		{
 			return base.smi.master.GetComponent<BuildingHP>().NeedsRepairs;
 		}
 
-		// Token: 0x040023E0 RID: 9184
 		private const float REQUIRED_MASS_SCALE = 0.1f;
 	}
 
-	// Token: 0x02000B0B RID: 2827
 	public class States : GameStateMachine<Repairable.States, Repairable.SMInstance, Repairable>
 	{
-		// Token: 0x0600346D RID: 13421 RVA: 0x0021765C File Offset: 0x0021585C
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.repaired;
@@ -341,7 +306,6 @@ public class Repairable : Workable
 			this.repaired.EventTransition(GameHashes.BuildingReceivedDamage, this.allowed, (Repairable.SMInstance smi) => smi.NeedsRepairs()).OnSignal(this.allow, this.allowed).OnSignal(this.forbid, this.forbidden);
 		}
 
-		// Token: 0x0600346E RID: 13422 RVA: 0x002178A8 File Offset: 0x00215AA8
 		private Chore CreateFetchChore(Repairable.SMInstance smi)
 		{
 			PrimaryElement component = smi.master.GetComponent<PrimaryElement>();
@@ -354,7 +318,6 @@ public class Repairable : Workable
 			return new FetchChore(Db.Get().ChoreTypes.RepairFetch, smi.master.storageProxy, amount, tags, FetchChore.MatchCriteria.MatchID, Tag.Invalid, null, null, true, null, null, null, Operational.State.None, 0);
 		}
 
-		// Token: 0x0600346F RID: 13423 RVA: 0x00217944 File Offset: 0x00215B44
 		private Chore CreateRepairChore(Repairable.SMInstance smi)
 		{
 			WorkChore<Repairable> workChore = new WorkChore<Repairable>(Db.Get().ChoreTypes.Repair, smi.master, null, true, null, null, null, true, null, false, false, null, false, true, true, PriorityScreen.PriorityClass.basic, 5, true, true);
@@ -372,25 +335,18 @@ public class Repairable : Workable
 			return workChore;
 		}
 
-		// Token: 0x040023E1 RID: 9185
 		public StateMachine<Repairable.States, Repairable.SMInstance, Repairable, object>.Signal allow;
 
-		// Token: 0x040023E2 RID: 9186
 		public StateMachine<Repairable.States, Repairable.SMInstance, Repairable, object>.Signal forbid;
 
-		// Token: 0x040023E3 RID: 9187
 		public GameStateMachine<Repairable.States, Repairable.SMInstance, Repairable, object>.State forbidden;
 
-		// Token: 0x040023E4 RID: 9188
 		public Repairable.States.AllowedState allowed;
 
-		// Token: 0x040023E5 RID: 9189
 		public GameStateMachine<Repairable.States, Repairable.SMInstance, Repairable, object>.State repaired;
 
-		// Token: 0x040023E6 RID: 9190
 		public StateMachine<Repairable.States, Repairable.SMInstance, Repairable, object>.TargetParameter worker;
 
-		// Token: 0x040023E7 RID: 9191
 		public static readonly Chore.Precondition IsNotBeingAttacked = new Chore.Precondition
 		{
 			id = "IsNotBeingAttacked",
@@ -406,7 +362,6 @@ public class Repairable : Workable
 			}
 		};
 
-		// Token: 0x040023E8 RID: 9192
 		public static readonly Chore.Precondition IsNotAngry = new Chore.Precondition
 		{
 			id = "IsNotAngry",
@@ -419,13 +374,10 @@ public class Repairable : Workable
 			}
 		};
 
-		// Token: 0x02000B0C RID: 2828
 		public class AllowedState : GameStateMachine<Repairable.States, Repairable.SMInstance, Repairable, object>.State
 		{
-			// Token: 0x040023E9 RID: 9193
 			public GameStateMachine<Repairable.States, Repairable.SMInstance, Repairable, object>.State needMass;
 
-			// Token: 0x040023EA RID: 9194
 			public GameStateMachine<Repairable.States, Repairable.SMInstance, Repairable, object>.State repairable;
 		}
 	}

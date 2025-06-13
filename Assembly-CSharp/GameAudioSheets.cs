@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x0200098D RID: 2445
 public class GameAudioSheets : AudioSheets
 {
-	// Token: 0x06002B8F RID: 11151 RVA: 0x000C0D05 File Offset: 0x000BEF05
 	public static GameAudioSheets Get()
 	{
 		if (GameAudioSheets._Instance == null)
@@ -15,7 +13,6 @@ public class GameAudioSheets : AudioSheets
 		return GameAudioSheets._Instance;
 	}
 
-	// Token: 0x06002B90 RID: 11152 RVA: 0x001EC9A0 File Offset: 0x001EABA0
 	public override void Initialize()
 	{
 		this.validFileNames.Add("game_triggered");
@@ -45,7 +42,6 @@ public class GameAudioSheets : AudioSheets
 		}
 	}
 
-	// Token: 0x06002B91 RID: 11153 RVA: 0x001ECB08 File Offset: 0x001EAD08
 	protected override AnimEvent CreateSoundOfType(string type, string file_name, string sound_name, int frame, float min_interval, string dlcId)
 	{
 		SoundEvent soundEvent = null;
@@ -164,45 +160,34 @@ public class GameAudioSheets : AudioSheets
 		return soundEvent;
 	}
 
-	// Token: 0x06002B92 RID: 11154 RVA: 0x001ECE50 File Offset: 0x001EB050
 	public bool IsAnimAllowedToPlaySpeech(KAnim.Anim anim)
 	{
 		HashSet<HashedString> hashSet = null;
 		return !this.animsNotAllowedToPlaySpeech.TryGetValue(anim.animFile.name, out hashSet) || !hashSet.Contains(anim.hash);
 	}
 
-	// Token: 0x04001DD8 RID: 7640
 	private static GameAudioSheets _Instance;
 
-	// Token: 0x04001DD9 RID: 7641
 	private HashSet<HashedString> validFileNames = new HashSet<HashedString>();
 
-	// Token: 0x04001DDA RID: 7642
 	private Dictionary<HashedString, HashSet<HashedString>> animsNotAllowedToPlaySpeech = new Dictionary<HashedString, HashSet<HashedString>>();
 
-	// Token: 0x0200098E RID: 2446
 	private class SingleAudioSheetLoader : AsyncLoader
 	{
-		// Token: 0x06002B94 RID: 11156 RVA: 0x000C0D46 File Offset: 0x000BEF46
 		public override void Run()
 		{
 			this.sheet.soundInfos = new ResourceLoader<AudioSheet.SoundInfo>(this.text, this.name).resources.ToArray();
 		}
 
-		// Token: 0x04001DDB RID: 7643
 		public AudioSheet sheet;
 
-		// Token: 0x04001DDC RID: 7644
 		public string text;
 
-		// Token: 0x04001DDD RID: 7645
 		public string name;
 	}
 
-	// Token: 0x0200098F RID: 2447
 	private class GameAudioSheetLoader : GlobalAsyncLoader<GameAudioSheets.GameAudioSheetLoader>
 	{
-		// Token: 0x06002B96 RID: 11158 RVA: 0x001ECE90 File Offset: 0x001EB090
 		public override void CollectLoaders(List<AsyncLoader> loaders)
 		{
 			foreach (AudioSheet audioSheet in GameAudioSheets.Get().sheets)
@@ -216,7 +201,6 @@ public class GameAudioSheets : AudioSheets
 			}
 		}
 
-		// Token: 0x06002B97 RID: 11159 RVA: 0x000AA038 File Offset: 0x000A8238
 		public override void Run()
 		{
 		}

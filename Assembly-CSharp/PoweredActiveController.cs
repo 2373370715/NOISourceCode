@@ -1,9 +1,7 @@
 ﻿using System;
 
-// Token: 0x0200006B RID: 107
 public class PoweredActiveController : GameStateMachine<PoweredActiveController, PoweredActiveController.Instance, IStateMachineTarget, PoweredActiveController.Def>
 {
-	// Token: 0x060001D0 RID: 464 RVA: 0x0014DBD4 File Offset: 0x0014BDD4
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.off;
@@ -27,39 +25,28 @@ public class PoweredActiveController : GameStateMachine<PoweredActiveController,
 		this.working.pst.PlayAnim("working_pst").OnAnimQueueComplete(this.on);
 	}
 
-	// Token: 0x0400011D RID: 285
 	public GameStateMachine<PoweredActiveController, PoweredActiveController.Instance, IStateMachineTarget, PoweredActiveController.Def>.State off;
 
-	// Token: 0x0400011E RID: 286
 	public GameStateMachine<PoweredActiveController, PoweredActiveController.Instance, IStateMachineTarget, PoweredActiveController.Def>.State on;
 
-	// Token: 0x0400011F RID: 287
 	public PoweredActiveController.WorkingStates working;
 
-	// Token: 0x0200006C RID: 108
 	public class Def : StateMachine.BaseDef
 	{
-		// Token: 0x04000120 RID: 288
 		public bool showWorkingStatus;
 	}
 
-	// Token: 0x0200006D RID: 109
 	public class WorkingStates : GameStateMachine<PoweredActiveController, PoweredActiveController.Instance, IStateMachineTarget, PoweredActiveController.Def>.State
 	{
-		// Token: 0x04000121 RID: 289
 		public GameStateMachine<PoweredActiveController, PoweredActiveController.Instance, IStateMachineTarget, PoweredActiveController.Def>.State pre;
 
-		// Token: 0x04000122 RID: 290
 		public GameStateMachine<PoweredActiveController, PoweredActiveController.Instance, IStateMachineTarget, PoweredActiveController.Def>.State loop;
 
-		// Token: 0x04000123 RID: 291
 		public GameStateMachine<PoweredActiveController, PoweredActiveController.Instance, IStateMachineTarget, PoweredActiveController.Def>.State pst;
 	}
 
-	// Token: 0x0200006E RID: 110
 	public new class Instance : GameStateMachine<PoweredActiveController, PoweredActiveController.Instance, IStateMachineTarget, PoweredActiveController.Def>.GameInstance
 	{
-		// Token: 0x060001D4 RID: 468 RVA: 0x000AAA11 File Offset: 0x000A8C11
 		public Instance(IStateMachineTarget master, PoweredActiveController.Def def) : base(master, def)
 		{
 		}

@@ -6,30 +6,25 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001C55 RID: 7253
 [AddComponentMenu("KMonoBehaviour/scripts/AsteroidDescriptorPanel")]
 public class AsteroidDescriptorPanel : KMonoBehaviour
 {
-	// Token: 0x060096AC RID: 38572 RVA: 0x00106928 File Offset: 0x00104B28
 	public bool HasDescriptors()
 	{
 		return this.labels.Count > 0;
 	}
 
-	// Token: 0x060096AD RID: 38573 RVA: 0x00106938 File Offset: 0x00104B38
 	public void EnableClusterDetails(bool setActive)
 	{
 		this.clusterNameLabel.gameObject.SetActive(setActive);
 		this.clusterDifficultyLabel.gameObject.SetActive(setActive);
 	}
 
-	// Token: 0x060096AE RID: 38574 RVA: 0x000B74E6 File Offset: 0x000B56E6
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 	}
 
-	// Token: 0x060096AF RID: 38575 RVA: 0x003AD2C4 File Offset: 0x003AB4C4
 	public void SetClusterDetailLabels(ColonyDestinationAsteroidBeltData cluster)
 	{
 		StringEntry stringEntry;
@@ -42,7 +37,6 @@ public class AsteroidDescriptorPanel : KMonoBehaviour
 		this.clusterDifficultyLabel.SetText(text);
 	}
 
-	// Token: 0x060096B0 RID: 38576 RVA: 0x003AD360 File Offset: 0x003AB560
 	public void SetParameterDescriptors(IList<AsteroidDescriptor> descriptors)
 	{
 		for (int i = 0; i < this.parameterWidgets.Count; i++)
@@ -63,7 +57,6 @@ public class AsteroidDescriptorPanel : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060096B1 RID: 38577 RVA: 0x003AD414 File Offset: 0x003AB614
 	private void ClearTraitDescriptors()
 	{
 		for (int i = 0; i < this.traitWidgets.Count; i++)
@@ -78,7 +71,6 @@ public class AsteroidDescriptorPanel : KMonoBehaviour
 		this.traitCategoryWidgets.Clear();
 	}
 
-	// Token: 0x060096B2 RID: 38578 RVA: 0x003AD488 File Offset: 0x003AB688
 	public void SetTraitDescriptors(IList<AsteroidDescriptor> descriptors, List<string> stories, bool includeDescriptions = true)
 	{
 		foreach (string id in stories)
@@ -100,7 +92,6 @@ public class AsteroidDescriptorPanel : KMonoBehaviour
 		this.storyTraitHeader.SetActive(false);
 	}
 
-	// Token: 0x060096B3 RID: 38579 RVA: 0x0010695C File Offset: 0x00104B5C
 	public void SetTraitDescriptors(IList<AsteroidDescriptor> descriptors, bool includeDescriptions = true)
 	{
 		this.SetTraitDescriptors(new List<IList<AsteroidDescriptor>>
@@ -109,7 +100,6 @@ public class AsteroidDescriptorPanel : KMonoBehaviour
 		}, includeDescriptions, null);
 	}
 
-	// Token: 0x060096B4 RID: 38580 RVA: 0x003AD5A0 File Offset: 0x003AB7A0
 	public void SetTraitDescriptors(List<IList<AsteroidDescriptor>> descriptorSets, bool includeDescriptions = true, List<global::Tuple<string, Sprite>> headerData = null)
 	{
 		this.ClearTraitDescriptors();
@@ -167,7 +157,6 @@ public class AsteroidDescriptorPanel : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060096B5 RID: 38581 RVA: 0x003AD800 File Offset: 0x003ABA00
 	public void EnableClusterLocationLabels(bool enable)
 	{
 		this.startingAsteroidRowContainer.transform.parent.gameObject.SetActive(enable);
@@ -175,7 +164,6 @@ public class AsteroidDescriptorPanel : KMonoBehaviour
 		this.distantAsteroidRowContainer.transform.parent.gameObject.SetActive(enable);
 	}
 
-	// Token: 0x060096B6 RID: 38582 RVA: 0x003AD860 File Offset: 0x003ABA60
 	public void RefreshAsteroidLines(ColonyDestinationAsteroidBeltData cluster, AsteroidDescriptorPanel selectedAsteroidDetailsPanel, List<string> storyTraits)
 	{
 		cluster.RemixClusterLayout();
@@ -217,7 +205,6 @@ public class AsteroidDescriptorPanel : KMonoBehaviour
 		this.SelectWholeClusterDetails(cluster, selectedAsteroidDetailsPanel, storyTraits);
 	}
 
-	// Token: 0x060096B7 RID: 38583 RVA: 0x003ADA70 File Offset: 0x003ABC70
 	private void SelectAsteroidInCluster(ProcGen.World asteroid, ColonyDestinationAsteroidBeltData cluster, AsteroidDescriptorPanel selectedAsteroidDetailsPanel)
 	{
 		selectedAsteroidDetailsPanel.SpacedOutContentContainer.SetActive(true);
@@ -232,7 +219,6 @@ public class AsteroidDescriptorPanel : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x060096B8 RID: 38584 RVA: 0x003ADB20 File Offset: 0x003ABD20
 	public void SelectWholeClusterDetails(ColonyDestinationAsteroidBeltData cluster, AsteroidDescriptorPanel selectedAsteroidDetailsPanel, List<string> stories)
 	{
 		selectedAsteroidDetailsPanel.SpacedOutContentContainer.SetActive(false);
@@ -244,7 +230,6 @@ public class AsteroidDescriptorPanel : KMonoBehaviour
 		this.clusterDetailsButton.GetComponent<MultiToggle>().ChangeState(1);
 	}
 
-	// Token: 0x060096B9 RID: 38585 RVA: 0x003ADBA4 File Offset: 0x003ABDA4
 	private void SpawnAsteroidLine(ProcGen.World asteroid, GameObject parentContainer, ColonyDestinationAsteroidBeltData cluster)
 	{
 		if (this.asteroidLines.ContainsKey(asteroid))
@@ -322,7 +307,6 @@ public class AsteroidDescriptorPanel : KMonoBehaviour
 		this.asteroidLines.Add(asteroid, gameObject);
 	}
 
-	// Token: 0x060096BA RID: 38586 RVA: 0x003ADE84 File Offset: 0x003AC084
 	private void SetSelectedAsteroid(ProcGen.World asteroid, AsteroidDescriptorPanel detailPanel, List<AsteroidDescriptor> traitDescriptors)
 	{
 		detailPanel.SetTraitDescriptors(traitDescriptors, true);
@@ -332,7 +316,6 @@ public class AsteroidDescriptorPanel : KMonoBehaviour
 		detailPanel.selectedAsteroidDescription.SetText(asteroid.GetProperDescription());
 	}
 
-	// Token: 0x060096BB RID: 38587 RVA: 0x003ADEE4 File Offset: 0x003AC0E4
 	private void SetSelectedCluster(ColonyDestinationAsteroidBeltData cluster, AsteroidDescriptorPanel detailPanel, List<string> stories)
 	{
 		List<IList<AsteroidDescriptor>> list = new List<IList<AsteroidDescriptor>>();
@@ -374,85 +357,63 @@ public class AsteroidDescriptorPanel : KMonoBehaviour
 		detailPanel.selectedAsteroidDescription.SetText("");
 	}
 
-	// Token: 0x04007515 RID: 29973
 	[Header("Destination Details")]
 	[SerializeField]
 	private GameObject customLabelPrefab;
 
-	// Token: 0x04007516 RID: 29974
 	[SerializeField]
 	private GameObject prefabTraitWidget;
 
-	// Token: 0x04007517 RID: 29975
 	[SerializeField]
 	private GameObject prefabTraitCategoryWidget;
 
-	// Token: 0x04007518 RID: 29976
 	[SerializeField]
 	private GameObject prefabParameterWidget;
 
-	// Token: 0x04007519 RID: 29977
 	[SerializeField]
 	private GameObject startingAsteroidRowContainer;
 
-	// Token: 0x0400751A RID: 29978
 	[SerializeField]
 	private GameObject nearbyAsteroidRowContainer;
 
-	// Token: 0x0400751B RID: 29979
 	[SerializeField]
 	private GameObject distantAsteroidRowContainer;
 
-	// Token: 0x0400751C RID: 29980
 	[SerializeField]
 	private LocText clusterNameLabel;
 
-	// Token: 0x0400751D RID: 29981
 	[SerializeField]
 	private LocText clusterDifficultyLabel;
 
-	// Token: 0x0400751E RID: 29982
 	[SerializeField]
 	public LocText headerLabel;
 
-	// Token: 0x0400751F RID: 29983
 	[SerializeField]
 	public MultiToggle clusterDetailsButton;
 
-	// Token: 0x04007520 RID: 29984
 	[SerializeField]
 	public GameObject storyTraitHeader;
 
-	// Token: 0x04007521 RID: 29985
 	private List<GameObject> labels = new List<GameObject>();
 
-	// Token: 0x04007522 RID: 29986
 	[Header("Selected Asteroid Details")]
 	[SerializeField]
 	private GameObject SpacedOutContentContainer;
 
-	// Token: 0x04007523 RID: 29987
 	public Image selectedAsteroidIcon;
 
-	// Token: 0x04007524 RID: 29988
 	public LocText selectedAsteroidLabel;
 
-	// Token: 0x04007525 RID: 29989
 	public LocText selectedAsteroidDescription;
 
-	// Token: 0x04007526 RID: 29990
 	[SerializeField]
 	private GameObject prefabAsteroidLine;
 
-	// Token: 0x04007527 RID: 29991
 	private Dictionary<ProcGen.World, GameObject> asteroidLines = new Dictionary<ProcGen.World, GameObject>();
 
-	// Token: 0x04007528 RID: 29992
 	private List<GameObject> traitWidgets = new List<GameObject>();
 
-	// Token: 0x04007529 RID: 29993
 	private List<GameObject> traitCategoryWidgets = new List<GameObject>();
 
-	// Token: 0x0400752A RID: 29994
 	private List<GameObject> parameterWidgets = new List<GameObject>();
 }

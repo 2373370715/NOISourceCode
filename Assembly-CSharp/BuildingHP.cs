@@ -5,13 +5,10 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000CB0 RID: 3248
 [SerializationConfig(MemberSerialization.OptIn)]
 [AddComponentMenu("KMonoBehaviour/Workable/BuildingHP")]
 public class BuildingHP : Workable
 {
-	// Token: 0x170002D8 RID: 728
-	// (get) Token: 0x06003DD4 RID: 15828 RVA: 0x000CC862 File Offset: 0x000CAA62
 	public int HitPoints
 	{
 		get
@@ -20,14 +17,11 @@ public class BuildingHP : Workable
 		}
 	}
 
-	// Token: 0x06003DD5 RID: 15829 RVA: 0x000CC86A File Offset: 0x000CAA6A
 	public void SetHitPoints(int hp)
 	{
 		this.hitpoints = hp;
 	}
 
-	// Token: 0x170002D9 RID: 729
-	// (get) Token: 0x06003DD6 RID: 15830 RVA: 0x000CC873 File Offset: 0x000CAA73
 	public int MaxHitPoints
 	{
 		get
@@ -36,20 +30,17 @@ public class BuildingHP : Workable
 		}
 	}
 
-	// Token: 0x06003DD7 RID: 15831 RVA: 0x000CC885 File Offset: 0x000CAA85
 	public BuildingHP.DamageSourceInfo GetDamageSourceInfo()
 	{
 		return this.damageSourceInfo;
 	}
 
-	// Token: 0x06003DD8 RID: 15832 RVA: 0x000CC88D File Offset: 0x000CAA8D
 	protected override void OnLoadLevel()
 	{
 		this.smi = null;
 		base.OnLoadLevel();
 	}
 
-	// Token: 0x06003DD9 RID: 15833 RVA: 0x000CC89C File Offset: 0x000CAA9C
 	public void DoDamage(int damage)
 	{
 		if (!this.invincible)
@@ -60,7 +51,6 @@ public class BuildingHP : Workable
 		}
 	}
 
-	// Token: 0x06003DDA RID: 15834 RVA: 0x00240C28 File Offset: 0x0023EE28
 	public void Repair(int repair_amount)
 	{
 		if (this.hitpoints + repair_amount < this.hitpoints)
@@ -78,7 +68,6 @@ public class BuildingHP : Workable
 		}
 	}
 
-	// Token: 0x06003DDB RID: 15835 RVA: 0x000CC8CF File Offset: 0x000CAACF
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -87,7 +76,6 @@ public class BuildingHP : Workable
 		this.multitoolHitEffectTag = EffectConfigs.BuildSplashId;
 	}
 
-	// Token: 0x06003DDC RID: 15836 RVA: 0x00240CB0 File Offset: 0x0023EEB0
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -104,13 +92,11 @@ public class BuildingHP : Workable
 		}
 	}
 
-	// Token: 0x06003DDD RID: 15837 RVA: 0x000CC902 File Offset: 0x000CAB02
 	private void DestroyOnDamaged(object data)
 	{
 		Util.KDestroyGameObject(base.gameObject);
 	}
 
-	// Token: 0x06003DDE RID: 15838 RVA: 0x00240D1C File Offset: 0x0023EF1C
 	protected override void OnCompleteWork(WorkerBase worker)
 	{
 		int num = (int)Db.Get().Attributes.Machinery.Lookup(worker).GetTotalValue();
@@ -118,7 +104,6 @@ public class BuildingHP : Workable
 		this.Repair(repair_amount);
 	}
 
-	// Token: 0x06003DDF RID: 15839 RVA: 0x000CC90F File Offset: 0x000CAB0F
 	private void OnDoBuildingDamage(object data)
 	{
 		if (this.invincible)
@@ -131,7 +116,6 @@ public class BuildingHP : Workable
 		this.DoTakeDamageFX(this.damageSourceInfo);
 	}
 
-	// Token: 0x06003DE0 RID: 15840 RVA: 0x00240D5C File Offset: 0x0023EF5C
 	private void DoTakeDamageFX(BuildingHP.DamageSourceInfo info)
 	{
 		if (info.takeDamageEffect != SpawnFXHashes.None)
@@ -142,7 +126,6 @@ public class BuildingHP : Workable
 		}
 	}
 
-	// Token: 0x06003DE1 RID: 15841 RVA: 0x00240DA8 File Offset: 0x0023EFA8
 	private void DoDamagePopFX(BuildingHP.DamageSourceInfo info)
 	{
 		if (info.popString != null && Time.time > this.lastPopTime + this.minDamagePopInterval)
@@ -152,8 +135,6 @@ public class BuildingHP : Workable
 		}
 	}
 
-	// Token: 0x170002DA RID: 730
-	// (get) Token: 0x06003DE2 RID: 15842 RVA: 0x000CC94F File Offset: 0x000CAB4F
 	public bool IsBroken
 	{
 		get
@@ -162,8 +143,6 @@ public class BuildingHP : Workable
 		}
 	}
 
-	// Token: 0x170002DB RID: 731
-	// (get) Token: 0x06003DE3 RID: 15843 RVA: 0x000CC95A File Offset: 0x000CAB5A
 	public bool NeedsRepairs
 	{
 		get
@@ -172,92 +151,69 @@ public class BuildingHP : Workable
 		}
 	}
 
-	// Token: 0x04002AA7 RID: 10919
 	[Serialize]
 	[SerializeField]
 	private int hitpoints;
 
-	// Token: 0x04002AA8 RID: 10920
 	[Serialize]
 	private BuildingHP.DamageSourceInfo damageSourceInfo;
 
-	// Token: 0x04002AA9 RID: 10921
 	private static readonly EventSystem.IntraObjectHandler<BuildingHP> OnDoBuildingDamageDelegate = new EventSystem.IntraObjectHandler<BuildingHP>(delegate(BuildingHP component, object data)
 	{
 		component.OnDoBuildingDamage(data);
 	});
 
-	// Token: 0x04002AAA RID: 10922
 	private static readonly EventSystem.IntraObjectHandler<BuildingHP> DestroyOnDamagedDelegate = new EventSystem.IntraObjectHandler<BuildingHP>(delegate(BuildingHP component, object data)
 	{
 		component.DestroyOnDamaged(data);
 	});
 
-	// Token: 0x04002AAB RID: 10923
 	public static List<Meter> kbacQueryList = new List<Meter>();
 
-	// Token: 0x04002AAC RID: 10924
 	public bool destroyOnDamaged;
 
-	// Token: 0x04002AAD RID: 10925
 	public bool invincible;
 
-	// Token: 0x04002AAE RID: 10926
 	[MyCmpGet]
 	private Building building;
 
-	// Token: 0x04002AAF RID: 10927
 	private BuildingHP.SMInstance smi;
 
-	// Token: 0x04002AB0 RID: 10928
 	private float minDamagePopInterval = 4f;
 
-	// Token: 0x04002AB1 RID: 10929
 	private float lastPopTime;
 
-	// Token: 0x02000CB1 RID: 3249
 	public struct DamageSourceInfo
 	{
-		// Token: 0x06003DE6 RID: 15846 RVA: 0x000CC9C7 File Offset: 0x000CABC7
 		public override string ToString()
 		{
 			return this.source;
 		}
 
-		// Token: 0x04002AB2 RID: 10930
 		public int damage;
 
-		// Token: 0x04002AB3 RID: 10931
 		public string source;
 
-		// Token: 0x04002AB4 RID: 10932
 		public string popString;
 
-		// Token: 0x04002AB5 RID: 10933
 		public SpawnFXHashes takeDamageEffect;
 
-		// Token: 0x04002AB6 RID: 10934
 		public string fullDamageEffectName;
 
-		// Token: 0x04002AB7 RID: 10935
 		public string statusItemID;
 	}
 
-	// Token: 0x02000CB2 RID: 3250
 	public class SMInstance : GameStateMachine<BuildingHP.States, BuildingHP.SMInstance, BuildingHP, object>.GameInstance
 	{
-		// Token: 0x06003DE7 RID: 15847 RVA: 0x000CC9CF File Offset: 0x000CABCF
 		public SMInstance(BuildingHP master) : base(master)
 		{
 		}
 
-		// Token: 0x06003DE8 RID: 15848 RVA: 0x00240E08 File Offset: 0x0023F008
 		public Notification CreateBrokenMachineNotification()
 		{
 			return new Notification(MISC.NOTIFICATIONS.BROKENMACHINE.NAME, NotificationType.BadMinor, (List<Notification> notificationList, object data) => MISC.NOTIFICATIONS.BROKENMACHINE.TOOLTIP + notificationList.ReduceMessages(false), "/t• " + base.master.damageSourceInfo.source, false, 0f, null, null, null, true, false, false);
 		}
 
-		// Token: 0x06003DE9 RID: 15849 RVA: 0x00240E6C File Offset: 0x0023F06C
 		public void ShowProgressBar(bool show)
 		{
 			if (show && Grid.IsValidCell(Grid.PosToCell(base.gameObject)) && Grid.IsVisible(Grid.PosToCell(base.gameObject)))
@@ -272,7 +228,6 @@ public class BuildingHP : Workable
 			}
 		}
 
-		// Token: 0x06003DEA RID: 15850 RVA: 0x000CC9D8 File Offset: 0x000CABD8
 		public void UpdateMeter()
 		{
 			if (this.progressBar == null)
@@ -285,13 +240,11 @@ public class BuildingHP : Workable
 			}
 		}
 
-		// Token: 0x06003DEB RID: 15851 RVA: 0x000CCA07 File Offset: 0x000CAC07
 		private float HealthPercent()
 		{
 			return (float)base.smi.master.HitPoints / (float)base.smi.master.building.Def.HitPoints;
 		}
 
-		// Token: 0x06003DEC RID: 15852 RVA: 0x00240ECC File Offset: 0x0023F0CC
 		private void CreateProgressBar()
 		{
 			if (this.progressBar != null)
@@ -324,7 +277,6 @@ public class BuildingHP : Workable
 			this.progressBar.SetVisibility(true);
 		}
 
-		// Token: 0x06003DED RID: 15853 RVA: 0x002410FC File Offset: 0x0023F2FC
 		private static string ToolTipResolver(List<Notification> notificationList, object data)
 		{
 			string text = "";
@@ -340,7 +292,6 @@ public class BuildingHP : Workable
 			return text;
 		}
 
-		// Token: 0x06003DEE RID: 15854 RVA: 0x00241168 File Offset: 0x0023F368
 		public void ShowDamagedEffect()
 		{
 			if (base.master.damageSourceInfo.takeDamageEffect != SpawnFXHashes.None)
@@ -351,7 +302,6 @@ public class BuildingHP : Workable
 			}
 		}
 
-		// Token: 0x06003DEF RID: 15855 RVA: 0x002411D4 File Offset: 0x0023F3D4
 		public FXAnim.Instance InstantiateDamageFX()
 		{
 			if (base.master.damageSourceInfo.fullDamageEffectName == null)
@@ -371,7 +321,6 @@ public class BuildingHP : Workable
 			return new FXAnim.Instance(base.smi.master, base.master.damageSourceInfo.fullDamageEffectName, "idle", KAnim.PlayMode.Loop, zero, Color.white);
 		}
 
-		// Token: 0x06003DF0 RID: 15856 RVA: 0x00241278 File Offset: 0x0023F478
 		public void SetCrackOverlayValue(float value)
 		{
 			KBatchedAnimController component = base.master.GetComponent<KBatchedAnimController>();
@@ -388,14 +337,11 @@ public class BuildingHP : Workable
 			}
 		}
 
-		// Token: 0x04002AB8 RID: 10936
 		private ProgressBar progressBar;
 	}
 
-	// Token: 0x02000CB4 RID: 3252
 	public class States : GameStateMachine<BuildingHP.States, BuildingHP.SMInstance, BuildingHP>
 	{
-		// Token: 0x06003DF4 RID: 15860 RVA: 0x002412E8 File Offset: 0x0023F4E8
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			base.serializable = StateMachine.SerializeType.Both_DEPRECATED;
@@ -446,38 +392,28 @@ public class BuildingHP : Workable
 			});
 		}
 
-		// Token: 0x06003DF5 RID: 15861 RVA: 0x0024160C File Offset: 0x0023F80C
 		private Chore CreateRepairChore(BuildingHP.SMInstance smi)
 		{
 			return new WorkChore<BuildingHP>(Db.Get().ChoreTypes.Repair, smi.master, null, true, null, null, null, true, null, false, false, null, false, true, true, PriorityScreen.PriorityClass.basic, 5, false, true);
 		}
 
-		// Token: 0x04002ABB RID: 10939
 		private static readonly Operational.Flag healthyFlag = new Operational.Flag("healthy", Operational.Flag.Type.Functional);
 
-		// Token: 0x04002ABC RID: 10940
 		public GameStateMachine<BuildingHP.States, BuildingHP.SMInstance, BuildingHP, object>.State damaged;
 
-		// Token: 0x04002ABD RID: 10941
 		public BuildingHP.States.Healthy healthy;
 
-		// Token: 0x02000CB5 RID: 3253
 		public class Healthy : GameStateMachine<BuildingHP.States, BuildingHP.SMInstance, BuildingHP, object>.State
 		{
-			// Token: 0x04002ABE RID: 10942
 			public BuildingHP.States.ImperfectStates imperfect;
 
-			// Token: 0x04002ABF RID: 10943
 			public GameStateMachine<BuildingHP.States, BuildingHP.SMInstance, BuildingHP, object>.State perfect;
 		}
 
-		// Token: 0x02000CB6 RID: 3254
 		public class ImperfectStates : GameStateMachine<BuildingHP.States, BuildingHP.SMInstance, BuildingHP, object>.State
 		{
-			// Token: 0x04002AC0 RID: 10944
 			public GameStateMachine<BuildingHP.States, BuildingHP.SMInstance, BuildingHP, object>.State playEffect;
 
-			// Token: 0x04002AC1 RID: 10945
 			public GameStateMachine<BuildingHP.States, BuildingHP.SMInstance, BuildingHP, object>.State waiting;
 		}
 	}

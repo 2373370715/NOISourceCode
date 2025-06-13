@@ -3,11 +3,9 @@ using Klei.AI;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02001A36 RID: 6710
 [AddComponentMenu("KMonoBehaviour/Workable/TelephoneWorkable")]
 public class TelephoneCallerWorkable : Workable, IWorkerPrioritizable
 {
-	// Token: 0x06008BC8 RID: 35784 RVA: 0x0036ED68 File Offset: 0x0036CF68
 	private TelephoneCallerWorkable()
 	{
 		base.SetReportType(ReportManager.ReportType.PersonalTime);
@@ -26,7 +24,6 @@ public class TelephoneCallerWorkable : Workable, IWorkerPrioritizable
 		};
 	}
 
-	// Token: 0x06008BC9 RID: 35785 RVA: 0x0036EE14 File Offset: 0x0036D014
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -41,14 +38,12 @@ public class TelephoneCallerWorkable : Workable, IWorkerPrioritizable
 		this.telephone = base.GetComponent<Telephone>();
 	}
 
-	// Token: 0x06008BCA RID: 35786 RVA: 0x000FFFA1 File Offset: 0x000FE1A1
 	protected override void OnStartWork(WorkerBase worker)
 	{
 		this.operational.SetActive(true, false);
 		this.telephone.isInUse = true;
 	}
 
-	// Token: 0x06008BCB RID: 35787 RVA: 0x0036EE74 File Offset: 0x0036D074
 	protected override void OnCompleteWork(WorkerBase worker)
 	{
 		Effects component = worker.GetComponent<Effects>();
@@ -76,14 +71,12 @@ public class TelephoneCallerWorkable : Workable, IWorkerPrioritizable
 		}
 	}
 
-	// Token: 0x06008BCC RID: 35788 RVA: 0x000FFFBC File Offset: 0x000FE1BC
 	protected override void OnStopWork(WorkerBase worker)
 	{
 		this.operational.SetActive(false, false);
 		this.telephone.HangUp();
 	}
 
-	// Token: 0x06008BCD RID: 35789 RVA: 0x0036EF40 File Offset: 0x0036D140
 	public bool GetWorkerPriority(WorkerBase worker, out int priority)
 	{
 		priority = this.basePriority;
@@ -104,13 +97,10 @@ public class TelephoneCallerWorkable : Workable, IWorkerPrioritizable
 		return true;
 	}
 
-	// Token: 0x0400697B RID: 27003
 	[MyCmpReq]
 	private Operational operational;
 
-	// Token: 0x0400697C RID: 27004
 	public int basePriority;
 
-	// Token: 0x0400697D RID: 27005
 	private Telephone telephone;
 }

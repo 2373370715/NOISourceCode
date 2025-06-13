@@ -5,10 +5,8 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x020015A3 RID: 5539
 public class DecorMonitor : GameStateMachine<DecorMonitor, DecorMonitor.Instance>
 {
-	// Token: 0x06007325 RID: 29477 RVA: 0x0030E9D0 File Offset: 0x0030CBD0
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.root;
@@ -21,13 +19,10 @@ public class DecorMonitor : GameStateMachine<DecorMonitor, DecorMonitor.Instance
 		});
 	}
 
-	// Token: 0x0400565C RID: 22108
 	public static float MAXIMUM_DECOR_VALUE = 120f;
 
-	// Token: 0x020015A4 RID: 5540
 	public new class Instance : GameStateMachine<DecorMonitor, DecorMonitor.Instance, IStateMachineTarget, object>.GameInstance
 	{
-		// Token: 0x06007328 RID: 29480 RVA: 0x0030EAA8 File Offset: 0x0030CCA8
 		public Instance(IStateMachineTarget master) : base(master)
 		{
 			this.cycleTotalDecor = 2250f;
@@ -35,13 +30,11 @@ public class DecorMonitor : GameStateMachine<DecorMonitor, DecorMonitor.Instance
 			this.modifier = new AttributeModifier(Db.Get().Amounts.Decor.deltaAttribute.Id, 1f, DUPLICANTS.NEEDS.DECOR.OBSERVED_DECOR, false, false, false);
 		}
 
-		// Token: 0x06007329 RID: 29481 RVA: 0x000EFE7D File Offset: 0x000EE07D
 		public AttributeModifier GetDecorModifier()
 		{
 			return this.modifier;
 		}
 
-		// Token: 0x0600732A RID: 29482 RVA: 0x0030EBDC File Offset: 0x0030CDDC
 		public void Update(float dt)
 		{
 			int cell = Grid.PosToCell(base.gameObject);
@@ -71,7 +64,6 @@ public class DecorMonitor : GameStateMachine<DecorMonitor, DecorMonitor.Instance
 			this.modifier.SetValue(value);
 		}
 
-		// Token: 0x0600732B RID: 29483 RVA: 0x0030EC80 File Offset: 0x0030CE80
 		public void OnNewDay()
 		{
 			this.yesterdaysTotalDecor = this.cycleTotalDecor;
@@ -90,33 +82,26 @@ public class DecorMonitor : GameStateMachine<DecorMonitor, DecorMonitor.Instance
 			}
 		}
 
-		// Token: 0x0600732C RID: 29484 RVA: 0x000EFE85 File Offset: 0x000EE085
 		public float GetTodaysAverageDecor()
 		{
 			return this.cycleTotalDecor / (GameClock.Instance.GetCurrentCycleAsPercentage() * 600f);
 		}
 
-		// Token: 0x0600732D RID: 29485 RVA: 0x000EFE9E File Offset: 0x000EE09E
 		public float GetYesterdaysAverageDecor()
 		{
 			return this.yesterdaysTotalDecor / 600f;
 		}
 
-		// Token: 0x0400565D RID: 22109
 		[Serialize]
 		private float cycleTotalDecor;
 
-		// Token: 0x0400565E RID: 22110
 		[Serialize]
 		private float yesterdaysTotalDecor;
 
-		// Token: 0x0400565F RID: 22111
 		private AmountInstance amount;
 
-		// Token: 0x04005660 RID: 22112
 		private AttributeModifier modifier;
 
-		// Token: 0x04005661 RID: 22113
 		private List<KeyValuePair<float, string>> effectLookup = new List<KeyValuePair<float, string>>
 		{
 			new KeyValuePair<float, string>(DecorMonitor.MAXIMUM_DECOR_VALUE * -0.25f, "DecorMinus1"),

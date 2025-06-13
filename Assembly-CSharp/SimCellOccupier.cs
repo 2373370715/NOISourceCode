@@ -3,13 +3,10 @@ using System.Collections.Generic;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x020018BD RID: 6333
 [SkipSaveFileSerialization]
 [AddComponentMenu("KMonoBehaviour/scripts/SimCellOccupier")]
 public class SimCellOccupier : KMonoBehaviour, IGameObjectEffectDescriptor
 {
-	// Token: 0x17000852 RID: 2130
-	// (get) Token: 0x060082C5 RID: 33477 RVA: 0x000FA7E9 File Offset: 0x000F89E9
 	public bool IsVisuallySolid
 	{
 		get
@@ -18,7 +15,6 @@ public class SimCellOccupier : KMonoBehaviour, IGameObjectEffectDescriptor
 		}
 	}
 
-	// Token: 0x060082C6 RID: 33478 RVA: 0x0034B8E8 File Offset: 0x00349AE8
 	protected override void OnPrefabInit()
 	{
 		base.GetComponent<KSelectable>().SetStatusItem(Db.Get().StatusItemCategories.Main, Db.Get().BuildingStatusItems.Normal, null);
@@ -28,7 +24,6 @@ public class SimCellOccupier : KMonoBehaviour, IGameObjectEffectDescriptor
 		}
 	}
 
-	// Token: 0x060082C7 RID: 33479 RVA: 0x0034B93C File Offset: 0x00349B3C
 	protected override void OnSpawn()
 	{
 		HandleVector<Game.CallbackInfo>.Handle callbackHandle = Game.Instance.callbackManager.Add(new Game.CallbackInfo(new System.Action(this.OnModifyComplete), false));
@@ -61,13 +56,11 @@ public class SimCellOccupier : KMonoBehaviour, IGameObjectEffectDescriptor
 		base.Subscribe<SimCellOccupier>(-1699355994, SimCellOccupier.OnBuildingRepairedDelegate);
 	}
 
-	// Token: 0x060082C8 RID: 33480 RVA: 0x000FA7F1 File Offset: 0x000F89F1
 	private void OnMelted(object o)
 	{
 		Building.CreateBuildingMeltedNotification(base.gameObject);
 	}
 
-	// Token: 0x060082C9 RID: 33481 RVA: 0x000FA7FE File Offset: 0x000F89FE
 	protected override void OnCleanUp()
 	{
 		if (this.callDestroy)
@@ -76,7 +69,6 @@ public class SimCellOccupier : KMonoBehaviour, IGameObjectEffectDescriptor
 		}
 	}
 
-	// Token: 0x060082CA RID: 33482 RVA: 0x0034B9E4 File Offset: 0x00349BE4
 	private Sim.Cell.Properties GetSimCellProperties()
 	{
 		Sim.Cell.Properties properties = Sim.Cell.Properties.SolidImpermeable;
@@ -107,7 +99,6 @@ public class SimCellOccupier : KMonoBehaviour, IGameObjectEffectDescriptor
 		return properties;
 	}
 
-	// Token: 0x060082CB RID: 33483 RVA: 0x0034BA44 File Offset: 0x00349C44
 	public void DestroySelf(System.Action onComplete)
 	{
 		this.callDestroy = false;
@@ -148,13 +139,11 @@ public class SimCellOccupier : KMonoBehaviour, IGameObjectEffectDescriptor
 		}
 	}
 
-	// Token: 0x060082CC RID: 33484 RVA: 0x000FA80F File Offset: 0x000F8A0F
 	public bool IsReady()
 	{
 		return this.isReady;
 	}
 
-	// Token: 0x060082CD RID: 33485 RVA: 0x0034BBD8 File Offset: 0x00349DD8
 	private void OnModifyComplete()
 	{
 		if (this == null || base.gameObject == null)
@@ -167,7 +156,6 @@ public class SimCellOccupier : KMonoBehaviour, IGameObjectEffectDescriptor
 		GameScenePartitioner.Instance.TriggerEvent(vector2I.x, vector2I.y, 1, 1, GameScenePartitioner.Instance.solidChangedLayer, null);
 	}
 
-	// Token: 0x060082CE RID: 33486 RVA: 0x0034BC44 File Offset: 0x00349E44
 	private void ForceSetGameCellData(int cell)
 	{
 		bool solid = !Grid.DupePassable[cell];
@@ -177,7 +165,6 @@ public class SimCellOccupier : KMonoBehaviour, IGameObjectEffectDescriptor
 		Grid.Damage[cell] = 0f;
 	}
 
-	// Token: 0x060082CF RID: 33487 RVA: 0x0034BCA0 File Offset: 0x00349EA0
 	public List<Descriptor> GetDescriptors(GameObject go)
 	{
 		List<Descriptor> list = null;
@@ -191,7 +178,6 @@ public class SimCellOccupier : KMonoBehaviour, IGameObjectEffectDescriptor
 		return list;
 	}
 
-	// Token: 0x060082D0 RID: 33488 RVA: 0x0034BD48 File Offset: 0x00349F48
 	private void OnBuildingRepaired(object data)
 	{
 		BuildingHP buildingHP = (BuildingHP)data;
@@ -202,57 +188,43 @@ public class SimCellOccupier : KMonoBehaviour, IGameObjectEffectDescriptor
 		});
 	}
 
-	// Token: 0x04006379 RID: 25465
 	[MyCmpReq]
 	private Building building;
 
-	// Token: 0x0400637A RID: 25466
 	[MyCmpReq]
 	private PrimaryElement primaryElement;
 
-	// Token: 0x0400637B RID: 25467
 	[SerializeField]
 	public bool doReplaceElement = true;
 
-	// Token: 0x0400637C RID: 25468
 	[SerializeField]
 	public bool setGasImpermeable;
 
-	// Token: 0x0400637D RID: 25469
 	[SerializeField]
 	public bool setLiquidImpermeable;
 
-	// Token: 0x0400637E RID: 25470
 	[SerializeField]
 	public bool setTransparent;
 
-	// Token: 0x0400637F RID: 25471
 	[SerializeField]
 	public bool setOpaque;
 
-	// Token: 0x04006380 RID: 25472
 	[SerializeField]
 	public bool notifyOnMelt;
 
-	// Token: 0x04006381 RID: 25473
 	[SerializeField]
 	private bool setConstructedTile;
 
-	// Token: 0x04006382 RID: 25474
 	[SerializeField]
 	public float strengthMultiplier = 1f;
 
-	// Token: 0x04006383 RID: 25475
 	[SerializeField]
 	public float movementSpeedMultiplier = 1f;
 
-	// Token: 0x04006384 RID: 25476
 	private bool isReady;
 
-	// Token: 0x04006385 RID: 25477
 	private bool callDestroy = true;
 
-	// Token: 0x04006386 RID: 25478
 	private static readonly EventSystem.IntraObjectHandler<SimCellOccupier> OnBuildingRepairedDelegate = new EventSystem.IntraObjectHandler<SimCellOccupier>(delegate(SimCellOccupier component, object data)
 	{
 		component.OnBuildingRepaired(data);

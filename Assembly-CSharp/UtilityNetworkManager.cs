@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02001A70 RID: 6768
 public class UtilityNetworkManager<NetworkType, ItemType> : IUtilityNetworkMgr where NetworkType : UtilityNetwork, new() where ItemType : MonoBehaviour
 {
-	// Token: 0x17000934 RID: 2356
-	// (get) Token: 0x06008D07 RID: 36103 RVA: 0x00100A60 File Offset: 0x000FEC60
 	public bool IsDirty
 	{
 		get
@@ -15,7 +12,6 @@ public class UtilityNetworkManager<NetworkType, ItemType> : IUtilityNetworkMgr w
 		}
 	}
 
-	// Token: 0x06008D08 RID: 36104 RVA: 0x00374100 File Offset: 0x00372300
 	public UtilityNetworkManager(int game_width, int game_height, int tile_layer)
 	{
 		this.tileLayer = tile_layer;
@@ -23,7 +19,6 @@ public class UtilityNetworkManager<NetworkType, ItemType> : IUtilityNetworkMgr w
 		this.Initialize(game_width, game_height);
 	}
 
-	// Token: 0x06008D09 RID: 36105 RVA: 0x0037418C File Offset: 0x0037238C
 	public void Initialize(int game_width, int game_height)
 	{
 		this.networks.Clear();
@@ -50,7 +45,6 @@ public class UtilityNetworkManager<NetworkType, ItemType> : IUtilityNetworkMgr w
 		}
 	}
 
-	// Token: 0x06008D0A RID: 36106 RVA: 0x00374264 File Offset: 0x00372464
 	public void Update()
 	{
 		if (this.dirty)
@@ -71,7 +65,6 @@ public class UtilityNetworkManager<NetworkType, ItemType> : IUtilityNetworkMgr w
 		}
 	}
 
-	// Token: 0x06008D0B RID: 36107 RVA: 0x00100A68 File Offset: 0x000FEC68
 	protected UtilityNetworkGridNode[] GetGrid(bool is_physical_building)
 	{
 		if (!is_physical_building)
@@ -81,7 +74,6 @@ public class UtilityNetworkManager<NetworkType, ItemType> : IUtilityNetworkMgr w
 		return this.physicalGrid;
 	}
 
-	// Token: 0x06008D0C RID: 36108 RVA: 0x00100A7A File Offset: 0x000FEC7A
 	private HashSet<int> GetNodes(bool is_physical_building)
 	{
 		if (!is_physical_building)
@@ -91,7 +83,6 @@ public class UtilityNetworkManager<NetworkType, ItemType> : IUtilityNetworkMgr w
 		return this.physicalNodes;
 	}
 
-	// Token: 0x06008D0D RID: 36109 RVA: 0x00374300 File Offset: 0x00372500
 	public void ClearCell(int cell, bool is_physical_building)
 	{
 		if (Game.IsQuitting())
@@ -135,7 +126,6 @@ public class UtilityNetworkManager<NetworkType, ItemType> : IUtilityNetworkMgr w
 		}
 	}
 
-	// Token: 0x06008D0E RID: 36110 RVA: 0x00374400 File Offset: 0x00372600
 	private void QueueCellForVisit(UtilityNetworkGridNode[] grid, int dest_cell, UtilityConnections direction)
 	{
 		if (!Grid.IsValidCell(dest_cell))
@@ -157,13 +147,11 @@ public class UtilityNetworkManager<NetworkType, ItemType> : IUtilityNetworkMgr w
 		}
 	}
 
-	// Token: 0x06008D0F RID: 36111 RVA: 0x00100A8C File Offset: 0x000FEC8C
 	public void ForceRebuildNetworks()
 	{
 		this.dirty = true;
 	}
 
-	// Token: 0x06008D10 RID: 36112 RVA: 0x00374470 File Offset: 0x00372670
 	public void AddToNetworks(int cell, object item, bool is_endpoint)
 	{
 		if (item != null)
@@ -198,7 +186,6 @@ public class UtilityNetworkManager<NetworkType, ItemType> : IUtilityNetworkMgr w
 		this.dirty = true;
 	}
 
-	// Token: 0x06008D11 RID: 36113 RVA: 0x00374540 File Offset: 0x00372740
 	public void AddToVirtualNetworks(object key, object item, bool is_endpoint)
 	{
 		if (item != null)
@@ -223,7 +210,6 @@ public class UtilityNetworkManager<NetworkType, ItemType> : IUtilityNetworkMgr w
 		this.dirty = true;
 	}
 
-	// Token: 0x06008D12 RID: 36114 RVA: 0x003745C0 File Offset: 0x003727C0
 	private unsafe void Reconnect(int cell)
 	{
 		Vector2I vector2I = Grid.CellToXY(cell);
@@ -290,7 +276,6 @@ public class UtilityNetworkManager<NetworkType, ItemType> : IUtilityNetworkMgr w
 		}
 	}
 
-	// Token: 0x06008D13 RID: 36115 RVA: 0x003747A0 File Offset: 0x003729A0
 	public void RemoveFromVirtualNetworks(object key, object item, bool is_endpoint)
 	{
 		if (Game.IsQuitting())
@@ -324,7 +309,6 @@ public class UtilityNetworkManager<NetworkType, ItemType> : IUtilityNetworkMgr w
 		}
 	}
 
-	// Token: 0x06008D14 RID: 36116 RVA: 0x0037483C File Offset: 0x00372A3C
 	public void RemoveFromNetworks(int cell, object item, bool is_endpoint)
 	{
 		if (Game.IsQuitting())
@@ -360,7 +344,6 @@ public class UtilityNetworkManager<NetworkType, ItemType> : IUtilityNetworkMgr w
 		}
 	}
 
-	// Token: 0x06008D15 RID: 36117 RVA: 0x0037490C File Offset: 0x00372B0C
 	private unsafe void Disconnect(int cell)
 	{
 		Vector2I vector2I = Grid.CellToXY(cell);
@@ -400,7 +383,6 @@ public class UtilityNetworkManager<NetworkType, ItemType> : IUtilityNetworkMgr w
 		}
 	}
 
-	// Token: 0x06008D16 RID: 36118 RVA: 0x00374A18 File Offset: 0x00372C18
 	private unsafe void RebuildNetworks(int layer, bool is_physical)
 	{
 		UtilityNetworkGridNode[] grid = this.GetGrid(is_physical);
@@ -561,7 +543,6 @@ public class UtilityNetworkManager<NetworkType, ItemType> : IUtilityNetworkMgr w
 		}
 	}
 
-	// Token: 0x06008D17 RID: 36119 RVA: 0x0037516C File Offset: 0x0037336C
 	public UtilityNetwork GetNetworkForVirtualKey(object key)
 	{
 		int index;
@@ -572,7 +553,6 @@ public class UtilityNetworkManager<NetworkType, ItemType> : IUtilityNetworkMgr w
 		return null;
 	}
 
-	// Token: 0x06008D18 RID: 36120 RVA: 0x00375198 File Offset: 0x00373398
 	public UtilityNetwork GetNetworkByID(int id)
 	{
 		UtilityNetwork result = null;
@@ -583,7 +563,6 @@ public class UtilityNetworkManager<NetworkType, ItemType> : IUtilityNetworkMgr w
 		return result;
 	}
 
-	// Token: 0x06008D19 RID: 36121 RVA: 0x003751C8 File Offset: 0x003733C8
 	public UtilityNetwork GetNetworkForCell(int cell)
 	{
 		UtilityNetwork result = null;
@@ -594,7 +573,6 @@ public class UtilityNetworkManager<NetworkType, ItemType> : IUtilityNetworkMgr w
 		return result;
 	}
 
-	// Token: 0x06008D1A RID: 36122 RVA: 0x00375230 File Offset: 0x00373430
 	public UtilityNetwork GetNetworkForDirection(int cell, Direction direction)
 	{
 		cell = Grid.GetCellInDirection(cell, direction);
@@ -611,7 +589,6 @@ public class UtilityNetworkManager<NetworkType, ItemType> : IUtilityNetworkMgr w
 		return result;
 	}
 
-	// Token: 0x06008D1B RID: 36123 RVA: 0x00375290 File Offset: 0x00373490
 	private UtilityConnections GetNeighboursAsConnections(int cell, HashSet<int> nodes)
 	{
 		UtilityConnections utilityConnections = (UtilityConnections)0;
@@ -635,7 +612,6 @@ public class UtilityNetworkManager<NetworkType, ItemType> : IUtilityNetworkMgr w
 		return utilityConnections;
 	}
 
-	// Token: 0x06008D1C RID: 36124 RVA: 0x00375320 File Offset: 0x00373520
 	public virtual void SetConnections(UtilityConnections connections, int cell, bool is_physical_building)
 	{
 		HashSet<int> nodes = this.GetNodes(is_physical_building);
@@ -650,7 +626,6 @@ public class UtilityNetworkManager<NetworkType, ItemType> : IUtilityNetworkMgr w
 		this.Reconnect(cell);
 	}
 
-	// Token: 0x06008D1D RID: 36125 RVA: 0x00375384 File Offset: 0x00373584
 	public UtilityConnections GetConnections(int cell, bool is_physical_building)
 	{
 		UtilityNetworkGridNode[] grid = this.GetGrid(is_physical_building);
@@ -663,7 +638,6 @@ public class UtilityNetworkManager<NetworkType, ItemType> : IUtilityNetworkMgr w
 		return utilityConnections;
 	}
 
-	// Token: 0x06008D1E RID: 36126 RVA: 0x003753C4 File Offset: 0x003735C4
 	public UtilityConnections GetDisplayConnections(int cell)
 	{
 		UtilityConnections utilityConnections = (UtilityConnections)0;
@@ -673,14 +647,12 @@ public class UtilityNetworkManager<NetworkType, ItemType> : IUtilityNetworkMgr w
 		return utilityConnections2 | grid[cell].connections;
 	}
 
-	// Token: 0x06008D1F RID: 36127 RVA: 0x00100A95 File Offset: 0x000FEC95
 	public virtual bool CanAddConnection(UtilityConnections new_connection, int cell, bool is_physical_building, out string fail_reason)
 	{
 		fail_reason = null;
 		return true;
 	}
 
-	// Token: 0x06008D20 RID: 36128 RVA: 0x003753FC File Offset: 0x003735FC
 	public void AddConnection(UtilityConnections new_connection, int cell, bool is_physical_building)
 	{
 		string text;
@@ -696,26 +668,22 @@ public class UtilityNetworkManager<NetworkType, ItemType> : IUtilityNetworkMgr w
 		}
 	}
 
-	// Token: 0x06008D21 RID: 36129 RVA: 0x00100A9C File Offset: 0x000FEC9C
 	public void StashVisualGrids()
 	{
 		Array.Copy(this.visualGrid, this.stashedVisualGrid, this.visualGrid.Length);
 	}
 
-	// Token: 0x06008D22 RID: 36130 RVA: 0x00100AB7 File Offset: 0x000FECB7
 	public void UnstashVisualGrids()
 	{
 		Array.Copy(this.stashedVisualGrid, this.visualGrid, this.visualGrid.Length);
 	}
 
-	// Token: 0x06008D23 RID: 36131 RVA: 0x00375444 File Offset: 0x00373644
 	public string GetVisualizerString(int cell)
 	{
 		UtilityConnections displayConnections = this.GetDisplayConnections(cell);
 		return this.GetVisualizerString(displayConnections);
 	}
 
-	// Token: 0x06008D24 RID: 36132 RVA: 0x00375460 File Offset: 0x00373660
 	public string GetVisualizerString(UtilityConnections connections)
 	{
 		string text = "";
@@ -742,7 +710,6 @@ public class UtilityNetworkManager<NetworkType, ItemType> : IUtilityNetworkMgr w
 		return text;
 	}
 
-	// Token: 0x06008D25 RID: 36133 RVA: 0x003754CC File Offset: 0x003736CC
 	public object GetEndpoint(int cell)
 	{
 		object result = null;
@@ -750,7 +717,6 @@ public class UtilityNetworkManager<NetworkType, ItemType> : IUtilityNetworkMgr w
 		return result;
 	}
 
-	// Token: 0x06008D26 RID: 36134 RVA: 0x00100AD2 File Offset: 0x000FECD2
 	public void AddSemiVirtualLink(int cell1, object virtualKey)
 	{
 		global::Debug.Assert(virtualKey != null, "Can not use a null key for a virtual network");
@@ -758,7 +724,6 @@ public class UtilityNetworkManager<NetworkType, ItemType> : IUtilityNetworkMgr w
 		this.dirty = true;
 	}
 
-	// Token: 0x06008D27 RID: 36135 RVA: 0x00100AF6 File Offset: 0x000FECF6
 	public void RemoveSemiVirtualLink(int cell1, object virtualKey)
 	{
 		global::Debug.Assert(virtualKey != null, "Can not use a null key for a virtual network");
@@ -766,7 +731,6 @@ public class UtilityNetworkManager<NetworkType, ItemType> : IUtilityNetworkMgr w
 		this.dirty = true;
 	}
 
-	// Token: 0x06008D28 RID: 36136 RVA: 0x00100B1A File Offset: 0x000FED1A
 	public void AddLink(int cell1, int cell2)
 	{
 		this.links[cell1] = cell2;
@@ -774,7 +738,6 @@ public class UtilityNetworkManager<NetworkType, ItemType> : IUtilityNetworkMgr w
 		this.dirty = true;
 	}
 
-	// Token: 0x06008D29 RID: 36137 RVA: 0x00100B3D File Offset: 0x000FED3D
 	public void RemoveLink(int cell1, int cell2)
 	{
 		this.links.Remove(cell1);
@@ -782,81 +745,58 @@ public class UtilityNetworkManager<NetworkType, ItemType> : IUtilityNetworkMgr w
 		this.dirty = true;
 	}
 
-	// Token: 0x06008D2A RID: 36138 RVA: 0x00100B60 File Offset: 0x000FED60
 	public void AddNetworksRebuiltListener(Action<IList<UtilityNetwork>, ICollection<int>> listener)
 	{
 		this.onNetworksRebuilt = (Action<IList<UtilityNetwork>, ICollection<int>>)Delegate.Combine(this.onNetworksRebuilt, listener);
 	}
 
-	// Token: 0x06008D2B RID: 36139 RVA: 0x00100B79 File Offset: 0x000FED79
 	public void RemoveNetworksRebuiltListener(Action<IList<UtilityNetwork>, ICollection<int>> listener)
 	{
 		this.onNetworksRebuilt = (Action<IList<UtilityNetwork>, ICollection<int>>)Delegate.Remove(this.onNetworksRebuilt, listener);
 	}
 
-	// Token: 0x06008D2C RID: 36140 RVA: 0x00100B92 File Offset: 0x000FED92
 	public IList<UtilityNetwork> GetNetworks()
 	{
 		return this.networks;
 	}
 
-	// Token: 0x04006A62 RID: 27234
 	private Dictionary<int, object> items = new Dictionary<int, object>();
 
-	// Token: 0x04006A63 RID: 27235
 	private Dictionary<int, object> endpoints = new Dictionary<int, object>();
 
-	// Token: 0x04006A64 RID: 27236
 	private Dictionary<object, List<object>> virtualItems = new Dictionary<object, List<object>>();
 
-	// Token: 0x04006A65 RID: 27237
 	private Dictionary<object, List<object>> virtualEndpoints = new Dictionary<object, List<object>>();
 
-	// Token: 0x04006A66 RID: 27238
 	private Dictionary<int, int> links = new Dictionary<int, int>();
 
-	// Token: 0x04006A67 RID: 27239
 	private Dictionary<int, object> semiVirtualLinks = new Dictionary<int, object>();
 
-	// Token: 0x04006A68 RID: 27240
 	private List<UtilityNetwork> networks;
 
-	// Token: 0x04006A69 RID: 27241
 	private Dictionary<object, int> virtualKeyToNetworkIdx = new Dictionary<object, int>();
 
-	// Token: 0x04006A6A RID: 27242
 	private HashSet<int> visitedCells;
 
-	// Token: 0x04006A6B RID: 27243
 	private HashSet<object> visitedVirtualKeys;
 
-	// Token: 0x04006A6C RID: 27244
 	private HashSet<object> queuedVirtualKeys;
 
-	// Token: 0x04006A6D RID: 27245
 	private Action<IList<UtilityNetwork>, ICollection<int>> onNetworksRebuilt;
 
-	// Token: 0x04006A6E RID: 27246
 	private Queue<int> queued = new Queue<int>();
 
-	// Token: 0x04006A6F RID: 27247
 	protected UtilityNetworkGridNode[] visualGrid;
 
-	// Token: 0x04006A70 RID: 27248
 	private UtilityNetworkGridNode[] stashedVisualGrid;
 
-	// Token: 0x04006A71 RID: 27249
 	protected UtilityNetworkGridNode[] physicalGrid;
 
-	// Token: 0x04006A72 RID: 27250
 	protected HashSet<int> physicalNodes;
 
-	// Token: 0x04006A73 RID: 27251
 	protected HashSet<int> visualNodes;
 
-	// Token: 0x04006A74 RID: 27252
 	private bool dirty;
 
-	// Token: 0x04006A75 RID: 27253
 	private int tileLayer = -1;
 }

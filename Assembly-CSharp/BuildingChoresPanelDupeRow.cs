@@ -3,18 +3,15 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001C65 RID: 7269
 [AddComponentMenu("KMonoBehaviour/scripts/BuildingChoresPanelDupeRow")]
 public class BuildingChoresPanelDupeRow : KMonoBehaviour
 {
-	// Token: 0x06009720 RID: 38688 RVA: 0x00106DD5 File Offset: 0x00104FD5
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 		this.button.onClick += this.OnClick;
 	}
 
-	// Token: 0x06009721 RID: 38689 RVA: 0x003B20B4 File Offset: 0x003B02B4
 	public void Init(BuildingChoresPanel.DupeEntryData data)
 	{
 		this.choreConsumer = data.consumer;
@@ -38,13 +35,11 @@ public class BuildingChoresPanelDupeRow : KMonoBehaviour
 		this.toolTip.toolTip = BuildingChoresPanelDupeRow.TooltipForDupe(data.context, data.consumer, data.rank);
 	}
 
-	// Token: 0x06009722 RID: 38690 RVA: 0x00106DF4 File Offset: 0x00104FF4
 	private void OnClick()
 	{
 		GameUtil.FocusCamera(this.choreConsumer.gameObject.transform.GetPosition() + Vector3.up, 2f, true, true);
 	}
 
-	// Token: 0x06009723 RID: 38691 RVA: 0x003B2288 File Offset: 0x003B0488
 	private static string TooltipForDupe(Chore.Precondition.Context context, ChoreConsumer choreConsumer, int rank)
 	{
 		bool flag = context.IsPotentialSuccess();
@@ -92,18 +87,13 @@ public class BuildingChoresPanelDupeRow : KMonoBehaviour
 		return text;
 	}
 
-	// Token: 0x040075A5 RID: 30117
 	public Image icon;
 
-	// Token: 0x040075A6 RID: 30118
 	public LocText label;
 
-	// Token: 0x040075A7 RID: 30119
 	public ToolTip toolTip;
 
-	// Token: 0x040075A8 RID: 30120
 	private ChoreConsumer choreConsumer;
 
-	// Token: 0x040075A9 RID: 30121
 	public KButton button;
 }

@@ -19,12 +19,9 @@ using VoronoiTree;
 
 namespace ProcGenGame
 {
-	// Token: 0x02002116 RID: 8470
 	[Serializable]
 	public class WorldGen
 	{
-		// Token: 0x17000B85 RID: 2949
-		// (get) Token: 0x0600B450 RID: 46160 RVA: 0x00119B58 File Offset: 0x00117D58
 		public static string WORLDGEN_SAVE_FILENAME
 		{
 			get
@@ -33,8 +30,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x17000B86 RID: 2950
-		// (get) Token: 0x0600B451 RID: 46161 RVA: 0x00119B69 File Offset: 0x00117D69
 		public static Diseases diseaseStats
 		{
 			get
@@ -47,8 +42,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x17000B87 RID: 2951
-		// (get) Token: 0x0600B452 RID: 46162 RVA: 0x00119B83 File Offset: 0x00117D83
 		public int BaseLeft
 		{
 			get
@@ -57,8 +50,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x17000B88 RID: 2952
-		// (get) Token: 0x0600B453 RID: 46163 RVA: 0x00119B95 File Offset: 0x00117D95
 		public int BaseRight
 		{
 			get
@@ -67,8 +58,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x17000B89 RID: 2953
-		// (get) Token: 0x0600B454 RID: 46164 RVA: 0x00119BA7 File Offset: 0x00117DA7
 		public int BaseTop
 		{
 			get
@@ -77,8 +66,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x17000B8A RID: 2954
-		// (get) Token: 0x0600B455 RID: 46165 RVA: 0x00119BB9 File Offset: 0x00117DB9
 		public int BaseBot
 		{
 			get
@@ -87,13 +74,8 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x17000B8B RID: 2955
-		// (get) Token: 0x0600B456 RID: 46166 RVA: 0x00119BCB File Offset: 0x00117DCB
-		// (set) Token: 0x0600B457 RID: 46167 RVA: 0x00119BD3 File Offset: 0x00117DD3
 		public Data data { get; private set; }
 
-		// Token: 0x17000B8C RID: 2956
-		// (get) Token: 0x0600B458 RID: 46168 RVA: 0x00119BDC File Offset: 0x00117DDC
 		public bool HasData
 		{
 			get
@@ -102,8 +84,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x17000B8D RID: 2957
-		// (get) Token: 0x0600B459 RID: 46169 RVA: 0x00119BE7 File Offset: 0x00117DE7
 		public bool HasNoiseData
 		{
 			get
@@ -112,8 +92,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x17000B8E RID: 2958
-		// (get) Token: 0x0600B45A RID: 46170 RVA: 0x00119C01 File Offset: 0x00117E01
 		public float[] DensityMap
 		{
 			get
@@ -122,8 +100,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x17000B8F RID: 2959
-		// (get) Token: 0x0600B45B RID: 46171 RVA: 0x00119C13 File Offset: 0x00117E13
 		public float[] HeatMap
 		{
 			get
@@ -132,8 +108,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x17000B90 RID: 2960
-		// (get) Token: 0x0600B45C RID: 46172 RVA: 0x00119C25 File Offset: 0x00117E25
 		public float[] OverrideMap
 		{
 			get
@@ -142,8 +116,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x17000B91 RID: 2961
-		// (get) Token: 0x0600B45D RID: 46173 RVA: 0x00119C37 File Offset: 0x00117E37
 		public float[] BaseNoiseMap
 		{
 			get
@@ -152,8 +124,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x17000B92 RID: 2962
-		// (get) Token: 0x0600B45E RID: 46174 RVA: 0x00119C49 File Offset: 0x00117E49
 		public float[] DefaultTendMap
 		{
 			get
@@ -162,8 +132,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x17000B93 RID: 2963
-		// (get) Token: 0x0600B45F RID: 46175 RVA: 0x00119C5B File Offset: 0x00117E5B
 		public Chunk World
 		{
 			get
@@ -172,8 +140,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x17000B94 RID: 2964
-		// (get) Token: 0x0600B460 RID: 46176 RVA: 0x00119C68 File Offset: 0x00117E68
 		public Vector2I WorldSize
 		{
 			get
@@ -182,8 +148,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x17000B95 RID: 2965
-		// (get) Token: 0x0600B461 RID: 46177 RVA: 0x00119C7A File Offset: 0x00117E7A
 		public Vector2I WorldOffset
 		{
 			get
@@ -192,8 +156,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x17000B96 RID: 2966
-		// (get) Token: 0x0600B462 RID: 46178 RVA: 0x00119C8C File Offset: 0x00117E8C
 		public WorldLayout WorldLayout
 		{
 			get
@@ -202,8 +164,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x17000B97 RID: 2967
-		// (get) Token: 0x0600B463 RID: 46179 RVA: 0x00119C99 File Offset: 0x00117E99
 		public List<TerrainCell> OverworldCells
 		{
 			get
@@ -212,8 +172,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x17000B98 RID: 2968
-		// (get) Token: 0x0600B464 RID: 46180 RVA: 0x00119CA6 File Offset: 0x00117EA6
 		public List<TerrainCell> TerrainCells
 		{
 			get
@@ -222,8 +180,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x17000B99 RID: 2969
-		// (get) Token: 0x0600B465 RID: 46181 RVA: 0x00119CB3 File Offset: 0x00117EB3
 		public List<River> Rivers
 		{
 			get
@@ -232,8 +188,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x17000B9A RID: 2970
-		// (get) Token: 0x0600B466 RID: 46182 RVA: 0x00119CC0 File Offset: 0x00117EC0
 		public GameSpawnData SpawnData
 		{
 			get
@@ -242,8 +196,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x17000B9B RID: 2971
-		// (get) Token: 0x0600B467 RID: 46183 RVA: 0x00119CCD File Offset: 0x00117ECD
 		public int ChunkEdgeSize
 		{
 			get
@@ -252,8 +204,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x17000B9C RID: 2972
-		// (get) Token: 0x0600B468 RID: 46184 RVA: 0x00119CDA File Offset: 0x00117EDA
 		public HashSet<int> ClaimedCells
 		{
 			get
@@ -262,8 +212,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x17000B9D RID: 2973
-		// (get) Token: 0x0600B469 RID: 46185 RVA: 0x00119CE2 File Offset: 0x00117EE2
 		public HashSet<int> HighPriorityClaimedCells
 		{
 			get
@@ -272,25 +220,19 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B46A RID: 46186 RVA: 0x00119CEA File Offset: 0x00117EEA
 		public void ClearClaimedCells()
 		{
 			this.claimedCells.Clear();
 			this.highPriorityClaims.Clear();
 		}
 
-		// Token: 0x0600B46B RID: 46187 RVA: 0x00119D02 File Offset: 0x00117F02
 		public void AddHighPriorityCells(HashSet<int> cells)
 		{
 			this.highPriorityClaims.Union(cells);
 		}
 
-		// Token: 0x17000B9E RID: 2974
-		// (get) Token: 0x0600B46C RID: 46188 RVA: 0x00119D11 File Offset: 0x00117F11
-		// (set) Token: 0x0600B46D RID: 46189 RVA: 0x00119D19 File Offset: 0x00117F19
 		public WorldGenSettings Settings { get; private set; }
 
-		// Token: 0x0600B46E RID: 46190 RVA: 0x0044AADC File Offset: 0x00448CDC
 		public WorldGen(string worldName, List<string> chosenWorldTraits, List<string> chosenStoryTraits, bool assertMissingTraits)
 		{
 			WorldGen.LoadSettings(false);
@@ -299,7 +241,6 @@ namespace ProcGenGame
 			this.data.chunkEdgeSize = this.Settings.GetIntSetting("ChunkEdgeSize");
 		}
 
-		// Token: 0x0600B46F RID: 46191 RVA: 0x0044AB68 File Offset: 0x00448D68
 		public WorldGen(string worldName, Data data, List<string> chosenTraits, List<string> chosenStoryTraits, bool assertMissingTraits)
 		{
 			WorldGen.LoadSettings(false);
@@ -307,7 +248,6 @@ namespace ProcGenGame
 			this.data = data;
 		}
 
-		// Token: 0x0600B470 RID: 46192 RVA: 0x0044ABD4 File Offset: 0x00448DD4
 		public WorldGen(WorldPlacement world, int seed, List<string> chosenWorldTraits, List<string> chosenStoryTraits, bool assertMissingTraits)
 		{
 			WorldGen.LoadSettings(false);
@@ -316,7 +256,6 @@ namespace ProcGenGame
 			this.data.chunkEdgeSize = this.Settings.GetIntSetting("ChunkEdgeSize");
 		}
 
-		// Token: 0x0600B471 RID: 46193 RVA: 0x00119D22 File Offset: 0x00117F22
 		public static void SetupDefaultElements()
 		{
 			WorldGen.voidElement = ElementLoader.FindElementByHash(SimHashes.Void);
@@ -325,13 +264,11 @@ namespace ProcGenGame
 			WorldGen.unobtaniumElement = ElementLoader.FindElementByHash(SimHashes.Unobtanium);
 		}
 
-		// Token: 0x0600B472 RID: 46194 RVA: 0x00119D60 File Offset: 0x00117F60
 		public void Reset()
 		{
 			this.wasLoaded = false;
 		}
 
-		// Token: 0x0600B473 RID: 46195 RVA: 0x0044AC60 File Offset: 0x00448E60
 		public static void LoadSettings(bool in_async_thread = false)
 		{
 			bool is_playing = Application.isPlaying;
@@ -351,7 +288,6 @@ namespace ProcGenGame
 			WorldGen.LoadSettings_Internal(is_playing, false);
 		}
 
-		// Token: 0x0600B474 RID: 46196 RVA: 0x00119D69 File Offset: 0x00117F69
 		public static void WaitForPendingLoadSettings()
 		{
 			if (WorldGen.loadSettingsTask != null)
@@ -361,7 +297,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B475 RID: 46197 RVA: 0x00119D82 File Offset: 0x00117F82
 		public static IEnumerator ListenForLoadSettingsErrorRoutine()
 		{
 			while (WorldGen.loadSettingsTask != null)
@@ -375,7 +310,6 @@ namespace ProcGenGame
 			yield break;
 		}
 
-		// Token: 0x0600B476 RID: 46198 RVA: 0x0044ACBC File Offset: 0x00448EBC
 		private static void LoadSettings_Internal(bool is_playing, bool preloadTemplates = false)
 		{
 			ListPool<YamlIO.Error, WorldGen>.PooledList pooledList = ListPool<YamlIO.Error, WorldGen>.Allocate();
@@ -448,7 +382,6 @@ namespace ProcGenGame
 			pooledList.Recycle();
 		}
 
-		// Token: 0x0600B477 RID: 46199 RVA: 0x00119D8A File Offset: 0x00117F8A
 		public void InitRandom(int worldSeed, int layoutSeed, int terrainSeed, int noiseSeed)
 		{
 			this.data.globalWorldSeed = worldSeed;
@@ -458,7 +391,6 @@ namespace ProcGenGame
 			this.myRandom = new SeededRandom(worldSeed);
 		}
 
-		// Token: 0x0600B478 RID: 46200 RVA: 0x0044AFE4 File Offset: 0x004491E4
 		public void Initialise(WorldGen.OfflineCallbackFunction callbackFn, Action<OfflineWorldGen.ErrorInfo> error_cb, int worldSeed = -1, int layoutSeed = -1, int terrainSeed = -1, int noiseSeed = -1, bool debug = false, bool skipPlacingTemplates = false)
 		{
 			if (this.wasLoaded)
@@ -495,7 +427,6 @@ namespace ProcGenGame
 			WorldLayout.SetLayerGradient(SettingsCache.layers.LevelLayers);
 		}
 
-		// Token: 0x0600B479 RID: 46201 RVA: 0x00119DC9 File Offset: 0x00117FC9
 		public bool GenerateOffline()
 		{
 			if (!this.GenerateWorldData())
@@ -506,13 +437,11 @@ namespace ProcGenGame
 			return true;
 		}
 
-		// Token: 0x0600B47A RID: 46202 RVA: 0x00119DF2 File Offset: 0x00117FF2
 		private void PlaceTemplateSpawners(Vector2I position, TemplateContainer template, ref Dictionary<int, int> claimedCells)
 		{
 			this.data.gameSpawnData.AddTemplate(template, position, ref claimedCells);
 		}
 
-		// Token: 0x0600B47B RID: 46203 RVA: 0x0044B0AC File Offset: 0x004492AC
 		public bool RenderOffline(bool doSettle, BinaryWriter writer, ref Sim.Cell[] cells, ref Sim.DiseaseCell[] dc, int baseId, ref List<WorldTrait> placedStoryTraits, bool isStartingWorld = false)
 		{
 			float[] bgTemp = null;
@@ -592,7 +521,6 @@ namespace ProcGenGame
 			return true;
 		}
 
-		// Token: 0x0600B47C RID: 46204 RVA: 0x0044B3B0 File Offset: 0x004495B0
 		private void SpawnMobsAndTemplates(Sim.Cell[] cells, float[] bgTemp, Sim.DiseaseCell[] dc, HashSet<int> claimedCells)
 		{
 			MobSpawning.DetectNaturalCavities(this.TerrainCells, this.successCallbackFn, cells);
@@ -616,7 +544,6 @@ namespace ProcGenGame
 			this.successCallbackFn(UI.WORLDGEN.PLACINGCREATURES.key, 1f, WorldGenProgressStages.Stages.PlacingCreatures);
 		}
 
-		// Token: 0x0600B47D RID: 46205 RVA: 0x0044B4B0 File Offset: 0x004496B0
 		public void ReportWorldGenError(Exception e, string errorMessage = null)
 		{
 			if (errorMessage == null)
@@ -644,43 +571,36 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B47E RID: 46206 RVA: 0x00119E07 File Offset: 0x00118007
 		public void SetWorldSize(int width, int height)
 		{
 			this.data.world = new Chunk(0, 0, width, height);
 		}
 
-		// Token: 0x0600B47F RID: 46207 RVA: 0x00119C68 File Offset: 0x00117E68
 		public Vector2I GetSize()
 		{
 			return this.data.world.size;
 		}
 
-		// Token: 0x0600B480 RID: 46208 RVA: 0x00119E1D File Offset: 0x0011801D
 		public void SetPosition(Vector2I position)
 		{
 			this.data.world.offset = position;
 		}
 
-		// Token: 0x0600B481 RID: 46209 RVA: 0x00119C7A File Offset: 0x00117E7A
 		public Vector2I GetPosition()
 		{
 			return this.data.world.offset;
 		}
 
-		// Token: 0x0600B482 RID: 46210 RVA: 0x00119E30 File Offset: 0x00118030
 		public void SetClusterLocation(AxialI location)
 		{
 			this.data.clusterLocation = location;
 		}
 
-		// Token: 0x0600B483 RID: 46211 RVA: 0x00119E3E File Offset: 0x0011803E
 		public AxialI GetClusterLocation()
 		{
 			return this.data.clusterLocation;
 		}
 
-		// Token: 0x0600B484 RID: 46212 RVA: 0x0044B59C File Offset: 0x0044979C
 		public bool GenerateNoiseData(WorldGen.OfflineCallbackFunction updateProgressFn)
 		{
 			try
@@ -710,7 +630,6 @@ namespace ProcGenGame
 			return true;
 		}
 
-		// Token: 0x0600B485 RID: 46213 RVA: 0x0044B660 File Offset: 0x00449860
 		public bool GenerateLayout(WorldGen.OfflineCallbackFunction updateProgressFn)
 		{
 			try
@@ -760,7 +679,6 @@ namespace ProcGenGame
 			return true;
 		}
 
-		// Token: 0x0600B486 RID: 46214 RVA: 0x0044B8EC File Offset: 0x00449AEC
 		public bool CompleteLayout(WorldGen.OfflineCallbackFunction updateProgressFn)
 		{
 			try
@@ -834,7 +752,6 @@ namespace ProcGenGame
 			return true;
 		}
 
-		// Token: 0x0600B487 RID: 46215 RVA: 0x0044BBD0 File Offset: 0x00449DD0
 		public void UpdateVoronoiNodeTags(VoronoiTree.Node node)
 		{
 			ProcGen.Node node2;
@@ -852,13 +769,11 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B488 RID: 46216 RVA: 0x00119E4B File Offset: 0x0011804B
 		public bool GenerateWorldData()
 		{
 			return this.GenerateNoiseData(this.successCallbackFn) && this.GenerateLayout(this.successCallbackFn);
 		}
 
-		// Token: 0x0600B489 RID: 46217 RVA: 0x0044BC40 File Offset: 0x00449E40
 		public void EnsureEnoughElementsInStartingBiome(Sim.Cell[] cells)
 		{
 			List<StartingWorldElementSetting> defaultStartingElements = this.Settings.GetDefaultStartingElements();
@@ -907,7 +822,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B48A RID: 46218 RVA: 0x0044BF14 File Offset: 0x0044A114
 		public bool RenderToMap(WorldGen.OfflineCallbackFunction updateProgressFn, ref Sim.Cell[] cells, ref float[] bgTemp, ref Sim.DiseaseCell[] dcs, ref HashSet<int> borderCells, ref List<RectInt> poiBounds)
 		{
 			global::Debug.Assert(Grid.WidthInCells == this.Settings.world.worldsize.x);
@@ -958,7 +872,6 @@ namespace ProcGenGame
 			return true;
 		}
 
-		// Token: 0x0600B48B RID: 46219 RVA: 0x0044C13C File Offset: 0x0044A33C
 		public SubWorld GetSubWorldForNode(VoronoiTree.Tree node)
 		{
 			ProcGen.Node node2 = this.WorldLayout.overworldGraph.FindNodeByID(node.site.id);
@@ -973,7 +886,6 @@ namespace ProcGenGame
 			return this.Settings.GetSubWorld(node2.type);
 		}
 
-		// Token: 0x0600B48C RID: 46220 RVA: 0x00119E69 File Offset: 0x00118069
 		public VoronoiTree.Tree GetOverworldForNode(Leaf leaf)
 		{
 			if (leaf == null)
@@ -983,7 +895,6 @@ namespace ProcGenGame
 			return this.data.worldLayout.GetVoronoiTree().GetChildContainingLeaf(leaf);
 		}
 
-		// Token: 0x0600B48D RID: 46221 RVA: 0x00119E86 File Offset: 0x00118086
 		public Leaf GetLeafForTerrainCell(TerrainCell cell)
 		{
 			if (cell == null)
@@ -993,7 +904,6 @@ namespace ProcGenGame
 			return this.data.worldLayout.GetVoronoiTree().GetNodeForSite(cell.site) as Leaf;
 		}
 
-		// Token: 0x0600B48E RID: 46222 RVA: 0x0044C190 File Offset: 0x0044A390
 		public List<TerrainCell> GetTerrainCellsForTag(Tag tag)
 		{
 			List<TerrainCell> list = new List<TerrainCell>();
@@ -1010,7 +920,6 @@ namespace ProcGenGame
 			return list;
 		}
 
-		// Token: 0x0600B48F RID: 46223 RVA: 0x0044C200 File Offset: 0x0044A400
 		private void GetStartCells(out int baseX, out int baseY)
 		{
 			Vector2I startLocation = new Vector2I(this.data.world.size.x / 2, (int)((float)this.data.world.size.y * 0.7f));
@@ -1022,7 +931,6 @@ namespace ProcGenGame
 			baseY = startLocation.y;
 		}
 
-		// Token: 0x0600B490 RID: 46224 RVA: 0x0044C278 File Offset: 0x0044A478
 		public void FinalizeStartLocation()
 		{
 			if (string.IsNullOrEmpty(this.Settings.world.startSubworldName))
@@ -1041,7 +949,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B491 RID: 46225 RVA: 0x0044C2F0 File Offset: 0x0044A4F0
 		private void SwitchNodes(VoronoiTree.Node n1, VoronoiTree.Node n2)
 		{
 			if (n1 is VoronoiTree.Tree || n2 is VoronoiTree.Tree)
@@ -1059,7 +966,6 @@ namespace ProcGenGame
 			node.SetType(type);
 		}
 
-		// Token: 0x0600B492 RID: 46226 RVA: 0x0044C38C File Offset: 0x0044A58C
 		private void ApplyStartNode()
 		{
 			List<VoronoiTree.Node> leafNodesWithTag = this.data.worldLayout.GetLeafNodesWithTag(WorldGenTags.StartLocation);
@@ -1073,7 +979,6 @@ namespace ProcGenGame
 			node.parent.tags.Remove(WorldGenTags.StartLocation);
 		}
 
-		// Token: 0x0600B493 RID: 46227 RVA: 0x0044C3EC File Offset: 0x0044A5EC
 		private void ApplySwapTags()
 		{
 			List<VoronoiTree.Node> list = new List<VoronoiTree.Node>();
@@ -1095,7 +1000,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B494 RID: 46228 RVA: 0x0044C4D8 File Offset: 0x0044A6D8
 		private void SwapNodesAround(Tag swapTag, bool sendTagToBottom, List<VoronoiTree.Node> nodes, Vector2 pivot)
 		{
 			nodes.ShuffleSeeded(this.myRandom.RandomSource());
@@ -1143,7 +1047,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B495 RID: 46229 RVA: 0x0044C628 File Offset: 0x0044A828
 		public void GetElementForBiomePoint(Chunk chunk, ElementBandConfiguration elementBands, Vector2I pos, out Element element, out Sim.PhysicsData pd, out Sim.DiseaseCell dc, float erode)
 		{
 			TerrainCell.ElementOverride elementOverride = TerrainCell.GetElementOverride(WorldGen.voidElement.tag.ToString(), null);
@@ -1153,7 +1056,6 @@ namespace ProcGenGame
 			dc = elementOverride.dc;
 		}
 
-		// Token: 0x0600B496 RID: 46230 RVA: 0x0044C680 File Offset: 0x0044A880
 		public void ConvertIntersectingCellsToType(MathUtil.Pair<Vector2, Vector2> segment, string type)
 		{
 			List<Vector2I> line = ProcGen.Util.GetLine(segment.First, segment.Second);
@@ -1172,7 +1074,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B497 RID: 46231 RVA: 0x0044C738 File Offset: 0x0044A938
 		public string GetSubWorldType(Vector2I pos)
 		{
 			for (int i = 0; i < this.data.overworldCells.Count; i++)
@@ -1185,7 +1086,6 @@ namespace ProcGenGame
 			return null;
 		}
 
-		// Token: 0x0600B498 RID: 46232 RVA: 0x0044C7A0 File Offset: 0x0044A9A0
 		private void ProcessByTerrainCell(Sim.Cell[] map_cells, float[] bgTemp, Sim.DiseaseCell[] dcs, WorldGen.OfflineCallbackFunction updateProgressFn, HashSet<int> hightPriorityCells)
 		{
 			updateProgressFn(UI.WORLDGEN.PROCESSING.key, 0f, WorldGenProgressStages.Stages.Processing);
@@ -1392,7 +1292,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B499 RID: 46233 RVA: 0x0044D2A4 File Offset: 0x0044B4A4
 		private void DrawWorldBorder(Sim.Cell[] cells, Chunk world, SeededRandom rnd, ref HashSet<int> borderCells, ref List<RectInt> poiBounds, WorldGen.OfflineCallbackFunction updateProgressFn)
 		{
 			WorldGen.<>c__DisplayClass136_0 CS$<>8__locals1 = new WorldGen.<>c__DisplayClass136_0();
@@ -1485,7 +1384,6 @@ namespace ProcGenGame
 			this.POIBounds.Add(new RectInt(0, num13, this.World.size.x, this.World.size.y - num13));
 		}
 
-		// Token: 0x0600B49A RID: 46234 RVA: 0x0044D870 File Offset: 0x0044BA70
 		private void SetupNoise(WorldGen.OfflineCallbackFunction updateProgressFn)
 		{
 			updateProgressFn(UI.WORLDGEN.BUILDNOISESOURCE.key, 0f, WorldGenProgressStages.Stages.SetupNoise);
@@ -1493,7 +1391,6 @@ namespace ProcGenGame
 			updateProgressFn(UI.WORLDGEN.BUILDNOISESOURCE.key, 1f, WorldGenProgressStages.Stages.SetupNoise);
 		}
 
-		// Token: 0x0600B49B RID: 46235 RVA: 0x0044D8E8 File Offset: 0x0044BAE8
 		public NoiseMapBuilderPlane BuildNoiseSource(int width, int height, string name)
 		{
 			ProcGen.Noise.Tree tree = SettingsCache.noise.GetTree(name);
@@ -1501,7 +1398,6 @@ namespace ProcGenGame
 			return this.BuildNoiseSource(width, height, tree);
 		}
 
-		// Token: 0x0600B49C RID: 46236 RVA: 0x0044D914 File Offset: 0x0044BB14
 		public NoiseMapBuilderPlane BuildNoiseSource(int width, int height, ProcGen.Noise.Tree tree)
 		{
 			Vector2f lowerBound = tree.settings.lowerBound;
@@ -1530,12 +1426,10 @@ namespace ProcGenGame
 			return noiseMapBuilderPlane;
 		}
 
-		// Token: 0x0600B49D RID: 46237 RVA: 0x000AA038 File Offset: 0x000A8238
 		private void GetMinMaxDataValues(float[] data, int width, int height)
 		{
 		}
 
-		// Token: 0x0600B49E RID: 46238 RVA: 0x0044DA5C File Offset: 0x0044BC5C
 		public static NoiseMap BuildNoiseMap(Vector2 offset, float zoom, NoiseMapBuilderPlane nmbp, int width, int height, NoiseMapBuilderCallback cb = null)
 		{
 			double num = (double)offset.x;
@@ -1556,7 +1450,6 @@ namespace ProcGenGame
 			return noiseMap;
 		}
 
-		// Token: 0x0600B49F RID: 46239 RVA: 0x0044DAD4 File Offset: 0x0044BCD4
 		public static float[] GenerateNoise(Vector2 offset, float zoom, NoiseMapBuilderPlane nmbp, int width, int height, NoiseMapBuilderCallback cb = null)
 		{
 			NoiseMap noiseMap = WorldGen.BuildNoiseMap(offset, zoom, nmbp, width, height, cb);
@@ -1565,7 +1458,6 @@ namespace ProcGenGame
 			return result;
 		}
 
-		// Token: 0x0600B4A0 RID: 46240 RVA: 0x0044DB0C File Offset: 0x0044BD0C
 		public static void Normalise(float[] data)
 		{
 			global::Debug.Assert(data != null && data.Length != 0, "MISSING DATA FOR NORMALIZE");
@@ -1583,7 +1475,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B4A1 RID: 46241 RVA: 0x0044DB80 File Offset: 0x0044BD80
 		private void GenerateUnChunkedNoise(WorldGen.OfflineCallbackFunction updateProgressFn)
 		{
 			Vector2 offset = new Vector2(0f, 0f);
@@ -1612,7 +1503,6 @@ namespace ProcGenGame
 			updateProgressFn(UI.WORLDGEN.NORMALISENOISE.key, 1f, WorldGenProgressStages.Stages.GenerateNoise);
 		}
 
-		// Token: 0x0600B4A2 RID: 46242 RVA: 0x0044DD1C File Offset: 0x0044BF1C
 		public void WriteOverWorldNoise(WorldGen.OfflineCallbackFunction updateProgressFn)
 		{
 			Dictionary<HashedString, WorldGen.NoiseNormalizationStats> dictionary = new Dictionary<HashedString, WorldGen.NoiseNormalizationStats>();
@@ -1744,7 +1634,6 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B4A3 RID: 46243 RVA: 0x0044E3C4 File Offset: 0x0044C5C4
 		private float GetValue(Chunk chunk, Vector2I pos)
 		{
 			int num = pos.x + this.data.world.size.x * pos.y;
@@ -1755,20 +1644,17 @@ namespace ProcGenGame
 			return chunk.data[num];
 		}
 
-		// Token: 0x0600B4A4 RID: 46244 RVA: 0x0044E448 File Offset: 0x0044C648
 		public bool InChunkRange(Chunk chunk, Vector2I pos)
 		{
 			int num = pos.x + this.data.world.size.x * pos.y;
 			return num >= 0 && num < chunk.data.Length;
 		}
 
-		// Token: 0x0600B4A5 RID: 46245 RVA: 0x00119EAD File Offset: 0x001180AD
 		private TerrainCell.ElementOverride GetElementFromBiomeElementTable(Chunk chunk, Vector2I pos, List<ElementGradient> table, float erode)
 		{
 			return WorldGen.GetElementFromBiomeElementTable(this.GetValue(chunk, pos) * erode, table);
 		}
 
-		// Token: 0x0600B4A6 RID: 46246 RVA: 0x0044E48C File Offset: 0x0044C68C
 		public static TerrainCell.ElementOverride GetElementFromBiomeElementTable(float value, List<ElementGradient> table)
 		{
 			TerrainCell.ElementOverride elementOverride = TerrainCell.GetElementOverride(WorldGen.voidElement.tag.ToString(), null);
@@ -1787,7 +1673,6 @@ namespace ProcGenGame
 			return TerrainCell.GetElementOverride(table[table.Count - 1].content, table[table.Count - 1].overrides);
 		}
 
-		// Token: 0x0600B4A7 RID: 46247 RVA: 0x0044E548 File Offset: 0x0044C748
 		public static bool CanLoad(string fileName)
 		{
 			if (fileName == null || fileName == "")
@@ -1821,7 +1706,6 @@ namespace ProcGenGame
 			return result;
 		}
 
-		// Token: 0x0600B4A8 RID: 46248 RVA: 0x0044E5F0 File Offset: 0x0044C7F0
 		public static WorldGen Load(IReader reader, bool defaultDiscovered)
 		{
 			WorldGen result;
@@ -1869,148 +1753,101 @@ namespace ProcGenGame
 			return result;
 		}
 
-		// Token: 0x0600B4A9 RID: 46249 RVA: 0x000AA038 File Offset: 0x000A8238
 		public void DrawDebug()
 		{
 		}
 
-		// Token: 0x04008EB8 RID: 36536
 		private const string _WORLDGEN_SAVE_FILENAME = "WorldGenDataSave.worldgen";
 
-		// Token: 0x04008EB9 RID: 36537
 		private const int heatScale = 2;
 
-		// Token: 0x04008EBA RID: 36538
 		private const int UNPASSABLE_EDGE_COUNT = 4;
 
-		// Token: 0x04008EBB RID: 36539
 		private const string heat_noise_name = "noise/Heat";
 
-		// Token: 0x04008EBC RID: 36540
 		private const string default_base_noise_name = "noise/Default";
 
-		// Token: 0x04008EBD RID: 36541
 		private const string default_cave_noise_name = "noise/DefaultCave";
 
-		// Token: 0x04008EBE RID: 36542
 		private const string default_density_noise_name = "noise/DefaultDensity";
 
-		// Token: 0x04008EBF RID: 36543
 		public const int WORLDGEN_SAVE_MAJOR_VERSION = 1;
 
-		// Token: 0x04008EC0 RID: 36544
 		public const int WORLDGEN_SAVE_MINOR_VERSION = 1;
 
-		// Token: 0x04008EC1 RID: 36545
 		private const float EXTREME_TEMPERATURE_BORDER_RANGE = 150f;
 
-		// Token: 0x04008EC2 RID: 36546
 		private const float EXTREME_TEMPERATURE_BORDER_MIN_WIDTH = 2f;
 
-		// Token: 0x04008EC3 RID: 36547
 		public static Element voidElement;
 
-		// Token: 0x04008EC4 RID: 36548
 		public static Element vacuumElement;
 
-		// Token: 0x04008EC5 RID: 36549
 		public static Element katairiteElement;
 
-		// Token: 0x04008EC6 RID: 36550
 		public static Element unobtaniumElement;
 
-		// Token: 0x04008EC7 RID: 36551
 		private static Diseases m_diseasesDb;
 
-		// Token: 0x04008EC8 RID: 36552
 		public bool isRunningDebugGen;
 
-		// Token: 0x04008EC9 RID: 36553
 		public bool skipPlacingTemplates;
 
-		// Token: 0x04008ECB RID: 36555
 		private HashSet<int> claimedCells = new HashSet<int>();
 
-		// Token: 0x04008ECC RID: 36556
 		public Dictionary<int, int> claimedPOICells = new Dictionary<int, int>();
 
-		// Token: 0x04008ECD RID: 36557
 		private HashSet<int> highPriorityClaims = new HashSet<int>();
 
-		// Token: 0x04008ECE RID: 36558
 		public List<RectInt> POIBounds = new List<RectInt>();
 
-		// Token: 0x04008ECF RID: 36559
 		public List<TemplateSpawning.TemplateSpawner> POISpawners;
 
-		// Token: 0x04008ED0 RID: 36560
 		private WorldGen.OfflineCallbackFunction successCallbackFn;
 
-		// Token: 0x04008ED1 RID: 36561
 		private bool running = true;
 
-		// Token: 0x04008ED2 RID: 36562
 		private Action<OfflineWorldGen.ErrorInfo> errorCallback;
 
-		// Token: 0x04008ED3 RID: 36563
 		private SeededRandom myRandom;
 
-		// Token: 0x04008ED4 RID: 36564
 		private NoiseMapBuilderPlane heatSource;
 
-		// Token: 0x04008ED6 RID: 36566
 		private bool wasLoaded;
 
-		// Token: 0x04008ED7 RID: 36567
 		public int polyIndex = -1;
 
-		// Token: 0x04008ED8 RID: 36568
 		public bool isStartingWorld;
 
-		// Token: 0x04008ED9 RID: 36569
 		public bool isModuleInterior;
 
-		// Token: 0x04008EDA RID: 36570
 		private static Task loadSettingsTask;
 
-		// Token: 0x02002117 RID: 8471
-		// (Invoke) Token: 0x0600B4AB RID: 46251
+Invoke) Token: 0x0600B4AB RID: 46251
 		public delegate bool OfflineCallbackFunction(StringKey stringKeyRoot, float completePercent, WorldGenProgressStages.Stages stage);
 
-		// Token: 0x02002118 RID: 8472
 		public enum GenerateSection
 		{
-			// Token: 0x04008EDC RID: 36572
 			SolarSystem,
-			// Token: 0x04008EDD RID: 36573
 			WorldNoise,
-			// Token: 0x04008EDE RID: 36574
 			WorldLayout,
-			// Token: 0x04008EDF RID: 36575
 			RenderToMap,
-			// Token: 0x04008EE0 RID: 36576
 			CollectSpawners
 		}
 
-		// Token: 0x02002119 RID: 8473
 		private class NoiseNormalizationStats
 		{
-			// Token: 0x0600B4AE RID: 46254 RVA: 0x00119EC0 File Offset: 0x001180C0
 			public NoiseNormalizationStats(float[] noise)
 			{
 				this.noise = noise;
 			}
 
-			// Token: 0x04008EE1 RID: 36577
 			public float[] noise;
 
-			// Token: 0x04008EE2 RID: 36578
 			public float min = float.MaxValue;
 
-			// Token: 0x04008EE3 RID: 36579
 			public float max = float.MinValue;
 
-			// Token: 0x04008EE4 RID: 36580
 			public HashSet<int> cells = new HashSet<int>();
 		}
 	}

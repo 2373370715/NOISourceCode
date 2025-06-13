@@ -1,10 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02001A47 RID: 6727
 public class TrapTrigger : KMonoBehaviour
 {
-	// Token: 0x06008C2E RID: 35886 RVA: 0x00370DC8 File Offset: 0x0036EFC8
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -21,7 +19,6 @@ public class TrapTrigger : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008C2F RID: 35887 RVA: 0x00370E50 File Offset: 0x0036F050
 	public void SetTriggerCell(int cell)
 	{
 		HandleVector<int>.Handle handle = this.partitionerEntry;
@@ -29,7 +26,6 @@ public class TrapTrigger : KMonoBehaviour
 		this.partitionerEntry = GameScenePartitioner.Instance.Add("Trap", base.gameObject, cell, GameScenePartitioner.Instance.trapsLayer, new Action<object>(this.OnCreatureOnTrap));
 	}
 
-	// Token: 0x06008C30 RID: 35888 RVA: 0x00370EA8 File Offset: 0x0036F0A8
 	public void SetStoredPosition(GameObject go)
 	{
 		if (go == null)
@@ -53,7 +49,6 @@ public class TrapTrigger : KMonoBehaviour
 		component.SetSceneLayer(Grid.SceneLayer.BuildingFront);
 	}
 
-	// Token: 0x06008C31 RID: 35889 RVA: 0x00370F80 File Offset: 0x0036F180
 	public void OnCreatureOnTrap(object data)
 	{
 		if (!base.enabled)
@@ -95,26 +90,15 @@ public class TrapTrigger : KMonoBehaviour
 		base.Trigger(-358342870, trappable.gameObject);
 	}
 
-	// Token: 0x06008C32 RID: 35890 RVA: 0x0010033E File Offset: 0x000FE53E
 	protected override void OnCleanUp()
 	{
 		base.OnCleanUp();
-		GameScenePartitioner.Instance.Free(ref this.partitionerEntry);
 	}
 
-	// Token: 0x040069D9 RID: 27097
 	private HandleVector<int>.Handle partitionerEntry;
 
-	// Token: 0x040069DA RID: 27098
-	public Tag[] trappableCreatures;
 
-	// Token: 0x040069DB RID: 27099
-	public Vector2 trappedOffset = Vector2.zero;
 
-	// Token: 0x040069DC RID: 27100
-	public bool addTrappedAnimationOffset = true;
 
-	// Token: 0x040069DD RID: 27101
-	[MyCmpReq]
 	private Storage storage;
 }

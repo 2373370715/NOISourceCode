@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003C7 RID: 967
 public class LiquidCooledFanConfig : IBuildingConfig
 {
-	// Token: 0x06000FB9 RID: 4025 RVA: 0x00188250 File Offset: 0x00186450
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "LiquidCooledFan";
@@ -31,7 +29,6 @@ public class LiquidCooledFanConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000FBA RID: 4026 RVA: 0x001882EC File Offset: 0x001864EC
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		Storage storage = go.AddComponent<Storage>();
@@ -72,11 +69,9 @@ public class LiquidCooledFanConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x06000FBB RID: 4027 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000B5E RID: 2910
 	public const string ID = "LiquidCooledFan";
 }

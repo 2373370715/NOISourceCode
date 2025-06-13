@@ -5,10 +5,8 @@ using Klei.AI;
 
 namespace Database
 {
-	// Token: 0x020021C6 RID: 8646
 	public class PlantMutations : ResourceSet<PlantMutation>
 	{
-		// Token: 0x0600B870 RID: 47216 RVA: 0x0046EAAC File Offset: 0x0046CCAC
 		public PlantMutation AddPlantMutation(string id)
 		{
 			StringEntry entry = Strings.Get(new StringKey("STRINGS.CREATURES.PLANT_MUTATIONS." + id.ToUpper() + ".NAME"));
@@ -18,7 +16,6 @@ namespace Database
 			return plantMutation;
 		}
 
-		// Token: 0x0600B871 RID: 47217 RVA: 0x0046EB18 File Offset: 0x0046CD18
 		public PlantMutations(ResourceSet parent) : base("PlantMutations", parent)
 		{
 			this.moderatelyLoose = this.AddPlantMutation("moderatelyLoose").AttributeModifier(Db.Get().PlantAttributes.MinRadiationThreshold, 250f, false).AttributeModifier(Db.Get().PlantAttributes.WiltTempRangeMod, 0.5f, true).AttributeModifier(Db.Get().PlantAttributes.YieldAmount, -0.25f, true).AttributeModifier(Db.Get().PlantAttributes.FertilizerUsageMod, -0.5f, true).VisualTint(-0.4f, -0.4f, -0.4f);
@@ -33,7 +30,6 @@ namespace Database
 			this.heavyFruit = this.AddPlantMutation("heavyFruit").AttributeModifier(Db.Get().PlantAttributes.MinRadiationThreshold, 250f, false).AttributeModifier(Db.Get().PlantAttributes.FertilizerUsageMod, 0.25f, true).ForceSelfHarvestOnGrown().VisualSymbolTint("swap_crop01", -0.1f, -0.5f, -0.5f).VisualSymbolTint("swap_crop02", -0.1f, -0.5f, -0.5f);
 		}
 
-		// Token: 0x0600B872 RID: 47218 RVA: 0x0046F104 File Offset: 0x0046D304
 		public List<string> GetNamesForMutations(List<string> mutationIDs)
 		{
 			List<string> list = new List<string>(mutationIDs.Count);
@@ -44,7 +40,6 @@ namespace Database
 			return list;
 		}
 
-		// Token: 0x0600B873 RID: 47219 RVA: 0x0046F16C File Offset: 0x0046D36C
 		public PlantMutation GetRandomMutation(string targetPlantPrefabID)
 		{
 			return (from m in this.resources
@@ -52,34 +47,24 @@ namespace Database
 			select m).ToList<PlantMutation>().GetRandom<PlantMutation>();
 		}
 
-		// Token: 0x04009643 RID: 38467
 		public PlantMutation moderatelyLoose;
 
-		// Token: 0x04009644 RID: 38468
 		public PlantMutation moderatelyTight;
 
-		// Token: 0x04009645 RID: 38469
 		public PlantMutation extremelyTight;
 
-		// Token: 0x04009646 RID: 38470
 		public PlantMutation bonusLice;
 
-		// Token: 0x04009647 RID: 38471
 		public PlantMutation sunnySpeed;
 
-		// Token: 0x04009648 RID: 38472
 		public PlantMutation slowBurn;
 
-		// Token: 0x04009649 RID: 38473
 		public PlantMutation blooms;
 
-		// Token: 0x0400964A RID: 38474
 		public PlantMutation loadedWithFruit;
 
-		// Token: 0x0400964B RID: 38475
 		public PlantMutation heavyFruit;
 
-		// Token: 0x0400964C RID: 38476
 		public PlantMutation rottenHeaps;
 	}
 }

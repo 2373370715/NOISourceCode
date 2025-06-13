@@ -7,28 +7,23 @@ using UnityEngine;
 
 namespace Database
 {
-	// Token: 0x0200218C RID: 8588
 	public class BuildingStatusItems : StatusItems
 	{
-		// Token: 0x0600B6B6 RID: 46774 RVA: 0x0011AFD6 File Offset: 0x001191D6
 		public BuildingStatusItems(ResourceSet parent) : base("BuildingStatusItems", parent)
 		{
 			this.CreateStatusItems();
 		}
 
-		// Token: 0x0600B6B7 RID: 46775 RVA: 0x00459104 File Offset: 0x00457304
 		private StatusItem CreateStatusItem(string id, string prefix, string icon, StatusItem.IconType icon_type, NotificationType notification_type, bool allow_multiples, HashedString render_overlay, bool showWorldIcon = true, int status_overlays = 129022)
 		{
 			return base.Add(new StatusItem(id, prefix, icon, icon_type, notification_type, allow_multiples, render_overlay, showWorldIcon, status_overlays, null));
 		}
 
-		// Token: 0x0600B6B8 RID: 46776 RVA: 0x0045912C File Offset: 0x0045732C
 		private StatusItem CreateStatusItem(string id, string name, string tooltip, string icon, StatusItem.IconType icon_type, NotificationType notification_type, bool allow_multiples, HashedString render_overlay, int status_overlays = 129022)
 		{
 			return base.Add(new StatusItem(id, name, tooltip, icon, icon_type, notification_type, allow_multiples, render_overlay, status_overlays, true, null));
 		}
 
-		// Token: 0x0600B6B9 RID: 46777 RVA: 0x00459158 File Offset: 0x00457358
 		private void CreateStatusItems()
 		{
 			this.AngerDamage = this.CreateStatusItem("AngerDamage", "BUILDING", "", StatusItem.IconType.Exclamation, NotificationType.Bad, false, OverlayModes.None.ID, true, 129022);
@@ -1576,7 +1571,6 @@ namespace Database
 			};
 		}
 
-		// Token: 0x0600B6BA RID: 46778 RVA: 0x0045DFC8 File Offset: 0x0045C1C8
 		private static bool ShowInUtilityOverlay(HashedString mode, object data)
 		{
 			Transform transform = (Transform)data;
@@ -1614,7 +1608,6 @@ namespace Database
 			return result;
 		}
 
-		// Token: 0x0600B6BB RID: 46779 RVA: 0x0045E0D8 File Offset: 0x0045C2D8
 		[CompilerGenerated]
 		internal static string <CreateStatusItems>g__SkyVisResolveStringCallback|322_117(string str, object data)
 		{
@@ -1622,964 +1615,644 @@ namespace Database
 			return str.Replace("{VISIBILITY}", GameUtil.GetFormattedPercent(skyVisInfo.GetPercentVisible01() * 100f, GameUtil.TimeSlice.None));
 		}
 
-		// Token: 0x040090DE RID: 37086
 		public StatusItem MissingRequirements;
 
-		// Token: 0x040090DF RID: 37087
 		public StatusItem GettingReady;
 
-		// Token: 0x040090E0 RID: 37088
 		public StatusItem Working;
 
-		// Token: 0x040090E1 RID: 37089
 		public MaterialsStatusItem MaterialsUnavailable;
 
-		// Token: 0x040090E2 RID: 37090
 		public MaterialsStatusItem MaterialsUnavailableForRefill;
 
-		// Token: 0x040090E3 RID: 37091
 		public StatusItem AngerDamage;
 
-		// Token: 0x040090E4 RID: 37092
 		public StatusItem ClinicOutsideHospital;
 
-		// Token: 0x040090E5 RID: 37093
 		public StatusItem DigUnreachable;
 
-		// Token: 0x040090E6 RID: 37094
 		public StatusItem MopUnreachable;
 
-		// Token: 0x040090E7 RID: 37095
 		public StatusItem StorageUnreachable;
 
-		// Token: 0x040090E8 RID: 37096
 		public StatusItem PassengerModuleUnreachable;
 
-		// Token: 0x040090E9 RID: 37097
 		public StatusItem ConstructableDigUnreachable;
 
-		// Token: 0x040090EA RID: 37098
 		public StatusItem ConstructionUnreachable;
 
-		// Token: 0x040090EB RID: 37099
 		public StatusItem CoolingWater;
 
-		// Token: 0x040090EC RID: 37100
 		public StatusItem DispenseRequested;
 
-		// Token: 0x040090ED RID: 37101
 		public StatusItem NewDuplicantsAvailable;
 
-		// Token: 0x040090EE RID: 37102
 		public StatusItem NeedPlant;
 
-		// Token: 0x040090EF RID: 37103
 		public StatusItem NeedPower;
 
-		// Token: 0x040090F0 RID: 37104
 		public StatusItem NotEnoughPower;
 
-		// Token: 0x040090F1 RID: 37105
 		public StatusItem PowerLoopDetected;
 
-		// Token: 0x040090F2 RID: 37106
 		public StatusItem NeedLiquidIn;
 
-		// Token: 0x040090F3 RID: 37107
 		public StatusItem NeedGasIn;
 
-		// Token: 0x040090F4 RID: 37108
 		public StatusItem NeedResourceMass;
 
-		// Token: 0x040090F5 RID: 37109
 		public StatusItem NeedSolidIn;
 
-		// Token: 0x040090F6 RID: 37110
 		public StatusItem NeedLiquidOut;
 
-		// Token: 0x040090F7 RID: 37111
 		public StatusItem NeedGasOut;
 
-		// Token: 0x040090F8 RID: 37112
 		public StatusItem NeedSolidOut;
 
-		// Token: 0x040090F9 RID: 37113
 		public StatusItem InvalidBuildingLocation;
 
-		// Token: 0x040090FA RID: 37114
 		public StatusItem PendingDeconstruction;
 
-		// Token: 0x040090FB RID: 37115
 		public StatusItem PendingDemolition;
 
-		// Token: 0x040090FC RID: 37116
 		public StatusItem PendingSwitchToggle;
 
-		// Token: 0x040090FD RID: 37117
 		public StatusItem GasVentObstructed;
 
-		// Token: 0x040090FE RID: 37118
 		public StatusItem LiquidVentObstructed;
 
-		// Token: 0x040090FF RID: 37119
 		public StatusItem LiquidPipeEmpty;
 
-		// Token: 0x04009100 RID: 37120
 		public StatusItem LiquidPipeObstructed;
 
-		// Token: 0x04009101 RID: 37121
 		public StatusItem GasPipeEmpty;
 
-		// Token: 0x04009102 RID: 37122
 		public StatusItem GasPipeObstructed;
 
-		// Token: 0x04009103 RID: 37123
 		public StatusItem SolidPipeObstructed;
 
-		// Token: 0x04009104 RID: 37124
 		public StatusItem PartiallyDamaged;
 
-		// Token: 0x04009105 RID: 37125
 		public StatusItem Broken;
 
-		// Token: 0x04009106 RID: 37126
 		public StatusItem PendingRepair;
 
-		// Token: 0x04009107 RID: 37127
 		public StatusItem PendingUpgrade;
 
-		// Token: 0x04009108 RID: 37128
 		public StatusItem RequiresSkillPerk;
 
-		// Token: 0x04009109 RID: 37129
 		public StatusItem DigRequiresSkillPerk;
 
-		// Token: 0x0400910A RID: 37130
 		public StatusItem ColonyLacksRequiredSkillPerk;
 
-		// Token: 0x0400910B RID: 37131
 		public StatusItem ClusterColonyLacksRequiredSkillPerk;
 
-		// Token: 0x0400910C RID: 37132
 		public StatusItem WorkRequiresMinion;
 
-		// Token: 0x0400910D RID: 37133
 		public StatusItem PendingWork;
 
-		// Token: 0x0400910E RID: 37134
 		public StatusItem Flooded;
 
-		// Token: 0x0400910F RID: 37135
 		public StatusItem NotSubmerged;
 
-		// Token: 0x04009110 RID: 37136
 		public StatusItem PowerButtonOff;
 
-		// Token: 0x04009111 RID: 37137
 		public StatusItem SwitchStatusActive;
 
-		// Token: 0x04009112 RID: 37138
 		public StatusItem SwitchStatusInactive;
 
-		// Token: 0x04009113 RID: 37139
 		public StatusItem LogicSwitchStatusActive;
 
-		// Token: 0x04009114 RID: 37140
 		public StatusItem LogicSwitchStatusInactive;
 
-		// Token: 0x04009115 RID: 37141
 		public StatusItem LogicSensorStatusActive;
 
-		// Token: 0x04009116 RID: 37142
 		public StatusItem LogicSensorStatusInactive;
 
-		// Token: 0x04009117 RID: 37143
 		public StatusItem ChangeDoorControlState;
 
-		// Token: 0x04009118 RID: 37144
 		public StatusItem CurrentDoorControlState;
 
-		// Token: 0x04009119 RID: 37145
 		public StatusItem ChangeStorageTileTarget;
 
-		// Token: 0x0400911A RID: 37146
 		public StatusItem Entombed;
 
-		// Token: 0x0400911B RID: 37147
 		public MaterialsStatusItem WaitingForMaterials;
 
-		// Token: 0x0400911C RID: 37148
 		public StatusItem WaitingForHighEnergyParticles;
 
-		// Token: 0x0400911D RID: 37149
 		public StatusItem WaitingForRepairMaterials;
 
-		// Token: 0x0400911E RID: 37150
 		public StatusItem MissingFoundation;
 
-		// Token: 0x0400911F RID: 37151
 		public StatusItem PowerBankChargerInProgress;
 
-		// Token: 0x04009120 RID: 37152
 		public StatusItem NeutroniumUnminable;
 
-		// Token: 0x04009121 RID: 37153
 		public StatusItem NoStorageFilterSet;
 
-		// Token: 0x04009122 RID: 37154
 		public StatusItem PendingFish;
 
-		// Token: 0x04009123 RID: 37155
 		public StatusItem NoFishableWaterBelow;
 
-		// Token: 0x04009124 RID: 37156
 		public StatusItem GasVentOverPressure;
 
-		// Token: 0x04009125 RID: 37157
 		public StatusItem LiquidVentOverPressure;
 
-		// Token: 0x04009126 RID: 37158
 		public StatusItem NoWireConnected;
 
-		// Token: 0x04009127 RID: 37159
 		public StatusItem NoLogicWireConnected;
 
-		// Token: 0x04009128 RID: 37160
 		public StatusItem NoTubeConnected;
 
-		// Token: 0x04009129 RID: 37161
 		public StatusItem NoTubeExits;
 
-		// Token: 0x0400912A RID: 37162
 		public StatusItem StoredCharge;
 
-		// Token: 0x0400912B RID: 37163
 		public StatusItem NoPowerConsumers;
 
-		// Token: 0x0400912C RID: 37164
 		public StatusItem PressureOk;
 
-		// Token: 0x0400912D RID: 37165
 		public StatusItem UnderPressure;
 
-		// Token: 0x0400912E RID: 37166
 		public StatusItem AssignedTo;
 
-		// Token: 0x0400912F RID: 37167
 		public StatusItem Unassigned;
 
-		// Token: 0x04009130 RID: 37168
 		public StatusItem AssignedPublic;
 
-		// Token: 0x04009131 RID: 37169
 		public StatusItem AssignedToRoom;
 
-		// Token: 0x04009132 RID: 37170
 		public StatusItem RationBoxContents;
 
-		// Token: 0x04009133 RID: 37171
 		public StatusItem ConduitBlocked;
 
-		// Token: 0x04009134 RID: 37172
 		public StatusItem OutputTileBlocked;
 
-		// Token: 0x04009135 RID: 37173
 		public StatusItem OutputPipeFull;
 
-		// Token: 0x04009136 RID: 37174
 		public StatusItem ConduitBlockedMultiples;
 
-		// Token: 0x04009137 RID: 37175
 		public StatusItem SolidConduitBlockedMultiples;
 
-		// Token: 0x04009138 RID: 37176
 		public StatusItem MeltingDown;
 
-		// Token: 0x04009139 RID: 37177
 		public StatusItem DeadReactorCoolingOff;
 
-		// Token: 0x0400913A RID: 37178
 		public StatusItem UnderConstruction;
 
-		// Token: 0x0400913B RID: 37179
 		public StatusItem UnderConstructionNoWorker;
 
-		// Token: 0x0400913C RID: 37180
 		public StatusItem Normal;
 
-		// Token: 0x0400913D RID: 37181
 		public StatusItem ManualGeneratorChargingUp;
 
-		// Token: 0x0400913E RID: 37182
 		public StatusItem ManualGeneratorReleasingEnergy;
 
-		// Token: 0x0400913F RID: 37183
 		public StatusItem GeneratorOffline;
 
-		// Token: 0x04009140 RID: 37184
 		public StatusItem Pipe;
 
-		// Token: 0x04009141 RID: 37185
 		public StatusItem Conveyor;
 
-		// Token: 0x04009142 RID: 37186
 		public StatusItem FabricatorIdle;
 
-		// Token: 0x04009143 RID: 37187
 		public StatusItem FabricatorEmpty;
 
-		// Token: 0x04009144 RID: 37188
 		public StatusItem FossilMineIdle;
 
-		// Token: 0x04009145 RID: 37189
 		public StatusItem FossilMineEmpty;
 
-		// Token: 0x04009146 RID: 37190
 		public StatusItem FossilEntombed;
 
-		// Token: 0x04009147 RID: 37191
 		public StatusItem FossilMinePendingWork;
 
-		// Token: 0x04009148 RID: 37192
 		public StatusItem FabricatorLacksHEP;
 
-		// Token: 0x04009149 RID: 37193
 		public StatusItem FlushToilet;
 
-		// Token: 0x0400914A RID: 37194
 		public StatusItem FlushToiletInUse;
 
-		// Token: 0x0400914B RID: 37195
 		public StatusItem Toilet;
 
-		// Token: 0x0400914C RID: 37196
 		public StatusItem ToiletNeedsEmptying;
 
-		// Token: 0x0400914D RID: 37197
 		public StatusItem DesalinatorNeedsEmptying;
 
-		// Token: 0x0400914E RID: 37198
 		public StatusItem MilkSeparatorNeedsEmptying;
 
-		// Token: 0x0400914F RID: 37199
 		public StatusItem Unusable;
 
-		// Token: 0x04009150 RID: 37200
 		public StatusItem UnusableGunked;
 
-		// Token: 0x04009151 RID: 37201
 		public StatusItem NoResearchSelected;
 
-		// Token: 0x04009152 RID: 37202
 		public StatusItem NoApplicableResearchSelected;
 
-		// Token: 0x04009153 RID: 37203
 		public StatusItem NoApplicableAnalysisSelected;
 
-		// Token: 0x04009154 RID: 37204
 		public StatusItem NoResearchOrDestinationSelected;
 
-		// Token: 0x04009155 RID: 37205
 		public StatusItem Researching;
 
-		// Token: 0x04009156 RID: 37206
 		public StatusItem ValveRequest;
 
-		// Token: 0x04009157 RID: 37207
 		public StatusItem EmittingLight;
 
-		// Token: 0x04009158 RID: 37208
 		public StatusItem EmittingElement;
 
-		// Token: 0x04009159 RID: 37209
 		public StatusItem EmittingOxygenAvg;
 
-		// Token: 0x0400915A RID: 37210
 		public StatusItem EmittingGasAvg;
 
-		// Token: 0x0400915B RID: 37211
 		public StatusItem EmittingBlockedHighPressure;
 
-		// Token: 0x0400915C RID: 37212
 		public StatusItem EmittingBlockedLowTemperature;
 
-		// Token: 0x0400915D RID: 37213
 		public StatusItem PumpingLiquidOrGas;
 
-		// Token: 0x0400915E RID: 37214
 		public StatusItem NoLiquidElementToPump;
 
-		// Token: 0x0400915F RID: 37215
 		public StatusItem NoGasElementToPump;
 
-		// Token: 0x04009160 RID: 37216
 		public StatusItem PipeFull;
 
-		// Token: 0x04009161 RID: 37217
 		public StatusItem PipeMayMelt;
 
-		// Token: 0x04009162 RID: 37218
 		public StatusItem ElementConsumer;
 
-		// Token: 0x04009163 RID: 37219
 		public StatusItem ElementEmitterOutput;
 
-		// Token: 0x04009164 RID: 37220
 		public StatusItem AwaitingWaste;
 
-		// Token: 0x04009165 RID: 37221
 		public StatusItem AwaitingCompostFlip;
 
-		// Token: 0x04009166 RID: 37222
 		public StatusItem BatteryJoulesAvailable;
 
-		// Token: 0x04009167 RID: 37223
 		public StatusItem ElectrobankJoulesAvailable;
 
-		// Token: 0x04009168 RID: 37224
 		public StatusItem Wattage;
 
-		// Token: 0x04009169 RID: 37225
 		public StatusItem SolarPanelWattage;
 
-		// Token: 0x0400916A RID: 37226
 		public StatusItem ModuleSolarPanelWattage;
 
-		// Token: 0x0400916B RID: 37227
 		public StatusItem SteamTurbineWattage;
 
-		// Token: 0x0400916C RID: 37228
 		public StatusItem Wattson;
 
-		// Token: 0x0400916D RID: 37229
 		public StatusItem WireConnected;
 
-		// Token: 0x0400916E RID: 37230
 		public StatusItem WireNominal;
 
-		// Token: 0x0400916F RID: 37231
 		public StatusItem WireDisconnected;
 
-		// Token: 0x04009170 RID: 37232
 		public StatusItem Cooling;
 
-		// Token: 0x04009171 RID: 37233
 		public StatusItem CoolingStalledHotEnv;
 
-		// Token: 0x04009172 RID: 37234
 		public StatusItem CoolingStalledColdGas;
 
-		// Token: 0x04009173 RID: 37235
 		public StatusItem CoolingStalledHotLiquid;
 
-		// Token: 0x04009174 RID: 37236
 		public StatusItem CoolingStalledColdLiquid;
 
-		// Token: 0x04009175 RID: 37237
 		public StatusItem CannotCoolFurther;
 
-		// Token: 0x04009176 RID: 37238
 		public StatusItem NeedsValidRegion;
 
-		// Token: 0x04009177 RID: 37239
 		public StatusItem NeedSeed;
 
-		// Token: 0x04009178 RID: 37240
 		public StatusItem AwaitingSeedDelivery;
 
-		// Token: 0x04009179 RID: 37241
 		public StatusItem AwaitingBaitDelivery;
 
-		// Token: 0x0400917A RID: 37242
 		public StatusItem NoAvailableSeed;
 
-		// Token: 0x0400917B RID: 37243
 		public StatusItem NeedEgg;
 
-		// Token: 0x0400917C RID: 37244
 		public StatusItem AwaitingEggDelivery;
 
-		// Token: 0x0400917D RID: 37245
 		public StatusItem NoAvailableEgg;
 
-		// Token: 0x0400917E RID: 37246
 		public StatusItem Grave;
 
-		// Token: 0x0400917F RID: 37247
 		public StatusItem GraveEmpty;
 
-		// Token: 0x04009180 RID: 37248
 		public StatusItem NoFilterElementSelected;
 
-		// Token: 0x04009181 RID: 37249
 		public StatusItem NoLureElementSelected;
 
-		// Token: 0x04009182 RID: 37250
 		public StatusItem BuildingDisabled;
 
-		// Token: 0x04009183 RID: 37251
 		public StatusItem Overheated;
 
-		// Token: 0x04009184 RID: 37252
 		public StatusItem Overloaded;
 
-		// Token: 0x04009185 RID: 37253
 		public StatusItem LogicOverloaded;
 
-		// Token: 0x04009186 RID: 37254
 		public StatusItem Expired;
 
-		// Token: 0x04009187 RID: 37255
 		public StatusItem PumpingStation;
 
-		// Token: 0x04009188 RID: 37256
 		public StatusItem EmptyPumpingStation;
 
-		// Token: 0x04009189 RID: 37257
 		public StatusItem GeneShuffleCompleted;
 
-		// Token: 0x0400918A RID: 37258
 		public StatusItem GeneticAnalysisCompleted;
 
-		// Token: 0x0400918B RID: 37259
 		public StatusItem DirectionControl;
 
-		// Token: 0x0400918C RID: 37260
 		public StatusItem WellPressurizing;
 
-		// Token: 0x0400918D RID: 37261
 		public StatusItem WellOverpressure;
 
-		// Token: 0x0400918E RID: 37262
 		public StatusItem ReleasingPressure;
 
-		// Token: 0x0400918F RID: 37263
 		public StatusItem ReactorMeltdown;
 
-		// Token: 0x04009190 RID: 37264
 		public StatusItem NoSuitMarker;
 
-		// Token: 0x04009191 RID: 37265
 		public StatusItem SuitMarkerWrongSide;
 
-		// Token: 0x04009192 RID: 37266
 		public StatusItem SuitMarkerTraversalAnytime;
 
-		// Token: 0x04009193 RID: 37267
 		public StatusItem SuitMarkerTraversalOnlyWhenRoomAvailable;
 
-		// Token: 0x04009194 RID: 37268
 		public StatusItem TooCold;
 
-		// Token: 0x04009195 RID: 37269
 		public StatusItem NotInAnyRoom;
 
-		// Token: 0x04009196 RID: 37270
 		public StatusItem NotInRequiredRoom;
 
-		// Token: 0x04009197 RID: 37271
 		public StatusItem NotInRecommendedRoom;
 
-		// Token: 0x04009198 RID: 37272
 		public StatusItem IncubatorProgress;
 
-		// Token: 0x04009199 RID: 37273
 		public StatusItem HabitatNeedsEmptying;
 
-		// Token: 0x0400919A RID: 37274
 		public StatusItem DetectorScanning;
 
-		// Token: 0x0400919B RID: 37275
 		public StatusItem IncomingMeteors;
 
-		// Token: 0x0400919C RID: 37276
 		public StatusItem HasGantry;
 
-		// Token: 0x0400919D RID: 37277
 		public StatusItem MissingGantry;
 
-		// Token: 0x0400919E RID: 37278
 		public StatusItem DisembarkingDuplicant;
 
-		// Token: 0x0400919F RID: 37279
 		public StatusItem RocketName;
 
-		// Token: 0x040091A0 RID: 37280
 		public StatusItem PathNotClear;
 
-		// Token: 0x040091A1 RID: 37281
 		public StatusItem InvalidPortOverlap;
 
-		// Token: 0x040091A2 RID: 37282
 		public StatusItem EmergencyPriority;
 
-		// Token: 0x040091A3 RID: 37283
 		public StatusItem SkillPointsAvailable;
 
-		// Token: 0x040091A4 RID: 37284
 		public StatusItem Baited;
 
-		// Token: 0x040091A5 RID: 37285
 		public StatusItem NoCoolant;
 
-		// Token: 0x040091A6 RID: 37286
 		public StatusItem TanningLightSufficient;
 
-		// Token: 0x040091A7 RID: 37287
 		public StatusItem TanningLightInsufficient;
 
-		// Token: 0x040091A8 RID: 37288
 		public StatusItem HotTubWaterTooCold;
 
-		// Token: 0x040091A9 RID: 37289
 		public StatusItem HotTubTooHot;
 
-		// Token: 0x040091AA RID: 37290
 		public StatusItem HotTubFilling;
 
-		// Token: 0x040091AB RID: 37291
 		public StatusItem WindTunnelIntake;
 
-		// Token: 0x040091AC RID: 37292
 		public StatusItem CollectingHEP;
 
-		// Token: 0x040091AD RID: 37293
 		public StatusItem ReactorRefuelDisabled;
 
-		// Token: 0x040091AE RID: 37294
 		public StatusItem FridgeCooling;
 
-		// Token: 0x040091AF RID: 37295
 		public StatusItem FridgeSteady;
 
-		// Token: 0x040091B0 RID: 37296
 		public StatusItem TrapNeedsArming;
 
-		// Token: 0x040091B1 RID: 37297
 		public StatusItem TrapArmed;
 
-		// Token: 0x040091B2 RID: 37298
 		public StatusItem TrapHasCritter;
 
-		// Token: 0x040091B3 RID: 37299
 		public StatusItem WarpPortalCharging;
 
-		// Token: 0x040091B4 RID: 37300
 		public StatusItem WarpConduitPartnerDisabled;
 
-		// Token: 0x040091B5 RID: 37301
 		public StatusItem InOrbit;
 
-		// Token: 0x040091B6 RID: 37302
 		public StatusItem InFlight;
 
-		// Token: 0x040091B7 RID: 37303
 		public StatusItem WaitingToLand;
 
-		// Token: 0x040091B8 RID: 37304
 		public StatusItem DestinationOutOfRange;
 
-		// Token: 0x040091B9 RID: 37305
 		public StatusItem RocketStranded;
 
-		// Token: 0x040091BA RID: 37306
 		public StatusItem RailgunpayloadNeedsEmptying;
 
-		// Token: 0x040091BB RID: 37307
 		public StatusItem AwaitingEmptyBuilding;
 
-		// Token: 0x040091BC RID: 37308
 		public StatusItem DuplicantActivationRequired;
 
-		// Token: 0x040091BD RID: 37309
 		public StatusItem RocketChecklistIncomplete;
 
-		// Token: 0x040091BE RID: 37310
 		public StatusItem RocketCargoEmptying;
 
-		// Token: 0x040091BF RID: 37311
 		public StatusItem RocketCargoFilling;
 
-		// Token: 0x040091C0 RID: 37312
 		public StatusItem RocketCargoFull;
 
-		// Token: 0x040091C1 RID: 37313
 		public StatusItem FlightAllCargoFull;
 
-		// Token: 0x040091C2 RID: 37314
 		public StatusItem FlightCargoRemaining;
 
-		// Token: 0x040091C3 RID: 37315
 		public StatusItem LandedRocketLacksPassengerModule;
 
-		// Token: 0x040091C4 RID: 37316
 		public StatusItem PilotNeeded;
 
-		// Token: 0x040091C5 RID: 37317
 		public StatusItem AutoPilotActive;
 
-		// Token: 0x040091C6 RID: 37318
 		public StatusItem InFlightPiloted;
 
-		// Token: 0x040091C7 RID: 37319
 		public StatusItem InFlightUnpiloted;
 
-		// Token: 0x040091C8 RID: 37320
 		public StatusItem InFlightAutoPiloted;
 
-		// Token: 0x040091C9 RID: 37321
 		public StatusItem InFlightSuperPilot;
 
-		// Token: 0x040091CA RID: 37322
 		public StatusItem InvalidMaskStationConsumptionState;
 
-		// Token: 0x040091CB RID: 37323
 		public StatusItem ClusterTelescopeAllWorkComplete;
 
-		// Token: 0x040091CC RID: 37324
 		public StatusItem RocketPlatformCloseToCeiling;
 
-		// Token: 0x040091CD RID: 37325
 		public StatusItem ModuleGeneratorPowered;
 
-		// Token: 0x040091CE RID: 37326
 		public StatusItem ModuleGeneratorNotPowered;
 
-		// Token: 0x040091CF RID: 37327
 		public StatusItem InOrbitRequired;
 
-		// Token: 0x040091D0 RID: 37328
 		public StatusItem RailGunCooldown;
 
-		// Token: 0x040091D1 RID: 37329
 		public StatusItem NoSurfaceSight;
 
-		// Token: 0x040091D2 RID: 37330
 		public StatusItem LimitValveLimitReached;
 
-		// Token: 0x040091D3 RID: 37331
 		public StatusItem LimitValveLimitNotReached;
 
-		// Token: 0x040091D4 RID: 37332
 		public StatusItem SpacePOIHarvesting;
 
-		// Token: 0x040091D5 RID: 37333
 		public StatusItem SpacePOIWasting;
 
-		// Token: 0x040091D6 RID: 37334
 		public StatusItem RocketRestrictionActive;
 
-		// Token: 0x040091D7 RID: 37335
 		public StatusItem RocketRestrictionInactive;
 
-		// Token: 0x040091D8 RID: 37336
 		public StatusItem NoRocketRestriction;
 
-		// Token: 0x040091D9 RID: 37337
 		public StatusItem BroadcasterOutOfRange;
 
-		// Token: 0x040091DA RID: 37338
 		public StatusItem LosingRadbolts;
 
-		// Token: 0x040091DB RID: 37339
 		public StatusItem FabricatorAcceptsMutantSeeds;
 
-		// Token: 0x040091DC RID: 37340
 		public StatusItem NoSpiceSelected;
 
-		// Token: 0x040091DD RID: 37341
 		public StatusItem MissionControlAssistingRocket;
 
-		// Token: 0x040091DE RID: 37342
 		public StatusItem NoRocketsToMissionControlBoost;
 
-		// Token: 0x040091DF RID: 37343
 		public StatusItem NoRocketsToMissionControlClusterBoost;
 
-		// Token: 0x040091E0 RID: 37344
 		public StatusItem MissionControlBoosted;
 
-		// Token: 0x040091E1 RID: 37345
 		public StatusItem TransitTubeEntranceWaxReady;
 
-		// Token: 0x040091E2 RID: 37346
 		public StatusItem SpecialCargoBayClusterCritterStored;
 
-		// Token: 0x040091E3 RID: 37347
 		public StatusItem ComplexFabricatorCooking;
 
-		// Token: 0x040091E4 RID: 37348
 		public StatusItem ComplexFabricatorProducing;
 
-		// Token: 0x040091E5 RID: 37349
 		public StatusItem ComplexFabricatorTraining;
 
-		// Token: 0x040091E6 RID: 37350
 		public StatusItem ComplexFabricatorResearching;
 
-		// Token: 0x040091E7 RID: 37351
 		public StatusItem ArtifactAnalysisAnalyzing;
 
-		// Token: 0x040091E8 RID: 37352
 		public StatusItem TelescopeWorking;
 
-		// Token: 0x040091E9 RID: 37353
 		public StatusItem ClusterTelescopeMeteorWorking;
 
-		// Token: 0x040091EA RID: 37354
 		public StatusItem MercuryLight_Charging;
 
-		// Token: 0x040091EB RID: 37355
 		public StatusItem MercuryLight_Charged;
 
-		// Token: 0x040091EC RID: 37356
 		public StatusItem MercuryLight_Depleating;
 
-		// Token: 0x040091ED RID: 37357
 		public StatusItem MercuryLight_Depleated;
 
-		// Token: 0x040091EE RID: 37358
 		public StatusItem GunkEmptierFull;
 
-		// Token: 0x040091EF RID: 37359
 		public StatusItem GeoTunerNoGeyserSelected;
 
-		// Token: 0x040091F0 RID: 37360
 		public StatusItem GeoTunerResearchNeeded;
 
-		// Token: 0x040091F1 RID: 37361
 		public StatusItem GeoTunerResearchInProgress;
 
-		// Token: 0x040091F2 RID: 37362
 		public StatusItem GeoTunerBroadcasting;
 
-		// Token: 0x040091F3 RID: 37363
 		public StatusItem GeoTunerGeyserStatus;
 
-		// Token: 0x040091F4 RID: 37364
 		public StatusItem GeyserGeotuned;
 
-		// Token: 0x040091F5 RID: 37365
 		public StatusItem SkyVisNone;
 
-		// Token: 0x040091F6 RID: 37366
 		public StatusItem SkyVisLimited;
 
-		// Token: 0x040091F7 RID: 37367
 		public StatusItem KettleInsuficientSolids;
 
-		// Token: 0x040091F8 RID: 37368
 		public StatusItem KettleInsuficientFuel;
 
-		// Token: 0x040091F9 RID: 37369
 		public StatusItem KettleInsuficientLiquidSpace;
 
-		// Token: 0x040091FA RID: 37370
 		public StatusItem KettleMelting;
 
-		// Token: 0x040091FB RID: 37371
 		public StatusItem CreatureManipulatorWaiting;
 
-		// Token: 0x040091FC RID: 37372
 		public StatusItem CreatureManipulatorProgress;
 
-		// Token: 0x040091FD RID: 37373
 		public StatusItem CreatureManipulatorMorphModeLocked;
 
-		// Token: 0x040091FE RID: 37374
 		public StatusItem CreatureManipulatorMorphMode;
 
-		// Token: 0x040091FF RID: 37375
 		public StatusItem CreatureManipulatorWorking;
 
-		// Token: 0x04009200 RID: 37376
 		public StatusItem MegaBrainNotEnoughOxygen;
 
-		// Token: 0x04009201 RID: 37377
 		public StatusItem MegaBrainTankActivationProgress;
 
-		// Token: 0x04009202 RID: 37378
 		public StatusItem MegaBrainTankDreamAnalysis;
 
-		// Token: 0x04009203 RID: 37379
 		public StatusItem MegaBrainTankAllDupesAreDead;
 
-		// Token: 0x04009204 RID: 37380
 		public StatusItem MegaBrainTankComplete;
 
-		// Token: 0x04009205 RID: 37381
 		public StatusItem FossilHuntExcavationOrdered;
 
-		// Token: 0x04009206 RID: 37382
 		public StatusItem FossilHuntExcavationInProgress;
 
-		// Token: 0x04009207 RID: 37383
 		public StatusItem MorbRoverMakerDusty;
 
-		// Token: 0x04009208 RID: 37384
 		public StatusItem MorbRoverMakerBuildingRevealed;
 
-		// Token: 0x04009209 RID: 37385
 		public StatusItem MorbRoverMakerGermCollectionProgress;
 
-		// Token: 0x0400920A RID: 37386
 		public StatusItem MorbRoverMakerNoGermsConsumedAlert;
 
-		// Token: 0x0400920B RID: 37387
 		public StatusItem MorbRoverMakerCraftingBody;
 
-		// Token: 0x0400920C RID: 37388
 		public StatusItem MorbRoverMakerReadyForDoctor;
 
-		// Token: 0x0400920D RID: 37389
 		public StatusItem MorbRoverMakerDoctorWorking;
 
-		// Token: 0x0400920E RID: 37390
 		public StatusItem GeoVentQuestBlockage;
 
-		// Token: 0x0400920F RID: 37391
 		public StatusItem GeoVentsDisconnected;
 
-		// Token: 0x04009210 RID: 37392
 		public StatusItem GeoVentsOverpressure;
 
-		// Token: 0x04009211 RID: 37393
 		public StatusItem GeoControllerCantVent;
 
-		// Token: 0x04009212 RID: 37394
 		public StatusItem GeoVentsReady;
 
-		// Token: 0x04009213 RID: 37395
 		public StatusItem GeoVentsVenting;
 
-		// Token: 0x04009214 RID: 37396
 		public StatusItem GeoQuestPendingReconnectPipes;
 
-		// Token: 0x04009215 RID: 37397
 		public StatusItem GeoQuestPendingUncover;
 
-		// Token: 0x04009216 RID: 37398
 		public StatusItem GeoControllerOffline;
 
-		// Token: 0x04009217 RID: 37399
 		public StatusItem GeoControllerStorageStatus;
 
-		// Token: 0x04009218 RID: 37400
 		public StatusItem GeoControllerTemperatureStatus;
 
-		// Token: 0x04009219 RID: 37401
 		public StatusItem RemoteWorkDockMakingWorker;
 
-		// Token: 0x0400921A RID: 37402
 		public StatusItem RemoteWorkTerminalNoDock;
 
-		// Token: 0x0400921B RID: 37403
 		public StatusItem DataMinerEfficiency;
 
-		// Token: 0x0200218D RID: 8589
 		public interface ISkyVisInfo
 		{
-			// Token: 0x0600B6BC RID: 46780
 			float GetPercentVisible01();
 		}
 	}

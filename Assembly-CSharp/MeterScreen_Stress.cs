@@ -6,17 +6,14 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02001E6A RID: 7786
 public class MeterScreen_Stress : MeterScreen_VTD_DuplicantIterator
 {
-	// Token: 0x0600A31C RID: 41756 RVA: 0x0010E72E File Offset: 0x0010C92E
 	protected override void OnSpawn()
 	{
 		this.minionListCustomSortOperation = new Func<List<MinionIdentity>, List<MinionIdentity>>(this.SortByStressLevel);
 		base.OnSpawn();
 	}
 
-	// Token: 0x0600A31D RID: 41757 RVA: 0x003EF0E0 File Offset: 0x003ED2E0
 	private List<MinionIdentity> SortByStressLevel(List<MinionIdentity> minions)
 	{
 		Amount stress_amount = Db.Get().Amounts.Stress;
@@ -25,7 +22,6 @@ public class MeterScreen_Stress : MeterScreen_VTD_DuplicantIterator
 		select x).ToList<MinionIdentity>();
 	}
 
-	// Token: 0x0600A31E RID: 41758 RVA: 0x003EF120 File Offset: 0x003ED320
 	protected override string OnTooltip()
 	{
 		float maxStressInActiveWorld = GameUtil.GetMaxStressInActiveWorld();
@@ -43,7 +39,6 @@ public class MeterScreen_Stress : MeterScreen_VTD_DuplicantIterator
 		return "";
 	}
 
-	// Token: 0x0600A31F RID: 41759 RVA: 0x003EF1FC File Offset: 0x003ED3FC
 	protected override void InternalRefresh()
 	{
 		float maxStressInActiveWorld = GameUtil.GetMaxStressInActiveWorld();

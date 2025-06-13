@@ -4,10 +4,8 @@ using System.Linq;
 using ImGuiNET;
 using UnityEngine;
 
-// Token: 0x02000C08 RID: 3080
 public class DevToolStateMachineDebug : DevTool
 {
-	// Token: 0x06003A54 RID: 14932 RVA: 0x002345E8 File Offset: 0x002327E8
 	private void Update()
 	{
 		if (!Application.isPlaying)
@@ -37,7 +35,6 @@ public class DevToolStateMachineDebug : DevTool
 		}
 	}
 
-	// Token: 0x06003A55 RID: 14933 RVA: 0x00234668 File Offset: 0x00232868
 	public void ShowEditor(StateMachineDebuggerSettings.Entry entry)
 	{
 		ImGui.Text(entry.typeName);
@@ -57,7 +54,6 @@ public class DevToolStateMachineDebug : DevTool
 		ImGui.PopID();
 	}
 
-	// Token: 0x06003A56 RID: 14934 RVA: 0x002346F4 File Offset: 0x002328F4
 	protected override void RenderTo(DevPanel panel)
 	{
 		this.Update();
@@ -180,7 +176,6 @@ public class DevToolStateMachineDebug : DevTool
 		}
 	}
 
-	// Token: 0x06003A57 RID: 14935 RVA: 0x00234B6C File Offset: 0x00232D6C
 	private void ShowStates(StateMachine.Instance state_machine_instance)
 	{
 		StateMachine stateMachine = state_machine_instance.GetStateMachine();
@@ -212,7 +207,6 @@ public class DevToolStateMachineDebug : DevTool
 		}
 	}
 
-	// Token: 0x06003A58 RID: 14936 RVA: 0x00234C3C File Offset: 0x00232E3C
 	public void ShowTags(StateMachine.Instance state_machine_instance)
 	{
 		ImGui.Text("Tags:");
@@ -228,7 +222,6 @@ public class DevToolStateMachineDebug : DevTool
 		ImGui.Unindent();
 	}
 
-	// Token: 0x06003A59 RID: 14937 RVA: 0x00234CB8 File Offset: 0x00232EB8
 	private void ShowDetails(StateMachine.Instance state_machine_instance)
 	{
 		state_machine_instance.GetStateMachine();
@@ -248,7 +241,6 @@ public class DevToolStateMachineDebug : DevTool
 		ImGui.Unindent();
 	}
 
-	// Token: 0x06003A5A RID: 14938 RVA: 0x00234D20 File Offset: 0x00232F20
 	private void ShowParameters(StateMachine.Instance state_machine_instance)
 	{
 		ImGui.Text("Parameters:");
@@ -261,7 +253,6 @@ public class DevToolStateMachineDebug : DevTool
 		ImGui.Unindent();
 	}
 
-	// Token: 0x06003A5B RID: 14939 RVA: 0x00234D60 File Offset: 0x00232F60
 	private void ShowEvents(StateMachine.Instance state_machine_instance)
 	{
 		StateMachine.BaseState currentState = state_machine_instance.GetCurrentState();
@@ -285,7 +276,6 @@ public class DevToolStateMachineDebug : DevTool
 		ImGui.Unindent();
 	}
 
-	// Token: 0x06003A5C RID: 14940 RVA: 0x00234DF8 File Offset: 0x00232FF8
 	private void ShowTransitions(StateMachine.Instance state_machine_instance)
 	{
 		StateMachine.BaseState currentState = state_machine_instance.GetCurrentState();
@@ -309,7 +299,6 @@ public class DevToolStateMachineDebug : DevTool
 		ImGui.Unindent();
 	}
 
-	// Token: 0x06003A5D RID: 14941 RVA: 0x00234E74 File Offset: 0x00233074
 	private void ShowExitActions(StateMachine.Instance state_machine_instance)
 	{
 		StateMachine.BaseState currentState = state_machine_instance.GetCurrentState();
@@ -333,7 +322,6 @@ public class DevToolStateMachineDebug : DevTool
 		ImGui.Unindent();
 	}
 
-	// Token: 0x06003A5E RID: 14942 RVA: 0x00234F0C File Offset: 0x0023310C
 	private void ShowEnterActions(StateMachine.Instance state_machine_instance)
 	{
 		StateMachine.BaseState currentState = state_machine_instance.GetCurrentState();
@@ -357,31 +345,26 @@ public class DevToolStateMachineDebug : DevTool
 		ImGui.Unindent();
 	}
 
-	// Token: 0x06003A5F RID: 14943 RVA: 0x000CA24F File Offset: 0x000C844F
 	private void ShowLog(StateMachine.Instance state_machine_instance)
 	{
 		ImGui.Text("Machine Log:");
 	}
 
-	// Token: 0x06003A60 RID: 14944 RVA: 0x000CA25B File Offset: 0x000C845B
 	private void ShowKAnimControllerLog()
 	{
 		this.selectedGameObject.GetComponentInChildren<KAnimControllerBase>() == null;
 	}
 
-	// Token: 0x06003A61 RID: 14945 RVA: 0x000CA26F File Offset: 0x000C846F
 	private void ShowHistory(StateMachineController controller)
 	{
 		ImGui.Text("Logger disabled");
 	}
 
-	// Token: 0x06003A62 RID: 14946 RVA: 0x000CA27B File Offset: 0x000C847B
 	private void ShowControllerLog(StateMachineController controller)
 	{
 		ImGui.Text("Object Log:");
 	}
 
-	// Token: 0x06003A63 RID: 14947 RVA: 0x000CA287 File Offset: 0x000C8487
 	private void ShowControllerLog(StateMachine.Instance state_machine)
 	{
 		if (!state_machine.GetMaster().isNull)
@@ -390,24 +373,17 @@ public class DevToolStateMachineDebug : DevTool
 		}
 	}
 
-	// Token: 0x0400286A RID: 10346
 	private int selectedStateMachine;
 
-	// Token: 0x0400286B RID: 10347
 	private int selectedLog;
 
-	// Token: 0x0400286C RID: 10348
 	private GameObject selectedGameObject;
 
-	// Token: 0x0400286D RID: 10349
 	private Vector2 scrollPos;
 
-	// Token: 0x0400286E RID: 10350
 	private bool lockSelection;
 
-	// Token: 0x0400286F RID: 10351
 	private bool showSettings;
 
-	// Token: 0x04002870 RID: 10352
 	private string stateMachineFilter = "";
 }

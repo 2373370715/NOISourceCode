@@ -3,20 +3,16 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000323 RID: 803
 public class DehydratedSpiceBreadConfig : IEntityConfig
 {
-	// Token: 0x06000C81 RID: 3201 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x06000C82 RID: 3202 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x06000C83 RID: 3203 RVA: 0x0017AB0C File Offset: 0x00178D0C
 	public GameObject CreatePrefab()
 	{
 		KAnimFile anim = Assets.GetAnim("dehydrated_food_spicebread_kanim");
@@ -25,15 +21,11 @@ public class DehydratedSpiceBreadConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x04000970 RID: 2416
 	public static Tag ID = new Tag("DehydratedSpiceBread");
 
-	// Token: 0x04000971 RID: 2417
 	public const float MASS = 1f;
 
-	// Token: 0x04000972 RID: 2418
 	public const string ANIM_FILE = "dehydrated_food_spicebread_kanim";
 
-	// Token: 0x04000973 RID: 2419
 	public const string INITIAL_ANIM = "idle";
 }

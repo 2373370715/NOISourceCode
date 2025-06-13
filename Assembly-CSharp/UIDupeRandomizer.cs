@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using Database;
 using UnityEngine;
 
-// Token: 0x020020A2 RID: 8354
 public class UIDupeRandomizer : MonoBehaviour
 {
-	// Token: 0x0600B222 RID: 45602 RVA: 0x0043BF28 File Offset: 0x0043A128
 	protected virtual void Start()
 	{
 		this.slots = Db.Get().AccessorySlots;
@@ -17,7 +15,6 @@ public class UIDupeRandomizer : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600B223 RID: 45603 RVA: 0x0043BF74 File Offset: 0x0043A174
 	protected void GetNewBody(int minion_idx)
 	{
 		Personality random = Db.Get().Personalities.GetRandom(true, false);
@@ -27,7 +24,6 @@ public class UIDupeRandomizer : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600B224 RID: 45604 RVA: 0x0043BFE8 File Offset: 0x0043A1E8
 	private void Apply(KBatchedAnimController dupe, Personality personality)
 	{
 		KCompBuilder.BodyData bodyData = MinionStartingStats.CreateBodyData(personality);
@@ -86,7 +82,6 @@ public class UIDupeRandomizer : MonoBehaviour
 		dupe.SetSymbolVisiblity(Db.Get().AccessorySlots.Necklace.targetSymbolId, false);
 	}
 
-	// Token: 0x0600B225 RID: 45605 RVA: 0x0043C414 File Offset: 0x0043A614
 	public static KAnimHashedString AddAccessory(KBatchedAnimController minion, Accessory accessory)
 	{
 		if (accessory != null)
@@ -101,14 +96,12 @@ public class UIDupeRandomizer : MonoBehaviour
 		return HashedString.Invalid;
 	}
 
-	// Token: 0x0600B226 RID: 45606 RVA: 0x0043C4A4 File Offset: 0x0043A6A4
 	public KAnimHashedString AddRandomAccessory(KBatchedAnimController minion, List<Accessory> choices)
 	{
 		Accessory accessory = choices[UnityEngine.Random.Range(1, choices.Count)];
 		return UIDupeRandomizer.AddAccessory(minion, accessory);
 	}
 
-	// Token: 0x0600B227 RID: 45607 RVA: 0x0043C4CC File Offset: 0x0043A6CC
 	public void Randomize()
 	{
 		if (this.slots == null)
@@ -121,45 +114,33 @@ public class UIDupeRandomizer : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600B228 RID: 45608 RVA: 0x000AA038 File Offset: 0x000A8238
 	protected virtual void Update()
 	{
 	}
 
-	// Token: 0x04008CA6 RID: 36006
 	[Tooltip("Enable this to allow for a chance for skill hats to appear")]
 	public bool applyHat = true;
 
-	// Token: 0x04008CA7 RID: 36007
 	[Tooltip("Enable this to allow for a chance for suit helmets to appear (ie. atmosuit and leadsuit)")]
 	public bool applySuit = true;
 
-	// Token: 0x04008CA8 RID: 36008
 	public UIDupeRandomizer.AnimChoice[] anims;
 
-	// Token: 0x04008CA9 RID: 36009
 	private AccessorySlots slots;
 
-	// Token: 0x020020A3 RID: 8355
 	[Serializable]
 	public struct AnimChoice
 	{
-		// Token: 0x04008CAA RID: 36010
 		public string anim_name;
 
-		// Token: 0x04008CAB RID: 36011
 		public List<KBatchedAnimController> minions;
 
-		// Token: 0x04008CAC RID: 36012
 		public float minSecondsBetweenAction;
 
-		// Token: 0x04008CAD RID: 36013
 		public float maxSecondsBetweenAction;
 
-		// Token: 0x04008CAE RID: 36014
 		public float lastWaitTime;
 
-		// Token: 0x04008CAF RID: 36015
 		public KAnimFile curBody;
 	}
 }

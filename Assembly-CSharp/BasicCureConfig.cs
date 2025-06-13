@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000412 RID: 1042
 public class BasicCureConfig : IEntityConfig
 {
-	// Token: 0x06001147 RID: 4423 RVA: 0x0018DAD8 File Offset: 0x0018BCD8
 	public GameObject CreatePrefab()
 	{
 		GameObject gameObject = EntityTemplates.CreateLooseEntity("BasicCure", STRINGS.ITEMS.PILLS.BASICCURE.NAME, STRINGS.ITEMS.PILLS.BASICCURE.DESC, 1f, true, Assets.GetAnim("pill_foodpoisoning_kanim"), "object", Grid.SceneLayer.Front, EntityTemplates.CollisionShape.RECTANGLE, 0.8f, 0.4f, true, 0, SimHashes.Creature, null);
@@ -35,19 +33,15 @@ public class BasicCureConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06001148 RID: 4424 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x06001149 RID: 4425 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x04000BFD RID: 3069
 	public const string ID = "BasicCure";
 
-	// Token: 0x04000BFE RID: 3070
 	public static ComplexRecipe recipe;
 }

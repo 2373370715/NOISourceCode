@@ -1,9 +1,7 @@
 ﻿using System;
 
-// Token: 0x0200197F RID: 6527
 public class RocketCommandConditions : CommandConditions
 {
-	// Token: 0x060087F8 RID: 34808 RVA: 0x00360C50 File Offset: 0x0035EE50
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -36,21 +34,15 @@ public class RocketCommandConditions : CommandConditions
 		this.flightPathIsClear = (ConditionFlightPathIsClear)component.AddModuleCondition(ProcessCondition.ProcessConditionType.RocketFlight, new ConditionFlightPathIsClear(base.gameObject, bufferWidth));
 	}
 
-	// Token: 0x040066F7 RID: 26359
 	public ConditionHasAstronaut hasAstronaut;
 
-	// Token: 0x040066F8 RID: 26360
 	public ConditionPilotOnBoard pilotOnBoard;
 
-	// Token: 0x040066F9 RID: 26361
 	public ConditionPassengersOnBoard passengersOnBoard;
 
-	// Token: 0x040066FA RID: 26362
 	public ConditionNoExtraPassengers noExtraPassengers;
 
-	// Token: 0x040066FB RID: 26363
 	public ConditionHasAtmoSuit hasSuit;
 
-	// Token: 0x040066FC RID: 26364
 	public ConditionHasControlStation hasControlStation;
 }

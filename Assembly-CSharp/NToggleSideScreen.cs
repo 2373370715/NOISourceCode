@@ -2,22 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02001FF7 RID: 8183
 public class NToggleSideScreen : SideScreenContent
 {
-	// Token: 0x0600ACF4 RID: 44276 RVA: 0x001131C7 File Offset: 0x001113C7
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 	}
 
-	// Token: 0x0600ACF5 RID: 44277 RVA: 0x00114D2E File Offset: 0x00112F2E
 	public override bool IsValidForTarget(GameObject target)
 	{
 		return target.GetComponent<INToggleSideScreenControl>() != null;
 	}
 
-	// Token: 0x0600ACF6 RID: 44278 RVA: 0x004203C8 File Offset: 0x0041E5C8
 	public override void SetTarget(GameObject target)
 	{
 		base.SetTarget(target);
@@ -31,7 +27,6 @@ public class NToggleSideScreen : SideScreenContent
 		this.Refresh();
 	}
 
-	// Token: 0x0600ACF7 RID: 44279 RVA: 0x00420414 File Offset: 0x0041E614
 	private void Refresh()
 	{
 		for (int i = 0; i < Mathf.Max(this.target.Options.Count, this.buttonList.Count); i++)
@@ -92,17 +87,13 @@ public class NToggleSideScreen : SideScreenContent
 		this.description.gameObject.SetActive(!string.IsNullOrEmpty(this.target.Description));
 	}
 
-	// Token: 0x04008823 RID: 34851
 	[SerializeField]
 	private KToggle buttonPrefab;
 
-	// Token: 0x04008824 RID: 34852
 	[SerializeField]
 	private LocText description;
 
-	// Token: 0x04008825 RID: 34853
 	private INToggleSideScreenControl target;
 
-	// Token: 0x04008826 RID: 34854
 	private List<KToggle> buttonList = new List<KToggle>();
 }

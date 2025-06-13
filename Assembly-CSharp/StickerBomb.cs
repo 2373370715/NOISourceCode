@@ -6,10 +6,8 @@ using KSerialization;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000FF3 RID: 4083
 public class StickerBomb : StateMachineComponent<StickerBomb.StatesInstance>
 {
-	// Token: 0x06005238 RID: 21048 RVA: 0x00282AB0 File Offset: 0x00280CB0
 	protected override void OnSpawn()
 	{
 		if (this.stickerName.IsNullOrWhiteSpace())
@@ -33,7 +31,6 @@ public class StickerBomb : StateMachineComponent<StickerBomb.StatesInstance>
 		base.OnSpawn();
 	}
 
-	// Token: 0x06005239 RID: 21049 RVA: 0x00282BB8 File Offset: 0x00280DB8
 	[OnDeserialized]
 	public void OnDeserialized()
 	{
@@ -47,14 +44,12 @@ public class StickerBomb : StateMachineComponent<StickerBomb.StatesInstance>
 		}
 	}
 
-	// Token: 0x0600523A RID: 21050 RVA: 0x000D9FAE File Offset: 0x000D81AE
 	protected override void OnCleanUp()
 	{
 		GameScenePartitioner.Instance.Free(ref this.partitionerEntry);
 		base.OnCleanUp();
 	}
 
-	// Token: 0x0600523B RID: 21051 RVA: 0x000D9FC6 File Offset: 0x000D81C6
 	private void OnFoundationCellChanged(object data)
 	{
 		if (!StickerBomb.CanPlaceSticker(this.cellOffsets))
@@ -63,7 +58,6 @@ public class StickerBomb : StateMachineComponent<StickerBomb.StatesInstance>
 		}
 	}
 
-	// Token: 0x0600523C RID: 21052 RVA: 0x00282C00 File Offset: 0x00280E00
 	public static List<int> BuildCellOffsets(Vector3 position)
 	{
 		List<int> list = new List<int>();
@@ -102,7 +96,6 @@ public class StickerBomb : StateMachineComponent<StickerBomb.StatesInstance>
 		return list;
 	}
 
-	// Token: 0x0600523D RID: 21053 RVA: 0x00282CD0 File Offset: 0x00280ED0
 	public static bool CanPlaceSticker(List<int> offsets)
 	{
 		using (List<int>.Enumerator enumerator = offsets.GetEnumerator())
@@ -118,7 +111,6 @@ public class StickerBomb : StateMachineComponent<StickerBomb.StatesInstance>
 		return true;
 	}
 
-	// Token: 0x0600523E RID: 21054 RVA: 0x00282D24 File Offset: 0x00280F24
 	public void SetStickerType(string newStickerType)
 	{
 		if (newStickerType == null)
@@ -134,43 +126,33 @@ public class StickerBomb : StateMachineComponent<StickerBomb.StatesInstance>
 		});
 	}
 
-	// Token: 0x04003A15 RID: 14869
 	[Serialize]
 	public string stickerType;
 
-	// Token: 0x04003A16 RID: 14870
 	[Serialize]
 	public string stickerName;
 
-	// Token: 0x04003A17 RID: 14871
 	private HandleVector<int>.Handle partitionerEntry;
 
-	// Token: 0x04003A18 RID: 14872
 	private List<int> cellOffsets;
 
-	// Token: 0x02000FF4 RID: 4084
 	public class StatesInstance : GameStateMachine<StickerBomb.States, StickerBomb.StatesInstance, StickerBomb, object>.GameInstance
 	{
-		// Token: 0x06005240 RID: 21056 RVA: 0x000D9FE8 File Offset: 0x000D81E8
 		public StatesInstance(StickerBomb master) : base(master)
 		{
 		}
 
-		// Token: 0x06005241 RID: 21057 RVA: 0x000D9FF1 File Offset: 0x000D81F1
 		public string GetStickerAnim(string type)
 		{
 			return string.Format("{0}_{1}", type, base.master.stickerType);
 		}
 
-		// Token: 0x04003A19 RID: 14873
 		[Serialize]
 		public float destroyTime;
 	}
 
-	// Token: 0x02000FF5 RID: 4085
 	public class States : GameStateMachine<StickerBomb.States, StickerBomb.StatesInstance, StickerBomb>
 	{
-		// Token: 0x06005242 RID: 21058 RVA: 0x00282D84 File Offset: 0x00280F84
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.idle;
@@ -184,13 +166,10 @@ public class StickerBomb : StateMachineComponent<StickerBomb.StatesInstance>
 			});
 		}
 
-		// Token: 0x04003A1A RID: 14874
 		public GameStateMachine<StickerBomb.States, StickerBomb.StatesInstance, StickerBomb, object>.State destroy;
 
-		// Token: 0x04003A1B RID: 14875
 		public GameStateMachine<StickerBomb.States, StickerBomb.StatesInstance, StickerBomb, object>.State sparkle;
 
-		// Token: 0x04003A1C RID: 14876
 		public GameStateMachine<StickerBomb.States, StickerBomb.StatesInstance, StickerBomb, object>.State idle;
 	}
 }

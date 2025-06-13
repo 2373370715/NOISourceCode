@@ -1,22 +1,18 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-// Token: 0x02001141 RID: 4417
 public class ConduitTemperatureManager
 {
-	// Token: 0x06005A36 RID: 23094 RVA: 0x000DF2A5 File Offset: 0x000DD4A5
 	public ConduitTemperatureManager()
 	{
 		ConduitTemperatureManager.ConduitTemperatureManager_Initialize();
 	}
 
-	// Token: 0x06005A37 RID: 23095 RVA: 0x000DF2CA File Offset: 0x000DD4CA
 	public void Shutdown()
 	{
 		ConduitTemperatureManager.ConduitTemperatureManager_Shutdown();
 	}
 
-	// Token: 0x06005A38 RID: 23096 RVA: 0x002A1B14 File Offset: 0x0029FD14
 	public HandleVector<int>.Handle Allocate(ConduitType conduit_type, int conduit_idx, HandleVector<int>.Handle conduit_structure_temperature_handle, ref ConduitFlow.ConduitContents contents)
 	{
 		StructureTemperaturePayload payload = GameComps.StructureTemperatures.GetPayload(conduit_structure_temperature_handle);
@@ -42,7 +38,6 @@ public class ConduitTemperatureManager
 		return result;
 	}
 
-	// Token: 0x06005A39 RID: 23097 RVA: 0x002A1C18 File Offset: 0x0029FE18
 	public void SetData(HandleVector<int>.Handle handle, ref ConduitFlow.ConduitContents contents)
 	{
 		if (!handle.IsValid())
@@ -53,7 +48,6 @@ public class ConduitTemperatureManager
 		ConduitTemperatureManager.ConduitTemperatureManager_Set(handle.index, contents.temperature, contents.mass, (int)contents.element);
 	}
 
-	// Token: 0x06005A3A RID: 23098 RVA: 0x002A1C68 File Offset: 0x0029FE68
 	public void Free(HandleVector<int>.Handle handle)
 	{
 		if (handle.IsValid())
@@ -69,13 +63,11 @@ public class ConduitTemperatureManager
 		}
 	}
 
-	// Token: 0x06005A3B RID: 23099 RVA: 0x000DF2D1 File Offset: 0x000DD4D1
 	public void Clear()
 	{
 		ConduitTemperatureManager.ConduitTemperatureManager_Clear();
 	}
 
-	// Token: 0x06005A3C RID: 23100 RVA: 0x002A1CCC File Offset: 0x0029FECC
 	public unsafe void Sim200ms(float dt)
 	{
 		ConduitTemperatureManager.ConduitTemperatureUpdateData* ptr = (ConduitTemperatureManager.ConduitTemperatureUpdateData*)((void*)ConduitTemperatureManager.ConduitTemperatureManager_Update(dt, (IntPtr)((void*)Game.Instance.simData.buildingTemperatures)));
@@ -98,76 +90,56 @@ public class ConduitTemperatureManager
 		}
 	}
 
-	// Token: 0x06005A3D RID: 23101 RVA: 0x000DF2D8 File Offset: 0x000DD4D8
 	public float GetTemperature(HandleVector<int>.Handle handle)
 	{
 		return this.temperatures[Sim.GetHandleIndex(handle.index)];
 	}
 
-	// Token: 0x06005A3E RID: 23102
 	[DllImport("SimDLL")]
 	private static extern void ConduitTemperatureManager_Initialize();
 
-	// Token: 0x06005A3F RID: 23103
 	[DllImport("SimDLL")]
 	private static extern void ConduitTemperatureManager_Shutdown();
 
-	// Token: 0x06005A40 RID: 23104
 	[DllImport("SimDLL")]
 	private static extern int ConduitTemperatureManager_Add(float contents_temperature, float contents_mass, int contents_element_hash, int conduit_structure_temperature_handle, float conduit_heat_capacity, float conduit_thermal_conductivity, bool conduit_insulated);
 
-	// Token: 0x06005A41 RID: 23105
 	[DllImport("SimDLL")]
 	private static extern int ConduitTemperatureManager_Set(int handle, float contents_temperature, float contents_mass, int contents_element_hash);
 
-	// Token: 0x06005A42 RID: 23106
 	[DllImport("SimDLL")]
 	private static extern void ConduitTemperatureManager_Remove(int handle);
 
-	// Token: 0x06005A43 RID: 23107
 	[DllImport("SimDLL")]
 	private static extern IntPtr ConduitTemperatureManager_Update(float dt, IntPtr building_conductivity_data);
 
-	// Token: 0x06005A44 RID: 23108
 	[DllImport("SimDLL")]
 	private static extern void ConduitTemperatureManager_Clear();
 
-	// Token: 0x0400403E RID: 16446
 	private float[] temperatures = new float[0];
 
-	// Token: 0x0400403F RID: 16447
 	private ConduitTemperatureManager.ConduitInfo[] conduitInfo = new ConduitTemperatureManager.ConduitInfo[0];
 
-	// Token: 0x02001142 RID: 4418
 	private struct ConduitInfo
 	{
-		// Token: 0x04004040 RID: 16448
 		public ConduitType type;
 
-		// Token: 0x04004041 RID: 16449
 		public int idx;
 	}
 
-	// Token: 0x02001143 RID: 4419
 	[StructLayout(LayoutKind.Sequential, Pack = 4)]
 	private struct ConduitTemperatureUpdateData
 	{
-		// Token: 0x04004042 RID: 16450
 		public int numEntries;
 
-		// Token: 0x04004043 RID: 16451
 		public unsafe float* temperatures;
 
-		// Token: 0x04004044 RID: 16452
 		public int numFrozenHandles;
 
-		// Token: 0x04004045 RID: 16453
 		public unsafe int* frozenHandles;
 
-		// Token: 0x04004046 RID: 16454
 		public int numMeltedHandles;
 
-		// Token: 0x04004047 RID: 16455
 		public unsafe int* meltedHandles;
 	}
 }

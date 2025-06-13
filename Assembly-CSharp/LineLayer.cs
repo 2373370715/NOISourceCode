@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001D46 RID: 7494
 public class LineLayer : GraphLayer
 {
-	// Token: 0x06009C84 RID: 40068 RVA: 0x003D197C File Offset: 0x003CFB7C
 	private void InitAreaTexture()
 	{
 		if (this.areaTexture != null)
@@ -17,7 +15,6 @@ public class LineLayer : GraphLayer
 		this.areaFill.sprite = Sprite.Create(this.areaTexture, new Rect(0f, 0f, (float)this.areaTexture.width, (float)this.areaTexture.height), new Vector2(0.5f, 0.5f), 100f);
 	}
 
-	// Token: 0x06009C85 RID: 40069 RVA: 0x003D19F8 File Offset: 0x003CFBF8
 	public virtual GraphedLine NewLine(global::Tuple<float, float>[] points, string ID = "")
 	{
 		Vector2[] array = new Vector2[points.Length];
@@ -67,7 +64,6 @@ public class LineLayer : GraphLayer
 		return this.NewLine(array, ID);
 	}
 
-	// Token: 0x06009C86 RID: 40070 RVA: 0x003D1C1C File Offset: 0x003CFE1C
 	private GraphedLine FindLine(string ID)
 	{
 		string text = string.Format("line_{0}", ID);
@@ -85,7 +81,6 @@ public class LineLayer : GraphLayer
 		return component;
 	}
 
-	// Token: 0x06009C87 RID: 40071 RVA: 0x003D1CBC File Offset: 0x003CFEBC
 	public virtual void RefreshLine(global::Tuple<float, float>[] data, string ID)
 	{
 		this.FillArea(data);
@@ -164,7 +159,6 @@ public class LineLayer : GraphLayer
 		graphedLine.line_renderer.LineThickness = (float)this.line_formatting[this.lines.Count % this.line_formatting.Length].thickness;
 	}
 
-	// Token: 0x06009C88 RID: 40072 RVA: 0x003D1F08 File Offset: 0x003D0108
 	private void FillArea(global::Tuple<float, float>[] points)
 	{
 		if (this.fillAreaUnderLine)
@@ -212,7 +206,6 @@ public class LineLayer : GraphLayer
 		}
 	}
 
-	// Token: 0x06009C89 RID: 40073 RVA: 0x003D20FC File Offset: 0x003D02FC
 	private void CalculateMinMax(global::Tuple<float, float>[] points, out Vector2 min, out Vector2 max)
 	{
 		max = new Vector2(float.NegativeInfinity, float.NegativeInfinity);
@@ -224,7 +217,6 @@ public class LineLayer : GraphLayer
 		}
 	}
 
-	// Token: 0x06009C8A RID: 40074 RVA: 0x003D21A4 File Offset: 0x003D03A4
 	protected Vector2 CalculateMax(global::Tuple<float, float>[] points)
 	{
 		Vector2 vector = new Vector2(float.NegativeInfinity, float.NegativeInfinity);
@@ -235,7 +227,6 @@ public class LineLayer : GraphLayer
 		return vector;
 	}
 
-	// Token: 0x06009C8B RID: 40075 RVA: 0x003D2200 File Offset: 0x003D0400
 	protected Vector2 CalculateMin(global::Tuple<float, float>[] points)
 	{
 		Vector2 vector = new Vector2(float.PositiveInfinity, 0f);
@@ -246,7 +237,6 @@ public class LineLayer : GraphLayer
 		return vector;
 	}
 
-	// Token: 0x06009C8C RID: 40076 RVA: 0x003D225C File Offset: 0x003D045C
 	public GraphedLine NewLine(Vector2[] points, string ID = "")
 	{
 		GameObject gameObject = Util.KInstantiateUI(this.prefab_line, this.line_container, true);
@@ -323,7 +313,6 @@ public class LineLayer : GraphLayer
 		return component;
 	}
 
-	// Token: 0x06009C8D RID: 40077 RVA: 0x003D24B8 File Offset: 0x003D06B8
 	public void ClearLines()
 	{
 		foreach (GraphedLine graphedLine in this.lines)
@@ -336,7 +325,6 @@ public class LineLayer : GraphLayer
 		this.lines.Clear();
 	}
 
-	// Token: 0x06009C8E RID: 40078 RVA: 0x003D2534 File Offset: 0x003D0734
 	private void Update()
 	{
 		RectTransform component = base.gameObject.GetComponent<RectTransform>();
@@ -368,59 +356,41 @@ public class LineLayer : GraphLayer
 		}
 	}
 
-	// Token: 0x04007A89 RID: 31369
 	[Header("Lines")]
 	public LineLayer.LineFormat[] line_formatting;
 
-	// Token: 0x04007A8A RID: 31370
 	public Image areaFill;
 
-	// Token: 0x04007A8B RID: 31371
 	public GameObject prefab_line;
 
-	// Token: 0x04007A8C RID: 31372
 	public GameObject line_container;
 
-	// Token: 0x04007A8D RID: 31373
 	private List<GraphedLine> lines = new List<GraphedLine>();
 
-	// Token: 0x04007A8E RID: 31374
 	protected float fillAlphaMin = 0.33f;
 
-	// Token: 0x04007A8F RID: 31375
 	protected float fillFadePixels = 15f;
 
-	// Token: 0x04007A90 RID: 31376
 	public bool fillAreaUnderLine;
 
-	// Token: 0x04007A91 RID: 31377
 	private Texture2D areaTexture;
 
-	// Token: 0x04007A92 RID: 31378
 	private int compressDataToPointCount = 256;
 
-	// Token: 0x04007A93 RID: 31379
 	private LineLayer.DataScalingType compressType = LineLayer.DataScalingType.DropValues;
 
-	// Token: 0x02001D47 RID: 7495
 	[Serializable]
 	public struct LineFormat
 	{
-		// Token: 0x04007A94 RID: 31380
 		public Color color;
 
-		// Token: 0x04007A95 RID: 31381
 		public int thickness;
 	}
 
-	// Token: 0x02001D48 RID: 7496
 	public enum DataScalingType
 	{
-		// Token: 0x04007A97 RID: 31383
 		Average,
-		// Token: 0x04007A98 RID: 31384
 		Max,
-		// Token: 0x04007A99 RID: 31385
 		DropValues
 	}
 }

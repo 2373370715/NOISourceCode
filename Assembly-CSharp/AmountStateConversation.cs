@@ -3,22 +3,18 @@ using System.Collections.Generic;
 using Klei.AI;
 using UnityEngine;
 
-// Token: 0x02001150 RID: 4432
 public class AmountStateConversation : ConversationType
 {
-	// Token: 0x06005A77 RID: 23159 RVA: 0x000DF490 File Offset: 0x000DD690
 	public AmountStateConversation()
 	{
 		this.id = "AmountStateConversation";
 	}
 
-	// Token: 0x06005A78 RID: 23160 RVA: 0x000DF4A3 File Offset: 0x000DD6A3
 	public override void NewTarget(MinionIdentity speaker)
 	{
 		this.target = AmountStateConversation.targets[UnityEngine.Random.Range(0, AmountStateConversation.targets.Count)];
 	}
 
-	// Token: 0x06005A79 RID: 23161 RVA: 0x002A3034 File Offset: 0x002A1234
 	public override Conversation.Topic GetNextTopic(MinionIdentity speaker, Conversation.Topic lastTopic)
 	{
 		if (lastTopic == null)
@@ -35,7 +31,6 @@ public class AmountStateConversation : ConversationType
 		return new Conversation.Topic(this.target, modeType);
 	}
 
-	// Token: 0x06005A7A RID: 23162 RVA: 0x002A30A0 File Offset: 0x002A12A0
 	public override Sprite GetSprite(string topic)
 	{
 		if (Db.Get().Amounts.Exists(topic))
@@ -49,7 +44,6 @@ public class AmountStateConversation : ConversationType
 		return null;
 	}
 
-	// Token: 0x06005A7B RID: 23163 RVA: 0x002A3114 File Offset: 0x002A1314
 	private Conversation.ModeType GetModeForAmount(MinionIdentity speaker, string target)
 	{
 		if (target == Db.Get().Amounts.Stress.Id)
@@ -142,7 +136,6 @@ public class AmountStateConversation : ConversationType
 		return Conversation.ModeType.Nominal;
 	}
 
-	// Token: 0x0400407E RID: 16510
 	public static Dictionary<Conversation.ModeType, List<Conversation.ModeType>> transitions = new Dictionary<Conversation.ModeType, List<Conversation.ModeType>>
 	{
 		{
@@ -202,7 +195,6 @@ public class AmountStateConversation : ConversationType
 		}
 	};
 
-	// Token: 0x0400407F RID: 16511
 	public static List<string> targets = new List<string>
 	{
 		"Stress",

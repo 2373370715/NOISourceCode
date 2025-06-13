@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020002D9 RID: 729
 public class SpiceVineConfig : IEntityConfig
 {
-	// Token: 0x06000B27 RID: 2855 RVA: 0x001777C8 File Offset: 0x001759C8
 	public GameObject CreatePrefab()
 	{
 		string id = "SpiceVine";
@@ -68,25 +66,19 @@ public class SpiceVineConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06000B28 RID: 2856 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x06000B29 RID: 2857 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x040008CA RID: 2250
 	public const string ID = "SpiceVine";
 
-	// Token: 0x040008CB RID: 2251
 	public const string SEED_ID = "SpiceVineSeed";
 
-	// Token: 0x040008CC RID: 2252
 	public const float FERTILIZATION_RATE = 0.0016666667f;
 
-	// Token: 0x040008CD RID: 2253
 	public const float WATER_RATE = 0.058333334f;
 }

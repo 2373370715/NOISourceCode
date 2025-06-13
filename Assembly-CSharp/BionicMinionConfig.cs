@@ -4,10 +4,8 @@ using Klei.AI;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000441 RID: 1089
 public class BionicMinionConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x0600126D RID: 4717 RVA: 0x000B2A09 File Offset: 0x000B0C09
 	public static string[] GetAttributes()
 	{
 		return BaseMinionConfig.BaseMinionAttributes().Append(new string[]
@@ -17,7 +15,6 @@ public class BionicMinionConfig : IEntityConfig, IHasDlcRestrictions
 		});
 	}
 
-	// Token: 0x0600126E RID: 4718 RVA: 0x00194680 File Offset: 0x00192880
 	public static string[] GetAmounts()
 	{
 		return BaseMinionConfig.BaseMinionAmounts().Append(new string[]
@@ -29,25 +26,21 @@ public class BionicMinionConfig : IEntityConfig, IHasDlcRestrictions
 		});
 	}
 
-	// Token: 0x0600126F RID: 4719 RVA: 0x000B2A49 File Offset: 0x000B0C49
 	public static AttributeModifier[] GetTraits()
 	{
 		return BaseMinionConfig.BaseMinionTraits(BionicMinionConfig.MODEL);
 	}
 
-	// Token: 0x06001270 RID: 4720 RVA: 0x000AA12F File Offset: 0x000A832F
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.DLC3;
 	}
 
-	// Token: 0x06001271 RID: 4721 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x06001272 RID: 4722 RVA: 0x001946FC File Offset: 0x001928FC
 	public GameObject CreatePrefab()
 	{
 		GameObject gameObject = BaseMinionConfig.BaseMinion(BionicMinionConfig.MODEL, BionicMinionConfig.GetAttributes(), BionicMinionConfig.GetAmounts(), BionicMinionConfig.GetTraits());
@@ -104,7 +97,6 @@ public class BionicMinionConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x06001273 RID: 4723 RVA: 0x00194894 File Offset: 0x00192A94
 	public void OnPrefabInit(GameObject go)
 	{
 		BaseMinionConfig.BasePrefabInit(go, BionicMinionConfig.MODEL);
@@ -114,7 +106,6 @@ public class BionicMinionConfig : IEntityConfig, IHasDlcRestrictions
 		amountInstance2.value = amountInstance2.GetMin();
 	}
 
-	// Token: 0x06001274 RID: 4724 RVA: 0x001948EC File Offset: 0x00192AEC
 	public void OnSpawn(GameObject go)
 	{
 		Sensors component = go.GetComponent<Sensors>();
@@ -132,7 +123,6 @@ public class BionicMinionConfig : IEntityConfig, IHasDlcRestrictions
 		go.Trigger(1589886948, go);
 	}
 
-	// Token: 0x06001275 RID: 4725 RVA: 0x000B2A55 File Offset: 0x000B0C55
 	private void BionicFreeDiscoveries(GameObject instance)
 	{
 		GameScheduler.Instance.Schedule("BionicUnlockCraftingTable", 8f, delegate(object data)
@@ -149,7 +139,6 @@ public class BionicMinionConfig : IEntityConfig, IHasDlcRestrictions
 		}, null, null);
 	}
 
-	// Token: 0x06001276 RID: 4726 RVA: 0x00194974 File Offset: 0x00192B74
 	public BionicMinionConfig()
 	{
 		Func<RationalAi.Instance, StateMachine.Instance>[] array = BaseMinionConfig.BaseRationalAiStateMachines();
@@ -174,21 +163,16 @@ public class BionicMinionConfig : IEntityConfig, IHasDlcRestrictions
 		base..ctor();
 	}
 
-	// Token: 0x04000CE3 RID: 3299
 	public static Tag MODEL = GameTags.Minions.Models.Bionic;
 
-	// Token: 0x04000CE4 RID: 3300
 	public static string NAME = DUPLICANTS.MODEL.BIONIC.NAME;
 
-	// Token: 0x04000CE5 RID: 3301
 	public static string ID = BionicMinionConfig.MODEL.ToString();
 
-	// Token: 0x04000CE6 RID: 3302
 	public static string[] DEFAULT_BIONIC_TRAITS = new string[]
 	{
 		"BionicBaseline"
 	};
 
-	// Token: 0x04000CE7 RID: 3303
 	public Func<RationalAi.Instance, StateMachine.Instance>[] RATIONAL_AI_STATE_MACHINES;
 }

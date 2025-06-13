@@ -1,10 +1,8 @@
 ﻿using System;
 using STRINGS;
 
-// Token: 0x02000179 RID: 377
 public class DropElementStates : GameStateMachine<DropElementStates, DropElementStates.Instance, IStateMachineTarget, DropElementStates.Def>
 {
-	// Token: 0x0600056C RID: 1388 RVA: 0x00161EE8 File Offset: 0x001600E8
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.dropping;
@@ -24,21 +22,16 @@ public class DropElementStates : GameStateMachine<DropElementStates, DropElement
 		}).QueueAnim("idle_loop", true, null).BehaviourComplete(GameTags.Creatures.WantsToDropElements, false);
 	}
 
-	// Token: 0x040003F5 RID: 1013
 	public GameStateMachine<DropElementStates, DropElementStates.Instance, IStateMachineTarget, DropElementStates.Def>.State dropping;
 
-	// Token: 0x040003F6 RID: 1014
 	public GameStateMachine<DropElementStates, DropElementStates.Instance, IStateMachineTarget, DropElementStates.Def>.State behaviourcomplete;
 
-	// Token: 0x0200017A RID: 378
 	public class Def : StateMachine.BaseDef
 	{
 	}
 
-	// Token: 0x0200017B RID: 379
 	public new class Instance : GameStateMachine<DropElementStates, DropElementStates.Instance, IStateMachineTarget, DropElementStates.Def>.GameInstance
 	{
-		// Token: 0x0600056F RID: 1391 RVA: 0x000AC545 File Offset: 0x000AA745
 		public Instance(Chore<DropElementStates.Instance> chore, DropElementStates.Def def) : base(chore, def)
 		{
 			chore.AddPrecondition(ChorePreconditions.instance.CheckBehaviourPrecondition, GameTags.Creatures.WantsToDropElements);

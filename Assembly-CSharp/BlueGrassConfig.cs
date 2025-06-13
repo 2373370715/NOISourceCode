@@ -4,22 +4,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200028D RID: 653
 public class BlueGrassConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x06000985 RID: 2437 RVA: 0x000AA536 File Offset: 0x000A8736
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.DLC2;
 	}
 
-	// Token: 0x06000986 RID: 2438 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x06000987 RID: 2439 RVA: 0x0016F9AC File Offset: 0x0016DBAC
 	public GameObject CreatePrefab()
 	{
 		string id = "BlueGrass";
@@ -74,25 +70,19 @@ public class BlueGrassConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x06000988 RID: 2440 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x06000989 RID: 2441 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x04000747 RID: 1863
 	public const string ID = "BlueGrass";
 
-	// Token: 0x04000748 RID: 1864
 	public const string SEED_ID = "BlueGrassSeed";
 
-	// Token: 0x04000749 RID: 1865
 	public const float CO2_RATE = 0.002f;
 
-	// Token: 0x0400074A RID: 1866
 	public const float FERTILIZATION_RATE = 20f;
 }

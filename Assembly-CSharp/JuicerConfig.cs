@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003A6 RID: 934
 public class JuicerConfig : IBuildingConfig
 {
-	// Token: 0x06000F1A RID: 3866 RVA: 0x00185870 File Offset: 0x00183A70
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "Juicer";
@@ -35,7 +33,6 @@ public class JuicerConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000F1B RID: 3867 RVA: 0x00185928 File Offset: 0x00183B28
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		KPrefabID component = go.GetComponent<KPrefabID>();
@@ -95,7 +92,6 @@ public class JuicerConfig : IBuildingConfig
 		component.prefabInitFn += this.OnInit;
 	}
 
-	// Token: 0x06000F1C RID: 3868 RVA: 0x00185BAC File Offset: 0x00183DAC
 	private void OnInit(GameObject go)
 	{
 		JuicerWorkable component = go.GetComponent<JuicerWorkable>();
@@ -110,23 +106,17 @@ public class JuicerConfig : IBuildingConfig
 		});
 	}
 
-	// Token: 0x06000F1D RID: 3869 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000B17 RID: 2839
 	public const string ID = "Juicer";
 
-	// Token: 0x04000B18 RID: 2840
 	public const float BERRY_CALS = 600000f;
 
-	// Token: 0x04000B19 RID: 2841
 	public const float MUSHROOM_CALS = 300000f;
 
-	// Token: 0x04000B1A RID: 2842
 	public const float LICE_CALS = 500000f;
 
-	// Token: 0x04000B1B RID: 2843
 	public const float WATER_MASS_PER_USE = 1f;
 }

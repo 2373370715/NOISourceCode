@@ -3,23 +3,19 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001CCC RID: 7372
 public class ConfirmDialogScreen : KModalScreen
 {
-	// Token: 0x060099CC RID: 39372 RVA: 0x001086E3 File Offset: 0x001068E3
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x060099CD RID: 39373 RVA: 0x000AA7E7 File Offset: 0x000A89E7
 	public override bool IsModal()
 	{
 		return true;
 	}
 
-	// Token: 0x060099CE RID: 39374 RVA: 0x001086F7 File Offset: 0x001068F7
 	public override void OnKeyDown(KButtonEvent e)
 	{
 		if (e.TryConsume(global::Action.Escape))
@@ -30,7 +26,6 @@ public class ConfirmDialogScreen : KModalScreen
 		base.OnKeyDown(e);
 	}
 
-	// Token: 0x060099CF RID: 39375 RVA: 0x003C5168 File Offset: 0x003C3368
 	public void PopupConfirmDialog(string text, System.Action on_confirm, System.Action on_cancel, string configurable_text = null, System.Action on_configurable_clicked = null, string title_text = null, string confirm_text = null, string cancel_text = null, Sprite image_sprite = null)
 	{
 		while (base.transform.parent.GetComponent<Canvas>() == null && base.transform.parent.parent != null)
@@ -81,7 +76,6 @@ public class ConfirmDialogScreen : KModalScreen
 		this.popupMessage.text = text;
 	}
 
-	// Token: 0x060099D0 RID: 39376 RVA: 0x00108710 File Offset: 0x00106910
 	public void OnSelect_OK()
 	{
 		if (this.deactivateOnConfirmAction)
@@ -94,7 +88,6 @@ public class ConfirmDialogScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x060099D1 RID: 39377 RVA: 0x00108733 File Offset: 0x00106933
 	public void OnSelect_CANCEL()
 	{
 		if (this.deactivateOnCancelAction)
@@ -107,7 +100,6 @@ public class ConfirmDialogScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x060099D2 RID: 39378 RVA: 0x00108756 File Offset: 0x00106956
 	public void OnSelect_third()
 	{
 		if (this.deactivateOnConfigurableAction)
@@ -120,7 +112,6 @@ public class ConfirmDialogScreen : KModalScreen
 		}
 	}
 
-	// Token: 0x060099D3 RID: 39379 RVA: 0x00108779 File Offset: 0x00106979
 	protected override void OnDeactivate()
 	{
 		if (this.onDeactivateCB != null)
@@ -130,48 +121,35 @@ public class ConfirmDialogScreen : KModalScreen
 		base.OnDeactivate();
 	}
 
-	// Token: 0x040077F8 RID: 30712
 	private System.Action confirmAction;
 
-	// Token: 0x040077F9 RID: 30713
 	private System.Action cancelAction;
 
-	// Token: 0x040077FA RID: 30714
 	private System.Action configurableAction;
 
-	// Token: 0x040077FB RID: 30715
 	public bool deactivateOnConfigurableAction = true;
 
-	// Token: 0x040077FC RID: 30716
 	public bool deactivateOnConfirmAction = true;
 
-	// Token: 0x040077FD RID: 30717
 	public bool deactivateOnCancelAction = true;
 
-	// Token: 0x040077FE RID: 30718
 	public System.Action onDeactivateCB;
 
-	// Token: 0x040077FF RID: 30719
 	[SerializeField]
 	private GameObject confirmButton;
 
-	// Token: 0x04007800 RID: 30720
 	[SerializeField]
 	private GameObject cancelButton;
 
-	// Token: 0x04007801 RID: 30721
 	[SerializeField]
 	private GameObject configurableButton;
 
-	// Token: 0x04007802 RID: 30722
 	[SerializeField]
 	private LocText titleText;
 
-	// Token: 0x04007803 RID: 30723
 	[SerializeField]
 	private LocText popupMessage;
 
-	// Token: 0x04007804 RID: 30724
 	[SerializeField]
 	private Image image;
 }

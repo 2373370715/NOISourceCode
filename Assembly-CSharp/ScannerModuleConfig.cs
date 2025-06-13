@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000586 RID: 1414
 public class ScannerModuleConfig : IBuildingConfig
 {
-	// Token: 0x06001861 RID: 6241 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06001862 RID: 6242 RVA: 0x001AAF70 File Offset: 0x001A9170
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "ScannerModule";
@@ -47,7 +44,6 @@ public class ScannerModuleConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001863 RID: 6243 RVA: 0x001AB04C File Offset: 0x001A924C
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -60,12 +56,10 @@ public class ScannerModuleConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x06001864 RID: 6244 RVA: 0x000B4BF4 File Offset: 0x000B2DF4
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		BuildingTemplates.ExtendBuildingToRocketModuleCluster(go, null, ROCKETRY.BURDEN.MINOR_PLUS, 0f, 0f);
 	}
 
-	// Token: 0x0400101E RID: 4126
 	public const string ID = "ScannerModule";
 }

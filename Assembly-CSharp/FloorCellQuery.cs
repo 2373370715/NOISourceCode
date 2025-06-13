@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x02000820 RID: 2080
 public class FloorCellQuery : PathFinderQuery
 {
-	// Token: 0x060024A8 RID: 9384 RVA: 0x000BC496 File Offset: 0x000BA696
 	public FloorCellQuery Reset(int max_results, int adjacent_cells_buffer = 0)
 	{
 		this.max_results = max_results;
@@ -13,7 +11,6 @@ public class FloorCellQuery : PathFinderQuery
 		return this;
 	}
 
-	// Token: 0x060024A9 RID: 9385 RVA: 0x000BC4B2 File Offset: 0x000BA6B2
 	public override bool IsMatch(int cell, int parent_cell, int cost)
 	{
 		if (!this.result_cells.Contains(cell) && this.CheckValidFloorCell(cell))
@@ -23,7 +20,6 @@ public class FloorCellQuery : PathFinderQuery
 		return this.result_cells.Count >= this.max_results;
 	}
 
-	// Token: 0x060024AA RID: 9386 RVA: 0x001D6DF8 File Offset: 0x001D4FF8
 	private bool CheckValidFloorCell(int testCell)
 	{
 		if (!Grid.IsValidCell(testCell) || Grid.IsSolidCell(testCell))
@@ -54,12 +50,9 @@ public class FloorCellQuery : PathFinderQuery
 		return false;
 	}
 
-	// Token: 0x0400190E RID: 6414
 	public List<int> result_cells = new List<int>();
 
-	// Token: 0x0400190F RID: 6415
 	private int max_results;
 
-	// Token: 0x04001910 RID: 6416
 	private int adjacent_cells_buffer;
 }

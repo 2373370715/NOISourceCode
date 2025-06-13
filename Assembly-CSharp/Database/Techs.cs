@@ -5,10 +5,8 @@ using UnityEngine;
 
 namespace Database
 {
-	// Token: 0x020021E5 RID: 8677
 	public class Techs : ResourceSet<Tech>
 	{
-		// Token: 0x0600B8D8 RID: 47320 RVA: 0x00472CEC File Offset: 0x00470EEC
 		public Techs(ResourceSet parent) : base("Techs", parent)
 		{
 			if (!DlcManager.IsExpansion1Active())
@@ -146,7 +144,6 @@ namespace Database
 			};
 		}
 
-		// Token: 0x0600B8D9 RID: 47321 RVA: 0x004732B4 File Offset: 0x004714B4
 		public void Init()
 		{
 			new Tech("FarmingTech", new List<string>
@@ -882,7 +879,6 @@ namespace Database
 			this.InitExpansion1();
 		}
 
-		// Token: 0x0600B8DA RID: 47322 RVA: 0x00474FDC File Offset: 0x004731DC
 		private void InitBaseGameOnly()
 		{
 			if (DlcManager.IsExpansion1Active())
@@ -901,7 +897,6 @@ namespace Database
 			}
 		}
 
-		// Token: 0x0600B8DB RID: 47323 RVA: 0x0047504C File Offset: 0x0047324C
 		private void InitExpansion1()
 		{
 			if (!DlcManager.IsExpansion1Active())
@@ -942,7 +937,6 @@ namespace Database
 			}
 		}
 
-		// Token: 0x0600B8DC RID: 47324 RVA: 0x0047518C File Offset: 0x0047338C
 		public void PostProcess()
 		{
 			foreach (Tech tech in this.resources)
@@ -960,7 +954,6 @@ namespace Database
 			}
 		}
 
-		// Token: 0x0600B8DD RID: 47325 RVA: 0x00475240 File Offset: 0x00473440
 		public void Load(TextAsset tree_file)
 		{
 			ResourceTreeLoader<ResourceTreeNode> resourceTreeLoader = new ResourceTreeLoader<ResourceTreeNode>(tree_file);
@@ -1029,7 +1022,6 @@ namespace Database
 			}
 		}
 
-		// Token: 0x0600B8DE RID: 47326 RVA: 0x00475578 File Offset: 0x00473778
 		public static int GetTier(Tech tech)
 		{
 			if (tech == null)
@@ -1044,7 +1036,6 @@ namespace Database
 			return num + 1;
 		}
 
-		// Token: 0x0600B8DF RID: 47327 RVA: 0x004755DC File Offset: 0x004737DC
 		private void AddPrerequisite(Tech tech, string prerequisite_name)
 		{
 			Tech tech2 = base.TryGet(prerequisite_name);
@@ -1055,7 +1046,6 @@ namespace Database
 			}
 		}
 
-		// Token: 0x0600B8E0 RID: 47328 RVA: 0x0047560C File Offset: 0x0047380C
 		public Tech TryGetTechForTechItem(string itemId)
 		{
 			Predicate<string> <>9__0;
@@ -1076,7 +1066,6 @@ namespace Database
 			return null;
 		}
 
-		// Token: 0x0600B8E1 RID: 47329 RVA: 0x00475674 File Offset: 0x00473874
 		public bool IsTechItemComplete(string id)
 		{
 			foreach (Tech tech in this.resources)
@@ -1095,7 +1084,6 @@ namespace Database
 			return true;
 		}
 
-		// Token: 0x04009722 RID: 38690
 		private readonly List<List<global::Tuple<string, float>>> TECH_TIERS;
 	}
 }

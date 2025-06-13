@@ -5,10 +5,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200029D RID: 669
 public class GasGrassConfig : IEntityConfig
 {
-	// Token: 0x060009D6 RID: 2518 RVA: 0x001717E0 File Offset: 0x0016F9E0
 	public GameObject CreatePrefab()
 	{
 		string id = "GasGrass";
@@ -60,25 +58,19 @@ public class GasGrassConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x060009D7 RID: 2519 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x060009D8 RID: 2520 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x04000787 RID: 1927
 	public const string ID = "GasGrass";
 
-	// Token: 0x04000788 RID: 1928
 	public const string SEED_ID = "GasGrassSeed";
 
-	// Token: 0x04000789 RID: 1929
 	public const float CHLORINE_FERTILIZATION_RATE = 0.00083333335f;
 
-	// Token: 0x0400078A RID: 1930
 	public const float DIRT_FERTILIZATION_RATE = 0.041666668f;
 }

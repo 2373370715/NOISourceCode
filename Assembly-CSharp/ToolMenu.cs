@@ -7,17 +7,13 @@ using UnityEngine.Experimental.Rendering;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
-// Token: 0x02001BA2 RID: 7074
 public class ToolMenu : KScreen
 {
-	// Token: 0x060094A3 RID: 38051 RVA: 0x00105851 File Offset: 0x00103A51
 	public static void DestroyInstance()
 	{
 		ToolMenu.Instance = null;
 	}
 
-	// Token: 0x170009B3 RID: 2483
-	// (get) Token: 0x060094A4 RID: 38052 RVA: 0x00105859 File Offset: 0x00103A59
 	public PriorityScreen PriorityScreen
 	{
 		get
@@ -26,13 +22,11 @@ public class ToolMenu : KScreen
 		}
 	}
 
-	// Token: 0x060094A5 RID: 38053 RVA: 0x00105861 File Offset: 0x00103A61
 	public override float GetSortKey()
 	{
 		return 5f;
 	}
 
-	// Token: 0x060094A6 RID: 38054 RVA: 0x003A0654 File Offset: 0x0039E854
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -42,14 +36,12 @@ public class ToolMenu : KScreen
 		this.priorityScreen.InstantiateButtons(new Action<PrioritySetting>(this.OnPriorityClicked), false);
 	}
 
-	// Token: 0x060094A7 RID: 38055 RVA: 0x00105868 File Offset: 0x00103A68
 	protected override void OnForcedCleanUp()
 	{
 		KInputManager.InputChange.RemoveListener(new UnityAction(this.OnInputChange));
 		base.OnForcedCleanUp();
 	}
 
-	// Token: 0x060094A8 RID: 38056 RVA: 0x00105886 File Offset: 0x00103A86
 	protected override void OnCleanUp()
 	{
 		base.OnCleanUp();
@@ -57,7 +49,6 @@ public class ToolMenu : KScreen
 		Game.Instance.Unsubscribe(this.refreshScaleHandle);
 	}
 
-	// Token: 0x060094A9 RID: 38057 RVA: 0x003A06C0 File Offset: 0x0039E8C0
 	private void OnOverlayChanged(object overlay_data)
 	{
 		HashedString y = (HashedString)overlay_data;
@@ -68,7 +59,6 @@ public class ToolMenu : KScreen
 		}
 	}
 
-	// Token: 0x060094AA RID: 38058 RVA: 0x003A0728 File Offset: 0x0039E928
 	protected override void OnSpawn()
 	{
 		this.activateOnSpawn = true;
@@ -99,7 +89,6 @@ public class ToolMenu : KScreen
 		this.RefreshScale(null);
 	}
 
-	// Token: 0x060094AB RID: 38059 RVA: 0x003A0838 File Offset: 0x0039EA38
 	private void RefreshScale(object data = null)
 	{
 		int num = 14;
@@ -122,7 +111,6 @@ public class ToolMenu : KScreen
 		}
 	}
 
-	// Token: 0x060094AC RID: 38060 RVA: 0x001058B9 File Offset: 0x00103AB9
 	public void OnInputChange()
 	{
 		this.rows.ForEach(delegate(List<ToolMenu.ToolCollection> row)
@@ -135,7 +123,6 @@ public class ToolMenu : KScreen
 		});
 	}
 
-	// Token: 0x060094AD RID: 38061 RVA: 0x003A0914 File Offset: 0x0039EB14
 	private void ResetToolDisplayPlane()
 	{
 		this.toolEffectDisplayPlane = this.CreateToolDisplayPlane("Overlay", World.Instance.transform);
@@ -146,7 +133,6 @@ public class ToolMenu : KScreen
 		this.RefreshToolDisplayPlaneColor();
 	}
 
-	// Token: 0x060094AE RID: 38062 RVA: 0x003A09C0 File Offset: 0x0039EBC0
 	private GameObject CreateToolDisplayPlane(string layer, Transform parent)
 	{
 		GameObject gameObject = GameObject.CreatePrimitive(PrimitiveType.Plane);
@@ -164,7 +150,6 @@ public class ToolMenu : KScreen
 		return gameObject;
 	}
 
-	// Token: 0x060094AF RID: 38063 RVA: 0x001058E9 File Offset: 0x00103AE9
 	private Texture2D CreatePlaneTexture(out byte[] textureBytes, int width, int height)
 	{
 		textureBytes = new byte[width * height * 4];
@@ -176,13 +161,11 @@ public class ToolMenu : KScreen
 		};
 	}
 
-	// Token: 0x060094B0 RID: 38064 RVA: 0x0010591E File Offset: 0x00103B1E
 	private void Update()
 	{
 		this.RefreshToolDisplayPlaneColor();
 	}
 
-	// Token: 0x060094B1 RID: 38065 RVA: 0x003A0A74 File Offset: 0x0039EC74
 	private void RefreshToolDisplayPlaneColor()
 	{
 		if (PlayerController.Instance.ActiveTool == null || PlayerController.Instance.ActiveTool == SelectTool.Instance)
@@ -217,7 +200,6 @@ public class ToolMenu : KScreen
 		this.toolEffectDisplayPlaneTexture.Apply();
 	}
 
-	// Token: 0x060094B2 RID: 38066 RVA: 0x003A0C1C File Offset: 0x0039EE1C
 	public void ToggleSandboxUI(object data = null)
 	{
 		this.ClearSelection();
@@ -225,7 +207,6 @@ public class ToolMenu : KScreen
 		this.sandboxTools[0].toggle.transform.parent.transform.parent.gameObject.SetActive(Game.Instance.SandboxModeActive);
 	}
 
-	// Token: 0x060094B3 RID: 38067 RVA: 0x003A0C78 File Offset: 0x0039EE78
 	public static ToolMenu.ToolCollection CreateToolCollection(LocString collection_name, string icon_name, global::Action hotkey, string tool_name, LocString tooltip, bool largeIcon)
 	{
 		ToolMenu.ToolCollection toolCollection = new ToolMenu.ToolCollection(collection_name, icon_name, "", false, global::Action.NumActions, largeIcon);
@@ -233,7 +214,6 @@ public class ToolMenu : KScreen
 		return toolCollection;
 	}
 
-	// Token: 0x060094B4 RID: 38068 RVA: 0x003A0CBC File Offset: 0x0039EEBC
 	private void CreateSandBoxTools()
 	{
 		this.sandboxTools.Add(ToolMenu.CreateToolCollection(UI.TOOLS.SANDBOX.BRUSH.NAME, "brush", global::Action.SandboxBrush, "SandboxBrushTool", UI.SANDBOXTOOLS.SETTINGS.BRUSH.TOOLTIP, false));
@@ -250,7 +230,6 @@ public class ToolMenu : KScreen
 		this.sandboxTools.Add(ToolMenu.CreateToolCollection(UI.TOOLS.SANDBOX.SPAWN_STORY_TRAIT.NAME, "sandbox_storytrait", global::Action.SandboxStoryTraitTool, "SandboxStoryTraitTool", UI.SANDBOXTOOLS.SETTINGS.SPAWN_STORY_TRAIT.TOOLTIP, false));
 	}
 
-	// Token: 0x060094B5 RID: 38069 RVA: 0x003A0EC4 File Offset: 0x0039F0C4
 	private void CreateBasicTools()
 	{
 		this.basicTools.Add(ToolMenu.CreateToolCollection(UI.TOOLS.DIG.NAME, "icon_action_dig", global::Action.Dig, "DigTool", UI.TOOLTIPS.DIGBUTTON, true));
@@ -267,7 +246,6 @@ public class ToolMenu : KScreen
 		this.basicTools.Add(ToolMenu.CreateToolCollection(UI.TOOLS.DISCONNECT.NAME, "icon_action_disconnect", global::Action.Disconnect, "DisconnectTool", UI.TOOLS.DISCONNECT.TOOLTIP, false));
 	}
 
-	// Token: 0x060094B6 RID: 38070 RVA: 0x003A10CC File Offset: 0x0039F2CC
 	private void InstantiateCollectionsUI(IList<ToolMenu.ToolCollection> collections)
 	{
 		GameObject parent = Util.KInstantiateUI(this.prefabToolRow, base.gameObject, true);
@@ -381,7 +359,6 @@ public class ToolMenu : KScreen
 		}
 	}
 
-	// Token: 0x060094B7 RID: 38071 RVA: 0x003A1588 File Offset: 0x0039F788
 	private void ChooseTool(ToolMenu.ToolInfo tool)
 	{
 		if (this.currentlySelectedTool == tool)
@@ -420,7 +397,6 @@ public class ToolMenu : KScreen
 		});
 	}
 
-	// Token: 0x060094B8 RID: 38072 RVA: 0x003A166C File Offset: 0x0039F86C
 	private void RefreshRowDisplay(IList<ToolMenu.ToolCollection> row)
 	{
 		for (int i = 0; i < row.Count; i++)
@@ -471,7 +447,6 @@ public class ToolMenu : KScreen
 		}
 	}
 
-	// Token: 0x060094B9 RID: 38073 RVA: 0x00105926 File Offset: 0x00103B26
 	public void TurnLargeCollectionOff()
 	{
 		if (this.currentlySelectedCollection != null && this.currentlySelectedCollection.tools.Count > this.smallCollectionMax)
@@ -480,7 +455,6 @@ public class ToolMenu : KScreen
 		}
 	}
 
-	// Token: 0x060094BA RID: 38074 RVA: 0x003A1884 File Offset: 0x0039FA84
 	private void ChooseCollection(ToolMenu.ToolCollection collection, bool autoSelectTool = true)
 	{
 		if (collection == this.currentlySelectedCollection)
@@ -509,7 +483,6 @@ public class ToolMenu : KScreen
 		});
 	}
 
-	// Token: 0x060094BB RID: 38075 RVA: 0x003A1924 File Offset: 0x0039FB24
 	private void OpenOrCloseCollectionsInRow(IList<ToolMenu.ToolCollection> row, bool autoSelectTool = true)
 	{
 		for (int i = 0; i < row.Count; i++)
@@ -534,7 +507,6 @@ public class ToolMenu : KScreen
 		}
 	}
 
-	// Token: 0x060094BC RID: 38076 RVA: 0x00105950 File Offset: 0x00103B50
 	private void SetToggleState(KToggle toggle, bool state)
 	{
 		if (state)
@@ -547,7 +519,6 @@ public class ToolMenu : KScreen
 		toggle.isOn = false;
 	}
 
-	// Token: 0x060094BD RID: 38077 RVA: 0x00105970 File Offset: 0x00103B70
 	public void ClearSelection()
 	{
 		if (this.currentlySelectedCollection != null)
@@ -560,7 +531,6 @@ public class ToolMenu : KScreen
 		}
 	}
 
-	// Token: 0x060094BE RID: 38078 RVA: 0x003A1A20 File Offset: 0x0039FC20
 	public override void OnKeyDown(KButtonEvent e)
 	{
 		if (!e.Consumed)
@@ -669,7 +639,6 @@ public class ToolMenu : KScreen
 		base.OnKeyDown(e);
 	}
 
-	// Token: 0x060094BF RID: 38079 RVA: 0x003A1E08 File Offset: 0x003A0008
 	public override void OnKeyUp(KButtonEvent e)
 	{
 		if (!e.Consumed)
@@ -707,7 +676,6 @@ public class ToolMenu : KScreen
 		base.OnKeyUp(e);
 	}
 
-	// Token: 0x060094C0 RID: 38080 RVA: 0x003A1EE8 File Offset: 0x003A00E8
 	protected void BuildRowToggles(IList<ToolMenu.ToolCollection> row)
 	{
 		for (int i = 0; i < row.Count; i++)
@@ -755,7 +723,6 @@ public class ToolMenu : KScreen
 		}
 	}
 
-	// Token: 0x060094C1 RID: 38081 RVA: 0x003A2084 File Offset: 0x003A0284
 	protected void BuildToolToggles(IList<ToolMenu.ToolCollection> row)
 	{
 		for (int i = 0; i < row.Count; i++)
@@ -792,7 +759,6 @@ public class ToolMenu : KScreen
 		}
 	}
 
-	// Token: 0x060094C2 RID: 38082 RVA: 0x003A2200 File Offset: 0x003A0400
 	public bool HasUniqueKeyBindings()
 	{
 		bool result = true;
@@ -822,133 +788,92 @@ public class ToolMenu : KScreen
 		return result;
 	}
 
-	// Token: 0x060094C3 RID: 38083 RVA: 0x00105991 File Offset: 0x00103B91
 	private void OnPriorityClicked(PrioritySetting priority)
 	{
 		this.priorityScreen.SetScreenPriority(priority, false);
 	}
 
-	// Token: 0x040070C6 RID: 28870
 	public static ToolMenu Instance;
 
-	// Token: 0x040070C7 RID: 28871
 	public GameObject Prefab_collectionContainer;
 
-	// Token: 0x040070C8 RID: 28872
 	public GameObject Prefab_collectionContainerWindow;
 
-	// Token: 0x040070C9 RID: 28873
 	public PriorityScreen Prefab_priorityScreen;
 
-	// Token: 0x040070CA RID: 28874
 	public GameObject toolIconPrefab;
 
-	// Token: 0x040070CB RID: 28875
 	public GameObject toolIconLargePrefab;
 
-	// Token: 0x040070CC RID: 28876
 	public GameObject sandboxToolIconPrefab;
 
-	// Token: 0x040070CD RID: 28877
 	public GameObject collectionIconPrefab;
 
-	// Token: 0x040070CE RID: 28878
 	public GameObject prefabToolRow;
 
-	// Token: 0x040070CF RID: 28879
 	public GameObject largeToolSet;
 
-	// Token: 0x040070D0 RID: 28880
 	public GameObject smallToolSet;
 
-	// Token: 0x040070D1 RID: 28881
 	public GameObject smallToolBottomRow;
 
-	// Token: 0x040070D2 RID: 28882
 	public GameObject smallToolTopRow;
 
-	// Token: 0x040070D3 RID: 28883
 	public GameObject sandboxToolSet;
 
-	// Token: 0x040070D4 RID: 28884
 	private PriorityScreen priorityScreen;
 
-	// Token: 0x040070D5 RID: 28885
 	public ToolParameterMenu toolParameterMenu;
 
-	// Token: 0x040070D6 RID: 28886
 	public GameObject sandboxToolParameterMenu;
 
-	// Token: 0x040070D7 RID: 28887
 	private GameObject toolEffectDisplayPlane;
 
-	// Token: 0x040070D8 RID: 28888
 	private Texture2D toolEffectDisplayPlaneTexture;
 
-	// Token: 0x040070D9 RID: 28889
 	public Material toolEffectDisplayMaterial;
 
-	// Token: 0x040070DA RID: 28890
 	private byte[] toolEffectDisplayBytes;
 
-	// Token: 0x040070DB RID: 28891
 	private List<List<ToolMenu.ToolCollection>> rows = new List<List<ToolMenu.ToolCollection>>();
 
-	// Token: 0x040070DC RID: 28892
 	public List<ToolMenu.ToolCollection> basicTools = new List<ToolMenu.ToolCollection>();
 
-	// Token: 0x040070DD RID: 28893
 	public List<ToolMenu.ToolCollection> sandboxTools = new List<ToolMenu.ToolCollection>();
 
-	// Token: 0x040070DE RID: 28894
 	public ToolMenu.ToolCollection currentlySelectedCollection;
 
-	// Token: 0x040070DF RID: 28895
 	public ToolMenu.ToolInfo currentlySelectedTool;
 
-	// Token: 0x040070E0 RID: 28896
 	public InterfaceTool activeTool;
 
-	// Token: 0x040070E1 RID: 28897
 	private Coroutine activeOpenAnimationRoutine;
 
-	// Token: 0x040070E2 RID: 28898
 	private Coroutine activeCloseAnimationRoutine;
 
-	// Token: 0x040070E3 RID: 28899
 	private HashSet<global::Action> boundRootActions = new HashSet<global::Action>();
 
-	// Token: 0x040070E4 RID: 28900
 	private HashSet<global::Action> boundSubgroupActions = new HashSet<global::Action>();
 
-	// Token: 0x040070E5 RID: 28901
 	private UnityAction inputChangeReceiver;
 
-	// Token: 0x040070E6 RID: 28902
 	private int refreshScaleHandle = -1;
 
-	// Token: 0x040070E7 RID: 28903
 	[SerializeField]
 	public TextStyleSetting ToggleToolTipTextStyleSetting;
 
-	// Token: 0x040070E8 RID: 28904
 	[SerializeField]
 	public TextStyleSetting CategoryLabelTextStyle_LeftAlign;
 
-	// Token: 0x040070E9 RID: 28905
 	[SerializeField]
 	private TextStyleSetting TooltipHeader;
 
-	// Token: 0x040070EA RID: 28906
 	private int smallCollectionMax = 5;
 
-	// Token: 0x040070EB RID: 28907
 	private HashSet<ToolMenu.CellColorData> colors = new HashSet<ToolMenu.CellColorData>();
 
-	// Token: 0x02001BA3 RID: 7075
 	public class ToolInfo
 	{
-		// Token: 0x060094CC RID: 38092 RVA: 0x003A23A0 File Offset: 0x003A05A0
 		public ToolInfo(string text, string icon_name, global::Action hotkey, string ToolName, ToolMenu.ToolCollection toolCollection, string tooltip = "", Action<object> onSelectCallback = null, object toolData = null)
 		{
 			this.text = text;
@@ -962,38 +887,27 @@ public class ToolMenu : KScreen
 			this.toolData = toolData;
 		}
 
-		// Token: 0x040070EC RID: 28908
 		public string text;
 
-		// Token: 0x040070ED RID: 28909
 		public string icon;
 
-		// Token: 0x040070EE RID: 28910
 		public global::Action hotkey;
 
-		// Token: 0x040070EF RID: 28911
 		public string toolName;
 
-		// Token: 0x040070F0 RID: 28912
 		public ToolMenu.ToolCollection collection;
 
-		// Token: 0x040070F1 RID: 28913
 		public string tooltip;
 
-		// Token: 0x040070F2 RID: 28914
 		public KToggle toggle;
 
-		// Token: 0x040070F3 RID: 28915
 		public Action<object> onSelectCallback;
 
-		// Token: 0x040070F4 RID: 28916
 		public object toolData;
 	}
 
-	// Token: 0x02001BA4 RID: 7076
 	public class ToolCollection
 	{
-		// Token: 0x060094CD RID: 38093 RVA: 0x001059CE File Offset: 0x00103BCE
 		public ToolCollection(string text, string icon_name, string tooltip = "", bool useInfoMenu = false, global::Action hotkey = global::Action.NumActions, bool largeIcon = false)
 		{
 			this.text = text;
@@ -1004,51 +918,37 @@ public class ToolMenu : KScreen
 			this.largeIcon = largeIcon;
 		}
 
-		// Token: 0x040070F5 RID: 28917
 		public string text;
 
-		// Token: 0x040070F6 RID: 28918
 		public string icon;
 
-		// Token: 0x040070F7 RID: 28919
 		public string tooltip;
 
-		// Token: 0x040070F8 RID: 28920
 		public bool useInfoMenu;
 
-		// Token: 0x040070F9 RID: 28921
 		public bool largeIcon;
 
-		// Token: 0x040070FA RID: 28922
 		public GameObject toggle;
 
-		// Token: 0x040070FB RID: 28923
 		public List<ToolMenu.ToolInfo> tools = new List<ToolMenu.ToolInfo>();
 
-		// Token: 0x040070FC RID: 28924
 		public GameObject UIMenuDisplay;
 
-		// Token: 0x040070FD RID: 28925
 		public GameObject MaskContainer;
 
-		// Token: 0x040070FE RID: 28926
 		public global::Action hotkey;
 	}
 
-	// Token: 0x02001BA5 RID: 7077
 	public struct CellColorData
 	{
-		// Token: 0x060094CE RID: 38094 RVA: 0x00105A0E File Offset: 0x00103C0E
 		public CellColorData(int cell, Color color)
 		{
 			this.cell = cell;
 			this.color = color;
 		}
 
-		// Token: 0x040070FF RID: 28927
 		public int cell;
 
-		// Token: 0x04007100 RID: 28928
 		public Color color;
 	}
 }

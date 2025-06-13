@@ -6,11 +6,8 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001075 RID: 4213
 public class WarpPortal : Workable
 {
-	// Token: 0x170004ED RID: 1261
-	// (get) Token: 0x0600558F RID: 21903 RVA: 0x000DC2DD File Offset: 0x000DA4DD
 	public bool ReadyToWarp
 	{
 		get
@@ -19,8 +16,6 @@ public class WarpPortal : Workable
 		}
 	}
 
-	// Token: 0x170004EE RID: 1262
-	// (get) Token: 0x06005590 RID: 21904 RVA: 0x000DC2FF File Offset: 0x000DA4FF
 	public bool IsWorking
 	{
 		get
@@ -29,14 +24,12 @@ public class WarpPortal : Workable
 		}
 	}
 
-	// Token: 0x06005591 RID: 21905 RVA: 0x000DC31C File Offset: 0x000DA51C
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
 		this.assignable.OnAssign += this.Assign;
 	}
 
-	// Token: 0x06005592 RID: 21906 RVA: 0x0028D5A4 File Offset: 0x0028B7A4
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -46,7 +39,6 @@ public class WarpPortal : Workable
 		this.selectEventHandle = Game.Instance.Subscribe(-1503271301, new Action<object>(this.OnObjectSelected));
 	}
 
-	// Token: 0x06005593 RID: 21907 RVA: 0x000DC33B File Offset: 0x000DA53B
 	private void OnObjectSelected(object data)
 	{
 		if (data != null && (GameObject)data == base.gameObject && Components.LiveMinionIdentities.Count > 0)
@@ -55,14 +47,12 @@ public class WarpPortal : Workable
 		}
 	}
 
-	// Token: 0x06005594 RID: 21908 RVA: 0x000DC366 File Offset: 0x000DA566
 	protected override void OnCleanUp()
 	{
 		Game.Instance.Unsubscribe(this.selectEventHandle);
 		base.OnCleanUp();
 	}
 
-	// Token: 0x06005595 RID: 21909 RVA: 0x0028D618 File Offset: 0x0028B818
 	private void Discover()
 	{
 		if (this.discovered)
@@ -84,13 +74,11 @@ public class WarpPortal : Workable
 		this.discovered = true;
 	}
 
-	// Token: 0x06005596 RID: 21910 RVA: 0x000DC37E File Offset: 0x000DA57E
 	public void StartWarpSequence()
 	{
 		this.warpPortalSMI.GoTo(this.warpPortalSMI.sm.occupied.warping);
 	}
 
-	// Token: 0x06005597 RID: 21911 RVA: 0x000DC3A0 File Offset: 0x000DA5A0
 	public void CancelAssignment()
 	{
 		this.CancelChore();
@@ -98,7 +86,6 @@ public class WarpPortal : Workable
 		this.warpPortalSMI.GoTo(this.warpPortalSMI.sm.idle);
 	}
 
-	// Token: 0x06005598 RID: 21912 RVA: 0x0028D6A8 File Offset: 0x0028B8A8
 	private int GetTargetWorldID()
 	{
 		SaveGame.Instance.GetComponent<WorldGenSpawner>().SpawnTag(WarpReceiverConfig.ID);
@@ -113,7 +100,6 @@ public class WarpPortal : Workable
 		return -1;
 	}
 
-	// Token: 0x06005599 RID: 21913 RVA: 0x0028D704 File Offset: 0x0028B904
 	private void Warp()
 	{
 		if (base.worker == null || base.worker.HasTag(GameTags.Dying) || base.worker.HasTag(GameTags.Dead))
@@ -148,7 +134,6 @@ public class WarpPortal : Workable
 		}
 	}
 
-	// Token: 0x0600559A RID: 21914 RVA: 0x000DC3CE File Offset: 0x000DA5CE
 	public IEnumerator DelayedWarp(WarpReceiver receiver)
 	{
 		yield return SequenceUtil.WaitForEndOfFrame;
@@ -163,14 +148,12 @@ public class WarpPortal : Workable
 		yield break;
 	}
 
-	// Token: 0x0600559B RID: 21915 RVA: 0x000DC3E4 File Offset: 0x000DA5E4
 	public void SetAssignable(bool set_it)
 	{
 		this.assignable.SetCanBeAssigned(set_it);
 		this.RefreshSideScreen();
 	}
 
-	// Token: 0x0600559C RID: 21916 RVA: 0x000DC3F8 File Offset: 0x000DA5F8
 	private void Assign(IAssignableIdentity new_assignee)
 	{
 		this.CancelChore();
@@ -180,7 +163,6 @@ public class WarpPortal : Workable
 		}
 	}
 
-	// Token: 0x0600559D RID: 21917 RVA: 0x0028D7E0 File Offset: 0x0028B9E0
 	private void ActivateChore()
 	{
 		global::Debug.Assert(this.chore == null);
@@ -206,7 +188,6 @@ public class WarpPortal : Workable
 		this.showProgressBar = false;
 	}
 
-	// Token: 0x0600559E RID: 21918 RVA: 0x000DC409 File Offset: 0x000DA609
 	private void CancelChore()
 	{
 		if (this.chore == null)
@@ -222,7 +203,6 @@ public class WarpPortal : Workable
 		}
 	}
 
-	// Token: 0x0600559F RID: 21919 RVA: 0x000DC446 File Offset: 0x000DA646
 	private void CompleteChore()
 	{
 		this.IsConsumed = true;
@@ -230,7 +210,6 @@ public class WarpPortal : Workable
 		this.chore = null;
 	}
 
-	// Token: 0x060055A0 RID: 21920 RVA: 0x000D0F1E File Offset: 0x000CF11E
 	public void RefreshSideScreen()
 	{
 		if (base.GetComponent<KSelectable>().IsSelected)
@@ -239,45 +218,33 @@ public class WarpPortal : Workable
 		}
 	}
 
-	// Token: 0x04003C90 RID: 15504
 	[MyCmpReq]
 	public Assignable assignable;
 
-	// Token: 0x04003C91 RID: 15505
 	[MyCmpAdd]
 	public Notifier notifier;
 
-	// Token: 0x04003C92 RID: 15506
 	private Chore chore;
 
-	// Token: 0x04003C93 RID: 15507
 	private WarpPortal.WarpPortalSM.Instance warpPortalSMI;
 
-	// Token: 0x04003C94 RID: 15508
 	private Notification notification;
 
-	// Token: 0x04003C95 RID: 15509
 	public const float RECHARGE_TIME = 3000f;
 
-	// Token: 0x04003C96 RID: 15510
 	[Serialize]
 	public bool IsConsumed;
 
-	// Token: 0x04003C97 RID: 15511
 	[Serialize]
 	public float rechargeProgress;
 
-	// Token: 0x04003C98 RID: 15512
 	[Serialize]
 	private bool discovered;
 
-	// Token: 0x04003C99 RID: 15513
 	private int selectEventHandle = -1;
 
-	// Token: 0x04003C9A RID: 15514
 	private Coroutine delayWarpRoutine;
 
-	// Token: 0x04003C9B RID: 15515
 	private static readonly HashedString[] printing_anim = new HashedString[]
 	{
 		"printing_pre",
@@ -285,10 +252,8 @@ public class WarpPortal : Workable
 		"printing_pst"
 	};
 
-	// Token: 0x02001076 RID: 4214
 	public class WarpPortalSM : GameStateMachine<WarpPortal.WarpPortalSM, WarpPortal.WarpPortalSM.Instance, WarpPortal>
 	{
-		// Token: 0x060055A5 RID: 21925 RVA: 0x0028D8C4 File Offset: 0x0028BAC4
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.root;
@@ -347,49 +312,35 @@ public class WarpPortal : Workable
 			}, UpdateRate.SIM_200ms, false);
 		}
 
-		// Token: 0x04003C9C RID: 15516
 		public GameStateMachine<WarpPortal.WarpPortalSM, WarpPortal.WarpPortalSM.Instance, WarpPortal, object>.State idle;
 
-		// Token: 0x04003C9D RID: 15517
 		public GameStateMachine<WarpPortal.WarpPortalSM, WarpPortal.WarpPortalSM.Instance, WarpPortal, object>.State become_occupied;
 
-		// Token: 0x04003C9E RID: 15518
 		public WarpPortal.WarpPortalSM.OccupiedStates occupied;
 
-		// Token: 0x04003C9F RID: 15519
 		public GameStateMachine<WarpPortal.WarpPortalSM, WarpPortal.WarpPortalSM.Instance, WarpPortal, object>.State do_warp;
 
-		// Token: 0x04003CA0 RID: 15520
 		public GameStateMachine<WarpPortal.WarpPortalSM, WarpPortal.WarpPortalSM.Instance, WarpPortal, object>.State recharging;
 
-		// Token: 0x04003CA1 RID: 15521
 		public StateMachine<WarpPortal.WarpPortalSM, WarpPortal.WarpPortalSM.Instance, WarpPortal, object>.BoolParameter isCharged;
 
-		// Token: 0x04003CA2 RID: 15522
 		private StateMachine<WarpPortal.WarpPortalSM, WarpPortal.WarpPortalSM.Instance, WarpPortal, object>.TargetParameter worker;
 
-		// Token: 0x02001077 RID: 4215
 		public class OccupiedStates : GameStateMachine<WarpPortal.WarpPortalSM, WarpPortal.WarpPortalSM.Instance, WarpPortal, object>.State
 		{
-			// Token: 0x04003CA3 RID: 15523
 			public GameStateMachine<WarpPortal.WarpPortalSM, WarpPortal.WarpPortalSM.Instance, WarpPortal, object>.State get_on;
 
-			// Token: 0x04003CA4 RID: 15524
 			public GameStateMachine<WarpPortal.WarpPortalSM, WarpPortal.WarpPortalSM.Instance, WarpPortal, object>.State waiting;
 
-			// Token: 0x04003CA5 RID: 15525
 			public GameStateMachine<WarpPortal.WarpPortalSM, WarpPortal.WarpPortalSM.Instance, WarpPortal, object>.State warping;
 		}
 
-		// Token: 0x02001078 RID: 4216
 		public new class Instance : GameStateMachine<WarpPortal.WarpPortalSM, WarpPortal.WarpPortalSM.Instance, WarpPortal, object>.GameInstance
 		{
-			// Token: 0x060055AD RID: 21933 RVA: 0x000DC57A File Offset: 0x000DA77A
 			public Instance(WarpPortal master) : base(master)
 			{
 			}
 
-			// Token: 0x060055AE RID: 21934 RVA: 0x0028DBC8 File Offset: 0x0028BDC8
 			public Notification CreateDupeWaitingNotification()
 			{
 				if (base.master.worker != null)

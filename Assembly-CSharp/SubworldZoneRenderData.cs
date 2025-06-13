@@ -4,11 +4,9 @@ using Klei;
 using ProcGen;
 using UnityEngine;
 
-// Token: 0x020017E3 RID: 6115
 [AddComponentMenu("KMonoBehaviour/scripts/SubworldZoneRenderData")]
 public class SubworldZoneRenderData : KMonoBehaviour
 {
-	// Token: 0x06007DAF RID: 32175 RVA: 0x00332E84 File Offset: 0x00331084
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -21,7 +19,6 @@ public class SubworldZoneRenderData : KMonoBehaviour
 		});
 	}
 
-	// Token: 0x06007DB0 RID: 32176 RVA: 0x00332ED0 File Offset: 0x003310D0
 	public void OnActiveWorldChanged()
 	{
 		byte[] rawTextureData = this.colourTex.GetRawTextureData();
@@ -73,7 +70,6 @@ public class SubworldZoneRenderData : KMonoBehaviour
 		this.OnShadersReloaded();
 	}
 
-	// Token: 0x06007DB1 RID: 32177 RVA: 0x003330F8 File Offset: 0x003312F8
 	public void GenerateTexture()
 	{
 		byte[] array = new byte[Grid.WidthInCells * Grid.HeightInCells];
@@ -131,14 +127,12 @@ public class SubworldZoneRenderData : KMonoBehaviour
 		this.InitSimZones(array);
 	}
 
-	// Token: 0x06007DB2 RID: 32178 RVA: 0x000F750E File Offset: 0x000F570E
 	private void OnShadersReloaded()
 	{
 		Shader.SetGlobalTexture("_WorldZoneTex", this.colourTex);
 		Shader.SetGlobalTexture("_WorldZoneIndexTex", this.indexTex);
 	}
 
-	// Token: 0x06007DB3 RID: 32179 RVA: 0x000F7530 File Offset: 0x000F5730
 	public SubWorld.ZoneType GetSubWorldZoneType(int cell)
 	{
 		if (cell >= 0 && cell < this.worldZoneTypes.Length)
@@ -148,7 +142,6 @@ public class SubworldZoneRenderData : KMonoBehaviour
 		return SubWorld.ZoneType.Sandstone;
 	}
 
-	// Token: 0x06007DB4 RID: 32180 RVA: 0x003333A8 File Offset: 0x003315A8
 	private unsafe void InitSimZones(byte[] bytes)
 	{
 		fixed (byte[] array = bytes)
@@ -166,19 +159,15 @@ public class SubworldZoneRenderData : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x04005F6A RID: 24426
 	[SerializeField]
 	private Texture2D colourTex;
 
-	// Token: 0x04005F6B RID: 24427
 	[SerializeField]
 	private Texture2D indexTex;
 
-	// Token: 0x04005F6C RID: 24428
 	[HideInInspector]
 	public SubWorld.ZoneType[] worldZoneTypes;
 
-	// Token: 0x04005F6D RID: 24429
 	[SerializeField]
 	[HideInInspector]
 	public Color32[] zoneColours = new Color32[]
@@ -203,10 +192,8 @@ public class SubworldZoneRenderData : KMonoBehaviour
 		new Color32(100, 222, 100, 20)
 	};
 
-	// Token: 0x04005F6E RID: 24430
 	private const int NUM_COLOUR_BYTES = 3;
 
-	// Token: 0x04005F6F RID: 24431
 	public int[] zoneTextureArrayIndices = new int[]
 	{
 		0,

@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02001850 RID: 6224
 public class RoomProber : ISim1000ms
 {
-	// Token: 0x06008045 RID: 32837 RVA: 0x0034008C File Offset: 0x0033E28C
 	public RoomProber()
 	{
 		this.CellCavityID = new HandleVector<int>.Handle[Grid.CellCount];
@@ -24,20 +22,17 @@ public class RoomProber : ISim1000ms
 		GameScenePartitioner.Instance.AddGlobalLayerListener(GameScenePartitioner.Instance.objectLayers[2], new Action<int, object>(this.OnBuildingsChanged));
 	}
 
-	// Token: 0x06008046 RID: 32838 RVA: 0x000F9004 File Offset: 0x000F7204
 	public void Refresh()
 	{
 		this.ProcessSolidChanges();
 		this.RefreshRooms();
 	}
 
-	// Token: 0x06008047 RID: 32839 RVA: 0x000F9012 File Offset: 0x000F7212
 	private void SolidChangedEvent(int cell)
 	{
 		this.SolidChangedEvent(cell, true);
 	}
 
-	// Token: 0x06008048 RID: 32840 RVA: 0x000F901C File Offset: 0x000F721C
 	private void OnBuildingsChanged(int cell, object building)
 	{
 		if (this.GetCavityForCell(cell) != null)
@@ -47,7 +42,6 @@ public class RoomProber : ISim1000ms
 		}
 	}
 
-	// Token: 0x06008049 RID: 32841 RVA: 0x000F903B File Offset: 0x000F723B
 	public void SolidChangedEvent(int cell, bool ignoreDoors)
 	{
 		if (ignoreDoors && Grid.HasDoor[cell])
@@ -58,7 +52,6 @@ public class RoomProber : ISim1000ms
 		this.dirty = true;
 	}
 
-	// Token: 0x0600804A RID: 32842 RVA: 0x003401D8 File Offset: 0x0033E3D8
 	private CavityInfo CreateNewCavity()
 	{
 		CavityInfo cavityInfo = new CavityInfo();
@@ -66,7 +59,6 @@ public class RoomProber : ISim1000ms
 		return cavityInfo;
 	}
 
-	// Token: 0x0600804B RID: 32843 RVA: 0x00340200 File Offset: 0x0033E400
 	private unsafe void ProcessSolidChanges()
 	{
 		int* ptr = stackalloc int[(UIntPtr)20];
@@ -136,7 +128,6 @@ public class RoomProber : ISim1000ms
 		this.floodFillSet.Clear();
 	}
 
-	// Token: 0x0600804C RID: 32844 RVA: 0x003404D4 File Offset: 0x0033E6D4
 	private void RebuildDirtyCavities(ICollection<int> visited_cells)
 	{
 		int maxRoomSize = TuningData<RoomProber.Tuning>.Get().maxRoomSize;
@@ -187,7 +178,6 @@ public class RoomProber : ISim1000ms
 		visited_cells.Clear();
 	}
 
-	// Token: 0x0600804D RID: 32845 RVA: 0x000F9062 File Offset: 0x000F7262
 	public void Sim1000ms(float dt)
 	{
 		if (this.dirty)
@@ -197,7 +187,6 @@ public class RoomProber : ISim1000ms
 		}
 	}
 
-	// Token: 0x0600804E RID: 32846 RVA: 0x003406A0 File Offset: 0x0033E8A0
 	private void CreateRoom(CavityInfo cavity)
 	{
 		global::Debug.Assert(cavity.room == null);
@@ -209,7 +198,6 @@ public class RoomProber : ISim1000ms
 		this.AssignBuildingsToRoom(room);
 	}
 
-	// Token: 0x0600804F RID: 32847 RVA: 0x000F9078 File Offset: 0x000F7278
 	private void ClearRoom(Room room)
 	{
 		this.UnassignBuildingsToRoom(room);
@@ -217,7 +205,6 @@ public class RoomProber : ISim1000ms
 		this.rooms.Remove(room);
 	}
 
-	// Token: 0x06008050 RID: 32848 RVA: 0x003406F8 File Offset: 0x0033E8F8
 	private void RefreshRooms()
 	{
 		int maxRoomSize = TuningData<RoomProber.Tuning>.Get().maxRoomSize;
@@ -259,7 +246,6 @@ public class RoomProber : ISim1000ms
 		this.dirty = false;
 	}
 
-	// Token: 0x06008051 RID: 32849 RVA: 0x0034089C File Offset: 0x0033EA9C
 	private void AssignBuildingsToRoom(Room room)
 	{
 		global::Debug.Assert(room != null);
@@ -281,7 +267,6 @@ public class RoomProber : ISim1000ms
 		}
 	}
 
-	// Token: 0x06008052 RID: 32850 RVA: 0x00340958 File Offset: 0x0033EB58
 	private void UnassignKPrefabIDs(Room room, List<KPrefabID> list)
 	{
 		foreach (KPrefabID kprefabID in list)
@@ -298,7 +283,6 @@ public class RoomProber : ISim1000ms
 		}
 	}
 
-	// Token: 0x06008053 RID: 32851 RVA: 0x000F9094 File Offset: 0x000F7294
 	private void UnassignBuildingsToRoom(Room room)
 	{
 		global::Debug.Assert(room != null);
@@ -306,7 +290,6 @@ public class RoomProber : ISim1000ms
 		this.UnassignKPrefabIDs(room, room.plants);
 	}
 
-	// Token: 0x06008054 RID: 32852 RVA: 0x003409D4 File Offset: 0x0033EBD4
 	public void UpdateRoom(CavityInfo cavity)
 	{
 		if (cavity == null)
@@ -335,7 +318,6 @@ public class RoomProber : ISim1000ms
 		}
 	}
 
-	// Token: 0x06008055 RID: 32853 RVA: 0x00340AB8 File Offset: 0x0033ECB8
 	public Room GetRoomOfGameObject(GameObject go)
 	{
 		if (go == null)
@@ -355,7 +337,6 @@ public class RoomProber : ISim1000ms
 		return cavityForCell.room;
 	}
 
-	// Token: 0x06008056 RID: 32854 RVA: 0x00340AF4 File Offset: 0x0033ECF4
 	public bool IsInRoomType(GameObject go, RoomType checkType)
 	{
 		Room roomOfGameObject = this.GetRoomOfGameObject(go);
@@ -367,7 +348,6 @@ public class RoomProber : ISim1000ms
 		return false;
 	}
 
-	// Token: 0x06008057 RID: 32855 RVA: 0x00340B1C File Offset: 0x0033ED1C
 	private CavityInfo GetCavityInfo(HandleVector<int>.Handle id)
 	{
 		CavityInfo result = null;
@@ -378,7 +358,6 @@ public class RoomProber : ISim1000ms
 		return result;
 	}
 
-	// Token: 0x06008058 RID: 32856 RVA: 0x00340B44 File Offset: 0x0033ED44
 	public CavityInfo GetCavityForCell(int cell)
 	{
 		if (!Grid.IsValidCell(cell))
@@ -389,53 +368,38 @@ public class RoomProber : ISim1000ms
 		return this.GetCavityInfo(id);
 	}
 
-	// Token: 0x04006191 RID: 24977
 	public List<Room> rooms = new List<Room>();
 
-	// Token: 0x04006192 RID: 24978
 	private KCompactedVector<CavityInfo> cavityInfos = new KCompactedVector<CavityInfo>(1024);
 
-	// Token: 0x04006193 RID: 24979
 	private HandleVector<int>.Handle[] CellCavityID;
 
-	// Token: 0x04006194 RID: 24980
 	private bool dirty = true;
 
-	// Token: 0x04006195 RID: 24981
 	private HashSet<int> solidChanges = new HashSet<int>();
 
-	// Token: 0x04006196 RID: 24982
 	private HashSet<int> visitedCells = new HashSet<int>();
 
-	// Token: 0x04006197 RID: 24983
 	private HashSet<int> floodFillSet = new HashSet<int>();
 
-	// Token: 0x04006198 RID: 24984
 	private HashSet<HandleVector<int>.Handle> releasedIDs = new HashSet<HandleVector<int>.Handle>();
 
-	// Token: 0x04006199 RID: 24985
 	private RoomProber.CavityFloodFiller floodFiller;
 
-	// Token: 0x0400619A RID: 24986
 	private List<KPrefabID> releasedCritters = new List<KPrefabID>();
 
-	// Token: 0x02001851 RID: 6225
 	public class Tuning : TuningData<RoomProber.Tuning>
 	{
-		// Token: 0x0400619B RID: 24987
 		public int maxRoomSize;
 	}
 
-	// Token: 0x02001852 RID: 6226
 	private class CavityFloodFiller
 	{
-		// Token: 0x0600805A RID: 32858 RVA: 0x000F90C1 File Offset: 0x000F72C1
 		public CavityFloodFiller(HandleVector<int>.Handle[] grid)
 		{
 			this.grid = grid;
 		}
 
-		// Token: 0x0600805B RID: 32859 RVA: 0x000F90D0 File Offset: 0x000F72D0
 		public void Reset(HandleVector<int>.Handle search_id)
 		{
 			this.cavityID = search_id;
@@ -446,13 +410,11 @@ public class RoomProber : ISim1000ms
 			this.maxY = 0;
 		}
 
-		// Token: 0x0600805C RID: 32860 RVA: 0x000F9104 File Offset: 0x000F7304
 		private static bool IsWall(int cell)
 		{
 			return (Grid.BuildMasks[cell] & (Grid.BuildFlags.Solid | Grid.BuildFlags.Foundation)) > ~(Grid.BuildFlags.Solid | Grid.BuildFlags.Foundation | Grid.BuildFlags.Door | Grid.BuildFlags.DupePassable | Grid.BuildFlags.DupeImpassable | Grid.BuildFlags.CritterImpassable | Grid.BuildFlags.FakeFloor) || Grid.HasDoor[cell];
 		}
 
-		// Token: 0x0600805D RID: 32861 RVA: 0x00340B70 File Offset: 0x0033ED70
 		public bool ShouldContinue(int flood_cell)
 		{
 			if (RoomProber.CavityFloodFiller.IsWall(flood_cell))
@@ -472,8 +434,6 @@ public class RoomProber : ISim1000ms
 			return true;
 		}
 
-		// Token: 0x17000826 RID: 2086
-		// (get) Token: 0x0600805E RID: 32862 RVA: 0x000F9121 File Offset: 0x000F7321
 		public int NumCells
 		{
 			get
@@ -482,8 +442,6 @@ public class RoomProber : ISim1000ms
 			}
 		}
 
-		// Token: 0x17000827 RID: 2087
-		// (get) Token: 0x0600805F RID: 32863 RVA: 0x000F9129 File Offset: 0x000F7329
 		public int MinX
 		{
 			get
@@ -492,8 +450,6 @@ public class RoomProber : ISim1000ms
 			}
 		}
 
-		// Token: 0x17000828 RID: 2088
-		// (get) Token: 0x06008060 RID: 32864 RVA: 0x000F9131 File Offset: 0x000F7331
 		public int MinY
 		{
 			get
@@ -502,8 +458,6 @@ public class RoomProber : ISim1000ms
 			}
 		}
 
-		// Token: 0x17000829 RID: 2089
-		// (get) Token: 0x06008061 RID: 32865 RVA: 0x000F9139 File Offset: 0x000F7339
 		public int MaxX
 		{
 			get
@@ -512,8 +466,6 @@ public class RoomProber : ISim1000ms
 			}
 		}
 
-		// Token: 0x1700082A RID: 2090
-		// (get) Token: 0x06008062 RID: 32866 RVA: 0x000F9141 File Offset: 0x000F7341
 		public int MaxY
 		{
 			get
@@ -522,25 +474,18 @@ public class RoomProber : ISim1000ms
 			}
 		}
 
-		// Token: 0x0400619C RID: 24988
 		private HandleVector<int>.Handle[] grid;
 
-		// Token: 0x0400619D RID: 24989
 		private HandleVector<int>.Handle cavityID;
 
-		// Token: 0x0400619E RID: 24990
 		private int numCells;
 
-		// Token: 0x0400619F RID: 24991
 		private int minX;
 
-		// Token: 0x040061A0 RID: 24992
 		private int minY;
 
-		// Token: 0x040061A1 RID: 24993
 		private int maxX;
 
-		// Token: 0x040061A2 RID: 24994
 		private int maxY;
 	}
 }

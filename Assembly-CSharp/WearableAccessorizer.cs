@@ -6,18 +6,14 @@ using Database;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x02000BA7 RID: 2983
 [AddComponentMenu("KMonoBehaviour/scripts/WearableAccessorizer")]
 public class WearableAccessorizer : KMonoBehaviour
 {
-	// Token: 0x06003816 RID: 14358 RVA: 0x000C8D50 File Offset: 0x000C6F50
 	public Dictionary<ClothingOutfitUtility.OutfitType, List<ResourceRef<ClothingItemResource>>> GetCustomClothingItems()
 	{
 		return this.customOutfitItems;
 	}
 
-	// Token: 0x1700026E RID: 622
-	// (get) Token: 0x06003817 RID: 14359 RVA: 0x000C8D58 File Offset: 0x000C6F58
 	public Dictionary<WearableAccessorizer.WearableType, WearableAccessorizer.Wearable> Wearables
 	{
 		get
@@ -26,7 +22,6 @@ public class WearableAccessorizer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06003818 RID: 14360 RVA: 0x00227434 File Offset: 0x00225634
 	public string[] GetClothingItemsIds(ClothingOutfitUtility.OutfitType outfitType)
 	{
 		if (this.customOutfitItems.ContainsKey(outfitType))
@@ -41,19 +36,16 @@ public class WearableAccessorizer : KMonoBehaviour
 		return new string[0];
 	}
 
-	// Token: 0x06003819 RID: 14361 RVA: 0x000C8D60 File Offset: 0x000C6F60
 	public Option<string> GetJoyResponseId()
 	{
 		return this.joyResponsePermitId;
 	}
 
-	// Token: 0x0600381A RID: 14362 RVA: 0x000C8D6D File Offset: 0x000C6F6D
 	public void SetJoyResponseId(Option<string> joyResponsePermitId)
 	{
 		this.joyResponsePermitId = joyResponsePermitId.UnwrapOr(null, null);
 	}
 
-	// Token: 0x0600381B RID: 14363 RVA: 0x002274AC File Offset: 0x002256AC
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -65,7 +57,6 @@ public class WearableAccessorizer : KMonoBehaviour
 		base.Subscribe(-1285462312, new Action<object>(this.UnequippedItem));
 	}
 
-	// Token: 0x0600381C RID: 14364 RVA: 0x0022750C File Offset: 0x0022570C
 	[OnDeserialized]
 	[Obsolete]
 	private void OnDeserialized()
@@ -98,7 +89,6 @@ public class WearableAccessorizer : KMonoBehaviour
 		this.ApplyWearable();
 	}
 
-	// Token: 0x0600381D RID: 14365 RVA: 0x00227674 File Offset: 0x00225874
 	public void EquippedItem(object data)
 	{
 		KPrefabID kprefabID = data as KPrefabID;
@@ -109,7 +99,6 @@ public class WearableAccessorizer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600381E RID: 14366 RVA: 0x002276A8 File Offset: 0x002258A8
 	public void ApplyEquipment(Equippable equippable, KAnimFile animFile)
 	{
 		WearableAccessorizer.WearableType key;
@@ -133,7 +122,6 @@ public class WearableAccessorizer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600381F RID: 14367 RVA: 0x000C8D7E File Offset: 0x000C6F7E
 	private bool TryGetEquippableClothingType(EquipmentDef equipment, out ClothingOutfitUtility.OutfitType outfitType)
 	{
 		if (equipment.Id == "Atmo_Suit")
@@ -145,7 +133,6 @@ public class WearableAccessorizer : KMonoBehaviour
 		return false;
 	}
 
-	// Token: 0x06003820 RID: 14368 RVA: 0x002277A0 File Offset: 0x002259A0
 	private Equippable GetSuitEquippable()
 	{
 		MinionIdentity component = base.GetComponent<MinionIdentity>();
@@ -161,7 +148,6 @@ public class WearableAccessorizer : KMonoBehaviour
 		return null;
 	}
 
-	// Token: 0x06003821 RID: 14369 RVA: 0x00227814 File Offset: 0x00225A14
 	private WearableAccessorizer.WearableType GetHighestAccessory()
 	{
 		WearableAccessorizer.WearableType wearableType = WearableAccessorizer.WearableType.Basic;
@@ -175,7 +161,6 @@ public class WearableAccessorizer : KMonoBehaviour
 		return wearableType;
 	}
 
-	// Token: 0x06003822 RID: 14370 RVA: 0x00227870 File Offset: 0x00225A70
 	private void ApplyWearable()
 	{
 		if (this.animController == null)
@@ -221,7 +206,6 @@ public class WearableAccessorizer : KMonoBehaviour
 		this.UpdateVisibleSymbols(highestAccessory);
 	}
 
-	// Token: 0x06003823 RID: 14371 RVA: 0x000C8D9B File Offset: 0x000C6F9B
 	public void UpdateVisibleSymbols(ClothingOutfitUtility.OutfitType outfitType)
 	{
 		if (this.animController == null)
@@ -231,7 +215,6 @@ public class WearableAccessorizer : KMonoBehaviour
 		this.UpdateVisibleSymbols(this.ConvertOutfitTypeToWearableType(outfitType));
 	}
 
-	// Token: 0x06003824 RID: 14372 RVA: 0x00227A08 File Offset: 0x00225C08
 	private void UpdateVisibleSymbols(WearableAccessorizer.WearableType wearableType)
 	{
 		bool flag = wearableType == WearableAccessorizer.WearableType.Basic;
@@ -265,7 +248,6 @@ public class WearableAccessorizer : KMonoBehaviour
 		WearableAccessorizer.UpdateHairBasedOnHat(this.animController, hasHat);
 	}
 
-	// Token: 0x06003825 RID: 14373 RVA: 0x00227C68 File Offset: 0x00225E68
 	private void SkirtHACK(WearableAccessorizer.WearableType wearable_type)
 	{
 		if (this.wearables.ContainsKey(wearable_type))
@@ -287,7 +269,6 @@ public class WearableAccessorizer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06003826 RID: 14374 RVA: 0x00227D38 File Offset: 0x00225F38
 	public static void UpdateHairBasedOnHat(KAnimControllerBase kbac, bool hasHat)
 	{
 		if (hasHat)
@@ -302,14 +283,12 @@ public class WearableAccessorizer : KMonoBehaviour
 		kbac.SetSymbolVisiblity(Db.Get().AccessorySlots.Hat.targetSymbolId, false);
 	}
 
-	// Token: 0x06003827 RID: 14375 RVA: 0x000C8DC4 File Offset: 0x000C6FC4
 	public static void SkirtAccessory(KAnimControllerBase kbac, bool show_skirt)
 	{
 		kbac.SetSymbolVisiblity(Db.Get().AccessorySlots.Skirt.targetSymbolId, show_skirt);
 		kbac.SetSymbolVisiblity(Db.Get().AccessorySlots.Leg.targetSymbolId, !show_skirt);
 	}
 
-	// Token: 0x06003828 RID: 14376 RVA: 0x00227DEC File Offset: 0x00225FEC
 	private void RemoveAnimBuild(KAnimFile animFile, int override_priority)
 	{
 		SymbolOverrideController component = base.GetComponent<SymbolOverrideController>();
@@ -324,7 +303,6 @@ public class WearableAccessorizer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06003829 RID: 14377 RVA: 0x00227E54 File Offset: 0x00226054
 	private void UnequippedItem(object data)
 	{
 		KPrefabID kprefabID = data as KPrefabID;
@@ -335,7 +313,6 @@ public class WearableAccessorizer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600382A RID: 14378 RVA: 0x00227E80 File Offset: 0x00226080
 	public void RemoveEquipment(Equippable equippable)
 	{
 		WearableAccessorizer.WearableType key;
@@ -360,7 +337,6 @@ public class WearableAccessorizer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600382B RID: 14379 RVA: 0x00227FB4 File Offset: 0x002261B4
 	public void ClearClothingItems(ClothingOutfitUtility.OutfitType? forOutfitType = null)
 	{
 		foreach (KeyValuePair<ClothingOutfitUtility.OutfitType, List<ResourceRef<ClothingItemResource>>> keyValuePair in this.customOutfitItems)
@@ -382,7 +358,6 @@ public class WearableAccessorizer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600382C RID: 14380 RVA: 0x0022803C File Offset: 0x0022623C
 	public void ApplyClothingItems(ClothingOutfitUtility.OutfitType outfitType, IEnumerable<ClothingItemResource> items)
 	{
 		items = items.StableSort(delegate(ClothingItemResource resource)
@@ -436,7 +411,6 @@ public class WearableAccessorizer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600382D RID: 14381 RVA: 0x002281DC File Offset: 0x002263DC
 	private void Internal_ApplyClothingItem(ClothingOutfitUtility.OutfitType outfitType, ClothingItemResource clothingItem)
 	{
 		WearableAccessorizer.WearableType wearableType = this.ConvertOutfitTypeToWearableType(outfitType);
@@ -481,7 +455,6 @@ public class WearableAccessorizer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600382E RID: 14382 RVA: 0x00228374 File Offset: 0x00226574
 	private void Internal_RemoveClothingItem(ClothingOutfitUtility.OutfitType outfitType, ClothingItemResource clothing_item)
 	{
 		WearableAccessorizer.WearableType key = this.ConvertOutfitTypeToWearableType(outfitType);
@@ -502,7 +475,6 @@ public class WearableAccessorizer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600382F RID: 14383 RVA: 0x000C8DFF File Offset: 0x000C6FFF
 	private WearableAccessorizer.WearableType ConvertOutfitTypeToWearableType(ClothingOutfitUtility.OutfitType outfitType)
 	{
 		if (outfitType == ClothingOutfitUtility.OutfitType.Clothing)
@@ -517,7 +489,6 @@ public class WearableAccessorizer : KMonoBehaviour
 		return WearableAccessorizer.WearableType.CustomSuit;
 	}
 
-	// Token: 0x06003830 RID: 14384 RVA: 0x00228438 File Offset: 0x00226638
 	public void RestoreWearables(Dictionary<WearableAccessorizer.WearableType, WearableAccessorizer.Wearable> stored_wearables, Dictionary<ClothingOutfitUtility.OutfitType, List<ResourceRef<ClothingItemResource>>> clothing)
 	{
 		if (stored_wearables != null)
@@ -539,7 +510,6 @@ public class WearableAccessorizer : KMonoBehaviour
 		this.ApplyWearable();
 	}
 
-	// Token: 0x06003831 RID: 14385 RVA: 0x00228514 File Offset: 0x00226714
 	public bool HasPermitCategoryItem(ClothingOutfitUtility.OutfitType wearable_type, PermitCategory category)
 	{
 		bool result = false;
@@ -550,13 +520,11 @@ public class WearableAccessorizer : KMonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06003832 RID: 14386 RVA: 0x000C8E2B File Offset: 0x000C702B
 	private void QueueOutfitChangedFX()
 	{
 		this.waitingForOutfitChangeFX = true;
 	}
 
-	// Token: 0x06003833 RID: 14387 RVA: 0x00228560 File Offset: 0x00226760
 	private void Update()
 	{
 		if (this.waitingForOutfitChangeFX && !LockerNavigator.Instance.gameObject.activeInHierarchy)
@@ -568,57 +536,40 @@ public class WearableAccessorizer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x040026B3 RID: 9907
 	[MyCmpReq]
 	private KAnimControllerBase animController;
 
-	// Token: 0x040026B4 RID: 9908
 	[Obsolete("Deprecated, use customOufitItems[ClothingOutfitUtility.OutfitType.Clothing]")]
 	[Serialize]
 	private List<ResourceRef<ClothingItemResource>> clothingItems = new List<ResourceRef<ClothingItemResource>>();
 
-	// Token: 0x040026B5 RID: 9909
 	[Serialize]
 	private string joyResponsePermitId;
 
-	// Token: 0x040026B6 RID: 9910
 	[Serialize]
 	private Dictionary<ClothingOutfitUtility.OutfitType, List<ResourceRef<ClothingItemResource>>> customOutfitItems = new Dictionary<ClothingOutfitUtility.OutfitType, List<ResourceRef<ClothingItemResource>>>();
 
-	// Token: 0x040026B7 RID: 9911
 	private bool waitingForOutfitChangeFX;
 
-	// Token: 0x040026B8 RID: 9912
 	[Serialize]
 	private Dictionary<WearableAccessorizer.WearableType, WearableAccessorizer.Wearable> wearables = new Dictionary<WearableAccessorizer.WearableType, WearableAccessorizer.Wearable>();
 
-	// Token: 0x040026B9 RID: 9913
 	private static string torso = "torso";
 
-	// Token: 0x040026BA RID: 9914
 	private static string cropped = "_cropped";
 
-	// Token: 0x02000BA8 RID: 2984
 	public enum WearableType
 	{
-		// Token: 0x040026BC RID: 9916
 		Basic,
-		// Token: 0x040026BD RID: 9917
 		CustomClothing,
-		// Token: 0x040026BE RID: 9918
 		Outfit,
-		// Token: 0x040026BF RID: 9919
 		Suit,
-		// Token: 0x040026C0 RID: 9920
 		CustomSuit
 	}
 
-	// Token: 0x02000BA9 RID: 2985
 	[SerializationConfig(MemberSerialization.OptIn)]
 	public class Wearable
 	{
-		// Token: 0x1700026F RID: 623
-		// (get) Token: 0x06003836 RID: 14390 RVA: 0x000C8E73 File Offset: 0x000C7073
 		public List<KAnimFile> BuildAnims
 		{
 			get
@@ -627,8 +578,6 @@ public class WearableAccessorizer : KMonoBehaviour
 			}
 		}
 
-		// Token: 0x17000270 RID: 624
-		// (get) Token: 0x06003837 RID: 14391 RVA: 0x000C8E7B File Offset: 0x000C707B
 		public List<string> AnimNames
 		{
 			get
@@ -637,7 +586,6 @@ public class WearableAccessorizer : KMonoBehaviour
 			}
 		}
 
-		// Token: 0x06003838 RID: 14392 RVA: 0x00228630 File Offset: 0x00226830
 		public Wearable(List<KAnimFile> buildAnims, int buildOverridePriority)
 		{
 			this.buildAnims = buildAnims;
@@ -646,7 +594,6 @@ public class WearableAccessorizer : KMonoBehaviour
 			this.buildOverridePriority = buildOverridePriority;
 		}
 
-		// Token: 0x06003839 RID: 14393 RVA: 0x000C8E83 File Offset: 0x000C7083
 		public Wearable(KAnimFile buildAnim, int buildOverridePriority)
 		{
 			this.buildAnims = new List<KAnimFile>
@@ -660,7 +607,6 @@ public class WearableAccessorizer : KMonoBehaviour
 			this.buildOverridePriority = buildOverridePriority;
 		}
 
-		// Token: 0x0600383A RID: 14394 RVA: 0x00228684 File Offset: 0x00226884
 		public Wearable(List<ResourceRef<ClothingItemResource>> items, int buildOverridePriority)
 		{
 			this.buildAnims = new List<KAnimFile>();
@@ -674,7 +620,6 @@ public class WearableAccessorizer : KMonoBehaviour
 			}
 		}
 
-		// Token: 0x0600383B RID: 14395 RVA: 0x00228718 File Offset: 0x00226918
 		public void AddCustomItems(List<ResourceRef<ClothingItemResource>> items)
 		{
 			foreach (ResourceRef<ClothingItemResource> resourceRef in items)
@@ -685,7 +630,6 @@ public class WearableAccessorizer : KMonoBehaviour
 			}
 		}
 
-		// Token: 0x0600383C RID: 14396 RVA: 0x00228788 File Offset: 0x00226988
 		public void Deserialize()
 		{
 			if (this.animNames != null)
@@ -702,34 +646,28 @@ public class WearableAccessorizer : KMonoBehaviour
 			}
 		}
 
-		// Token: 0x0600383D RID: 14397 RVA: 0x000C8EBB File Offset: 0x000C70BB
 		public void AddAnim(KAnimFile animFile)
 		{
 			this.buildAnims.Add(animFile);
 			this.animNames.Add(animFile.name);
 		}
 
-		// Token: 0x0600383E RID: 14398 RVA: 0x000C8EDA File Offset: 0x000C70DA
 		public bool RemoveAnim(KAnimFile animFile)
 		{
 			return this.buildAnims.Remove(animFile) | this.animNames.Remove(animFile.name);
 		}
 
-		// Token: 0x0600383F RID: 14399 RVA: 0x000C8EFA File Offset: 0x000C70FA
 		public void ClearAnims()
 		{
 			this.buildAnims.Clear();
 			this.animNames.Clear();
 		}
 
-		// Token: 0x040026C1 RID: 9921
 		private List<KAnimFile> buildAnims;
 
-		// Token: 0x040026C2 RID: 9922
 		[Serialize]
 		private List<string> animNames;
 
-		// Token: 0x040026C3 RID: 9923
 		[Serialize]
 		public int buildOverridePriority;
 	}

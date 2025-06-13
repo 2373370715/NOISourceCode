@@ -3,16 +3,13 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003B5 RID: 949
 public class LargeElectrobankDischargerConfig : IBuildingConfig
 {
-	// Token: 0x06000F60 RID: 3936 RVA: 0x000AA12F File Offset: 0x000A832F
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.DLC3;
 	}
 
-	// Token: 0x06000F61 RID: 3937 RVA: 0x00186A24 File Offset: 0x00184C24
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "LargeElectrobankDischarger";
@@ -41,7 +38,6 @@ public class LargeElectrobankDischargerConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000F62 RID: 3938 RVA: 0x00186AF0 File Offset: 0x00184CF0
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<LoopingSounds>();
@@ -55,16 +51,13 @@ public class LargeElectrobankDischargerConfig : IBuildingConfig
 		go.AddOrGet<ElectrobankDischarger>().wattageRating = 480f;
 	}
 
-	// Token: 0x06000F63 RID: 3939 RVA: 0x000B102F File Offset: 0x000AF22F
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
 		SymbolOverrideControllerUtil.AddToPrefab(go);
 	}
 
-	// Token: 0x04000B36 RID: 2870
 	public const string ID = "LargeElectrobankDischarger";
 
-	// Token: 0x04000B37 RID: 2871
 	public const float DISCHARGE_RATE = 480f;
 }

@@ -1,11 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200203E RID: 8254
 [Serializable]
 public class SliderSet
 {
-	// Token: 0x0600AF16 RID: 44822 RVA: 0x00428E7C File Offset: 0x0042707C
 	public void SetupSlider(int index)
 	{
 		this.index = index;
@@ -32,7 +30,6 @@ public class SliderSet
 		};
 	}
 
-	// Token: 0x0600AF17 RID: 44823 RVA: 0x00428F04 File Offset: 0x00427104
 	public void SetTarget(ISliderControl target, int index)
 	{
 		this.index = index;
@@ -66,7 +63,6 @@ public class SliderSet
 		}
 	}
 
-	// Token: 0x0600AF18 RID: 44824 RVA: 0x004290D8 File Offset: 0x004272D8
 	private void ReceiveValueFromSlider()
 	{
 		float num = this.valueSlider.value;
@@ -78,7 +74,6 @@ public class SliderSet
 		this.SetValue(num);
 	}
 
-	// Token: 0x0600AF19 RID: 44825 RVA: 0x00429128 File Offset: 0x00427328
 	private void ReceiveValueFromInput()
 	{
 		float num = this.numberInput.currentValue;
@@ -91,7 +86,6 @@ public class SliderSet
 		this.SetValue(num);
 	}
 
-	// Token: 0x0600AF1A RID: 44826 RVA: 0x00429184 File Offset: 0x00427384
 	private void SetValue(float value)
 	{
 		float num = value;
@@ -112,35 +106,26 @@ public class SliderSet
 		}
 	}
 
-	// Token: 0x0600AF1B RID: 44827 RVA: 0x0042922C File Offset: 0x0042742C
 	private void UpdateLabel(float value)
 	{
 		float num = Mathf.Round(value * 10f) / 10f;
 		this.numberInput.SetDisplayValue(num.ToString());
 	}
 
-	// Token: 0x0400899E RID: 35230
 	public KSlider valueSlider;
 
-	// Token: 0x0400899F RID: 35231
 	public KNumberInputField numberInput;
 
-	// Token: 0x040089A0 RID: 35232
 	public LocText targetLabel;
 
-	// Token: 0x040089A1 RID: 35233
 	public LocText unitsLabel;
 
-	// Token: 0x040089A2 RID: 35234
 	public LocText minLabel;
 
-	// Token: 0x040089A3 RID: 35235
 	public LocText maxLabel;
 
-	// Token: 0x040089A4 RID: 35236
 	[NonSerialized]
 	public int index;
 
-	// Token: 0x040089A5 RID: 35237
 	private ISliderControl target;
 }

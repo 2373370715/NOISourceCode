@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200004F RID: 79
 public class CometDetectorConfig : IBuildingConfig
 {
-	// Token: 0x06000170 RID: 368 RVA: 0x0014CB84 File Offset: 0x0014AD84
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = CometDetectorConfig.ID;
@@ -41,7 +39,6 @@ public class CometDetectorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000171 RID: 369 RVA: 0x0014CC9C File Offset: 0x0014AE9C
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
@@ -57,19 +54,16 @@ public class CometDetectorConfig : IBuildingConfig
 		CometDetectorConfig.AddVisualizer(go);
 	}
 
-	// Token: 0x06000172 RID: 370 RVA: 0x000AA78B File Offset: 0x000A898B
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 		CometDetectorConfig.AddVisualizer(go);
 	}
 
-	// Token: 0x06000173 RID: 371 RVA: 0x000AA793 File Offset: 0x000A8993
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		CometDetectorConfig.AddVisualizer(go);
 	}
 
-	// Token: 0x06000174 RID: 372 RVA: 0x000AA79B File Offset: 0x000A899B
 	private static void AddVisualizer(GameObject prefab)
 	{
 		ScannerNetworkVisualizer scannerNetworkVisualizer = prefab.AddOrGet<ScannerNetworkVisualizer>();
@@ -77,24 +71,17 @@ public class CometDetectorConfig : IBuildingConfig
 		scannerNetworkVisualizer.RangeMax = 15;
 	}
 
-	// Token: 0x040000DB RID: 219
 	public static string ID = "CometDetector";
 
-	// Token: 0x040000DC RID: 220
 	public const float COVERAGE_REQUIRED_01 = 0.5f;
 
-	// Token: 0x040000DD RID: 221
 	public const float BEST_WARNING_TIME_IN_SECONDS = 200f;
 
-	// Token: 0x040000DE RID: 222
 	public const float WORST_WARNING_TIME_IN_SECONDS = 1f;
 
-	// Token: 0x040000DF RID: 223
 	public const int SCAN_RADIUS = 15;
 
-	// Token: 0x040000E0 RID: 224
 	public static readonly SkyVisibilityInfo SKY_VISIBILITY_INFO = new SkyVisibilityInfo(new CellOffset(0, 0), 15, new CellOffset(0, 0), 15, 1);
 
-	// Token: 0x040000E1 RID: 225
 	public const float LOGIC_SIGNAL_DELAY_ON_LOAD = 3f;
 }

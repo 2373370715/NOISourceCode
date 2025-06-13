@@ -1,10 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02001498 RID: 5272
 public static class StampToolPreviewUtil
 {
-	// Token: 0x06006D3B RID: 27963 RVA: 0x000EC3E2 File Offset: 0x000EA5E2
 	public static Material MakeMaterial(Texture texture)
 	{
 		Material material = new Material(Shader.Find("Sprites/Default"));
@@ -12,7 +10,6 @@ public static class StampToolPreviewUtil
 		return material;
 	}
 
-	// Token: 0x06006D3C RID: 27964 RVA: 0x002F78A4 File Offset: 0x002F5AA4
 	public static void MakeQuad(out GameObject gameObject, out MeshRenderer meshRenderer, float mesh_size, Vector4? uvBox = null)
 	{
 		gameObject = new GameObject();
@@ -69,21 +66,15 @@ public static class StampToolPreviewUtil
 		meshRenderer = gameObject.AddComponent<MeshRenderer>();
 	}
 
-	// Token: 0x04005263 RID: 21091
 	public static readonly Color COLOR_OK = Color.white;
 
-	// Token: 0x04005264 RID: 21092
 	public static readonly Color COLOR_ERROR = Color.red;
 
-	// Token: 0x04005265 RID: 21093
 	public const float SOLID_VIS_ALPHA = 1f;
 
-	// Token: 0x04005266 RID: 21094
 	public const float LIQUID_VIS_ALPHA = 1f;
 
-	// Token: 0x04005267 RID: 21095
 	public const float GAS_VIS_ALPHA = 1f;
 
-	// Token: 0x04005268 RID: 21096
 	public const float BACKGROUND_ALPHA = 1f;
 }

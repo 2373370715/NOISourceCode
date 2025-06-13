@@ -10,10 +10,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02001C80 RID: 7296
 public static class CodexEntryGenerator
 {
-	// Token: 0x0600981D RID: 38941 RVA: 0x003B6564 File Offset: 0x003B4764
 	public static Dictionary<string, CodexEntry> GenerateBuildingEntries()
 	{
 		Dictionary<string, CodexEntry> dictionary = new Dictionary<string, CodexEntry>();
@@ -30,7 +28,6 @@ public static class CodexEntryGenerator
 		return dictionary;
 	}
 
-	// Token: 0x0600981E RID: 38942 RVA: 0x003B65E0 File Offset: 0x003B47E0
 	private static void GenerateEntriesForBuildingsInCategory(PlanScreen.PlanInfo category, string categoryPrefx, ref Dictionary<string, CodexEntry> categoryEntries)
 	{
 		string text = HashCache.Get().Get(category.category);
@@ -63,7 +60,6 @@ public static class CodexEntryGenerator
 		categoryEntries.Add(text2, categoryEntry);
 	}
 
-	// Token: 0x0600981F RID: 38943 RVA: 0x003B6718 File Offset: 0x003B4918
 	private static void GenerateBuildingCategoriesEntry(string categoryPrefix, ref Dictionary<string, CodexEntry> categoryEntries)
 	{
 		string str = "CATEGORY";
@@ -82,7 +78,6 @@ public static class CodexEntryGenerator
 		categoryEntries.Add(text, categoryEntry);
 	}
 
-	// Token: 0x06009820 RID: 38944 RVA: 0x003B67F4 File Offset: 0x003B49F4
 	private static Dictionary<string, CodexEntry> GenerateBuildingRequirementClassCategoryEntry(string categoryParentName)
 	{
 		string id_prefix = "REQUIREMENTCLASS";
@@ -98,7 +93,6 @@ public static class CodexEntryGenerator
 		return dictionary;
 	}
 
-	// Token: 0x06009821 RID: 38945 RVA: 0x003B68A0 File Offset: 0x003B4AA0
 	private static Dictionary<string, CodexEntry> GenerateBuildingCategoryGroupEntry(string parentCategory)
 	{
 		string id_prefix = "GROUP";
@@ -114,7 +108,6 @@ public static class CodexEntryGenerator
 		return dictionary;
 	}
 
-	// Token: 0x06009822 RID: 38946 RVA: 0x003B6920 File Offset: 0x003B4B20
 	private static CodexEntry GenerateEntryForSpecificBuildingRequirementClass(Tag requirementClassTag, string category_parentName, string id_prefix)
 	{
 		string str = "STRINGS.CODEX.ROOM_REQUIREMENT_CLASS." + requirementClassTag.ToString().ToUpper();
@@ -213,7 +206,6 @@ public static class CodexEntryGenerator
 		return codexEntry;
 	}
 
-	// Token: 0x06009823 RID: 38947 RVA: 0x003B6DB0 File Offset: 0x003B4FB0
 	private static CodexEntry GenerateEntryForSpecificBuildingCategoryGroup(Tag categoryGroupTag, string category_parentName, string id_prefix)
 	{
 		string str = "STRINGS.CODEX.CATEGORIES." + categoryGroupTag.ToString().ToUpper();
@@ -271,7 +263,6 @@ public static class CodexEntryGenerator
 		return codexEntry;
 	}
 
-	// Token: 0x06009824 RID: 38948 RVA: 0x003B70B4 File Offset: 0x003B52B4
 	private static CodexEntry GenerateSingleBuildingEntry(BuildingDef def, string categoryEntryID)
 	{
 		if (def.DebugOnly || def.Deprecated)
@@ -300,7 +291,6 @@ public static class CodexEntryGenerator
 		return codexEntry;
 	}
 
-	// Token: 0x06009825 RID: 38949 RVA: 0x003B71E0 File Offset: 0x003B53E0
 	private static void GenerateDLC1RocketryEntries()
 	{
 		PlanScreen.PlanInfo planInfo = TUNING.BUILDINGS.PLANORDER.Find((PlanScreen.PlanInfo match) => match.category == new HashedString("Rocketry"));
@@ -340,7 +330,6 @@ public static class CodexEntryGenerator
 		}
 	}
 
-	// Token: 0x06009826 RID: 38950 RVA: 0x003B7404 File Offset: 0x003B5604
 	public static void GeneratePageNotFound()
 	{
 		CodexCache.AddEntry("PageNotFound", new CodexEntry("ROOT", new List<ContentContainer>
@@ -361,7 +350,6 @@ public static class CodexEntryGenerator
 		}, null);
 	}
 
-	// Token: 0x06009827 RID: 38951 RVA: 0x003B74C0 File Offset: 0x003B56C0
 	public static Dictionary<string, CodexEntry> GenerateRoomsEntries()
 	{
 		Dictionary<string, CodexEntry> result = new Dictionary<string, CodexEntry>();
@@ -417,7 +405,6 @@ public static class CodexEntryGenerator
 		return result;
 	}
 
-	// Token: 0x06009828 RID: 38952 RVA: 0x003B75E8 File Offset: 0x003B57E8
 	public static Dictionary<string, CodexEntry> GeneratePlantEntries()
 	{
 		Dictionary<string, CodexEntry> dictionary = new Dictionary<string, CodexEntry>();
@@ -443,7 +430,6 @@ public static class CodexEntryGenerator
 		return dictionary;
 	}
 
-	// Token: 0x06009829 RID: 38953 RVA: 0x003B772C File Offset: 0x003B592C
 	public static Dictionary<string, CodexEntry> GenerateFoodEntries()
 	{
 		Dictionary<string, CodexEntry> dictionary = new Dictionary<string, CodexEntry>();
@@ -475,7 +461,6 @@ public static class CodexEntryGenerator
 		return dictionary;
 	}
 
-	// Token: 0x0600982A RID: 38954 RVA: 0x003B78A4 File Offset: 0x003B5AA4
 	private static CodexEntry GenerateFoodEffectEntry()
 	{
 		List<ICodexWidget> content = new List<ICodexWidget>();
@@ -534,7 +519,6 @@ public static class CodexEntryGenerator
 		return codexEntry;
 	}
 
-	// Token: 0x0600982B RID: 38955 RVA: 0x003B7C34 File Offset: 0x003B5E34
 	public static Dictionary<string, CodexEntry> GenerateDuplicantEntries()
 	{
 		string text = "DUPLICANTS";
@@ -583,7 +567,6 @@ public static class CodexEntryGenerator
 		return dictionary;
 	}
 
-	// Token: 0x0600982C RID: 38956 RVA: 0x003B7F50 File Offset: 0x003B6150
 	private static CodexEntry GenerateTabelSaltEntry()
 	{
 		LocString name = STRINGS.ITEMS.INDUSTRIAL_PRODUCTS.TABLE_SALT.NAME;
@@ -603,7 +586,6 @@ public static class CodexEntryGenerator
 		};
 	}
 
-	// Token: 0x0600982D RID: 38957 RVA: 0x003B7FE0 File Offset: 0x003B61E0
 	public static Dictionary<string, CodexEntry> GenerateMinionModifierEntries()
 	{
 		Dictionary<string, CodexEntry> dictionary = new Dictionary<string, CodexEntry>();
@@ -643,7 +625,6 @@ public static class CodexEntryGenerator
 		return dictionary;
 	}
 
-	// Token: 0x0600982E RID: 38958 RVA: 0x003B8248 File Offset: 0x003B6448
 	public static Dictionary<string, CodexEntry> GenerateTechEntries()
 	{
 		Dictionary<string, CodexEntry> dictionary = new Dictionary<string, CodexEntry>();
@@ -664,7 +645,6 @@ public static class CodexEntryGenerator
 		return dictionary;
 	}
 
-	// Token: 0x0600982F RID: 38959 RVA: 0x003B834C File Offset: 0x003B654C
 	public static Dictionary<string, CodexEntry> GenerateRoleEntries()
 	{
 		Dictionary<string, CodexEntry> dictionary = new Dictionary<string, CodexEntry>();
@@ -689,7 +669,6 @@ public static class CodexEntryGenerator
 		return dictionary;
 	}
 
-	// Token: 0x06009830 RID: 38960 RVA: 0x003B8454 File Offset: 0x003B6654
 	public static Dictionary<string, CodexEntry> GenerateGeyserEntries()
 	{
 		Dictionary<string, CodexEntry> dictionary = new Dictionary<string, CodexEntry>();
@@ -727,7 +706,6 @@ public static class CodexEntryGenerator
 		return dictionary;
 	}
 
-	// Token: 0x06009831 RID: 38961 RVA: 0x003B85E4 File Offset: 0x003B67E4
 	public static Dictionary<string, CodexEntry> GenerateEquipmentEntries()
 	{
 		Dictionary<string, CodexEntry> dictionary = new Dictionary<string, CodexEntry>();
@@ -796,7 +774,6 @@ public static class CodexEntryGenerator
 		return dictionary;
 	}
 
-	// Token: 0x06009832 RID: 38962 RVA: 0x003B898C File Offset: 0x003B6B8C
 	public static void GenerateElectrobankEntries()
 	{
 		CodexEntry codexEntry = new CodexEntry("ROOT", new List<ContentContainer>(), CODEX.ELECTROBANK.TITLE);
@@ -828,7 +805,6 @@ public static class CodexEntryGenerator
 		}
 	}
 
-	// Token: 0x06009833 RID: 38963 RVA: 0x003B8B28 File Offset: 0x003B6D28
 	public static void GenerateBionicUpgradeEntries()
 	{
 		CodexEntry codexEntry = new CodexEntry("ROOT", new List<ContentContainer>(), CODEX.BIONICBOOSTER.TITLE);
@@ -860,7 +836,6 @@ public static class CodexEntryGenerator
 		}
 	}
 
-	// Token: 0x06009834 RID: 38964 RVA: 0x003B8D00 File Offset: 0x003B6F00
 	public static Dictionary<string, CodexEntry> GenerateBiomeEntries()
 	{
 		Dictionary<string, CodexEntry> dictionary = new Dictionary<string, CodexEntry>();
@@ -1123,7 +1098,6 @@ public static class CodexEntryGenerator
 		return dictionary;
 	}
 
-	// Token: 0x06009835 RID: 38965 RVA: 0x003B9C0C File Offset: 0x003B7E0C
 	public static Dictionary<string, CodexEntry> GenerateConstructionMaterialEntries()
 	{
 		Dictionary<string, CodexEntry> dictionary = new Dictionary<string, CodexEntry>();
@@ -1200,7 +1174,6 @@ public static class CodexEntryGenerator
 		return dictionary;
 	}
 
-	// Token: 0x06009836 RID: 38966 RVA: 0x003BA028 File Offset: 0x003B8228
 	public static Dictionary<string, CodexEntry> GenerateDiseaseEntries()
 	{
 		Dictionary<string, CodexEntry> dictionary = new Dictionary<string, CodexEntry>();
@@ -1221,7 +1194,6 @@ public static class CodexEntryGenerator
 		return dictionary;
 	}
 
-	// Token: 0x06009837 RID: 38967 RVA: 0x003BA0FC File Offset: 0x003B82FC
 	public static CategoryEntry GenerateCategoryEntry(string id, string name, Dictionary<string, CodexEntry> entries, Sprite icon = null, bool largeFormat = true, bool sort = true, string overrideHeader = null)
 	{
 		List<ContentContainer> list = new List<ContentContainer>();
@@ -1241,7 +1213,6 @@ public static class CodexEntryGenerator
 		return categoryEntry;
 	}
 
-	// Token: 0x06009838 RID: 38968 RVA: 0x003BA1A8 File Offset: 0x003B83A8
 	public static Dictionary<string, CodexEntry> GenerateTutorialNotificationEntries()
 	{
 		CodexEntry codexEntry = new CodexEntry("MISCELLANEOUSTIPS", new List<ContentContainer>
@@ -1304,7 +1275,6 @@ public static class CodexEntryGenerator
 		return dictionary;
 	}
 
-	// Token: 0x06009839 RID: 38969 RVA: 0x003BA400 File Offset: 0x003B8600
 	public static void PopulateCategoryEntries(Dictionary<string, CodexEntry> categoryEntries)
 	{
 		List<CategoryEntry> list = new List<CategoryEntry>();
@@ -1315,7 +1285,6 @@ public static class CodexEntryGenerator
 		CodexEntryGenerator.PopulateCategoryEntries(list, null);
 	}
 
-	// Token: 0x0600983A RID: 38970 RVA: 0x003BA468 File Offset: 0x003B8668
 	public static void PopulateCategoryEntries(List<CategoryEntry> categoryEntries, Comparison<CodexEntry> comparison = null)
 	{
 		foreach (CategoryEntry categoryEntry in categoryEntries)
@@ -1389,7 +1358,6 @@ public static class CodexEntryGenerator
 		}
 	}
 
-	// Token: 0x0600983B RID: 38971 RVA: 0x003BA75C File Offset: 0x003B895C
 	public static void GenerateTitleContainers(string name, List<ContentContainer> containers)
 	{
 		containers.Add(new ContentContainer(new List<ICodexWidget>
@@ -1399,7 +1367,6 @@ public static class CodexEntryGenerator
 		}, ContentContainer.ContentLayout.Vertical));
 	}
 
-	// Token: 0x0600983C RID: 38972 RVA: 0x003BA798 File Offset: 0x003B8998
 	private static void GeneratePrerequisiteTechContainers(Tech tech, List<ContentContainer> containers)
 	{
 		if (tech.requiredTech == null || tech.requiredTech.Count == 0)
@@ -1418,7 +1385,6 @@ public static class CodexEntryGenerator
 		containers.Add(new ContentContainer(list, ContentContainer.ContentLayout.Vertical));
 	}
 
-	// Token: 0x0600983D RID: 38973 RVA: 0x003BA858 File Offset: 0x003B8A58
 	private static void GenerateSkillRequirementsAndPerksContainers(Skill skill, List<ContentContainer> containers)
 	{
 		List<ICodexWidget> list = new List<ICodexWidget>();
@@ -1447,7 +1413,6 @@ public static class CodexEntryGenerator
 		list.Add(new CodexSpacer());
 	}
 
-	// Token: 0x0600983E RID: 38974 RVA: 0x003BA960 File Offset: 0x003B8B60
 	private static void GenerateRelatedSkillContainers(Skill skill, List<ContentContainer> containers)
 	{
 		bool flag = false;
@@ -1507,7 +1472,6 @@ public static class CodexEntryGenerator
 		}
 	}
 
-	// Token: 0x0600983F RID: 38975 RVA: 0x003BAB84 File Offset: 0x003B8D84
 	private static void GenerateUnlockContainers(Tech tech, List<ContentContainer> containers)
 	{
 		List<ICodexWidget> list = new List<ICodexWidget>();
@@ -1527,7 +1491,6 @@ public static class CodexEntryGenerator
 		}
 	}
 
-	// Token: 0x06009840 RID: 38976 RVA: 0x003BAC64 File Offset: 0x003B8E64
 	private static void GenerateRecipeContainers(Tag prefabID, List<ContentContainer> containers)
 	{
 		Recipe recipe = null;
@@ -1588,7 +1551,6 @@ public static class CodexEntryGenerator
 		}
 	}
 
-	// Token: 0x06009841 RID: 38977 RVA: 0x003BAE04 File Offset: 0x003B9004
 	private static void GenerateRoomTypeDetailsContainers(RoomType roomType, List<ContentContainer> containers)
 	{
 		ICodexWidget item = new CodexText(UI.CODEX.DETAILS, CodexTextStyle.Subtitle, null);
@@ -1627,7 +1589,6 @@ public static class CodexEntryGenerator
 		containers.Add(item4);
 	}
 
-	// Token: 0x06009842 RID: 38978 RVA: 0x003BAF34 File Offset: 0x003B9134
 	private static void GenerateRoomTypeDescriptionContainers(RoomType roomType, List<ContentContainer> containers)
 	{
 		ContentContainer item = new ContentContainer(new List<ICodexWidget>
@@ -1638,7 +1599,6 @@ public static class CodexEntryGenerator
 		containers.Add(item);
 	}
 
-	// Token: 0x06009843 RID: 38979 RVA: 0x003BAF74 File Offset: 0x003B9174
 	private static void GeneratePlantDescriptionContainers(GameObject plant, List<ContentContainer> containers)
 	{
 		SeedProducer component = plant.GetComponent<SeedProducer>();
@@ -1693,13 +1653,11 @@ public static class CodexEntryGenerator
 		containers.Add(new ContentContainer(list, ContentContainer.ContentLayout.Vertical));
 	}
 
-	// Token: 0x06009844 RID: 38980 RVA: 0x00107855 File Offset: 0x00105A55
 	private static ICodexWidget GetIconWidget(object entity)
 	{
 		return new CodexImage(32, 32, Def.GetUISprite(entity, "ui", false));
 	}
 
-	// Token: 0x06009845 RID: 38981 RVA: 0x003BB17C File Offset: 0x003B937C
 	private static void GenerateDiseaseDescriptionContainers(Disease disease, List<ContentContainer> containers)
 	{
 		List<ICodexWidget> list = new List<ICodexWidget>();
@@ -1718,7 +1676,6 @@ public static class CodexEntryGenerator
 		containers.Add(new ContentContainer(list, ContentContainer.ContentLayout.Vertical));
 	}
 
-	// Token: 0x06009846 RID: 38982 RVA: 0x003BB248 File Offset: 0x003B9448
 	private static void GenerateFoodDescriptionContainers(EdiblesManager.FoodInfo food, List<ContentContainer> containers)
 	{
 		List<ICodexWidget> list = new List<ICodexWidget>
@@ -1771,7 +1728,6 @@ public static class CodexEntryGenerator
 		containers.Add(new ContentContainer(list, ContentContainer.ContentLayout.Vertical));
 	}
 
-	// Token: 0x06009847 RID: 38983 RVA: 0x003BB534 File Offset: 0x003B9734
 	private static void GenerateTechDescriptionContainers(Tech tech, List<ContentContainer> containers)
 	{
 		List<ICodexWidget> list = new List<ICodexWidget>();
@@ -1781,7 +1737,6 @@ public static class CodexEntryGenerator
 		containers.Add(new ContentContainer(list, ContentContainer.ContentLayout.Vertical));
 	}
 
-	// Token: 0x06009848 RID: 38984 RVA: 0x003BB594 File Offset: 0x003B9794
 	private static void GenerateGenericDescriptionContainers(string description, List<ContentContainer> containers)
 	{
 		List<ICodexWidget> list = new List<ICodexWidget>();
@@ -1791,7 +1746,6 @@ public static class CodexEntryGenerator
 		containers.Add(new ContentContainer(list, ContentContainer.ContentLayout.Vertical));
 	}
 
-	// Token: 0x06009849 RID: 38985 RVA: 0x003BB5D0 File Offset: 0x003B97D0
 	private static void GenerateBuildingDescriptionContainers(BuildingDef def, List<ContentContainer> containers)
 	{
 		List<ICodexWidget> list = new List<ICodexWidget>();
@@ -1869,7 +1823,6 @@ public static class CodexEntryGenerator
 		containers.Add(new ContentContainer(list, ContentContainer.ContentLayout.Vertical));
 	}
 
-	// Token: 0x0600984A RID: 38986 RVA: 0x003BB9EC File Offset: 0x003B9BEC
 	public static string[] GetCategoriesForObject(GameObject obj)
 	{
 		List<string> list = new List<string>();
@@ -1891,7 +1844,6 @@ public static class CodexEntryGenerator
 		return list.ToArray();
 	}
 
-	// Token: 0x0600984B RID: 38987 RVA: 0x003BBA78 File Offset: 0x003B9C78
 	public static string[] GetRoomClassForObject(GameObject obj)
 	{
 		List<string> list = new List<string>();
@@ -1913,7 +1865,6 @@ public static class CodexEntryGenerator
 		return list.ToArray();
 	}
 
-	// Token: 0x0600984C RID: 38988 RVA: 0x003BBB04 File Offset: 0x003B9D04
 	public static void GenerateImageContainers(Sprite[] sprites, List<ContentContainer> containers, ContentContainer.ContentLayout layout)
 	{
 		List<ICodexWidget> list = new List<ICodexWidget>();
@@ -1928,7 +1879,6 @@ public static class CodexEntryGenerator
 		containers.Add(new ContentContainer(list, layout));
 	}
 
-	// Token: 0x0600984D RID: 38989 RVA: 0x003BBB5C File Offset: 0x003B9D5C
 	public static void GenerateImageContainers(global::Tuple<Sprite, Color>[] sprites, List<ContentContainer> containers, ContentContainer.ContentLayout layout)
 	{
 		List<ICodexWidget> list = new List<ICodexWidget>();
@@ -1943,7 +1893,6 @@ public static class CodexEntryGenerator
 		containers.Add(new ContentContainer(list, layout));
 	}
 
-	// Token: 0x0600984E RID: 38990 RVA: 0x003BBBB0 File Offset: 0x003B9DB0
 	public static void GenerateImageContainers(Sprite sprite, List<ContentContainer> containers)
 	{
 		List<ICodexWidget> list = new List<ICodexWidget>();
@@ -1952,7 +1901,6 @@ public static class CodexEntryGenerator
 		containers.Add(new ContentContainer(list, ContentContainer.ContentLayout.Vertical));
 	}
 
-	// Token: 0x0600984F RID: 38991 RVA: 0x003BBBE8 File Offset: 0x003B9DE8
 	public static void CreateUnlockablesContentContainer(SubEntry subentry)
 	{
 		subentry.lockedContentContainer = new ContentContainer(new List<ICodexWidget>
@@ -1965,7 +1913,6 @@ public static class CodexEntryGenerator
 		};
 	}
 
-	// Token: 0x06009850 RID: 38992 RVA: 0x003BBC34 File Offset: 0x003B9E34
 	private static void GenerateFabricatorContainers(GameObject entity, List<ContentContainer> containers)
 	{
 		ComplexFabricator component = entity.GetComponent<ComplexFabricator>();
@@ -1987,7 +1934,6 @@ public static class CodexEntryGenerator
 		containers.Add(new ContentContainer(list, ContentContainer.ContentLayout.Vertical));
 	}
 
-	// Token: 0x06009851 RID: 38993 RVA: 0x003BBCD8 File Offset: 0x003B9ED8
 	private static void GenerateConfigurableConsumerContainers(GameObject buildingComplete, List<ContentContainer> containers)
 	{
 		IConfigurableConsumer component = buildingComplete.GetComponent<IConfigurableConsumer>();
@@ -2009,7 +1955,6 @@ public static class CodexEntryGenerator
 		containers.Add(new ContentContainer(list, ContentContainer.ContentLayout.Vertical));
 	}
 
-	// Token: 0x06009852 RID: 38994 RVA: 0x003BBD74 File Offset: 0x003B9F74
 	private static void GenerateReceptacleContainers(GameObject entity, List<ContentContainer> containers)
 	{
 		SingleEntityReceptacle plot = entity.GetComponent<SingleEntityReceptacle>();
@@ -2051,7 +1996,6 @@ public static class CodexEntryGenerator
 		}
 	}
 
-	// Token: 0x06009853 RID: 38995 RVA: 0x003BBEE4 File Offset: 0x003BA0E4
 	// Note: this type is marked as 'beforefieldinit'.
 	static CodexEntryGenerator()
 	{
@@ -2101,22 +2045,16 @@ public static class CodexEntryGenerator
 		CodexEntryGenerator.BuildingsCategoriesTagIcons = dictionary2;
 	}
 
-	// Token: 0x04007656 RID: 30294
 	private static string categoryPrefx = "BUILD_CATEGORY_";
 
-	// Token: 0x04007657 RID: 30295
 	public static readonly string FOOD_CATEGORY_ID = CodexCache.FormatLinkID("FOOD");
 
-	// Token: 0x04007658 RID: 30296
 	public static readonly string FOOD_EFFECTS_ENTRY_ID = CodexCache.FormatLinkID("id_food_effects");
 
-	// Token: 0x04007659 RID: 30297
 	public static readonly string TABLE_SALT_ENTRY_ID = CodexCache.FormatLinkID("id_table_salt");
 
-	// Token: 0x0400765A RID: 30298
 	public static readonly string MINION_MODIFIERS_CATEGORY_ID = CodexCache.FormatLinkID("MINION_MODIFIERS");
 
-	// Token: 0x0400765B RID: 30299
 	public static Tag[] HiddenRoomConstrainTags = new Tag[]
 	{
 		RoomConstraints.ConstraintTags.Refrigerator,
@@ -2134,9 +2072,7 @@ public static class CodexEntryGenerator
 		RoomConstraints.ConstraintTags.HeavyDutyGeneratorType
 	};
 
-	// Token: 0x0400765C RID: 30300
 	public static Dictionary<Tag, Tag> RoomConstrainTagIcons;
 
-	// Token: 0x0400765D RID: 30301
 	public static Dictionary<Tag, Tag> BuildingsCategoriesTagIcons;
 }

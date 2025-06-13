@@ -1,10 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000CC1 RID: 3265
 public class BuildingUnderConstruction : Building
 {
-	// Token: 0x06003E42 RID: 15938 RVA: 0x00242054 File Offset: 0x00240254
 	protected override void OnPrefabInit()
 	{
 		Vector3 position = base.transform.GetPosition();
@@ -26,7 +24,6 @@ public class BuildingUnderConstruction : Building
 		base.OnPrefabInit();
 	}
 
-	// Token: 0x06003E43 RID: 15939 RVA: 0x00242120 File Offset: 0x00240320
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -41,22 +38,18 @@ public class BuildingUnderConstruction : Building
 		base.RegisterBlockTileRenderer();
 	}
 
-	// Token: 0x06003E44 RID: 15940 RVA: 0x000CCD11 File Offset: 0x000CAF11
 	protected override void OnCleanUp()
 	{
 		base.UnregisterBlockTileRenderer();
 		base.OnCleanUp();
 	}
 
-	// Token: 0x04002AF3 RID: 10995
 	[MyCmpAdd]
 	private KSelectable selectable;
 
-	// Token: 0x04002AF4 RID: 10996
 	[MyCmpAdd]
 	private SaveLoadRoot saveLoadRoot;
 
-	// Token: 0x04002AF5 RID: 10997
 	[MyCmpAdd]
 	private KPrefabID kPrefabID;
 }

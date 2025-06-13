@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005CA RID: 1482
 public class SteamEngineClusterConfig : IBuildingConfig
 {
-	// Token: 0x060019E5 RID: 6629 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x060019E6 RID: 6630 RVA: 0x001B0AB0 File Offset: 0x001AECB0
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "SteamEngineCluster";
@@ -46,7 +43,6 @@ public class SteamEngineClusterConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060019E7 RID: 6631 RVA: 0x0017D1D0 File Offset: 0x0017B3D0
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -58,17 +54,14 @@ public class SteamEngineClusterConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x060019E8 RID: 6632 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 	}
 
-	// Token: 0x060019E9 RID: 6633 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 	}
 
-	// Token: 0x060019EA RID: 6634 RVA: 0x001B0B88 File Offset: 0x001AED88
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		RocketEngineCluster rocketEngineCluster = go.AddOrGet<RocketEngineCluster>();
@@ -109,6 +102,5 @@ public class SteamEngineClusterConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x040010D0 RID: 4304
 	public const string ID = "SteamEngineCluster";
 }

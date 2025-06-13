@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000547 RID: 1351
 public class PropTableConfig : IEntityConfig
 {
-	// Token: 0x06001737 RID: 5943 RVA: 0x001A4E98 File Offset: 0x001A3098
 	public GameObject CreatePrefab()
 	{
 		string id = "PropTable";
@@ -27,7 +25,6 @@ public class PropTableConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06001738 RID: 5944 RVA: 0x000AA768 File Offset: 0x000A8968
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.GetComponent<OccupyArea>().objectLayers = new ObjectLayer[]
@@ -36,7 +33,6 @@ public class PropTableConfig : IEntityConfig
 		};
 	}
 
-	// Token: 0x06001739 RID: 5945 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}

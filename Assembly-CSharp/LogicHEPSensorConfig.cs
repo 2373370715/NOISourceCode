@@ -4,16 +4,13 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003E7 RID: 999
 public class LogicHEPSensorConfig : IBuildingConfig
 {
-	// Token: 0x06001061 RID: 4193 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06001062 RID: 4194 RVA: 0x0018A464 File Offset: 0x00188664
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = LogicHEPSensorConfig.ID;
@@ -46,7 +43,6 @@ public class LogicHEPSensorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001063 RID: 4195 RVA: 0x000B18F2 File Offset: 0x000AFAF2
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		LogicHEPSensor logicHEPSensor = go.AddOrGet<LogicHEPSensor>();
@@ -55,9 +51,7 @@ public class LogicHEPSensorConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayInFrontOfConduits, false);
 	}
 
-	// Token: 0x04000B8E RID: 2958
 	public static string ID = "LogicHEPSensor";
 
-	// Token: 0x04000B8F RID: 2959
 	private static readonly string kanim = "radbolt_sensor_kanim";
 }

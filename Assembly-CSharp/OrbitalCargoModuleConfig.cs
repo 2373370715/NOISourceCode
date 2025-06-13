@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020004DE RID: 1246
 public class OrbitalCargoModuleConfig : IBuildingConfig
 {
-	// Token: 0x06001570 RID: 5488 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06001571 RID: 5489 RVA: 0x0019EFC8 File Offset: 0x0019D1C8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "OrbitalCargoModule";
@@ -41,7 +38,6 @@ public class OrbitalCargoModuleConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001572 RID: 5490 RVA: 0x0019F06C File Offset: 0x0019D26C
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -65,7 +61,6 @@ public class OrbitalCargoModuleConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x06001573 RID: 5491 RVA: 0x0019F13C File Offset: 0x0019D33C
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		Prioritizable.AddRef(go);
@@ -80,12 +75,9 @@ public class OrbitalCargoModuleConfig : IBuildingConfig
 		fakeFloorAdder.initiallyActive = false;
 	}
 
-	// Token: 0x04000EDB RID: 3803
 	public const string ID = "OrbitalCargoModule";
 
-	// Token: 0x04000EDC RID: 3804
 	public static int NUM_CAPSULES = 3 * Mathf.RoundToInt(ROCKETRY.CARGO_CAPACITY_SCALE);
 
-	// Token: 0x04000EDD RID: 3805
 	public static float TOTAL_STORAGE_MASS = 200f * (float)OrbitalCargoModuleConfig.NUM_CAPSULES;
 }

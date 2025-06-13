@@ -3,15 +3,12 @@ using Klei.AI;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001C33 RID: 7219
 public class BionicGunkDisplayer : AsPercentAmountDisplayer
 {
-	// Token: 0x06009638 RID: 38456 RVA: 0x00106539 File Offset: 0x00104739
 	public BionicGunkDisplayer(GameUtil.TimeSlice deltaTimeSlice) : base(deltaTimeSlice)
 	{
 	}
 
-	// Token: 0x06009639 RID: 38457 RVA: 0x003AB770 File Offset: 0x003A9970
 	public override string GetTooltip(Amount master, AmountInstance instance)
 	{
 		BionicOilMonitor.Instance smi = instance.gameObject.GetSMI<BionicOilMonitor.Instance>();

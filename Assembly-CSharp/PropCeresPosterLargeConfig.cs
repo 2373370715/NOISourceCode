@@ -4,22 +4,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000514 RID: 1300
 public class PropCeresPosterLargeConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x0600164D RID: 5709 RVA: 0x000AA536 File Offset: 0x000A8736
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.DLC2;
 	}
 
-	// Token: 0x0600164E RID: 5710 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x0600164F RID: 5711 RVA: 0x001A2A30 File Offset: 0x001A0C30
 	public GameObject CreatePrefab()
 	{
 		string id = "PropCeresPosterLarge";
@@ -43,12 +39,10 @@ public class PropCeresPosterLargeConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x06001650 RID: 5712 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x06001651 RID: 5713 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}

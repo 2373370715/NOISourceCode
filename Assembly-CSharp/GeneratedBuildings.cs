@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000360 RID: 864
 public class GeneratedBuildings
 {
-	// Token: 0x06000DB2 RID: 3506 RVA: 0x0017E8A4 File Offset: 0x0017CAA4
 	public static void LoadGeneratedBuildings(List<Type> types)
 	{
 		Type typeFromHandle = typeof(IBuildingConfig);
@@ -68,7 +66,6 @@ public class GeneratedBuildings
 		}
 	}
 
-	// Token: 0x06000DB3 RID: 3507 RVA: 0x0017EC0C File Offset: 0x0017CE0C
 	public static void MakeBuildingAlwaysOperational(GameObject go)
 	{
 		BuildingDef def = go.GetComponent<BuildingComplete>().Def;
@@ -79,26 +76,22 @@ public class GeneratedBuildings
 		GeneratedBuildings.MakeBuildingAlwaysOperationalImpl(go);
 	}
 
-	// Token: 0x06000DB4 RID: 3508 RVA: 0x000B062E File Offset: 0x000AE82E
 	public static void RemoveLoopingSounds(GameObject go)
 	{
 		UnityEngine.Object.DestroyImmediate(go.GetComponent<LoopingSounds>());
 	}
 
-	// Token: 0x06000DB5 RID: 3509 RVA: 0x000B063B File Offset: 0x000AE83B
 	public static void RemoveDefaultLogicPorts(GameObject go)
 	{
 		UnityEngine.Object.DestroyImmediate(go.GetComponent<LogicPorts>());
 	}
 
-	// Token: 0x06000DB6 RID: 3510 RVA: 0x000B0648 File Offset: 0x000AE848
 	public static void RegisterWithOverlay(HashSet<Tag> overlay_tags, string id)
 	{
 		overlay_tags.Add(new Tag(id));
 		overlay_tags.Add(new Tag(id + "UnderConstruction"));
 	}
 
-	// Token: 0x06000DB7 RID: 3511 RVA: 0x000B066E File Offset: 0x000AE86E
 	public static void RegisterSingleLogicInputPort(GameObject go)
 	{
 		LogicPorts logicPorts = go.AddOrGet<LogicPorts>();
@@ -106,7 +99,6 @@ public class GeneratedBuildings
 		logicPorts.outputPortInfo = null;
 	}
 
-	// Token: 0x06000DB8 RID: 3512 RVA: 0x000B0693 File Offset: 0x000AE893
 	private static void MakeBuildingAlwaysOperationalImpl(GameObject go)
 	{
 		UnityEngine.Object.DestroyImmediate(go.GetComponent<BuildingEnabledButton>());
@@ -114,7 +106,6 @@ public class GeneratedBuildings
 		UnityEngine.Object.DestroyImmediate(go.GetComponent<LogicPorts>());
 	}
 
-	// Token: 0x06000DB9 RID: 3513 RVA: 0x0017EC48 File Offset: 0x0017CE48
 	public static void InitializeLogicPorts(GameObject go, BuildingDef def)
 	{
 		if (def.AlwaysOperational)
@@ -131,7 +122,6 @@ public class GeneratedBuildings
 		}
 	}
 
-	// Token: 0x06000DBA RID: 3514 RVA: 0x0017ECA0 File Offset: 0x0017CEA0
 	public static void InitializeHighEnergyParticlePorts(GameObject go, BuildingDef def)
 	{
 		if (def.UseHighEnergyParticleInputPort || def.UseHighEnergyParticleOutputPort)

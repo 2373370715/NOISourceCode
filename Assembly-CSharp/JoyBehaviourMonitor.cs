@@ -4,10 +4,8 @@ using KSerialization;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020015E2 RID: 5602
 public class JoyBehaviourMonitor : GameStateMachine<JoyBehaviourMonitor, JoyBehaviourMonitor.Instance>
 {
-	// Token: 0x06007438 RID: 29752 RVA: 0x00311DF0 File Offset: 0x0030FFF0
 	public override void InitializeStates(out StateMachine.BaseState default_state)
 	{
 		default_state = this.neutral;
@@ -38,19 +36,14 @@ public class JoyBehaviourMonitor : GameStateMachine<JoyBehaviourMonitor, JoyBeha
 		}).OnSignal(this.exitEarly, this.neutral);
 	}
 
-	// Token: 0x04005740 RID: 22336
 	public StateMachine<JoyBehaviourMonitor, JoyBehaviourMonitor.Instance, IStateMachineTarget, object>.Signal exitEarly;
 
-	// Token: 0x04005741 RID: 22337
 	public GameStateMachine<JoyBehaviourMonitor, JoyBehaviourMonitor.Instance, IStateMachineTarget, object>.State neutral;
 
-	// Token: 0x04005742 RID: 22338
 	public GameStateMachine<JoyBehaviourMonitor, JoyBehaviourMonitor.Instance, IStateMachineTarget, object>.State overjoyed;
 
-	// Token: 0x020015E3 RID: 5603
 	public new class Instance : GameStateMachine<JoyBehaviourMonitor, JoyBehaviourMonitor.Instance, IStateMachineTarget, object>.GameInstance
 	{
-		// Token: 0x0600743A RID: 29754 RVA: 0x00311F58 File Offset: 0x00310158
 		public Instance(IStateMachineTarget master, string happy_loco_anim, string happy_loco_walk_anim, Expression happy_expression) : base(master)
 		{
 			this.happyLocoAnim = happy_loco_anim;
@@ -61,7 +54,6 @@ public class JoyBehaviourMonitor : GameStateMachine<JoyBehaviourMonitor, JoyBeha
 			this.qolAttribute = Db.Get().Attributes.QualityOfLife.Lookup(base.gameObject);
 		}
 
-		// Token: 0x0600743B RID: 29755 RVA: 0x00311FE0 File Offset: 0x003101E0
 		public bool ShouldBeOverjoyed()
 		{
 			float totalValue = this.qolAttribute.GetTotalValue();
@@ -75,30 +67,23 @@ public class JoyBehaviourMonitor : GameStateMachine<JoyBehaviourMonitor, JoyBeha
 			return false;
 		}
 
-		// Token: 0x0600743C RID: 29756 RVA: 0x000F0AE9 File Offset: 0x000EECE9
 		public void GoToOverjoyed()
 		{
 			base.smi.transitionTime = GameClock.Instance.GetTime() + TRAITS.JOY_REACTIONS.JOY_REACTION_DURATION;
 			base.smi.GoTo(base.smi.sm.overjoyed);
 		}
 
-		// Token: 0x04005743 RID: 22339
 		public string happyLocoAnim = "";
 
-		// Token: 0x04005744 RID: 22340
 		public string happyLocoWalkAnim = "";
 
-		// Token: 0x04005745 RID: 22341
 		public Expression happyExpression;
 
-		// Token: 0x04005746 RID: 22342
 		[Serialize]
 		public float transitionTime;
 
-		// Token: 0x04005747 RID: 22343
 		private AttributeInstance expectationAttribute;
 
-		// Token: 0x04005748 RID: 22344
 		private AttributeInstance qolAttribute;
 	}
 }

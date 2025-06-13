@@ -5,22 +5,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020002C9 RID: 713
 public class SpaceTreeBranchConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x06000AA8 RID: 2728 RVA: 0x000AA536 File Offset: 0x000A8736
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.DLC2;
 	}
 
-	// Token: 0x06000AA9 RID: 2729 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x06000AAA RID: 2730 RVA: 0x001757F4 File Offset: 0x001739F4
 	public GameObject CreatePrefab()
 	{
 		string id = "SpaceTreeBranch";
@@ -79,7 +75,6 @@ public class SpaceTreeBranchConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x06000AAB RID: 2731 RVA: 0x00175AE4 File Offset: 0x00173CE4
 	public void AdjustAnimation(PlantBranchGrower.Instance trunk, PlantBranch.Instance branch)
 	{
 		int base_cell = Grid.PosToCell(trunk);
@@ -107,19 +102,16 @@ public class SpaceTreeBranchConfig : IEntityConfig, IHasDlcRestrictions
 		}));
 	}
 
-	// Token: 0x06000AAC RID: 2732 RVA: 0x000AF353 File Offset: 0x000AD553
 	public void OnPrefabInit(GameObject inst)
 	{
 		inst.AddOrGet<Harvestable>().readyForHarvestStatusItem = Db.Get().CreatureStatusItems.ReadyForHarvest_Branch;
 		inst.AddOrGet<HarvestDesignatable>().iconOffset = new Vector2(0f, Grid.CellSizeInMeters * 0.5f);
 	}
 
-	// Token: 0x06000AAD RID: 2733 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x06000AAF RID: 2735 RVA: 0x00175BD4 File Offset: 0x00173DD4
 	// Note: this type is marked as 'beforefieldinit'.
 	static SpaceTreeBranchConfig()
 	{
@@ -299,10 +291,8 @@ public class SpaceTreeBranchConfig : IEntityConfig, IHasDlcRestrictions
 		SpaceTreeBranchConfig.animOffset = dictionary3;
 	}
 
-	// Token: 0x04000868 RID: 2152
 	public const string ID = "SpaceTreeBranch";
 
-	// Token: 0x04000869 RID: 2153
 	public static string[] BRANCH_NAMES = new string[]
 	{
 		"<sprite=\"oni_sprite_assets\" name=\"oni_sprite_assets_syrup_tree_l\">",
@@ -312,18 +302,13 @@ public class SpaceTreeBranchConfig : IEntityConfig, IHasDlcRestrictions
 		"<sprite=\"oni_sprite_assets\" name=\"oni_sprite_assets_syrup_tree_r\">"
 	};
 
-	// Token: 0x0400086A RID: 2154
 	public const float GROWTH_DURATION = 2700f;
 
-	// Token: 0x0400086B RID: 2155
 	public const int WOOD_AMOUNT = 75;
 
-	// Token: 0x0400086C RID: 2156
 	private static Dictionary<CellOffset, string> entombDefenseAnimNames;
 
-	// Token: 0x0400086D RID: 2157
 	private static Dictionary<CellOffset, SpaceTreeBranch.AnimSet> animationSets;
 
-	// Token: 0x0400086E RID: 2158
 	private static Dictionary<CellOffset, Vector3> animOffset;
 }

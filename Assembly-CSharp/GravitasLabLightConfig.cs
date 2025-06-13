@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000378 RID: 888
 public class GravitasLabLightConfig : IBuildingConfig
 {
-	// Token: 0x06000E29 RID: 3625 RVA: 0x00181F18 File Offset: 0x00180118
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "GravitasLabLight";
@@ -28,17 +26,14 @@ public class GravitasLabLightConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000E2A RID: 3626 RVA: 0x000B0985 File Offset: 0x000AEB85
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddTag(GameTags.Gravitas);
 	}
 
-	// Token: 0x06000E2B RID: 3627 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000A7C RID: 2684
 	public const string ID = "GravitasLabLight";
 }

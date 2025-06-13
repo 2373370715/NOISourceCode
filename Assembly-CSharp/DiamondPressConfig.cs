@@ -4,16 +4,13 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000A2 RID: 162
 public class DiamondPressConfig : IBuildingConfig
 {
-	// Token: 0x0600029C RID: 668 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x0600029D RID: 669 RVA: 0x00151964 File Offset: 0x0014FB64
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "DiamondPress";
@@ -43,7 +40,6 @@ public class DiamondPressConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600029E RID: 670 RVA: 0x00151A44 File Offset: 0x0014FC44
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
@@ -84,7 +80,6 @@ public class DiamondPressConfig : IBuildingConfig
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x0600029F RID: 671 RVA: 0x000AAEBA File Offset: 0x000A90BA
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		SymbolOverrideControllerUtil.AddToPrefab(go);
@@ -112,18 +107,13 @@ public class DiamondPressConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x040001AF RID: 431
 	public const string ID = "DiamondPress";
 
-	// Token: 0x040001B0 RID: 432
 	public const string PORT_ID = "HEP_STORAGE";
 
-	// Token: 0x040001B1 RID: 433
 	private const int HEP_PER_DIAMOND_KG = 10;
 
-	// Token: 0x040001B2 RID: 434
 	private const int RECIPE_MASS_KG = 100;
 
-	// Token: 0x040001B3 RID: 435
 	private const int HEP_STORAGE_CAPACITY = 2000;
 }

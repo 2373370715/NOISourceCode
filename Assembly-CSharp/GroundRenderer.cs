@@ -4,11 +4,9 @@ using ProcGen;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-// Token: 0x02001ACD RID: 6861
 [AddComponentMenu("KMonoBehaviour/scripts/GroundRenderer")]
 public class GroundRenderer : KMonoBehaviour
 {
-	// Token: 0x06008F72 RID: 36722 RVA: 0x003822A4 File Offset: 0x003804A4
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -24,7 +22,6 @@ public class GroundRenderer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008F73 RID: 36723 RVA: 0x00382320 File Offset: 0x00380520
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -41,7 +38,6 @@ public class GroundRenderer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008F74 RID: 36724 RVA: 0x003823E8 File Offset: 0x003805E8
 	public void Render(Vector2I vis_min, Vector2I vis_max, bool forceVisibleRebuild = false)
 	{
 		if (!base.enabled)
@@ -67,13 +63,11 @@ public class GroundRenderer : KMonoBehaviour
 		this.RebuildDirtyChunks();
 	}
 
-	// Token: 0x06008F75 RID: 36725 RVA: 0x001021DE File Offset: 0x001003DE
 	public void RenderAll()
 	{
 		this.Render(new Vector2I(0, 0), new Vector2I(this.worldChunks.GetLength(0) * 16, this.worldChunks.GetLength(1) * 16), true);
 	}
 
-	// Token: 0x06008F76 RID: 36726 RVA: 0x003824C8 File Offset: 0x003806C8
 	private void RebuildDirtyChunks()
 	{
 		for (int i = 0; i < this.dirtyChunks.GetLength(1); i++)
@@ -89,7 +83,6 @@ public class GroundRenderer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008F77 RID: 36727 RVA: 0x00382540 File Offset: 0x00380740
 	public void MarkDirty(int cell)
 	{
 		Vector2I vector2I = Grid.CellToXY(cell);
@@ -133,14 +126,12 @@ public class GroundRenderer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008F78 RID: 36728 RVA: 0x003826F4 File Offset: 0x003808F4
 	private Vector2I GetChunkIdx(int cell)
 	{
 		Vector2I vector2I = Grid.CellToXY(cell);
 		return new Vector2I(vector2I.x / 16, vector2I.y / 16);
 	}
 
-	// Token: 0x06008F79 RID: 36729 RVA: 0x00382720 File Offset: 0x00380920
 	private GroundMasks.BiomeMaskData GetBiomeMask(SubWorld.ZoneType zone_type)
 	{
 		GroundMasks.BiomeMaskData result = null;
@@ -149,7 +140,6 @@ public class GroundRenderer : KMonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06008F7A RID: 36730 RVA: 0x00382758 File Offset: 0x00380958
 	private void InitOpaqueMaterial(Material material, Element element)
 	{
 		material.name = element.id.ToString() + "_opaque";
@@ -163,7 +153,6 @@ public class GroundRenderer : KMonoBehaviour
 		material.SetTexture("_AlphaTestMap", Texture2D.whiteTexture);
 	}
 
-	// Token: 0x06008F7B RID: 36731 RVA: 0x003827E4 File Offset: 0x003809E4
 	private void InitAlphaMaterial(Material material, Element element)
 	{
 		material.name = element.id.ToString() + "_alpha";
@@ -177,7 +166,6 @@ public class GroundRenderer : KMonoBehaviour
 		material.SetInt("_ZWrite", 0);
 	}
 
-	// Token: 0x06008F7C RID: 36732 RVA: 0x0038287C File Offset: 0x00380A7C
 	private void ConfigureMaterialShine(Material material)
 	{
 		if (material.GetTexture("_ShineMask") != null)
@@ -190,7 +178,6 @@ public class GroundRenderer : KMonoBehaviour
 		material.DisableKeyword("SHINY");
 	}
 
-	// Token: 0x06008F7D RID: 36733 RVA: 0x003828CC File Offset: 0x00380ACC
 	[ContextMenu("Reload Shaders")]
 	public void OnShadersReloaded()
 	{
@@ -239,7 +226,6 @@ public class GroundRenderer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008F7E RID: 36734 RVA: 0x00382A64 File Offset: 0x00380C64
 	public void FreeResources()
 	{
 		this.FreeMaterials();
@@ -262,7 +248,6 @@ public class GroundRenderer : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06008F7F RID: 36735 RVA: 0x00382AEC File Offset: 0x00380CEC
 	private void FreeMaterials()
 	{
 		foreach (GroundRenderer.Materials materials in this.elementMaterials.Values)
@@ -273,50 +258,37 @@ public class GroundRenderer : KMonoBehaviour
 		this.elementMaterials.Clear();
 	}
 
-	// Token: 0x04006C15 RID: 27669
 	[SerializeField]
 	private GroundMasks masks;
 
-	// Token: 0x04006C16 RID: 27670
 	private GroundMasks.BiomeMaskData[] biomeMasks;
 
-	// Token: 0x04006C17 RID: 27671
 	private Dictionary<SimHashes, GroundRenderer.Materials> elementMaterials = new Dictionary<SimHashes, GroundRenderer.Materials>();
 
-	// Token: 0x04006C18 RID: 27672
 	private bool[,] dirtyChunks;
 
-	// Token: 0x04006C19 RID: 27673
 	private GroundRenderer.WorldChunk[,] worldChunks;
 
-	// Token: 0x04006C1A RID: 27674
 	private const int ChunkEdgeSize = 16;
 
-	// Token: 0x04006C1B RID: 27675
 	private Vector2I size;
 
-	// Token: 0x02001ACE RID: 6862
 	[Serializable]
 	private struct Materials
 	{
-		// Token: 0x06008F81 RID: 36737 RVA: 0x00102224 File Offset: 0x00100424
 		public Materials(Material opaque, Material alpha)
 		{
 			this.opaque = opaque;
 			this.alpha = alpha;
 		}
 
-		// Token: 0x04006C1C RID: 27676
 		public Material opaque;
 
-		// Token: 0x04006C1D RID: 27677
 		public Material alpha;
 	}
 
-	// Token: 0x02001ACF RID: 6863
 	private class ElementChunk
 	{
-		// Token: 0x06008F82 RID: 36738 RVA: 0x00382B5C File Offset: 0x00380D5C
 		public ElementChunk(SimHashes element, Dictionary<SimHashes, GroundRenderer.Materials> materials)
 		{
 			this.element = element;
@@ -326,7 +298,6 @@ public class GroundRenderer : KMonoBehaviour
 			this.Clear();
 		}
 
-		// Token: 0x06008F83 RID: 36739 RVA: 0x00102234 File Offset: 0x00100434
 		public void Clear()
 		{
 			this.opaque.Clear();
@@ -334,28 +305,24 @@ public class GroundRenderer : KMonoBehaviour
 			this.tileCount = 0;
 		}
 
-		// Token: 0x06008F84 RID: 36740 RVA: 0x00102253 File Offset: 0x00100453
 		public void AddOpaqueQuad(int x, int y, GroundMasks.UVData uvs)
 		{
 			this.opaque.AddQuad(x, y, uvs);
 			this.tileCount++;
 		}
 
-		// Token: 0x06008F85 RID: 36741 RVA: 0x00102271 File Offset: 0x00100471
 		public void AddAlphaQuad(int x, int y, GroundMasks.UVData uvs)
 		{
 			this.alpha.AddQuad(x, y, uvs);
 			this.tileCount++;
 		}
 
-		// Token: 0x06008F86 RID: 36742 RVA: 0x0010228F File Offset: 0x0010048F
 		public void Build()
 		{
 			this.opaque.Build();
 			this.alpha.Build();
 		}
 
-		// Token: 0x06008F87 RID: 36743 RVA: 0x00382BA8 File Offset: 0x00380DA8
 		public void Render(int layer, int element_idx)
 		{
 			float num = Grid.GetLayerZ(Grid.SceneLayer.Ground);
@@ -364,7 +331,6 @@ public class GroundRenderer : KMonoBehaviour
 			this.alpha.Render(new Vector3(0f, 0f, num), layer);
 		}
 
-		// Token: 0x06008F88 RID: 36744 RVA: 0x001022A7 File Offset: 0x001004A7
 		public void FreeResources()
 		{
 			this.alpha.FreeResources();
@@ -373,22 +339,16 @@ public class GroundRenderer : KMonoBehaviour
 			this.opaque = null;
 		}
 
-		// Token: 0x04006C1E RID: 27678
 		public SimHashes element;
 
-		// Token: 0x04006C1F RID: 27679
 		private GroundRenderer.ElementChunk.RenderData alpha;
 
-		// Token: 0x04006C20 RID: 27680
 		private GroundRenderer.ElementChunk.RenderData opaque;
 
-		// Token: 0x04006C21 RID: 27681
 		public int tileCount;
 
-		// Token: 0x02001AD0 RID: 6864
 		private class RenderData
 		{
-			// Token: 0x06008F89 RID: 36745 RVA: 0x00382C00 File Offset: 0x00380E00
 			public RenderData(Material material)
 			{
 				this.material = material;
@@ -400,7 +360,6 @@ public class GroundRenderer : KMonoBehaviour
 				this.indices = new List<int>();
 			}
 
-			// Token: 0x06008F8A RID: 36746 RVA: 0x001022CD File Offset: 0x001004CD
 			public void ClearMesh()
 			{
 				if (this.mesh != null)
@@ -411,7 +370,6 @@ public class GroundRenderer : KMonoBehaviour
 				}
 			}
 
-			// Token: 0x06008F8B RID: 36747 RVA: 0x00382C64 File Offset: 0x00380E64
 			public void Clear()
 			{
 				if (this.mesh != null)
@@ -432,7 +390,6 @@ public class GroundRenderer : KMonoBehaviour
 				}
 			}
 
-			// Token: 0x06008F8C RID: 36748 RVA: 0x001022FA File Offset: 0x001004FA
 			public void FreeResources()
 			{
 				this.ClearMesh();
@@ -443,7 +400,6 @@ public class GroundRenderer : KMonoBehaviour
 				this.material = null;
 			}
 
-			// Token: 0x06008F8D RID: 36749 RVA: 0x00102324 File Offset: 0x00100524
 			public void Build()
 			{
 				this.mesh.SetVertices(this.pos);
@@ -451,7 +407,6 @@ public class GroundRenderer : KMonoBehaviour
 				this.mesh.SetTriangles(this.indices, 0);
 			}
 
-			// Token: 0x06008F8E RID: 36750 RVA: 0x00382CC4 File Offset: 0x00380EC4
 			public void AddQuad(int x, int y, GroundMasks.UVData uvs)
 			{
 				int count = this.pos.Count;
@@ -471,7 +426,6 @@ public class GroundRenderer : KMonoBehaviour
 				this.uv.Add(uvs.tr);
 			}
 
-			// Token: 0x06008F8F RID: 36751 RVA: 0x00382E20 File Offset: 0x00381020
 			public void Render(Vector3 position, int layer)
 			{
 				if (this.pos.Count != 0)
@@ -480,27 +434,20 @@ public class GroundRenderer : KMonoBehaviour
 				}
 			}
 
-			// Token: 0x04006C22 RID: 27682
 			public Material material;
 
-			// Token: 0x04006C23 RID: 27683
 			public Mesh mesh;
 
-			// Token: 0x04006C24 RID: 27684
 			public List<Vector3> pos;
 
-			// Token: 0x04006C25 RID: 27685
 			public List<Vector2> uv;
 
-			// Token: 0x04006C26 RID: 27686
 			public List<int> indices;
 		}
 	}
 
-	// Token: 0x02001AD1 RID: 6865
 	private struct WorldChunk
 	{
-		// Token: 0x06008F90 RID: 36752 RVA: 0x0010235B File Offset: 0x0010055B
 		public WorldChunk(int x, int y)
 		{
 			this.chunkX = x;
@@ -508,13 +455,11 @@ public class GroundRenderer : KMonoBehaviour
 			this.elementChunks = new List<GroundRenderer.ElementChunk>();
 		}
 
-		// Token: 0x06008F91 RID: 36753 RVA: 0x00102376 File Offset: 0x00100576
 		public void Clear()
 		{
 			this.elementChunks.Clear();
 		}
 
-		// Token: 0x06008F92 RID: 36754 RVA: 0x00382E5C File Offset: 0x0038105C
 		private static void InsertSorted(Element element, Element[] array, int size)
 		{
 			int id = (int)element.id;
@@ -531,7 +476,6 @@ public class GroundRenderer : KMonoBehaviour
 			array[size] = element;
 		}
 
-		// Token: 0x06008F93 RID: 36755 RVA: 0x00382E9C File Offset: 0x0038109C
 		public void Rebuild(GroundMasks.BiomeMaskData[] biomeMasks, Dictionary<SimHashes, GroundRenderer.Materials> materials)
 		{
 			foreach (GroundRenderer.ElementChunk elementChunk in this.elementChunks)
@@ -617,7 +561,6 @@ public class GroundRenderer : KMonoBehaviour
 			}
 		}
 
-		// Token: 0x06008F94 RID: 36756 RVA: 0x003832F8 File Offset: 0x003814F8
 		private GroundRenderer.ElementChunk GetElementChunk(SimHashes elementID, Dictionary<SimHashes, GroundRenderer.Materials> materials)
 		{
 			GroundRenderer.ElementChunk elementChunk = null;
@@ -637,7 +580,6 @@ public class GroundRenderer : KMonoBehaviour
 			return elementChunk;
 		}
 
-		// Token: 0x06008F95 RID: 36757 RVA: 0x00383358 File Offset: 0x00381558
 		private static int GetBiomeIdx(int cell)
 		{
 			if (!Grid.IsValidCell(cell))
@@ -652,13 +594,11 @@ public class GroundRenderer : KMonoBehaviour
 			return (int)result;
 		}
 
-		// Token: 0x06008F96 RID: 36758 RVA: 0x00102383 File Offset: 0x00100583
 		private static float GetStaticRandom(int x, int y)
 		{
 			return PerlinSimplexNoise.noise((float)x * GroundRenderer.WorldChunk.NoiseScale.x, (float)y * GroundRenderer.WorldChunk.NoiseScale.y);
 		}
 
-		// Token: 0x06008F97 RID: 36759 RVA: 0x003833A4 File Offset: 0x003815A4
 		public void Render(int layer)
 		{
 			for (int i = 0; i < this.elementChunks.Count; i++)
@@ -668,7 +608,6 @@ public class GroundRenderer : KMonoBehaviour
 			}
 		}
 
-		// Token: 0x06008F98 RID: 36760 RVA: 0x003833F0 File Offset: 0x003815F0
 		public void FreeResources()
 		{
 			foreach (GroundRenderer.ElementChunk elementChunk in this.elementChunks)
@@ -679,25 +618,18 @@ public class GroundRenderer : KMonoBehaviour
 			this.elementChunks = null;
 		}
 
-		// Token: 0x04006C27 RID: 27687
 		public readonly int chunkX;
 
-		// Token: 0x04006C28 RID: 27688
 		public readonly int chunkY;
 
-		// Token: 0x04006C29 RID: 27689
 		private List<GroundRenderer.ElementChunk> elementChunks;
 
-		// Token: 0x04006C2A RID: 27690
 		private static Element[] elements = new Element[4];
 
-		// Token: 0x04006C2B RID: 27691
 		private static Element[] uniqueElements = new Element[4];
 
-		// Token: 0x04006C2C RID: 27692
 		private static int[] substances = new int[4];
 
-		// Token: 0x04006C2D RID: 27693
 		private static Vector2 NoiseScale = new Vector3(1f, 1f);
 	}
 }

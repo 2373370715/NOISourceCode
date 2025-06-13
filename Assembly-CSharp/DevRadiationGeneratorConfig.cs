@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000A1 RID: 161
 public class DevRadiationGeneratorConfig : IBuildingConfig
 {
-	// Token: 0x06000298 RID: 664 RVA: 0x00151888 File Offset: 0x0014FA88
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "DevRadiationGenerator";
@@ -29,7 +27,6 @@ public class DevRadiationGeneratorConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000299 RID: 665 RVA: 0x00151904 File Offset: 0x0014FB04
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddTag(GameTags.DevBuilding);
@@ -42,12 +39,10 @@ public class DevRadiationGeneratorConfig : IBuildingConfig
 		go.AddOrGet<DevRadiationEmitter>();
 	}
 
-	// Token: 0x0600029A RID: 666 RVA: 0x000AADE3 File Offset: 0x000A8FE3
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGetDef<PoweredActiveController.Def>();
 	}
 
-	// Token: 0x040001AE RID: 430
 	public const string ID = "DevRadiationGenerator";
 }

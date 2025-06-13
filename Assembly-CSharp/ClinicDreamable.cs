@@ -2,16 +2,11 @@
 using Klei.AI;
 using UnityEngine;
 
-// Token: 0x020009DD RID: 2525
 [AddComponentMenu("KMonoBehaviour/Workable/Clinic Dreamable")]
 public class ClinicDreamable : Workable
 {
-	// Token: 0x170001BA RID: 442
-	// (get) Token: 0x06002DC3 RID: 11715 RVA: 0x000C2144 File Offset: 0x000C0344
-	// (set) Token: 0x06002DC4 RID: 11716 RVA: 0x000C214C File Offset: 0x000C034C
 	public bool DreamIsDisturbed { get; private set; }
 
-	// Token: 0x06002DC5 RID: 11717 RVA: 0x000C2155 File Offset: 0x000C0355
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -20,7 +15,6 @@ public class ClinicDreamable : Workable
 		this.workingStatusItem = null;
 	}
 
-	// Token: 0x06002DC6 RID: 11718 RVA: 0x001FF290 File Offset: 0x001FD490
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -38,7 +32,6 @@ public class ClinicDreamable : Workable
 		this.OnEquipPajamas(this.equippable);
 	}
 
-	// Token: 0x06002DC7 RID: 11719 RVA: 0x001FF35C File Offset: 0x001FD55C
 	protected override void OnCleanUp()
 	{
 		base.OnCleanUp();
@@ -52,7 +45,6 @@ public class ClinicDreamable : Workable
 		def2.OnUnequipCallBack = (Action<Equippable>)Delegate.Remove(def2.OnUnequipCallBack, new Action<Equippable>(this.OnUnequipPajamas));
 	}
 
-	// Token: 0x06002DC8 RID: 11720 RVA: 0x001FF3D8 File Offset: 0x001FD5D8
 	protected override bool OnWorkTick(WorkerBase worker, float dt)
 	{
 		if (this.GetPercentComplete() >= 1f)
@@ -66,7 +58,6 @@ public class ClinicDreamable : Workable
 		return false;
 	}
 
-	// Token: 0x06002DC9 RID: 11721 RVA: 0x001FF450 File Offset: 0x001FD650
 	public void OnEquipPajamas(Equippable eq)
 	{
 		if (this.equippable == null || this.equippable != eq)
@@ -92,7 +83,6 @@ public class ClinicDreamable : Workable
 		this.selectable.AddStatusItem(Db.Get().DuplicantStatusItems.MegaBrainTank_Pajamas_Wearing, null);
 	}
 
-	// Token: 0x06002DCA RID: 11722 RVA: 0x001FF538 File Offset: 0x001FD738
 	public void OnUnequipPajamas(Equippable eq)
 	{
 		if (this.dreamer == null)
@@ -114,7 +104,6 @@ public class ClinicDreamable : Workable
 		this.effects = null;
 	}
 
-	// Token: 0x06002DCB RID: 11723 RVA: 0x001FF614 File Offset: 0x001FD814
 	public void WorkerStartedSleeping(object data)
 	{
 		SleepChore sleepChore = this.dreamer.GetCurrentChore() as SleepChore;
@@ -134,7 +123,6 @@ public class ClinicDreamable : Workable
 		this.StartDreamingThought();
 	}
 
-	// Token: 0x06002DCC RID: 11724 RVA: 0x001FF784 File Offset: 0x001FD984
 	public void WorkerStoppedSleeping(object data)
 	{
 		this.selectable.RemoveStatusItem(Db.Get().DuplicantStatusItems.MegaBrainTank_Pajamas_Sleeping, false);
@@ -163,7 +151,6 @@ public class ClinicDreamable : Workable
 		}
 	}
 
-	// Token: 0x06002DCD RID: 11725 RVA: 0x001FF928 File Offset: 0x001FDB28
 	private void OnSleepDisturbed(SleepChore.StatesInstance smi)
 	{
 		SleepChore sleepChore = this.dreamer.GetCurrentChore() as SleepChore;
@@ -178,7 +165,6 @@ public class ClinicDreamable : Workable
 		}
 	}
 
-	// Token: 0x06002DCE RID: 11726 RVA: 0x001FF9CC File Offset: 0x001FDBCC
 	private void StartDreamingThought()
 	{
 		if (this.dreamer != null && !this.HasStartedThoughts_Dreaming)
@@ -189,7 +175,6 @@ public class ClinicDreamable : Workable
 		}
 	}
 
-	// Token: 0x06002DCF RID: 11727 RVA: 0x000C2180 File Offset: 0x000C0380
 	private void StopDreamingThought()
 	{
 		if (this.dreamer != null && this.HasStartedThoughts_Dreaming)
@@ -199,30 +184,21 @@ public class ClinicDreamable : Workable
 		}
 	}
 
-	// Token: 0x04001F59 RID: 8025
 	private static GameObject dreamJournalPrefab;
 
-	// Token: 0x04001F5A RID: 8026
 	private static Effect sleepClinic;
 
-	// Token: 0x04001F5B RID: 8027
 	public bool HasStartedThoughts_Dreaming;
 
-	// Token: 0x04001F5D RID: 8029
 	private ChoreDriver dreamer;
 
-	// Token: 0x04001F5E RID: 8030
 	private Equippable equippable;
 
-	// Token: 0x04001F5F RID: 8031
 	private Effects effects;
 
-	// Token: 0x04001F60 RID: 8032
 	private Sleepable sleepable;
 
-	// Token: 0x04001F61 RID: 8033
 	private KSelectable selectable;
 
-	// Token: 0x04001F62 RID: 8034
 	private HashedString dreamAnimName = "portal rocket comp";
 }

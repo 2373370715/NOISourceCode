@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000511 RID: 1297
 public class PressureSwitchLiquidConfig : IBuildingConfig
 {
-	// Token: 0x0600163C RID: 5692 RVA: 0x001A27D4 File Offset: 0x001A09D4
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = PressureSwitchLiquidConfig.ID;
@@ -31,7 +29,6 @@ public class PressureSwitchLiquidConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600163D RID: 5693 RVA: 0x001A2880 File Offset: 0x001A0A80
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
@@ -45,12 +42,10 @@ public class PressureSwitchLiquidConfig : IBuildingConfig
 		pressureSwitch.desiredState = Element.State.Liquid;
 	}
 
-	// Token: 0x0600163E RID: 5694 RVA: 0x000B428C File Offset: 0x000B248C
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddComponent<BuildingCellVisualizer>();
 	}
 
-	// Token: 0x04000F41 RID: 3905
 	public static string ID = "PressureSwitchLiquid";
 }

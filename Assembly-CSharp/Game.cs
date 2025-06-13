@@ -17,34 +17,23 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
-// Token: 0x02001342 RID: 4930
 [AddComponentMenu("KMonoBehaviour/scripts/Game")]
 public class Game : KMonoBehaviour
 {
-	// Token: 0x060064F2 RID: 25842 RVA: 0x000E6547 File Offset: 0x000E4747
 	public static bool IsOnMainThread()
 	{
 		return Game.MainThread == Thread.CurrentThread;
 	}
 
-	// Token: 0x060064F3 RID: 25843 RVA: 0x000E6555 File Offset: 0x000E4755
 	public static bool IsQuitting()
 	{
 		return Game.quitting;
 	}
 
-	// Token: 0x1700064F RID: 1615
-	// (get) Token: 0x060064F4 RID: 25844 RVA: 0x000E655C File Offset: 0x000E475C
-	// (set) Token: 0x060064F5 RID: 25845 RVA: 0x000E6564 File Offset: 0x000E4764
 	public KInputHandler inputHandler { get; set; }
 
-	// Token: 0x17000650 RID: 1616
-	// (get) Token: 0x060064F6 RID: 25846 RVA: 0x000E656D File Offset: 0x000E476D
-	// (set) Token: 0x060064F7 RID: 25847 RVA: 0x000E6574 File Offset: 0x000E4774
 	public static Game Instance { get; private set; }
 
-	// Token: 0x17000651 RID: 1617
-	// (get) Token: 0x060064F8 RID: 25848 RVA: 0x000E657C File Offset: 0x000E477C
 	public static Camera MainCamera
 	{
 		get
@@ -57,9 +46,6 @@ public class Game : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x17000652 RID: 1618
-	// (get) Token: 0x060064F9 RID: 25849 RVA: 0x000E659A File Offset: 0x000E479A
-	// (set) Token: 0x060064FA RID: 25850 RVA: 0x002CF4CC File Offset: 0x002CD6CC
 	public bool SaveToCloudActive
 	{
 		get
@@ -73,9 +59,6 @@ public class Game : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x17000653 RID: 1619
-	// (get) Token: 0x060064FB RID: 25851 RVA: 0x000E65BA File Offset: 0x000E47BA
-	// (set) Token: 0x060064FC RID: 25852 RVA: 0x002CF4FC File Offset: 0x002CD6FC
 	public bool FastWorkersModeActive
 	{
 		get
@@ -89,9 +72,6 @@ public class Game : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x17000654 RID: 1620
-	// (get) Token: 0x060064FD RID: 25853 RVA: 0x000E65DA File Offset: 0x000E47DA
-	// (set) Token: 0x060064FE RID: 25854 RVA: 0x002CF52C File Offset: 0x002CD72C
 	public bool SandboxModeActive
 	{
 		get
@@ -121,8 +101,6 @@ public class Game : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x17000655 RID: 1621
-	// (get) Token: 0x060064FF RID: 25855 RVA: 0x000E65E2 File Offset: 0x000E47E2
 	public bool DebugOnlyBuildingsAllowed
 	{
 		get
@@ -131,17 +109,10 @@ public class Game : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x17000656 RID: 1622
-	// (get) Token: 0x06006500 RID: 25856 RVA: 0x000E65FC File Offset: 0x000E47FC
-	// (set) Token: 0x06006501 RID: 25857 RVA: 0x000E6604 File Offset: 0x000E4804
 	public StatusItemRenderer statusItemRenderer { get; private set; }
 
-	// Token: 0x17000657 RID: 1623
-	// (get) Token: 0x06006502 RID: 25858 RVA: 0x000E660D File Offset: 0x000E480D
-	// (set) Token: 0x06006503 RID: 25859 RVA: 0x000E6615 File Offset: 0x000E4815
 	public PrioritizableRenderer prioritizableRenderer { get; private set; }
 
-	// Token: 0x06006504 RID: 25860 RVA: 0x002CF5A8 File Offset: 0x002CD7A8
 	protected override void OnPrefabInit()
 	{
 		UnityEngine.Debug.unityLogger.logHandler = new LogCatcher(UnityEngine.Debug.unityLogger.logHandler);
@@ -216,25 +187,21 @@ public class Game : KMonoBehaviour
 		this.dateGenerated = System.DateTime.UtcNow.ToString("U", CultureInfo.InvariantCulture);
 	}
 
-	// Token: 0x06006505 RID: 25861 RVA: 0x000E661E File Offset: 0x000E481E
 	public void SetGameStarted()
 	{
 		this.gameStarted = true;
 	}
 
-	// Token: 0x06006506 RID: 25862 RVA: 0x000E6627 File Offset: 0x000E4827
 	public bool GameStarted()
 	{
 		return this.gameStarted;
 	}
 
-	// Token: 0x06006507 RID: 25863 RVA: 0x000E662F File Offset: 0x000E482F
 	private void UnsafePrefabInit()
 	{
 		this.StepTheSim(0f);
 	}
 
-	// Token: 0x06006508 RID: 25864 RVA: 0x000E663D File Offset: 0x000E483D
 	protected override void OnLoadLevel()
 	{
 		base.Unsubscribe<Game>(1798162660, Game.MarkStatusItemRendererDirtyDelegate, false);
@@ -242,13 +209,11 @@ public class Game : KMonoBehaviour
 		base.OnLoadLevel();
 	}
 
-	// Token: 0x06006509 RID: 25865 RVA: 0x000E6667 File Offset: 0x000E4867
 	private void MarkStatusItemRendererDirty(object data)
 	{
 		this.statusItemRenderer.MarkAllDirty();
 	}
 
-	// Token: 0x0600650A RID: 25866 RVA: 0x002CFA3C File Offset: 0x002CDC3C
 	protected override void OnForcedCleanUp()
 	{
 		if (this.prioritizableRenderer != null)
@@ -274,7 +239,6 @@ public class Game : KMonoBehaviour
 		base.OnForcedCleanUp();
 	}
 
-	// Token: 0x0600650B RID: 25867 RVA: 0x002CFAE4 File Offset: 0x002CDCE4
 	protected override void OnSpawn()
 	{
 		global::Debug.Log("-- GAME --");
@@ -339,7 +303,6 @@ public class Game : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600650C RID: 25868 RVA: 0x000E6674 File Offset: 0x000E4874
 	protected override void OnCleanUp()
 	{
 		base.OnCleanUp();
@@ -349,20 +312,17 @@ public class Game : KMonoBehaviour
 		this.DestroyInstances();
 	}
 
-	// Token: 0x0600650D RID: 25869 RVA: 0x000E66A7 File Offset: 0x000E48A7
 	private new void OnDestroy()
 	{
 		base.OnDestroy();
 		this.DestroyInstances();
 	}
 
-	// Token: 0x0600650E RID: 25870 RVA: 0x000E66B5 File Offset: 0x000E48B5
 	private void UnsafeOnSpawn()
 	{
 		this.world.UpdateCellInfo(this.gameSolidInfo, this.callbackInfo, 0, null, 0, null);
 	}
 
-	// Token: 0x0600650F RID: 25871 RVA: 0x000E66D4 File Offset: 0x000E48D4
 	private void RefreshRadiationLoop()
 	{
 		GameScheduler.Instance.Schedule("UpdateRadiation", 1f, delegate(object obj)
@@ -372,7 +332,6 @@ public class Game : KMonoBehaviour
 		}, null, null);
 	}
 
-	// Token: 0x06006510 RID: 25872 RVA: 0x000E66F9 File Offset: 0x000E48F9
 	public void SetMusicEnabled(bool enabled)
 	{
 		if (enabled)
@@ -383,7 +342,6 @@ public class Game : KMonoBehaviour
 		MusicManager.instance.StopSong("Music_FrontEnd", true, STOP_MODE.ALLOWFADEOUT);
 	}
 
-	// Token: 0x06006511 RID: 25873 RVA: 0x002CFD9C File Offset: 0x002CDF9C
 	private Player SpawnPlayer()
 	{
 		Player component = global::Util.KInstantiate(this.playerPrefab, base.gameObject, null).GetComponent<Player>();
@@ -415,14 +373,12 @@ public class Game : KMonoBehaviour
 		return component;
 	}
 
-	// Token: 0x06006512 RID: 25874 RVA: 0x000E6720 File Offset: 0x000E4920
 	public void SetDupePassableSolid(int cell, bool passable, bool solid)
 	{
 		Grid.DupePassable[cell] = passable;
 		this.gameSolidInfo.Add(new SolidInfo(cell, solid));
 	}
 
-	// Token: 0x06006513 RID: 25875 RVA: 0x002CFEE4 File Offset: 0x002CE0E4
 	private unsafe Sim.GameDataUpdate* StepTheSim(float dt)
 	{
 		Sim.GameDataUpdate* result;
@@ -687,31 +643,26 @@ public class Game : KMonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06006514 RID: 25876 RVA: 0x000E6740 File Offset: 0x000E4940
 	public void AddSolidChangedFilter(int cell)
 	{
 		this.solidChangedFilter.Add(cell);
 	}
 
-	// Token: 0x06006515 RID: 25877 RVA: 0x000E674F File Offset: 0x000E494F
 	public void RemoveSolidChangedFilter(int cell)
 	{
 		this.solidChangedFilter.Remove(cell);
 	}
 
-	// Token: 0x06006516 RID: 25878 RVA: 0x000E675E File Offset: 0x000E495E
 	public void SetIsLoading()
 	{
 		this.isLoading = true;
 	}
 
-	// Token: 0x06006517 RID: 25879 RVA: 0x000E6767 File Offset: 0x000E4967
 	public bool IsLoading()
 	{
 		return this.isLoading;
 	}
 
-	// Token: 0x06006518 RID: 25880 RVA: 0x002D09E0 File Offset: 0x002CEBE0
 	private void ShowDebugCellInfo()
 	{
 		int mouseCell = DebugHandler.GetMouseCell();
@@ -730,7 +681,6 @@ public class Game : KMonoBehaviour
 		DebugText.Instance.Draw(text, Grid.CellToPosCCC(mouseCell, Grid.SceneLayer.Move), Color.white);
 	}
 
-	// Token: 0x06006519 RID: 25881 RVA: 0x000E676F File Offset: 0x000E496F
 	public void ForceSimStep()
 	{
 		DebugUtil.LogArgs(new object[]
@@ -740,7 +690,6 @@ public class Game : KMonoBehaviour
 		this.simDt = 0.2f;
 	}
 
-	// Token: 0x0600651A RID: 25882 RVA: 0x002D0A5C File Offset: 0x002CEC5C
 	private void Update()
 	{
 		if (this.isLoading)
@@ -767,7 +716,6 @@ public class Game : KMonoBehaviour
 		this.SimEveryTick(deltaTime);
 	}
 
-	// Token: 0x0600651B RID: 25883 RVA: 0x002D0AF4 File Offset: 0x002CECF4
 	private void SimEveryTick(float dt)
 	{
 		dt = Mathf.Min(dt, 0.2f);
@@ -795,7 +743,6 @@ public class Game : KMonoBehaviour
 		this.UnsafeSim200ms(0f);
 	}
 
-	// Token: 0x0600651C RID: 25884 RVA: 0x002D0BA0 File Offset: 0x002CEDA0
 	private unsafe void UnsafeSim200ms(float dt)
 	{
 		this.simActiveRegions.Clear();
@@ -831,13 +778,11 @@ public class Game : KMonoBehaviour
 		Pathfinding.Instance.UpdateNavGrids(false);
 	}
 
-	// Token: 0x0600651D RID: 25885 RVA: 0x000E678F File Offset: 0x000E498F
 	private void LateUpdateComponents()
 	{
 		this.UpdateOverlayScreen();
 	}
 
-	// Token: 0x0600651E RID: 25886 RVA: 0x002D0D0C File Offset: 0x002CEF0C
 	private void OnAddBuildingCellVisualizer(EntityCellVisualizer entity_cell_visualizer)
 	{
 		this.lastDrawnOverlayMode = default(HashedString);
@@ -851,7 +796,6 @@ public class Game : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600651F RID: 25887 RVA: 0x000E6797 File Offset: 0x000E4997
 	private void OnRemoveBuildingCellVisualizer(EntityCellVisualizer entity_cell_visualizer)
 	{
 		if (this.previewVisualizer == entity_cell_visualizer)
@@ -860,7 +804,6 @@ public class Game : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06006520 RID: 25888 RVA: 0x002D0D68 File Offset: 0x002CEF68
 	private void UpdateOverlayScreen()
 	{
 		if (OverlayScreen.Instance == null)
@@ -883,7 +826,6 @@ public class Game : KMonoBehaviour
 		this.lastDrawnOverlayMode = mode;
 	}
 
-	// Token: 0x06006521 RID: 25889 RVA: 0x000E67AE File Offset: 0x000E49AE
 	public void ForceOverlayUpdate(bool clearLastMode = false)
 	{
 		this.previousOverlayMode = OverlayModes.None.ID;
@@ -893,7 +835,6 @@ public class Game : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06006522 RID: 25890 RVA: 0x002D0E08 File Offset: 0x002CF008
 	private void LateUpdate()
 	{
 		if (this.OnSpawnComplete != null)
@@ -990,7 +931,6 @@ public class Game : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06006523 RID: 25891 RVA: 0x002D12F8 File Offset: 0x002CF4F8
 	private void UpdatePerformanceCapture()
 	{
 		if (this.IsPaused && SpeedControlScreen.Instance != null)
@@ -1071,7 +1011,6 @@ public class Game : KMonoBehaviour
 		App.Quit();
 	}
 
-	// Token: 0x06006524 RID: 25892 RVA: 0x002D1600 File Offset: 0x002CF800
 	public void Reset(GameSpawnData gsd, Vector2I world_offset)
 	{
 		using (new KProfiler.Region("World.Reset", null))
@@ -1090,7 +1029,6 @@ public class Game : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06006525 RID: 25893 RVA: 0x002D16D8 File Offset: 0x002CF8D8
 	private void OnApplicationQuit()
 	{
 		Game.quitting = true;
@@ -1103,7 +1041,6 @@ public class Game : KMonoBehaviour
 		Console.WriteLine("Game.OnApplicationQuit()");
 	}
 
-	// Token: 0x06006526 RID: 25894 RVA: 0x002D1730 File Offset: 0x002CF930
 	private void InitializeFXSpawners()
 	{
 		for (int i = 0; i < this.fxSpawnData.Length; i++)
@@ -1196,7 +1133,6 @@ public class Game : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06006527 RID: 25895 RVA: 0x002D1830 File Offset: 0x002CFA30
 	public void SpawnFX(SpawnFXHashes fx_id, int cell, float rotation)
 	{
 		Vector3 vector = Grid.CellToPosCBC(cell, Grid.SceneLayer.Front);
@@ -1206,19 +1142,16 @@ public class Game : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06006528 RID: 25896 RVA: 0x000E67C9 File Offset: 0x000E49C9
 	public void SpawnFX(SpawnFXHashes fx_id, Vector3 pos, float rotation)
 	{
 		this.fxSpawner[(int)fx_id](pos, rotation);
 	}
 
-	// Token: 0x06006529 RID: 25897 RVA: 0x000E67DE File Offset: 0x000E49DE
 	public static void SaveSettings(BinaryWriter writer)
 	{
 		Serializer.Serialize(new Game.Settings(Game.Instance), writer);
 	}
 
-	// Token: 0x0600652A RID: 25898 RVA: 0x002D1868 File Offset: 0x002CFA68
 	public static void LoadSettings(Deserializer deserializer)
 	{
 		Game.Settings settings = new Game.Settings();
@@ -1227,7 +1160,6 @@ public class Game : KMonoBehaviour
 		KleiMetrics.SetGameID(settings.gameID);
 	}
 
-	// Token: 0x0600652B RID: 25899 RVA: 0x002D18A0 File Offset: 0x002CFAA0
 	public void Save(BinaryWriter writer)
 	{
 		Game.GameSaveData gameSaveData = new Game.GameSaveData();
@@ -1257,7 +1189,6 @@ public class Game : KMonoBehaviour
 		Serializer.Serialize(gameSaveData, writer);
 	}
 
-	// Token: 0x0600652C RID: 25900 RVA: 0x002D19BC File Offset: 0x002CFBBC
 	public void Load(Deserializer deserializer)
 	{
 		Game.GameSaveData gameSaveData = new Game.GameSaveData();
@@ -1308,7 +1239,6 @@ public class Game : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600652D RID: 25901 RVA: 0x000E67F0 File Offset: 0x000E49F0
 	public void SetAutoSaveCallbacks(Game.SavingPreCB activatePreCB, Game.SavingActiveCB activateActiveCB, Game.SavingPostCB activatePostCB)
 	{
 		this.activatePreCB = activatePreCB;
@@ -1316,13 +1246,11 @@ public class Game : KMonoBehaviour
 		this.activatePostCB = activatePostCB;
 	}
 
-	// Token: 0x0600652E RID: 25902 RVA: 0x000E6807 File Offset: 0x000E4A07
 	public void StartDelayedInitialSave()
 	{
 		base.StartCoroutine(this.DelayedInitialSave());
 	}
 
-	// Token: 0x0600652F RID: 25903 RVA: 0x000E6816 File Offset: 0x000E4A16
 	private IEnumerator DelayedInitialSave()
 	{
 		int num;
@@ -1353,7 +1281,6 @@ public class Game : KMonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06006530 RID: 25904 RVA: 0x002D1B88 File Offset: 0x002CFD88
 	public void StartDelayedSave(string filename, bool isAutoSave = false, bool updateSavePointer = true)
 	{
 		if (this.activatePreCB != null)
@@ -1367,7 +1294,6 @@ public class Game : KMonoBehaviour
 		base.StartCoroutine(this.DelayedSave(filename, isAutoSave, updateSavePointer));
 	}
 
-	// Token: 0x06006531 RID: 25905 RVA: 0x000E681E File Offset: 0x000E4A1E
 	private IEnumerator DelayedSave(string filename, bool isAutoSave, bool updateSavePointer)
 	{
 		while (PlayerController.Instance.IsDragging())
@@ -1405,13 +1331,11 @@ public class Game : KMonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06006532 RID: 25906 RVA: 0x000E6842 File Offset: 0x000E4A42
 	public void StartDelayed(int tick_delay, System.Action action)
 	{
 		base.StartCoroutine(this.DelayedExecutor(tick_delay, action));
 	}
 
-	// Token: 0x06006533 RID: 25907 RVA: 0x000E6853 File Offset: 0x000E4A53
 	private IEnumerator DelayedExecutor(int tick_delay, System.Action action)
 	{
 		int num;
@@ -1424,7 +1348,6 @@ public class Game : KMonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06006534 RID: 25908 RVA: 0x002D1BF8 File Offset: 0x002CFDF8
 	private void LoadEventHashes()
 	{
 		foreach (object obj in Enum.GetValues(typeof(GameHashes)))
@@ -1444,7 +1367,6 @@ public class Game : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06006535 RID: 25909 RVA: 0x002D1D34 File Offset: 0x002CFF34
 	public void StopFE()
 	{
 		if (SteamUGCService.Instance)
@@ -1459,7 +1381,6 @@ public class Game : KMonoBehaviour
 		MainMenu.Instance.StopMainMenuMusic();
 	}
 
-	// Token: 0x06006536 RID: 25910 RVA: 0x000E6869 File Offset: 0x000E4A69
 	public void StartBE()
 	{
 		Resources.UnloadUnusedAssets();
@@ -1472,7 +1393,6 @@ public class Game : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x06006537 RID: 25911 RVA: 0x002D1D9C File Offset: 0x002CFF9C
 	public void StopBE()
 	{
 		if (SteamUGCService.Instance)
@@ -1508,26 +1428,21 @@ public class Game : KMonoBehaviour
 		Resources.UnloadUnusedAssets();
 	}
 
-	// Token: 0x06006538 RID: 25912 RVA: 0x000E68A5 File Offset: 0x000E4AA5
 	public void SetStatusItemOffset(Transform transform, Vector3 offset)
 	{
 		this.statusItemRenderer.SetOffset(transform, offset);
 	}
 
-	// Token: 0x06006539 RID: 25913 RVA: 0x000E68B4 File Offset: 0x000E4AB4
 	public void AddStatusItem(Transform transform, StatusItem status_item)
 	{
 		this.statusItemRenderer.Add(transform, status_item);
 	}
 
-	// Token: 0x0600653A RID: 25914 RVA: 0x000E68C3 File Offset: 0x000E4AC3
 	public void RemoveStatusItem(Transform transform, StatusItem status_item)
 	{
 		this.statusItemRenderer.Remove(transform, status_item);
 	}
 
-	// Token: 0x17000658 RID: 1624
-	// (get) Token: 0x0600653B RID: 25915 RVA: 0x000E68D2 File Offset: 0x000E4AD2
 	public float LastTimeWorkStarted
 	{
 		get
@@ -1536,18 +1451,15 @@ public class Game : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600653C RID: 25916 RVA: 0x000E68DA File Offset: 0x000E4ADA
 	public void StartedWork()
 	{
 		this.lastTimeWorkStarted = Time.time;
 	}
 
-	// Token: 0x0600653D RID: 25917 RVA: 0x000AA038 File Offset: 0x000A8238
 	private void SpawnOxygenBubbles(Vector3 position, float angle)
 	{
 	}
 
-	// Token: 0x0600653E RID: 25918 RVA: 0x000E68E7 File Offset: 0x000E4AE7
 	public void ManualReleaseHandle(HandleVector<Game.CallbackInfo>.Handle handle)
 	{
 		if (!handle.IsValid())
@@ -1558,13 +1470,11 @@ public class Game : KMonoBehaviour
 		this.callbackManager.Release(handle);
 	}
 
-	// Token: 0x0600653F RID: 25919 RVA: 0x000E6912 File Offset: 0x000E4B12
 	private bool IsManuallyReleasedHandle(HandleVector<Game.CallbackInfo>.Handle handle)
 	{
 		return !this.callbackManager.IsVersionValid(handle) && this.callbackManagerManuallyReleasedHandles.Contains(handle.index);
 	}
 
-	// Token: 0x06006540 RID: 25920 RVA: 0x000E6939 File Offset: 0x000E4B39
 	[ContextMenu("Print")]
 	private void Print()
 	{
@@ -1572,7 +1482,6 @@ public class Game : KMonoBehaviour
 		global::Debug.Log("This is a debug log test");
 	}
 
-	// Token: 0x06006541 RID: 25921 RVA: 0x002D1EEC File Offset: 0x002D00EC
 	private void DestroyInstances()
 	{
 		KMonoBehaviour.lastGameObject = null;
@@ -1736,7 +1645,6 @@ public class Game : KMonoBehaviour
 		(KComponentSpawn.instance.comps as GameComps).Clear();
 	}
 
-	// Token: 0x06006542 RID: 25922 RVA: 0x002D2234 File Offset: 0x002D0434
 	public static bool IsDlcActiveForCurrentSave(string dlcId)
 	{
 		if (Game.Instance == null)
@@ -1747,7 +1655,6 @@ public class Game : KMonoBehaviour
 		return dlcId == "" || dlcId == null || SaveLoader.Instance.GameInfo.dlcIds.Contains(dlcId);
 	}
 
-	// Token: 0x06006543 RID: 25923 RVA: 0x000E694F File Offset: 0x000E4B4F
 	public static bool IsCorrectDlcActiveForCurrentSave(IHasDlcRestrictions restrictions)
 	{
 		if (Game.Instance == null)
@@ -1758,7 +1665,6 @@ public class Game : KMonoBehaviour
 		return Game.IsAllDlcActiveForCurrentSave(restrictions.GetRequiredDlcIds()) && !Game.IsAnyDlcActiveForCurrentSave(restrictions.GetForbiddenDlcIds());
 	}
 
-	// Token: 0x06006544 RID: 25924 RVA: 0x002D2284 File Offset: 0x002D0484
 	private static bool IsAllDlcActiveForCurrentSave(string[] dlcIds)
 	{
 		if (dlcIds == null || dlcIds.Length == 0)
@@ -1775,7 +1681,6 @@ public class Game : KMonoBehaviour
 		return true;
 	}
 
-	// Token: 0x06006545 RID: 25925 RVA: 0x002D22C8 File Offset: 0x002D04C8
 	private static bool IsAnyDlcActiveForCurrentSave(string[] dlcIds)
 	{
 		if (dlcIds == null || dlcIds.Length == 0)
@@ -1792,385 +1697,268 @@ public class Game : KMonoBehaviour
 		return false;
 	}
 
-	// Token: 0x040048AB RID: 18603
 	private static readonly Thread MainThread = Thread.CurrentThread;
 
-	// Token: 0x040048AC RID: 18604
 	private static readonly string NextUniqueIDKey = "NextUniqueID";
 
-	// Token: 0x040048AD RID: 18605
 	public static string clusterId = null;
 
-	// Token: 0x040048AE RID: 18606
 	private PlayerController playerController;
 
-	// Token: 0x040048AF RID: 18607
 	private CameraController cameraController;
 
-	// Token: 0x040048B0 RID: 18608
 	public Action<Game.GameSaveData> OnSave;
 
-	// Token: 0x040048B1 RID: 18609
 	public Action<Game.GameSaveData> OnLoad;
 
-	// Token: 0x040048B2 RID: 18610
 	public System.Action OnSpawnComplete;
 
-	// Token: 0x040048B3 RID: 18611
 	[NonSerialized]
 	public bool baseAlreadyCreated;
 
-	// Token: 0x040048B4 RID: 18612
 	[NonSerialized]
 	public bool autoPrioritizeRoles;
 
-	// Token: 0x040048B5 RID: 18613
 	[NonSerialized]
 	public bool advancedPersonalPriorities;
 
-	// Token: 0x040048B6 RID: 18614
 	public Game.SavedInfo savedInfo;
 
-	// Token: 0x040048B7 RID: 18615
 	public static bool quitting = false;
 
-	// Token: 0x040048B9 RID: 18617
 	public AssignmentManager assignmentManager;
 
-	// Token: 0x040048BA RID: 18618
 	public GameObject playerPrefab;
 
-	// Token: 0x040048BB RID: 18619
 	public GameObject screenManagerPrefab;
 
-	// Token: 0x040048BC RID: 18620
 	public GameObject cameraControllerPrefab;
 
-	// Token: 0x040048BE RID: 18622
 	private static Camera m_CachedCamera = null;
 
-	// Token: 0x040048BF RID: 18623
 	public GameObject tempIntroScreenPrefab;
 
-	// Token: 0x040048C0 RID: 18624
 	public static int BlockSelectionLayerMask;
 
-	// Token: 0x040048C1 RID: 18625
 	public static int PickupableLayer;
 
-	// Token: 0x040048C2 RID: 18626
 	public static BrainScheduler BrainScheduler;
 
-	// Token: 0x040048C3 RID: 18627
 	public Element VisualTunerElement;
 
-	// Token: 0x040048C4 RID: 18628
 	public float currentFallbackSunlightIntensity;
 
-	// Token: 0x040048C5 RID: 18629
 	public RoomProber roomProber;
 
-	// Token: 0x040048C6 RID: 18630
 	public SpaceScannerNetworkManager spaceScannerNetworkManager;
 
-	// Token: 0x040048C7 RID: 18631
 	public FetchManager fetchManager;
 
-	// Token: 0x040048C8 RID: 18632
 	public EdiblesManager ediblesManager;
 
-	// Token: 0x040048C9 RID: 18633
 	public SpacecraftManager spacecraftManager;
 
-	// Token: 0x040048CA RID: 18634
 	public UserMenu userMenu;
 
-	// Token: 0x040048CB RID: 18635
 	public Unlocks unlocks;
 
-	// Token: 0x040048CC RID: 18636
 	public Timelapser timelapser;
 
-	// Token: 0x040048CD RID: 18637
 	private bool sandboxModeActive;
 
-	// Token: 0x040048CE RID: 18638
 	public HandleVector<Game.CallbackInfo> callbackManager = new HandleVector<Game.CallbackInfo>(256);
 
-	// Token: 0x040048CF RID: 18639
 	public List<int> callbackManagerManuallyReleasedHandles = new List<int>();
 
-	// Token: 0x040048D0 RID: 18640
 	public Game.ComplexCallbackHandleVector<int> simComponentCallbackManager = new Game.ComplexCallbackHandleVector<int>(256);
 
-	// Token: 0x040048D1 RID: 18641
 	public Game.ComplexCallbackHandleVector<Sim.MassConsumedCallback> massConsumedCallbackManager = new Game.ComplexCallbackHandleVector<Sim.MassConsumedCallback>(64);
 
-	// Token: 0x040048D2 RID: 18642
 	public Game.ComplexCallbackHandleVector<Sim.MassEmittedCallback> massEmitCallbackManager = new Game.ComplexCallbackHandleVector<Sim.MassEmittedCallback>(64);
 
-	// Token: 0x040048D3 RID: 18643
 	public Game.ComplexCallbackHandleVector<Sim.DiseaseConsumptionCallback> diseaseConsumptionCallbackManager = new Game.ComplexCallbackHandleVector<Sim.DiseaseConsumptionCallback>(64);
 
-	// Token: 0x040048D4 RID: 18644
 	public Game.ComplexCallbackHandleVector<Sim.ConsumedRadiationCallback> radiationConsumedCallbackManager = new Game.ComplexCallbackHandleVector<Sim.ConsumedRadiationCallback>(256);
 
-	// Token: 0x040048D5 RID: 18645
 	[NonSerialized]
 	public Player LocalPlayer;
 
-	// Token: 0x040048D6 RID: 18646
 	[SerializeField]
 	public TextAsset maleNamesFile;
 
-	// Token: 0x040048D7 RID: 18647
 	[SerializeField]
 	public TextAsset femaleNamesFile;
 
-	// Token: 0x040048D8 RID: 18648
 	[NonSerialized]
 	public World world;
 
-	// Token: 0x040048D9 RID: 18649
 	[NonSerialized]
 	public CircuitManager circuitManager;
 
-	// Token: 0x040048DA RID: 18650
 	[NonSerialized]
 	public EnergySim energySim;
 
-	// Token: 0x040048DB RID: 18651
 	[NonSerialized]
 	public LogicCircuitManager logicCircuitManager;
 
-	// Token: 0x040048DC RID: 18652
 	private GameScreenManager screenMgr;
 
-	// Token: 0x040048DD RID: 18653
 	public UtilityNetworkManager<FlowUtilityNetwork, Vent> gasConduitSystem;
 
-	// Token: 0x040048DE RID: 18654
 	public UtilityNetworkManager<FlowUtilityNetwork, Vent> liquidConduitSystem;
 
-	// Token: 0x040048DF RID: 18655
 	public UtilityNetworkManager<ElectricalUtilityNetwork, Wire> electricalConduitSystem;
 
-	// Token: 0x040048E0 RID: 18656
 	public UtilityNetworkManager<LogicCircuitNetwork, LogicWire> logicCircuitSystem;
 
-	// Token: 0x040048E1 RID: 18657
 	public UtilityNetworkTubesManager travelTubeSystem;
 
-	// Token: 0x040048E2 RID: 18658
 	public UtilityNetworkManager<FlowUtilityNetwork, SolidConduit> solidConduitSystem;
 
-	// Token: 0x040048E3 RID: 18659
 	public ConduitFlow gasConduitFlow;
 
-	// Token: 0x040048E4 RID: 18660
 	public ConduitFlow liquidConduitFlow;
 
-	// Token: 0x040048E5 RID: 18661
 	public SolidConduitFlow solidConduitFlow;
 
-	// Token: 0x040048E6 RID: 18662
 	public Accumulators accumulators;
 
-	// Token: 0x040048E7 RID: 18663
 	public PlantElementAbsorbers plantElementAbsorbers;
 
-	// Token: 0x040048E8 RID: 18664
 	public Game.TemperatureOverlayModes temperatureOverlayMode;
 
-	// Token: 0x040048E9 RID: 18665
 	public bool showExpandedTemperatures;
 
-	// Token: 0x040048EA RID: 18666
 	public List<Tag> tileOverlayFilters = new List<Tag>();
 
-	// Token: 0x040048EB RID: 18667
 	public bool showGasConduitDisease;
 
-	// Token: 0x040048EC RID: 18668
 	public bool showLiquidConduitDisease;
 
-	// Token: 0x040048ED RID: 18669
 	public ConduitFlowVisualizer gasFlowVisualizer;
 
-	// Token: 0x040048EE RID: 18670
 	public ConduitFlowVisualizer liquidFlowVisualizer;
 
-	// Token: 0x040048EF RID: 18671
 	public SolidConduitFlowVisualizer solidFlowVisualizer;
 
-	// Token: 0x040048F0 RID: 18672
 	public ConduitTemperatureManager conduitTemperatureManager;
 
-	// Token: 0x040048F1 RID: 18673
 	public ConduitDiseaseManager conduitDiseaseManager;
 
-	// Token: 0x040048F2 RID: 18674
 	public MingleCellTracker mingleCellTracker;
 
-	// Token: 0x040048F3 RID: 18675
 	private int simSubTick;
 
-	// Token: 0x040048F4 RID: 18676
 	private bool hasFirstSimTickRun;
 
-	// Token: 0x040048F5 RID: 18677
 	private float simDt;
 
-	// Token: 0x040048F6 RID: 18678
 	public string dateGenerated;
 
-	// Token: 0x040048F7 RID: 18679
 	public List<uint> changelistsPlayedOn;
 
-	// Token: 0x040048F8 RID: 18680
 	[SerializeField]
 	public Game.ConduitVisInfo liquidConduitVisInfo;
 
-	// Token: 0x040048F9 RID: 18681
 	[SerializeField]
 	public Game.ConduitVisInfo gasConduitVisInfo;
 
-	// Token: 0x040048FA RID: 18682
 	[SerializeField]
 	public Game.ConduitVisInfo solidConduitVisInfo;
 
-	// Token: 0x040048FB RID: 18683
 	[SerializeField]
 	private Material liquidFlowMaterial;
 
-	// Token: 0x040048FC RID: 18684
 	[SerializeField]
 	private Material gasFlowMaterial;
 
-	// Token: 0x040048FD RID: 18685
 	[SerializeField]
 	private Color flowColour;
 
-	// Token: 0x040048FE RID: 18686
 	private Vector3 gasFlowPos;
 
-	// Token: 0x040048FF RID: 18687
 	private Vector3 liquidFlowPos;
 
-	// Token: 0x04004900 RID: 18688
 	private Vector3 solidFlowPos;
 
-	// Token: 0x04004901 RID: 18689
 	public bool drawStatusItems = true;
 
-	// Token: 0x04004902 RID: 18690
 	private List<SolidInfo> solidInfo = new List<SolidInfo>();
 
-	// Token: 0x04004903 RID: 18691
 	private List<Klei.CallbackInfo> callbackInfo = new List<Klei.CallbackInfo>();
 
-	// Token: 0x04004904 RID: 18692
 	private List<SolidInfo> gameSolidInfo = new List<SolidInfo>();
 
-	// Token: 0x04004905 RID: 18693
 	private bool IsPaused;
 
-	// Token: 0x04004906 RID: 18694
 	private HashSet<int> solidChangedFilter = new HashSet<int>();
 
-	// Token: 0x04004907 RID: 18695
 	private HashedString lastDrawnOverlayMode;
 
-	// Token: 0x04004908 RID: 18696
 	private EntityCellVisualizer previewVisualizer;
 
-	// Token: 0x0400490B RID: 18699
 	public SafetyConditions safetyConditions = new SafetyConditions();
 
-	// Token: 0x0400490C RID: 18700
 	public SimData simData = new SimData();
 
-	// Token: 0x0400490D RID: 18701
 	[MyCmpGet]
 	private GameScenePartitioner gameScenePartitioner;
 
-	// Token: 0x0400490E RID: 18702
 	private bool gameStarted;
 
-	// Token: 0x0400490F RID: 18703
 	private static readonly EventSystem.IntraObjectHandler<Game> MarkStatusItemRendererDirtyDelegate = new EventSystem.IntraObjectHandler<Game>(delegate(Game component, object data)
 	{
 		component.MarkStatusItemRendererDirty(data);
 	});
 
-	// Token: 0x04004910 RID: 18704
 	private static readonly EventSystem.IntraObjectHandler<Game> ActiveWorldChangedDelegate = new EventSystem.IntraObjectHandler<Game>(delegate(Game component, object data)
 	{
 		component.ForceOverlayUpdate(true);
 	});
 
-	// Token: 0x04004911 RID: 18705
 	private ushort[] activeFX;
 
-	// Token: 0x04004912 RID: 18706
 	public bool debugWasUsed;
 
-	// Token: 0x04004913 RID: 18707
 	private bool isLoading;
 
-	// Token: 0x04004914 RID: 18708
 	private List<Game.SimActiveRegion> simActiveRegions = new List<Game.SimActiveRegion>();
 
-	// Token: 0x04004915 RID: 18709
 	private HashedString previousOverlayMode = OverlayModes.None.ID;
 
-	// Token: 0x04004916 RID: 18710
 	private float previousGasConduitFlowDiscreteLerpPercent = -1f;
 
-	// Token: 0x04004917 RID: 18711
 	private float previousLiquidConduitFlowDiscreteLerpPercent = -1f;
 
-	// Token: 0x04004918 RID: 18712
 	private float previousSolidConduitFlowDiscreteLerpPercent = -1f;
 
-	// Token: 0x04004919 RID: 18713
 	[SerializeField]
 	private Game.SpawnPoolData[] fxSpawnData;
 
-	// Token: 0x0400491A RID: 18714
 	private Dictionary<int, Action<Vector3, float>> fxSpawner = new Dictionary<int, Action<Vector3, float>>();
 
-	// Token: 0x0400491B RID: 18715
 	private Dictionary<int, GameObjectPool> fxPools = new Dictionary<int, GameObjectPool>();
 
-	// Token: 0x0400491C RID: 18716
 	private Game.SavingPreCB activatePreCB;
 
-	// Token: 0x0400491D RID: 18717
 	private Game.SavingActiveCB activateActiveCB;
 
-	// Token: 0x0400491E RID: 18718
 	private Game.SavingPostCB activatePostCB;
 
-	// Token: 0x0400491F RID: 18719
 	[SerializeField]
 	public Game.UIColours uiColours = new Game.UIColours();
 
-	// Token: 0x04004920 RID: 18720
 	private float lastTimeWorkStarted = float.NegativeInfinity;
 
-	// Token: 0x02001343 RID: 4931
 	[Serializable]
 	public struct SavedInfo
 	{
-		// Token: 0x06006549 RID: 25929 RVA: 0x000E6994 File Offset: 0x000E4B94
 		[OnDeserialized]
 		private void OnDeserialized()
 		{
 			this.InitializeEmptyVariables();
 		}
 
-		// Token: 0x0600654A RID: 25930 RVA: 0x000E699C File Offset: 0x000E4B9C
 		public void InitializeEmptyVariables()
 		{
 			if (this.creaturePoopAmount == null)
@@ -2183,46 +1971,34 @@ public class Game : KMonoBehaviour
 			}
 		}
 
-		// Token: 0x04004921 RID: 18721
 		public bool discoveredSurface;
 
-		// Token: 0x04004922 RID: 18722
 		public bool discoveredOilField;
 
-		// Token: 0x04004923 RID: 18723
 		public bool curedDisease;
 
-		// Token: 0x04004924 RID: 18724
 		public bool blockedCometWithBunkerDoor;
 
-		// Token: 0x04004925 RID: 18725
 		public Dictionary<Tag, float> creaturePoopAmount;
 
-		// Token: 0x04004926 RID: 18726
 		public Dictionary<Tag, float> powerCreatedbyGeneratorType;
 	}
 
-	// Token: 0x02001344 RID: 4932
 	public struct CallbackInfo
 	{
-		// Token: 0x0600654B RID: 25931 RVA: 0x000E69C4 File Offset: 0x000E4BC4
 		public CallbackInfo(System.Action cb, bool manually_release = false)
 		{
 			this.cb = cb;
 			this.manuallyRelease = manually_release;
 		}
 
-		// Token: 0x04004927 RID: 18727
 		public System.Action cb;
 
-		// Token: 0x04004928 RID: 18728
 		public bool manuallyRelease;
 	}
 
-	// Token: 0x02001345 RID: 4933
 	public struct ComplexCallbackInfo<DataType>
 	{
-		// Token: 0x0600654C RID: 25932 RVA: 0x000E69D4 File Offset: 0x000E4BD4
 		public ComplexCallbackInfo(Action<DataType, object> cb, object callback_data, string debug_info)
 		{
 			this.cb = cb;
@@ -2230,32 +2006,25 @@ public class Game : KMonoBehaviour
 			this.callbackData = callback_data;
 		}
 
-		// Token: 0x04004929 RID: 18729
 		public Action<DataType, object> cb;
 
-		// Token: 0x0400492A RID: 18730
 		public object callbackData;
 
-		// Token: 0x0400492B RID: 18731
 		public string debugInfo;
 	}
 
-	// Token: 0x02001346 RID: 4934
 	public class ComplexCallbackHandleVector<DataType>
 	{
-		// Token: 0x0600654D RID: 25933 RVA: 0x000E69EB File Offset: 0x000E4BEB
 		public ComplexCallbackHandleVector(int initial_size)
 		{
 			this.baseMgr = new HandleVector<Game.ComplexCallbackInfo<DataType>>(initial_size);
 		}
 
-		// Token: 0x0600654E RID: 25934 RVA: 0x000E6A0A File Offset: 0x000E4C0A
 		public HandleVector<Game.ComplexCallbackInfo<DataType>>.Handle Add(Action<DataType, object> cb, object callback_data, string debug_info)
 		{
 			return this.baseMgr.Add(new Game.ComplexCallbackInfo<DataType>(cb, callback_data, debug_info));
 		}
 
-		// Token: 0x0600654F RID: 25935 RVA: 0x002D24A0 File Offset: 0x002D06A0
 		public Game.ComplexCallbackInfo<DataType> GetItem(HandleVector<Game.ComplexCallbackInfo<DataType>>.Handle handle)
 		{
 			Game.ComplexCallbackInfo<DataType> item;
@@ -2282,7 +2051,6 @@ public class Game : KMonoBehaviour
 			return item;
 		}
 
-		// Token: 0x06006550 RID: 25936 RVA: 0x002D2510 File Offset: 0x002D0710
 		public Game.ComplexCallbackInfo<DataType> Release(HandleVector<Game.ComplexCallbackInfo<DataType>>.Handle handle, string release_info)
 		{
 			Game.ComplexCallbackInfo<DataType> result;
@@ -2313,79 +2081,56 @@ public class Game : KMonoBehaviour
 			return result;
 		}
 
-		// Token: 0x06006551 RID: 25937 RVA: 0x000E6A1F File Offset: 0x000E4C1F
 		public void Clear()
 		{
 			this.baseMgr.Clear();
 		}
 
-		// Token: 0x06006552 RID: 25938 RVA: 0x000E6A2C File Offset: 0x000E4C2C
 		public bool IsVersionValid(HandleVector<Game.ComplexCallbackInfo<DataType>>.Handle handle)
 		{
 			return this.baseMgr.IsVersionValid(handle);
 		}
 
-		// Token: 0x0400492C RID: 18732
 		private HandleVector<Game.ComplexCallbackInfo<DataType>> baseMgr;
 
-		// Token: 0x0400492D RID: 18733
 		private Dictionary<int, string> releaseInfo = new Dictionary<int, string>();
 	}
 
-	// Token: 0x02001347 RID: 4935
 	public enum TemperatureOverlayModes
 	{
-		// Token: 0x0400492F RID: 18735
 		AbsoluteTemperature,
-		// Token: 0x04004930 RID: 18736
 		AdaptiveTemperature,
-		// Token: 0x04004931 RID: 18737
 		HeatFlow,
-		// Token: 0x04004932 RID: 18738
 		StateChange,
-		// Token: 0x04004933 RID: 18739
 		RelativeTemperature
 	}
 
-	// Token: 0x02001348 RID: 4936
 	[Serializable]
 	public class ConduitVisInfo
 	{
-		// Token: 0x04004934 RID: 18740
 		public GameObject prefab;
 
-		// Token: 0x04004935 RID: 18741
 		[Header("Main View")]
 		public Color32 tint;
 
-		// Token: 0x04004936 RID: 18742
 		public Color32 insulatedTint;
 
-		// Token: 0x04004937 RID: 18743
 		public Color32 radiantTint;
 
-		// Token: 0x04004938 RID: 18744
 		[Header("Overlay")]
 		public string overlayTintName;
 
-		// Token: 0x04004939 RID: 18745
 		public string overlayInsulatedTintName;
 
-		// Token: 0x0400493A RID: 18746
 		public string overlayRadiantTintName;
 
-		// Token: 0x0400493B RID: 18747
 		public Vector2 overlayMassScaleRange = new Vector2f(1f, 1000f);
 
-		// Token: 0x0400493C RID: 18748
 		public Vector2 overlayMassScaleValues = new Vector2f(0.1f, 1f);
 	}
 
-	// Token: 0x02001349 RID: 4937
 	private class WorldRegion
 	{
-		// Token: 0x17000659 RID: 1625
-		// (get) Token: 0x06006554 RID: 25940 RVA: 0x000E6A76 File Offset: 0x000E4C76
 		public Vector2I regionMin
 		{
 			get
@@ -2394,8 +2139,6 @@ public class Game : KMonoBehaviour
 			}
 		}
 
-		// Token: 0x1700065A RID: 1626
-		// (get) Token: 0x06006555 RID: 25941 RVA: 0x000E6A7E File Offset: 0x000E4C7E
 		public Vector2I regionMax
 		{
 			get
@@ -2404,7 +2147,6 @@ public class Game : KMonoBehaviour
 			}
 		}
 
-		// Token: 0x06006556 RID: 25942 RVA: 0x002D25A4 File Offset: 0x002D07A4
 		public void UpdateGameActiveRegion(int x0, int y0, int x1, int y1)
 		{
 			this.min.x = Mathf.Max(0, x0);
@@ -2413,27 +2155,21 @@ public class Game : KMonoBehaviour
 			this.max.y = Mathf.Max(y1, this.regionMax.y);
 		}
 
-		// Token: 0x06006557 RID: 25943 RVA: 0x000E6A86 File Offset: 0x000E4C86
 		public void UpdateGameActiveRegion(Vector2I simActiveRegionMin, Vector2I simActiveRegionMax)
 		{
 			this.min = simActiveRegionMin;
 			this.max = simActiveRegionMax;
 		}
 
-		// Token: 0x0400493D RID: 18749
 		private Vector2I min;
 
-		// Token: 0x0400493E RID: 18750
 		private Vector2I max;
 
-		// Token: 0x0400493F RID: 18751
 		public bool isActive;
 	}
 
-	// Token: 0x0200134A RID: 4938
 	public class SimActiveRegion
 	{
-		// Token: 0x06006559 RID: 25945 RVA: 0x000E6A96 File Offset: 0x000E4C96
 		public SimActiveRegion()
 		{
 			this.region = default(Pair<Vector2I, Vector2I>);
@@ -2441,180 +2177,128 @@ public class Game : KMonoBehaviour
 			this.currentCosmicRadiationIntensity = (float)FIXEDTRAITS.COSMICRADIATION.DEFAULT_VALUE;
 		}
 
-		// Token: 0x04004940 RID: 18752
 		public Pair<Vector2I, Vector2I> region;
 
-		// Token: 0x04004941 RID: 18753
 		public float currentSunlightIntensity;
 
-		// Token: 0x04004942 RID: 18754
 		public float currentCosmicRadiationIntensity;
 	}
 
-	// Token: 0x0200134B RID: 4939
 	private enum SpawnRotationConfig
 	{
-		// Token: 0x04004944 RID: 18756
 		Normal,
-		// Token: 0x04004945 RID: 18757
 		StringName
 	}
 
-	// Token: 0x0200134C RID: 4940
 	[Serializable]
 	private struct SpawnRotationData
 	{
-		// Token: 0x04004946 RID: 18758
 		public string animName;
 
-		// Token: 0x04004947 RID: 18759
 		public bool flip;
 	}
 
-	// Token: 0x0200134D RID: 4941
 	[Serializable]
 	private struct SpawnPoolData
 	{
-		// Token: 0x04004948 RID: 18760
 		[HashedEnum]
 		public SpawnFXHashes id;
 
-		// Token: 0x04004949 RID: 18761
 		public int initialCount;
 
-		// Token: 0x0400494A RID: 18762
 		public Color32 colour;
 
-		// Token: 0x0400494B RID: 18763
 		public GameObject fxPrefab;
 
-		// Token: 0x0400494C RID: 18764
 		public string initialAnim;
 
-		// Token: 0x0400494D RID: 18765
 		public Vector3 spawnOffset;
 
-		// Token: 0x0400494E RID: 18766
 		public Vector2 spawnRandomOffset;
 
-		// Token: 0x0400494F RID: 18767
 		public Game.SpawnRotationConfig rotationConfig;
 
-		// Token: 0x04004950 RID: 18768
 		public Game.SpawnRotationData[] rotationData;
 	}
 
-	// Token: 0x0200134E RID: 4942
 	[Serializable]
 	private class Settings
 	{
-		// Token: 0x0600655A RID: 25946 RVA: 0x000E6AC2 File Offset: 0x000E4CC2
 		public Settings(Game game)
 		{
 			this.nextUniqueID = KPrefabID.NextUniqueID;
 			this.gameID = KleiMetrics.GameID();
 		}
 
-		// Token: 0x0600655B RID: 25947 RVA: 0x000AA024 File Offset: 0x000A8224
 		public Settings()
 		{
 		}
 
-		// Token: 0x04004951 RID: 18769
 		public int nextUniqueID;
 
-		// Token: 0x04004952 RID: 18770
 		public int gameID;
 	}
 
-	// Token: 0x0200134F RID: 4943
 	public class GameSaveData
 	{
-		// Token: 0x04004953 RID: 18771
 		public ConduitFlow gasConduitFlow;
 
-		// Token: 0x04004954 RID: 18772
 		public ConduitFlow liquidConduitFlow;
 
-		// Token: 0x04004955 RID: 18773
 		public FallingWater fallingWater;
 
-		// Token: 0x04004956 RID: 18774
 		public UnstableGroundManager unstableGround;
 
-		// Token: 0x04004957 RID: 18775
 		public WorldDetailSave worldDetail;
 
-		// Token: 0x04004958 RID: 18776
 		public CustomGameSettings customGameSettings;
 
-		// Token: 0x04004959 RID: 18777
 		public StoryManager storySetings;
 
-		// Token: 0x0400495A RID: 18778
 		public SpaceScannerNetworkManager spaceScannerNetworkManager;
 
-		// Token: 0x0400495B RID: 18779
 		public bool debugWasUsed;
 
-		// Token: 0x0400495C RID: 18780
 		public bool autoPrioritizeRoles;
 
-		// Token: 0x0400495D RID: 18781
 		public bool advancedPersonalPriorities;
 
-		// Token: 0x0400495E RID: 18782
 		public Game.SavedInfo savedInfo;
 
-		// Token: 0x0400495F RID: 18783
 		public string dateGenerated;
 
-		// Token: 0x04004960 RID: 18784
 		public List<uint> changelistsPlayedOn;
 	}
 
-	// Token: 0x02001350 RID: 4944
-	// (Invoke) Token: 0x0600655E RID: 25950
+Invoke) Token: 0x0600655E RID: 25950
 	public delegate void CansaveCB();
 
-	// Token: 0x02001351 RID: 4945
-	// (Invoke) Token: 0x06006562 RID: 25954
+Invoke) Token: 0x06006562 RID: 25954
 	public delegate void SavingPreCB(Game.CansaveCB cb);
 
-	// Token: 0x02001352 RID: 4946
-	// (Invoke) Token: 0x06006566 RID: 25958
+Invoke) Token: 0x06006566 RID: 25958
 	public delegate void SavingActiveCB();
 
-	// Token: 0x02001353 RID: 4947
-	// (Invoke) Token: 0x0600656A RID: 25962
+Invoke) Token: 0x0600656A RID: 25962
 	public delegate void SavingPostCB();
 
-	// Token: 0x02001354 RID: 4948
 	[Serializable]
 	public struct LocationColours
 	{
-		// Token: 0x04004961 RID: 18785
 		public Color unreachable;
 
-		// Token: 0x04004962 RID: 18786
 		public Color invalidLocation;
 
-		// Token: 0x04004963 RID: 18787
 		public Color validLocation;
 
-		// Token: 0x04004964 RID: 18788
 		public Color requiresRole;
 
-		// Token: 0x04004965 RID: 18789
 		public Color unreachable_requiresRole;
 	}
 
-	// Token: 0x02001355 RID: 4949
 	[Serializable]
 	public class UIColours
 	{
-		// Token: 0x1700065B RID: 1627
-		// (get) Token: 0x0600656D RID: 25965 RVA: 0x000E6AE0 File Offset: 0x000E4CE0
 		public Game.LocationColours Dig
 		{
 			get
@@ -2623,8 +2307,6 @@ public class Game : KMonoBehaviour
 			}
 		}
 
-		// Token: 0x1700065C RID: 1628
-		// (get) Token: 0x0600656E RID: 25966 RVA: 0x000E6AE8 File Offset: 0x000E4CE8
 		public Game.LocationColours Build
 		{
 			get
@@ -2633,11 +2315,9 @@ public class Game : KMonoBehaviour
 			}
 		}
 
-		// Token: 0x04004966 RID: 18790
 		[SerializeField]
 		private Game.LocationColours digColours;
 
-		// Token: 0x04004967 RID: 18791
 		[SerializeField]
 		private Game.LocationColours buildColours;
 	}

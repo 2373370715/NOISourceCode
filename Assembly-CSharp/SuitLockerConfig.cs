@@ -2,11 +2,7 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005DA RID: 1498
-public class SuitLockerConfig : IBuildingConfig
 {
-	// Token: 0x06001A34 RID: 6708 RVA: 0x001B2788 File Offset: 0x001B0988
-	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "SuitLocker";
 		int width = 1;
@@ -30,9 +26,7 @@ public class SuitLockerConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001A35 RID: 6709 RVA: 0x001B280C File Offset: 0x001B0A0C
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
-	{
 		go.AddOrGet<SuitLocker>().OutfitTags = new Tag[]
 		{
 			GameTags.AtmoSuit
@@ -53,12 +47,8 @@ public class SuitLockerConfig : IBuildingConfig
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x06001A36 RID: 6710 RVA: 0x000B0E6A File Offset: 0x000AF06A
 	public override void DoPostConfigureComplete(GameObject go)
-	{
 		SymbolOverrideControllerUtil.AddToPrefab(go);
 	}
 
-	// Token: 0x040010F8 RID: 4344
 	public const string ID = "SuitLocker";
-}

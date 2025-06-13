@@ -1,16 +1,13 @@
 ﻿using System;
 
-// Token: 0x02001696 RID: 5782
 [SkipSaveFileSerialization]
 public class Claustrophobic : StateMachineComponent<Claustrophobic.StatesInstance>
 {
-	// Token: 0x0600777C RID: 30588 RVA: 0x000F30F3 File Offset: 0x000F12F3
 	protected override void OnSpawn()
 	{
 		base.smi.StartSM();
 	}
 
-	// Token: 0x0600777D RID: 30589 RVA: 0x0031BBE4 File Offset: 0x00319DE4
 	protected bool IsUncomfortable()
 	{
 		int num = 4;
@@ -30,19 +27,15 @@ public class Claustrophobic : StateMachineComponent<Claustrophobic.StatesInstanc
 		return false;
 	}
 
-	// Token: 0x02001697 RID: 5783
 	public class StatesInstance : GameStateMachine<Claustrophobic.States, Claustrophobic.StatesInstance, Claustrophobic, object>.GameInstance
 	{
-		// Token: 0x0600777F RID: 30591 RVA: 0x000F3108 File Offset: 0x000F1308
 		public StatesInstance(Claustrophobic master) : base(master)
 		{
 		}
 	}
 
-	// Token: 0x02001698 RID: 5784
 	public class States : GameStateMachine<Claustrophobic.States, Claustrophobic.StatesInstance, Claustrophobic>
 	{
-		// Token: 0x06007780 RID: 30592 RVA: 0x0031BC70 File Offset: 0x00319E70
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.satisfied;
@@ -59,10 +52,8 @@ public class Claustrophobic : StateMachineComponent<Claustrophobic.StatesInstanc
 			this.satisfied.DoNothing();
 		}
 
-		// Token: 0x04005A04 RID: 23044
 		public GameStateMachine<Claustrophobic.States, Claustrophobic.StatesInstance, Claustrophobic, object>.State satisfied;
 
-		// Token: 0x04005A05 RID: 23045
 		public GameStateMachine<Claustrophobic.States, Claustrophobic.StatesInstance, Claustrophobic, object>.State suffering;
 	}
 }

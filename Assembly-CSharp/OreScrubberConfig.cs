@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020004E9 RID: 1257
 public class OreScrubberConfig : IBuildingConfig
 {
-	// Token: 0x0600159C RID: 5532 RVA: 0x0019F810 File Offset: 0x0019DA10
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "OreScrubber";
@@ -35,7 +33,6 @@ public class OreScrubberConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600159D RID: 5533 RVA: 0x0019F898 File Offset: 0x0019DA98
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
@@ -61,21 +58,16 @@ public class OreScrubberConfig : IBuildingConfig
 		go.AddOrGet<Storage>().SetDefaultStoredItemModifiers(Storage.StandardSealedStorage);
 	}
 
-	// Token: 0x0600159E RID: 5534 RVA: 0x000B0AEB File Offset: 0x000AECEB
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.GetComponent<RequireInputs>().requireConduitHasMass = false;
 	}
 
-	// Token: 0x04000EE3 RID: 3811
 	public const string ID = "OreScrubber";
 
-	// Token: 0x04000EE4 RID: 3812
 	private const float MASS_PER_USE = 0.07f;
 
-	// Token: 0x04000EE5 RID: 3813
 	private static readonly int DISEASE_REMOVAL_COUNT = WashBasinConfig.DISEASE_REMOVAL_COUNT * 4;
 
-	// Token: 0x04000EE6 RID: 3814
 	private const SimHashes CONSUMED_ELEMENT = SimHashes.ChlorineGas;
 }

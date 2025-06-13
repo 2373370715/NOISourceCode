@@ -5,10 +5,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000F8 RID: 248
 public static class BasePacuConfig
 {
-	// Token: 0x060003E2 RID: 994 RVA: 0x0015B7E4 File Offset: 0x001599E4
 	public static GameObject CreatePrefab(string id, string base_trait_id, string name, string description, string anim_file, bool is_baby, string symbol_prefix, float warnLowTemp, float warnHighTemp, float lethalLowTemp, float lethalHighTemp)
 	{
 		float mass = 200f;
@@ -79,7 +77,6 @@ public static class BasePacuConfig
 		return gameObject;
 	}
 
-	// Token: 0x060003E3 RID: 995 RVA: 0x0015BBEC File Offset: 0x00159DEC
 	public static List<Diet.Info> SeedDiet(Tag poopTag, float caloriesPerSeed, float producedConversionRate)
 	{
 		List<Diet.Info> list = new List<Diet.Info>();
@@ -101,7 +98,6 @@ public static class BasePacuConfig
 		return list;
 	}
 
-	// Token: 0x060003E4 RID: 996 RVA: 0x000AB55A File Offset: 0x000A975A
 	private static string GetLandAnim(FallStates.Instance smi)
 	{
 		if (smi.GetSMI<CreatureFallMonitor.Instance>().CanSwimAtCurrentLocation())
@@ -111,12 +107,9 @@ public static class BasePacuConfig
 		return "flop_loop";
 	}
 
-	// Token: 0x040002BB RID: 699
 	private static float KG_ORE_EATEN_PER_CYCLE = 7.5f;
 
-	// Token: 0x040002BC RID: 700
 	private static float CALORIES_PER_KG_OF_ORE = PacuTuning.STANDARD_CALORIES_PER_CYCLE / BasePacuConfig.KG_ORE_EATEN_PER_CYCLE;
 
-	// Token: 0x040002BD RID: 701
 	private static float MIN_POOP_SIZE_IN_KG = 25f;
 }

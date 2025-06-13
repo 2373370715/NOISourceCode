@@ -5,10 +5,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000777 RID: 1911
 public class VomitChore : Chore<VomitChore.StatesInstance>
 {
-	// Token: 0x06002163 RID: 8547 RVA: 0x001CCAA4 File Offset: 0x001CACA4
 	private static KAnimFile GetAnimFileName(VomitChore.StatesInstance smi)
 	{
 		string s = "anim_vomit_kanim";
@@ -29,21 +27,15 @@ public class VomitChore : Chore<VomitChore.StatesInstance>
 		return Assets.GetAnim(s);
 	}
 
-	// Token: 0x06002164 RID: 8548 RVA: 0x001CCB28 File Offset: 0x001CAD28
 	public VomitChore(ChoreType chore_type, IStateMachineTarget target, StatusItem status_item, Notification notification, Action<Chore> on_complete = null) : base(Db.Get().ChoreTypes.Vomit, target, target.GetComponent<ChoreProvider>(), true, on_complete, null, null, PriorityScreen.PriorityClass.compulsory, 5, false, true, 0, false, ReportManager.ReportType.WorkTime)
 	{
 		base.smi = new VomitChore.StatesInstance(this, target.gameObject, status_item, notification);
 	}
 
-	// Token: 0x02000778 RID: 1912
 	public class StatesInstance : GameStateMachine<VomitChore.States, VomitChore.StatesInstance, VomitChore, object>.GameInstance
 	{
-		// Token: 0x170000D9 RID: 217
-		// (get) Token: 0x06002166 RID: 8550 RVA: 0x000BA48B File Offset: 0x000B868B
-		// (set) Token: 0x06002165 RID: 8549 RVA: 0x000BA482 File Offset: 0x000B8682
 		public SimHashes elementToVomit { get; private set; } = SimHashes.DirtyWater;
 
-		// Token: 0x06002167 RID: 8551 RVA: 0x001CCB74 File Offset: 0x001CAD74
 		public StatesInstance(VomitChore master, GameObject vomiter, StatusItem status_item, Notification notification) : base(master)
 		{
 			base.sm.vomiter.Set(vomiter, base.smi, false);
@@ -58,7 +50,6 @@ public class VomitChore : Chore<VomitChore.StatesInstance>
 			}
 		}
 
-		// Token: 0x06002168 RID: 8552 RVA: 0x001CCC28 File Offset: 0x001CAE28
 		private static bool CanEmitLiquid(int cell)
 		{
 			bool result = true;
@@ -69,13 +60,11 @@ public class VomitChore : Chore<VomitChore.StatesInstance>
 			return result;
 		}
 
-		// Token: 0x06002169 RID: 8553 RVA: 0x000BA493 File Offset: 0x000B8693
 		public void SpawnDirtyWater(float dt)
 		{
 			this.SpawnVomitLiquid(dt, SimHashes.DirtyWater);
 		}
 
-		// Token: 0x0600216A RID: 8554 RVA: 0x001CCC60 File Offset: 0x001CAE60
 		public void SpawnVomitLiquid(float dt, SimHashes element)
 		{
 			if (dt > 0f)
@@ -106,7 +95,6 @@ public class VomitChore : Chore<VomitChore.StatesInstance>
 			}
 		}
 
-		// Token: 0x0600216B RID: 8555 RVA: 0x001CCD88 File Offset: 0x001CAF88
 		public int GetVomitCell()
 		{
 			this.vomitCellQuery.Reset();
@@ -120,23 +108,17 @@ public class VomitChore : Chore<VomitChore.StatesInstance>
 			return num;
 		}
 
-		// Token: 0x0400166F RID: 5743
 		public StatusItem statusItem;
 
-		// Token: 0x04001670 RID: 5744
 		private AmountInstance bodyTemperature;
 
-		// Token: 0x04001671 RID: 5745
 		public Notification notification;
 
-		// Token: 0x04001672 RID: 5746
 		private SafetyQuery vomitCellQuery;
 	}
 
-	// Token: 0x02000779 RID: 1913
 	public class States : GameStateMachine<VomitChore.States, VomitChore.StatesInstance, VomitChore>
 	{
-		// Token: 0x0600216C RID: 8556 RVA: 0x001CCDD0 File Offset: 0x001CAFD0
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.moveto;
@@ -170,34 +152,24 @@ public class VomitChore : Chore<VomitChore.StatesInstance>
 			this.complete.ReturnSuccess();
 		}
 
-		// Token: 0x04001674 RID: 5748
 		public StateMachine<VomitChore.States, VomitChore.StatesInstance, VomitChore, object>.TargetParameter vomiter;
 
-		// Token: 0x04001675 RID: 5749
 		public GameStateMachine<VomitChore.States, VomitChore.StatesInstance, VomitChore, object>.State moveto;
 
-		// Token: 0x04001676 RID: 5750
 		public VomitChore.States.VomitState vomit;
 
-		// Token: 0x04001677 RID: 5751
 		public GameStateMachine<VomitChore.States, VomitChore.StatesInstance, VomitChore, object>.State recover;
 
-		// Token: 0x04001678 RID: 5752
 		public GameStateMachine<VomitChore.States, VomitChore.StatesInstance, VomitChore, object>.State recover_pst;
 
-		// Token: 0x04001679 RID: 5753
 		public GameStateMachine<VomitChore.States, VomitChore.StatesInstance, VomitChore, object>.State complete;
 
-		// Token: 0x0200077A RID: 1914
 		public class VomitState : GameStateMachine<VomitChore.States, VomitChore.StatesInstance, VomitChore, object>.State
 		{
-			// Token: 0x0400167A RID: 5754
 			public GameStateMachine<VomitChore.States, VomitChore.StatesInstance, VomitChore, object>.State buildup;
 
-			// Token: 0x0400167B RID: 5755
 			public GameStateMachine<VomitChore.States, VomitChore.StatesInstance, VomitChore, object>.State release;
 
-			// Token: 0x0400167C RID: 5756
 			public GameStateMachine<VomitChore.States, VomitChore.StatesInstance, VomitChore, object>.State release_pst;
 		}
 	}

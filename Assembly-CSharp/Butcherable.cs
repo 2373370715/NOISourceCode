@@ -2,17 +2,14 @@
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x0200108E RID: 4238
 [AddComponentMenu("KMonoBehaviour/Workable/Butcherable")]
 public class Butcherable : Workable, ISaveLoadable
 {
-	// Token: 0x06005615 RID: 22037 RVA: 0x000DC8CA File Offset: 0x000DAACA
 	public void SetDrops(string[] drops)
 	{
 		this.drops = drops;
 	}
 
-	// Token: 0x06005616 RID: 22038 RVA: 0x0028EAF4 File Offset: 0x0028CCF4
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -23,19 +20,16 @@ public class Butcherable : Workable, ISaveLoadable
 		this.multitoolHitEffectTag = "fx_harvest_splash";
 	}
 
-	// Token: 0x06005617 RID: 22039 RVA: 0x000DC8D3 File Offset: 0x000DAAD3
 	public void SetReadyToButcher(object param)
 	{
 		this.readyToButcher = true;
 	}
 
-	// Token: 0x06005618 RID: 22040 RVA: 0x000DC8DC File Offset: 0x000DAADC
 	public void SetReadyToButcher(bool ready)
 	{
 		this.readyToButcher = ready;
 	}
 
-	// Token: 0x06005619 RID: 22041 RVA: 0x0028EB54 File Offset: 0x0028CD54
 	public void ActivateChore(object param)
 	{
 		if (this.chore != null)
@@ -46,7 +40,6 @@ public class Butcherable : Workable, ISaveLoadable
 		this.OnRefreshUserMenu(null);
 	}
 
-	// Token: 0x0600561A RID: 22042 RVA: 0x000DC8E5 File Offset: 0x000DAAE5
 	public void CancelChore(object param)
 	{
 		if (this.chore == null)
@@ -57,13 +50,11 @@ public class Butcherable : Workable, ISaveLoadable
 		this.chore = null;
 	}
 
-	// Token: 0x0600561B RID: 22043 RVA: 0x000DC907 File Offset: 0x000DAB07
 	private void OnClickCancel()
 	{
 		this.CancelChore(null);
 	}
 
-	// Token: 0x0600561C RID: 22044 RVA: 0x000DC910 File Offset: 0x000DAB10
 	private void OnClickButcher()
 	{
 		if (DebugHandler.InstantBuildMode)
@@ -74,7 +65,6 @@ public class Butcherable : Workable, ISaveLoadable
 		this.ActivateChore(null);
 	}
 
-	// Token: 0x0600561D RID: 22045 RVA: 0x0028EBA0 File Offset: 0x0028CDA0
 	private void OnRefreshUserMenu(object data)
 	{
 		if (!this.readyToButcher)
@@ -85,13 +75,11 @@ public class Butcherable : Workable, ISaveLoadable
 		Game.Instance.userMenu.AddButton(base.gameObject, button, 1f);
 	}
 
-	// Token: 0x0600561E RID: 22046 RVA: 0x000DC927 File Offset: 0x000DAB27
 	protected override void OnCompleteWork(WorkerBase worker)
 	{
 		this.OnButcherComplete();
 	}
 
-	// Token: 0x0600561F RID: 22047 RVA: 0x0028EC30 File Offset: 0x0028CE30
 	public GameObject[] CreateDrops()
 	{
 		GameObject[] array = new GameObject[this.drops.Length];
@@ -109,7 +97,6 @@ public class Butcherable : Workable, ISaveLoadable
 		return array;
 	}
 
-	// Token: 0x06005620 RID: 22048 RVA: 0x0028ECC8 File Offset: 0x0028CEC8
 	public void OnButcherComplete()
 	{
 		if (this.butchered)
@@ -141,7 +128,6 @@ public class Butcherable : Workable, ISaveLoadable
 		base.Trigger(395373363, array);
 	}
 
-	// Token: 0x06005621 RID: 22049 RVA: 0x0028ED90 File Offset: 0x0028CF90
 	private int GetDropSpawnLocation()
 	{
 		int num = Grid.PosToCell(base.gameObject);
@@ -153,33 +139,25 @@ public class Butcherable : Workable, ISaveLoadable
 		return num;
 	}
 
-	// Token: 0x04003CEA RID: 15594
 	[MyCmpGet]
 	private KAnimControllerBase controller;
 
-	// Token: 0x04003CEB RID: 15595
 	[MyCmpGet]
 	private Harvestable harvestable;
 
-	// Token: 0x04003CEC RID: 15596
 	private bool readyToButcher;
 
-	// Token: 0x04003CED RID: 15597
 	private bool butchered;
 
-	// Token: 0x04003CEE RID: 15598
 	public string[] drops;
 
-	// Token: 0x04003CEF RID: 15599
 	private Chore chore;
 
-	// Token: 0x04003CF0 RID: 15600
 	private static readonly EventSystem.IntraObjectHandler<Butcherable> SetReadyToButcherDelegate = new EventSystem.IntraObjectHandler<Butcherable>(delegate(Butcherable component, object data)
 	{
 		component.SetReadyToButcher(data);
 	});
 
-	// Token: 0x04003CF1 RID: 15601
 	private static readonly EventSystem.IntraObjectHandler<Butcherable> OnRefreshUserMenuDelegate = new EventSystem.IntraObjectHandler<Butcherable>(delegate(Butcherable component, object data)
 	{
 		component.OnRefreshUserMenu(data);

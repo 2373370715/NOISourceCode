@@ -7,10 +7,8 @@ using UnityEngine;
 
 namespace ProcGenGame
 {
-	// Token: 0x02002100 RID: 8448
 	public static class MobSpawning
 	{
-		// Token: 0x0600B3DA RID: 46042 RVA: 0x00445DD0 File Offset: 0x00443FD0
 		public static Dictionary<int, string> PlaceFeatureAmbientMobs(WorldGenSettings settings, TerrainCell tc, SeededRandom rnd, Sim.Cell[] cells, float[] bgTemp, Sim.DiseaseCell[] dc, HashSet<int> avoidCells, bool isDebug)
 		{
 			Dictionary<int, string> result = new Dictionary<int, string>();
@@ -81,7 +79,6 @@ namespace ProcGenGame
 			return result;
 		}
 
-		// Token: 0x0600B3DB RID: 46043 RVA: 0x004460C0 File Offset: 0x004442C0
 		public static Dictionary<int, string> PlaceBiomeAmbientMobs(WorldGenSettings settings, TerrainCell tc, SeededRandom rnd, Sim.Cell[] cells, float[] bgTemp, Sim.DiseaseCell[] dc, HashSet<int> avoidCells, bool isDebug)
 		{
 			Dictionary<int, string> result = new Dictionary<int, string>();
@@ -164,7 +161,6 @@ namespace ProcGenGame
 			return result;
 		}
 
-		// Token: 0x0600B3DC RID: 46044 RVA: 0x00446458 File Offset: 0x00444658
 		private static List<int> GetMobPossibleSpawnPoints(Mob mob, List<int> possibleSpawnPoints, Sim.Cell[] cells, HashSet<int> alreadyOccupiedCells, SeededRandom rnd)
 		{
 			List<int> list = possibleSpawnPoints.FindAll((int cell) => MobSpawning.IsSuitableMobSpawnPoint(cell, mob, cells, ref alreadyOccupiedCells));
@@ -172,7 +168,6 @@ namespace ProcGenGame
 			return list;
 		}
 
-		// Token: 0x0600B3DD RID: 46045 RVA: 0x004464A0 File Offset: 0x004446A0
 		public static void SpawnCountMobs(Mob mobData, Tag mobPrefab, int count, List<int> mobPossibleSpawnPoints, TerrainCell tc, ref Dictionary<int, string> spawnedMobs, ref HashSet<int> alreadyOccupiedCells)
 		{
 			int num = 0;
@@ -193,13 +188,11 @@ namespace ProcGenGame
 			}
 		}
 
-		// Token: 0x0600B3DE RID: 46046 RVA: 0x00119722 File Offset: 0x00117922
 		public static int MobWidthOffset(int occupiedCell, int widthIterator)
 		{
 			return Grid.OffsetCell(occupiedCell, (widthIterator % 2 == 0) ? (-(widthIterator / 2)) : (widthIterator / 2 + widthIterator % 2), 0);
 		}
 
-		// Token: 0x0600B3DF RID: 46047 RVA: 0x00446520 File Offset: 0x00444720
 		private static bool IsSuitableMobSpawnPoint(int cell, Mob mob, Sim.Cell[] cells, ref HashSet<int> alreadyOccupiedCells)
 		{
 			for (int i = 0; i < mob.width; i++)
@@ -368,13 +361,11 @@ namespace ProcGenGame
 			return MobSpawning.isNaturalCavity(cell) && !element.IsSolid;
 		}
 
-		// Token: 0x0600B3E0 RID: 46048 RVA: 0x0011973D File Offset: 0x0011793D
 		public static bool isNaturalCavity(int cell)
 		{
 			return MobSpawning.NaturalCavities != null && MobSpawning.allNaturalCavityCells.Contains(cell);
 		}
 
-		// Token: 0x0600B3E1 RID: 46049 RVA: 0x00446B14 File Offset: 0x00444D14
 		public static void DetectNaturalCavities(List<TerrainCell> terrainCells, WorldGen.OfflineCallbackFunction updateProgressFn, Sim.Cell[] cells)
 		{
 			updateProgressFn(UI.WORLDGEN.ANALYZINGWORLD.key, 0f, WorldGenProgressStages.Stages.DetectNaturalCavities);
@@ -417,10 +408,8 @@ namespace ProcGenGame
 			updateProgressFn(UI.WORLDGEN.ANALYZINGWORLDCOMPLETE.key, 1f, WorldGenProgressStages.Stages.DetectNaturalCavities);
 		}
 
-		// Token: 0x04008E6C RID: 36460
 		public static Dictionary<TerrainCell, List<HashSet<int>>> NaturalCavities = new Dictionary<TerrainCell, List<HashSet<int>>>();
 
-		// Token: 0x04008E6D RID: 36461
 		public static HashSet<int> allNaturalCavityCells = new HashSet<int>();
 	}
 }

@@ -6,11 +6,9 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000B96 RID: 2966
 [AddComponentMenu("KMonoBehaviour/scripts/Tutorial")]
 public class Tutorial : KMonoBehaviour, IRender1000ms
 {
-	// Token: 0x060037A0 RID: 14240 RVA: 0x002253A0 File Offset: 0x002235A0
 	public static void ResetHiddenTutorialMessages()
 	{
 		if (Tutorial.Instance != null)
@@ -29,7 +27,6 @@ public class Tutorial : KMonoBehaviour, IRender1000ms
 		KPlayerPrefs.SetInt("HideTutorial_CheckState", 0);
 	}
 
-	// Token: 0x060037A1 RID: 14241 RVA: 0x00225460 File Offset: 0x00223660
 	private void LoadHiddenTutorialMessages()
 	{
 		foreach (object obj in Enum.GetValues(typeof(Tutorial.TutorialMessages)))
@@ -40,25 +37,19 @@ public class Tutorial : KMonoBehaviour, IRender1000ms
 		}
 	}
 
-	// Token: 0x060037A2 RID: 14242 RVA: 0x000C8929 File Offset: 0x000C6B29
 	public void HideTutorialMessage(Tutorial.TutorialMessages message)
 	{
 		this.hiddenTutorialMessages[message] = true;
 		KPlayerPrefs.SetInt("HideTutorial_" + message.ToString(), 1);
 	}
 
-	// Token: 0x1700026B RID: 619
-	// (get) Token: 0x060037A3 RID: 14243 RVA: 0x000C8955 File Offset: 0x000C6B55
-	// (set) Token: 0x060037A4 RID: 14244 RVA: 0x000C895C File Offset: 0x000C6B5C
 	public static Tutorial Instance { get; private set; }
 
-	// Token: 0x060037A5 RID: 14245 RVA: 0x000C8964 File Offset: 0x000C6B64
 	public static void DestroyInstance()
 	{
 		Tutorial.Instance = null;
 	}
 
-	// Token: 0x060037A6 RID: 14246 RVA: 0x002254EC File Offset: 0x002236EC
 	private void UpdateNotifierPosition()
 	{
 		if (this.notifierPosition == Vector3.zero)
@@ -72,14 +63,12 @@ public class Tutorial : KMonoBehaviour, IRender1000ms
 		this.notifier.transform.SetPosition(this.notifierPosition);
 	}
 
-	// Token: 0x060037A7 RID: 14247 RVA: 0x000C896C File Offset: 0x000C6B6C
 	protected override void OnPrefabInit()
 	{
 		Tutorial.Instance = this;
 		this.LoadHiddenTutorialMessages();
 	}
 
-	// Token: 0x060037A8 RID: 14248 RVA: 0x00225544 File Offset: 0x00223744
 	protected override void OnSpawn()
 	{
 		if (this.tutorialMessagesRemaining.Count != 0)
@@ -213,13 +202,11 @@ public class Tutorial : KMonoBehaviour, IRender1000ms
 		DiscoveredResources.Instance.OnDiscover += this.OnDiscover;
 	}
 
-	// Token: 0x060037A9 RID: 14249 RVA: 0x000C897A File Offset: 0x000C6B7A
 	protected override void OnCleanUp()
 	{
 		DiscoveredResources.Instance.OnDiscover -= this.OnDiscover;
 	}
 
-	// Token: 0x060037AA RID: 14250 RVA: 0x00225B8C File Offset: 0x00223D8C
 	private void OnDiscover(Tag category_tag, Tag tag)
 	{
 		Element element = ElementLoader.FindElementByHash(SimHashes.UraniumOre);
@@ -229,7 +216,6 @@ public class Tutorial : KMonoBehaviour, IRender1000ms
 		}
 	}
 
-	// Token: 0x060037AB RID: 14251 RVA: 0x00225BC0 File Offset: 0x00223DC0
 	public Message TutorialMessage(Tutorial.TutorialMessages tm, bool queueMessage = true)
 	{
 		bool flag = false;
@@ -342,14 +328,12 @@ public class Tutorial : KMonoBehaviour, IRender1000ms
 		return message;
 	}
 
-	// Token: 0x060037AC RID: 14252 RVA: 0x00226238 File Offset: 0x00224438
 	private string OnOxygenTooltip(List<Notification> notifications, object data)
 	{
 		ReportManager.ReportEntry entry = ReportManager.Instance.YesterdaysReport.GetEntry(ReportManager.ReportType.OxygenCreated);
 		return MISC.NOTIFICATIONS.INSUFFICIENTOXYGENLASTCYCLE.TOOLTIP.Replace("{EmittingRate}", GameUtil.GetFormattedMass(entry.Positive, GameUtil.TimeSlice.None, GameUtil.MetricMassFormat.UseThreshold, true, "{0:0.#}")).Replace("{ConsumptionRate}", GameUtil.GetFormattedMass(Mathf.Abs(entry.Negative), GameUtil.TimeSlice.None, GameUtil.MetricMassFormat.UseThreshold, true, "{0:0.#}"));
 	}
 
-	// Token: 0x060037AD RID: 14253 RVA: 0x002262A0 File Offset: 0x002244A0
 	private string UnrefrigeratedFoodTooltip(List<Notification> notifications, object data)
 	{
 		string text = MISC.NOTIFICATIONS.UNREFRIGERATEDFOOD.TOOLTIP;
@@ -363,7 +347,6 @@ public class Tutorial : KMonoBehaviour, IRender1000ms
 		return text;
 	}
 
-	// Token: 0x060037AE RID: 14254 RVA: 0x002262F8 File Offset: 0x002244F8
 	private string OnLowFoodTooltip(List<Notification> notifications, object data)
 	{
 		global::Debug.Assert(((WorldContainer)data).id == ClusterManager.Instance.activeWorldId);
@@ -372,7 +355,6 @@ public class Tutorial : KMonoBehaviour, IRender1000ms
 		return string.Format(MISC.NOTIFICATIONS.FOODLOW.TOOLTIP, GameUtil.GetFormattedCalories(calories, GameUtil.TimeSlice.None, true), GameUtil.GetFormattedCalories(Mathf.Abs(f), GameUtil.TimeSlice.None, true));
 	}
 
-	// Token: 0x060037AF RID: 14255 RVA: 0x0022638C File Offset: 0x0022458C
 	public void DebugNotification()
 	{
 		NotificationType type;
@@ -400,7 +382,6 @@ public class Tutorial : KMonoBehaviour, IRender1000ms
 		this.notifier.Add(notification, "");
 	}
 
-	// Token: 0x060037B0 RID: 14256 RVA: 0x00226438 File Offset: 0x00224638
 	public void DebugNotificationMessage()
 	{
 		string str = "This is a message notification. ";
@@ -410,7 +391,6 @@ public class Tutorial : KMonoBehaviour, IRender1000ms
 		Messenger.Instance.QueueMessage(message);
 	}
 
-	// Token: 0x060037B1 RID: 14257 RVA: 0x0022648C File Offset: 0x0022468C
 	public void Render1000ms(float dt)
 	{
 		if (App.isLoading)
@@ -479,19 +459,16 @@ public class Tutorial : KMonoBehaviour, IRender1000ms
 		}
 	}
 
-	// Token: 0x060037B2 RID: 14258 RVA: 0x000C8992 File Offset: 0x000C6B92
 	private bool OxygenGeneratorBuilt()
 	{
 		return this.oxygenGenerators.Count > 0;
 	}
 
-	// Token: 0x060037B3 RID: 14259 RVA: 0x000C89A2 File Offset: 0x000C6BA2
 	private bool OxygenGeneratorNotBuilt()
 	{
 		return this.oxygenGenerators.Count == 0;
 	}
 
-	// Token: 0x060037B4 RID: 14260 RVA: 0x002266B8 File Offset: 0x002248B8
 	private bool SufficientOxygenLastCycleAndThisCycle()
 	{
 		if (ReportManager.Instance.YesterdaysReport == null)
@@ -502,13 +479,11 @@ public class Tutorial : KMonoBehaviour, IRender1000ms
 		return ReportManager.Instance.TodaysReport.GetEntry(ReportManager.ReportType.OxygenCreated).Net > 0.0001f || entry.Net > 0.0001f || (GameClock.Instance.GetCycle() < 1 && !GameClock.Instance.IsNighttime());
 	}
 
-	// Token: 0x060037B5 RID: 14261 RVA: 0x000C89B2 File Offset: 0x000C6BB2
 	private bool FoodIsRefrigerated()
 	{
 		return this.GetUnrefrigeratedFood(null) <= 0;
 	}
 
-	// Token: 0x060037B6 RID: 14262 RVA: 0x00226730 File Offset: 0x00224930
 	private int GetUnrefrigeratedFood(List<Pickupable> foods)
 	{
 		int num = 0;
@@ -538,19 +513,16 @@ public class Tutorial : KMonoBehaviour, IRender1000ms
 		return num;
 	}
 
-	// Token: 0x060037B7 RID: 14263 RVA: 0x000C89C1 File Offset: 0x000C6BC1
 	private bool EnergySourceExists()
 	{
 		return Game.Instance.circuitManager.HasGenerators();
 	}
 
-	// Token: 0x060037B8 RID: 14264 RVA: 0x000C89D2 File Offset: 0x000C6BD2
 	private bool BedExists()
 	{
 		return Components.NormalBeds.GlobalCount > 0;
 	}
 
-	// Token: 0x060037B9 RID: 14265 RVA: 0x00226824 File Offset: 0x00224A24
 	private bool EnoughFood()
 	{
 		int count = Components.LiveMinionIdentities.GetWorldItems(ClusterManager.Instance.activeWorldId, false).Count;
@@ -559,7 +531,6 @@ public class Tutorial : KMonoBehaviour, IRender1000ms
 		return num / num2 >= 1f;
 	}
 
-	// Token: 0x060037BA RID: 14266 RVA: 0x0022687C File Offset: 0x00224A7C
 	private bool CanTreatSickDuplicant()
 	{
 		bool flag = Components.Clinics.Count >= 1;
@@ -585,7 +556,6 @@ public class Tutorial : KMonoBehaviour, IRender1000ms
 		return !flag2 || flag;
 	}
 
-	// Token: 0x060037BB RID: 14267 RVA: 0x00226910 File Offset: 0x00224B10
 	private bool LongTravelTimes()
 	{
 		if (ReportManager.Instance.reports.Count < 3)
@@ -603,7 +573,6 @@ public class Tutorial : KMonoBehaviour, IRender1000ms
 		return num / num2 <= 0.4f;
 	}
 
-	// Token: 0x060037BC RID: 14268 RVA: 0x002269AC File Offset: 0x00224BAC
 	private bool FoodSourceExistsOnStartingWorld()
 	{
 		if (Components.GetMinionIdentitiesByModel(MinionConfig.MODEL).Count <= 0)
@@ -623,19 +592,16 @@ public class Tutorial : KMonoBehaviour, IRender1000ms
 		return Components.PlantablePlots.GetItems(ClusterManager.Instance.GetStartWorld().id).Count > 0;
 	}
 
-	// Token: 0x060037BD RID: 14269 RVA: 0x000C89E1 File Offset: 0x000C6BE1
 	private bool HygeneExists()
 	{
 		return Components.HandSanitizers.Count > 0;
 	}
 
-	// Token: 0x060037BE RID: 14270 RVA: 0x000C89F0 File Offset: 0x000C6BF0
 	private bool ToiletExists()
 	{
 		return Components.Toilets.Count > 0 || Components.GunkExtractors.Count > 0;
 	}
 
-	// Token: 0x060037BF RID: 14271 RVA: 0x00226A4C File Offset: 0x00224C4C
 	private void ZoomToNextOxygenGenerator()
 	{
 		if (this.oxygenGenerators.Count == 0)
@@ -659,7 +625,6 @@ public class Tutorial : KMonoBehaviour, IRender1000ms
 		this.focusedOxygenGenerator++;
 	}
 
-	// Token: 0x060037C0 RID: 14272 RVA: 0x00226ADC File Offset: 0x00224CDC
 	private void ZoomToNextUnrefrigeratedFood()
 	{
 		ListPool<Pickupable, Tutorial>.PooledList pooledList = ListPool<Pickupable, Tutorial>.Allocate();
@@ -681,138 +646,88 @@ public class Tutorial : KMonoBehaviour, IRender1000ms
 		pooledList.Recycle();
 	}
 
-	// Token: 0x0400263C RID: 9788
 	[MyCmpAdd]
 	private Notifier notifier;
 
-	// Token: 0x0400263D RID: 9789
 	[Serialize]
 	private int saved_TM_COUNT = 24;
 
-	// Token: 0x0400263E RID: 9790
 	[Serialize]
 	private List<int> tutorialMessagesSeen = new List<int>();
 
-	// Token: 0x0400263F RID: 9791
 	[Obsolete("Contains invalid data")]
 	[Serialize]
 	private SerializedList<Tutorial.TutorialMessages> tutorialMessagesRemaining = new SerializedList<Tutorial.TutorialMessages>();
 
-	// Token: 0x04002640 RID: 9792
 	private const string HIDDEN_TUTORIAL_PREF_KEY_PREFIX = "HideTutorial_";
 
-	// Token: 0x04002641 RID: 9793
 	public const string HIDDEN_TUTORIAL_PREF_BUTTON_KEY = "HideTutorial_CheckState";
 
-	// Token: 0x04002642 RID: 9794
 	private Dictionary<Tutorial.TutorialMessages, bool> hiddenTutorialMessages = new Dictionary<Tutorial.TutorialMessages, bool>();
 
-	// Token: 0x04002643 RID: 9795
 	private int debugMessageCount;
 
-	// Token: 0x04002644 RID: 9796
 	private bool queuedPrioritiesMessage;
 
-	// Token: 0x04002645 RID: 9797
 	private const float LOW_RATION_AMOUNT = 1f;
 
-	// Token: 0x04002647 RID: 9799
 	private List<List<Tutorial.Item>> itemTree = new List<List<Tutorial.Item>>();
 
-	// Token: 0x04002648 RID: 9800
 	private List<Tutorial.Item> warningItems = new List<Tutorial.Item>();
 
-	// Token: 0x04002649 RID: 9801
 	private Vector3 notifierPosition;
 
-	// Token: 0x0400264A RID: 9802
 	public List<GameObject> oxygenGenerators = new List<GameObject>();
 
-	// Token: 0x0400264B RID: 9803
 	private int focusedOxygenGenerator;
 
-	// Token: 0x0400264C RID: 9804
 	private int focusedUnrefrigFood = -1;
 
-	// Token: 0x02000B97 RID: 2967
 	public enum TutorialMessages
 	{
-		// Token: 0x0400264E RID: 9806
 		TM_Basics,
-		// Token: 0x0400264F RID: 9807
 		TM_Welcome,
-		// Token: 0x04002650 RID: 9808
 		TM_StressManagement,
-		// Token: 0x04002651 RID: 9809
 		TM_Scheduling,
-		// Token: 0x04002652 RID: 9810
 		TM_Mopping,
-		// Token: 0x04002653 RID: 9811
 		TM_Locomotion,
-		// Token: 0x04002654 RID: 9812
 		TM_Priorities,
-		// Token: 0x04002655 RID: 9813
 		TM_FetchingWater,
-		// Token: 0x04002656 RID: 9814
 		TM_ThermalComfort,
-		// Token: 0x04002657 RID: 9815
 		TM_OverheatingBuildings,
-		// Token: 0x04002658 RID: 9816
 		TM_LotsOfGerms,
-		// Token: 0x04002659 RID: 9817
 		TM_DiseaseCooking,
-		// Token: 0x0400265A RID: 9818
 		TM_Suits,
-		// Token: 0x0400265B RID: 9819
 		TM_Morale,
-		// Token: 0x0400265C RID: 9820
 		TM_Schedule,
-		// Token: 0x0400265D RID: 9821
 		TM_Digging,
-		// Token: 0x0400265E RID: 9822
 		TM_Power,
-		// Token: 0x0400265F RID: 9823
 		TM_Insulation,
-		// Token: 0x04002660 RID: 9824
 		TM_Plumbing,
-		// Token: 0x04002661 RID: 9825
 		TM_Radiation,
-		// Token: 0x04002662 RID: 9826
 		TM_BionicBattery,
-		// Token: 0x04002663 RID: 9827
 		TM_GunkedToilet,
-		// Token: 0x04002664 RID: 9828
 		TM_SlipperySurface,
-		// Token: 0x04002665 RID: 9829
 		TM_BionicOil,
-		// Token: 0x04002666 RID: 9830
 		TM_COUNT
 	}
 
-	// Token: 0x02000B98 RID: 2968
-	// (Invoke) Token: 0x060037C5 RID: 14277
+Invoke) Token: 0x060037C5 RID: 14277
 	private delegate bool HideConditionDelegate();
 
-	// Token: 0x02000B99 RID: 2969
-	// (Invoke) Token: 0x060037C9 RID: 14281
+Invoke) Token: 0x060037C9 RID: 14281
 	private delegate bool RequirementSatisfiedDelegate();
 
-	// Token: 0x02000B9A RID: 2970
 	private class Item
 	{
-		// Token: 0x04002667 RID: 9831
 		public Notification notification;
 
-		// Token: 0x04002668 RID: 9832
 		public Tutorial.HideConditionDelegate hideCondition;
 
-		// Token: 0x04002669 RID: 9833
 		public Tutorial.RequirementSatisfiedDelegate requirementSatisfied;
 
-		// Token: 0x0400266A RID: 9834
 		public float minTimeToNotify;
 
-		// Token: 0x0400266B RID: 9835
 		public float lastNotifyTime;
 	}
 }

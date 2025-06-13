@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003C6 RID: 966
 public class LiquidConduitRadiantConfig : IBuildingConfig
 {
-	// Token: 0x06000FB4 RID: 4020 RVA: 0x00188144 File Offset: 0x00186344
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "LiquidConduitRadiant";
@@ -44,14 +42,12 @@ public class LiquidConduitRadiantConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000FB5 RID: 4021 RVA: 0x000B0DFA File Offset: 0x000AEFFA
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		GeneratedBuildings.MakeBuildingAlwaysOperational(go);
 		go.AddOrGet<Conduit>().type = ConduitType.Liquid;
 	}
 
-	// Token: 0x06000FB6 RID: 4022 RVA: 0x000B0E0E File Offset: 0x000AF00E
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		KAnimGraphTileVisualizer kanimGraphTileVisualizer = go.AddComponent<KAnimGraphTileVisualizer>();
@@ -59,7 +55,6 @@ public class LiquidConduitRadiantConfig : IBuildingConfig
 		kanimGraphTileVisualizer.isPhysicalBuilding = false;
 	}
 
-	// Token: 0x06000FB7 RID: 4023 RVA: 0x00185320 File Offset: 0x00183520
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.GetComponent<Building>().Def.BuildingUnderConstruction.GetComponent<Constructable>().isDiggingRequired = false;
@@ -71,6 +66,5 @@ public class LiquidConduitRadiantConfig : IBuildingConfig
 		LiquidConduitConfig.CommonConduitPostConfigureComplete(go);
 	}
 
-	// Token: 0x04000B5D RID: 2909
 	public const string ID = "LiquidConduitRadiant";
 }

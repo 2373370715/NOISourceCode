@@ -7,16 +7,13 @@ using STRINGS;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001BAC RID: 7084
 public class WattsonMessage : KScreen
 {
-	// Token: 0x060094E9 RID: 38121 RVA: 0x000F0401 File Offset: 0x000EE601
 	public override float GetSortKey()
 	{
 		return 8f;
 	}
 
-	// Token: 0x060094EA RID: 38122 RVA: 0x003A2910 File Offset: 0x003A0B10
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -36,7 +33,6 @@ public class WattsonMessage : KScreen
 		this.message.SetText(UI.WELCOMEMESSAGEBODY);
 	}
 
-	// Token: 0x060094EB RID: 38123 RVA: 0x00105BC3 File Offset: 0x00103DC3
 	private IEnumerator ExpandPanel()
 	{
 		this.button.isInteractable = false;
@@ -71,7 +67,6 @@ public class WattsonMessage : KScreen
 		yield break;
 	}
 
-	// Token: 0x060094EC RID: 38124 RVA: 0x00105BD2 File Offset: 0x00103DD2
 	private IEnumerator CollapsePanel()
 	{
 		float height = 300f;
@@ -86,7 +81,6 @@ public class WattsonMessage : KScreen
 		yield break;
 	}
 
-	// Token: 0x060094ED RID: 38125 RVA: 0x003A29A4 File Offset: 0x003A0BA4
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -119,7 +113,6 @@ public class WattsonMessage : KScreen
 		}
 	}
 
-	// Token: 0x060094EE RID: 38126 RVA: 0x003A2B08 File Offset: 0x003A0D08
 	public void Update()
 	{
 		if (!this.startFade)
@@ -135,7 +128,6 @@ public class WattsonMessage : KScreen
 		this.bg.color = color;
 	}
 
-	// Token: 0x060094EF RID: 38127 RVA: 0x003A2B60 File Offset: 0x003A0D60
 	protected override void OnActivate()
 	{
 		global::Debug.Log("WattsonMessage OnActivate");
@@ -208,8 +200,6 @@ public class WattsonMessage : KScreen
 		}, null, null));
 	}
 
-	// Token: 0x170009B4 RID: 2484
-	// (get) Token: 0x060094F0 RID: 38128 RVA: 0x003A2DD8 File Offset: 0x003A0FD8
 	private string WelcomeMusic
 	{
 		get
@@ -223,7 +213,6 @@ public class WattsonMessage : KScreen
 		}
 	}
 
-	// Token: 0x060094F1 RID: 38129 RVA: 0x003A2E0C File Offset: 0x003A100C
 	protected void PauseAndShowMessage()
 	{
 		SpeedControlScreen.Instance.Pause(false, false);
@@ -234,7 +223,6 @@ public class WattsonMessage : KScreen
 		this.dialog.GetComponent<KScreen>().Show(true);
 	}
 
-	// Token: 0x060094F2 RID: 38130 RVA: 0x003A2E70 File Offset: 0x003A1070
 	protected override void OnDeactivate()
 	{
 		base.OnDeactivate();
@@ -286,7 +274,6 @@ public class WattsonMessage : KScreen
 		}
 	}
 
-	// Token: 0x060094F3 RID: 38131 RVA: 0x00105BE1 File Offset: 0x00103DE1
 	public override void OnKeyDown(KButtonEvent e)
 	{
 		if (e.TryConsume(global::Action.Escape))
@@ -297,77 +284,58 @@ public class WattsonMessage : KScreen
 		e.Consumed = true;
 	}
 
-	// Token: 0x060094F4 RID: 38132 RVA: 0x00103818 File Offset: 0x00101A18
 	public override void OnKeyUp(KButtonEvent e)
 	{
 		e.Consumed = true;
 	}
 
-	// Token: 0x060094F5 RID: 38133 RVA: 0x00105C09 File Offset: 0x00103E09
 	private void OnNewBaseCreated(object data)
 	{
 		base.gameObject.SetActive(true);
 	}
 
-	// Token: 0x04007114 RID: 28948
 	private const float STARTTIME = 0.1f;
 
-	// Token: 0x04007115 RID: 28949
 	private const float ENDTIME = 6.6f;
 
-	// Token: 0x04007116 RID: 28950
 	private const float ALPHA_SPEED = 0.01f;
 
-	// Token: 0x04007117 RID: 28951
 	private const float expandedHeight = 300f;
 
-	// Token: 0x04007118 RID: 28952
 	[SerializeField]
 	private GameObject dialog;
 
-	// Token: 0x04007119 RID: 28953
 	[SerializeField]
 	private RectTransform content;
 
-	// Token: 0x0400711A RID: 28954
 	[SerializeField]
 	private LocText message;
 
-	// Token: 0x0400711B RID: 28955
 	[SerializeField]
 	private Image bg;
 
-	// Token: 0x0400711C RID: 28956
 	[SerializeField]
 	private KButton button;
 
-	// Token: 0x0400711D RID: 28957
 	[SerializeField]
 	private EventReference dialogSound;
 
-	// Token: 0x0400711E RID: 28958
 	private List<KScreen> hideScreensWhileActive = new List<KScreen>();
 
-	// Token: 0x0400711F RID: 28959
 	private bool startFade;
 
-	// Token: 0x04007120 RID: 28960
 	private List<SchedulerHandle> scheduleHandles = new List<SchedulerHandle>();
 
-	// Token: 0x04007121 RID: 28961
 	private static readonly HashedString[] WorkLoopAnims = new HashedString[]
 	{
 		"working_pre",
 		"working_loop"
 	};
 
-	// Token: 0x04007122 RID: 28962
 	private int birthsComplete;
 
-	// Token: 0x02001BAD RID: 7085
 	public class Tuning : TuningData<WattsonMessage.Tuning>
 	{
-		// Token: 0x04007123 RID: 28963
 		public float initialOrthographicSize;
 	}
 }

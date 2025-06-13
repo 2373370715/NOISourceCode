@@ -3,17 +3,14 @@ using Klei.AI;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020018E3 RID: 6371
 [AddComponentMenu("KMonoBehaviour/Workable/SocialGatheringPointWorkable")]
 public class SocialGatheringPointWorkable : Workable, IWorkerPrioritizable
 {
-	// Token: 0x060083C7 RID: 33735 RVA: 0x000B09A4 File Offset: 0x000AEBA4
 	private SocialGatheringPointWorkable()
 	{
 		base.SetReportType(ReportManager.ReportType.PersonalTime);
 	}
 
-	// Token: 0x060083C8 RID: 33736 RVA: 0x0034FD70 File Offset: 0x0034DF70
 	protected override void OnPrefabInit()
 	{
 		base.OnPrefabInit();
@@ -33,7 +30,6 @@ public class SocialGatheringPointWorkable : Workable, IWorkerPrioritizable
 		this.lightEfficiencyBonus = false;
 	}
 
-	// Token: 0x060083C9 RID: 33737 RVA: 0x000FB30A File Offset: 0x000F950A
 	public override Vector3 GetFacingTarget()
 	{
 		if (this.lastTalker != null)
@@ -43,7 +39,6 @@ public class SocialGatheringPointWorkable : Workable, IWorkerPrioritizable
 		return base.GetFacingTarget();
 	}
 
-	// Token: 0x060083CA RID: 33738 RVA: 0x0034FDF8 File Offset: 0x0034DFF8
 	protected override bool OnWorkTick(WorkerBase worker, float dt)
 	{
 		if (!worker.GetComponent<Schedulable>().IsAllowed(Db.Get().ScheduleBlockTypes.Recreation))
@@ -57,7 +52,6 @@ public class SocialGatheringPointWorkable : Workable, IWorkerPrioritizable
 		return false;
 	}
 
-	// Token: 0x060083CB RID: 33739 RVA: 0x0034FE48 File Offset: 0x0034E048
 	protected override void OnStartWork(WorkerBase worker)
 	{
 		base.OnStartWork(worker);
@@ -67,7 +61,6 @@ public class SocialGatheringPointWorkable : Workable, IWorkerPrioritizable
 		this.timesConversed = 0;
 	}
 
-	// Token: 0x060083CC RID: 33740 RVA: 0x0034FEA4 File Offset: 0x0034E0A4
 	protected override void OnStopWork(WorkerBase worker)
 	{
 		base.OnStopWork(worker);
@@ -76,7 +69,6 @@ public class SocialGatheringPointWorkable : Workable, IWorkerPrioritizable
 		worker.Unsubscribe(25860745, new Action<object>(this.OnStoppedTalking));
 	}
 
-	// Token: 0x060083CD RID: 33741 RVA: 0x0034FEF8 File Offset: 0x0034E0F8
 	protected override void OnCompleteWork(WorkerBase worker)
 	{
 		if (this.timesConversed > 0)
@@ -89,7 +81,6 @@ public class SocialGatheringPointWorkable : Workable, IWorkerPrioritizable
 		}
 	}
 
-	// Token: 0x060083CE RID: 33742 RVA: 0x0034FF30 File Offset: 0x0034E130
 	private void OnStartedTalking(object data)
 	{
 		ConversationManager.StartedTalkingEvent startedTalkingEvent = data as ConversationManager.StartedTalkingEvent;
@@ -114,12 +105,10 @@ public class SocialGatheringPointWorkable : Workable, IWorkerPrioritizable
 		this.timesConversed++;
 	}
 
-	// Token: 0x060083CF RID: 33743 RVA: 0x000AA038 File Offset: 0x000A8238
 	private void OnStoppedTalking(object data)
 	{
 	}
 
-	// Token: 0x060083D0 RID: 33744 RVA: 0x000FB331 File Offset: 0x000F9531
 	public bool GetWorkerPriority(WorkerBase worker, out int priority)
 	{
 		priority = this.basePriority;
@@ -130,15 +119,11 @@ public class SocialGatheringPointWorkable : Workable, IWorkerPrioritizable
 		return true;
 	}
 
-	// Token: 0x0400645B RID: 25691
 	private GameObject lastTalker;
 
-	// Token: 0x0400645C RID: 25692
 	public int basePriority;
 
-	// Token: 0x0400645D RID: 25693
 	public string specificEffect;
 
-	// Token: 0x0400645E RID: 25694
 	public int timesConversed;
 }

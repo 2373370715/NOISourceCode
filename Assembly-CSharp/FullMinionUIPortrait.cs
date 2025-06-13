@@ -2,10 +2,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200047C RID: 1148
 public class FullMinionUIPortrait : IEntityConfig
 {
-	// Token: 0x06001386 RID: 4998 RVA: 0x00198A74 File Offset: 0x00196C74
 	public GameObject CreatePrefab()
 	{
 		GameObject gameObject = EntityTemplates.CreateEntity(FullMinionUIPortrait.ID, FullMinionUIPortrait.ID, true);
@@ -39,16 +37,13 @@ public class FullMinionUIPortrait : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06001387 RID: 4999 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject go)
 	{
 	}
 
-	// Token: 0x06001388 RID: 5000 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject go)
 	{
 	}
 
-	// Token: 0x04000D66 RID: 3430
 	public static string ID = "FullMinionUIPortrait";
 }

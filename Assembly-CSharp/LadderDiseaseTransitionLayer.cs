@@ -2,15 +2,12 @@
 using Klei;
 using UnityEngine;
 
-// Token: 0x02000B8F RID: 2959
 public class LadderDiseaseTransitionLayer : TransitionDriver.OverrideLayer
 {
-	// Token: 0x06003781 RID: 14209 RVA: 0x000C8704 File Offset: 0x000C6904
 	public LadderDiseaseTransitionLayer(Navigator navigator) : base(navigator)
 	{
 	}
 
-	// Token: 0x06003782 RID: 14210 RVA: 0x002249F8 File Offset: 0x00222BF8
 	public override void EndTransition(Navigator navigator, Navigator.ActiveTransition transition)
 	{
 		base.EndTransition(navigator, transition);

@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005E2 RID: 1506
 public class TelescopeConfig : IBuildingConfig
 {
-	// Token: 0x06001A59 RID: 6745 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetForbiddenDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06001A5A RID: 6746 RVA: 0x001B38D8 File Offset: 0x001B1AD8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "Telescope";
@@ -39,7 +36,6 @@ public class TelescopeConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001A5B RID: 6747 RVA: 0x001B3998 File Offset: 0x001B1B98
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.ScienceBuilding, false);
@@ -65,25 +61,21 @@ public class TelescopeConfig : IBuildingConfig
 		go.AddOrGetDef<PoweredController.Def>();
 	}
 
-	// Token: 0x06001A5C RID: 6748 RVA: 0x000B593B File Offset: 0x000B3B3B
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		TelescopeConfig.AddVisualizer(go);
 	}
 
-	// Token: 0x06001A5D RID: 6749 RVA: 0x000B5943 File Offset: 0x000B3B43
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 		TelescopeConfig.AddVisualizer(go);
 	}
 
-	// Token: 0x06001A5E RID: 6750 RVA: 0x000B593B File Offset: 0x000B3B3B
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		TelescopeConfig.AddVisualizer(go);
 	}
 
-	// Token: 0x06001A5F RID: 6751 RVA: 0x000AA718 File Offset: 0x000A8918
 	private static void AddVisualizer(GameObject prefab)
 	{
 		SkyVisibilityVisualizer skyVisibilityVisualizer = prefab.AddOrGet<SkyVisibilityVisualizer>();
@@ -94,27 +86,19 @@ public class TelescopeConfig : IBuildingConfig
 		skyVisibilityVisualizer.SkipOnModuleInteriors = true;
 	}
 
-	// Token: 0x0400110B RID: 4363
 	public const string ID = "Telescope";
 
-	// Token: 0x0400110C RID: 4364
 	public const float POINTS_PER_DAY = 2f;
 
-	// Token: 0x0400110D RID: 4365
 	public const float MASS_PER_POINT = 2f;
 
-	// Token: 0x0400110E RID: 4366
 	public const float CAPACITY = 30f;
 
-	// Token: 0x0400110F RID: 4367
 	public const int SCAN_RADIUS = 4;
 
-	// Token: 0x04001110 RID: 4368
 	public const int VERTICAL_SCAN_OFFSET = 3;
 
-	// Token: 0x04001111 RID: 4369
 	public static readonly SkyVisibilityInfo SKY_VISIBILITY_INFO = new SkyVisibilityInfo(new CellOffset(0, 3), 4, new CellOffset(1, 3), 4, 0);
 
-	// Token: 0x04001112 RID: 4370
 	public static readonly Tag INPUT_MATERIAL = GameTags.Glass;
 }

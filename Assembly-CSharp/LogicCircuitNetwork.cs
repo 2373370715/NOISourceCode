@@ -4,10 +4,8 @@ using FMOD.Studio;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x020014EE RID: 5358
 public class LogicCircuitNetwork : UtilityNetwork
 {
-	// Token: 0x06006F5D RID: 28509 RVA: 0x0030097C File Offset: 0x002FEB7C
 	public override void AddItem(object item)
 	{
 		if (item is LogicWire)
@@ -36,7 +34,6 @@ public class LogicCircuitNetwork : UtilityNetwork
 		}
 	}
 
-	// Token: 0x06006F5E RID: 28510 RVA: 0x003009FC File Offset: 0x002FEBFC
 	public override void RemoveItem(object item)
 	{
 		if (item is LogicWire)
@@ -58,7 +55,6 @@ public class LogicCircuitNetwork : UtilityNetwork
 		}
 	}
 
-	// Token: 0x06006F5F RID: 28511 RVA: 0x000ED6F4 File Offset: 0x000EB8F4
 	public override void ConnectItem(object item)
 	{
 		if (item is ILogicEventReceiver)
@@ -72,7 +68,6 @@ public class LogicCircuitNetwork : UtilityNetwork
 		}
 	}
 
-	// Token: 0x06006F60 RID: 28512 RVA: 0x000ED71F File Offset: 0x000EB91F
 	public override void DisconnectItem(object item)
 	{
 		if (item is ILogicEventReceiver)
@@ -88,7 +83,6 @@ public class LogicCircuitNetwork : UtilityNetwork
 		}
 	}
 
-	// Token: 0x06006F61 RID: 28513 RVA: 0x00300A68 File Offset: 0x002FEC68
 	public override void Reset(UtilityNetworkGridNode[] grid)
 	{
 		this.resetting = true;
@@ -119,7 +113,6 @@ public class LogicCircuitNetwork : UtilityNetwork
 		this.RemoveOverloadedNotification();
 	}
 
-	// Token: 0x06006F62 RID: 28514 RVA: 0x00300B1C File Offset: 0x002FED1C
 	public void UpdateLogicValue()
 	{
 		if (this.resetting)
@@ -139,7 +132,6 @@ public class LogicCircuitNetwork : UtilityNetwork
 		}
 	}
 
-	// Token: 0x06006F63 RID: 28515 RVA: 0x00300BD8 File Offset: 0x002FEDD8
 	public int GetBitsUsed()
 	{
 		int result;
@@ -154,25 +146,21 @@ public class LogicCircuitNetwork : UtilityNetwork
 		return result;
 	}
 
-	// Token: 0x06006F64 RID: 28516 RVA: 0x000ED751 File Offset: 0x000EB951
 	public bool IsBitActive(int bit)
 	{
 		return (this.OutputValue & 1 << bit) > 0;
 	}
 
-	// Token: 0x06006F65 RID: 28517 RVA: 0x000ED763 File Offset: 0x000EB963
 	public static bool IsBitActive(int bit, int value)
 	{
 		return (value & 1 << bit) > 0;
 	}
 
-	// Token: 0x06006F66 RID: 28518 RVA: 0x000ED770 File Offset: 0x000EB970
 	public static int GetBitValue(int bit, int value)
 	{
 		return value & 1 << bit;
 	}
 
-	// Token: 0x06006F67 RID: 28519 RVA: 0x00300BF8 File Offset: 0x002FEDF8
 	public void SendLogicEvents(bool force_send, int id)
 	{
 		if (this.resetting)
@@ -192,7 +180,6 @@ public class LogicCircuitNetwork : UtilityNetwork
 		}
 	}
 
-	// Token: 0x06006F68 RID: 28520 RVA: 0x00300C88 File Offset: 0x002FEE88
 	private void TriggerAudio(int old_value, int id)
 	{
 		SpeedControlScreen instance = SpeedControlScreen.Instance;
@@ -254,7 +241,6 @@ public class LogicCircuitNetwork : UtilityNetwork
 		}
 	}
 
-	// Token: 0x06006F69 RID: 28521 RVA: 0x00300EC0 File Offset: 0x002FF0C0
 	public void UpdateOverloadTime(float dt, int bits_used)
 	{
 		bool flag = false;
@@ -332,7 +318,6 @@ public class LogicCircuitNetwork : UtilityNetwork
 		}
 	}
 
-	// Token: 0x06006F6A RID: 28522 RVA: 0x000ED77A File Offset: 0x000EB97A
 	private void RemoveOverloadedNotification()
 	{
 		if (this.overloadedNotification != null)
@@ -342,7 +327,6 @@ public class LogicCircuitNetwork : UtilityNetwork
 		}
 	}
 
-	// Token: 0x06006F6B RID: 28523 RVA: 0x0030113C File Offset: 0x002FF33C
 	public void UpdateRelevantBridges(List<LogicUtilityNetworkLink>[] bridgeGroups)
 	{
 		LogicCircuitManager logicCircuitManager = Game.Instance.logicCircuitManager;
@@ -366,8 +350,6 @@ public class LogicCircuitNetwork : UtilityNetwork
 		}
 	}
 
-	// Token: 0x1700071D RID: 1821
-	// (get) Token: 0x06006F6C RID: 28524 RVA: 0x000ED7A0 File Offset: 0x000EB9A0
 	public int OutputValue
 	{
 		get
@@ -376,8 +358,6 @@ public class LogicCircuitNetwork : UtilityNetwork
 		}
 	}
 
-	// Token: 0x1700071E RID: 1822
-	// (get) Token: 0x06006F6D RID: 28525 RVA: 0x003011F0 File Offset: 0x002FF3F0
 	public int WireCount
 	{
 		get
@@ -394,8 +374,6 @@ public class LogicCircuitNetwork : UtilityNetwork
 		}
 	}
 
-	// Token: 0x1700071F RID: 1823
-	// (get) Token: 0x06006F6E RID: 28526 RVA: 0x000ED7A8 File Offset: 0x000EB9A8
 	public List<ILogicEventSender> Senders
 	{
 		get
@@ -404,8 +382,6 @@ public class LogicCircuitNetwork : UtilityNetwork
 		}
 	}
 
-	// Token: 0x17000720 RID: 1824
-	// (get) Token: 0x06006F6F RID: 28527 RVA: 0x000ED7B0 File Offset: 0x000EB9B0
 	public List<ILogicEventReceiver> Receivers
 	{
 		get
@@ -414,64 +390,44 @@ public class LogicCircuitNetwork : UtilityNetwork
 		}
 	}
 
-	// Token: 0x040053BD RID: 21437
 	private List<LogicWire>[] wireGroups = new List<LogicWire>[2];
 
-	// Token: 0x040053BE RID: 21438
 	private List<LogicUtilityNetworkLink>[] relevantBridges = new List<LogicUtilityNetworkLink>[2];
 
-	// Token: 0x040053BF RID: 21439
 	private List<ILogicEventReceiver> receivers = new List<ILogicEventReceiver>();
 
-	// Token: 0x040053C0 RID: 21440
 	private List<ILogicEventSender> senders = new List<ILogicEventSender>();
 
-	// Token: 0x040053C1 RID: 21441
 	private int previousValue = -1;
 
-	// Token: 0x040053C2 RID: 21442
 	private int outputValue;
 
-	// Token: 0x040053C3 RID: 21443
 	private bool resetting;
 
-	// Token: 0x040053C4 RID: 21444
 	public static float logicSoundLastPlayedTime = 0f;
 
-	// Token: 0x040053C5 RID: 21445
 	private const float MIN_OVERLOAD_TIME_FOR_DAMAGE = 6f;
 
-	// Token: 0x040053C6 RID: 21446
 	private const float MIN_OVERLOAD_NOTIFICATION_DISPLAY_TIME = 5f;
 
-	// Token: 0x040053C7 RID: 21447
 	public const int VALID_LOGIC_SIGNAL_MASK = 15;
 
-	// Token: 0x040053C8 RID: 21448
 	public const int UNINITIALIZED_LOGIC_STATE = -16;
 
-	// Token: 0x040053C9 RID: 21449
 	private GameObject targetOverloadedWire;
 
-	// Token: 0x040053CA RID: 21450
 	private float timeOverloaded;
 
-	// Token: 0x040053CB RID: 21451
 	private float timeOverloadNotificationDisplayed;
 
-	// Token: 0x040053CC RID: 21452
 	private Notification overloadedNotification;
 
-	// Token: 0x040053CD RID: 21453
 	public static Dictionary<int, LogicCircuitNetwork.LogicSoundPair> logicSoundRegister = new Dictionary<int, LogicCircuitNetwork.LogicSoundPair>();
 
-	// Token: 0x020014EF RID: 5359
 	public class LogicSoundPair
 	{
-		// Token: 0x040053CE RID: 21454
 		public int playedIndex;
 
-		// Token: 0x040053CF RID: 21455
 		public float lastPlayed;
 	}
 }

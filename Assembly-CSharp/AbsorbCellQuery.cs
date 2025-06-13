@@ -2,16 +2,13 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200082E RID: 2094
 public class AbsorbCellQuery : PathFinderQuery
 {
-	// Token: 0x060024E3 RID: 9443 RVA: 0x000BC7B4 File Offset: 0x000BA9B4
 	public AbsorbCellQuery()
 	{
 		this.checker = Game.Instance.safetyConditions.AbsorbCellCellChecker;
 	}
 
-	// Token: 0x060024E4 RID: 9444 RVA: 0x001D7A34 File Offset: 0x001D5C34
 	public AbsorbCellQuery Reset(MinionBrain brain, bool criticalMode, float currentOxygenTankMass, float breathPercentage, int allowCellEvenIfReserved, bool isRecoveringFromSuffocation)
 	{
 		this.brain = brain;
@@ -31,7 +28,6 @@ public class AbsorbCellQuery : PathFinderQuery
 		return this;
 	}
 
-	// Token: 0x060024E5 RID: 9445 RVA: 0x001D7AD8 File Offset: 0x001D5CD8
 	public static AbsorbCellQuery.AbsorbOxygenSafeCellFlags GetAbsorbOxygenFlags(int cell, MinionBrain brain, float scaldingTreshold, out float totalBreathableMassAroundCell, out float breathableCellRatioInSample, int allowCellEvenIfReserved)
 	{
 		totalBreathableMassAroundCell = 0f;
@@ -100,7 +96,6 @@ public class AbsorbCellQuery : PathFinderQuery
 		return absorbOxygenSafeCellFlags;
 	}
 
-	// Token: 0x060024E6 RID: 9446 RVA: 0x001D7C98 File Offset: 0x001D5E98
 	public override bool IsMatch(int cell, int parent_cell, int cost)
 	{
 		float num = 0.1f * (float)GasBreatherFromWorldProvider.DEFAULT_BREATHABLE_OFFSETS.Length;
@@ -174,73 +169,49 @@ public class AbsorbCellQuery : PathFinderQuery
 		return false;
 	}
 
-	// Token: 0x060024E7 RID: 9447 RVA: 0x000BC7E3 File Offset: 0x000BA9E3
 	public override int GetResultCell()
 	{
 		return this.targetCell;
 	}
 
-	// Token: 0x04001962 RID: 6498
 	private MinionBrain brain;
 
-	// Token: 0x04001963 RID: 6499
 	private float scaldingTreshold = -1f;
 
-	// Token: 0x04001964 RID: 6500
 	private int targetCell;
 
-	// Token: 0x04001965 RID: 6501
 	private int targetCost;
 
-	// Token: 0x04001966 RID: 6502
 	private float targetOxygenScore;
 
-	// Token: 0x04001967 RID: 6503
 	private bool criticalMode;
 
-	// Token: 0x04001968 RID: 6504
 	private float bionicOxygenRemaining;
 
-	// Token: 0x04001969 RID: 6505
 	private float breathPercentage;
 
-	// Token: 0x0400196A RID: 6506
 	private float targetBreathableMassAvailable;
 
-	// Token: 0x0400196B RID: 6507
 	public AbsorbCellQuery.AbsorbOxygenSafeCellFlags targetCellSafetyFlags;
 
-	// Token: 0x0400196C RID: 6508
 	public float targetCellBreathabilityScore;
 
-	// Token: 0x0400196D RID: 6509
 	private int allowCellEvenIfReserved = -1;
 
-	// Token: 0x0400196E RID: 6510
 	private SafetyChecker checker;
 
-	// Token: 0x0400196F RID: 6511
 	private SafetyChecker.Context context;
 
-	// Token: 0x04001970 RID: 6512
 	private bool isRecoveringFromSuffocation;
 
-	// Token: 0x0200082F RID: 2095
 	public enum AbsorbOxygenSafeCellFlags
 	{
-		// Token: 0x04001972 RID: 6514
 		IsNotTube = 1,
-		// Token: 0x04001973 RID: 6515
 		IsNotRadiated,
-		// Token: 0x04001974 RID: 6516
 		IsBreathable = 4,
-		// Token: 0x04001975 RID: 6517
 		IsNotScaldingTemperatures = 8,
-		// Token: 0x04001976 RID: 6518
 		IsClear = 16,
-		// Token: 0x04001977 RID: 6519
 		IsNotLiquidOnMyFace = 32,
-		// Token: 0x04001978 RID: 6520
 		IsNotLiquid = 64
 	}
 }

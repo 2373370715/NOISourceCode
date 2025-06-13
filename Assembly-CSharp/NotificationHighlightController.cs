@@ -3,17 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02001EB7 RID: 7863
 public class NotificationHighlightController : KMonoBehaviour
 {
-	// Token: 0x0600A4F4 RID: 42228 RVA: 0x0010F72C File Offset: 0x0010D92C
 	protected override void OnSpawn()
 	{
 		this.highlightBox = Util.KInstantiateUI<RectTransform>(this.highlightBoxPrefab.gameObject, base.gameObject, false);
 		this.HideBox();
 	}
 
-	// Token: 0x0600A4F5 RID: 42229 RVA: 0x003F7D8C File Offset: 0x003F5F8C
 	[ContextMenu("Force Update")]
 	protected void LateUpdate()
 	{
@@ -36,25 +33,21 @@ public class NotificationHighlightController : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600A4F6 RID: 42230 RVA: 0x0010F751 File Offset: 0x0010D951
 	public void AddTarget(NotificationHighlightTarget target)
 	{
 		this.targets.Add(target);
 	}
 
-	// Token: 0x0600A4F7 RID: 42231 RVA: 0x0010F75F File Offset: 0x0010D95F
 	public void RemoveTarget(NotificationHighlightTarget target)
 	{
 		this.targets.Remove(target);
 	}
 
-	// Token: 0x0600A4F8 RID: 42232 RVA: 0x0010F76E File Offset: 0x0010D96E
 	public void SetActiveTarget(ManagementMenuNotification notification)
 	{
 		this.activeTargetNotification = notification;
 	}
 
-	// Token: 0x0600A4F9 RID: 42233 RVA: 0x0010F777 File Offset: 0x0010D977
 	public void ClearActiveTarget(ManagementMenuNotification checkNotification)
 	{
 		if (checkNotification == this.activeTargetNotification)
@@ -63,13 +56,11 @@ public class NotificationHighlightController : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600A4FA RID: 42234 RVA: 0x0010F789 File Offset: 0x0010D989
 	public void ClearActiveTarget()
 	{
 		this.activeTargetNotification = null;
 	}
 
-	// Token: 0x0600A4FB RID: 42235 RVA: 0x0010F792 File Offset: 0x0010D992
 	public void TargetViewed(NotificationHighlightTarget target)
 	{
 		if (this.activeTargetNotification != null && this.activeTargetNotification.highlightTarget == target.targetKey)
@@ -78,7 +69,6 @@ public class NotificationHighlightController : KMonoBehaviour
 		}
 	}
 
-	// Token: 0x0600A4FC RID: 42236 RVA: 0x003F7E10 File Offset: 0x003F6010
 	private void SnapBoxToTarget(NotificationHighlightTarget target)
 	{
 		RectTransform rectTransform = target.rectTransform();
@@ -117,21 +107,16 @@ public class NotificationHighlightController : KMonoBehaviour
 		this.highlightBox.gameObject.SetActive(this.highlightBox.sizeDelta.x > 0f && this.highlightBox.sizeDelta.y > 0f);
 	}
 
-	// Token: 0x0600A4FD RID: 42237 RVA: 0x0010F7BF File Offset: 0x0010D9BF
 	private void HideBox()
 	{
 		this.highlightBox.gameObject.SetActive(false);
 	}
 
-	// Token: 0x04008104 RID: 33028
 	public RectTransform highlightBoxPrefab;
 
-	// Token: 0x04008105 RID: 33029
 	private RectTransform highlightBox;
 
-	// Token: 0x04008106 RID: 33030
 	private List<NotificationHighlightTarget> targets = new List<NotificationHighlightTarget>();
 
-	// Token: 0x04008107 RID: 33031
 	private ManagementMenuNotification activeTargetNotification;
 }

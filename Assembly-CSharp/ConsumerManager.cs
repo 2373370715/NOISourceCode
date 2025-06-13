@@ -3,24 +3,19 @@ using System.Collections.Generic;
 using KSerialization;
 using UnityEngine;
 
-// Token: 0x02001144 RID: 4420
 [SerializationConfig(MemberSerialization.OptIn)]
 [AddComponentMenu("KMonoBehaviour/scripts/ConsumerManager")]
 public class ConsumerManager : KMonoBehaviour, ISaveLoadable
 {
-	// Token: 0x06005A45 RID: 23109 RVA: 0x000DF2ED File Offset: 0x000DD4ED
 	public static void DestroyInstance()
 	{
 		ConsumerManager.instance = null;
 	}
 
-	// Token: 0x14000017 RID: 23
-	// (add) Token: 0x06005A46 RID: 23110 RVA: 0x002A1DB8 File Offset: 0x0029FFB8
-	// (remove) Token: 0x06005A47 RID: 23111 RVA: 0x002A1DF0 File Offset: 0x0029FFF0
+add) Token: 0x06005A46 RID: 23110 RVA: 0x002A1DB8 File Offset: 0x0029FFB8
+remove) Token: 0x06005A47 RID: 23111 RVA: 0x002A1DF0 File Offset: 0x0029FFF0
 	public event Action<Tag> OnDiscover;
 
-	// Token: 0x17000567 RID: 1383
-	// (get) Token: 0x06005A48 RID: 23112 RVA: 0x000DF2F5 File Offset: 0x000DD4F5
 	public List<Tag> DefaultForbiddenTagsList
 	{
 		get
@@ -29,8 +24,6 @@ public class ConsumerManager : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x17000568 RID: 1384
-	// (get) Token: 0x06005A49 RID: 23113 RVA: 0x002A1E28 File Offset: 0x002A0028
 	public List<Tag> StandardDuplicantDietaryRestrictions
 	{
 		get
@@ -45,8 +38,6 @@ public class ConsumerManager : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x17000569 RID: 1385
-	// (get) Token: 0x06005A4A RID: 23114 RVA: 0x002A1E9C File Offset: 0x002A009C
 	public List<Tag> BionicDuplicantDietaryRestrictions
 	{
 		get
@@ -66,7 +57,6 @@ public class ConsumerManager : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x06005A4B RID: 23115 RVA: 0x002A1F44 File Offset: 0x002A0144
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -76,13 +66,11 @@ public class ConsumerManager : KMonoBehaviour, ISaveLoadable
 		Game.Instance.Subscribe(-107300940, new Action<object>(this.RefreshDiscovered));
 	}
 
-	// Token: 0x06005A4C RID: 23116 RVA: 0x000DF2FD File Offset: 0x000DD4FD
 	public bool isDiscovered(Tag id)
 	{
 		return !this.undiscoveredConsumableTags.Contains(id);
 	}
 
-	// Token: 0x06005A4D RID: 23117 RVA: 0x000DF30E File Offset: 0x000DD50E
 	private void OnWorldInventoryDiscover(Tag category_tag, Tag tag)
 	{
 		if (this.undiscoveredConsumableTags.Contains(tag))
@@ -91,7 +79,6 @@ public class ConsumerManager : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x06005A4E RID: 23118 RVA: 0x002A1F98 File Offset: 0x002A0198
 	public void RefreshDiscovered(object data = null)
 	{
 		foreach (EdiblesManager.FoodInfo foodInfo in EdiblesManager.GetAllFoodTypes())
@@ -126,7 +113,6 @@ public class ConsumerManager : KMonoBehaviour, ISaveLoadable
 		}
 	}
 
-	// Token: 0x06005A4F RID: 23119 RVA: 0x002A211C File Offset: 0x002A031C
 	private bool ShouldBeDiscovered(Tag food_id)
 	{
 		if (DiscoveredResources.Instance.IsDiscovered(food_id))
@@ -156,17 +142,13 @@ public class ConsumerManager : KMonoBehaviour, ISaveLoadable
 		return false;
 	}
 
-	// Token: 0x04004048 RID: 16456
 	public static ConsumerManager instance;
 
-	// Token: 0x0400404A RID: 16458
 	[Serialize]
 	private List<Tag> undiscoveredConsumableTags = new List<Tag>();
 
-	// Token: 0x0400404B RID: 16459
 	[Serialize]
 	private List<Tag> defaultForbiddenTagsList = new List<Tag>();
 
-	// Token: 0x0400404C RID: 16460
 	public static string OXYGEN_TANK_ID = ClosestOxygenCanisterSensor.GenericBreathableGassesTankTag.ToString();
 }

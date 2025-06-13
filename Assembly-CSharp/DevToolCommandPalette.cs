@@ -4,15 +4,12 @@ using System.Linq;
 using ImGuiNET;
 using UnityEngine;
 
-// Token: 0x02000BD5 RID: 3029
 public class DevToolCommandPalette : DevTool
 {
-	// Token: 0x06003976 RID: 14710 RVA: 0x000C9A0E File Offset: 0x000C7C0E
 	public DevToolCommandPalette() : this(null)
 	{
 	}
 
-	// Token: 0x06003977 RID: 14711 RVA: 0x0022C040 File Offset: 0x0022A240
 	public DevToolCommandPalette(List<DevToolCommandPalette.Command> commands = null)
 	{
 		this.drawFlags |= ImGuiWindowFlags.NoResize;
@@ -26,19 +23,16 @@ public class DevToolCommandPalette : DevTool
 		this.commands.allValues = commands;
 	}
 
-	// Token: 0x06003978 RID: 14712 RVA: 0x000C9A17 File Offset: 0x000C7C17
 	public static void Init()
 	{
 		DevToolCommandPalette.InitWithCommands(DevToolCommandPaletteUtil.GenerateDefaultCommandPalette());
 	}
 
-	// Token: 0x06003979 RID: 14713 RVA: 0x000C9A23 File Offset: 0x000C7C23
 	public static void InitWithCommands(List<DevToolCommandPalette.Command> commands)
 	{
 		DevToolManager.Instance.panels.AddPanelFor(new DevToolCommandPalette(commands));
 	}
 
-	// Token: 0x0600397A RID: 14714 RVA: 0x0022C0D0 File Offset: 0x0022A2D0
 	protected override void RenderTo(DevPanel panel)
 	{
 		DevToolCommandPalette.Resize(panel);
@@ -149,7 +143,6 @@ public class DevToolCommandPalette : DevTool
 		}
 	}
 
-	// Token: 0x0600397B RID: 14715 RVA: 0x0022C3C0 File Offset: 0x0022A5C0
 	private static void Resize(DevPanel devToolPanel)
 	{
 		float num = 800f;
@@ -166,25 +159,19 @@ public class DevToolCommandPalette : DevTool
 		devToolPanel.SetSize(rect2.size, ImGuiCond.None);
 	}
 
-	// Token: 0x040027B4 RID: 10164
 	private int m_selected_index;
 
-	// Token: 0x040027B5 RID: 10165
 	private StringSearchableList<DevToolCommandPalette.Command> commands = new StringSearchableList<DevToolCommandPalette.Command>(delegate(DevToolCommandPalette.Command command, in string filter)
 	{
 		return !StringSearchableListUtil.DoAnyTagsMatchFilter(command.tags, filter);
 	});
 
-	// Token: 0x040027B6 RID: 10166
 	private bool m_should_focus_search = true;
 
-	// Token: 0x040027B7 RID: 10167
 	private bool shouldScrollToSelectedCommandFlag;
 
-	// Token: 0x02000BD6 RID: 3030
 	public class Command
 	{
-		// Token: 0x0600397C RID: 14716 RVA: 0x000C9A3B File Offset: 0x000C7C3B
 		public Command(string primary_tag, System.Action on_select) : this(new string[]
 		{
 			primary_tag
@@ -192,7 +179,6 @@ public class DevToolCommandPalette : DevTool
 		{
 		}
 
-		// Token: 0x0600397D RID: 14717 RVA: 0x000C9A4E File Offset: 0x000C7C4E
 		public Command(string primary_tag, string tag_a, System.Action on_select) : this(new string[]
 		{
 			primary_tag,
@@ -201,7 +187,6 @@ public class DevToolCommandPalette : DevTool
 		{
 		}
 
-		// Token: 0x0600397E RID: 14718 RVA: 0x000C9A65 File Offset: 0x000C7C65
 		public Command(string primary_tag, string tag_a, string tag_b, System.Action on_select) : this(new string[]
 		{
 			primary_tag,
@@ -211,7 +196,6 @@ public class DevToolCommandPalette : DevTool
 		{
 		}
 
-		// Token: 0x0600397F RID: 14719 RVA: 0x000C9A81 File Offset: 0x000C7C81
 		public Command(string primary_tag, string tag_a, string tag_b, string tag_c, System.Action on_select) : this(new string[]
 		{
 			primary_tag,
@@ -222,7 +206,6 @@ public class DevToolCommandPalette : DevTool
 		{
 		}
 
-		// Token: 0x06003980 RID: 14720 RVA: 0x000C9AA2 File Offset: 0x000C7CA2
 		public Command(string primary_tag, string tag_a, string tag_b, string tag_c, string tag_d, System.Action on_select) : this(new string[]
 		{
 			primary_tag,
@@ -234,7 +217,6 @@ public class DevToolCommandPalette : DevTool
 		{
 		}
 
-		// Token: 0x06003981 RID: 14721 RVA: 0x000C9AC8 File Offset: 0x000C7CC8
 		public Command(string primary_tag, string tag_a, string tag_b, string tag_c, string tag_d, string tag_e, System.Action on_select) : this(new string[]
 		{
 			primary_tag,
@@ -247,7 +229,6 @@ public class DevToolCommandPalette : DevTool
 		{
 		}
 
-		// Token: 0x06003982 RID: 14722 RVA: 0x000C9AF3 File Offset: 0x000C7CF3
 		public Command(string primary_tag, string tag_a, string tag_b, string tag_c, string tag_d, string tag_e, string tag_f, System.Action on_select) : this(new string[]
 		{
 			primary_tag,
@@ -261,7 +242,6 @@ public class DevToolCommandPalette : DevTool
 		{
 		}
 
-		// Token: 0x06003983 RID: 14723 RVA: 0x000C9B23 File Offset: 0x000C7D23
 		public Command(string primary_tag, string[] additional_tags, System.Action on_select) : this(new string[]
 		{
 			primary_tag
@@ -269,7 +249,6 @@ public class DevToolCommandPalette : DevTool
 		{
 		}
 
-		// Token: 0x06003984 RID: 14724 RVA: 0x0022C478 File Offset: 0x0022A678
 		public Command(string[] tags, System.Action on_select)
 		{
 			this.display_name = tags[0];
@@ -278,19 +257,15 @@ public class DevToolCommandPalette : DevTool
 			this.m_on_select = on_select;
 		}
 
-		// Token: 0x06003985 RID: 14725 RVA: 0x000C9B41 File Offset: 0x000C7D41
 		public void Internal_Select()
 		{
 			this.m_on_select();
 		}
 
-		// Token: 0x040027B8 RID: 10168
 		public string display_name;
 
-		// Token: 0x040027B9 RID: 10169
 		public string[] tags;
 
-		// Token: 0x040027BA RID: 10170
 		private System.Action m_on_select;
 	}
 }

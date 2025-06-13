@@ -4,22 +4,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200055A RID: 1370
 public class RoboPilotCommandModuleConfig : IBuildingConfig
 {
-	// Token: 0x06001794 RID: 6036 RVA: 0x000AA12F File Offset: 0x000A832F
 	public override string[] GetRequiredDlcIds()
 	{
 		return DlcManager.DLC3;
 	}
 
-	// Token: 0x06001795 RID: 6037 RVA: 0x000AA117 File Offset: 0x000A8317
 	public override string[] GetForbiddenDlcIds()
 	{
 		return DlcManager.EXPANSION1;
 	}
 
-	// Token: 0x06001796 RID: 6038 RVA: 0x001A684C File Offset: 0x001A4A4C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "RoboPilotCommandModule";
@@ -58,7 +54,6 @@ public class RoboPilotCommandModuleConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001797 RID: 6039 RVA: 0x001A6998 File Offset: 0x001A4B98
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
@@ -86,24 +81,18 @@ public class RoboPilotCommandModuleConfig : IBuildingConfig
 		go.AddOrGet<LaunchableRocket>();
 	}
 
-	// Token: 0x06001798 RID: 6040 RVA: 0x000B4524 File Offset: 0x000B2724
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		BuildingTemplates.ExtendBuildingToRocketModule(go, "rocket_command_module_bg_kanim", false);
 	}
 
-	// Token: 0x04000F8F RID: 3983
 	public const string ID = "RoboPilotCommandModule";
 
-	// Token: 0x04000F90 RID: 3984
 	public static float DATABANKCONSUMPTION = 2f;
 
-	// Token: 0x04000F91 RID: 3985
 	public static float DATABANKRANGE = 10000f / RoboPilotCommandModuleConfig.DATABANKCONSUMPTION;
 
-	// Token: 0x04000F92 RID: 3986
 	private const string TRIGGER_LAUNCH_PORT_ID = "TriggerLaunch";
 
-	// Token: 0x04000F93 RID: 3987
 	private const string LAUNCH_READY_PORT_ID = "LaunchReady";
 }

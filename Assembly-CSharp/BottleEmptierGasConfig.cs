@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000036 RID: 54
 public class BottleEmptierGasConfig : IBuildingConfig
 {
-	// Token: 0x060000E3 RID: 227 RVA: 0x0014A234 File Offset: 0x00148434
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "BottleEmptierGas";
@@ -27,7 +25,6 @@ public class BottleEmptierGasConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060000E4 RID: 228 RVA: 0x0014A29C File Offset: 0x0014849C
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		Prioritizable.AddRef(go);
@@ -43,11 +40,9 @@ public class BottleEmptierGasConfig : IBuildingConfig
 		bottleEmptier.emptyRate = 0.25f;
 	}
 
-	// Token: 0x060000E5 RID: 229 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000094 RID: 148
 	public const string ID = "BottleEmptierGas";
 }

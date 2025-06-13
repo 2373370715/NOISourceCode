@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003E8 RID: 1000
 public class LogicHammerConfig : IBuildingConfig
 {
-	// Token: 0x06001066 RID: 4198 RVA: 0x0018A578 File Offset: 0x00188778
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = LogicHammerConfig.ID;
@@ -44,13 +42,11 @@ public class LogicHammerConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001067 RID: 4199 RVA: 0x000B192E File Offset: 0x000AFB2E
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicHammer>();
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayInFrontOfConduits, false);
 	}
 
-	// Token: 0x04000B90 RID: 2960
 	public static string ID = "LogicHammer";
 }

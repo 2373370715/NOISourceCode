@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x02000B74 RID: 2932
 public class ChoreCountTracker : WorldTracker
 {
-	// Token: 0x0600371F RID: 14111 RVA: 0x000C8501 File Offset: 0x000C6701
 	public ChoreCountTracker(int worldID, ChoreGroup group) : base(worldID)
 	{
 		this.choreGroup = group;
 	}
 
-	// Token: 0x06003720 RID: 14112 RVA: 0x002233A8 File Offset: 0x002215A8
 	public override void UpdateData()
 	{
 		float num = 0f;
@@ -57,12 +54,10 @@ public class ChoreCountTracker : WorldTracker
 		base.AddPoint(num);
 	}
 
-	// Token: 0x06003721 RID: 14113 RVA: 0x000C6C93 File Offset: 0x000C4E93
 	public override string FormatValueString(float value)
 	{
 		return value.ToString();
 	}
 
-	// Token: 0x04002611 RID: 9745
 	public ChoreGroup choreGroup;
 }

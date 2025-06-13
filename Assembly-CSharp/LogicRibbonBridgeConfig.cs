@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020003F1 RID: 1009
 public class LogicRibbonBridgeConfig : IBuildingConfig
 {
-	// Token: 0x06001092 RID: 4242 RVA: 0x0018B088 File Offset: 0x00189288
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "LogicRibbonBridge";
@@ -45,13 +43,11 @@ public class LogicRibbonBridgeConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001093 RID: 4243 RVA: 0x000B01B2 File Offset: 0x000AE3B2
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
 	}
 
-	// Token: 0x06001094 RID: 4244 RVA: 0x000B1ABF File Offset: 0x000AFCBF
 	public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 	{
 		base.DoPostConfigurePreview(def, go);
@@ -59,7 +55,6 @@ public class LogicRibbonBridgeConfig : IBuildingConfig
 		go.AddOrGet<BuildingCellVisualizer>();
 	}
 
-	// Token: 0x06001095 RID: 4245 RVA: 0x000B1ADD File Offset: 0x000AFCDD
 	public override void DoPostConfigureUnderConstruction(GameObject go)
 	{
 		base.DoPostConfigureUnderConstruction(go);
@@ -67,7 +62,6 @@ public class LogicRibbonBridgeConfig : IBuildingConfig
 		go.AddOrGet<BuildingCellVisualizer>();
 	}
 
-	// Token: 0x06001096 RID: 4246 RVA: 0x000B1AFA File Offset: 0x000AFCFA
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		this.AddNetworkLink(go).visualizeOnly = false;
@@ -75,7 +69,6 @@ public class LogicRibbonBridgeConfig : IBuildingConfig
 		go.AddOrGet<LogicRibbonBridge>();
 	}
 
-	// Token: 0x06001097 RID: 4247 RVA: 0x000B1B17 File Offset: 0x000AFD17
 	private LogicUtilityNetworkLink AddNetworkLink(GameObject go)
 	{
 		LogicUtilityNetworkLink logicUtilityNetworkLink = go.AddOrGet<LogicUtilityNetworkLink>();
@@ -85,9 +78,7 @@ public class LogicRibbonBridgeConfig : IBuildingConfig
 		return logicUtilityNetworkLink;
 	}
 
-	// Token: 0x04000B9B RID: 2971
 	public const string ID = "LogicRibbonBridge";
 
-	// Token: 0x04000B9C RID: 2972
 	public static readonly HashedString BRIDGE_LOGIC_RIBBON_IO_ID = new HashedString("BRIDGE_LOGIC_RIBBON_IO");
 }

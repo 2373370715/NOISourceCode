@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000019 RID: 25
 public class AdvancedResearchCenterConfig : IBuildingConfig
 {
-	// Token: 0x06000060 RID: 96 RVA: 0x0014795C File Offset: 0x00145B5C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "AdvancedResearchCenter";
@@ -34,7 +32,6 @@ public class AdvancedResearchCenterConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06000061 RID: 97 RVA: 0x00147A18 File Offset: 0x00145C18
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.ScienceBuilding, false);
@@ -72,26 +69,19 @@ public class AdvancedResearchCenterConfig : IBuildingConfig
 		go.AddOrGetDef<PoweredController.Def>();
 	}
 
-	// Token: 0x06000062 RID: 98 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000048 RID: 72
 	public const string ID = "AdvancedResearchCenter";
 
-	// Token: 0x04000049 RID: 73
 	public const float BASE_SECONDS_PER_POINT = 60f;
 
-	// Token: 0x0400004A RID: 74
 	public const float MASS_PER_POINT = 50f;
 
-	// Token: 0x0400004B RID: 75
 	public const float BASE_MASS_PER_SECOND = 0.8333333f;
 
-	// Token: 0x0400004C RID: 76
 	public const float CAPACITY = 750f;
 
-	// Token: 0x0400004D RID: 77
 	public static readonly Tag INPUT_MATERIAL = GameTags.Water;
 }

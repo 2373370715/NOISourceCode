@@ -1,12 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000949 RID: 2377
 public class KAnimSynchronizedController
 {
-	// Token: 0x17000156 RID: 342
-	// (get) Token: 0x06002A1D RID: 10781 RVA: 0x000BFDF7 File Offset: 0x000BDFF7
-	// (set) Token: 0x06002A1E RID: 10782 RVA: 0x000BFDFF File Offset: 0x000BDFFF
 	public string Postfix
 	{
 		get
@@ -19,7 +15,6 @@ public class KAnimSynchronizedController
 		}
 	}
 
-	// Token: 0x06002A1F RID: 10783 RVA: 0x001E4ED0 File Offset: 0x001E30D0
 	public KAnimSynchronizedController(KAnimControllerBase controller, Grid.SceneLayer layer, string postfix)
 	{
 		this.controller = controller;
@@ -40,13 +35,11 @@ public class KAnimSynchronizedController
 		synchronizer.SyncController(this);
 	}
 
-	// Token: 0x06002A20 RID: 10784 RVA: 0x000BFE08 File Offset: 0x000BE008
 	public void Enable(bool enable)
 	{
 		this.synchronizedController.enabled = enable;
 	}
 
-	// Token: 0x06002A21 RID: 10785 RVA: 0x000BFE16 File Offset: 0x000BE016
 	public void Play(HashedString anim_name, KAnim.PlayMode mode = KAnim.PlayMode.Once, float speed = 1f, float time_offset = 0f)
 	{
 		if (this.synchronizedController.enabled && this.synchronizedController.HasAnimation(anim_name))
@@ -55,7 +48,6 @@ public class KAnimSynchronizedController
 		}
 	}
 
-	// Token: 0x06002A22 RID: 10786 RVA: 0x001E4FC0 File Offset: 0x001E31C0
 	public void Dirty()
 	{
 		if (this.synchronizedController == null)
@@ -69,15 +61,11 @@ public class KAnimSynchronizedController
 		this.synchronizedController.FlipY = this.controller.FlipY;
 	}
 
-	// Token: 0x04001C9A RID: 7322
 	private KAnimControllerBase controller;
 
-	// Token: 0x04001C9B RID: 7323
 	public KAnimControllerBase synchronizedController;
 
-	// Token: 0x04001C9C RID: 7324
 	private KAnimLink link;
 
-	// Token: 0x04001C9D RID: 7325
 	private string postfix;
 }

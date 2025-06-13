@@ -2,10 +2,8 @@
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020004F3 RID: 1267
 public class OxyliteRefineryConfig : IBuildingConfig
 {
-	// Token: 0x060015C9 RID: 5577 RVA: 0x001A0838 File Offset: 0x0019EA38
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "OxyliteRefinery";
@@ -42,7 +40,6 @@ public class OxyliteRefineryConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060015CA RID: 5578 RVA: 0x001A0914 File Offset: 0x0019EB14
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		Tag tag = SimHashes.Oxygen.CreateTag();
@@ -82,40 +79,29 @@ public class OxyliteRefineryConfig : IBuildingConfig
 		Prioritizable.AddRef(go);
 	}
 
-	// Token: 0x060015CB RID: 5579 RVA: 0x000AA1AD File Offset: 0x000A83AD
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
 		go.AddOrGetDef<PoweredActiveController.Def>();
 	}
 
-	// Token: 0x04000EFD RID: 3837
 	public const string ID = "OxyliteRefinery";
 
-	// Token: 0x04000EFE RID: 3838
 	public const float EMIT_MASS = 10f;
 
-	// Token: 0x04000EFF RID: 3839
 	public const float INPUT_O2_PER_SECOND = 0.6f;
 
-	// Token: 0x04000F00 RID: 3840
 	public const float OXYLITE_PER_SECOND = 0.6f;
 
-	// Token: 0x04000F01 RID: 3841
 	public const float GOLD_PER_SECOND = 0.003f;
 
-	// Token: 0x04000F02 RID: 3842
 	public const float OUTPUT_TEMP = 303.15f;
 
-	// Token: 0x04000F03 RID: 3843
 	public const float REFILL_RATE = 2400f;
 
-	// Token: 0x04000F04 RID: 3844
 	public const float GOLD_STORAGE_AMOUNT = 7.2000003f;
 
-	// Token: 0x04000F05 RID: 3845
 	public const float O2_STORAGE_AMOUNT = 6f;
 
-	// Token: 0x04000F06 RID: 3846
 	public const float STORAGE_CAPACITY = 23.2f;
 }

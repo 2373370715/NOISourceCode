@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000090 RID: 144
 public class CritterDropOffConfig : IBuildingConfig
 {
-	// Token: 0x06000249 RID: 585 RVA: 0x0014FFF8 File Offset: 0x0014E1F8
 	public override BuildingDef CreateBuildingDef()
 	{
 		BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef("CritterDropOff", 1, 3, "relocator_dropoff_02_kanim", 10, 10f, TUNING.BUILDINGS.CONSTRUCTION_MASS_KG.TIER1, MATERIALS.RAW_METALS, 1600f, BuildLocationRule.OnFloor, TUNING.BUILDINGS.DECOR.PENALTY.TIER2, NOISE_POLLUTION.NOISY.TIER0, 0.2f);
@@ -22,7 +20,6 @@ public class CritterDropOffConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600024A RID: 586 RVA: 0x001500BC File Offset: 0x0014E2BC
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(GameTags.CodexCategories.CreatureRelocator, false);
@@ -48,14 +45,11 @@ public class CritterDropOffConfig : IBuildingConfig
 		go.AddOrGet<TreeFilterable>();
 	}
 
-	// Token: 0x0600024B RID: 587 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000174 RID: 372
 	public const string ID = "CritterDropOff";
 
-	// Token: 0x04000175 RID: 373
 	public const string INPUT_PORT = "CritterDropOffInput";
 }

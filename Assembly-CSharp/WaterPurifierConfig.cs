@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005FC RID: 1532
 public class WaterPurifierConfig : IBuildingConfig
 {
-	// Token: 0x06001B10 RID: 6928 RVA: 0x001B61C0 File Offset: 0x001B43C0
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "WaterPurifier";
@@ -40,7 +38,6 @@ public class WaterPurifierConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001B11 RID: 6929 RVA: 0x001B62C4 File Offset: 0x001B44C4
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
@@ -85,7 +82,6 @@ public class WaterPurifierConfig : IBuildingConfig
 		};
 	}
 
-	// Token: 0x06001B12 RID: 6930 RVA: 0x000B1164 File Offset: 0x000AF364
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
@@ -93,24 +89,17 @@ public class WaterPurifierConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayBehindConduits, false);
 	}
 
-	// Token: 0x04001160 RID: 4448
 	public const string ID = "WaterPurifier";
 
-	// Token: 0x04001161 RID: 4449
 	private const float FILTER_INPUT_RATE = 1f;
 
-	// Token: 0x04001162 RID: 4450
 	private const float DIRTY_WATER_INPUT_RATE = 5f;
 
-	// Token: 0x04001163 RID: 4451
 	private const float FILTER_CAPACITY = 1200f;
 
-	// Token: 0x04001164 RID: 4452
 	private const float USED_FILTER_OUTPUT_RATE = 0.2f;
 
-	// Token: 0x04001165 RID: 4453
 	private const float CLEAN_WATER_OUTPUT_RATE = 5f;
 
-	// Token: 0x04001166 RID: 4454
 	private const float TARGET_OUTPUT_TEMPERATURE = 313.15f;
 }

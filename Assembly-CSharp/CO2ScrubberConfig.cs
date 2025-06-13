@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200003D RID: 61
 public class CO2ScrubberConfig : IBuildingConfig
 {
-	// Token: 0x06000109 RID: 265 RVA: 0x0014ADF8 File Offset: 0x00148FF8
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "CO2Scrubber";
@@ -38,7 +36,6 @@ public class CO2ScrubberConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x0600010A RID: 266 RVA: 0x0014AEE0 File Offset: 0x001490E0
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<LoopingSounds>();
@@ -86,19 +83,15 @@ public class CO2ScrubberConfig : IBuildingConfig
 		go.AddOrGet<KBatchedAnimController>().randomiseLoopedOffset = true;
 	}
 
-	// Token: 0x0600010B RID: 267 RVA: 0x000AA1AD File Offset: 0x000A83AD
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
 		go.AddOrGetDef<PoweredActiveController.Def>();
 	}
 
-	// Token: 0x0400009E RID: 158
 	public const string ID = "CO2Scrubber";
 
-	// Token: 0x0400009F RID: 159
 	private const float CO2_CONSUMPTION_RATE = 0.3f;
 
-	// Token: 0x040000A0 RID: 160
 	private const float H2O_CONSUMPTION_RATE = 1f;
 }

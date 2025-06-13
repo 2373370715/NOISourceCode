@@ -1,10 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000679 RID: 1657
 public class BeIncapacitatedChore : Chore<BeIncapacitatedChore.StatesInstance>
 {
-	// Token: 0x06001D88 RID: 7560 RVA: 0x001BB910 File Offset: 0x001B9B10
 	public void FindAvailableMedicalBed(Navigator navigator)
 	{
 		Clinic clinic = null;
@@ -30,46 +28,35 @@ public class BeIncapacitatedChore : Chore<BeIncapacitatedChore.StatesInstance>
 		}
 	}
 
-	// Token: 0x06001D89 RID: 7561 RVA: 0x000B7F16 File Offset: 0x000B6116
 	public GameObject GetChosenClinic()
 	{
 		return base.smi.sm.clinic.Get(base.smi);
 	}
 
-	// Token: 0x06001D8A RID: 7562 RVA: 0x001BB9DC File Offset: 0x001B9BDC
 	public BeIncapacitatedChore(IStateMachineTarget master) : base(Db.Get().ChoreTypes.BeIncapacitated, master, master.GetComponent<ChoreProvider>(), true, null, null, null, PriorityScreen.PriorityClass.compulsory, 5, false, true, 0, false, ReportManager.ReportType.WorkTime)
 	{
 		base.smi = new BeIncapacitatedChore.StatesInstance(this);
 	}
 
-	// Token: 0x040012C5 RID: 4805
 	private static string IncapacitatedDuplicantAnim_pre = "incapacitate_pre";
 
-	// Token: 0x040012C6 RID: 4806
 	private static string IncapacitatedDuplicantAnim_loop = "incapacitate_loop";
 
-	// Token: 0x040012C7 RID: 4807
 	private static string IncapacitatedDuplicantAnim_death = "incapacitate_death";
 
-	// Token: 0x040012C8 RID: 4808
 	private static string IncapacitatedDuplicantAnim_carry = "carry_loop";
 
-	// Token: 0x040012C9 RID: 4809
 	private static string IncapacitatedDuplicantAnim_place = "place";
 
-	// Token: 0x0200067A RID: 1658
 	public class StatesInstance : GameStateMachine<BeIncapacitatedChore.States, BeIncapacitatedChore.StatesInstance, BeIncapacitatedChore, object>.GameInstance
 	{
-		// Token: 0x06001D8C RID: 7564 RVA: 0x000B7F67 File Offset: 0x000B6167
 		public StatesInstance(BeIncapacitatedChore master) : base(master)
 		{
 		}
 	}
 
-	// Token: 0x0200067B RID: 1659
 	public class States : GameStateMachine<BeIncapacitatedChore.States, BeIncapacitatedChore.StatesInstance, BeIncapacitatedChore>
 	{
-		// Token: 0x06001D8D RID: 7565 RVA: 0x001BBA20 File Offset: 0x001B9C20
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			default_state = this.root;
@@ -148,35 +135,25 @@ public class BeIncapacitatedChore : Chore<BeIncapacitatedChore.StatesInstance>
 			});
 		}
 
-		// Token: 0x040012CA RID: 4810
 		public BeIncapacitatedChore.States.IncapacitatedStates incapacitation_root;
 
-		// Token: 0x040012CB RID: 4811
 		public StateMachine<BeIncapacitatedChore.States, BeIncapacitatedChore.StatesInstance, BeIncapacitatedChore, object>.TargetParameter clinic;
 
-		// Token: 0x0200067C RID: 1660
 		public class IncapacitatedStates : GameStateMachine<BeIncapacitatedChore.States, BeIncapacitatedChore.StatesInstance, BeIncapacitatedChore, object>.State
 		{
-			// Token: 0x040012CC RID: 4812
 			public GameStateMachine<BeIncapacitatedChore.States, BeIncapacitatedChore.StatesInstance, BeIncapacitatedChore, object>.State lookingForBed;
 
-			// Token: 0x040012CD RID: 4813
 			public BeIncapacitatedChore.States.BeingRescued rescue;
 
-			// Token: 0x040012CE RID: 4814
 			public GameStateMachine<BeIncapacitatedChore.States, BeIncapacitatedChore.StatesInstance, BeIncapacitatedChore, object>.State death;
 
-			// Token: 0x040012CF RID: 4815
 			public GameStateMachine<BeIncapacitatedChore.States, BeIncapacitatedChore.StatesInstance, BeIncapacitatedChore, object>.State recovering;
 		}
 
-		// Token: 0x0200067D RID: 1661
 		public class BeingRescued : GameStateMachine<BeIncapacitatedChore.States, BeIncapacitatedChore.StatesInstance, BeIncapacitatedChore, object>.State
 		{
-			// Token: 0x040012D0 RID: 4816
 			public GameStateMachine<BeIncapacitatedChore.States, BeIncapacitatedChore.StatesInstance, BeIncapacitatedChore, object>.State waitingForPickup;
 
-			// Token: 0x040012D1 RID: 4817
 			public GameStateMachine<BeIncapacitatedChore.States, BeIncapacitatedChore.StatesInstance, BeIncapacitatedChore, object>.State carried;
 		}
 	}

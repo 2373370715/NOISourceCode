@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020002B2 RID: 690
 public class MushroomPlantConfig : IEntityConfig
 {
-	// Token: 0x06000A18 RID: 2584 RVA: 0x00173280 File Offset: 0x00171480
 	public GameObject CreatePrefab()
 	{
 		string id = "MushroomPlant";
@@ -49,22 +47,17 @@ public class MushroomPlantConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x06000A19 RID: 2585 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x06000A1A RID: 2586 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x040007F4 RID: 2036
 	public const float FERTILIZATION_RATE = 0.006666667f;
 
-	// Token: 0x040007F5 RID: 2037
 	public const string ID = "MushroomPlant";
 
-	// Token: 0x040007F6 RID: 2038
 	public const string SEED_ID = "MushroomSeed";
 }

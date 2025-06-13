@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02001B4C RID: 6988
 public class MoveToLocationToolHoverTextCard : HoverTextConfiguration
 {
-	// Token: 0x06009290 RID: 37520 RVA: 0x00393A18 File Offset: 0x00391C18
 	public override void UpdateHoverElements(List<KSelectable> selected)
 	{
 		HoverTextDrawer hoverTextDrawer = HoverTextScreen.Instance.BeginDrawing();

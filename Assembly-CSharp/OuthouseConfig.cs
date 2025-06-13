@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020004EA RID: 1258
 public class OuthouseConfig : IBuildingConfig
 {
-	// Token: 0x060015A1 RID: 5537 RVA: 0x0019F970 File Offset: 0x0019DB70
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "Outhouse";
@@ -31,7 +29,6 @@ public class OuthouseConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060015A2 RID: 5538 RVA: 0x0019FA2C File Offset: 0x0019DC2C
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		KPrefabID component = go.GetComponent<KPrefabID>();
@@ -74,7 +71,6 @@ public class OuthouseConfig : IBuildingConfig
 		component.prefabInitFn += this.OnInit;
 	}
 
-	// Token: 0x060015A3 RID: 5539 RVA: 0x0019FBF8 File Offset: 0x0019DDF8
 	private void OnInit(GameObject go)
 	{
 		ToiletWorkableUse component = go.GetComponent<ToiletWorkableUse>();
@@ -89,20 +85,15 @@ public class OuthouseConfig : IBuildingConfig
 		});
 	}
 
-	// Token: 0x060015A4 RID: 5540 RVA: 0x000AA038 File Offset: 0x000A8238
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 	}
 
-	// Token: 0x04000EE7 RID: 3815
 	public const string ID = "Outhouse";
 
-	// Token: 0x04000EE8 RID: 3816
 	private const int USES_PER_REFILL = 15;
 
-	// Token: 0x04000EE9 RID: 3817
 	private const float DIRT_PER_REFILL = 200f;
 
-	// Token: 0x04000EEA RID: 3818
 	private const float DIRT_PER_USE = 13f;
 }

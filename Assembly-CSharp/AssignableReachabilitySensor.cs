@@ -1,9 +1,7 @@
 ﻿using System;
 
-// Token: 0x02000844 RID: 2116
 public class AssignableReachabilitySensor : Sensor
 {
-	// Token: 0x06002563 RID: 9571 RVA: 0x001D8F84 File Offset: 0x001D7184
 	public AssignableReachabilitySensor(Sensors sensors) : base(sensors)
 	{
 		MinionAssignablesProxy minionAssignablesProxy = base.gameObject.GetComponent<MinionIdentity>().assignableProxy.Get();
@@ -30,7 +28,6 @@ public class AssignableReachabilitySensor : Sensor
 		this.navigator = base.GetComponent<Navigator>();
 	}
 
-	// Token: 0x06002564 RID: 9572 RVA: 0x001D906C File Offset: 0x001D726C
 	public bool IsReachable(AssignableSlot slot)
 	{
 		for (int i = 0; i < this.slots.Length; i++)
@@ -44,7 +41,6 @@ public class AssignableReachabilitySensor : Sensor
 		return false;
 	}
 
-	// Token: 0x06002565 RID: 9573 RVA: 0x001D90D4 File Offset: 0x001D72D4
 	public override void Update()
 	{
 		for (int i = 0; i < this.slots.Length; i++)
@@ -75,19 +71,14 @@ public class AssignableReachabilitySensor : Sensor
 		}
 	}
 
-	// Token: 0x040019BD RID: 6589
 	private AssignableReachabilitySensor.SlotEntry[] slots;
 
-	// Token: 0x040019BE RID: 6590
 	private Navigator navigator;
 
-	// Token: 0x02000845 RID: 2117
 	private struct SlotEntry
 	{
-		// Token: 0x040019BF RID: 6591
 		public AssignableSlotInstance slot;
 
-		// Token: 0x040019C0 RID: 6592
 		public bool isReachable;
 	}
 }

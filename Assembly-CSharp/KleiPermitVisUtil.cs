@@ -2,10 +2,8 @@
 using Database;
 using UnityEngine;
 
-// Token: 0x02001DC0 RID: 7616
 public static class KleiPermitVisUtil
 {
-	// Token: 0x06009F1C RID: 40732 RVA: 0x003DE504 File Offset: 0x003DC704
 	public static void ConfigureToRenderBuilding(KBatchedAnimController buildingKAnim, BuildingFacadeResource buildingPermit)
 	{
 		KAnimFile anim = Assets.GetAnim(buildingPermit.AnimFile);
@@ -18,7 +16,6 @@ public static class KleiPermitVisUtil
 		buildingKAnim.rectTransform().sizeDelta = 176f * Vector2.one;
 	}
 
-	// Token: 0x06009F1D RID: 40733 RVA: 0x003DE56C File Offset: 0x003DC76C
 	public static void ConfigureToRenderBuilding(KBatchedAnimController buildingKAnim, BuildingDef buildingDef)
 	{
 		buildingKAnim.Stop();
@@ -27,7 +24,6 @@ public static class KleiPermitVisUtil
 		buildingKAnim.rectTransform().sizeDelta = 176f * Vector2.one;
 	}
 
-	// Token: 0x06009F1E RID: 40734 RVA: 0x003DE5C4 File Offset: 0x003DC7C4
 	public static void ConfigureToRenderBuilding(KBatchedAnimController buildingKAnim, ArtableStage artablePermit)
 	{
 		buildingKAnim.Stop();
@@ -39,7 +35,6 @@ public static class KleiPermitVisUtil
 		buildingKAnim.rectTransform().sizeDelta = 176f * Vector2.one;
 	}
 
-	// Token: 0x06009F1F RID: 40735 RVA: 0x003DE62C File Offset: 0x003DC82C
 	public static void ConfigureToRenderBuilding(KBatchedAnimController buildingKAnim, DbStickerBomb artablePermit)
 	{
 		buildingKAnim.Stop();
@@ -60,7 +55,6 @@ public static class KleiPermitVisUtil
 		buildingKAnim.rectTransform().sizeDelta = 176f * Vector2.one;
 	}
 
-	// Token: 0x06009F20 RID: 40736 RVA: 0x003DE6D0 File Offset: 0x003DC8D0
 	public static void ConfigureToRenderBuilding(KBatchedAnimController buildingKAnim, MonumentPartResource monumentPermit)
 	{
 		buildingKAnim.Stop();
@@ -72,20 +66,17 @@ public static class KleiPermitVisUtil
 		buildingKAnim.rectTransform().sizeDelta = 176f * Vector2.one;
 	}
 
-	// Token: 0x06009F21 RID: 40737 RVA: 0x003DE730 File Offset: 0x003DC930
 	public static void ConfigureBuildingPosition(RectTransform transform, PrefabDefinedUIPosition anchorPosition, BuildingDef buildingDef, Alignment alignment)
 	{
 		anchorPosition.SetOn(transform);
 		transform.anchoredPosition += new Vector2(176f * (float)buildingDef.WidthInCells * -(alignment.x - 0.5f), 176f * (float)buildingDef.HeightInCells * -alignment.y);
 	}
 
-	// Token: 0x06009F22 RID: 40738 RVA: 0x003DE78C File Offset: 0x003DC98C
 	public static void ConfigureBuildingPosition(RectTransform transform, Vector2 anchorPosition, BuildingDef buildingDef, Alignment alignment)
 	{
 		transform.anchoredPosition = anchorPosition + new Vector2(176f * (float)buildingDef.WidthInCells * -(alignment.x - 0.5f), 176f * (float)buildingDef.HeightInCells * -alignment.y);
 	}
 
-	// Token: 0x06009F23 RID: 40739 RVA: 0x0010BF3D File Offset: 0x0010A13D
 	public static void ClearAnimation()
 	{
 		if (!KleiPermitVisUtil.buildingAnimateIn.IsNullOrDestroyed())
@@ -94,20 +85,17 @@ public static class KleiPermitVisUtil
 		}
 	}
 
-	// Token: 0x06009F24 RID: 40740 RVA: 0x0010BF5A File Offset: 0x0010A15A
 	public static void AnimateIn(KBatchedAnimController buildingKAnim, Updater extraUpdater = default(Updater))
 	{
 		KleiPermitVisUtil.ClearAnimation();
 		KleiPermitVisUtil.buildingAnimateIn = KleiPermitBuildingAnimateIn.MakeFor(buildingKAnim, extraUpdater);
 	}
 
-	// Token: 0x06009F25 RID: 40741 RVA: 0x0010BF6D File Offset: 0x0010A16D
 	public static HashedString GetFirstAnimHash(KAnimFile animFile)
 	{
 		return animFile.GetData().GetAnim(0).hash;
 	}
 
-	// Token: 0x06009F26 RID: 40742 RVA: 0x003DE7DC File Offset: 0x003DC9DC
 	public static HashedString GetDefaultStickerAnimHash(KAnimFile stickerAnimFile)
 	{
 		KAnimFileData data = stickerAnimFile.GetData();
@@ -122,7 +110,6 @@ public static class KleiPermitVisUtil
 		return null;
 	}
 
-	// Token: 0x06009F27 RID: 40743 RVA: 0x003DE828 File Offset: 0x003DCA28
 	public static BuildLocationRule? GetBuildLocationRule(PermitResource permit)
 	{
 		BuildingDef buildingDef = KleiPermitVisUtil.GetBuildingDef(permit);
@@ -133,7 +120,6 @@ public static class KleiPermitVisUtil
 		return new BuildLocationRule?(buildingDef.BuildLocationRule);
 	}
 
-	// Token: 0x06009F28 RID: 40744 RVA: 0x003DE85C File Offset: 0x003DCA5C
 	public static BuildingDef GetBuildingDef(PermitResource permit)
 	{
 		BuildingFacadeResource buildingFacadeResource = permit as BuildingFacadeResource;
@@ -179,9 +165,7 @@ public static class KleiPermitVisUtil
 		}
 	}
 
-	// Token: 0x04007CF0 RID: 31984
 	public const float TILE_SIZE_UI = 176f;
 
-	// Token: 0x04007CF1 RID: 31985
 	public static KleiPermitBuildingAnimateIn buildingAnimateIn;
 }

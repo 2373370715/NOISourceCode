@@ -3,10 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005DE RID: 1502
 public class SweepBotStationConfig : IBuildingConfig
 {
-	// Token: 0x06001A47 RID: 6727 RVA: 0x001B334C File Offset: 0x001B154C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "SweepBotStation";
@@ -35,7 +33,6 @@ public class SweepBotStationConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001A48 RID: 6728 RVA: 0x001B33F8 File Offset: 0x001B15F8
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		Prioritizable.AddRef(go);
@@ -64,15 +61,12 @@ public class SweepBotStationConfig : IBuildingConfig
 		go.AddOrGet<SweepBotStation>().SetStorages(storage, storage2);
 	}
 
-	// Token: 0x06001A49 RID: 6729 RVA: 0x000AAC8E File Offset: 0x000A8E8E
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGetDef<StorageController.Def>();
 	}
 
-	// Token: 0x04001100 RID: 4352
 	public const string ID = "SweepBotStation";
 
-	// Token: 0x04001101 RID: 4353
 	public const float POWER_USAGE = 240f;
 }

@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000C7B RID: 3195
 public class BionicMinionStorageExtension : KMonoBehaviour, StoredMinionIdentity.IStoredMinionExtension
 {
-	// Token: 0x06003CAB RID: 15531 RVA: 0x0023CE34 File Offset: 0x0023B034
 	public void AddStoredMinionGameObjectRequirements(GameObject storedMinionGameObject)
 	{
 		Storage[] components = storedMinionGameObject.GetComponents<Storage>();
@@ -25,7 +23,6 @@ public class BionicMinionStorageExtension : KMonoBehaviour, StoredMinionIdentity
 		}
 	}
 
-	// Token: 0x06003CAC RID: 15532 RVA: 0x0023CED4 File Offset: 0x0023B0D4
 	void StoredMinionIdentity.IStoredMinionExtension.PullFrom(StoredMinionIdentity source)
 	{
 		Storage[] components = source.GetComponents<Storage>();
@@ -46,7 +43,6 @@ public class BionicMinionStorageExtension : KMonoBehaviour, StoredMinionIdentity
 		}
 	}
 
-	// Token: 0x06003CAD RID: 15533 RVA: 0x0023CF54 File Offset: 0x0023B154
 	void StoredMinionIdentity.IStoredMinionExtension.PushTo(StoredMinionIdentity destination)
 	{
 		GameObject gameObject = destination.gameObject;
@@ -77,7 +73,6 @@ public class BionicMinionStorageExtension : KMonoBehaviour, StoredMinionIdentity
 		}
 	}
 
-	// Token: 0x04002A1B RID: 10779
 	private static readonly List<Tag> StoragesTypesToTransfer = new List<Tag>
 	{
 		GameTags.StoragesIds.BionicBatteryStorage,

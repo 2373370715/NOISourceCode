@@ -4,16 +4,10 @@ using KSerialization;
 using STRINGS;
 using UnityEngine;
 
-// Token: 0x02000FEE RID: 4078
 public class SteamTurbine : Generator
 {
-	// Token: 0x1700049B RID: 1179
-	// (get) Token: 0x06005209 RID: 21001 RVA: 0x000D9E0C File Offset: 0x000D800C
-	// (set) Token: 0x0600520A RID: 21002 RVA: 0x000D9E14 File Offset: 0x000D8014
 	public int BlockedInputs { get; private set; }
 
-	// Token: 0x1700049C RID: 1180
-	// (get) Token: 0x0600520B RID: 21003 RVA: 0x000D9E1D File Offset: 0x000D801D
 	public int TotalInputs
 	{
 		get
@@ -22,7 +16,6 @@ public class SteamTurbine : Generator
 		}
 	}
 
-	// Token: 0x0600520C RID: 21004 RVA: 0x00281A38 File Offset: 0x0027FC38
 	protected override void OnSpawn()
 	{
 		base.OnSpawn();
@@ -42,7 +35,6 @@ public class SteamTurbine : Generator
 		this.CreateMeter();
 	}
 
-	// Token: 0x0600520D RID: 21005 RVA: 0x00281B18 File Offset: 0x0027FD18
 	private void CreateMeter()
 	{
 		this.meter = new MeterController(base.gameObject.GetComponent<KBatchedAnimController>(), "meter_target", "meter", Meter.Offset.Infront, Grid.SceneLayer.NoLayer, new string[]
@@ -53,7 +45,6 @@ public class SteamTurbine : Generator
 		});
 	}
 
-	// Token: 0x0600520E RID: 21006 RVA: 0x00281B68 File Offset: 0x0027FD68
 	protected override void OnCleanUp()
 	{
 		if (this.smi != null)
@@ -65,7 +56,6 @@ public class SteamTurbine : Generator
 		base.OnCleanUp();
 	}
 
-	// Token: 0x0600520F RID: 21007 RVA: 0x00281BBC File Offset: 0x0027FDBC
 	private void Pump(float dt)
 	{
 		float mass = this.pumpKGRate * dt / (float)this.srcCells.Length;
@@ -76,13 +66,11 @@ public class SteamTurbine : Generator
 		}
 	}
 
-	// Token: 0x06005210 RID: 21008 RVA: 0x000D9E27 File Offset: 0x000D8027
 	private static void OnSimConsumeCallback(Sim.MassConsumedCallback mass_cb_info, object data)
 	{
 		((SteamTurbine)data).OnSimConsume(mass_cb_info);
 	}
 
-	// Token: 0x06005211 RID: 21009 RVA: 0x00281C2C File Offset: 0x0027FE2C
 	private void OnSimConsume(Sim.MassConsumedCallback mass_cb_info)
 	{
 		if (mass_cb_info.mass > 0f)
@@ -104,13 +92,11 @@ public class SteamTurbine : Generator
 		}
 	}
 
-	// Token: 0x06005212 RID: 21010 RVA: 0x000D9E35 File Offset: 0x000D8035
 	private static void OnSimEmittedCallback(Sim.MassEmittedCallback info, object data)
 	{
 		((SteamTurbine)data).OnSimEmitted(info);
 	}
 
-	// Token: 0x06005213 RID: 21011 RVA: 0x00281D3C File Offset: 0x0027FF3C
 	private void OnSimEmitted(Sim.MassEmittedCallback info)
 	{
 		if (info.suceeded != 1)
@@ -136,7 +122,6 @@ public class SteamTurbine : Generator
 		}
 	}
 
-	// Token: 0x06005214 RID: 21012 RVA: 0x00281E00 File Offset: 0x00280000
 	public static void InitializeStatusItems()
 	{
 		SteamTurbine.activeStatusItem = new StatusItem("TURBINE_ACTIVE", "BUILDING", "", StatusItem.IconType.Info, NotificationType.Good, false, OverlayModes.None.ID, true, 129022, null);
@@ -154,7 +139,6 @@ public class SteamTurbine : Generator
 		SteamTurbine.activeWattageStatusItem.resolveStringCallback = new Func<string, object, string>(SteamTurbine.ResolveWattageStatus);
 	}
 
-	// Token: 0x06005215 RID: 21013 RVA: 0x00281FAC File Offset: 0x002801AC
 	private static string ResolveWattageStatus(string str, object data)
 	{
 		SteamTurbine steamTurbine = (SteamTurbine)data;
@@ -162,14 +146,12 @@ public class SteamTurbine : Generator
 		return str.Replace("{Wattage}", GameUtil.GetFormattedWattage(steamTurbine.CurrentWattage, GameUtil.WattageFormatterUnit.Automatic, true)).Replace("{Max_Wattage}", GameUtil.GetFormattedWattage(steamTurbine.WattageRating, GameUtil.WattageFormatterUnit.Automatic, true)).Replace("{Efficiency}", GameUtil.GetFormattedPercent(num * 100f, GameUtil.TimeSlice.None)).Replace("{Src_Element}", ElementLoader.FindElementByHash(steamTurbine.srcElem).name);
 	}
 
-	// Token: 0x06005216 RID: 21014 RVA: 0x00282040 File Offset: 0x00280240
 	private static string ResolvePartialBlockedStatus(string str, object data)
 	{
 		SteamTurbine steamTurbine = (SteamTurbine)data;
 		return str.Replace("{Blocked}", steamTurbine.BlockedInputs.ToString()).Replace("{Total}", steamTurbine.TotalInputs.ToString());
 	}
 
-	// Token: 0x06005217 RID: 21015 RVA: 0x00282088 File Offset: 0x00280288
 	private static string ResolveStrings(string str, object data)
 	{
 		SteamTurbine steamTurbine = (SteamTurbine)data;
@@ -181,14 +163,12 @@ public class SteamTurbine : Generator
 		return str;
 	}
 
-	// Token: 0x06005218 RID: 21016 RVA: 0x000D9E43 File Offset: 0x000D8043
 	public void SetStorage(Storage steamStorage, Storage waterStorage)
 	{
 		this.gasStorage = steamStorage;
 		this.liquidStorage = waterStorage;
 	}
 
-	// Token: 0x06005219 RID: 21017 RVA: 0x00282130 File Offset: 0x00280330
 	public override void EnergySim200ms(float dt)
 	{
 		base.EnergySim200ms(dt);
@@ -233,22 +213,18 @@ public class SteamTurbine : Generator
 		this.meter.SetSymbolTint(SteamTurbine.TINT_SYMBOL, Color.Lerp(Color.red, Color.green, Game.Instance.accumulators.GetAverageRate(this.accumulator) / base.WattageRating));
 	}
 
-	// Token: 0x0600521A RID: 21018 RVA: 0x00282390 File Offset: 0x00280590
 	public float HeatFromCoolingSteam(PrimaryElement steam)
 	{
 		float temperature = steam.Temperature;
 		return -GameUtil.CalculateEnergyDeltaForElement(steam, temperature, this.outputElementTemperature);
 	}
 
-	// Token: 0x0600521B RID: 21019 RVA: 0x002823B4 File Offset: 0x002805B4
 	public float JoulesToGenerate(PrimaryElement steam)
 	{
 		float num = (steam.Temperature - this.outputElementTemperature) / (this.idealSourceElementTemperature - this.outputElementTemperature);
 		return base.WattageRating * (float)Math.Pow((double)num, 1.0);
 	}
 
-	// Token: 0x1700049D RID: 1181
-	// (get) Token: 0x0600521C RID: 21020 RVA: 0x000D9E53 File Offset: 0x000D8053
 	public float CurrentWattage
 	{
 		get
@@ -257,119 +233,82 @@ public class SteamTurbine : Generator
 		}
 	}
 
-	// Token: 0x040039D5 RID: 14805
 	private HandleVector<int>.Handle accumulator = HandleVector<int>.InvalidHandle;
 
-	// Token: 0x040039D6 RID: 14806
 	public SimHashes srcElem;
 
-	// Token: 0x040039D7 RID: 14807
 	public SimHashes destElem;
 
-	// Token: 0x040039D8 RID: 14808
 	public float requiredMass = 0.001f;
 
-	// Token: 0x040039D9 RID: 14809
 	public float minActiveTemperature = 398.15f;
 
-	// Token: 0x040039DA RID: 14810
 	public float idealSourceElementTemperature = 473.15f;
 
-	// Token: 0x040039DB RID: 14811
 	public float maxBuildingTemperature = 373.15f;
 
-	// Token: 0x040039DC RID: 14812
 	public float outputElementTemperature = 368.15f;
 
-	// Token: 0x040039DD RID: 14813
 	public float minConvertMass;
 
-	// Token: 0x040039DE RID: 14814
 	public float pumpKGRate;
 
-	// Token: 0x040039DF RID: 14815
 	public float maxSelfHeat;
 
-	// Token: 0x040039E0 RID: 14816
 	public float wasteHeatToTurbinePercent;
 
-	// Token: 0x040039E1 RID: 14817
 	private static readonly HashedString TINT_SYMBOL = new HashedString("meter_fill");
 
-	// Token: 0x040039E2 RID: 14818
 	[Serialize]
 	private float storedMass;
 
-	// Token: 0x040039E3 RID: 14819
 	[Serialize]
 	private float storedTemperature;
 
-	// Token: 0x040039E4 RID: 14820
 	[Serialize]
 	private byte diseaseIdx = byte.MaxValue;
 
-	// Token: 0x040039E5 RID: 14821
 	[Serialize]
 	private int diseaseCount;
 
-	// Token: 0x040039E6 RID: 14822
 	private static StatusItem inputBlockedStatusItem;
 
-	// Token: 0x040039E7 RID: 14823
 	private static StatusItem inputPartiallyBlockedStatusItem;
 
-	// Token: 0x040039E8 RID: 14824
 	private static StatusItem insufficientMassStatusItem;
 
-	// Token: 0x040039E9 RID: 14825
 	private static StatusItem insufficientTemperatureStatusItem;
 
-	// Token: 0x040039EA RID: 14826
 	private static StatusItem activeWattageStatusItem;
 
-	// Token: 0x040039EB RID: 14827
 	private static StatusItem buildingTooHotItem;
 
-	// Token: 0x040039EC RID: 14828
 	private static StatusItem activeStatusItem;
 
-	// Token: 0x040039EE RID: 14830
 	private const Sim.Cell.Properties floorCellProperties = (Sim.Cell.Properties)39;
 
-	// Token: 0x040039EF RID: 14831
 	private MeterController meter;
 
-	// Token: 0x040039F0 RID: 14832
 	private HandleVector<Game.ComplexCallbackInfo<Sim.MassEmittedCallback>>.Handle simEmitCBHandle = HandleVector<Game.ComplexCallbackInfo<Sim.MassEmittedCallback>>.InvalidHandle;
 
-	// Token: 0x040039F1 RID: 14833
 	private SteamTurbine.Instance smi;
 
-	// Token: 0x040039F2 RID: 14834
 	private int[] srcCells;
 
-	// Token: 0x040039F3 RID: 14835
 	private Storage gasStorage;
 
-	// Token: 0x040039F4 RID: 14836
 	private Storage liquidStorage;
 
-	// Token: 0x040039F5 RID: 14837
 	private ElementConsumer consumer;
 
-	// Token: 0x040039F6 RID: 14838
 	private Guid statusHandle;
 
-	// Token: 0x040039F7 RID: 14839
 	private HandleVector<int>.Handle structureTemperature;
 
-	// Token: 0x040039F8 RID: 14840
 	private float lastSampleTime = -1f;
 
-	// Token: 0x02000FEF RID: 4079
 	public class States : GameStateMachine<SteamTurbine.States, SteamTurbine.Instance, SteamTurbine>
 	{
-		// Token: 0x0600521F RID: 21023 RVA: 0x00282470 File Offset: 0x00280670
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
 			SteamTurbine.InitializeStatusItems();
@@ -405,48 +344,37 @@ public class SteamTurbine : Generator
 			});
 		}
 
-		// Token: 0x040039F9 RID: 14841
 		public GameStateMachine<SteamTurbine.States, SteamTurbine.Instance, SteamTurbine, object>.State inoperational;
 
-		// Token: 0x040039FA RID: 14842
 		public SteamTurbine.States.OperationalStates operational;
 
-		// Token: 0x040039FB RID: 14843
 		private static readonly HashedString[] ACTIVE_ANIMS = new HashedString[]
 		{
 			"working_pre",
 			"working_loop"
 		};
 
-		// Token: 0x040039FC RID: 14844
 		private static readonly HashedString[] TOOHOT_ANIMS = new HashedString[]
 		{
 			"working_pre"
 		};
 
-		// Token: 0x02000FF0 RID: 4080
 		public class OperationalStates : GameStateMachine<SteamTurbine.States, SteamTurbine.Instance, SteamTurbine, object>.State
 		{
-			// Token: 0x040039FD RID: 14845
 			public GameStateMachine<SteamTurbine.States, SteamTurbine.Instance, SteamTurbine, object>.State idle;
 
-			// Token: 0x040039FE RID: 14846
 			public GameStateMachine<SteamTurbine.States, SteamTurbine.Instance, SteamTurbine, object>.State active;
 
-			// Token: 0x040039FF RID: 14847
 			public GameStateMachine<SteamTurbine.States, SteamTurbine.Instance, SteamTurbine, object>.State tooHot;
 		}
 	}
 
-	// Token: 0x02000FF2 RID: 4082
 	public class Instance : GameStateMachine<SteamTurbine.States, SteamTurbine.Instance, SteamTurbine, object>.GameInstance
 	{
-		// Token: 0x06005230 RID: 21040 RVA: 0x002826FC File Offset: 0x002808FC
 		public Instance(SteamTurbine master) : base(master)
 		{
 		}
 
-		// Token: 0x06005231 RID: 21041 RVA: 0x00282754 File Offset: 0x00280954
 		public void UpdateBlocked(float dt)
 		{
 			base.master.BlockedInputs = 0;
@@ -466,7 +394,6 @@ public class SteamTurbine : Generator
 			this.inputPartiallyBlockedHandle = this.UpdateStatusItem(SteamTurbine.inputPartiallyBlockedStatusItem, base.master.BlockedInputs > 0 && base.master.BlockedInputs < base.master.TotalInputs, this.inputPartiallyBlockedHandle, component);
 		}
 
-		// Token: 0x06005232 RID: 21042 RVA: 0x00282838 File Offset: 0x00280A38
 		public void UpdateState(float dt)
 		{
 			bool flag = this.CanSteamFlow(ref this.insufficientMass, ref this.insufficientTemperature);
@@ -495,14 +422,12 @@ public class SteamTurbine : Generator
 			}
 		}
 
-		// Token: 0x06005233 RID: 21043 RVA: 0x000D9F47 File Offset: 0x000D8147
 		private bool IsTooHot(ref bool building_too_hot)
 		{
 			building_too_hot = (base.gameObject.GetComponent<PrimaryElement>().Temperature > base.smi.master.maxBuildingTemperature);
 			return building_too_hot;
 		}
 
-		// Token: 0x06005234 RID: 21044 RVA: 0x00282908 File Offset: 0x00280B08
 		private bool CanSteamFlow(ref bool insufficient_mass, ref bool insufficient_temperature)
 		{
 			float num = 0f;
@@ -523,7 +448,6 @@ public class SteamTurbine : Generator
 			return !insufficient_mass && !insufficient_temperature;
 		}
 
-		// Token: 0x06005235 RID: 21045 RVA: 0x002829B8 File Offset: 0x00280BB8
 		public void UpdateStatusItems()
 		{
 			KSelectable component = base.GetComponent<KSelectable>();
@@ -534,7 +458,6 @@ public class SteamTurbine : Generator
 			this.activeWattageHandle = component.SetStatusItem(Db.Get().StatusItemCategories.Power, status_item, base.master);
 		}
 
-		// Token: 0x06005236 RID: 21046 RVA: 0x00282A74 File Offset: 0x00280C74
 		private Guid UpdateStatusItem(StatusItem item, bool show, Guid current_handle, KSelectable ksel)
 		{
 			Guid result = current_handle;
@@ -552,7 +475,6 @@ public class SteamTurbine : Generator
 			return result;
 		}
 
-		// Token: 0x06005237 RID: 21047 RVA: 0x000D9F6F File Offset: 0x000D816F
 		public void DisableStatusItems()
 		{
 			KSelectable component = base.GetComponent<KSelectable>();
@@ -562,31 +484,22 @@ public class SteamTurbine : Generator
 			component.RemoveStatusItem(this.activeWattageHandle, false);
 		}
 
-		// Token: 0x04003A0C RID: 14860
 		public bool insufficientMass;
 
-		// Token: 0x04003A0D RID: 14861
 		public bool insufficientTemperature;
 
-		// Token: 0x04003A0E RID: 14862
 		public bool buildingTooHot;
 
-		// Token: 0x04003A0F RID: 14863
 		private Guid inputBlockedHandle = Guid.Empty;
 
-		// Token: 0x04003A10 RID: 14864
 		private Guid inputPartiallyBlockedHandle = Guid.Empty;
 
-		// Token: 0x04003A11 RID: 14865
 		private Guid insufficientMassHandle = Guid.Empty;
 
-		// Token: 0x04003A12 RID: 14866
 		private Guid insufficientTemperatureHandle = Guid.Empty;
 
-		// Token: 0x04003A13 RID: 14867
 		private Guid buildingTooHotHandle = Guid.Empty;
 
-		// Token: 0x04003A14 RID: 14868
 		private Guid activeWattageHandle = Guid.Empty;
 	}
 }

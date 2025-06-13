@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020004FF RID: 1279
 public class PixelPackConfig : IBuildingConfig
 {
-	// Token: 0x060015FC RID: 5628 RVA: 0x001A175C File Offset: 0x0019F95C
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = PixelPackConfig.ID;
@@ -52,7 +50,6 @@ public class PixelPackConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x060015FD RID: 5629 RVA: 0x000B4183 File Offset: 0x000B2383
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<AnimTileable>().objectLayer = ObjectLayer.Backwall;
@@ -60,7 +57,6 @@ public class PixelPackConfig : IBuildingConfig
 		go.AddComponent<ZoneTile>();
 	}
 
-	// Token: 0x060015FE RID: 5630 RVA: 0x000B41AD File Offset: 0x000B23AD
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.GetComponent<KPrefabID>().AddTag(GameTags.Backwall, false);
@@ -68,6 +64,5 @@ public class PixelPackConfig : IBuildingConfig
 		go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayBehindConduits, false);
 	}
 
-	// Token: 0x04000F1F RID: 3871
 	public static string ID = "PixelPack";
 }

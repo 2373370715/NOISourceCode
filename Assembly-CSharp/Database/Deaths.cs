@@ -3,10 +3,8 @@ using STRINGS;
 
 namespace Database
 {
-	// Token: 0x0200219E RID: 8606
 	public class Deaths : ResourceSet<Death>
 	{
-		// Token: 0x0600B7B7 RID: 47031 RVA: 0x00466A38 File Offset: 0x00464C38
 		public Deaths(ResourceSet parent) : base("Deaths", parent)
 		{
 			this.Generic = new Death("Generic", this, DUPLICANTS.DEATHS.GENERIC.NAME, DUPLICANTS.DEATHS.GENERIC.DESCRIPTION, "dead_on_back", "dead_on_back");
@@ -23,43 +21,30 @@ namespace Database
 			this.DeadBattery = new Death("DeadBattery", this, DUPLICANTS.DEATHS.HITBYHIGHENERGYPARTICLE.NAME, DUPLICANTS.DEATHS.HITBYHIGHENERGYPARTICLE.DESCRIPTION, "dead_on_back", "dead_on_back");
 		}
 
-		// Token: 0x040093F1 RID: 37873
 		public Death Generic;
 
-		// Token: 0x040093F2 RID: 37874
 		public Death Frozen;
 
-		// Token: 0x040093F3 RID: 37875
 		public Death Suffocation;
 
-		// Token: 0x040093F4 RID: 37876
 		public Death Starvation;
 
-		// Token: 0x040093F5 RID: 37877
 		public Death Slain;
 
-		// Token: 0x040093F6 RID: 37878
 		public Death Overheating;
 
-		// Token: 0x040093F7 RID: 37879
 		public Death Drowned;
 
-		// Token: 0x040093F8 RID: 37880
 		public Death Explosion;
 
-		// Token: 0x040093F9 RID: 37881
 		public Death FatalDisease;
 
-		// Token: 0x040093FA RID: 37882
 		public Death Radiation;
 
-		// Token: 0x040093FB RID: 37883
 		public Death HitByHighEnergyParticle;
 
-		// Token: 0x040093FC RID: 37884
 		public Death DeadBattery;
 
-		// Token: 0x040093FD RID: 37885
 		public Death DeadCyborgChargeExpired;
 	}
 }

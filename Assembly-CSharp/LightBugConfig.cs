@@ -5,10 +5,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x02000245 RID: 581
 public class LightBugConfig : IEntityConfig
 {
-	// Token: 0x06000819 RID: 2073 RVA: 0x0016A970 File Offset: 0x00168B70
 	public static GameObject CreateLightBug(string id, string name, string desc, string anim_file, bool is_baby)
 	{
 		GameObject prefab = BaseLightBugConfig.BaseLightBug(id, name, desc, anim_file, "LightBugBaseTrait", LIGHT2D.LIGHTBUG_COLOR, DECOR.BONUS.TIER4, is_baby, null);
@@ -32,7 +30,6 @@ public class LightBugConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x0600081A RID: 2074 RVA: 0x0016AB00 File Offset: 0x00168D00
 	public GameObject CreatePrefab()
 	{
 		GameObject gameObject = LightBugConfig.CreateLightBug("LightBug", STRINGS.CREATURES.SPECIES.LIGHTBUG.NAME, STRINGS.CREATURES.SPECIES.LIGHTBUG.DESC, "lightbug_kanim", false);
@@ -41,32 +38,24 @@ public class LightBugConfig : IEntityConfig
 		return gameObject;
 	}
 
-	// Token: 0x0600081B RID: 2075 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x0600081C RID: 2076 RVA: 0x000ADF93 File Offset: 0x000AC193
 	public void OnSpawn(GameObject inst)
 	{
 		BaseLightBugConfig.SetupLoopingSounds(inst);
 	}
 
-	// Token: 0x04000622 RID: 1570
 	public const string ID = "LightBug";
 
-	// Token: 0x04000623 RID: 1571
 	public const string BASE_TRAIT_ID = "LightBugBaseTrait";
 
-	// Token: 0x04000624 RID: 1572
 	public const string EGG_ID = "LightBugEgg";
 
-	// Token: 0x04000625 RID: 1573
 	private static float KG_ORE_EATEN_PER_CYCLE = 0.166f;
 
-	// Token: 0x04000626 RID: 1574
 	private static float CALORIES_PER_KG_OF_ORE = LightBugTuning.STANDARD_CALORIES_PER_CYCLE / LightBugConfig.KG_ORE_EATEN_PER_CYCLE;
 
-	// Token: 0x04000627 RID: 1575
 	public static int EGG_SORT_ORDER = 100;
 }

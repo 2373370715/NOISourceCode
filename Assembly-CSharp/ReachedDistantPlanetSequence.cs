@@ -3,16 +3,13 @@ using System.Collections;
 using FMOD.Studio;
 using UnityEngine;
 
-// Token: 0x020010EE RID: 4334
 public static class ReachedDistantPlanetSequence
 {
-	// Token: 0x06005893 RID: 22675 RVA: 0x000DE2EE File Offset: 0x000DC4EE
 	public static void Start(KMonoBehaviour controller)
 	{
 		controller.StartCoroutine(ReachedDistantPlanetSequence.Sequence());
 	}
 
-	// Token: 0x06005894 RID: 22676 RVA: 0x000DE2FC File Offset: 0x000DC4FC
 	private static IEnumerator Sequence()
 	{
 		Vector3 cameraTagetMid = Vector3.zero;

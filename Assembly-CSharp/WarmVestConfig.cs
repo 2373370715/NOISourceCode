@@ -5,10 +5,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020000C5 RID: 197
 public class WarmVestConfig : IEquipmentConfig
 {
-	// Token: 0x06000340 RID: 832 RVA: 0x00156070 File Offset: 0x00154270
 	public EquipmentDef CreateEquipmentDef()
 	{
 		new Dictionary<string, float>().Add("BasicFabric", (float)TUNING.EQUIPMENT.VESTS.WARM_VEST_MASS);
@@ -32,7 +30,6 @@ public class WarmVestConfig : IEquipmentConfig
 		return equipmentDef;
 	}
 
-	// Token: 0x06000341 RID: 833 RVA: 0x00154BA8 File Offset: 0x00152DA8
 	public static void SetupVest(GameObject go)
 	{
 		go.GetComponent<KPrefabID>().AddTag(GameTags.Clothes, false);
@@ -45,16 +42,13 @@ public class WarmVestConfig : IEquipmentConfig
 		go.GetComponent<KBatchedAnimController>().sceneLayer = Grid.SceneLayer.BuildingBack;
 	}
 
-	// Token: 0x06000342 RID: 834 RVA: 0x000AB216 File Offset: 0x000A9416
 	public void DoPostConfigure(GameObject go)
 	{
 		WarmVestConfig.SetupVest(go);
 		go.GetComponent<KPrefabID>().AddTag(GameTags.PedestalDisplayable, false);
 	}
 
-	// Token: 0x040001FF RID: 511
 	public const string ID = "Warm_Vest";
 
-	// Token: 0x04000200 RID: 512
 	public static ComplexRecipe recipe;
 }

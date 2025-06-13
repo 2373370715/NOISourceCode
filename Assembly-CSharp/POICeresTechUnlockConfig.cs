@@ -4,22 +4,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200058B RID: 1419
 public class POICeresTechUnlockConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x0600187B RID: 6267 RVA: 0x000AA536 File Offset: 0x000A8736
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.DLC2;
 	}
 
-	// Token: 0x0600187C RID: 6268 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x0600187D RID: 6269 RVA: 0x001AB594 File Offset: 0x001A9794
 	public GameObject CreatePrefab()
 	{
 		string id = "POICeresTechUnlock";
@@ -67,12 +63,10 @@ public class POICeresTechUnlockConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x0600187E RID: 6270 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x0600187F RID: 6271 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}

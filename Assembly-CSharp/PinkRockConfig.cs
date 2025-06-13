@@ -4,22 +4,18 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x0200049D RID: 1181
 public class PinkRockConfig : IEntityConfig, IHasDlcRestrictions
 {
-	// Token: 0x06001431 RID: 5169 RVA: 0x000AA536 File Offset: 0x000A8736
 	public string[] GetRequiredDlcIds()
 	{
 		return DlcManager.DLC2;
 	}
 
-	// Token: 0x06001432 RID: 5170 RVA: 0x000AA765 File Offset: 0x000A8965
 	public string[] GetForbiddenDlcIds()
 	{
 		return null;
 	}
 
-	// Token: 0x06001433 RID: 5171 RVA: 0x0019B2A4 File Offset: 0x001994A4
 	public GameObject CreatePrefab()
 	{
 		string id = this.ID;
@@ -53,16 +49,13 @@ public class PinkRockConfig : IEntityConfig, IHasDlcRestrictions
 		return gameObject;
 	}
 
-	// Token: 0x06001434 RID: 5172 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnPrefabInit(GameObject inst)
 	{
 	}
 
-	// Token: 0x06001435 RID: 5173 RVA: 0x000AA038 File Offset: 0x000A8238
 	public void OnSpawn(GameObject inst)
 	{
 	}
 
-	// Token: 0x04000DD3 RID: 3539
 	public string ID = "PinkRock";
 }

@@ -4,10 +4,8 @@ using STRINGS;
 
 namespace Database
 {
-	// Token: 0x02002234 RID: 8756
 	public class Skills : ResourceSet<Skill>
 	{
-		// Token: 0x0600BA1E RID: 47646 RVA: 0x0047BEF4 File Offset: 0x0047A0F4
 		public Skills(ResourceSet parent) : base("Skills", parent)
 		{
 			this.Mining1 = this.AddSkill(new Skill("Mining1", DUPLICANTS.ROLES.JUNIOR_MINER.NAME, DUPLICANTS.ROLES.JUNIOR_MINER.DESCRIPTION, 0, "hat_role_mining1", "skillbadge_role_mining1", Db.Get().SkillGroups.Mining.Id, new List<SkillPerk>
@@ -416,7 +414,6 @@ namespace Database
 			}
 		}
 
-		// Token: 0x0600BA1F RID: 47647 RVA: 0x0011C6FA File Offset: 0x0011A8FA
 		private Skill AddSkill(Skill skill)
 		{
 			if (DlcManager.IsCorrectDlcSubscribed(skill))
@@ -426,7 +423,6 @@ namespace Database
 			return skill;
 		}
 
-		// Token: 0x0600BA20 RID: 47648 RVA: 0x0047DD64 File Offset: 0x0047BF64
 		public List<Skill> GetSkillsWithPerk(string perk)
 		{
 			List<Skill> list = new List<Skill>();
@@ -440,7 +436,6 @@ namespace Database
 			return list;
 		}
 
-		// Token: 0x0600BA21 RID: 47649 RVA: 0x0047DDCC File Offset: 0x0047BFCC
 		public List<Skill> GetSkillsWithPerk(SkillPerk perk)
 		{
 			List<Skill> list = new List<Skill>();
@@ -454,7 +449,6 @@ namespace Database
 			return list;
 		}
 
-		// Token: 0x0600BA22 RID: 47650 RVA: 0x0047DE30 File Offset: 0x0047C030
 		public List<Skill> GetAllPriorSkills(Skill skill)
 		{
 			List<Skill> list = new List<Skill>();
@@ -467,7 +461,6 @@ namespace Database
 			return list;
 		}
 
-		// Token: 0x0600BA23 RID: 47651 RVA: 0x0047DEA0 File Offset: 0x0047C0A0
 		public List<Skill> GetTerminalSkills()
 		{
 			List<Skill> list = new List<Skill>();
@@ -493,154 +486,104 @@ namespace Database
 			return list;
 		}
 
-		// Token: 0x0400986F RID: 39023
 		public Skill Mining1;
 
-		// Token: 0x04009870 RID: 39024
 		public Skill Mining2;
 
-		// Token: 0x04009871 RID: 39025
 		public Skill Mining3;
 
-		// Token: 0x04009872 RID: 39026
 		public Skill Mining4;
 
-		// Token: 0x04009873 RID: 39027
 		public Skill Building1;
 
-		// Token: 0x04009874 RID: 39028
 		public Skill Building2;
 
-		// Token: 0x04009875 RID: 39029
 		public Skill Building3;
 
-		// Token: 0x04009876 RID: 39030
 		public Skill Farming1;
 
-		// Token: 0x04009877 RID: 39031
 		public Skill Farming2;
 
-		// Token: 0x04009878 RID: 39032
 		public Skill Farming3;
 
-		// Token: 0x04009879 RID: 39033
 		public Skill Ranching1;
 
-		// Token: 0x0400987A RID: 39034
 		public Skill Ranching2;
 
-		// Token: 0x0400987B RID: 39035
 		public Skill Researching1;
 
-		// Token: 0x0400987C RID: 39036
 		public Skill Researching2;
 
-		// Token: 0x0400987D RID: 39037
 		public Skill Researching3;
 
-		// Token: 0x0400987E RID: 39038
 		public Skill Researching4;
 
-		// Token: 0x0400987F RID: 39039
 		public Skill AtomicResearch;
 
-		// Token: 0x04009880 RID: 39040
 		public Skill SpaceResearch;
 
-		// Token: 0x04009881 RID: 39041
 		public Skill Astronomy;
 
-		// Token: 0x04009882 RID: 39042
 		public Skill RocketPiloting1;
 
-		// Token: 0x04009883 RID: 39043
 		public Skill RocketPiloting2;
 
-		// Token: 0x04009884 RID: 39044
 		public Skill Cooking1;
 
-		// Token: 0x04009885 RID: 39045
 		public Skill Cooking2;
 
-		// Token: 0x04009886 RID: 39046
 		public Skill Arting1;
 
-		// Token: 0x04009887 RID: 39047
 		public Skill Arting2;
 
-		// Token: 0x04009888 RID: 39048
 		public Skill Arting3;
 
-		// Token: 0x04009889 RID: 39049
 		public Skill Hauling1;
 
-		// Token: 0x0400988A RID: 39050
 		public Skill Hauling2;
 
-		// Token: 0x0400988B RID: 39051
 		public Skill ThermalSuits;
 
-		// Token: 0x0400988C RID: 39052
 		public Skill Suits1;
 
-		// Token: 0x0400988D RID: 39053
 		public Skill Technicals1;
 
-		// Token: 0x0400988E RID: 39054
 		public Skill Technicals2;
 
-		// Token: 0x0400988F RID: 39055
 		public Skill Engineering1;
 
-		// Token: 0x04009890 RID: 39056
 		public Skill Basekeeping1;
 
-		// Token: 0x04009891 RID: 39057
 		public Skill Basekeeping2;
 
-		// Token: 0x04009892 RID: 39058
 		public Skill Pyrotechnics;
 
-		// Token: 0x04009893 RID: 39059
 		public Skill Astronauting1;
 
-		// Token: 0x04009894 RID: 39060
 		public Skill Astronauting2;
 
-		// Token: 0x04009895 RID: 39061
 		public Skill Medicine1;
 
-		// Token: 0x04009896 RID: 39062
 		public Skill Medicine2;
 
-		// Token: 0x04009897 RID: 39063
 		public Skill Medicine3;
 
-		// Token: 0x04009898 RID: 39064
 		public Skill BionicsA1;
 
-		// Token: 0x04009899 RID: 39065
 		public Skill BionicsA2;
 
-		// Token: 0x0400989A RID: 39066
 		public Skill BionicsA3;
 
-		// Token: 0x0400989B RID: 39067
 		public Skill BionicsB1;
 
-		// Token: 0x0400989C RID: 39068
 		public Skill BionicsB2;
 
-		// Token: 0x0400989D RID: 39069
 		public Skill BionicsB3;
 
-		// Token: 0x0400989E RID: 39070
 		public Skill BionicsC1;
 
-		// Token: 0x0400989F RID: 39071
 		public Skill BionicsC2;
 
-		// Token: 0x040098A0 RID: 39072
 		public Skill BionicsC3;
 	}
 }

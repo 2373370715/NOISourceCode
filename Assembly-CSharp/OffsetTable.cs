@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x020016CB RID: 5835
 public static class OffsetTable
 {
-	// Token: 0x06007869 RID: 30825 RVA: 0x0031F810 File Offset: 0x0031DA10
 	public static CellOffset[][] Mirror(CellOffset[][] table)
 	{
 		List<CellOffset[]> list = new List<CellOffset[]>();

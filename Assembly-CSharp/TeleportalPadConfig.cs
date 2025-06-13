@@ -4,10 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
-// Token: 0x020005E1 RID: 1505
 public class TeleportalPadConfig : IBuildingConfig
 {
-	// Token: 0x06001A55 RID: 6741 RVA: 0x001B36A4 File Offset: 0x001B18A4
 	public override BuildingDef CreateBuildingDef()
 	{
 		string id = "TeleportalPad";
@@ -47,7 +45,6 @@ public class TeleportalPadConfig : IBuildingConfig
 		return buildingDef;
 	}
 
-	// Token: 0x06001A56 RID: 6742 RVA: 0x000B591A File Offset: 0x000B3B1A
 	public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 	{
 		go.AddOrGet<TeleportalPad>();
@@ -55,24 +52,18 @@ public class TeleportalPadConfig : IBuildingConfig
 		go.AddOrGet<PrimaryElement>().SetElement(SimHashes.Unobtanium, true);
 	}
 
-	// Token: 0x06001A57 RID: 6743 RVA: 0x000AAF59 File Offset: 0x000A9159
 	public override void DoPostConfigureComplete(GameObject go)
 	{
 		go.AddOrGet<LogicOperationalController>();
 	}
 
-	// Token: 0x04001106 RID: 4358
 	public const string ID = "TeleportalPad";
 
-	// Token: 0x04001107 RID: 4359
 	public const string PORTAL_ID_PORT_0 = "TeleportalPad_ID_PORT_0";
 
-	// Token: 0x04001108 RID: 4360
 	public const string PORTAL_ID_PORT_1 = "TeleportalPad_ID_PORT_1";
 
-	// Token: 0x04001109 RID: 4361
 	public const string PORTAL_ID_PORT_2 = "TeleportalPad_ID_PORT_2";
 
-	// Token: 0x0400110A RID: 4362
 	public const string PORTAL_ID_PORT_3 = "TeleportalPad_ID_PORT_3";
 }
